@@ -4,11 +4,15 @@ import assert from 'assert';
 // ===== INSTANTIATION-COMMON =====
 // ================================
 import weaviate from 'weaviate-client';
+import { generativeConfigRuntime } from 'weaviate-client';
+
+async function main() {
+  
 
 const client = await weaviate.connectToLocal({
   headers: {
-    'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY || '',
-    'X-Cohere-Api-Key': process.env.COHERE_APIKEY || '',
+    'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY as string,
+    'X-Cohere-Api-Key': process.env.COHERE_APIKEY as string,
   },
 });
 
@@ -48,14 +52,14 @@ await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
   generative: weaviate.configure.generative.anthropic({
-    // // These parameters are optional
-    // baseUrlProperty: 'https://api.anthropic.com',
+    // These parameters are optional
+    // baseURL: 'https://api.anthropic.com',
     // model: 'claude-3-opus-20240229',
-    // maxTokensProperty: 512,
-    // temperatureProperty: 0.7,
-    // stopSequencesProperty: ['\n\n'],
-    // topPProperty: 0.9,
-    // topKProperty: 5,
+    // maxTokens: 512,
+    // temperature: 0.7,
+    // stopSequences: ['\n\n'],
+    // topP: 0.9,
+    // topK: 5,
   }),
   // highlight-end
   // Additional parameters not shown
@@ -64,6 +68,40 @@ await client.collections.create({
 
 // Clean up
 await client.collections.delete('DemoCollection');
+
+// START RuntimeModelSelectionAnthropic
+// from weaviate.classes.config import Configure
+// from weaviate.classes.generate import GenerativeConfig
+
+const collection = client.collections.get("DemoCollection")
+let response
+
+// coming soon
+response = collection.generate.nearText("A holiday film", {    
+          // highlight-start
+groupedTask: "Write a tweet promoting these two movies",
+config: generativeConfigRuntime.anthropic({
+        // These parameters are optional
+        // baseURL: "https://api.anthropic.com",
+        // model: "claude-3-opus-20240229",
+        // maxTokens: 512,
+        // temperature: 0.7,
+        // stopSequences: ["\n\n"],
+        // topP: 0.9,
+        // topK: 5,
+}),
+    // highlight-end
+
+    }, {
+    limit: 2,
+    }
+    // Additional parameters not shown
+)
+// END RuntimeModelSelectionAnthropic
+
+// START WorkingWithImagesAnthropic
+// coming soon
+// END WorkingWithImagesAnthropic
 
 // START BasicGenerativeAnyscale
 await client.collections.create({
@@ -98,7 +136,7 @@ await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
   generative: weaviate.configure.generative.anyscale({
-    // // These parameters are optional
+    // These parameters are optional
     // model: 'meta-llama/Llama-2-70b-chat-hf',
     // temperature: 0.7,
   }),
@@ -106,6 +144,35 @@ await client.collections.create({
   // Additional parameters not shown
 });
 // END FullGenerativeAnyscale
+
+// START RuntimeModelSelectionAnyscale
+
+const collection = client.collections.get("DemoCollection")
+let response
+
+// coming soon
+response = collection.generate.nearText("A holiday film", {    
+          // highlight-start
+groupedTask: "Write a tweet promoting these two movies",
+config: generativeConfigRuntime.anthropic({
+        // These parameters are optional
+        // baseURL: "https://api.anthropic.com",
+        // model: "claude-3-opus-20240229",
+        // maxTokens: 512,
+        // temperature: 0.7,
+        // stopSequences: ["\n\n"],
+        // topP: 0.9,
+        // topK: 5,
+}),
+    // highlight-end
+
+    }, {
+    limit: 2,
+    }
+    // Additional parameters not shown
+)
+
+// END RuntimeModelSelectionAnyscale
 
 // Clean up
 await client.collections.delete('DemoCollection');
@@ -138,6 +205,14 @@ await client.collections.create({
   // highlight-end
 })
 // END BasicGenerativeAWSSagemaker
+
+// START RuntimeModelSelectionAWS
+adwae
+// END RuntimeModelSelectionAWS
+
+// START WorkingWithImagesAWS
+dadwe
+// END WorkingWithImagesAWS
 
 // Clean up
 await client.collections.delete('DemoCollection');
@@ -176,18 +251,23 @@ await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
   generative: weaviate.configure.generative.cohere({
-    // // These parameters are optional
-    // model: 'command-r',
-    // temperatureProperty: 0.7,
-    // maxTokensProperty: 500,
-    // kProperty: 5,
-    // stopSequencesProperty: ['\n\n'],
-    // returnLikelihoodsProperty: 'GENERATION'
+    // These parameters are optional
+    model: 'command-r',
+    // temperature: 0.7,
+    // maxTokens: 500,
+    // k: 5,
+    // stopSequences: ['\n\n'],
+    // returnLikelihoods: 'GENERATION'
   }),
   // highlight-end
   // Additional parameters not shown
 });
 // END FullGenerativeCohere
+
+// START RuntimeModelSelectionCohere
+dwdad
+// END RuntimeModelSelectionCohere
+
 
 // Clean up
 await client.collections.delete('DemoCollection');
@@ -226,6 +306,10 @@ await client.collections.create({
   // Additional parameters not shown
 });
 // END FullGenerativeDatabricks
+
+// START RuntimeModelSelectionDatabricks
+wdaedw
+// END RuntimeModelSelectionDatabricks
 
 // Clean up
 await client.collections.delete('DemoCollection');
@@ -273,6 +357,10 @@ await client.collections.create({
 });
 // END FullGenerativeFriendliAI
 
+// START RuntimeModelSelectionFriendliAI
+sfaef
+// END RuntimeModelSelectionFriendliAI
+
 // Clean up
 await client.collections.delete('DemoCollection');
 
@@ -313,7 +401,7 @@ await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
   generative: weaviate.configure.generative.google({
-    modelId: 'gemini-pro'
+    modelId: 'gemini-pro',
   }),
   // highlight-end
   // Additional parameters not shown
@@ -329,17 +417,25 @@ await client.collections.create({
   // highlight-start
   generative: weaviate.configure.generative.google({
     projectId: '<google-cloud-project-id>',  // Required for Vertex AI
-    // model_id='<google-model-id>',
-    // api_endpoint='<google-api-endpoint>',
-    // temperature=0.7,
-    // top_k=5,
-    // top_p=0.9,
-    // vectorize_collection_name=False,
+    modelId: '<google-model-id>',
+    apiEndpoint: '<google-api-endpoint>',
+    temperature: 0.7,
+    topK: 5,
+    topP: 0.9,
   }),
   // highlight-end
   // Additional parameters not shown
 });
 // END FullGenerativeGoogle
+
+// START RuntimeModelSelectionGoogle
+adwdaw
+// END RuntimeModelSelectionGoogle
+
+
+// START WorkingWithImagesGoogle
+daedae
+// END WorkingWithImagesGoogle
 
 // Clean up
 await client.collections.delete('DemoCollection');
@@ -377,7 +473,7 @@ await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
   generative: weaviate.configure.generative.mistral({
-    // // These parameters are optional
+    // These parameters are optional
     // model: 'mistral-large',
     // temperature: 0.7,
     // maxTokens: 500
@@ -386,26 +482,60 @@ await client.collections.create({
 });
 // END FullGenerativeMistral
 
+// START RuntimeModelSelectionMistral
+awdaw
+// END RuntimeModelSelectionMistral
+
 // Clean up
 await client.collections.delete('DemoCollection');
 
 // START BasicGenerativeNVIDIA
-// Coming soon
-// END BasicGenerativeNVIDIA
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.nvidia(),
+  // highlight-end
+  // Additional parameters not shown
+});// END BasicGenerativeNVIDIA
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
 // START GenerativeNVIDIACustomModel
-// Coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.nvidia({
+    model: 'nvidia/llama-3.1-nemotron-70b-instruct'
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
 // END GenerativeNVIDIACustomModel
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
 // START FullGenerativeNVIDIA
-// Coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.nvidia({
+    // These parameters are optional
+    // model: 'nvidia/llama-3.1-nemotron-70b-instruct'
+    // baseURL: "https://integrate.api.nvidia.com/v1",
+    // temperature: 0.7,
+    // maxTokens: 1024
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
 // END FullGenerativeNVIDIA
+
+
+// START RuntimeModelSelectionNVIDIA
+adwd
+// END RuntimeModelSelectionNVIDIA
 
 // Clean up
 await client.collections.delete('DemoCollection');
@@ -489,18 +619,27 @@ await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
   generative: weaviate.configure.generative.openAI({
-    // // These parameters are optional
+    // These parameters are optional
     // model: 'gpt-4',
-    // frequencyPenaltyProperty: 0,
-    // maxTokensProperty: 500,
-    // presencePenaltyProperty: 0,
-    // temperatureProperty: 0.7,
-    // topPProperty: 0.7,
+    // frequencyPenalty: 0,
+    // maxTokens: 500,
+    // presencePenalty: 0,
+    // temperature: 0.7,
+    // topP: 0.7,
   }),
   // highlight-end
   // Additional parameters not shown
 });
 // END FullGenerativeOpenAI
+
+// START RuntimeModelSelectionOpenAI
+awdwa
+// END RuntimeModelSelectionOpenAI
+
+
+// START WorkingWithImagesOpenAI
+dawa
+// END WorkingWithImagesOpenAI
 
 // Clean up
 await client.collections.delete('DemoCollection');
@@ -514,16 +653,20 @@ await client.collections.create({
     model: 'gpt-3.5-turbo',
     baseURL: 'http://kubeai/openai',
     // These parameters are optional
-    // frequencyPenaltyProperty: 0,
-    // maxTokensProperty: 500,
-    // presencePenaltyProperty: 0,
-    // temperatureProperty: 0.7,
-    // topPProperty: 0.7,
+    // frequencyPenalty: 0,
+    // maxTokens: 500,
+    // presencePenalty: 0,
+    // temperature: 0.7,
+    // topP: 0.7,
   }),
   // highlight-end
   // Additional parameters not shown
 });
 // END FullGenerativeKubeAI
+
+// START RuntimeModelSelectionKubeAI
+dwdadw
+// END RuntimeModelSelectionKubeAI
 
 // Clean up
 await client.collections.delete('DemoCollection');
@@ -551,17 +694,21 @@ await client.collections.create({
   generative: weaviate.configure.generative.azureOpenAI({
     resourceName: '<azure-resource-name>',
     deploymentId: '<azure-deployment-id>',
-    // // These parameters are optional
-    // frequencyPenaltyProperty: 0,
-    // maxTokensProperty: 500,
-    // presencePenaltyProperty: 0,
-    // temperatureProperty: 0.7,
-    // topPProperty: 0.7,
+    // These parameters are optional
+    // frequencyPenalty: 0,
+    // maxTokens: 500,
+    // presencePenalty: 0,
+    // temperature: 0.7,
+    // topP: 0.7,
   }),
   // highlight-end
   // Additional parameters not shown
 });
 // END FullGenerativeAzureOpenAI
+
+// START RuntimeModelSelectionAzureOpenAI
+dwWd
+// END RuntimeModelSelectionAzureOpenAI
 
 // START BasicGenerativeOllama
 await client.collections.create({
@@ -592,48 +739,49 @@ await client.collections.create({
 });
 // END FullGenerativeOllama
 
+// START RuntimeModelSelectionOllama
+
+// END RuntimeModelSelectionOllama
+
+
 // Clean up
 await client.collections.delete('DemoCollection');
 
 // START SinglePromptExample  // START GroupedTaskExample
-let myCollection = client.collections.get('DemoCollection');
-// START SinglePromptExample  // END GroupedTaskExample
+let myCollection = client.collections.use('DemoCollection');
 
-const singlePromptResults = await myCollection.generate.nearText(
-  ['A holiday film'],
-  // highlight-start
-  {
+// START SinglePromptExample  // END GroupedTaskExample
+const singlePromptResults = await myCollection.generate.nearText('A holiday film', {
+    // highlight-start
     singlePrompt: `Translate this into French: {title}`,
-  },
-  // highlight-end
-  {
+    // highlight-end
+  }, {
     limit: 2,
-  }
-);
+});
 
 for (const obj of singlePromptResults.objects) {
   console.log(obj.properties['title']);
-  console.log(`Generated output: ${obj.generated}`);  // Note that the generated output is per object
+  console.log(`Generated output: ${obj.generative?.text}`);  // Note that the generated output is per object
 }
 // END SinglePromptExample
 
 // START GroupedTaskExample
-const groupedTaskResults = await myCollection.generate.nearText(
-  ['A holiday film'],
-  // highlight-start
-  {
+const groupedTaskResults = await myCollection.generate.nearText('A holiday film', {
+    // highlight-start
     groupedTask: `Write a fun tweet to promote readers to check out these films.`,
-  },
-  // highlight-end
-  {
+    // highlight-end
+  }, {
     limit: 2,
-  }
-);
+});
 
-console.log(`Generated output: ${groupedTaskResults.generated}`);  // Note that the generated output is per query
+console.log(`Generated output: ${groupedTaskResults.generative?.text}`);  // Note that the generated output is per query
 for (const obj of groupedTaskResults.objects) {
   console.log(obj.properties['title']);
 }
 // END GroupedTaskExample
 
 client.close();
+
+}
+
+void main()
