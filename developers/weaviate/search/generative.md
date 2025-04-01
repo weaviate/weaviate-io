@@ -38,11 +38,12 @@ To use RAG with a [generative model integration](../model-providers/index.md):
   </TabItem>
 
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START DynamicRag"
+      endMarker="// END DynamicRag"
+      language="ts"
+    />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -249,11 +250,12 @@ You can use *generative parameters* to specify additional options when performin
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// SingleGenerativeParametersTS"
+      endMarker="// END SingleGenerativeParametersTS"
+      language="ts"
+    />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -457,11 +459,12 @@ You can use *generative parameters* to specify additional options when performin
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START GroupedGenerativeParametersTS"
+      endMarker="/ END GroupedGenerativeParametersTS"
+      language="ts"
+    />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -510,11 +513,12 @@ The following fields are available for generative search with images:
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START WorkingWithImages"
+      endMarker="// END WorkingWithImages"
+      language="ts"
+    />
   </TabItem>
   <TabItem value="go" label="Go">
 
