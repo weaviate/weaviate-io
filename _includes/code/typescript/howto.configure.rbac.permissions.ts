@@ -2,7 +2,7 @@ import weaviate, { WeaviateClient } from 'weaviate-client'
 import assert from 'assert'
 
 const client: WeaviateClient = await weaviate.connectToLocal({
-    // Use custom port defined in tests/docker-compose-rbac.yml (without showing the user)
+        // Use custom port defined in tests/docker-compose-rbac.yml (without showing the user)
         port: 8580,
         grpcPort: 50551, 
         authCredentials: new weaviate.ApiKey("user-a-key")
@@ -24,8 +24,11 @@ async function resetUser(user: string, client: WeaviateClient) {
 resetUser("user-b", client)
 await client.roles.delete("rw_role")  // delete if exists
 
-// START ReadWritePermissionDefinition
+// START ReadWritePermissionDefinition // START MTPermissionsExample
 const { permissions } = weaviate
+// END ReadWritePermissionDefinition // END MTPermissionsExample
+
+// START ReadWritePermissionDefinition
 
 // Define permissions (example confers read+write rights to collections starting with "TargetCollection")
 const allPermissions = [
@@ -61,6 +64,7 @@ const allPermissions = [
 // Create a new role
 await client.roles.create("rw_role", allPermissions)
 // END ReadWritePermissionDefinition
+
 // START ReadWritePermissionAssignment
 // Assign the role to a user
 await client.users.assignRoles(["rw_role"], "user-b",)
@@ -81,7 +85,6 @@ assert.equal(userPermissions["rw_role"].name, "rw_role")
 await client.roles.delete("viewer_role")  // delete if exists
 
 // START ViewerPermissionDefinition
-// from weaviate.classes.rbac import Permissions
 
 // Define permissions (example confers viewer rights to collections starting with "TargetCollection")
 const newPermissions = [
@@ -97,6 +100,7 @@ const newPermissions = [
 // Create a new role
 await client.roles.create("viewer_role", newPermissions)
 // END ViewerPermissionDefinition
+
 // START ViewerPermissionAssignment
 // Assign the role to a user
 await client.users.assignRoles("user-b", "viewer_role")
@@ -110,29 +114,28 @@ await client.users.assignRoles("user-b", "viewer_role")
 client.roles.delete("tenant_manager")
 
 // START MTPermissionsExample
-// from weaviate.classes.rbac import Permissions
 
-const mtenantPermissions = [
-    permissions.collections({
-        collection: "TargetCollection*",
-        create_collection: true,
-        read_config: true,
-        update_config: true,
-        delete_collection: true,
-    }),
-    // Without the below permission, the user would not
-    // be able to create tenants in collections starting with "TargetCollection"
+const tenantPermissions = [
     permissions.tenants({
         collection: "TargetCollection*",  // Applies to all collections starting with "TargetCollection"
+        tenant: "TargetTenant*",  // Applies to all tenants starting with "TargetTenant"
         create: true,  // Allow creating new tenants
         read: true,  // Allow reading tenant info/metadata
         update: true,  // Allow updating tenant states
-        delete: false,  // Don't allow deleting tenants
+        delete: true,  // Allow deleting tenants
     }),
+    permissions.data({
+        collection: "TargetCollection*",  //  Applies to all collections starting with "TargetCollection"
+        tenant: "TargetTenant*",  // Applies to all tenants starting with "TargetTenant"
+        create: true,  // Allow data inserts
+        read: true,  // Allow query and fetch operations
+        update: true,  // Allow data updates
+        delete: true,  // Allow data deletes
+    })
 ]
 
 // Create a new role
-await client.roles.create("tenant_manager", mtenantPermissions)
+await client.roles.create("tenant_manager", tenantPermissions)
 // END MTPermissionsExample
 // START MTPermissionsAssignment
 // Assign the role to a user
@@ -140,13 +143,15 @@ client.users.assignRoles("user-b", "tenant_manager")
 // END MTPermissionsAssignment
 
 // ===== TEST ===== basic checks to see if the role was created
-const testUserPermissions = client.users.getAssignedRoles("user-b")
+const testUserPermissions = await client.users.getAssignedRoles("user-b")
 
-// assert.equal("viewer_role" in user_permissions.keys())
-// assert.equal(
-//     user_permissions["viewer_role"].collections_permissions[0].collection
-//     ,"TargetCollection*"
-// )
-// assert.equal(user_permissions["viewer_role"].name, "viewer_role")
+assert.equal((Object.keys(await client.users.getAssignedRoles("user-b")).some(
+    role => role == "viewer_role"
+)), true)
+assert.equal(
+    testUserPermissions["viewer_role"].collectionsPermissions[0].collection
+    ,"TargetCollection*"
+)
+assert.equal(testUserPermissions["viewer_role"].name, "viewer_role")
 
 client.close()
