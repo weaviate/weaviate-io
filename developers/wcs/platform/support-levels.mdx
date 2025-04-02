@@ -6,11 +6,66 @@ sidebar_position: 5
 
 [Weaviate Cloud (WCD)](https://console.weaviate.cloud/) offers multiple levels of support. You have the flexibility to choose the support plan that meets your needs.
 
-## How to change you support plan?
+## Change you support plan
 
 To update your support plan, follow these steps:
 
-- TODO
+import Link from '@docusaurus/Link';
+import EditSupportPlan from '/developers/wcs/img/weaviate-cloud-edit-support-plan.png';
+import SelectSupportPlan from '/developers/wcs/img/weaviate-cloud-select-support-plan.png';
+
+<div class="row">
+  <div class="col col--6">
+    <ol>
+      <li>
+        Open the{' '}
+        <Link to="https://console.weaviate.cloud">Weaviate Cloud console</Link>.
+      </li>
+      <li>
+        <Link to="/developers/wcs/manage-clusters/status#select-your-cluster">
+          Select your cluster
+        </Link>{' '}
+        and find the <code>Support Plan</code> field.
+      </li>
+      <li>
+        Click on the <code>Edit</code> button (<span class="callout">1</span>).
+      </li>
+    </ol>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img src={EditSupportPlan} alt="Edit support plan" />
+      </div>
+      <div class="card__body">Edit support plan</div>
+    </div>
+  </div>
+</div>
+<br />
+
+<div class="row">
+  <div class="col col--6">
+    <ol>
+      <li>
+        Select a support plan from the <code>dropdown menu</code> (
+        <span class="callout">2</span>).
+      </li>
+      <li>
+        Click on the <code>Change plan</code> button (
+        <span class="callout">3</span>).
+      </li>
+    </ol>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img src={SelectSupportPlan} alt="Select support plan" />
+      </div>
+      <div class="card__body">Select support plan</div>
+    </div>
+  </div>
+</div>
+<br />
 
 ## Available support plans
 
@@ -18,13 +73,13 @@ Sandboxes and self-hosted clusters are not eligible for paid support.
 
 Paid support is available for **Serverless Cloud** and **Enterprise Cloud** clusters.
 
-| Cluster Type                    | Standard | Professional | Business Critical |
-| ------------------------------- | -------- | ------------ | ----------------- |
-| Serverless *(High availability)*     | ✅       | ✅           | ✅                |
-| Enterprise *(High availability)*     | ✅       | ✅           | ✅                |
-| Serverless *(Non-High availability)* | ✅       | ❌           | ❌                |
-| Enterprise *(Non-High availability)* | ✅       | ❌           | ❌                |
-| Sandbox                         | N/A      | N/A          | N/A               |
+| Cluster Type                         | Standard | Professional | Business Critical |
+| ------------------------------------ | -------- | ------------ | ----------------- |
+| Serverless _(High availability)_     | ✅       | ✅           | ✅                |
+| Enterprise _(High availability)_     | ✅       | ✅           | ✅                |
+| Serverless _(Non-High availability)_ | ✅       | ❌           | ❌                |
+| Enterprise _(Non-High availability)_ | ✅       | ❌           | ❌                |
+| Sandbox                              | N/A      | N/A          | N/A               |
 
 ### Standard support
 
