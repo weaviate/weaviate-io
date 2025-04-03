@@ -1,73 +1,138 @@
 ---
-title: Support levels
+title: Support plans
 sidebar_position: 5
 # image: og/wcs/user_guides.jpg
 ---
 
-[Weaviate Cloud (WCD)](https://console.weaviate.cloud/) offers multiple levels of support. You have the flexibility to choose the level of support that you need.
+[Weaviate Cloud (WCD)](https://console.weaviate.cloud/) offers multiple levels of support. You have the flexibility to choose the support plan that meets your needs.
 
-## Service levels
+## Change your support plan
+
+To update your support plan, follow these steps:
+
+import Link from '@docusaurus/Link';
+import EditSupportPlan from '/developers/wcs/img/weaviate-cloud-edit-support-plan.png';
+import SelectSupportPlan from '/developers/wcs/img/weaviate-cloud-select-support-plan.png';
+
+<div class="row">
+  <div class="col col--6">
+    <ol>
+      <li>
+        Open the{' '}
+        <Link to="https://console.weaviate.cloud">Weaviate Cloud console</Link>.
+      </li>
+      <li>
+        <Link to="/developers/wcs/manage-clusters/status#select-your-cluster">
+          Select your cluster
+        </Link>{' '}
+        and find the <code>Support Plan</code> field.
+      </li>
+      <li>
+        Click on the <code>Edit</code> button (<span class="callout">1</span>).
+      </li>
+    </ol>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img src={EditSupportPlan} alt="Edit support plan" />
+      </div>
+      <div class="card__body">Edit support plan</div>
+    </div>
+  </div>
+</div>
+<br />
+
+<div class="row">
+  <div class="col col--6">
+    <ol>
+      <li>
+        Select a support plan from the <code>dropdown menu</code> (
+        <span class="callout">2</span>).
+      </li>
+      <li>
+        Click on the <code>Change plan</code> button (
+        <span class="callout">3</span>).
+      </li>
+    </ol>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img src={SelectSupportPlan} alt="Select support plan" />
+      </div>
+      <div class="card__body">Select support plan</div>
+    </div>
+  </div>
+</div>
+<br />
+
+## Available support plans
 
 Sandboxes and self-hosted clusters are not eligible for paid support.
 
-Paid support is available for **Serverless Cloud**, **Enterprise Cloud**, and **Bring Your Own Cloud** clusters.
+Paid support is available for **Serverless Cloud** and **Enterprise Cloud** clusters.
 
-- For Serverless instances, the default support level is Standard support. You are automatically enrolled for Standard support when you create a Serverless cluster. To switch to another level, contact our [sales team](https://weaviate.io/pricing#contact-sales)
-
-- For Weaviate Enterprise Cloud and Bring Your Own Cloud clusters, contact our [sales team](https://weaviate.io/pricing#contact-sales) to discuss which level of support is right for you.
+| Cluster Type                         | Standard | Professional | Business Critical |
+| ------------------------------------ | -------- | ------------ | ----------------- |
+| Serverless _(High availability)_     | ✅       | ✅           | ✅                |
+| Enterprise _(High availability)_     | ✅       | ✅           | ✅                |
+| Serverless _(Non-High availability)_ | ✅       | ❌           | ❌                |
+| Enterprise _(Non-High availability)_ | ✅       | ❌           | ❌                |
+| Sandbox                              | N/A      | N/A          | N/A               |
 
 ### Standard support
 
-- Standard support is email based and is available during business hours.
+- Standard support is email-based and is available during business hours.
 
 - Monitoring. The Weaviate Cloud team monitors your cluster.
 
 - Severity determines incident response time:
 
-| Severity | Criteria | Response Time |
-| :- | :- | :- |
-| 1 - Critical | Issues that are critical and require immediate attention,<br /> causing widespread disruption or outages. |  1 business day |
-| 2 - High | High-priority problems that can impact service functionality<br /> or performance for a subset of users. | 2 business day |
-| 3 - Medium | Medium-priority concerns that affect service functionality<br /> or performance for a limited number of users or use cases. | 3 business day |
-| 4 - Low | Lower urgency and impact, causing minor inconveniences or<br /> issues for individual users. | 5 business day |
+| Severity     | Criteria                                                                                                                    | Response Time  |
+| :----------- | :-------------------------------------------------------------------------------------------------------------------------- | :------------- |
+| 1 - Critical | Issues that are critical and require immediate attention,<br /> causing widespread disruption or outages.                   | 1 business day |
+| 2 - High     | High-priority problems that can impact service functionality<br /> or performance for a subset of users.                    | 2 business day |
+| 3 - Medium   | Medium-priority concerns that affect service functionality<br /> or performance for a limited number of users or use cases. | 3 business day |
+| 4 - Low      | Lower urgency and impact, causing minor inconveniences or<br /> issues for individual users.                                | 5 business day |
 
 ### Professional support
 
-- Professional support is email based and is available 24 hours a day, seven days a week.
+- Professional support is email-based and is available 24 hours a day, seven days a week.
 
-- Severity 1 and Severity 2 incident response includes a  follow up phone call.
+- Severity 1 and Severity 2 incident response includes a follow-up phone call.
 
 - Monitoring The Weaviate Cloud team monitors your cluster.
 
 - Severity determines incident response time:
 
-| Severity | Criteria | Response Time |
-| :- | :- | :- |
-| 1 - Critical | Issues that are critical and require immediate attention,<br /> causing widespread disruption or outages. | 4 hours |
-| 2 - High | High-priority problems that can impact service functionality<br /> or performance for a subset of users. | 8 hours |
-| 3 - Medium | Medium-priority concerns that affect service functionality<br /> or performance for a limited number of users or use cases. | 1 business day |
-| 4 - Low | Lower urgency and impact, causing minor inconveniences or<br /> issues for individual users. | 2 business days |
+| Severity     | Criteria                                                                                                                    | Response Time   |
+| :----------- | :-------------------------------------------------------------------------------------------------------------------------- | :-------------- |
+| 1 - Critical | Issues that are critical and require immediate attention,<br /> causing widespread disruption or outages.                   | 4 hours         |
+| 2 - High     | High-priority problems that can impact service functionality<br /> or performance for a subset of users.                    | 8 hours         |
+| 3 - Medium   | Medium-priority concerns that affect service functionality<br /> or performance for a limited number of users or use cases. | 1 business day  |
+| 4 - Low      | Lower urgency and impact, causing minor inconveniences or<br /> issues for individual users.                                | 2 business days |
 
 For details, refer to your support agreement.
 
 ### Business critical support
 
-- Business critical support is available 24 hours a day, seven days a week. Support is email based.
+- Business critical support is available 24 hours a day, seven days a week. Support is email-based.
 
 - Telephone hotline available 24 hours a day, seven days a week for escalations.
 
-- Severity 1, Severity 2, and Severity 3 incident response includes a follow up phone call.
+- Severity 1, Severity 2, and Severity 3 incident response includes a follow-up phone call.
 
 - Monitoring. The Weaviate Cloud team monitors your cluster.
 
 - Severity determines incident response time:
 
-| Severity | Criteria | Response Time |
-| :- | :- | :- |
-| 1 - Critical | Issues that are critical and require immediate attention,<br /> causing widespread disruption or outages. | 1 hour |
-| 2 - High | High-priority problems that can impact service functionality<br /> or performance for a subset of users. | 4 hours |
-| 3 - Medium | Medium-priority concerns that affect service functionality<br /> or performance for a limited number of users or use cases. | 8 hours |
-| 4 - Low | Lower urgency and impact, causing minor inconveniences or<br /> issues for individual users. | 1 business day |
+| Severity     | Criteria                                                                                                                    | Response Time  |
+| :----------- | :-------------------------------------------------------------------------------------------------------------------------- | :------------- |
+| 1 - Critical | Issues that are critical and require immediate attention,<br /> causing widespread disruption or outages.                   | 1 hour         |
+| 2 - High     | High-priority problems that can impact service functionality<br /> or performance for a subset of users.                    | 4 hours        |
+| 3 - Medium   | Medium-priority concerns that affect service functionality<br /> or performance for a limited number of users or use cases. | 8 hours        |
+| 4 - Low      | Lower urgency and impact, causing minor inconveniences or<br /> issues for individual users.                                | 1 business day |
 
 For details, refer to your support agreement.
 
@@ -80,15 +145,15 @@ Sandboxes are not eligible for paid support. For help with a sandbox instance, t
 
 ## Pricing
 
-Serverless clusters are billed monthly. The monthly charge for a cluster depends on resource usage. Your support level is a factor in the monthly cost, but you are not charged per support incident.
+Serverless clusters are billed monthly. The monthly charge for a cluster depends on resource usage. Your support plan is a factor in the monthly cost, but you are not charged per support incident.
 
-Each support level (SLA) has a billing rate. Weaviate Cloud counts the objects in your cluster and multiples that number by the rate for your SLA level. Weaviate Cloud adjusts the number if compression is enabled. The result is your usage charge.
+Each support plan has a billing rate. Weaviate Cloud counts the objects in your cluster and multiples that number by the rate for your support plan. Weaviate Cloud adjusts the number if compression is enabled. The result is your usage charge.
 
 If you have a high availability cluster (HA), Weaviate Cloud multiples the usage charge by three to account for the additional resources.
 
-There is a minimum monthly charge at each SLA level. If your usage charge is less than the monthly minimum, Weaviate charges you the monthly minimum cost. If your usage charge is higher than the minimum value for your SLA, Weaviate charges you for your cluster usage.
+There is a minimum monthly charge at each support plan. If your usage charge is less than the monthly minimum, Weaviate charges you the monthly minimum cost. If your usage charge is higher than the minimum value for your plan, Weaviate charges you for your cluster usage.
 
-To estimate costs for different combinations of usage levels and SLAs, see the [pricing calculator](https://weaviate.io/services/serverless).
+To estimate costs for different combinations of usage levels and support plans, see the [pricing calculator](https://weaviate.io/services/serverless).
 
 ## Support
 
@@ -98,4 +163,4 @@ import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
 
 import CustomScriptLoader from '/src/components/scriptSwitch';
 
-<CustomScriptLoader/>
+<CustomScriptLoader />

@@ -83,15 +83,9 @@ await client.roles.delete("testRole")
 // START AddTenantPermission
 
 const AddTenantPermissions = [
-    permissions.collections({
-        collection: "TargetCollection*",
-        create_collection: true,
-        read_config: true,
-        update_config: true,
-        delete_collection: true,
-    }),
     permissions.tenants({
         collection: "TargetCollection*",  // Applies to all collections starting with "TargetCollection"
+        tenant: "TargetTenant*",  // Applies to all tenants starting with "TargetTenant"
         create: true,  // Allow creating new tenants
         read: true,  // Allow reading tenant info/metadata
         update: true,  // Allow updating tenant states
@@ -116,6 +110,7 @@ client.roles.delete("testRole")
 const dataPermissions = [
     permissions.data({
         collection: "TargetCollection*",  // Applies to all collections starting with "TargetCollection"
+        tenant: "TargetTenant*",  // Applies to all tenants starting with "TargetTenant"
         create: true,  // Allow data inserts
         read: true,  // Allow query and fetch operations
         update: true,  // Allow data updates

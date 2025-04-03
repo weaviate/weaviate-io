@@ -109,6 +109,28 @@ Any model that is supported by vLLM or Ollama can be used with KubeAI.
 
 Refer to the [KubeAI docs on model management](https://www.kubeai.org/how-to/manage-models/) for more information on available models and how to configure them.
 
+## Select a model at runtime
+
+Aside from setting the default model provider when creating the collection, you can also override it at query time.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START RuntimeModelSelectionKubeAI"
+      endMarker="# END RuntimeModelSelectionKubeAI"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
 ## Retrieval augmented generation
 
 After configuring the generative AI integration, perform RAG operations, either with the [single prompt](#single-prompt) or [grouped task](#grouped-task) method.

@@ -169,9 +169,9 @@ This example creates a role called `testRole` with permissions to:
 
 This example creates a role called `testRole` with permissions to:
 
-- Create and delete tenants in collections starting with `TargetCollection`.
-- Read tenant metadata (like tenant names and status) in collections starting with `TargetCollection`.
-- Update tenant status in collections starting with `TargetCollection`.
+- Create and delete tenants starting with `TargetTenant` in collections starting with `TargetCollection`.
+- Read metadata (like tenant names and status) for tenants starting with `TargetTenant` in collections starting with `TargetCollection`.
+- Update the status of tenants starting with `TargetTenant` in collections starting with `TargetCollection`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -211,6 +211,7 @@ This example creates a role called `testRole` with permissions to:
 This example creates a role called `testRole` with permissions to:
 
 - Create, read, update and delete data from collections starting with `TargetCollection`.
+- If multi-tenancy is enabled and the `tenant` filter is set, the permission only applies to tenants starting with `TargetTenant`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">

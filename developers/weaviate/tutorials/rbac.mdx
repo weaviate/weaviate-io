@@ -11,8 +11,10 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.permissions.py';
+import TSCode from '!!raw-loader!/_includes/code/typescript/howto.configure.rbac.permissions.ts';
 import RolePyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.roles.py';
 import UserPyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.users.py';
+import RoleTSCode from '!!raw-loader!/_includes/code/typescript/howto.configure.rbac.roles.ts';
 
 **Role-Based Access Control (RBAC)** is a powerful security mechanism that lets you manage who can access and modify your Weaviate instance. In this tutorial, you'll learn how to set up RBAC in Weaviate by defining roles with tailored permissions and assigning them to users. This enables granular control over operations—from reading and writing data to managing collections and tenants—ensuring that only authorized users can perform specific actions.
 
@@ -143,11 +145,12 @@ Ensure you are connected to Weaviate with a user possessing sufficient permissio
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+      text={RoleTSCode}
+      startMarker="// START AdminClient"
+      endMarker="// END AdminClient"
+      language="ts"
+    />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -179,11 +182,12 @@ This grants read and write permissions for collections starting with `TargetColl
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ReadWritePermissionDefinition"
+      endMarker="// END ReadWritePermissionDefinition"
+      language="ts"
+    />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -249,11 +253,12 @@ Now, you can assign the role `rw_role` to `custom-user`:
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ReadWritePermissionAssignment"
+      endMarker="// END ReadWritePermissionAssignment"
+      language="ts"
+    />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -287,11 +292,12 @@ Ensure you are connected to Weaviate with a user possessing sufficient permissio
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+      text={RoleTSCode}
+      startMarker="// START AdminClient"
+      endMarker="// END AdminClient"
+      language="ts"
+    />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -323,11 +329,12 @@ This grants viewer permissions for collections starting with `TargetCollection`.
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ViewerPermissionDefinition"
+      endMarker="// END ViewerPermissionDefinition"
+      language="ts"
+    />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -393,11 +400,12 @@ Now, you can assign the role `viewer_role` to `custom-user`:
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ViewerPermissionAssignment"
+      endMarker="// END ViewerPermissionAssignment"
+      language="ts"
+    />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -431,11 +439,12 @@ Ensure you are connected to Weaviate with a user possessing sufficient permissio
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+      text={RoleTSCode}
+      startMarker="// START AdminClient"
+      endMarker="// END AdminClient"
+      language="ts"
+    />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -455,7 +464,9 @@ Ensure you are connected to Weaviate with a user possessing sufficient permissio
 
 ### Step 2: Create new role with custom permissions
 
-This grants permissions to manage collections starting with `TargetCollection`, and to create, read, and update tenants in the same collection.
+This grants permissions to:
+- Completely manage tenants starting with `TargetTenant` in collections starting with `TargetCollection`.
+- Create, read, update and delete data for tenants starting with `TargetTenant` in collections starting with `TargetCollection`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -467,11 +478,12 @@ This grants permissions to manage collections starting with `TargetCollection`, 
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START MTPermissionsExample"
+      endMarker="// END MTPermissionsExample"
+      language="ts"
+    />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -537,11 +549,12 @@ Now, you can assign the role `tenant_manager` to `custom-user`:
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START MTPermissionsAssignment"
+      endMarker="// END MTPermissionsAssignment"
+      language="ts"
+    />
   </TabItem>
   <TabItem value="go" label="Go">
 
