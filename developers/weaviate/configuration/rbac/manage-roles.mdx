@@ -1,6 +1,6 @@
 ---
-title: Manage roles and users
-sidebar_label: Manage roles & users
+title: Manage roles
+sidebar_label: Manage roles
 sidebar_position: 1
 image: og/docs/configuration.jpg
 # tags: ['rbac', 'roles', 'configuration', 'authorization']
@@ -15,52 +15,17 @@ import TSCode from '!!raw-loader!/_includes/code/typescript/howto.configure.rbac
 import RolePyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.roles.py';
 import RoleTSCode from '!!raw-loader!/_includes/code/typescript/howto.configure.rbac.roles.ts';
 
-:::info Available from `v1.29`
+:::info Added in `v1.29`
 Role-based access control (RBAC) is generally available in Weaviate from version `v1.29`.
 :::
 
-In Weaviate, Role-based access control (RBAC) allows you to define roles and assign permissions to those roles. Users can then be assigned to roles and inherit the permissions associated with those roles. On this page, you will find examples of how to manage roles and users with Weaviate client libraries.
+In Weaviate, Role-based access control (RBAC) allows you to define roles and assign permissions to those roles. Users can then be assigned to roles and inherit the permissions associated with those roles. 
 
-Follow these general steps to configure RBAC:
+On this page, you will find examples of how to **manage roles and permissions** with Weaviate client libraries.
 
-<!-- TODO: Potentially replace with a React component -->
+import ConfigureRbac from '/_includes/configuration/configure-rbac.mdx';
 
-<ol className="step-list">
-  <li>
-    <i className="fa-solid fa-key icon-list" style={{ marginRight: '0.5rem' }}></i>
-    <b>Step 1.</b> Connect to Weaviate with a user possessing{' '}
-    <b>
-      <Link to="#requirements">role management permissions</Link>
-    </b>
-    .
-  </li>
-  <li>
-    <i
-      className="fa-solid fa-user-shield icon-list"
-      style={{ marginRight: '0.5rem' }}
-    ></i>
-    <b>Step 2.</b> Grant permissions to a{' '}
-    <b>
-      <Link to="#create-new-roles-with-permissions">new role</Link>
-    </b>{' '}
-    or an{' '}
-    <b>
-      <Link to="#grant-additional-permissions">existing role</Link>
-    </b>
-    .
-  </li>
-  <li>
-    <i
-      className="fa-solid fa-user-edit icon-list"
-      style={{ marginRight: '0.5rem' }}
-    ></i>
-    <b>Step 3.</b>{' '}
-    <b>
-      <Link to="#assign-a-role-to-a-user">Assign the role to a user</Link>
-    </b>
-    .
-  </li>
-</ol>
+<ConfigureRbac />
 
 ## Requirements for managing roles <i class="fa-solid fa-key"></i> {#requirements}
 
@@ -668,162 +633,13 @@ Deleting a role will remove it from the system, and revoke the associated permis
 
 ## User management <i class="fas fa-user-edit"></i> {#user-management}
 
-### Assign a role to a user
+Visit the [Manage users](./manage-users.mdx) page to learn more about assigning roles to users as well as creating, updating and deleting users.
 
-A custom user can have any number of roles assigned to them (including none). The role can be a predefined role (e.g. `viewer`) or a custom role.
+## Further resources
 
-This example assigns the custom `testRole` role and predefined `viewer` role to `user-b`.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python Client v4">
-  <FilteredTextBlock
-    text={RolePyCode}
-    startMarker="# START AssignRole"
-    endMarker="# END AssignRole"
-    language="py"
-  />
-  </TabItem>
-  <TabItem value="js" label="JS/TS Client v3">
-  <FilteredTextBlock
-        text={RoleTSCode}
-        startMarker="// START AssignRole"
-        endMarker="// END AssignRole"
-        language="ts"
-      />
-  </TabItem>
-  <TabItem value="go" label="Go">
-
-```go
-// Go support coming soon
-```
-
-  </TabItem>
-  <TabItem value="java" label="Java">
-
-```java
-// Java support coming soon
-```
-
-  </TabItem>
-</Tabs>
-
-### Remove a role from a user
-
-You can revoke one or more roles from a specific user.
-
-This example removes the role `testRole` from the user `user-b`.
-
-<Tabs groupId="languages">
-<TabItem value="py" label="Python Client v4">
-  <FilteredTextBlock
-    text={RolePyCode}
-    startMarker="# START RevokeRoles"
-    endMarker="# END RevokeRoles"
-    language="py"
-    />
-  </TabItem>
-  <TabItem value="js" label="JS/TS Client v3">
-  <FilteredTextBlock
-        text={RoleTSCode}
-        startMarker="// START RevokeRoles"
-        endMarker="// END RevokeRoles"
-        language="ts"
-      />
-  </TabItem>
-  <TabItem value="go" label="Go">
-
-```go
-// Go support coming soon
-```
-
-  </TabItem>
-  <TabItem value="java" label="Java">
-
-```java
-// Java support coming soon
-```
-
-  </TabItem>
-</Tabs>
-
-### Get the current user's roles and permissions
-
-Retrieve the role and permission information for the currently authenticated user.
-
-<Tabs groupId="languages">
-<TabItem value="py" label="Python Client v4">
-  <FilteredTextBlock
-    text={RolePyCode}
-    startMarker="# START ListCurrentUserRoles"
-    endMarker="# END ListCurrentUserRoles"
-    language="py"
-  />
-</TabItem>
-  <TabItem value="js" label="JS/TS Client v3">
-  <FilteredTextBlock
-        text={RoleTSCode}
-        startMarker="// START ListCurrentUserRoles"
-        endMarker="// END ListCurrentUserRoles"
-        language="ts"
-      />
-  </TabItem>
-  <TabItem value="go" label="Go">
-
-```go
-// Go support coming soon
-```
-
-  </TabItem>
-  <TabItem value="java" label="Java">
-
-```java
-// Java support coming soon
-```
-
-  </TabItem>
-</Tabs>
-
-### Get a user's roles and permissions
-
-Retrieve the role and permission information for any user.
-
-<Tabs groupId="languages">
-<TabItem value="py" label="Python Client v4">
-  <FilteredTextBlock
-    text={RolePyCode}
-    startMarker="# START ListUserRoles"
-    endMarker="# END ListUserRoles"
-    language="py"
-    />
-  </TabItem>
-  <TabItem value="js" label="JS/TS Client v3">
-  <FilteredTextBlock
-        text={RoleTSCode}
-        startMarker="// START ListUserRoles"
-        endMarker="// END ListUserRoles"
-        language="ts"
-      />
-    </TabItem>
-  <TabItem value="go" label="Go">
-
-```go
-// Go support coming soon
-```
-
-  </TabItem>
-  <TabItem value="java" label="Java">
-
-```java
-// Java support coming soon
-```
-
-  </TabItem>
-</Tabs>
-
-## Additional resources
-
-- [RBAC: Overview](/developers/weaviate/configuration/rbac)
-- [RBAC: Configuration](/developers/weaviate/configuration/rbac/configuration)
+- [RBAC: Overview](./index.mdx)
+- [RBAC: Configuration](./configuration.md)
+- [RBAC: Manage users](./manage-users.mdx)
 
 ## Questions and feedback
 

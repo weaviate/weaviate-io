@@ -11,14 +11,9 @@ client = weaviate.connect_to_local(
     port=8580,
     grpc_port=50551,
     # START AdminClient
-    auth_credentials=Auth.api_key("user-a-key"),
+    auth_credentials=Auth.api_key("root-user-key"),
 )
 # END AdminClient
-
-# TODO: Remove if not used
-custom_user_client = weaviate.connect_to_local(
-    port=8580, grpc_port=50551, auth_credentials=Auth.api_key("user-b-key")
-)
 
 all_roles = client.roles.list_all()
 for role_name, _ in all_roles.items():
@@ -174,7 +169,9 @@ minimal_permissions = [
     ),
 ]
 
-client.roles.create(role_name="testRole", permissions=verbose_permissions)  # or `minimal_permissions`
+client.roles.create(
+    role_name="testRole", permissions=verbose_permissions
+)  # or `minimal_permissions`
 # END AddNodesPermission
 
 permissions = client.roles.get(role_name="testRole")
@@ -206,31 +203,6 @@ permissions = [
 client.roles.add_permissions(permissions=permissions, role_name="testRole")
 # END AddRoles
 
-# START AssignRole
-client.users.assign_roles(user_id="user-b", role_names=["testRole", "viewer"])
-# END AssignRole
-assert "testRole" in client.users.get_assigned_roles("user-b")
-assert "viewer" in client.users.get_assigned_roles("user-b")
-
-# START ListCurrentUserRoles
-print(client.users.get_my_user())
-# END ListCurrentUserRoles
-
-# START ListUserRoles
-user_roles = client.users.get_assigned_roles("user-b")
-
-for role in user_roles:
-    print(role)
-# END ListUserRoles
-assert any(
-    permission.collection == "TargetCollection*"
-    for permission in user_roles["testRole"].collections_permissions
-)
-assert any(
-    permission.collection == "TargetCollection*"
-    for permission in user_roles["testRole"].data_permissions
-)
-
 # START CheckRoleExists
 print(client.roles.exists(role_name="testRole"))  # Returns True or False
 # END CheckRoleExists
@@ -243,13 +215,16 @@ print(test_role.collections_permissions)
 print(test_role.data_permissions)
 # END InspectRole
 
+client.users.db.delete(user_id="custom-user")
+client.users.db.create(user_id="custom-user")
+client.users.db.assign_roles(user_id="custom-user", role_names=["testRole"])
 # START AssignedUsers
-assigned_users = client.roles.get_assigned_user_ids(role_name="testRole")
+assigned_users = client.roles.get_user_assignments(role_name="testRole")
 
 for user in assigned_users:
     print(user)
 # END AssignedUsers
-assert "user-b" in assigned_users
+assert any(u.user_id == "custom-user" for u in assigned_users)
 
 # START ListAllRoles
 all_roles = client.roles.list_all()
@@ -274,14 +249,8 @@ permissions = [
 client.roles.remove_permissions(role_name="testRole", permissions=permissions)
 # END RemovePermissions
 
-# START RevokeRoles
-client.users.revoke_roles(user_id="user-b", role_names="testRole")
-# END RevokeRoles
-assert "testRole" not in client.users.get_assigned_roles("user-b")
-
 # START DeleteRole
 client.roles.delete(role_name="testRole")
 # END DeleteRole
 
 client.close()
-custom_user_client.close()
