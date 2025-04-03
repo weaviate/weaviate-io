@@ -296,6 +296,12 @@ Use `.view_properties` to define the properties that the Query Agent can look at
 
 :::
 
+### Usage limits
+
+At this stage, there is a limit of 100 Query Agent queries per day per Weaviate Cloud [organization](/developers/wcs/platform/users-and-organizations.mdx#organizations).
+
+This limit may change in future versions of the Query Agent.
+
 ### Multi-tenant collections
 
 The Query Agent is currently not able to access collections with multi-tenancy enabled. This will be added im the future.
