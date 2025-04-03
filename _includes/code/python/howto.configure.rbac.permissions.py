@@ -113,7 +113,7 @@ permissions = [
         create=True,  # Allow creating new tenants
         read=True,  # Allow reading tenant info/metadata
         update=True,  # Allow updating tenant states
-        delete=True,  # Dont't allow deleting tenants
+        delete=True,  # Allow deleting tenants
     ),
     Permissions.data(
         collection="TargetCollection*",  # Applies to all collections starting with "TargetCollection"
