@@ -107,21 +107,21 @@ client.roles.delete("tenant_manager")
 from weaviate.classes.rbac import Permissions
 
 permissions = [
-    Permissions.collections(
-        collection="TargetCollection*",
-        create_collection=True,
-        read_config=True,
-        update_config=True,
-        delete_collection=True,
-    ),
-    # Without the below permission, the user would not
-    # be able to create tenants in collections starting with "TargetCollection"
     Permissions.tenants(
         collection="TargetCollection*",  # Applies to all collections starting with "TargetCollection"
+        tenant="TargetTenant*",  # Applies to all tenants starting with "TargetTenant"
         create=True,  # Allow creating new tenants
         read=True,  # Allow reading tenant info/metadata
         update=True,  # Allow updating tenant states
-        delete=False,  # Dont't allow deleting tenants
+        delete=True,  # Allow deleting tenants
+    ),
+    Permissions.data(
+        collection="TargetCollection*",  # Applies to all collections starting with "TargetCollection"
+        tenant="TargetTenant*",  # Applies to all tenants starting with "TargetTenant"
+        create=True,  # Allow data inserts
+        read=True,  # Allow query and fetch operations
+        update=True,  # Allow data updates
+        delete=True,  # Allow data deletes
     ),
 ]
 
