@@ -55,7 +55,7 @@ command. In this setup the following components are used:
 
 ### Multi-tenancy
 
-When using multi-tenancy, we suggest setting the `PROMETHEUS_MONITORING_GROUP` [environment variable](../config-refs/env-vars.md) as `true` so that data across all tenants are grouped together for monitoring.
+When using multi-tenancy, we suggest setting the `PROMETHEUS_MONITORING_GROUP` [environment variable](../config-refs/env-vars/index.md) as `true` so that data across all tenants are grouped together for monitoring.
 
 ## Obtainable Metrics
 

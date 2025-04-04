@@ -11,7 +11,7 @@ image: og/docs/more-resources.jpg
 
 :::caution Have you hit the collections count limit?
 If you see an error that the collection count limit has been reached, it means you **can't create any more collections**. This limit aims to ensure Weaviate remains performant. If your instance already exceeds the limit, Weaviate will not allow the creation of any new collections. Existing collections will not be deleted.<br /><br />
-**Instead of simply raising the limit, consider rethinking your architecture**. If you really need to change the limit, use the [`MAXIMUM_ALLOWED_COLLECTIONS_COUNT`](../../config-refs/env-vars.md) environment variable.
+**Instead of simply raising the limit, consider rethinking your architecture**. If you really need to change the limit, use the [`MAXIMUM_ALLOWED_COLLECTIONS_COUNT`](../../config-refs/env-vars/index.md) environment variable.
 :::
 
 This guide offers an overview of the available architectural choices of using **multi-tenancy** or defining a **dedicated collection** for each subset of data.

@@ -10,7 +10,7 @@ Weaviate scales well for large projects. Smaller projects, less than 1M objects,
 
 ## Limit available resources
 
-You can set [environment variables](../config-refs/env-vars.md) to manage Weaviate's resource usage, as to prevent Weaviate from using all available resources. The following environment variables are available:
+You can set [environment variables](../config-refs/env-vars/index.md) to manage Weaviate's resource usage, as to prevent Weaviate from using all available resources. The following environment variables are available:
 
 - `LIMIT_RESOURCES`: When set to true, Weaviate automatically limits its resource usage. It sets memory usage to 80% of the total memory and uses all but one CPU core. It overrides any `GOMEMLIMIT` values but respects `GOMAXPROCS` settings.
 
@@ -96,7 +96,7 @@ The memory calculation that includes `maxConnections` describes the system state
 In rare situations - typically on large machines with very high import speeds - Weaviate can allocate memory faster than the garbage collector can free it. When this happens, the system kernel can trigger an `out of memory kill (OOM-Kill)`. This is a known issue that Weaviate is actively working on.
 
 ### Data import
-To avoid out-of-memory issues during imports, set `LIMIT_RESOURCES` to `True` or configure the `GOMEMLIMIT` environment variable. For details, see [Environment variables](../config-refs/env-vars.md).
+To avoid out-of-memory issues during imports, set `LIMIT_RESOURCES` to `True` or configure the `GOMEMLIMIT` environment variable. For details, see [Environment variables](../config-refs/env-vars/index.md).
 
 ## Strategies to reduce memory usage
 
@@ -144,7 +144,7 @@ Weaviate is optimized to work with Solid-State Disks (SSDs). However, spinning h
 
 ## File system
 
-For optimal performance and reliability, avoid using `NFS` or similar file systems for the Weaviate persistent volume ([`PERSISTENCE_DATA_PATH`](../config-refs/env-vars.md)). 
+For optimal performance and reliability, avoid using `NFS` or similar file systems for the Weaviate persistent volume ([`PERSISTENCE_DATA_PATH`](../config-refs/env-vars/index.md)). 
 
 Instead, use file systems like `Ext4` or `XFS` in combination with SAN storage (e.g. `EBS`) to ensure the best performance.
 
