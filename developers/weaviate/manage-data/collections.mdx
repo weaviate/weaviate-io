@@ -290,14 +290,7 @@ As such, each named vector configuration can include its own vectorizer and vect
 
 ## Define multi-vector embeddings (e.g. ColBERT, ColPali)
 
-:::caution Multi-vector embeddings technical preview
-Multi-vector support is added in `v1.29` as a **technical preview**.
-<br/>
-
-This means that the feature is still under development and may change in future releases, including potential breaking changes. Currently, quantization is not supported for multi-vector embeddings.
-<br/>
-
-**We do not recommend using this feature in production environments at this time.**
+:::info Added in `v1.29`, `v1.30`
 :::
 
 Multi-vector embeddings, also known as multi-vectors, represent a single object with multiple vectors, i.e. a 2-dimensional matrix. Multi-vectors are currently only available for HNSW indexes for named vectors. To use multi-vectors, enable it for the appropriate named vector.
@@ -312,6 +305,10 @@ Multi-vector embeddings, also known as multi-vectors, represent a single object 
     />
   </TabItem>
 </Tabs>
+
+:::tip Use quantization to compress your vectors
+Multi-vector embeddings use up more memory than single vector embeddings. You can use [vector quantization](../configuration/compression/index.md) to compress them and reduce memory usage.
+:::
 
 ## Specify vectorizer settings
 
@@ -870,6 +867,10 @@ Update a [`generative`](../concepts/search/index.md#retrieval-augmented-generati
     />
   </TabItem>
 </Tabs>
+
+import RuntimeGenerative from '/_includes/runtime-generative.mdx';
+
+<RuntimeGenerative/>
 
 ## Replication settings
 

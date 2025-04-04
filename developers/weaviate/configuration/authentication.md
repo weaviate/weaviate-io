@@ -74,11 +74,9 @@ For Weaviate Cloud (WCD) instances, authentication is pre-configured with OIDC a
 
 API key authentication is a simple and effective way to authenticate users. Each user is assigned a unique API key, which is used to authenticate the user.
 
-Note that you can either:
-- Set one user for all API keys, or
-- Define one user per API key (the number of users must match the number of API keys)
+### API keys: Database users
 
-Make sure all listed users are also configured in the authorization settings.
+When [creating database users programatically](./rbac/manage-users.mdx#create-a-user), each user is assigned a distinct API key at creation time. These API keys can also be [regenerated (rotated)](./rbac/manage-users.mdx#rotate-user-api-key). 
 
 ### API keys: Docker
 
@@ -110,6 +108,20 @@ This configuration:
 - Associates users with the API keys in `AUTHENTICATION_APIKEY_USERS`
 
 These users can now be assigned permissions based on the authorization settings.
+
+import DynamicUserManagement from '/_includes/configuration/dynamic-user-management.mdx';
+
+<DynamicUserManagement />
+
+:::note
+
+Note that you can either:
+- Set one user for all API keys, or
+- Define one user per API key (the number of users must match the number of API keys)
+
+Make sure all listed users are also configured in the authorization settings.
+
+:::
 
 ### API keys: Kubernetes
 
@@ -173,6 +185,12 @@ that it was indeed signed by the configured token issuer. If the signature is
 correct, all contents of the token are trusted, which authenticates the user based on the information in the token.
 
 </details>
+
+:::tip TIP: OIDC and RBAC
+
+The [user mmanagement API](./rbac/manage-users.mdx#oidc-user-permissions-management) allows you to assign cuton roles and permissions to OIDC users via [Role-Based Access Control (RBAC)](./rbac/index.mdx).
+
+:::
 
 ### OIDC: Docker
 
