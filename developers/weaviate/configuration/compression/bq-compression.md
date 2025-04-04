@@ -167,6 +167,12 @@ For example:
 
 ## Multiple vector embeddings (named vectors)
 
+import NamedVectorCompress from '/_includes/named-vector-compress.mdx';
+
+<NamedVectorCompress />
+
+## Multi-vector embeddings (ColBERT, ColPali, etc.)
+
 import MultiVectorCompress from '/_includes/multi-vector-compress.mdx';
 
 <MultiVectorCompress />

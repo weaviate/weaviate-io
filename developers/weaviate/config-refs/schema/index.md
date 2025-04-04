@@ -149,27 +149,26 @@ To avoid this, you can either:
 - Delete the collection, re-create it with the new property and then re-import the data.
 
 We are working on a re-indexing API to allow you to re-index the data after adding a property. This will be available in a future release.
-<!--
+
 ### Collections count limit {#collections-count-limit}
 
-:::info
-Added in `v1.25.34`, `v1.26.18`, `1.27.15`, `1.28.9`, `1.29.2`
+:::info Added in **`v1.30`**
 :::
 
-To ensure optimal performance, Weaviate **limits the number of collections per instance**. Each collection adds overhead in terms of indexing, definition management, and storage. By setting a default limit, we help maintain performance and reduce operational complexity.
+To ensure optimal performance, Weaviate **limits the number of collections per node**. Each collection adds overhead in terms of indexing, definition management, and storage. This limit aims to ensure Weaviate remains performant.
 
-- **Default limit**: `100` collections.
-- **Modify the limit**: Use the [`MAXIMUM_ALLOWED_COLLECTIONS_COUNT`](/developers/weaviate/config-refs/env-vars) environment variable to adjust the collection count limit.
+- **Default limit**: `1000` collections.
+- **Modify the limit**: Use the [`MAXIMUM_ALLOWED_COLLECTIONS_COUNT`](../../config-refs/env-vars/index.md) environment variable to adjust the collection count limit.
 
 :::note 
-This change does not affect existing clusters that have already exceeded the default limit. However, it will prevent adding new collections if the limit has been reached.
+If your instance already exceeds the limit, Weaviate will not allow the creation of any new collections. Existing collections will not be deleted.
 :::
 
 :::tip
 **Instead of raising the collections count limit, consider rethinking your architecture**.  
-For more details, see [Starter Guides: Scaling limits with collections](/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits). 
+For more details, see [Starter Guides: Scaling limits with collections](../../starter-guides/managing-collections/collections-scaling-limits.mdx). 
 :::
--->
+
 ## Available parameters
 
 ### `class`
@@ -603,6 +602,11 @@ The `kagome_kr` tokenizer is not loaded by default to save resources. To use it,
   - `["아버지", "가", "방", "에", "들어가", "신다"]`
 - `"결정하겠다"`:
   - `["결정", "하", "겠", "다"]`
+
+### Limit the number of `gse` and `Kagome` tokenizers
+
+The `gse` and `Kagome` tokenizers can be resource intensive and affect Weaviate's performance.
+You can limit the combined number of `gse` and `Kagome` tokenizers running at the same time using the [`TOKENIZER_CONCURRENCY_COUNT` environment variable](../env-vars/index.md). 
 
 ### Inverted index types
 

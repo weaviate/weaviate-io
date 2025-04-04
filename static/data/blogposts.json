@@ -213,10 +213,10 @@
       "date": "September 21, 2023"
     },
     {
-      "link": "/blog/inngest-ai-workflows",
+      "link": "/blog/ai-agents",
       "type": "Blog",
-      "backgroundImage": "/img/site/build-blog-top.jpg",
-      "tagline": "Building Agentic Workflows",
+      "backgroundImage": "/img/site/agents-simplified-top.jpg",
+      "tagline": "Agents Simplified: What we mean in the context of AI",
       "photo": "connor.jpg",
       "name": "Connor Shorten",
       "title": "Product Researcher",

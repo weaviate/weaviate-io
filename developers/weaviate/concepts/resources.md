@@ -10,7 +10,7 @@ Weaviate scales well for large projects. Smaller projects, less than 1M objects,
 
 ## Limit available resources
 
-You can set [environment variables](../config-refs/env-vars.md) to manage Weaviate's resource usage, as to prevent Weaviate from using all available resources. The following environment variables are available:
+You can set [environment variables](../config-refs/env-vars/index.md) to manage Weaviate's resource usage, as to prevent Weaviate from using all available resources. The following environment variables are available:
 
 - `LIMIT_RESOURCES`: When set to true, Weaviate automatically limits its resource usage. It sets memory usage to 80% of the total memory and uses all but one CPU core. It overrides any `GOMEMLIMIT` values but respects `GOMAXPROCS` settings.
 
@@ -76,7 +76,7 @@ For example, consider a model that has one million 384-dimensional vectors of ty
 
 The rule of thumb says to double the memory requirement. The total memory requirement for one million 384-dimensional vectors of type `float32` is: `2 * 1e6 * 1536 B = 3 GB`.
 
-For a more accurate calculation, include a factor for the `maxConnections` setting instead of multiplying the base requirement by two.
+For a more accurate calculation, include a factor for the [`maxConnections`](../config-refs/schema/vector-index.md) setting instead of multiplying the base requirement by two.
 
 For example, if `maxConnections` is 64 and the other values are the same, a more accurate memory estimate is `1e6 * (1536B + (64 * 10)) = 2.2 GB`.
 
@@ -96,7 +96,7 @@ The memory calculation that includes `maxConnections` describes the system state
 In rare situations - typically on large machines with very high import speeds - Weaviate can allocate memory faster than the garbage collector can free it. When this happens, the system kernel can trigger an `out of memory kill (OOM-Kill)`. This is a known issue that Weaviate is actively working on.
 
 ### Data import
-To avoid out-of-memory issues during imports, set `LIMIT_RESOURCES` to `True` or configure the `GOMEMLIMIT` environment variable. For details, see [Environment variables](../config-refs/env-vars.md).
+To avoid out-of-memory issues during imports, set `LIMIT_RESOURCES` to `True` or configure the `GOMEMLIMIT` environment variable. For details, see [Environment variables](../config-refs/env-vars/index.md).
 
 ## Strategies to reduce memory usage
 
@@ -106,7 +106,7 @@ The following tactics can help to reduce Weaviate's memory usage:
 
 - **Reduce the dimensionality of your vectors.** The most effective approach to reducing memory size, is to reduce the number of dimensions per vector. If you have high dimension vectors, consider using a model that uses fewer dimensions. For example, a model that has 384 dimensions uses far less memory than a model with 1536 dimensions.
 
-- **Reduce the number of `maxConnections` in your HNSW index settings**. Each object in memory has up to `maxConnections` connections. Each of those connections uses 8-10B of memory. To reduce the overall memory footprint, reduce `maxConnections`.
+- **Reduce the number of [`maxConnections`](../config-refs/schema/vector-index.md) in your HNSW index settings**. Each object in memory has up to `maxConnections` connections. Each of those connections uses 8-10B of memory. To reduce the overall memory footprint, reduce `maxConnections`.
 
 Reducing `maxConnections` adversely affects HNSW recall performance. To mitigate this effect, increase one or both of the `efConstruction` and `ef` parameters.
 
@@ -142,6 +142,11 @@ Weaviate Core itself does not make use of GPUs. However, some of the models that
 
 Weaviate is optimized to work with Solid-State Disks (SSDs). However, spinning hard-disks can also be used with some performance penalties.
 
+## File system
+
+For optimal performance and reliability, avoid using `NFS` or similar file systems for the Weaviate persistent volume ([`PERSISTENCE_DATA_PATH`](../config-refs/env-vars/index.md)). 
+
+Instead, use file systems like `Ext4` or `XFS` in combination with SAN storage (e.g. `EBS`) to ensure the best performance.
 
 ## Questions and feedback
 

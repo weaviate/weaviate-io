@@ -58,7 +58,7 @@ A clean (without fails) execution has two phases:
 
 Some queries require the collection definition. Prior to the introduction of this feature, every such query led to the local (requesting) node to fetch the collection definition from the leader node. This meant that the definition was strongly consistent, but it could lead to additional traffic and load.
 
-Where available, the `COLLECTION_RETRIEVAL_STRATEGY` [environment variable](../../config-refs/env-vars.md#multi-node-instances) can be set to `LeaderOnly`, `LocalOnly`, or `LeaderOnMismatch`.
+Where available, the `COLLECTION_RETRIEVAL_STRATEGY` [environment variable](../../config-refs/env-vars/index.md#multi-node-instances) can be set to `LeaderOnly`, `LocalOnly`, or `LeaderOnMismatch`.
 
 - `LeaderOnly` (default): Always requests the definition from the leader node. This is the most consistent behavior but can lead to higher intra-cluster traffic.
 - `LocalOnly`: Always use the local definition; leading to eventually consistent behavior while reducing intra-cluster traffic.
@@ -122,6 +122,7 @@ The following consistency levels are applicable to most read operations:
 
 - Starting with `v1.18`, consistency levels are applicable to REST endpoint operations.
 - Starting with `v1.19`, consistency levels are applicable to GraphQL `Get` requests.
+- All gRPC based read and write operations support tunable consistency levels.
 
 * **ONE** - a read response must be returned by at least one replica. This is the fastest (most available), but least consistent option.
 * **QUORUM** - a response must be returned by `QUORUM` amount of replica nodes. `QUORUM` is calculated as _n / 2 + 1_, where _n_ is the number of replicas (replication factor). For example, using a replication factor of 6, the quorum is 4, which means the cluster can tolerate 2 replicas down.
@@ -149,6 +150,16 @@ Depending on the desired tradeoff between consistency and speed, below are three
 * `QUORUM` / `QUORUM` => balanced write and read latency
 * `ONE` / `ALL` => fast write and slow read (optimized for write)
 * `ALL` / `ONE` => slow write and fast read (optimized for read)
+
+### Tunable consistency and queries
+
+Note that tunable consistency levels for read operations do not affect consistency of the list of objects returned by a query. In other words, the list of object UUIDs returned by a query depends only on the coordinator node's (and any other required shards') local index, and is independent of the read consistency level.
+
+This is due to the fact that each query is performed by the coordinator node and any other shards required to answer the query. Even if the read consistency level is set to `ALL`, it does not mean that multiple replicas will be queried and the results merged together.
+
+Where the read consistency level is applied is in retrieving the identified objects from the replicas. For example, if the read consistency level is set to `ALL`, the coordinator node will wait for all replicas to return the identified objects. And if the read consistency level is set to `ONE`, the coordinator node may simply return the objects from itself.
+
+In other words, the read consistency level only affects which versions of the objects are retrieved, but it does not lead to a more (or less) consistent query result.
 
 ### Tenant states and data objects
 
@@ -258,11 +269,13 @@ The default hash tree height of `16` is chosen to balance memory consumption wit
 
 When an object is present on some replicas but not others, this can be because a creation has not yet been propagated to all replicas, or because a deletion has not yet been propagated to all replicas. It is important to distinguish between these two cases.
 
-Deletion resolution works alongside async replication and repair-on-read to ensure consistent handling of deleted objects across the cluster. For each collection, you can set one of the following deletion resolution strategies:
+Deletion resolution works alongside async replication and repair-on-read to ensure consistent handling of deleted objects across the cluster. For each collection, [you can set one of the following](../../manage-data/collections.mdx#replication-settings) deletion resolution strategies:
 
 - `NoAutomatedResolution`
 - `DeleteOnConflict`
 - `TimeBasedResolution`
+
+Deletion resolution strategies are mutable. [Read more about how to update collection definitions](../../manage-data/collections.mdx#update-a-collection-definition).
 
 #### `NoAutomatedResolution`
 

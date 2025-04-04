@@ -17,7 +17,7 @@ import PyCode from '!!raw-loader!/developers/agents/_includes/query_agent.py';
 ![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_light.png#gh-light-mode-only "This Weaviate Agent is in technical preview.")
 ![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_dark.png#gh-dark-mode-only "This Weaviate Agent is in technical preview.")
 
-To be notified with news on this agent, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
+[Sign up here](https://events.weaviate.io/weaviate-agents) for notifications on Weaviate Agents, or visit [this page](https://weaviateagents.featurebase.app/) to see the latest updates and provide feedback.
 
 :::
 
@@ -119,6 +119,10 @@ The Query Agent can even handle follow-up queries, using the previous response a
 For more detailed information on how to use this Agent, refer to the [Usage](./usage.md) page.
 
 ## Questions and feedback
+
+:::info Changelog and feedback
+The official changelog for Weaviate Agents can be [found here](https://weaviateagents.featurebase.app/changelog). If you have feedback, such as feature requests, bug reports or questions, please [submit them here](https://weaviateagents.featurebase.app/), where you will be able to see the status of your feedback and vote on others' feedback.
+:::
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 

@@ -13,21 +13,11 @@ import PyCode from '!!raw-loader!/developers/weaviate/tutorials/_includes/multi-
 
 In this section, we will explore how to use multi-vector embeddings in Weaviate. Multi-vector embeddings (implemented through models like ColBERT, ColPali, or ColQwen) represent each object or query using multiple vectors instead of a single vector. This approach enables more precise searching through "late interaction" - a technique that matches individual parts of texts rather than comparing them as whole units.
 
-:::caution Multi-vector embeddings technical preview
-Multi-vector support is added in `v1.29` as a **technical preview**.
-<br/>
-
-This means that the feature is still under development and may change in future releases, including potential breaking changes. Currently, quantization is not supported for multi-vector embeddings.
-<br/>
-
-**We do not recommend using this feature in production environments at this time.**
-:::
-
 ## Prerequisites
 
 Before starting this tutorial, ensure you have the following:
 
-- An instance of Weaviate (e.g. on [Weaviate Cloud](https://console.weaviate.cloud), or locally).
+- An instance of Weaviate (e.g. on [Weaviate Cloud](https://console.weaviate.cloud), or locally), version `v1.29` or newer.
 - Your preferred Weaviate client library installed.
 - An API key for Jina AI
     - A free, "toy" key can be obtained from [Jina AI](https://jina.ai/).
@@ -116,7 +106,7 @@ This approach often leads to better search results, as it can capture more nuanc
 
 Multi-vector embeddings are particularly useful for search tasks where word order and exact phrase matching are important. This is due to multi-vector embeddings preserving token-level information and enabling late interaction. However, multi-vector embeddings will typically require more resources than single-vector embeddings.
 
-Although each vector in a multi-vector embedding is smaller than a single-vector embedding, the total size of the multi-vector embedding typically larger, as each embedding contains many vectors. As an example, single-vector embedding of 1536 dimensions is (1536 * 4 bytes) = 6 kB, while a multi-vector embedding of 64 vectors of 96 dimensions is (64 * 96 * 4 bytes) = 25 kB - over 4 times larger.
+Although each vector in a multi-vector embedding is smaller than a single-vector embedding, the total size of the multi-vector embedding typically larger, as each embedding contains many vectors. As an example, single-vector embedding of 1536 dimensions is (1536 \* 4 bytes) = 6 kB, while a multi-vector embedding of 64 vectors of 96 dimensions is (64 \* 96 \* 4 bytes) = 25 kB - over 4 times larger.
 
 Multi-vector embeddings therefore require more memory to store and more compute to search.
 

@@ -36,7 +36,7 @@ For authentication details, see [Account management: Authentication](/developers
 
 <APICloudConnect />
 
-### Retrieve your API keys
+### Retrieve your API key and REST endpoint
 
 import RetrieveAPIKeys from '/_includes/wcs/retrieve-api-keys.mdx';
 
@@ -44,13 +44,16 @@ import RetrieveAPIKeys from '/_includes/wcs/retrieve-api-keys.mdx';
 
 ### Environment variables
 
-Do not hard-code your API key in your client code. Consider passing the API key as an environment variable or using a similar secure coding technique.
+Do not hard-code your API key and Weaviate URL in your client code. Consider passing them as environment variables or using a similar secure coding technique.
 
 ```bash
-export WEAVIATE_API_KEY="replaceThisPartWithYourAPIKey"
+export WEAVIATE_URL="replaceThisWithYourRESTEndpointURL"
+export WEAVIATE_API_KEY="replaceThisWithYourAPIKey"
 ```
 
 ### Connection example
+
+To connect, use the `REST Endpoint` URL and the `Admin` API key:
 
 import ConnectIsReady from '/_includes/code/quickstart/quickstart.is_ready.mdx';
 

@@ -20,8 +20,12 @@ export default function Soc2(props) {
                 as they evolve. We’re committed to offering the capabilities our
                 enterprise customers need to meet security and compliance
                 requirements.
-                <p> Access our trust portal to review our compliance
-                documentation and white papers describing our practices to keep your data safe{' '}<Link to="https://trust.weaviate.io"> here.</Link></p>
+                <p>
+                  {' '}
+                  Access our trust portal to review our compliance documentation
+                  and white papers describing our practices to keep your data
+                  safe <Link to="https://trust.weaviate.io"> here.</Link>
+                </p>
               </p>
             </div>
             <div className={styles.soc2Logos}>

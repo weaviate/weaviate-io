@@ -1,6 +1,6 @@
 ---
 title: Reference - API
-description: Weaviate API Documentation
+description: Discover the powerful API features available in Weaviate.
 sidebar_position: 0
 image: og/docs/api.jpg
 # tags: ['schema']

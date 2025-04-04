@@ -17,7 +17,7 @@ import PyCode from '!!raw-loader!/developers/agents/_includes/query_agent.py';
 ![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_light.png#gh-light-mode-only "This Weaviate Agent is in technical preview.")
 ![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_dark.png#gh-dark-mode-only "This Weaviate Agent is in technical preview.")
 
-To be notified with news on this agent, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
+[Sign up here](https://events.weaviate.io/weaviate-agents) for notifications on Weaviate Agents, or visit [this page](https://weaviateagents.featurebase.app/) to see the latest updates and provide feedback.
 
 :::
 
@@ -29,10 +29,6 @@ The user simply provides a prompt/question in natural language, and the Query Ag
 ![Weaviate Query Agent from a user perspective](../_includes/query_agent_usage_dark.png#gh-dark-mode-only "Weaviate Query Agent from a user perspective")
 
 This page describes how to use the Query Agent to answer natural language queries, using your data stored in Weaviate Cloud.
-
-:::info Changelog and feedback
-The official changelog for Weaviate Agents can be [found here](https://weaviateagents.featurebase.app/changelog). If you have feedback, such as feature requests, bug reports or questions, please [submit them here](https://weaviateagents.featurebase.app/), where you will be able to see the status of your feedback and vote on others' feedback.
-:::
 
 ## Prerequisites
 
@@ -296,9 +292,15 @@ Use `.view_properties` to define the properties that the Query Agent can look at
 ![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_light.png#gh-light-mode-only "This Weaviate Agent is in technical preview.")
 ![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_dark.png#gh-dark-mode-only "This Weaviate Agent is in technical preview.")
 
-To be notified with news on this agent, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
+[Sign up here](https://events.weaviate.io/weaviate-agents) for notifications on Weaviate Agents, or visit [this page](https://weaviateagents.featurebase.app/) to see the latest updates and provide feedback.
 
 :::
+
+### Usage limits
+
+At this stage, there is a limit of 100 Query Agent queries per day per Weaviate Cloud [organization](/developers/wcs/platform/users-and-organizations.mdx#organizations).
+
+This limit may change in future versions of the Query Agent.
 
 ### Multi-tenant collections
 
@@ -319,6 +321,10 @@ This typically requires multiple calls to generative models (e.g. LLMs) and mult
 As a result, each Query Agent run may take some time to complete. Depending on the query complexity, it may not be uncommon to see execution times of ~10 seconds.
 
 ## Questions and feedback
+
+:::info Changelog and feedback
+The official changelog for Weaviate Agents can be [found here](https://weaviateagents.featurebase.app/changelog). If you have feedback, such as feature requests, bug reports or questions, please [submit them here](https://weaviateagents.featurebase.app/), where you will be able to see the status of your feedback and vote on others' feedback.
+:::
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 

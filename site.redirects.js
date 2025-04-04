@@ -814,6 +814,10 @@ const siteRedirects = {
             to: '/developers/integrations/llm-agent-frameworks/semantic-kernel',
             from: '/developers/integrations/llm-frameworks/semantic-kernel',
         },
+        {
+            to: '/developers/integrations/data-platforms/confluent',
+            from: '/developers/integrations/data-platforms/confluent-cloud',
+        },
 
         // Restructured starter guides
         {
@@ -825,6 +829,12 @@ const siteRedirects = {
         {
             to: '/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits',
             from: '/collections-count-limit',
+        },
+
+        // Redirects for dynamic user support
+        {
+            to: '/developers/weaviate/configuration/rbac/manage-roles',
+            from: '/developers/weaviate/configuration/rbac/manage-roles-users',
         }
     ],
     createRedirects(existingPath) {

@@ -86,7 +86,7 @@ import InitialCaps from '/_includes/schemas/initial-capitalization.md'
 </Tabs>
 
 :::tip Avoid creating too many collections
-Using too many collections can lead to scalability issues like high memory usage and degraded query performance. Instead, consider [using multi-tenancy](/developers/weaviate/manage-data/multi-tenancy), where a single collection stores data for multiple tenants. 
+Using too many collections can lead to scalability issues like high memory usage and degraded query performance. Instead, consider [using multi-tenancy](/developers/weaviate/manage-data/multi-tenancy), where a single collection is subdivided into multiple tenants.
 
 For more details, see [Starter Guides: Scaling limits with collections](/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits).
 :::
@@ -175,7 +175,7 @@ Specify a `vectorizer` for a collection.
 <details>
   <summary>Additional information</summary>
 
-Collection level settings override default values and general configuration parameters such as [environment variables](../config-refs/env-vars.md).
+Collection level settings override default values and general configuration parameters such as [environment variables](../config-refs/env-vars/index.md).
 
 - [Available model integrations](../model-providers/index.md)
 - [Vectorizer configuration references](/developers/weaviate/config-refs/schema#vectorizer)
@@ -290,14 +290,7 @@ As such, each named vector configuration can include its own vectorizer and vect
 
 ## Define multi-vector embeddings (e.g. ColBERT, ColPali)
 
-:::caution Multi-vector embeddings technical preview
-Multi-vector support is added in `v1.29` as a **technical preview**.
-<br/>
-
-This means that the feature is still under development and may change in future releases, including potential breaking changes. Currently, quantization is not supported for multi-vector embeddings.
-<br/>
-
-**We do not recommend using this feature in production environments at this time.**
+:::info Added in `v1.29`, `v1.30`
 :::
 
 Multi-vector embeddings, also known as multi-vectors, represent a single object with multiple vectors, i.e. a 2-dimensional matrix. Multi-vectors are currently only available for HNSW indexes for named vectors. To use multi-vectors, enable it for the appropriate named vector.
@@ -312,6 +305,10 @@ Multi-vector embeddings, also known as multi-vectors, represent a single object 
     />
   </TabItem>
 </Tabs>
+
+:::tip Use quantization to compress your vectors
+Multi-vector embeddings use up more memory than single vector embeddings. You can use [vector quantization](../configuration/compression/index.md) to compress them and reduce memory usage.
+:::
 
 ## Specify vectorizer settings
 
@@ -871,6 +868,10 @@ Update a [`generative`](../concepts/search/index.md#retrieval-augmented-generati
   </TabItem>
 </Tabs>
 
+import RuntimeGenerative from '/_includes/runtime-generative.mdx';
+
+<RuntimeGenerative/>
+
 ## Replication settings
 
 import RaftRFChangeWarning from '/_includes/1-25-replication-factor.mdx';
@@ -895,8 +896,8 @@ Configure replication settings, such as [async replication](/developers/weaviate
   <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
-      startMarker="# START AsyncRepair"
-      endMarker="# END AsyncRepair"
+      startMarker="# START AllReplicationSettings"
+      endMarker="# END AllReplicationSettings"
       language="pyv3"
     />
   </TabItem>
@@ -904,8 +905,8 @@ Configure replication settings, such as [async replication](/developers/weaviate
   <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START AsyncRepair"
-      endMarker="// END AsyncRepair"
+      startMarker="// START AllReplicationSettings"
+      endMarker="// END AllReplicationSettings"
       language="ts"
     />
   </TabItem>
@@ -913,8 +914,8 @@ Configure replication settings, such as [async replication](/developers/weaviate
   <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
-      startMarker="// START AsyncRepair"
-      endMarker="// END AsyncRepair"
+      startMarker="// START AllReplicationSettings"
+      endMarker="// END AllReplicationSettings"
       language="tsv2"
     />
   </TabItem>
@@ -937,7 +938,8 @@ curl \
     ],
     "replicationConfig": {
       "factor": 3,
-      "asyncEnabled": true
+      "asyncEnabled": true,
+      "deletionStrategy": "TimeBasedResolution"
     }
 }' \
 http://localhost:8080/v1/schema

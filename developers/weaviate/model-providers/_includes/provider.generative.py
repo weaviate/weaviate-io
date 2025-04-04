@@ -1,4 +1,5 @@
 import os
+from weaviate.classes.config import Configure
 
 # ================================
 # ===== INSTANTIATION-COMMON =====
@@ -6,10 +7,39 @@ import os
 
 import weaviate
 
+def import_data():
+    collection = client.collections.create(
+        "DemoCollection",
+        vectorizer_config=Configure.Vectorizer.text2vec_openai(),
+    )
+
+    source_objects = [
+        {"title": "The Shawshank Redemption"},
+        {"title": "The Godfather"},
+        {"title": "The Dark Knight"},
+        {"title": "Jingle All the Way"},
+        {"title": "A Christmas Carol"},
+    ]
+
+    with collection.batch.dynamic() as batch:
+        for src_obj in source_objects:
+            weaviate_obj = {
+                "title": src_obj["title"],
+            }
+            batch.add_object(
+                properties=weaviate_obj,
+            )
+
+    if len(collection.batch.failed_objects) > 0:
+        print(f"Failed to import {len(collection.batch.failed_objects)} objects")
+        for failed in collection.batch.failed_objects:
+            print(f"e.g. Failed to import object with error: {failed.message}")
+
 client = weaviate.connect_to_local(
     headers={
         "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"],
         "X-Cohere-Api-Key": os.environ["COHERE_APIKEY"],
+        "X-Anthropic-Api-Key": os.environ["ANTHROPIC_APIKEY"],
     }
 )
 
@@ -71,6 +101,69 @@ client.collections.create(
 
 # clean up
 client.collections.delete("DemoCollection")
+import_data()
+
+# START RuntimeModelSelectionAnthropic
+from weaviate.classes.config import Configure
+from weaviate.classes.generate import GenerativeConfig
+
+collection = client.collections.get("DemoCollection")
+response = collection.generate.near_text(
+    query="A holiday film",
+    limit=2,
+    grouped_task="Write a tweet promoting these two movies",
+    # highlight-start
+    generative_provider=GenerativeConfig.anthropic(
+        # # These parameters are optional
+        # base_url="https://api.anthropic.com",
+        # model="claude-3-opus-20240229",
+        # max_tokens=512,
+        # temperature=0.7,
+        # stop_sequences=["\n\n"],
+        # top_p=0.9,
+        # top_k=5,
+    ),
+    # Additional parameters not shown
+    # highlight-end
+)
+# END RuntimeModelSelectionAnthropic
+
+# START WorkingWithImagesAnthropic
+import base64
+import requests
+from weaviate.classes.generate import GenerativeConfig, GenerativeParameters
+
+src_img_path = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Winter_forest_silver.jpg/960px-Winter_forest_silver.jpg"
+base64_image = base64.b64encode(requests.get(src_img_path).content).decode('utf-8')
+
+prompt = GenerativeParameters.grouped_task(
+    # highlight-start
+    prompt="Which movie is closest to the image in terms of atmosphere",
+    images=[base64_image],      # A list of base64 encoded strings of the image bytes
+    # image_properties=["img"], # Properties containing images in Weaviate
+    # highlight-end
+)
+
+jeopardy = client.collections.get("DemoCollection")
+response = jeopardy.generate.near_text(
+    query="Movies", 
+    limit=5, 
+    # highlight-start
+    grouped_task=prompt,
+    # highlight-end
+    generative_provider=GenerativeConfig.anthropic(
+        max_tokens=1000
+    ),
+)
+
+# Print the source property and the generated response
+for o in response.objects:
+    print(f"Title property: {o.properties['title']}")
+print(f"Grouped task result: {response.generative.text}")
+# END WorkingWithImagesAnthropic
+
+# clean up
+client.collections.delete("DemoCollection")
 
 # START BasicGenerativeAnyscale
 from weaviate.classes.config import Configure
@@ -122,6 +215,31 @@ client.collections.create(
 
 # clean up
 client.collections.delete("DemoCollection")
+import_data()
+
+# START RuntimeModelSelectionAnyscale
+from weaviate.classes.config import Configure
+from weaviate.classes.generate import GenerativeConfig
+
+collection = client.collections.get("DemoCollection")
+response = collection.generate.near_text(
+    query="A holiday film",
+    limit=2,
+    grouped_task="Write a tweet promoting these two movies",
+    # highlight-start
+    generative_provider=GenerativeConfig.anyscale(
+        # # These parameters are optional
+        # base_url="https://api.anthropic.com",
+        # model="meta-llama/Llama-2-70b-chat-hf",
+        # temperature=0.7,
+    ),
+    # Additional parameters not shown
+    # highlight-end
+)
+# END RuntimeModelSelectionAnyscale
+
+# clean up
+client.collections.delete("DemoCollection")
 
 # START BasicGenerativeAWSBedrock
 from weaviate.classes.config import Configure
@@ -155,6 +273,66 @@ client.collections.create(
     # highlight-end
 )
 # END BasicGenerativeAWSSagemaker
+
+# clean up
+client.collections.delete("DemoCollection")
+import_data()
+
+# START RuntimeModelSelectionAWS
+from weaviate.classes.config import Configure
+from weaviate.classes.generate import GenerativeConfig
+
+collection = client.collections.get("DemoCollection")
+response = collection.generate.near_text(
+    query="A holiday film",
+    limit=2,
+    grouped_task="Write a tweet promoting these two movies",
+    # highlight-start
+    generative_provider=GenerativeConfig.aws(
+        region="us-east-1",
+        service="bedrock", # You can also use sagemaker
+        model="cohere.command-r-plus-v1:0"
+    ),
+    # Additional parameters not shown
+    # highlight-end
+)
+# END RuntimeModelSelectionAWS
+
+# START WorkingWithImagesAWS
+import base64
+import requests
+from weaviate.classes.generate import GenerativeConfig, GenerativeParameters
+
+src_img_path = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Winter_forest_silver.jpg/960px-Winter_forest_silver.jpg"
+base64_image = base64.b64encode(requests.get(src_img_path).content).decode('utf-8')
+
+prompt = GenerativeParameters.grouped_task(
+    # highlight-start
+    prompt="Which movie is closest to the image in terms of atmosphere",
+    images=[base64_image],      # A list of base64 encoded strings of the image bytes
+    # image_properties=["img"], # Properties containing images in Weaviate
+    # highlight-end
+)
+
+jeopardy = client.collections.get("DemoCollection")
+response = jeopardy.generate.near_text(
+    query="Movies", 
+    limit=5, 
+    # highlight-start
+    grouped_task=prompt,
+    # highlight-end
+    generative_provider=GenerativeConfig.aws(
+        region="us-east-1",
+        service="bedrock", # You can also use sagemaker
+        model="cohere.command-r-plus-v1:0"
+    ),
+)
+
+# Print the source property and the generated response
+for o in response.objects:
+    print(f"Title property: {o.properties['title']}")
+print(f"Grouped task result: {response.generative.text}")
+# END WorkingWithImagesAWS
 
 # clean up
 client.collections.delete("DemoCollection")
@@ -214,6 +392,34 @@ client.collections.create(
 
 # clean up
 client.collections.delete("DemoCollection")
+import_data()
+
+# START RuntimeModelSelectionCohere
+from weaviate.classes.config import Configure
+from weaviate.classes.generate import GenerativeConfig
+
+collection = client.collections.get("DemoCollection")
+response = collection.generate.near_text(
+    query="A holiday film",
+    limit=2,
+    grouped_task="Write a tweet promoting these two movies",
+    # highlight-start
+    generative_provider=GenerativeConfig.cohere(
+        # # These parameters are optional
+        # model="command-r",
+        # temperature=0.7,
+        # max_tokens=500,
+        # k=5,
+        # stop_sequences=["\n\n"],
+        # return_likelihoods="GENERATION"
+    ),
+    # Additional parameters not shown
+    # highlight-end
+)
+# END RuntimeModelSelectionCohere
+
+# clean up
+client.collections.delete("DemoCollection")
 
 # START BasicGenerativeDatabricks
 from weaviate.classes.config import Configure
@@ -250,6 +456,32 @@ client.collections.create(
     # Additional parameters not shown
 )
 # END FullGenerativeDatabricks
+
+# clean up
+client.collections.delete("DemoCollection")
+import_data()
+
+# START RuntimeModelSelectionDatabricks
+from weaviate.classes.config import Configure
+from weaviate.classes.generate import GenerativeConfig
+
+collection = client.collections.get("DemoCollection")
+response = collection.generate.near_text(
+    query="A holiday film",
+    limit=2,
+    grouped_task="Write a tweet promoting these two movies",
+    # highlight-start
+    generative_provider=GenerativeConfig.databricks(
+        # # These parameters are optional
+        # max_tokens=500,
+        # temperature=0.7,
+        # top_p=0.7,
+        # top_k=0.1
+    ),
+    # Additional parameters not shown
+    # highlight-end
+)
+# END RuntimeModelSelectionDatabricks
 
 # clean up
 client.collections.delete("DemoCollection")
@@ -291,13 +523,39 @@ client.collections.create(
     "DemoCollection",
     generative_config=Configure.Generative.friendliai(
         # # These parameters are optional
-        model="meta-llama-3.1-70b-instruct",
-        max_tokens=500,
-        temperature=0.7,
-        base_url="https://inference.friendli.ai"
+        # model="meta-llama-3.1-70b-instruct",
+        # max_tokens=500,
+        # temperature=0.7,
+        # base_url="https://inference.friendli.ai"
     )
 )
 # END FullGenerativeFriendliAI
+
+# clean up
+client.collections.delete("DemoCollection")
+import_data()
+
+# START RuntimeModelSelectionFriendliAI
+from weaviate.classes.config import Configure
+from weaviate.classes.generate import GenerativeConfig
+
+collection = client.collections.get("DemoCollection")
+response = collection.generate.near_text(
+    query="A holiday film",
+    limit=2,
+    grouped_task="Write a tweet promoting these two movies",
+    # highlight-start
+    generative_provider=GenerativeConfig.friendliai(
+        # # These parameters are optional
+        # model="meta-llama-3.1-70b-instruct",
+        # max_tokens=500,
+        # temperature=0.7,
+        # base_url="https://inference.friendli.ai"
+    ),
+    # Additional parameters not shown
+    # highlight-end
+)
+# END RuntimeModelSelectionFriendliAI
 
 # clean up
 client.collections.delete("DemoCollection")
@@ -322,7 +580,7 @@ from weaviate.classes.config import Configure
 client.collections.create(
     "DemoCollection",
     # highlight-start
-    generative_config=Configure.Generative.palm(
+    generative_config=Configure.Generative.google(
         project_id="<google-cloud-project-id>",  # Required for Vertex AI
         model_id="gemini-1.0-pro"
     )
@@ -340,7 +598,7 @@ from weaviate.classes.config import Configure
 client.collections.create(
     "DemoCollection",
     # highlight-start
-    generative_config=Configure.Generative.palm(
+    generative_config=Configure.Generative.google(
         model_id="gemini-pro"
     )
     # highlight-end
@@ -357,7 +615,7 @@ from weaviate.classes.config import Configure
 client.collections.create(
     "DemoCollection",
     # highlight-start
-    generative_config=Configure.Generative.palm(
+    generative_config=Configure.Generative.google(
         # project_id="<google-cloud-project-id>",  # Required for Vertex AI
         # model_id="<google-model-id>",
         # api_endpoint="<google-api-endpoint>",
@@ -370,6 +628,69 @@ client.collections.create(
     # Additional parameters not shown
 )
 # END FullGenerativeGoogle
+
+# clean up
+client.collections.delete("DemoCollection")
+import_data()
+
+# START RuntimeModelSelectionGoogle
+from weaviate.classes.config import Configure
+from weaviate.classes.generate import GenerativeConfig
+
+collection = client.collections.get("DemoCollection")
+response = collection.generate.near_text(
+    query="A holiday film",
+    limit=2,
+    grouped_task="Write a tweet promoting these two movies",
+    # highlight-start
+    generative_provider=GenerativeConfig.google(
+        # # These parameters are optional
+        # project_id="<google-cloud-project-id>",  # Required for Vertex AI
+        # model_id="<google-model-id>",
+        # api_endpoint="<google-api-endpoint>",
+        # temperature=0.7,
+        # top_k=5,
+        # top_p=0.9,
+        # vectorize_collection_name=False,
+    ),
+    # Additional parameters not shown
+    # highlight-end
+)
+# END RuntimeModelSelectionGoogle
+
+# START WorkingWithImagesGoogle
+import base64
+import requests
+from weaviate.classes.generate import GenerativeConfig, GenerativeParameters
+
+src_img_path = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Winter_forest_silver.jpg/960px-Winter_forest_silver.jpg"
+base64_image = base64.b64encode(requests.get(src_img_path).content).decode('utf-8')
+
+prompt = GenerativeParameters.grouped_task(
+    # highlight-start
+    prompt="Which movie is closest to the image in terms of atmosphere",
+    images=[base64_image],      # A list of base64 encoded strings of the image bytes
+    # image_properties=["img"], # Properties containing images in Weaviate
+    # highlight-end
+)
+
+jeopardy = client.collections.get("DemoCollection")
+response = jeopardy.generate.near_text(
+    query="Movies", 
+    limit=5, 
+    # highlight-start
+    grouped_task=prompt,
+    # highlight-end
+    generative_provider=GenerativeConfig.google(
+        max_tokens=1000
+    ),
+)
+
+# Print the source property and the generated response
+for o in response.objects:
+    print(f"Title property: {o.properties['title']}")
+print(f"Grouped task result: {response.generative.text}")
+# END WorkingWithImagesGoogle
 
 # clean up
 client.collections.delete("DemoCollection")
@@ -424,6 +745,31 @@ client.collections.create(
 
 # clean up
 client.collections.delete("DemoCollection")
+import_data()
+
+# START RuntimeModelSelectionMistral
+from weaviate.classes.config import Configure
+from weaviate.classes.generate import GenerativeConfig
+
+collection = client.collections.get("DemoCollection")
+response = collection.generate.near_text(
+    query="A holiday film",
+    limit=2,
+    grouped_task="Write a tweet promoting these two movies",
+    # highlight-start
+    generative_provider=GenerativeConfig.mistral(
+        # # These parameters are optional
+        # model="mistral-large",
+        # temperature=0.7,
+        # max_tokens=500,
+    ),
+    # Additional parameters not shown
+    # highlight-end
+)
+# END RuntimeModelSelectionMistral
+
+# clean up
+client.collections.delete("DemoCollection")
 
 # START BasicGenerativeNVIDIA
 from weaviate.classes.config import Configure
@@ -462,15 +808,42 @@ client.collections.create(
     "DemoCollection",
     # highlight-start
     generative_config=Configure.Generative.nvidia(
-        base_url="https://integrate.api.nvidia.com/v1",
-        model="meta/llama-3.3-70b-instruct",
-        temperature=0.7,
-        max_tokens=1024
+        # # These parameters are optional
+        # base_url="https://integrate.api.nvidia.com/v1",
+        # model="meta/llama-3.3-70b-instruct",
+        # temperature=0.7,
+        # max_tokens=1024
     )
     # highlight-end
     # Additional parameters not shown
 )
 # END FullGenerativeNVIDIA
+
+# clean up
+client.collections.delete("DemoCollection")
+import_data()
+
+# START RuntimeModelSelectionNVIDIA
+from weaviate.classes.config import Configure
+from weaviate.classes.generate import GenerativeConfig
+
+collection = client.collections.get("DemoCollection")
+response = collection.generate.near_text(
+    query="A holiday film",
+    limit=2,
+    grouped_task="Write a tweet promoting these two movies",
+    # highlight-start
+    generative_provider=GenerativeConfig.nvidia(
+        # # These parameters are optional
+        # base_url="https://integrate.api.nvidia.com/v1",
+        # model="meta/llama-3.3-70b-instruct",
+        # temperature=0.7,
+        # max_tokens=1024
+    ),
+    # Additional parameters not shown
+    # highlight-end
+)
+# END RuntimeModelSelectionNVIDIA
 
 # clean up
 client.collections.delete("DemoCollection")
@@ -576,6 +949,69 @@ client.collections.create(
 
 # clean up
 client.collections.delete("DemoCollection")
+import_data()
+
+# START RuntimeModelSelectionOpenAI
+from weaviate.classes.config import Configure
+from weaviate.classes.generate import GenerativeConfig
+
+collection = client.collections.get("DemoCollection")
+response = collection.generate.near_text(
+    query="A holiday film",
+    limit=2,
+    grouped_task="Write a tweet promoting these two movies",
+    # highlight-start
+    generative_provider=GenerativeConfig.openai(
+        # # These parameters are optional
+        # model="gpt-4",
+        # frequency_penalty=0,
+        # max_tokens=500,
+        # presence_penalty=0,
+        # temperature=0.7,
+        # top_p=0.7,
+        # base_url="<custom_openai_url>"
+    ),
+    # Additional parameters not shown
+    # highlight-end
+)
+# END RuntimeModelSelectionOpenAI
+
+# START WorkingWithImagesOpenAI
+import base64
+import requests
+from weaviate.classes.generate import GenerativeConfig, GenerativeParameters
+
+src_img_path = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Winter_forest_silver.jpg/960px-Winter_forest_silver.jpg"
+base64_image = base64.b64encode(requests.get(src_img_path).content).decode('utf-8')
+
+prompt = GenerativeParameters.grouped_task(
+    # highlight-start
+    prompt="Which movie is closest to the image in terms of atmosphere",
+    images=[base64_image],      # A list of base64 encoded strings of the image bytes
+    # image_properties=["img"], # Properties containing images in Weaviate
+    # highlight-end
+)
+
+jeopardy = client.collections.get("DemoCollection")
+response = jeopardy.generate.near_text(
+    query="Movies", 
+    limit=5, 
+    # highlight-start
+    grouped_task=prompt,
+    # highlight-end
+    generative_provider=GenerativeConfig.openai(
+        max_tokens=1000
+    ),
+)
+
+# Print the source property and the generated response
+for o in response.objects:
+    print(f"Title property: {o.properties['title']}")
+print(f"Grouped task result: {response.generative.text}")
+# END WorkingWithImagesOpenAI
+
+# clean up
+client.collections.delete("DemoCollection")
 
 # START BasicGenerativeAzureOpenAI
 from weaviate.classes.config import Configure
@@ -661,6 +1097,36 @@ client.collections.create(
 
 # clean up
 client.collections.delete("DemoCollection")
+import_data()
+
+# START RuntimeModelSelectionKubeAI
+from weaviate.classes.config import Configure
+from weaviate.classes.generate import GenerativeConfig
+
+collection = client.collections.get("DemoCollection")
+response = collection.generate.near_text(
+    query="A holiday film",
+    limit=2,
+    grouped_task="Write a tweet promoting these two movies",
+    # highlight-start
+    generative_provider=GenerativeConfig.openai(
+        # Setting the model and base_url is required
+        model="gpt-3.5-turbo",
+        base_url="http://kubeai/openai", # Your private KubeAI API endpoint
+        # These parameters are optional
+        # frequency_penalty=0,
+        # max_tokens=500,
+        # presence_penalty=0,
+        # temperature=0.7,
+        # top_p=0.7,
+    ),
+    # Additional parameters not shown
+    # highlight-end
+)
+# END RuntimeModelSelectionKubeAI
+
+# clean up
+client.collections.delete("DemoCollection")
 
 # START FullGenerativeAzureOpenAI
 from weaviate.classes.config import Configure
@@ -683,6 +1149,36 @@ client.collections.create(
     # Additional parameters not shown
 )
 # END FullGenerativeAzureOpenAI
+
+# clean up
+client.collections.delete("DemoCollection")
+import_data()
+
+# START RuntimeModelSelectionAzureOpenAI
+from weaviate.classes.config import Configure
+from weaviate.classes.generate import GenerativeConfig
+
+collection = client.collections.get("DemoCollection")
+response = collection.generate.near_text(
+    query="A holiday film",
+    limit=2,
+    grouped_task="Write a tweet promoting these two movies",
+    # highlight-start
+    generative_provider=GenerativeConfig.azure_openai(
+        resource_name="<azure-resource-name>",
+        deployment_id="<azure-deployment-id>",
+        # # These parameters are optional
+        # frequency_penalty=0,
+        # max_tokens=500,
+        # presence_penalty=0,
+        # temperature=0.7,
+        # top_p=0.7,
+        # base_url="<custom-azure-url>"
+    ),
+    # Additional parameters not shown
+    # highlight-end
+)
+# END RuntimeModelSelectionAzureOpenAI
 
 # START BasicGenerativeOllama
 from weaviate.classes.config import Configure
@@ -717,29 +1213,63 @@ client.collections.create(
 )
 # END FullGenerativeOllama
 
-source_objects = [
-    {"title": "The Shawshank Redemption"},
-    {"title": "The Godfather"},
-    {"title": "The Dark Knight"},
-    {"title": "Jingle All the Way"},
-    {"title": "A Christmas Carol"},
-]
+# clean up
+client.collections.delete("DemoCollection")
+import_data()
+
+# START RuntimeModelSelectionOllama
+from weaviate.classes.config import Configure
+from weaviate.classes.generate import GenerativeConfig
 
 collection = client.collections.get("DemoCollection")
+response = collection.generate.near_text(
+    query="A holiday film",
+    limit=2,
+    grouped_task="Write a tweet promoting these two movies",
+    # highlight-start
+    generative_provider=GenerativeConfig.ollama(
+        api_endpoint="http://host.docker.internal:11434",  # If using Docker, use this to contact your local Ollama instance
+        model="llama3"  # The model to use, e.g. "phi3", or "mistral", "command-r-plus", "gemma"
+    ),
+    # Additional parameters not shown
+    # highlight-end
+)
+# END RuntimeModelSelectionOllama
 
-with collection.batch.dynamic() as batch:
-    for src_obj in source_objects:
-        weaviate_obj = {
-            "title": src_obj["title"],
-        }
-        batch.add_object(
-            properties=weaviate_obj,
-        )
+# START WorkingWithImagesOllama
+import base64
+import requests
+from weaviate.classes.generate import GenerativeConfig, GenerativeParameters
 
-if len(collection.batch.failed_objects) > 0:
-    print(f"Failed to import {len(collection.batch.failed_objects)} objects")
-    for failed in collection.batch.failed_objects:
-        print(f"e.g. Failed to import object with error: {failed.message}")
+src_img_path = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Winter_forest_silver.jpg/960px-Winter_forest_silver.jpg"
+base64_image = base64.b64encode(requests.get(src_img_path).content).decode('utf-8')
+
+prompt = GenerativeParameters.grouped_task(
+    # highlight-start
+    prompt="Which movie is closest to the image in terms of atmosphere",
+    images=[base64_image],      # A list of base64 encoded strings of the image bytes
+    # image_properties=["img"], # Properties containing images in Weaviate
+    # highlight-end
+)
+
+jeopardy = client.collections.get("DemoCollection")
+response = jeopardy.generate.near_text(
+    query="Movies", 
+    limit=5, 
+    # highlight-start
+    grouped_task=prompt,
+    # highlight-end
+    generative_provider=GenerativeConfig.ollama(),
+)
+
+# Print the source property and the generated response
+for o in response.objects:
+    print(f"Title property: {o.properties['title']}")
+print(f"Grouped task result: {response.generative.text}")
+# END WorkingWithImagesOllama
+
+client.collections.delete("DemoCollection")
+import_data()
 
 # START SinglePromptExample
 collection = client.collections.get("DemoCollection")
