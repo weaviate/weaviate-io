@@ -5,7 +5,14 @@ sidebar_position: 1
 image: og/docs/configuration.jpg
 ---
 
-:::info Added in `v1.30`
+:::caution Technical preview
+
+Runtime configuration management was added in **`v1.30`** as a **technical preview**.
+<br/>
+
+This means that the feature is still under development and may change in future releases, including potential breaking changes.  
+**We do not recommend using this feature in production environments at this time.**
+
 :::
 
 Weaviate supports runtime configuration management, allowing certain environment variables to be updated and read by Weaviate on the fly without the need for restarts. This feature helps you adapt settings in real time and fine-tune your instance based on evolving needs.
