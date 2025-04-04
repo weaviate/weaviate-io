@@ -2495,10 +2495,10 @@
   resolved "https://registry.yarnpkg.com/@graphql-typed-document-node/core/-/core-3.2.0.tgz#5f3d96ec6b2354ad6d8a28bf216a1d97b5426861"
   integrity sha512-mB9oAsNCm9aM3/SOv4YtBMqZbYj10R7dkq8byBqxGY/ncFwhf2oQzMV+LCRlWoDSEBJ3COiR1yeDvMtsoOsuFQ==
 
-"@grpc/grpc-js@^1.10.8":
-  version "1.11.3"
-  resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-1.11.3.tgz#a33a472618d166fbb195012ae390dbfc277470ed"
-  integrity sha512-i9UraDzFHMR+Iz/MhFLljT+fCpgxZ3O6CxwGJ8YuNYHJItIHUzKJpW2LvoFZNnGPwqc9iWy9RAucxV0JoR9aUQ==
+"@grpc/grpc-js@^1.13.1":
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-1.13.2.tgz#376543c23eedc03ea019ff37050dc0b0936bfe8f"
+  integrity sha512-nnR5nmL6lxF8YBqb6gWvEgLdLh/Fn+kvAdX5hUOnt48sNSb0riz/93ASd2E5gvanPA41X6Yp25bIfGRp1SMb2g==
   dependencies:
     "@grpc/proto-loader" "^0.7.13"
     "@js-sdsl/ordered-map" "^4.4.2"
@@ -10151,10 +10151,10 @@ graphql@16.5.0:
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.5.0.tgz#41b5c1182eaac7f3d47164fb247f61e4dfb69c85"
   integrity sha512-qbHgh8Ix+j/qY+a/ZcJnFQ+j8ezakqPiHwPiZhV/3PgGlgf96QMBB5/f2rkiC9sgLoy/xvT6TSiaf2nTHJh5iA==
 
-graphql@^16.9.0:
-  version "16.9.0"
-  resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.9.0.tgz#1c310e63f16a49ce1fbb230bd0a000e99f6f115f"
-  integrity sha512-GGTKBX4SD7Wdb8mqeDLni2oaRGYQWjWHGKPQ24ZMnUtKfcsVoiv4uX8+LJr1K6U5VW2Lu1BwJnj7uiori0YtRw==
+graphql@^16.10.0:
+  version "16.10.0"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.10.0.tgz#24c01ae0af6b11ea87bf55694429198aaa8e220c"
+  integrity sha512-AjqGKbDGUFRKIRCP9tCKiIGHyriz2oHEbPIbEtcSLSs4YjReZOIPQQWek4+6hjw62H9QShXHyaGivGiYVLeYFQ==
 
 gray-matter@^4.0.3:
   version "4.0.3"
@@ -12183,10 +12183,15 @@ logform@^2.3.2, logform@^2.4.0:
     safe-stable-stringify "^2.3.1"
     triple-beam "^1.3.0"
 
-long@^5.0.0, long@^5.2.3:
+long@^5.0.0:
   version "5.2.3"
   resolved "https://registry.yarnpkg.com/long/-/long-5.2.3.tgz#a3ba97f3877cf1d778eccbcb048525ebb77499e1"
   integrity sha512-lcHwpNoggQTObv5apGNCTdJrO69eHOZMi4BNC+rTLER8iHAqGrUVeLh/irVIM7zTw2bOXA8T6uNPeujwOLg/2Q==
+
+long@^5.2.4:
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/long/-/long-5.3.1.tgz#9d4222d3213f38a5ec809674834e0f0ab21abe96"
+  integrity sha512-ka87Jz3gcx/I7Hal94xaN2tZEOPoUOEVftkQqZx2EeQRN7LGdfLlI3FvZ+7WDplm+vK2Urx9ULrvSowtdCieng==
 
 longest-streak@^3.0.0:
   version "3.1.0"
@@ -13456,10 +13461,10 @@ netlify@^13.1.17, netlify@^13.1.2:
     p-wait-for "^4.0.0"
     qs "^6.9.6"
 
-nice-grpc-client-middleware-retry@^3.1.9:
-  version "3.1.9"
-  resolved "https://registry.yarnpkg.com/nice-grpc-client-middleware-retry/-/nice-grpc-client-middleware-retry-3.1.9.tgz#a9b4909cbf17c1d95f44dccd30890949c44cf7b3"
-  integrity sha512-BgbsNjuppxD6hoeCfO5gkBA/G69Tq5d9QX35QLdA46NSjKllelC+FlcgSPMlO9VQKCAPDfp4zzzDJZTNtbvzVw==
+nice-grpc-client-middleware-retry@^3.1.10:
+  version "3.1.11"
+  resolved "https://registry.yarnpkg.com/nice-grpc-client-middleware-retry/-/nice-grpc-client-middleware-retry-3.1.11.tgz#4fc0128b891d184b6c98af3bfd6aca1b608a3fd1"
+  integrity sha512-xW/imz/kNG2g0DwTfH2eYEGrg1chSLrXtvGp9fg2qkhTgGFfAS/Pq3+t+9G8KThcC4hK/xlEyKvZWKk++33S6A==
   dependencies:
     abort-controller-x "^0.4.0"
     nice-grpc-common "^2.0.2"
@@ -13471,12 +13476,12 @@ nice-grpc-common@^2.0.2:
   dependencies:
     ts-error "^1.0.6"
 
-nice-grpc@^2.1.10:
-  version "2.1.10"
-  resolved "https://registry.yarnpkg.com/nice-grpc/-/nice-grpc-2.1.10.tgz#64355848951a143fc2a2d40d1d6b0f49f47567bb"
-  integrity sha512-Nujs/4wWJvE5OSxWPp3M5H+zHJAgsWMo38bMNfKQP1VDeCChp7MiKTkhJBV5JZvrBIkPhYQCLIbfvVqEoSuTuA==
+nice-grpc@^2.1.11:
+  version "2.1.12"
+  resolved "https://registry.yarnpkg.com/nice-grpc/-/nice-grpc-2.1.12.tgz#56ffdcc4d5bc3d0271c176210680c4bd10c5149b"
+  integrity sha512-J1n4Wg+D3IhRhGQb+iqh2OpiM0GzTve/kf2lnlW4S+xczmIEd0aHUDV1OsJ5a3q8GSTqJf+s4Rgg1M8uJltarw==
   dependencies:
-    "@grpc/grpc-js" "^1.10.8"
+    "@grpc/grpc-js" "^1.13.1"
     abort-controller-x "^0.4.0"
     nice-grpc-common "^2.0.2"
 
@@ -18411,17 +18416,17 @@ wcwidth@^1.0.1:
   dependencies:
     defaults "^1.0.3"
 
-weaviate-client@^3.5.0-beta.2:
-  version "3.5.0-beta.2"
-  resolved "https://registry.yarnpkg.com/weaviate-client/-/weaviate-client-3.5.0-beta.2.tgz#f953d23c4e06fc64c925bef29a0ac321cd5a5769"
-  integrity sha512-C7W1UGiOGhwgTX03xmOb/s25wV4GSKP13HA2FdE07uWq3qM20MEqEil/3K5+zzRufdOaVzHQ5Ppeohia6A5KOQ==
+weaviate-client@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/weaviate-client/-/weaviate-client-3.5.0.tgz#4bf35bbbe6daf6eb577eb17be8a3605a52f22747"
+  integrity sha512-rvs02d0Yf9sf8ALN727f8WEetUg6LJRzVqk8pC9lRbIrgRny1eTD27NmB1bag4YU0Kuu2ulBbbCmYKCmDulMZA==
   dependencies:
     abort-controller-x "^0.4.3"
-    graphql "^16.9.0"
+    graphql "^16.10.0"
     graphql-request "^6.1.0"
-    long "^5.2.3"
-    nice-grpc "^2.1.10"
-    nice-grpc-client-middleware-retry "^3.1.9"
+    long "^5.2.4"
+    nice-grpc "^2.1.11"
+    nice-grpc-client-middleware-retry "^3.1.10"
     nice-grpc-common "^2.0.2"
     uuid "^9.0.1"
 

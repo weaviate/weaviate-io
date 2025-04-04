@@ -563,6 +563,9 @@ await client.collections.create({
 });
 // END FullGenerativeAzureOpenAI
 
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START BasicGenerativeOllama
 await client.collections.create({
   name: 'DemoCollection',
@@ -591,6 +594,53 @@ await client.collections.create({
   // Additional parameters not shown
 });
 // END FullGenerativeOllama
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START BasicGenerativexAI
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.xai(),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicGenerativexAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START GenerativexAICustomModel
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.xai({
+    model: 'grok-2-latest'
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END GenerativexAICustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullGenerativexAI
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.xai({
+    // // These parameters are optional
+    // baseUrlProperty: 'https://api.x.ai/v1',
+    // model: 'grok-2-latest',
+    // maxTokensProperty: 512,
+    // temperatureProperty: 0.7,
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END FullGenerativexAI
 
 // Clean up
 await client.collections.delete('DemoCollection');
