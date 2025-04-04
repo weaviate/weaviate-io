@@ -593,6 +593,8 @@ await client.collections.create({
 // END FullGenerativeOllama
 
 // START BasicGenerativexAI
+// TS client support coming soon
+// END BasicGenerativexAI
 await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
@@ -600,9 +602,10 @@ await client.collections.create({
   // highlight-end
   // Additional parameters not shown
 });
-// END BasicGenerativexAI
 
 // START GenerativexAICustomModel
+// TS client support coming soon
+// END GenerativexAICustomModel
 await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
@@ -612,9 +615,10 @@ await client.collections.create({
   // highlight-end
   // Additional parameters not shown
 });
-// END GenerativexAICustomModel
 
 // START FullGenerativexAI
+// TS client support coming soon
+// END FullGenerativexAI
 await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
@@ -628,7 +632,6 @@ await client.collections.create({
   // highlight-end
   // Additional parameters not shown
 });
-// END FullGenerativexAI
 
 // Clean up
 await client.collections.delete('DemoCollection');

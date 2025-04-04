@@ -7,7 +7,7 @@ image: og/docs/integrations/provider_integrations_xai.jpg
 
 # xAI Generative AI with Weaviate
 
-:::info Added in `v1.28.5`, `v1.29.0` 
+:::info Added in `v1.30.0`
 :::
 
 import Tabs from '@theme/Tabs';
@@ -54,7 +54,7 @@ You must provide a valid API key to Weaviate for this integration. Go to [xAI](h
 Provide the API key to Weaviate using one of the following methods:
 
 - Set the `XAI_APIKEY` environment variable that is available to Weaviate.
-- Provide the token at runtime, as shown in the examples below.
+- Provide the API key at runtime, as shown in the examples below.
 
 <Tabs groupId="languages">
 
@@ -160,6 +160,28 @@ Configure the following generative parameters to customize the model behavior.
 </Tabs>
 
 For further details on model parameters, see the [xAI API documentation](https://docs.x.ai/docs/guides/chat#parameters).
+
+## Select a model at runtime
+
+Aside from setting the default model provider when creating the collection, you can also override it at query time.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START RuntimeModelSelectionxAI"
+      endMarker="# END RuntimeModelSelectionxAI"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+</Tabs>
 
 ## Retrieval augmented generation
 

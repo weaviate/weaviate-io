@@ -146,8 +146,8 @@ prompt = GenerativeParameters.grouped_task(
 
 jeopardy = client.collections.get("DemoCollection")
 response = jeopardy.generate.near_text(
-    query="Movies", 
-    limit=5, 
+    query="Movies",
+    limit=5,
     # highlight-start
     grouped_task=prompt,
     # highlight-end
@@ -316,8 +316,8 @@ prompt = GenerativeParameters.grouped_task(
 
 jeopardy = client.collections.get("DemoCollection")
 response = jeopardy.generate.near_text(
-    query="Movies", 
-    limit=5, 
+    query="Movies",
+    limit=5,
     # highlight-start
     grouped_task=prompt,
     # highlight-end
@@ -676,8 +676,8 @@ prompt = GenerativeParameters.grouped_task(
 
 jeopardy = client.collections.get("DemoCollection")
 response = jeopardy.generate.near_text(
-    query="Movies", 
-    limit=5, 
+    query="Movies",
+    limit=5,
     # highlight-start
     grouped_task=prompt,
     # highlight-end
@@ -994,8 +994,8 @@ prompt = GenerativeParameters.grouped_task(
 
 jeopardy = client.collections.get("DemoCollection")
 response = jeopardy.generate.near_text(
-    query="Movies", 
-    limit=5, 
+    query="Movies",
+    limit=5,
     # highlight-start
     grouped_task=prompt,
     # highlight-end
@@ -1072,6 +1072,28 @@ client.collections.create(
 
 # clean up
 client.collections.delete("DemoCollection")
+
+# START RuntimeModelSelectionxAI
+from weaviate.classes.config import Configure
+from weaviate.classes.generate import GenerativeConfig
+
+collection = client.collections.get("DemoCollection")
+response = collection.generate.near_text(
+    query="A holiday film",
+    limit=2,
+    grouped_task="Write a tweet promoting these two movies",
+    # highlight-start
+    generative_provider=GenerativeConfig.xai(
+        # # These parameters are optional
+        # base_url="https://api.x.ai/v1"
+        # model="grok-2-latest",
+        # max_tokens=500,
+        # temperature=0.7,
+    ),
+    # Additional parameters not shown
+    # highlight-end
+)
+# END RuntimeModelSelectionxAI
 
 # START FullGenerativeKubeAI
 from weaviate.classes.config import Configure
@@ -1254,8 +1276,8 @@ prompt = GenerativeParameters.grouped_task(
 
 jeopardy = client.collections.get("DemoCollection")
 response = jeopardy.generate.near_text(
-    query="Movies", 
-    limit=5, 
+    query="Movies",
+    limit=5,
     # highlight-start
     grouped_task=prompt,
     # highlight-end
