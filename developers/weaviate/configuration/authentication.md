@@ -492,7 +492,7 @@ curl https://localhost:8080/v1/objects -H "Authorization: Bearer ${WEAVIATE_API_
 ## Further resources
 
 - [Configuration: Authorization and RBAC](./authorization.md)
-- [References: Environment variables / Authentication and Authorization](../config-refs/env-vars.md#authentication-and-authorization)
+- [References: Environment variables / Authentication and Authorization](../config-refs/env-vars/index.md#authentication-and-authorization)
 
 ## Questions and feedback
 
