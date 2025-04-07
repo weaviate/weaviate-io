@@ -1010,6 +1010,8 @@ response = await myCollection.generate.nearText("A holiday film", {
   // Additional parameters not shown
 )
 // END RuntimeModelSelectionAzureOpenAI
+// Clean up
+await client.collections.delete('DemoCollection');
 
 // START BasicGenerativeOllama
 await client.collections.create({
@@ -1060,6 +1062,55 @@ response = await myCollection.generate.nearText("A holiday film", {
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START BasicGenerativexAI
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.xai(),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicGenerativexAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START GenerativexAICustomModel
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.xai({
+    model: 'grok-2-latest'
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END GenerativexAICustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullGenerativexAI
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.xai({
+    // // These parameters are optional
+    // baseURL: 'https://api.x.ai/v1',
+    // model: 'grok-2-latest',
+    // maxTokens: 512,
+    // temperature: 0.7,
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END FullGenerativexAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START SinglePromptExample  // START GroupedTaskExample
+let myCollection = client.collections.get('DemoCollection');
 
 // START SinglePromptExample  // END GroupedTaskExample
 const singlePromptResults = await myCollection.generate.nearText('A holiday film', {

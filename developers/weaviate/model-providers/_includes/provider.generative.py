@@ -146,8 +146,8 @@ prompt = GenerativeParameters.grouped_task(
 
 jeopardy = client.collections.get("DemoCollection")
 response = jeopardy.generate.near_text(
-    query="Movies", 
-    limit=5, 
+    query="Movies",
+    limit=5,
     # highlight-start
     grouped_task=prompt,
     # highlight-end
@@ -316,8 +316,8 @@ prompt = GenerativeParameters.grouped_task(
 
 jeopardy = client.collections.get("DemoCollection")
 response = jeopardy.generate.near_text(
-    query="Movies", 
-    limit=5, 
+    query="Movies",
+    limit=5,
     # highlight-start
     grouped_task=prompt,
     # highlight-end
@@ -676,8 +676,8 @@ prompt = GenerativeParameters.grouped_task(
 
 jeopardy = client.collections.get("DemoCollection")
 response = jeopardy.generate.near_text(
-    query="Movies", 
-    limit=5, 
+    query="Movies",
+    limit=5,
     # highlight-start
     grouped_task=prompt,
     # highlight-end
@@ -994,8 +994,8 @@ prompt = GenerativeParameters.grouped_task(
 
 jeopardy = client.collections.get("DemoCollection")
 response = jeopardy.generate.near_text(
-    query="Movies", 
-    limit=5, 
+    query="Movies",
+    limit=5,
     # highlight-start
     grouped_task=prompt,
     # highlight-end
@@ -1028,8 +1028,72 @@ client.collections.create(
 )
 # END BasicGenerativeAzureOpenAI
 
+# START BasicGenerativexAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.xai()
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicGenerativexAI
+
+# START GenerativexAICustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    generative_config=Configure.Generative.xai(
+        model="grok-2-latest"
+    )
+    # Additional parameters not shown
+)
+# END GenerativexAICustomModel
+
+# START FullGenerativexAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.xai(
+        # # These parameters are optional
+        # base_url="https://api.x.ai/v1"
+        # model="grok-2-latest",
+        # max_tokens=500,
+        # temperature=0.7,
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullGenerativexAI
+
 # clean up
 client.collections.delete("DemoCollection")
+
+# START RuntimeModelSelectionxAI
+from weaviate.classes.config import Configure
+from weaviate.classes.generate import GenerativeConfig
+
+collection = client.collections.get("DemoCollection")
+response = collection.generate.near_text(
+    query="A holiday film",
+    limit=2,
+    grouped_task="Write a tweet promoting these two movies",
+    # highlight-start
+    generative_provider=GenerativeConfig.xai(
+        # # These parameters are optional
+        # base_url="https://api.x.ai/v1"
+        # model="grok-2-latest",
+        # max_tokens=500,
+        # temperature=0.7,
+    ),
+    # Additional parameters not shown
+    # highlight-end
+)
+# END RuntimeModelSelectionxAI
 
 # START FullGenerativeKubeAI
 from weaviate.classes.config import Configure
@@ -1212,8 +1276,8 @@ prompt = GenerativeParameters.grouped_task(
 
 jeopardy = client.collections.get("DemoCollection")
 response = jeopardy.generate.near_text(
-    query="Movies", 
-    limit=5, 
+    query="Movies",
+    limit=5,
     # highlight-start
     grouped_task=prompt,
     # highlight-end

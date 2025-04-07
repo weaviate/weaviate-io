@@ -465,7 +465,7 @@ Cross-references like these are not supported:
 
 ### Monitoring metrics
 
-To group tenants together for monitoring, set [`PROMETHEUS_MONITORING_GROUP = true`](../config-refs/env-vars.md) in your system configuration file.
+To group tenants together for monitoring, set [`PROMETHEUS_MONITORING_GROUP = true`](../config-refs/env-vars/index.md) in your system configuration file.
 
 ### Number of tenants per node
 

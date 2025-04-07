@@ -97,7 +97,7 @@ These thresholds can be adjusted to better fit your use case. For example, if yo
 Set `DISK_USE_WARNING_PERCENTAGE` and `DISK_USE_READONLY_PERCENTAGE` to adjust the disk usage thresholds, and `MEMORY_WARNING_PERCENTAGE` and `MEMORY_READONLY_PERCENTAGE` to adjust the memory usage thresholds.
 
 :::tip Further resources
-- [References: Environment variables](config-refs/env-vars.md#general)
+- [References: Environment variables](config-refs/env-vars/index.md#general)
 :::
 
 ### Plan memory allocation

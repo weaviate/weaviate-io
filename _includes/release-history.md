@@ -2,7 +2,8 @@ This table lists the Weaviate core versions and corresponding client library ver
 
 | Weaviate <br/><small>([GitHub][cWeaviate])</small> | First <br/>release date | Python <br/><small>([GitHub][cPython])</small> | TypeScript/ <br/>JavaScript <br/><small>([GitHub][cTypeScript])</small> | Go <br/><small>([GitHub][cGo])</small> | Java <br/><small>([GitHub][cJava])</small> |
 | :- | :- | :-: | :-: | :-: | :-: |
-| 1.29.x | 2025-02-17 | 4.11.x | 3.4.x | TBC | TBC |
+| 1.30.x | 2025-04-03 | 4.12.x | 3.5.x | TBC | TBC |
+| 1.29.x | 2025-02-17 | 4.11.x | 3.4.x | v5.0.x | 5.1.x |
 | 1.28.x | 2024-12-11 | 4.10.x | 3.3.x | 4.16.x | 5.0.x |
 | 1.27.x | 2024-10-16 | 4.9.x | 3.2.x | 4.16.x | 5.0.x<br/>4.9.x |
 | 1.26.x | 2024-07-22 | 4.7.x | 3.1.x | 4.15.x | 4.8.x |
