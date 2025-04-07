@@ -66,19 +66,22 @@ Below you can find a list of the environment variables that can be changed at ru
 
 For more details about the variables, check out the [Environment variables](./index.md) page.
 
-## Operation
+## Operation and monitoring
 
-Given runtime configs are file based, it can fail the parsing phase (say invalid yaml). If you try to start a Weaviate process with invalid runtime config file, it fails and exit.
+Runtime configuration is based on tracking configuration file changes, which involves certain operational considerations.
+If Weaviate attempts to start with an invalid runtime configuration file (e.g., malformed YAML), the process will fail to start and exit.
 
-But what if you try to change the runtime config of already running Weaviate process and file end up being invalid?
+When modifying the runtime configuration file for a running Weaviate instance, if the new configuration is invalid, Weaviate continues using the last valid configuration that is stored in memory. Error logs and metrics will indicate when configuration loading fails.
 
-In that case, the Weaviate process keep using the old (working) configs that is in-memory and spit out error log lines and a metric saying loading new runtime config is failing.
+Weaviate provides the following [metrics to help you monitor](../../configuration/monitoring.md) runtime configuration status:
 
-We have following metrics to observe runtime configs.
+| Metric Name                                 | Description                                                                                                       |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `weaviate_runtime_config_last_load_success` | Indicates whether the last loading attempt was successful (`1` for success, `0` for failure)                      |
+| `weaviate_runtime_config_hash`              | Hash value of the currently active runtime configuration, useful for tracking when new configurations take effect |
 
-|  Metric Name                                       | Description                                                                                                                   |
-| -------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `weaviate_runtime_config_last_load_success`        | Whether the last loading attempt of the runtime config was successful. Have boolean values (`0` failed, `1` success).         |
-| `weaviate_runtime_config_hash`                     | Hash value of the currently active runtime configuration. Useful for determining when new configurations took effect.         |
+:::note
 
->NOTE: if any Weaviate pods/process that is currently failing to load runtime configs, OOM for any reason, it cannot start until config is fixed. So should have proper alerting based on the metrics and logs to catch that behavior early.
+It's important to set up proper alerting based on these metrics and logs to quickly identify configuration issues. If any Weaviate process is failing to load its runtime configuration, it won't be able to start until the configuration is fixed.
+
+:::
