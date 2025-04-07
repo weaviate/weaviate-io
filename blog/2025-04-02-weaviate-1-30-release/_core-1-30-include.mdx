@@ -10,7 +10,7 @@ Here are the release ⭐️*highlights*⭐️!
 
 - [BlockMax WAND in GA](#blockmax-wand-in-ga)
 - [Multi-vector embeddings - GA & quantization](#multi-vector-embeddings)
-- [API-based user management](#api-based-user-management)
+- [Database user management API](#database-user-management-api)
 - [Generative (RAG) capability improvements](#generative-capability-improvements)
 - [xAI model integration](#xai-model-integration)
 - [Other enhancements](#other-enhancements)
@@ -35,7 +35,7 @@ import BMWExampleCalc from './img/bmw_example.png';
   </small></figcaption>
 </Figure>
 
-Existing instances' data can be migrated to use BlockMax WAND by following [this guide](/developers/weaviate/more-resources/migration/weaviate-1-30.md). This is a one-time operation, and once completed, the instance will use BlockMax WAND for all future searches.
+Existing instances' data can be migrated to use BlockMax WAND by following [this guide](/developers/weaviate/more-resources/migration/weaviate-1-30). This is a one-time operation, and once completed, the instance will use BlockMax WAND for all future searches.
 
 If you are going to create a new Weaviate instance, you do not need to do anything - BlockMax WAND will be used by default.
 
@@ -44,7 +44,7 @@ Enjoy the speedup! 🚀🚀🚀
 :::info Related resources
 - [BlockMax WAND blog](/blog/blockmax-wand/)
 - [Concepts: Indexing - BlockMax WAND](/developers/weaviate/concepts/indexing#blockmax-wand-algorithm)
-- [Migration Guide: BlockMax WAND](/developers/weaviate/more-resources/migration/weaviate-1-30.md)
+- [Migration Guide: BlockMax WAND](/developers/weaviate/more-resources/migration/weaviate-1-30)
 :::
 
 ## Multi-vector embeddings
@@ -92,14 +92,14 @@ If you have been waiting for multi-vector embeddings to be generally available, 
 - [How-to Configure: Vector Quantization](/developers/weaviate/configuration/compression)
 :::
 
-## API-based database user management
+## Database user management API
 
-User management is a whole lot more flexible from `v1.30`. Weaviate now supports API-based management of database users in addition to environment variable-based database users, and OIDC users.
+User management is a whole lot more flexible from `v1.30`. Weaviate now supports management of database users through an API in addition to environment variable-based database users, and OIDC users.
 
 This means that there are broadly three ways to manage database users in Weaviate:
 - Through an external identity provider (OIDC)
 - Through environment variables (as before; root users must be managed this way)
-- Through the Weaviate API (new)
+- Through the database user management API (new)
 
 Administrators can now create and delete database users using the Weaviate client libraries, or the REST API. Even better, changes to the set of API-based database users will take effect without restarting the Weaviate instance.
 
@@ -107,11 +107,15 @@ You can create, delete, and even rotate these database users' API keys without r
 
 Individual users' access can be granted, revoked or made secure again in real-time without the need for downtime. It can be combined with role-based access control (RBAC) to provide a powerful and flexible access control system.
 
+:::info Related resources
+- [Database user management API](/developers/weaviate/configuration/rbac/manage-users)
+:::
+
 ## Generative capability improvements
 
 Weaviate's retrieval-augmented generation (RAG) capabilities are now easier to use and more powerful, with runtime options for model providers, and the ability to add images to the input.
 
-From `v1.30`, you can specify at query time which model provider (e.g. Cohere, Google,OpenAI, etc.) to use for generative capabilities, as well as a specific model and other types. For example:
+From `v1.30`, you can specify at query time which model provider (e.g. Cohere, Google, OpenAI, etc.) to use for generative capabilities, as well as a specific model and other types. For example:
 
 ```python
 # Set the provider, model, and other options at query time to override the defaults
@@ -132,11 +136,20 @@ For example, you might want to use a different model for a specific query, or us
 
 Additionally, you can now add images to the input of the generative model as context. This can help you to get more out of modern vision language models from providers such as Anthropic, Google, and OpenAI, for example.
 
+:::info Related resources
+- [How-to: Search: Configure a generative model provider](/developers/weaviate/search/generative#configure-a-generative-model-provider)
+:::
+
+
 ## xAI model integration
 
 Weaviate's suite of [model integrations](/developers/weaviate/model-providers/) now includes support for xAI's generative AI models.
 
 To use xAI's generative AI models with Weaviate, take a look at the [xAI model integration page](/developers/weaviate/model-providers/xai/) for detailed instructions on how to configure Weaviate with xAI models and start using them in your applications.
+
+:::info Related resources
+- [Model provider integrations: xAI](/developers/weaviate/model-providers/xai)
+:::
 
 ## Other enhancements
 
@@ -150,6 +163,11 @@ This means that you can now change these settings without restarting Weaviate, w
 
 For detailed instructions on how to set this up, and what settings are available, refer to the [Runtime config management page](/developers/weaviate/config-refs/env-vars/runtime-config).
 
+:::info Related resources
+- [References: Configuration: Runtime config management](/developers/weaviate/config-refs/env-vars/runtime-config)
+- [References: Configuration: Environment variables](/developers/weaviate/config-refs/env-vars)
+:::
+
 ### Collection count limits
 
 There is now a default limit on the number of collections that can be created in each Weaviate instance. This has two benefits.
@@ -162,6 +180,11 @@ However, if you finding yourself hitting or even nearing this limit, we advise y
 
 This is a good opportunity to consider whether you need to create so many collections, or whether you can use a multi-tenant approach instead.
 
+:::info Related resources
+- [Guide: Scaling limits with collections](/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits)
+- [References: Configuration: Environment variables](/developers/weaviate/config-refs/env-vars)
+:::
+
 ### Tokenizer concurrency limits
 
 Weaviate's non-English tokenizers now have a concurrency limit to prevent them from consuming too many resources. By default, the limit is set to Go's CPU core count (`GOMAXPROCS`) - but you can adjust this limit to suit your needs.
@@ -170,17 +193,26 @@ This can help you to balance the needs between performance and resource consumpt
 
 If you need to change this limit, you can do so by setting the `TOKENIZER_CONCURRENCY_COUNT` environment variable.
 
+:::info Related resources
+- [References: Configuration: Environment variables](/developers/weaviate/config-refs/env-vars)
+- [References: Collection definition: Limit tokenizer concurrency](/developers/weaviate/config-refs/schema#limit-the-number-of-gse-and-kagome-tokenizers)
+:::
+
 ### RBAC updates
 
 The engineering team continue to make even more improvements to the role-based access control (RBAC) API to allow further granular control over user permissions. The latest updates include the ability to filter for tenants for `Data` and `Tenant` permissions.
 
 See the [RBAC documentation](/developers/weaviate/configuration/rbac) for more information.
 
+:::info Related resources
+- [How-to configure: Role-based access control](/developers/weaviate/configuration/rbac)
+:::
+
 ## Summary
 
 Ready to Get Started?
 
-Enjoy the new features and improvements in Weaviate `1.29`. The release is available open-source as always [on GitHub](https://github.com/weaviate/weaviate/releases/tag/v1.28.0), and will be available for new Sandboxes on [Weaviate Cloud](https://console.weaviate.cloud/) very shortly.
+Enjoy the new features and improvements in Weaviate `1.30`. The release is available open-source as always [on GitHub](https://github.com/weaviate/weaviate/releases/tag/v1.30.0), and will be available for new Sandboxes on [Weaviate Cloud](https://console.weaviate.cloud/) very shortly.
 
 For those of you upgrading a self-hosted version, please check the [migration guide](/developers/weaviate/more-resources/migration#general-upgrade-instructions) for detailed instructions.
 
