@@ -6,7 +6,7 @@ import assert from 'assert';
 // ===== INSTANTIATION-COMMON =====
 // ================================
 
-import weaviate, { GenerateOptions, WeaviateClient, generativeConfigRuntime } from 'weaviate-client';
+import weaviate, { GenerateOptions, WeaviateClient, generativeParameters } from 'weaviate-client';
 
 const weaviateURL = process.env.WCD_URL as string;
 const weaviateKey = process.env.WCD_API_KEY as string;
@@ -150,7 +150,7 @@ const responset = await jeopardy.generate.nearText("World history",
     // highlight-start
     singlePrompt: prompt,
     // highlight-end
-    config : generativeConfigRuntime.openAI()
+    config : generativeParameters.openAI()
 }, {
   limit: 2, 
 
@@ -217,7 +217,7 @@ const responsex = await jeopardy.generate.nearText("Cute animals",
     // highlight-start
     groupedTask: grouped_task,
     // highlight-end
-    config: generativeConfigRuntime.openAI()
+    config: generativeParameters.openAI()
    }, {
     limit: 3,
    }
@@ -290,7 +290,7 @@ const responsec = await jeopardy.generate.nearText("Australian animals",
       groupedTask: prompt,
       // highlight-end
       groupedProperties: ["answer", "question"],
-      config: generativeConfigRuntime.anthropic({
+      config: generativeParameters.anthropic({
         maxTokens: 1000
       })
     }, {
