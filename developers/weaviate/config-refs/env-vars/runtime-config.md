@@ -10,7 +10,7 @@ image: og/docs/configuration.jpg
 Runtime configuration management was added in **`v1.30`** as a **technical preview**.
 <br/>
 
-This means that the feature is still under development and may change in future releases, including potential breaking changes.  
+This means that the feature is still under development and may change in future releases, including potential breaking changes.
 **We do not recommend using this feature in production environments at this time.**
 
 :::
@@ -21,10 +21,10 @@ Weaviate supports runtime configuration management, allowing certain environment
 
 Follow these steps to set up runtime configuration management:
 
-1. **Enable the feature**  
+1. **Enable the feature**
    Set the environment variable `RUNTIME_OVERRIDES_ENABLED` to `true`.
 
-2. **Provide an overrides file**  
+2. **Provide an overrides file**
    Create a configuration file that contains the runtime overrides and point to it using the `RUNTIME_OVERRIDES_PATH` variable.
 
 <details>
@@ -38,10 +38,10 @@ async_replication_disabled: false
 
 </details>
 
-3. **Set the update interval**  
+3. **Set the update interval**
    Set the `RUNTIME_OVERRIDES_LOAD_INTERVAL` variable to define how often Weaviate should check for configuration changes (default is `2m`).
 
-4. **Restart the instance**  
+4. **Restart the instance**
    In order to finish the setup, restart your Weaviate instance.
 
 ### Configuration variables
@@ -65,3 +65,20 @@ Below you can find a list of the environment variables that can be changed at ru
 | `MAXIMUM_ALLOWED_COLLECTIONS_COUNT` | `maximum_allowed_collections_count` |
 
 For more details about the variables, check out the [Environment variables](./index.md) page.
+
+## Operation
+
+Given runtime configs are file based, it can fail the parsing phase (say invalid yaml). If you try to start a Weaviate process with invalid runtime config file, it fails and exit.
+
+But what if you try to change the runtime config of already running Weaviate process and file end up being invalid?
+
+In that case, the Weaviate process keep using the old (working) configs that is in-memory and spit out error log lines and a metric saying loading new runtime config is failing.
+
+We have following metrics to observe runtime configs.
+
+|  Metric Name                                       | Description                                                                                                                   |
+| -------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `weaviate_runtime_config_last_load_success`        | Whether the last loading attempt of the runtime config was successful. Have boolean values (`0` failed, `1` success).         |
+| `weaviate_runtime_config_hash`                     | Hash value of the currently active runtime configuration. Useful for determining when new configurations took effect.         |
+
+>NOTE: if any Weaviate pods/process that is currently failing to load runtime configs, OOM for any reason, it cannot start until config is fixed. So should have proper alerting based on the metrics and logs to catch that behavior early.
