@@ -186,8 +186,8 @@ The properties you use in the prompt do not have to be among the properties you 
   <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// SingleGenerativeProperties TS"
-      endMarker="// END SingleGenerativeProperties TS"
+      startMarker="// START SingleGenerativePropertiesTS"
+      endMarker="// END SingleGenerativePropertiesTS"
       language="js"
     />
   </TabItem>
@@ -252,7 +252,7 @@ You can use *generative parameters* to specify additional options when performin
   <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// SingleGenerativeParametersTS"
+      startMarker="// START SingleGenerativeParametersTS"
       endMarker="// END SingleGenerativeParametersTS"
       language="ts"
     />
@@ -330,8 +330,8 @@ Grouped task search returns one response that includes all of the query results.
   <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// GroupedGenerative TS"
-      endMarker="// END GroupedGenerative TS"
+      startMarker="// START GroupedGenerativeTS"
+      endMarker="// END GroupedGenerativeTS"
       language="js"
     />
   </TabItem>
@@ -399,7 +399,7 @@ Define object `properties` to use in the prompt. This limits the information in 
   <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// GroupedGenerativeProperties"
+      startMarker="// START GroupedGenerativeProperties"
       endMarker="// END GroupedGenerativeProperties"
       language="ts"
     />
@@ -462,7 +462,7 @@ You can use *generative parameters* to specify additional options when performin
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START GroupedGenerativeParametersTS"
-      endMarker="/ END GroupedGenerativeParametersTS"
+      endMarker="// END GroupedGenerativeParametersTS"
       language="ts"
     />
   </TabItem>
