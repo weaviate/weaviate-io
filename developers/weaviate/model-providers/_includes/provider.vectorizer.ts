@@ -5,6 +5,9 @@ import assert from 'assert';
 // ================================
 import weaviate from 'weaviate-client';
 
+async function main() {
+
+  
 const client = await weaviate.connectToLocal({
   headers: {
     'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY || '',
@@ -158,7 +161,7 @@ await client.collections.create({
     weaviate.configure.vectorizer.text2VecCohere({
       name: 'title_vector',
       sourceProperties: ['title'],
-      // // Further options
+      // Further options
       // model: 'embed-multilingual-v3.0',
       // truncate: 'END',
       // baseURL: '<custom_cohere_url>',
@@ -519,13 +522,12 @@ await client.collections.create({
       name: 'title_vector',
       sourceProperties: ['title'],
       model: 'sentence-transformers/all-MiniLM-L6-v2',
-      // passage_model: 'sentence-transformers/facebook-dpr-ctx_encoder-single-nq-base',    // Required if using `query_model`
-      // query_model: 'sentence-transformers/facebook-dpr-question_encoder-single-nq-base', // Required if using `passage_model`
-      // endpoint_url: '<custom_huggingface_url>',
-      //
-      // wait_for_model: true,
-      // use_cache: true,
-      // use_gpu: true,
+      // endpointURL: <custom_huggingface_url>,
+      // passageModel: 'sentence-transformers/facebook-dpr-ctx_encoder-single-nq-base',    // Required if using `query_model`
+      // queryModel: 'sentence-transformers/facebook-dpr-question_encoder-single-nq-base', // Required if using `passage_model`
+      // waitForModel: true,
+      // useCache: true,
+      // useGPU: true,
     }),
   ],
   // highlight-end
@@ -1008,12 +1010,12 @@ await client.collections.create({
       {
         name: 'title_vector',
         sourceProperties: ['title'],
-        // // Further options
-        // model: 'text-embedding-3-large',
-        // model_version: "002",   // Parameter only applicable for `ada` model family and older
-        // dimensions: 1024,       //Parameter only applicable for `v3` model family and newer
+        // Further options
+        model: 'text-embedding-3-large',
+        // modelVersion: "002",   // Parameter only applicable for `ada` model family and older
+        // dimensions: 1024,    // Parameter only applicable for `v3` model family and newer
         // type: 'text',
-        // base_url: '<custom_openai_url>',
+        // baseURL: '<custom_openai_url>',
       },
     ),
   ],
@@ -1097,7 +1099,7 @@ await client.collections.create({
       sourceProperties: ['title'],
       resourceName: '<azure-resource-name>',
       deploymentId: '<azure-deployment-id>',
-      // // Further options
+      // Further options
       // baseURL: '<custom_azure_url>'
     },
     ),
@@ -1174,9 +1176,9 @@ await client.collections.create({
     weaviate.configure.vectorizer.text2VecVoyageAI({
       name: 'title_vector',
       sourceProperties: ['title'],
-      // // Further options
+      // Further options
       // model: 'voyage-large-2',
-      // base_url: '<custom_voyageai_url>',
+      // baseURL: '<custom_voyageai_url>',
       // truncate: true
     },
     ),
@@ -1254,7 +1256,8 @@ await client.collections.create({
     })],
     // highlight-end
     // Additional parameters not shown
-})// END MMVectorizerVoyageAICustomModel
+})
+// END MMVectorizerVoyageAICustomModel
 
 
 // Clean up
@@ -1287,8 +1290,8 @@ await client.collections.create({
         weight: 0.1
       }],
       // Further options
-      // model: "voyage-multimodal-3",
-      // truncation: "true",  // or "false"
+      model: "voyage-multimodal-3",
+      truncate: true,  // or false
       // outputEncoding: "base64"  // or "null"
       // baseURL: "<custom_voyageai_url>"
     })],
@@ -1365,9 +1368,9 @@ await client.collections.create({
         name: 'title_vector',
         sourceProperties: ['title'],
         model: 'Snowflake/snowflake-arctic-embed-m-v1.5',
-        // // Further options
+        // Further options
         // dimensions: 256,
-        // baseUrl: '<custom_weaviate_embeddings_url>',
+        // baseURL: '<custom_weaviate_embeddings_url>',
       },
     ),
   ],
@@ -1394,9 +1397,9 @@ await client.collections.create({
         name: 'title_vector',
         sourceProperties: ['title'],
         model: 'Snowflake/snowflake-arctic-embed-l-v2.0',
-        // // Further options
+        // Further options
         // dimensions: 256,
-        // baseUrl: '<custom_weaviate_embeddings_url>',
+        // baseURL: '<custom_weaviate_embeddings_url>',
       },
     ),
   ],
@@ -1446,7 +1449,7 @@ await client.collections.create({
     weaviate.configure.vectorizer.text2VecTransformers({
       name: 'title_vector',
       sourceProperties: ['title'],
-      // // Further options
+      // Further options
       // poolingStrategy: 'masked_mean',
       // inferenceUrl: '<custom_transformers_url>',          // For when using multiple inference containers
       // passageInferenceUrl: `<custom_transformers_url>`,  // For when using DPR models
@@ -1707,7 +1710,7 @@ let srcObjects = [
 
 // START BatchImportExample  // START NearTextExample  // START HybridExample  // START MMBatchImportExample
 const collectionName = 'DemoCollection'
-const myCollection = client.collections.get(collectionName)
+const myCollection = client.collections.use(collectionName)
 
 // END BatchImportExample  // END NearTextExample  // END HybridExample  // END MMBatchImportExample
 
@@ -1745,7 +1748,7 @@ for (let mmSrcObject of mmSrcObjects) {
 }
 
 // The model provider integration will automatically vectorize the object
-const mmInsertResponse = await myCollection.data.insertMany(dataObject);
+const mmInsertResponse = await myCollection.data.insertMany(dataObjects);
 
 console.log(mmInsertResponse);
 // END MMBatchImportExample
@@ -1789,3 +1792,7 @@ console.log(JSON.stringify(result.objects, null, 2));
 // END NearImageExample
 
 client.close();
+
+}
+
+void main();

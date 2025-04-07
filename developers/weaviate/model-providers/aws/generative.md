@@ -167,11 +167,12 @@ Aside from setting the default model provider when creating the collection, you 
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START RuntimeModelSelectionAWS"
+      endMarker="// END RuntimeModelSelectionAWS"
+      language="ts"
+    />
   </TabItem>
 </Tabs>
 
@@ -256,11 +257,12 @@ You can also supply images as a part of the input when performing retrieval augm
     />
   </TabItem>
   <TabItem value="js" label="JS/TS API v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START WorkingWithImagesAWS"
+      endMarker="// END WorkingWithImagesAWS"
+      language="ts"
+    />
   </TabItem>
 </Tabs>
 
