@@ -267,7 +267,7 @@ If you search a vector database containing vectors for colors "Red", "Crimson" a
 As a result, Weaviate provides multiple ways to limit the search results:
 
 - **Limit**: Specify the maximum number of results to return.
-    - If not provided, defaults to system-defined [`QUERY_DEFAULTS_LIMIT`](../../config-refs/env-vars.md#general) of 10.
+    - If not provided, defaults to system-defined [`QUERY_DEFAULTS_LIMIT`](../../config-refs/env-vars/index.md#general) of 10.
 - **AutoCut**: Limit results based on discontinuities in result metrics such as vector distance or search score.
 - **Threshold**: Specify a minimum similarity score (e.g. maximum cosine distance) for the results.
 - **Apply filters**: Use [filters](../filtering.md) to exclude results based on other criteria, such as metadata or properties.

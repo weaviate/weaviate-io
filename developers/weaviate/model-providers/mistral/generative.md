@@ -160,7 +160,29 @@ Configure the following generative parameters to customize the model behavior.
 
 For further details on model parameters, see the [Mistral API documentation](https://docs.mistral.ai/api/).
 
-## Runtime parameters
+## Select a model at runtime
+
+Aside from setting the default model provider when creating the collection, you can also override it at query time.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START RuntimeModelSelectionMistral"
+      endMarker="# END RuntimeModelSelectionMistral"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+## Header parameters
 
 You can provide the API key as well as some optional parameters at runtime through additional headers in the request. The following headers are available:
 

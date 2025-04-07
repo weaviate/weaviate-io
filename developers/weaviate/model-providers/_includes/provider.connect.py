@@ -75,6 +75,10 @@ azure_key = os.getenv("AZURE_APIKEY")
 # Recommended: save sensitive data as environment variables
 voyageai_key = os.getenv("VOYAGEAI_APIKEY")
 # END VoyageAIInstantiation
+# START XaiInstantiation
+# Recommended: save sensitive data as environment variables
+xai_key = os.getenv("XAI_APIKEY")
+# END XaiInstantiation
 
 
 # START-ANY
@@ -135,6 +139,9 @@ headers = {
 # START VoyageAIInstantiation
     "X-VoyageAI-Api-Key": voyageai_key,
 # END VoyageAIInstantiation
+# START XaiInstantiation
+    "X-Xai-Api-Key": xai_key,
+# END XaiInstantiation
 
 # START-ANY
 }

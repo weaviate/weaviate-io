@@ -8,7 +8,7 @@ image: og/docs/configuration.jpg
 
 import Link from '@docusaurus/Link';
 
-:::info Available from `v1.29`
+:::info Added in `v1.29`
 Role-based access control (RBAC) is generally available in Weaviate from version `v1.29`.
 :::
 
@@ -217,6 +217,13 @@ Permissions can be defined with the following resources, access levels and optio
         <div class="access-level">Delete tenants</div>
       </td>
       <td>
+        <p>Collection name filter:</p>
+        <ul>
+          <li>
+            <code>string or regex</code>: specifies which collections' tenants
+            can be managed
+          </li>
+        </ul>
         <p>Tenant name filter:</p>
         <ul>
           <li>
@@ -242,6 +249,13 @@ Permissions can be defined with the following resources, access levels and optio
         <ul>
           <li>
             <code>string or regex</code>: specifies which collections' objects
+            can be managed
+          </li>
+        </ul>
+        <p>Tenant name filter:</p>
+        <ul>
+          <li>
+            <code>string or regex</code>: specifies which tenants' objects
             can be managed
           </li>
         </ul>
@@ -334,11 +348,16 @@ To have permissions to operate on a tenant that belongs to a collection, the use
 
 For example, to create a tenant in a collection called `TestCollection`, the user must have permission to "create" tenants in that collection. This is separate from the permission to create a collection called `TestCollection`.
 
-## Additional resources
+## Users
 
-- [RBAC: Configuration](/developers/weaviate/configuration/rbac/configuration)
-- [RBAC: Manage roles & users](/developers/weaviate/configuration/rbac/manage-roles-users)
-- [RBAC: Tutorial](/developers/weaviate/tutorials/rbac)
+The [user management](./manage-users.mdx) API can be used to create, delete and list users, rotate their API keys and manage their roles. 
+
+## Further resources
+
+- [RBAC: Configuration](./configuration.md)
+- [RBAC: Manage roles](./manage-roles.mdx)
+- [RBAC: Manage users](./manage-users.mdx)
+- [RBAC: Tutorial](../../tutorials/rbac.mdx)
 
 ## Questions and feedback
 
