@@ -59,7 +59,8 @@
   top: 0;
 
   @media screen and (max-width: 500px) {
-    opacity: 0.8;
+    opacity: 0;
+    height: auto;
   }
 }
 
@@ -102,11 +103,11 @@
     display: flex;
     padding-bottom: 4rem;
 
-    animation: scrollSide 40s linear infinite;
+    animation: scrollSide 80s linear infinite;
 
     @keyframes scrollSide {
       0% {
-        transform: translateX(50%);
+        transform: translateX(0%);
       }
       100% {
         transform: translateX(-50%);

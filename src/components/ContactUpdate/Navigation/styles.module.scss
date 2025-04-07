@@ -23,6 +23,10 @@
   .logo {
     height: 32px;
     cursor: pointer;
+
+    @media screen and (max-width: 768px) {
+      height: 18px;
+    }
   }
 
   .cta-button {
@@ -52,6 +56,11 @@
       background-color: #ffffff;
       border: 1px solid #130c49;
       color: #130c49;
+    }
+
+    @media screen and (max-width: 768px) {
+      width: 9.3125rem;
+      height: 2.75rem;
     }
   }
 }

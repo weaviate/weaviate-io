@@ -30,11 +30,7 @@ export default function Integrations() {
                 <span className={styles.logoAI} />
               </div>
             </Link>
-            <Link to="https://weaviate.io/developers/weaviate/model-providers/cohere/embeddings">
-              <div className={styles.logoBg}>
-                <span className={styles.logoH} />
-              </div>
-            </Link>
+
             <Link to="https://weaviate.io/developers/weaviate/client-libraries/python#neural-search-frameworks">
               <div className={styles.logoBg}>
                 <span className={styles.logoJ} />
@@ -44,6 +40,11 @@ export default function Integrations() {
             <Link to="/developers/weaviate/model-providers/cohere/embeddings">
               <div className={styles.logoBg}>
                 <span className={styles.logoCo} />
+              </div>
+            </Link>
+            <Link to="https://weaviate.io/developers/weaviate/model-providers/cohere/embeddings">
+              <div className={styles.logoBg}>
+                <span className={styles.logoH} />
               </div>
             </Link>
             <Link to="https://wpsolr.com/wpsolr-demos/">
@@ -74,16 +75,12 @@ export default function Integrations() {
           </div>
 
           <div className={styles.inside}>
-            <Link to="/developers/weaviate/model-providers/openai/embeddings">
-              <div className={styles.logoBg}>
-                <span className={styles.logoAI} />
-              </div>
-            </Link>
             <Link to="https://weaviate.io/developers/weaviate/model-providers/cohere/embeddings">
               <div className={styles.logoBg}>
                 <span className={styles.logoH} />
               </div>
             </Link>
+
             <Link to="https://weaviate.io/developers/weaviate/client-libraries/python#neural-search-frameworks">
               <div className={styles.logoBg}>
                 <span className={styles.logoJ} />
@@ -97,6 +94,11 @@ export default function Integrations() {
             <Link to="/developers/weaviate/model-providers/google/embeddings">
               <div className={styles.logoBg}>
                 <span className={styles.logoG} />
+              </div>
+            </Link>
+            <Link to="/developers/weaviate/model-providers/openai/embeddings">
+              <div className={styles.logoBg}>
+                <span className={styles.logoAI} />
               </div>
             </Link>
             <Link to="https://weaviate.io/blog/combining-langchain-and-weaviate">
