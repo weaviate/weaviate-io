@@ -13,11 +13,7 @@ export default function StudyHeader() {
           <h1>
             How Kapa takes the pain out of finding accurate technical answers
           </h1>
-          <div className={styles.headerBox}>
-            <p>
-              See how Kapa deliver reliable LLM-powered chatbots with Weaviate
-            </p>
-          </div>
+          <div className={styles.headerBox}></div>
         </div>
       </div>
     </header>

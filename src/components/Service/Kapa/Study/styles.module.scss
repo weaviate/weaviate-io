@@ -55,6 +55,12 @@
     font-weight: 700;
     line-height: 157.33%; /* 1.76994rem */
   }
+
+  .whyWeaviate {
+    li {
+      margin-bottom: 10px;
+    }
+  }
 }
 
 .rightContainer {
@@ -64,8 +70,11 @@
 
   .topSection {
     width: 28.625rem;
-    height: 30rem;
-    flex-shrink: 0;
+    height: 100%;
+    max-height: 44rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     border-radius: 0.9375rem;
     background: #130c49;
     padding: 30px;
@@ -77,6 +86,15 @@
 
     h2 {
       margin: 20px 0px;
+      color: #ffffff;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 1.25rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 150%; /* 1.875rem */
+      text-transform: uppercase;
+    }
+    h3 {
       color: #61bd73;
       font-family: 'Plus Jakarta Sans';
       font-size: 1.25rem;

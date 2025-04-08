@@ -10,23 +10,13 @@ export default function Study() {
           <div className={styles.studyContent}>
             <h2>Summary</h2>
             <p>
-              Using Weaviate's vector database, Kapa created an innovative AI
-              platform that converts complex technical documentation into
-              responsive support chatbots, enabling companies of all sizes to
-              streamline their technical support operations. Kapa powers the
-              “Ask AI” widget on Weaviate’s documentation.
-            </p>
-            <h2>About Kapa</h2>
-            <p>
-              <Link to="https://www.kapa.ai/">Kapa</Link> is an AI platform that
-              turns knowledgebases into reliable, production-ready AI chatbots
-              specialized in answering technical product questions. Founded by
-              Finn Bauer and Emil Soerensen, the company emerged from the idea
-              of reducing workload on support teams swamped with repetitive
-              technical questions, despite having comprehensive documentation.
-              Kapa secured their first pilot in just two weeks of operations,
-              subsequently joining Y Combinator and raising $3.2M for their seed
-              round.
+              <strong>
+                Using Weaviate's vector database, Kapa created an innovative AI
+                platform that converts complex technical documentation into
+                responsive support chatbots, enabling companies of all sizes to
+                streamline their technical support operations. Kapa powers the
+                “Ask AI” widget on Weaviate’s documentation.
+              </strong>
             </p>
 
             <h2>The Challenge</h2>
@@ -42,21 +32,11 @@ export default function Study() {
             </p>
             <p>This required a robust solution that could:</p>
             <ul>
+              <li>Handle large volumes of documentation efficiently</li>
+              <li>Process queries quickly and accurately</li>
+              <li>Scale across distributed systems</li>
               <li>
-                <strong>
-                  Handle large volumes of documentation efficiently
-                </strong>
-              </li>
-              <li>
-                <strong>Process queries quickly and accurately</strong>
-              </li>
-              <li>
-                <strong>Scale across distributed systems</strong>
-              </li>
-              <li>
-                <strong>
-                  Provide reliable performance under heavy memory consumption
-                </strong>
+                Provide reliable performance under heavy memory consumption
               </li>
             </ul>
 
@@ -66,15 +46,11 @@ export default function Study() {
               Weaviate for several key reasons:
             </p>
 
-            <ul>
+            <ul className={styles.whyWeaviate}>
               <li>
                 <strong>Docker Compatibility:</strong> Weaviate's ability to run
                 in Docker containers was crucial for their deployment and local
                 development needs, unlike alternatives such as Pinecone.
-              </li>
-              <li>
-                <strong>Built-in Hybrid Search:</strong> Weaviate was one of the
-                first vector databases to offer hybrid search out-of-the-box.
               </li>
               <li>
                 <strong>Built-in Hybrid Search:</strong> Weaviate was one of the
@@ -87,31 +63,6 @@ export default function Study() {
                 experiencing rapid growth with users and data quantities.
               </li>
             </ul>
-          </div>
-        </div>
-        <div className={styles.rightContainer}>
-          <div className={styles.topSection}>
-            <h2>Results</h2>
-            <ul>
-              <li>
-                <strong>Speed of delivery:</strong> The team built the first
-                working version of their service with Weaviate in just 7 days,
-                allowing them to quickly onboard new customers.
-              </li>
-              <li>
-                <strong>Efficient Resource Management:</strong> Weaviate’s
-                compression capabilities allowed Kapa to optimize costs while
-                maintaining strict standards for accuracy.
-              </li>
-              <li>
-                <strong>Successful Customer Implementations:</strong> Kapa has
-                over 100 leading companies as customers including Docker,
-                OpenAI, Monday.com, Grafana, and Reddit.
-              </li>
-            </ul>
-          </div>
-          <div className={styles.bottomSection}>
-            <div className={styles.logo}></div>
             <h2>What's Next?</h2>
             <p>
               Kapa is actively exploring new opportunities with Weaviate's
@@ -123,6 +74,43 @@ export default function Study() {
               customers. Running on Google Cloud and written in Python, Kapa
               continues to evolve their tech stack while maintaining Weaviate as
               their core vector database and embeddings layer solution.
+            </p>
+          </div>
+        </div>
+        <div className={styles.rightContainer}>
+          <div className={styles.topSection}>
+            <h2>Results</h2>
+            <h3>Speed of delivery</h3>
+            <p>
+              The team built the first working version of their service with
+              Weaviate in just 7 days, allowing them to quickly onboard new
+              customers.
+            </p>
+            <h3>Efficient Resource Management</h3>
+            <p>
+              Weaviate’s compression capabilities allowed Kapa to optimize costs
+              while maintaining strict standards for accuracy.
+            </p>
+            <h3>Successful Customer Implementations</h3>
+            <p>
+              {' '}
+              Kapa has over 100 leading companies as customers including Docker,
+              OpenAI, Monday.com, Grafana, and Reddit.
+            </p>
+          </div>
+          <div className={styles.bottomSection}>
+            <div className={styles.logo}></div>
+
+            <p>
+              <Link to="https://www.kapa.ai/">Kapa</Link> is an AI platform that
+              turns knowledgebases into reliable, production-ready AI chatbots
+              specialized in answering technical product questions. Founded by
+              Finn Bauer and Emil Soerensen, the company emerged from the idea
+              of reducing workload on support teams swamped with repetitive
+              technical questions, despite having comprehensive documentation.
+              Kapa secured their first pilot in just two weeks of operations,
+              subsequently joining Y Combinator and raising $3.2M for their seed
+              round.
             </p>
           </div>
         </div>
