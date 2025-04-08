@@ -12,7 +12,7 @@ description: "Late interaction allow for semantically rich interactions that ena
 import maxsim from './img/maxsim-animation.mp4';
 
 
-## Intro
+## Why Late Interaction?
 
 Late interaction retrieval models are changing how we find and retrieve information. These models allow for semantically rich interactions that enable a precise retrieval process across different modalities of unstructured data, including text and images. By decomposing query and document embeddings into lower-level representations, late interaction models use multi-vector retrieval and improve both accuracy and scalability compared to no-interaction and full-interaction dense retrieval models.
 
@@ -29,9 +29,9 @@ Traditional methods for retrieval commonly use “no-interaction” retrieval mo
 1. During the indexing phase, one [dense vector embedding](https://weaviate.io/blog/vector-embeddings-explained) is precomputed for each document. The document is first split up into separate tokens, all tokens are passed together through a neural network model, typically a transformer model, to obtain separate dense embeddings for each token. Finally, the token embeddings are calculated into a single vector representation via pooling.
 2. During the online querying phase, one vector is computed for the search query to [search](https://weaviate.io/blog/vector-search-explained) for similar documents from the pre-computed document embeddings with a similarity metric (e.g., dot product, cosine similarity).
 
-The advantage of no-interaction retrieval models is that this approach is fast and computationally efficient. The vector representations of the documents are already pre-computed and indexed offline, and at query time, only the query embeddings have to be computed. This makes this solution scalable for large-scale information retrieval systems and vector search applications.
+**Advantages** of no-interaction retrieval models are primarily that they are *fast* and *computationally efficient*. The vector representations of the documents are already pre-computed and indexed offline, and at query time, only the query embeddings have to be computed. This makes this solution scalable for large-scale information retrieval systems and vector search applications.
 
-The disadvantage of no-interaction retrieval models, on the other hand, is the lack of interaction between the search query and the documents. Because the search query and the documents are processed separately and compressed into single vector embeddings, this approach can miss contextual nuances. Any contextual nuances shared from one token to another have to be compressed before the comparison takes place - meaning similarity is compared between the whole document and the whole query, rather than on a token-by-token level.
+**Disadvantages** of no-interaction retrieval models lie in the lack of interaction between the search query and the documents. Because the search query and the documents are processed separately and compressed into single vector embeddings, this approach can miss contextual nuances. Any contextual nuances shared from one token to another have to be compressed before the comparison takes place - meaning similarity is compared between the whole document and the whole query, rather than on a token-by-token level.
 
 These characteristics make no-interaction models great for first-stage retrieval, where candidates are retrieved from a large document collection, like in vector search. Examples of no-interaction retrieval models are bi-encoders, such as OpenAI’s `text-embedding-3-small`.
 
@@ -41,7 +41,9 @@ These characteristics make no-interaction models great for first-stage retrieval
 
 Full interaction retrieval models process the search query and documents together. That’s why they are sometimes also called early interaction or all-to-all interaction retrieval models. In contrast to no-interaction models, all-to-all interaction models process everything at query time. For this, the query is concatenated with each document, and then they are processed together for full cross-attention.
 
-The advantage of full interaction retrieval models is that they are contextually rich, meaning they effectively capture nuanced contextual relationships between the search query and the document. However, the disadvantage is that they are computationally expensive because all documents have to be processed at query time. That’s why full interaction models are not scalable for large amounts of documents. 
+**Advantages** of full interaction retrieval models stem from them being *contextually rich*, meaning they effectively capture nuanced contextual relationships between the search query and the document. 
+
+**Disadvantages** of full interaction models are due to them being *extremely computationally expensive* because all documents have to be processed at query time. That’s why full interaction models are not scalable for large amounts of documents. 
 
 These characteristics make full interaction models great for second-stage retrieval, like reranking a curated set of candidate documents. Examples of full interaction retrieval models are BERT and other models with cross-encoder architectures, which are often popular in reranking models.
 
@@ -53,7 +55,11 @@ Whilst no-interaction models are fast but can be inaccurate, all-to-all interact
 
 Similar to no-interaction retrieval models, late interaction models have a dual encoder architecture and precompute embeddings for each document offline (in advance of the interaction stage). However, in late interaction, the embeddings that are stored are for *each token*, rather than a single embedding for the whole document. Instead of pooling these token embeddings,  the pooling mechanism is replaced with the late interaction mechanism. That means that the token-level multi-vector embeddings are kept to calculate the interaction between the search query and document multi-vector representations, similar to full interaction retrieval models, but at a later stage.
 
-The advantage of late interaction retrieval models is that they are both scalable and contextually rich. On the downside, the disadvantage of late interaction retrieval models is that they require an embedding for each token, which requires a lot more storage for a complete set of vectors. However, token embeddings can be stored at a much lower dimension and quantization level to decrease computational costs and increase storage efficiency - mitigating some of these issues. For example, in ColBERTv2, aggressive quantization is performed to reduce the size of each vector from 256 bytes to 36 bytes (2-bit compression) or even 20 bytes (1-bit compression), whilst maintaining a good level of accuracy (see ColBERTv2).
+**Advantages** of late interaction retrieval models are that they are both *scalable* and *contextually rich*. 
+
+**Disadvantages** of late interaction are related to their storage requirements - they require an embedding for each token, which requires a lot more storage for a complete set of vectors. 
+
+However, token embeddings can be stored at a much lower dimension and quantization level to decrease computational costs and increase storage efficiency - mitigating some of these issues. For example, in ColBERTv2, aggressive quantization is performed to reduce the size of each vector from 256 bytes to 36 bytes (2-bit compression) or even 20 bytes (1-bit compression), whilst maintaining a good level of accuracy (see ColBERTv2).
 
 Examples of late interaction retrieval models are ColBERT, ColPali, and ColQwen, which are discussed in the following sections.
 
@@ -92,7 +98,11 @@ However, there are a few differences between ColBERT and BERT. Firstly, BERT-bas
 
 The same fine-tuned BERT model is used as both the query encoder and the document encoder separately,  but an additional special token of [Q] and [D] is prepended to the query and document respectively. This marker is included in training, and the model learns to distinguish the query and document via these special tokens.
 
-The full architecture of ColBERT is given in the following: tokenize the query/document (and include special token [Q] or [D]), forward pass the tokens through a 110M fine-tuned BERT-base transformer model, project the final BERT representations with a special projection layer to reduce the embedding dimension to 128 instead of 768, then compare all tokens between query and document using late interaction and MaxSim.
+A full forward pass of ColBERT is given in order:
+1. Tokenize the query/document (and include special token [Q] or [D])
+2. Pass the tokens through a 110M fine-tuned BERT-base transformer model
+3. Project the final BERT representations with a special projection layer to reduce the embedding dimension to 128 instead of 768
+4. Compare all tokens between query and document using late interaction and MaxSim.
 
 ![ColBERT](./img/colbert.jpg)
 
@@ -118,13 +128,13 @@ Using this residual compression technique reduces the space footprint massively 
 
 ### Advantages and Limitations of ColBERT
 
-One advantage of ColBERT is its impact on retrieval performance. Because it’s scalable and contextually rich, it can improve retrieval accuracy and, therefore, overall performance in RAG applications and ranking pipelines. 
+One advantage of ColBERT is its impact on *retrieval performance*. Because it’s scalable and contextually rich, it can improve retrieval accuracy and, therefore, overall performance in RAG applications and ranking pipelines. 
 
-Another positive side-effect of keeping token-level embeddings for similarity scoring in ColBERT is an added feature of explainability. Similar to keyword matching, you can get more interpretable insights for your vector search results because you can see which tokens have a high similarity score between the search query and the relevant document.
+Another positive side-effect of keeping token-level embeddings for similarity scoring in ColBERT is an added feature of *explainability*. Similar to keyword matching, you can get more interpretable insights for your vector search results because you can see which tokens have a high similarity score between the search query and the relevant document.
 
 ![Explanability comparison](./img/explanability-comparison.jpg)
 
-However, the multi-vector approach of the original ColBERT model has one big disadvantage of increased storage footprint. Because with ColBERT you now have one vector embedding for **each token** in a document instead of **one** vector embedding for one document, the storage requirements and memory usage balloon up.
+However, the multi-vector approach of the original ColBERT model has one big disadvantage of increased storage footprint. Because with ColBERT you now have one vector embedding for *each token* in a document instead of *one* vector embedding for one document, the storage requirements and memory usage balloon up.
 
 Let’s compare the storage requirements of dense vector embeddings and multi-vector embeddings. Assume that each document consists of 100 words on average, and we are storing a variable number of documents. The table below gives the storage cost, in megabytes, to store all of the documents as their respective embeddings.
 
@@ -200,7 +210,7 @@ Because of its improved correlation of textual nuances, ColBERT is great for ret
 
 You can find a RAG code example with ColBERT in Python in [our documentation](https://weaviate.io/developers/weaviate/tutorials/multi-vector-embeddings).
 
-## What is ColPali and ColQwen?
+## What are ColPali and ColQwen?
 
 ColPali and ColQwen are multimodal late interaction retrieval models that use vision language models (VLMs) instead of text-only models. ColPali stands for Contextualized Late Interaction over PaliGemma, while ColQwen stands for Contextualized Late Interaction over Qwen2 (that’s why it’s also called ColQwen2). 
 
