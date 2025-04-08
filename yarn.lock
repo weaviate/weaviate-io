@@ -18416,10 +18416,10 @@ wcwidth@^1.0.1:
   dependencies:
     defaults "^1.0.3"
 
-weaviate-client@^3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/weaviate-client/-/weaviate-client-3.5.0.tgz#4bf35bbbe6daf6eb577eb17be8a3605a52f22747"
-  integrity sha512-rvs02d0Yf9sf8ALN727f8WEetUg6LJRzVqk8pC9lRbIrgRny1eTD27NmB1bag4YU0Kuu2ulBbbCmYKCmDulMZA==
+weaviate-client@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/weaviate-client/-/weaviate-client-3.5.1.tgz#edb1e799c24ec0a54f624efcea43a86595117c4b"
+  integrity sha512-Y1qGz0zFQcUSFNcZFUKsn/XJKwlT1aXsgVBp5aWrRiL6S0eHWNmD0xPXPv2nyne62gMJ2rJHe0uEXtJUKlVDfA==
   dependencies:
     abort-controller-x "^0.4.3"
     graphql "^16.10.0"
