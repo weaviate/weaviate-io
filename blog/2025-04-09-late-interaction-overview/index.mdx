@@ -137,8 +137,8 @@ Another positive side-effect of keeping token-level embeddings for similarity sc
 However, the multi-vector approach of the original ColBERT model has one big disadvantage of the increased space footprint. Because with ColBERT you now have one vector embedding for *each token* in a document instead of *one* vector embedding for one document, the storage requirements and memory usage balloon up, but this can be mitigated somewhat with the quantization methods introduced by ColBERTv2.
 
 Let’s compare the storage requirements of dense vector embeddings and multi-vector embeddings. Assume that each document consists of 100 tokens, and we are storing a variable number of documents. The table below gives the storage cost, in megabytes, to store all of the documents as their respective embeddings.
-
 <table>
+<caption style={{ captionSide: 'bottom', textAlign: 'center' }}><i>The storage costs calculated assume that each value in the single vector embedding is quantized slightly at 16-bits per dimension, and the multi-vector embedding is heavily quantized to 2-bits per dimension, with the centroids assumed as 16-bit precision, and the number of centroids is given by the formula in the previous section.</i></caption>
     <tr class="header-row">
         <th colspan="2"></th>
         <th colspan="3">Single Vector Embeddings</th>
@@ -199,9 +199,9 @@ Let’s compare the storage requirements of dense vector embeddings and multi-ve
         <td>27.07 MB</td>
         <td>36.10 MB</td>
     </tr>
-    <caption><i>The storage costs calculated assume that each value in the single vector embedding is quantized slightly at 16-bits per dimension, and the multi-vector embedding is heavily quantized to 2-bits per dimension, with the centroids assumed as 16-bit precision, and the number of centroids is given by the formula in the previous section.</i></caption>
 </table>
-Even with heavy quantization, storing 128-dimensional vectors with ColBERTv2 costs significantly more than storing a high-dimensional single vector for the entire document/chunk. As the size of the documents and the number of tokens scale up, the storage cost will also balloon, which could be unsustainable for some scenarios. However, the increased contextual richness and retrieval performance may well be worth the extra storage.
+
+ Even with heavy quantization, storing 128-dimensional vectors with ColBERTv2 costs significantly more than storing a high-dimensional single vector for the entire document/chunk. As the size of the documents and the number of tokens scale up, the storage cost will also balloon, which could be unsustainable for some scenarios. However, the increased contextual richness and retrieval performance may well be worth the extra storage.
 
 
 ![Single Vector vs Multi Vector](./img/single_vector_vs_multi_vector.png)
