@@ -188,7 +188,7 @@ correct, all contents of the token are trusted, which authenticates the user bas
 
 :::tip TIP: OIDC and RBAC
 
-The [user mmanagement API](./rbac/manage-users.mdx#oidc-user-permissions-management) allows you to assign cuton roles and permissions to OIDC users via [Role-Based Access Control (RBAC)](./rbac/index.mdx).
+The [user management API](./rbac/manage-users.mdx#oidc-user-permissions-management) allows you to assign custom roles and permissions to OIDC users via [Role-Based Access Control (RBAC)](./rbac/index.mdx).
 
 :::
 
