@@ -263,6 +263,19 @@ const config = {
           })(window, document, "clarity", "script", "orzk1oie18");
         `,
       },
+
+       // Clearbit
+{
+
+    tagName: 'script',
+    attributes: {
+        src: 'https://tag.clearbitscripts.com/v1/pk_a3c0f3319a4418be0789e1d6f1db45cf/tags.js',
+        type: 'text/javascript',
+      async: true,
+      referrerPolicy: 'strict-origin-when-cross-origin',
+    },
+},
+       
                     ],
                 };
             },
