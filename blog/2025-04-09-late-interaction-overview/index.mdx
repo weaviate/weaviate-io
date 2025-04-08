@@ -128,15 +128,68 @@ However, the multi-vector approach of the original ColBERT model has one big dis
 
 Let’s compare the storage requirements of dense vector embeddings and multi-vector embeddings. Assume that each document consists of 100 words on average, and we are storing a variable number of documents. The table below gives the storage cost, in megabytes, to store all of the documents as their respective embeddings.
 
-|  |  | Single Vector Embeddings |  |  | Multi Vector Embeddings | (ColBERTv2 quantization) |  |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-|  |  | **d=768** | **d=1024** | **d=1536** | **d=64** | **d=96** | **d=128** |
-| Number of Documents (n)  | **n=100** | 0.15 MB | 0.20 MB | 0.31 MB | 0.36 MB | 0.55 MB | 0.73 MB |
-| (100 tokens per document) | **n=500** | 0.77 MB | 1.02 MB | 1.54 MB | 1.26 MB | 1.89 MB | 2.52 MB |
-|  | **n=1000** | 1.54 MB | 2.05 MB | 3.07 MB | 2.25 MB | 3.37 MB | 4.50 MB |
-|  | **n=2000** | 3.07 MB | 4.10 MB | 6.14 MB | 4.12 MB | 6.17 MB | 8.23 MB |
-|  | **n=10000** | 15.36 MB | 20.48 MB | 30.72 MB | 18.05 MB | 27.07 MB | 36.10 MB |
-
+<table>
+    <tr class="header-row">
+        <th colspan="2"></th>
+        <th colspan="3">Single Vector Embeddings</th>
+        <th colspan="3">Multi Vector Embeddings<br></br>(ColBERTv2 quantization)</th>
+    </tr>
+    <tr>
+        <th colspan="2"></th>
+        <th class="bold">d=768</th>
+        <th class="bold">d=1024</th>
+        <th class="bold">d=1536</th>
+        <th class="bold">d=64</th>
+        <th class="bold">d=96</th>
+        <th class="bold">d=128</th>
+    </tr>
+    <tr>
+        <th rowspan="5">Number of Documents (n)<br></br>(100 tokens per document)</th>
+        <th class="bold">n=100</th>
+        <td>0.15 MB</td>
+        <td>0.20 MB</td>
+        <td>0.31 MB</td>
+        <td>0.36 MB</td>
+        <td>0.55 MB</td>
+        <td>0.73 MB</td>
+    </tr>
+    <tr>
+        <th class="bold">n=500</th>
+        <td>0.77 MB</td>
+        <td>1.02 MB</td>
+        <td>1.54 MB</td>
+        <td>1.26 MB</td>
+        <td>1.89 MB</td>
+        <td>2.52 MB</td>
+    </tr>
+    <tr>
+        <th class="bold">n=1000</th>
+        <td>1.54 MB</td>
+        <td>2.05 MB</td>
+        <td>3.07 MB</td>
+        <td>2.25 MB</td>
+        <td>3.37 MB</td>
+        <td>4.50 MB</td>
+    </tr>
+    <tr>
+        <th class="bold">n=2000</th>
+        <td>3.07 MB</td>
+        <td>4.10 MB</td>
+        <td>6.14 MB</td>
+        <td>4.12 MB</td>
+        <td>6.17 MB</td>
+        <td>8.23 MB</td>
+    </tr>
+    <tr>
+        <th class="bold">n=10000</th>
+        <td>15.36 MB</td>
+        <td>20.48 MB</td>
+        <td>30.72 MB</td>
+        <td>18.05 MB</td>
+        <td>27.07 MB</td>
+        <td>36.10 MB</td>
+    </tr>
+</table>
 The storage costs calculated assume that each value in the single vector embedding is quantized slightly at 16-bits per dimension, and the multi-vector embedding is heavily quantized to 2-bits per dimension, with the centroids assumed as 16-bit precision, and the number of centroids is given by the formula in the previous section.
 
 ![Single Vector vs Multi Vector](./img/single_vector_vs_multi_vector.png)
