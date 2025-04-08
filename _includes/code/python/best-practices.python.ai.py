@@ -100,6 +100,9 @@ client.collections.create(
     properties=[
         Property(name="title", data_type=DataType.TEXT),
         Property(name="body", data_type=DataType.TEXT),
+        Property(name="categories", data_type=DataType.TEXT_ARRAY),
+        Property(name="is_published", data_type=DataType.BOOL),
+        Property(name="word_count", data_type=DataType.INT),
     ]
 )
 
@@ -141,7 +144,9 @@ client.collections.create(
 client.collections.create(
     "Author",
     properties=[
-        Property(name="name", data_type=DataType.TEXT)
+        Property(name="name", data_type=DataType.TEXT),
+        Property(name="birthday", data_type=DataType.DATE),
+        Property(name="height_m", data_type=DataType.NUMBER),
     ],
     references=[
         weaviate.classes.config.ReferenceProperty(
