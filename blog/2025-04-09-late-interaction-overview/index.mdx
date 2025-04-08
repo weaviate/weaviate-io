@@ -39,7 +39,7 @@ These characteristics make no-interaction models great for first-stage retrieval
 
 ### Full interaction Retrieval Models
 
-Full interaction retrieval models process the search query and documents together. That’s why they are sometimes also called early interaction or all-to-all interaction retrieval models. In contrast to no-interaction models, all-to-all interaction models process everything at query time. For this, the query is concatenated with each document, and then they are processed together for full cross-attention.
+Full interaction retrieval models process the search query and documents together. That’s why they are sometimes also called **early interaction** or **all-to-all interaction** retrieval models. In contrast to no-interaction models, all-to-all interaction models process everything at query time. For this, the query is concatenated with each document, and then they are processed together for full cross-attention.
 
 **Advantages** of full interaction retrieval models stem from them being *contextually rich*, meaning they effectively capture nuanced contextual relationships between the search query and the document. 
 
@@ -51,7 +51,7 @@ These characteristics make full interaction models great for second-stage retrie
 
 ### Late interaction retrieval models
 
-Whilst no-interaction models are fast but can be inaccurate, all-to-all interaction models are accurate but slow, late interaction retrieval models promise to be both. Late interaction models are inspired by both of the above retrieval models:
+Whilst no-interaction models are fast but can be inaccurate, all-to-all interaction models are accurate but slow, late interaction retrieval models promise to be both. Late interaction models are inspired by both of the above retrieval models.
 
 Similar to no-interaction retrieval models, late interaction models have a dual encoder architecture and precompute embeddings for each document offline (in advance of the interaction stage). However, in late interaction, the embeddings that are stored are for *each token*, rather than a single embedding for the whole document. Instead of pooling these token embeddings,  the pooling mechanism is replaced with the late interaction mechanism. That means that the token-level multi-vector embeddings are kept to calculate the interaction between the search query and document multi-vector representations, similar to full interaction retrieval models, but at a later stage.
 
@@ -59,7 +59,7 @@ Similar to no-interaction retrieval models, late interaction models have a dual 
 
 **Disadvantages** of late interaction are related to their storage requirements - they require an embedding for each token, which requires a lot more storage for a complete set of vectors. 
 
-However, token embeddings can be stored at a much lower dimension and quantization level to decrease computational costs and increase storage efficiency - mitigating some of these issues. For example, in ColBERTv2, aggressive quantization is performed to reduce the size of each vector from 256 bytes to 36 bytes (2-bit compression) or even 20 bytes (1-bit compression), whilst maintaining a good level of accuracy (see ColBERTv2).
+However, token embeddings can be stored at a much lower dimension and quantization level to decrease computational costs and increase storage efficiency - mitigating some of these issues. For example, in ColBERTv2, aggressive quantization is performed to reduce the size of each vector from 256 bytes to 36 bytes (2-bit compression) or even 20 bytes (1-bit compression), whilst maintaining a good level of accuracy ([see the ColBERTv2 section later](#colbert-v2-and-its-improvements)).
 
 Examples of late interaction retrieval models are ColBERT, ColPali, and ColQwen, which are discussed in the following sections.
 
@@ -86,19 +86,19 @@ Let’s say we have a text query and text documents, for simplicity of explanati
 
 ## What is ColBERT?
 
-The [ColBERT paper](https://arxiv.org/abs/2004.12832), released in 2020, introduced both the original ColBERT model and the late interaction mechanism. ColBERT stands for “Contextualized Late Interaction over BERT”, which means it is a BERT-based model that uses the late interaction mechanism instead of the typical all-to-all interaction that BERT uses. ColBERT was created by fine-tuning the original BERT model and specializing towards generating contextualized embeddings for queries and documents. Since BERT is a text-only model (not multimodal), ColBERT is also a text-only model.
+The [ColBERT paper](https://arxiv.org/abs/2004.12832), released in 2020, introduced both the original ColBERT model and the late interaction mechanism. ColBERT stands for “Contextualized Late Interaction over BERT”. It is a model fine-tuned on the BERT language model, which was one of the first big transformer models in NLP. ColBERT however uses the late interaction mechanism instead of the typical all-to-all interaction that BERT uses, and is specialized towards generating contextualized embeddings for queries and documents. Since BERT is a text-only model (not multimodal), ColBERT is also a text-only model.
 
 Fun fact: It’s pronounced /koʊlˈbɛər after Stephen Colbert in reference to his Late Show.
 
 ### ColBERT Model Architecture
 
-The architecture of the ColBERT model is almost identical to that of existing BERT-based language models that preceded it. BERT-base, one of the first big transformer models in NLP, was trained with 110M parameters (340M for BERT-large), and different variations of ColBERT were trained from BERT-base and BERT-large on different training datasets. The [version of ColBERT you’ll find on Hugging Face](https://huggingface.co/colbert-ir/colbertv2.0) is fine-tuned from BERT-base and has around 110M parameters.
+Since ColBERT is a fine-tune of BERT, its architecture is almost identical to BERT. BERT-base was trained with 110M parameters (340M for BERT-large), and different variations of ColBERT were trained from BERT-base and BERT-large on different training datasets. The [version of ColBERT you’ll find on Hugging Face](https://huggingface.co/colbert-ir/colbertv2.0) is fine-tuned from BERT-base and has around 110M parameters.
 
 However, there are a few differences between ColBERT and BERT. Firstly, BERT-base used a fixed embedding dimension of 768 (1024 for BERT-large), whereas ColBERT uses a smaller representation dimension of 128 for each vector in an effort to reduce the storage requirements of each vector. This is achieved via a projection layer in ColBERT to make the final output a 128-dimensional vector. 
 
-The same fine-tuned BERT model is used as both the query encoder and the document encoder separately,  but an additional special token of [Q] and [D] is prepended to the query and document respectively. This marker is included in training, and the model learns to distinguish the query and document via these special tokens.
+The same fine-tuned BERT model is used in ColBERT as both the query encoder and the document encoder separately, but two additional special tokens, [Q] and [D], are prepended to the query and document respectively to 'mark' them as such. This marker is included in model training, so that the model learns to distinguish the query and document via these special tokens.
 
-A full forward pass of ColBERT is given in order:
+A full forward pass of ColBERT is given in order by:
 1. Tokenize the query/document (and include special token [Q] or [D])
 2. Pass the tokens through a 110M fine-tuned BERT-base transformer model
 3. Project the final BERT representations with a special projection layer to reduce the embedding dimension to 128 instead of 768
@@ -110,7 +110,7 @@ A full forward pass of ColBERT is given in order:
 
 Whilst ColBERT introduced the concept of late interaction, ColBERTv2 refined it. The main downside of ColBERT is the storage requirements - needing a full vector for *each* token in *each* document. ColBERTv2 improves over the original ColBERT’s weakness of huge memory storage requirements, whilst also improving the quality of retrieval. 
 
-The increased quality of ColBERTv2 comes from a process called **denoised supervision,** which involves distillation (passing on knowledge) from a larger teacher model and hard negative mining (showing similar but incorrect retrievals to a given query). 
+The increased quality of ColBERTv2 comes from a process called **denoised supervision**, which involves distillation (passing on knowledge) from a larger teacher model and hard negative mining (showing similar but incorrect retrievals to a given query). 
 
 Distillation was from the teacher model, [MiniLM](https://arxiv.org/pdf/2002.10957). This cross-encoder model uses all-to-all interaction, like BERT, which means it has a high accuracy but is more inefficient to use in practice. Distillation means that this model can be used to teach ColBERTv2, whilst ColBERTv2 retains its increased computational efficiency thanks to late interaction.
 
@@ -128,15 +128,15 @@ Using this residual compression technique reduces the space footprint massively 
 
 ### Advantages and Limitations of ColBERT
 
-One advantage of ColBERT is its impact on *retrieval performance*. Because it’s scalable and contextually rich, it can improve retrieval accuracy and, therefore, overall performance in RAG applications and ranking pipelines. 
+One advantage of ColBERT is its impact on *retrieval performance*. Because it’s scalable and contextually rich, it can improve retrieval accuracy and, therefore, overall performance in RAG applications and ranking pipelines compared to typical dense vector embedding models. 
 
 Another positive side-effect of keeping token-level embeddings for similarity scoring in ColBERT is an added feature of *explainability*. Similar to keyword matching, you can get more interpretable insights for your vector search results because you can see which tokens have a high similarity score between the search query and the relevant document.
 
 ![Explanability comparison](./img/explanability-comparison.jpg)
 
-However, the multi-vector approach of the original ColBERT model has one big disadvantage of increased storage footprint. Because with ColBERT you now have one vector embedding for *each token* in a document instead of *one* vector embedding for one document, the storage requirements and memory usage balloon up.
+However, the multi-vector approach of the original ColBERT model has one big disadvantage of the increased space footprint. Because with ColBERT you now have one vector embedding for *each token* in a document instead of *one* vector embedding for one document, the storage requirements and memory usage balloon up, but this can be mitigated somewhat with the quantization methods introduced by ColBERTv2.
 
-Let’s compare the storage requirements of dense vector embeddings and multi-vector embeddings. Assume that each document consists of 100 words on average, and we are storing a variable number of documents. The table below gives the storage cost, in megabytes, to store all of the documents as their respective embeddings.
+Let’s compare the storage requirements of dense vector embeddings and multi-vector embeddings. Assume that each document consists of 100 tokens, and we are storing a variable number of documents. The table below gives the storage cost, in megabytes, to store all of the documents as their respective embeddings.
 
 <table>
     <tr class="header-row">
@@ -199,8 +199,10 @@ Let’s compare the storage requirements of dense vector embeddings and multi-ve
         <td>27.07 MB</td>
         <td>36.10 MB</td>
     </tr>
+    <caption><i>The storage costs calculated assume that each value in the single vector embedding is quantized slightly at 16-bits per dimension, and the multi-vector embedding is heavily quantized to 2-bits per dimension, with the centroids assumed as 16-bit precision, and the number of centroids is given by the formula in the previous section.</i></caption>
 </table>
-The storage costs calculated assume that each value in the single vector embedding is quantized slightly at 16-bits per dimension, and the multi-vector embedding is heavily quantized to 2-bits per dimension, with the centroids assumed as 16-bit precision, and the number of centroids is given by the formula in the previous section.
+Even with heavy quantization, storing 128-dimensional vectors with ColBERTv2 costs significantly more than storing a high-dimensional single vector for the entire document/chunk. As the size of the documents and the number of tokens scale up, the storage cost will also balloon, which could be unsustainable for some scenarios. However, the increased contextual richness and retrieval performance may well be worth the extra storage.
+
 
 ![Single Vector vs Multi Vector](./img/single_vector_vs_multi_vector.png)
 
@@ -232,7 +234,7 @@ This multimodal late interaction approach preserves contextual relationships bet
 
 ### ColPali Model Architecture
 
-[ColPali](https://arxiv.org/abs/2407.01449)’s model architecture uses the PaliGemma Vision LLM: It uses Gemma as the query encoder and PaliGemma as the vision encoder. Additionally, ColPali has:
+[ColPali](https://arxiv.org/abs/2407.01449) was created in a similar way to ColBERT. What BERT is to ColBERT, PaliGemma is to ColPali. Essentially, instead of using BERT as the query and document encoder, ColPali uses the PaliGemma Vision LLM, which is separated into two parts for the query and document. Since queries will always be text-only, it uses Gemma (the language-only part of PaliGemma) as the query encoder and PaliGemma (the full vision model) as the vision encoder. Just like ColBERT, ColPali stores the pre-computed document vectors offline, and uses late interaction to compare to online embedded queries at runtime. ColPali has:
 
 - ~3B parameters
 - 128 embedding dimension size
@@ -242,7 +244,7 @@ This multimodal late interaction approach preserves contextual relationships bet
 
 ### ColQwen Model Architecture
 
-[ColQwen](https://huggingface.co/vidore/colqwen2-v0.1)’s model architecture uses the Qwen2 Vision LLM as vision encoder and has: 
+[ColQwen](https://huggingface.co/vidore/colqwen2-v0.1) is extremely similar to ColPali, with a different vision language model, Qwen2 Vision LLM, as the encoder. ColQwen uses Qwen2 LM as the query encoder and Qwen2-VL as the vision encoder. Whilst having a similar architecture to ColPali, the details are different due to using a completely different encoder model:
 
 - ~2B parameters
 - 128 embedding dimension
@@ -254,7 +256,7 @@ Additionally, ColQwen’s vision language backbone model is licensed under a pe
 
 ### Advantages and Limitations of ColPali and ColQwen
 
-The advantages of multimodal late interaction retrieval models like ColPali and ColQwen are that they allow for RAG applications without a complex preprocessing or chunking strategy for the PDF documents. 
+The advantages of multimodal late interaction retrieval models like ColPali and ColQwen are that they allow for RAG applications without a complex preprocessing or chunking strategy for the PDF documents. Both text and images in PDF documents can be simply treated together as 'screenshots', which the vision models in ColPali and ColQwen can see and process. This also means figures in documents can be placed contextually with the text of the document, and these documents are processed similarly to how a human would read them.
 
 But while ColPali and ColQwen both simplify the normally complex pipeline for PDF document processing, they also requires more resources to store all individual image patch embeddings, even with compression mechanisms, similar to ColBERT.
 
@@ -306,6 +308,7 @@ The main difference between ColPali and ColQwen is that ColQwen uses the Qwen vi
 - ColBERT paper: [https://arxiv.org/abs/2004.12832](https://arxiv.org/abs/2004.12832)
 - ColBERT v2 paper: [https://arxiv.org/abs/2112.01488](https://arxiv.org/abs/2112.01488)
 - ColPali paper: [https://arxiv.org/abs/2407.01449](https://t.co/Xw8djk7bSg)
+- PaliGemma paper: [https://arxiv.org/pdf/2407.07726](https://arxiv.org/pdf/2407.07726)
 
 import WhatsNext from '/_includes/what-next.mdx'
 
