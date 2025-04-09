@@ -65,21 +65,37 @@ Some models are better at following instructions provided as in-context examples
 
 These models are more likely to respect up-to-date examples provided as in-context instructions.
 
+### Review the generated code for signs of hallucination
+
+It is important to review the generated code for signs of hallucination.
+
+For the Weaviate Python client, a telltale sign of hallucination, or out-of-date code is the use of `weaviate.Client` class for connecting to Weaviate. This was used in the older, v3 version of the client library and is not present in the v4 version.
+
+The latest version of the Weaviate Python client uses `weaviate.connect_to_xyz()` helper functions to connect to Weaviate, using the `WeaviateClient` class.
+
 ### Index further documentation
 
-Some AI-powered code generation tools such as Cursor allow you to index further documentation. This can be a great way to get more context for the code generation task.
+Some AI-powered code generation tools such as Cursor allow you to index further documentation. This can be a great way to get more context for the code generation task. Then, you could prompt the IDE to generate code based on the indexed documentation.
 
 Review the documentation of your specific IDE to see if it has this feature.
+
+### Consider using Weaviate Agents
+
+[Weaviate Agents](/developers/agents) are pre-built agentic services designed for specific tasks, such as [querying](/developers/agents/query), [transforming data](/developers/agents/transformation/), and [personalizing content](/developers/agents/personalization).
+
+Weaviate agents are available for Weaviate Cloud users to enable interacting with the Weaviate Cloud instance using natural language. For some use cases, this may be a better approach than using AI-powered code generation tools.
 
 ## Help us improve this page
 
 The above recommendations are based on our experience using generative AI models for code generation.
 
-In order to collect data for this page in a systematic way, we ran a series of experiments through [this repository](https://github.com/weaviate-tutorials/weaviate-vibe-eval).
+In order to collect data for this page in a systematic way, we ran a series of evaluations through [this repository](https://github.com/weaviate-tutorials/weaviate-vibe-eval).
 
 The test were carried out by generating code for the Weaviate Python client v4 using various LLMs, and assessing whether the code was able to run successfully. Each task was carried out multiple times, once as a zero-shot task, and at least once with in-context examples.
 
 A sampling of the results are collected [in this directory](https://github.com/weaviate-tutorials/weaviate-vibe-eval/tree/main/example_results).
+
+Please note that this was a small-scale experiment for providing guidelines only. If you are interested in running your own evaluations, please check out the repository.
 
 If you have any questions or feedback, please let us know by opening an issue on [GitHub](https://github.com/weaviate-tutorials/weaviate-vibe-eval/issues).
 
