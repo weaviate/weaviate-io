@@ -18,7 +18,7 @@ Here are some tips for writing Weaviate client library code with generative AI m
 
 ### High-performing models
 
-As of April 2025, we've seen these models perform well for code generation. (Assessed by the correctness of the [Python v4 client library](/developers/weaviate/client-libraries/python/index.md) code generation.)
+As of April 2025, we've seen these models perform well for code generation. (Assessed by the correctness of generated [Python v4 client library](/developers/weaviate/client-libraries/python/index.md) code.)
 
 - Anthropic `claude-3-7-sonnet-20250219`
 - Google `gemini-2.5-pro-exp-03-25`
@@ -30,9 +30,9 @@ Although none of these models performed perfectly at zero-shot code generation t
 
 ### In-context code examples
 
-We found that for Weaviate Python client library code generation, performances of the above LLMs improved significantly when provided with in-context examples.
+We found that performances of the above LLMs improved significantly when provided with in-context examples. We suggest that you can get better results by providing in-context examples relevant to the task you are trying to accomplish.
 
-As a starting point, we have curated a set of code examples below. Try copy and pasting these into your prompt.
+As a starting point, we have curated a set of code examples below. Try copy and pasting this block of code into your prompt.
 
 import CodeExamples from '!!raw-loader!/_includes/code/python/best-practices.python.ai.py';
 import CodeBlock from '@theme/CodeBlock';
@@ -46,8 +46,12 @@ import CodeBlock from '@theme/CodeBlock';
 
 If the above code examples are not sufficient, you can try the following:
 
-1. Collect code examples from relevant sections of the Weaviate Documentation.
-1. Use the `Ask AI` feature in the Weaviate Documentation to find examples of how to perform specific tasks. Then, use the provided code in your prompt.
+- Collect code examples from relevant sections of the Weaviate Documentation.
+- Use the `Ask AI` feature in the Weaviate Documentation to find examples of how to perform specific tasks. Then, use the provided code in your prompt.
+
+:::tip Small models
+Generally, smaller models don't perform as well at zero-shot code generation tasks. But we have found Anthropic's `claude-3-5-haiku-20241022` to perform well when provided with in-context examples.
+:::
 
 ## General tips
 
@@ -77,7 +81,7 @@ The latest version of the Weaviate Python client uses `weaviate.connect_to_xyz()
 
 Some AI-powered code generation tools such as Cursor allow you to index further documentation. This can be a great way to get more context for the code generation task. Then, you could prompt the IDE to generate code based on the indexed documentation.
 
-Review the documentation of your specific IDE to see if it has this feature.
+Review the documentation of your specific IDE to see if it has this feature, and how to use it.
 
 ### Consider using Weaviate Agents
 
@@ -95,7 +99,7 @@ The test were carried out by generating code for the Weaviate Python client v4 u
 
 A sampling of the results are collected [in this directory](https://github.com/weaviate-tutorials/weaviate-vibe-eval/tree/main/example_results).
 
-Please note that this was a small-scale experiment for providing guidelines only. If you are interested in running your own evaluations, please check out the repository.
+Please note that this was a small-scale evaluations for providing guidelines only. If you are interested in running your own evaluations, please check out the repository.
 
 If you have any questions or feedback, please let us know by opening an issue on [GitHub](https://github.com/weaviate-tutorials/weaviate-vibe-eval/issues).
 
