@@ -10,7 +10,7 @@ export default function StudyHeader() {
         <div className={styles.box}>
           <div className={styles.logo}></div>
           <span>Case Study</span>
-          <h1>Transforming Customer Service with Generative AI</h1>
+          <h1>Transforming Customer Service with Agentic AI</h1>
           <div className={styles.headerBox}>
             <p>
               Learn how Neople Assistants transform customer service with

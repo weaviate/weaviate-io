@@ -118,12 +118,13 @@
 
 .bento02 {
   width: 26.5625rem;
-  height: 24.875rem;
+  height: 33.875rem;
+
   border-radius: 1.25rem;
   background: #f7f9fd;
   background: linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 1) 0%,
       rgba(47, 47, 169, 0.1) 100%
     ),
     url('/img/site/neople-background-image.png');
@@ -135,7 +136,7 @@
   padding: 40px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   transition: all 0.3s ease-in-out;
 
   .bentoText {
@@ -171,17 +172,17 @@
 
 .bento03 {
   width: 26.5625rem;
-  height: 33.9375rem;
+  height: 22.6875rem;
   border-radius: 1.25rem;
 
   background: linear-gradient(
       180deg,
-      rgba(247, 249, 253, 0) 0%,
+      rgba(247, 249, 253, 0.6) 0%,
       rgba(46, 40, 139, 0.8) 100%
     ),
     url('/img/site/moonsift-background-image.png');
-  background-size: contain;
-  background-position-y: bottom;
+  background-size: cover;
+
   background-repeat: no-repeat;
   transition: all 0.3s ease-in-out;
   position: relative;
@@ -410,7 +411,7 @@
 }
 
 .finance {
-  width: 32rem;
+  width: 37rem;
   background: url('/img/site/header-bg.svg') #130c49;
   background-size: cover;
   background-position-x: 70%;
@@ -429,19 +430,29 @@
 }
 
 .agent {
-  width: 32rem;
-  background: url('/img/site/header-bg.svg') #85e3bc;
+  width: 26.5625rem;
+  height: 24.875rem;
+  background: url('/img/site/header-bg.svg') #130c49;
   background-size: cover;
   background-position-x: 70%;
   background-position-y: center;
   background-repeat: no-repeat;
 
+  .bentoLogo {
+    background: url('/img/site/kapa-logo-dark.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 7.3125rem;
+    height: 2.3125rem;
+    flex-shrink: 0;
+    margin: 20px 0px;
+  }
+
   h3 {
-    color: #130c49 !important;
     width: 85%;
 
-    @media screen and (max-width: 900px) {
-      font-size: 1.5rem;
+    @media screen and (max-width: 1200px) {
+      font-size: 1.6rem !important;
       width: 100%;
     }
   }
@@ -490,17 +501,27 @@
 }
 
 @media (max-width: 1300px) {
+  .bento05 {
+    width: 56rem;
+  }
+
   .bento01,
-  .bento04 {
+  .bento04,
+  .finance {
     width: 33rem;
   }
+  .agent,
   .bento02,
   .bento03 {
     width: 22rem;
   }
-  .bento05,
+
   .bento06 {
     width: 56rem;
+  }
+
+  .bentoSmall {
+    width: 17.875rem;
   }
 }
 
@@ -509,21 +530,29 @@
   .bento04 {
     width: 30rem;
   }
-  .bento02,
-  .bento03 {
+  .bento02 {
     width: 20rem;
   }
+  .bento03,
   .bento05,
   .bento06 {
     width: 100%;
   }
+
+  .agent {
+    width: 20rem;
+  }
 }
 
 @media (max-width: 960px) {
-  .bento01,
-  .bento04 {
+  .bento01 {
     width: 27rem;
   }
+
+  .bento04 {
+    width: 50%;
+  }
+
   .bento02,
   .bento03 {
     width: 23rem;
@@ -543,7 +572,7 @@
   }
   .bento02,
   .bento03 {
-    width: 24rem;
+    width: 100%;
     height: 33.9375rem;
   }
   .bento05,

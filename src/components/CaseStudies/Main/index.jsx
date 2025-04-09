@@ -27,10 +27,28 @@ export default function Main() {
               ></Link>
             </div>
           </div>
+          <div className={`${styles.bento05} ${styles.agent}`}>
+            <div className={styles.bentoText}>
+              <div className={styles.innerText}>
+                <div className={styles.bentoLogo}></div>
+
+                <h3>
+                  How Kapa takes the pain out of finding accurate technical
+                  answers
+                </h3>
+              </div>
+              <div className={styles.buttons}>
+                <Link
+                  to="case-studies/kapa"
+                  className={styles.arrowButton}
+                ></Link>
+              </div>
+            </div>
+          </div>
           <div className={styles.bento02}>
             <div className={styles.bentoText}>
               <div className={styles.bentoLogo}></div>
-              <h3>Transforming Customer Service with Generative AI</h3>
+              <h3>Transforming Customer Service with Agentic AI</h3>
             </div>
             <div className={styles.buttons}>
               <Link
@@ -39,18 +57,7 @@ export default function Main() {
               ></Link>
             </div>
           </div>
-          <div className={styles.bento03}>
-            <div className={styles.bentoText}>
-              <div className={styles.bentoLogo}></div>
-              <h3>Building an AI-Powered Shopping Copilot</h3>
-            </div>
-            <div className={styles.buttons}>
-              <Link
-                to="/blog/moonsift-story"
-                className={styles.arrowButton}
-              ></Link>
-            </div>
-          </div>
+
           <div className={styles.bento04}>
             <div className={styles.bentoText}>
               <div className={styles.bentoImage}></div>
@@ -80,23 +87,19 @@ export default function Main() {
               </div>
             </div>
           </div>
-          <div className={`${styles.bento05} ${styles.agent}`}>
+          <div className={styles.bento03}>
             <div className={styles.bentoText}>
-              <div className={styles.innerText}>
-                <span>CASE STUDY</span>
-                <h3>
-                  How Kapa takes the pain out of finding accurate technical
-                  answers
-                </h3>
-              </div>
-              <div className={styles.buttons}>
-                <Link
-                  to="case-studies/kapa"
-                  className={styles.arrowButton}
-                ></Link>
-              </div>
+              <div className={styles.bentoLogo}></div>
+              <h3>Building an AI-Powered Shopping Copilot</h3>
+            </div>
+            <div className={styles.buttons}>
+              <Link
+                to="/blog/moonsift-story"
+                className={styles.arrowButton}
+              ></Link>
             </div>
           </div>
+
           <Link
             to="https://www.astronomer.io/blog/ask-astro-open-source-llm-application-apache-airflow/"
             className={styles.bentoSmall}
