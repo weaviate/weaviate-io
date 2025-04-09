@@ -1,7 +1,7 @@
 ---
 title: Best practices
 description: Best practices for using Weaviate
-sidebar_position: 30
+sidebar_position: 10
 image: og/docs/howto.jpg
 # tags: ['best practices', 'how-to']
 ---
@@ -51,9 +51,9 @@ Then consider enabling multi-tenancy, and assigning each subset of data to a sep
 <p align="center"><img src="/img/docs/system/collections_with_without_mt.png" alt="Replication Factor" width="100%"/></p>
 
 :::tip Further resources
-- [How-to: Perform multi-tenancy operations](manage-data/multi-tenancy.md)
-- [How to: Manage tenant states](manage-data/tenant-states.mdx)
-- [Concepts: Multi-tenancy](concepts/data.md#multi-tenancy)
+- [How-to: Perform multi-tenancy operations](../manage-data/multi-tenancy.md)
+- [How to: Manage tenant states](../manage-data/tenant-states.mdx)
+- [Concepts: Multi-tenancy](../concepts/data.md#multi-tenancy)
 :::
 
 ### Set a vector index type to suit your data scale
@@ -68,8 +68,8 @@ For many cases, the default, `hnsw` index type is a good starting point. However
 Typically, multi-tenant setups can benefit from using `dynamic` indexes, as they can automatically switch to `hnsw` indexes when the number of vectors in a tenant exceeds a certain threshold.
 
 :::tip Further resources
-- [How-to: Set the vector index type](manage-data/collections.mdx#set-vector-index-type)
-- [Concepts: Vector indexes](concepts/vector-index.md)
+- [How-to: Set the vector index type](../manage-data/collections.mdx#set-vector-index-type)
+- [Concepts: Vector indexes](../concepts/vector-index.md)
 :::
 
 ### Reduce memory footprint with vector quantization
@@ -78,14 +78,14 @@ As the size of your dataset grows, the accompanying vector indexes can lead to h
 
 If you have a large number of vectors, consider using vector quantization to reduce the memory footprint of the vector index. This will reduce the required memory, and allow you to scale more effectively at lower costs.
 
-![Overview of quantization schemes](./../../_includes/images/concepts/quantization_overview_light.png#gh-light-mode-only "Overview of quantization schemes")
-![Overview of quantization schemes](./../../_includes/images/concepts/quantization_overview_dark.png#gh-dark-mode-only "Overview of quantization schemes")
+![Overview of quantization schemes](../../../_includes/images/concepts/quantization_overview_light.png#gh-light-mode-only "Overview of quantization schemes")
+![Overview of quantization schemes](../../../_includes/images/concepts/quantization_overview_dark.png#gh-dark-mode-only "Overview of quantization schemes")
 
 For HNSW indexes, we suggest enabling product quantization (PQ) as a starting point. It provides a good set of default trade-offs between memory usage and query performance, as well as tunable parameters to optimize for your specific use case.
 
 :::tip Further resources
-- [How-to: Configure vector quantization](configuration/compression/index.md)
-- [Concepts: Vector quantization](concepts/vector-quantization.md)
+- [How-to: Configure vector quantization](../configuration/compression/index.md)
+- [Concepts: Vector quantization](../concepts/vector-quantization.md)
 :::
 
 ### Customize system thresholds to prevent downtime
@@ -97,7 +97,7 @@ These thresholds can be adjusted to better fit your use case. For example, if yo
 Set `DISK_USE_WARNING_PERCENTAGE` and `DISK_USE_READONLY_PERCENTAGE` to adjust the disk usage thresholds, and `MEMORY_WARNING_PERCENTAGE` and `MEMORY_READONLY_PERCENTAGE` to adjust the memory usage thresholds.
 
 :::tip Further resources
-- [References: Environment variables](config-refs/env-vars/index.md#general)
+- [References: Environment variables](../config-refs/env-vars/index.md#general)
 :::
 
 ### Plan memory allocation
@@ -120,14 +120,14 @@ We add some overhead for the index structure, and additional overheads, which br
 </details>
 
 :::tip Further resources
-- [Concepts: Resource planning](concepts/resources.md)
+- [Concepts: Resource planning](../concepts/resources.md)
 :::
 
 ### Configure shard loading behavior to balance system & data availability
 
 When Weaviate starts, it loads data from all shards in your deployment. By default, lazy shard loading enables faster startup by loading shards in the background while allowing immediate queries to already-loaded shards.
 
-However, for single-tenant collections under high loads, lazy loading can cause import operations to slow down or partially fail. In these scenarios, consider [disabling lazy loading](./concepts/storage.md#lazy-shard-loading), by setting the following environment variable:
+However, for single-tenant collections under high loads, lazy loading can cause import operations to slow down or partially fail. In these scenarios, consider [disabling lazy loading](../concepts/storage.md#lazy-shard-loading), by setting the following environment variable:
 
 ```
 DISABLE_LAZY_LOAD_SHARDS: "true"
@@ -162,7 +162,7 @@ Instead, consider directly embedding the information in each object as another p
 
 ### Explicitly define your data schema
 
-Weaviate includes a convenient ["auto-schema" functionality](./config-refs/schema/index.md#auto-schema) that can automatically infer the schema of your data.
+Weaviate includes a convenient ["auto-schema" functionality](../config-refs/schema/index.md#auto-schema) that can automatically infer the schema of your data.
 
 However, for production use cases, we recommend explicitly defining your schema, and disabling the auto-schema functionality (set `AUTOSCHEMA_ENABLED: 'false'`). This will ensure that your data is correctly interpreted by Weaviate, and that malformed data is not ingested into the system, rather than to potentially create unexpected properties.
 
@@ -197,8 +197,8 @@ client.collections.create(
 This will ensure that only objects with the correct schema are ingested into Weaviate, and the user will be notified if they try to ingest an object with a malformed schema.
 
 :::tip Further resources
-- [Concepts: Data schema](./concepts/data.md#data-schema)
-- [References: Collection definition - Auto-schema](./config-refs/schema/index.md#auto-schema)
+- [Concepts: Data schema](../concepts/data.md#data-schema)
+- [References: Collection definition - Auto-schema](../config-refs/schema/index.md#auto-schema)
 :::
 
 ### Accelerate data ingestion with batch imports
@@ -220,14 +220,14 @@ with collection.batch.dynamic() as batch:
 ```
 
 :::tip Further resources
-- [How-to: Batch import data](manage-data/import.mdx)
+- [How-to: Batch import data](../manage-data/import.mdx)
 :::
 
 ### Minimize costs by offloading inactive tenants
 
 If you are using multi-tenancy, and have tenants that are not being queried frequently, consider offloading them to cold (cloud) storage.
 
-![Storage Tiers](starter-guides/managing-resources/img/storage-tiers.jpg)
+![Storage Tiers](../starter-guides/managing-resources/img/storage-tiers.jpg)
 
 Offloaded tenants are stored in a cloud storage bucket, and can be reloaded into Weaviate when needed. This can significantly reduce the memory and disk usage of Weaviate, and thus reduce costs.
 
@@ -238,8 +238,8 @@ At the moment, offloading tenants is only available in the open-source version o
 :::
 
 :::tip Further resources
-- [Starter guide: Managing resources](starter-guides/managing-resources/index.md)
-- [How-to: Manage tenant states](manage-data/tenant-states.mdx)
+- [Starter guide: Managing resources](../starter-guides/managing-resources/index.md)
+- [How-to: Manage tenant states](../manage-data/tenant-states.mdx)
 :::
 
 <!-- ### Data validation strategies -->
@@ -258,7 +258,7 @@ When using Weaviate in an asynchronous environment, consider using the asynchron
 
 #### Python
 
-The Weaviate Python client `4.7.0` and higher includes an [asynchronous client API (`WeaviateAsyncClient`)](./client-libraries/python/async.md).
+The Weaviate Python client `4.7.0` and higher includes an [asynchronous client API (`WeaviateAsyncClient`)](../client-libraries/python/async.md).
 
 #### Java
 
