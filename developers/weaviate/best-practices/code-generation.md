@@ -12,6 +12,8 @@ Generative AI models are becoming more capable at writing code. While this can s
 
 Here are some tips for writing Weaviate client library code with generative AI models and tooling, based on our anecdotal experience.
 
+![Weaviate vibe-coding guide](./_img/weaviate_vibe_coding_guide.png "Weaviate vibe-coding guide")
+
 ## Specific recommendations
 
 ### High-performing models
