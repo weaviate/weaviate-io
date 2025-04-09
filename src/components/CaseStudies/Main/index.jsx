@@ -68,13 +68,30 @@ export default function Main() {
               <div className={styles.innerText}>
                 <span>CASE STUDY</span>
                 <h3>
-                  How a Leading Financial Data Company<br></br> Commercialized
-                  AI in Under a Year
+                  How a Leading Financial Data Company Commercialized AI in
+                  Under a Year
                 </h3>
               </div>
               <div className={styles.buttons}>
                 <Link
                   to="case-studies/finance"
+                  className={styles.arrowButton}
+                ></Link>
+              </div>
+            </div>
+          </div>
+          <div className={`${styles.bento05} ${styles.agent}`}>
+            <div className={styles.bentoText}>
+              <div className={styles.innerText}>
+                <span>CASE STUDY</span>
+                <h3>
+                  How Kapa takes the pain out of finding accurate technical
+                  answers
+                </h3>
+              </div>
+              <div className={styles.buttons}>
+                <Link
+                  to="case-studies/kapa"
                   className={styles.arrowButton}
                 ></Link>
               </div>

@@ -385,6 +385,7 @@
 
       @media screen and (max-width: 900px) {
         font-size: 1.5rem;
+        width: 100%;
       }
     }
 
@@ -409,15 +410,39 @@
 }
 
 .finance {
+  width: 32rem;
   background: url('/img/site/header-bg.svg') #130c49;
   background-size: cover;
-  background-position-x: center;
+  background-position-x: 70%;
   background-position-y: center;
   background-repeat: no-repeat;
 
-  @media screen and (max-width: 900px) {
-    br {
-      display: none;
+  h3 {
+    color: #f7f9fd;
+    width: 85%;
+
+    @media screen and (max-width: 900px) {
+      font-size: 1.5rem;
+      width: 100%;
+    }
+  }
+}
+
+.agent {
+  width: 32rem;
+  background: url('/img/site/header-bg.svg') #85e3bc;
+  background-size: cover;
+  background-position-x: 70%;
+  background-position-y: center;
+  background-repeat: no-repeat;
+
+  h3 {
+    color: #130c49 !important;
+    width: 85%;
+
+    @media screen and (max-width: 900px) {
+      font-size: 1.5rem;
+      width: 100%;
     }
   }
 }
