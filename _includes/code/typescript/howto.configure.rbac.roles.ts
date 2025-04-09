@@ -272,14 +272,14 @@ console.log(testRole?.dataPermissions)
 // END InspectRole
 
 // START AssignedUsers
-const assignedUsers = await client.roles.assignedUserIds("testRole")
+const assignedUsers = await client.roles.userAssignments("testRole")
 
 for (const users of assignedUsers) {
     console.log(users)
 }
 // END AssignedUsers
 assert.equal(assignedUsers.some(
-    role => role == "viewer*"
+    role => role.id == "custom-user"
 ), true)
 
 // START ListAllRoles

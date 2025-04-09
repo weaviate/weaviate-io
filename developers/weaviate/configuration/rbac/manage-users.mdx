@@ -11,8 +11,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.permissions.py';
+import TSCode from '!!raw-loader!/_includes/code/typescript/howto.configure.rbac.permissions.ts';
 import UserPyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.users.py';
+import UserTSCode from '!!raw-loader!/_includes/code/typescript/howto.configure.rbac.users.ts';
 import OidcUserPyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.oidc.users.py';
+import OidcUserTSCode from '!!raw-loader!/_includes/code/typescript/howto.configure.rbac.oidc.users.ts';
+
 
 :::info Added in `v1.29` and `v1.30`
 Role-based access control (RBAC) is generally available in Weaviate from version `v1.29`.  
@@ -53,11 +57,12 @@ This example shows how to get a list of all the users (`db_user`, `db_env_user` 
   />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+    text={UserTSCode}
+    startMarker="// START ListAllUsers"
+    endMarker="// END ListAllUsers"
+    language="ts"
+  />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -101,11 +106,12 @@ This example creates a user called `custom-user`.
   />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+    text={UserTSCode}
+    startMarker="// START CreateUser"
+    endMarker="// END CreateUser"
+    language="ts"
+  />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -146,11 +152,12 @@ This example deletes a user called `custom-user`.
   />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+  <FilteredTextBlock
+    text={UserTSCode}
+    startMarker="// START DeleteUser"
+    endMarker="// END DeleteUser"
+    language="ts"
+  />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -182,11 +189,12 @@ This example updates (rotates) the API key for `custom-user`.
   />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+    text={UserTSCode}
+    startMarker="// START RotateApiKey"
+    endMarker="// END RotateApiKey"
+    language="ts"
+  />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -231,11 +239,12 @@ This example assigns the custom `testRole` role and predefined `viewer` role to 
   />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+  <FilteredTextBlock
+    text={UserTSCode}
+    startMarker="// START AssignRole"
+    endMarker="// END AssignRole"
+    language="ts"
+  />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -269,11 +278,12 @@ This example removes the role `testRole` from the user `custom-user`.
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+  <FilteredTextBlock
+      text={UserTSCode}
+      startMarker="// START RevokeRoles"
+      endMarker="// END RevokeRoles"
+      language="ts"
+      />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -305,11 +315,12 @@ Retrieve the role information for any user.
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+    text={UserTSCode}
+    startMarker="// START ListUserRoles"
+    endMarker="// END ListUserRoles"
+    language="ts"
+    />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -357,11 +368,12 @@ This example assigns the custom `testRole` role and predefined `viewer` role to 
   />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+    text={OidcUserTSCode}
+    startMarker="// START AssignOidcUserRole"
+    endMarker="// END AssignOidcUserRole"
+    language="ts"
+  />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -395,11 +407,12 @@ This example removes the role `testRole` from the user `custom-user`.
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+    text={OidcUserTSCode}
+    startMarker="// START RevokeOidcUserRoles"
+    endMarker="// END RevokeOidcUserRoles"
+    language="ts"
+    />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -431,11 +444,12 @@ Retrieve the role information for an OIDC user.
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+    text={OidcUserTSCode}
+    startMarker="// START ListOidcUserRoles"
+    endMarker="// END ListOidcUserRoles"
+    language="ts"
+    />
   </TabItem>
   <TabItem value="go" label="Go">
 

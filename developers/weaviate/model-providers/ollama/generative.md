@@ -133,11 +133,12 @@ Aside from setting the default model provider when creating the collection, you 
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START RuntimeModelSelectionOllama"
+      endMarker="// END RuntimeModelSelectionOllama"
+      language="ts"
+    />
   </TabItem>
 </Tabs>
 
@@ -222,11 +223,12 @@ You can also supply images as a part of the input when performing retrieval augm
     />
   </TabItem>
   <TabItem value="js" label="JS/TS API v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+        text={TSCode}
+        startMarker="// START WorkingWithImagesOllama"
+        endMarker="// END WorkingWithImagesOllama"
+        language="ts"
+      />
   </TabItem>
 </Tabs>
 
