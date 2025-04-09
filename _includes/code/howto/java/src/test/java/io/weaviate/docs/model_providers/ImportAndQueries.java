@@ -18,8 +18,8 @@ import java.util.*;
 public class ImportAndQueries {
   public static void main(String[] args) throws Exception {
 
-    String host = System.getenv("WCD_HOSTNAME");
-    String apiKey = System.getenv("WCD_API_KEY");
+    String host = System.getenv("WEAVIATE_HOSTNAME");
+    String apiKey = System.getenv("WEAVIATE_API_KEY");
     String cohereKey = System.getenv("COHERE_APIKEY");
 
     Map<String, String> headers = new HashMap<String, String>() {

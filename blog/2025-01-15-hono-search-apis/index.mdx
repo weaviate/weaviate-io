@@ -120,8 +120,8 @@ In your `config` folder, create a file called `weaviate.ts`. You can create the 
 import weaviate from 'weaviate-client';
 import 'dotenv/config';
 
-const weaviateURL = process.env.WEAVIATE_HOST_URL as string;
-const weaviateKey = process.env.WEAVIATE_READ_KEY as string;
+const weaviateURL = process.env.WEAVIATE_URL as string;
+const weaviateKey = process.env.WEAVIATE_API_KEY as string;
 const cohereKey = process.env.COHERE_API_KEY as string;
 
 export const connectToDB = async () => {

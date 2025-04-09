@@ -64,11 +64,11 @@ During a batch import, any failed objects can be obtained through `batch.failed_
 
 ```bash
 # Best practice: store your credentials in environment variables
-# export WCD_URL="YOUR_INSTANCE_URL"  # Your Weaviate instance URL
-# export WCD_API_KEY="YOUR_API_KEY"   # Your Weaviate instance API key
+# export WEAVIATE_URL="YOUR_INSTANCE_URL"  # Your Weaviate instance URL
+# export WEAVIATE_API_KEY="YOUR_API_KEY"   # Your Weaviate instance API key
 
 # Set batch size
-BATCH_ENDPOINT="$WCD_URL/v1/batch/objects"
+BATCH_ENDPOINT="$WEAVIATE_URL/v1/batch/objects"
 BATCH_SIZE=100
 
 # Read the JSON file and loop through its entries
@@ -92,7 +92,7 @@ cat jeopardy_tiny.json | jq -c '.[]' | while read line; do
 
     curl -X POST "$BATCH_ENDPOINT" \
          -H "Content-Type: application/json" \
-         -H "Authorization: Bearer $WCD_API_KEY" \
+         -H "Authorization: Bearer $WEAVIATE_API_KEY" \
          -d "$batch_data"
     echo "" # Print a newline for better output formatting
 
@@ -108,7 +108,7 @@ if [ $lines_processed -ne 0 ]; then
 
   curl -X POST "$BATCH_ENDPOINT" \
        -H "Content-Type: application/json" \
-       -H "Authorization: Bearer $WCD_API_KEY" \
+       -H "Authorization: Bearer $WEAVIATE_API_KEY" \
        -d "$batch_data"
   echo "" # Print a newline for better output formatting
 fi

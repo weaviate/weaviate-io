@@ -4,12 +4,12 @@ from weaviate.classes.init import Auth
 import requests, json, os
 
 # Best practice: store your credentials in environment variables
-wcd_url = os.environ["WCD_URL"]
-wcd_api_key = os.environ["WCD_API_KEY"]
+weaviate_url = os.environ["WEAVIATE_URL"]
+weaviate_api_key = os.environ["WEAVIATE_API_KEY"]
 
 client = weaviate.connect_to_weaviate_cloud(
-    cluster_url=wcd_url,                                    # Replace with your Weaviate Cloud URL
-    auth_credentials=Auth.api_key(wcd_api_key),             # Replace with your Weaviate Cloud key
+    cluster_url=weaviate_url,                                    # Replace with your Weaviate Cloud URL
+    auth_credentials=Auth.api_key(weaviate_api_key),             # Replace with your Weaviate Cloud key
 )
 
 resp = requests.get(

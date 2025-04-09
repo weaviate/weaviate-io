@@ -36,8 +36,8 @@ headers = {
 }
 
 client = weaviate.connect_to_weaviate_cloud(
-    cluster_url=os.environ.get("WCD_URL"),
-    auth_credentials=Auth.api_key(os.environ.get("WCD_API_KEY")),
+    cluster_url=os.environ.get("WEAVIATE_URL"),
+    auth_credentials=Auth.api_key(os.environ.get("WEAVIATE_API_KEY")),
     headers=headers,
 )
 

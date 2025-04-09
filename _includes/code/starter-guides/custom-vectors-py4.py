@@ -1,7 +1,7 @@
 # START-ANY
 # Set these environment variables
-# WCD_URL - The URL for your Weaviate instance
-# WCD_API_KEY - The API key for your Weaviate instance
+# WEAVIATE_URL - The URL for your Weaviate instance
+# WEAVIATE_API_KEY - The API key for your Weaviate instance
 # OPENAI_API_KEY - The API key for your OpenAI account
 
 # END-ANY
@@ -15,13 +15,13 @@ import weaviate, os
 import weaviate.classes as wvc
 
 # Best practice: store your credentials in environment variables
-wcd_url = os.environ["WCD_DEMO_URL"]
-wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
+weaviate_url = os.environ["WEAVIATE_URL"]
+weaviate_api_key = os.environ["WEAVIATE_API_KEY"]
 
 # The with-as context manager closes the connect when your code exits
 with weaviate.connect_to_weaviate_cloud(
-    cluster_url=wcd_url,
-    auth_credentials=wvc.init.Auth.api_key(wcd_api_key),
+    cluster_url=weaviate_url,
+    auth_credentials=wvc.init.Auth.api_key(weaviate_api_key),
 ) as client:
     questions = client.collections.create(
         name="Question",

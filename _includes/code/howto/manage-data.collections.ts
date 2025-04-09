@@ -9,7 +9,7 @@ import weaviate, { WeaviateClient, vectorIndex } from 'weaviate-client';
 import { vectorizer, reranker, generative, dataType, tokenization, configure, reconfigure, vectorDistances } from 'weaviate-client';
 
 const weaviateURL = process.env.WEAVIATE_URL as string
-const weaviateKey = process.env.WEAVIATE_ADMIN_KEY as string
+const weaviateKey = process.env.WEAVIATE_API_KEY as string
 const openaiKey = process.env.OPENAI_API_KEY as string
 
 const client: WeaviateClient = await weaviate.connectToWeaviateCloud(weaviateURL, {

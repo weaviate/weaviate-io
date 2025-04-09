@@ -1,5 +1,5 @@
 #!/bin/sh
-export WCD_DEMO_URL=******
-export WCD_DEMO_RO_KEY=*******
+export WEAVIATE_URL=******
+export WEAVIATE_API_KEY=*******
 export OPENAI_APIKEY=***
 go test .

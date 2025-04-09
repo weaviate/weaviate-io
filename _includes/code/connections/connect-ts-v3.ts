@@ -13,7 +13,7 @@
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const weaviateURL = process.env.WEAVIATE_URL as string
-const weaviateKey = process.env.WEAVIATE_ADMIN_KEY as string
+const weaviateKey = process.env.WEAVIATE_API_KEY as string
 
 const client: WeaviateClient = await weaviate.connectToWeaviateCloud(weaviateURL, {
     authCredentials: new weaviate.ApiKey(weaviateKey),
@@ -33,7 +33,7 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(weaviateURL
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const weaviateURL = process.env.WEAVIATE_URL as string
-const weaviateKey = process.env.WEAVIATE_ADMIN_KEY as string
+const weaviateKey = process.env.WEAVIATE_API_KEY as string
 
 const client: WeaviateClient = await weaviate.connectToWeaviateCloud(weaviateURL, {
   authCredentials: new weaviate.ApiKey(weaviateKey),
@@ -66,7 +66,7 @@ console.log(client)
 
 import weaviate from 'weaviate-client'
 
-const weaviateKey = process.env.WEAVIATE_ADMIN_KEY as string
+const weaviateKey = process.env.WEAVIATE_API_KEY as string
 
 const client = await weaviate.connectToLocal(
    {  authCredentials: new weaviate.ApiKey(weaviateKey),}
@@ -128,7 +128,7 @@ console.log(client)
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const weaviateURL = process.env.WEAVIATE_URL as string
-const weaviateKey = process.env.WEAVIATE_ADMIN_KEY as string
+const weaviateKey = process.env.WEAVIATE_API_KEY as string
 const cohereKey = process.env.COHERE_API_KEY as string
 
 const client: WeaviateClient = await weaviate.connectToWeaviateCloud(weaviateURL, {

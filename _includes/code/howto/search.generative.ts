@@ -8,8 +8,8 @@ import assert from 'assert';
 
 import weaviate, { GenerateOptions, WeaviateClient } from 'weaviate-client';
 
-const weaviateURL = process.env.WCD_URL as string;
-const weaviateKey = process.env.WCD_API_KEY as string;
+const weaviateURL = process.env.WEAVIATE_URL as string;
+const weaviateKey = process.env.WEAVIATE_API_KEY as string;
 const openaiKey = process.env.OPENAI_APIKEY as string;
 
 const client: WeaviateClient = await weaviate.connectToWeaviateCloud(weaviateURL,{
