@@ -5,8 +5,8 @@ let client: WeaviateClient;
 let response: WeaviateReturn<undefined>
 // END-ANY
 
-client = await weaviate.connectToWeaviateCloud(process.env.WCD_URL as string,{
-    authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
+client = await weaviate.connectToWeaviateCloud(process.env.WEAVIATE_URL as string,{
+    authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY as string),
     headers: {
       'X-VoyageAI-Api-Key': process.env.VOYAGEAI_API_KEY as string,   // Replace with your inference API key
       'X-Cohere-Api-Key': process.env.COHERE_API_KEY as string,  // Replace with your inference API key

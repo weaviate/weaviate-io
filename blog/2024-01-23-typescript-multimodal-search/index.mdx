@@ -100,8 +100,8 @@ let client: WeaviateClient;
 
 export const getWeaviateClient = async () => {
   if (!client) {
-    client = await weaviate.connectToWeaviateCloud(process.env.WEAVIATE_HOST_URL || '',{
-    authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_ADMIN_KEY || ''),
+    client = await weaviate.connectToWeaviateCloud(process.env.WEAVIATE_URL || '',{
+    authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY || ''),
     headers: {
       'X-Palm-Api-Key': process.env.GOOGLE_API_KEY || '',  // Replace with your inference API key
     }
@@ -411,8 +411,8 @@ import weaviate from "weaviate-client";
 
 
 export async function vectorSearch(searchTerm: string) {
-  const client = await weaviate.connectToWeaviateCloud(process.env.WEAVIATE_HOST_URL || '',{
-    authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_ADMIN_KEY || ''),
+  const client = await weaviate.connectToWeaviateCloud(process.env.WEAVIATE_URL || '',{
+    authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY || ''),
     headers: {
       'X-Palm-Api-Key': process.env.GOOGLE_API_KEY || ''
     }

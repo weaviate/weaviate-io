@@ -24,15 +24,15 @@ let client: WeaviateClient;
 
 // END CreateMovieCollection
 
-const wcdURL = process.env.WCD_URL as string;
-const wcdApikey = process.env.WCD_API_KEY as string;
+const weaviateURL = process.env.WEAVIATE_URL as string;
+const weaviateApikey = process.env.WEAVIATE_API_KEY as string;
 const cohereApiKey = process.env.COHERE_API_KEY as string;
 const voyageApiKey = process.env.VOYAGEAI_API_KEY as string;
 
 
 
-// client = await weaviate.connectToWeaviateCloud(wcdURL, {
-//   authCredentials: new weaviate.ApiKey(wcdApikey),
+// client = await weaviate.connectToWeaviateCloud(weaviateURL, {
+//   authCredentials: new weaviate.ApiKey(weaviateApikey),
 // }
 // )
 // CreateMovieCollection
@@ -48,8 +48,8 @@ const requestHeaders = {  'X-VoyageAI-Api-Key': voyageApiKey,
                         }
 
 
-client = await weaviate.connectToWeaviateCloud(wcdURL, {
-  authCredentials: new weaviate.ApiKey(wcdApikey),
+client = await weaviate.connectToWeaviateCloud(weaviateURL, {
+  authCredentials: new weaviate.ApiKey(weaviateApikey),
   headers: requestHeaders
 }
 )
@@ -85,8 +85,8 @@ await client.collections.create({
 client.close()
 // END CreateMovieCollection
 
-const weaviateURL = process.env.WCD_URL as string
-const weaviateKey = process.env.WCD_API_KEY as string
+const weaviateURL = process.env.WEAVIATE_URL as string
+const weaviateKey = process.env.WEAVIATE_API_KEY as string
 const cohereKey = process.env.COHERE_API_KEY as string
 const voyageaiKey = process.env.VOYAGEAI_API_KEY as string
 

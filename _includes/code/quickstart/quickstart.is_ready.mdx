@@ -58,12 +58,12 @@ import HostnameWarning from '/_includes/wcs/hostname-warning.mdx';
 
 ```bash
 # Best practice: store your credentials in environment variables
-# export WCD_URL="YOUR_INSTANCE_URL"  # Your Weaviate instance URL
-# export WCD_API_KEY="YOUR_API_KEY"   # Your Weaviate instance API key
+# export WEAVIATE_URL="YOUR_INSTANCE_URL"  # Your Weaviate instance URL
+# export WEAVIATE_API_KEY="YOUR_API_KEY"   # Your Weaviate instance API key
 
 curl -w "\nResponse code: %{http_code}\n" \
-  -H "Authorization: Bearer $WCD_API_KEY" \
-  $WCD_URL/v1/.well-known/ready
+  -H "Authorization: Bearer $WEAVIATE_API_KEY" \
+  $WEAVIATE_URL/v1/.well-known/ready
 
 # You should see "Response code: 200" if the instance is ready
 ```

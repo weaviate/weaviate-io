@@ -109,13 +109,13 @@ from weaviate.classes.init import Auth
 import os
 
 # Best practice: store your credentials in environment variables
-wcd_url = os.environ["WCD_DEMO_URL"]
-wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
+weaviate_url = os.environ["WEAVIATE_URL"]
+weaviate_api_key = os.environ["WEAVIATE_API_KEY"]
 openai_api_key = os.environ["OPENAI_APIKEY"]
 
 client = weaviate.connect_to_weaviate_cloud(
-    cluster_url=wcd_url,  # Replace with your Weaviate Cloud URL
-    auth_credentials=Auth.api_key(wcd_api_key),  # Replace with your Weaviate Cloud key
+    cluster_url=weaviate_url,  # Replace with your Weaviate Cloud URL
+    auth_credentials=Auth.api_key(weaviate_api_key),  # Replace with your Weaviate Cloud key
     headers={'X-OpenAI-Api-key': openai_api_key}  # Replace with your OpenAI API key
 )
 # END WCDInstantiation
@@ -129,7 +129,7 @@ finally:
 import weaviate
 
 client = weaviate.connect_to_weaviate_cloud(
-    cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your Weaviate Cloud URL
+    cluster_url=os.getenv("WEAVIATE_URL"),  # Replace with your Weaviate Cloud URL
     auth_credentials=weaviate.auth.AuthClientPassword(
         username=os.getenv("WCD_USERNAME"),  # Your Weaviate Cloud username
         password=os.getenv("WCD_PASSWORD")   # Your Weaviate Cloud password
@@ -254,12 +254,12 @@ from weaviate.classes.init import Auth
 import os
 
 # Best practice: store your credentials in environment variables
-wcd_url = os.environ["WCD_DEMO_URL"]
-wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
+weaviate_url = os.environ["WEAVIATE_URL"]
+weaviate_api_key = os.environ["WEAVIATE_API_KEY"]
 
 with weaviate.connect_to_weaviate_cloud(
-    cluster_url=wcd_url,  # Replace with your Weaviate Cloud URL
-    auth_credentials=Auth.api_key(wcd_api_key)  # Replace with your Weaviate Cloud key
+    cluster_url=weaviate_url,  # Replace with your Weaviate Cloud URL
+    auth_credentials=Auth.api_key(weaviate_api_key)  # Replace with your Weaviate Cloud key
 ) as client:  # Use this context manager to ensure the connection is closed
     client.collections.list_all()
 # END WCDQuickStartInstantiation
@@ -818,13 +818,13 @@ client.close()
 from weaviate.classes.init import Auth
 
 # Best practice: store your credentials in environment variables
-wcd_url = os.environ["WCD_DEMO_URL"]
-wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
+weaviate_url = os.environ["WEAVIATE_URL"]
+weaviate_api_key = os.environ["WEAVIATE_API_KEY"]
 openai_api_key = os.environ["OPENAI_APIKEY"]
 
 client = weaviate.connect_to_weaviate_cloud(
-    cluster_url=wcd_url,
-    auth_credentials=Auth.api_key(wcd_api_key),
+    cluster_url=weaviate_url,
+    auth_credentials=Auth.api_key(weaviate_api_key),
     headers={
         "X-OpenAI-Api-Key": openai_api_key,
     }
@@ -1156,12 +1156,12 @@ from weaviate.classes.init import Auth
 import os
 
 # Best practice: store your credentials in environment variables
-wcd_url = os.environ["WCD_DEMO_URL"]
-wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
+weaviate_url = os.environ["WEAVIATE_URL"]
+weaviate_api_key = os.environ["WEAVIATE_API_KEY"]
 
 async_client = weaviate.use_async_with_weaviate_cloud(
-    cluster_url=wcd_url,  # Replace with your Weaviate Cloud URL
-    auth_credentials=Auth.api_key(wcd_api_key),  # Replace with your Weaviate Cloud key
+    cluster_url=weaviate_url,  # Replace with your Weaviate Cloud URL
+    auth_credentials=Auth.api_key(weaviate_api_key),  # Replace with your Weaviate Cloud key
 )
 # END AsyncWCDInstantiation
 

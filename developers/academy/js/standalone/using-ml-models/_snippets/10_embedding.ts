@@ -6,7 +6,7 @@ import 'dotenv/config'
 
 // START Connect
 const weaviateURL = process.env.WEAVIATE_URL as string
-const weaviateKey = process.env.WEAVIATE_ADMIN_KEY as string
+const weaviateKey = process.env.WEAVIATE_API_KEY as string
 const cohereKey = process.env.COHERE_API_KEY as string
 
 // Connect to your Weaviate instance  

@@ -128,8 +128,8 @@ let client: WeaviateClient | null = null;
 
 async function initClient() {
     if (!client) {
-        client = await weaviate.connectToWeaviateCloud(process.env.NUXT_WEAVIATE_HOST_URL || '', {
-            authCredentials: new weaviate.ApiKey(process.env.NUXT_WEAVIATE_ADMIN_KEY!!),
+        client = await weaviate.connectToWeaviateCloud(process.env.NUXT_WEAVIATE_URL || '', {
+            authCredentials: new weaviate.ApiKey(process.env.NUXT_WEAVIATE_API_KEY!!),
             headers: {
                 "X-Cohere-Api-Key": process.env.NUXT_COHERE_API_KEY!!,
  },

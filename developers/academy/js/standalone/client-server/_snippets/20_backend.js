@@ -4,8 +4,8 @@ import 'dotenv/config';
 
 export const connectToDB = async () => {
   try {
-    const client = await weaviate.connectToWeaviateCloud(process.env.WEAVIATE_HOST_URL,{
-          authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_READ_KEY),
+    const client = await weaviate.connectToWeaviateCloud(process.env.WEAVIATE_URL,{
+          authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY),
           headers: {
            'X-Cohere-Api-Key': process.env.COHERE_API_KEY || '',
          }
@@ -23,9 +23,8 @@ export const connectToDB = async () => {
 const dotEnv = ```
 // START .env
 COHERE_API_KEY=
-WEAVIATE_HOST_URL=
-WEAVIATE_ADMIN_KEY=
-WEAVIATE_READ_KEY=
+WEAVIATE_URL=
+WEAVIATE_API_KEY=
 // END .env
 ```
 

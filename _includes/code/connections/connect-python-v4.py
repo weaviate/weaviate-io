@@ -84,9 +84,9 @@ from weaviate.classes.init import Auth
 from weaviate.config import AdditionalConfig, Timeout
 
 # Best practice: store your credentials in environment variables
-http_host = os.environ["WCD_HTTP_HOST"]
-grpc_host = os.environ["WCD_GRPC_HOST"]
-weaviate_api_key = os.environ["WCD_DEMO_RO_KEY"]
+http_host = os.environ["WEAVIATE_HTTP_HOST"]
+grpc_host = os.environ["WEAVIATE_GRPC_HOST"]
+weaviate_api_key = os.environ["WEAVIATE_API_KEY"]
 # END CustomConnect  # END TimeoutCustom  # START ConnectWithApiKeyExample
 cohere_api_key = os.environ["COHERE_API_KEY"]
 # START CustomConnect  # START TimeoutCustom  # START ConnectWithApiKeyExample

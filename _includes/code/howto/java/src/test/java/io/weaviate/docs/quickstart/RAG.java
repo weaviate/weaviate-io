@@ -17,15 +17,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 // Set these environment variables
-// WCD_HOSTNAME     Your Weaviate instance hostname
-// WCD_API_KEY      Your Weaviate instance API key
+// WEAVIATE_HOSTNAME     Your Weaviate instance hostname
+// WEAVIATE_API_KEY      Your Weaviate instance API key
 // COHERE_APIKEY    Your Cohere API key
 
 public class RAG {
   public static void main(String[] args) throws Exception {
 
-    String host = System.getenv("WCD_HOSTNAME");
-    String apiKey = System.getenv("WCD_API_KEY");
+    String host = System.getenv("WEAVIATE_HOSTNAME");
+    String apiKey = System.getenv("WEAVIATE_API_KEY");
     String cohereKey = System.getenv("COHERE_APIKEY");
 
     // highlight-start

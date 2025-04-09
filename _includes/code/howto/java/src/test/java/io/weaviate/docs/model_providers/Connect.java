@@ -15,15 +15,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 // START-ANY
 // Set these environment variables
-// WCD_HOSTNAME         Your Weaviate instance hostname
-// WCD_API_KEY          Your Weaviate instance API key
+// WEAVIATE_HOSTNAME         Your Weaviate instance hostname
+// WEAVIATE_API_KEY          Your Weaviate instance API key
 // <PROVIDER>_APIKEY    Your model provider API key
 
 public class Connect {
   public static void main(String[] args) throws Exception {
 
-    String host = System.getenv("WCD_HOSTNAME");
-    String apiKey = System.getenv("WCD_API_KEY");
+    String host = System.getenv("WEAVIATE_HOSTNAME");
+    String apiKey = System.getenv("WEAVIATE_API_KEY");
     String cohereKey = System.getenv("COHERE_APIKEY");
 
     // highlight-start

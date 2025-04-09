@@ -2,8 +2,8 @@
 
 // START-ANY
 // Set these environment variables
-// WCD_URL - The URL for your Weaviate instance
-// WCD_API_KEY - The API key for your Weaviate instance
+// WEAVIATE_URL - The URL for your Weaviate instance
+// WEAVIATE_API_KEY - The API key for your Weaviate instance
 // OPENAI_API_KEY - The API key for your OpenAI account
 
 // END-ANY
@@ -11,14 +11,14 @@
 // START create schema
 import weaviate, { WeaviateClient, ObjectsBatcher, ApiKey } from 'weaviate-ts-client';
 
-const WCD_URL=process.env["WCD_URL"];
-const WCD_API_KEY=process.env["WCD_API_KEY"];
+const WEAVIATE_URL=process.env["WEAVIATE_URL"];
+const WEAVIATE_API_KEY=process.env["WEAVIATE_API_KEY"];
 const OPENAI_API_KEY=process.env["OPENAI_API_KEY"];
 
 const client: WeaviateClient = weaviate.client({
   scheme: 'https',
-  host: WCD_URL,
-  apiKey: new ApiKey(WCD_API_KEY),
+  host: WEAVIATE_URL,
+  apiKey: new ApiKey(WEAVIATE_API_KEY),
   headers: { 'X-OpenAI-Api-Key': OPENAI_API_KEY },
 });
 
