@@ -8,7 +8,6 @@ Launch a Weaviate cluster from the Google Cloud Platform (GCP) marketplace. Weav
 ## GCP and Weaviate 
 Weaviate integrates with GCP infrastructure and services like Google [AI Studio](https://ai.google.dev/aistudio) and [Vertex AI](https://cloud.google.com/vertex-ai?hl=en).
 
-* [Deploy Weaviate on GCP Marketplace](/developers/weaviate/installation/gc-marketplace)
 * [Run embedding and generative models on Vertex AI and AI Studio](/developers/weaviate/model-providers/google)
 
 

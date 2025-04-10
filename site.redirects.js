@@ -835,6 +835,16 @@ const siteRedirects = {
         {
             to: '/developers/weaviate/configuration/rbac/manage-roles',
             from: '/developers/weaviate/configuration/rbac/manage-roles-users',
+        },
+
+        // Redirects for AWS and GCP
+        {
+            to: '/developers/weaviate/installation',
+            from: '/developers/weaviate/installation/aws-marketplace',
+        },
+        {
+            to: '/developers/weaviate/installation',
+            from: '/developers/weaviate/installation/gc-marketplace',
         }
     ],
     createRedirects(existingPath) {
