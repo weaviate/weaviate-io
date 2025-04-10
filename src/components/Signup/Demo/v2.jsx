@@ -14,7 +14,7 @@ export default function Introduction() {
         window.hbspt.forms.create({
           portalId: '8738733',
           formId: '62449f1d-d31f-44b3-b52d-9903f1ed448e',
-          target: '#hs-demo-form',
+          target: '#hs-form',
         });
       }
     };
@@ -24,7 +24,7 @@ export default function Introduction() {
   return (
     <div className={styles.demoContainer}>
       <div className={styles.demoSideA}>
-        <h1 className={styles.headerTag}>
+        <h1 classname={styles.headerTag}>
           Our open-source vector database gives AI builders the tools needed to
           move fast—without compromising data privacy, performance, or costs.
         </h1>
@@ -97,10 +97,10 @@ export default function Introduction() {
       </div>
       <div className={styles.demoSideB}>
         <div className={styles.signUp}>
-          <h2>Get a demo with a Weaviate Expert</h2>
+          <h2>Ready to accelerate AI development?</h2>
           <div className={styles.signUpBox}>
             <div className={styles.formWrapper}>
-              <div id="hs-demo-form" className={styles.hsForm}></div>
+              <div id="hs-form" className={styles.hsForm}></div>
             </div>
           </div>
         </div>
