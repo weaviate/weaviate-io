@@ -97,7 +97,7 @@ export default function Introduction() {
       </div>
       <div className={styles.demoSideB}>
         <div className={styles.signUp}>
-          <h2>Ready to accelerate AI development?</h2>
+          <h2>Get a demo with a Weaviate Expert</h2>
           <div className={styles.signUpBox}>
             <div className={styles.formWrapper}>
               <div id="hs-form" className={styles.ebookForm}></div>
