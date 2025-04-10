@@ -100,7 +100,7 @@ export default function Introduction() {
           <h2>Ready to accelerate AI development?</h2>
           <div className={styles.signUpBox}>
             <div className={styles.formWrapper}>
-              <div id="hs-form" className={styles.hsForm}></div>
+              <div id="hs-form" className={styles.ebookForm}></div>
             </div>
           </div>
         </div>
