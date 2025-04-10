@@ -1,7 +1,3 @@
-body {
-  overflow-x: hidden;
-}
-
 .demoContainer {
   background: #131144;
 
@@ -9,13 +5,17 @@ body {
   background-size: cover;
   background-position-y: bottom;
   background-repeat: no-repeat;
-  height: auto;
+  height: 110vh;
 
   display: flex;
 
   @media screen and (max-width: 1100px) {
     flex-direction: column;
     overflow: auto;
+  }
+
+  @media screen and (max-width: 900px) {
+    height: 120vh;
   }
 }
 
@@ -164,7 +164,7 @@ body {
 
 .signUpBox {
   width: 35.3125rem;
-  height: auto;
+  height: 35.12813rem;
   margin: auto;
   flex-shrink: 0;
 
@@ -543,60 +543,36 @@ body {
   }
 }
 
-.formWrapper {
-  overflow-x: hidden;
+.hs-custom-style
+  > div
+  > div:last-of-type
+  .hs-input:not([type='checkbox']):not([type='radio']),
+.hs-custom-style
+  fieldset
+  > div:last-of-type
+  .hs-input:not([type='checkbox']):not([type='radio']) {
+  width: 100%;
   max-width: 100%;
+  max-height: 100px;
 }
 
 .hsForm {
   color: #b5d2dc;
-  background: #130c4988;
+  background: #d9e7ecb0;
   padding: 20px;
-  border-radius: 0.5rem;
+  border-radius: 1.25rem;
+  font-family: Inter;
+  font-size: 13px;
 
   input[type='text'],
-  input[type='email'],
-  input[type='tel'],
-  textarea {
-    display: flex;
-    color: #b5d2dc;
-    width: 100% !important;
-    max-width: 100% !important;
-    height: 2.93694rem;
-    justify-content: center;
-    align-items: center;
-    margin: 0px 0px 20px 0px;
+  [type='email'] {
     background: #272361;
-    border-radius: 0.5rem;
-    border-style: none;
   }
 
-  .actions {
-    display: flex;
-    justify-content: center;
-  }
-
-  input[type='submit'] {
-    display: flex;
-
-    max-width: 100% !important;
-    width: 100% !important;
-    padding: 0.75rem;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    border-radius: 0.3125rem;
-
-    background: #61bd73;
-    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.08),
-      0px 0px 1px 0px rgba(0, 0, 0, 0.25);
-    color: #130c49;
-    text-align: center;
-    font-family: Inter;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
+  input[type='textarea'] {
+    background: #272361;
+    height: 40px;
+    max-height: 200px !important;
   }
 
   ::marker {
@@ -613,31 +589,16 @@ body {
     list-style: none;
     color: #b5d2dc;
     font-size: 14px !important;
-    text-align: left;
-    font-style: normal;
-    text-transform: capitalize;
-    font-family: Inter;
-
-    p {
-      margin-left: 24px;
-      font-style: normal;
-      color: #6e84a3;
-      font-family: Inter;
-      font-size: 0.75rem;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 157.33%; /* 1.38619rem */
-    }
   }
+}
 
-  fieldset {
-    @media screen and (max-width: 895px) {
-      max-width: 100%;
-    }
-  }
+.formWrapper {
+  max-height: 700px;
 
-  #hs-form {
-    max-width: 100%;
-    overflow-x: hidden;
+  width: 100%;
+  padding: 10px;
+
+  @media screen and (max-width: 800px) {
+    max-height: 800px;
   }
 }
