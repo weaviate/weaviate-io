@@ -10,13 +10,10 @@ export default function StudyHeader() {
         <div className={styles.box}>
           <div className={styles.logo}></div>
           <span>Case Study</span>
-          <h1>Transforming Customer Service with Agentic AI</h1>
-          <div className={styles.headerBox}>
-            <p>
-              Learn how Neople Assistants transform customer service with
-              Weaviate
-            </p>
-          </div>
+          <h1>
+            How Kapa takes the pain out of finding accurate technical answers
+          </h1>
+          <div className={styles.headerBox}></div>
         </div>
       </div>
     </header>

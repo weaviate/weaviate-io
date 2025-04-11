@@ -41,7 +41,6 @@ export default function StudyHeader() {
           <div className={`${styles.logo} ${styles.logo3}`}></div>
           <div className={`${styles.logo} ${styles.logo4}`}></div>
           <div className={`${styles.logo} ${styles.logo5}`}></div>
-          <div className={`${styles.logo} ${styles.logo6}`}></div>
           <div className={`${styles.logo} ${styles.logo7}`}></div>
           <div className={`${styles.logo} ${styles.logo8}`}></div>
           <div className={`${styles.logo} ${styles.logo9}`}></div>
@@ -57,7 +56,6 @@ export default function StudyHeader() {
           <div className={`${styles.logo} ${styles.logo3}`}></div>
           <div className={`${styles.logo} ${styles.logo4}`}></div>
           <div className={`${styles.logo} ${styles.logo5}`}></div>
-          <div className={`${styles.logo} ${styles.logo6}`}></div>
           <div className={`${styles.logo} ${styles.logo7}`}></div>
           <div className={`${styles.logo} ${styles.logo8}`}></div>
           <div className={`${styles.logo} ${styles.logo9}`}></div>
