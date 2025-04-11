@@ -5,6 +5,12 @@ image: og/docs/more-resources.jpg
 # tags: ['release notes']
 ---
 
+:::tip
+
+The **latest stable release** is Weaviate version **||site.weaviate_version||**.
+
+:::
+
 This page lists [developer release notes](https://github.com/weaviate/weaviate/releases) for the Weaviate core and client libraries.
 
 - To see the GitHub release notes for a particular version, click on the version number.
@@ -13,7 +19,7 @@ This page lists [developer release notes](https://github.com/weaviate/weaviate/r
 
 ### Weaviate core and client releases
 
-import ReleaseHistory from '/_includes/release-history.md';
+import ReleaseHistory from '/\_includes/release-history.md';
 
 <ReleaseHistory />
 
