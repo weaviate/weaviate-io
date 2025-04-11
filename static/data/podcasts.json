@@ -1,5 +1,29 @@
 [
   {
+    "title": "Structured Outputs with Will Kurt and Cameron Pfiffer - Weaviate Podcast #119",
+    "description": "Dive into the fascinating world of structured outputs with Will Kurt and Cameron Pfeiffer, the brilliant minds behind Outlines.",
+    "youtube": "3PdEYG6OusA",
+    "date": "25-04-09",
+    "cover_image": "/img/podcasts/podcast-119.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Synthetic Data with David Berenstein and Ben Burtenshaw - Weaviate Podcast #118",
+    "description": "Welcome to the 118th episode of the Weaviate Podcast featuring David Berenstein and Ben Burtenshaw from HuggingFace!",
+    "youtube": "XCiJZM65dhg",
+    "date": "25-03-25",
+    "cover_image": "/img/podcasts/podcast-118.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Letta AI with Sarah Wooders - Weaviate Podcast #117",
+    "description": "Thank you so much for watching the 117th episode of the Weaviate podcast! In this episode, we dive deep into the cutting edge of AI agent development with Sarah Wooders, co-founder and CTO of Letta AI.",
+    "youtube": "JgBKaI6MNpQ",
+    "date": "25-03-03",
+    "cover_image": "/img/podcasts/podcast-117.jpg",
+    "is_use_case": false
+  },
+  {
     "title": "Agent Experience with Matt Biilmann, Sebastian Witalec, and Charles Pierse - Weaviate Podcast #116",
     "description": "Welcome to the 116th episode of the Weaviate Podcast featuring Matt Biilmann, Co-Founder and CEO of Netlify, as well as Sebastian Witalec and Charles Pierse from Weaviate to discuss Agent Experience!",
     "youtube": "MAE3I8O_w84",
