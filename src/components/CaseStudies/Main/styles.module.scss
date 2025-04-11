@@ -422,8 +422,8 @@
     color: #f7f9fd;
     width: 85%;
 
-    @media screen and (max-width: 900px) {
-      font-size: 1.5rem;
+    @media screen and (max-width: 1320px) {
+      font-size: 1.6rem !important;
       width: 100%;
     }
   }
@@ -451,7 +451,7 @@
   h3 {
     width: 85%;
 
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: 1320px) {
       font-size: 1.6rem !important;
       width: 100%;
     }
@@ -533,7 +533,7 @@
   .bento02 {
     width: 20rem;
   }
-  .bento03,
+
   .bento05,
   .bento06 {
     width: 100%;
@@ -541,6 +541,9 @@
 
   .agent {
     width: 20rem;
+  }
+  .finance {
+    width: 25rem;
   }
 }
 
@@ -557,9 +560,8 @@
   .bento03 {
     width: 23rem;
   }
-  .bento05,
-  .bento06,
-  .bentoSmall {
+
+  .bento06 {
     width: 100%;
     height: auto;
   }
@@ -576,7 +578,8 @@
     height: 33.9375rem;
   }
   .bento05,
-  .bento06 {
+  .bento06,
+  .bentoSmall {
     width: 100%;
   }
 }
@@ -593,9 +596,14 @@
   .bento03 {
     width: 100%;
   }
-  .bento05,
+
   .bento06 {
     width: 100%;
+  }
+
+  .bento05 {
+    width: 100%;
+    height: auto;
   }
 }
 @media (max-width: 795px) {
@@ -626,8 +634,9 @@
     width: 100%;
   }
 
-  .bento01 {
-    height: 25.875rem;
+  .bento01,
+  .bento04 {
+    height: auto;
   }
 
   .bento02 {
@@ -641,10 +650,6 @@
     background-repeat: no-repeat;
     background-position-y: bottom;
     background-position-x: right;
-  }
-
-  .bento04 {
-    height: 30.75rem;
   }
 }
 
