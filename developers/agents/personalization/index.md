@@ -136,7 +136,20 @@ To use the Personalization Agent, instantiate it with the following inputs:
     </TabItem>
 </Tabs>
 
-Then, add a persona as well as a set of interactions to that user.
+Then, add a persona, which will be used to personalize the recommendations.
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START CreatePersona"
+            endMarker="# END CreatePersona"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
+
+Then you can add a set of interactions to that persona.
 
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python">

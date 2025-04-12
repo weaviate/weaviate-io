@@ -8,7 +8,7 @@ image: og/docs/agents.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!/developers/agents/_includes/query_agent.py';
+import PyCode from '!!raw-loader!/developers/agents/_includes/personalization_agent.py';
 
 # Weaviate Personalization Agent: Usage
 
@@ -22,140 +22,22 @@ import PyCode from '!!raw-loader!/developers/agents/_includes/query_agent.py';
 :::
 
 
+The Weaviate Personalization Agent is an agentic service designed to return personalized recommendations tailored to each user. The Personalization Agent uses data from the associated Weaviate Cloud instance to provide these recommendations.
 
+:::tip Nomenclature: User vs Developer
+The Personalization Agent is all about providing personalized recommendations tailored to a particular person. In this context, that person will be referred to as the `user`. The developer is the person who is using the Personalization Agent to provide these recommendations.
+:::
 
+The developer would simply provide a user profile, and the Personalization Agent takes care of all intervening steps to provide a set of personalized recommendations from Weaviate. The resulting workflow for the developer looks as follows:
 
+![Weaviate Personalization Agent from a developer perspective](../_includes/personalization_agent_overview_light.png#gh-light-mode-only "Weaviate Personalization Agent from a developer perspective")
+![Weaviate Personalization Agent from a developer perspective](../_includes/personalization_agent_overview_dark.png#gh-dark-mode-only "Weaviate Personalization Agent from a developer perspective")
 
-### Connect to Personalization Agent
+This page describes how to use the Weaviate Personalization Agent to obtain personalized recommendations from your data stored in Weaviate.
 
-Provide the following to the Personalization Agent:
-
-- Your Weaviate Cloud instance details (e.g. the `WeaviateClient` object in Python) to the Personalization Agent.
-- A list of the collections that the Personalization Agent may use to produce recommendations.
-
-<Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python">
-        <FilteredTextBlock
-            text={PyCode}
-            startMarker="# START InstantiatePersonalizationAgent"
-            endMarker="# END InstantiatePersonalizationAgent"
-            language="py"
-        />
-    </TabItem>
-</Tabs>
-
-### Obtain personalized recommendations
-
-In the simplest form, provide a user profile to the Personalization Agent. The Personalization Agent will process the user profile, perform the necessary searches in Weaviate, and return the personalized recommendations.
-
-<Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python">
-        <FilteredTextBlock
-            text={PyCode}
-            startMarker="# START BasicQuery"
-            endMarker="# END BasicQuery"
-            language="py"
-        />
-    </TabItem>
-
-</Tabs>
-
-#### Query with parameters
-
-Additional parameters can be provided to the Personalization Agent to further tune the recommendations.
-
-<Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python">
-        <FilteredTextBlock
-            text={PyCode}
-            startMarker="# START QueryParameters"
-            endMarker="# END QueryParameters"
-            language="py"
-        />
-    </TabItem>
-
-</Tabs>
-
-### Update user data
-
-The Personalization Agent relies on each individual user's profile to provide personalized recommendations.
-
-The API includes ways to provide this information when creating the agent. Additionally, you can update the user data collection with new information over time, so that the Personalization Agent can learn from the latest available data.
-
-#### Add user properties
-
-Fields for user properties can be added to the user data collection at any time.
-
-<Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python">
-        <FilteredTextBlock
-            text={PyCode}
-            startMarker="# START AddUserProperties"
-            endMarker="# END AddUserProperties"
-            language="py"
-        />
-    </TabItem>
-
-</Tabs>
-
-#### Add users
-
-New users can be added to the user data collection at any time.
-
-<Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python">
-        <FilteredTextBlock
-            text={PyCode}
-            startMarker="# START AddUserEntry"
-            endMarker="# END AddUserEntry"
-            language="py"
-        />
-    </TabItem>
-
-</Tabs>
-
-#### Update user interactions
-
-Additional interactions can be added one at a time, or in bulk.
-
-<Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python">
-        <FilteredTextBlock
-            text={PyCode}
-            startMarker="# START AddUserInteractions"
-            endMarker="# END AddUserInteractions"
-            language="py"
-        />
-    </TabItem>
-
-</Tabs>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-The Weaviate Query Agent is a pre-built agentic service designed to answer natural language queries based on the data stored in Weaviate Cloud.
-
-The user simply provides a prompt/question in natural language, and the Query Agent takes care of all intervening steps to provide an answer.
-
-![Weaviate Query Agent from a user perspective](../_includes/query_agent_usage_light.png#gh-light-mode-only "Weaviate Query Agent from a user perspective")
-![Weaviate Query Agent from a user perspective](../_includes/query_agent_usage_dark.png#gh-dark-mode-only "Weaviate Query Agent from a user perspective")
-
-This page describes how to use the Query Agent to answer natural language queries, using your data stored in Weaviate Cloud.
+:::info Changelog and feedback
+The official changelog for Weaviate Agents can be [found here](https://weaviateagents.featurebase.app/changelog). If you have feedback, such as feature requests, bug reports or questions, please [submit them here](https://weaviateagents.featurebase.app/), where you will be able to see the status of your feedback and vote on others' feedback.
+:::
 
 ## Prerequisites
 
@@ -202,42 +84,108 @@ pip install -U weaviate-agents==||site.weaviate_agents_version||
 
 </Tabs>
 
-## How to use the Query Agent
+## Usage
 
-### 1. Instantiate the Query Agent
+To use the Personalization Agent, follow the below high-level steps:
 
-- Your Weaviate Cloud instance details (e.g. the `WeaviateClient` object in Python) to the Query Agent.
-- A list of the collections that the Query Agent may use to answer queries.
+- Create or connect to a personalization agent
+- Create or select a user persona
+- Add interactions for the given persona
+- Obtain personalized recommendations
+
+Optionally, the personalization agent can:
+- Perform reranking of the results
+- With a further option of custom instructions for the reranking
+
+Example usage is shown below.
+
+### Prerequisites
+
+The Personalization Agent is tightly integrated with Weaviate Cloud. As a result, the Personalization Agent is available exclusively for use with a Weaviate Cloud instance, and a supported version of the client library.
+
+### Connect to Weaviate
+
+You must connect to the Weaviate Cloud instance to use the Personalization Agent. Connect to the Weaviate Cloud instance using the Weaviate client library.
 
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
-            startMarker="# START InstantiateQueryAgent"
-            endMarker="# END InstantiateQueryAgent"
+            startMarker="# START ConnectToWeaviate"
+            endMarker="# END ConnectToWeaviate"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
+
+### Create or connect to a personalization agent
+
+Personalization Agents are stateful, with user persona data persisting in Weaviate. As a result, you can create a new Personalization Agent or connect to an existing one.
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START CreateOrConnectToAgent"
+            endMarker="# END CreateOrConnectToAgent"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
+
+### Create a user persona
+
+The Personalization Agent is designed to provide personalized recommendations for a specific user.
+
+You can do this through a `Persona`, which is a collection of user properties and interactions.
+
+Each persona will include a user ID, a set of user properties, and a set of interactions.
+
+To create a persona, specify a user ID and the set of user properties to be used for personalization.
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START CreatePersona"
+            endMarker="# END CreatePersona"
             language="py"
         />
     </TabItem>
 
 </Tabs>
 
-:::info What does the Query Agent have access to?
+### Add interactions
 
-The Query Agent derives its access credentials from the Weaviate client object passed to it. This can be further restricted by the collection names provided to the Query Agent.
+Interactions form the basis of the personalization process. They are the data points that the Personalization Agent uses to learn about the user and provide personalized recommendations.
 
-For example, if the associated Weaviate credentials' user has access to only a subset of collections, the Query Agent will only be able to access those collections.
+To add interactions, select the user persona and provide the interaction details.
 
-:::
+The available parameters are:
 
-### 2. Perform queries
+- `persona_id`: ID of the user persona
+- `item_id`: ID of the item being interacted with
+- `weight`: weight of the interaction (e.g. 1 for strongest like, -1 for strongest dislike)
+- `replace_previous_interaction`: whether to replace the previous interaction with the same item ID
+- `created_at`: timestamp of the interaction (affects how much weight the interaction has)
 
-Provide a natural language query to the Query Agent. The Query Agent will process the query, perform the necessary searches in Weaviate, and return the answer.
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START AddUserInteractions"
+            endMarker="# END AddUserInteractions"
+            language="py"
+        />
+    </TabItem>
 
-This is a synchronous operation. The Query Agent will return the answer to the user as soon as it is available.
+</Tabs>
 
-:::tip Consider your query carefully
-The Query Agent will formulate its strategy based on your query. So, aim to be unambiguous, complete, yet concise in your query as much as possible.
-:::
+### Perform a basic query
+
+Once a user persona has been created, you can perform queries to obtain personalized recommendations.
+
+As a minimum, simply provide the user ID to the Personalization Agent. The Personalization Agent will process the user ID, perform the necessary searches in Weaviate, and return the personalized recommendations.
 
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python">
@@ -248,169 +196,53 @@ The Query Agent will formulate its strategy based on your query. So, aim to be u
             language="py"
         />
     </TabItem>
-
 </Tabs>
 
-#### 2.1. Follow-up queries
+### Query options
 
-The Query Agent can even handle follow-up queries, using the previous response as additional context.
+There are a number of options available to customize the query.
+
+- `limit`: maximum number of items to return
+- `recent_interactions_count`: number of recent interactions to consider for personalization
+- `exclude_interacted_items`: whether to exclude items that the user has already interacted with
+- `decay_rate`: decay rate for older interactions (1.0 = heavily discount older interactions; 0.0 = no discount)
+- `exclude_items`: list of item IDs to exclude from the recommendations
+- `use_agent_ranking`: whether to use the agent to rerank the results
+- `instruction`: custom instructions for the reranking
+- `explain_results`: whether to include explanations for the results
 
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
-            startMarker="# START FollowUpQuery"
-            endMarker="# END FollowUpQuery"
+            startMarker="# START QueryParameters"
+            endMarker="# END QueryParameters"
             language="py"
         />
     </TabItem>
-
 </Tabs>
 
-## Inspect responses
+### Inspect results
 
-The response from the Query Agent will contain the final answer, as well as additional supporting information.
+The response from the Personalization Agent will include the personalized recommendations.
 
-The supporting information may include searches or aggregations carried out, what information may have been missing, and how many LLM tokens were used by the Agent.
+In addition to the response objects, the response may include the following information (depending on the options selected):
 
-### Helper function
-
-Try the provided helper function (e.g. `print_query_agent_response`) to display the response in a readable format.
+- Rationale for the recommendations
+- For each object:
+    - Original rank of the item
+    - Personalized rank of the item
 
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
-            startMarker="# START BasicQuery"
-            endMarker="# END BasicQuery"
+            startMarker="# START InspectResults"
+            endMarker="# END InspectResults"
             language="py"
         />
     </TabItem>
-
 </Tabs>
-
-This will print the response and a summary of the supporting information found by the Query Agent.
-
-<details>
-  <summary>Example output</summary>
-
-```text
-╭──────────────────────────────────────────────────────── 🔍 Original Query ─────────────────────────────────────────────────────────╮
-│                                                                                                                                    │
-│ I like vintage clothes and and nice shoes. Recommend some of each below $60.                                                       │
-│                                                                                                                                    │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-╭───────────────────────────────────────────────────────── 📝 Final Answer ──────────────────────────────────────────────────────────╮
-│                                                                                                                                    │
-│ For vintage clothes under $60, here are some great options:                                                                        │
-│                                                                                                                                    │
-│ 1. **Vintage Scholar Turtleneck** - $55.00: This piece from the Dark Academia collection offers comfort with a stylish pleated     │
-│ detail, perfect for a scholarly wardrobe (available in black and grey).                                                            │
-│ 2. **Retro Pop Glitz Blouse** - $46.00: Part of the Y2K collection, this blouse adds shimmer and features a dramatic collar for a  │
-│ pop culture-inspired look (available in silver).                                                                                   │
-│ 3. **Retro Glitz Halter Top** - $29.98: Embrace early 2000s glamour with this halter top, suitable for standing out with its shiny │
-│ pastel fabric (available in pink and purple).                                                                                      │
-│ 4. **Metallic Pastel Dream Cardigan** - $49.00: This cardigan features a metallic sheen and is perfect for a colorful, nostalgic   │
-│ touch (available in blue and pink).                                                                                                │
-│                                                                                                                                    │
-│ For nice shoes under $60:                                                                                                          │
-│                                                                                                                                    │
-│ 1. **Mystic Garden Strappy Flats** - $59.00: These gold flats feature delicate vine and floral patterns, ideal for adding a touch  │
-│ of magic to your outfit.                                                                                                           │
-│ 2. **Garden Serenade Sandals** - $56.00: These sandals from the Cottagecore collection have ivy-green straps with cream floral     │
-│ patterns, embodying a romantic countryside aesthetic.                                                                              │
-│ 3. **Forest Murmur Sandals** - $59.00: With a soft green hue and gold accents, these sandals from the Fairycore collection are     │
-│ both elegant and whimsical.                                                                                                        │
-│                                                                                                                                    │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-╭───────────────────────────────────────────────────── 🔭 Searches Executed 1/2 ─────────────────────────────────────────────────────╮
-│                                                                                                                                    │
-│ QueryResultWithCollection(                                                                                                         │
-│     queries=['vintage clothes'],                                                                                                   │
-│     filters=[[IntegerPropertyFilter(property_name='price', operator=<ComparisonOperator.LESS_THAN: '<'>, value=60.0)]],            │
-│     filter_operators='AND',                                                                                                        │
-│     collection='Ecommerce'                                                                                                         │
-│ )                                                                                                                                  │
-│                                                                                                                                    │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-╭───────────────────────────────────────────────────── 🔭 Searches Executed 2/2 ─────────────────────────────────────────────────────╮
-│                                                                                                                                    │
-│ QueryResultWithCollection(                                                                                                         │
-│     queries=['nice shoes'],                                                                                                        │
-│     filters=[[IntegerPropertyFilter(property_name='price', operator=<ComparisonOperator.LESS_THAN: '<'>, value=60.0)]],            │
-│     filter_operators='AND',                                                                                                        │
-│     collection='Ecommerce'                                                                                                         │
-│ )                                                                                                                                  │
-│                                                                                                                                    │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│                                                                                                                                    │
-│ 📊 No Aggregations Run                                                                                                             │
-│                                                                                                                                    │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-╭──────────────────────────────────────────────────────────── 📚 Sources ────────────────────────────────────────────────────────────╮
-│                                                                                                                                    │
-│  - object_id='3e3fc965-0a08-4095-b538-5362404a4aab' collection='Ecommerce'                                                         │
-│  - object_id='3ce04def-fe06-48bd-ba0e-aa491ba2b3c5' collection='Ecommerce'                                                         │
-│  - object_id='cece6613-0ad8-44a5-9da3-a99bcbe67141' collection='Ecommerce'                                                         │
-│  - object_id='1be234ae-7665-4e8c-9758-07ba87997ca1' collection='Ecommerce'                                                         │
-│  - object_id='5ee7874b-e70b-4af7-b053-cce74c10e406' collection='Ecommerce'                                                         │
-│  - object_id='c7dd08d3-fe8e-44c2-8f99-8271c3ba24ee' collection='Ecommerce'                                                         │
-│  - object_id='5f35dc8f-18f5-4388-845d-0383927dfee0' collection='Ecommerce'                                                         │
-│                                                                                                                                    │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-
-
-   📊 Usage Statistics
-┌────────────────┬──────┐
-│ LLM Requests:  │ 4    │
-│ Input Tokens:  │ 8621 │
-│ Output Tokens: │ 504  │
-│ Total Tokens:  │ 9125 │
-└────────────────┴──────┘
-
-Total Time Taken: 15.80s
-```
-
-</details>
-
-### Inspection example
-
-This example outputs:
-
-- The original user query
-- The answer provided by the Query Agent
-- Searches & aggregations (if any) conducted by the Query Agent
-- Any missing information
-
-<Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python">
-        <FilteredTextBlock
-            text={PyCode}
-            startMarker="# START InspectResponseExample"
-            endMarker="# END InspectResponseExample"
-            language="py"
-        />
-    </TabItem>
-
-</Tabs>
-
-## Advanced options
-
-### Agent instantiation
-
-The Query Agent can be instantiated with additional options, such as:
-
-- `system_prompt`: A custom system prompt to replace the default system prompt provided by the Weaviate team.
-- `timeout`: The maximum time the Query Agent will spend on a single query, in seconds (server-side default: 60).
-
-### Collection selection
-
-Use `.add_collection` or `.remove_collection` methods on an instantiated `QueryAgent` object to add or remove collections from the Query Agent's list of collections.
-
-### Queries
-
-Use `.view_properties` to define the properties that the Query Agent can look at when answering queries.
 
 ## Limitations & Troubleshooting
 
@@ -423,29 +255,13 @@ Use `.view_properties` to define the properties that the Query Agent can look at
 
 :::
 
-### Usage limits
+<!-- ### Usage limits
+
+TODO - check if there is a usage limit
 
 At this stage, there is a limit of 100 Query Agent queries per day per Weaviate Cloud [organization](/developers/wcs/platform/users-and-organizations.mdx#organizations).
 
-This limit may change in future versions of the Query Agent.
-
-### Multi-tenant collections
-
-The Query Agent is currently not able to access collections with multi-tenancy enabled. This will be added im the future.
-
-### Custom collection descriptions
-
-The Query Agent makes use of each collection's `description` metadata in deciding what collection to query.
-
-We are investigating an ability to specify a custom collection description at runtime.
-
-### Execution times
-
-The Query Agent performs multiple operations to translate a natural language query into Weaviate queries, and to process the response.
-
-This typically requires multiple calls to generative models (e.g. LLMs) and multiple queries to Weaviate.
-
-As a result, each Query Agent run may take some time to complete. Depending on the query complexity, it may not be uncommon to see execution times of ~10 seconds.
+This limit may change in future versions of the Query Agent. -->
 
 ## Questions and feedback
 
