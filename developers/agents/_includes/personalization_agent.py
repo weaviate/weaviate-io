@@ -7,9 +7,9 @@ from weaviate.classes.init import Auth
 from weaviate.agents.personalization import PersonalizationAgent
 from weaviate.classes.config import DataType
 # END InstantiatePersonalizationAgent  # END CreateOrConnectToAgent
-# START AddUserData  # START AddUserPersona
+# START AddUserPersona
 from weaviate.agents.classes import Persona
-# END AddUserData  # END AddUserPersona
+# END AddUserPersona
 # START AddUserInteractions
 from weaviate.agents.classes import PersonaInteraction
 # END AddUserInteractions
