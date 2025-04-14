@@ -1,6 +1,6 @@
 ---
 title: Personalization Agent
-sidebar_position: 50
+sidebar_position: 10
 image: og/docs/agents.jpg
 # tags: ['agents', 'getting started', 'personalization agent']
 ---
@@ -12,25 +12,25 @@ import PyCode from '!!raw-loader!/developers/agents/_includes/personalization_ag
 
 # Weaviate Personalization Agent
 
-:::caution
+:::caution Technical Preview
 
-![This Weaviate Agent isn't quite ready yet.](./_includes/agents_coming_soon_light.png#gh-light-mode-only "This Weaviate Agent isn't quite ready yet.")
-![This Weaviate Agent isn't quite ready yet.](./_includes/agents_coming_soon_dark.png#gh-dark-mode-only "This Weaviate Agent isn't quite ready yet.")
+![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_light.png#gh-light-mode-only "This Weaviate Agent is in technical preview.")
+![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_dark.png#gh-dark-mode-only "This Weaviate Agent is in technical preview.")
 
-To be notified when this agent is released, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
+[Sign up here](https://events.weaviate.io/weaviate-agents) for notifications on Weaviate Agents, or visit [this page](https://weaviateagents.featurebase.app/) to see the latest updates and provide feedback.
 
 :::
 
 The Weaviate Personalization Agent is an agentic service designed to return personalized recommendations tailored to each user. The Personalization Agent uses data from the associated Weaviate Cloud instance to provide these recommendations.
 
-:::tip User vs Developer
+:::tip Nomenclature: User vs Developer
 The Personalization Agent is all about providing personalized recommendations tailored to a particular person. In this context, that person will be referred to as the `user`. The developer is the person who is using the Personalization Agent to provide these recommendations.
 :::
 
 The developer would simply provide a user profile, and the Personalization Agent takes care of all intervening steps to provide a set of personalized recommendations from Weaviate. The resulting workflow for the developer looks as follows:
 
-![Weaviate Personalization Agent from a developer perspective](./_includes/personalization_agent_overview_light.png#gh-light-mode-only "Weaviate Personalization Agent from a developer perspective")
-![Weaviate Personalization Agent from a developer perspective](./_includes/personalization_agent_overview_dark.png#gh-dark-mode-only "Weaviate Personalization Agent from a developer perspective")
+![Weaviate Personalization Agent from a developer perspective](../_includes/personalization_agent_overview_light.png#gh-light-mode-only "Weaviate Personalization Agent from a developer perspective")
+![Weaviate Personalization Agent from a developer perspective](../_includes/personalization_agent_overview_dark.png#gh-dark-mode-only "Weaviate Personalization Agent from a developer perspective")
 
 :::info Changelog and feedback
 The official changelog for Weaviate Agents can be [found here](https://weaviateagents.featurebase.app/changelog). If you have feedback, such as feature requests, bug reports or questions, please [submit them here](https://weaviateagents.featurebase.app/), where you will be able to see the status of your feedback and vote on others' feedback.
@@ -46,8 +46,8 @@ The Personalization Agent uses the contextual information to not only retrieve t
 
 ## Personalization Agent: visualized workflow
 
-![Weaviate Personalization Agent at a high level](./_includes/personalization_agent_architecture_light.png#gh-light-mode-only "Weaviate Personalization Agent at a high level")
-![Weaviate Personalization Agent at a high level](./_includes/personalization_agent_architecture_dark.png#gh-dark-mode-only "Weaviate Personalization Agent at a high level")
+![Weaviate Personalization Agent at a high level](../_includes/personalization_agent_architecture_light.png#gh-light-mode-only "Weaviate Personalization Agent at a high level")
+![Weaviate Personalization Agent at a high level](../_includes/personalization_agent_architecture_dark.png#gh-dark-mode-only "Weaviate Personalization Agent at a high level")
 
 The Personalization Agent works as follows at a high level:
 
@@ -66,8 +66,8 @@ Let's dive into a little more detail about the Personalization Agent.
 
 The Personalization Agent uses user profiles to provide personalized recommendations. This information is stored in a collection in your Weaviate instance under a specific name. The user profile may include the user's preferences and previous interactions, such as their likes and dislikes.
 
-![Weaviate Personalization Agent - User Data Collection](./_includes/personalization_agent_users_light.png#gh-light-mode-only "Weaviate Personalization Agent - User Data Collection")
-![Weaviate Personalization Agent - User Data Collection](./_includes/personalization_agent_users_dark.png#gh-dark-mode-only "Weaviate Personalization Agent - User Data Collection")
+![Weaviate Personalization Agent - User Data Collection](../_includes/personalization_agent_users_light.png#gh-light-mode-only "Weaviate Personalization Agent - User Data Collection")
+![Weaviate Personalization Agent - User Data Collection](../_includes/personalization_agent_users_dark.png#gh-dark-mode-only "Weaviate Personalization Agent - User Data Collection")
 
 As shown here, the user data collection can be updated over time. It can be updated with information about new users, or with new information about existing users.
 
@@ -81,8 +81,8 @@ There are two major components to the Personalization Agent's recommendations, t
 
 The Personalization Agent performs searches in Weaviate to retrieve the most relevant recommendations for the user from the specified collections.
 
-![Weaviate Personalization Agent - Searches](./_includes/personalization_agent_search_light.png#gh-light-mode-only "Weaviate Personalization Agent - Searches")
-![Weaviate Personalization Agent - Searches](./_includes/personalization_agent_search_dark.png#gh-dark-mode-only "Weaviate Personalization Agent - Searches")
+![Weaviate Personalization Agent - Searches](../_includes/personalization_agent_search_light.png#gh-light-mode-only "Weaviate Personalization Agent - Searches")
+![Weaviate Personalization Agent - Searches](../_includes/personalization_agent_search_dark.png#gh-dark-mode-only "Weaviate Personalization Agent - Searches")
 
 The diagram depicts that the search process may be based on a number of factors:
 
@@ -97,8 +97,8 @@ The Personalization Agent may perform multiple searches in Weaviate to retrieve 
 
 The Personalization Agent uses multiple factors to rank the recommendations it retrieves from Weaviate, so that the final result set is tailored to the user's preferences.
 
-![Weaviate Personalization Agent - (re)rank](./_includes/personalization_agent_rank_light.png#gh-light-mode-only "Weaviate Personalization Agent - (re)rank")
-![Weaviate Personalization Agent - (re)rank](./_includes/personalization_agent_rank_dark.png#gh-dark-mode-only "Weaviate Personalization Agent - (re)rank")
+![Weaviate Personalization Agent - (re)rank](../_includes/personalization_agent_rank_light.png#gh-light-mode-only "Weaviate Personalization Agent - (re)rank")
+![Weaviate Personalization Agent - (re)rank](../_includes/personalization_agent_rank_dark.png#gh-dark-mode-only "Weaviate Personalization Agent - (re)rank")
 
 The rankings may be based on a number of factors:
 
@@ -109,27 +109,21 @@ The rankings may be based on a number of factors:
 
 This process ranks the combined result set as a whole, before serving them back in the response.
 
-## Usage
+## Basic Usage
 
-:::caution
-
-![This Weaviate Agent isn't quite ready yet.](./_includes/agents_coming_soon_light.png#gh-light-mode-only "This Weaviate Agent isn't quite ready yet.")
-![This Weaviate Agent isn't quite ready yet.](./_includes/agents_coming_soon_dark.png#gh-dark-mode-only "This Weaviate Agent isn't quite ready yet.")
-
-To be notified when this agent is released, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
-
-:::
+Here is an overview of how to use the this Weaviate Agent. For more detailed information, refer to the [Usage](./usage.md) page.
 
 ### Prerequisites
 
-The Personalization Agent is tightly integrated with Weaviate Cloud. As a result, the Personalization Agent is available exclusively for use with a Weaviate Cloud instance, and a supported version of the client library.
+This Agent is available exclusively for use with a Weaviate Cloud instance, and a supported version of the Weaviate client library.
 
-### Connect to Personalization Agent
+### Example Usage
 
-Provide the following to the Personalization Agent:
+To use the Personalization Agent, instantiate it with the following inputs:
 
-- Your Weaviate Cloud instance details (e.g. the `WeaviateClient` object in Python) to the Personalization Agent.
-- A list of the collections that the Personalization Agent may use to produce recommendations.
+- An instance of the Weaviate client (e.g. the `WeaviateClient` object in Python), connected to a Weaviate Cloud instance.
+- Name of the target collection to get personalized items from.
+- A list of user properties to base the personalization on.
 
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python">
@@ -142,9 +136,33 @@ Provide the following to the Personalization Agent:
     </TabItem>
 </Tabs>
 
-### Obtain personalized recommendations
+Then, add a persona, which will be used to personalize the recommendations.
 
-In the simplest form, provide a user profile to the Personalization Agent. The Personalization Agent will process the user profile, perform the necessary searches in Weaviate, and return the personalized recommendations.
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START CreatePersona"
+            endMarker="# END CreatePersona"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
+
+Then you can add a set of interactions to that persona.
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START AddUserInteractions"
+            endMarker="# END AddUserInteractions"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
+
+Once user data is added, the Personalization Agent can be used to get personalized recommendations from the Weaviate collection.
 
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python">
@@ -158,75 +176,9 @@ In the simplest form, provide a user profile to the Personalization Agent. The P
 
 </Tabs>
 
-#### Query with parameters
+### Further Documentation
 
-Additional parameters can be provided to the Personalization Agent to further tune the recommendations.
-
-<Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python">
-        <FilteredTextBlock
-            text={PyCode}
-            startMarker="# START QueryParameters"
-            endMarker="# END QueryParameters"
-            language="py"
-        />
-    </TabItem>
-
-</Tabs>
-
-### Update user data
-
-The Personalization Agent relies on each individual user's profile to provide personalized recommendations.
-
-The API includes ways to provide this information when creating the agent. Additionally, you can update the user data collection with new information over time, so that the Personalization Agent can learn from the latest available data.
-
-#### Add user properties
-
-Fields for user properties can be added to the user data collection at any time.
-
-<Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python">
-        <FilteredTextBlock
-            text={PyCode}
-            startMarker="# START AddUserProperties"
-            endMarker="# END AddUserProperties"
-            language="py"
-        />
-    </TabItem>
-
-</Tabs>
-
-#### Add users
-
-New users can be added to the user data collection at any time.
-
-<Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python">
-        <FilteredTextBlock
-            text={PyCode}
-            startMarker="# START AddUserEntry"
-            endMarker="# END AddUserEntry"
-            language="py"
-        />
-    </TabItem>
-
-</Tabs>
-
-#### Update user interactions
-
-Additional interactions can be added one at a time, or in bulk.
-
-<Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python">
-        <FilteredTextBlock
-            text={PyCode}
-            startMarker="# START AddUserInteractions"
-            endMarker="# END AddUserInteractions"
-            language="py"
-        />
-    </TabItem>
-
-</Tabs>
+For more detailed information on how to use this Agent, refer to the [Usage](./usage.md) page.
 
 ## Questions and feedback
 

@@ -7,9 +7,12 @@ image: og/docs/agents.jpg
 
 # Weaviate Agents - Introduction
 
-:::caution
+:::caution Technical Preview
 
-Not all Weaviate Agents are yet available. To be notified as agents are released, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
+![Weaviate Agents are in technical preview.](./_includes/agents_tech_preview_light.png#gh-light-mode-only "Weaviate Agents are in technical preview.")
+![Weaviate Agents are in technical preview.](./_includes/agents_tech_preview_dark.png#gh-dark-mode-only "Weaviate Agents are in technical preview.")
+
+[Sign up here](https://events.weaviate.io/weaviate-agents) for notifications on Weaviate Agents, or visit [this page](https://weaviateagents.featurebase.app/) to see the latest updates and provide feedback.
 
 :::
 
@@ -49,12 +52,12 @@ The [Transformation Agent](./transformation/index.md) enhances your data by mani
 
 ## Personalization Agent
 
-The [Personalization Agent](./personalization.md) customizes outputs based on persona-specific information, which can even be learned over time.
+The [Personalization Agent](./personalization/index.md) customizes outputs based on persona-specific information, which can even be learned over time.
 
-[![Click to read more about the Personalization Agent](./_includes/personalization_agent_overview_light.png#gh-light-mode-only "Click to read more about the Personalization Agent")](./personalization.md)
-[![Click to read more about the Personalization Agent](./_includes/personalization_agent_overview_dark.png#gh-dark-mode-only "Click to read more about the Personalization Agent")](./personalization.md)
+[![Click to read more about the Personalization Agent](./_includes/personalization_agent_overview_light.png#gh-light-mode-only "Click to read more about the Personalization Agent")](./personalization/index.md)
+[![Click to read more about the Personalization Agent](./_includes/personalization_agent_overview_dark.png#gh-dark-mode-only "Click to read more about the Personalization Agent")](./personalization/index.md)
 
-[Read more about the Personalization Agent](./personalization.md)
+[Read more about the Personalization Agent](./personalization/index.md)
 
 ## Questions and feedback
 
