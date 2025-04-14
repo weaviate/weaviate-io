@@ -155,8 +155,8 @@ Then you can add a set of interactions to that persona.
     <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
-            startMarker="# START AddUserData"
-            endMarker="# END AddUserData"
+            startMarker="# START AddUserInteractions"
+            endMarker="# END AddUserInteractions"
             language="py"
         />
     </TabItem>

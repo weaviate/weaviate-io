@@ -32,7 +32,7 @@ client = weaviate.connect_to_weaviate_cloud(
 )
 
 # START InstantiatePersonalizationAgent # END ConnectToWeaviate
-# Instantiate a new agent object, and specify the collections to query
+# Instantiate a new agent object, and specify the collection to query
 # The Personalization Agent will automatically also connect to the user data collection
 
 pa = PersonalizationAgent.create(
