@@ -1,0 +1,348 @@
+---
+title: Build a Food Recommender with Personalization Agents
+sidebar_label: 'Tutorial: Food Recommender'
+description: Learn how to build a simple food recommender service with the Weaviate Personalization Agent.
+sidebar_position: 40
+image: og/docs/tutorials.jpg
+# tags: ['personalization', 'recommendation']
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/developers/agents/_includes/personalization_agent_tutorial_food_recommender.py';
+
+:::caution Technical Preview
+
+![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_light.png#gh-light-mode-only 'This Weaviate Agent is in technical preview.')
+![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_dark.png#gh-dark-mode-only 'This Weaviate Agent is in technical preview.')
+
+[Sign up here](https://events.weaviate.io/weaviate-agents) for notifications on Weaviate Agents, or visit [this page](https://weaviateagents.featurebase.app/) to see the latest updates and provide feedback.
+
+:::
+
+:::info Data Storage Note
+The Weaviate Personalization Agent stores user persona profiles and interaction data within your Weaviate instance alongside your main data collection. Be mindful of data privacy regulations when implementing this agent.
+:::
+
+In this tutorial, we will be building a simple food recommender service using the **[Weaviate Personalization Agent](./index.md)**. This agent will learn about user preferences based on their defined profile (persona) and past interactions (e.g., recipe reviews) to provide personalized recommendations from a collection of recipes.
+
+We've prepared a public dataset that you can use to explore the Personalization Agent:
+It is available on HuggingFace:
+
+- [**Recipes:**](https://huggingface.co/datasets/weaviate/agents/viewer/personalization-agent-recipes) A dataset that lists recipe names, short descriptions, and cuisine types.
+
+## Introduction: What are Personalization Agents?
+
+The Weaviate Personalization Agent is a pre-built agentic service designed to retrieve objects from a Weaviate collection in a way that is tailored to individual users. It achieves this by considering a user's defined persona (profile) and their history of interactions with items in the collection.
+
+<!-- import WeaviateAgentsPersonalizationFoodFlowchart from '/developers/agents/_includes/personalization_agent_tutorial_food_flowchart.png'; # Placeholder path
+
+<div class="row">
+  <div class="card">
+    <div class="card__image">
+      <img
+        src={WeaviateAgentsPersonalizationFoodFlowchart}
+        alt="Weaviate Personalization Agent flowchart"
+      />
+    </div>
+  </div>
+</div>
+<br /> -->
+
+The Personalization Agent:
+
+1.  **Receives a request** for recommendations for a specific user (persona).
+2.  **Retrieves the user's persona profile** (e.g., likes, dislikes, favorite cuisines) and **interaction history** (e.g., liked/disliked recipes with associated weights).
+3.  **Queries the reference collection** (e.g., "Recipes") to find candidate items.
+4.  **(Optionally) Uses an appropriate generative model** (e.g., large language model) to re-rank the candidate items based on the persona, interactions, and potentially a specific instruction, providing a rationale for the ranking.
+5.  **Returns a personalized, ranked list** of objects to the user.
+
+<hr />
+
+## Prerequisites
+
+To use the Weaviate Agents and Weaviate Embedding service, you need to have a **[Weaviate Cloud](https://console.weaviate.cloud)** account.
+
+## Step 1: Set up Weaviate
+
+Now, let's get started by setting up a Weaviate Cloud instance that we will use for this tutorial and connecting it to the Python client.
+
+### 1.1 Create a Weaviate Cloud cluster
+
+1.  Create a [free Sandbox cluster](/developers/wcs/manage-clusters/create#sandbox-clusters) in Weaviate Cloud.
+2.  Enable the 'Embedding' service in your cluster settings. By default, this uses the `Snowflake/snowflake-arctic-embed-l-v2.0` model via [Weaviate Embeddings](https://weaviate.io/developers/weaviate/model-providers/weaviate).
+3.  Take note of the `REST Endpoint` (URL) and `Admin` API key to connect to your cluster. (for more info, check out the [quickstart](/developers/wcs/quickstart#22-connect-to-your-weaviate-cloud-instance))
+
+:::tip
+Using [Weaviate Embeddings](https://weaviate.io/developers/weaviate/model-providers/weaviate) means you don't need separate API keys for external embedding providers for this tutorial. <br/><br/>
+If you want to use another vectorizer, check out the list of supported [model providers](../../weaviate/model-providers/index.md).
+:::
+
+### 1.2 Install the Python libraries
+
+In order to install the Weaviate Python client together with the `agents` component, run:
+
+<Tabs groupId="languages">
+<TabItem value="py_agents" label="Python">
+
+```
+pip install "weaviate-client[agents]"
+```
+
+</TabItem>
+</Tabs>
+
+You will also need `datasets`, a lightweight library providing access to the publicly hosted datasets on HuggingFace.
+
+<Tabs groupId="languages">
+<TabItem value="py_agents" label="Python">
+
+```
+pip install datasets
+```
+
+</TabItem>
+</Tabs>
+
+import ForcePipInstall from '../_includes/_force_pip_install.mdx';
+
+<ForcePipInstall />
+
+### 1.3 Connect to your instance
+
+Now, you can connect to your Weaviate Cloud instance using the URL and API key from the first step:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ConnectToWeaviate"
+      endMarker="# END ConnectToWeaviate"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+After running this snippet, you should see the message `Client is ready!` printed out, which means you have successfully connected to your instance.
+
+## Step 2: Prepare the Collection
+
+In the following code blocks, we will pull our demo recipe dataset from Hugging Face and write it to a new collection in our Weaviate Sandbox cluster. Before importing the data, we need to **define the collection**, setting up its schema and choosing the vectorizer.
+
+### 2.1 Define the Collection
+
+Below you can see what the objects in the `Recipes` dataset look like.
+
+import WeaviateAgentsPersonalizationFoodDataset from '/developers/agents/_includes/personalization_agent_tutorial_food_recommender_dataset.png';
+
+<div class="row">
+  <div class="card">
+    <div class="card__image">
+      <img
+        src={WeaviateAgentsPersonalizationFoodDataset}
+        alt="The Recipes dataset structure"
+      />
+    </div>
+  </div>
+</div>
+<br />
+
+For the collection `Recipes`, we will manually define the properties and include descriptions. While `auto-schema` is an option, providing explicit descriptions helps the Personalization Agent (especially the underlying LLM, when used for re-ranking) understand the context of your data better.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START DefineCollection"
+      endMarker="# END DefineCollection"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+### 2.2 Populate the database
+
+Now, we can import the recipe data ([Recipes](https://huggingface.co/datasets/weaviate/agents/viewer/personalization-agent-recipes)) into our Weaviate Cloud instance:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START PopulateDatabase"
+      endMarker="# END PopulateDatabase"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+We can check the total number of imported items using an aggregation query:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START CheckCollectionSize"
+      endMarker="# END CheckCollectionSize"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+```
+Size of the Recipes dataset: 5117
+```
+
+## Step 3: Set up the Personalization Agent
+
+Now, let's create the `PersonalizationAgent` instance linked to our "Recipes" collection.
+
+When creating a new `PersonalizationAgent` for the first time, we define `user_properties`. These are the fields that will make up each user's persona profile. For our food recommender, properties like favorite cuisines, general food likes, and dislikes are relevant.
+
+If an agent for this collection already exists (e.g., from a previous run), we can simply connect to it using `PersonalizationAgent.connect()`. The code below handles both cases.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START CreateOrConnectAgent"
+      endMarker="# END CreateOrConnectAgent"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+You should see a message indicating whether a new agent was created or an existing one was connected.
+
+## Step 4: Use the Personalization Agent
+
+With the agent set up, we can now add user data and retrieve recommendations.
+
+### 4.1 Add a New Persona
+
+A "persona" represents a user profile. We use the `agent.add_persona()` method, providing a unique `persona_id` (a UUID is recommended) and the `properties` we defined during agent creation.
+
+Feel free to modify the example below to represent your own food preferences\!
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START AddPersona"
+      endMarker="# END AddPersona"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+After adding the persona, the code retrieves and prints it to confirm it was stored correctly. You should see the details you entered.
+
+### 4.2 Add Interactions
+
+"Interactions" represent how a user has engaged with items in the collection. For our recommender, these could be explicit reviews, ratings, or implicit signals like viewing a recipe page.
+
+Each `PersonaInteraction` links a `persona_id` to an `item_id` (the UUID of an object in the "Recipes" collection) and includes a `weight` from -1.0 (strong dislike) to 1.0 (strong like).
+
+First, we fetch the UUIDs of some specific recipes the user has interacted with. Then, we define the interactions with appropriate weights. Finally, we add them to the agent using `agent.add_interactions()`.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START AddInteractions"
+      endMarker="# END AddInteractions"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+This block prepares the interaction data and sends it to the agent.
+
+### 4.3 Get Recommendations
+
+Now for the core functionality: retrieving personalized recommendations using `agent.get_objects()`. We provide the `persona_id` for whom we want recommendations.
+
+We can set `use_agent_ranking=True` to enable the LLM-based re-ranking. This leverages the persona profile and interaction history to provide a more nuanced ranking and also generates a `ranking_rationale` explaining _why_ certain items were recommended.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START GetRecommendations"
+      endMarker="# END GetRecommendations"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+The output will first show the `ranking_rationale` generated by the agent's LLM, followed by the list of recommended recipes, including their title, description, and cuisine labels.
+
+<details>
+  <summary>Example Response (will vary based on persona/interactions and LLM):</summary>
+
+```
+The user enjoys Italian and Thai cuisines and has shown a strong preference for flavorful dishes like Coq au Vin, Chicken Tikka Masala, Fiorentina Steak, and Duck Confit (rating it 1.0). They also like chocolate and salmon. They dislike mushrooms and okra.
+
+The recommendations prioritize recipes that align with these preferences:
+1.  **Thai Green Curry with Salmon:** Combines favorite cuisine (Thai) with a liked ingredient (salmon).
+2.  **Classic Lasagna Bolognese:** A staple Italian dish, fitting the preferred cuisine.
+3.  **Pan-Seared Duck Breast with Cherry Sauce:** Similar rich flavors to the highly-rated Duck Confit.
+4.  **Spicy Thai Basil Chicken (Pad Krapow Gai):** Another popular Thai dish, likely flavorful.
+5.  **Chocolate Lava Cakes:** Directly addresses the user's liking for chocolate.
+... (and so on)
+
+Recipes containing mushrooms or okra, or those strongly associated with disliked items (like the Pappardelle with Porcini rated -1.0), are ranked lower or excluded.
+
+*****0*****
+Thai Green Curry with Salmon
+Flaky salmon simmered in a rich and aromatic green curry sauce with coconut milk and vegetables.
+thai
+*****1*****
+Classic Lasagna Bolognese
+Layers of pasta, rich meat sauce, béchamel, and cheese baked to perfection.
+italian
+*****2*****
+Pan-Seared Duck Breast with Cherry Sauce
+Crispy skin duck breast served with a sweet and tangy cherry reduction sauce.
+french
+*****3*****
+Spicy Thai Basil Chicken (Pad Krapow Gai)
+A popular Thai street food dish featuring minced chicken stir-fried with holy basil, chilies, and garlic.
+thai
+*****4*****
+Chocolate Lava Cakes
+Individual molten chocolate cakes with a gooey, warm center.
+dessert
+...
+```
+
+</details>
+
+## Summary
+
+This guide demonstrated how to build a personalized food recommendation service using Weaviate's Personalization Agent. We covered:
+
+- Setting up a Weaviate Cloud instance and the Python client.
+- Defining a "Recipes" collection with descriptive properties.
+- Importing data into the collection.
+- Creating a Personalization Agent linked to the collection and defining user profile properties (`user_properties`).
+- Adding user profiles (`personas`) with specific preferences.
+- Recording user interactions with items, using weighted scores.
+- Retrieving personalized recommendations using `get_objects`, leveraging LLM-based re-ranking (`use_agent_ranking=True`) to get tailored results and explanations (`ranking_rationale`).
+
+The Personalization Agent allows you to easily add sophisticated, personalized retrieval capabilities to your applications built on Weaviate.
+
+## Further resources
+
+- [Weaviate Agents - Personalization Agent](https://www.google.com/search?q=./index.md)
+- [Blog Post: Introducing the Weaviate Personalization Agent](https://www.google.com/search?q=) (Link missing in source, add if available)
+
+## Questions and feedback
+
+:::info Changelog and feedback
+The official changelog for Weaviate Agents can be [found here](https://weaviateagents.featurebase.app/changelog). If you have feedback, such as feature requests, bug reports or questions, please [submit them here](https://weaviateagents.featurebase.app/), where you will be able to see the status of your feedback and vote on others' feedback.
+:::
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback />
