@@ -233,6 +233,13 @@
     "team": "developer-growth"
   },
   {
+    "name": "Daniela Costa",
+    "title": "Marketing Campaign Coordinator",
+    "photo": "Daniela-Costa.jpg",
+    "linkedin": "daniela-costa",
+    "team": "marketing"
+  },
+  {
     "name": "Danielle Nugent",
     "title": "Talent Acquisition Manager",
     "photo": "Danielle.jpg",
@@ -576,6 +583,13 @@
     "photo": "Mary-Newhauser.jpg",
     "linkedin": "mary-newhauser-02273551/",
     "team": "developer-growth"
+  },
+  {
+    "name": "Michael Choueri",
+    "title": "IT Operations Manager",
+    "photo": "Michael-Choueri.jpg",
+    "linkedin": "michael-choueri-66aaa254",
+    "team": "delivery"
   },
   {
     "name": "Michael Morgan",
