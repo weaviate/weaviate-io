@@ -265,13 +265,13 @@ In addition to the response objects, the response may include the following info
 
 :::
 
-<!-- ### Usage limits
+### Usage limits
 
-TODO - check if there is a usage limit
+At this stage, there is a limit of 100 Personalization Agent queries per day per Weaviate Cloud [organization](/developers/wcs/platform/users-and-organizations.mdx#organizations) where the agent-based reranking is used.
 
-At this stage, there is a limit of 100 Query Agent queries per day per Weaviate Cloud [organization](/developers/wcs/platform/users-and-organizations.mdx#organizations).
+There are no limits on the number of queries per day for the vector search only (i.e. without the agent-based reranking).
 
-This limit may change in future versions of the Query Agent. -->
+This limit may change in future versions of the Personalization Agent.
 
 ## Questions and feedback
 
