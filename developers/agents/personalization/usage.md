@@ -198,6 +198,16 @@ As a minimum, simply provide the user ID to the Personalization Agent. The Perso
     </TabItem>
 </Tabs>
 
+### Ranking options
+
+The Personalization Agent uses a combination of vector search and LLM-based ranking to provide personalized recommendations. The vector search is based on our analysis of the set of interactions for the user persona. The LLM can optionally be used to rerank the results.
+
+You can use it in one of three modes:
+
+- **Agent-based reranking**: The Personalization Agent will first perform a vector search to retrieve a set of items, and then rerank them using an LLM, based on the user persona. This is the default mode.
+- **Agent-based reranking with custom instructions**: If a custom instruction is provided, the Personalization Agent will use this instruction to rerank the results. This allows you to customize the ranking process based on your specific needs.
+- **Vector search only**: If you retrieve results without using the agent ranking, the results will be based solely on the vector search.
+
 ### Query options
 
 There are a number of options available to customize the query.
