@@ -139,7 +139,7 @@ agent.add_persona(
 
 # 4.2 Add Interactions
 # START AddInteractions
-from weaviate.agents.personalization import PersonaInteraction
+from weaviate.agents.classes import PersonaInteraction
 from weaviate.collections.classes.filters import Filter
 
 
@@ -193,34 +193,24 @@ agent.add_interactions(interactions=interactions)
 
 # 4.3 Get Recommendations
 # START GetRecommendations
-def get_recommendations(agent, persona_id):
-    """Gets and prints personalized recommendations for a given persona."""
-    print(f"\nGetting recommendations for persona {persona_id}...")
-    try:
-        response = agent.get_objects(persona_id, limit=10, use_agent_ranking=True)
+print(f"\nGetting recommendations for persona {persona_id}...")
+response = agent.get_objects(persona_id, limit=10, use_agent_ranking=True)
 
-        print("\nRanking Rationale:")
-        print(
-            response.ranking_rationale
-            if response.ranking_rationale
-            else "No rationale provided."
-        )
-        print("\nRecommended Recipes:")
-        if response.objects:
-            for i, obj in enumerate(response.objects):
-                print(f"----- Recommendation {i+1} -----")
-                print(f"  Title: {obj.properties.get('title', 'N/A')}")
-                print(f"  Cuisine: {obj.properties.get('labels', 'N/A')}")
-                print(f"  UUID: {obj.uuid}")
-        else:
-            print("No recommendations found.")
-    except Exception as e:
-        print(f"Error getting recommendations: {e}")
-
-
-get_recommendations(agent, persona_id)
+print("\nRanking Rationale:")
+print(
+    response.ranking_rationale
+    if response.ranking_rationale
+    else "No rationale provided."
+)
+print("\nRecommended Recipes:")
+if response.objects:
+    for i, obj in enumerate(response.objects):
+        print(f"----- Recommendation {i+1} -----")
+        print(f"  Title: {obj.properties.get('title', 'N/A')}")
+        print(f"  Cuisine: {obj.properties.get('labels', 'N/A')}")
+        print(f"  UUID: {obj.uuid}")
+else:
+    print("No recommendations found.")
 # END GetRecommendations
 
-print("\nClosing Weaviate client connection.")
 client.close()
-print("Client closed.")
