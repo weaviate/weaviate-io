@@ -243,13 +243,6 @@ response = agent.get_objects(persona_id,
 The response we get from the agent not only includes the re-ranked 50 of the most relevant objects for the user, but also the agents `ranking_rationale` as to why the ranking was done as such. For example, the ranking for our `jane_doe` may look like the following:
 
 ```python
-response = agent.get_objects(persona_id,
-                             limit=50, 
-                             use_agent_ranking=True,
-                             instruction="""Your task is to recommend a diverse set of dishes to the user 
-                             taking into account their likes and dislikes. It's especially important to avoid their dislikes.""",
-)
-
 print(response.ranking_rationale)
 for i, obj in enumerate(response.objects[:10]):
     print(f"*****{i}*****")
