@@ -6,9 +6,9 @@ image: og/docs/howto.jpg
 # tags: ['best practices', 'how-to']
 ---
 
-# AI-based Weaviate code generation
+# AI-based Weaviate code generation (vibe-coding)
 
-Generative AI models are becoming more capable at writing code. While this can speed up development, it is also subject to some pitfalls, such as hallucinations due to out-of-date, or missing information in the training data.
+Generative AI models are becoming more capable at writing code. This practice is often referred to as "vibe-coding" or "AI-assisted coding". While this can speed up development, it is also subject to some pitfalls, such as hallucinations due to out-of-date, or missing information in the training data.
 
 Here are some tips for writing Weaviate client library code with generative AI models and tooling, based on our anecdotal experience.
 
@@ -22,7 +22,7 @@ As of April 2025, we've seen these models perform well for code generation. (Ass
 
 - Anthropic `claude-3-7-sonnet-20250219`
 - Google `gemini-2.5-pro-exp-03-25`
-- OpenAI `gpt-4.5-preview-2025-02-27`
+- OpenAI `gpt-4.5-preview-2025-02-27` /
 
 If you are using the Python client library, we recommend that you try out one of the above models to see if it performs well for your use case.
 
@@ -50,7 +50,7 @@ If the above code examples are not sufficient, you can try the following:
 - Use the `Ask AI` feature in the Weaviate Documentation to find examples of how to perform specific tasks. Then, use the provided code in your prompt.
 
 :::tip Small models
-Generally, smaller models don't perform as well at zero-shot code generation tasks. But we have found Anthropic's `claude-3-5-haiku-20241022` to perform well when provided with in-context examples.
+Generally, smaller models don't perform as well at zero-shot code generation tasks. But we have found Anthropic's `claude-3-5-haiku-20241022` and OpenAI's `gpt-4.1` / `gpt-4.1-mini` models to be quite good at generating code when provided with in-context examples.
 :::
 
 ## General tips
