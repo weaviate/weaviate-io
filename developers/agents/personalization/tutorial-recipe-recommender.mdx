@@ -1,7 +1,7 @@
 ---
-title: Build a Food Recommender with Personalization Agents
-sidebar_label: 'Tutorial: Food Recommender'
-description: Learn how to build a simple food recommender service with the Weaviate Personalization Agent.
+title: Build a recipe recommender with the Personalization Agent
+sidebar_label: 'Tutorial: Recipe Recommender'
+description: Learn how to build a simple recipe recommender service with the Weaviate Personalization Agent.
 sidebar_position: 40
 image: og/docs/tutorials.jpg
 # tags: ['personalization', 'recommendation']
@@ -70,12 +70,11 @@ Now, let's get started by setting up a Weaviate Cloud instance that we will use 
 
 ### 1.1 Create a Weaviate Cloud cluster
 
-1.  Create a [free Sandbox cluster](/developers/wcs/manage-clusters/create#sandbox-clusters) in Weaviate Cloud.
-2.  Enable the 'Embedding' service in your cluster settings. By default, this uses the `Snowflake/snowflake-arctic-embed-l-v2.0` model via [Weaviate Embeddings](https://weaviate.io/developers/weaviate/model-providers/weaviate).
-3.  Take note of the `REST Endpoint` (URL) and `Admin` API key to connect to your cluster. (for more info, check out the [quickstart](/developers/wcs/quickstart#22-connect-to-your-weaviate-cloud-instance))
+1. Create a [free Sandbox cluster](/developers/wcs/manage-clusters/create#sandbox-clusters) in Weaviate Cloud.
+1. Take note of the `REST Endpoint` and `Admin` API key to connect to your cluster. (for more info, check out the [quickstart](/developers/wcs/quickstart#22-connect-to-your-weaviate-cloud-instance))
 
 :::tip
-Using [Weaviate Embeddings](https://weaviate.io/developers/weaviate/model-providers/weaviate) means you don't need separate API keys for external embedding providers for this tutorial. <br/><br/>
+In this tutorial, we are using the [Weaviate Embeddings](../../weaviate/model-providers/weaviate) service as the vectorizer, so you do not have to provide any extra keys for external embedding providers. Weaviate Embeddings uses the `Snowflake/snowflake-arctic-embed-l-v2.0` as the default embedding model.<br/><br/>
 If you want to use another vectorizer, check out the list of supported [model providers](../../weaviate/model-providers/index.md).
 :::
 
@@ -111,7 +110,7 @@ import ForcePipInstall from '../_includes/_force_pip_install.mdx';
 
 ### 1.3 Connect to your instance
 
-Now, you can connect to your Weaviate Cloud instance using the URL and API key from the first step:
+Now, you can finally connect to your Weaviate Cloud instance with the parameters from the first step:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -124,7 +123,7 @@ Now, you can connect to your Weaviate Cloud instance using the URL and API key f
   </TabItem>
 </Tabs>
 
-After running this snippet, you should see the message `Client is ready!` printed out, which means you have successfully connected to your instance.
+After running this snippet, you should see the message `True` printed out, which means that you have successfully connected to your instance.
 
 ## Step 2: Prepare the Collection
 
@@ -148,7 +147,7 @@ import WeaviateAgentsPersonalizationFoodDataset from '/developers/agents/_includ
 </div>
 <br />
 
-For the collection `Recipes`, we will manually define the properties and include descriptions. While `auto-schema` is an option, providing explicit descriptions helps the Personalization Agent (especially the underlying LLM, when used for re-ranking) understand the context of your data better.
+For the collection `Recipes`, we will manually define the properties and include descriptions. While using [`auto-schema`](../../weaviate/config-refs/schema/index.md#auto-schema) is an option, providing explicit descriptions helps the Personalization Agent (especially the underlying LLM, when used for re-ranking) understand the context of your data better.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -176,7 +175,7 @@ Now, we can import the recipe data ([Recipes](https://huggingface.co/datasets/we
   </TabItem>
 </Tabs>
 
-We can check the total number of imported items using an aggregation query:
+By calling `len()` on our collections, we can check that the import has successfully concluded and see what the size of our collections is:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -322,7 +321,7 @@ dessert
 
 This guide demonstrated how to build a personalized food recommendation service using Weaviate's Personalization Agent. We covered:
 
-- Setting up a Weaviate Cloud instance and the Python client.
+- Setting up a Weaviate Cloud instance with the Python client.
 - Defining a "Recipes" collection with descriptive properties.
 - Importing data into the collection.
 - Creating a Personalization Agent linked to the collection and defining user profile properties (`user_properties`).
@@ -334,8 +333,7 @@ The Personalization Agent allows you to easily add sophisticated, personalized r
 
 ## Further resources
 
-- [Weaviate Agents - Personalization Agent](https://www.google.com/search?q=./index.md)
-- [Blog Post: Introducing the Weaviate Personalization Agent](https://www.google.com/search?q=) (Link missing in source, add if available)
+- [Weaviate Agents - Personalization Agent](./index.md)
 
 ## Questions and feedback
 
