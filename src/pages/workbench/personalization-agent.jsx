@@ -41,16 +41,16 @@ export default function QueryPage() {
                   <h1>{app.name}</h1>
                   <p>{app.description}</p>
                   <div className={styles.installButtons}>
-                    {app.released === 'no' ? (
+                    {app.released === 'yes' ? (
                       <Link to="https://events.weaviate.io/weaviate-agents">
                         <button className={styles.installButton}>
                           Sign up for updates
                         </button>
                       </Link>
                     ) : (
-                      <Link to="https://console.weaviate.cloud/">
+                      <Link to="/developers/agents/personalization/usage">
                         <button className={styles.installButton}>
-                          Open in Weaviate Cloud
+                          Public Preview
                         </button>
                       </Link>
                     )}
@@ -77,7 +77,7 @@ export default function QueryPage() {
                     <h3>Overview</h3>
 
                     <p>
-                      Weaviate’s <strong>Personalization Agent</strong>learns
+                      Weaviate’s <strong>Personalization Agent</strong> learns
                       user behavior and can personalize any experience. 
                     </p>
                     <ul>
@@ -102,7 +102,12 @@ export default function QueryPage() {
                   <div className={styles.additionalInfo}>
                     <h3>Additional details</h3>
                     <p>
-                      Availability: <strong>Coming Soon</strong>
+                      Availability:{' '}
+                      <Link to="/developers/agents/personalization/usage">
+                        <strong>
+                          <u>Public Preview in Weaviate Cloud</u>
+                        </strong>
+                      </Link>
                     </p>
                   </div>
                 </div>
