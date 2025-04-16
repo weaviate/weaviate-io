@@ -160,7 +160,8 @@
     "languages": ["English", "Spanish", "French", "German"],
     "url": "/product/personalization-agent",
     "released": "no",
-    "comingsoon": "yes"
+    "privatePreview": "yes",
+    "ppLink": "/developers/agents/personalization/usage"
   },
   {
     "id": "10",
