@@ -1,62 +1,54 @@
 [
   {
-    "question": "What's an AIU?",
-    "answer": "An AI Unit (AIU) is a Weaviate-specific unit that can be applied to hot, warm, and cold storage tiers and compute costs. AIUs enable customers to better monitor usage and improve budgeting. For more information on AIUs and Enterprise Cloud pricing, <a href=\"http://events.weaviate.io/pricing-download\" target=\"_blank\">read more here</a>."
+    "question": "What is Weaviate?",
+    "answer": "Weaviate is an AI-native vector database that makes it easy for developers of all levels to build AI applications. Our customers and open source community use us to power search and generative AI use cases like semantic and hybrid search, RAG, chatbots, and agents."
   },
   {
-    "question": "What can I use AIUs for?",
-    "answer": "AIUs are currently only applicable to Weaviate Enterprise Cloud. In the future, we will introduce AIU pricing to Weaviate Serverless Cloud."
+    "question": "What types of use cases does Weaviate support?",
+    "answer": "Weaviate supports AI-first use cases including vector and hybrid search, recommendations, question-answer systems, retrieval augmented generation including chatbots and copilots, and agents."
   },
   {
-    "question": "Will Weaviate Serverless Cloud Support AIUs?",
-    "answer": "AIUs are currently only applicable to Weaviate Enterprise Cloud. In the future, we will introduce AIU pricing to Weaviate Serverless Cloud."
+    "question": "What is hybrid search?",
+    "answer": "Hybrid search is a technique that combines multiple search algorithms to improve the accuracy and relevance of search results. It uses the best features of both keyword-based search algorithms with vector search techniques. By leveraging the strengths of different algorithms, it provides a more effective search experience for users."
   },
   {
-    "question": "Can I move tenants to different storage tiers?",
-    "answer": "Currently, the ability to move tenants between hot, warm, and cold storage is only available if you are using Weaviate Enterprise Cloud or self-hosting Weaviate. In the near future, we will make this functionality available in Weaviate Serverless Cloud."
-  },
-  {
-    "question": "What is a 'dimension' in this context?",
-    "answer": "A vector 'dimension' refers to one element in a vector representing an object in a vector database. The total number of these elements is the vector's dimensionality."
-  },
-  {
-    "question": "Why is the pricing based on the total number of dimensions?",
-    "answer": "The total count of vector dimensions is a good indicator of the resources required. Therefore we adopt is as a fair way to balance actual resource usage with costs incurred."
-  },
-  {
-    "question": "How can I determine the total number of dimensions?",
-    "answer": "The total number of dimensions can be determined by multiplying the object count (of those with vectors) with the vector dimensionality."
-  },
-  {
-    "question": "What are the differences between 'Performance' and 'Compression' storage types?",
-    "answer": "This sets whether to use vector compression, using a technique called product quantization. Enabling compression will effectively reduce dimensionality and therefore prices. However, it may reduce performance & recall. <a href=\"https://weaviate.io/developers/weaviate/concepts/vector-index#hnsw-with-product-quantization-pq\" target=\"_blank\">Read more</a>."
-  },
-  {
-    "question": "When Compression is selected, how are the total number of dimensions determined?",
-    "answer": "When a Compression storage type is used, we take the the total number of 'segments' in place of the number of dimensions. <a href=\"https://www.weaviate.io/developers/weaviate/concepts/vector-index#segments\" target=\"_blank\">Read more</a>."
+    "question": "How is Weaviate priced?",
+    "answer": "Weaviate is open source and can be used free of charge. When you are ready to move to production and want to use a managed service, we offer the ability to have us manage everything for you in the Weaviate Cloud or to have us manage Weaviate for you in your VPC. We also offer support contracts for open source users."
   },
   {
     "question": "Is the open source Weaviate the same as that used on Weaviate Cloud?",
-    "answer": "Yes! Weaviate Cloud (WCD) runs the open-source Weaviate library. The differences are in where it runs (i.e. Weaviate Cloud is managed by us as a SaaS) and in licensing (SLA tiers as opposed to the open-source BSD3 license)."
-  },
-  {
-    "question": "Are discounts available for non-profits, startups, or students?",
-    "answer": "Yes, please reach out to us at <a href='mailto:hello+discount@weaviate.io'>hello+discount@weaviate.io</a>"
+    "answer": "Yes! Weaviate Cloud runs the open-source Weaviate library. The differences are in where it runs (i.e. Weaviate Cloud is managed by us as a SaaS) and in licensing (SLA tiers as opposed to the open-source BSD3 license)."
   },
   {
     "question": "Is Weaviate Cloud SOC2 compliant?",
-    "answer": "Yes, for more info email <a href=\"mailto:infosec@weaviate.io\">infosec@weaviate.io</a>"
+    "answer": "Yes"
   },
   {
-    "question": "Do I pay for data objects without embeddings?",
-    "answer": "No, storage of data objects without vector embeddings is on us."
+    "question": "Are there any features offered in Weaviate Cloud that are not available in the open-source version?",
+    "answer": "Weaviate Embeddings and Weaviate Agents are hosted services only available in Weaviate Cloud."
   },
   {
-    "question": "Which Weaviate modules are available?",
-    "answer": "Weaviate modules based on inference APIs are automatically enabled in the cloud service."
+    "question": "What are Weaviate Embeddings?",
+    "answer": "Weaviate Embeddings are a service that allows you to generate embeddings directly within the Weaviate environment, reducing latency and the need to manage multiple APIs or vendors."
   },
   {
-    "question": "Is Weaviate Cloud compatible with models of various embedding sizes?",
-    "answer": "Yes."
+    "question": "What are Weaviate Agents?",
+    "answer": "Weaviate Agents are pre-built, agentic services designed for specific tasks within Weaviate Cloud, leveraging LLMs and prompts to interact with data, simplifying data engineering and AI development workflows. They are experts in Weaviate-specific data tasks, offering solutions for querying, transforming, and personalizing data."
+  },
+  {
+    "question": "How does Multi-tenancy work in Weaviate?",
+    "answer": "If you want to use a single Weaviate cluster to store data that is segregated from other data in the cluster, use multi-tenancy. When multi-tenancy is enabled, Weaviate uses partition shards to store each tenant's data.\n\n Sharding has several benefits: \n - Data isolation \n - Fast, efficient querying\n- Easy and robust setup and clean up\n\nMulti-tenancy is especially useful when you want to store data for multiple customers, or when you want to store data for multiple projects."
+  },
+  {
+    "question": "Which indexing algorithm does Weaviate use?",
+    "answer": "Weaviate uses HNSW, Flat Index, or a combination of the two called Dynamic Index."
+  },
+  {
+    "question": "What type of data can be stored in Weaviate?",
+    "answer": "Weaviate stores both objects and vectors. This allows for combining vector search with structured filtering."
+  },
+  {
+    "question": "Does Weaviate offer any cost-savings constructs?",
+    "answer": "Yes, Weaviate’s flexible architecture can be adapted to help you optimize your setup for your use case. Our vector compression techniques including Product Quantization, Binary Quantization, and Scalar Quantization enable you to use a smaller memory footprint. For multi-tenant use cases, flexible storage tiers allow you to offload tenants to cold storage as needed."
   }
 ]

@@ -12,7 +12,7 @@ export default function Integrations() {
         <div className="container">
           <div className={styles.box}>
             <div className={styles.right}>
-              <h2>100+ Powerful Integrations</h2>
+              <h2>Integrations</h2>
               <p>
                 With Weaviate, you can bring your own vectors or choose one of
                 our out-of-the-box modules with support for vectorization. You

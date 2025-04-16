@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styles from './styles.module.scss';
 import faq from './faq.json';
-import faqByoc from './faqByoc.json';
 
 export default function PricingFAQ(props) {
   let faqData = faq;
@@ -40,6 +39,7 @@ export default function PricingFAQ(props) {
               {expandedQuestion === index && (
                 <div>
                   <p
+                    className={styles.answers}
                     dangerouslySetInnerHTML={{
                       __html: item.answer,
                     }}

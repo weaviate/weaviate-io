@@ -38,6 +38,10 @@
   transition: all 0.1s ease-in-out;
 }
 
+.answers {
+  white-space: break-spaces;
+}
+
 .box:hover,
 :focus {
   .priceHr {
@@ -99,6 +103,7 @@
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .arrow {
