@@ -170,5 +170,29 @@
       line-height: 150%; /* 1.5rem */
       text-decoration-line: underline;
     }
+
+    .avatar {
+      background-image: url('/img/site/antoni-rosinol-stack-ai.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      border-radius: 50%;
+      width: 10.75rem;
+      height: 10.75rem;
+
+      flex-shrink: 0;
+    }
+    .name {
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+
+    .quote {
+      color: #130c49;
+      font-family: Inter;
+      font-size: 1.125rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 157.33%; /* 1.76994rem */
+    }
   }
 }

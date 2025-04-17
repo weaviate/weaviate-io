@@ -83,15 +83,6 @@ export default function Study() {
                 new features.
               </li>
             </ul>
-            <p>
-              <strong>
-                "The biggest benefit of using Weaviate isn't just the technology
-                – it's the team behind it. The level of support we receive
-                through their engineering team and support channels has been
-                company-saving help,"
-              </strong>{' '}
-              says Rosinol.
-            </p>
             <h2>What's Next?</h2>
             <p>
               As Stack AI continues to grow, the team relies on Weaviate's
@@ -100,12 +91,6 @@ export default function Study() {
               their rapid development pace while ensuring reliable service for
               their enterprise customers.
             </p>
-            <p>
-              <span className={styles.quote}>
-                “Stack AI is possible thanks to Weaviate.”
-              </span>
-            </p>
-            <p>Antoni Rosinol, CEO of Stack AI</p>
           </div>
         </div>
         <div className={styles.rightContainer}>
@@ -146,6 +131,17 @@ export default function Study() {
               a Y Combinator project to a Series A funded startup with over 100
               enterprise customers.
             </p>
+          </div>
+          <div className={styles.bottomSection}>
+            <div className={styles.avatar}></div>
+            <p className={styles.quote}>
+              "The biggest benefit of using Weaviate isn't just the technology –
+              it's the team behind it. The level of support we receive through
+              their engineering team and support channels has been
+              company-saving help.”
+            </p>
+            <p className={styles.name}>Antoni Rosinol</p>
+            <span>Co-founder of Stack AI</span>
           </div>
         </div>
       </div>
