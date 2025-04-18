@@ -9,8 +9,9 @@ export default function StudyHeader() {
       <div className="container">
         <div className={styles.box}>
           <div className={styles.left}>
-            <span>Contact</span>
-            <h1>Contact Weaviate to continue your AI journey</h1>
+            <h1>
+              More than just a vector database—a launchpad for AI innovation
+            </h1>
             <div className={styles.headerBox}>
               <div className={styles.buttons}>
                 <Link to="#contact" className={styles.buttonLight}>
