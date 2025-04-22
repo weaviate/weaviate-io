@@ -112,7 +112,7 @@ export default function Study() {
             <h3>Unlocking Enterprise-readiness</h3>
             <p>
               Weaviate's flexible deployment options with their Enterprise Cloud
-              offering enabled Stack AI to meet strict security and compliance
+              offering allowed Stack AI to meet strict security and compliance
               requirements, enabling them to support enterprise customers in
               highly regulated industries.
             </p>
