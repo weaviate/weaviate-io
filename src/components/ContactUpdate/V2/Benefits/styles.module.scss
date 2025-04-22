@@ -1,0 +1,170 @@
+:root {
+  --darkColor: #130c49;
+  --subColor: #8396b1;
+  --lightColor: ##f7f9fd;
+  --headerFont: 'Plus Jakarta Sans';
+  --paraFont: 'Inter';
+}
+
+.headerSecurity {
+  background: #ddebf2;
+}
+
+.container {
+  padding: 3rem;
+
+  @media screen and (max-width: 1400px) {
+    padding: 2rem 3rem;
+  }
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 40px;
+
+  h2 {
+    color: #130c49;
+    text-align: center;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%; /* 2.8rem */
+    width: 50%;
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+    }
+  }
+
+  p {
+    width: 50%;
+    color: #130c49;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 1.575rem */
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+    }
+  }
+}
+
+.bentoBar {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 0px;
+  }
+}
+
+.bentoGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.topHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  span {
+    color: #8396b1;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 1.4rem */
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%; /* 2.7rem */
+  }
+}
+
+.iconGallery {
+  display: flex;
+  flex-direction: row;
+}
+
+.iconBox {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+
+  .title {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .icon {
+    width: 2.3125rem;
+    height: 2.3125rem;
+    flex-shrink: 0;
+    background: url('/img/site/scalability-icon.svg');
+  }
+  h3 {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 130%; /* 1.4625rem */
+    margin: 0;
+    width: 56%;
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+    }
+  }
+
+  span {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 1.225rem */
+  }
+}
+
+.bento00 {
+  width: 36.0625rem;
+  height: 28.75rem;
+  flex-shrink: 0;
+  border-radius: 1.25rem;
+  background: url('/img/site/slide-bg-grain2.png');
+  padding: 40px;
+
+  .bentoImage {
+    width: 30.42919rem;
+    height: 21.38444rem;
+    flex-shrink: 0;
+    background: url('/img/site/vision-table.png');
+    background-size: cover;
+    margin: auto;
+  }
+}
