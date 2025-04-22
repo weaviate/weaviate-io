@@ -157,15 +157,21 @@
   height: 28.75rem;
   flex-shrink: 0;
   border-radius: 1.25rem;
-  background: url('/img/site/slide-bg-grain2.png');
+
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #130c49 100%),
+    url('/img/site/slide-bg-grain2.png');
+  background-size: cover;
+  background-position-y: bottom;
   padding: 40px;
 
   .bentoImage {
     width: 30.42919rem;
-    height: 21.38444rem;
+    height: 24.38444rem;
     flex-shrink: 0;
-    background: url('/img/site/vision-table.png');
-    background-size: cover;
+    background: url('/img/site/weaviate-vision-circle-updated.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     margin: auto;
   }
 }

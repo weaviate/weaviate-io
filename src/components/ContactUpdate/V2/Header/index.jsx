@@ -9,7 +9,6 @@ export default function StudyHeader() {
       <div className="container">
         <div className={styles.box}>
           <div className={styles.left}>
-            <span>CONTACT</span>
             <h1>
               More than just a vector database—a launchpad for AI innovation
             </h1>
