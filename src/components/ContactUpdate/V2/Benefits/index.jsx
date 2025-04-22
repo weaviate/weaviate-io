@@ -11,9 +11,7 @@ export default function Benefits() {
           <div className={styles.bentoGrid}>
             <div className={styles.topHeader}>
               <span>why build with weaviate</span>
-              <h2>
-                More than just a vector database —a launchpad for AI innovation
-              </h2>
+              <h2>The open source vector database developers love</h2>
             </div>
             <div className={styles.iconGallery}>
               <div className={styles.iconBox}>
