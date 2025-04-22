@@ -115,7 +115,7 @@ const config = {
               configuration: {
                 spec: {
                     // Last updated: 2025-02-15 TODO[g-despot] Update to correct openapi_docs branch
-                  url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs_v1-30/openapi-specs/schema.json',
+                  url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs_rearrange_deprecation/openapi-specs/schema.json',
                 },
                 hideModels: true,
                 // This feature currently broken - potentially fixed in: https://github.com/scalar/scalar/pull/1387
@@ -165,7 +165,7 @@ const config = {
                               'data-blockingmode': 'manual',
                               type: 'text/javascript',
                               async: true
-                              
+
                             },
                         },
                         // Add emailpig
@@ -275,7 +275,7 @@ const config = {
       referrerPolicy: 'strict-origin-when-cross-origin',
     },
 },
-       
+
                     ],
                 };
             },
@@ -496,7 +496,7 @@ const config = {
                         to: 'https://github.com/weaviate/weaviate',
                         position: 'right',
                     },
-                   
+
                     {
                         label: 'Try Now',
                         className: 'tryNow',
@@ -508,8 +508,8 @@ const config = {
                         className: 'loginButton',
                         to: '/contact',
                         position: 'right',
-                    }, 
-                    
+                    },
+
                     {
                         type: 'search',
                         position: 'right',
