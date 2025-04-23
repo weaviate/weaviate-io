@@ -15,4 +15,5 @@ Learn about how Weaviate integrates with these solutions:
 * [LangWatch](/developers/integrations/operations/langwatch)
 * [Nomic](/developers/integrations/operations/nomic/)
 * [Ragas](/developers/integrations/operations/ragas/)
+* [TruLens](/developers/integrations/operations/trulens/)
 * [Weights and Biases](/developers/integrations/operations/wandb/)
