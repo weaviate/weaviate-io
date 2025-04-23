@@ -504,5 +504,27 @@
     "programmingLanguage": "",
     "weaviateFeatures": "",
     "featured": false
+  },
+  {
+    "name": "TruLens",
+    "image": "/img/site/trulens-logo.png",
+    "link": "/developers/integrations/operations/trulens",
+    "description": "TruLens is an open source project for evaluating and tracking LLM applications",
+    "tags": [],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
+  },
+  {
+    "name": "AIMon",
+    "image": "/img/site/aimon-logo.png",
+    "link": "/developers/integrations/operations/aimon",
+    "description": "AIMon offers monitoring and reranking tools to evaluate, optimize, and improve LLM applications",
+    "tags": [],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
   }
 ]
