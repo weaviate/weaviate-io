@@ -19,11 +19,8 @@ export default function ContactPage() {
   return (
     <div className="custom-page noBG">
       <Head>
-        <title>Contact</title>
-        <meta
-          name="description"
-          content="We are here to help you with any questions you might have."
-        />
+        <title>Explore</title>
+        <meta name="robots" content="noindex, nofollow" />
       </Head>
       <MetaSEO img="og/content/contact.jpg" />
       <StickyHeader />

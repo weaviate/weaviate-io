@@ -26,7 +26,7 @@ export default function Benefits() {
               </div>
               <div className={styles.iconBox}>
                 <div className={styles.title}>
-                  <div className={styles.icon}></div>
+                  <div className={`${styles.icon} ${styles.icon02}`}></div>
                   <h3>Open source with flexible deployment</h3>
                 </div>
                 <span>
@@ -38,7 +38,7 @@ export default function Benefits() {
             <div className={styles.iconGallery}>
               <div className={styles.iconBox}>
                 <div className={styles.title}>
-                  <div className={styles.icon}></div>
+                  <div className={`${styles.icon} ${styles.icon03}`}></div>
                   <h3>Cost-performance optimization</h3>
                 </div>
                 <span>
@@ -48,7 +48,7 @@ export default function Benefits() {
               </div>
               <div className={styles.iconBox}>
                 <div className={styles.title}>
-                  <div className={styles.icon}></div>
+                  <div className={`${styles.icon} ${styles.icon04}`}></div>
                   <h3>Agents & embeddings</h3>
                 </div>
                 <span>

@@ -121,11 +121,24 @@
     justify-content: flex-start;
     align-items: center;
   }
+
   .icon {
     width: 2.3125rem;
     height: 2.3125rem;
     flex-shrink: 0;
     background: url('/img/site/scalability-icon.svg');
+  }
+
+  .icon02 {
+    background: url('/img/site/innovation-icon.svg');
+  }
+
+  .icon03 {
+    background: url('/img/site/research-icon.svg');
+  }
+
+  .icon04 {
+    background: url('/img/site/agents-icon.svg');
   }
   h3 {
     color: #130c49;
@@ -158,8 +171,7 @@
   flex-shrink: 0;
   border-radius: 1.25rem;
 
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #130c49 100%),
-    url('/img/site/slide-bg-grain2.png');
+  background-color: #130c49;
   background-size: cover;
   background-position-y: bottom;
   padding: 40px;
