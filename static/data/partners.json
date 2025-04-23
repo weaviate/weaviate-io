@@ -515,5 +515,16 @@
     "programmingLanguage": "",
     "weaviateFeatures": "",
     "featured": false
+  },
+  {
+    "name": "AIMon",
+    "image": "/img/site/aimon-logo.png",
+    "link": "/developers/integrations/operations/aimon",
+    "description": "AIMon offers monitoring and reranking tools to evaluate, optimize, and improve LLM applications",
+    "tags": [],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
   }
 ]
