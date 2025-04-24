@@ -62,7 +62,7 @@
   flex-direction: row;
   gap: 10px;
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 1150px) {
     flex-direction: column;
     gap: 40px;
     margin-bottom: 0px;
@@ -106,6 +106,11 @@
   display: flex;
   flex-direction: row;
   gap: 20px;
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    gap: 40px;
+  }
 }
 
 .iconBox {
@@ -176,6 +181,18 @@
   background-position-y: bottom;
   padding: 40px;
 
+  @media screen and (max-width: 1150px) {
+    width: 34.0625rem;
+    height: 28.75rem;
+
+    margin: auto;
+  }
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    height: auto;
+  }
+
   .bentoImage {
     width: 30.42919rem;
     height: 24.38444rem;
@@ -185,5 +202,15 @@
     background-repeat: no-repeat;
     background-position: center;
     margin: auto;
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      min-height: 24rem;
+      margin: auto;
+      height: auto;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
   }
 }

@@ -399,7 +399,6 @@
 .bento04 {
   width: 17.4375rem;
   height: 18.3125rem;
-
   border-radius: 1.25rem;
   background: #85e3bc;
   background-size: cover;
@@ -448,7 +447,7 @@
       }
 
       @media screen and (max-width: 500px) {
-        height: 9.25rem;
+        height: 6.25rem;
       }
     }
 
@@ -487,6 +486,14 @@
     background: url('/img/site/bento_kapa.png') !important;
     height: 7.25rem !important;
     border-radius: 10px;
+
+    @media screen and (max-width: 500px) {
+      height: 6.25rem !important;
+      width: 80% !important;
+      background-repeat: no-repeat !important;
+      background-size: contain !important;
+      border-radius: 10px;
+    }
   }
 }
 
@@ -637,7 +644,7 @@
   }
   .bento02,
   .bento03 {
-    width: 20rem;
+    width: 30rem;
   }
   .bento05,
   .bento06 {
