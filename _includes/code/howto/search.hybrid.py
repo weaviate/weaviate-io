@@ -154,7 +154,7 @@ assert response.objects[0].collection == "JeopardyQuestion"
 # ===================================
 
 # HybridWithAlphaPython
-client.collections.get("JeopardyQuestion")
+jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
     query="food",
     # highlight-start
