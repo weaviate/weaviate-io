@@ -202,11 +202,17 @@ You can use the workflow ID to monitor the status of each transformation operati
 
 ### Usage limits
 
-At this stage, there is a limit of 10,000 Transformation Agent operations per day per Weaviate Cloud [organization](/developers/wcs/platform/users-and-organizations.mdx#organizations).
+At this stage, there is a limit of 50,000 Transformation Agent operations per day per Weaviate Cloud [organization](/developers/wcs/platform/users-and-organizations.mdx#organizations).
 
 Note that this limit is per individual operations. In other words, running a Transformation Agent with 4 operations on a collection of 2,500 objects would max out the limit for that day.
 
 This limit may change in future versions of the Transformation Agent.
+
+### Model input context length
+
+Due to the limitations of the underlying models, the input context length for a transformation operation is limited. We recommend that the input context length is kept below ~25000 characters.
+
+In other words, the total length of the input context (the properties used as context) and the instructions should be kept below this limit. If the model input context length is exceeded, the transformation operation will fail.
 
 ### Race condition on multiple operations
 
