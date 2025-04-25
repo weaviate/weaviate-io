@@ -61,6 +61,7 @@
   display: flex;
   flex-direction: row;
   gap: 10px;
+  justify-content: center;
 
   @media screen and (max-width: 900px) {
     flex-direction: column;
@@ -102,7 +103,7 @@
   justify-content: space-around;
   transition: all 0.3s ease-in-out;
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 1050px) {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #7770e4 100%),
       url('/img/site/morningstar_bento.png');
     background-size: cover;
@@ -138,7 +139,7 @@
         width: 50%;
       }
 
-      @media screen and (max-width: 900px) {
+      @media screen and (max-width: 1050px) {
         width: 100%;
         color: #ffffff;
       }
@@ -298,11 +299,6 @@
   @media screen and (max-width: 900px) {
     background-size: cover;
     background-position-y: top;
-  }
-
-  @media screen and (max-width: 700px) {
-    background-size: contain;
-    background-position-y: bottom;
     background-repeat: no-repeat;
   }
 
@@ -652,6 +648,23 @@
   }
 }
 
+@media (max-width: 1040px) {
+  .bento01,
+  .bento04 {
+    width: 25rem;
+  }
+  .bento02,
+  .bento03 {
+    width: 25rem;
+  }
+  .bento05,
+  .bento06,
+  .bentoSmall {
+    width: 100%;
+    height: auto;
+  }
+}
+
 @media (max-width: 960px) {
   .bento01,
   .bento04 {
@@ -685,7 +698,7 @@
   }
 }
 
-@media (max-width: 880px) {
+@media (max-width: 920px) {
   .bento01,
   .bento04 {
     width: 100%;
@@ -703,9 +716,14 @@
   }
 }
 @media (max-width: 795px) {
-  .bento01,
+  .bento01 {
+    width: 100%;
+  }
   .bento04 {
     width: 100%;
+    width: 100%;
+    height: auto;
+    max-height: 22rem;
   }
   .bento02 {
     width: 100%;
