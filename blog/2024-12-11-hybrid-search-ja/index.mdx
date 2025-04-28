@@ -158,7 +158,7 @@ client.collections.create(
 # Get a collection object for "ClothingItems"
 clothes = client.collections.get("ClothingItems")
 
-with clothes.batch.dynamic() as batch:
+with clothes.batch.fixed_size(batch_size=200) as batch:
     for d in data:
         batch.add_object({
             "item": d[0],

@@ -214,7 +214,7 @@ for obj in objects:
     collection.data.insert(properties=obj)
 
 # ✅ Do this
-with collection.batch.dynamic() as batch:
+with collection.batch.fixed_size(batch_size=200) as batch:
     for obj in objects:
         batch.add_object(properties=obj)
 ```

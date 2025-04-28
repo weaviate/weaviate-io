@@ -43,7 +43,7 @@ data_rows = [
 collection = client.collections.get("MyCollection")
 
 # highlight-start
-with collection.batch.dynamic() as batch:
+with collection.batch.fixed_size(batch_size=200) as batch:
     for data_row in data_rows:
         batch.add_object(
             properties=data_row,
@@ -168,7 +168,7 @@ data_rows = [{"title": f"Object {i+1}"} for i in range(5)]
 collection = client.collections.get("MyCollection")
 
 # highlight-start
-with collection.batch.dynamic() as batch:
+with collection.batch.fixed_size(batch_size=200) as batch:
     for data_row in data_rows:
         obj_uuid = generate_uuid5(data_row)
         batch.add_object(
@@ -204,7 +204,7 @@ vectors = [[0.1] * 1536 for i in range(5)]
 collection = client.collections.get("MyCollection")
 
 # highlight-start
-with collection.batch.dynamic() as batch:
+with collection.batch.fixed_size(batch_size=200) as batch:
     for i, data_row in enumerate(data_rows):
         batch.add_object(
             properties=data_row,
@@ -266,7 +266,7 @@ body_vectors = [[0.34] * 1536 for _ in range(5)]
 collection = client.collections.get("MyCollection")
 
 # highlight-start
-with collection.batch.dynamic() as batch:
+with collection.batch.fixed_size(batch_size=200) as batch:
     for i, data_row in enumerate(data_rows):
         batch.add_object(
             properties=data_row,

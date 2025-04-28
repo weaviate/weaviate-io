@@ -317,7 +317,7 @@ with collection.batch.rate_limit(requests_per_minute=600) as batch:
         )
 
 # Batch with error handling
-with collection.batch.dynamic() as batch:
+with collection.batch.fixed_size(batch_size=50) as batch:
     for i in range(100):
         batch.add_object(
             properties={
