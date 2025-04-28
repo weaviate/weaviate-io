@@ -137,7 +137,7 @@ collection = client.collections.get("AmazonProducts")
 
 We’ve created an AmazonProducts collection with two properties, title and description, which aligns with the columns in our DataFrame. Additionally, the collection is using the [Databricks module](/developers/weaviate/model-providers/databricks) to: 
 
-* Vectorize Objects (`vectorizer_config`): The `text2vec_databricks` configuration enables Weaviate to generate embeddings for the job postings using the Databricks endpoint specified in `EMBEDDINGS_ENDPOINT`.   
+* Vectorize Objects (`vectorizer_config`): The `text2vec_databricks` configuration enables Weaviate to generate embeddings for the Amazon products using the Databricks endpoint specified in `EMBEDDINGS_ENDPOINT`.   
 * Generative Model (`generative_config`): The `generative_databricks` configuration connects to a Databricks hosted large language model at `LLM_ENDPOINT`, to enable generative search.
 
 ## Ingesting the Data 
