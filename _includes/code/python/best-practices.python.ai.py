@@ -286,6 +286,7 @@ Batch import for better performance
 """
 
 # Fixed size batch (Recommended option)
+collection = client.collections.get("Article")
 with collection.batch.fixed_size(batch_size=50) as batch:
     for i in range(100):
         batch.add_object(
@@ -296,7 +297,6 @@ with collection.batch.fixed_size(batch_size=50) as batch:
         )
 
 # Dynamic batch (adapts to Weaviate load)
-collection = client.collections.get("Article")
 with collection.batch.dynamic() as batch:
     for i in range(100):
         batch.add_object(

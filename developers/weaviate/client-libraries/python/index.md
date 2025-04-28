@@ -331,7 +331,7 @@ There are three methods to configure the batching behavior. They are `fixed_size
 | :-- | :-- | :-- |
 | `fixed_size` | The batch size and number of concurrent requests are fixed to sizes specified by the user. | When you want to specify fixed parameters. Recommended method. |
 | `rate_limit` | The number of objects sent to Weaviate is rate limited (specified as n_objects per minute). | When you want to avoid hitting third-party vectorization API rate limits. |
-| `dynamic` | The batch size and the number of concurrent requests are dynamically adjusted on-the-fly during import, depending on the server load. | Not recommended for production environments at this time. |
+| `dynamic` | The batch size and the number of concurrent requests are dynamically adjusted on-the-fly during import, depending on the server load. | Not recommended for Weaviate Cloud Serverless instances at this time. |
 <!-- TODO[g-despot]: remove dynamic warning once the logic is moved to the server side -->
 
 #### Usage
