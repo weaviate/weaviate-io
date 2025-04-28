@@ -518,7 +518,7 @@
   },
   {
     "name": "AIMon",
-    "image": "/img/site/aimon-logo.png",
+    "image": "/img/site/aimon.png",
     "link": "/developers/integrations/operations/aimon",
     "description": "AIMon offers monitoring and reranking tools to evaluate, optimize, and improve LLM applications",
     "tags": [],
