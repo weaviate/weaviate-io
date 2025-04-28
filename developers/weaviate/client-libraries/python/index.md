@@ -325,13 +325,14 @@ We recommend using the collection object to perform batch imports of single coll
 
 ### Batch sizing
 
-There are three methods to configure the batching behavior. They are `dynamic`, `fixed_size` and `rate_limit`.
+There are three methods to configure the batching behavior. They are `fixed_size`, `rate_limit` and `dynamic`.
 
 | Method | Description | When to use |
 | :-- | :-- | :-- |
-| `dynamic` | The batch size and the number of concurrent requests are dynamically adjusted on-the-fly during import, depending on the server load. | Recommended starting point. |
-| `fixed_size` | The batch size and number of concurrent requests are fixed to sizes specified by the user. | When you want to specify fixed parameters. |
+| `fixed_size` | The batch size and number of concurrent requests are fixed to sizes specified by the user. | When you want to specify fixed parameters. Recommended method. |
 | `rate_limit` | The number of objects sent to Weaviate is rate limited (specified as n_objects per minute). | When you want to avoid hitting third-party vectorization API rate limits. |
+| `dynamic` | The batch size and the number of concurrent requests are dynamically adjusted on-the-fly during import, depending on the server load. | Not recommended for production environments at this time. |
+<!-- TODO[g-despot]: remove dynamic warning once the logic is moved to the server side -->
 
 #### Usage
 
@@ -340,16 +341,6 @@ We recommend using a context manager as shown below.
 These methods return a new context manager for each batch. Attributes that are returned from one batch, such as `failed_objects` or `failed_references`, are not included in any subsequent calls.
 
 <Tabs groupId="languages">
-<TabItem value="dynamic" label="Dynamic">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# START BatchDynamic"
-    endMarker="# END BatchDynamic"
-    language="py"
-  />
-
-</TabItem>
 <TabItem value="fixedSize" label="Fixed Size">
 
   <FilteredTextBlock
@@ -368,6 +359,16 @@ These methods return a new context manager for each batch. Attributes that are r
   endMarker="# END BatchRateLimit"
   language="py"
 />
+
+</TabItem>
+<TabItem value="dynamic" label="Dynamic">
+
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START BatchDynamic"
+    endMarker="# END BatchDynamic"
+    language="py"
+  />
 
 </TabItem>
 </Tabs>
