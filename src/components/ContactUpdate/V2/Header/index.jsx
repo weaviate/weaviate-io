@@ -13,7 +13,7 @@ export default function StudyHeader() {
               More than just a vector database—a launchpad for AI innovation
             </h1>
             <p>
-              Get in touch to accelerate vector search, RAG, and Agentic AI at
+              Get in touch to accelerate vector search, RAG, and agentic AI at
               scale
             </p>
             <div className={styles.headerBox}>
