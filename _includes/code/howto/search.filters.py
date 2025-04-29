@@ -409,7 +409,7 @@ collection = client.collections.create(
     vectorizer_config=Configure.Vectorizer.none()
 )
 
-with collection.batch.dynamic() as batch:
+with collection.batch.fixed_size(batch_size=200) as batch:
     for year in range(2020, 2025):
         for month in range(1, 13, 2):
             for day in range(1, 21, 5):

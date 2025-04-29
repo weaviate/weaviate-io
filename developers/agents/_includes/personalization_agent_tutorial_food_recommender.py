@@ -69,10 +69,9 @@ dataset = load_dataset(
 )
 recipes_collection = client.collections.get("Recipes")
 
-with recipes_collection.batch.dynamic() as batch:
-    for i, item in enumerate(dataset):
-        if i < 200:
-            batch.add_object(properties=item["properties"])
+with recipes_collection.batch.fixed_size(batch_size=200) as batch:
+    for item in dataset:
+        batch.add_object(properties=item["properties"])
 
 failed_objects = recipes_collection.batch.failed_objects
 if failed_objects:

@@ -157,7 +157,7 @@ emb_df = pd.read_csv(embs_path)
 movies = client.collections.get("MovieCustomVector")
 
 # Enter context manager
-with movies.batch.dynamic() as batch:
+with movies.batch.fixed_size(batch_size=200) as batch:
     # Loop through the data
     for i, movie in enumerate(df.itertuples(index=False)):
         # Convert data types

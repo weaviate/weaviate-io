@@ -285,9 +285,9 @@ author_collection.data.reference_add(
 Batch import for better performance
 """
 
-# Dynamic batch (adapts to Weaviate load)
+# Fixed size batch (Recommended option)
 collection = client.collections.get("Article")
-with collection.batch.dynamic() as batch:
+with collection.batch.fixed_size(batch_size=50) as batch:
     for i in range(100):
         batch.add_object(
             properties={
@@ -296,8 +296,8 @@ with collection.batch.dynamic() as batch:
             }
         )
 
-# Fixed size batch
-with collection.batch.fixed_size(batch_size=50) as batch:
+# Dynamic batch (adapts to Weaviate load)
+with collection.batch.dynamic() as batch:
     for i in range(100):
         batch.add_object(
             properties={
@@ -317,7 +317,7 @@ with collection.batch.rate_limit(requests_per_minute=600) as batch:
         )
 
 # Batch with error handling
-with collection.batch.dynamic() as batch:
+with collection.batch.fixed_size(batch_size=50) as batch:
     for i in range(100):
         batch.add_object(
             properties={

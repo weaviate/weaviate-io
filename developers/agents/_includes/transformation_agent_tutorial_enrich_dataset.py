@@ -46,10 +46,9 @@ dataset = load_dataset(
 
 papers_collection = client.collections.get("ArxivPapers")
 
-with papers_collection.batch.dynamic() as batch:
-    for i, item in enumerate(dataset):
-        if i < 200:
-            batch.add_object(properties=item["properties"])
+with papers_collection.batch.fixed_size(batch_size=200) as batch:
+    for item in dataset:
+        batch.add_object(properties=item["properties"])
 
 failed_objects = papers_collection.batch.failed_objects
 if failed_objects:

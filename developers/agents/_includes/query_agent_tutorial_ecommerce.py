@@ -96,11 +96,11 @@ ecommerce_dataset = load_dataset(
 brands_collection = client.collections.get("Brands")
 ecommerce_collection = client.collections.get("ECommerce")
 
-with brands_collection.batch.dynamic() as batch:
+with brands_collection.batch.fixed_size(batch_size=200) as batch:
     for item in brands_dataset:
         batch.add_object(properties=item["properties"], vector=item["vector"])
 
-with ecommerce_collection.batch.dynamic() as batch:
+with ecommerce_collection.batch.fixed_size(batch_size=200) as batch:
     for item in ecommerce_dataset:
         batch.add_object(properties=item["properties"], vector=item["vector"])
 

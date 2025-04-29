@@ -128,7 +128,7 @@ Now, you can load the data into the predefined structure. For this, you can iter
 import ollama
 
 # Store each document in a vector embedding database
-with collection.batch.dynamic() as batch:
+with collection.batch.fixed_size(batch_size=200) as batch:
   for i, d in enumerate(documents):
     # Generate embeddings
     response = ollama.embeddings(model = "all-minilm",

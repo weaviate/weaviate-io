@@ -21,7 +21,7 @@ def import_data():
         {"title": "A Christmas Carol"},
     ]
 
-    with collection.batch.dynamic() as batch:
+    with collection.batch.fixed_size(batch_size=200) as batch:
         for src_obj in source_objects:
             weaviate_obj = {
                 "title": src_obj["title"],

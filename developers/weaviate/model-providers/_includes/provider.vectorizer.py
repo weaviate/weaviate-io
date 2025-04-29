@@ -1614,7 +1614,7 @@ source_objects = [
 
 collection = client.collections.get("DemoCollection")
 
-with collection.batch.dynamic() as batch:
+with collection.batch.fixed_size(batch_size=200) as batch:
     for src_obj in source_objects:
         # highlight-start
         # The model provider integration will automatically vectorize the object
@@ -1657,7 +1657,7 @@ for i in range(len(source_objects)):
 # START MMBatchImportExample
 collection = client.collections.get("DemoCollection")
 
-with collection.batch.dynamic() as batch:
+with collection.batch.fixed_size(batch_size=200) as batch:
     for src_obj in source_objects:
         poster_b64 = url_to_base64(src_obj["poster_path"])
         weaviate_obj = {
