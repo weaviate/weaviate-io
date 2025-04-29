@@ -303,7 +303,7 @@
   padding: 40px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
 
   .bentoText {
     margin: 0;
@@ -347,14 +347,10 @@
 .stack {
   width: 37.1875rem;
   height: auto;
-  background: #130c49 !important;
-
-  h3 {
-    color: #ffffff !important;
-  }
+  background: #5bd787 !important;
 
   .bentoLogo {
-    background: url('/img/site/stackai-logo-white.svg');
+    background: url('/img/site/stackai-logo.svg');
     background-size: contain;
     background-repeat: no-repeat;
     width: 9.02219rem;
