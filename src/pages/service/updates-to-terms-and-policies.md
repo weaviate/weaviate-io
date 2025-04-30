@@ -9,26 +9,30 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 ### **UPDATES TO TERMS & POLICIES**
 
-**Last Updated: December, 2024**
+**Last Updated: April, 2025**
 <br></br>
 
+1. **_April 2025_ - Document: Weaviate Cloud Agreement**
+   1. Updated Section. Customer responsibilities updated
+   2. New Section. Weaviate Updates added
 
-1. **_December 2024_ - Document: Weaviate SLA**
+
+2. **_December 2024_ - Document: Weaviate SLA**
    1. Update. Back up Policy updated
 
 
 
-2. **_November 2024_ - Document: Weaviate End of Life Policy**
+3. **_November 2024_ - Document: Weaviate End of Life Policy**
    1. New Document: Weaviate End Of Life Policy
    2. New section to Document: Weaviate Support Terms
       1. New Paragraph: "End of Life Policy"
 
 
-3. **_September 2024_ - Document: Weaviate Cloud Agreement**
+4. **_September 2024_ - Document: Weaviate Cloud Agreement**
    1. New section: 8.3. Newsletter Consent
 
 
-4. **_August 2024_ - Document: Weaviate Customer Agreement US & Non-US**
+5. **_August 2024_ - Document: Weaviate Customer Agreement US & Non-US**
    1. New. Section 1.4
    2.  New. Exhibit A
    3.  Update. Chapter 10: Definition
