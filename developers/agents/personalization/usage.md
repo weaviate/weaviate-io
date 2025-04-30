@@ -155,6 +155,69 @@ To create a persona, specify a user ID and the set of user properties to be used
 
 </Tabs>
 
+### Manage a user persona
+
+You can delete or update an existing user persona, as well as to check if a user persona exists.
+
+#### Delete a user persona
+
+To delete a user persona, specify the user ID of the persona to be deleted.
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START DeletePersona"
+            endMarker="# END DeletePersona"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
+
+#### Update a user persona
+
+To update a user persona, specify the user ID of the persona to be updated and the new set of user properties.
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START UpdatePersona"
+            endMarker="# END UpdatePersona"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
+
+#### Check if a user persona exists
+
+To check if a user persona exists, specify the user ID of the persona to be checked.
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START CheckPersonaExists"
+            endMarker="# END CheckPersonaExists"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
+
+#### Get a user persona
+
+To get a user persona, specify the user ID of the persona to be retrieved.
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START GetPersona"
+            endMarker="# END GetPersona"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
+
 ### Add interactions
 
 Interactions form the basis of the personalization process. They are the data points that the Personalization Agent uses to learn about the user and provide personalized recommendations.

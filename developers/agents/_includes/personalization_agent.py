@@ -194,23 +194,70 @@ persona_id = generate_uuid5("sebawita")  # To generate a deterministic UUID
 # persona_id = uuid4()  # To generate a random UUID
 
 # END CreatePersona
-# Delete the persona if it already exists
-pa.delete_persona(persona_id)
-# START CreatePersona
 
+# START DeletePersona
+from weaviate.util import generate_uuid5
+
+persona_id = generate_uuid5("sebawita")  # To generate a deterministic UUID
+
+# Delete the persona
+pa.delete_persona(persona_id)
+# END DeletePersona
+
+# START CreatePersona
 pa.add_persona(
     Persona(
         persona_id=persona_id,
         properties={
-            "age": 30,
-            "favorite_genres": ["Action", "Adventure", "Sci-Fi", "Horror"],
-            "favorite_years": [1999, 1996, 2008, 2019],
-            "language": "English",
+            "age": 74,
+            "favorite_genres": ["Action", "Horror", "Romance"],
+            "favorite_years": [1979, 1981, 1984, 1985],
+            "language": "Hungarian",
         },
     )
 )
-
 # END CreatePersona
+
+# START UpdatePersona
+from weaviate.util import generate_uuid5
+
+persona_id = generate_uuid5("sebawita")  # To generate a deterministic UUID
+
+# Update the persona
+pa.update_persona(
+    Persona(
+        persona_id=persona_id,
+        properties={
+            "age": 35,
+            "favorite_genres": ["Action", "Adventure", "Drama", "Sci-Fi"],
+            "favorite_years": [1999, 2005, 2010, 2014, 2016],
+            "language": "English",
+        },
+    ))
+# END UpdatePersona
+
+# START CheckPersonaExists
+from weaviate.util import generate_uuid5
+
+persona_id = generate_uuid5("sebawita")  # To generate a deterministic UUID
+
+# Check if the persona exists
+try:
+    assert pa.has_persona(persona_id)
+    print(f"Persona with ID {persona_id} exists.")
+except AssertionError:
+    print(f"Persona with ID {persona_id} does not exist.")
+# END CheckPersonaExists
+
+# START GetPersona
+from weaviate.util import generate_uuid5
+
+persona_id = generate_uuid5("sebawita")  # To generate a deterministic UUID
+
+# Get the persona
+persona = pa.get_persona(persona_id)
+print(persona)
+# END GetPersona
 
 from weaviate.classes.query import Filter
 
