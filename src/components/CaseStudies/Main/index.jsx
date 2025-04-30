@@ -57,7 +57,21 @@ export default function Main() {
               ></Link>
             </div>
           </div>
-
+          <div className={`${styles.bento04} ${styles.stack}`}>
+            <div className={styles.bentoText}>
+              <div className={styles.bentoLogo}></div>
+              <div className={styles.bentoImage}></div>
+              <h3>
+                How Stack AI Delivers Lighting-Fast Agentic AI for Enterprises
+              </h3>
+            </div>
+            <div className={styles.buttons}>
+              <Link
+                to="/case-studies/stack-ai"
+                className={styles.arrowButton}
+              ></Link>
+            </div>
+          </div>
           <div className={styles.bento04}>
             <div className={styles.bentoText}>
               <div className={styles.bentoImage}></div>
@@ -70,6 +84,20 @@ export default function Main() {
               ></Link>
             </div>
           </div>
+
+          <div className={styles.bento03}>
+            <div className={styles.bentoText}>
+              <div className={styles.bentoLogo}></div>
+              <h3>Building an AI-Powered Shopping Copilot</h3>
+            </div>
+            <div className={styles.buttons}>
+              <Link
+                to="/blog/moonsift-story"
+                className={styles.arrowButton}
+              ></Link>
+            </div>
+          </div>
+
           <div className={`${styles.bento05} ${styles.finance}`}>
             <div className={styles.bentoText}>
               <div className={styles.innerText}>
@@ -85,18 +113,6 @@ export default function Main() {
                   className={styles.arrowButton}
                 ></Link>
               </div>
-            </div>
-          </div>
-          <div className={styles.bento03}>
-            <div className={styles.bentoText}>
-              <div className={styles.bentoLogo}></div>
-              <h3>Building an AI-Powered Shopping Copilot</h3>
-            </div>
-            <div className={styles.buttons}>
-              <Link
-                to="/blog/moonsift-story"
-                className={styles.arrowButton}
-              ></Link>
             </div>
           </div>
 
