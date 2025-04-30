@@ -360,12 +360,6 @@
     "team": "cto"
   },
   {
-    "name": "Faustas Butkus",
-    "title": "Software Engineer",
-    "photo": "Faustas.jpg",
-    "team": "database"
-  },
-  {
     "name": "Femke Plantinga",
     "title": "Developer Growth Manager",
     "photo": "femke.jpg",
@@ -476,15 +470,6 @@
     "twitter": "trengrj",
     "github": "trengrj",
     "team": "applied-research"
-  },
-  {
-    "name": "Jonathan Tuite",
-    "title": "Sales Engineer",
-    "photo": "jonathan.jpg",
-    "linkedin": "jontuite",
-    "twitter": "pendragn00",
-    "github": "tuitejc",
-    "team": "sales"
   },
   {
     "name": "Jose Luis Franco",
@@ -841,14 +826,6 @@
     "title": "Business Development Director",
     "photo": "tony.jpg",
     "team": "partnerships"
-  },
-  {
-    "name": "Tuana Celik",
-    "title": "Developer Relations Engineer",
-    "photo": "Tuana.jpg",
-    "team": "developer-growth",
-    "linkedin": "tuanacelik",
-    "twitter": "tuanacelik"
   },
   {
     "name": "Victoria Slocum",
