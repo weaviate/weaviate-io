@@ -33,7 +33,7 @@ headers = {
 
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=os.environ.get("WEAVIATE_URL"),
-    auth_credentials=Auth.api_key(os.environ.get("WEAVIATE_API_KEY")),
+    auth_credentials=Auth.api_key(os.environ.get("WEAVIATE_ADMIN_API_KEY")),
     headers=headers,
 )
 
@@ -165,34 +165,18 @@ with movies_collection.batch.fixed_size(batch_size=200) as batch:
     for i, item in tqdm(enumerate(movies_dataset)):
         data_object = load_movie_row(item)
         batch.add_object(properties=data_object)
-        if i > 1000:
-            break
-
-# START InstantiatePersonalizationAgent
-# Instantiate a new agent object, and specify the collection to query
-# The Personalization Agent will automatically also connect to the user data collection
-
-pa = PersonalizationAgent.create(
-    client=client,
-    reference_collection="Movies",
-    user_properties={
-        "age": DataType.NUMBER,
-        "favorite_genres": DataType.TEXT_ARRAY,
-        "favorite_years": DataType.NUMBER_ARRAY,
-        "language": DataType.TEXT,
-    },
-)
-
-# END InstantiatePersonalizationAgent
 
 # START CreateOrConnectToAgent
 
-if PersonalizationAgent.exists(client, "Movies"):
-    pa = PersonalizationAgent.connect(client=client, reference_collection="Movies")
+if PersonalizationAgent.exists(client, "Movie"):
+    # Connect to an existing agent
+    pa = PersonalizationAgent.connect(client=client, reference_collection="Movie")
 else:
+    # Instantiate a new agent, and specify the collection to query
+    # The Personalization Agent will automatically also connect to the user data collection
     pa = PersonalizationAgent.create(
         client=client,
-        reference_collection="Movies",
+        reference_collection="Movie",
         user_properties={
             "age": DataType.NUMBER,
             "favorite_genres": DataType.TEXT_ARRAY,
@@ -208,6 +192,11 @@ from uuid import uuid4  # If you want to generate a random UUID
 
 persona_id = generate_uuid5("sebawita")  # To generate a deterministic UUID
 # persona_id = uuid4()  # To generate a random UUID
+
+# END CreatePersona
+# Delete the persona if it already exists
+pa.delete_persona(persona_id)
+# START CreatePersona
 
 pa.add_persona(
     Persona(
@@ -238,7 +227,7 @@ movie_titles = [
     "Godzilla: Planet of the Monsters",
 ]
 
-movies_collection = client.collections.get("Movies")
+movies_collection = client.collections.get("Movie")
 
 movie_dict = {
     movie.properties["title"]: movie
@@ -301,5 +290,38 @@ for i, obj in enumerate(response.objects):
     print(f"original rank: {obj.original_rank}")
     print(f"Personalized rank: {obj.personalized_rank}")
 # END InspectResults
+
+# START PersonalizedWeaviateQuery
+personalized_query = pa.query(persona_id=persona_id, strength=0.95)
+
+response = personalized_query.near_text(  # Or .bm25 / .hybrid
+    query="A movie about a giant monster",
+    limit=20,
+    # Other normal `near_text` parameters can be added here
+    # e.g. filter, auto_limit, distance, include_vector, include_metadata, etc.
+)
+
+for i, obj in enumerate(response.objects):
+    print(obj.properties)
+# END PersonalizedWeaviateQuery
+
+# START ParamsPersonalizedWeaviateQuery
+personalized_query = pa.query(
+    persona_id=persona_id,          # The ID of the persona to use for personalization
+    strength=0.95,                  # The strength of the personalization (0.0 = none, 1.0 = full)
+    overfetch_factor=2,             # The number of objects to fetch before personalization
+    recent_interactions_count=50,   # The number of recent interactions to consider
+    decay_rate=0.2                  # The decay rate for the interactions
+)
+
+response = personalized_query.hybrid(  # Or .near_text / .bm25
+    query="A movie about a giant monster",
+    limit=20,
+    # Other normal `hybrid` parameters can be added here
+)
+
+for i, obj in enumerate(response.objects):
+    print(obj.properties)
+# END ParamsPersonalizedWeaviateQuery
 
 client.close()

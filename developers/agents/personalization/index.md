@@ -125,12 +125,14 @@ To use the Personalization Agent, instantiate it with the following inputs:
 - Name of the target collection to get personalized items from.
 - A list of user properties to base the personalization on.
 
+Note that the Personalization Agent persists. This means that if you have previously created a Personalization Agent, you can connect to it again without having to create a new one.
+
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
-            startMarker="# START InstantiatePersonalizationAgent"
-            endMarker="# END InstantiatePersonalizationAgent"
+            startMarker="# START CreateOrConnectToAgent"
+            endMarker="# END CreateOrConnectToAgent"
             language="py"
         />
     </TabItem>

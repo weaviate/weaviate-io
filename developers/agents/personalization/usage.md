@@ -181,9 +181,9 @@ The available parameters are:
 
 </Tabs>
 
-### Perform a basic query
+### Get personalized objects
 
-Once a user persona has been created, you can perform queries to obtain personalized recommendations.
+Once a user persona has been created, you can get personalized objects.
 
 As a minimum, simply provide the user ID to the Personalization Agent. The Personalization Agent will process the user ID, perform the necessary searches in Weaviate, and return the personalized recommendations.
 
@@ -198,9 +198,11 @@ As a minimum, simply provide the user ID to the Personalization Agent. The Perso
     </TabItem>
 </Tabs>
 
-### Ranking options
+#### Get objects: Available ranking strategies
 
-The Personalization Agent uses a combination of vector search and LLM-based ranking to provide personalized recommendations. The vector search is based on our analysis of the set of interactions for the user persona. The LLM can optionally be used to rerank the results.
+When using `get_objects`, you can select a ranking strategy.
+
+The Personalization Agent can use a combination of vector search and LLM-based ranking to provide personalized recommendations. The vector search is based on our analysis of the set of interactions for the user persona. The LLM can optionally be used to rerank the results.
 
 You can use it in one of three modes:
 
@@ -208,9 +210,9 @@ You can use it in one of three modes:
 - **Agent-based reranking with custom instructions**: If a custom instruction is provided, the Personalization Agent will use this instruction to rerank the results. This allows you to customize the ranking process based on your specific needs.
 - **Vector search only**: If you retrieve results without using the agent ranking, the results will be based solely on the vector search.
 
-### Query options
+#### Get objects: Parameters
 
-There are a number of options available to customize the query.
+The available parameters for getting personalized objects are:
 
 - `limit`: maximum number of items to return
 - `recent_interactions_count`: number of recent interactions to consider for personalization
@@ -232,7 +234,7 @@ There are a number of options available to customize the query.
     </TabItem>
 </Tabs>
 
-### Inspect results
+#### Get objects: Inspect results
 
 The response from the Personalization Agent will include the personalized recommendations.
 
@@ -249,6 +251,50 @@ In addition to the response objects, the response may include the following info
             text={PyCode}
             startMarker="# START InspectResults"
             endMarker="# END InspectResults"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
+
+### Personalized Weaviate queries
+
+The Personalization Agent can also be used to perform personalized Weaviate queries.
+
+In contrast to the [`get_objects` method](#get-personalized-objects), a personalized query includes an additional Weaviate query.
+
+Weaviate's `near_text`, `bm25` and `hybrid` queries can be combined with the Personalization Agent to provide personalized results.
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START PersonalizedWeaviateQuery"
+            endMarker="# END PersonalizedWeaviateQuery"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
+
+Use a personalized Weaviate query when you want to use the Personalization Agent to rerank the results of a Weaviate query.
+
+The Personalization Agent will first perform the Weaviate query to retrieve a set of items, and then rerank them using an LLM, based on the user persona.
+
+#### Personalized Weaviate query: Parameters
+
+The available parameters for personalizing a Weaviate query can be specified upstream of the query method (`near_text`, `bm25`, `hybrid`).
+
+- `persona_id`: ID of the user persona
+- `strength`: strength of the personalization (0.0 = no personalization, 1.0 = complete personalization, disregard query results)
+- `overfetch_factor`: number of objects to fetch before personalization
+- `recent_interactions_count`: number of recent interactions to consider for personalization
+- `decay_rate`: decay rate for older interactions (1.0 = heavily discount older interactions; 0.0 = no discount)
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START ParamsPersonalizedWeaviateQuery"
+            endMarker="# END ParamsPersonalizedWeaviateQuery"
             language="py"
         />
     </TabItem>
@@ -272,6 +318,10 @@ At this stage, there is a limit of 100 Personalization Agent queries per day per
 There are no limits on the number of queries per day for the vector search only (i.e. without the agent-based reranking).
 
 This limit may change in future versions of the Personalization Agent.
+
+### Known issues
+
+The combined Weaviate query and personalization agent query is not available for named vectors at this time. This is a known issue and will be addressed shortly.
 
 ## Questions and feedback
 
