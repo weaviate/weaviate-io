@@ -143,7 +143,7 @@ UNDER NO LEGAL THEORY, WHETHER IN TORT, CONTRACT, OR OTHERWISE, WILL EITHER PART
 
 “**_SLAs_**” mean the service levels offered by Weaviate as defined at [www.weaviate.io/sla](https://weaviate.io/sla)
 
-“**_Support Services_**” means the maintenance and support services offered by Weaviate as defined at [www.weaviate.com/weaviate-support-terms](https://weaviate.io/weaviate-support-terms)
+“**_Support Services_**” means the maintenance and support services offered by Weaviate as defined at [www.weaviate.io/weaviate-support-terms](https://weaviate.io/weaviate-support-terms)
 
 “**_System Data_**” means data collected by Weaviate regarding the Weaviate Offering that may be used to generate logs, statistics, or reports regarding the performance, availability, usage, integrity, or security of the Weaviate Product.
 
