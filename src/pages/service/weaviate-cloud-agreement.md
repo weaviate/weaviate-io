@@ -119,7 +119,11 @@ UNDER NO LEGAL THEORY, WHETHER IN TORT, CONTRACT, OR OTHERWISE, WILL EITHER PART
 
 9.14 **Government Terms**. Weaviate provides the Weaviate Offering, including related software and technology, for ultimate federal government end use solely in accordance with the terms of this Agreement. If Customer is an agency, department, or other entity of any government, the use, duplication, reproduction, release, modification, disclosure, or transfer of the Weaviate Offering or any related documentation of any kind, including technical data, software, and manuals, is restricted by the terms of this Agreement. All other use is prohibited and no rights other than those provided in this Agreement are conferred. The Weaviate Offering was developed fully at private expense.
 
-9.15 **Definitions**. The following terms, when used in this Agreement, will have the following meanings:
+---
+### 10. **Definitions** 
+
+The following terms, when used in this Agreement, will have the following meanings:
+<br></br>
 
 “**_Affiliates_**” means an entity that directly or indirectly Controls, is Controlled by, or is under common Control with another entity so long as such Control exists. For the purposes of this definition, “Control” means beneficial ownership of 50% or more of the voting power or equity in an entity.
 
