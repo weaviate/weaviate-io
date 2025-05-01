@@ -15,6 +15,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 1. **_April 2025_ - Document: Weaviate Cloud Agreement**
    1. Updated Section. Customer responsibilities updated
    2. New Section. Weaviate Updates added
+   3. New Section. Change Notification added
 
 
 2. **_December 2024_ - Document: Weaviate SLA**
