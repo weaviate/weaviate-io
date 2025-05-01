@@ -21,7 +21,6 @@
 
 .leftContainer {
   width: 40%;
-  min-width: 360px;
 
   @media screen and (max-width: 900px) {
     width: 100%;
@@ -70,8 +69,8 @@
 
   .topSection {
     width: 28.625rem;
-    height: 100%;
-    max-height: 42rem;
+    height: auto;
+
     display: flex;
     flex-direction: column;
     border-radius: 0.9375rem;
@@ -80,7 +79,6 @@
 
     @media screen and (max-width: 900px) {
       width: 100%;
-      height: auto;
     }
 
     h2 {
