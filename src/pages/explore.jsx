@@ -8,6 +8,7 @@ import Studies from '/src/components/ContactUpdate/V2/Studies';
 import Main from '/src/components/ContactUpdate/V2/Main';
 import Benefits from '/src/components/ContactUpdate/V2/Benefits';
 import WhatYouCanDo from '/src/components/ContactUpdate/V2/WhatYouCanDoUpdate/index.jsx';
+import Integrations from '/src/components/ContactUpdate/V2/IntegrationsUpdate';
 import FAQ from '/src/components/ContactUpdate/V2/FAQ/index.jsx';
 import Testimonials from '/src/components/ContactUpdate/V2/Testimonials';
 import ContactFrom from '/src/components/ContactUpdate/V2/contactForm.jsx';
@@ -30,6 +31,7 @@ export default function ContactPage() {
       <Benefits />
 
       <Testimonials />
+      <Integrations />
       <FAQ />
       <ContactFrom />
       <Footer />
