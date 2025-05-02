@@ -50,7 +50,7 @@ const siteRedirects = {
             to: '/developers/weaviate/client-libraries/typescript',
             from: '/developers/weaviate/client-libraries/javascript'
         },
-        
+
         // Config-refs redirects
         {
             to: '/developers/weaviate/config-refs/datatypes',
@@ -60,7 +60,7 @@ const siteRedirects = {
             to: '/developers/weaviate/config-refs/distances',
             from: '/developers/weaviate/configuration/distances',
         },
-        
+
         // Configuration redirects
         {
             to: '/developers/weaviate/config-refs/datatypes',
@@ -89,7 +89,7 @@ const siteRedirects = {
                 '/developers/weaviate/current/schema/schema-configuration',
             ],
         },
-        
+
         // More-resources redirects
         {
             to: '/developers/weaviate/more-resources/example-datasets',
@@ -107,7 +107,7 @@ const siteRedirects = {
             to: '/developers/integrations/llm-agent-frameworks/dspy',
             from: '/developers/weaviate/more-resources/dspy',
         },
-        
+
         // Quickstart redirects
         {
             to: '/developers/weaviate/starter-guides/managing-collections',
@@ -129,7 +129,7 @@ const siteRedirects = {
             to: '/developers/wcs/tools/query-tool',
             from: '/developers/weaviate/quickstart/console',
         },
-        
+
         // Old Quickstart redirects
         {
             to: '/developers/weaviate/starter-guides/managing-collections',
@@ -151,7 +151,7 @@ const siteRedirects = {
             to: '/developers/wcs/tools/query-tool',
             from: '/developers/weaviate/current/quickstart/console',
         },
-        
+
         // WCD redirects
         {
             to: '/developers/wcs/faq',
@@ -175,7 +175,7 @@ const siteRedirects = {
         },
         {
             to: '/developers/wcs/manage-clusters/connect',
-            from: '/developers/wcs/conect',
+            from: '/developers/wcs/connect',
         },
         {
             to: '/developers/wcs/manage-clusters/create',
@@ -211,13 +211,13 @@ const siteRedirects = {
                 '/developers/weaviate/current/tutorials/quick-start-with-the-text2vec-contextionary-module',
             ],
         },
-        
+
         // Howto redirects
         {
             to: '/developers/weaviate/manage-data/read-all-objects',
             from: '/developers/weaviate/manage-data/exhaustive-retrieval',
         },
-        
+
         // Tutorial refresh 2024
         {
             to: '/developers/weaviate/starter-guides/managing-collections',
@@ -231,19 +231,19 @@ const siteRedirects = {
             to: '/developers/weaviate/connections',
             from: '/developers/weaviate/starter-guides/connect',
         },
-        
+
         // 2024.10 Rename "prefiltering" to "filtering"
         {
             to: '/developers/weaviate/concepts/filtering',
             from: '/developers/weaviate/concepts/prefiltering',
         },
-        
+
         // Remove BPR page
         {
             to: '/developers/weaviate/concepts/vector-index',
             from: '/developers/weaviate/concepts/binary-passage-retrieval',
         },
-        
+
         // Blog redirects
         {
             to: '/blog/understand-your-unstructured-data',
@@ -307,7 +307,7 @@ const siteRedirects = {
             to: '/blog/weaviate-1-15-release',
             from: '/blog/2022/09/Weaviate-release-1-15',
         },
-        
+
         {
             to: '/blog/vector-search-explained',
             from: [
@@ -392,7 +392,7 @@ const siteRedirects = {
             to: '/developers/weaviate/model-providers/openai/generative',
             from: '/blog/chatgpt-for-generative-search',
         },
-        
+
         // GSOC and GSOD redirects
         // Hidden as not participating in 2023
         {
@@ -405,7 +405,7 @@ const siteRedirects = {
                 '/resources/gsod-summary',
             ],
         },
-        
+
         // // Rename google modules
         // {
         //     to: '/developers/weaviate/modules/reader-generator-modules/generative-google',
@@ -424,7 +424,7 @@ const siteRedirects = {
             to: '/developers/weaviate/model-providers/google/embeddings',
             from: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-google',
         },
-        
+
         // =============================================================================================
         // 202409 Remove old module docs & redirect to model provider integration
         // =============================================================================================
@@ -525,7 +525,7 @@ const siteRedirects = {
             to: '/developers/weaviate/model-providers/google/generative',
             from: '/developers/weaviate/modules/reader-generator-modules/generative-palm',
         },
-        
+
         {
             to: '/developers/weaviate/modules/custom-modules',
             from: '/developers/weaviate/modules/other-modules/custom-modules',
@@ -562,55 +562,55 @@ const siteRedirects = {
             to: '/developers/weaviate/modules/text2vec-contextionary',
             from: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary',
         },
-        
+
         // =============================================================================================
         // END - 202409 Remove old module docs & redirect to model provider integration
         // =============================================================================================
-        
-        
+
+
         // moved Quickstart installation to Quickstart
         {
             to: '/developers/weaviate/quickstart',
             from: '/developers/weaviate/quickstart/installation',
         },
-        
+
         {
             to: '/developers/wcs/tools/query-tool',
             from: '/developers/weaviate/tutorials/console',
         },
-        
+
         // References: API / GraphQL redirects
         {
             to:   '/developers/weaviate/api/graphql/search-operators',
             from: '/developers/weaviate/api/graphql/vector-search-parameters',
         },
-        
+
         // old link redirects
         {
             to: '/developers/weaviate/installation',
             from: '/developers/weaviate/current/getting-started/installation',
         },
-        
+
         {
             to: '/developers/weaviate/configuration/compression/pq-compression',
             from: '/developers/weaviate/configuration/pq-compression',
         },
-        
+
         {
             to: '/developers/weaviate/configuration/compression/bq-compression',
             from: '/developers/weaviate/configuration/bq-compression',
         },
-        
+
         {
             to: '/developers/weaviate/manage-data/collections',
             from: '/developers/weaviate/manage-data/classes',
         },
-        
+
         {
             to: '/developers/weaviate/manage-data/collections',
             from: '/developers/weaviate/configuration/schema-configuration',
         },
-        
+
         // Legacy REST API redirects
         {
             to:   '/developers/weaviate/api/rest/',
@@ -640,14 +640,14 @@ const siteRedirects = {
                 '/developers/weaviate/api/rest_legacy/modules',
             ]
         },
-        
+
         // Products to Pricing redirects
-        
+
         {
             to: "/pricing",
             from: "/products",
         },
-        
+
         {
             to: "/pricing",
             from: "/products/byoc",
@@ -705,13 +705,13 @@ const siteRedirects = {
             to: "/deployment/enterprise-cloud",
             from: "/services/enterprise-dedicated"
         },
-        
+
         // Blog Article Changes
         {
             to: "/blog",
             from: "/blog/tips-for-scaling-and-shipping-ai-products"
         },
-        
+
         // Release notes
         {
             to: "/developers/weaviate/release-notes/older-releases/release_1_20",
@@ -733,7 +733,7 @@ const siteRedirects = {
             to: "/developers/weaviate/release-notes/older-releases/release_1_16",
             from: "/developers/weaviate/release-notes/release_1_16"
         },
-        
+
         // Services Changes
         {
             to: "/platform",
@@ -779,7 +779,7 @@ const siteRedirects = {
         },
 
           // GFL > Agentic AI Changes
-         
+
         {
            to: "/agentic-ai",
             from: "/gen-feedback-loops"
@@ -894,7 +894,7 @@ const siteRedirects = {
                 ),
             ];
         }
-        
+
         if (
             existingPath.includes('/weaviate/concepts/replication-architecture')
         ) {
@@ -925,7 +925,7 @@ const siteRedirects = {
                 ),
             ];
         }
-        
+
         // Any remaining weaviate docs redirects
         if (existingPath.includes('/developers/weaviate')) {
             return [
@@ -935,7 +935,7 @@ const siteRedirects = {
                 ),
             ];
         }
-        
+
         // Contributor Guide redirects
         if (existingPath.includes('/contributor-guide/weaviate-modules')) {
             return [
@@ -953,7 +953,7 @@ const siteRedirects = {
                 ),
             ];
         }
-        
+
         return undefined; // Return a falsy value: no redirect created
     },
 };
