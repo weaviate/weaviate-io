@@ -24,7 +24,7 @@ go mod tidy
 To get the latest stable version of the Go client library, run the following:
 
 ```bash
-go get github.com/weaviate/weaviate-go-client/v4
+go install github.com/weaviate/weaviate-go-client/v4@latest
 ```
 
 ## Example
