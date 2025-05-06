@@ -1,0 +1,832 @@
+:root {
+  --darkColor: #130c49;
+  --subColor: #8396b1;
+  --lightColor: ##f7f9fd;
+  --headerFont: 'Plus Jakarta Sans';
+  --paraFont: 'Inter';
+}
+
+.headerSecurity {
+  background: #ecf4f8;
+}
+
+.container {
+  padding: 3rem;
+
+  @media screen and (max-width: 1400px) {
+    padding: 2rem 3rem;
+  }
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 40px;
+
+  h2 {
+    color: #130c49;
+    text-align: center;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%; /* 2.8rem */
+    width: 50%;
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+    }
+  }
+
+  p {
+    width: 50%;
+    color: #130c49;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 1.575rem */
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+    }
+  }
+}
+
+.bentoBar {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 0px;
+  }
+}
+
+.bentoGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.bento01,
+.bento02,
+.bento03,
+.bento04,
+.bento05,
+.bento06 {
+  flex-shrink: 1;
+}
+
+.bento01 {
+  width: 36.125rem;
+  height: 18.3125rem;
+  border-radius: 1.25rem;
+  background: #ddebf2;
+  background-image: url('/img/site/morningstar_bento.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  transition: all 0.3s ease-in-out;
+
+  @media screen and (max-width: 1050px) {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #7770e4 100%),
+      url('/img/site/morningstar_bento.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right;
+  }
+
+  .bentoText {
+    margin: 0;
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+    }
+    .bentoLogo {
+      background: url('/img/site/Morningstar.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 8.3125rem;
+      height: 1.6875rem;
+      flex-shrink: 0;
+      margin: 30px 0px;
+    }
+
+    h3 {
+      color: #130c49;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 130%; /* 1.95rem */
+      width: 45%;
+
+      @media screen and (max-width: 1300px) {
+        width: 50%;
+      }
+
+      @media screen and (max-width: 1050px) {
+        width: 100%;
+        color: #ffffff;
+      }
+    }
+
+    p {
+      color: #f7f9fd;
+      font-family: Inter;
+      font-size: 0.875rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 150%; /* 1.3125rem */
+
+      @media screen and (max-width: 1200px) {
+        width: 80%;
+      }
+    }
+  }
+}
+
+.bentoInstabase {
+  width: 36.125rem;
+  height: 18.3125rem;
+  border-radius: 1.25rem;
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(47, 47, 169, 0.8) 100%
+    ),
+    url('/img/site/instabase-bg-image.png');
+  background-size: cover;
+  background-position: center;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  transition: all 0.3s ease-in-out;
+
+  .bentoText {
+    margin: 0;
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+    }
+    .bentoLogo {
+      background: url('/img/site/instabase-cs.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 12.3125rem;
+      height: 1.3125rem;
+      flex-shrink: 0;
+      margin: 30px 0px;
+    }
+
+    h3 {
+      color: #f7f9fd;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 140%; /* 3.15rem */
+      width: 85%;
+
+      @media screen and (max-width: 1300px) {
+        width: 100%;
+      }
+    }
+
+    p {
+      color: #f7f9fd;
+      font-family: Inter;
+      font-size: 0.875rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 150%; /* 1.3125rem */
+
+      @media screen and (max-width: 1200px) {
+        width: 80%;
+      }
+    }
+  }
+}
+
+.bento02 {
+  width: 17.4375rem;
+  height: 18.3125rem;
+
+  border-radius: 1.25rem;
+  background: #f7f9fd;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #2e288b 100%),
+    url('/img/site/neople_bento.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  transition: all 0.3s ease-in-out;
+
+  .bentoText {
+    margin: 0;
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+    }
+    .bentoLogo {
+      background: url('/img/site/neople_white_logo.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 5.5rem;
+      height: 1.75263rem;
+
+      margin: 30px 0px;
+    }
+
+    h3 {
+      color: #f7f9fd;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 120%; /* 1.8rem */
+      width: 85%;
+
+      @media screen and (max-width: 900px) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.bento03 {
+  width: 17.4375rem;
+  height: 18.3125rem;
+
+  border-radius: 1.25rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #2e288b 100%),
+    url('/img/site/moonsift-background-image.png'), #61d384;
+
+  background-size: contain;
+  background-position-y: 70%;
+  background-repeat: no-repeat;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  @media screen and (max-width: 1300px) {
+    background-size: cover;
+    background-position-y: top;
+  }
+
+  @media screen and (max-width: 900px) {
+    background-size: cover;
+    background-position-y: top;
+    background-repeat: no-repeat;
+  }
+
+  .bentoText {
+    margin: 0;
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+    }
+    .bentoLogo {
+      background: url('/img/site/moonsift_white_logo.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 9.02219rem;
+      height: 2.875rem;
+      flex-shrink: 0;
+      margin: 30px 0px;
+    }
+
+    h3 {
+      color: #f7f9fd;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 120%; /* 1.8rem */
+    }
+  }
+}
+
+.bentoSmall {
+  width: 20.875rem;
+  height: 19.9375rem;
+  flex-shrink: 0;
+  border-radius: 1.25rem;
+  background: #f7f9fd;
+  background-size: cover;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  .bentoText {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    flex-grow: 1;
+  }
+
+  .bentoLogo {
+    width: 14.125rem;
+    height: 2.75rem;
+    background: url('/img/site/astronomer-logo-cs.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+
+  .logo02 {
+    background: url('/img/site/preverity-logo-cs.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-y: -220%;
+  }
+
+  .logo03 {
+    background: url('/img/site/humach-logo-cs.svg');
+    background-repeat: no-repeat;
+  }
+
+  h3 {
+    color: var(--darkColor);
+    font-family: var(--headerFont);
+    font-size: 1.75rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    .bentoText {
+      gap: 10px;
+    }
+  }
+}
+
+.bento04 {
+  width: 17.4375rem;
+  height: 18.3125rem;
+  border-radius: 1.25rem;
+  background: #85e3bc;
+  background-size: cover;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  .bentoLogo {
+    width: 5.5625rem;
+    height: 1.51431rem;
+    background: url('/img/site/unbody_white_logo.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+
+  .bentoText {
+    margin: 0;
+    gap: 6px;
+    display: flex;
+    flex-direction: column;
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+      gap: 20px;
+    }
+
+    .bentoImage {
+      background: url('/img/site/unbody-header-image.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 100%;
+      max-width: 15rem;
+      height: 18.25rem;
+      flex-shrink: 0;
+      margin: 0px 0px 20px 0px;
+
+      @media screen and (max-width: 1300px) {
+        height: 7.25rem;
+      }
+
+      @media screen and (max-width: 900px) {
+        height: 13.25rem;
+      }
+
+      @media screen and (max-width: 500px) {
+        height: 6.25rem;
+      }
+    }
+
+    h3 {
+      color: #130c49;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 1.1rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 130%; /* 1.625rem */
+
+      @media screen and (max-width: 1300px) {
+        width: 100%;
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+.bentoKapa {
+  background: #262262;
+
+  h3 {
+    color: #f7f9fd !important;
+  }
+
+  .bentoLogo {
+    background: url('/img/site/kapa-logo-dark.png') !important;
+    width: 3.98663rem;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    height: 1.20788rem;
+  }
+
+  .bentoImage {
+    background: url('/img/site/bento_kapa.png') !important;
+    height: 7.25rem !important;
+    border-radius: 10px;
+
+    @media screen and (max-width: 500px) {
+      height: 6.25rem !important;
+      width: 80% !important;
+      background-repeat: no-repeat !important;
+      background-size: contain !important;
+      border-radius: 10px;
+    }
+  }
+}
+
+.bento05 {
+  width: 64.875rem;
+  height: 22.6875rem;
+  border-radius: 1.25rem;
+  background: #130c49;
+  background-size: cover;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  .bentoText {
+    margin: 0;
+    display: flex;
+    gap: 30px;
+
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+      flex-direction: column;
+    }
+    .bentoImage {
+      background: url('/img/site/morningstar-header-image.png');
+      background-size: cover;
+      background-position-x: center;
+      width: 11.9375rem;
+      height: 15.6875rem;
+      border-radius: 1.25rem;
+      flex-shrink: 0;
+      margin: 0px 0px 20px 0px;
+
+      @media screen and (max-width: 500px) {
+        width: 100%;
+      }
+    }
+
+    h3 {
+      color: #f7f9fd;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 2rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 150%; /* 3rem */
+
+      @media screen and (max-width: 900px) {
+        font-size: 1.5rem;
+      }
+    }
+
+    p {
+      color: #61bd73;
+      font-family: Inter;
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 157.33%; /* 2.35994rem */
+    }
+
+    span {
+      color: #61bd73;
+      font-family: Inter;
+      font-size: 1.25rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 157.33%; /* 1.96663rem */
+    }
+  }
+}
+
+.finance {
+  background: url('/img/site/header-bg.svg') #130c49;
+  background-size: cover;
+  background-position-x: center;
+  background-position-y: center;
+  background-repeat: no-repeat;
+
+  @media screen and (max-width: 900px) {
+    br {
+      display: none;
+    }
+  }
+}
+
+.bento06 {
+  width: 65.625rem;
+  height: 18.875rem;
+  border-radius: 1.25rem;
+  background: url('/img/site/gradient-bg-cs.png');
+  background-size: cover;
+  background-position-x: center;
+
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  .bentoText {
+    margin: 0;
+    display: flex;
+    gap: 30px;
+
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+      flex-direction: column;
+    }
+
+    h3 {
+      color: #130c49;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 2.5rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 140%; /* 3.5rem */
+      width: 70%;
+
+      @media screen and (max-width: 900px) {
+        width: 100%;
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 1300px) {
+  .bento01,
+  .bento04,
+  .bento02,
+  .bento03 {
+    width: 33rem;
+  }
+
+  .bento05,
+  .bento06 {
+    width: 56rem;
+  }
+}
+
+@media (max-width: 1100px) {
+  .bento01,
+  .bento04 {
+    width: 30rem;
+  }
+  .bento02,
+  .bento03 {
+    width: 30rem;
+  }
+  .bento05,
+  .bento06 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1040px) {
+  .bento01,
+  .bento04 {
+    width: 25rem;
+  }
+  .bento02,
+  .bento03 {
+    width: 25rem;
+  }
+  .bento05,
+  .bento06,
+  .bentoSmall {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 960px) {
+  .bento01,
+  .bento04 {
+    width: 27rem;
+  }
+  .bento02,
+  .bento03 {
+    width: 23rem;
+  }
+  .bento05,
+  .bento06,
+  .bentoSmall {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 940px) {
+  .bento01,
+  .bento04 {
+    width: 100%;
+  }
+  .bento02,
+  .bento03 {
+    width: 24rem;
+    height: 33.9375rem;
+  }
+  .bento05,
+  .bento06 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 920px) {
+  .bento01,
+  .bento04 {
+    width: 100%;
+  }
+  .bento02 {
+    width: 100%;
+    height: 24.875rem;
+  }
+  .bento03 {
+    width: 100%;
+  }
+  .bento05,
+  .bento06 {
+    width: 100%;
+  }
+}
+@media (max-width: 795px) {
+  .bento01 {
+    width: 100%;
+  }
+  .bento04 {
+    width: 100%;
+    width: 100%;
+    height: auto;
+    max-height: 22rem;
+  }
+  .bento02 {
+    width: 100%;
+    height: 24.875rem;
+  }
+  .bento03 {
+    width: 100%;
+  }
+  .bento05,
+  .bento06 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .bento01,
+  .bento02,
+  .bento03,
+  .bento04,
+  .bento05,
+  .bento06 {
+    width: 100%;
+  }
+
+  .bento01 {
+    height: 25.875rem;
+  }
+
+  .bento04 {
+    height: 21.75rem;
+  }
+}
+
+.buttons {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  right: 20px;
+
+  .arrowButton {
+    background: url('/img/site/ArrowButton.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 3.6875rem;
+    height: 3.6875rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .arrowButton:hover {
+    transform: scale(1.1);
+  }
+
+  .darkArrow {
+    background: url('/img/site/dark-arrow.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 3.6875rem;
+    height: 3.6875rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+
+  .buttonDark {
+    color: #f7f9fd;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 157.33%; /* 1.57331rem */
+    display: flex;
+    width: 11.3125rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.3125rem;
+    background: #130c49;
+  }
+
+  .buttonLight {
+    color: #130c49;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 157.33%; /* 1.57331rem */
+    display: flex;
+    width: 11.3125rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.3125rem;
+    border: 1px solid #130c49;
+    background: #f7f9fd;
+  }
+}

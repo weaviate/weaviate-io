@@ -1,0 +1,55 @@
+.footer {
+  background-color: #130c49;
+  padding: 2rem 1rem;
+  color: white;
+
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .socials {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+
+    a {
+      color: white;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: #61bd73;
+      }
+    }
+
+    svg,
+    path {
+      width: 1.5rem;
+      height: 1.5rem;
+      margin: 7px auto;
+      fill: white;
+      transition: color 0.2s ease;
+      &:hover {
+        fill: #61bd73;
+      }
+    }
+  }
+
+  .copy {
+    font-size: 0.875rem;
+    opacity: 0.75;
+  }
+}
+
+.backToTop {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+}

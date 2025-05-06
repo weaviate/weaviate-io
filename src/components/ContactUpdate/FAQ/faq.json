@@ -1,0 +1,54 @@
+[
+  {
+    "question": "What is Weaviate?",
+    "answer": "Weaviate is an AI-native vector database that makes it easy for developers of all levels to build AI applications. Our customers and open source community use us to power search and generative AI use cases like semantic and hybrid search, RAG, chatbots, and agents."
+  },
+  {
+    "question": "What types of use cases does Weaviate support?",
+    "answer": "Weaviate supports AI-first use cases including vector and hybrid search, recommendations, question-answer systems, retrieval augmented generation including chatbots and copilots, and agents."
+  },
+  {
+    "question": "What is hybrid search?",
+    "answer": "Hybrid search is a technique that combines multiple search algorithms to improve the accuracy and relevance of search results. It uses the best features of both keyword-based search algorithms with vector search techniques. By leveraging the strengths of different algorithms, it provides a more effective search experience for users."
+  },
+  {
+    "question": "How is Weaviate priced?",
+    "answer": "Weaviate is open source and can be used free of charge. When you are ready to move to production and want to use a managed service, we offer the ability to have us manage everything for you in the Weaviate Cloud or to have us manage Weaviate for you in your VPC. We also offer support contracts for open source users."
+  },
+  {
+    "question": "Is the open source Weaviate the same as that used on Weaviate Cloud?",
+    "answer": "Yes! Weaviate Cloud runs the open-source Weaviate library. The differences are in where it runs (i.e. Weaviate Cloud is managed by us as a SaaS) and in licensing (SLA tiers as opposed to the open-source BSD3 license)."
+  },
+  {
+    "question": "Is Weaviate Cloud SOC2 compliant?",
+    "answer": "Yes"
+  },
+  {
+    "question": "Are there any features offered in Weaviate Cloud that are not available in the open-source version?",
+    "answer": "Weaviate Embeddings and Weaviate Agents are hosted services only available in Weaviate Cloud."
+  },
+  {
+    "question": "What are Weaviate Embeddings?",
+    "answer": "Weaviate Embeddings are a service that allows you to generate embeddings directly within the Weaviate environment, reducing latency and the need to manage multiple APIs or vendors."
+  },
+  {
+    "question": "What are Weaviate Agents?",
+    "answer": "Weaviate Agents are pre-built, agentic services designed for specific tasks within Weaviate Cloud, leveraging LLMs and prompts to interact with data, simplifying data engineering and AI development workflows. They are experts in Weaviate-specific data tasks, offering solutions for querying, transforming, and personalizing data."
+  },
+  {
+    "question": "How does Multi-tenancy work in Weaviate?",
+    "answer": "If you want to use a single Weaviate cluster to store data that is segregated from other data in the cluster, use multi-tenancy. When multi-tenancy is enabled, Weaviate uses partition shards to store each tenant's data.\n\n Sharding has several benefits: \n - Data isolation \n - Fast, efficient querying\n- Easy and robust setup and clean up\n\nMulti-tenancy is especially useful when you want to store data for multiple customers, or when you want to store data for multiple projects."
+  },
+  {
+    "question": "Which indexing algorithm does Weaviate use?",
+    "answer": "Weaviate uses HNSW, Flat Index, or a combination of the two called Dynamic Index."
+  },
+  {
+    "question": "What type of data can be stored in Weaviate?",
+    "answer": "Weaviate stores both objects and vectors. This allows for combining vector search with structured filtering."
+  },
+  {
+    "question": "Does Weaviate offer any cost-savings constructs?",
+    "answer": "Yes, Weaviate’s flexible architecture can be adapted to help you optimize your setup for your use case. Our vector compression techniques including Product Quantization, Binary Quantization, and Scalar Quantization enable you to use a smaller memory footprint. For multi-tenant use cases, flexible storage tiers allow you to offload tenants to cold storage as needed."
+  }
+]
