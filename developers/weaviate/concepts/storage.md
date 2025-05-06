@@ -24,7 +24,7 @@ Each shard houses three main components:
 
 * An object store, essentially a key-value store
 * An [inverted index](https://en.wikipedia.org/wiki/Inverted_index)
-* A vector index store (plugable, currently a [custom implementation of HNSW](/developers/weaviate/concepts/vector-index.md#hnsw))
+* A vector index store (plugable, currently a [custom implementation of HNSW](/developers/weaviate/concepts/vector-index.md#hierarchical-navigable-small-world-hnsw-index))
 
 #### Object and Inverted Index Store
 
@@ -45,6 +45,8 @@ To learn more about Weaviate's LSM store, see the LSM library documentation in t
 Each shard contains a vector index that corresponds to the object and inverted index stores. The vector store and the other stores are independent. The vector store does not have to manage segmentation.
 
 By grouping a vector index with the object storage within a shard, Weaviate can make sure that each shard is a fully self-contained unit which can independently serve requests for the data it owns. By placing the vector index next to the object store (instead of within), Weaviate can avoid the downsides of a segmented vector index.
+
+Furthermore, its persistence and loading at startup are optimized through a combination of Write-Ahead-Logging and HNSW snapshots, detailed in the [Persistence and Crash Recovery](#persistence-and-crash-recovery) section.
 
 ### Shard Components Optimizations
 
@@ -71,17 +73,19 @@ For single-tenant collections, lazy loading can cause import operations to slow 
 
 ## Persistence and Crash Recovery
 
-Both the LSM stores used for object and inverted storage, as well as the HNSW vector index store make use of memory at some point of the ingestion journey. To prevent data loss on a crash, each operation is additionally written into a [Write-Ahead-Log (WAL)](https://martinfowler.com/articles/patterns-of-distributed-systems/wal.html). WALs are append-only files that are very efficient to write to and that are rarely a bottleneck for ingestion.
+Both the LSM stores used for object and inverted storage, as well as the HNSW vector index store make use of memory at some point of the ingestion journey. To prevent data loss on a crash, each operation is additionally written into a **[Write-Ahead-Log (WAL)](https://martinfowler.com/articles/patterns-of-distributed-systems/wal.html)**. WALs are append-only files that are very efficient to write to and that are rarely a bottleneck for ingestion.
 
 By the time Weaviate has responded with a successful status to your ingestion request, a WAL entry will have been created. If a WAL entry could not be created - for example because the disks are full - Weaviate will respond with an error to the insert or update request.
 
 The LSM stores will try to flush a segment on an orderly shutdown. Only if the operation is successful, will the WAL be marked as "complete". This means that if an unexpected crash happens and Weaviate encounters an "incomplete" WAL, it will recover from it. As part of the recovery process, Weaviate will flush a new segment based on the WAL and mark it as complete. As a result, future restarts will no longer have to recover from this WAL.
 
-For the HNSW vector index, the WAL serves two purposes: It is both the disaster-recovery mechanism, as well as the primary persistence mechanism. The cost in building up an HNSW index is in figuring out where to place a new object and how to link it with its neighbors. The WAL contains only the result of those calculations. Therefore, by reading the WAL into memory, the HNSW index will be in the same state as it was prior to a shutdown.
+For the HNSW vector index, the Write-Ahead-Log (WAL) is a critical component for disaster recovery and persisting the most recent changes. The cost in building up an HNSW index is in figuring out where to place a new object and how to link it with its neighbors. The WAL contains only the result of those calculations. Historically, the entire HNSW index state was reconstructed by replaying these WAL entries from the beginning, which could be time-consuming for large indexes.
 
-Over time, an append only WAL will contain a lot of redundant information. For example, imagine two subsequent entries which reassign all the links of a specific node. The second operation will completely replace the result of the first operation, thus the WAL no longer needs the first entry. To keep the WALs fresh, a background process will continuously compact WAL files and remove redundant information. This keeps the disk footprint small and the startup times fast, as Weaviate does not need to store (or load) outdated information.
+To dramatically reduce startup times, Weaviate now utilizes **HNSW snapshots**. A snapshot represents a point-in-time state of the HNSW index. When Weaviate starts, if a valid snapshot exists, it will be loaded into memory first. This significantly reduces the number of WAL entries that need to be processed, as only the changes made after the snapshot was taken need to be replayed from the WAL. This parallel loading of snapshots and reduced commit log processing leads to substantially faster startup time.
 
-As a result, any change to the HNSW index is immediately persisted and there is no need for periodic snapshots.
+The snapshot itself is based on condensed commit log files that are immutable, ensuring data integrity. If a snapshot cannot be loaded for any reason, it is safely removed, and Weaviate falls back to the traditional method of loading the full commit log from the beginning, ensuring resilience. Snapshots are currently created at startup, with plans for periodic creation in the future. It's important to note that even with a fresh snapshot, the server typically still has to load at least one subsequent commit log file.
+
+The WAL is still used to persist every change immediately, guaranteeing that any acknowledged write is durable. Over time, the append-only WAL will contain redundant information for operations occurring after the last snapshot. A background process continuously compacts these newer WAL files, removing redundant information. This, combined with snapshotting, keeps the disk footprint manageable and startup times fast. 
 
 ## Conclusions
 
