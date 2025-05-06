@@ -65,12 +65,23 @@ We see that the `arctic` embeddings correctly identified the ideal top-ranked re
 
 ### <i class="fa-solid fa-chalkboard"></i> Evaluation criteria
 
-We could even compare these models using a standard metrics, such as `nDCG@k`. For this scenarios, the two models scored:
+We could even compare these models using a standard metrics, such as `nDCG@k`.
+
+For this scenarios, the two models scored:
 
 | Model | nDCG@10 |
 | --- | --- |
 | `FastText` | 0.595 |
 | `snowflake-arctic-embed-l-v2.0` | 0.908 |
+
+<details>
+  <summary>What is nDCG@k?</summary>
+
+`nDCG` is a metric used to evaluate the returned results in information retrieval. It rewards the model for returning the most relevant results at the top of the list. The `@k` indicates that only the top `k` results are considered.
+
+[Read more](https://en.wikipedia.org/wiki/Discounted_cumulative_gain)
+
+</details>
 
 The size of embeddings produced is another key factor.
 
