@@ -125,6 +125,23 @@ If the cluster size is 3 and the replication factor is also 3, then all nodes ca
 
 If the cluster size is 10 and the replication factor is 3, the 3 nodes which contain that data (collection) can serve queries, coordinated by the coordinator node. The client waits until x (the consistency level) nodes have responded.
 
+## Replica movement
+
+:::info Added in `v1.31`
+:::
+
+While the initial placement of replicas happens automatically based on the replication factor, Weaviate allows operators to **manually move** individual shard replicas from a source node (`A`) to a destination node (`B`). This provides fine-grained control over data placement for operational purposes.
+
+The movement process involves several steps, reflected in replica states:
+1.  A new replica is initiated on the destination node (`B`) (state: `REPLICATION_HYDRATING`).
+1.  Data segments are transferred from an existing replica (usually the source replica on `A`, or another available peer) to the new replica on `B`.
+1.  Once the bulk transfer is complete, the new replica catches up on any writes that occurred during the transfer (state: `REPLICATION_FINALIZING`).
+1.  Replica has caught up to writes and has to process them into the defined index (state: `INDEXING`).
+1.  When the new replica on `B` is fully synchronized and ready to serve traffic, it becomes `READY`.
+1.  If the operation was a "move" (copy and delete), the original replica on node `A` is then decommissioned (state: `REPLICATION_DEHYDRATING`) and eventually removed.
+
+This entire process is designed to happen without interrupting read and write operations to the shard (though some performance impact might be observed during the transfer). The state transitions and operations are coordinated via the Raft consensus layer. Operators can initiate, monitor, and manage these movements using [REST API endpoints](../../api/rest.md).
+
 ## Questions and feedback
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
