@@ -106,8 +106,29 @@ to obtain the metric for the entire Weaviate instance.
 | `weaviate_runtime_config_last_load_success` | Indicates whether the last loading attempt was successful (`1` for success, `0` for failure). |  | `Gauge` |
 | `weaviate_schema_collections` | Shows the total number of collections at any given point. |  |  |
 | `weaviate_schema_shards` | Shows the total number of shards at any given point.  | `status(HOT, COLD, WARM, FROZEN)` |  |
-| `weaviate_internal_*raft` | Provides information about any RAFT-related inquiries. |  |  |
-| `weaviate_internal_.*memberlist` | Provides Memberlist information |  |  |
+| `weaviate_internal_sample_memberlist_queue_broadcasts` |  |  |  |
+| `weaviate_internal_timer_memberlist_gossip` |  |  |  |
+| `weaviate_internal_counter_raft_apply` |  |  |  |
+| `weaviate_internal_counter_raft_state_candidate` |  |  |  |
+| `weaviate_internal_counter_raft_state_follower` |  |  |  |
+| `weaviate_internal_counter_raft_state_leader` |  |  |  |
+| `weaviate_internal_counter_raft_transition_heartbeat_timeout` |  |  |  |
+| `weaviate_internal_gauge_raft_commitNumLogs` |  |  |  |
+| `weaviate_internal_gauge_raft_leader_dispatchNumLogs` |  |  |  |
+| `weaviate_internal_gauge_raft_leader_oldestLogAge` |  |  |  |
+| `weaviate_internal_gauge_raft_peers` |  |  |  |
+| `weaviate_internal_sample_raft_boltdb_logBatchSize` |  |  |  |
+| `weaviate_internal_sample_raft_boltdb_logSize` |  |  |  |
+| `weaviate_internal_sample_raft_boltdb_logsPerBatch` |  |  |  |
+| `weaviate_internal_sample_raft_boltdb_writeCapacity` |  |  |  |
+| `weaviate_internal_sample_raft_thread_fsm_saturation` |  |  |  |
+| `weaviate_internal_sample_raft_thread_main_saturation` |  |  |  |
+| `weaviate_internal_timer_raft_boltdb_getLog` |  |  |  |
+| `weaviate_internal_timer_raft_boltdb_storeLogs` |  |  |  |
+| `weaviate_internal_timer_raft_commitTime` |  |  |  |
+| `weaviate_internal_timer_raft_fsm_apply` |  |  |  |
+| `weaviate_internal_timer_raft_fsm_enqueue` |  |  |  |
+| `weaviate_internal_timer_raft_leader_dispatchLog` |  |  |  |
 
 Extending Weaviate with new metrics is very easy. To suggest a new metric, see the [contributor guide](/developers/contributor-guide).
 
