@@ -168,6 +168,86 @@ By default, Weaviate creates missing collections and missing properties. When yo
 
 To disable [`auto-schema`](../config-refs/schema/index.md#auto-schema) set `AUTOSCHEMA_ENABLED: 'false'` in your system configuration file.
 
+## Define vectors
+
+:::info Added in `v1.24`
+:::
+
+You can define multiple [named vectors](../concepts/data.md#multiple-vector-embeddings-named-vectors) per collection. This allows each object to be represented by multiple vector embeddings, each with its own vector index.
+
+As such, each named vector configuration can include its own vectorizer and vector index settings.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START BasicNamedVectors"
+      endMarker="# END BasicNamedVectors"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START BasicNamedVectors"
+      endMarker="# END BasicNamedVectors"
+      language="pyv3"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START BasicNamedVectors"
+      endMarker="// END BasicNamedVectors"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START BasicNamedVectors"
+      endMarker="// END BasicNamedVectors"
+      language="tsv2"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START CreateCollectionWithNamedVectors"
+      endMarker="// END CreateCollectionWithNamedVectors"
+      language="java"
+    />
+  </TabItem>
+
+</Tabs>
+
+
+## Define multi-vector embeddings (e.g. ColBERT, ColPali)
+
+:::info Added in `v1.29`, `v1.30`
+:::
+
+Multi-vector embeddings, also known as multi-vectors, represent a single object with multiple vectors, i.e. a 2-dimensional matrix. Multi-vectors are currently only available for HNSW indexes for named vectors. To use multi-vectors, enable it for the appropriate named vector.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START MultiValueVectorCollection"
+      endMarker="# END MultiValueVectorCollection"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+:::tip Use quantization to compress your vectors
+Multi-vector embeddings use up more memory than single vector embeddings. You can use [vector quantization](../configuration/compression/index.md) to compress them and reduce memory usage.
+:::
+
 ## Specify a vectorizer
 
 Specify a `vectorizer` for a collection.
@@ -229,86 +309,6 @@ Collection level settings override default values and general configuration para
   </TabItem>
 
 </Tabs>
-
-
-## Define named vectors
-
-:::info Added in `v1.24`
-:::
-
-You can define multiple [named vectors](../concepts/data.md#multiple-vector-embeddings-named-vectors) per collection. This allows each object to be represented by multiple vector embeddings, each with its own vector index.
-
-As such, each named vector configuration can include its own vectorizer and vector index settings.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python Client v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START BasicNamedVectors"
-      endMarker="# END BasicNamedVectors"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="py3" label="Python Client v3">
-    <FilteredTextBlock
-      text={PyCodeV3}
-      startMarker="# START BasicNamedVectors"
-      endMarker="# END BasicNamedVectors"
-      language="pyv3"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS Client v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START BasicNamedVectors"
-      endMarker="// END BasicNamedVectors"
-      language="ts"
-    />
-  </TabItem>
-
-  <TabItem value="js2" label="JS/TS Client v2">
-    <FilteredTextBlock
-      text={TSCodeLegacy}
-      startMarker="// START BasicNamedVectors"
-      endMarker="// END BasicNamedVectors"
-      language="tsv2"
-    />
-  </TabItem>
-
-  <TabItem value="java" label="Java">
-    <FilteredTextBlock
-      text={JavaCode}
-      startMarker="// START CreateCollectionWithNamedVectors"
-      endMarker="// END CreateCollectionWithNamedVectors"
-      language="java"
-    />
-  </TabItem>
-
-</Tabs>
-
-## Define multi-vector embeddings (e.g. ColBERT, ColPali)
-
-:::info Added in `v1.29`, `v1.30`
-:::
-
-Multi-vector embeddings, also known as multi-vectors, represent a single object with multiple vectors, i.e. a 2-dimensional matrix. Multi-vectors are currently only available for HNSW indexes for named vectors. To use multi-vectors, enable it for the appropriate named vector.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python Client v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START MultiValueVectorCollection"
-      endMarker="# END MultiValueVectorCollection"
-      language="py"
-    />
-  </TabItem>
-</Tabs>
-
-:::tip Use quantization to compress your vectors
-Multi-vector embeddings use up more memory than single vector embeddings. You can use [vector quantization](../configuration/compression/index.md) to compress them and reduce memory usage.
-:::
 
 ## Specify vectorizer settings
 

@@ -66,7 +66,14 @@ from weaviate.classes.config import Configure, Property, DataType
 client.collections.create(
     "Article",
     # highlight-start
-    vectorizer_config=Configure.Vectorizer.text2vec_openai(),
+    vector_config=[
+        # Set a vector with the "text2vec-openai" vectorizer
+        Configure.Vectors.text2vec_openai(
+            name="title_body_vector",
+            source_properties=["title", "body"],                # (Optional) Set the source property(ies)
+            vector_index_config=Configure.VectorIndex.hnsw()    # (Optional) Set vector index options
+        ),
+    ],
     # highlight-end
     properties=[  # properties configuration is optional
         Property(name="title", data_type=DataType.TEXT),
@@ -95,21 +102,21 @@ from weaviate.classes.config import Configure, Property, DataType
 client.collections.create(
     "ArticleNV",
     # highlight-start
-    vectorizer_config=[
-        # Set a named vector with the "text2vec-cohere" vectorizer
-        Configure.NamedVectors.text2vec_cohere(
+    vector_config=[
+        # Set a vector with the "text2vec-cohere" vectorizer
+        Configure.Vectors.text2vec_cohere(
             name="title",
             source_properties=["title"],                        # (Optional) Set the source property(ies)
             vector_index_config=Configure.VectorIndex.hnsw()    # (Optional) Set vector index options
         ),
-        # Set another named vector with the "text2vec-openai" vectorizer
-        Configure.NamedVectors.text2vec_openai(
+        # Set another vector with the "text2vec-openai" vectorizer
+        Configure.Vectors.text2vec_openai(
             name="title_country",
             source_properties=["title", "country"],             # (Optional) Set the source property(ies)
             vector_index_config=Configure.VectorIndex.hnsw()    # (Optional) Set vector index options
         ),
-        # Set a named vector for your own uploaded vectors
-        Configure.NamedVectors.none(
+        # Set a vector for your own uploaded vectors
+        Configure.Vectors.none(
             name="custom_vector",
             vector_index_config=Configure.VectorIndex.hnsw()    # (Optional) Set vector index options
         )
@@ -146,12 +153,17 @@ from weaviate.classes.config import Configure, Property, DataType
 
 client.collections.create(
     "Article",
-    vectorizer_config=Configure.Vectorizer.text2vec_openai(),
-    # highlight-start
-    vector_index_config=Configure.VectorIndex.hnsw(),  # Use the HNSW index
-    # vector_index_config=Configure.VectorIndex.flat(),  # Use the FLAT index
-    # vector_index_config=Configure.VectorIndex.dynamic(),  # Use the DYNAMIC index
-    # highlight-end
+    vector_config=[
+        Configure.Vectors.text2vec_openai(
+            name="body_vector",
+            source_properties=["body"],
+            # highlight-start
+            vector_index_config=Configure.VectorIndex.hnsw(),  # Use the HNSW index
+            # vector_index_config=Configure.VectorIndex.flat(),  # Use the FLAT index
+            # vector_index_config=Configure.VectorIndex.dynamic(),  # Use the DYNAMIC index
+            # highlight-end
+        )
+    ],
     properties=[
         Property(name="title", data_type=DataType.TEXT),
         Property(name="body", data_type=DataType.TEXT),
@@ -178,15 +190,21 @@ from weaviate.classes.config import Configure, Property, DataType, VectorDistanc
 
 client.collections.create(
     "Article",
-    # Additional configuration not shown
-    # highlight-start
-    vector_index_config=Configure.VectorIndex.hnsw(
-        quantizer=Configure.VectorIndex.Quantizer.bq(),
-        ef_construction=300,
-        distance_metric=VectorDistances.COSINE,
-        filter_strategy=VectorFilterStrategy.SWEEPING  # or ACORN (Available from Weaviate v1.27.0)
-    ),
-    # highlight-end
+    # Additional configuration and properties not shown
+    vector_config=[
+        Configure.Vectors.text2vec_openai(
+            name="body_vector",
+            source_properties=["body"],
+            # highlight-start
+            vector_index_config=Configure.VectorIndex.hnsw(
+                quantizer=Configure.VectorIndex.Quantizer.bq(),
+                ef_construction=300,
+                distance_metric=VectorDistances.COSINE,
+                filter_strategy=VectorFilterStrategy.SWEEPING  # or ACORN (Available from Weaviate v1.27.0)
+            ),
+            # highlight-end
+        )
+    ],
 )
 # END SetVectorIndexParams
 
@@ -258,8 +276,8 @@ client.collections.delete("Article")
 from weaviate.classes.config import Configure, Property, DataType
 
 client.collections.create(
+    # Additional configuration and properties not shown
     "Article",
-    vectorizer_config=Configure.Vectorizer.text2vec_openai(),
     # highlight-start
     reranker_config=Configure.Reranker.cohere()
     # highlight-end
@@ -284,8 +302,8 @@ client.collections.delete("Article")
 from weaviate.classes.config import Configure, Property, DataType
 
 client.collections.create(
+    # Additional configuration and properties not shown
     "Article",
-    vectorizer_config=Configure.Vectorizer.text2vec_openai(),
     # highlight-start
     reranker_config=Configure.Reranker.voyageai()
     # highlight-end
@@ -322,8 +340,8 @@ client.collections.delete("Article")
 from weaviate.classes.config import Configure, Property, DataType
 
 client.collections.create(
+    # Additional configuration and properties not shown
     "Article",
-    vectorizer_config=Configure.Vectorizer.text2vec_openai(),
     # highlight-start
     generative_config=Configure.Generative.openai(),
     # highlight-end
@@ -348,8 +366,8 @@ client.collections.delete("Article")
 from weaviate.classes.config import Configure, Property, DataType
 
 client.collections.create(
+    # Additional configuration and properties not shown
     "Article",
-    vectorizer_config=Configure.Vectorizer.text2vec_openai(),
     # highlight-start
     generative_config=Configure.Generative.openai(
         model="gpt-4"
@@ -376,8 +394,8 @@ client.collections.delete("Article")
 from weaviate.classes.config import Configure, Property, DataType
 
 client.collections.create(
+    # Additional configuration and properties not shown
     "Article",
-    vectorizer_config=Configure.Vectorizer.text2vec_openai(),
     # highlight-start
     generative_config=Configure.Generative.openai()
     # highlight-end
@@ -416,11 +434,11 @@ from weaviate.classes.config import Configure, Property, DataType
 
 client.collections.create(
     "DemoCollection",
-    vectorizer_config=[
+    vector_config=[
         # Example 1 - Use a model integration
         # The factory function will automatically enable multi-vector support for the HNSW index
         # highlight-start
-        Configure.NamedVectors.text2colbert_jinaai(
+        Configure.Vectors.text2colbert_jinaai(
             name="jina_colbert",
             source_properties=["text"],
         ),
@@ -428,7 +446,7 @@ client.collections.create(
         # Example 2 - User-provided multi-vector representations
         # Must explicitly enable multi-vector support for the HNSW index
         # highlight-start
-        Configure.NamedVectors.none(
+        Configure.Vectors.none(
         # highlight-end
             name="custom_multi_vector",
             vector_index_config=Configure.VectorIndex.hnsw(
@@ -458,10 +476,13 @@ from weaviate.classes.config import Configure
 client.collections.create(
     "Article",
     # highlight-start
-    vectorizer_config=Configure.Vectorizer.text2vec_cohere(
-        model="embed-multilingual-v2.0",
-        vectorize_collection_name=True
-    ),
+    vector_config=[
+        Configure.Vectors.text2vec_cohere(
+            name="test_vector",
+            model="embed-multilingual-v2.0",
+            vectorize_collection_name=True
+        ),
+    ],
     # highlight-end
 )
 # END ModuleSettings
@@ -484,8 +505,6 @@ from weaviate.classes.config import Configure, Property, DataType, Tokenization
 
 client.collections.create(
     "Article",
-    vectorizer_config=Configure.Vectorizer.text2vec_huggingface(),
-
     properties=[
         Property(
             name="title",
@@ -531,11 +550,16 @@ from weaviate.classes.config import Configure, VectorDistances
 
 client.collections.create(
     "Article",
-    # highlight-start
-    vector_index_config=Configure.VectorIndex.hnsw(
-        distance_metric=VectorDistances.COSINE
-    ),
-    # highlight-end
+    vector_config=[
+        Configure.Vectors.text2vec_cohere(
+            name="test_vector",
+            # highlight-start
+            vector_index_config=Configure.VectorIndex.hnsw(
+                distance_metric=VectorDistances.COSINE
+            ),
+            # highlight-end
+        ),
+    ],
 )
 # END DistanceMetric
 
@@ -815,9 +839,14 @@ articles.config.update(
     inverted_index_config=Reconfigure.inverted_index(
         bm25_k1=1.5
     ),
-    vector_index_config=Reconfigure.VectorIndex.hnsw(
-        filter_strategy=VectorFilterStrategy.ACORN  # Available from Weaviate v1.27.0
-    ),
+    vector_config=[
+        Reconfigure.Vectors.update(
+            name="test_vector",
+            vector_index_config=Reconfigure.VectorIndex.hnsw(
+                filter_strategy=VectorFilterStrategy.ACORN  # Available from Weaviate v1.27.0
+            ),
+        ),
+    ],
     replication_config=Reconfigure.replication(
         deletion_strategy=ReplicationDeletionStrategy.TIME_BASED_RESOLUTION  # Available from Weaviate v1.28.0
     )
