@@ -9,7 +9,7 @@ import ThemedImage from '@theme/ThemedImage';
 
 Here is how you might perform a custom benchmark.
 
-Imagine your end goal is to implement a RAG (retrieval augmented generation) system over your company's technical documentation (e.g., product documentation, code examples, support forum logs).
+Imagine your end goal is to implement a [RAG (retrieval augmented generation)](/blog/introduction-to-rag) system over your company's technical documentation (e.g., product documentation, code examples, support forum logs).
 
 You've shortlisted two embedding models (Model A and Model B) to retrieve objects based on MTEB scores and practical considerations. Let’s go through the steps discussed earlier.
 
@@ -54,7 +54,7 @@ def calculate_ndcg(
     return dcg / idcg if idcg > 0 else 0.0
 ```
 
-Note: some libraries such as [scikit-learn has built-in implementations](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.ndcg_score.html) of NDCG.
+Note: some libraries such as [scikit-learn have built-in implementations](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.ndcg_score.html) of NDCG.
 
 ### <i class="fa-solid fa-code"></i> Curate a benchmark dataset
 
@@ -69,32 +69,32 @@ dataset = {
 		{
 			"id": "doc001",
 			# Highly relevant documentation text
-			"text": "Each collection can be configured to use BQ compression. BQ must be enabled at collection creation time, before data is added to it. This can be done by setting the vector_index_config of the collection to enable BQ compression."
+			"text": "Each collection can be configured to use BQ compression. BQ must be enabled at collection creation time, before data is added to it. This can be done by setting the vector_index_config of the collection to enable BQ compression.",
 			"score": 3
 		},
 		{
 			"id": "doc002",
 			# Highly relevant, long code example
-			"text": "from weaviate.classes.config import Configure, Property, DataType, VectorDistances, VectorFilterStrateg\n\nclient.collections.create(\n    'Article',\n    # Additional configuration not shown\n    vector_index_config=Configure.VectorIndex.hnsw(\n        quantizer=Configure.VectorIndex.Quantizer.bq(\n            cache=True,\n            rescore_limit=1000\n        ),\n        ef_construction=300,\n        distance_metric=VectorDistances.COSINE,\n        filter_strategy=VectorFilterStrategy.SWEEPING  # or ACORN (Available from Weaviate v1.27.0)\n    ),)"
+			"text": "from weaviate.classes.config import Configure, Property, DataType, VectorDistances, VectorFilterStrateg\n\nclient.collections.create(\n    'Article',\n    # Additional configuration not shown\n    vector_index_config=Configure.VectorIndex.hnsw(\n        quantizer=Configure.VectorIndex.Quantizer.bq(\n            cache=True,\n            rescore_limit=1000\n        ),\n        ef_construction=300,\n        distance_metric=VectorDistances.COSINE,\n        filter_strategy=VectorFilterStrategy.SWEEPING  # or ACORN (Available from Weaviate v1.27.0)\n    ),)",
 			"score": 3
 		},
 		{
 			"id": "doc003",
 			# Highly relevant, short code example
-			"text": "client.collections.create(\nname='Movie',\nvector_index_config=wc.Configure.VectorIndex.flat(\nquantizer=wc.Configure.VectorIndex.Quantizer.bq()\n))"
+			"text": "client.collections.create(\nname='Movie',\nvector_index_config=wc.Configure.VectorIndex.flat(\nquantizer=wc.Configure.VectorIndex.Quantizer.bq()\n))",
 			"score": 3
 		},
 		{
 			"id": "doc004",
 			# Less relevant forum post, even though the right words appear
-			"text": "No change in vector size after I set up Binary Quantization\nHello! I was curious to try out how binary quantization works. To embed data I use gtr-t5-large model, which creates 768-dimensional vectors. My database stores around 2k of vectors. My python code to turn PQ on is following: client.schema.update_config(\n    'Document',\n    {\n        'vectorIndexConfig': {\n            'bq': {\n                'enabled': True, \n            }\n        }\n    },\n)"
+			"text": "No change in vector size after I set up Binary Quantization\nHello! I was curious to try out how binary quantization works. To embed data I use gtr-t5-large model, which creates 768-dimensional vectors. My database stores around 2k of vectors. My python code to turn PQ on is following: client.schema.update_config(\n    'Document',\n    {\n        'vectorIndexConfig': {\n            'bq': {\n                'enabled': True, \n            }\n        }\n    },\n)",
 			"score": 1
 		},
 		# And so on ...
 		{
 			"id": "doc030",
 			# Irrrelevant documentation text
-			"text": "Weaviate stores data objects in collections. Data objects are represented as JSON-documents. Objects normally include a vector that is derived from a machine learning model. The vector is also called an embedding or a vector embedding."
+			"text": "Weaviate stores data objects in collections. Data objects are represented as JSON-documents. Objects normally include a vector that is derived from a machine learning model. The vector is also called an embedding or a vector embedding.",
 			"score": 0
 		},
 	]
