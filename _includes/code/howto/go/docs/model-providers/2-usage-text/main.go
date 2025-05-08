@@ -57,10 +57,10 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-aws": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"region":           "us-east-1",
-						"service":          "bedrock",
-						"model":            "cohere.embed-multilingual-v3",
+						"properties": []string{"title"},
+						"region":     "us-east-1",
+						"service":    "bedrock",
+						"model":      "cohere.embed-multilingual-v3",
 					},
 				},
 			},
@@ -92,10 +92,10 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-aws": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"region":           "us-east-1",
-						"service":          "sagemaker",
-						"endpoint":         "<custom_sagemaker_url>",
+						"properties": []string{"title"},
+						"region":     "us-east-1",
+						"service":    "sagemaker",
+						"endpoint":   "<custom_sagemaker_url>",
 					},
 				},
 			},
@@ -127,10 +127,10 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-aws": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"region":           "us-east-1",
-						"service":          "bedrock",                      // "bedrock" or "sagemaker"
-						"model":            "cohere.embed-multilingual-v3", // If using `bedrock`, this is required
+						"properties": []string{"title"},
+						"region":     "us-east-1",
+						"service":    "bedrock",                      // "bedrock" or "sagemaker"
+						"model":      "cohere.embed-multilingual-v3", // If using `bedrock`, this is required
 						// "endpoint":         "<custom_sagemaker_url>",       // If using `sagemaker`, this is required
 					},
 				},
@@ -163,7 +163,7 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-cohere": map[string]interface{}{
-						"sourceProperties": []string{"title"},
+						"properties": []string{"title"},
 					},
 				},
 			},
@@ -187,8 +187,8 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-cohere": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"model":            "embed-multilingual-v3.0",
+						"properties": []string{"title"},
+						"model":      "embed-multilingual-v3.0",
 					},
 				},
 			},
@@ -212,7 +212,7 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-cohere": map[string]interface{}{
-						"sourceProperties": []string{"title"},
+						"properties": []string{"title"},
 						// "model":            "embed-multilingual-v3.0",
 						// "truncate":         "END", // "NONE", "START" or "END"
 						// "base_url":         "<custom_cohere_url>",
@@ -247,8 +247,8 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-databricks": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"endpoint":         "<databricks_vectorizer_endpoint>", // Required for Databricks
+						"properties": []string{"title"},
+						"endpoint":   "<databricks_vectorizer_endpoint>", // Required for Databricks
 					},
 				},
 			},
@@ -321,8 +321,8 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-google": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"model_id":         "text-embedding-004", // (Optional) To manually set the model ID
+						"properties": []string{"title"},
+						"model_id":   "text-embedding-004", // (Optional) To manually set the model ID
 					},
 				},
 			},
@@ -354,10 +354,10 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-aws": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"project_id":       "<google-cloud-project-id>",  // Required for Vertex AU
-						"model_id":         "textembedding-gecko@latest", // (Optional) To manually set the model ID
-						"api_endpoint":     "<google-api-endpoint>",      // (Optional) To manually set the API endpoint
+						"properties":   []string{"title"},
+						"project_id":   "<google-cloud-project-id>",  // Required for Vertex AU
+						"model_id":     "textembedding-gecko@latest", // (Optional) To manually set the model ID
+						"api_endpoint": "<google-api-endpoint>",      // (Optional) To manually set the API endpoint
 					},
 				},
 			},
@@ -389,8 +389,8 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-huggingface": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"model":            "sentence-transformers/all-MiniLM-L6-v2",
+						"properties": []string{"title"},
+						"model":      "sentence-transformers/all-MiniLM-L6-v2",
 					},
 				},
 			},
@@ -422,7 +422,7 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-huggingface": map[string]interface{}{
-						"sourceProperties": []string{"title"},
+						"properties": []string{"title"},
 						//  Note: Use only one of (`model`), (`passage_model` and `query_model`), or (`endpoint_url`)
 						"model": "sentence-transformers/all-MiniLM-L6-v2",
 						// "passage_model":  "sentence-transformers/facebook-dpr-ctx_encoder-single-nq-base",      // Required if using `query_model`
@@ -463,7 +463,7 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-jinaai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
+						"properties": []string{"title"},
 					},
 				},
 			},
@@ -495,8 +495,8 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-jinaai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"model":            "jina-embeddings-v3",
+						"properties": []string{"title"},
+						"model":      "jina-embeddings-v3",
 					},
 				},
 			},
@@ -528,9 +528,9 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-jinaai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"model":            "jina-embeddings-v3",
-						"dimensions":       512, // e.g. 1024, 512, 256 (only applicable for some models)
+						"properties": []string{"title"},
+						"model":      "jina-embeddings-v3",
+						"dimensions": 512, // e.g. 1024, 512, 256 (only applicable for some models)
 					},
 				},
 			},
@@ -562,7 +562,7 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2colbert-jinaai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
+						"properties": []string{"title"},
 					},
 				},
 			},
@@ -594,8 +594,8 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2colbert-jinaai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"model":            "jina-colbert-v2",
+						"properties": []string{"title"},
+						"model":      "jina-colbert-v2",
 					},
 				},
 			},
@@ -627,9 +627,9 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2colbert-jinaai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"model":            "jina-colbert-v2",
-						"dimensions":       96, // e.g. 128, 64 (only applicable for some models)
+						"properties": []string{"title"},
+						"model":      "jina-colbert-v2",
+						"dimensions": 96, // e.g. 128, 64 (only applicable for some models)
 					},
 				},
 			},
@@ -661,7 +661,7 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-mistral": map[string]interface{}{
-						"sourceProperties": []string{"title"},
+						"properties": []string{"title"},
 					},
 				},
 			},
@@ -693,8 +693,8 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-mistral": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"model":            "mistral-embed",
+						"properties": []string{"title"},
+						"model":      "mistral-embed",
 					},
 				},
 			},
@@ -726,7 +726,7 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-nvidia": map[string]interface{}{
-						"sourceProperties": []string{"title"},
+						"properties": []string{"title"},
 					},
 				},
 			},
@@ -750,8 +750,8 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-nvidia": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"model":            "nvidia/nv-embed-v1",
+						"properties": []string{"title"},
+						"model":      "nvidia/nv-embed-v1",
 					},
 				},
 			},
@@ -775,7 +775,7 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-nvidia": map[string]interface{}{
-						"sourceProperties": []string{"title"},
+						"properties": []string{"title"},
 						// "model":            "nvidia/nv-embed-v1",
 					},
 				},
@@ -808,7 +808,7 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-openai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
+						"properties": []string{"title"},
 					},
 				},
 			},
@@ -840,9 +840,9 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-openai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"model":            "text-embedding-3-large",
-						"dimensions":       1024, // Optional (e.g. 1024, 512, 256)
+						"properties": []string{"title"},
+						"model":      "text-embedding-3-large",
+						"dimensions": 1024, // Optional (e.g. 1024, 512, 256)
 					},
 				},
 			},
@@ -874,10 +874,10 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-openai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"model":            "ada",
-						"model_version":    "002",
-						"type":             "text",
+						"properties":    []string{"title"},
+						"model":         "ada",
+						"model_version": "002",
+						"type":          "text",
 					},
 				},
 			},
@@ -909,12 +909,12 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-openai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"model":            "text-embedding-3-large",
-						"dimensions":       1024,   // Parameter only applicable for `v3` model family and newer
-						"model_version":    "002",  // Parameter only applicable for `ada` model family and older
-						"type":             "text", // Parameter only applicable for `ada` model family and older
-						"base_url":         "<custom_openai_url>",
+						"properties":    []string{"title"},
+						"model":         "text-embedding-3-large",
+						"dimensions":    1024,   // Parameter only applicable for `v3` model family and newer
+						"model_version": "002",  // Parameter only applicable for `ada` model family and older
+						"type":          "text", // Parameter only applicable for `ada` model family and older
+						"base_url":      "<custom_openai_url>",
 					},
 				},
 			},
@@ -946,9 +946,9 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-openai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"resourceName":     "<azure-resource-name>",
-						"deploymentID":     "<azure-deployment-id>",
+						"properties":   []string{"title"},
+						"resourceName": "<azure-resource-name>",
+						"deploymentId": "<azure-deployment-id>",
 					},
 				},
 			},
@@ -980,10 +980,10 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-openai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"resourceName":     "<azure-resource-name>",
-						"deploymentID":     "<azure-deployment-id>",
-						// "baseURL":          "<custom-azure-url>",
+						"properties":   []string{"title"},
+						"resourceName": "<azure-resource-name>",
+						"deploymentId": "<azure-deployment-id>",
+						// "baseURL":      "<custom-azure-url>",
 					},
 				},
 			},
@@ -1015,7 +1015,7 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-voyageai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
+						"properties": []string{"title"},
 					},
 				},
 			},
@@ -1047,8 +1047,8 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-voyageai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"model":            "voyage-3-lite",
+						"properties": []string{"title"},
+						"model":      "voyage-3-lite",
 					},
 				},
 			},
@@ -1080,7 +1080,7 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-voyageai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
+						"properties": []string{"title"},
 						// "model":            "voyage-3-lite",
 						// "base_url":         "<custom-voyageai-url>",
 						// "truncate":         true,
