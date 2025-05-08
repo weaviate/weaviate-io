@@ -285,7 +285,7 @@ Use `.add_collection` or `.remove_collection` methods on an instantiated `QueryA
 
 Use `.view_properties` to define the properties that the Query Agent can look at when answering queries.
 
-Optional target vectors can be specified in the query if a collection uses named vector. When multiple collections are provided to the query agent, a dictionary must be used to map collection names to their respective target vectors, for example `target_vector={"ECommerce": ["name", "description"]}`.
+Optional target vectors can be specified in the query if a collection uses named vector. When multiple collections are provided to the query agent, a dictionary must be used to map collection names to their respective target vectors. For example `target_vector={"ecommerce": ["name_vector", "description_vector"]}` runs the query on two named vectors from the `ecommerce` collection.
 
 ## Limitations & Troubleshooting
 
