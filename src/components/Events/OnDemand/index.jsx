@@ -78,6 +78,12 @@ export default function OnDemand() {
               {'Watch now >'}
             </Link>
           </div>
+          <div className={styles.marketBox}>
+            <p>Reimagining Data Workflows with Weaviate Agents</p>
+            <Link to="https://events.weaviate.io/weaviate-agents-livestream-2025">
+              {'Watch now >'}
+            </Link>
+          </div>
         </div>
       </div>
     </div>
