@@ -285,6 +285,8 @@ Use `.add_collection` or `.remove_collection` methods on an instantiated `QueryA
 
 Use `.view_properties` to define the properties that the Query Agent can look at when answering queries.
 
+Optional target vectors can be specified in the query if a collection uses named vector. When multiple collections are provided to the query agent, a dictionary must be used to map collection names to their respective target vectors, for example `target_vector={"ECommerce": ["name", "description"]}`.
+
 ## Limitations & Troubleshooting
 
 :::caution Technical Preview
@@ -298,7 +300,7 @@ Use `.view_properties` to define the properties that the Query Agent can look at
 
 ### Usage limits
 
-At this stage, there is a limit of 100 Query Agent queries per day per Weaviate Cloud [organization](/developers/wcs/platform/users-and-organizations.mdx#organizations).
+At this stage, there is a limit of 500 Query Agent queries per day per Weaviate Cloud [organization](/developers/wcs/platform/users-and-organizations.mdx#organizations).
 
 This limit may change in future versions of the Query Agent.
 
