@@ -983,7 +983,7 @@ func main() {
 						"properties":   []string{"title"},
 						"resourceName": "<azure-resource-name>",
 						"deploymentId": "<azure-deployment-id>",
-						// "baseURL":          "<custom-azure-url>",
+						// "baseURL":      "<custom-azure-url>",
 					},
 				},
 			},
