@@ -106,17 +106,17 @@ to obtain the metric for the entire Weaviate instance.
 | `weaviate_runtime_config_last_load_success` | Indicates whether the last loading attempt was successful (`1` for success, `0` for failure). |  | `Gauge` |
 | `weaviate_schema_collections` | Shows the total number of collections at any given point. |  |  |
 | `weaviate_schema_shards` | Shows the total number of shards at any given point.  | `status(HOT, COLD, WARM, FROZEN)` |  |
-| `weaviate_internal_sample_memberlist_queue_broadcasts` | Shows the number of messages in the broadcast queue of Memberlist | `quantile=0.5, 0.9, 0.99` | `Summary` |
-| `weaviate_internal_timer_memberlist_gossip` | Shows the latency distribution of the each gossip made in Memberlist | `quantile=0.5, 0.9, 0.99`  | `Summary` |
-| `weaviate_internal_counter_raft_apply` |  |  |  |
-| `weaviate_internal_counter_raft_state_candidate` |  |  |  |
-| `weaviate_internal_counter_raft_state_follower` |  |  |  |
-| `weaviate_internal_counter_raft_state_leader` |  |  |  |
-| `weaviate_internal_counter_raft_transition_heartbeat_timeout` |  |  |  |
-| `weaviate_internal_gauge_raft_commitNumLogs` |  |  |  |
-| `weaviate_internal_gauge_raft_leader_dispatchNumLogs` |  |  |  |
-| `weaviate_internal_gauge_raft_leader_oldestLogAge` |  |  |  |
-| `weaviate_internal_gauge_raft_peers` |  |  |  |
+| `weaviate_internal_sample_memberlist_queue_broadcasts` | Shows the number of messages in the broadcast queue of Memberlist. | `quantile=0.5, 0.9, 0.99` | `Summary` |
+| `weaviate_internal_timer_memberlist_gossip` | Shows the latency distribution of the each gossip made in Memberlist. | `quantile=0.5, 0.9, 0.99` | `Summary` |
+| `weaviate_internal_counter_raft_apply` | Number of transactions in the configured interval. |  | `counter` |
+| `weaviate_internal_counter_raft_state_candidate` | Number of times the raft server initiated an election. |  | `counter` |
+| `weaviate_internal_counter_raft_state_follower` | Number of times in the configured interval that the raft server became a follower. |  | `summary` |
+| `weaviate_internal_counter_raft_state_leader` | Number of times the raft server became a leader. |  | `counter` |
+| `weaviate_internal_counter_raft_transition_heartbeat_timeout` | Number of times that the node transitioned to `candidate` state after not receiving a heartbeat message from the last known leader. |  | `summary` |
+| `weaviate_internal_gauge_raft_commitNumLogs` | Number of logs processed for application to the finite state machine in a single batch. |  | `gauge` |
+| `weaviate_internal_gauge_raft_leader_dispatchNumLogs` | Number of logs committed to disk in the most recent batch. |  | `gauge` |
+| `weaviate_internal_gauge_raft_leader_oldestLogAge` |  |  | `gauge` |
+| `weaviate_internal_gauge_raft_peers` | The number of peers in the raft cluster configuration. |  | `gauge` |
 | `weaviate_internal_sample_raft_boltdb_logBatchSize` |  |  |  |
 | `weaviate_internal_sample_raft_boltdb_logSize` |  |  |  |
 | `weaviate_internal_sample_raft_boltdb_logsPerBatch` |  |  |  |
@@ -124,11 +124,11 @@ to obtain the metric for the entire Weaviate instance.
 | `weaviate_internal_sample_raft_thread_fsm_saturation` |  |  |  |
 | `weaviate_internal_sample_raft_thread_main_saturation` |  |  |  |
 | `weaviate_internal_timer_raft_boltdb_getLog` |  |  |  |
-| `weaviate_internal_timer_raft_boltdb_storeLogs` |  |  |  |
-| `weaviate_internal_timer_raft_commitTime` |  |  |  |
-| `weaviate_internal_timer_raft_fsm_apply` |  |  |  |
-| `weaviate_internal_timer_raft_fsm_enqueue` |  |  |  |
-| `weaviate_internal_timer_raft_leader_dispatchLog` |  |  |  |
+| `weaviate_internal_timer_raft_boltdb_storeLogs` | Time required to record any outstanding logs since the last request to append entries for the given node. |  | `timer` |
+| `weaviate_internal_timer_raft_commitTime` | Time required to commit a new entry to the raft log on the leader node. |  | `summary` |
+| `weaviate_internal_timer_raft_fsm_apply` | Number of logs committed by the finite state machine since the last interval. |  | `summary` |
+| `weaviate_internal_timer_raft_fsm_enqueue` | Time required to queue up a batch of logs for the finite state machine to apply. |  | `summary` |
+| `weaviate_internal_timer_raft_leader_dispatchLog` | Time required for the leader node to write a log entry to disk. |  | `timer` |
 
 Extending Weaviate with new metrics is very easy. To suggest a new metric, see the [contributor guide](/developers/contributor-guide).
 
