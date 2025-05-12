@@ -106,8 +106,8 @@ to obtain the metric for the entire Weaviate instance.
 | `weaviate_runtime_config_last_load_success` | Indicates whether the last loading attempt was successful (`1` for success, `0` for failure). |  | `Gauge` |
 | `weaviate_schema_collections` | Shows the total number of collections at any given point. |  |  |
 | `weaviate_schema_shards` | Shows the total number of shards at any given point.  | `status(HOT, COLD, WARM, FROZEN)` |  |
-| `weaviate_internal_sample_memberlist_queue_broadcasts` |  |  |  |
-| `weaviate_internal_timer_memberlist_gossip` |  |  |  |
+| `weaviate_internal_sample_memberlist_queue_broadcasts` | Shows the number of messages in the broadcast queue of Memberlist | `quantile=0.5, 0.9, 0.99` | `Summary` |
+| `weaviate_internal_timer_memberlist_gossip` | Shows the latency distribution of the each gossip made in Memberlist | `quantile=0.5, 0.9, 0.99`  | `Summary` |
 | `weaviate_internal_counter_raft_apply` |  |  |  |
 | `weaviate_internal_counter_raft_state_candidate` |  |  |  |
 | `weaviate_internal_counter_raft_state_follower` |  |  |  |
