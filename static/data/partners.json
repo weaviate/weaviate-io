@@ -548,5 +548,16 @@
     "programmingLanguage": "",
     "weaviateFeatures": "",
     "featured": false
+  },
+  {
+    "name": "Comet",
+    "image": "/img/site/comet-logo.png",
+    "link": "/developers/integrations/operations/comet",
+    "description": "Comet allows you to track, evaluate, and monitor both traditional and LLM models end-to-end.",
+    "tags": ["Operations", "Integration"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
   }
 ]
