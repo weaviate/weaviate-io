@@ -16,6 +16,7 @@ Learn about how Weaviate integrates with these solutions:
 * [Langtrace](/developers/integrations/operations/langtrace/)
 * [LangWatch](/developers/integrations/operations/langwatch)
 * [Nomic](/developers/integrations/operations/nomic/)
+* [Patronus AI](/developers/integrations/operations/patronus/)
 * [Ragas](/developers/integrations/operations/ragas/)
 * [TruLens](/developers/integrations/operations/trulens/)
 * [Weights and Biases](/developers/integrations/operations/wandb/)
