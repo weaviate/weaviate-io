@@ -526,5 +526,16 @@
     "programmingLanguage": "",
     "weaviateFeatures": "",
     "featured": false
+  },
+  {
+    "name": "Cleanlab",
+    "image": "/img/site/cleanlab-logo.png",
+    "link": "/developers/integrations/operations/cleanlab",
+    "description": "Cleanlab provides software to detect and remediate inaccurate responses from Enterprise AI applications",
+    "tags": [],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
   }
 ]
