@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import Link from '@docusaurus/Link';
-import fetch, { Headers } from 'node-fetch';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 export default function Jobs() {
   const { siteConfig } = useDocusaurusContext();
-  const apiKey = siteConfig.customFields.teamtailorApiKey;
-
-  const headers = new Headers();
-  headers.append('Authorization', `Token token=${apiKey}`);
-  headers.append('X-Api-Version', '20210218');
+  const apiKey = '627t2m5j5DXEp2PzGXXIlsf_NTyBj_OATYIOkRYN';
 
   const [rawJobs, setRawJobs] = useState([]);
   const [tailorJobs, setTailorJobs] = useState([]);
@@ -19,26 +14,68 @@ export default function Jobs() {
   const [departments, setDepartments] = useState({});
   const [selectedDepartment, setSelectedDepartment] = useState('');
 
+  const headers = {
+    Authorization: `Token token=${apiKey}`,
+    'X-Api-Version': '20210218',
+    'Content-Type': 'application/json',
+  };
+
   useEffect(() => {
+    if (!apiKey) {
+      console.error(
+        'Teamtailor API key is missing in siteConfig.customFields.teamtailorApiKey'
+      );
+      return;
+    }
     fetchDepartments().then(fetchAllJobs);
   }, []);
 
   const fetchDepartments = async () => {
-    const url = 'https://api.teamtailor.com/v1/departments';
-    const response = await fetch(url, { headers });
-    const data = await response.json();
-    const departmentMap = {};
-    data.data.forEach((dept) => {
-      departmentMap[dept.id] = dept.attributes.name;
-    });
-    setDepartments(departmentMap);
+    try {
+      const response = await fetch(
+        'https://api.teamtailor.com/v1/departments',
+        { headers }
+      );
+      if (!response.ok) {
+        console.error(
+          'Failed to fetch departments:',
+          response.status,
+          await response.text()
+        );
+        return;
+      }
+
+      const data = await response.json();
+      const departmentMap = {};
+      data.data.forEach((dept) => {
+        departmentMap[dept.id] = dept.attributes.name;
+      });
+      setDepartments(departmentMap);
+    } catch (error) {
+      console.error('Error fetching departments:', error);
+    }
   };
 
   const fetchJobsPage = async (page) => {
-    const url = `https://api.teamtailor.com/v1/jobs?page[number]=${page}&page[size]=${jobsPerPage}`;
-    const response = await fetch(url, { headers });
-    const data = await response.json();
-    return data;
+    try {
+      const url = `https://api.teamtailor.com/v1/jobs?page[number]=${page}&page[size]=${jobsPerPage}`;
+      const response = await fetch(url, { headers });
+
+      if (!response.ok) {
+        console.error(
+          'Failed to fetch jobs page:',
+          response.status,
+          await response.text()
+        );
+        return { data: [], meta: { 'page-count': 0 } };
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching jobs page:', error);
+      return { data: [], meta: { 'page-count': 0 } };
+    }
   };
 
   const fetchAllJobs = async () => {
@@ -48,13 +85,31 @@ export default function Jobs() {
 
     do {
       const data = await fetchJobsPage(page);
+      if (!data || !data.data) break;
+
       allJobs = [...allJobs, ...data.data];
-      totalPages = data.meta['page-count'];
+      totalPages = data.meta?.['page-count'] || 1;
       page += 1;
     } while (page <= totalPages);
 
     setRawJobs(allJobs);
     getJobs(allJobs);
+  };
+
+  const fetchDepartment = async (item) => {
+    try {
+      const related = item?.relationships?.department?.links?.related;
+      if (!related) return 'No Department';
+
+      const response = await fetch(related, { headers });
+      if (!response.ok) return '--';
+
+      const data = await response.json();
+      return data.data?.attributes?.name || '--';
+    } catch (error) {
+      console.error('Error fetching department for job:', error);
+      return '--';
+    }
   };
 
   const getJobs = async (jobsData) => {
@@ -66,22 +121,11 @@ export default function Jobs() {
           title: item.attributes.title,
           remote: item.attributes['remote-status'],
           link: item.links['careersite-job-url'],
-          department: department,
+          department,
         };
       })
     );
     setTailorJobs(jobs);
-  };
-
-  const fetchDepartment = async (item) => {
-    if (!item.relationships.department.links) {
-      return 'No Department';
-    }
-    return await fetch(item.relationships.department.links.related, {
-      headers: headers,
-    })
-      .then((res) => res.json())
-      .then((data) => (data.data ? data.data.attributes.name : '--'));
   };
 
   const handleDepartmentChange = (event) => {
@@ -150,23 +194,6 @@ export default function Jobs() {
             ) : (
               <p>No jobs found</p>
             )}
-
-            {/* <div className={styles.pagination}>
-              <button
-                className={styles.paginationButtons}
-                onClick={() => paginate(currentPage - 1)}
-                disabled={currentPage === 1}
-              >
-                Previous
-              </button>
-              <button
-                className={styles.paginationButtons}
-                onClick={() => paginate(currentPage + 1)}
-                disabled={indexOfLastJob >= filteredJobs.length}
-              >
-                Next
-              </button>
-            </div> */}
           </div>
         </div>
 
