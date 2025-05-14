@@ -6,7 +6,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 export default function Jobs() {
   const { siteConfig } = useDocusaurusContext();
-  const apiKey = siteConfig.customFields.teamtailorApiKey;
+  const apiKey = '627t2m5j5DXEp2PzGXXIlsf_NTyBj_OATYIOkRYN';
 
   const headers = new Headers();
   headers.append('Authorization', `Token token=${apiKey}`);
