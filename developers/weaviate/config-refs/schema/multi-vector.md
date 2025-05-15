@@ -23,11 +23,7 @@ Single vector collections are valid and continue to use the original collection 
 
 ### Collection definition
 
-Use the collection definition to [configure the vector spaces](/developers/weaviate/manage-data/collections#define-named-vectors) for each data object.
-
-:::info Named vectors must be defined at collection creation
-All named vectors must be defined when you create a collection. Currently, it is not possible to add or remove named vectors from a collection after it has been created.
-:::
+Use the collection definition to [configure the vector spaces](/developers/weaviate/manage-data/collections#define-named-vectors) for each data object. You can also [add new named vectors](../../manage-data/collections.mdx#add-new-named-vectors) after you created a collection. 
 
 ### Query a named vector
 

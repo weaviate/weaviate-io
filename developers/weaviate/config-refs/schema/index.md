@@ -98,7 +98,7 @@ import CollectionMutableParameters from '/_includes/collection-mutable-parameter
 
 </details>
 
-After you create a collection, you can add new properties. You cannot modify existing properties after you create the collection.
+After you create a collection, you can add new properties. You cannot modify existing properties after you create the collection. You can also [add new named vectors](#adding-a-named-vector-after-collection-creation).
 
 ### Auto-schema
 
@@ -150,9 +150,17 @@ To avoid this, you can either:
 
 We are working on a re-indexing API to allow you to re-index the data after adding a property. This will be available in a future release.
 
+### Adding a named vector after collection creation
+
+:::info Added in `v1.31`
+:::
+
+When you add a new named vector to an existing collection, it's important to understand that **existing objects will not be automatically revectorized**. Only objects created or updated after the named vector addition will receive these new vector embeddings.
+This behavior is intentional and provides performance benefits when working with large datasets, as it prevents the system from having to recalculate embeddings for all the objects.
+
 ### Collections count limit {#collections-count-limit}
 
-:::info Added in **`v1.30`**
+:::info Added in `v1.30`
 :::
 
 To ensure optimal performance, Weaviate **limits the number of collections per node**. Each collection adds overhead in terms of indexing, definition management, and storage. This limit aims to ensure Weaviate remains performant.
