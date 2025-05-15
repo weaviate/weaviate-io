@@ -465,7 +465,12 @@ client.collections.create(
             # highlight-start
             vector_index_config=Configure.VectorIndex.hnsw(
                 multi_vector=Configure.VectorIndex.MultiVector.multi_vector(
-                    encoding=Configure.VectorIndex.MultiVector.Encoding.muvera()
+                    encoding=Configure.VectorIndex.MultiVector.Encoding.muvera(
+                        # Optional parameters for tuning MUVERA
+                        # ksim: 4,
+                        # dprojections: 16,
+                        # repetitions: 20,
+                    )
                 )
             ),
             # highlight-end
