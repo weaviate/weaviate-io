@@ -132,7 +132,17 @@ The following are not allowed:
 * Any map type is forbidden, unless it clearly matches one of the two supported types `phoneNumber` or `geoCoordinates`.
 * Any array type is forbidden, unless it is clearly a reference-type. In this case, Weaviate needs to resolve the beacon and see what collection the resolved beacon is from, since it needs the collection name to be able to alter the schema.
 
-### Multiple vector embeddings (named vectors)
+### Single vector collections
+
+If you don't explicitly define a [named vector](#named-vectors) in your collection definition, Weaviate automatically creates what's known as a *single vector* collection. These vectors are stored internally under the named vector `default` (which is a reserved vector name).
+
+To learn which properties of your data are vectorized, refer to the [Configure semantic indexing](#configure-semantic-indexing) section.
+
+:::note
+As of Weaviate version `v1.31` you can [add new named vectors](../../manage-data/collections.mdx#add-new-named-vectors) to existing collections. 
+:::
+
+### Multiple vector embeddings (named vectors) {#named-vectors}
 
 import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
@@ -651,7 +661,7 @@ For instance, text embedding integrations (e.g. `text2vec-cohere` for Cohere, or
 
 Unless specified otherwise in the collection definition, the default behavior is to:
 
-- Only vectorize properties that use the `text` or `text[]` data type (unless [skip](/developers/weaviate/manage-data/collections#property-level-module-settings)ped)
+- Only vectorize properties that use the `text` or `text[]` data type (unless [skipped](/developers/weaviate/manage-data/collections#property-level-module-settings))
 - Sort properties in alphabetical (a-z) order before concatenating values
 - If `vectorizePropertyName` is `true` (`false` by default) prepend the property name to each property value
 - Join the (prepended) property values with spaces
