@@ -18,7 +18,7 @@ Compression techniques become especially crucial for multi-vector systems to man
 
 ## Quantization
 
-Just like with single vectors, multi-vectors support [PQ](./pq-compression.md), [BQ](./bq-compression.md) and [SQ](./sq-compression.md).
+Just like with single vectors, multi-vectors support [PQ](./pq-compression.md), [BQ](./bq-compression.md) and [SQ](./sq-compression.md) **quantization**.
 
 During the initial search phase, compressed vectors are used for efficiency. However, when computing the `MaxSim` operation, uncompressed vectors are utilized to ensure more precise similarity calculations. This approach balances the benefits of compression for search efficiency with the accuracy of uncompressed vectors during final scoring.
 
@@ -31,12 +31,33 @@ During the initial search phase, compressed vectors are used for efficiency. How
       language="py"
     />
   </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```typescript
+// TS/JS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+ </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+</TabItem>
 </Tabs>
 
 ## Encoding (MUVERA)
 
-MUVERA, which stands for Multi-Vector Retrieval via Fixed Dimensional Encodings, tackles the higher memory usage and slower processing times of multi-vector embeddings by encoding them into single, fixed-dimensional vectors. This leads to reduced memory usage and faster operations compared to traditional multi-vector approaches. Read more about it in this blog post.
-<!-- TODO[g-despot]: Add link to blog post -->
+**MUVERA**, which stands for *Multi-Vector Retrieval via Fixed Dimensional Encodings*, tackles the higher memory usage and slower processing times of multi-vector embeddings by encoding them into single, fixed-dimensional vectors. This leads to reduced memory usage and faster operations compared to traditional multi-vector approaches. 
+<!-- TODO[g-despot]: Add link to blog post: Read more about it in this blog post. -->
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -47,9 +68,31 @@ MUVERA, which stands for Multi-Vector Retrieval via Fixed Dimensional Encodings,
       language="py"
     />
   </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```typescript
+// TS/JS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+ </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+</TabItem>
 </Tabs>
 
-## Related pages
+## Further resources
+
 - [How-to: Manage collections](../../manage-data/collections.mdx#define-multi-vector-embeddings-eg-colbert-colpali)
 - [Concepts: Vector quantization](/developers/weaviate/concepts/vector-quantization.md)
 
