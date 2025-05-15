@@ -1,0 +1,228 @@
+---
+title: Import tool
+sidebar_position: 10
+image: og/wcs/user_guides.jpg
+---
+
+import WCDImportStart from '/developers/wcs/img/weaviate-cloud-import-tool-start.png';
+import WCDImportConfirm from '/developers/wcs/img/weaviate-cloud-import-tool-confirm.png';
+import WCDImportCollectionSettings from '/developers/wcs/img/weaviate-cloud-import-tool-collection-settings.png';
+import WCDImportPropertySettings from '/developers/wcs/img/weaviate-cloud-import-tool-property-settings.png';
+import WCDImportExplorer from '/developers/wcs/img/weaviate-cloud-import-tool-explorer.png';
+
+The Weaviate Cloud (WCD) *Import tool* allows you to easily upload data from a CSV file into a new Weaviate collection. The tool guides you through selecting your cluster, configuring the collection, mapping CSV columns to Weaviate properties, and then automatically imports the data.
+
+For this guide, we will use the following `import.csv` file:
+
+```csv title="import.csv"
+id,product_name,price,description
+1,"Laptop",1200.00,"High-performance laptop with 16GB RAM and 512GB SSD."
+2,"Mouse",25.00,"Wireless optical mouse with ergonomic design."
+3,"Keyboard",75.00,"Mechanical keyboard with RGB backlighting."
+```
+
+## Step 1: Start the import process
+
+The Import tool is accessible from the Weaviate Cloud console.
+
+<div class="row">
+  <div class="col col--3">
+    <ol>
+      <li>
+        To begin, select the <code>Import</code> tool from the left sidebar (
+        <span class="callout">1</span>).
+      </li>
+      <li>
+        The <code>Clusters</code> panel lists the clusters that are available.
+        Select a cluster from the list where you want to import your data (
+        <span class="callout">2</span>).
+      </li>
+      <li>
+        Click on the <code>Browse CSV files</code> button (
+        <span class="callout">3</span>) to select the CSV file you want to
+        import.
+      </li>
+    </ol>
+  </div>
+  <div class="col col--9">
+    <div class="card">
+      <div class="card__image">
+        <img
+          src={WCDImportStart}
+          alt="Start the import process in Weaviate Cloud"
+        />
+      </div>
+      <div class="card__body">
+        <p>Start the import process in Weaviate Cloud.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br />
+
+After selecting your CSV file, the tool will display the file name and size.
+
+<div class="row">
+  <div class="col col--6">
+    <ol start="4">
+      <li>
+        Verify that the correct file is shown. Click the <code>Next</code>{' '}
+        button (<span class="callout">1</span>) to proceed to collection
+        settings. If you selected the wrong file, you can click the red{' '}
+        <code>x</code> icon to remove it and select a different one.
+      </li>
+    </ol>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img src={WCDImportConfirm} alt="Confirm CSV file for import" />
+      </div>
+      <div class="card__body">
+        <p>Confirm the CSV file to proceed with the import.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+
+## Step 2: Collection settings
+
+In this step, you will define the settings for the new collection that will be created to store your imported data.
+
+<div class="row">
+  <div class="col col--6">
+    <ol>
+      <li>
+        Enter a <strong>name</strong> for your new collection (
+        <span class="callout">1</span>). For example, <code>Product</code>. The
+        collection name must begin with a capital letter and can only contain
+        letters, numbers, and the underscore character. Spaces are not allowed.
+      </li>
+      <li>
+        Configure other collection settings as needed, such as{' '}
+        <strong>multi-tenancy</strong>, <strong>vectorizer</strong>,{' '}
+        <strong>model</strong>, <strong>dimensions</strong>,{' '}
+        <strong>base URL</strong>, and whether to{' '}
+        <strong>vectorize the collection name</strong>. For this example, we
+        will use the default settings.
+      </li>
+    </ol>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img
+          src={WCDImportCollectionSettings}
+          alt="Configure collection settings for import"
+        />
+      </div>
+      <div class="card__body">
+        <p>Configure the new collection's settings.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+
+## Step 3: Map properties
+
+This is the final step before the import begins. Here, you will map the columns from your CSV file to the properties in your new Weaviate collection.
+
+<div class="row">
+  <div class="col col--6">
+    <ol>
+      <li>
+        The tool will display the columns detected in your CSV file (
+        <span class="callout">1</span>).
+      </li>
+      <li>
+        For each column, you can specify the <code>Property Name</code> as it
+        should appear in your Weaviate collection (
+        <span class="callout">2</span>). Property names must begin with a
+        lowercase letter and can only contain letters, numbers, and the
+        underscore character.
+      </li>
+      <li>
+        Select the appropriate <code>Property Type</code> for each column from
+        the dropdown menu (<span class="callout">3</span>). For our{' '}
+        <code>import.csv</code>:
+        <ul>
+          <li>
+            <code>id</code> should be <code>Int</code>
+          </li>
+          <li>
+            <code>product_name</code> should be <code>Text</code>
+          </li>
+          <li>
+            <code>price</code> should be <code>Number</code>
+          </li>
+          <li>
+            <code>description</code> should be <code>Text</code>
+          </li>
+        </ul>
+      </li>
+      <li>
+        Use the toggle switch to determine whether each property should be{' '}
+        <strong>vectorized</strong> (<span class="callout">4</span>). For text
+        fields you intend to search semantically, ensure this is enabled.
+      </li>
+      <li>
+        If you need to remove a property from being imported, click the trashcan
+        icon next to it (<span class="callout">5</span>).
+      </li>
+      <li>
+        Once you are satisfied with the property mapping, click the{' '}
+        <code>Submit</code> button (<span class="callout">6</span>) to start the
+        import process. The tool will create the collection and import the data.
+      </li>
+    </ol>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img
+          src={WCDImportPropertySettings}
+          alt="Map CSV columns to collection properties"
+        />
+      </div>
+      <div class="card__body">
+        <p>Map CSV columns to collection properties and start the import.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+
+A `Product Preview` section at the bottom shows how your data will be mapped. Review this to ensure everything is correct.
+
+## Step 4: Verify imported data
+
+After the import is complete, the [Explorer tool](./explorer-tool.mdx) should automatically open to view the newly created collection and its objects.
+
+<div class="row">
+  <div class="card">
+    <div class="card__image">
+      <img src={WCDImportExplorer} alt="View imported data in Explorer" />
+    </div>
+    <div class="card__body">
+      <p>Verify the imported data using the Explorer tool.</p>
+    </div>
+  </div>
+</div>
+<br />
+
+You should see the imported objects listed, matching the data from your CSV file. You can expand each object to inspect its properties, metadata, and vectors.
+
+## Further resources
+
+- [Reference: Collection definition](/developers/weaviate/config-refs/schema)
+- [Starter Guides: Collection definitions (schemas)](/developers/weaviate/starter-guides/managing-collections)
+- [How-to: Import data](/developers/weaviate/manage-data/import)
+
+## Support
+
+import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
+
+<SupportAndTrouble />
