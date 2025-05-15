@@ -362,6 +362,49 @@ To configure how a vectorizer works (i.e. what model to use) with a specific col
 
 </Tabs>
 
+## Add new named vectors
+
+:::info Added in `v1.31`
+:::
+
+Named vectors can be added to existing collections.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START AddNamedVectors"
+      endMarker="# END AddNamedVectors"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```typescript
+// TS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+  
+  </TabItem>
+</Tabs>
+
+:::caution Objects aren't automatically revectorized
+Newly added named vectors [won't generate embeddings for existing objects](../config-refs/schema/index.md#adding-a-named-vector-after-collection-creation). Only new or updated objects will receive embeddings for the newly added named vector.
+:::
+
 ## Set vector index type
 
 The vector index type can be set for each collection at creation time, between `hnsw`, `flat` and `dynamic` index types.
