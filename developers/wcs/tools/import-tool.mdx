@@ -10,11 +10,11 @@ import WCDImportCollectionSettings from '/developers/wcs/img/weaviate-cloud-impo
 import WCDImportPropertySettings from '/developers/wcs/img/weaviate-cloud-import-tool-property-settings.png';
 import WCDImportExplorer from '/developers/wcs/img/weaviate-cloud-import-tool-explorer.png';
 
-The Weaviate Cloud (WCD) Import tool allows you to easily upload data from a CSV file into a new Weaviate collection. The tool guides you through selecting your cluster, configuring the collection, mapping CSV columns to Weaviate properties, and then automatically imports the data.
+The Weaviate Cloud (WCD) *Import tool* allows you to easily upload data from a CSV file into a new Weaviate collection. The tool guides you through selecting your cluster, configuring the collection, mapping CSV columns to Weaviate properties, and then automatically imports the data.
 
 For this guide, we will use the following `import.csv` file:
 
-```csv
+```csv title="import.csv"
 id,product_name,price,description
 1,"Laptop",1200.00,"High-performance laptop with 16GB RAM and 512GB SSD."
 2,"Mouse",25.00,"Wireless optical mouse with ergonomic design."
@@ -69,8 +69,8 @@ After selecting your CSV file, the tool will display the file name and size.
       <li>
         Verify that the correct file is shown. Click the <code>Next</code>{' '}
         button (<span class="callout">1</span>) to proceed to collection
-        settings. If you selected the wrong file, you can click the red 'x' icon
-        to remove it and select a different one.
+        settings. If you selected the wrong file, you can click the red{' '}
+        <code>x</code> icon to remove it and select a different one.
       </li>
     </ol>
   </div>
@@ -95,7 +95,7 @@ In this step, you will define the settings for the new collection that will be c
   <div class="col col--6">
     <ol>
       <li>
-        Enter a <strong>Name</strong> for your new collection (
+        Enter a <strong>name</strong> for your new collection (
         <span class="callout">1</span>). For example, <code>Product</code>. The
         collection name must begin with a capital letter and can only contain
         letters, numbers, and the underscore character. Spaces are not allowed.
@@ -140,14 +140,15 @@ This is the final step before the import begins. Here, you will map the columns 
       <li>
         For each column, you can specify the <code>Property Name</code> as it
         should appear in your Weaviate collection (
-        <span class="callout">2</span>). By default, it will use the CSV column
-        header. Property names must begin with a lowercase letter and can only
-        contain letters, numbers, and the underscore character.
+        <span class="callout">2</span>). Property names must begin with a
+        lowercase letter and can only contain letters, numbers, and the
+        underscore character.
       </li>
       <li>
         Select the appropriate <code>Property Type</code> for each column from
-        the dropdown menu (<span class="callout">3</span>). For our
-        <code>import.csv</code>:<ul>
+        the dropdown menu (<span class="callout">3</span>). For our{' '}
+        <code>import.csv</code>:
+        <ul>
           <li>
             <code>id</code> should be <code>Int</code>
           </li>
@@ -169,7 +170,7 @@ This is the final step before the import begins. Here, you will map the columns 
       </li>
       <li>
         If you need to remove a property from being imported, click the trashcan
-        icon (<span class="callout">5</span>).
+        icon next to it (<span class="callout">5</span>).
       </li>
       <li>
         Once you are satisfied with the property mapping, click the{' '}
@@ -196,8 +197,6 @@ This is the final step before the import begins. Here, you will map the columns 
 
 A `Product Preview` section at the bottom shows how your data will be mapped. Review this to ensure everything is correct.
 
-Once you have configured the collection settings, click `Next` (not shown in the screenshot, but it would be the next logical step).
-
 ## Step 4: Verify imported data
 
 After the import is complete, the [Explorer tool](./explorer-tool.mdx) should automatically open to view the newly created collection and its objects.
@@ -219,7 +218,7 @@ You should see the imported objects listed, matching the data from your CSV file
 ## Further resources
 
 - [Reference: Collection definition](/developers/weaviate/config-refs/schema)
-- [Starter guide: Collection definitions (schemas)](/developers/weaviate/starter-guides/managing-collections)
+- [Starter Guides: Collection definitions (schemas)](/developers/weaviate/starter-guides/managing-collections)
 - [How-to: Import data](/developers/weaviate/manage-data/import)
 
 ## Support
