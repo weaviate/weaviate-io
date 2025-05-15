@@ -19,6 +19,11 @@ To install and configure Weaviate, see the following:
 - **[Snowpark Container Services](./spcs-integration.mdx)** Deploy Weaviate in Snowflake's Snowpark environment.
 - **[Embedded Weaviate](./embedded.md)**: Experimental. Embedded Weaviate is a client based tool.
 
+:::caution Native Windows support
+
+Although Weaviate can be used on Windows via containerized environments like [Docker](./docker-compose.md) or [WSL](https://learn.microsoft.com/en-us/windows/wsl/), we don't offer native Windows support at this time.
+
+:::
 
 ## Configuration files
 
