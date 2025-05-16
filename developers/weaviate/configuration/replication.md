@@ -129,6 +129,7 @@ Beyond setting the initial replication factor, you can actively manage the place
 
 Key operations for managing replica placement include:
 <!-- TODO[g-despot]: Update links once API published -->
+<!-- TODO[g-despot]: Add the replica deletion endpoint when ready -->
 - **Checking sharding state**: Before initiating any movement, you might want to inspect the current distribution of replicas.
   - Use the [`GET /replication/sharding-state`](../api/rest.md) endpoint to retrieve the current locations of replicas for specific collections or shards.
 
