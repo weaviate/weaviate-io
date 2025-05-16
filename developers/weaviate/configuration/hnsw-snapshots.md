@@ -11,7 +11,7 @@ HNSW (Hierarchical Navigable Small World) snapshots is a feature in Weaviate des
 
 ## What are HNSW Snapshots?
 
-Traditionally, when Weaviate starts, it reconstructs the HNSW index state by replaying entries from its Write-Ahead Log (WAL), also known as the commit log. For large indexes, this process can be time-consuming.
+Traditionally, when Weaviate starts, it reconstructs the HNSW index state by replaying entries from its [Write-Ahead Log (WAL)](../concepts/storage.md#write-ahead-log), also known as the commit log. For large indexes, this process can be time-consuming.
 
 A snapshot is a representation of the HNSW index's state at a specific point in time. When Weaviate starts, if a valid snapshot exists and snapshotting is enabled, Weaviate loads this snapshot into memory first. It then only needs to process WAL entries made _after_ the snapshot was taken. This significantly reduces the number of operations compared to replaying the entire WAL from the beginning.
 
@@ -45,7 +45,7 @@ Weaviate can periodically create new HNSW snapshots based on the previous snapsh
 
 A new periodic snapshot is created only if **all** the following conditions are met:
 
-1.  **Interval has passed:**
+1.  **A time interval has passed:**
 
     - `PERSISTENCE_HNSW_SNAPSHOT_INTERVAL_SECONDS`: The minimum time in seconds that must have passed since the previous snapshot was created.
       - **Default:** `21600` seconds (6 hours)
@@ -57,12 +57,11 @@ A new periodic snapshot is created only if **all** the following conditions are 
 
 3.  **Sufficient new commit logs (by size percentage):**
     - `PERSISTENCE_HNSW_SNAPSHOT_MIN_DELTA_COMMITLOGS_SIZE_PERCENTAGE`: The minimum total size of new commit logs (as a percentage of the previous snapshot's size) required to trigger a new snapshot.
-      - **Default:** `5` (meaning 5% of the previous snapshot's size in new commit logs)
-      - Example: If the previous snapshot was 1000MB, at least 50MB of new commit log data is required.
+      - **Default:** `5` (meaning 5% of the previous snapshot's size in new commit logs). For example, if the previous snapshot was 1000MB, at least 50MB of new commit log data is required.
 
 ## Further resources
 
-- [Concepts: Storage](../concepts/storage.md#persistence-and-crash-recovery)
+- [Concepts: Storage - Persistence and Crash Recovery](../concepts/storage.md#persistence-and-crash-recovery)
 
 ## Questions and feedback
 
