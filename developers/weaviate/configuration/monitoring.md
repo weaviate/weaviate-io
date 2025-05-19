@@ -91,7 +91,7 @@ to obtain the metric for the entire Weaviate instance.
 | `lsm_segment_size` | Size of LSM segment by level and unit. | `strategy`, `class_name`, `shard_name`, `path`, `level`, `unit` | `Gauge` |
 | `object_count` | Numbers of objects present. Granularity is a shard of a class | `class_name`, `shard_name` | `Gauge` |
 | `objects_durations_ms` | Duration of an individual object operation, such as `put`, `delete`, etc. as indicated by the `operation` label, also as part of a batch. The `step` label adds additional precisions to each `operation`. Granularity is a shard of a class. | `class_name`, `shard_name` | `Histogram` |
-| `requests_total` | Metric that tracks all user requests to determine if it was successful or failed. | `api`, `query_type`, `class_name` | `GaugeVec` |
+| `requests_total` | Metric that tracks all user requests to determine if it was successful or failed. | `api`, `query_type`, `class_name` | `Gauge` |
 | `startup_diskio_throughput` | Disk I/O throughput in bytes/s at startup operations, such as reading back the HNSW index or recovering LSM segments. The operation itself is defined by the `operation` label. | `operation`, `step`, `class_name`, `shard_name` | `Histogram` |
 | `startup_durations_ms` | Duration of individual startup operations in ms. The operation itself is defined through the `operation` label. | `operation`, `class_name`, `shard_name` | `Histogram` |
 | `vector_index_durations_ms` | Duration of regular vector index operation, such as insert or delete. The operation itself is defined through the `operation` label. The `step` label adds more granularity to each operation. | `operation`, `step`, `class_name`, `shard_name` | `Histogram` |
@@ -101,34 +101,35 @@ to obtain the metric for the entire Weaviate instance.
 | `vector_index_tombstone_cleaned` | Total number of deleted and removed vectors after repair operations. | `class_name`, `shard_name` | `Counter` |
 | `vector_index_tombstone_cleanup_threads` | Number of currently active threads for repairing/cleaning up the vector index after deletes have occurred. | `class_name`, `shard_name` | `Gauge` |
 | `vector_index_tombstones` | Number of currently active tombstones in the vector index. Will go up on each incoming delete and go down after a completed repair operation. | `class_name`, `shard_name` | `Gauge` |
-| `weaviate_build_info` | Provides general information about the build (What version is currently running? How long has this version been running, etc) | `version`, `revision`, `branch`, `goVersion` |  |
-| `weaviate_runtime_config_hash` | Hash value of the currently active runtime configuration, useful for tracking when new configurations take effect. | `sha256` | `GaugeVec` |
+| `weaviate_build_info` | Provides general information about the build (What version is currently running? How long has this version been running, etc) | `version`, `revision`, `branch`, `goVersion` | `Gauge` |
+| `weaviate_runtime_config_hash` | Hash value of the currently active runtime configuration, useful for tracking when new configurations tak
+e effect. | `sha256` | `Gauge` |
 | `weaviate_runtime_config_last_load_success` | Indicates whether the last loading attempt was successful (`1` for success, `0` for failure). |  | `Gauge` |
-| `weaviate_schema_collections` | Shows the total number of collections at any given point. |  |  |
-| `weaviate_schema_shards` | Shows the total number of shards at any given point.  | `status(HOT, COLD, WARM, FROZEN)` |  |
+| `weaviate_schema_collections` | Shows the total number of collections at any given point. | `nodeID` | `Gauge` |
+| `weaviate_schema_shards` | Shows the total number of shards at any given point.  | `nodeID`, `status(HOT, COLD, WARM, FROZEN)` | `Gauge` |
 | `weaviate_internal_sample_memberlist_queue_broadcasts` | Shows the number of messages in the broadcast queue of Memberlist. | `quantile=0.5, 0.9, 0.99` | `Summary` |
 | `weaviate_internal_timer_memberlist_gossip` | Shows the latency distribution of the each gossip made in Memberlist. | `quantile=0.5, 0.9, 0.99` | `Summary` |
-| `weaviate_internal_counter_raft_apply` | Number of transactions in the configured interval. |  | `counter` |
-| `weaviate_internal_counter_raft_state_candidate` | Number of times the raft server initiated an election. |  | `counter` |
-| `weaviate_internal_counter_raft_state_follower` | Number of times in the configured interval that the raft server became a follower. |  | `summary` |
-| `weaviate_internal_counter_raft_state_leader` | Number of times the raft server became a leader. |  | `counter` |
-| `weaviate_internal_counter_raft_transition_heartbeat_timeout` | Number of times that the node transitioned to `candidate` state after not receiving a heartbeat message from the last known leader. |  | `summary` |
-| `weaviate_internal_gauge_raft_commitNumLogs` | Number of logs processed for application to the finite state machine in a single batch. |  | `gauge` |
-| `weaviate_internal_gauge_raft_leader_dispatchNumLogs` | Number of logs committed to disk in the most recent batch. |  | `gauge` |
-| `weaviate_internal_gauge_raft_leader_oldestLogAge` |  |  | `gauge` |
-| `weaviate_internal_gauge_raft_peers` | The number of peers in the raft cluster configuration. |  | `gauge` |
-| `weaviate_internal_sample_raft_boltdb_logBatchSize` |  |  |  |
-| `weaviate_internal_sample_raft_boltdb_logSize` |  |  |  |
-| `weaviate_internal_sample_raft_boltdb_logsPerBatch` |  |  |  |
-| `weaviate_internal_sample_raft_boltdb_writeCapacity` |  |  |  |
-| `weaviate_internal_sample_raft_thread_fsm_saturation` |  |  |  |
-| `weaviate_internal_sample_raft_thread_main_saturation` |  |  |  |
-| `weaviate_internal_timer_raft_boltdb_getLog` |  |  |  |
-| `weaviate_internal_timer_raft_boltdb_storeLogs` | Time required to record any outstanding logs since the last request to append entries for the given node. |  | `timer` |
-| `weaviate_internal_timer_raft_commitTime` | Time required to commit a new entry to the raft log on the leader node. |  | `summary` |
-| `weaviate_internal_timer_raft_fsm_apply` | Number of logs committed by the finite state machine since the last interval. |  | `summary` |
-| `weaviate_internal_timer_raft_fsm_enqueue` | Time required to queue up a batch of logs for the finite state machine to apply. |  | `summary` |
-| `weaviate_internal_timer_raft_leader_dispatchLog` | Time required for the leader node to write a log entry to disk. |  | `timer` |
+| `weaviate_internal_counter_raft_apply` | Number of transactions in the configured interval. | NA | `counter` |
+| `weaviate_internal_counter_raft_state_candidate` | Number of times the raft server initiated an election. | NA | `counter` |
+| `weaviate_internal_counter_raft_state_follower` | Number of times in the configured interval that the raft server became a follower. | NA | `summary` |
+| `weaviate_internal_counter_raft_state_leader` | Number of times the raft server became a leader. | NA | `counter` |
+| `weaviate_internal_counter_raft_transition_heartbeat_timeout` | Number of times that the node transitioned to `candidate` state after not receiving a heartbeat message from the last known leader. | NA | `Counter` |
+| `weaviate_internal_gauge_raft_commitNumLogs` | Number of logs processed for application to the finite state machine in a single batch. | NA | `gauge` |
+| `weaviate_internal_gauge_raft_leader_dispatchNumLogs` | Number of logs committed to disk in the most recent batch. | NA | `gauge` |
+| `weaviate_internal_gauge_raft_leader_oldestLogAge` | The number of milliseconds since the oldest log in the leader's log store was written. This can be important for replication health where write rate is high and the snapshot is large as followers may be unable to recover from a restart if restoring takes longer than the minimum value for the current leader. Compare this with `raft_fsm_lastRestoreDuration` and `aft_rpc_installSnapshot` to monitor. In normal usage this gauge value will grow linearly over time until a snapshot completes on the leader and the log is truncated. | NA | `gauge` |
+| `weaviate_internal_gauge_raft_peers` | The number of peers in the raft cluster configuration. | NA | `gauge` |
+| `weaviate_internal_sample_raft_boltdb_logBatchSize` | Measures the total size in bytes of logs being written to the db in a single batch. | `quantile=0.5, 0.9, 0.99` | `Summary` |
+| `weaviate_internal_sample_raft_boltdb_logSize` | Measures the size of logs being written to the db. | `quantile=0.5, 0.9, 0.99` | `Summary` |
+| `weaviate_internal_sample_raft_boltdb_logsPerBatch` | Measures the number of logs being written per batch to the db. | `quantile=0.5, 0.9, 0.99` | `Summary` |
+| `weaviate_internal_sample_raft_boltdb_writeCapacity` | Theoretical write capacity in terms of the number of logs that can be written per second. Each sample outputs what the capacity would be if future batched log write operations were similar to this one. This similarity encompasses 4 things: batch size, byte size, disk performance and boltdb performance. While none of these will be static and its highly likely individual samples of this metric will vary, aggregating this metric over a larger time window should provide a decent picture into how this BoltDB store can perform | `quantile=0.5, 0.9, 0.99` | `Summary` |
+| `weaviate_internal_sample_raft_thread_fsm_saturation` | An approximate measurement of the proportion of time the Raft FSM goroutine is busy and unavailable to accept new work. | `quantile=0.5, 0.9, 0.99` | `Summary` |
+| `weaviate_internal_sample_raft_thread_main_saturation` | An approximate measurement of the proportion of time the main Raft goroutine is busy and unavailable to accept new work (percentage).  |  `quantile=0.5, 0.9, 0.99` | `Summary` |
+| `weaviate_internal_timer_raft_boltdb_getLog` | Measures the amount of time spent reading logs from the db (in ms). | `quantile=0.5, 0.9, 0.99` | `Summary` |
+| `weaviate_internal_timer_raft_boltdb_storeLogs` | Time required to record any outstanding logs since the last request to append entries for the given node. | `quantile=0.5, 0.9, 0.99` | `Summary` |
+| `weaviate_internal_timer_raft_commitTime` | Time required to commit a new entry to the raft log on the leader node. | `quantile=0.5, 0.9, 0.99` | `summary` |
+| `weaviate_internal_timer_raft_fsm_apply` | Number of logs committed by the finite state machine since the last interval. | `quantile=0.5, 0.9, 0.99` | `summary` |
+| `weaviate_internal_timer_raft_fsm_enqueue` | Time required to queue up a batch of logs for the finite state machine to apply. | `quantile=0.5, 0.9, 0.99` | `summary` |
+| `weaviate_internal_timer_raft_leader_dispatchLog` | Time required for the leader node to write a log entry to disk. | `quantile=0.5, 0.9, 0.99` | `Summary` |
 
 Extending Weaviate with new metrics is very easy. To suggest a new metric, see the [contributor guide](/developers/contributor-guide).
 
