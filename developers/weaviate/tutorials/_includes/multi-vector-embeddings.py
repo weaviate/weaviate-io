@@ -64,7 +64,10 @@ client.collections.create(
         Configure.NamedVectors.text2colbert_jinaai(
             name="multi_vector",
             source_properties=["text"],
-            model="jina-colbert-v2"
+            model="jina-colbert-v2",
+            # vector_index_config=Configure.VectorIndex.hnsw(
+            #     quantizer=Configure.VectorIndex.Quantizer.bq()
+            # )
         ),
         # highlight-end
     ],
@@ -196,7 +199,7 @@ with collection.batch.fixed_size(batch_size=10) as batch:
         batch.add_object(
             properties={"text": doc["text"], "docid": doc["id"]},
             uuid=generate_uuid5(doc["id"]),
-            vector=get_colbert_embedding(doc["text"]),  # Provide the embedding manually
+            vector={"multi_vector": get_colbert_embedding(doc["text"])},  # Provide the embedding manually
         )
 
 # Check for errors in batch imports
