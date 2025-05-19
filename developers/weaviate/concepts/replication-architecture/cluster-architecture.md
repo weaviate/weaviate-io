@@ -127,7 +127,8 @@ If the cluster size is 10 and the replication factor is 3, the 3 nodes which con
 
 ## Replica movement
 
-:::info Added in `v1.31`
+:::caution Experimental feature
+Available starting in `v1.31`. This is an experimental feature. Use with caution.
 :::
 
 While the initial placement of replicas happens automatically based on the replication factor, Weaviate allows operators to **manually move** individual shard replicas from a source node (`A`) to a destination node (`B`). 

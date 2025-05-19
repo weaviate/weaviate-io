@@ -122,7 +122,8 @@ import QueryReplication from '/\_includes/code/replication.get.object.by.id.mdx'
 
 ## Replica movement and status
 
-:::info Added in `v1.31`
+:::caution Experimental feature
+Available starting in `v1.31`. This is an experimental feature. Use with caution.
 :::
 
 Beyond setting the initial replication factor, you can actively manage the placement of shard replicas within your Weaviate cluster. This is useful for rebalancing data after scaling, decommissioning nodes, or optimizing data locality. Replica movement is managed through a set of dedicated RESTful API endpoints.
@@ -133,7 +134,7 @@ Key operations for managing replica placement include:
 - **Checking sharding state**: Before initiating any movement, you might want to inspect the current distribution of replicas.
   - Use the [`GET /replication/sharding-state`](../api/rest.md) endpoint to retrieve the current locations of replicas for specific collections or shards.
 
-- **Initiating a replica movement operation**: This starts the asynchronous process of creating a replica on a new node and, if moving, removing it from the old one.
+- **Initiating a replica movement operation**: This starts the asynchronous process of creating a replica on a new node and, if moving, removing it from the old one. When copying a replica, the replication factor for that shard will be increased as opposed to moving the replica.
   - Use the [`POST /replication/replicate`](../api/rest.md) endpoint. You'll need to specify the source node, destination node, collection name, shard ID and whether the operation is a 'MOVE' or 'COPY'.
 
 - **Checking the status of a movement operation**: Since movement is asynchronous, you can monitor its progress.
@@ -148,9 +149,7 @@ Key operations for managing replica placement include:
 - **Deleting a movement operation record**: To remove the record of a completed, cancelled, or failed operation.
   - Use the [`DELETE /replication/replicate/{id}`](../api/rest.md) endpoint. If the operation is active, it will be cancelled first.
 
-- **Deleting a shard replica**: To remove a replica from the cluster if deleting the replica doesn't result in going below the minimum replication factor configured for the collection.
-  - Use the [`DELETE /replication/replica`](../api/rest.md) endpoint. This can be filtered by node, collection and shard.
-
+<!-- **Deleting a shard replica**: To remove a replica from the cluster if deleting the replica doesn't result in going below the minimum replication factor configured for the collection.- Use the [`DELETE /replication/replica`](../api/rest.md) endpoint. This can be filtered by node, collection and shard.-->
 
 For more details about the replica movement operations, check out the [REST API](../api/rest.md) documentation. 
 
