@@ -64,10 +64,7 @@ client.collections.create(
         Configure.NamedVectors.text2colbert_jinaai(
             name="multi_vector",
             source_properties=["text"],
-            model="jina-colbert-v2",
-            # vector_index_config=Configure.VectorIndex.hnsw(
-            #     quantizer=Configure.VectorIndex.Quantizer.bq()
-            # )
+            model="jina-colbert-v2"
         ),
         # highlight-end
     ],
