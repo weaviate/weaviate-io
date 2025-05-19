@@ -1,5 +1,6 @@
 ---
 title: HNSW Snapshots
+sidebar_position: 47
 sidebar_label: HNSW Snapshots
 description: Learn about HNSW snapshots in Weaviate for faster startup times and how to manage them.
 ---
@@ -7,47 +8,36 @@ description: Learn about HNSW snapshots in Weaviate for faster startup times and
 :::info Added in `v1.31`
 :::
 
-HNSW (Hierarchical Navigable Small World) snapshots is a feature in Weaviate designed to significantly reduce startup times for instances with large vector indexes. This guide explains what HNSW snapshots are, their benefits, and how to configure them.
+HNSW (Hierarchical Navigable Small World) snapshots can significantly reduce startup times for instances with large vector indexes.
 
-## What are HNSW Snapshots?
+By default, HNSW snapshotting is **disabled**. To use this feature, configure the [environment variable](../config-refs/env-vars/index.md) shown below.
 
-Traditionally, when Weaviate starts, it reconstructs the HNSW index state by replaying entries from its [Write-Ahead Log (WAL)](../concepts/storage.md#write-ahead-log), also known as the commit log. For large indexes, this process can be time-consuming.
-
-A snapshot is a representation of the HNSW index's state at a specific point in time. When Weaviate starts, if a valid snapshot exists and snapshotting is enabled, Weaviate loads this snapshot into memory first. It then only needs to process WAL entries made _after_ the snapshot was taken. This significantly reduces the number of operations compared to replaying the entire WAL from the beginning.
-
-:::note
-If a snapshot cannot be loaded for any reason (e.g., corruption), it is safely removed, and Weaviate automatically falls back to the traditional method of loading the full commit log.
+:::info Concepts: HNSW snapshots
+See this [concepts page](../concepts/storage.md#hnsw-snapshots) for a detailed description.
 :::
 
 ## 1. Enabling HNSW snapshots
 
-By default, HNSW snapshotting is **disabled**. To enable and use this feature, you must set the following [environment variable](../config-refs/env-vars/index.md):
-
-- `PERSISTENCE_HNSW_DISABLE_SNAPSHOTS`: Set to `false` to enable HNSW snapshotting.
-  - **Default:** `true` (Snapshots are disabled)
-
-Setting this to `false` allows Weaviate to create and use snapshots according to the other configuration settings.
+Set `PERSISTENCE_HNSW_DISABLE_SNAPSHOTS` to `false` to enable HNSW snapshotting. (Default: `true`)
 
 ## 2. Configuring snapshot creation
 
-Once enabled, you can control how and when snapshots are created using several environment variables.
+Set the following optional environment variables to configure the snapshotting behavior.
 
 ### Snapshot on startup
 
-You can configure Weaviate to attempt creating a snapshot during its startup sequence.
+Enable or disable snapshot creation on startup:
 
-- `PERSISTENCE_HNSW_SNAPSHOT_ON_STARTUP`: If `true`, Weaviate will try to create a new snapshot during startup if there are changes in the commit log since the last snapshot. If there are no changes, then the existing snapshot will be loaded.
+- `PERSISTENCE_HNSW_SNAPSHOT_ON_STARTUP`: If `true`,
   - **Default:** `true`
 
 ### Periodic snapshots
 
-Weaviate can periodically create new HNSW snapshots based on the previous snapshot and newer (delta) commit logs. This is handled by the same background process that manages commit log combining and condensing, ensuring stability as the commit logs used for snapshot creation are not mutable during this process.
-
-A new periodic snapshot is created only if **all** the following conditions are met:
+Set the following to configure periodic snapshot creation. Note **all** of the following conditions must be met to trigger a snapshot:
 
 1.  **A time interval has passed:**
 
-    - `PERSISTENCE_HNSW_SNAPSHOT_INTERVAL_SECONDS`: The minimum time in seconds that must have passed since the previous snapshot was created.
+    - `PERSISTENCE_HNSW_SNAPSHOT_INTERVAL_SECONDS`: The minimum time in seconds since the previous snapshot.
       - **Default:** `21600` seconds (6 hours)
 
 2.  **Sufficient new commit logs (by number):**
