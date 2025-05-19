@@ -12,6 +12,34 @@ import (
 	"github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
 )
 
+func TestDynamicRag(t *testing.T) {
+// START DynamicRag
+//const reviews = client.collections.use("WineReviewNV")
+
+        client := setupClient()
+        ctx := context.Background()
+	generatePrompt := "Translate this into German: {review_body}"
+        gs := graphql.NewGenerativeSearch().SingleResult(generatePrompt).GroupedResult("Summarize these reviews")
+
+        response, err := client.GraphQL().Get().
+                WithClassName("WineReviewNV").
+                WithGenerativeSearch(gs).
+                WithNearText((&graphql.NearTextArgumentBuilder{}).
+                        WithConcepts([]string{"a sweet German white wine"}).WithTargetVectors("title_country")).
+                WithLimit(2).
+                Do(ctx)
+		require.NoError(t, err)
+		require.NotNil(t, response)
+// END DynamicRag
+
+// Test results
+_, ok := response.Data["Get"].(map[string]interface{})["WineReviewNV"]
+assert.True(t, ok)
+//assert "title" in response.objects[0].properties.keys()
+// End test
+
+}
+
 // =====================================
 // ===== SINGLE GENERATIVE EXAMPLE =====
 // =====================================
