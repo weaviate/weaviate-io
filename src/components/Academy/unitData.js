@@ -562,7 +562,7 @@ export const unitData = {
     title: "AI models: A gentle deep dive",
     body: "A practical introduction to AI models for software engineers or AI builders.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/py/ai_models_deep_dive",
+    buttonURL: "/developers/academy/theory/ai_models_deep_dive",
     badgeType: "theory",
     learningGoals: [
       "What AI models are and what they do",
@@ -576,6 +576,27 @@ export const unitData = {
       "Describe multiple model types and their appropriate use cases",
       "Implement basic code for accessing models",
       "Interpret key details of model cards or specifications",
+    ],
+    owner: "jp",
+    reviewer: "jp"
+  },
+  "embedding_model_selection": {
+    title: "Embedding model evaluation & selection",
+    body: "A practical guide to choosing embedding models for your use case.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/theory/embedding_model_selection",
+    badgeType: "theory",
+    learningGoals: [
+      "The practical impact of embedding model selection on AI application performance",
+      "A systematic, evidence-based approach to embedding model selection",
+      "Skills to evaluate, implement, and maintain embedding models in production systems"
+    ],
+    learningOutcomes: [
+      "Evaluate embedding models based on quality, performance, cost, and resource requirements",
+      "Apply selection framework to identify, screen, and select embedding models",
+      "Design and implement effective evaluation strategies",
+      "Articulate key monitoring and maintenance needs for embedding models",
+      "Optimize embedding model selection for domain-specific applications"
     ],
     owner: "jp",
     reviewer: "jp"

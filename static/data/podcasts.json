@@ -1,5 +1,13 @@
 [
   {
+    "title": "Box AI with Ben Kus and Bob van Luijt - Weaviate Podcast #120",
+    "description": "Welcome to the 120th episode of the Weaviate Podcast featuring Ben Kus, CTO from Box.",
+    "youtube": "pPvSur8iEXY",
+    "date": "25-05-07",
+    "cover_image": "/img/podcasts/podcast-120.jpg",
+    "is_use_case": false
+  },
+  {
     "title": "Structured Outputs with Will Kurt and Cameron Pfiffer - Weaviate Podcast #119",
     "description": "Dive into the fascinating world of structured outputs with Will Kurt and Cameron Pfeiffer, the brilliant minds behind Outlines.",
     "youtube": "3PdEYG6OusA",
@@ -32,7 +40,7 @@
     "is_use_case": false
   },
   {
-    "title": "Contextual AI with Amanpreet Singh - Weaviate Podcast #114",
+    "title": "Optimizing Retrieval Agents with Shirley Wu - Weaviate Podcast #115",
     "description": "Welcome to the 115th episode of the Weaviate Podcast featuring Shirley Wu from Stanford University!",
     "youtube": "4ZRhSuBHyNo",
     "date": "25-02-19",

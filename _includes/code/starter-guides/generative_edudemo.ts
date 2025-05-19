@@ -39,7 +39,7 @@ assert(dataRetrievalResult.objects.length == 2, "Wrong number of objects returne
 
 // TransformResultSets
 const groupedTaskResponse = await myCollection.generate.nearText("history of git",{
-  singlePrompt: `translate a summary of {chunk} into french`
+  singlePrompt: `Summarize the key information here in bullet points`
 },
 {
   returnProperties: ['chunk', 'chapter_title', 'chunk_index'],

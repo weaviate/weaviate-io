@@ -35,7 +35,7 @@ Deep learning models take a numerical input, transform it through its “hidden 
 
 There are two very important factors that allow generative models to do this. One is tokenization, and the other is auto-regressive generation.
 
-### <i class="fa-solid fa-chalkboard-user"></i> Tokenization
+### <i class="fa-solid fa-chalkboard"></i> Tokenization
 
 Inputs to deep learning models are numerical while generative models take text inputs. Tokenization is the first step in converting text into a series of numerical values.
 
@@ -55,7 +55,7 @@ Each part is a unique “token”, which can be thought as a minimum unit of und
 
 Keep in mind that each model will have its own tokenizer that behaves differently.
 
-### <i class="fa-solid fa-chalkboard-user"></i> Auto-regressive generation
+### <i class="fa-solid fa-chalkboard"></i> Auto-regressive generation
 
 At the opposite end, a generative model is configured to output one token. The architecture of a generative model thus looks like this:
 
@@ -93,7 +93,7 @@ This is how a model like `gpt-4` can generate coherent answers to a question. Ea
 
 So, when a model is said to have an allowable “context length”, it refers to the maximum length of input tokens (`[x1, x2, …, xn]`). And in many cases, the output length is also limited. This is so that the output tokens don’t cause the model to “forget” the initial input, as the autoregression part of the input grows larger.
 
-### <i class="fa-solid fa-chalkboard-user"></i> Why use generative models?
+### <i class="fa-solid fa-chalkboard"></i> Why use generative models?
 
 By performing this simple task of generating one token in front of the other, generative models can perform a remarkable set of tasks at a very high level.
 
