@@ -134,19 +134,23 @@ Key operations for managing replica placement include:
   - Use the [`GET /replication/sharding-state`](../api/rest.md) endpoint to retrieve the current locations of replicas for specific collections or shards.
 
 - **Initiating a replica movement operation**: This starts the asynchronous process of creating a replica on a new node and, if moving, removing it from the old one.
-  - Use the [`POST /replication/replicate`](../api/rest.md) endpoint. You'll need to specify the source node, destination node, collection name, shard ID, and whether the operation is a 'MOVE' or 'COPY'.
+  - Use the [`POST /replication/replicate`](../api/rest.md) endpoint. You'll need to specify the source node, destination node, collection name, shard ID and whether the operation is a 'MOVE' or 'COPY'.
 
 - **Checking the status of a movement operation**: Since movement is asynchronous, you can monitor its progress.
   - Use the [`GET /replication/replicate/{id}`](../api/rest.md) endpoint, providing the operation ID returned when the movement was initiated.
 
 - **Listing replication operations**: To see all ongoing or recently completed operations.
-  - Use the [`GET /replication/replicate/list`](../api/rest.md) endpoint. This can be filtered by node, collection, or shard.
+  - Use the [`GET /replication/replicate/list`](../api/rest.md) endpoint. This can be filtered by node, collection and shard.
 
 - **Cancelling a movement operation**: If a movement needs to be stopped before completion.
   - Use the [`POST /replication/replicate/{id}/cancel`](../api/rest.md) endpoint. The operation will be stopped and will remain in a 'CANCELLED' state.
 
 - **Deleting a movement operation record**: To remove the record of a completed, cancelled, or failed operation.
   - Use the [`DELETE /replication/replicate/{id}`](../api/rest.md) endpoint. If the operation is active, it will be cancelled first.
+
+- **Deleting a shard replica**: To remove a replica from the cluster if deleting the replica doesn't result in going below the minimum replication factor configured for the collection.
+  - Use the [`DELETE /replication/replica`](../api/rest.md) endpoint. This can be filtered by node, collection and shard.
+
 
 For more details about the replica movement operations, check out the [REST API](../api/rest.md) documentation. 
 
