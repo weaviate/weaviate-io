@@ -445,6 +445,90 @@ client.collections.create(
 )
 # END MultiValueVectorCollection
 
+# ==========================================
+# ===== MULTI-VECTOR EMBEDDINGS MUVERA
+# ==========================================
+
+# Clean slate
+client.collections.delete("DemoCollection")
+
+# START MultiValueVectorMuvera
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    vectorizer_config=[
+        # Example 1 - Use a model integration
+        Configure.NamedVectors.text2colbert_jinaai(
+            name="jina_colbert",
+            source_properties=["text"],
+            # highlight-start
+            vector_index_config=Configure.VectorIndex.hnsw(
+                multi_vector=Configure.VectorIndex.MultiVector.multi_vector(
+                    encoding=Configure.VectorIndex.MultiVector.Encoding.muvera(
+                        # Optional parameters for tuning MUVERA
+                        # ksim: 4,
+                        # dprojections: 16,
+                        # repetitions: 20,
+                    )
+                )
+            ),
+            # highlight-end
+        ),
+        # Example 2 - User-provided multi-vector representations
+        Configure.NamedVectors.none(
+            name="custom_multi_vector",
+            vector_index_config=Configure.VectorIndex.hnsw(
+                multi_vector=Configure.VectorIndex.MultiVector.multi_vector(
+                    # highlight-start
+                    encoding=Configure.VectorIndex.MultiVector.Encoding.muvera()
+                    # highlight-end
+                )
+            ),
+        ),
+    ],
+    # Additional parameters not shown
+)
+# END MultiValueVectorMuvera
+
+# ================================================
+# ===== MULTI-VECTOR EMBEDDINGS QUANTIZATION
+# ================================================
+
+# Clean slate
+client.collections.delete("DemoCollection")
+
+# START MultiValueVectorPQ
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    vectorizer_config=[
+        # Example 1 - Use a model integration
+        Configure.NamedVectors.text2colbert_jinaai(
+            name="jina_colbert",
+            source_properties=["text"],
+            # highlight-start
+            vector_index_config=Configure.VectorIndex.hnsw(
+                quantizer=Configure.VectorIndex.Quantizer.pq(training_limit=50000)
+            ),
+            # highlight-end
+        ),
+        # Example 2 - User-provided multi-vector representations
+        Configure.NamedVectors.none(
+            name="custom_multi_vector",
+            vector_index_config=Configure.VectorIndex.hnsw(
+                # highlight-start
+                quantizer=Configure.VectorIndex.Quantizer.pq(training_limit=50000),
+                # highlight-end
+                multi_vector=Configure.VectorIndex.MultiVector.multi_vector(),
+            ),
+        ),
+    ],
+    # Additional parameters not shown
+)
+# END MultiValueVectorPQ
+
 # ===========================
 # ===== MODULE SETTINGS =====
 # ===========================
