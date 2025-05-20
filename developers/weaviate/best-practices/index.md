@@ -252,7 +252,19 @@ At the moment, offloading tenants is only available in the open-source version o
 
 ## Application design and integration
 
-### Use the relevant Async Client as relevant
+### Minimize client instantiations
+
+There is a performance overhead when instantiating a Weaviate client object, due to the I/O operations to establish a connection and perform health checks.
+
+Where possible, reuse the same client object for as many operations as you can. Generally, the client object is thread-safe and can be used in parallel across multiple threads.
+
+If multiple client objects are absolutely necessary, consider skipping initial checks (e.g. [Python](../client-libraries/python/index.md#initial-connection-checks)). This can significantly reduce the overhead of instantiating multiple clients.
+
+Note that there may be some client library-specific limitations. For example, the Weaviate Python client should only be used with [one batch import thread per client object](../client-libraries/python/index.md#thread-safety).
+
+Additionally, you should [consider the asynchronous client API](#use-the-relevant-async-client-as-needed) to improve performance in asynchronous environments.
+
+### Use the relevant Async Client as needed
 
 When using Weaviate in an asynchronous environment, consider using the asynchronous client API. This can significantly improve the performance of your application, especially when making multiple queries in parallel.
 
