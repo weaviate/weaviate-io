@@ -277,15 +277,54 @@ The Query Agent can be instantiated with additional options, such as:
 - `system_prompt`: A custom system prompt to replace the default system prompt provided by the Weaviate team.
 - `timeout`: The maximum time the Query Agent will spend on a single query, in seconds (server-side default: 60).
 
-### Collection selection
+### Select collections, vectors and properties to query
+
+You can select the collections you want to query as well as the target vectors and specific properties the agent has access to. The selection can be done either when:
+- [instantiating the Query Agent](#when-instantiating-the-query-agent), or
+- [directly when running the query](#when-running-a-query) (overriding previous selections).
+
+<details>
+  <summary>Collection selection for Weaviate Agents before version `v0.8.0`</summary>
+
+#### Collection selection
 
 Use `.add_collection` or `.remove_collection` methods on an instantiated `QueryAgent` object to add or remove collections from the Query Agent's list of collections.
 
-### Queries
+#### Queries
 
 Use `.view_properties` to define the properties that the Query Agent can look at when answering queries.
 
 Optional target vectors can be specified in the query if a collection uses named vector. When multiple collections are provided to the query agent, a dictionary must be used to map collection names to their respective target vectors. For example `target_vector={"ecommerce": ["name_vector", "description_vector"]}` runs the query on two named vectors from the `ecommerce` collection.
+
+</details>
+
+#### When instantiating the Query Agent
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START QueryAgentCollectionSelection"
+            endMarker="# END QueryAgentCollectionSelection"
+            language="py"
+        />
+    </TabItem>
+
+</Tabs>
+
+#### When running a query
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START QueryAgentRunCollectionSelection"
+            endMarker="# END QueryAgentRunCollectionSelection"
+            language="py"
+        />
+    </TabItem>
+
+</Tabs>
 
 ## Limitations & Troubleshooting
 
