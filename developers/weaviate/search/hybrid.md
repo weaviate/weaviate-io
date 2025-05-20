@@ -393,6 +393,43 @@ For a discussion of fusion methods, see [this blog post](/blog/hybrid-search-fus
 
 </details>
 
+## Keyword search operators
+
+:::info Added in `v1.31`
+:::
+
+Keyword (BM25) search operators define the minimum number of query [tokens](#tokenization) that must be present in the object to be returned. The options are `and`, or `or` (default).
+
+### `or`
+
+With the `or` operator, the search returns objects that contain at least `minimumShouldMatch` of the tokens in the search string. If unspecified, the default is `1`.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START HybridWithBM25OperatorOrWithMin"
+      endMarker="# END HybridWithBM25OperatorOrWithMin"
+      language="python"
+    />
+  </TabItem>
+</Tabs>
+
+### `and`
+
+With the `and` operator, the search returns objects that contain all tokens in the search string.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START HybridWithBM25OperatorAnd"
+      endMarker="# END HybridWithBM25OperatorAnd"
+      language="python"
+    />
+  </TabItem>
+</Tabs>
+
 ## Specify keyword search properties
 
 :::info Added in `v1.19.0`
