@@ -81,15 +81,38 @@ By the time Weaviate has responded with a successful status to your ingestion re
 
 The LSM stores will try to flush a segment on an orderly shutdown. Only if the operation is successful, will the WAL be marked as "complete". This means that if an unexpected crash happens and Weaviate encounters an "incomplete" WAL, it will recover from it. As part of the recovery process, Weaviate will flush a new segment based on the WAL and mark it as complete. As a result, future restarts will no longer have to recover from this WAL.
 
-For the HNSW vector index, the Write-Ahead-Log (WAL) is a critical component for disaster recovery and persisting the most recent changes. The cost in building up an HNSW index is in figuring out where to place a new object and how to link it with its neighbors. The WAL contains only the result of those calculations. Historically, the entire HNSW index state was reconstructed by replaying these WAL entries from the beginning, which could be time-consuming for large indexes.
+For the HNSW vector index, the Write-Ahead-Log (WAL) is a critical component for disaster recovery and persisting the most recent changes. The cost in building up an HNSW index is in figuring out where to place a new object and how to link it with its neighbors. The WAL contains only the result of those calculations.
+
+The entire HNSW index state can be reconstructed by replaying these WAL entries.
+
+For very large indexes of tens or hundreds of millions of objects, this can be time-consuming. If you have a large index and you want to speed up the startup time, you can use the **[HNSW snapshots](../configuration/hnsw-snapshots.md)** feature.
 
 ### HNSW snapshots
 
-To dramatically reduce startup times, Weaviate now utilizes **[HNSW snapshots](../configuration/hnsw-snapshots.md)**. A snapshot represents a point-in-time state of the HNSW index. When Weaviate starts, if a valid snapshot exists, it will be loaded into memory first. This significantly reduces the number of WAL entries that need to be processed, as only the changes made after the snapshot was taken need to be replayed from the WAL. This parallel loading of snapshots and reduced commit log processing leads to substantially faster startup time.
+:::info Added in `v1.31`
+:::
 
-The snapshot itself is based on condensed commit log files that are immutable, ensuring data integrity. If a snapshot cannot be loaded for any reason, it is safely removed, and Weaviate falls back to the traditional method of loading the full commit log from the beginning, ensuring resilience. Snapshots can be created at startup and periodically based on time passed or changes in the commit log. It's important to note that even with a fresh snapshot, the server typically still has to load at least one subsequent commit log file.
+For very large HNSW vector indexes, HNSW snapshots can significantly reduce the startup time.
 
-The WAL is still used to persist every change immediately, guaranteeing that any acknowledged write is durable. Over time, the append-only WAL will contain redundant information for operations occurring after the last snapshot. A background process continuously compacts these newer WAL files, removing redundant information. This, combined with snapshotting, keeps the disk footprint manageable and startup times fast. 
+A snapshot represents a point-in-time state of the HNSW index. When Weaviate starts, if a valid snapshot exists, it will be loaded into memory first. This significantly reduces startup time, as the number of WAL entries that need to be processed, as only the changes made after the snapshot was taken need to be replayed from the WAL.
+
+The snapshot is based on immutable condensed commit log files, ensuring data integrity. If a snapshot cannot be loaded for any reason, it is safely removed, and Weaviate falls back to the traditional method of loading the full commit log from the beginning, ensuring resilience.
+
+Snapshots can be created at startup and periodically based on time passed or changes in the commit log.
+
+Weaviate will try to create a new snapshot during startup if there are changes in the commit log since the last snapshot. If there are no changes, then the existing snapshot will be loaded.
+
+A snapshot will also be created if the corresponding conditions are met, meaning the specified time interval has passed and a sufficient number of new commits exist. This is handled by the same background process that manages commit log combining and condensing, ensuring stability as the commit logs used for snapshot creation are not mutable during this process.
+
+Each new HNSW snapshot is based on the previous snapshot and newer (delta) commit logs.
+
+It's important to note that even with a fresh snapshot, the server typically still has to load at least one subsequent commit log file.
+
+The WAL is still used to persist every change immediately, guaranteeing that any acknowledged write is durable. Over time, the append-only WAL will contain redundant information for operations occurring after the last snapshot. A background process continuously compacts these newer WAL files, removing redundant information. This, combined with snapshotting, keeps the disk footprint manageable and startup times fast.
+
+See **[the HNSW snapshots configuration](../configuration/hnsw-snapshots.md)** for more details on how to configure this feature.
+
+As of `v1.31`, HNSW snapshots are disabled by default.
 
 ## Conclusions
 
