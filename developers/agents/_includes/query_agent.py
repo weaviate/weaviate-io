@@ -27,6 +27,40 @@ qa = QueryAgent(
 )
 # END InstantiateQueryAgent
 
+# START QueryAgentCollectionSelection
+from weaviate_agents.classes.query import QueryAgent, QueryAgentCollectionConfig
+
+qa = QueryAgent(
+    client=client,
+    collections=[
+        QueryAgentCollectionConfig(
+            name="ecommerce",  # The name of the collection to query
+            # target_vector=["first_vector", "second_vector"], # Optional target vector name(s) for collections with named vectors
+            # view_properties=["property1", "property2"], # Optional list of property names the agent can view
+            # tenant="tenant1", # Optional tenant name for collections with multi-tenancy enabled
+        ),
+        QueryAgentCollectionConfig(name="financial_contracts"),
+        QueryAgentCollectionConfig(name="weather"),
+    ],
+)
+# END QueryAgentCollectionSelection
+
+# START QueryAgentRunCollectionSelection
+from weaviate_agents.classes.query import QueryAgent, QueryAgentCollectionConfig
+
+response = qa.run(
+    "I like vintage clothes and and nice shoes. Recommend some of each below $60.",
+    collections=[
+        QueryAgentCollectionConfig(
+            name="ecommerce",  # The name of the collection to query
+            # target_vector=["first_vector", "second_vector"], # Optional target vector name(s) for collections with named vectors
+            # view_properties=["property1", "property2"], # Optional list of property names the agent can view
+            # tenant="tenant1", # Optional tenant name for collections with multi-tenancy enabled
+        ),
+    ],
+)
+# END QueryAgentRunCollectionSelection
+
 # START BasicQuery
 # Perform a query
 response = qa.run(
