@@ -96,7 +96,7 @@ For very large HNSW vector indexes, HNSW snapshots can significantly reduce the 
 
 A snapshot represents a point-in-time state of the HNSW index. When Weaviate starts, if a valid snapshot exists, it will be loaded into memory first. This significantly reduces startup time, as the number of WAL entries that need to be processed, as only the changes made after the snapshot was taken need to be replayed from the WAL.
 
-The snapshot is based on immutable condensed commit log files, ensuring data integrity. If a snapshot cannot be loaded for any reason, it is safely removed, and Weaviate falls back to the traditional method of loading the full commit log from the beginning, ensuring resilience.
+If a snapshot cannot be loaded for any reason, it is safely removed, and Weaviate falls back to the traditional method of loading the full commit log from the beginning, ensuring resilience.
 
 Snapshots can be created at startup and periodically based on time passed or changes in the commit log.
 

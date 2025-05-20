@@ -24,11 +24,15 @@ Set `PERSISTENCE_HNSW_DISABLE_SNAPSHOTS` to `false` to enable HNSW snapshotting.
 
 Set the following optional environment variables to configure the snapshotting behavior.
 
+:::note
+Before creating a new snapshot, the previous snapshot and the commit log difference need to be loaded into memory. Make sure you have enough memory to accommodate this process.
+:::
+
 ### Snapshot on startup
 
 Enable or disable snapshot creation on startup:
 
-- `PERSISTENCE_HNSW_SNAPSHOT_ON_STARTUP`: If `true`,
+- `PERSISTENCE_HNSW_SNAPSHOT_ON_STARTUP`: If `true`, Weaviate will try to create a new snapshot during startup if there are changes in the commit log since the last snapshot. If there are no changes, then the existing snapshot will be loaded.
   - **Default:** `true`
 
 ### Periodic snapshots
