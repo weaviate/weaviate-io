@@ -155,8 +155,19 @@ We are working on a re-indexing API to allow you to re-index the data after addi
 :::info Added in `v1.31`
 :::
 
-When you add a new named vector to an existing collection, it's important to understand that **existing objects will not be automatically revectorized**. Only objects created or updated after the named vector addition will receive these new vector embeddings.
-This behavior is intentional and provides performance benefits when working with large datasets, as it prevents the system from having to recalculate embeddings for all the objects.
+A named vector can be added to an existing collection definition after collection creation. This allows you to add new vector representations for objects without having to delete and recreate the collection.
+
+When you add a new named vector to an existing collection definition, it's important to understand that **existing objects' new named vector will remain unpopulated**. Only objects created or updated after the named vector addition will receive these new vector embeddings.
+
+This prevents any unintended side effects, such as incurring large vectorization time or costs for all existing objects in a collections.
+
+If you want to populate the new named vector for existing objects, update the object with the existing object UUID and vectors. This will trigger the vectorization process for the new named vector.
+
+<!-- TODO: I wonder we should show an example - maybe once the vectorizer syntax is updated with 1.32 -->
+
+:::caution Not available for legacy (unnamed) vectorizers
+The ability to add a named vector after collection creation is only available for collections configured with named vectors.
+:::
 
 ### Collections count limit {#collections-count-limit}
 
@@ -168,13 +179,13 @@ To ensure optimal performance, Weaviate **limits the number of collections per n
 - **Default limit**: `1000` collections.
 - **Modify the limit**: Use the [`MAXIMUM_ALLOWED_COLLECTIONS_COUNT`](../../config-refs/env-vars/index.md) environment variable to adjust the collection count limit.
 
-:::note 
+:::note
 If your instance already exceeds the limit, Weaviate will not allow the creation of any new collections. Existing collections will not be deleted.
 :::
 
 :::tip
-**Instead of raising the collections count limit, consider rethinking your architecture**.  
-For more details, see [Starter Guides: Scaling limits with collections](../../starter-guides/managing-collections/collections-scaling-limits.mdx). 
+**Instead of raising the collections count limit, consider rethinking your architecture**.
+For more details, see [Starter Guides: Scaling limits with collections](../../starter-guides/managing-collections/collections-scaling-limits.mdx).
 :::
 
 ## Available parameters
@@ -614,7 +625,7 @@ The `kagome_kr` tokenizer is not loaded by default to save resources. To use it,
 ### Limit the number of `gse` and `Kagome` tokenizers
 
 The `gse` and `Kagome` tokenizers can be resource intensive and affect Weaviate's performance.
-You can limit the combined number of `gse` and `Kagome` tokenizers running at the same time using the [`TOKENIZER_CONCURRENCY_COUNT` environment variable](../env-vars/index.md). 
+You can limit the combined number of `gse` and `Kagome` tokenizers running at the same time using the [`TOKENIZER_CONCURRENCY_COUNT` environment variable](../env-vars/index.md).
 
 ### Inverted index types
 
