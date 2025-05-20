@@ -169,7 +169,7 @@ A named vector can be added to an existing collection definition after collectio
 
 When you add a new named vector to an existing collection definition, it's important to understand that **existing objects' new named vector will remain unpopulated**. Only objects created or updated after the named vector addition will receive these new vector embeddings.
 
-This prevents any unintended side effects, such as incurring large vectorization time or costs for all existing objects in a collections.
+This prevents any unintended side effects, such as incurring large vectorization time or costs for all existing objects in a collection.
 
 If you want to populate the new named vector for existing objects, update the object with the existing object UUID and vectors. This will trigger the vectorization process for the new named vector.
 
