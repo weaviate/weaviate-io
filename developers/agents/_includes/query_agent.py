@@ -174,7 +174,7 @@ qa = QueryAgent(
 
 # START QueryAgentCollectionSelection
 from weaviate.agents.query import QueryAgent
-from weaviate_agents.classes.query import QueryAgentCollectionConfig
+from weaviate.agents.classes import QueryAgentCollectionConfig
 
 qa = QueryAgent(
     client=client,
@@ -247,8 +247,7 @@ if response.missing_information:
 assert response.final_answer != "" and response.final_answer is not None
 
 # START QueryAgentRunCollectionSelection
-from weaviate.agents.query import QueryAgent
-from weaviate_agents.classes.query import QueryAgentCollectionConfig
+from weaviate.agents.classes import QueryAgentCollectionConfig
 
 response = qa.run(
     "I like vintage clothes and and nice shoes. Recommend some of each below $60.",
