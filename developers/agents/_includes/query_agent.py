@@ -28,7 +28,8 @@ qa = QueryAgent(
 # END InstantiateQueryAgent
 
 # START QueryAgentCollectionSelection
-from weaviate_agents.classes.query import QueryAgent, QueryAgentCollectionConfig
+from weaviate.agents.query import QueryAgent
+from weaviate_agents.classes.query import QueryAgentCollectionConfig
 
 qa = QueryAgent(
     client=client,
@@ -46,7 +47,8 @@ qa = QueryAgent(
 # END QueryAgentCollectionSelection
 
 # START QueryAgentRunCollectionSelection
-from weaviate_agents.classes.query import QueryAgent, QueryAgentCollectionConfig
+from weaviate.agents.query import QueryAgent
+from weaviate_agents.classes.query import QueryAgentCollectionConfig
 
 response = qa.run(
     "I like vintage clothes and and nice shoes. Recommend some of each below $60.",
