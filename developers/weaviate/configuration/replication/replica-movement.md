@@ -62,7 +62,7 @@ Nodes for shard 'BoMYGMWFncSG': ['node3', 'node1']
 
 ## Initiating a replica movement operation
 
-This starts the asynchronous process of creating a replica on a new node and, if moving, removing it from the old one. When copying a replica, the replication factor for that shard will be increased as opposed to moving the replica.
+This starts the asynchronous process of creating a replica on a new node and, if moving, removing it from the old one. When copying a replica, the replication factor for that shard will be increased as opposed to moving the replica. You'll need to specify the source node, destination node, collection name, shard ID and whether the operation is a 'MOVE' or 'COPY'.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
