@@ -5,8 +5,6 @@ def populate_weaviate(client, clean_start=False):
 
     if clean_start:
         client.collections.delete("ECommerce")
-        client.collections.delete("Ecommerce")
-        client.collections.delete("ecommerce")
         client.collections.delete("Weather")
         client.collections.delete("FinancialContracts")
 
