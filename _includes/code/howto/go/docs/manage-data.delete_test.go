@@ -8,8 +8,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate/filters"
+	"github.com/weaviate/weaviate-go-client/v5/weaviate"
+	"github.com/weaviate/weaviate-go-client/v5/weaviate/filters"
 	"weaviate.io/docs/docs/helper"
 )
 
@@ -94,6 +94,8 @@ func Test_ManageDataDelete(t *testing.T) {
 		// END DryRun
 		assert.Equal(t, int64(5), response.Results.Matches)
 	})
+
+	
 
 	t.Run("Batch delete", func(t *testing.T) {
 		// START DeleteBatch
