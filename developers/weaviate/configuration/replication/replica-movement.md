@@ -1,6 +1,5 @@
 ---
 title: Replica movement
-sidebar_position: 65
 image: og/docs/configuration.jpg
 ---
 
@@ -8,7 +7,7 @@ image: og/docs/configuration.jpg
 Available starting in `v1.31`. This is an experimental feature and shouldn't be used in a production environment for now.
 :::
 
-Beyond setting the initial replication factor, you can actively manage the placement of shard replicas within your Weaviate cluster. This is useful for rebalancing data after scaling, decommissioning nodes, or optimizing data locality. Replica movement is managed through a set of dedicated RESTful API endpoints.
+Beyond setting the initial replication factor, you can actively manage the placement of shard replicas within your Weaviate cluster. This is useful for rebalancing data after scaling, decommissioning nodes, or optimizing data locality. Replica movement is managed through a set of dedicated [RESTful API endpoints](../../api/rest.md) or through the client library API described below.
 
 ## Checking sharding state
 
@@ -51,7 +50,15 @@ import PyCode from '!!raw-loader!/\_includes/code/python/howto.configure.replica
 </TabItem>
 </Tabs>
 
----
+<details>
+  <summary>Code output</summary>
+
+```
+Shards in 'MyReplicatedDocCollection': ['BoMYGMWFncSG', 'ddYSP1oIHT7t', 'xSBcs4TRJ5QH']
+Nodes for shard 'BoMYGMWFncSG': ['node3', 'node1']
+```
+
+</details>
 
 ## Initiating a replica movement operation
 
@@ -89,9 +96,16 @@ language="py"
 </TabItem>
 </Tabs>
 
----
+<details>
+  <summary>Code output</summary>
 
-## Checking the status of a movement operation
+```
+Replication initiated, ID: 32536c0e-09e1-4ea1-a2c5-e85af10a9d58
+```
+
+</details>
+
+## Checking the status of a replication operation
 
 Since movement is asynchronous, you can monitor its progress. The movement operation can have one of the following states:
 
@@ -101,6 +115,8 @@ Since movement is asynchronous, you can monitor its progress. The movement opera
 - `DEHYDRATING`
 - `READY`
 - `CANCELLED`
+
+To learn more about the replication states, check out [Concepts: Cluster architecture](../../concepts/replication-architecture/cluster-architecture.md#replica-movement).
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
@@ -134,7 +150,14 @@ language="py"
 </TabItem>
 </Tabs>
 
----
+<details>
+  <summary>Code output</summary>
+
+```
+Status for 32536c0e-09e1-4ea1-a2c5-e85af10a9d58: REGISTERED
+```
+
+</details>
 
 ## Listing replication operations
 
@@ -172,9 +195,17 @@ language="py"
 </TabItem>
 </Tabs>
 
----
+<details>
+  <summary>Code output</summary>
 
-## Cancelling a movement operation
+```
+Total replication operations: 1
+Filtered operations for collection 'MyReplicatedDocCollection' on 'node3': 1
+```
+
+</details>
+
+## Cancelling a replication operation
 
 If a movement needs to be stopped before completion. The operation will be stopped and will remain in a 'CANCELLED' state.
 
@@ -210,9 +241,7 @@ language="py"
 </TabItem>
 </Tabs>
 
----
-
-## Deleting a movement operation record
+## Deleting a replication operation record
 
 To remove the record of a completed, cancelled, or failed operation. If the operation is active, it will be cancelled first.
 
@@ -250,7 +279,8 @@ language="py"
 
 ## Further resources
 
-For more details about the replica movement operations, check out the [REST API](https://www.google.com/search?q=../api/rest.md) documentation.
+- [RESTful API: Replication endpoints](../../api/rest.md)
+- [Concepts: Cluster architecture](../../concepts/replication-architecture/cluster-architecture.md#replica-movement)
 
 ## Questions and feedback
 
