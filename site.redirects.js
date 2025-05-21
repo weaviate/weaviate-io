@@ -840,10 +840,6 @@ const siteRedirects = {
         // Redirects for AWS and GCP
         {
             to: '/developers/weaviate/installation',
-            from: '/developers/weaviate/installation/aws-marketplace',
-        },
-        {
-            to: '/developers/weaviate/installation',
             from: '/developers/weaviate/installation/gc-marketplace',
         }
     ],
