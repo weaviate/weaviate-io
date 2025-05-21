@@ -138,10 +138,6 @@ If you don't explicitly define a [named vector](#named-vectors) in your collecti
 
 To learn which properties of your data are vectorized, refer to the [Configure semantic indexing](#configure-semantic-indexing) section.
 
-:::note
-As of Weaviate version `v1.31` you can [add new named vectors](../../manage-data/collections.mdx#add-new-named-vectors) to existing collections. 
-:::
-
 ### Multiple vector embeddings (named vectors) {#named-vectors}
 
 import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
