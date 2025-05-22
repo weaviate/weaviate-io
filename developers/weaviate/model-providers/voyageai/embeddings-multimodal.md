@@ -27,8 +27,6 @@ Note this integration does not support Voyage AI's "interleaving" input mode. Fo
 
 At [import time](#data-import), Weaviate generates multimodal object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts text queries into embeddings. [Multimodal search operations](#vector-near-media-search) are also supported.
 
-Important to note that the integration only supports CLIP-like multimodality. For more advanced usage with interleaved text & images, please use the [Bring your own vectors](../../starter-guides/custom-vectors.mdx) setup.
-
 ![Embedding integration illustration](../_includes/integration_voyageai_embedding.png)
 
 ## Requirements
