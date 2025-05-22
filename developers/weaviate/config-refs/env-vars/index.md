@@ -27,7 +27,6 @@ import Link from '@docusaurus/Link';
 | --- | --- | --- | --- |
 | `ASYNC_INDEXING` | (Experimental, added in `v1.22`.) <br/><br/>If set, Weaviate creates vector indexes asynchronously to the object creation process. This can be useful for importing large amounts of data. (default: `false`) | `boolean` | `false` |
 | `AUTOSCHEMA_ENABLED` | Whether to infer the schema where necessary with the autoschema (default: `true`) | `boolean` | `true` |
-| `RAFT_ENABLE_ONE_NODE_RECOVERY` | Enable running the single node recovery routine on restart. This is useful if the default hostname has changed and a single node cluster believes there are supposed to be two nodes. | `boolean` | `false` |
 | `DEFAULT_VECTORIZER_MODULE` | Default vectorizer module - will be overridden by any class-level value defined in the schema | `string` | `text2vec-contextionary` |
 | `DISABLE_LAZY_LOAD_SHARDS` | New in v1.23. When `false`, enable lazy shard loading to improve mean time to recovery in multi-tenant deployments. | `string` | `false` |
 | `DISABLE_TELEMETRY` | Disable [telemetry](../telemetry.md) data collection | boolean | `false` |
@@ -138,10 +137,11 @@ For more information on authentication and authorization, see the [Authenticatio
 | `CLUSTER_JOIN` | The service name of the "founding" member node in a cluster setup | `string` | `weaviate-node-1:7100` |
 | `HNSW_STARTUP_WAIT_FOR_VECTOR_CACHE` | If `true`, vector cache prefill is synchronous when a node starts. The node reports ready to serve when the cache is hot. Defaults to `false`. Added in 1.24.20 and 1.25.5. | `boolean` | `false` |
 | `COLLECTION_RETRIEVAL_STRATEGY`| Set collection definition retrieval behavior for a data request. <br/><br/> <ul><li>`LeaderOnly` (default): Always requests the definition from the leader node. </li><li>`LocalOnly`: Always use the local definition</li><li>`LeaderOnMismatch`: Requests the definition if outdated.</li></ul> ([Read more](../../concepts/replication-architecture/consistency.md#collection-definition-requests-in-queries)) (Added in `v1.27.10`, `v1.28.4`) | `string` | `LeaderOnly` |
-| `RAFT_ENABLE_FQDN_RESOLVER` | If `true`, use DNS lookup instead of memberlist lookup for Raft. Added in `v1.25.15` and removed in `v1.30`. ([Read more](../../concepts/cluster.md#fqdn-for-node-discovery)) | `boolean` | `true` |
-| `RAFT_FQDN_RESOLVER_TLD` | The top-level domain to use for DNS lookup, in `[node-id].[tld]` format. Added in `v1.25.15` and removed in `v1.30`. ([Read more](../../concepts/cluster.md#fqdn-for-node-discovery)) | `string` | `example.com` |
 | `RAFT_BOOTSTRAP_EXPECT` | The number of voter notes at bootstrapping time | `string - number` | `1` |
 | `RAFT_BOOTSTRAP_TIMEOUT` | The time in seconds to wait for the cluster to bootstrap | `string - number` | `90` |
+| `RAFT_ENABLE_FQDN_RESOLVER` | If `true`, use DNS lookup instead of memberlist lookup for Raft. Added in `v1.25.15` and removed in `v1.30`. ([Read more](../../concepts/cluster.md#fqdn-for-node-discovery)) | `boolean` | `true` |
+| `RAFT_ENABLE_ONE_NODE_RECOVERY` | Enable running the single node recovery routine on restart. This is useful if the default hostname has changed and a single node cluster believes there are supposed to be two nodes. | `boolean` | `false` |
+| `RAFT_FQDN_RESOLVER_TLD` | The top-level domain to use for DNS lookup, in `[node-id].[tld]` format. Added in `v1.25.15` and removed in `v1.30`. ([Read more](../../concepts/cluster.md#fqdn-for-node-discovery)) | `string` | `example.com` |
 | `RAFT_GRPC_MESSAGE_MAX_SIZE` | The maximum internal raft gRPC message size in bytes. Defaults to 1073741824 | `string - number` | `1073741824` |
 | `RAFT_JOIN` | Manually set Raft voter nodes. If set, RAFT_BOOTSTRAP_EXPECT needs to be adjusted manually to match the number of Raft voters. | `string` | `weaviate-0,weaviate-1` |
 | `RAFT_METADATA_ONLY_VOTERS` | If `true`, voter nodes only handle the schema. They do not accept any data. | `boolean` | `false` |
