@@ -148,4 +148,8 @@ This usually happens in `initRuntimeOverrides()` in `adaptors/handlers/rest/conf
 
 ### 4. Consume your config value via `value.Get()`
 
-Now, it's integrated. You can instead of using the value `config.MaxLimit`, you do `config.MaxLimit.Get()` everytime you want updated value.
+It is integrated. You can now instead of using the value directly `config.MaxLimit`, you do `config.MaxLimit.Get()` everytime to get the updated value dynamically.
+
+### NOTE:
+
+When `RUNTIME_OVERRIDES_ENABLED=false`, your config still function as if it's a static config with default value (`12` here) that you passed when creating it via `NewDynamicValue(12)`.
