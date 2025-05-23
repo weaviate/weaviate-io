@@ -86,7 +86,7 @@ It's important to set up proper alerting based on these metrics and logs to quic
 
 :::
 
-## How to add new support
+## How to add new support for your config
 
 We have two types that is core to manage your configs dynamically (`runtime.DynamicType` and `runtime.DynamicValue`). Which looks something similar.
 
@@ -100,7 +100,7 @@ type DynamicType interface {
 // fully usable.
 // If you want zero value with different `default`, use `NewDynamicValue` constructor.
 type DynamicValue[T DynamicType] struct {
-	<private fields>
+	...[private fields]
 }
 
 ```
@@ -115,7 +115,7 @@ type Config struct {
 }
 ```
 
-1. Convert `int` -> `DynamicValue[int]` (same for other types accordingly). Your config becomes
+### 1. Convert `int` -> `DynamicValue[int]` (same for other types accordingly). Your config becomes
 
 ```go
 type Config struct {
@@ -128,7 +128,7 @@ Also fix it on the parsing side (usually `FromEnv()` in `weaviate/usecases/confi
 	config.MaxLimit = runtime.NewDynamicValue(12) // default value for your config is `12`
 ```
 
-2. Make it part of `config.WeaviateRuntimeConfig`.
+### 2. Make it part of `config.WeaviateRuntimeConfig`.
 ```go
 type WeaviateRuntimeConfig struct {
 	...
@@ -136,7 +136,7 @@ type WeaviateRuntimeConfig struct {
 }
 ```
 
-3. Register your config in `runtime.ConfigManager`.
+### 3. Register your config in `runtime.ConfigManager`.
 
 This usually happens in `initRuntimeOverrides()` in `adaptors/handlers/rest/configure_api.go`.
 ```go
@@ -146,6 +146,6 @@ This usually happens in `initRuntimeOverrides()` in `adaptors/handlers/rest/conf
 
 ```
 
-4. Consume your config value via `value.Get()`
+### 4. Consume your config value via `value.Get()`
 
 Now, it's integrated. You can instead of using the value `config.MaxLimit`, you do `config.MaxLimit.Get()` everytime you want updated value.
