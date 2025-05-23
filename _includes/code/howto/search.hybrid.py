@@ -199,6 +199,60 @@ assert response.objects[0].collection == "JeopardyQuestion"
 # End test
 
 
+# ========================================
+# ===== Hybrid Query with BM25 Operator (Or) =====
+# ========================================
+
+# HybridWithBM25OperatorOrWithMin
+# highlight-start
+from weaviate.classes.query import BM25Operator
+# highlight-end
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.hybrid(
+    # highlight-start
+    query="Australian mammal cute",
+    bm25_operator=BM25Operator.or(minimum_match=2),
+    # highlight-end
+    limit=3,
+)
+
+for o in response.objects:
+    print(o.properties)
+# END HybridWithBM25OperatorOrWithMin
+
+# Tests
+assert response.objects[0].collection == "JeopardyQuestion"
+# End test
+
+
+# ========================================
+# ===== Hybrid Query with BM25 Operator (And) =====
+# ========================================
+
+# HybridWithBM25OperatorAnd
+# highlight-start
+from weaviate.classes.query import BM25Operator
+# highlight-end
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.hybrid(
+    # highlight-start
+    query="Australian mammal cute",
+    bm25_operator=BM25Operator.and(),  # Each result must include all tokens (e.g. "australian", "mammal", "cute")
+    # highlight-end
+    limit=3,
+)
+
+for o in response.objects:
+    print(o.properties)
+# END HybridWithBM25OperatorAnd
+
+# Tests
+assert response.objects[0].collection == "JeopardyQuestion"
+# End test
+
+
 # ==================================================
 # ===== Hybrid Query with Properties Specified =====
 # ==================================================

@@ -9,7 +9,7 @@ Hybrid search combines [vector search](./vector-search.md) and [keyword search (
 
 A hybrid search runs both search types in parallel and combines their scores to produce a final ranking of results. This makes it versatile and robust, suitable for a wide range of search use cases.
 
-## How Hybrid Search Works
+## How hybrid search works
 
 In Weaviate, a hybrid search performs the following steps:
 
@@ -73,7 +73,7 @@ flowchart LR
     linkStyle default stroke:#718096,stroke-width:3px,fill:none,background-color:white
 ```
 
-### Fusion Strategies
+### Fusion strategies
 
 Weaviate supports two strategies (`relativeScoreFusion` and `rankedFusion`) for combining vector and keyword search scores:
 
@@ -87,7 +87,7 @@ The main reason is that `relativeScoreFusion` retains more information from the 
 
 We include a concrete example of the two fusion strategies below.
 
-### Fusion Example
+### Fusion example
 
 Let's say that a search returns **five objects** with **document id** (from 0 to 4), and **scores** from **keyword** and **vector search**, **ordered by score**:
 
@@ -106,7 +106,7 @@ Let's say that a search returns **five objects** with **document id** (from 0 to
   </tr>
 </table>
 
-#### Ranked Fusion
+#### Ranked fusion
 
 The score depends on the rank of each result and is computed according to `1/(RANK + 60)`, resulting in:
 
@@ -127,7 +127,7 @@ The score depends on the rank of each result and is computed according to `1/(RA
 
 As you can see, the results for each rank are identical, regardless of the input score.
 
-#### Relative Score Fusion
+#### Relative score fusion
 
 In relative score fusion, the largest score is set to 1 and the lowest to 0, and all entries in-between are scaled according to their **relative distance** to the **maximum** and **minimum values**.
 
@@ -156,7 +156,7 @@ This is captured in the final result of `relativeScoreFusion`, which identified 
 
 In contrast, for `rankedFusion`, the object **ID 2** is the top result, closely followed by objects **ID 1** and **ID 0**.
 
-### Alpha Parameter
+### Alpha parameter
 
 The alpha value determines the weight of the vector search results in the final hybrid search results. The alpha value can range from 0 to 1:
 
@@ -164,7 +164,7 @@ The alpha value determines the weight of the vector search results in the final 
 - `alpha > 0.5`: More weight to vector search
 - `alpha < 0.5`: More weight to keyword search
 
-## Search Thresholds
+## Search thresholds
 
 Hybrid search supports a maximum vector distance threshold through the `max vector distance` parameter.
 
@@ -177,6 +177,12 @@ This can be useful when you want to ensure semantic similarity meets a minimum s
 There is no equivalent threshold parameter for the keyword (BM25) component of hybrid search or the final combined scores.
 
 This is because BM25 scores are not normalized or bounded like vector distances, making a universal threshold less meaningful.
+
+## Keyword (BM25) search parameters
+
+Hybrid search in Weaviate supports all the parameters available for keyword (BM25) search. This includes, for example, the ability to set the tokenization method, stopwords, BM25 parameters (k1, b), search operators (`and` or `or`), specific properties to search and/or to boost particular properties.
+
+For more information on these parameters, see the [keyword search page](./keyword-search.md).
 
 ## Further resources
 
