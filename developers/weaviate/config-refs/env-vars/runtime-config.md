@@ -85,3 +85,67 @@ Weaviate provides the following [metrics to help you monitor](../../configuratio
 It's important to set up proper alerting based on these metrics and logs to quickly identify configuration issues. If any Weaviate process is failing to load its runtime configuration, it won't be able to start until the configuration is fixed.
 
 :::
+
+## How to add new support
+
+We have two types that is core to manage your configs dynamically (`runtime.DynamicType` and `runtime.DynamicValue`). Which looks something similar.
+
+```go
+// DynamicType represents different types that is supported in runtime configs
+type DynamicType interface {
+	~int | ~float64 | ~bool | time.Duration | ~string
+}
+
+// DynamicValue represents any runtime config value. It's zero value is
+// fully usable.
+// If you want zero value with different `default`, use `NewDynamicValue` constructor.
+type DynamicValue[T DynamicType] struct {
+	<private fields>
+}
+
+```
+This also means, currently DynamicType supports types `~int`, `~float64`, `~bool`, `~string`, `time.Duration`
+
+Say you want a config to support to change it dynamically. You would have to do four things at the high level. For example you have a config `MaxLimit` that is integer.
+
+```go
+type Config struct {
+	....
+	MaxLimit int
+}
+```
+
+1. Convert `int` -> `DynamicValue[int]` (same for other types accordingly). Your config becomes
+
+```go
+type Config struct {
+	MaxLimit *runtime.DynamicValue[int]
+}
+```
+
+Also fix it on the parsing side (usually `FromEnv()` in `weaviate/usecases/config/environment.go`)
+```go
+	config.MaxLimit = runtime.NewDynamicValue(12) // default value for your config is `12`
+```
+
+2. Make it part of `config.WeaviateRuntimeConfig`.
+```go
+type WeaviateRuntimeConfig struct {
+	...
+	MaxLimit *runtime.DynamicValue[int] `json:"max_limit" yaml:"max_limit"`
+}
+```
+
+3. Register your config in `runtime.ConfigManager`.
+
+This usually happens in `initRuntimeOverrides()` in `adaptors/handlers/rest/configure_api.go`.
+```go
+	registered := &config.WeaviateRuntimeConfig{}
+	...
+	registered.MaxLimit = appState.ServerConfig.Config.MaxLimit
+
+```
+
+4. Consume your config value via `value.Get()`
+
+Now, it's integrated. You can instead of using the value `config.MaxLimit`, you do `config.MaxLimit.Get()` everytime you want updated value.
