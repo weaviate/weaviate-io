@@ -345,9 +345,7 @@ This example outputs:
 
 ### Usage limits
 
-At this stage, there is a limit of 500 Query Agent queries per day per Weaviate Cloud [organization](/developers/wcs/platform/users-and-organizations.mdx#organizations).
-
-This limit may change in future versions of the Query Agent.
+The current usage limit is 500 Query Agent queries per day per Weaviate Cloud [organization](/developers/wcs/platform/users-and-organizations.mdx#organizations).
 
 ### Custom collection descriptions
 
