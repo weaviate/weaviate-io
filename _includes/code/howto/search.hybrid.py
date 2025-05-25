@@ -203,7 +203,7 @@ assert response.objects[0].collection == "JeopardyQuestion"
 # ===== Hybrid Query with BM25 Operator (Or) =====
 # ========================================
 
-# HybridWithBM25OperatorOrWithMin
+# START HybridWithBM25OperatorOrWithMin
 # highlight-start
 from weaviate.classes.query import BM25Operator
 # highlight-end
@@ -230,7 +230,7 @@ assert response.objects[0].collection == "JeopardyQuestion"
 # ===== Hybrid Query with BM25 Operator (And) =====
 # ========================================
 
-# HybridWithBM25OperatorAnd
+# START HybridWithBM25OperatorAnd
 # highlight-start
 from weaviate.classes.query import BM25Operator
 # highlight-end
