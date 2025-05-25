@@ -1,10 +1,11 @@
 from weaviate.classes.config import Configure, Property, DataType
 
 
-def populate_weaviate(client, clean_start=False):
+def populate_weaviate(client, overwrite_existing=False):
 
-    if clean_start:
+    if overwrite_existing:
         client.collections.delete("ECommerce")
+        client.collections.delete("Ecommerce")
         client.collections.delete("Weather")
         client.collections.delete("FinancialContracts")
 
@@ -157,11 +158,11 @@ headers = {
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=os.environ.get("WEAVIATE_URL"),
     auth_credentials=Auth.api_key(os.environ.get("WEAVIATE_API_KEY")),
-    # headers=headers,
+    headers=headers,
 )
 # END InstantiateQueryAgent
 
-# populate_weaviate(client, clean_start=True)  # Populate the Weaviate instance with data
+populate_weaviate(client)  # Populate the Weaviate instance with data
 
 # START InstantiateQueryAgent
 
@@ -180,12 +181,8 @@ qa = QueryAgent(
     collections=[
         QueryAgentCollectionConfig(
             name="ECommerce",  # The name of the collection to query
-            target_vector=[
-                "name_description_brand_vector"
-            ],  # Target vector name(s) for collections with named vectors
-            view_properties=[
-                "description"
-            ],  # Optional list of property names the agent can view
+            target_vector=["name_description_brand_vector"],  # Target vector name(s) for collections with named vectors
+            view_properties=["description"],  # Optional list of property names the agent can view
             # tenant="tenant1", # Optional tenant name for collections with multi-tenancy enabled
         ),
         QueryAgentCollectionConfig(name="FinancialContracts"),
