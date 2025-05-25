@@ -75,12 +75,13 @@ pip install -U weaviate-agents==||site.weaviate_agents_version||
 
 </Tabs>
 
-## How to use the Query Agent
+## Instantiate the Query Agent
 
-### 1. Instantiate the Query Agent
+### Basic instantiation
 
-- Your Weaviate Cloud instance details (e.g. the `WeaviateClient` object in Python) to the Query Agent.
-- A list of the collections that the Query Agent may use to answer queries.
+Provide:
+- Target Weaviate Cloud instance details (e.g. the `WeaviateClient` object in Python).
+- A default list of the collections to be queried
 
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python">
@@ -88,6 +89,25 @@ pip install -U weaviate-agents==||site.weaviate_agents_version||
             text={PyCode}
             startMarker="# START InstantiateQueryAgent"
             endMarker="# END InstantiateQueryAgent"
+            language="py"
+        />
+    </TabItem>
+
+</Tabs>
+
+### Configure collections
+
+The list of collections to be queried are further configurable with:
+- Tenant names (required for a multi-tenant collection)
+- Target vector(s) of the collection to query (optional)
+- List of property names for the agent to use (optional)
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START QueryAgentCollectionConfiguration"
+            endMarker="# END QueryAgentCollectionConfiguration"
             language="py"
         />
     </TabItem>
@@ -102,7 +122,14 @@ For example, if the associated Weaviate credentials' user has access to only a s
 
 :::
 
-### 2. Perform queries
+### Additional options
+
+The Query Agent can be instantiated with additional options, such as:
+
+- `system_prompt`: A custom system prompt to replace the default system prompt provided by the Weaviate team.
+- `timeout`: The maximum time the Query Agent will spend on a single query, in seconds (server-side default: 60).
+
+## Perform queries
 
 Provide a natural language query to the Query Agent. The Query Agent will process the query, perform the necessary searches in Weaviate, and return the answer.
 
@@ -124,7 +151,46 @@ The Query Agent will formulate its strategy based on your query. So, aim to be u
 
 </Tabs>
 
-#### 2.1. Follow-up queries
+### Configure collections at runtime
+
+The list of collections to be queried can be overridden at query time, as a list of names, or with further configurations:
+
+#### Specify collection names only
+
+This example overrides the configured Query Agent collections for this query only.
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START QueryAgentRunBasicCollectionSelection"
+            endMarker="# END QueryAgentRunBasicCollectionSelection"
+            language="py"
+        />
+    </TabItem>
+
+</Tabs>
+
+#### Configure collections in detail
+
+This example overrides the configured Query Agent collections for this query only, specifying additional options where relevant, such as:
+- Target vector
+- Properties to view
+- Target tenant
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START QueryAgentRunCollectionConfig"
+            endMarker="# END QueryAgentRunCollectionConfig"
+            language="py"
+        />
+    </TabItem>
+
+</Tabs>
+
+### Follow-up queries
 
 The Query Agent can even handle follow-up queries, using the previous response as additional context.
 
@@ -148,7 +214,7 @@ The supporting information may include searches or aggregations carried out, wha
 
 ### Helper function
 
-Try the provided helper function (e.g. `print_query_agent_response`) to display the response in a readable format.
+Try the provided helper functions (e.g. `print_query_agent_response()` or `.display()` method) to display the response in a readable format.
 
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python">
@@ -270,13 +336,6 @@ This example outputs:
 
 ## Advanced options
 
-### Agent instantiation
-
-The Query Agent can be instantiated with additional options, such as:
-
-- `system_prompt`: A custom system prompt to replace the default system prompt provided by the Weaviate team.
-- `timeout`: The maximum time the Query Agent will spend on a single query, in seconds (server-side default: 60).
-
 ### Select collections, vectors and properties to query
 
 You can select the collections you want to query as well as the target vectors and specific properties the agent has access to. The selection can be done either when:
@@ -298,34 +357,6 @@ Optional target vectors can be specified in the query if a collection uses named
 
 </details>
 
-#### When instantiating the Query Agent
-
-<Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python">
-        <FilteredTextBlock
-            text={PyCode}
-            startMarker="# START QueryAgentCollectionSelection"
-            endMarker="# END QueryAgentCollectionSelection"
-            language="py"
-        />
-    </TabItem>
-
-</Tabs>
-
-#### When running a query
-
-<Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python">
-        <FilteredTextBlock
-            text={PyCode}
-            startMarker="# START QueryAgentRunCollectionSelection"
-            endMarker="# END QueryAgentRunCollectionSelection"
-            language="py"
-        />
-    </TabItem>
-
-</Tabs>
-
 ## Limitations & Troubleshooting
 
 :::caution Technical Preview
@@ -342,10 +373,6 @@ Optional target vectors can be specified in the query if a collection uses named
 At this stage, there is a limit of 500 Query Agent queries per day per Weaviate Cloud [organization](/developers/wcs/platform/users-and-organizations.mdx#organizations).
 
 This limit may change in future versions of the Query Agent.
-
-### Multi-tenant collections
-
-The Query Agent is currently not able to access collections with multi-tenancy enabled. This will be added im the future.
 
 ### Custom collection descriptions
 
