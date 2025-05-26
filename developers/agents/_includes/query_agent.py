@@ -183,7 +183,8 @@ qa = QueryAgent(
             name="ECommerce",  # The name of the collection to query
             target_vector=["name_description_brand_vector"],  # Target vector name(s) for collections with named vectors
             view_properties=["description"],  # Optional list of property names the agent can view
-            # tenant="tenant1", # Optional tenant name for collections with multi-tenancy enabled
+            # Optional tenant name for collections with multi-tenancy enabled
+            # tenant="tenantA"
         ),
         QueryAgentCollectionConfig(name="FinancialContracts"),
         QueryAgentCollectionConfig(name="Weather"),
@@ -193,8 +194,8 @@ qa = QueryAgent(
 
 # START QueryAgentRunBasicCollectionSelection
 response = qa.run(
-    "What wines under $20 here pair well with fish?",
-    collections=["WineReview"],
+    "What kinds of contracts are listed? What's the most common type of contract?",
+    collections=["FinancialContracts"],
 )
 
 response.display()
@@ -204,17 +205,18 @@ response.display()
 from weaviate_agents.classes import QueryAgentCollectionConfig
 
 response = qa.run(
-    "What French dessert wines between $20-$60 are well-reviewed?",
+    "I like vintage clothes and and nice shoes. Recommend some of each below $60.",
     collections=[
         # Use QueryAgentCollectionConfig class to provide further collection configuration
         QueryAgentCollectionConfig(
-            name="WineReviewNV",  # The name of the collection to query
-            target_vector=["review_body"], # Optional target vector name(s) for collections with named vectors
-            view_properties=["review_body", "title", "country", "points", "price"], # Optional list of property names the agent can view
+            name="ECommerce",  # The name of the collection to query
+            target_vector=["name_description_brand_vector"], # Optional target vector name(s) for collections with named vectors
+            view_properties=["name", "description", "category", "brand"], # Optional list of property names the agent can view
         ),
         QueryAgentCollectionConfig(
-            name="WineReviewMT",  # The name of the collection to query
-            tenant="tenantA", # Optional tenant name for collections with multi-tenancy enabled
+            name="FinancialContracts",  # The name of the collection to query
+            # Optional tenant name for collections with multi-tenancy enabled
+            # tenant="tenantA"
         ),
     ],
 )
@@ -273,30 +275,6 @@ if response.missing_information:
     for missing in response.missing_information:
         print(f"- {missing}")
 # END InspectResponseExample
-
-assert response.final_answer != "" and response.final_answer is not None
-
-# START QueryAgentRunCollectionSelection
-from weaviate.agents.classes import QueryAgentCollectionConfig
-
-response = qa.run(
-    "I like vintage clothes and and nice shoes. Recommend some of each below $60.",
-    collections=[
-        QueryAgentCollectionConfig(
-            name="ECommerce",  # The name of the collection to query
-            target_vector=[
-                "name_description_brand_vector"
-            ],  # Target vector name(s) for collections with named vectors
-            view_properties=[
-                "description"
-            ],  # Optional list of property names the agent can view
-            # tenant="tenant1", # Optional tenant name for collections with multi-tenancy enabled
-        ),
-        QueryAgentCollectionConfig(name="FinancialContracts"),
-        QueryAgentCollectionConfig(name="Weather"),
-    ],
-)
-# END QueryAgentRunCollectionSelection
 
 assert response.final_answer != "" and response.final_answer is not None
 
