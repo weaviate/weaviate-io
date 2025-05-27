@@ -341,6 +341,8 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ### Available models
 
+- voyage-3.5
+- voyage-3.5-lite
 - voyage-3 (default)
 - voyage-3-lite
 - voyage-large-2 (default for <= `v1.24.24`, `v1.25.17`, `v1.26.4`)
