@@ -9,6 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/developers/agents/_includes/query_agent.py';
+import TSCode from '!!raw-loader!/developers/agents/_includes/query_agent.mts';
 
 # Weaviate Query Agent: Usage
 
@@ -70,6 +71,27 @@ pip install -U weaviate-agents==||site.weaviate_agents_version||
 ```
 
 </TabItem>
+<TabItem value="ts_agents" label="JavaScript/TypeScript">
+
+```shell
+npm install weaviate-agents
+```
+
+#### Troubleshooting: Force `npm` to install the latest version
+
+For existing installations, even `pip install -U "weaviate-client[agents]"` may not upgrade `weaviate-agents` to the [latest version](https://pypi.org/project/weaviate-agents/). If this occurs, additionally try to explicitly upgrade the `weaviate-agents` package:
+
+```shell
+pip install -U weaviate-agents
+```
+
+Or install a [specific version](https://github.com/weaviate/weaviate-agents-python-client/tags):
+
+```shell
+pip install -U weaviate-agents==||site.weaviate_agents_version||
+```
+
+</TabItem>
 
 </Tabs>
 
@@ -90,6 +112,14 @@ Provide:
             language="py"
         />
     </TabItem>
+    <TabItem value="ts_agents" label="JavaScript/TypeScript">
+        <FilteredTextBlock
+            text={TSCode}
+            startMarker="// START InstantiateQueryAgent"
+            endMarker="// END InstantiateQueryAgent"
+            language="ts"
+        />
+    </TabItem>
 
 </Tabs>
 
@@ -107,6 +137,14 @@ The list of collections to be queried are further configurable with:
             startMarker="# START QueryAgentCollectionConfiguration"
             endMarker="# END QueryAgentCollectionConfiguration"
             language="py"
+        />
+    </TabItem>
+    <TabItem value="ts_agents" label="JavaScript/TypeScript">
+        <FilteredTextBlock
+            text={TSCode}
+            startMarker="// START QueryAgentCollectionConfiguration"
+            endMarker="// END QueryAgentCollectionConfiguration"
+            language="ts"
         />
     </TabItem>
 
@@ -146,6 +184,14 @@ The Query Agent will formulate its strategy based on your query. So, aim to be u
             language="py"
         />
     </TabItem>
+    <TabItem value="ts_agents" label="JavaScript/TypeScript">
+        <FilteredTextBlock
+            text={TSCode}
+            startMarker="// START BasicQuery"
+            endMarker="// END BasicQuery"
+            language="ts"
+        />
+    </TabItem>
 
 </Tabs>
 
@@ -164,6 +210,14 @@ This example overrides the configured Query Agent collections for this query onl
             startMarker="# START QueryAgentRunBasicCollectionSelection"
             endMarker="# END QueryAgentRunBasicCollectionSelection"
             language="py"
+        />
+    </TabItem>
+    <TabItem value="ts_agents" label="JavaScript/TypeScript">
+        <FilteredTextBlock
+            text={TSCode}
+            startMarker="// START QueryAgentRunBasicCollectionSelection"
+            endMarker="// END QueryAgentRunBasicCollectionSelection"
+            language="ts"
         />
     </TabItem>
 
@@ -185,6 +239,14 @@ This example overrides the configured Query Agent collections for this query onl
             language="py"
         />
     </TabItem>
+    <TabItem value="ts_agents" label="JavaScript/TypeScript">
+        <FilteredTextBlock
+            text={TSCode}
+            startMarker="// START QueryAgentRunCollectionConfig"
+            endMarker="// END QueryAgentRunCollectionConfig"
+            language="ts"
+        />
+    </TabItem>
 
 </Tabs>
 
@@ -199,6 +261,14 @@ The Query Agent can even handle follow-up queries, using the previous response a
             startMarker="# START FollowUpQuery"
             endMarker="# END FollowUpQuery"
             language="py"
+        />
+    </TabItem>
+    <TabItem value="ts_agents" label="JavaScript/TypeScript">
+        <FilteredTextBlock
+            text={TSCode}
+            startMarker="// START FollowUpQuery"
+            endMarker="// END FollowUpQuery"
+            language="ts"
         />
     </TabItem>
 
@@ -221,6 +291,14 @@ Try the provided helper functions (e.g. `print_query_agent_response()` or `.disp
             startMarker="# START BasicQuery"
             endMarker="# END BasicQuery"
             language="py"
+        />
+    </TabItem>
+    <TabItem value="ts_agents" label="JavaScript/TypeScript">
+        <FilteredTextBlock
+            text={TSCode}
+            startMarker="// START BasicQuery"
+            endMarker="// END BasicQuery"
+            language="ts"
         />
     </TabItem>
 
@@ -327,6 +405,14 @@ This example outputs:
             startMarker="# START InspectResponseExample"
             endMarker="# END InspectResponseExample"
             language="py"
+        />
+    </TabItem>
+    <TabItem value="ts_agents" label="JavaScript/TypeScript">
+        <FilteredTextBlock
+            text={TSCode}
+            startMarker="// START InspectResponseExample"
+            endMarker="// END InspectResponseExample"
+            language="ts"
         />
     </TabItem>
 

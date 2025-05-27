@@ -3,7 +3,7 @@
 // ======================
 
 // ConnectCloud
-import weaviate from 'weaviate-client'
+import weaviate from 'weaviate-client';
 
 const client = await weaviate.connectToWeaviateCloud(
   'WEAVIATE_INSTANCE_URL', { // Replace WEAVIATE_INSTANCE_URL with your instance URL
@@ -49,7 +49,7 @@ console.log(client)
 // =============================
 
 // CollectionEx
-const myCollection = client.collections.get('JeopardyQuestion');
+const myCollection = client.collections.use('JeopardyQuestion');
 
 const result = await myCollection.query.fetchObjects()
 
@@ -62,7 +62,7 @@ console.log(JSON.stringify(result.objects, null, 2));
 
 // BuilderEx
 let result 
-const myCollection = client.collections.get('JeopardyQuestion');
+const myCollection = client.collections.use('JeopardyQuestion');
 
 result = await myCollection.query.nearText(['animals in movies'],{
   limit: 2,
@@ -78,7 +78,7 @@ console.log(JSON.stringify(result.objects, null, 2));
 // =============================
 
 // BatchEx
-const questions = client.collections.get("CollectionName")
+const questions = client.collections.use("CollectionName")
 const dataObject = [...]; // your data
 
 await questions.data.insertMany(dataBatch);
@@ -90,7 +90,7 @@ await questions.data.insertMany(dataBatch);
 
 // FilterDataEx
 import weaviate, { Filters } from 'weaviate-client';
-const myCollection = client.collections.get('JeopardyQuestion');
+const myCollection = client.collections.use('JeopardyQuestion');
 
 const result = await myCollection.query.fetchObjects({
   returnProperties: ['question', 'answer','round', 'points'],
@@ -111,7 +111,7 @@ console.log(JSON.stringify(result, null, 2));
 // GenerateNamespaceEx
 const generatePrompt = `Convert this quiz question: {question} and answer: {answer} into a trivia tweet.`;
 
-const myCollection = client.collections.get('JeopardyQuestion');
+const myCollection = client.collections.use('JeopardyQuestion');
 const result = await myCollection.generate.nearText(['World history'],{
     singlePrompt: generatePrompt,
   },{
