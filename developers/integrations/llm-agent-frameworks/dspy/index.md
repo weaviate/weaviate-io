@@ -15,7 +15,7 @@ DSPy introduces two key concepts, the **programming model** and **optimizers**.
 
 Weaviate is integrated with DSPy through the retriever model! 
 
-Connect your Weaviate cluster (WCD or local instance) to DSPy, use the [retriever module](https://dspy-docs.vercel.app/docs/deep-dive/retrieval_models_clients/WeaviateRM) and pass in your collection:
+Connect your Weaviate cluster (WCD or local instance) to DSPy, use the [retriever module](https://github.com/stanfordnlp/dspy/blob/6270e951b1f20b2cb02a3fdc769156e7e16dbd26/dspy/retrieve/weaviate_rm.py#L17) and pass in your collection:
 
 ```python
 weaviate_client = weaviate.Client("http://localhost:8080") # or pass in your WCD cluster url
