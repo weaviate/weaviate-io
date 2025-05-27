@@ -238,7 +238,7 @@ response.display()                      # Use the class method
 # END BasicQuery
 
 # START FollowUpQuery
-# Perform a follow-up query
+# Perform a follow-up query to 'I like vintage clothes and and nice shoes. Recommend some of each below $60.'
 following_response = qa.run(
     "I like the vintage clothes options, can you do the same again but above $200?",
     context=response,
