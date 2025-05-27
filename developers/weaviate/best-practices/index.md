@@ -178,6 +178,8 @@ Where `weaviate-0` is the pod name.
 
 Note that the apparent memory consumption from the outside (e.g. OS/container levels) will look much higher because the Go runtime is very opportunistic. It often uses [MADV_FREE](https://www.man7.org/linux/man-pages/man2/madvise.2.html) which means that part of the memory can be easily freed as needed. As a result, if Weaviate is the only application running in a container, it will hold on to much more memory than it actually needs, since much of it can be released very quickly when other processes need it.
 
+As a result, this method may be useful for showing the overall high bound for the memory usage. On the other hand, looking at `pprof` may be more reflective of Weaviate's specific heap profile.
+
 ### Configure shard loading behavior to balance system & data availability
 
 When Weaviate starts, it loads data from all shards in your deployment. By default, lazy shard loading enables faster startup by loading shards in the background while allowing immediate queries to already-loaded shards.
