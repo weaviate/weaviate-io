@@ -38,6 +38,20 @@ Generally, a new minor version of Weaviate is released every 6-10 weeks, and new
 
 ## Resource management
 
+### Use high availability clusters for speed and reliability
+
+For environments with high reliability requirements, high query loads or latency requirements, consider deploying Weaviate in a high availability (HA) configuration. An HA configuration with multiple nodes provide several benefits:
+
+- **Better fault tolerance**: Continue serving requests even if individual nodes experience issues
+- **Rolling upgrades**: Individual nodes can be upgrades without cluster-level downtime
+- **Improved query performance**: Distribute query load across multiple nodes to reduce latency
+- **Increased throughput**: Handle more concurrent queries and data operations
+
+:::tip Further resources
+- [Concepts: Cluster architecture](../concepts/cluster.md)
+- [Configuration: Replication](../configuration/replication.md)
+:::
+
 ### Use multi-tenancy for data subsets
 
 If your use cases involves multiple subsets of data which meet all of the following criteria:
@@ -281,3 +295,4 @@ The Weaviate Java client `5.0.0` and higher includes an [asynchronous client API
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>
+
