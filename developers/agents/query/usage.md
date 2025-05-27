@@ -9,6 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/developers/agents/_includes/query_agent.py';
+import TSCode from '!!raw-loader!/developers/agents/_includes/query_agent.mts';
 
 # Weaviate Query Agent: Usage
 
@@ -41,10 +42,10 @@ You can try this Weaviate Agent with a free Sandbox instance on [Weaviate Cloud]
 ### Client library
 
 :::note Supported languages
-At this time, this Agent is available only for Python. Support for other languages will be added in the future.
+At this time, this Agent is available only for Python and JavaScript. Support for other languages will be added in the future.
 :::
 
-You can install the Weaviate client library with the optional `agents` extras to use Weaviate Agents. This will install the `weaviate-agents` package along with the `weaviate-client` package.
+For Python, you can install the Weaviate client library with the optional `agents` extras to use Weaviate Agents. This will install the `weaviate-agents` package along with the `weaviate-client` package. For  JavaScript, you can install the `weaviate-agents` package alongside the `weaviate-client` package.
 
 Install the client library using the following command:
 
@@ -70,6 +71,13 @@ pip install -U weaviate-agents==||site.weaviate_agents_version||
 ```
 
 </TabItem>
+<TabItem value="ts_agents" label="JavaScript/TypeScript">
+
+```shell
+npm install weaviate-agents@latest
+```
+
+</TabItem>
 
 </Tabs>
 
@@ -78,7 +86,7 @@ pip install -U weaviate-agents==||site.weaviate_agents_version||
 ### Basic instantiation
 
 Provide:
-- Target Weaviate Cloud instance details (e.g. the `WeaviateClient` object in Python).
+- Target Weaviate Cloud instance details (e.g. the `WeaviateClient` object).
 - A default list of the collections to be queried
 
 <Tabs groupId="languages">
@@ -88,6 +96,14 @@ Provide:
             startMarker="# START InstantiateQueryAgent"
             endMarker="# END InstantiateQueryAgent"
             language="py"
+        />
+    </TabItem>
+    <TabItem value="ts_agents" label="JavaScript/TypeScript">
+        <FilteredTextBlock
+            text={TSCode}
+            startMarker="// START InstantiateQueryAgent"
+            endMarker="// END InstantiateQueryAgent"
+            language="ts"
         />
     </TabItem>
 
@@ -109,6 +125,14 @@ The list of collections to be queried are further configurable with:
             language="py"
         />
     </TabItem>
+    <TabItem value="ts_agents" label="JavaScript/TypeScript">
+        <FilteredTextBlock
+            text={TSCode}
+            startMarker="// START QueryAgentCollectionConfiguration"
+            endMarker="// END QueryAgentCollectionConfiguration"
+            language="ts"
+        />
+    </TabItem>
 
 </Tabs>
 
@@ -124,7 +148,7 @@ For example, if the associated Weaviate credentials' user has access to only a s
 
 The Query Agent can be instantiated with additional options, such as:
 
-- `system_prompt`: A custom system prompt to replace the default system prompt provided by the Weaviate team.
+- `system_prompt`: A custom system prompt to replace the default system prompt provided by the Weaviate team (`systemPrompt` for JavaScript).
 - `timeout`: The maximum time the Query Agent will spend on a single query, in seconds (server-side default: 60).
 
 ## Perform queries
@@ -144,6 +168,14 @@ The Query Agent will formulate its strategy based on your query. So, aim to be u
             startMarker="# START BasicQuery"
             endMarker="# END BasicQuery"
             language="py"
+        />
+    </TabItem>
+    <TabItem value="ts_agents" label="JavaScript/TypeScript">
+        <FilteredTextBlock
+            text={TSCode}
+            startMarker="// START BasicQuery"
+            endMarker="// END BasicQuery"
+            language="ts"
         />
     </TabItem>
 
@@ -166,6 +198,14 @@ This example overrides the configured Query Agent collections for this query onl
             language="py"
         />
     </TabItem>
+    <TabItem value="ts_agents" label="JavaScript/TypeScript">
+        <FilteredTextBlock
+            text={TSCode}
+            startMarker="// START QueryAgentRunBasicCollectionSelection"
+            endMarker="// END QueryAgentRunBasicCollectionSelection"
+            language="ts"
+        />
+    </TabItem>
 
 </Tabs>
 
@@ -185,6 +225,14 @@ This example overrides the configured Query Agent collections for this query onl
             language="py"
         />
     </TabItem>
+    <TabItem value="ts_agents" label="JavaScript/TypeScript">
+        <FilteredTextBlock
+            text={TSCode}
+            startMarker="// START QueryAgentRunCollectionConfig"
+            endMarker="// END QueryAgentRunCollectionConfig"
+            language="ts"
+        />
+    </TabItem>
 
 </Tabs>
 
@@ -201,6 +249,14 @@ The Query Agent can even handle follow-up queries, using the previous response a
             language="py"
         />
     </TabItem>
+    <TabItem value="ts_agents" label="JavaScript/TypeScript">
+        <FilteredTextBlock
+            text={TSCode}
+            startMarker="// START FollowUpQuery"
+            endMarker="// END FollowUpQuery"
+            language="ts"
+        />
+    </TabItem>
 
 </Tabs>
 
@@ -212,7 +268,7 @@ The supporting information may include searches or aggregations carried out, wha
 
 ### Helper function
 
-Try the provided helper functions (e.g. `print_query_agent_response()` or `.display()` method) to display the response in a readable format.
+Try the provided helper functions (e.g. `.display()` method) to display the response in a readable format.
 
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python">
@@ -221,6 +277,14 @@ Try the provided helper functions (e.g. `print_query_agent_response()` or `.disp
             startMarker="# START BasicQuery"
             endMarker="# END BasicQuery"
             language="py"
+        />
+    </TabItem>
+    <TabItem value="ts_agents" label="JavaScript/TypeScript">
+        <FilteredTextBlock
+            text={TSCode}
+            startMarker="// START BasicQuery"
+            endMarker="// END BasicQuery"
+            language="ts"
         />
     </TabItem>
 
@@ -327,6 +391,14 @@ This example outputs:
             startMarker="# START InspectResponseExample"
             endMarker="# END InspectResponseExample"
             language="py"
+        />
+    </TabItem>
+    <TabItem value="ts_agents" label="JavaScript/TypeScript">
+        <FilteredTextBlock
+            text={TSCode}
+            startMarker="// START InspectResponseExample"
+            endMarker="// END InspectResponseExample"
+            language="ts"
         />
     </TabItem>
 
