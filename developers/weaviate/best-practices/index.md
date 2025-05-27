@@ -137,6 +137,47 @@ We add some overhead for the index structure, and additional overheads, which br
 - [Concepts: Resource planning](../concepts/resources.md)
 :::
 
+### How to quickly check the memory usage
+
+In production settings, you should set up cluster [monitoring](../configuration/monitoring.md) with tools such as Grafana & Prometheus.
+
+There are, however, other ways to quickly check Weaviate's memory usage.
+
+:::note If you have Prometheus monitoring setup already
+If you only care about the overall usage, independent of the contents, and have a prometheus monitoring setup already, you can check the metric `go_memstats_heap_inuse_bytes` which should always show the full memory footprint.
+:::
+
+#### Through `pprof`
+
+If `go` is available to your system, you can view the heap profile with golang's `pprof` tool".
+
+- Have a go runtime installed, or start a Go-based docker container
+- Expose port 6060 if running in docker/k8s
+
+To view the profile visually:
+
+```bash
+go tool pprof -png http://{host}:6060/debug/pprof/heap
+```
+
+Or to view a textual output:
+
+```bash
+go tool pprof -top http://{host}:6060/debug/pprof/heap
+```
+
+#### Check the container usage
+
+If you are running Weaviate in kubernetes, you can check an entire container's memory usage with `kubectl`:
+
+```bash
+kubectl exec weaviate-0 -- /usr/bin/free
+```
+
+Where `weaviate-0` is the pod name.
+
+Note that the apparent memory consumption from the outside (e.g. OS/container levels) will look much higher because the Go runtime is very opportunistic. It often uses [MADV_FREE](https://www.man7.org/linux/man-pages/man2/madvise.2.html) which means that part of the memory can be easily freed as needed. As a result, if Weaviate is the only application running in a container, it will hold on to much more memory than it actually needs, since much of it can be released very quickly when other processes need it.
+
 ### Configure shard loading behavior to balance system & data availability
 
 When Weaviate starts, it loads data from all shards in your deployment. By default, lazy shard loading enables faster startup by loading shards in the background while allowing immediate queries to already-loaded shards.
