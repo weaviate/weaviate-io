@@ -18,5 +18,6 @@ Weaviate is integrated into Boomi's platform through Boomi's REST Client Connect
 | Topic | Description | Resource |
 | --- | --- | --- |
 | Start Connecting with Weaviate | A replication of Weaviate's Quickstart tutorial on the Boomi platform using the REST Client connector. | [Article](https://community.boomi.com/s/article/Start-Connecting-with-Weaviate) [Tutorial](https://discover.boomi.com/solutions/start-connecting-with-weaviate) | 
+| AI Agent: Weaviate Quickstart Q&A Agent | Learn how to use the Boomi Agent Designer and Weaviate as the vector store for RAG based agents. | [Tutorial]https://discover.boomi.com/solutions/ai-agent-weaviate-quickstart-qa-agent) |
 
 
