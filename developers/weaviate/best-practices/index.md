@@ -38,6 +38,20 @@ Generally, a new minor version of Weaviate is released every 6-10 weeks, and new
 
 ## Resource management
 
+### Use high availability clusters for speed and reliability
+
+For environments with high reliability requirements, high query loads or latency requirements, consider deploying Weaviate in a high availability (HA) configuration. An HA configuration with multiple nodes provide several benefits:
+
+- **Better fault tolerance**: Continue serving requests even if individual nodes experience issues
+- **Rolling upgrades**: Individual nodes can be upgrades without cluster-level downtime
+- **Improved query performance**: Distribute query load across multiple nodes to reduce latency
+- **Increased throughput**: Handle more concurrent queries and data operations
+
+:::tip Further resources
+- [Concepts: Cluster architecture](../concepts/cluster.md)
+- [Configuration: Replication](../configuration/replication.md)
+:::
+
 ### Use multi-tenancy for data subsets
 
 If your use cases involves multiple subsets of data which meet all of the following criteria:
@@ -122,6 +136,49 @@ We add some overhead for the index structure, and additional overheads, which br
 :::tip Further resources
 - [Concepts: Resource planning](../concepts/resources.md)
 :::
+
+### How to quickly check the memory usage
+
+In production settings, you should set up cluster [monitoring](../configuration/monitoring.md) with tools such as Grafana & Prometheus.
+
+There are, however, other ways to quickly check Weaviate's memory usage.
+
+:::note If you have Prometheus monitoring setup already
+If you only care about the overall usage, independent of the contents, and have a prometheus monitoring setup already, you can check the metric `go_memstats_heap_inuse_bytes` which should always show the full memory footprint.
+:::
+
+#### Through `pprof`
+
+If `go` is available to your system, you can view the heap profile with golang's `pprof` tool".
+
+- Have a go runtime installed, or start a Go-based docker container
+- Expose port 6060 if running in docker/k8s
+
+To view the profile visually:
+
+```bash
+go tool pprof -png http://{host}:6060/debug/pprof/heap
+```
+
+Or to view a textual output:
+
+```bash
+go tool pprof -top http://{host}:6060/debug/pprof/heap
+```
+
+#### Check the container usage
+
+If you are running Weaviate in kubernetes, you can check an entire container's memory usage with `kubectl`:
+
+```bash
+kubectl exec weaviate-0 -- /usr/bin/free
+```
+
+Where `weaviate-0` is the pod name.
+
+Note that the apparent memory consumption from the outside (e.g. OS/container levels) will look much higher because the Go runtime is very opportunistic. It often uses [MADV_FREE](https://www.man7.org/linux/man-pages/man2/madvise.2.html) which means that part of the memory can be easily freed as needed. As a result, if Weaviate is the only application running in a container, it will hold on to much more memory than it actually needs, since much of it can be released very quickly when other processes need it.
+
+As a result, this method may be useful for showing the overall high bound for the memory usage. On the other hand, looking at `pprof` may be more reflective of Weaviate's specific heap profile.
 
 ### Configure shard loading behavior to balance system & data availability
 
@@ -281,3 +338,4 @@ The Weaviate Java client `5.0.0` and higher includes an [asynchronous client API
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>
+
