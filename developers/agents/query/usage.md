@@ -42,10 +42,10 @@ You can try this Weaviate Agent with a free Sandbox instance on [Weaviate Cloud]
 ### Client library
 
 :::note Supported languages
-At this time, this Agent is available only for Python. Support for other languages will be added in the future.
+At this time, this Agent is available only for Python and JavaScript. Support for other languages will be added in the future.
 :::
 
-You can install the Weaviate client library with the optional `agents` extras to use Weaviate Agents. This will install the `weaviate-agents` package along with the `weaviate-client` package.
+For Python, you can install the Weaviate client library with the optional `agents` extras to use Weaviate Agents. This will install the `weaviate-agents` package along with the `weaviate-client` package. For  JavaScript, you can install the `weaviate-agents` package alongside the `weaviate-client` package.
 
 Install the client library using the following command:
 
@@ -74,21 +74,7 @@ pip install -U weaviate-agents==||site.weaviate_agents_version||
 <TabItem value="ts_agents" label="JavaScript/TypeScript">
 
 ```shell
-npm install weaviate-agents
-```
-
-#### Troubleshooting: Force `npm` to install the latest version
-
-For existing installations, even `pip install -U "weaviate-client[agents]"` may not upgrade `weaviate-agents` to the [latest version](https://pypi.org/project/weaviate-agents/). If this occurs, additionally try to explicitly upgrade the `weaviate-agents` package:
-
-```shell
-pip install -U weaviate-agents
-```
-
-Or install a [specific version](https://github.com/weaviate/weaviate-agents-python-client/tags):
-
-```shell
-pip install -U weaviate-agents==||site.weaviate_agents_version||
+npm install weaviate-agents@latest
 ```
 
 </TabItem>
@@ -100,7 +86,7 @@ pip install -U weaviate-agents==||site.weaviate_agents_version||
 ### Basic instantiation
 
 Provide:
-- Target Weaviate Cloud instance details (e.g. the `WeaviateClient` object in Python).
+- Target Weaviate Cloud instance details (e.g. the `WeaviateClient` object).
 - A default list of the collections to be queried
 
 <Tabs groupId="languages">
@@ -162,7 +148,7 @@ For example, if the associated Weaviate credentials' user has access to only a s
 
 The Query Agent can be instantiated with additional options, such as:
 
-- `system_prompt`: A custom system prompt to replace the default system prompt provided by the Weaviate team.
+- `system_prompt`: A custom system prompt to replace the default system prompt provided by the Weaviate team (`systemPrompt` for JavaScript).
 - `timeout`: The maximum time the Query Agent will spend on a single query, in seconds (server-side default: 60).
 
 ## Perform queries
@@ -282,7 +268,7 @@ The supporting information may include searches or aggregations carried out, wha
 
 ### Helper function
 
-Try the provided helper functions (e.g. `print_query_agent_response()` or `.display()` method) to display the response in a readable format.
+Try the provided helper functions (e.g. `.display()` method) to display the response in a readable format.
 
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python">

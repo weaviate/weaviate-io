@@ -226,7 +226,6 @@ import { QueryAgent } from 'weaviate-agents';
 
 async function main() {
 // START InstantiateQueryAgent
-
 const headers = {
     // END InstantiateQueryAgent
     'X-Cohere-API-Key': process.env.COHERE_API_KEY as string,
@@ -240,20 +239,19 @@ const client = await weaviate.connectToWeaviateCloud(process.env.WEAVIATE_URL as
     authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_ADMIN_KEY as string),
     headers
 });
-
 // END InstantiateQueryAgent
 
 // Populate Weaviate with data
-// await populateWeaviate(client);
+await populateWeaviate(client);
 
 // START InstantiateQueryAgent
 
 // Instantiate a new agent object
 const qa = new QueryAgent(
     client, {
-    collections: ['ECommerce', 'FinancialContracts', 'Weather']
-}
-);
+    collections: ['ECommerce', 'FinancialContracts', 'Weather'],
+    
+});
 // END InstantiateQueryAgent
 
 // START QueryAgentCollectionConfiguration
@@ -294,8 +292,7 @@ const clothingResponse = await qaWithConfig.run(
                 name: 'FinancialContracts'
             }
         ]
-    }
-);
+});
 
 clothingResponse.display();
 // END QueryAgentRunCollectionConfig
@@ -306,9 +303,7 @@ const basicResponse = await qaWithConfig.run(
     "I like vintage clothes and nice shoes. Recommend some of each below $60."
 );
 
-// Print the response using helper function (you might need to implement this)
-// printQueryAgentResponse(basicResponse);
-basicResponse.display();                    // Use the class method
+basicResponse.display();                  
 // END BasicQuery
 
 // START FollowUpQuery
