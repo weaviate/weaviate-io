@@ -169,6 +169,53 @@ public class App {
 
 All [RESTful endpoints](/developers/weaviate/api/rest) and [GraphQL functions](../api/graphql/index.md) references covered by the Java client, and explained on those reference pages in the code blocks.
 
+## Typed GraphQL Responses
+
+The Weaviate Java client supports automatic deserialization of GraphQL query responses into Java objects. This eliminates the need for manual JSON parsing and provides compile-time type safety when working with your collection data.
+
+For example, you can define a `Pizzas` class to capture the response from the following query:
+
+```java
+@Getter
+public static class Pizzas {
+  @SerializedName(value = "Pizza")
+  List<Pizza> pizzas;
+
+  @Getter
+  public static class Pizza extends GraphQLGetBaseObject {
+    String name;
+    String description;
+    String bestBefore;
+    Float price;
+  }
+}
+
+try (WeaviateAsyncClient asyncClient = client.async()) {
+  return asyncClient.graphQL().get()
+    .withClassName("Pizza")
+    .withFields(Field.builder().name("name").build(), Field.builder().name("description").build())
+    .run(Pizzas.class)
+    .get();
+}
+```
+
+In return, the response will be a `GraphQLTypedResponse<Pizzas>` object:
+
+```java
+Result<GraphQLTypedResponse<Pizzas>> result = getResults();
+
+List<Pizzas.Pizza> pizzas = result.getResult().getData().getObjects().getPizzas();
+
+Pizzas.Pizza pizza = pizzas.get(0);
+
+// access Pizza specific properties
+Float price = pizza.getPrice();
+
+// access _additional values like vector (and others)
+Float[] vector = pizza.getAdditional().getVector();
+Float certainty = pizza.getAdditional().getCertainty();
+```
+
 ## Design
 
 ### Builder pattern
