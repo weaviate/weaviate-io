@@ -10,3 +10,4 @@ image: og/contributor-guide/weaviate-core.jpg
 - [Test philosophy of Weaviate](./tests.md)
 - [Weaviate development setup](./setup.md)
 - [Parsing Objects & Resolving References](./parsing-cross-refs.md)
+- [Adding runtime configurations](./support-new-runtime-configs.md)
