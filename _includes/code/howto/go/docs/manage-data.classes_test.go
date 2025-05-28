@@ -8,7 +8,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate"
+	"github.com/weaviate/weaviate-go-client/v5/weaviate"
 	"github.com/weaviate/weaviate/entities/models"
 	"github.com/weaviate/weaviate/entities/vectorindex/common"
 	"weaviate.io/docs/docs/helper"
@@ -67,24 +67,6 @@ func Test_ManageDataClasses(t *testing.T) {
 		// END ReadOneCollection
 	})
 
-	t.Run("read all classes", func(t *testing.T) {
-		// START ReadAllCollections
-		schema, err := client.Schema().Getter().
-			Do(ctx)
-
-			// END ReadAllCollections
-
-		require.NoError(t, err)
-
-		// START ReadAllCollections
-		b, err := json.MarshalIndent(schema, "", "  ")
-		// END ReadAllCollections
-		require.NoError(t, err)
-		// START ReadAllCollections
-		fmt.Println(string(b))
-		// END ReadAllCollections
-	})
-
 	t.Run("update class", func(t *testing.T) {
 		errDel := client.Schema().ClassDeleter().WithClassName(className).Do(ctx)
 		require.NoError(t, errDel)
@@ -121,5 +103,135 @@ func Test_ManageDataClasses(t *testing.T) {
 		// TODO Not yet available in GO
 
 		// END UpdateCollectionTODO
+	})
+
+	t.Run("add multi-vector collection", func(t *testing.T) {
+		// START MultiValueVectorCollection
+		multiVecClassName := "DemoCollection"
+
+		// Define the collection with multi-vector configurations
+		class := &models.Class{
+			Class: multiVecClassName,
+			Properties: []*models.Property{
+				{
+					Name:     "text",
+					DataType: []string{"text"},
+				},
+			},
+			// Named vectors configuration
+			VectorConfig: map[string]models.VectorConfig{
+				// Example 1: Jina AI ColBERT integration
+				"jina_colbert": {
+					Vectorizer: map[string]interface{}{
+						"text2colbert-jinaai": map[string]interface{}{
+							"sourceProperties": []string{"text"},
+						},
+					},
+					VectorIndexType: "hnsw",
+				},
+				// Example 2: Custom multi-vector configuration
+				"custom_multi_vector": {
+					Vectorizer: map[string]interface{}{
+						"none": nil,
+					},
+					VectorIndexType: "hnsw",
+					VectorIndexConfig: map[string]interface{}{
+						"multivector": map[string]interface{}{
+							"enabled": true,
+						},
+					},
+				},
+			},
+		}
+
+		// Create the collection with multi-vector support
+		err := client.Schema().ClassCreator().WithClass(class).Do(ctx)
+		// END MultiValueVectorCollection
+
+		require.NoError(t, err)
+	})
+
+	t.Run("multi-vector with muvera encoding", func(t *testing.T) {
+		// Clean slate - delete the collection if it exists
+		_ = client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(ctx)
+
+		// START MultiValueVectorMuvera
+		// Create class with multi-vector configurations using MUVERA encoding
+		class := &models.Class{
+			Class: "DemoCollection",
+			Properties: []*models.Property{
+				{
+					Name:     "text",
+					DataType: []string{"text"},
+				},
+			},
+			VectorConfig: map[string]models.VectorConfig{
+				// Example 1 - Use a model integration (Jina AI ColBERT)
+				"jina_colbert": {
+					Vectorizer: map[string]interface{}{
+						"text2colbert-jinaai": map[string]interface{}{
+							"sourceProperties": []string{"text"},
+						},
+					},
+					VectorIndexType: "hnsw",
+					VectorIndexConfig: map[string]interface{}{
+						// Multi-vector configuration with MUVERA encoding
+						"multivector": map[string]interface{}{
+							"enabled": true,
+							// Configure MUVERA encoding
+							"muvera": map[string]interface{}{
+								"enabled":      true,
+								"ksim":         4,
+								"dprojections": 16,
+								"repetitions":  20,
+							},
+						},
+					},
+				},
+				// Example 2 - User-provided multi-vector representations
+				"custom_multi_vector": {
+					Vectorizer: map[string]interface{}{
+						"none": nil,
+					},
+					VectorIndexType: "hnsw",
+					VectorIndexConfig: map[string]interface{}{
+						// Multi-vector configuration with MUVERA encoding (minimal config)
+						"multivector": map[string]interface{}{
+							"enabled": true,
+							"muvera": map[string]interface{}{
+								"enabled":      true,
+								"ksim":         4,
+								"dprojections": 16,
+								"repetitions":  20,
+							},
+						},
+					},
+				},
+			},
+		}
+
+		err := client.Schema().ClassCreator().WithClass(class).Do(ctx)
+		// END MultiValueVectorMuvera
+
+		require.NoError(t, err)
+		fmt.Println("Created DemoCollection with MUVERA-encoded multi-vectors")
+	})
+
+	t.Run("read all classes", func(t *testing.T) {
+		// START ReadAllCollections
+		schema, err := client.Schema().Getter().
+			Do(ctx)
+
+			// END ReadAllCollections
+
+		require.NoError(t, err)
+
+		// START ReadAllCollections
+		b, err := json.MarshalIndent(schema, "", "  ")
+		// END ReadAllCollections
+		require.NoError(t, err)
+		// START ReadAllCollections
+		fmt.Println(string(b))
+		// END ReadAllCollections
 	})
 }

@@ -4,12 +4,13 @@ package docs
 import (
 	"context"
 	"fmt"
-	"github.com/weaviate/weaviate/entities/models"
 	"testing"
+
+	"github.com/weaviate/weaviate/entities/models"
 	"weaviate.io/docs/docs/helper"
 
 	"github.com/stretchr/testify/require"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate"
+	"github.com/weaviate/weaviate-go-client/v5/weaviate"
 )
 
 func Test_ManageDataUpdateShard(t *testing.T) {

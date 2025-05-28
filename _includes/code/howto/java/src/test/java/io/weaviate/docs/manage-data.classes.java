@@ -43,10 +43,10 @@ class ManageDataClassesTest {
 
     Result<Boolean> result = client.schema().allDeleter().run();
     assertThat(result).isNotNull()
-      .withFailMessage(() -> result.getError().toString())
-      .returns(false, Result::hasErrors)
-      .withFailMessage(null)
-      .returns(true, Result::getResult);
+        .withFailMessage(() -> result.getError().toString())
+        .returns(false, Result::hasErrors)
+        .withFailMessage(null)
+        .returns(true, Result::getResult);
   }
 
   @Test
@@ -72,305 +72,307 @@ class ManageDataClassesTest {
     addProperty(className);
     inspectShard(className);
     updateShardStatus(className);
+    createMultiVectorCollection(className);
+    createMultiVectorMuvera(className);
   }
 
   private void createCollection(String className) {
     // START BasicCreateCollection
     WeaviateClass emptyClass = WeaviateClass.builder()
-      .className(className)
-      .build();
+        .className(className)
+        .build();
 
     // Add the class to the schema
     Result<Boolean> result = client.schema().classCreator()
-      .withClass(emptyClass)
-      .run();
+        .withClass(emptyClass)
+        .run();
 
     // END BasicCreateCollection
 
     assertThat(result).isNotNull()
-      .withFailMessage(() -> result.getError().toString())
-      .returns(false, Result::hasErrors)
-      .withFailMessage(null)
-      .returns(true, Result::getResult);
+        .withFailMessage(() -> result.getError().toString())
+        .returns(false, Result::hasErrors)
+        .withFailMessage(null)
+        .returns(true, Result::getResult);
   }
 
   private void createCollectionWithProperties(String className) {
     // START CreateCollectionWithProperties
     // Define class properties
     Property titleProperty = Property.builder()
-      .name("title")
-      .description("Title Property Description...")
-      .dataType(Arrays.asList(DataType.TEXT))
-      .build();
+        .name("title")
+        .description("Title Property Description...")
+        .dataType(Arrays.asList(DataType.TEXT))
+        .build();
     Property bodyProperty = Property.builder()
-      .name("body")
-      .description("Body Property Description...")
-      .dataType(Arrays.asList(DataType.TEXT))
-      .build();
+        .name("body")
+        .description("Body Property Description...")
+        .dataType(Arrays.asList(DataType.TEXT))
+        .build();
 
-    //Add the defined properties to the class
+    // Add the defined properties to the class
     WeaviateClass articleClass = WeaviateClass.builder()
-      .className(className)
-      .description("Article Class Description...")
-      .properties(Arrays.asList(titleProperty, bodyProperty))
-      .build();
+        .className(className)
+        .description("Article Class Description...")
+        .properties(Arrays.asList(titleProperty, bodyProperty))
+        .build();
 
     Result<Boolean> result = client.schema().classCreator()
-      .withClass(articleClass)
-      .run();
+        .withClass(articleClass)
+        .run();
     // END CreateCollectionWithProperties
   }
 
   private void createCollectionWithVectorizer(String className) {
     // Define class properties
     Property titleProperty = Property.builder()
-      .name("title")
-      .description("Title Property Description...")
-      .dataType(Arrays.asList(DataType.TEXT))
-      .build();
+        .name("title")
+        .description("Title Property Description...")
+        .dataType(Arrays.asList(DataType.TEXT))
+        .build();
     Property bodyProperty = Property.builder()
-      .name("body")
-      .description("Body Property Description...")
-      .dataType(Arrays.asList(DataType.TEXT))
-      .build();
+        .name("body")
+        .description("Body Property Description...")
+        .dataType(Arrays.asList(DataType.TEXT))
+        .build();
     // START CreateCollectionWithVectorizer
     // Additional configuration not shown
     // Define the vectorizer in the WeaviateClass Builder
     WeaviateClass articleClass = WeaviateClass.builder()
-      .className(className)
-      .properties(Arrays.asList(titleProperty, bodyProperty))
-      .vectorizer("text2vec-openai") // Vectorize of your choic e.g. text2vec-openai or text2vec-cohere
-      .build();
+        .className(className)
+        .properties(Arrays.asList(titleProperty, bodyProperty))
+        .vectorizer("text2vec-openai") // Vectorize of your choic e.g. text2vec-openai or text2vec-cohere
+        .build();
     // Add the class to the schema
     Result<Boolean> result = client.schema().classCreator()
-      .withClass(articleClass)
-      .run();
+        .withClass(articleClass)
+        .run();
     // END CreateCollectionWithVectorizer
   }
 
   private void createCollectionWithNamedVectors(String className) {
     // Define class properties
     Property titleProperty = Property.builder()
-      .name("title")
-      .description("Title Property Description...")
-      .dataType(Arrays.asList(DataType.TEXT))
-      .build();
+        .name("title")
+        .description("Title Property Description...")
+        .dataType(Arrays.asList(DataType.TEXT))
+        .build();
     Property bodyProperty = Property.builder()
-      .name("body")
-      .description("Body Property Description...")
-      .dataType(Arrays.asList(DataType.TEXT))
-      .build();
+        .name("body")
+        .description("Body Property Description...")
+        .dataType(Arrays.asList(DataType.TEXT))
+        .build();
     // START CreateCollectionWithNamedVectors
     // Additional configuration not shown
-    //Define the vectorizers configurations
+    // Define the vectorizers configurations
     Map<String, Object> text2vecOpenAI = new HashMap<>();
     Map<String, Object> text2vecOpenAISettings = new HashMap<>();
-    text2vecOpenAISettings.put("properties", new String[]{ "name" });
+    text2vecOpenAISettings.put("properties", new String[] { "name" });
     text2vecOpenAI.put("text2vec-openai", text2vecOpenAISettings);
 
     Map<String, Object> text2vecCohere = new HashMap<>();
     Map<String, Object> text2vecCohereSettings = new HashMap<>();
-    text2vecCohereSettings.put("properties", new String[]{ "body" });
+    text2vecCohereSettings.put("properties", new String[] { "body" });
     text2vecCohere.put("text2vec-cohere", text2vecCohereSettings);
 
-    //Define the vector configurations
+    // Define the vector configurations
     Map<String, WeaviateClass.VectorConfig> vectorConfig = new HashMap<>();
     vectorConfig.put("name_vector", WeaviateClass.VectorConfig.builder()
-      .vectorIndexType("hnsw")
-      .vectorizer(text2vecOpenAI)
-      .build());
+        .vectorIndexType("hnsw")
+        .vectorizer(text2vecOpenAI)
+        .build());
     vectorConfig.put("body_vector", WeaviateClass.VectorConfig.builder()
-      .vectorIndexType("hnsw")
-      .vectorizer(text2vecCohere)
-      .build());
+        .vectorIndexType("hnsw")
+        .vectorizer(text2vecCohere)
+        .build());
 
     // Define the vectorizers in the WeaviateClass Builder
     WeaviateClass articleClass = WeaviateClass.builder()
-      .className(className)
-      .properties(Arrays.asList(titleProperty, bodyProperty))
-      .vectorConfig(vectorConfig)
-      .build();
+        .className(className)
+        .properties(Arrays.asList(titleProperty, bodyProperty))
+        .vectorConfig(vectorConfig)
+        .build();
     // Add the class to the schema
     Result<Boolean> result = client.schema().classCreator()
-      .withClass(articleClass)
-      .run();
+        .withClass(articleClass)
+        .run();
     // END CreateCollectionWithNamedVectors
   }
 
   private void createCollectionWithModuleSettings(String className) {
     // Define class properties
     Property titleProperty = Property.builder()
-      .name("title")
-      .description("Title Property Description...")
-      .dataType(Arrays.asList(DataType.TEXT))
-      .build();
+        .name("title")
+        .description("Title Property Description...")
+        .dataType(Arrays.asList(DataType.TEXT))
+        .build();
     Property bodyProperty = Property.builder()
-      .name("body")
-      .description("Body Property Description...")
-      .dataType(Arrays.asList(DataType.TEXT))
-      .build();
+        .name("body")
+        .description("Body Property Description...")
+        .dataType(Arrays.asList(DataType.TEXT))
+        .build();
     // START ModuleSettings
     // Additional configuration not shown
-    //Define the module settings
+    // Define the module settings
     Map<String, Object> text2vecOpenAI = new HashMap<>();
     Map<String, Object> text2vecOpenAISettings = new HashMap<>();
     text2vecOpenAISettings.put("vectorizePropertyName", false);
-    text2vecOpenAISettings.put("model", "text-embedding-3-small"); //set the model of your choice e.g. text-embedding-3-small
+    text2vecOpenAISettings.put("model", "text-embedding-3-small"); // set the model of your choice e.g.                                                               // text-embedding-3-small
     text2vecOpenAI.put("text2vec-openai", text2vecOpenAISettings);
     Map<Object, Object> moduleConfig = new HashMap<>();
     moduleConfig.put("text2vec-openai", text2vecOpenAI);
 
     // Set the module configu in the WeaviateClass Builder
     WeaviateClass articleClass = WeaviateClass.builder()
-      .className(className)
-      .properties(Arrays.asList(titleProperty, bodyProperty))
-      .moduleConfig(moduleConfig) // Set the module config
-      .build();
+        .className(className)
+        .properties(Arrays.asList(titleProperty, bodyProperty))
+        .moduleConfig(moduleConfig) // Set the module config
+        .build();
 
     // Add the class to the schema
     Result<Boolean> result = client.schema().classCreator()
-      .withClass(articleClass)
-      .run();
+        .withClass(articleClass)
+        .run();
     // END ModuleSettings
   }
 
   private void createCollectionWithVectorIndexType(String className) {
     // Define class properties
     Property titleProperty = Property.builder()
-      .name("title")
-      .description("Title Property Description...")
-      .dataType(Arrays.asList(DataType.TEXT))
-      .build();
+        .name("title")
+        .description("Title Property Description...")
+        .dataType(Arrays.asList(DataType.TEXT))
+        .build();
     Property bodyProperty = Property.builder()
-      .name("body")
-      .description("Body Property Description...")
-      .dataType(Arrays.asList(DataType.TEXT))
-      .build();
+        .name("body")
+        .description("Body Property Description...")
+        .dataType(Arrays.asList(DataType.TEXT))
+        .build();
     // START SetVectorIndexType
     // Additional configuration not shown
     // Define the index type in the WeaviateClass Builder
     WeaviateClass articleClass = WeaviateClass.builder()
-      .className(className)
-      .properties(Arrays.asList(titleProperty, bodyProperty))
-      .vectorizer("text2vec-openai")
-      .vectorIndexType("hnsw") //set the vector index of your choice e.g. hnsw, flat...
-      .build();
+        .className(className)
+        .properties(Arrays.asList(titleProperty, bodyProperty))
+        .vectorizer("text2vec-openai")
+        .vectorIndexType("hnsw") // set the vector index of your choice e.g. hnsw, flat...
+        .build();
     // Add the class to the schema
     Result<Boolean> result = client.schema().classCreator()
-      .withClass(articleClass)
-      .run();
+        .withClass(articleClass)
+        .run();
     // END SetVectorIndexType
   }
 
   private void createCollectionWithVectorIndexParams(String className) {
     // Define class properties
     Property titleProperty = Property.builder()
-      .name("title")
-      .description("Title Property Description...")
-      .dataType(Arrays.asList(DataType.TEXT))
-      .build();
+        .name("title")
+        .description("Title Property Description...")
+        .dataType(Arrays.asList(DataType.TEXT))
+        .build();
     Property bodyProperty = Property.builder()
-      .name("body")
-      .description("Body Property Description...")
-      .dataType(Arrays.asList(DataType.TEXT))
-      .build();
+        .name("body")
+        .description("Body Property Description...")
+        .dataType(Arrays.asList(DataType.TEXT))
+        .build();
     // START SetVectorIndexParams
     // Additional configuration not shown
     // Define the VectorIndexConfig with compression
     VectorIndexConfig createBqIndexConfig = VectorIndexConfig.builder()
-      .bq(BQConfig.builder()
-        .enabled(true)
-        .rescoreLimit(123L)
-        .cache(true)
-        .build())
-      .vectorCacheMaxObjects(100000L)
-      .build();
+        .bq(BQConfig.builder()
+            .enabled(true)
+            .rescoreLimit(123L)
+            .cache(true)
+            .build())
+        .vectorCacheMaxObjects(100000L)
+        .build();
 
     WeaviateClass articleClass = WeaviateClass.builder()
-      .className(className)
-      .properties(Arrays.asList(titleProperty, bodyProperty))
-      .vectorIndexType("flat") //set the vector index of your choice e.g. hnsw, flat...
-      .vectorIndexConfig(createBqIndexConfig)
-      .vectorizer("text2vec-openai")
-      .build();
+        .className(className)
+        .properties(Arrays.asList(titleProperty, bodyProperty))
+        .vectorIndexType("flat") // set the vector index of your choice e.g. hnsw, flat...
+        .vectorIndexConfig(createBqIndexConfig)
+        .vectorizer("text2vec-openai")
+        .build();
 
     // Add the class to the schema
     Result<Boolean> result = client.schema().classCreator()
-      .withClass(articleClass)
-      .run();
+        .withClass(articleClass)
+        .run();
     // END SetVectorIndexParams
   }
 
   private void createPropertieswithSettings(String className) {
     // START PropModuleSettings
     Property titleProperty = Property.builder()
-      .name("title")
-      .description("title of the article")
-      .dataType(Arrays.asList(DataType.TEXT))
-      .tokenization(Tokenization.WORD)
-      .build();
+        .name("title")
+        .description("title of the article")
+        .dataType(Arrays.asList(DataType.TEXT))
+        .tokenization(Tokenization.WORD)
+        .build();
 
     Property bodyProperty = Property.builder()
-      .name("body")
-      .description("body of the article")
-      .dataType(Arrays.asList(DataType.TEXT))
-      .tokenization(Tokenization.LOWERCASE)
-      .build();
+        .name("body")
+        .description("body of the article")
+        .dataType(Arrays.asList(DataType.TEXT))
+        .tokenization(Tokenization.LOWERCASE)
+        .build();
 
-    //Add the defined properties to the class
+    // Add the defined properties to the class
     WeaviateClass articleClass = WeaviateClass.builder()
-      .className(className)
-      .description("Article Class Description...")
-      .properties(Arrays.asList(titleProperty, bodyProperty))
-      .build();
+        .className(className)
+        .description("Article Class Description...")
+        .properties(Arrays.asList(titleProperty, bodyProperty))
+        .build();
 
     Result<Boolean> result = client.schema().classCreator()
-      .withClass(articleClass)
-      .run();
+        .withClass(articleClass)
+        .run();
     // END PropModuleSettings
   }
 
   private void specifyDistanceMetric(String className) {
     Property titleProperty = Property.builder()
-      .name("title")
-      .dataType(Arrays.asList(DataType.TEXT))
-      .build();
+        .name("title")
+        .dataType(Arrays.asList(DataType.TEXT))
+        .build();
     Property bodyProperty = Property.builder()
-      .name("body")
-      .dataType(Arrays.asList(DataType.TEXT))
-      .build();
+        .name("body")
+        .dataType(Arrays.asList(DataType.TEXT))
+        .build();
     // START DistanceMetric
     // Additional configuration not shown
     VectorIndexConfig vectorIndexConfig = VectorIndexConfig.builder()
-      .distance(DistanceType.DOT) // Define Distance Type e.g. Dot, Cosine, hamming...
-      .build();
+        .distance(DistanceType.DOT) // Define Distance Type e.g. Dot, Cosine, hamming...
+        .build();
 
     WeaviateClass articleClass = WeaviateClass.builder()
-      .className(className)
-      .properties(Arrays.asList(titleProperty, bodyProperty))
-      .vectorIndexConfig(vectorIndexConfig)
-      .build();
+        .className(className)
+        .properties(Arrays.asList(titleProperty, bodyProperty))
+        .vectorIndexConfig(vectorIndexConfig)
+        .build();
 
     Result<Boolean> classResult = client.schema().classCreator()
-      .withClass(articleClass)
-      .run();
+        .withClass(articleClass)
+        .run();
     // END DistanceMetric
   }
 
   private void readOneCollection(String className) {
     // START ReadOneCollection
     Result<WeaviateClass> result = client.schema().classGetter()
-      .withClassName(className)
-      .run();
+        .withClassName(className)
+        .run();
 
     // END ReadOneCollection
 
     assertThat(result).isNotNull()
-      .withFailMessage(() -> result.getError().toString())
-      .returns(false, Result::hasErrors)
-      .withFailMessage(null)
-      .extracting(Result::getResult).isNotNull()
-      .extracting(WeaviateClass::getClassName).isEqualTo(className);
+        .withFailMessage(() -> result.getError().toString())
+        .returns(false, Result::hasErrors)
+        .withFailMessage(null)
+        .extracting(Result::getResult).isNotNull()
+        .extracting(WeaviateClass::getClassName).isEqualTo(className);
 
     print(result);
   }
@@ -378,61 +380,61 @@ class ManageDataClassesTest {
   private void readAllCollections() {
     // START ReadAllCollections
     Result<Schema> result = client.schema().getter()
-      .run();
+        .run();
 
     // END ReadAllCollections
 
     assertThat(result).isNotNull()
-      .withFailMessage(() -> result.getError().toString())
-      .returns(false, Result::hasErrors)
-      .withFailMessage(null)
-      .extracting(Result::getResult).isNotNull()
-      .extracting(Schema::getClasses).asList()
-      .hasSize(1);
+        .withFailMessage(() -> result.getError().toString())
+        .returns(false, Result::hasErrors)
+        .withFailMessage(null)
+        .extracting(Result::getResult).isNotNull()
+        .extracting(Schema::getClasses).asList()
+        .hasSize(1);
 
     print(result);
   }
 
   private void updateCollection(String className) {
     Result<Boolean> delResult = client.schema().classDeleter()
-      .withClassName(className)
-      .run();
+        .withClassName(className)
+        .run();
 
     assertThat(delResult).isNotNull()
-      .withFailMessage(() -> delResult.getError().toString())
-      .returns(false, Result::hasErrors)
-      .returns(true, Result::getResult);
+        .withFailMessage(() -> delResult.getError().toString())
+        .returns(false, Result::hasErrors)
+        .returns(true, Result::getResult);
 
     // START UpdateCollectionTODO
     // Define class
     WeaviateClass originalClass = WeaviateClass.builder()
-      .className(className)
-      .vectorIndexConfig(VectorIndexConfig.builder()
-        .distance(DistanceType.COSINE) // Note the distance metric
-        .build())
-      .build();
+        .className(className)
+        .vectorIndexConfig(VectorIndexConfig.builder()
+            .distance(DistanceType.COSINE) // Note the distance metric
+            .build())
+        .build();
 
     // Add the class to the schema
     Result<Boolean> result = client.schema().classCreator()
-      .withClass(originalClass)
-      .run();
+        .withClass(originalClass)
+        .run();
 
     // END UpdateCollectionTODO
 
     assertThat(result).isNotNull()
-      .withFailMessage(() -> result.getError().toString())
-      .returns(false, Result::hasErrors)
-      .withFailMessage(null)
-      .returns(true, Result::getResult);
+        .withFailMessage(() -> result.getError().toString())
+        .returns(false, Result::hasErrors)
+        .withFailMessage(null)
+        .returns(true, Result::getResult);
 
     // START UpdateCollectionTODO
     // Define updated class
     WeaviateClass updatedClass = WeaviateClass.builder()
-      .className(className)
-      .vectorIndexConfig(VectorIndexConfig.builder()
-        .distance(DistanceType.DOT) // Note the distance metric
-        .build())
-      .build();
+        .className(className)
+        .vectorIndexConfig(VectorIndexConfig.builder()
+            .distance(DistanceType.DOT) // Note the distance metric
+            .build())
+        .build();
 
     // Update the class definition
     // TODO Not yet available in JAVA
@@ -450,8 +452,8 @@ class ManageDataClassesTest {
   private void deleteCollection(String className) {
     // DeleteCollection START
     Result<Boolean> result = client.schema().classDeleter()
-      .withClassName(className)
-      .run();
+        .withClassName(className)
+        .run();
     // DeleteCollection END
     if (result.hasErrors()) {
       System.out.println(result.getError());
@@ -466,14 +468,14 @@ class ManageDataClassesTest {
     String propertyName = "Ref";
     // AddProperty START
     Property property = Property.builder()
-      .dataType(Arrays.asList(DataType.BOOLEAN))
-      .name(propertyName)
-      .build();
+        .dataType(Arrays.asList(DataType.BOOLEAN))
+        .name(propertyName)
+        .build();
 
     Result<Boolean> result = client.schema().propertyCreator()
-      .withClassName(className)
-      .withProperty(property)
-      .run();
+        .withClassName(className)
+        .withProperty(property)
+        .run();
     // AddProperty END
     if (result.hasErrors()) {
       System.out.println(result.getError());
@@ -486,8 +488,8 @@ class ManageDataClassesTest {
   private void inspectShard(String className) {
     // InspectShard START
     Result<Shard[]> result = client.schema().shardsGetter()
-      .withClassName(className)
-      .run();
+        .withClassName(className)
+        .run();
 
     Shard[] shards = result.getResult();
     if (shards == null || shards.length == 0) {
@@ -498,25 +500,25 @@ class ManageDataClassesTest {
     // Iterate over each shard and print its status
     for (Shard shard : shards) {
       System.out.println("Shard name: " + shard.getName());
-      System.out.println("Shard status: " + shard.getStatus());  // Get shard status (whether it's READY or READONLY)
+      System.out.println("Shard status: " + shard.getStatus()); // Get shard status (whether it's READY or READONLY)
     }
     // InspectShard END
   }
 
   private void updateShardStatus(String className) {
     Result<Shard[]> result = client.schema()
-      .shardsGetter()
-      .withClassName(className)
-      .run();
+        .shardsGetter()
+        .withClassName(className)
+        .run();
 
     String shardName = result.getResult()[0].getName();
 
     // UpdateShardStatus START
     Result<ShardStatus> updateToReadyStatus = client.schema().shardUpdater()
-      .withClassName(className)
-      .withShardName(shardName)
-      .withStatus(ShardStatuses.READY)
-      .run();
+        .withClassName(className)
+        .withShardName(shardName)
+        .withStatus(ShardStatuses.READY)
+        .run();
 
     if (updateToReadyStatus.hasErrors()) {
       System.out.println(updateToReadyStatus.getError());
@@ -526,5 +528,135 @@ class ManageDataClassesTest {
     System.out.println(updateToReadyStatus.getResult());
     // UpdateShardStatus END
   }
-}
 
+  private void createMultiVectorCollection(String className) {
+    // START MultiValueVectorCollection
+    // Define class properties
+    Property textProperty = Property.builder()
+        .name("text")
+        .description("Text content for ColBERT vectorization")
+        .dataType(Arrays.asList(DataType.TEXT))
+        .build();
+
+    // Define the vectorizers configurations for named vectors
+    Map<String, Object> text2colbertJinaAI = new HashMap<>();
+    Map<String, Object> text2colbertSettings = new HashMap<>();
+    text2colbertSettings.put("properties", new String[] { "text" });
+    text2colbertJinaAI.put("text2colbert-jinaai", text2colbertSettings);
+
+    // Configure multi-vector for custom vectors
+    Map<String, Object> noneVectorizer = new HashMap<>();
+    noneVectorizer.put("none", null);
+
+    // Create multi-vector config for custom vectors
+    VectorIndexConfig customMultiVectorConfig = VectorIndexConfig.builder()
+        .multiVector(MultiVectorConfig.builder().build()) // Enable multi-vector with default settings
+        .build();
+
+    // Define the vector configurations
+    Map<String, WeaviateClass.VectorConfig> vectorConfig = new HashMap<>();
+
+    // Example 1: ColBERT vectorizer
+    vectorConfig.put("jina_colbert", WeaviateClass.VectorConfig.builder()
+        .vectorIndexType("hnsw")
+        .vectorizer(text2colbertJinaAI)
+        .build());
+
+    // Example 2: Custom multi-vector configuration
+    vectorConfig.put("custom_multi_vector", WeaviateClass.VectorConfig.builder()
+        .vectorIndexType("hnsw")
+        .vectorizer(noneVectorizer)
+        .vectorIndexConfig(customMultiVectorConfig)
+        .build());
+
+    // Create the class with multi-vector configuration
+    WeaviateClass multiVecClass = WeaviateClass.builder()
+        .className("DemoCollection")
+        .properties(Arrays.asList(textProperty))
+        .vectorConfig(vectorConfig)
+        .build();
+
+    // Add the class to the schema
+    Result<Boolean> result = client.schema().classCreator()
+        .withClass(multiVecClass)
+        .run();
+    // END MultiValueVectorCollection
+  }
+
+  private void createMultiVectorMuvera(String className) {
+    // START MultiValueVectorMuvera
+    // Define class properties
+    Property textProperty = Property.builder()
+        .name("text")
+        .description("Text content for ColBERT vectorization with MUVERA encoding")
+        .dataType(Arrays.asList(DataType.TEXT))
+        .build();
+
+    // Define the vectorizers configurations for Jina AI ColBERT
+    Map<String, Object> text2colbertJinaAI = new HashMap<>();
+    Map<String, Object> text2colbertSettings = new HashMap<>();
+    text2colbertSettings.put("properties", new String[] { "text" });
+    text2colbertJinaAI.put("text2colbert-jinaai", text2colbertSettings);
+
+    // Configure noneVectorizer for custom vectors
+    Map<String, Object> noneVectorizer = new HashMap<>();
+    noneVectorizer.put("none", null);
+
+    // Create MUVERA encoding configuration for jina_colbert
+    MuveraConfig jinaMuveraConfig = MuveraConfig.builder()
+        .enabled(true)
+        .ksim(4) // Optional parameter for tuning MUVERA
+        .dprojections(16) // Optional parameter for tuning MUVERA
+        .repetitions(20) // Optional parameter for tuning MUVERA
+        .build();
+
+    // Create MUVERA encoding configuration for custom_multi_vector (minimal)
+    MuveraConfig customMuveraConfig = MuveraConfig.builder()
+        .enabled(true)
+        .build();
+
+    // Configure multi-vector with MUVERA encoding for jina_colbert
+    VectorIndexConfig jinaVectorIndexConfig = VectorIndexConfig.builder()
+        .multiVector(MultiVectorConfig.builder()
+            .muvera(jinaMuveraConfig)
+            .build())
+        .build();
+
+    // Configure multi-vector with MUVERA encoding for custom_multi_vector (minimal)
+    VectorIndexConfig customVectorIndexConfig = VectorIndexConfig.builder()
+        .multiVector(MultiVectorConfig.builder()
+            .muvera(customMuveraConfig)
+            .build())
+        .build();
+
+    // Define the vector configurations
+    Map<String, WeaviateClass.VectorConfig> vectorConfig = new HashMap<>();
+
+    // Example 1: Jina AI ColBERT with MUVERA encoding
+    vectorConfig.put("jina_colbert", WeaviateClass.VectorConfig.builder()
+        .vectorIndexType("hnsw")
+        .vectorizer(text2colbertJinaAI)
+        .vectorIndexConfig(jinaVectorIndexConfig)
+        .build());
+
+    // Example 2: Custom multi-vector with MUVERA encoding (minimal config)
+    vectorConfig.put("custom_multi_vector", WeaviateClass.VectorConfig.builder()
+        .vectorIndexType("hnsw")
+        .vectorizer(noneVectorizer)
+        .vectorIndexConfig(customVectorIndexConfig)
+        .build());
+
+    // Create the class with MUVERA-encoded multi-vector configuration
+    WeaviateClass multiVecMuveraClass = WeaviateClass.builder()
+        .className("DemoCollection")
+        .properties(Arrays.asList(textProperty))
+        .vectorConfig(vectorConfig)
+        .build();
+
+    // Add the class to the schema
+    Result<Boolean> result = client.schema().classCreator()
+        .withClass(multiVecMuveraClass)
+        .run();
+    // END MultiValueVectorMuvera
+  }
+}
