@@ -55,13 +55,13 @@ type Config struct {
 }
 ```
 
-Also update the config parsing code (usually `FromEnv()` in `weaviate/usecases/config/environment.go`)
+Also update the config parsing code (usually `FromEnv()` in `weaviate/usecases/config/environment.go`).
 
 ```go
 	config.MaxLimit = runtime.NewDynamicValue(12) // default value for your config is `12` now
 ```
 
-### 2. Add it to `config.WeaviateRuntimeConfig`.
+### 2. Add it to `config.WeaviateRuntimeConfig`
 
 ```go
 type WeaviateRuntimeConfig struct {
@@ -70,7 +70,7 @@ type WeaviateRuntimeConfig struct {
 }
 ```
 
-### 3. Register your config in `runtime.ConfigManager`.
+### 3. Register your config in `runtime.ConfigManager`
 
 This usually happens in `initRuntimeOverrides()` in `adaptors/handlers/rest/configure_api.go`.
 
