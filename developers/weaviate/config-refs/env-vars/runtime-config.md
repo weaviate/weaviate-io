@@ -32,7 +32,7 @@ Follow these steps to set up runtime configuration management:
 
 ```yaml title="overrides.yaml"
 maximum_allowed_collections_count: 8
-auto_schema_enabled: true
+autoschema_enabled: true
 async_replication_disabled: false
 ```
 
@@ -61,7 +61,7 @@ Below you can find a list of the environment variables that can be changed at ru
 | Environment variable name           | Runtime override name               |
 | ----------------------------------- | ----------------------------------- |
 | `ASYNC_REPLICATION_DISABLED`        | `async_replication_disabled`        |
-| `AUTOSCHEMA_ENABLED`                | `auto_schema_enabled`               |
+| `AUTOSCHEMA_ENABLED`                | `autoschema_enabled`               |
 | `MAXIMUM_ALLOWED_COLLECTIONS_COUNT` | `maximum_allowed_collections_count` |
 
 For more details about the variables, check out the [Environment variables](./index.md) page.
