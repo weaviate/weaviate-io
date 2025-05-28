@@ -9,6 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/developers/agents/_includes/query_agent.py';
+import TSCode from '!!raw-loader!/developers/agents/_includes/query_agent.mts';
 
 # Weaviate Query Agent: Usage
 
@@ -34,19 +35,17 @@ This page describes how to use the Query Agent to answer natural language querie
 
 ### Weaviate instance
 
-This Agent is available exclusively for use with a Weaviate Cloud instance.
-
-Refer to the [Weaviate Cloud documentation](/developers/wcs/index.mdx) for more information on how to set up a Weaviate Cloud instance.
+This Agent is available exclusively for use with a Weaviate Cloud instance. Refer to the [Weaviate Cloud documentation](/developers/wcs/index.mdx) for more information on how to set up a Weaviate Cloud instance.
 
 You can try this Weaviate Agent with a free Sandbox instance on [Weaviate Cloud](https://console.weaviate.cloud/).
 
 ### Client library
 
 :::note Supported languages
-At this time, this Agent is available only for Python. Support for other languages will be added in the future.
+At this time, this Agent is available only for Python and JavaScript. Support for other languages will be added in the future.
 :::
 
-You can install the Weaviate client library with the optional `agents` extras to use Weaviate Agents. This will install the `weaviate-agents` package along with the `weaviate-client` package.
+For Python, you can install the Weaviate client library with the optional `agents` extras to use Weaviate Agents. This will install the `weaviate-agents` package along with the `weaviate-client` package. For  JavaScript, you can install the `weaviate-agents` package alongside the `weaviate-client` package.
 
 Install the client library using the following command:
 
@@ -72,15 +71,23 @@ pip install -U weaviate-agents==||site.weaviate_agents_version||
 ```
 
 </TabItem>
+<TabItem value="ts_agents" label="JavaScript/TypeScript">
+
+```shell
+npm install weaviate-agents@latest
+```
+
+</TabItem>
 
 </Tabs>
 
-## How to use the Query Agent
+## Instantiate the Query Agent
 
-### 1. Instantiate the Query Agent
+### Basic instantiation
 
-- Your Weaviate Cloud instance details (e.g. the `WeaviateClient` object in Python) to the Query Agent.
-- A list of the collections that the Query Agent may use to answer queries.
+Provide:
+- Target Weaviate Cloud instance details (e.g. the `WeaviateClient` object).
+- A default list of the collections to be queried
 
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python">
@@ -89,6 +96,41 @@ pip install -U weaviate-agents==||site.weaviate_agents_version||
             startMarker="# START InstantiateQueryAgent"
             endMarker="# END InstantiateQueryAgent"
             language="py"
+        />
+    </TabItem>
+    <TabItem value="ts_agents" label="JavaScript/TypeScript">
+        <FilteredTextBlock
+            text={TSCode}
+            startMarker="// START InstantiateQueryAgent"
+            endMarker="// END InstantiateQueryAgent"
+            language="ts"
+        />
+    </TabItem>
+
+</Tabs>
+
+### Configure collections
+
+The list of collections to be queried are further configurable with:
+- Tenant names (required for a multi-tenant collection)
+- Target vector(s) of the collection to query (optional)
+- List of property names for the agent to use (optional)
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START QueryAgentCollectionConfiguration"
+            endMarker="# END QueryAgentCollectionConfiguration"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="ts_agents" label="JavaScript/TypeScript">
+        <FilteredTextBlock
+            text={TSCode}
+            startMarker="// START QueryAgentCollectionConfiguration"
+            endMarker="// END QueryAgentCollectionConfiguration"
+            language="ts"
         />
     </TabItem>
 
@@ -102,7 +144,14 @@ For example, if the associated Weaviate credentials' user has access to only a s
 
 :::
 
-### 2. Perform queries
+### Additional options
+
+The Query Agent can be instantiated with additional options, such as:
+
+- `system_prompt`: A custom system prompt to replace the default system prompt provided by the Weaviate team (`systemPrompt` for JavaScript).
+- `timeout`: The maximum time the Query Agent will spend on a single query, in seconds (server-side default: 60).
+
+## Perform queries
 
 Provide a natural language query to the Query Agent. The Query Agent will process the query, perform the necessary searches in Weaviate, and return the answer.
 
@@ -121,10 +170,73 @@ The Query Agent will formulate its strategy based on your query. So, aim to be u
             language="py"
         />
     </TabItem>
+    <TabItem value="ts_agents" label="JavaScript/TypeScript">
+        <FilteredTextBlock
+            text={TSCode}
+            startMarker="// START BasicQuery"
+            endMarker="// END BasicQuery"
+            language="ts"
+        />
+    </TabItem>
 
 </Tabs>
 
-#### 2.1. Follow-up queries
+### Configure collections at runtime
+
+The list of collections to be queried can be overridden at query time, as a list of names, or with further configurations:
+
+#### Specify collection names only
+
+This example overrides the configured Query Agent collections for this query only.
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START QueryAgentRunBasicCollectionSelection"
+            endMarker="# END QueryAgentRunBasicCollectionSelection"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="ts_agents" label="JavaScript/TypeScript">
+        <FilteredTextBlock
+            text={TSCode}
+            startMarker="// START QueryAgentRunBasicCollectionSelection"
+            endMarker="// END QueryAgentRunBasicCollectionSelection"
+            language="ts"
+        />
+    </TabItem>
+
+</Tabs>
+
+#### Configure collections in detail
+
+This example overrides the configured Query Agent collections for this query only, specifying additional options where relevant, such as:
+- Target vector
+- Properties to view
+- Target tenant
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START QueryAgentRunCollectionConfig"
+            endMarker="# END QueryAgentRunCollectionConfig"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="ts_agents" label="JavaScript/TypeScript">
+        <FilteredTextBlock
+            text={TSCode}
+            startMarker="// START QueryAgentRunCollectionConfig"
+            endMarker="// END QueryAgentRunCollectionConfig"
+            language="ts"
+        />
+    </TabItem>
+
+</Tabs>
+
+### Follow-up queries
 
 The Query Agent can even handle follow-up queries, using the previous response as additional context.
 
@@ -135,6 +247,14 @@ The Query Agent can even handle follow-up queries, using the previous response a
             startMarker="# START FollowUpQuery"
             endMarker="# END FollowUpQuery"
             language="py"
+        />
+    </TabItem>
+    <TabItem value="ts_agents" label="JavaScript/TypeScript">
+        <FilteredTextBlock
+            text={TSCode}
+            startMarker="// START FollowUpQuery"
+            endMarker="// END FollowUpQuery"
+            language="ts"
         />
     </TabItem>
 
@@ -148,7 +268,7 @@ The supporting information may include searches or aggregations carried out, wha
 
 ### Helper function
 
-Try the provided helper function (e.g. `print_query_agent_response`) to display the response in a readable format.
+Try the provided helper functions (e.g. `.display()` method) to display the response in a readable format.
 
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python">
@@ -157,6 +277,14 @@ Try the provided helper function (e.g. `print_query_agent_response`) to display 
             startMarker="# START BasicQuery"
             endMarker="# END BasicQuery"
             language="py"
+        />
+    </TabItem>
+    <TabItem value="ts_agents" label="JavaScript/TypeScript">
+        <FilteredTextBlock
+            text={TSCode}
+            startMarker="// START BasicQuery"
+            endMarker="// END BasicQuery"
+            language="ts"
         />
     </TabItem>
 
@@ -265,27 +393,16 @@ This example outputs:
             language="py"
         />
     </TabItem>
+    <TabItem value="ts_agents" label="JavaScript/TypeScript">
+        <FilteredTextBlock
+            text={TSCode}
+            startMarker="// START InspectResponseExample"
+            endMarker="// END InspectResponseExample"
+            language="ts"
+        />
+    </TabItem>
 
 </Tabs>
-
-## Advanced options
-
-### Agent instantiation
-
-The Query Agent can be instantiated with additional options, such as:
-
-- `system_prompt`: A custom system prompt to replace the default system prompt provided by the Weaviate team.
-- `timeout`: The maximum time the Query Agent will spend on a single query, in seconds (server-side default: 60).
-
-### Collection selection
-
-Use `.add_collection` or `.remove_collection` methods on an instantiated `QueryAgent` object to add or remove collections from the Query Agent's list of collections.
-
-### Queries
-
-Use `.view_properties` to define the properties that the Query Agent can look at when answering queries.
-
-Optional target vectors can be specified in the query if a collection uses named vector. When multiple collections are provided to the query agent, a dictionary must be used to map collection names to their respective target vectors. For example `target_vector={"ecommerce": ["name_vector", "description_vector"]}` runs the query on two named vectors from the `ecommerce` collection.
 
 ## Limitations & Troubleshooting
 
@@ -300,13 +417,7 @@ Optional target vectors can be specified in the query if a collection uses named
 
 ### Usage limits
 
-At this stage, there is a limit of 500 Query Agent queries per day per Weaviate Cloud [organization](/developers/wcs/platform/users-and-organizations.mdx#organizations).
-
-This limit may change in future versions of the Query Agent.
-
-### Multi-tenant collections
-
-The Query Agent is currently not able to access collections with multi-tenancy enabled. This will be added im the future.
+The current usage limit is 500 Query Agent queries per day per Weaviate Cloud [organization](/developers/wcs/platform/users-and-organizations.mdx#organizations).
 
 ### Custom collection descriptions
 

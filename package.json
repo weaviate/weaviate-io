@@ -61,7 +61,8 @@
     "sass": "^1.56.1",
     "slick-carousel": "^1.8.1",
     "stream-json": "^1.8.0",
-    "styled-components": "^6.0.5"
+    "styled-components": "^6.0.5",
+    "weaviate-agents": "^0.1.0"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^2.3.1",

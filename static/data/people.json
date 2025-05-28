@@ -159,14 +159,6 @@
     "team": "delivery"
   },
   {
-    "name": "Chad Tindel",
-    "title": "Solution Engineer",
-    "photo": "Chad.jpg",
-    "linkedin": "ctindel",
-    "twitter": "ctindel",
-    "team": "sales"
-  },
-  {
     "name": "Chara Tzimi",
     "title": "People Operations Specialist",
     "photo": "Chara.jpg",
@@ -274,6 +266,12 @@
     "linkedin": "darwincorn",
     "twitter": "ndc@pnw.zone",
     "team": "delivery"
+  },
+  {
+    "name": "Dennis Schipper",
+    "title": "UI/UX Front End Developer",
+    "photo": "Dennis-Schipper.jpg",
+    "team": "developer-growth"
   },
   {
     "name": "Deepti Naidu",

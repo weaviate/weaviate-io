@@ -16,9 +16,15 @@ To install and configure Weaviate, see the following:
 - **[Weaviate Cloud](../../wcs/quickstart.mdx)**: Managed services for development and production environments.
 - **[Docker Compose](./docker-compose.md#starter-docker-compose-file)**: Docker containers are well suited for development and testing.
 - **[Kubernetes](./kubernetes.md)**: Kubernetes is ideal for scalable, production deployments.
+- **[AWS Marketplace](./aws-marketplace.md)**: Deploy Weaviate directly from the AWS Marketplace.
 - **[Snowpark Container Services](./spcs-integration.mdx)** Deploy Weaviate in Snowflake's Snowpark environment.
 - **[Embedded Weaviate](./embedded.md)**: Experimental. Embedded Weaviate is a client based tool.
 
+:::caution Native Windows support
+
+Although Weaviate can be used on Windows via containerized environments like [Docker](./docker-compose.md) or [WSL](https://learn.microsoft.com/en-us/windows/wsl/), we don't offer native Windows support at this time.
+
+:::
 
 ## Configuration files
 

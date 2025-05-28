@@ -140,6 +140,17 @@ const config = {
                                 src: 'https://plausible.io/js/plausible.js',
                             },
                         },
+                            // Add Hubspot
+                          {
+                            tagName: 'script',
+                            attributes: {
+                            type: 'text/javascript',
+                            id: 'hs-script-loader',
+                            async: true,
+                            defer: true,
+                            src: 'https://js.hs-scripts.com/8738733.js',
+                            },
+                        },
                         // Add Scarf
                         {
                             tagName: 'img',

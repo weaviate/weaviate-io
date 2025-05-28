@@ -102,7 +102,7 @@ The v3 client provides helper functions to connect your application to your Weav
 import weaviate from 'weaviate-client'
 
 const client = await weaviate.connectToWeaviateCloud(
-  'WEAVIATE_INSTANCE_URL', { // Replace WEAVIATE_INSTANCE_URL with your instance URL
+    'WEAVIATE_INSTANCE_URL', { // Replace WEAVIATE_INSTANCE_URL with your instance URL
     authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'),
     headers: {
       'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
@@ -166,8 +166,7 @@ import weaviate, { WeaviateClient } from 'weaviate-client';
 
 // Instantiate the client with the auth config
 const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
-  'WEAVIATE_INSTANCE_URL', // Replace WEAVIATE_INSTANCE_URL with your instance URL
-  {
+  'WEAVIATE_INSTANCE_URL', { // Replace WEAVIATE_INSTANCE_URL with your instance URL
     authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), // Add your WCD API KEY here
   }
 )
@@ -181,8 +180,7 @@ To include custom headers, such as API keys for third party services, add the cu
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
-  'WEAVIATE_INSTANCE_URL', // Replace WEAVIATE_INSTANCE_URL with your instance URL
-  {
+  'WEAVIATE_INSTANCE_URL', { // Replace WEAVIATE_INSTANCE_URL with your instance URL
     authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), // Add your WCD API KEY here
     headers: {
       someHeaderName: 'header-value',
@@ -206,7 +204,7 @@ Your application code creates an object that represents a collection. This objec
 This example returns objects from the `JeopardyQuestion` collection.
 
 ```js
-const myCollection = client.collections.get('JeopardyQuestion');
+const myCollection = client.collections.use('JeopardyQuestion');
 
 const result = await myCollection.query.fetchObjects()
 
@@ -242,7 +240,7 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.import.ts';
 The cursor API has a new iterator method. To repeat an action over an entire collection, use `iterator()`.
 
 ```js
-const articles = client.collections.get('Article')
+const articles = client.collections.use('Article')
 
 for await (const article of articles.iterator()) {
   // do something with article.
@@ -263,18 +261,57 @@ type Article = {
   wordcount: number;
 }
 
-const collection = client.collections.get<Article>('Article');
+const collection = client.collections.use<Article>('Article');
 await collection.data.insert({ // compiler error since 'body' field is missing in '.insert'
   title: 'TS is awesome!',
   wordcount: 9001
 })
 ```
 
+### Initial connection checks
+
+When establishing a connection to the Weaviate server, the client performs a series of checks. These includes checks for the server version, and to make sure that the REST and gRPC ports are available.
+
+You can set `skipInitChecks` to `true` to skip these checks.
+
+```js
+import weaviate from 'weaviate-client';
+
+const client = await weaviate.connectToLocal({
+  skipInitChecks: true,
+})
+```
+
+In most cases, you should use the default `false` setting for `skipInitChecks`. However, setting `skipInitChecks: true` may be a useful temporary measure if you have connection issues.
+
+For additional connection configuration, see [Timeout values](#timeout-values).
+
+
 ### Async operations
 
 All client v3 methods, with the exception of `collection.use()`, use ES6 Promises with asynchronous code. This means you have to use `.then()` after function calls, or wrap your code `async/await` blocks.
 
 When there is an asynchronous code error, a promise returns the specific error message. If you use `async` and `await`, a rejected promises acts like a thrown exception
+
+### Timeout values
+
+You can set timeout values, in seconds, for the client. Use the `timeout` property to configure the timeout values for initialization checks as well as query and insert operations.
+
+```js 
+import weaviate from 'weaviate-client';
+
+const client = await weaviate.connectToLocal({
+  timeout: {
+      query: 20,
+      insert: 120,
+      init: 10,
+  }
+})
+```
+:::tip Timeouts on `generate` queries
+
+If you see errors while using the `generate` submodule, try increasing the query timeout values (`query: 60`). <br/><br/>The `generate` submodule uses a large language model to generate text. The submodule is dependent on the speed of the language model and any API that serves the language model. <br/><br/>Increase the timeout values to allow the client to wait longer for the language model to respond.
+:::
 
 ### Type Safety
 
@@ -296,7 +333,7 @@ It is recommended to take a look at our [Typescript quick start](https://github.
 
 ### Recipes
 
-The [recipes repository](https://github.com/weaviate/recipes-ts) (a W.I.P) on GitHub has sample code for common use cases.
+The [recipes repository](https://github.com/weaviate/recipes-ts) on GitHub has sample code for common use cases.
 
 
 ### Demo applications

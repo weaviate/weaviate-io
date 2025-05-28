@@ -196,7 +196,7 @@ with collection.batch.fixed_size(batch_size=10) as batch:
         batch.add_object(
             properties={"text": doc["text"], "docid": doc["id"]},
             uuid=generate_uuid5(doc["id"]),
-            vector=get_colbert_embedding(doc["text"]),  # Provide the embedding manually
+            vector={"multi_vector": get_colbert_embedding(doc["text"])},  # Provide the embedding manually
         )
 
 # Check for errors in batch imports
