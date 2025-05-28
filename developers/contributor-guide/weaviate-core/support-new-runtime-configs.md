@@ -8,10 +8,14 @@ image: og/contributor-guide/weaviate-core.jpg
 :::caution Technical preview
 
 Runtime configuration management was added in **`v1.30`** as a **technical preview**.
-
 <br/>
 
-For more information on how to **use** Runtime configuration, look at the user guide. This document talks about how to add support to the configs to be changed dynamically during runtime.
+This means that the feature is still under development and may change in future releases, including potential breaking changes.
+**We do not recommend using this feature in production environments at this time.**
+
+:::
+
+For more information on how to **use** Runtime configuration, look at the [user guide](https://weaviate.io/developers/weaviate/config-refs/env-vars/runtime-config). This document talks about how to add support to the configs to be changed dynamically during runtime.
 
 ## Add support to your config to be changed dynamically during runtime.
 
