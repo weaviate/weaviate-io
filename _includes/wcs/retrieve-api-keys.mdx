@@ -1,116 +1,32 @@
 When connecting to a Weaviate Cloud cluster, you need an API key and the REST endpoint URL for authentication.
-
-If you don't have an existing API key, you'll need to create one. Follow these steps to find the API keys section and create a new key if necessary:
+To retrieve your connection details, follow these steps:
 
 import Link from '@docusaurus/Link';
-import Register from '/developers/wcs/img/weaviate-cloud-api-key-create.png';
+import Register from '/developers/wcs/img/weaviate-cloud-api-keys.png';
 
 <div class="row">
-  <div class="col col--6">
-    <ol>
-      <li>
-        Open the{' '}
-        <Link to="https://console.weaviate.cloud">Weaviate Cloud console</Link>{' '}
-        and{' '}
-        <Link to="/developers/wcs/manage-clusters/status#select-your-cluster">
-          select your cluster
-        </Link>
-        .
-      </li>
-      <li>
-        Navigate to the <code>API Keys</code> section, found in the{' '}
-        <code>Cluster details</code> panel.
-      </li>
-      <li>
-        If you need a new API key, click the <code>Create new API key</code>{' '}
-        button (<span class="callout">1</span> in the image below).
-      </li>
-    </ol>
-  </div>
-  <div class="col col--6">
-    <div class="card">
-      <div class="card__image">
-        <img src={Register} alt="Navigate to the API Keys section" />
-      </div>
-      <div class="card__body">Navigate to the API Keys section.</div>
-    </div>
-  </div>
+  <ol>
+    <li>
+      Open the{' '}
+      <Link to="https://console.weaviate.cloud">Weaviate Cloud console</Link>{' '}
+      and{' '}
+      <Link to="/developers/wcs/manage-clusters/status#select-your-cluster">
+        select your cluster
+      </Link>
+      .
+    </li>
+    <li>
+      On the <code>Cluster details</code> page, find the <code>Admin</code> API
+      key and <code>REST Endpoint</code> URL.
+    </li>
+    <li>Copy the needed key and URL and store them in a safe location.</li>
+  </ol>
 </div>
-<br />
-
-import NewAPIKeyForm from '/developers/wcs/img/weaviate-cloud-api-key-create-form.png';
-import SaveAPIKey from '/developers/wcs/img/weaviate-cloud-api-key-save.png';
-
-<div class="row">
-  <div class="col col--6">
-    <ol start="4">
-      <li>
-        In the <code>Create API key</code> form, provide a descriptive name for
-        your key (<span class="callout">1</span>).
-      </li>
-      <li>
-        Choose the role for this API key (<span class="callout">2</span>). You
-        can either select an existing role like <code>Admin</code> or{' '}
-        <code>Viewer</code>, or{' '}
-        <Link to="/TODO-link-to-role-management">create a new role</Link> with
-        specific permissions.
-      </li>
-      <li>
-        Click the <code>Create</code> button (<span class="callout">3</span>).
-      </li>
-    </ol>
-  </div>
-  <div class="col col--6">
-    <div class="card">
-      <div class="card__image">
-        <img src={NewAPIKeyForm} alt="Create a new API key" />
-      </div>
-      <div class="card__body">Create a new API key.</div>
-    </div>
-  </div>
-</div>
-<br />
-
-<div class="row">
-  <div class="col col--6">
-    <ol start="7">
-      <li>
-        <strong>Important:</strong> This is the only time your API key will be
-        displayed. Make sure to copy it (<span class="callout">1</span>) or
-        download it (<span class="callout">2</span>)and store it in a secure
-        location immediately after creation. You will not be able to retrieve
-        the full key again.
-      </li>
-    </ol>
-  </div>
-  <div class="col col--6">
-    <div class="card">
-      <div class="card__image">
-        <img src={SaveAPIKey} alt="Save your API key" />
-      </div>
-      <div class="card__body"></div>
-    </div>
-  </div>
-</div>
-<br />
-
-Once you have created or located your API key, you can retrieve your connection details:
 
 import WCDClusterURL from '/developers/weaviate/quickstart/img/cluster_url.png';
 import WCDClusterAdminKey from '/developers/weaviate/quickstart/img/cluster_admin_key.png';
 
 <div class="row">
-  <div class="col col--6">
-    <ol start="8">
-      <li>
-        On the <code>Cluster details</code> page or within the{' '}
-        <code>API Keys</code> section, find the <code>REST Endpoint</code> URL.
-      </li>
-      <li>
-        Copy the <code>REST Endpoint</code> URL and store it securely.
-      </li>
-    </ol>
-  </div>
   <div class="col col--6">
     <div class="card-demo">
       <div class="card">
@@ -123,9 +39,20 @@ import WCDClusterAdminKey from '/developers/weaviate/quickstart/img/cluster_admi
       </div>
     </div>
   </div>
+  <div class="col col--6">
+    <div class="card-demo">
+      <div class="card">
+        <div class="card__image">
+          <img src={WCDClusterAdminKey} alt="Get the admin API key" />
+        </div>
+        <div class="card__body">
+          Grab the <code>Admin</code> API key.
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <br />
 
 :::note REST Endpoint vs gRPC Endpoint
-When using an official Weaviate [client library](/developers/weaviate/client-libraries), you need to authenticate using the `REST Endpoint` and your API key. The client will infer the gRPC endpoint automatically and use the more performant gRPC protocol when available.
-:::
+When using an official Weaviate [client library](/developers/weaviate/client-libraries), you need to authenticate using the `REST Endpoint`. The client will infer the gRPC endpoint automatically and use the more performant gRPC protocol when available.

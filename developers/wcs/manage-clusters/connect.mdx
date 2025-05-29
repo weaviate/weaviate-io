@@ -21,6 +21,9 @@ import CompareURLs from '/developers/wcs/img/wcs-console-url-check.jpg';
 
 ## Connect with an API
 
+<details>
+    <summary>Connecting with API keys before <code>v1.30</code></summary>
+
 The Weaviate client libraries use API keys to authenticate to Weaviate Cloud instances. By default, API keys are enabled for all clusters.
 Both **Serverless** and **Sandbox** clusters have two types of keys:
 
@@ -34,13 +37,17 @@ The Weaviate server authenticates every request.
 
 For authentication details, see [Account management: Authentication](/developers/wcs/platform/manage-api-keys).
 
-<APICloudConnect />
+</details>
 
 ### Retrieve your API key and REST endpoint
 
-import RetrieveAPIKeys from '/_includes/wcs/retrieve-api-keys.mdx';
+import CreateAPIKeys from '/_includes/wcs/create-api-keys.mdx';
 
-<RetrieveAPIKeys />
+<CreateAPIKeys />
+
+import RetrieveRESTEndpoint from '/_includes/wcs/retrieve-rest-endpoint.mdx';
+
+<RetrieveRESTEndpoint />
 
 ### Environment variables
 

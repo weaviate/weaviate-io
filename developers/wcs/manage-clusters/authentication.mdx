@@ -1,34 +1,33 @@
 ---
 title: Manage authentication
-sidebar_position: 45
+sidebar_labe: Authentication
+sidebar_position: 5
 image: og/wcs/user_guides.jpg
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 import WCDAPIKeys from '/developers/wcs/img/wcs-api-keys.jpg';
 import WCDAddAPIKeys from '/developers/wcs/img/wcs-add-key-details.jpg';
 import WCDDelAPIKeys from '/developers/wcs/img/wcs-delete-api-key.jpg';
 import RestartTheCluster from '/_includes/wcs/restart-warning.mdx';
 
-By default, API keys are enabled for all WCD clusters.
+<Tabs groupId="authentication">
+  <TabItem value="rbac" label="RBAC enabled">
 
-There are two types of API keys, `ReadOnly` and `Admin`:
+If [RBAC (Role-Based Access Control)](/developers/weaviate/configuration/rbac/index.mdx) is enabled, clusters don't have API keys initially and you will need to create a new one.
 
-- `Admin` keys are read-write.
-- `ReadOnly` keys do not grant write access to the database.
+## Create an API key
 
-If you have a Serverless cluster, you can create, delete, edit, and rotate API keys. You cannot modify the Sandbox cluster keys.
+import CreateAPIKeys from '/_includes/wcs/create-api-keys.mdx';
 
-## Create and retrieve your API key
-
-import RetrieveAPIKeys from '/_includes/wcs/retrieve-api-keys.mdx';
-
-<RetrieveAPIKeys />
+<CreateAPIKeys />
 
 ## Delete an API key
 
 If you have a Serverless cluster, you can delete API keys. To delete an API key, follow these steps:
 
-import DeleteAPIKey from '/developers/wcs/img/weaviate-cloud-delete-api-key.png';
+import DeleteAPIKeyRBAC from '/developers/wcs/img/weaviate-cloud-delete-api-key.png';
 
 <div class="row">
   <div class="col col--4">
@@ -52,7 +51,7 @@ import DeleteAPIKey from '/developers/wcs/img/weaviate-cloud-delete-api-key.png'
   <div class="col col--8">
     <div class="card">
       <div class="card__image">
-        <img src={DeleteAPIKey} alt="Delete an API key in Weaviate Cloud" />
+        <img src={DeleteAPIKeyRBAC} alt="Delete an API key in Weaviate Cloud" />
       </div>
       <div class="card__body">Delete an API key in Weaviate Cloud.</div>
     </div>
@@ -60,7 +59,7 @@ import DeleteAPIKey from '/developers/wcs/img/weaviate-cloud-delete-api-key.png'
 </div>
 <br />
 
-import DeleteAPIKeyConfirm from '/developers/wcs/img/weaviate-cloud-delete-api-key-confirm.png';
+import DeleteAPIKeyConfirmRBAC from '/developers/wcs/img/weaviate-cloud-delete-api-key-confirm.png';
 
 <div class="row">
   <div class="col col--4">
@@ -79,7 +78,7 @@ import DeleteAPIKeyConfirm from '/developers/wcs/img/weaviate-cloud-delete-api-k
   <div class="col col--8">
     <div class="card">
       <div class="card__image">
-        <img src={DeleteAPIKeyConfirm} alt="Confirm API key deletion" />
+        <img src={DeleteAPIKeyConfirmRBAC} alt="Confirm API key deletion" />
       </div>
       <div class="card__body">Confirm API key deletion.</div>
     </div>
@@ -228,6 +227,153 @@ import EditAPIKeyForm from '/developers/wcs/img/weaviate-cloud-api-key-edit.png'
 
 <RestartTheCluster />
 :::
+
+  </TabItem>
+  <TabItem value="non-rbac" label="RBAC disabled">
+
+If [RBAC (Role-Based Access Control)](/developers/weaviate/configuration/rbac/index.mdx) is not enabled, there will be two default API keys, `ReadOnly` and `Admin`:
+
+- `Admin` keys are read-write.
+- `ReadOnly` keys do not grant write access to the database.
+
+If you have a Serverless cluster, you can create, delete, edit, and rotate API keys. You cannot modify the Sandbox cluster keys.
+
+## Retrieve your API keys
+
+import RetrieveAPIKeys from '/_includes/wcs/retrieve-api-keys.mdx';
+
+<RetrieveAPIKeys />
+
+## Create an API key
+
+If you have a Serverless cluster, you can create new API keys. To create a new API key, follow these steps:
+
+import Link from '@docusaurus/Link';
+import NewAPIKey from '/developers/wcs/img/weaviate-cloud-new-api-key.png';
+
+<div class="row">
+  <div class="col col--4">
+    <ol>
+      <li>
+        Open the{' '}
+        <Link to="https://console.weaviate.cloud">Weaviate Cloud console</Link>.
+      </li>
+      <li>
+        <Link to="/developers/wcs/manage-clusters/status#select-your-cluster">
+          Select your cluster
+        </Link>{' '}
+        and find the <code>API Keys</code> section.
+      </li>
+      <li>
+        Click on the <code>New Key</code> button (<span class="callout">1</span>
+        ).
+      </li>
+    </ol>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img src={NewAPIKey} alt="Add new API key to a cluster" />
+      </div>
+      <div class="card__body">Add new API key to a cluster.</div>
+    </div>
+  </div>
+</div>
+<br />
+
+import NewAPIKeyConfirm from '/developers/wcs/img/weaviate-cloud-new-api-key-confirm.png';
+
+<div class="row">
+  <div class="col col--4">
+    <ol start="4">
+      <li>
+        Choose if you want an <code>Admin</code> or <code>ReadOnly</code> key.
+      </li>
+      <li>
+        Click on the <code>Create</code> button.
+      </li>
+    </ol>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img src={NewAPIKeyConfirm} alt="Choose a type for the new API key" />
+      </div>
+      <div class="card__body">Choose a type for the new API key.</div>
+    </div>
+  </div>
+</div>
+
+:::info
+
+<RestartTheCluster />
+
+:::
+
+## Delete an API key
+
+If you have a Serverless cluster, you can delete API keys. To delete an API key, follow these steps:
+
+import DeleteAPIKey from '/developers/wcs/img/weaviate-cloud-delete-api-key.png';
+
+<div class="row">
+  <div class="col col--4">
+    <ol>
+      <li>
+        Open the{' '}
+        <Link to="https://console.weaviate.cloud">Weaviate Cloud console</Link>.
+      </li>
+      <li>
+        <Link to="/developers/wcs/manage-clusters/status#select-your-cluster">
+          Select your cluster
+        </Link>{' '}
+        and find the <code>API Keys</code> section.
+      </li>
+      <li>
+        Click on the <code>Delete</code> button next to the key you want to
+        delete (<span class="callout">1</span>).
+      </li>
+    </ol>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img src={DeleteAPIKey} alt="Delete an API key in Weaviate Cloud" />
+      </div>
+      <div class="card__body">Delete an API key in Weaviate Cloud.</div>
+    </div>
+  </div>
+</div>
+<br />
+
+import DeleteAPIKeyConfirm from '/developers/wcs/img/weaviate-cloud-delete-api-key-confirm.png';
+
+<div class="row">
+  <div class="col col--4">
+    <ol start="4">
+      <li>Enter the necessary text to confirm the deletion.</li>
+      <li>
+        Click on the <code>Confirm and delete</code> button.
+      </li>
+    </ol>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img src={DeleteAPIKeyConfirm} alt="Confirm API key deletion" />
+      </div>
+      <div class="card__body">Confirm API key deletion.</div>
+    </div>
+  </div>
+</div>
+
+:::info
+
+<RestartTheCluster />
+:::
+
+</TabItem>
+</Tabs>
 
 ## Support
 
