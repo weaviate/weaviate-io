@@ -10,6 +10,7 @@ hide_table_of_contents: true
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Link from '@docusaurus/Link';
 
 <span class="badge badge--secondary">Expected time: 30 minutes</span> <span class="badge badge--secondary">Prerequisites: None</span>
 <br/><br/>
@@ -87,50 +88,21 @@ If you have another preferred [model provider](/developers/weaviate/model-provid
 
 Go to the [Weaviate Cloud console](https://console.weaviate.cloud) and create a free Sandbox instance.
 
-<!-- TODO[g-despot] Update with new screenshots -->
-import Link from '@docusaurus/Link';
-import CreateCluster from '/developers/weaviate/quickstart/img/create_cluster.png';
-import CreateSandbox from '/developers/weaviate/quickstart/img/create_sandbox.png';
-
-<div class="row">
-  <div class="col col--4">
-    <ol>
-      <li><Link to="https://console.weaviate.cloud">Log onto WCD</Link>.</li>
-      <li>Click on <code>Clusters</code> on the sidebar.</li>
-      <li>In the following pane, click <code>Create cluster</code>.</li>
-    </ol>
-  </div>
-  <div class="col col--8">
-    <div class="card">
-      <div class="card__image">
-        <img src={CreateCluster} alt="Create a cluster"/>
-      </div>
-      <div class="card__body">
-        Click on this button to start cluster creation
-      </div>
-    </div>
-  </div>
-</div>
-<br/>
-
-<div class="row">
-  <div class="col col--4">
-    <ol start="4">
-      <li>Give your cluster a name.</li>
-      <li>Set your preferred cloud region.</li>
-      <li>Click "Create".</li>
-    </ol>
-  </div>
-  <div class="col col--8">
-    <div class="card">
-      <div class="card__image">
-        <img src={CreateSandbox} alt="Create a Sandbox Cluster"/>
-      </div>
-      <div class="card__body">
-        Populate these fields and create a sandbox.
-      </div>
-    </div>
-  </div>
+<div style={{position: "relative", paddingBottom: "calc(54.10879629629629% + 50px)", height: 0}}>
+  <iframe 
+    id="gky9oo0u4p" 
+    src="https://app.guideflow.com/embed/gky9oo0u4p" 
+    width="100%" 
+    height="100%" 
+    style={{overflow: "hidden", position: "absolute", border: "none"}} 
+    scrolling="no" 
+    allow="clipboard-read; clipboard-write" 
+    webKitAllowFullScreen 
+    mozAllowFullScreen 
+    allowFullScreen 
+    allowTransparency="true"
+  />
+  <script src="https://app.guideflow.com/assets/opt.js" data-iframe-id="gky9oo0u4p"></script>
 </div>
 
 <br/>
@@ -159,11 +131,11 @@ Now you can connect to your Weaviate instance. You will need the:
 - **REST Endpoint URL** and the 
 - **Administrator API Key**.
 
-:::note
-Clusters doesn't have API keys initially, you will need to create a new one.
-:::
-
 You can retrieve them both from the [WCD console](https://console.weaviate.cloud) as shown in the interactive example below.
+
+:::note
+Clusters doesn't have API keys initially, you will need to create a new one. 
+:::
 
 <div style={{position: "relative", paddingBottom: "calc(54.10879629629629% + 50px)", height: 0}}>
   <iframe 
@@ -188,7 +160,7 @@ You can retrieve them both from the [WCD console](https://console.weaviate.cloud
 Weaviate supports both REST and gRPC protocols. For Weaviate Cloud deployments, you only need to provide the REST endpoint URL - the client will automatically configure gRPC.
 :::
 
-Once you have the **REST Endpoint URL** and the **Admin API key**, you can connect to the Sandbox instance, and work with Weaviate.
+Once you have the **REST Endpoint URL** and the **admin API key**, you can connect to the Sandbox instance, and work with Weaviate.
 
 The example below shows how to connect to Weaviate and perform a basic operation, like checking the cluster status.
 
