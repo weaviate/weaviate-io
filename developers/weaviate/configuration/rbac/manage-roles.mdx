@@ -363,6 +363,44 @@ This example creates a role called `testRole` with permissions to:
   </TabItem>
 </Tabs>
 
+#### Create a role with `Replications` permissions {#replications-permissions}
+
+This example creates a role called `testRole` with permissions to:
+
+- Create, read, update and delete data from collections starting with `TargetCollection` and shards starting with `TargetShard`.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START AddReplicationsPermission"
+      endMarker="# END AddReplicationsPermission"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```typescript
+// TS/JS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
 ### Grant additional permissions
 
 Additional permissions can be granted to a role at any time. The role must already exist.
