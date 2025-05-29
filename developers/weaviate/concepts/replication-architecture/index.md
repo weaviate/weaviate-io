@@ -5,12 +5,15 @@ image: og/docs/concepts.jpg
 # tags: ['architecture']
 ---
 
+:::info Added in `v1.17`
+:::
+
 Weaviate allows data replication across a multi-node cluster by [setting a replication factor](../../manage-data/collections.mdx#replication-settings) > 1. This enables a variety of [benefits](./motivation.md) such as [high availability](./motivation.md#high-availability-redundancy). Database replication improves reliability, scalability, and/or performance.
 
 Weaviate utilizes multiple replication architectures:
 
 - [Cluster metadata replication](./consistency.md#cluster-metadata) is managed by the [Raft](https://raft.github.io/) consensus algorithm.
-- [Data replication](./consistency.md#data-objects) is [tunable](./consistency.md), leaderless, and supports [replica movement](./cluster-architecture.md#replica-movement) between nodes.
+- [Data replication](./consistency.md#data-objects) is [tunable](./consistency.md) and leaderless.
 
 <details>
   <summary>What is the cluster <code>metadata</code>?</summary>
@@ -55,7 +58,6 @@ In this Replication Architecture section, you will find information about:
   * Leaderless design
   * Replication Factor
   * Write and Read operations
-  * Replica Movement
 
 
 * **[Consistency](./consistency.md)**
@@ -72,7 +74,8 @@ In this Replication Architecture section, you will find information about:
 <p align="center"><img src="/img/docs/replication-architecture/replication-rf3-c-QUORUM.png" alt="Example setup with replication" width="75%"/></p>
 
 Database replication refers to keeping a copy of the same data point on multiple nodes of a cluster.
-The resulting system is a distributed database. A distributed database consists of multiple nodes, which can contain replicas of the data. So if one node (server) goes down, users can still access data from another node holding a replica. In addition, query throughput can be improved with replication, and operational tasks like rebalancing or node decommissioning are facilitated by moving replicas.
+
+The resulting system is a distributed database. A distributed database consists of multiple nodes, all of which can contain a copy of the data. So if one node (server) goes down, users can still access data from another node. In addition, query throughput can be improved with replication.
 
 ## CAP Theorem
 
@@ -112,7 +115,7 @@ Weaviate, as a database, must provide reliable answers to users' requests. As di
 2. **Increased (read) throughput**<br/>
   Adding extra server nodes to your database setup means that the throughput scales with it. The more server nodes, the more users (read operations) the system will be able to handle. When reading with consistency level of `ONE`, then scaling the replication factor (i.e. how many database server nodes) increases the throughput linearly.
 3. **Zero downtime upgrades**<br/>
-  Without replication, there is a window of downtime when you update a Weaviate instance. This is because the single node needs to stop, update and restart before it's ready to serve again. With replication, upgrades are done using a rolling update, in which at most one node is unavailable at any point in time while the other nodes can still serve traffic. Replica movement can assist in preparing nodes for upgrades by temporarily relocating data.
+  Without replication, there is a window of downtime when you update a Weaviate instance. This is because the single node needs to stop, update and restart before it's ready to serve again. With replication, upgrades are done using a rolling update, in which at most one node is unavailable at any point in time while the other nodes can still serve traffic.
 4. **Regional proximity**<br/>
   When users are located in different regional areas (e.g. Iceland and Australia as extreme examples), you cannot ensure low latency for all users due to the physical distance between the database server and the users. With a distributed database, you can place nodes in different local regions to decrease this latency. This depends on the Multi-Datacenter feature of replication.
 

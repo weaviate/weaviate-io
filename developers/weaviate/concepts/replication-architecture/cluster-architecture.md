@@ -5,6 +5,7 @@ image: og/docs/concepts.jpg
 # tags: ['architecture']
 ---
 
+
 This page describes how the nodes or clusters in Weaviate's replication design behave.
 
 In Weaviate, metadata replication and data replication are separate. For the metadata, Weaviate uses the [Raft](https://raft.github.io/) consensus algorithm. For data replication, Weaviate uses a leaderless design with eventual consistency.
@@ -75,9 +76,10 @@ The main advantage of a leaderless replication design is improved fault toleranc
 
 On the flipside of high availability, a leaderless database tends to be less consistent. Because there is no leader node, data on different nodes may temporarily be out of date. Leaderless databases tend to be eventually consistent. Consistency in Weaviate is [tunable](./consistency.md), but this occurs at the expense of availability.
 
+
 ## Replication Factor
 
-import RaftRFChangeWarning from '/\_includes/1-25-replication-factor.mdx';
+import RaftRFChangeWarning from '/_includes/1-25-replication-factor.mdx';
 
 <RaftRFChangeWarning/>
 
@@ -89,12 +91,12 @@ A replication factor of 3 is commonly used, since this provides a right balance 
 
 <p align="center"><img src="/img/docs/replication-architecture/replication-factor.png" alt="Replication Factor" width="75%"/></p>
 
+
 ## Write operations
 
 On a write operation, the client’s request will be sent to any node in the cluster. The first node which receives the request is assigned as the coordinator. The coordinator node sends the request to a number of predefined replicas and returns the result to the client. So, any node in the cluster can be a coordinator node. A client will only have direct contact with this coordinator node. Before sending the result back to the client, the coordinator node waits for a number of write acknowledgments from different nodes depending on the configuration. How many acknowledgments Weaviate waits for, depends on the [consistency configuration](./consistency.md).
 
 **Steps**
-
 1. The client sends data to any node, which will be assigned as the coordinator node
 2. The coordinator node sends the data to more than one replica node in the cluster
 3. The coordinator node waits for acknowledgment from a specified proportion (let's call it `x`) of cluster nodes. Starting with v1.18, `x` is [configurable](./consistency.md), and defaults to `ALL` nodes.
@@ -113,10 +115,9 @@ With a cluster size of 8 and a replication factor of 3, a write operation will n
 Read operations are also coordinated by a coordinator node, which directs a query to the correct nodes that contain the data. Since one or more nodes may contain old (stale) data, the read client will determine which of the received data is the most recent before sending it to the user.
 
 **Steps**
-
 1. The client sends a query to Weaviate, any node in the cluster that receives the request first will act as the coordinator node
 2. The coordinator node sends the query to more than one replica node in the cluster
-3. The coordinator waits for a response from x nodes. _x is [configurable](./consistency.md) (`ALL`, `QUORUM` or `ONE`, available from v1.18, Get-Object-By-ID type requests have tunable consistency from v1.17)._
+3. The coordinator waits for a response from x nodes. *x is [configurable](./consistency.md) (`ALL`, `QUORUM` or `ONE`, available from v1.18, Get-Object-By-ID type requests have tunable consistency from v1.17).*
 4. The coordinator node resolves conflicting data using some metadata (e.g. timestamp, id, version number)
 5. The coordinator returns the latest data to the client
 
@@ -124,29 +125,8 @@ If the cluster size is 3 and the replication factor is also 3, then all nodes ca
 
 If the cluster size is 10 and the replication factor is 3, the 3 nodes which contain that data (collection) can serve queries, coordinated by the coordinator node. The client waits until x (the consistency level) nodes have responded.
 
-## Replica movement
-
-:::caution Do not use in production
-Available starting in `v1.31`. This is an experimental feature and shouldn't be used in a production environment for now.
-:::
-
-Weaviate allows operators to **manually move or copy** individual shard replicas from a source node (`A`) to a destination node (`B`). These operations are typically performed for reasons such as rebalancing data after scaling, decommissioning nodes, optimizing data locality, or increasing data availability.
-
-The movement process involves several steps, reflected in replica states:
-
-1.  A new replica is initiated on the destination node (`B`) (state: `REPLICATION_HYDRATING`).
-1.  Data segments are transferred from an existing replica (usually the source replica on `A`, or another available peer) to the new replica on `B`.
-1.  Once the bulk transfer is complete, the new replica catches up on any writes that occurred during the transfer (state: `REPLICATION_FINALIZING`).
-1.  Replica has caught up to writes and has to process them into the index (state: `INDEXING`).
-1.  When the new replica on `B` is fully synchronized and ready to serve traffic, it becomes `READY`.
-1.  If the operation was a "move" (copy and delete), the original replica on node `A` is then decommissioned (state: `REPLICATION_DEHYDRATING`) and eventually removed.
-
-If the operation was a "copy", the newly created replica on node `B` will increase the replication factor for that specific shard. While a collection may have a default replication factor, individual shards within that collection can temporarily have a higher replication factor if a copy operation is performed. It's worth noting that increasing the replication factor to an even number might make it harder to [achieve quorum](#replication-factor) in certain scenarios.
-
-This entire process is designed to happen without interrupting read and write operations to the shard (though some performance impact might be observed during the transfer). The state transitions and operations are coordinated via the Raft consensus layer. As these operations are asynchronous, operators can initiate, monitor, and manage these movements using [REST API endpoints](../../api/rest.md).
-
 ## Questions and feedback
 
-import DocsFeedback from '/\_includes/docs-feedback.mdx';
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>
