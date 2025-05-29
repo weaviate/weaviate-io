@@ -155,37 +155,31 @@ import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
 ### 1.3 Connect to Weaviate
 
-Now you can connect to your Weaviate instance. Get the instance **REST Endpoint URL** and the **Administrator API Key** from the WCD console as shown below.
+Now you can connect to your Weaviate instance. You will need the:
+- **REST Endpoint URL** and the 
+- **Administrator API Key**.
 
-import WCDClusterURL from '/developers/weaviate/quickstart/img/cluster_url.png';
+:::note
+Clusters doesn't have API keys initially, you will need to create a new one.
+:::
 
-import WCDClusterAdminKey from '/developers/weaviate/quickstart/img/cluster_admin_key.png';
+You can retrieve them both from the [WCD console](https://console.weaviate.cloud) as shown in the interactive example below.
 
-<div class="row">
-  <div class="col col--6">
-    <div class="card-demo">
-      <div class="card">
-        <div class="card__image">
-          <img src={WCDClusterURL} alt="Get the (REST) endpoint URL"/>
-        </div>
-        <div class="card__body">
-          Grab the <code>REST Endpoint</code> URL.
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col col--6">
-    <div class="card-demo">
-      <div class="card">
-        <div class="card__image">
-          <img src={WCDClusterAdminKey} alt="Get the admin API key"/>
-        </div>
-        <div class="card__body">
-          Grab the <code>Admin</code> API key.
-        </div>
-      </div>
-    </div>
-  </div>
+<div style={{position: "relative", paddingBottom: "calc(54.10879629629629% + 50px)", height: 0}}>
+  <iframe 
+    id="dr9o0g2anr" 
+    src="https://app.guideflow.com/embed/dr9o0g2anr" 
+    width="100%" 
+    height="100%" 
+    style={{overflow: "hidden", position: "absolute", border: "none"}} 
+    scrolling="no" 
+    allow="clipboard-read; clipboard-write" 
+    webKitAllowFullScreen 
+    mozAllowFullScreen 
+    allowFullScreen 
+    allowTransparency="true"
+  />
+  <script src="https://app.guideflow.com/assets/opt.js" data-iframe-id="dr9o0g2anr"></script>
 </div>
 
 <br/>
