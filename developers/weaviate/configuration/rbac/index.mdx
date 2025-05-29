@@ -147,7 +147,7 @@ Permissions can be defined with the following resources, access levels and optio
   <tbody>
     <tr>
       <td>
-        <Link to="/developers/weaviate/configuration/rbac/manage-roles-users#role-management-permissions">
+        <Link to="/developers/weaviate/configuration/rbac/manage-roles#role-management-permissions">
           <strong>Role Management</strong>
         </Link>
       </td>
@@ -180,7 +180,7 @@ Permissions can be defined with the following resources, access levels and optio
     </tr>
     <tr>
       <td>
-        <Link to="/developers/weaviate/configuration/rbac/manage-roles-users#collections-permissions">
+        <Link to="/developers/weaviate/configuration/rbac/manage-roles#collections-permissions">
           <strong>Collections</strong>
         </Link>
         <br />
@@ -206,7 +206,7 @@ Permissions can be defined with the following resources, access levels and optio
     </tr>
     <tr>
       <td>
-        <Link to="/developers/weaviate/configuration/rbac/manage-roles-users#tenants-permissions">
+        <Link to="/developers/weaviate/configuration/rbac/manage-roles#tenants-permissions">
           <strong>Tenants</strong>
         </Link>
       </td>
@@ -234,7 +234,7 @@ Permissions can be defined with the following resources, access levels and optio
     </tr>
     <tr>
       <td>
-        <Link to="/developers/weaviate/configuration/rbac/manage-roles-users#data-permissions">
+        <Link to="/developers/weaviate/configuration/rbac/manage-roles#data-permissions">
           <strong>Data Objects</strong>
         </Link>
       </td>
@@ -263,7 +263,7 @@ Permissions can be defined with the following resources, access levels and optio
     </tr>
     <tr>
       <td>
-        <Link to="/developers/weaviate/configuration/rbac/manage-roles-users#backups-permissions">
+        <Link to="/developers/weaviate/configuration/rbac/manage-roles#backups-permissions">
           <strong>Backups</strong>
         </Link>
       </td>
@@ -280,7 +280,7 @@ Permissions can be defined with the following resources, access levels and optio
     </tr>
     <tr>
       <td>
-        <Link to="/developers/weaviate/configuration/rbac/manage-roles-users#clusters-permissions">
+        <Link to="/developers/weaviate/configuration/rbac/manage-roles#clusters-permissions">
           <strong>Cluster Data Access</strong>
         </Link>
       </td>
@@ -289,7 +289,7 @@ Permissions can be defined with the following resources, access levels and optio
     </tr>
     <tr>
       <td>
-        <Link to="/developers/weaviate/configuration/rbac/manage-roles-users#nodes-permissions">
+        <Link to="/developers/weaviate/configuration/rbac/manage-roles#nodes-permissions">
           <strong>Node Data Access</strong>
         </Link>
       </td>
@@ -318,6 +318,34 @@ Permissions can be defined with the following resources, access levels and optio
             </li>
           </ul>
         </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <Link to="/developers/weaviate/configuration/rbac/manage-roles#replications-permissions">
+          <strong>Replications</strong>
+        </Link>
+      </td>
+      <td>
+        <div class="access-level">Create replications</div>
+        <div class="access-level">Read replications</div>
+        <div class="access-level">Update replications</div>
+        <div class="access-level">Delete replications</div>
+      </td>
+      <td>
+        <p>Collection name filter:</p>
+        <ul>
+          <li>
+            <code>string or regex</code>: specifies which collections' objects
+            can be managed
+          </li>
+        </ul>
+        <p>Shard name filter:</p>
+        <ul>
+          <li>
+            <code>string or regex</code>: specifies which shards can be managed
+          </li>
+        </ul>
       </td>
     </tr>
   </tbody>
