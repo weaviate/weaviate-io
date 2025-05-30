@@ -212,7 +212,7 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
     # highlight-start
     query="Australian mammal cute",
-    bm25_operator=BM25Operator.or(minimum_match=2),
+    bm25_operator=BM25Operator.or_(minimum_match=2),
     # highlight-end
     limit=3,
 )
@@ -239,7 +239,7 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
     # highlight-start
     query="Australian mammal cute",
-    bm25_operator=BM25Operator.and(),  # Each result must include all tokens (e.g. "australian", "mammal", "cute")
+    bm25_operator=BM25Operator.and_(),  # Each result must include all tokens (e.g. "australian", "mammal", "cute")
     # highlight-end
     limit=3,
 )
