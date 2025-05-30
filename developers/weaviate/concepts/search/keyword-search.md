@@ -132,9 +132,9 @@ Search operators define the minimum number of query [tokens](#set-tokenization) 
 
 Conceptually, it works as though a filter is applied to the results of the BM25 score calculation. The available operators are:
 - `and`: All tokens must be present in the object
-- `or`: At least one token must be present in the object, with the minimum number of tokens being configurable (`minimumShouldMatch`)
+- `or`: At least one token must be present in the object, with the minimum number of tokens being configurable (`minimumOrTokensMatch`)
 
-As an example, a BM25 query of `computer networking guide` with the `and` operator would only return objects that contain all of the tokens `computer`, `networking`, and `guide`. In contrast, the same query with the `or` operator would return objects that contain at least one of those tokens. If the `or` operator is used with a `minimumShouldMatch` of `2`, then at least two of the tokens must be present in the object.
+As an example, a BM25 query of `computer networking guide` with the `and` operator would only return objects that contain all of the tokens `computer`, `networking`, and `guide`. In contrast, the same query with the `or` operator would return objects that contain at least one of those tokens. If the `or` operator is used with a `minimumOrTokensMatch` of `2`, then at least two of the tokens must be present in the object.
 
 See the [how-to page](../../search/bm25.md#search-operators) for details on usage.
 

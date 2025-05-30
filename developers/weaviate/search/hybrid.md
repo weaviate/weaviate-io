@@ -403,7 +403,7 @@ Keyword (BM25) search operators define the minimum number of query [tokens](#tok
 
 ### `or`
 
-With the `or` operator, the search returns objects that contain at least `minimumShouldMatch` of the tokens in the search string.
+With the `or` operator, the search returns objects that contain at least `minimumOrTokensMatch` of the tokens in the search string.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
