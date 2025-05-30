@@ -153,7 +153,7 @@ from weaviate.classes.query import Metrics, BM25Operator
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.aggregate.hybrid(
     query="animals in space",
-    bm25_operator=BM25Operator.and_,  # Additioinal parameters available, such as `bm25_operator`, `filter` etc.
+    bm25_operator=BM25Operator.and_(),  # Additioinal parameters available, such as `bm25_operator`, `filter` etc.
     # highlight-start
     object_limit=10,
     # highlight-end

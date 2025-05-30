@@ -13,6 +13,7 @@ import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.hybrid-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.hybrid-v2.ts';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/mainpkg/search-hybrid_test.go';
+import GQLCode from '!!raw-loader!/_includes/code/howto/search.hybrid.gql.py';
 
 `Hybrid` search combines the results of a vector search and a keyword (BM25F) search by fusing the two result sets.
 
@@ -413,6 +414,14 @@ With the `or` operator, the search returns objects that contain at least `minimu
       language="python"
     />
   </TabItem>
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={GQLCode}
+      startMarker="# START HybridWithBM25OperatorOrWithMin"
+      endMarker="# END HybridWithBM25OperatorOrWithMin"
+      language="python"
+    />
+  </TabItem>
 </Tabs>
 
 ### `and`
@@ -423,6 +432,14 @@ With the `and` operator, the search returns objects that contain all tokens in t
   <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# START HybridWithBM25OperatorAnd"
+      endMarker="# END HybridWithBM25OperatorAnd"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={GQLCode}
       startMarker="# START HybridWithBM25OperatorAnd"
       endMarker="# END HybridWithBM25OperatorAnd"
       language="python"
