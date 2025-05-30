@@ -51,6 +51,62 @@ assert "food" in str(response.objects[0].properties).lower()
 # End test
 
 
+# ============================
+# ===== BM25 w/ OR with min =====
+# ============================
+
+# START BM25OperatorOrWithMin
+# highlight-start
+from weaviate.classes.query import BM25Operator
+# highlight-end
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.bm25(
+    # highlight-start
+    query="Australian mammal cute",
+    operator=BM25Operator.or_(minimum_match=2),
+    # highlight-end
+    limit=3,
+)
+
+for o in response.objects:
+    print(o.properties)
+# END BM25OperatorOrWithMin
+
+
+# Tests
+assert response.objects[0].collection == "JeopardyQuestion"
+# End test
+
+
+# ============================
+# ===== BM25 w/ AND =====
+# ============================
+
+# START BM25OperatorAnd
+# highlight-start
+from weaviate.classes.query import BM25Operator
+# highlight-end
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.bm25(
+    # highlight-start
+    query="Australian mammal cute",
+    operator=BM25Operator.and_(),  # Each result must include all tokens (e.g. "australian", "mammal", "cute")
+    # highlight-end
+    limit=3,
+)
+
+for o in response.objects:
+    print(o.properties)
+# END BM25OperatorAnd
+
+
+# Tests
+assert response.objects[0].collection == "JeopardyQuestion"
+# End test
+
+
 # ================================================
 # ===== BM25 Query with score / explainScore =====
 # ================================================

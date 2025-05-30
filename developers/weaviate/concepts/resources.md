@@ -102,7 +102,7 @@ To avoid out-of-memory issues during imports, set `LIMIT_RESOURCES` to `True` or
 
 The following tactics can help to reduce Weaviate's memory usage:
 
-- **Use vector compression**. Product quantization (PQ) is a technique that reduces the size of vectors. Vector compression impacts recall performance, so we recommend testing PQ on your dataset before using it in production. <br/><br/> For more information, see [Product Quantization](../concepts/vector-index.md#hnsw-with-product-quantization-pq). <br/> To configure PQ, see [Compression](../configuration/compression/pq-compression.md).
+- **Use vector compression**. Product quantization (PQ) is a technique that reduces the size of vectors. Vector compression impacts recall performance, so we recommend testing PQ on your dataset before using it in production. <br/><br/> For more information, see [Product Quantization](../concepts/vector-quantization.md). <br/> To configure PQ, see [Compression](../configuration/compression/pq-compression.md).
 
 - **Reduce the dimensionality of your vectors.** The most effective approach to reducing memory size, is to reduce the number of dimensions per vector. If you have high dimension vectors, consider using a model that uses fewer dimensions. For example, a model that has 384 dimensions uses far less memory than a model with 1536 dimensions.
 
@@ -144,7 +144,7 @@ Weaviate is optimized to work with Solid-State Disks (SSDs). However, spinning h
 
 ## File system
 
-For optimal performance and reliability, avoid using `NFS` or similar file systems for the Weaviate persistent volume ([`PERSISTENCE_DATA_PATH`](../config-refs/env-vars/index.md)). 
+For optimal performance and reliability, avoid using `NFS` or similar file systems for the Weaviate persistent volume ([`PERSISTENCE_DATA_PATH`](../config-refs/env-vars/index.md)).
 
 Instead, use file systems like `Ext4` or `XFS` in combination with SAN storage (e.g. `EBS`) to ensure the best performance.
 
