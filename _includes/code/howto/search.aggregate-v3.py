@@ -467,6 +467,10 @@ gql_query = """
     JeopardyQuestion(
       hybrid: {
         query: "animals in space"
+        bm25SearchOperator: {
+          operator: Or
+          minimumOrTokensMatch: 2
+        }
       }
       # highlight-start
       objectLimit: 10

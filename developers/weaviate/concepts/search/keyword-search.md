@@ -62,7 +62,7 @@ Weaviate uses configurable stopwords in calculating the BM25 score. Any tokens t
 
 See the [reference page](../../config-refs/schema/index.md#stopwords-stopword-lists) for more details.
 
-### BM25 Parameters
+### BM25 parameters
 
 BM25 is a scoring function used to rank documents based on the query terms appearing in them. It has two main parameters that control its behavior:
 
@@ -122,6 +122,21 @@ flowchart LR
 Set custom `k1` and `b` values [for a collection](../../manage-data/collections.mdx#set-inverted-index-parameters).
 
 <!-- Set custom `k1` and `b` values [for a collection](../../manage-data/collections.mdx#set-inverted-index-parameters), or override values for each property. -->
+
+### Keyword search operators
+
+:::info Added in `v1.31`
+:::
+
+Search operators define the minimum number of query [tokens](#set-tokenization) that must be present in the object to be returned.
+
+Conceptually, it works as though a filter is applied to the results of the BM25 score calculation. The available operators are:
+- `and`: All tokens must be present in the object
+- `or`: At least one token must be present in the object, with the minimum number of tokens being configurable (`minimumOrTokensMatch`)
+
+As an example, a BM25 query of `computer networking guide` with the `and` operator would only return objects that contain all of the tokens `computer`, `networking`, and `guide`. In contrast, the same query with the `or` operator would return objects that contain at least one of those tokens. If the `or` operator is used with a `minimumOrTokensMatch` of `2`, then at least two of the tokens must be present in the object.
+
+See the [how-to page](../../search/bm25.md#search-operators) for details on usage.
 
 ### Selected properties
 
