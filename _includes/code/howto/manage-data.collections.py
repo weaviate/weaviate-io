@@ -591,6 +591,23 @@ client.collections.create(
 )
 # END PropModuleSettings
 
+# ====================================
+# ===== MODULE SETTINGS PROPERTY =====
+# ====================================
+
+# START AddNamedVectors
+from weaviate.classes.config import Configure
+
+articles = client.collections.get("Article")
+
+articles.config.add_vector(
+    vector_config=Configure.NamedVectors.text2vec_cohere(
+        name="body_vector",
+        source_properties=["body"],
+    )
+)
+# END AddNamedVectors
+
 # Test
 collection = client.collections.get("Article")
 config = collection.config.get()
