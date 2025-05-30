@@ -263,6 +263,7 @@ This operator allows you to combine [BM25](#bm25) and vector search to get a "be
 | `vector`     | no       | `[float]`  | optional to supply your own vector                                          |
 | `properties` | no       | `[string]` | list of properties to limit the BM25 search to, default all text properties |
 | `fusionType` | no       | `string` | the type of hybrid fusion algorithm (available from `v1.20.0`)              |
+| `bm25SearchOperator` | no   | `object` | set how many of the (bm25) query tokens must be present in the target object for it to be considered a match.  (available from `v1.31.0`) |
 
 * Notes:
     * `alpha` can be any number from 0 to 1, defaulting to 0.75.
@@ -442,6 +443,16 @@ When `relativeScoreFusion` is used as the `fusionType` with a small search `limi
 
 To mitigate this effect, Weaviate automatically performs a search with a higher limit (100) and then trims the results down to the requested limit.
 
+### BM25 search operator
+
+:::info Added in `v1.31`
+:::
+
+Use `bm25SearchOperator` to set how many of the query tokens must be present in the target object for it to be considered a match in the keyword (bm25) search portion of the hybrid search. This is useful when you want to ensure that only objects with a certain number of relevant keywords are returned.
+
+The available options are `And`, or `Or`. If `Or` is set, an additional parameter `minimumOrTokensMatch` must be specified, which defines how many of the query tokens must match for the object to be considered a match.
+
+If not yet, the keyword search will behave as if `Or` was set with `minimumOrTokensMatch` equal to 1.
 
 ## BM25
 
@@ -460,6 +471,7 @@ The `bm25` operator supports the following variables:
 | --------- | -------- | ----------- |
 | `query`   | yes      | The keyword search query. |
 | `properties` | no    | Array of properties (fields) to search in, defaulting to all properties in the collection. |
+| `searchOperator` | no | set how many of the query tokens must be present in the target object for it to be considered a match.  (available from `v1.31.0`) |
 
 :::info Boosting properties
 Specific properties can be boosted by a factor specified as a number after the caret sign, for example `properties: ["title^3", "summary"]`.
@@ -537,6 +549,16 @@ import GraphQLFiltersBM25FilterExample from '/_includes/code/graphql.filters.bm2
 
 </details>
 
+### Search operator
+
+:::info Added in `v1.31`
+:::
+
+Use `searchOperator` to set how many of the query tokens must be present in the target object for it to be considered a match. This is useful when you want to ensure that only objects with a certain number of relevant keywords are returned.
+
+The available options are `And`, or `Or`. If `Or` is set, an additional parameter `minimumOrTokensMatch` must be specified, which defines how many of the query tokens must match for the object to be considered a match.
+
+If not yet, the keyword search will behave as if `Or` was set with `minimumOrTokensMatch` equal to 1.
 
 ## ask
 
