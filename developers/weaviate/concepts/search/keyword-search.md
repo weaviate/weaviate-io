@@ -136,6 +136,8 @@ Conceptually, it works as though a filter is applied to the results of the BM25 
 
 As an example, a BM25 query of `computer networking guide` with the `and` operator would only return objects that contain all of the tokens `computer`, `networking`, and `guide`. In contrast, the same query with the `or` operator would return objects that contain at least one of those tokens. If the `or` operator is used with a `minimumOrTokensMatch` of `2`, then at least two of the tokens must be present in the object.
 
+If not specified, the default operator is `or`, with a `minimumOrTokensMatch` of `1`. This means that at least one token must be present in the object for it to be returned.
+
 See the [how-to page](../../search/bm25.md#search-operators) for details on usage.
 
 ### Selected properties
