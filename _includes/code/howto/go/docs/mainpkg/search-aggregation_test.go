@@ -223,6 +223,7 @@ func TestNearTextWithDistance(t *testing.T) {
 	t.Logf("%s", jsonResponse)
 
 	points := response.Data["Aggregate"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{})["points"].(map[string]interface{})
+	assert.NotNil(t, points["sum"])
 	assert.Greater(t, points["sum"].(float64), float64(0))
 }
 
