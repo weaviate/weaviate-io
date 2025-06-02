@@ -1,5 +1,29 @@
 [
   {
+    "title": "MUVERA with Rajesh Jayaram and Roberto Esposito - Weaviate Podcast #123",
+    "description": "Welcome to the 123nd episode of the Weaviate Podcast featuring Rajesh Jayaram, the first author of the groundbreaking MUVERA algorithm from Google and Roberto Esposito from Weaviate!",
+    "youtube": "nSW5g1H4zoU",
+    "date": "25-05-28",
+    "cover_image": "/img/podcasts/podcast-123.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Patronus AI with Anand Kannappan - Weaviate Podcast #122",
+    "description": "Welcome to the 122nd episode of the Weaviate Podcast featuring Anand Kannappan, Co-Founder of Patronus AI!",
+    "youtube": "I2jgU4waKFE",
+    "date": "25-05-15",
+    "cover_image": "/img/podcasts/podcast-122.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Haize Labs with Leonard Tang - Weaviate Podcast #121",
+    "description": "Our guest Leonard Tang takes us deep into the revolutionary world of AI evaluation with concrete techniques you can apply today.",
+    "youtube": "KFrKLkJzNDQ",
+    "date": "25-05-12",
+    "cover_image": "/img/podcasts/podcast-121.jpg",
+    "is_use_case": false
+  },
+  {
     "title": "Box AI with Ben Kus and Bob van Luijt - Weaviate Podcast #120",
     "description": "Welcome to the 120th episode of the Weaviate Podcast featuring Ben Kus, CTO from Box.",
     "youtube": "pPvSur8iEXY",
