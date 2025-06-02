@@ -414,6 +414,7 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ### Available models
 
+- `embed-v4.0`
 - `embed-multilingual-v3.0` (Default)
 - `embed-multilingual-light-v3.0`
 - `embed-multilingual-v2.0` (previously `embed-multilingual-22-12`)
