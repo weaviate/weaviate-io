@@ -5,6 +5,8 @@ image: og/docs/concepts.jpg
 # tags: ['concepts', 'search', 'keyword search', 'bm25', 'keyword']
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+
 Keyword search is an exact matching-based search using "tokens", or strings of characters.
 
 It uses the BM25 algorithm, which ranks matching documents according to their relevance to a given search query. At a high level, the BM25 algorithm uses the count of query terms in the document (term frequency) against the overall frequency of the term in the dataset (inverse document frequency) to calculate a relevance score.
@@ -137,6 +139,17 @@ Conceptually, it works as though a filter is applied to the results of the BM25 
 As an example, a BM25 query of `computer networking guide` with the `and` operator would only return objects that contain all of the tokens `computer`, `networking`, and `guide`. In contrast, the same query with the `or` operator would return objects that contain at least one of those tokens. If the `or` operator is used with a `minimumOrTokensMatch` of `2`, then at least two of the tokens must be present in the object.
 
 If not specified, the default operator is `or`, with a `minimumOrTokensMatch` of `1`. This means that at least one token must be present in the object for it to be returned.
+
+import BM25OperatorsLight from '../img/bm25_operators_light.png';
+import BM25OperatorsDark from '../img/bm25_operators_dark.png';
+
+<ThemedImage
+  alt="BM25 operators"
+  sources={{
+    light: BM25OperatorsLight,
+    dark: BM25OperatorsDark,
+  }}
+/>
 
 See the [how-to page](../../search/bm25.md#search-operators) for details on usage.
 

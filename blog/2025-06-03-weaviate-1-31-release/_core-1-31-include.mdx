@@ -69,6 +69,17 @@ For example, if you are searching for a specific product (e.g. "noise cancelling
 
 Previously, you could sort of do this by combining a BM25 query with a filter. But now, you can use the new `And` or `Or` operators to create more complex queries.
 
+import BM25OperatorsLight from './img/bm25_operators_light.png';
+import BM25OperatorsDark from './img/bm25_operators_dark.png';
+
+<ThemedImage
+  alt="BM25 operators"
+  sources={{
+    light: BM25OperatorsLight,
+    dark: BM25OperatorsDark,
+  }}
+/>
+
 ### Examples
 
 For example, the following query will ONLY match documents that contain all the terms `("australian", "mammal", "cute")` in the query, ranked by BM25 score:
