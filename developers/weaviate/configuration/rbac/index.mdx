@@ -89,7 +89,7 @@ style Resources fill:#CFD8DC,stroke:#AAB4BA,stroke-width:1px
 style Permissions fill:#E0F7FA,stroke:#B2EBF2,stroke-width:1px
 ```
 
-This RBAC system ensures that users only have the access necessary for their roles, enhancing both security and manageability within Weaviate. Roles and permissions can be managed through the Weaviate **[REST API](/developers/weaviate/api/rest#tag/authz)** directly or through a **[client library](/developers/weaviate/configuration/rbac/manage-roles-users)** programmatically.
+This RBAC system ensures that users only have the access necessary for their roles, enhancing both security and manageability within Weaviate. Roles and permissions can be managed through the Weaviate **[REST API](/developers/weaviate/api/rest#tag/authz)** directly or through a **[client library](/developers/weaviate/configuration/rbac/manage-roles.mdx)** programmatically.
 
 ## Roles
 
@@ -112,7 +112,7 @@ Any authenticated user that is not assigned a predefined role has no roles or pe
 
 These users' permissions can be modified through Weaviate by those with the appropriate permissions for **managing roles**. This allows for the creation of custom roles, which can be assigned to users as needed.
 
-Role management can be performed with a [predefined `root` role](/developers/weaviate/configuration/rbac/configuration) or a custom role with [`manage_roles` permissions](/developers/weaviate/configuration/rbac/manage-roles-users#role-management-permissions).
+Role management can be performed with a [predefined `root` role](/developers/weaviate/configuration/rbac/configuration) or a custom role with [`manage_roles` permissions](/developers/weaviate/configuration/rbac/manage-roles#role-management-permissions).
 
 :::caution Role Management Permissions
 Be careful when assigning permissions to roles that manage roles. These permissions can be used to escalate privileges by assigning additional roles to users. Only assign these permissions to trusted users.
@@ -147,7 +147,7 @@ Permissions can be defined with the following resources, access levels and optio
   <tbody>
     <tr>
       <td>
-        <Link to="/developers/weaviate/configuration/rbac/manage-roles-users#role-management-permissions">
+        <Link to="/developers/weaviate/configuration/rbac/manage-roles#role-management-permissions">
           <strong>Role Management</strong>
         </Link>
       </td>
@@ -180,7 +180,7 @@ Permissions can be defined with the following resources, access levels and optio
     </tr>
     <tr>
       <td>
-        <Link to="/developers/weaviate/configuration/rbac/manage-roles-users#collections-permissions">
+        <Link to="/developers/weaviate/configuration/rbac/manage-roles#collections-permissions">
           <strong>Collections</strong>
         </Link>
         <br />
@@ -206,7 +206,7 @@ Permissions can be defined with the following resources, access levels and optio
     </tr>
     <tr>
       <td>
-        <Link to="/developers/weaviate/configuration/rbac/manage-roles-users#tenants-permissions">
+        <Link to="/developers/weaviate/configuration/rbac/manage-roles#tenants-permissions">
           <strong>Tenants</strong>
         </Link>
       </td>
@@ -234,7 +234,7 @@ Permissions can be defined with the following resources, access levels and optio
     </tr>
     <tr>
       <td>
-        <Link to="/developers/weaviate/configuration/rbac/manage-roles-users#data-permissions">
+        <Link to="/developers/weaviate/configuration/rbac/manage-roles#data-permissions">
           <strong>Data Objects</strong>
         </Link>
       </td>
@@ -263,7 +263,7 @@ Permissions can be defined with the following resources, access levels and optio
     </tr>
     <tr>
       <td>
-        <Link to="/developers/weaviate/configuration/rbac/manage-roles-users#backups-permissions">
+        <Link to="/developers/weaviate/configuration/rbac/manage-roles#backups-permissions">
           <strong>Backups</strong>
         </Link>
       </td>
@@ -280,7 +280,7 @@ Permissions can be defined with the following resources, access levels and optio
     </tr>
     <tr>
       <td>
-        <Link to="/developers/weaviate/configuration/rbac/manage-roles-users#clusters-permissions">
+        <Link to="/developers/weaviate/configuration/rbac/manage-roles#clusters-permissions">
           <strong>Cluster Data Access</strong>
         </Link>
       </td>
@@ -289,7 +289,7 @@ Permissions can be defined with the following resources, access levels and optio
     </tr>
     <tr>
       <td>
-        <Link to="/developers/weaviate/configuration/rbac/manage-roles-users#nodes-permissions">
+        <Link to="/developers/weaviate/configuration/rbac/manage-roles#nodes-permissions">
           <strong>Node Data Access</strong>
         </Link>
       </td>
