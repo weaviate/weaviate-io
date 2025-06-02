@@ -1,29 +1,30 @@
 ---
-title: Manage authentication
+title: Authentication
 sidebar_labe: Authentication
 sidebar_position: 5
 image: og/wcs/user_guides.jpg
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 import WCDAPIKeys from '/developers/wcs/img/wcs-api-keys.jpg';
 import WCDAddAPIKeys from '/developers/wcs/img/wcs-add-key-details.jpg';
 import WCDDelAPIKeys from '/developers/wcs/img/wcs-delete-api-key.jpg';
 import RestartTheCluster from '/_includes/wcs/restart-warning.mdx';
 
-<Tabs groupId="authentication">
-  <TabItem value="rbac" label="RBAC enabled">
+There are two options for managing cluster authentication depending on [RBAC (Role-Based Access Control)](/developers/weaviate/configuration/rbac/index.mdx) being enabled:
+- [Authentication with RBAC enabled](#authentication-with-rbac-enabled)
+- [Authentication with RBAC disabled](#authentication-with-rbac-disabled)
 
-If [RBAC (Role-Based Access Control)](/developers/weaviate/configuration/rbac/index.mdx) is enabled, clusters don't have API keys initially and you will need to create a new one.
+## Authentication with RBAC enabled
 
-## Create an API key
+This section only applies to clusters that have [RBAC (Role-Based Access Control)](/developers/weaviate/configuration/rbac/index.mdx) enabled. New clusters with Weaviate versions `v1.30` and newer have RBAC enabled by default.
+
+### Create an API key
 
 import CreateAPIKeys from '/_includes/wcs/create-api-keys.mdx';
 
 <CreateAPIKeys />
 
-## Delete an API key
+### Delete an API key
 
 If you have a Serverless cluster, you can delete API keys. To delete an API key, follow these steps:
 
@@ -85,12 +86,7 @@ import DeleteAPIKeyConfirmRBAC from '/developers/wcs/img/weaviate-cloud-delete-a
   </div>
 </div>
 
-:::info
-
-<RestartTheCluster />
-:::
-
-## Rotate an API key
+### Rotate an API key
 
 Rotating an API key allows you to generate a new key while invalidating the old one, enhancing security. To rotate an API key for a Serverless cluster:
 
@@ -136,9 +132,9 @@ import RotateAPIKeyConfirm from '/developers/wcs/img/weaviate-cloud-api-key-rota
         <span class="callout">1</span> in the image below).
       </li>
       <li>
-        A new API key will be generated. <span class="callout">Important:</span>{' '}
-        Make sure to copy and save the new key immediately, as you won't be able
-        to see it again.
+        A new API key will be generated. <span class="callout">2</span> Make
+        sure to copy and save the new key immediately, as you won't be able to
+        see it again.
       </li>
     </ol>
   </div>
@@ -152,12 +148,7 @@ import RotateAPIKeyConfirm from '/developers/wcs/img/weaviate-cloud-api-key-rota
   </div>
 </div>
 
-:::info
-
-<RestartTheCluster />
-:::
-
-## Edit an API key
+### Edit an API key
 
 Editing an API key allows you to modify its name or associated roles. To edit an API key for a Serverless cluster:
 
@@ -204,8 +195,10 @@ import EditAPIKeyForm from '/developers/wcs/img/weaviate-cloud-api-key-edit.png'
       <li>
         You can also update the roles associated with this API key. Choose from
         the existing roles or{' '}
-        <Link to="/TODO-link-to-role-management">assign different roles</Link> (
-        <span class="callout">2</span>).
+        <Link to="/developers/wcs/manage-clusters/authorization">
+          assign different roles
+        </Link>{' '}
+        (<span class="callout">2</span>).
       </li>
       <li>
         Click the <code>Save</code> button (<span class="callout">3</span>) to
@@ -223,13 +216,7 @@ import EditAPIKeyForm from '/developers/wcs/img/weaviate-cloud-api-key-edit.png'
   </div>
 </div>
 
-:::info
-
-<RestartTheCluster />
-:::
-
-  </TabItem>
-  <TabItem value="non-rbac" label="RBAC disabled">
+## Authentication with RBAC disabled
 
 If [RBAC (Role-Based Access Control)](/developers/weaviate/configuration/rbac/index.mdx) is not enabled, there will be two default API keys, `ReadOnly` and `Admin`:
 
@@ -238,13 +225,13 @@ If [RBAC (Role-Based Access Control)](/developers/weaviate/configuration/rbac/in
 
 If you have a Serverless cluster, you can create, delete, edit, and rotate API keys. You cannot modify the Sandbox cluster keys.
 
-## Retrieve your API keys
+### Retrieve your API keys
 
 import RetrieveAPIKeys from '/_includes/wcs/retrieve-api-keys.mdx';
 
 <RetrieveAPIKeys />
 
-## Create an API key
+### Create an API key
 
 If you have a Serverless cluster, you can create new API keys. To create a new API key, follow these steps:
 
@@ -310,7 +297,7 @@ import NewAPIKeyConfirm from '/developers/wcs/img/weaviate-cloud-new-api-key-con
 
 :::
 
-## Delete an API key
+### Delete an API key
 
 If you have a Serverless cluster, you can delete API keys. To delete an API key, follow these steps:
 
@@ -370,10 +357,8 @@ import DeleteAPIKeyConfirm from '/developers/wcs/img/weaviate-cloud-delete-api-k
 :::info
 
 <RestartTheCluster />
-:::
 
-</TabItem>
-</Tabs>
+:::
 
 ## Support
 
