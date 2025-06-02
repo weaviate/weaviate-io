@@ -5,6 +5,11 @@ sidebar_position: 6
 image: og/wcs/user_guides.jpg
 ---
 
+import Link from '@docusaurus/Link';
+import WCDCreateRole from '/developers/wcs/img/weaviate-cloud-roles-create.png';
+import WCDCreateRoleForm from '/developers/wcs/img/weaviate-cloud-roles-create-form.png';
+import RestartTheCluster from '/_includes/wcs/restart-warning.mdx';
+
 :::info
 
 This guide only applies for clusters that have [RBAC (Role-Based Access Control)](/developers/weaviate/configuration/rbac/index.mdx) enabled.
@@ -13,6 +18,92 @@ This guide only applies for clusters that have [RBAC (Role-Based Access Control)
 
 ## Create a role
 
-## Edit a role
+Custom roles allow you to define specific permissions for different users or applications accessing your Weaviate cluster. You can control access to collections, tenants, and specific operations.
 
-## Delete a role
+<div class="row">
+  <div class="col col--4">
+    <ol>
+      <li>
+        Open the{' '}
+        <Link to="https://console.weaviate.cloud">Weaviate Cloud console</Link>.
+      </li>
+      <li>
+        <Link to="/developers/wcs/manage-clusters/status#select-your-cluster">
+          Select your cluster
+        </Link>{' '}
+        and navigate to the <code>Roles</code> section.
+      </li>
+      <li>
+        Click on the <code>Create Role</code> button (
+        <span class="callout">1</span>).
+      </li>
+    </ol>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img src={WCDCreateRole} alt="Roles management page in Weaviate Cloud" />
+      </div>
+      <div class="card__body">Access the roles management page.</div>
+    </div>
+  </div>
+</div>
+<br />
+
+<div class="row">
+  <div class="col col--4">
+    <ol start="4">
+      <li>
+        Enter a descriptive name for your role in the <code>Role name</code>{' '}
+        field (<span class="callout">1</span>).
+      </li>
+      <li>
+        In the <code>Collection</code> section (<span class="callout">2</span>),
+        configure collection-level permissions:
+        <ul>
+          <li>
+            Select the target collection from the dropdown (
+            <span class="callout">3</span>)
+          </li>
+          <li>
+            Choose the appropriate permissions: Create, Read, Update, or Delete
+            Collections (<span class="callout">4</span>)
+          </li>
+        </ul>
+      </li>
+      <li>
+        Optionally, configure <code>Collection Tenants</code> permissions if
+        your collections use multi-tenancy.
+      </li>
+      <li>
+        Click the <code>Create</code> button (<span class="callout">5</span>) to
+        save your new role.
+      </li>
+    </ol>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img src={WCDCreateRoleForm} alt="Create new API role form" />
+      </div>
+      <div class="card__body">Configure permissions for your new role.</div>
+    </div>
+  </div>
+</div>
+
+:::info
+
+To find out more about RBAC and available permissions, check out the [RBAC documentation](/developers/weaviate/configuration/rbac/index.mdx). 
+
+:::
+
+## Next Steps
+
+- [Manage API keys in WCD](/developers/wcs/manage-clusters/authentication) and assign them to your custom roles
+- [RBAC documentation](/developers/weaviate/configuration/rbac/index.mdx)
+
+## Support
+
+import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
+
+<SupportAndTrouble />
