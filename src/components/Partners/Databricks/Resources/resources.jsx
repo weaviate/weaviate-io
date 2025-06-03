@@ -29,15 +29,7 @@ export default function Resources() {
               </div>
             </div>
           </Link>
-          <Link to="https://github.com/weaviate/recipes/blob/main/integrations/data-platforms/databricks/databricks-spark-connector-demo.ipynb">
-            <div className={styles.latestBox}>
-              <div className={`${styles.insideBox} `}></div>
-              <div className={styles.textBox}>
-                <h3>GitHub</h3>
-                <p>Recipe: Databricks Spark connector</p>
-              </div>
-            </div>
-          </Link>
+
           <Link to="https://weaviate.io/developers/weaviate/model-providers/databricks">
             <div className={styles.latestBox}>
               <div className={`${styles.insideBox} `}></div>
@@ -54,6 +46,15 @@ export default function Resources() {
               <div className={styles.textBox}>
                 <h3>Docs</h3>
                 <p>Weaviate Data Platform Integrations: Databricks</p>
+              </div>
+            </div>
+          </Link>
+          <Link to="https://github.com/weaviate/recipes/blob/main/integrations/data-platforms/databricks/databricks-spark-connector-demo.ipynb">
+            <div className={styles.latestBox}>
+              <div className={`${styles.insideBox} `}></div>
+              <div className={styles.textBox}>
+                <h3>GitHub</h3>
+                <p>Recipe: Databricks Spark connector</p>
               </div>
             </div>
           </Link>
