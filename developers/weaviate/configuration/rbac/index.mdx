@@ -131,6 +131,7 @@ Permissions in Weaviate define what actions users can perform on specific resour
 Permissions can be defined with the following resources, access levels and optional constraints:
 
 <!-- TODO: Potentially replace with a React component -->
+
 <table class="rbac-table">
   <colgroup>
     <col style={{ width: '25%' }} />
@@ -152,8 +153,10 @@ Permissions can be defined with the following resources, access levels and optio
         </Link>
       </td>
       <td class="access-cell">
-        <div class="access-level">Read roles</div>
-        <div class="access-level">Manage roles</div>
+        <div class="access-level">Create roles</div>
+        <div class="access-level">Read role info</div>
+        <div class="access-level">Update role permissions</div>
+        <div class="access-level">Delete roles</div>
       </td>
       <td class="constraints-cell">
         <div class="constraints-level">
@@ -173,6 +176,32 @@ Permissions can be defined with the following resources, access levels and optio
             <li>
               <code>match</code>: Only allow role management with the current
               user's permission level
+            </li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <Link to="/developers/weaviate/configuration/rbac/manage-roles#user-management-permissions">
+          <strong>User Management</strong>
+        </Link>
+      </td>
+      <td class="access-cell">
+        <div class="access-level">Create users</div>
+        <div class="access-level">Read user info</div>
+        <div class="access-level">Update/rotate user API key</div>
+        <div class="access-level">Delete users</div>
+        <div class="access-level">
+          Assign and revoke roles to and from users
+        </div>
+      </td>
+      <td class="constraints-cell">
+        <div class="constraints-level">
+          <p>User name filter:</p>
+          <ul>
+            <li>
+              <code>string or regex</code>: specifies which users can be managed
             </li>
           </ul>
         </div>
@@ -255,8 +284,8 @@ Permissions can be defined with the following resources, access levels and optio
         <p>Tenant name filter:</p>
         <ul>
           <li>
-            <code>string or regex</code>: specifies which tenants' objects
-            can be managed
+            <code>string or regex</code>: specifies which tenants' objects can
+            be managed
           </li>
         </ul>
       </td>
@@ -350,7 +379,7 @@ For example, to create a tenant in a collection called `TestCollection`, the use
 
 ## Users
 
-The [user management](./manage-users.mdx) API can be used to create, delete and list users, rotate their API keys and manage their roles. 
+The [user management](./manage-users.mdx) API can be used to create, delete and list users, rotate their API keys and manage their roles.
 
 ## Further resources
 
@@ -363,4 +392,4 @@ The [user management](./manage-users.mdx) API can be used to create, delete and 
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-<DocsFeedback/>
+<DocsFeedback />

@@ -75,6 +75,8 @@ Permissions for these resource types can be assigned to roles:
 
 1. [**Role Management**](#role-management-permissions)
 
+1. [**User Management**](#user-management-permissions)
+
 1. [**Collections**](#collections-permissions) (collection definitions only, data object permissions are separate)
 
 1. [**Tenants**](#tenants-permissions)
@@ -91,7 +93,7 @@ Permissions for these resource types can be assigned to roles:
 
 This example creates a role called `testRole` with permissions to:
 
-- Manage all roles starting with `testRole*`.
+- Create, read, update and delete all roles starting with `testRole*`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -109,6 +111,45 @@ This example creates a role called `testRole` with permissions to:
           endMarker="// END AddManageRolesPermission"
           language="ts"
         />
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+#### Create a role with `User Management` permissions {#user-management-permissions}
+
+This example creates a role called `testRole` with permissions to:
+
+- Create, read, update and delete all users starting with `testUsers*`.
+- Assign and revoke roles to and from users starting with `testUsers*`.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START AddManageUsersPermission"
+      endMarker="# END AddManageUsersPermission"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```typescript
+// TS/JS support coming soon
+```
+
   </TabItem>
   <TabItem value="go" label="Go">
 

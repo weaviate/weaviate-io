@@ -30,17 +30,38 @@ from weaviate.classes.rbac import Permissions, RoleScope
 permissions = [
     Permissions.roles(
         role="testRole*",  # Applies to all roles starting with "testRole"
+        scope=RoleScope.MATCH,  # Only allow role management with the current user's permission level
+        # scope=RoleScope.ALL   # Allow role management with all permissions
         create=True,  # Allow creating roles
         read=True,  # Allow reading roles
         update=True,  # Allow updating roles
         delete=True,  # Allow deleting roles
-        scope=RoleScope.MATCH,  # Only allow role management with the current user's permission level
-        # scope=RoleScope.ALL   # Allow role management with all permissions
     )
 ]
 
 client.roles.create(role_name="testRole", permissions=permissions)
 # END AddManageRolesPermission
+
+assert "testRole" in client.roles.list_all().keys()
+
+client.roles.delete("testRole")
+
+# START AddManageUsersPermission
+from weaviate.classes.rbac import Permissions
+
+permissions = [
+    Permissions.users(
+        user="testUser*",  # Applies to all users starting with "testUser"
+        create=True,  # Allow creating users
+        read=True,  # Allow reading user info
+        update=True,  # Allow rotating user API key
+        delete=True,  # Allow deleting users
+        assign_and_revoke=True,  # Allow assigning and revoking roles to and from users
+    )
+]
+
+client.roles.create(role_name="testRole", permissions=permissions)
+# END AddManageUsersPermission
 
 assert "testRole" in client.roles.list_all().keys()
 
@@ -88,7 +109,7 @@ client.roles.create(role_name="testRole", permissions=permissions)
 permissions = client.roles.get(role_name="testRole")
 assert any(
     permission.collection == "TargetCollection*"
-    for permission in permissions.collections_permissions
+    for permission in permissions.tenants_permissions
 )
 
 client.roles.delete("testRole")
