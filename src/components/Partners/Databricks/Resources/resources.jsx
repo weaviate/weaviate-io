@@ -17,6 +17,19 @@ export default function Resources() {
           </p>
         </div>
         <div className={styles.latestModule}>
+          <Link to="/blog/genai-apps-with-weaviate-and-databricks">
+            <div className={styles.latestBox}>
+              <div className={`${styles.insideBox} `}></div>
+              <div className={styles.textBox}>
+                <h3>Blog</h3>
+                <p>
+                  Build Scalable Gen AI Data Pipelines with Weaviate and
+                  Databricks
+                </p>
+              </div>
+            </div>
+          </Link>
+
           <Link to="https://weaviate.io/developers/weaviate/model-providers/databricks">
             <div className={styles.latestBox}>
               <div className={`${styles.insideBox} `}></div>
