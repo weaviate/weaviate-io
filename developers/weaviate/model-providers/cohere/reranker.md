@@ -180,8 +180,9 @@ Any search in Weaviate can be combined with a reranker to perform reranking oper
 
 ### Available models
 
+- `rerank-v3.5` (default)
 - `rerank-english-v3.0`
-- `rerank-multilingual-v3.0 (default)`
+- `rerank-multilingual-v3.0`
 - `rerank-english-v2.0`
 - `rerank-multilingual-v2.0`
 
