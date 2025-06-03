@@ -55,6 +55,21 @@ assert(Object.keys(await client.roles.listAll()).includes('testRole'));
 
 await client.roles.delete("testRole")
 
+// START AddManageUsersPermission
+
+const userPermission = permissions.users({
+    user: "testRole",  // Applies to all users starting with "testUser"
+    assignAndRevoke: true,  // Allow assigning and revoking roles to and from users
+    read: true,  // Allow reading user info
+})
+
+await client.roles.create("testRole", userPermission)
+// END AddManageUsersPermission
+
+assert(Object.keys(await client.roles.listAll()).includes('testRole'));
+
+await client.roles.delete("testRole")
+
 // START AddCollectionsPermission
 
 const collectionPermissions = [
