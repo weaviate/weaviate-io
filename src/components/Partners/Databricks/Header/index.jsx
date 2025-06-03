@@ -13,8 +13,8 @@ export default function PartnersHeader() {
             <div className={styles.leftGrid}>
               <p className={styles.title}>Weaviate + Databricks</p>
               <p className={styles.text}>
-                Build sophisticated AI applications leveraging Databricks’
-                Foundation Model APIs directly from Weaviate.
+                Build sophisticated AI applications using the Spark Connector
+                and Databricks’ Foundation Model APIs directly from Weaviate.
               </p>
             </div>
             <div className={styles.rightGrid}>
