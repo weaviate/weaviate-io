@@ -64,7 +64,7 @@ This can lead to a higher memory footprint in use, as many vector search systems
 
 How much larger? Well, as you can see from the image above, the total number of vectors in a multi-vector index will be greater than the single-vector index by `average_vectors_per_embedding` / (`ratio_of_vector_length`). As multi-vector embeddings can comprise hundreds up to thousands vectors per document, this can be much larger.
 
-If we embed a million documents of ~100 tokens per document, a single-vector embedding model (of 768 dimensional single-precision, 32-bit, floating point numbera) may require `768 * 1M * 4 bytes = ~3.1GB` of memory a multi-vector embedding model (of 96 dimensions) may require a whopping `96 * 100 * 1M * 4 bytes = ~40GB`!
+If we embed a million documents of ~100 tokens per document, a single-vector embedding model (of 768 dimensional single-precision, 32-bit, floating point numbers) may require `768 * 1M * 4 bytes = ~3.1GB` of memory. On the other hand, a multi-vector embedding model (of 96 dimensions) may require a whopping `96 * 100 * 1M * 4 bytes = ~40GB`!
 
 import SingleMultiMemory from './img/single-multi-memory.png';
 
@@ -352,8 +352,6 @@ import TestResultsRecall from './img/test_results_recall.png';
   />
   <figcaption><small>Heap allocation without using MUVERA + sq vs. MUVERA + sq<br /><br /></small></figcaption>
 </Figure>
-
-Heap allocation without using MUVERA + `sq` vs. MUVERA +  `sq`
 
 <Figure>
   <img
