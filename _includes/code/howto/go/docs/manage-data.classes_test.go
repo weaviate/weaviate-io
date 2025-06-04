@@ -10,6 +10,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/weaviate/weaviate-go-client/v4/weaviate"
 	"github.com/weaviate/weaviate/entities/models"
+	"github.com/weaviate/weaviate/entities/schema"
 	"github.com/weaviate/weaviate/entities/vectorindex/common"
 	"weaviate.io/docs/docs/helper"
 )
@@ -38,7 +39,7 @@ func Test_ManageDataClasses(t *testing.T) {
 			Class: className,
 		}
 
-		// Add the class to the schema
+		// Create the collection (also called class)
 		err := client.Schema().ClassCreator().
 			WithClass(emptyClass).
 			Do(ctx)
@@ -98,7 +99,7 @@ func Test_ManageDataClasses(t *testing.T) {
 			},
 		}
 
-		// Add the class to the schema
+		// Create the collection (also called class)
 		err := client.Schema().ClassCreator().
 			WithClass(originalClass).
 			Do(ctx)
@@ -121,5 +122,207 @@ func Test_ManageDataClasses(t *testing.T) {
 		// TODO Not yet available in GO
 
 		// END UpdateCollectionTODO
+	})
+
+	t.Run("create class with properties", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		// START CreateCollectionWithProperties
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+			Properties: []*models.Property{
+				{
+					Name:     "title",
+					DataType: schema.DataTypeText.PropString(),
+				},
+				{
+					Name:     "body",
+					DataType: schema.DataTypeText.PropString(),
+				},
+			},
+		}
+		// END CreateCollectionWithProperties
+
+		err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("create class with vectorizer", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		// START CreateCollectionWithVectorizer
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+			Vectorizer:  "text2vec-openai",
+			Properties: []*models.Property{
+				{
+					Name:     "title",
+					DataType: schema.DataTypeText.PropString(),
+				},
+				{
+					Name:     "body",
+					DataType: schema.DataTypeText.PropString(),
+				},
+			},
+		}
+		// END CreateCollectionWithVectorizer
+
+		err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("create class with named vectors", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("ArticleNV").Do(ctx)
+		require.NoError(t, err)
+
+		// START CreateCollectionWithNamedVectors
+		articleClass := &models.Class{
+			Class:       "ArticleNV",
+			Description: "Collection of articles with named vectors",
+			Properties: []*models.Property{
+				{
+					Name:     "title",
+					DataType: schema.DataTypeText.PropString(),
+				},
+				{
+					Name:     "country",
+					DataType: schema.DataTypeText.PropString(),
+				},
+			},
+			VectorConfig: map[string]models.VectorConfig{
+				"title": {
+					Vectorizer: map[string]interface{}{
+						"text2vec-openai": map[string]interface{}{
+							"sourceProperties": []string{"title"},
+						},
+					},
+					VectorIndexType: "hnsw",
+				},
+				"title_country": {
+					Vectorizer: map[string]interface{}{
+						"text2vec-openai": map[string]interface{}{
+							"sourceProperties": []string{"title", "country"},
+						},
+					},
+					VectorIndexType: "hnsw",
+				},
+				"custom_vector": {
+					Vectorizer: map[string]interface{}{
+						"none": map[string]interface{}{},
+					},
+					VectorIndexType: "hnsw",
+				},
+			},
+		}
+		// END CreateCollectionWithNamedVectors
+
+		err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("create class with vectorizer settings", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		// START ModuleSettings
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+			Vectorizer:  "text2vec-cohere",
+			ModuleConfig: map[string]interface{}{
+				"text2vec-cohere": map[string]interface{}{
+					"model":              "embed-multilingual-v2.0",
+					"vectorizeClassName": true,
+				},
+			},
+		}
+		// END ModuleSettings
+
+		err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("create class with vector index type", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		// START SetVectorIndexType
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+			Properties: []*models.Property{
+				{
+					Name:     "title",
+					DataType: schema.DataTypeText.PropString(),
+				},
+				{
+					Name:     "country",
+					DataType: schema.DataTypeText.PropString(),
+				},
+			},
+			Vectorizer:      "text2vec-openai",
+			VectorIndexType: "hnsw", // Or "flat", "dynamic"
+		}
+		// END SetVectorIndexType
+
+		err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("create class with vector index parameters", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		// START SetVectorIndexParams
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+			Properties: []*models.Property{
+				{
+					Name:     "title",
+					DataType: schema.DataTypeText.PropString(),
+				},
+				{
+					Name:     "country",
+					DataType: schema.DataTypeText.PropString(),
+				},
+			},
+			Vectorizer:      "text2vec-openai",
+			VectorIndexType: "hnsw",
+			VectorIndexConfig: map[string]interface{}{
+				"bq": map[string]interface{}{
+					"enabled": true,
+				},
+				"efConstruction": 300,
+				"distance":       "cosine",
+				"filterStrategy": "acorn",
+			},
+		}
+		// END SetVectorIndexParams
+
+		err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, err)
 	})
 }

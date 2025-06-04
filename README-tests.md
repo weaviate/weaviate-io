@@ -30,6 +30,31 @@ pip install -r requirements.txt
 ```
 - Then run `pytest` from your environment. This will execute tests defined within the `tests` directory.
 
+### Golang
+
+Run `tests/start-weaviate.sh` to start the Weaviate instances.
+
+You can run go tests from the `_includes/code/howto/go/docs` directory.
+
+Before doing so:
+
+- run `go mod tidy` to ensure that the dependencies are up to date.
+
+To run individual tests, use:
+
+```bash
+go test <file_path> -v
+# e.g
+go test docs/manage-data.classes_test.go -v
+```
+
+Or you can run all tests with:
+
+```bash
+go test
+```
+
+After running the tests, run `tests/stop-weaviate.sh` to stop the Weaviate instances.
 
 ## Thanks
 
