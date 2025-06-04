@@ -10,7 +10,7 @@ description: "Weaviate `1.31` implements the MUVERA encoding algorithm for multi
 
 Weaviate `1.31` implements the MUVERA encoding algorithm for multi-vector embeddings. In this blog, we dive the algorithm in detail, including what MUVERA is, how it works, and whether it might make sense for you.
 
-Let’s start by reviewing what multi-vector models are, and the challenges that MUVERA looks to solve.
+Let's start by reviewing what multi-vector models are, and the challenges that MUVERA looks to solve.
 
 :::info Quick Takeaways
 
@@ -38,13 +38,10 @@ import SingleMultiComp from './img/single-multi-comp.png';
   <img
     alt="Single vector to multi-vector comparison"
     src={SingleMultiComp}
-    width="800"
+    width="600"
   />
-    <figcaption><small>Single vector to multi-vector comparison<br /><br />
-  </small></figcaption>
+  <figcaption><small>Single vector to multi-vector comparison<br /><br /></small></figcaption>
 </Figure>
-
-![single-multi-comp.png](./img/single-multi-comp.png)
 
 These advantages make multi-vector models a great fit for many use cases. However, multi-vector embeddings carry two potential disadvantages over their single-vector cousins, owing to their size and relative complexity.
 
@@ -52,7 +49,16 @@ These advantages make multi-vector models a great fit for many use cases. Howeve
 
 Multi-vector embeddings comprise multiple vectors, each one representing a part of the object, such as a token (text) or a patch (image). Although each vector in a multi-vector embedding is smaller, the whole embedding tends to be larger than a typical single-vector embedding.
 
-![multi-vector-embeddings1.png](./img/multi-vector-embeddings1.png)
+import MultiVectorEmbeddings1 from './img/multi-vector-embeddings1.png';
+
+<Figure>
+  <img
+    alt="Multi-vector embeddings memory comparison"
+    src={MultiVectorEmbeddings1}
+    width="100%"
+  />
+  <figcaption><small>Multi-vector embeddings memory comparison<br /><br /></small></figcaption>
+</Figure>
 
 This can lead to a higher memory footprint in use, as many vector search systems use in-memory indexes such as [HNSW](/blog/vector-search-explained).
 
@@ -60,7 +66,16 @@ How much larger? Well, as you can see from the image above, the total number of 
 
 If we embed a million documents of ~100 tokens per document, a single-vector embedding model (of 768 dimensional single-precision, 32-bit, floating point numbera) may require `768 * 1M * 4 bytes = ~3.1GB` of memory a multi-vector embedding model (of 96 dimensions) may require a whopping `96 * 100 * 1M * 4 bytes = ~40GB`!
 
-![single-multi-memory.png](./img/single-multi-memory.png)
+import SingleMultiMemory from './img/single-multi-memory.png';
+
+<Figure>
+  <img
+    alt="Single vs multi-vector memory usage"
+    src={SingleMultiMemory}
+    width="600"
+  />
+  <figcaption><small>Single vs multi-vector memory usage<br /><br /></small></figcaption>
+</Figure>
 
 And of course, higher memory use also means higher costs, whether it is your own hardware or via cloud infrastructure such as Weaviate Cloud.
 
@@ -78,11 +93,11 @@ $$
 sim(D,Q)=\sum_{q \in Q} \max_{d \in D} q \cdot d
 $$
 
-This is a non-linear operation which loops over each query token and compute the similarity between that query token and all the document token choosing the most similar one. In other words, the MaxSim searches the “best-match” for a query term among all the document ones.
+This is a non-linear operation which loops over each query token and compute the similarity between that query token and all the document token choosing the most similar one. In other words, the MaxSim searches the "best-match" for a query term among all the document ones.
 
 While an elegant method, this calculation is another overhead that is unique to multi-vector embeddings.
 
-To improve the performance of multi-vector embeddings, Google’s research group proposed MUVERA (Multi-Vector Retrieval via Fixed Dimensional Encodings) which aims to reduce the memory occupancy to store the multi-vector embeddings using fixed encodings.
+To improve the performance of multi-vector embeddings, Google's research group proposed MUVERA (Multi-Vector Retrieval via Fixed Dimensional Encodings) which aims to reduce the memory occupancy to store the multi-vector embeddings using fixed encodings.
 
 ## MUVERA to the rescue
 
@@ -98,7 +113,7 @@ $$
 encode(x_{multi})\implies x_{single} \quad \quad x \in \{D, Q\}
 $$
 
-In order to say if this function is “good enough” we want to maximize the similarity of the two key measures:
+In order to say if this function is "good enough" we want to maximize the similarity of the two key measures:
 
 - dot-product of the encoded embeddings $x_{single}$ (aka single-vector embedding), and
 - `maxSim` of the multi-vectors embeddings $x_{multi}$
@@ -115,7 +130,16 @@ $$
 
 This transform simplifies the approximate nearest neighbor search problem for multi-vector embeddings to that involving only single vector embeddings.
 
-![muvera_high_level.png](./img/muvera_high_level.png)
+import MuveraHighLevel from './img/muvera_high_level.png';
+
+<Figure>
+  <img
+    alt="MUVERA high level overview"
+    src={MuveraHighLevel}
+    width="100%"
+  />
+  <figcaption><small>MUVERA high level overview<br /><br /></small></figcaption>
+</Figure>
 
 Recall the above scenario with a million documents and 100 vectors per document. Without the MUVERA encoding we would have  `100M` vectors to be indexed. Instead, using the FDE vector we will be working with only `1M` vectors, leading to an HNSW graph of only **1%** of the size!
 
@@ -134,26 +158,41 @@ MUVERA does this in four steps:
 
 ### Space partitioning
 
-The first step consists of partitioning the vector space into $B$ “buckets”. This can be achieved using k-means clustering or using locally sensitive hashing (LSH) functions.
+The first step consists of partitioning the vector space into $B$ "buckets". This can be achieved using k-means clustering or using locally sensitive hashing (LSH) functions.
 
 Ideally, we want a partitioning function $\varphi$ that given an input vector $x$ will return a bucket id  $k=\varphi(x)$ where $k=1,\dots,B$. Here is an illustration, assuming a set of 8 clusters:
 
-![muvera_steps_1.png](./img/muvera_steps_1.png)
+import MuveraSteps1 from './img/muvera_steps_1.png';
+import MuveraSteps2 from './img/muvera_steps_2.png';
 
-![muvera_steps_2.png](./img/muvera_steps_2.png)
+<Figure>
+  <img
+    alt="MUVERA steps 1 - space partitioning"
+    src={MuveraSteps1}
+    width="100%"
+  />
+  <figcaption><small>MUVERA steps 1<br /><br /></small></figcaption>
+</Figure>
+
+<Figure>
+  <img
+    alt="MUVERA steps 2 - fill empty clusters"
+    src={MuveraSteps2}
+    width="100%"
+  />
+  <figcaption><small>MUVERA steps 2<br /><br /></small></figcaption>
+</Figure>
 
 As shown in the figure, each vector is assigned to one of the clusters. Two further calculations are done - one to derive a representative (e.g. average or centroid) sub-vector, and another to fill empty clusters.
 
----
-
-**Which function to use? (NOTE: This should be an insert)**
+:::info Which function to use for space partitioning?
 
 As we said, a function is needed to map from $\mathbb{R}^{dim}$ into $[B]$.
 
 The first approach could be to use a clustering algorithm like *K-Means* that clusters data by assigning points to the nearest centroid. This algorithm is widely adopted, but it has two drawbacks:
 
 - It requires some data to be trained on
-- It’s *data-dependent*, its quality depends on the data distribution which may not be known a priori, and it may drift over time (e.g. over the life of the downstream application)
+- It's *data-dependent*, its quality depends on the data distribution which may not be known a priori, and it may drift over time (e.g. over the life of the downstream application)
 
 To make the partition function data oblivious we may prefer the family of Locality Sensitive Hashing (LSH) functions. In particular, on the **SimHash**.
 
@@ -176,9 +215,8 @@ The SimHash algorithm relies on few simple steps:
     The value $\varphi(x)$ will be a number composed of $k_{sim}$ bits. The total number of buckets we can have is $B=2^{k_{sim}}$.
 
 
-From now on, in the description of MUVERA algorithm we will be considering as partitioning function the SimHash.
-
----
+From this point on, in the description of MUVERA algorithm we will be considering as partitioning function the SimHash.
+:::
 
 Now that the partitioning function is ready, we can create a sub-vector $d_k$ for each bucket $k=1,\dots,B$ as follows:
 
@@ -200,7 +238,7 @@ $$
 d_{single} = (d_1,d_2,\dots,d_B)
 $$
 
-Let’s now make some consideration on the dimensionality of the outcome. Assuming the dimensionality of the original token embeddings is $dim$  then the length of $d_{single}$ will be $B* dim$.
+Let's now make some consideration on the dimensionality of the outcome. Assuming the dimensionality of the original token embeddings is $dim$  then the length of $d_{single}$ will be $B* dim$.
 
 Where no vectors end up on a particular cluster, a nearest vector is assigned to it to calculate the sub-vector, so that no clusters end up being empty.
 
@@ -226,9 +264,18 @@ $$
 
 Notice the dimensionality will no longer be $B*dim$, but $B *d_{proj}$ where $d_{proj} << dim$.
 
-![muvera_steps_3.png](./img/muvera_steps_3.png)
+import MuveraSteps3 from './img/muvera_steps_3.png';
 
-Applying a random projection may seem… random! However, this is part of the secret sauce of making MUVERA work. The original authors chose the particular distribution of the random matrics to follow the Johnson Lindenstrauss Lemma, which in turn preserves the dot products between vectors that we care about.
+<Figure>
+  <img
+    alt="MUVERA steps 3 - dimensionality reduction"
+    src={MuveraSteps3}
+    width="100%"
+  />
+  <figcaption><small>MUVERA steps 3<br /><br /></small></figcaption>
+</Figure>
+
+Applying a random projection may seem... random! However, this is part of the secret sauce of making MUVERA work. The original authors chose the particular distribution of the random matrics to follow the Johnson Lindenstrauss Lemma, which in turn preserves the dot products between vectors that we care about.
 
 ### Multiple Repetitions
 
@@ -261,9 +308,9 @@ During the description of the algorithm we have seen four parameters:
 - $R_{reps}$: number of times the partition step and dimensionality step are executed
 - $d_{final}$: final dimensionality of the FDE vector  -  $FDE(D)\in\mathbb{R}^{d_{final}}$
 
-At the end of the day, these are the key tunable parameters from the user perspective. In terms of the Weaviate implementation - we’ve chosen what we see as sensible defaults for the majority of use cases.
+At the end of the day, these are the key tunable parameters from the user perspective. In terms of the Weaviate implementation - we've chosen what we see as sensible defaults for the majority of use cases.
 
-But as always, you can tune these to suit your particular needs. But before you do that - here’s some real-life results from our internal testing.
+But as always, you can tune these to suit your particular needs. But before you do that - here's some real-life results from our internal testing.
 
 :::Note
 In the Weaviate implementation, we do not implement the final projection as we found it to produce limited benefits, against the added step. So the user-selectable parameters are `k_sim`, `d_proj` and `r_reps`.
@@ -271,11 +318,11 @@ In the Weaviate implementation, we do not implement the final projection as we f
 
 ## Impact of MUVERA
 
-So what are the effects of MUVERA? As in - what’s in it for you?
+So what are the effects of MUVERA? As in - what's in it for you?
 
 To evaluate this, we used the LoTTE benchmark, in particular `lotte-lifestyle` which is made up of around `119k documents`. Each document was encoded using `colbertv2.0` which produced an average of `130` vectors per document.
 
-This would produce `15M` vectors of dimensionality `128`. This means the total number of floating points stored would be `1.9B`, leading to around `8 GB` of memory. It might seem that extreme, until you realize that this is a small-ish dataset - and that’s even before we add the HNSW graph itself!
+This would produce `15M` vectors of dimensionality `128`. This means the total number of floating points stored would be `1.9B`, leading to around `8 GB` of memory. It might seem that extreme, until you realize that this is a small-ish dataset - and that's even before we add the HNSW graph itself!
 
 On the other hand, if we enable MUVERA with the following parameters:
 
@@ -292,21 +339,48 @@ Take a look at the example outputs below from our experimentation. We compare fo
 - Raw multi-vector embeddings + SQ
 - MUVERA with scalar quantization (SQ)
 
-![Heap allocation without using MUVERA + `sq` vs. MUVERA +  `sq` ](./img/test_results_heap_usage.png)
+import TestResultsHeapUsage from './img/test_results_heap_usage.png';
+import TestResultsTime from './img/test_results_time.png';
+import TestResultsQps from './img/test_results_qps.png';
+import TestResultsRecall from './img/test_results_recall.png';
+
+<Figure>
+  <img
+    alt="Heap allocation without using MUVERA + sq vs. MUVERA + sq"
+    src={TestResultsHeapUsage}
+    width="600"
+  />
+  <figcaption><small>Heap allocation without using MUVERA + sq vs. MUVERA + sq<br /><br /></small></figcaption>
+</Figure>
 
 Heap allocation without using MUVERA + `sq` vs. MUVERA +  `sq`
 
-![Import time without using MUVERA + `sq` vs. MUVERA +  `sq` ](./img/test_results_time.png)
+<Figure>
+  <img
+    alt="Import time without using MUVERA + sq vs. MUVERA + sq"
+    src={TestResultsTime}
+    width="600"
+  />
+  <figcaption><small>Import time without using MUVERA + sq vs. MUVERA + sq<br /><br /></small></figcaption>
+</Figure>
 
-Import time without using MUVERA + `sq` vs. MUVERA +  `sq`
+<Figure>
+  <img
+    alt="QPS without using MUVERA + sq vs. MUVERA + sq"
+    src={TestResultsQps}
+    width="600"
+  />
+  <figcaption><small>QPS without using MUVERA + sq vs. MUVERA + sq<br /><br /></small></figcaption>
+</Figure>
 
-![QPS without using MUVERA + `sq` vs. MUVERA +  `sq` ](./img/test_results_qps.png)
-
-QPS without using MUVERA + `sq` vs. MUVERA +  `sq`
-
-![Recall without using MUVERA + `sq` vs. MUVERA +  `sq` ](./img/test_results_recall.png)
-
-Recall without using MUVERA + `sq` vs. MUVERA +  `sq`
+<Figure>
+  <img
+    alt="Recall without using MUVERA + sq vs. MUVERA + sq"
+    src={TestResultsRecall}
+    width="600"
+  />
+  <figcaption><small>Recall without using MUVERA + sq vs. MUVERA + sq<br /><br /></small></figcaption>
+</Figure>
 
 :::note Test setup
 The experiments have been run on the following machine:
@@ -321,7 +395,7 @@ As expected, there is a significant reduction in memory footprint, going from a 
 
 What does that mean in terms of dollar amounts? Well, the difference in compute costs at a hyperscaler for a server with 12 GB of memory and another with 1 GB would be many tens of thousands of dollars per year, if not hundreds of thousands.
 
-If your dataset size ranges in tens or millions or more, as many of our users’ datasets do, this may already be a strong motivator for MUVERA.
+If your dataset size ranges in tens or millions or more, as many of our users' datasets do, this may already be a strong motivator for MUVERA.
 
 Not only that, the time taken to import the data is hugely different here. By that, we refer to the time taken for the object data to be added to Weaviate, and the vectors added to the HNSW index. Since adding multi-vector embedding requires tens or hundreds of vectors to be added to the index, this adds significant overhead.
 
@@ -329,7 +403,7 @@ With MUVERA, this is reduced significantly once again. Adding the ~110k objects 
 
 Again, when considering working at scale - you may want to consider a ~3 hour job to import a million objects may be viable for you. If not, that may be another strong incentive for you to consider MUVERA.
 
-It should be noted that at the same `ef` value, enabling MUVERA increases query throughput as well, owing to only needing to deal with one vector per object rather than multiple. But - that’s not quite an apples-to-apples comparison. And here’s why.
+It should be noted that at the same `ef` value, enabling MUVERA increases query throughput as well, owing to only needing to deal with one vector per object rather than multiple. But - that's not quite an apples-to-apples comparison. And here's why.
 
 ### Costs: Recall & query throughput
 
@@ -341,17 +415,26 @@ As `ef` increases the retrieved candidate set, it does have a knock-on effect of
 
 In other words - the main tradeoffs of enabling MUVERA are going to be the reduction in recall, and associated reduction in throughput by needing to use higher `ef` values.
 
-Nothing’s ever so simple, right? 😅 What’s clear from these charts is that there is a definite case to be made for using MUVERA. The specifics, however, would very much depend on your priorities.
+Nothing's ever so simple, right? 😅 What's clear from these charts is that there is a definite case to be made for using MUVERA. The specifics, however, would very much depend on your priorities.
 
 ## Wrap-up
 
-![muvera_compared.png](./img/muvera_compared.png)
+import MuveraCompared from './img/muvera_compared.png';
+
+<Figure>
+  <img
+    alt="MUVERA compared"
+    src={MuveraCompared}
+    width="100%"
+  />
+  <figcaption><small>MUVERA compared<br /><br /></small></figcaption>
+</Figure>
 
 In summary, MUVERA offers a compelling path forward for working with multi-vector models at scale.
 
 By transforming multi-vector representations into fixed dimensional encodings, it delivers significant memory savings and improved query speeds while maintaining relatively strong retrieval quality.
 
-Weaviate’s implementation of MUVERA enables the ability to further compress these encodings with quantization for production deployments at scale, dramatically reducing the cost and overhead needed for multi-vector embeddings.
+Weaviate's implementation of MUVERA enables the ability to further compress these encodings with quantization for production deployments at scale, dramatically reducing the cost and overhead needed for multi-vector embeddings.
 
 As always - using the Weaviate implementation (available form Weaviate `1.31` onwards) may be the easiest part of all this. You may be surprised to hear that [just a couple of lines of code](/developers/weaviate/configuration/compression/multi-vectors#muvera-encoding) is all you need to enable MUVERA in a Weaviate collection.
 
