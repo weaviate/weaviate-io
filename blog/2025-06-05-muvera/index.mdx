@@ -1,7 +1,7 @@
 ---
 title: 'More efficient multi-vector embeddings with MUVERA'
 slug: muvera
-authors: [jp]
+authors: [roberto, jp]
 date: 2025-06-05
 tags: ['engineering', 'concepts']
 image: ./img/hero.png
@@ -32,6 +32,18 @@ Let’s start by reviewing what multi-vector models are, and the challenges that
 
 State-of-the-art multi-vector models can dramatically improve retrieval performance by capturing more semantic information than single-vector models. ColBERT models preserve token-level meanings in text, while ColPali/ColQwen models identify and preserve information from different parts of an image, like figures in PDFs as well as textual information.
 
+import SingleMultiComp from './img/single-multi-comp.png';
+
+<Figure>
+  <img
+    alt="Single vector to multi-vector comparison"
+    src={SingleMultiComp}
+    width="800"
+  />
+    <figcaption><small>Single vector to multi-vector comparison<br /><br />
+  </small></figcaption>
+</Figure>
+
 ![single-multi-comp.png](./img/single-multi-comp.png)
 
 These advantages make multi-vector models a great fit for many use cases. However, multi-vector embeddings carry two potential disadvantages over their single-vector cousins, owing to their size and relative complexity.
@@ -46,7 +58,7 @@ This can lead to a higher memory footprint in use, as many vector search systems
 
 How much larger? Well, as you can see from the image above, the total number of vectors in a multi-vector index will be greater than the single-vector index by `average_vectors_per_embedding` / (`ratio_of_vector_length`). As multi-vector embeddings can comprise hundreds up to thousands vectors per document, this can be much larger.
 
-If we embed a million documents of ~100 tokens per document, a single-vector embedding model (of 768 dimensions) may require `768 * 1M * 4 bytes = ~3.1GB` of memory a multi-vector embedding model (of 96 dimensions) may require a whopping `96 * 100 * 1M * 4 bytes = ~40GB`!
+If we embed a million documents of ~100 tokens per document, a single-vector embedding model (of 768 dimensional single-precision, 32-bit, floating point numbera) may require `768 * 1M * 4 bytes = ~3.1GB` of memory a multi-vector embedding model (of 96 dimensions) may require a whopping `96 * 100 * 1M * 4 bytes = ~40GB`!
 
 ![single-multi-memory.png](./img/single-multi-memory.png)
 
