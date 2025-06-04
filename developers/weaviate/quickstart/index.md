@@ -10,6 +10,7 @@ hide_table_of_contents: true
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Link from '@docusaurus/Link';
 
 <span class="badge badge--secondary">Expected time: 30 minutes</span> <span class="badge badge--secondary">Prerequisites: None</span>
 <br/><br/>
@@ -69,13 +70,14 @@ Notes:
 - The code examples here are self-contained. You can copy and paste them into your own environment to try them out.
 <!-- - Python users can try [our Jupyter notebook](https://github.com/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb) locally or on [Google Colab](https://colab.research.google.com/github/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb). -->
 - If you prefer to use locally hosted resources, see [Quickstart: locally hosted](./local.md).
+
 :::
 
 <!-- Vectors are mathematical representations of data objects, which enable similarity-based searches in vector databases like Weaviate. -->
 
 ### Requirements
 
-In order to perform Retrieval Augmented Generation (RAG) in the last step, you will need a [Cohere](https://dashboard.cohere.com/) account. You can use a free Cohere trial API key. 
+In order to perform Retrieval Augmented Generation (RAG) in the last step, you will need a [Cohere](https://dashboard.cohere.com/) account. You can use a free Cohere trial API key.
 
 If you have another preferred [model provider](/developers/weaviate/model-providers), you can use that instead of Cohere.
 
@@ -87,61 +89,34 @@ If you have another preferred [model provider](/developers/weaviate/model-provid
 
 Go to the [Weaviate Cloud console](https://console.weaviate.cloud) and create a free Sandbox instance.
 
-<!-- TODO[g-despot] Update with new screenshots -->
-import Link from '@docusaurus/Link';
-import CreateCluster from '/developers/weaviate/quickstart/img/create_cluster.png';
-import CreateSandbox from '/developers/weaviate/quickstart/img/create_sandbox.png';
-
-<div class="row">
-  <div class="col col--4">
-    <ol>
-      <li><Link to="https://console.weaviate.cloud">Log onto WCD</Link>.</li>
-      <li>Click on <code>Clusters</code> on the sidebar.</li>
-      <li>In the following pane, click <code>Create cluster</code>.</li>
-    </ol>
-  </div>
-  <div class="col col--8">
-    <div class="card">
-      <div class="card__image">
-        <img src={CreateCluster} alt="Create a cluster"/>
-      </div>
-      <div class="card__body">
-        Click on this button to start cluster creation
-      </div>
-    </div>
-  </div>
-</div>
-<br/>
-
-<div class="row">
-  <div class="col col--4">
-    <ol start="4">
-      <li>Give your cluster a name.</li>
-      <li>Set your preferred cloud region.</li>
-      <li>Click "Create".</li>
-    </ol>
-  </div>
-  <div class="col col--8">
-    <div class="card">
-      <div class="card__image">
-        <img src={CreateSandbox} alt="Create a Sandbox Cluster"/>
-      </div>
-      <div class="card__body">
-        Populate these fields and create a sandbox.
-      </div>
-    </div>
-  </div>
+<div style={{position: "relative", paddingBottom: "calc(54.10879629629629% + 50px)", height: 0}}>
+  <iframe 
+    id="gky9oo0u4p" 
+    src="https://app.guideflow.com/embed/gky9oo0u4p" 
+    width="100%" 
+    height="100%" 
+    style={{overflow: "hidden", position: "absolute", border: "none"}} 
+    scrolling="no" 
+    allow="clipboard-read; clipboard-write" 
+    webKitAllowFullScreen 
+    mozAllowFullScreen 
+    allowFullScreen 
+    allowTransparency="true"
+  />
+  <script src="https://app.guideflow.com/assets/opt.js" data-iframe-id="gky9oo0u4p"></script>
 </div>
 
 <br/>
 
 :::note
+
 - Cluster provisioning typically takes 1-3 minutes.
 - When the cluster is ready, Weaviate Cloud displays a checkmark (`✔️`) next to the cluster name.
 - Note that Weaviate Cloud adds a random suffix to sandbox cluster names to ensure uniqueness.
+
 :::
 
-import LatestWeaviateVersion from '/_includes/latest-weaviate-version.mdx';
+import LatestWeaviateVersion from '/\_includes/latest-weaviate-version.mdx';
 
 <LatestWeaviateVersion />
 
@@ -149,56 +124,55 @@ import LatestWeaviateVersion from '/_includes/latest-weaviate-version.mdx';
 
 We recommend using a [client library](../client-libraries/index.md) to work with Weaviate. Follow the instructions below to install one of the official client libraries, available in [Python](../client-libraries/python/index.md), [JavaScript/TypeScript](../client-libraries/typescript/index.mdx), [Go](../client-libraries/go.md), and [Java](../client-libraries/java.md).
 
-import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
+import CodeClientInstall from '/\_includes/code/quickstart/clients.install.mdx';
 
 <CodeClientInstall />
 
 ### 1.3 Connect to Weaviate
 
-Now you can connect to your Weaviate instance. Get the instance **REST Endpoint URL** and the **Administrator API Key** from the WCD console as shown below.
+Now you can connect to your Weaviate instance. You will need the:
 
-import WCDClusterURL from '/developers/weaviate/quickstart/img/cluster_url.png';
+- **REST Endpoint URL** and the
+- **Administrator API Key**.
 
-import WCDClusterAdminKey from '/developers/weaviate/quickstart/img/cluster_admin_key.png';
+You can retrieve them both from the [WCD console](https://console.weaviate.cloud) as shown in the interactive example below.
 
-<div class="row">
-  <div class="col col--6">
-    <div class="card-demo">
-      <div class="card">
-        <div class="card__image">
-          <img src={WCDClusterURL} alt="Get the (REST) endpoint URL"/>
-        </div>
-        <div class="card__body">
-          Grab the <code>REST Endpoint</code> URL.
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col col--6">
-    <div class="card-demo">
-      <div class="card">
-        <div class="card__image">
-          <img src={WCDClusterAdminKey} alt="Get the admin API key"/>
-        </div>
-        <div class="card__body">
-          Grab the <code>Admin</code> API key.
-        </div>
-      </div>
-    </div>
-  </div>
+:::note
+
+New clusters with Weaviate version `v1.30` (or later) have [RBAC (Role-Based Access Control)](/developers/weaviate/configuration/rbac/index.mdx) enabled by default. These clusters don't come with API keys, you will need to create an API key yourself and assign it a role (`admin`, `viewer` or a custom role). 
+
+:::
+
+<div style={{position: "relative", paddingBottom: "calc(54.10879629629629% + 50px)", height: 0}}>
+  <iframe 
+    id="dr9o0g2anr" 
+    src="https://app.guideflow.com/embed/dr9o0g2anr" 
+    width="100%" 
+    height="100%" 
+    style={{overflow: "hidden", position: "absolute", border: "none"}} 
+    scrolling="no" 
+    allow="clipboard-read; clipboard-write" 
+    webKitAllowFullScreen 
+    mozAllowFullScreen 
+    allowFullScreen 
+    allowTransparency="true"
+  />
+  <script src="https://app.guideflow.com/assets/opt.js" data-iframe-id="dr9o0g2anr"></script>
 </div>
 
 <br/>
 
 :::info REST vs gRPC endpoints
+
 Weaviate supports both REST and gRPC protocols. For Weaviate Cloud deployments, you only need to provide the REST endpoint URL - the client will automatically configure gRPC.
+
 :::
 
-Once you have the **REST Endpoint URL** and the **Admin API key**, you can connect to the Sandbox instance, and work with Weaviate.
+Once you have the **REST Endpoint URL** and the **admin API key**, you can connect to the Sandbox instance, and work with Weaviate.
 
 The example below shows how to connect to Weaviate and perform a basic operation, like checking the cluster status.
 
-import ConnectIsReady from '/_includes/code/quickstart/quickstart.is_ready.mdx'
+import ConnectIsReady from '/\_includes/code/quickstart/quickstart.is_ready.mdx'
 
 <ConnectIsReady />
 
@@ -213,24 +187,29 @@ Now, we can populate our database by first defining a collection and then adding
 ### 2.1 Define a collection
 
 :::info What is a collection?
+
 A collection is a set of objects that share the same data structure, like a table in relational databases or a collection in NoSQL databases. A collection also includes additional configurations that define how the data objects are stored and indexed.
+
 :::
 
-The following example creates a *collection* called `Question` with:
-  - The [Weaviate Embeddings](/developers/weaviate/model-providers/weaviate/embeddings.md) service for creating vectors during ingestion & queries.
-  - Cohere [generative AI integrations](/developers/weaviate/model-providers/cohere/generative.md) for retrieval augmented generation (RAG).
+The following example creates a _collection_ called `Question` with:
 
-import CreateCollection from '/_includes/code/quickstart/quickstart.create_collection.mdx'
+- The [Weaviate Embeddings](/developers/weaviate/model-providers/weaviate/embeddings.md) service for creating vectors during ingestion & queries.
+- Cohere [generative AI integrations](/developers/weaviate/model-providers/cohere/generative.md) for retrieval augmented generation (RAG).
+
+import CreateCollection from '/\_includes/code/quickstart/quickstart.create_collection.mdx'
 
 <CreateCollection />
 
 Run this code to create the collection to which you can add data.
 
 :::info What models are being used?
+
 You can optionally specify the model in the collection definition. As we did not specify models in the collection definition above, these integrations will use the Weaviate-defined default models.
 <br/>
 
 See the [model providers integration](../model-providers/index.md) section for more information.
+
 :::
 
 <details>
@@ -268,14 +247,17 @@ Weaviate is very flexible. If you prefer a different model provider integration,
 We can now add data to our collection.
 
 The following example:
+
 - Loads objects, and
 - Adds objects to the target collection (`Question`) using a batch process.
 
 :::tip Batch imports
+
 ([Batch imports](../manage-data/import.mdx)) are the most efficient way to add large amounts of data, as it sends multiple objects in a single request. See the [How-to: Batch import](../manage-data/import.mdx) guide for more information.
+
 :::
 
-import ImportObjects from '/_includes/code/quickstart/quickstart.import_objects.mdx'
+import ImportObjects from '/\_includes/code/quickstart/quickstart.import_objects.mdx'
 
 <ImportObjects />
 
@@ -293,7 +275,7 @@ Semantic search finds results based on meaning. This is called `nearText` in Wea
 
 The following example searches for 2 objects whose meaning is most similar to that of `biology`.
 
-import QueryNearText from '/_includes/code/quickstart/quickstart.query.neartext.mdx'
+import QueryNearText from '/\_includes/code/quickstart/quickstart.query.neartext.mdx'
 
 <QueryNearText />
 
@@ -321,7 +303,7 @@ Run this code to perform the query. Our query found entries for `DNA` and `speci
 
 If you inspect the full response, you will see that the word `biology` does not appear anywhere.
 
-Even so, Weaviate was able to return biology-related entries. This is made possible by *vector embeddings* that capture meaning. Under the hood, semantic search is powered by vectors, or vector embeddings.
+Even so, Weaviate was able to return biology-related entries. This is made possible by _vector embeddings_ that capture meaning. Under the hood, semantic search is powered by vectors, or vector embeddings.
 
 Here is a diagram showing the workflow in Weaviate.
 
@@ -355,9 +337,11 @@ flowchart LR
 ```
 
 :::info Where did the vectors come from?
+
 Weaviate used the **Weaviate Embeddings** service to generate a vector embedding for each object during import. During the query, Weaviate similarly converted the query (`biology`) into a vector.
 
 As we mentioned above, this is optional. See [Starter Guide: Bring Your Own Vectors](/developers/weaviate/starter-guides/custom-vectors.mdx) if you would prefer to provide your own vectors.
+
 :::
 
 :::tip More search types available
@@ -370,7 +354,7 @@ Weaviate is capable of many types of searches. See, for example, our how-to guid
 
 Retrieval augmented generation (RAG), also called generative search, combines the power of generative AI models such as large language models (LLMs) with the up-to-date truthfulness of a database.
 
-RAG works by prompting a large language model (LLM) with a combination of a *user query* and *data retrieved from a database*.
+RAG works by prompting a large language model (LLM) with a combination of a _user query_ and _data retrieved from a database_.
 
 This diagram shows the RAG workflow in Weaviate.
 
@@ -426,12 +410,14 @@ flowchart LR
 
 The following example combines the same search (for `biology`) with a prompt to generate a tweet.
 
-import QueryRAG from '/_includes/code/quickstart/quickstart.query.rag.mdx'
+import QueryRAG from '/\_includes/code/quickstart/quickstart.query.rag.mdx'
 
 <QueryRAG />
 
 :::info Cohere API key in the header
+
 Note that this code includes an additional header for the Cohere API key. Weaviate uses this key to access the Cohere generative AI model and perform retrieval augmented generation (RAG).
+
 :::
 
 Run this code to perform the query. Here is one possible response (your response will likely be different).
@@ -455,8 +441,8 @@ In this quickstart guide, you:
 - Created a Serverless Weaviate sandbox instance on Weaviate Cloud.
 - Defined a collection and added data.
 - Performed queries, including:
-    - Semantic search, and
-    - Retrieval augmented generation.
+  - Semantic search, and
+  - Retrieval augmented generation.
 
 Where to go next is up to you. We include some suggested steps and resources below.
 
@@ -535,6 +521,7 @@ We provide answers to some common questions, or potential issues below.
 In this example, we use the `Weaviate Embeddings` and `Cohere` inference API. But you can use others.
 
 If you do want to change the embeddings, or the generative AI integrations, you can. You will need to:
+
 - Ensure that the Weaviate module is available in the Weaviate instance you are using,
 - Modify your collection definition to use your preferred integration, and
 - Make sure to use the right API key(s) (if necessary) for your integration.
@@ -552,7 +539,7 @@ See the [model providers integration](../model-providers/index.md) section for m
 
 You may see this error if you try to create a collection that already exists in your instance of Weaviate. In this case, you can follow these instructions to delete the collection.
 
-import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
+import CautionSchemaDeleteClass from '/\_includes/schema-delete-class.mdx'
 
 <CautionSchemaDeleteClass />
 
@@ -588,7 +575,9 @@ You should see:
 Where the schema should indicate that the `Question` collection has been added.
 
 :::note REST & GraphQL in Weaviate
+
 Weaviate uses a combination of RESTful and GraphQL APIs. In Weaviate, RESTful API endpoints can be used to add data or obtain information about the Weaviate instance, and the GraphQL interface to retrieve data.
+
 :::
 
 </details>
@@ -635,9 +624,8 @@ If the search still doesn't work, [contact us](#questions-and-feedback)!
 
 </details>
 
-
 ## Questions and feedback
 
-import DocsFeedback from '/_includes/docs-feedback.mdx';
+import DocsFeedback from '/\_includes/docs-feedback.mdx';
 
 <DocsFeedback/>

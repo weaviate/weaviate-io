@@ -1,5 +1,6 @@
 ---
-title: Quickstart
+title: Weaviate Cloud Quickstart
+sidebar_label: Quickstart
 sidebar_position: 1
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['getting started']
@@ -23,50 +24,44 @@ This quickstart shows you how to combine Weaviate Cloud and [Weaviate Embeddings
 ```mermaid
 flowchart LR
     %% Define nodes with white backgrounds and darker borders
-    A1["Sign up"] --> A2["Create a\ncluster"]
-    A2 --> B1["Install client\nlibrary"]
-    B1 --> B2["Connect to\nWeaviate"]
-    B2 --> C1["Define collection"]
-    C1 --> C2["Import data"]
-    C2 --> D1["Semantic search"]
-    D1 --> D2["RAG\n(Generate)"]
+    A1["Create a\ncluster"] --> A2["Install client\nlibrary"]
+    A2 --> A3["Connect to\nWeaviate"]
+    A3 --> B1["Define collection"]
+    B1 --> B2["Import data"]
+    B2 --> C1["Semantic search"]
+    C1 --> C2["RAG\n(Generate)"]
 
     %% Group nodes in subgraphs with brand colors
-    subgraph sg1 ["1. Setup"]
+
+    subgraph sg1 ["1. Connect"]
         A1
         A2
+        A3
     end
 
-    subgraph sg2 ["2. Connect"]
+    subgraph sg2 ["2. Populate"]
         B1
         B2
     end
 
-    subgraph sg3 ["3. Populate"]
+    subgraph sg3 ["3. Query"]
         C1
         C2
-    end
-
-    subgraph sg4 ["4. Query"]
-        D1
-        D2
     end
 
     %% Style nodes with white background and darker borders
     style A1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
     style A2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style A3 fill:#ffffff,stroke:#B9C8DF,color:#130C49
     style B1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
     style B2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
     style C1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
     style C2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
-    style D1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
-    style D2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
 
     %% Style subgraphs with brand colors
     style sg1 fill:#ffffff,stroke:#61BD73,stroke-width:2px,color:#130C49
     style sg2 fill:#ffffff,stroke:#130C49,stroke-width:2px,color:#130C49
     style sg3 fill:#ffffff,stroke:#7AD6EB,stroke-width:2px,color:#130C49
-    style sg4 fill:#ffffff,stroke:#130C49,stroke-width:2px,color:#130C49
 ```
 
 Notes:
@@ -77,154 +72,63 @@ Notes:
 
 ## Requirements
 
-In order to perform Retrieval Augmented Generation (RAG) in the last step, you will need a [Cohere](https://dashboard.cohere.com/) account. You can use a free Cohere trial API key. If you have another preferred [model provider](/developers/weaviate/model-providers), you can use that instead of Cohere.
+- A [Weaviate Cloud account](./platform/create-account.mdx).
+- In order to perform Retrieval Augmented Generation (RAG) in the last step, you will need a [Cohere](https://dashboard.cohere.com/) account. You can use a free Cohere trial API key. If you have another preferred [model provider](/developers/weaviate/model-providers), you can use that instead of Cohere.
 
 <hr />
 
 ## Step 1: Set up Weaviate Cloud
 
-### 1.1 Create a Weaviate Cloud account
-
-import Link from '@docusaurus/Link';
-import Register from '/developers/wcs/img/weaviate-cloud-register.png';
-
-<div class="row">
-  <div class="col col--6">
-    <ol>
-      <li>
-        Open the{' '}
-        <Link to="https://console.weaviate.cloud">Weaviate Cloud console</Link>.
-      </li>
-      <li>
-        Click on <code>Sign up</code>.
-      </li>
-      <li>
-        Provide an email address and password <span class="callout">1</span>.
-      </li>
-      <ol>
-        <li>
-          You can also register through the <code>AWS Marketplace</code> or{' '}
-          <code>Google Cloud Marketplace</code>
-          <span class="callout">2</span>.
-        </li>
-      </ol>
-      <li>
-        After you confirm your email address, open the{' '}
-        <Link to="https://console.weaviate.cloud">login page</Link>.
-      </li>
-      <li>Log in to Weaviate Cloud.</li>
-    </ol>
-  </div>
-  <div class="col col--6">
-    <div class="card">
-      <div class="card__image">
-        <img src={Register} alt="Create a cluster" />
-      </div>
-      <div class="card__body">
-        Fill in the info and register a new Weaviate Cloud account.
-      </div>
-    </div>
-  </div>
-</div>
-
-### 1.2 Create a cluster
-
-When you log into the Weaviate Cloud web console, the `Clusters` panel lists your clusters (<span class="callout">1</span>). There are no clusters when you log in to a new account.
-
-import CreateCluster from '/developers/wcs/img/weaviate-cloud-create-cluster.png';
-import SandboxCluster from '/developers/wcs/img/weaviate-cloud-sandbox-cluster.png';
-import ServerlessCluster from '/developers/wcs/img/weaviate-cloud-serverless-cluster.png';
-
-<div class="row">
-  <div class="col col--6">
-    <ol>
-      <li>
-        To <b>create a cluster</b>, click the <code>Create cluster</code> button
-        on the Weaviate Cloud homepage (<span class="callout">2</span>).
-      </li>
-    </ol>
-  </div>
-  <div class="col col--6">
-    <div class="card">
-      <div class="card__image">
-        <img src={CreateCluster} alt="Create a cluster" />
-      </div>
-      <div class="card__body">Click on this button to create a cluster.</div>
-    </div>
-  </div>
-</div>
+### 1.1 Create a cluster
 
 Weaviate offers the following cluster options:
 
 - **Sandbox clusters**: free short-term cluster for development purposes.
 - **Serverless clusters**: permanent production-ready environment.
 
-<Tabs groupId="cluster">
-  <TabItem value="sandbox" label="Sandbox">
-    <div class="row">
-      <div class="col col--6">
-        <ol>
-          <li>
-            Select the <code>Sandbox</code> tab.
-          </li>
-          <li>Choose a name for your cluster.</li>
-          <li>Select a cloud region from the dropdown.</li>
-          <li>
-            Click the <code>Create</code> button.
-          </li>
-        </ol>
-      </div>
-      <div class="col col--6">
-        <div class="card">
-          <div class="card__image">
-            <img src={SandboxCluster} alt="Create a cluster" />
-          </div>
-          <div class="card__body">
-            Choose a name and a cloud region to create a cluster.
-          </div>
-        </div>
-      </div>
-    </div>
-  </TabItem>
-  <TabItem value="serverless" label="Serverless">
-    <div class="row">
-      <div class="col col--6">
-        <ol>
-          <li>
-            Select the <code>Serverless</code> tab.
-          </li>
-          <li>Choose a name for your cluster.</li>
-          <li>Select a cloud region from the dropdown.</li>
-          <li>
-            Click the <code>Create</code> button.
-          </li>
-        </ol>
-      </div>
-      <div class="col col--6">
-        <div class="card">
-          <div class="card__image">
-            <img src={ServerlessCluster} alt="Create a cluster" />
-          </div>
-          <div class="card__body">
-            Choose a name and a cloud region to create a cluster.
-          </div>
-        </div>
-      </div>
-    </div>
-  </TabItem>
-</Tabs>
+Go to the [Weaviate Cloud console](https://console.weaviate.cloud) and create a free Sandbox instance.
 
-It takes a minute or two to create the new cluster. When the cluster is ready, there will be a checkmark (`✔️`) next to the cluster name.
+<div
+  style={{
+    position: 'relative',
+    paddingBottom: 'calc(54.10879629629629% + 50px)',
+    height: 0,
+  }}
+>
+  <iframe
+    id="gky9oo0u4p"
+    src="https://app.guideflow.com/embed/gky9oo0u4p"
+    width="100%"
+    height="100%"
+    style={{ overflow: 'hidden', position: 'absolute', border: 'none' }}
+    scrolling="no"
+    allow="clipboard-read; clipboard-write"
+    webKitAllowFullScreen
+    mozAllowFullScreen
+    allowFullScreen
+    allowTransparency="true"
+  />
+  <script
+    src="https://app.guideflow.com/assets/opt.js"
+    data-iframe-id="gky9oo0u4p"
+  ></script>
+</div>
+
+<br />
+
+:::note
+
+- Cluster provisioning typically takes 1-3 minutes.
+- When the cluster is ready, Weaviate Cloud displays a checkmark (`✔️`) next to the cluster name.
+- Note that Weaviate Cloud adds a random suffix to sandbox cluster names to ensure uniqueness.
+
+:::
 
 import LatestWeaviateVersion from '/_includes/latest-weaviate-version.mdx';
 
 <LatestWeaviateVersion />
 
-<hr />
-
-## Step 2: Connect to your cluster
-
-### 2.1 Install a client library
+### 1.2 Install a client library
 
 The Weaviate Cloud console includes a query interface, but most interactions rely on a [Weaviate client](/developers/weaviate/client-libraries/index.md). Clients are available in several programming languages. Choose one that makes sense for your project.
 
@@ -234,45 +138,53 @@ import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
 <CodeClientInstall />
 
-### 2.2 Connect to your Weaviate Cloud instance
+### 1.3 Connect to your Weaviate Cloud instance
 
-Now, you can connect to your Weaviate instance. Get the instance **REST Endpoint URL** and the **Administrator API Key** from the Weaviate Cloud console as shown below.
+Now you can connect to your Weaviate instance. You will need the:
 
-import WCDClusterURL from '/developers/weaviate/quickstart/img/cluster_url.png';
+- **REST Endpoint URL** and the
+- **Administrator API Key**.
 
-import WCDClusterAdminKey from '/developers/weaviate/quickstart/img/cluster_admin_key.png';
+You can retrieve them both from the [WCD console](https://console.weaviate.cloud) as shown in the interactive example below.
 
-<div class="row">
-  <div class="col col--6">
-    <div class="card-demo">
-      <div class="card">
-        <div class="card__image">
-          <img src={WCDClusterURL} alt="Get the (REST) endpoint URL" />
-        </div>
-        <div class="card__body">
-          Grab the <code>REST Endpoint</code> URL.
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col col--6">
-    <div class="card-demo">
-      <div class="card">
-        <div class="card__image">
-          <img src={WCDClusterAdminKey} alt="Get the admin API key" />
-        </div>
-        <div class="card__body">
-          Grab the <code>Admin</code> API key.
-        </div>
-      </div>
-    </div>
-  </div>
+:::note
+
+New clusters with Weaviate version `v1.30` (or later) have [RBAC (Role-Based Access Control)](/developers/weaviate/configuration/rbac/index.mdx) enabled by default. These clusters don't come with API keys, you will need to create an API key yourself and assign it a role (`admin`, `viewer` or a custom role). 
+
+:::
+
+<div
+  style={{
+    position: 'relative',
+    paddingBottom: 'calc(54.10879629629629% + 50px)',
+    height: 0,
+  }}
+>
+  <iframe
+    id="dr9o0g2anr"
+    src="https://app.guideflow.com/embed/dr9o0g2anr"
+    width="100%"
+    height="100%"
+    style={{ overflow: 'hidden', position: 'absolute', border: 'none' }}
+    scrolling="no"
+    allow="clipboard-read; clipboard-write"
+    webKitAllowFullScreen
+    mozAllowFullScreen
+    allowFullScreen
+    allowTransparency="true"
+  />
+  <script
+    src="https://app.guideflow.com/assets/opt.js"
+    data-iframe-id="dr9o0g2anr"
+  ></script>
 </div>
 
 <br />
 
 :::info REST vs gRPC endpoints
+
 Weaviate supports both REST and gRPC protocols. For Weaviate Cloud deployments, you only need to provide the REST endpoint URL - the client will automatically configure gRPC.
+
 :::
 
 Once you have the **REST Endpoint URL** and the **Admin API key**, you can connect to the Sandbox instance and work with Weaviate.
@@ -287,9 +199,9 @@ If you did not see any errors, you are ready to proceed. We will replace the sim
 
 <hr />
 
-## Step 3: Populate your database
+## Step 2: Populate your database
 
-### 3.1 Define a collection
+### 2.1 Define a collection
 
 The following example creates a _collection_ called `Question` with:
 
@@ -302,15 +214,17 @@ import CreateCollection from '/_includes/code/quickstart/quickstart.create_colle
 
 Run this code to create the collection to which you can add data.
 
-:::info What models are being used?
+:::info What models are being used?ž
+
 You can optionally specify the model in the collection definition. As we did not specify models in the collection definition above, these integrations will use the Weaviate-defined default models.
 
 <br />
 
 See the [model providers integration](/developers/weaviate/model-providers/index.md) section for more information.
+
 :::
 
-### 3.2 Load the data
+### 2.2 Load the data
 
 We can now add data to our collection.
 
@@ -320,7 +234,9 @@ The following example:
 - Adds objects to the target collection (`Question`) using a batch process.
 
 :::tip Batch imports
+
 ([Batch imports](/developers/weaviate/manage-data/import.mdx)) are the most efficient way to add large amounts of data, as it sends multiple objects in a single request. See the [How-to: Batch import](/developers/weaviate/manage-data/import.mdx) guide for more information.
+
 :::
 
 import ImportObjects from '/_includes/code/quickstart/quickstart.import_objects.mdx';
@@ -331,11 +247,11 @@ Run this code to add the demo data.
 
 <hr />
 
-## Step 4: Query your data
+## Step 3: Query your data
 
 Weaviate provides a wide range of query tools to help you find the right data. We will try a few searches here.
 
-### 4.1 Semantic search
+### 3.1 Semantic search
 
 Semantic search finds results based on meaning. This is called `nearText` in Weaviate.
 
@@ -403,9 +319,11 @@ flowchart LR
 ```
 
 :::info Where did the vectors come from?
+
 Weaviate used the [Weaviate Embeddings](/developers/wcs/embeddings) service to generate a vector embedding for each object during import. During the query, Weaviate similarly converted the query (`biology`) into a vector.
 
 As we mentioned above, this is optional. See [Starter Guide: Bring Your Own Vectors](/developers/weaviate/starter-guides/custom-vectors.mdx) if you would prefer to provide your own vectors.
+
 :::
 
 :::tip More search types available
@@ -414,7 +332,7 @@ Weaviate is capable of many types of searches. See, for example, our how-to guid
 
 :::
 
-### 4.2 Retrieval augmented generation
+### 3.2 Retrieval augmented generation
 
 Retrieval augmented generation (RAG), also called generative search, combines the power of generative AI models such as large language models (LLMs) with the up-to-date truthfulness of a database.
 
@@ -479,7 +397,9 @@ import QueryRAG from '/_includes/code/quickstart/quickstart.query.rag.mdx';
 <QueryRAG />
 
 :::info Cohere API key in the header
+
 Note that this code includes an additional header for the Cohere API key. Weaviate uses this key to access the Cohere generative AI model and perform retrieval augmented generation (RAG).
+
 :::
 
 Run this code to perform the query. Here is one possible response (your response will likely be different).

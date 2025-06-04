@@ -1,0 +1,257 @@
+---
+title: Authorization
+sidebar_position: 6
+image: og/wcs/user_guides.jpg
+---
+
+import Link from '@docusaurus/Link';
+import WCDCreateRole from '/developers/wcs/img/weaviate-cloud-roles-create.png';
+import WCDCreateRoleForm from '/developers/wcs/img/weaviate-cloud-roles-create-form.png';
+import WCDEditRole from '/developers/wcs/img/weaviate-cloud-roles-edit.png';
+import WCDEditRoleForm from '/developers/wcs/img/weaviate-cloud-roles-edit-form.png';
+import WCDDeleteRole from '/developers/wcs/img/weaviate-cloud-roles-delete.png';
+import WCDDeleteRoleForm from '/developers/wcs/img/weaviate-cloud-roles-delete-form.png';
+
+import RestartTheCluster from '/_includes/wcs/restart-warning.mdx';
+
+:::info
+
+This guide only applies to clusters that have [RBAC (Role-Based Access Control)](/developers/weaviate/configuration/rbac/index.mdx) enabled. New clusters with Weaviate version `v1.30` (or later) have RBAC enabled by default.
+
+:::
+
+## Create a role
+
+Custom roles allow you to define specific permissions for different users or applications accessing your Weaviate cluster. You can control access to collections, tenants, and specific operations.
+
+<div class="row">
+  <div class="col col--4">
+    <ol>
+      <li>
+        Open the{' '}
+        <Link to="https://console.weaviate.cloud">Weaviate Cloud console</Link>.
+      </li>
+      <li>
+        <Link to="/developers/wcs/manage-clusters/status#select-your-cluster">
+          Select your cluster
+        </Link>{' '}
+        and navigate to the <code>Roles</code> section.
+      </li>
+      <li>
+        Click on the <code>Create Role</code> button (
+        <span class="callout">1</span>).
+      </li>
+    </ol>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img
+          src={WCDCreateRole}
+          alt="Roles management section in Weaviate Cloud"
+        />
+      </div>
+      <div class="card__body">Access the roles management section.</div>
+    </div>
+  </div>
+</div>
+<br />
+
+<div class="row">
+  <div class="col col--4">
+    <ol start="4">
+      <li>
+        Enter a descriptive name for your role in the <code>Role name</code>{' '}
+        field (<span class="callout">1</span>).
+      </li>
+      <li>
+        In the <code>Collection</code> section (<span class="callout">2</span>),
+        configure collection-level permissions:
+        <ul>
+          <li>
+            Select the target collection from the dropdown (
+            <span class="callout">3</span>)
+          </li>
+          <li>
+            Choose the appropriate permissions: Create, Read, Update, or Delete
+            Collections (<span class="callout">4</span>)
+          </li>
+        </ul>
+      </li>
+      <li>
+        Optionally, configure <code>Collection Tenants</code> permissions if
+        your collections use multi-tenancy.
+      </li>
+      <li>
+        Click the <code>Create</code> button (<span class="callout">5</span>) to
+        save your new role.
+      </li>
+    </ol>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img src={WCDCreateRoleForm} alt="Create new API role form" />
+      </div>
+      <div class="card__body">Configure permissions for your new role.</div>
+    </div>
+  </div>
+</div>
+<br />
+
+:::info
+
+To find out more about RBAC and available permissions, check out the [RBAC documentation](/developers/weaviate/configuration/rbac/index.mdx).
+
+:::
+
+## Edit a role
+
+You can modify the permissions and settings of existing custom roles at any time.
+
+<div class="row">
+  <div class="col col--4">
+    <ol>
+      <li>From the roles management page, locate the role you want to edit.</li>
+      <li>
+        Click the <code>Edit</code> button (<span class="callout">1</span>) next
+        to the role you want to modify.
+      </li>
+    </ol>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img
+          src={WCDEditRole}
+          alt="Edit role button highlighted"
+        />
+      </div>
+      <div class="card__body">Modify role permissions.</div>
+    </div>
+  </div>
+</div>
+<br />
+<div class="row">
+  <div class="col col--4">
+    <ol start="3">
+      <li>
+        In the role editing interface, you can:
+        <ul>
+          <li>
+            Update collection permissions by checking or unchecking the
+            appropriate boxes for Create, Read, Update, and Delete operations
+          </li>
+          <li>
+            Add or remove additional constraints from the role's scope using the dropdown menus (e.g. which collections the permissions apply to)
+          </li>
+        </ul>
+      </li>
+      <li>
+        After making your changes, click the <code>Update</code> button (
+        <span class="callout">1</span>) to save the modifications.
+      </li>
+    </ol>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img
+          src={WCDEditRoleForm}
+          alt="Role editing form with Update button highlighted"
+        />
+      </div>
+      <div class="card__body">
+        Edit role permissions and confirm the updates.
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+
+Changes to role permissions take effect immediately for all API keys assigned to
+that role.
+
+## Delete a role
+
+When you no longer need a custom role, you can delete it. This action will affect all API keys currently assigned to this role.
+
+<div class="row">
+  <div class="col col--4">
+    <ol>
+      <li>
+        From the roles management page, locate the role you want to delete.
+      </li>
+      <li>
+        Click the <code>Delete</code> button (<span class="callout">1</span>)
+        next to the role you want to remove.
+      </li>
+    </ol>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img
+          src={WCDDeleteRole}
+          alt="Delete role button highlighted"
+        />
+      </div>
+      <div class="card__body">
+        Deleting a role.
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<div class="row">
+  <div class="col col--4">
+    <ol start="3">
+      <li>
+        In the confirmation dialog, type the exact role name (
+        <span class="callout">1</span>) to confirm the deletion. This prevents
+        accidental deletions.
+      </li>
+      <li>
+        Click <code>Confirm and delete</code> (<span class="callout">2</span>)
+        to permanently remove the role.
+      </li>
+    </ol>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img
+          src={WCDDeleteRoleForm}
+          alt="Delete role confirmation dialog"
+        />
+      </div>
+      <div class="card__body">
+        Confirm the deletion by typing the role name.
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+
+Deleting a role is permanent and cannot be undone. This action will:
+
+- Remove the role and all its associated permissions
+- Affect any API keys that were assigned to this role
+- Potentially break applications that rely on the permissions granted by this role
+
+Make sure to update or reassign any affected API keys before deleting a role.
+
+:::info
+You cannot delete the built-in admin and viewer roles, as these are system-defined roles required for basic cluster operations.
+:::
+
+## Further resources
+
+- [Manage API keys in WCD](./authentication.mdx)
+- [RBAC documentation](/developers/weaviate/configuration/rbac/index.mdx)
+
+## Support
+
+import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
+
+<SupportAndTrouble />

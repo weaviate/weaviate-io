@@ -21,8 +21,12 @@ import CompareURLs from '/developers/wcs/img/wcs-console-url-check.jpg';
 
 ## Connect with an API
 
-The Weaviate client libraries use API keys to authenticate to Weaviate Cloud instances. By default, API keys are enabled for all clusters.
-Both **Serverless** and **Sandbox** clusters have two types of keys:
+The guide below applies to clusters that have [RBAC (Role-Based Access Control)](/developers/weaviate/configuration/rbac/index.mdx) enabled. New clusters with Weaviate version `v1.30` (or later) have RBAC enabled by default. 
+
+<details>
+    <summary>Connecting with API keys when RBAC is disabled</summary>
+
+The Weaviate client libraries use API keys to authenticate to Weaviate Cloud instances. If RBAC is disabled, two API keys are created by default. Both **Serverless** and **Sandbox** clusters have these two types of keys:
 
 - `Admin key`: An administrator that enables read-write access to the cluster.
 - `ReadOnly key`: A viewer key that only allows read access to the cluster.
@@ -32,15 +36,17 @@ The Weaviate server authenticates every request.
 - If you use a Weaviate client library, pass the API key when you instantiate the client connection. After the connection is established, you do not have to pass the API key when you make additional requests.
 - If you use a tool like cURL, add your API key to the request header.
 
-For authentication details, see [Account management: Authentication](/developers/wcs/platform/manage-api-keys).
-
-<APICloudConnect />
+</details>
 
 ### Retrieve your API key and REST endpoint
 
-import RetrieveAPIKeys from '/_includes/wcs/retrieve-api-keys.mdx';
+import CreateAPIKeys from '/_includes/wcs/create-api-keys.mdx';
 
-<RetrieveAPIKeys />
+<CreateAPIKeys />
+
+import RetrieveRESTEndpoint from '/_includes/wcs/retrieve-rest-endpoint.mdx';
+
+<RetrieveRESTEndpoint />
 
 ### Environment variables
 
