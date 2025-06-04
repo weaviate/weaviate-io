@@ -1,6 +1,5 @@
 ---
 title: Authentication
-sidebar_labe: Authentication
 sidebar_position: 5
 image: og/wcs/user_guides.jpg
 ---
@@ -16,7 +15,7 @@ There are two options for managing cluster authentication depending on [RBAC (Ro
 
 ## Authentication with RBAC enabled
 
-This section only applies to clusters that have [RBAC (Role-Based Access Control)](/developers/weaviate/configuration/rbac/index.mdx) enabled. New clusters with Weaviate versions `v1.30` and newer have RBAC enabled by default.
+This section only applies to clusters that have [RBAC (Role-Based Access Control)](/developers/weaviate/configuration/rbac/index.mdx) enabled. New clusters with Weaviate version `v1.30` (or later) have RBAC enabled by default.
 
 ### Create an API key
 
@@ -24,71 +23,9 @@ import CreateAPIKeys from '/_includes/wcs/create-api-keys.mdx';
 
 <CreateAPIKeys />
 
-### Delete an API key
-
-If you have a Serverless cluster, you can delete API keys. To delete an API key, follow these steps:
-
-import DeleteAPIKeyRBAC from '/developers/wcs/img/weaviate-cloud-delete-api-key.png';
-
-<div class="row">
-  <div class="col col--4">
-    <ol>
-      <li>
-        Open the{' '}
-        <Link to="https://console.weaviate.cloud">Weaviate Cloud console</Link>.
-      </li>
-      <li>
-        <Link to="/developers/wcs/manage-clusters/status#select-your-cluster">
-          Select your cluster
-        </Link>{' '}
-        and navigate to the <code>API Keys</code> section.
-      </li>
-      <li>
-        Locate the API key you want to delete and click the <code>Delete</code>{' '}
-        button next to it (<span class="callout">1</span>).
-      </li>
-    </ol>
-  </div>
-  <div class="col col--8">
-    <div class="card">
-      <div class="card__image">
-        <img src={DeleteAPIKeyRBAC} alt="Delete an API key in Weaviate Cloud" />
-      </div>
-      <div class="card__body">Delete an API key in Weaviate Cloud.</div>
-    </div>
-  </div>
-</div>
-<br />
-
-import DeleteAPIKeyConfirmRBAC from '/developers/wcs/img/weaviate-cloud-delete-api-key-confirm.png';
-
-<div class="row">
-  <div class="col col--4">
-    <ol start="4">
-      <li>
-        A confirmation dialog will appear. Enter the necessary text (usually the
-        API key name or a confirmation phrase) to confirm the deletion (
-        <span class="callout">1</span>).
-      </li>
-      <li>
-        Click on the <code>Confirm and delete</code> button (
-        <span class="callout">2</span>).
-      </li>
-    </ol>
-  </div>
-  <div class="col col--8">
-    <div class="card">
-      <div class="card__image">
-        <img src={DeleteAPIKeyConfirmRBAC} alt="Confirm API key deletion" />
-      </div>
-      <div class="card__body">Confirm API key deletion.</div>
-    </div>
-  </div>
-</div>
-
 ### Rotate an API key
 
-Rotating an API key allows you to generate a new key while invalidating the old one, enhancing security. To rotate an API key for a Serverless cluster:
+Rotating an API key allows you to generate a new key while invalidating the old one, enhancing security.
 
 import RotateAPIKey from '/developers/wcs/img/weaviate-cloud-api-key-management.png';
 import RotateAPIKeyConfirm from '/developers/wcs/img/weaviate-cloud-api-key-rotate.png';
@@ -150,7 +87,7 @@ import RotateAPIKeyConfirm from '/developers/wcs/img/weaviate-cloud-api-key-rota
 
 ### Edit an API key
 
-Editing an API key allows you to modify its name or associated roles. To edit an API key for a Serverless cluster:
+Editing an API key allows you to modify its name or associated roles. To edit an API key for a cluster:
 
 import EditAPIKey from '/developers/wcs/img/weaviate-cloud-api-key-management.png';
 import EditAPIKeyForm from '/developers/wcs/img/weaviate-cloud-api-key-edit.png';
@@ -216,6 +153,68 @@ import EditAPIKeyForm from '/developers/wcs/img/weaviate-cloud-api-key-edit.png'
   </div>
 </div>
 
+### Delete an API key
+
+To delete an API key, follow these steps:
+
+import DeleteAPIKeyRBAC from '/developers/wcs/img/weaviate-cloud-delete-api-key.png';
+
+<div class="row">
+  <div class="col col--4">
+    <ol>
+      <li>
+        Open the{' '}
+        <Link to="https://console.weaviate.cloud">Weaviate Cloud console</Link>.
+      </li>
+      <li>
+        <Link to="/developers/wcs/manage-clusters/status#select-your-cluster">
+          Select your cluster
+        </Link>{' '}
+        and navigate to the <code>API Keys</code> section.
+      </li>
+      <li>
+        Locate the API key you want to delete and click the <code>Delete</code>{' '}
+        button next to it (<span class="callout">1</span>).
+      </li>
+    </ol>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img src={DeleteAPIKeyRBAC} alt="Delete an API key in Weaviate Cloud" />
+      </div>
+      <div class="card__body">Delete an API key in Weaviate Cloud.</div>
+    </div>
+  </div>
+</div>
+<br />
+
+import DeleteAPIKeyConfirmRBAC from '/developers/wcs/img/weaviate-cloud-delete-api-key-confirm.png';
+
+<div class="row">
+  <div class="col col--4">
+    <ol start="4">
+      <li>
+        A confirmation dialog will appear. Enter the necessary text (usually the
+        API key name or a confirmation phrase) to confirm the deletion (
+        <span class="callout">1</span>).
+      </li>
+      <li>
+        Click on the <code>Confirm and delete</code> button (
+        <span class="callout">2</span>).
+      </li>
+    </ol>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img src={DeleteAPIKeyConfirmRBAC} alt="Confirm API key deletion" />
+      </div>
+      <div class="card__body">Confirm API key deletion.</div>
+    </div>
+  </div>
+</div>
+
 ## Authentication with RBAC disabled
 
 If [RBAC (Role-Based Access Control)](/developers/weaviate/configuration/rbac/index.mdx) is not enabled, there will be two default API keys, `ReadOnly` and `Admin`:
@@ -225,7 +224,7 @@ If [RBAC (Role-Based Access Control)](/developers/weaviate/configuration/rbac/in
 
 If you have a Serverless cluster, you can create, delete, edit, and rotate API keys. You cannot modify the Sandbox cluster keys.
 
-### Retrieve your API keys
+### Retrieve an API keys
 
 import RetrieveAPIKeys from '/_includes/wcs/retrieve-api-keys.mdx';
 
@@ -290,6 +289,7 @@ import NewAPIKeyConfirm from '/developers/wcs/img/weaviate-cloud-new-api-key-con
     </div>
   </div>
 </div>
+<br />
 
 :::info
 
@@ -353,12 +353,18 @@ import DeleteAPIKeyConfirm from '/developers/wcs/img/weaviate-cloud-delete-api-k
     </div>
   </div>
 </div>
+<br />
 
 :::info
 
 <RestartTheCluster />
 
 :::
+
+## Further resources
+
+- [Manage authorization in WCD](./authorization.mdx)
+- [RBAC documentation](/developers/weaviate/configuration/rbac/index.mdx)
 
 ## Support
 

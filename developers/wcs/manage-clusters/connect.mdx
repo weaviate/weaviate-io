@@ -21,11 +21,12 @@ import CompareURLs from '/developers/wcs/img/wcs-console-url-check.jpg';
 
 ## Connect with an API
 
-<details>
-    <summary>Connecting with API keys before <code>v1.30</code></summary>
+The guide below applies to clusters that have [RBAC (Role-Based Access Control)](/developers/weaviate/configuration/rbac/index.mdx) enabled. New clusters with Weaviate version `v1.30` (or later) have RBAC enabled by default. 
 
-The Weaviate client libraries use API keys to authenticate to Weaviate Cloud instances. By default, API keys are enabled for all clusters.
-Both **Serverless** and **Sandbox** clusters have two types of keys:
+<details>
+    <summary>Connecting with API keys when RBAC is disabled</summary>
+
+The Weaviate client libraries use API keys to authenticate to Weaviate Cloud instances. If RBAC is disabled, two API keys are created by default. Both **Serverless** and **Sandbox** clusters have these two types of keys:
 
 - `Admin key`: An administrator that enables read-write access to the cluster.
 - `ReadOnly key`: A viewer key that only allows read access to the cluster.
