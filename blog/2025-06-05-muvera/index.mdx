@@ -115,8 +115,8 @@ $$
 
 In order to say if this function is "good enough" we want to maximize the similarity of the two key measures:
 
-- dot-product of the encoded embeddings $x_{single}$ (aka single-vector embedding), and
-- `maxSim` of the multi-vectors embeddings $x_{multi}$
+- similarity of the encoded embeddings $x_{single}$ (aka single-vector embedding), and
+- similarity of the multi-vector embeddings $x_{multi}$
 
 The more similar these two are, the better that $x_{single}$ is as an approximation of $x_{multi}$. Ideally, we want:
 
@@ -312,7 +312,7 @@ At the end of the day, these are the key tunable parameters from the user perspe
 
 But as always, you can tune these to suit your particular needs. But before you do that - here's some real-life results from our internal testing.
 
-:::Note
+:::note
 In the Weaviate implementation, we do not implement the final projection as we found it to produce limited benefits, against the added step. So the user-selectable parameters are `k_sim`, `d_proj` and `r_reps`.
 :::
 
@@ -407,7 +407,7 @@ It should be noted that at the same `ef` value, enabling MUVERA increases query 
 
 As we can see in the charts, the main drawback of MUVERA is a loss on the recall side. The downside also may seem particularly challenging, since multi-vector models achieve such high recall values in the first place.
 
-However, some of this can be mitigated through the HNSW search settings. As the graphs show, setting a higher `ef` value in the query settings (e.g. >512) can increase recall to 80%+, and over 90% at 1024.
+However, some of this can be mitigated through the HNSW search settings. As the graphs show, setting a higher `ef` value in the query settings (e.g. >512) can increase recall to 80%+, and over 90% at 2048.
 
 As `ef` increases the retrieved candidate set, it does have a knock-on effect of decreasing the query throughput (measured by queries per second, or `qps`).
 
