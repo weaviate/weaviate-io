@@ -57,46 +57,45 @@ class ManageDataClassesTest {
 
   @Test
   public void shouldManageDataClasses() {
-    // START BasicCreateCollection // START ReadOneCollection // START
-    // UpdateCollection
-    String className = "Article";
+    // START BasicCreateCollection // START ReadOneCollection // START UpdateCollection
+    String collectionName = "Article";
 
     // END BasicCreateCollection // END ReadOneCollection // END UpdateCollection
 
-    createCollection(className);
-    readOneCollection(className);
+    createCollection(collectionName);
+    readOneCollection(collectionName);
     readAllCollections();
-    updateCollection(className);
-    createCollectionWithProperties(className);
-    createCollectionWithVectorizer(className);
-    createCollectionWithNamedVectors(className);
-    createCollectionWithModuleSettings(className);
-    createCollectionWithVectorIndexType(className);
-    createCollectionWithVectorIndexParams(className);
-    createPropertiesWithSettings(className);
-    specifyDistanceMetric(className);
-    deleteCollection(className);
-    addProperty(className);
-    inspectShard(className);
-    updateShardStatus(className);
-    createMultiVectorCollection(className);
-    // createMultiVectorMuvera(className);
-    deleteCollection(className);
-    createArticleCollectionWithIndexConfig(className);
-    deleteCollection(className);
-    createArticleWithOpenAIConfig(className);
-    deleteCollection(className);
-    createArticleWithMultiTenancyConfig(className);
+    updateCollection(collectionName);
+    createCollectionWithProperties(collectionName);
+    createCollectionWithVectorizer(collectionName);
+    createCollectionWithNamedVectors(collectionName);
+    createCollectionWithModuleSettings(collectionName);
+    createCollectionWithVectorIndexType(collectionName);
+    createCollectionWithVectorIndexParams(collectionName);
+    createPropertiesWithSettings(collectionName);
+    specifyDistanceMetric(collectionName);
+    deleteCollection(collectionName);
+    addProperty(collectionName);
+    inspectShard(collectionName);
+    updateShardStatus(collectionName);
+    createMultiVectorCollection(collectionName);
+    // createMultiVectorMuvera(collectionName);
+    deleteCollection(collectionName);
+    createArticleCollectionWithIndexConfig(collectionName);
+    deleteCollection(collectionName);
+    createArticleWithOpenAIConfig(collectionName);
+    deleteCollection(collectionName);
+    createArticleWithMultiTenancyConfig(collectionName);
     readAllCollections();
   }
 
-  private void createCollection(String className) {
+  private void createCollection(String collectionName) {
     // START BasicCreateCollection
     WeaviateClass emptyClass = WeaviateClass.builder()
-        .className(className)
+        .className(collectionName)
         .build();
 
-    // Add the class to the schema
+    // Add the collection to the schema
     Result<Boolean> result = client.schema().classCreator()
         .withClass(emptyClass)
         .run();
@@ -110,9 +109,9 @@ class ManageDataClassesTest {
         .returns(true, Result::getResult);
   }
 
-  private void createCollectionWithProperties(String className) {
+  private void createCollectionWithProperties(String collectionName) {
     // START CreateCollectionWithProperties
-    // Define class properties
+    // Define collection properties
     Property titleProperty = Property.builder()
         .name("title")
         .description("Title Property Description...")
@@ -124,21 +123,21 @@ class ManageDataClassesTest {
         .dataType(Arrays.asList(DataType.TEXT))
         .build();
 
-    // Add the defined properties to the class
-    WeaviateClass articleClass = WeaviateClass.builder()
-        .className(className)
+    // Add the defined properties to the collection
+    WeaviateClass articleCollection = WeaviateClass.builder()
+        .className(collectionName)
         .description("Article collection Description...")
         .properties(Arrays.asList(titleProperty, bodyProperty))
         .build();
 
     Result<Boolean> result = client.schema().classCreator()
-        .withClass(articleClass)
+        .withClass(articleCollection)
         .run();
     // END CreateCollectionWithProperties
   }
 
-  private void createCollectionWithVectorizer(String className) {
-    // Define class properties
+  private void createCollectionWithVectorizer(String collectionName) {
+    // Define collection properties
     Property titleProperty = Property.builder()
         .name("title")
         .description("Title Property Description...")
@@ -152,20 +151,20 @@ class ManageDataClassesTest {
     // START CreateCollectionWithVectorizer
     // Additional configuration not shown
     // Define the vectorizer in the WeaviateClass Builder
-    WeaviateClass articleClass = WeaviateClass.builder()
-        .className(className)
+    WeaviateClass articleCollection = WeaviateClass.builder()
+        .className(collectionName)
         .properties(Arrays.asList(titleProperty, bodyProperty))
         .vectorizer("text2vec-openai") // Vectorize of your choic e.g. text2vec-openai or text2vec-cohere
         .build();
-    // Add the class to the schema
+    // Add the collection to the schema
     Result<Boolean> result = client.schema().classCreator()
-        .withClass(articleClass)
+        .withClass(articleCollection)
         .run();
     // END CreateCollectionWithVectorizer
   }
 
-  private void createCollectionWithNamedVectors(String className) {
-    // Define class properties
+  private void createCollectionWithNamedVectors(String collectionName) {
+    // Define collection properties
     Property titleProperty = Property.builder()
         .name("title")
         .description("Title Property Description...")
@@ -201,20 +200,20 @@ class ManageDataClassesTest {
         .build());
 
     // Define the vectorizers in the WeaviateClass Builder
-    WeaviateClass articleClass = WeaviateClass.builder()
-        .className(className)
+    WeaviateClass articleCollection = WeaviateClass.builder()
+        .className(collectionName)
         .properties(Arrays.asList(titleProperty, bodyProperty))
         .vectorConfig(vectorConfig)
         .build();
-    // Add the class to the schema
+    // Add the collection to the schema
     Result<Boolean> result = client.schema().classCreator()
-        .withClass(articleClass)
+        .withClass(articleCollection)
         .run();
     // END CreateCollectionWithNamedVectors
   }
 
-  private void createCollectionWithModuleSettings(String className) {
-    // Define class properties
+  private void createCollectionWithModuleSettings(String collectionName) {
+    // Define collection properties
     Property titleProperty = Property.builder()
         .name("title")
         .description("Title Property Description...")
@@ -238,21 +237,21 @@ class ManageDataClassesTest {
     moduleConfig.put("text2vec-openai", text2vecOpenAI);
 
     // Set the module configu in the WeaviateClass Builder
-    WeaviateClass articleClass = WeaviateClass.builder()
-        .className(className)
+    WeaviateClass articleCollection = WeaviateClass.builder()
+        .className(collectionName)
         .properties(Arrays.asList(titleProperty, bodyProperty))
         .moduleConfig(moduleConfig) // Set the module config
         .build();
 
-    // Add the class to the schema
+    // Add the collection to the schema
     Result<Boolean> result = client.schema().classCreator()
-        .withClass(articleClass)
+        .withClass(articleCollection)
         .run();
     // END ModuleSettings
   }
 
-  private void createCollectionWithVectorIndexType(String className) {
-    // Define class properties
+  private void createCollectionWithVectorIndexType(String collectionName) {
+    // Define collection properties
     Property titleProperty = Property.builder()
         .name("title")
         .description("Title Property Description...")
@@ -266,21 +265,21 @@ class ManageDataClassesTest {
     // START SetVectorIndexType
     // Additional configuration not shown
     // Define the index type in the WeaviateClass Builder
-    WeaviateClass articleClass = WeaviateClass.builder()
-        .className(className)
+    WeaviateClass articleCollection = WeaviateClass.builder()
+        .className(collectionName)
         .properties(Arrays.asList(titleProperty, bodyProperty))
         .vectorizer("text2vec-openai")
         .vectorIndexType("hnsw") // set the vector index of your choice e.g. hnsw, flat...
         .build();
-    // Add the class to the schema
+    // Add the collection to the schema
     Result<Boolean> result = client.schema().classCreator()
-        .withClass(articleClass)
+        .withClass(articleCollection)
         .run();
     // END SetVectorIndexType
   }
 
-  private void createCollectionWithVectorIndexParams(String className) {
-    // Define class properties
+  private void createCollectionWithVectorIndexParams(String collectionName) {
+    // Define collection properties
     Property titleProperty = Property.builder()
         .name("title")
         .description("Title Property Description...")
@@ -303,22 +302,22 @@ class ManageDataClassesTest {
         .vectorCacheMaxObjects(100000L)
         .build();
 
-    WeaviateClass articleClass = WeaviateClass.builder()
-        .className(className)
+    WeaviateClass articleCollection = WeaviateClass.builder()
+        .className(collectionName)
         .properties(Arrays.asList(titleProperty, bodyProperty))
         .vectorIndexType("flat") // set the vector index of your choice e.g. hnsw, flat...
         .vectorIndexConfig(createBqIndexConfig)
         .vectorizer("text2vec-openai")
         .build();
 
-    // Add the class to the schema
+    // Add the collection to the schema
     Result<Boolean> result = client.schema().classCreator()
-        .withClass(articleClass)
+        .withClass(articleCollection)
         .run();
     // END SetVectorIndexParams
   }
 
-  private void createPropertiesWithSettings(String className) {
+  private void createPropertiesWithSettings(String collectionName) {
     // START PropModuleSettings
     Property titleProperty = Property.builder()
         .name("title")
@@ -334,20 +333,20 @@ class ManageDataClassesTest {
         .tokenization(Tokenization.LOWERCASE)
         .build();
 
-    // Add the defined properties to the class
-    WeaviateClass articleClass = WeaviateClass.builder()
-        .className(className)
+    // Add the defined properties to the collection
+    WeaviateClass articleCollection = WeaviateClass.builder()
+        .className(collectionName)
         .description("Article collection Description...")
         .properties(Arrays.asList(titleProperty, bodyProperty))
         .build();
 
     Result<Boolean> result = client.schema().classCreator()
-        .withClass(articleClass)
+        .withClass(articleCollection)
         .run();
     // END PropModuleSettings
   }
 
-  private void specifyDistanceMetric(String className) {
+  private void specifyDistanceMetric(String collectionName) {
     Property titleProperty = Property.builder()
         .name("title")
         .dataType(Arrays.asList(DataType.TEXT))
@@ -362,22 +361,22 @@ class ManageDataClassesTest {
         .distance(DistanceType.DOT) // Define Distance Type e.g. Dot, Cosine, hamming...
         .build();
 
-    WeaviateClass articleClass = WeaviateClass.builder()
-        .className(className)
+    WeaviateClass articleCollection = WeaviateClass.builder()
+        .className(collectionName)
         .properties(Arrays.asList(titleProperty, bodyProperty))
         .vectorIndexConfig(vectorIndexConfig)
         .build();
 
     Result<Boolean> classResult = client.schema().classCreator()
-        .withClass(articleClass)
+        .withClass(articleCollection)
         .run();
     // END DistanceMetric
   }
 
-  private void readOneCollection(String className) {
+  private void readOneCollection(String collectionName) {
     // START ReadOneCollection
     Result<WeaviateClass> result = client.schema().classGetter()
-        .withClassName(className)
+        .withClassName(collectionName)
         .run();
 
     // END ReadOneCollection
@@ -387,7 +386,7 @@ class ManageDataClassesTest {
         .returns(false, Result::hasErrors)
         .withFailMessage(null)
         .extracting(Result::getResult).isNotNull()
-        .extracting(WeaviateClass::getClassName).isEqualTo(className);
+        .extracting(WeaviateClass::getClassName).isEqualTo(collectionName);
 
     print(result);
   }
@@ -410,9 +409,9 @@ class ManageDataClassesTest {
     print(result);
   }
 
-  private void updateCollection(String className) {
+  private void updateCollection(String collectionName) {
     Result<Boolean> delResult = client.schema().classDeleter()
-        .withClassName(className)
+        .withClassName(collectionName)
         .run();
 
     assertThat(delResult).isNotNull()
@@ -421,15 +420,15 @@ class ManageDataClassesTest {
         .returns(true, Result::getResult);
 
     // START UpdateCollectionTODO
-    // Define class
+    // Define collection
     WeaviateClass originalClass = WeaviateClass.builder()
-        .className(className)
+        .className(collectionName)
         .vectorIndexConfig(VectorIndexConfig.builder()
             .distance(DistanceType.COSINE) // Note the distance metric
             .build())
         .build();
 
-    // Add the class to the schema
+    // Add the collection to the schema
     Result<Boolean> result = client.schema().classCreator()
         .withClass(originalClass)
         .run();
@@ -443,15 +442,15 @@ class ManageDataClassesTest {
         .returns(true, Result::getResult);
 
     // START UpdateCollectionTODO
-    // Define updated class
+    // Define updated collection
     WeaviateClass updatedClass = WeaviateClass.builder()
-        .className(className)
+        .className(collectionName)
         .vectorIndexConfig(VectorIndexConfig.builder()
             .distance(DistanceType.DOT) // Note the distance metric
             .build())
         .build();
 
-    // Update the class definition
+    // Update the collection definition
     // TODO Not yet available in JAVA
 
     // END UpdateCollectionTODO
@@ -464,10 +463,10 @@ class ManageDataClassesTest {
     // END ReadOneCollection // END ReadAllCollections
   }
 
-  private void deleteCollection(String className) {
+  private void deleteCollection(String collectionName) {
     // DeleteCollection START
     Result<Boolean> result = client.schema().classDeleter()
-        .withClassName(className)
+        .withClassName(collectionName)
         .run();
     // DeleteCollection END
     if (result.hasErrors()) {
@@ -479,7 +478,7 @@ class ManageDataClassesTest {
 
   }
 
-  private void addProperty(String className) {
+  private void addProperty(String collectionName) {
     String propertyName = "Ref";
     // AddProperty START
     Property property = Property.builder()
@@ -488,7 +487,7 @@ class ManageDataClassesTest {
         .build();
 
     Result<Boolean> result = client.schema().propertyCreator()
-        .withClassName(className)
+        .withClassName(collectionName)
         .withProperty(property)
         .run();
     // AddProperty END
@@ -500,10 +499,10 @@ class ManageDataClassesTest {
     System.out.println(result.getResult());
   }
 
-  private void inspectShard(String className) {
+  private void inspectShard(String collectionName) {
     // InspectShard START
     Result<Shard[]> result = client.schema().shardsGetter()
-        .withClassName(className)
+        .withClassName(collectionName)
         .run();
 
     Shard[] shards = result.getResult();
@@ -520,10 +519,10 @@ class ManageDataClassesTest {
     // InspectShard END
   }
 
-  private void updateShardStatus(String className) {
+  private void updateShardStatus(String collectionName) {
     Result<Shard[]> result = client.schema()
         .shardsGetter()
-        .withClassName(className)
+        .withClassName(collectionName)
         .run();
 
     if (result.hasErrors()) {
@@ -541,7 +540,7 @@ class ManageDataClassesTest {
 
     // UpdateShardStatus START
     Result<ShardStatus> updateToReadyStatus = client.schema().shardUpdater()
-        .withClassName(className)
+        .withClassName(collectionName)
         .withShardName(shardName)
         .withStatus(ShardStatuses.READY)
         .run();
@@ -555,9 +554,9 @@ class ManageDataClassesTest {
     // UpdateShardStatus END
   }
 
-  private void createMultiVectorCollection(String className) {
+  private void createMultiVectorCollection(String collectionName) {
     // START MultiValueVectorCollection
-    // Define class properties
+    // Define collection properties
     Property textProperty = Property.builder()
         .name("text")
         .description("Text content for ColBERT vectorization")
@@ -595,14 +594,14 @@ class ManageDataClassesTest {
         .vectorIndexConfig(customMultiVectorConfig)
         .build());
 
-    // Create the class with multi-vector configuration
+    // Create the collection with multi-vector configuration
     WeaviateClass multiVecClass = WeaviateClass.builder()
-        .className(className)
+        .className(collectionName)
         .properties(Arrays.asList(textProperty))
         .vectorConfig(vectorConfig)
         .build();
 
-    // Add the class to the schema
+    // Add the collection to the schema
     Result<Boolean> result = client.schema().classCreator()
         .withClass(multiVecClass)
         .run();
@@ -616,9 +615,9 @@ class ManageDataClassesTest {
   }
 
   /*
-   * private void createMultiVectorMuvera(String className) {
+   * private void createMultiVectorMuvera(String collectionName) {
    * // START MultiValueVectorMuvera
-   * // Define class properties
+   * // Define collection properties
    * Property textProperty = Property.builder()
    * .name("text")
    * .description("Text content for ColBERT vectorization with MUVERA encoding")
@@ -680,14 +679,14 @@ class ManageDataClassesTest {
    * .vectorIndexConfig(customVectorIndexConfig)
    * .build());
    * 
-   * // Create the class with MUVERA-encoded multi-vector configuration
+   * // Create the collection with MUVERA-encoded multi-vector configuration
    * WeaviateClass multiVecMuveraClass = WeaviateClass.builder()
    * .className("DemoCollection")
    * .properties(Arrays.asList(textProperty))
    * .vectorConfig(vectorConfig)
    * .build();
    * 
-   * // Add the class to the schema
+   * // Add the collection to the schema
    * Result<Boolean> result = client.schema().classCreator()
    * .withClass(multiVecMuveraClass)
    * .run();
@@ -695,7 +694,7 @@ class ManageDataClassesTest {
    * }
    */
 
-  private void createArticleCollectionWithIndexConfig(String className) {
+  private void createArticleCollectionWithIndexConfig(String collectionName) {
     // START SetInvertedIndexParams
     // Create properties with specific indexing configurations
     Property titleProperty = Property.builder()
@@ -726,15 +725,15 @@ class ManageDataClassesTest {
         .build();
 
     // Create the Article collection with properties and inverted index configuration
-    WeaviateClass articleClass = WeaviateClass.builder()
-        .className(className)
+    WeaviateClass articleCollection = WeaviateClass.builder()
+        .className(collectionName)
         .properties(Arrays.asList(titleProperty, chunkProperty))
         .invertedIndexConfig(invertedIndexConfig)
         .build();
 
-    // Add the class to the schema
+    // Add the collection to the schema
     Result<Boolean> result = client.schema().classCreator()
-        .withClass(articleClass)
+        .withClass(articleCollection)
         .run();
     // END SetInvertedIndexParams
 
@@ -745,9 +744,9 @@ class ManageDataClassesTest {
         .withFailMessage(null)
         .returns(true, Result::getResult);
 
-    // Optionally verify the created class has the correct configuration
+    // Optionally verify the created collection has the correct configuration
     Result<WeaviateClass> classResult = client.schema().classGetter()
-        .withClassName(className)
+        .withClassName(collectionName)
         .run();
 
     assertThat(classResult).isNotNull()
@@ -773,7 +772,7 @@ class ManageDataClassesTest {
         .returns(true, InvertedIndexConfig::getIndexTimestamps);
   }
 
-  private void createArticleWithOpenAIConfig(String className) {
+  private void createArticleWithOpenAIConfig(String collectionName) {
     // START SetGenModel
     // Configure OpenAI text2vec module settings
     Map<String, Object> text2vecOpenAI = new HashMap<>();
@@ -793,15 +792,15 @@ class ManageDataClassesTest {
     moduleConfig.put("generative-openai", generativeOpenAI);
 
     // Create the Article collection with vectorizer and generative configuration
-    WeaviateClass articleClass = WeaviateClass.builder()
-        .className(className)
+    WeaviateClass articleCollection = WeaviateClass.builder()
+        .className(collectionName)
         .vectorizer("text2vec-openai") // Set the vectorizer
         .moduleConfig(moduleConfig) // Set both vectorizer and generative configs
         .build();
 
-    // Add the class to the schema
+    // Add the collection to the schema
     Result<Boolean> result = client.schema().classCreator()
-        .withClass(articleClass)
+        .withClass(articleCollection)
         .run();
     // END SetGenModel
     // Assert the result
@@ -812,7 +811,7 @@ class ManageDataClassesTest {
         .returns(true, Result::getResult);
   }
 
-  private void createArticleWithMultiTenancyConfig(String className) {
+  private void createArticleWithMultiTenancyConfig(String collectionName) {
     // START MultiTenancy
     // Create multi-tenancy configuration
     MultiTenancyConfig multiTenancyConfig = MultiTenancyConfig.builder()
@@ -820,15 +819,15 @@ class ManageDataClassesTest {
         .build();
 
     // Create the Article collection with multi-tenancy configuration
-    WeaviateClass articleClass = WeaviateClass.builder()
-        .className(className)
+    WeaviateClass articleCollection = WeaviateClass.builder()
+        .className(collectionName)
         .description("Article collection with multi-tenancy enabled")
-        .multiTenancyConfig(multiTenancyConfig) 
+        .multiTenancyConfig(multiTenancyConfig)
         .build();
 
-    // Add the class to the schema
+    // Add the collection to the schema
     Result<Boolean> result = client.schema().classCreator()
-        .withClass(articleClass)
+        .withClass(articleCollection)
         .run();
     // END MultiTenancy
 
@@ -841,7 +840,7 @@ class ManageDataClassesTest {
 
     // Verify the multi-tenancy configuration was set correctly
     Result<WeaviateClass> classResult = client.schema().classGetter()
-        .withClassName(className)
+        .withClassName(collectionName)
         .run();
 
     assertThat(classResult).isNotNull()

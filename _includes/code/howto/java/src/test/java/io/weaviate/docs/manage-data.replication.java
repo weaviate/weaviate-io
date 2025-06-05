@@ -45,12 +45,12 @@ class ManageDataReplicationTest {
   @Test
   public void shouldManageDataClasses() {
 
-    String className = "Article";
+    String collectionName = "Article";
 
-    createArticleWithReplicationConfig(className);
-    deleteCollections(className);
-    createArticleWithShardingConfig(className);
-    updateArticleConfiguration(className);
+    createArticleWithReplicationConfig(collectionName);
+    deleteCollections(collectionName);
+    createArticleWithShardingConfig(collectionName);
+    updateArticleConfiguration(collectionName);
     readAllCollections();
   }
 
@@ -80,7 +80,7 @@ class ManageDataReplicationTest {
     print(result);
   }
 
-  private void createArticleWithReplicationConfig(String className) {
+  private void createArticleWithReplicationConfig(String collectionName) {
     // START AllReplicationSettings
     // Configure replication settings
     Integer replicationFactor = 3;
@@ -95,12 +95,12 @@ class ManageDataReplicationTest {
 
     // Create the Article collection with replication configuration
     WeaviateClass articleClass = WeaviateClass.builder()
-        .className(className)
-        .description("Article class with replication configuration")
+        .className(collectionName)
+        .description("Article collection with replication configuration")
         .replicationConfig(replicationConfig) // Set the replication config
         .build();
 
-    // Add the class to the schema
+    // Add the collection to the schema
     Result<Boolean> result = client.schema().classCreator()
         .withClass(articleClass)
         .run();
@@ -115,7 +115,7 @@ class ManageDataReplicationTest {
 
     // Verify the replication configuration was set correctly
     Result<WeaviateClass> classResult = client.schema().classGetter()
-        .withClassName(className)
+        .withClassName(collectionName)
         .run();
 
     assertThat(classResult).isNotNull()
@@ -130,7 +130,7 @@ class ManageDataReplicationTest {
             ReplicationConfig::getDeletionStrategy);
   }
 
-  private void createArticleWithShardingConfig(String className) {
+  private void createArticleWithShardingConfig(String collectionName) {
     // START ShardingSettings
     // Configure sharding settings
     Integer virtualPerPhysical = 128;
@@ -144,14 +144,14 @@ class ManageDataReplicationTest {
         .desiredVirtualCount(desiredVirtualCount) // desired_virtual_count=128
         .build();
 
-    // Create the Article class with sharding configuration
+    // Create the Article collection with sharding configuration
     WeaviateClass articleClass = WeaviateClass.builder()
-        .className(className)
-        .description("Article class with sharding configuration")
+        .className(collectionName)
+        .description("Article collection with sharding configuration")
         .shardingConfig(shardingConfig) // Set the sharding config
         .build();
 
-    // Add the class to the schema
+    // Add the collection to the schema
     Result<Boolean> result = client.schema().classCreator()
         .withClass(articleClass)
         .run();
@@ -166,7 +166,7 @@ class ManageDataReplicationTest {
 
     // Verify the sharding configuration was set correctly
     Result<WeaviateClass> classResult = client.schema().classGetter()
-        .withClassName(className)
+        .withClassName(collectionName)
         .run();
 
     assertThat(classResult).isNotNull()
@@ -180,89 +180,68 @@ class ManageDataReplicationTest {
         .returns(desiredVirtualCount, ShardingConfig::getDesiredVirtualCount);
   }
 
-  private void updateArticleConfiguration(String className) {
+  private void updateArticleConfiguration(String collectionName) {
     // START UpdateCollection
-    // First get the existing class to preserve properties and other settings
-    Result<WeaviateClass> existingClassResult = client.schema().classGetter()
-        .withClassName(className)
+    // Get existing collection
+    Result<WeaviateClass> existingResult = client.schema().classGetter()
+        .withClassName(collectionName)
         .run();
-
-    assertThat(existingClassResult).isNotNull()
+    
+    assertThat(existingResult).isNotNull()
         .returns(false, Result::hasErrors);
+    
+    WeaviateClass existingClass = existingResult.getResult();
 
-    WeaviateClass existingClass = existingClassResult.getResult();
-
-    // Configure updated BM25 settings for inverted index
-    BM25Config updatedBM25Config = BM25Config.builder()
-        .k1(1.5f)
+    // Create updated configurations
+    InvertedIndexConfig invertedConfig = InvertedIndexConfig.builder()
+        .bm25(BM25Config.builder().k1(1.5f).build())
         .build();
 
-    InvertedIndexConfig updatedInvertedIndexConfig = InvertedIndexConfig.builder()
-        .bm25(updatedBM25Config)
-        .build();
-
-    // Configure updated vector index with ACORN filter strategy
-    VectorIndexConfig updatedVectorIndexConfig = VectorIndexConfig.builder()
+    VectorIndexConfig vectorConfig = VectorIndexConfig.builder()
         .filterStrategy(VectorIndexConfig.FilterStrategy.ACORN)
         .build();
 
-    // Configure updated replication with time-based deletion strategy
-    // IMPORTANT: Preserve the existing replication factor to avoid shard count
-    // changes
-    ReplicationConfig existingReplicationConfig = existingClass.getReplicationConfig();
-    ReplicationConfig updatedReplicationConfig = ReplicationConfig.builder()
-        .factor(existingReplicationConfig != null ? existingReplicationConfig.getFactor() : 1)
-        .asyncEnabled(existingReplicationConfig != null ? existingReplicationConfig.getAsyncEnabled() : false)
+    ReplicationConfig replicationConfig = ReplicationConfig.builder()
         .deletionStrategy(ReplicationConfig.DeletionStrategy.NO_AUTOMATED_RESOLUTION)
         .build();
 
-    // Create the updated class configuration
+    // Update collection with new configurations - preserve critical existing configs
     WeaviateClass updatedClass = WeaviateClass.builder()
-        .className(className)
-        .description(existingClass.getDescription())
-        .properties(existingClass.getProperties())
-        .vectorizer(existingClass.getVectorizer())
-        .moduleConfig(existingClass.getModuleConfig())
-        .shardingConfig(existingClass.getShardingConfig())
-        .invertedIndexConfig(updatedInvertedIndexConfig)
-        .vectorIndexConfig(updatedVectorIndexConfig)
-        .replicationConfig(updatedReplicationConfig)
+        .className(collectionName)
+        .shardingConfig(existingClass.getShardingConfig())     // Preserve sharding (immutable)
+        .invertedIndexConfig(invertedConfig)                   // Update
+        .vectorIndexConfig(vectorConfig)                       // Update
+        .replicationConfig(replicationConfig)                  // Update
         .build();
 
-    // Update the class
     Result<Boolean> updateResult = client.schema().classUpdater()
         .withClass(updatedClass)
         .run();
     // END UpdateCollection
 
+    // Debug: Print error if update fails
+    if (updateResult.hasErrors()) {
+        System.out.println("Update failed with error: " + updateResult.getError());
+    }
+
     assertThat(updateResult).isNotNull()
-        .withFailMessage(() -> updateResult.getError().toString())
+        .withFailMessage(() -> "Update failed: " + updateResult.getError())
         .returns(false, Result::hasErrors)
-        .withFailMessage(null)
         .returns(true, Result::getResult);
 
-    // Verify the updates were applied
-    Result<WeaviateClass> updatedClassResult = client.schema().classGetter()
-        .withClassName(className)
+    // Verify updates
+    Result<WeaviateClass> verifyResult = client.schema().classGetter()
+        .withClassName(collectionName)
         .run();
-
-    assertThat(updatedClassResult).isNotNull()
+    
+    assertThat(verifyResult).isNotNull()
         .returns(false, Result::hasErrors);
+    
+    WeaviateClass verifyClass = verifyResult.getResult();
 
-    WeaviateClass verifyClass = updatedClassResult.getResult();
-
-    // Verify inverted index config update
-    assertThat(verifyClass.getInvertedIndexConfig()).isNotNull()
-        .extracting(InvertedIndexConfig::getBm25).isNotNull()
-        .returns(1.5f, BM25Config::getK1);
-
-    // Verify vector index config update
-    assertThat(verifyClass.getVectorIndexConfig()).isNotNull()
-        .returns(VectorIndexConfig.FilterStrategy.ACORN, VectorIndexConfig::getFilterStrategy);
-
-    // Verify replication config update (only deletion strategy should change)
-    assertThat(verifyClass.getReplicationConfig()).isNotNull()
-        .returns(ReplicationConfig.DeletionStrategy.NO_AUTOMATED_RESOLUTION,
-            ReplicationConfig::getDeletionStrategy);
+    assertThat(verifyClass.getInvertedIndexConfig().getBm25().getK1()).isEqualTo(1.5f);
+    assertThat(verifyClass.getVectorIndexConfig().getFilterStrategy()).isEqualTo(VectorIndexConfig.FilterStrategy.ACORN);
+    assertThat(verifyClass.getReplicationConfig().getDeletionStrategy()).isEqualTo(ReplicationConfig.DeletionStrategy.NO_AUTOMATED_RESOLUTION);
   }
 }
+ 

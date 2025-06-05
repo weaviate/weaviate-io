@@ -694,22 +694,22 @@ If you choose to bring your own vectors, you should specify the `distance metric
   </TabItem>
 
   <TabItem value="java" label="Java">
-      <FilteredTextBlock
-        text={JavaCode}
-        startMarker="// START DistanceMetric"
-        endMarker="// END DistanceMetric"
-        language="java"
-      />
-    </TabItem>
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START DistanceMetric"
+      endMarker="// END DistanceMetric"
+      language="java"
+    />
+  </TabItem>
 
   <TabItem value="go" label="Go">
-      <FilteredTextBlock
-        text={GoCode}
-        startMarker="// START DistanceMetric"
-        endMarker="// END DistanceMetric"
-        language="gonew"
-      />
-    </TabItem>
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START DistanceMetric"
+      endMarker="// END DistanceMetric"
+      language="gonew"
+    />
+  </TabItem>
 </Tabs>
 
 <details>
@@ -772,6 +772,7 @@ Various [inverted index parameters](../config-refs/schema/index.md#invertedindex
       endMarker="// END SetInvertedIndexParams"
       language="java"
     />
+  </TabItem>
 
   <TabItem value="go" label="Go">
     <FilteredTextBlock
@@ -1055,6 +1056,15 @@ Configure replication settings, such as [async replication](/developers/weaviate
     />
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaReplicationCode}
+      startMarker="// START AllReplicationSettings"
+      endMarker="// END AllReplicationSettings"
+      language="java"
+    />
+  </TabItem>
+
   <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
@@ -1091,15 +1101,6 @@ http://localhost:8080/v1/schema
 ```
 
 </TabItem>
-
-  <TabItem value="java" label="Java">
-      <FilteredTextBlock
-        text={JavaReplicationCode}
-        startMarker="// START AllReplicationSettings"
-        endMarker="// END AllReplicationSettings"
-        language="java"
-      />
-    </TabItem>
 </Tabs>
 
 <details>
@@ -1238,6 +1239,7 @@ Create a collection with multi-tenancy enabled.
       endMarker="// END MultiTenancy"
       language="java"
     />
+  </TabItem>
 
   <TabItem value="go" label="Go">
     <FilteredTextBlock
