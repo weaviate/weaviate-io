@@ -11,7 +11,7 @@ import (
 	"github.com/weaviate/weaviate-go-client/v4/weaviate"
 	"github.com/weaviate/weaviate/entities/models"
 	"github.com/weaviate/weaviate/entities/schema"
-	"github.com/weaviate/weaviate/entities/vectorindex/common"
+	sharding "github.com/weaviate/weaviate/usecases/sharding/config"
 	"weaviate.io/docs/docs/helper"
 )
 
@@ -28,10 +28,10 @@ func Test_ManageDataClasses(t *testing.T) {
 	err = client.Schema().AllDeleter().Do(ctx)
 	require.NoError(t, err)
 
-	// START BasicCreateCollection  // START ReadOneCollection  // START UpdateCollection
+	// START BasicCreateCollection  // START ReadOneCollection
 	className := "Article"
 
-	// END BasicCreateCollection  // END ReadOneCollection  // END UpdateCollection
+	// END BasicCreateCollection  // END ReadOneCollection
 
 	t.Run("create class", func(t *testing.T) {
 		// START BasicCreateCollection
@@ -84,44 +84,6 @@ func Test_ManageDataClasses(t *testing.T) {
 		// START ReadAllCollections
 		fmt.Println(string(b))
 		// END ReadAllCollections
-	})
-
-	t.Run("update class", func(t *testing.T) {
-		errDel := client.Schema().ClassDeleter().WithClassName(className).Do(ctx)
-		require.NoError(t, errDel)
-
-		// START UpdateCollectionTODO
-		// Define class
-		originalClass := &models.Class{
-			Class: className,
-			VectorIndexConfig: map[string]interface{}{
-				"distance": common.DistanceCosine, // Note the distance metric
-			},
-		}
-
-		// Create the collection (also called class)
-		err := client.Schema().ClassCreator().
-			WithClass(originalClass).
-			Do(ctx)
-
-		// END UpdateCollectionTODO
-
-		require.NoError(t, err)
-
-		// START UpdateCollectionTODO
-		// Define updated class
-		updatedClass := &models.Class{
-			Class: className,
-			VectorIndexConfig: map[string]interface{}{
-				"distance": common.DistanceDot, // Note the distance metric
-			},
-		}
-
-		// Update the class definition
-		_ = updatedClass
-		// TODO Not yet available in GO
-
-		// END UpdateCollectionTODO
 	})
 
 	t.Run("create class with properties", func(t *testing.T) {
@@ -523,6 +485,145 @@ func Test_ManageDataClasses(t *testing.T) {
 
 		err := client.Schema().ClassCreator().
 			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("update collection with generative model integration", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+			Vectorizer:  "text2vec-openai",
+		}
+
+		creation_err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, creation_err)
+
+		// START UpdateGenerative
+		updatedArticleClassConfig := &models.Class{
+			Class: "Article",
+			ModuleConfig: map[string]interface{}{
+				"generative-cohere": map[string]interface{}{},
+			},
+		}
+		// END UpdateGenerative
+
+		err := client.Schema().ClassUpdater().
+			WithClass(updatedArticleClassConfig).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("create class with replication settings", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		// START AllReplicationSettings
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+			ReplicationConfig: &models.ReplicationConfig{
+				AsyncEnabled:     true,
+				Factor:           3,
+				DeletionStrategy: models.ReplicationConfigDeletionStrategyTimeBasedResolution,
+			},
+		}
+		// END AllReplicationSettings
+
+		err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("create class with sharding settings", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		// START ShardingSettings
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+			ShardingConfig: sharding.Config{
+				VirtualPerPhysical:  128,
+				DesiredCount:        1,
+				DesiredVirtualCount: 128,
+			},
+		}
+		// END ShardingSettings
+
+		err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("create multi-tenant class", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		// START Multi-tenancy
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+			MultiTenancyConfig: &models.MultiTenancyConfig{
+				Enabled: true,
+			},
+		}
+		// END Multi-tenancy
+
+		err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("update collection with generative model integration", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+			Vectorizer:  "text2vec-openai",
+		}
+
+		creation_err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, creation_err)
+
+		// START UpdateCollection
+		updatedArticleClassConfig := &models.Class{
+			Class: "Article",
+			InvertedIndexConfig: &models.InvertedIndexConfig{
+				Bm25: &models.BM25Config{
+					K1: 1.5,
+				},
+			},
+			VectorIndexConfig: map[string]interface{}{
+				"filterStrategy": "acorn",
+			},
+			ReplicationConfig: &models.ReplicationConfig{
+				DeletionStrategy: models.ReplicationConfigDeletionStrategyTimeBasedResolution,
+			},
+		}
+		// END UpdateCollection
+
+		err := client.Schema().ClassUpdater().
+			WithClass(updatedArticleClassConfig).
 			Do(ctx)
 
 		require.NoError(t, err)
