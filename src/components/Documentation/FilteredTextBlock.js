@@ -28,7 +28,7 @@ const DOC_SYSTEMS = {
     // tsv2: {}  // No inline docs for the old version
     go: {
         baseUrl:
-            'https://pkg.go.dev/github.com/weaviate/weaviate-go-client/v5/weaviate',
+            'https://pkg.go.dev/github.com/weaviate/weaviate-go-client/v4/weaviate',
         constructUrl: (baseUrl, ref) => `${baseUrl}#${ref}`,
         icon: '/img/site/logo-go.svg',
     },

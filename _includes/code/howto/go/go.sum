@@ -151,8 +151,8 @@ github.com/stretchr/testify v1.10.0/go.mod h1:r2ic/lqez/lEtzL7wO/rwa5dbSLXVDPFyf
 github.com/tidwall/pretty v1.0.0/go.mod h1:XNkn88O1ChpSDQmQeStsy+sBenx6DDtFZJxhVysOjyk=
 github.com/weaviate/weaviate v1.31.0 h1:Ia92M15RqO4lNHHpraljgdoX25/zreEQahUNuEHjCXw=
 github.com/weaviate/weaviate v1.31.0/go.mod h1:LYPjjhOIZV7aHeRqohhitEogszgAk1Aly6sV/Hbk3FY=
-github.com/weaviate/weaviate-go-client/v5 v5.2.0 h1:/HG0vFiKBK3JoOKo0mdk2XVYZ+oM0KfvCLG2ySr/FCA=
-github.com/weaviate/weaviate-go-client/v5 v5.2.0/go.mod h1:nzR0ScRmbbutI+0pAjylj9Pt6upGVotnphiLWjy/QNA=
+github.com/weaviate/weaviate-go-client/v4 v5.2.0 h1:/HG0vFiKBK3JoOKo0mdk2XVYZ+oM0KfvCLG2ySr/FCA=
+github.com/weaviate/weaviate-go-client/v4 v5.2.0/go.mod h1:nzR0ScRmbbutI+0pAjylj9Pt6upGVotnphiLWjy/QNA=
 github.com/xdg-go/pbkdf2 v1.0.0/go.mod h1:jrpuAogTd400dnrH08LKmI/xc1MbPOebTwRqcT5RDeI=
 github.com/xdg-go/scram v1.0.2/go.mod h1:1WAq6h33pAW+iRreB34OORO2Nf7qel3VV3fjBj+hCSs=
 github.com/xdg-go/stringprep v1.0.2/go.mod h1:8F9zXuvzgwmyT5DUm4GUfZGDdT3W+LCvS6+da4O5kxM=
