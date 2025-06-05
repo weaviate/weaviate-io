@@ -8,7 +8,7 @@ require (
 	github.com/go-openapi/strfmt v0.23.0
 	github.com/stretchr/testify v1.10.0
 	github.com/weaviate/weaviate v1.31.0
-	github.com/weaviate/weaviate-go-client/v4 v5.2.0
+	github.com/weaviate/weaviate-go-client/v5 v5.2.0
 )
 
 require (
