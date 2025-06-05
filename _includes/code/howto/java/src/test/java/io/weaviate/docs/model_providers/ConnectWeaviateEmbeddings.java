@@ -6,6 +6,9 @@ import io.weaviate.client.WeaviateAuthClient;
 import io.weaviate.client.WeaviateClient;
 import io.weaviate.client.base.Result;
 
+import java.util.Map;
+import java.util.HashMap;
+
 // END-ANY
 import static org.assertj.core.api.Assertions.assertThat;
 

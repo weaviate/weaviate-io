@@ -13,6 +13,7 @@ import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.collections
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.collections-v2.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.classes.java';
+import JavaReplicationCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.replication.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.classes_test.go';
 
 Every object in Weaviate belongs to exactly one collection. Use the examples on this page to manage your collections.
@@ -435,6 +436,14 @@ Multi-vector embeddings, also known as multi-vectors, represent a single object 
       language="py"
     />
   </TabItem>
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START MultiValueVectorCollection"
+      endMarker="// END MultiValueVectorCollection"
+      language="java"
+    />
+  </TabItem>
 </Tabs>
 
 :::tip Use quantization and encoding to compress your vectors
@@ -685,22 +694,22 @@ If you choose to bring your own vectors, you should specify the `distance metric
   </TabItem>
 
   <TabItem value="java" label="Java">
-      <FilteredTextBlock
-        text={JavaCode}
-        startMarker="// START DistanceMetric"
-        endMarker="// END DistanceMetric"
-        language="java"
-      />
-    </TabItem>
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START DistanceMetric"
+      endMarker="// END DistanceMetric"
+      language="java"
+    />
+  </TabItem>
 
   <TabItem value="go" label="Go">
-      <FilteredTextBlock
-        text={GoCode}
-        startMarker="// START DistanceMetric"
-        endMarker="// END DistanceMetric"
-        language="gonew"
-      />
-    </TabItem>
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START DistanceMetric"
+      endMarker="// END DistanceMetric"
+      language="gonew"
+    />
+  </TabItem>
 </Tabs>
 
 <details>
@@ -753,6 +762,15 @@ Various [inverted index parameters](../config-refs/schema/index.md#invertedindex
       startMarker="// START SetInvertedIndexParams"
       endMarker="// END SetInvertedIndexParams"
       language="tsv2"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START SetInvertedIndexParams"
+      endMarker="// END SetInvertedIndexParams"
+      language="java"
     />
   </TabItem>
 
@@ -929,6 +947,15 @@ Specify a `generative` model integration for a collection (for RAG).
       language="gonew"
     />
   </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START SetGenModel"
+      endMarker="// END SetGenModel"
+      language="java"
+    />
+  </TabItem>
 </Tabs>
 
 ## Update the generative model integration
@@ -1029,6 +1056,15 @@ Configure replication settings, such as [async replication](/developers/weaviate
     />
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaReplicationCode}
+      startMarker="// START AllReplicationSettings"
+      endMarker="// END AllReplicationSettings"
+      language="java"
+    />
+  </TabItem>
+
   <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
@@ -1121,6 +1157,15 @@ Configure sharding per collection.
     />
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaReplicationCode}
+      startMarker="// START ShardingSettings"
+      endMarker="// END ShardingSettings"
+      language="java"
+    />
+  </TabItem>
+
   <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
@@ -1184,6 +1229,15 @@ Create a collection with multi-tenancy enabled.
       startMarker="// START Multi-tenancy"
       endMarker="// END Multi-tenancy"
       language="tsv2"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START MultiTenancy"
+      endMarker="// END MultiTenancy"
+      language="java"
     />
   </TabItem>
 
@@ -1525,11 +1579,12 @@ You can update a collection definition to change the [mutable collection setting
   </TabItem>
 
   <TabItem value="java" label="Java">
-
-```java
-// This feature is under development
-```
-
+    <FilteredTextBlock
+      text={JavaReplicationCode}
+      startMarker="// START UpdateCollection"
+      endMarker="// END UpdateCollection"
+      language="java"
+    />
   </TabItem>
 
   <TabItem value="go" label="Go">
