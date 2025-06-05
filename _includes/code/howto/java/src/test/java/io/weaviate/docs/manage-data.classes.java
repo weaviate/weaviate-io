@@ -7,6 +7,12 @@ import io.weaviate.client.WeaviateClient;
 import io.weaviate.client.base.Result;
 import io.weaviate.client.v1.misc.model.DistanceType;
 import io.weaviate.client.v1.misc.model.VectorIndexConfig;
+import io.weaviate.client.v1.misc.model.MultiVectorConfig;
+//import io.weaviate.client.v1.misc.model.MuveraConfig;
+import io.weaviate.client.v1.misc.model.BM25Config;
+import io.weaviate.client.v1.misc.model.InvertedIndexConfig;
+import io.weaviate.client.v1.misc.model.ReplicationConfig;
+import io.weaviate.client.v1.misc.model.MultiTenancyConfig;
 import io.weaviate.client.v1.schema.model.Schema;
 import io.weaviate.client.v1.schema.model.Shard;
 import io.weaviate.client.v1.schema.model.ShardStatus;
@@ -16,8 +22,6 @@ import io.weaviate.client.v1.schema.model.Property;
 import io.weaviate.client.v1.schema.model.DataType;
 import io.weaviate.client.v1.misc.model.BQConfig;
 import io.weaviate.client.v1.schema.model.Tokenization;
-import io.weaviate.client.v1.misc.model.MultiVectorConfig;
-//import io.weaviate.client.v1.misc.model.MuveraConfig;
 import io.weaviate.docs.helper.EnvHelper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
@@ -69,7 +73,7 @@ class ManageDataClassesTest {
     createCollectionWithModuleSettings(className);
     createCollectionWithVectorIndexType(className);
     createCollectionWithVectorIndexParams(className);
-    createPropertieswithSettings(className);
+    createPropertiesWithSettings(className);
     specifyDistanceMetric(className);
     deleteCollection(className);
     addProperty(className);
@@ -77,6 +81,13 @@ class ManageDataClassesTest {
     updateShardStatus(className);
     createMultiVectorCollection(className);
     // createMultiVectorMuvera(className);
+    deleteCollection(className);
+    createArticleCollectionWithIndexConfig(className);
+    deleteCollection(className);
+    createArticleWithOpenAIConfig(className);
+    deleteCollection(className);
+    createArticleWithMultiTenancyConfig(className);
+    readAllCollections();
   }
 
   private void createCollection(String className) {
@@ -116,7 +127,7 @@ class ManageDataClassesTest {
     // Add the defined properties to the class
     WeaviateClass articleClass = WeaviateClass.builder()
         .className(className)
-        .description("Article Class Description...")
+        .description("Article collection Description...")
         .properties(Arrays.asList(titleProperty, bodyProperty))
         .build();
 
@@ -307,7 +318,7 @@ class ManageDataClassesTest {
     // END SetVectorIndexParams
   }
 
-  private void createPropertieswithSettings(String className) {
+  private void createPropertiesWithSettings(String className) {
     // START PropModuleSettings
     Property titleProperty = Property.builder()
         .name("title")
@@ -326,7 +337,7 @@ class ManageDataClassesTest {
     // Add the defined properties to the class
     WeaviateClass articleClass = WeaviateClass.builder()
         .className(className)
-        .description("Article Class Description...")
+        .description("Article collection Description...")
         .properties(Arrays.asList(titleProperty, bodyProperty))
         .build();
 
@@ -683,4 +694,162 @@ class ManageDataClassesTest {
    * // END MultiValueVectorMuvera
    * }
    */
+
+  private void createArticleCollectionWithIndexConfig(String className) {
+    // START SetInvertedIndexParams
+    // Create properties with specific indexing configurations
+    Property titleProperty = Property.builder()
+        .name("title")
+        .dataType(Arrays.asList(DataType.TEXT))
+        .indexFilterable(true)
+        .indexSearchable(true)
+        .build();
+
+    Property chunkProperty = Property.builder()
+        .name("chunk")
+        .dataType(Arrays.asList(DataType.INT))
+        .indexRangeFilters(true)
+        .build();
+
+    // Configure BM25 settings
+    BM25Config bm25Config = BM25Config.builder()
+        .b(0.7f)
+        .k1(1.25f)
+        .build();
+
+    // Configure inverted index with BM25 and other settings
+    InvertedIndexConfig invertedIndexConfig = InvertedIndexConfig.builder()
+        .bm25(bm25Config)
+        .indexNullState(true)
+        .indexPropertyLength(true)
+        .indexTimestamps(true)
+        .build();
+
+    // Create the Article collection with properties and inverted index configuration
+    WeaviateClass articleClass = WeaviateClass.builder()
+        .className(className)
+        .properties(Arrays.asList(titleProperty, chunkProperty))
+        .invertedIndexConfig(invertedIndexConfig)
+        .build();
+
+    // Add the class to the schema
+    Result<Boolean> result = client.schema().classCreator()
+        .withClass(articleClass)
+        .run();
+    // END SetInvertedIndexParams
+
+    // Assert the result
+    assertThat(result).isNotNull()
+        .withFailMessage(() -> result.getError().toString())
+        .returns(false, Result::hasErrors)
+        .withFailMessage(null)
+        .returns(true, Result::getResult);
+
+    // Optionally verify the created class has the correct configuration
+    Result<WeaviateClass> classResult = client.schema().classGetter()
+        .withClassName(className)
+        .run();
+
+    assertThat(classResult).isNotNull()
+        .returns(false, Result::hasErrors);
+
+    WeaviateClass createdClass = classResult.getResult();
+    assertThat(createdClass).isNotNull()
+        .extracting(WeaviateClass::getProperties).asList()
+        .hasSize(2);
+
+    // Verify BM25 configuration
+    assertThat(createdClass.getInvertedIndexConfig()).isNotNull()
+        .extracting(InvertedIndexConfig::getBm25).isNotNull()
+        .satisfies(bm25 -> {
+          assertThat(bm25.getB()).isEqualTo(0.7f);
+          assertThat(bm25.getK1()).isEqualTo(1.25f);
+        });
+
+    // Verify inverted index settings
+    assertThat(createdClass.getInvertedIndexConfig())
+        .returns(true, InvertedIndexConfig::getIndexNullState)
+        .returns(true, InvertedIndexConfig::getIndexPropertyLength)
+        .returns(true, InvertedIndexConfig::getIndexTimestamps);
+  }
+
+  private void createArticleWithOpenAIConfig(String className) {
+    // START SetGenModel
+    // Configure OpenAI text2vec module settings
+    Map<String, Object> text2vecOpenAI = new HashMap<>();
+    Map<String, Object> text2vecOpenAISettings = new HashMap<>();
+    text2vecOpenAISettings.put("model", "text-embedding-3-small"); // or your preferred embedding model
+    text2vecOpenAI.put("text2vec-openai", text2vecOpenAISettings);
+
+    // Configure OpenAI generative module settings
+    Map<String, Object> generativeOpenAI = new HashMap<>();
+    Map<String, Object> generativeOpenAISettings = new HashMap<>();
+    generativeOpenAISettings.put("model", "gpt-4");
+    generativeOpenAI.put("generative-openai", generativeOpenAISettings);
+
+    // Combine module configurations
+    Map<String, Object> moduleConfig = new HashMap<>();
+    moduleConfig.put("text2vec-openai", text2vecOpenAI);
+    moduleConfig.put("generative-openai", generativeOpenAI);
+
+    // Create the Article collection with vectorizer and generative configuration
+    WeaviateClass articleClass = WeaviateClass.builder()
+        .className(className)
+        .vectorizer("text2vec-openai") // Set the vectorizer
+        .moduleConfig(moduleConfig) // Set both vectorizer and generative configs
+        .build();
+
+    // Add the class to the schema
+    Result<Boolean> result = client.schema().classCreator()
+        .withClass(articleClass)
+        .run();
+    // END SetGenModel
+    // Assert the result
+    assertThat(result).isNotNull()
+        .withFailMessage(() -> result.getError().toString())
+        .returns(false, Result::hasErrors)
+        .withFailMessage(null)
+        .returns(true, Result::getResult);
+  }
+
+  private void createArticleWithMultiTenancyConfig(String className) {
+    // START MultiTenancy
+    // Create multi-tenancy configuration
+    MultiTenancyConfig multiTenancyConfig = MultiTenancyConfig.builder()
+        .enabled(true)
+        .build();
+
+    // Create the Article collection with multi-tenancy configuration
+    WeaviateClass articleClass = WeaviateClass.builder()
+        .className(className)
+        .description("Article collection with multi-tenancy enabled")
+        .multiTenancyConfig(multiTenancyConfig) 
+        .build();
+
+    // Add the class to the schema
+    Result<Boolean> result = client.schema().classCreator()
+        .withClass(articleClass)
+        .run();
+    // END MultiTenancy
+
+    // Assert the result
+    assertThat(result).isNotNull()
+        .withFailMessage(() -> result.getError().toString())
+        .returns(false, Result::hasErrors)
+        .withFailMessage(null)
+        .returns(true, Result::getResult);
+
+    // Verify the multi-tenancy configuration was set correctly
+    Result<WeaviateClass> classResult = client.schema().classGetter()
+        .withClassName(className)
+        .run();
+
+    assertThat(classResult).isNotNull()
+        .returns(false, Result::hasErrors);
+
+    WeaviateClass createdClass = classResult.getResult();
+    assertThat(createdClass).isNotNull()
+        .extracting(WeaviateClass::getMultiTenancyConfig).isNotNull()
+        .returns(true, MultiTenancyConfig::getEnabled);
+  }
 }

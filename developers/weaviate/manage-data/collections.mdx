@@ -13,6 +13,7 @@ import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.collections
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.collections-v2.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.classes.java';
+import JavaReplicationCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.replication.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.classes_test.go';
 
 Every object in Weaviate belongs to exactly one collection. Use the examples on this page to manage your collections.
@@ -691,6 +692,15 @@ Various [inverted index parameters](../config-refs/schema/index.md#invertedindex
       language="tsv2"
     />
   </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START SetInvertedIndexParams"
+      endMarker="// END SetInvertedIndexParams"
+      language="java"
+    />
+  </TabItem>
 </Tabs>
 
 ## Specify a reranker model integration
@@ -871,6 +881,15 @@ Specify a generative `model name`.
       language="tsv2"
     />
   </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START SetGenModel"
+      endMarker="// END SetGenModel"
+      language="java"
+    />
+  </TabItem>
 </Tabs>
 
 ## Update the generative model integration
@@ -997,6 +1016,15 @@ http://localhost:8080/v1/schema
 ```
 
 </TabItem>
+
+  <TabItem value="java" label="Java">
+      <FilteredTextBlock
+        text={JavaReplicationCode}
+        startMarker="// START AllReplicationSettings"
+        endMarker="// END AllReplicationSettings"
+        language="java"
+      />
+    </TabItem>
 </Tabs>
 
 <details>
@@ -1050,6 +1078,15 @@ Configure sharding per collection.
       startMarker="// START ShardingSettings"
       endMarker="// END ShardingSettings"
       language="tsv2"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaReplicationCode}
+      startMarker="// START ShardingSettings"
+      endMarker="// END ShardingSettings"
+      language="java"
     />
   </TabItem>
 </Tabs>
@@ -1106,6 +1143,15 @@ Create a collection with multi-tenancy enabled.
       startMarker="// START Multi-tenancy"
       endMarker="// END Multi-tenancy"
       language="tsv2"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START MultiTenancy"
+      endMarker="// END MultiTenancy"
+      language="java"
     />
   </TabItem>
 </Tabs>
@@ -1438,11 +1484,12 @@ You can update a collection definition to change the [mutable collection setting
   </TabItem>
 
   <TabItem value="java" label="Java">
-
-```java
-// This feature is under development
-```
-
+    <FilteredTextBlock
+      text={JavaReplicationCode}
+      startMarker="// START UpdateCollection"
+      endMarker="// END UpdateCollection"
+      language="java"
+    />
   </TabItem>
 
   <TabItem value="go" label="Go">
