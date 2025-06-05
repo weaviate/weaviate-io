@@ -283,7 +283,6 @@ client.schema.delete_class(class_name)
 # START SetInvertedIndexParams
 class_obj = {
     "class": "Article",
-    "vectorizer": "text2vec-huggingface",  # this could be any vectorizer
     "properties": [
         {
             "name": "title",
@@ -296,6 +295,14 @@ class_obj = {
         },
         {
             "name": "chunk",
+            "dataType": ["text"],
+            # highlight-start
+            "indexFilterable": True,
+            "indexSearchable": True,
+            # highlight-end
+        },
+        {
+            "name": "chunk_no",
             "dataType": ["int"],
             # highlight-start
             "indexRangeFilters": True,
@@ -409,7 +416,9 @@ class_obj = {
     "vectorizer": "text2vec-openai",  # set your vectorizer module
     # highlight-start
     "moduleConfig": {
-        "generative-openai": {}  # set your generative module
+        "generative-openai": {
+            "model": "gpt-4o"  # set your generative model (optional parameter)
+        }
     }
     # highlight-end
 }
@@ -423,38 +432,6 @@ assert "generative-openai" in result["moduleConfig"].keys()
 
 # Delete the class to recreate it
 client.schema.delete_class(class_name)
-
-# =======================================================================
-# ===== CREATE A COLLECTION WITH A GENERATIVE MODULE AND MODEL NAME =====
-# =======================================================================
-
-# Clean slate
-if client.schema.exists(class_name):
-    client.schema.delete_class(class_name)
-
-# START SetGenModel
-class_obj = {
-    "class": "Article",
-    "vectorizer": "text2vec-openai",  # set your vectorizer module
-    "moduleConfig": {
-        # highlight-start
-        "generative-openai": {
-            "model": "gpt-4" # select generative model name
-        }
-        # highlight-end
-    }
-}
-
-client.schema.create_class(class_obj)
-# END SetGenModel
-
-# Test
-result = client.schema.get(class_name)
-assert "generative-openai" in result["moduleConfig"].keys()
-
-# Delete the class to recreate it
-client.schema.delete_class(class_name)
-
 
 # ===============================================
 # ===== UPDATE THE COLLECTION WITH THE GENERATIVE MODULE =====
@@ -586,9 +563,7 @@ class_obj = {
     "shardingConfig": {
         "virtualPerPhysical": 128,
         "desiredCount": 1,
-        "actual_actualCountcount": 1,
         "desiredVirtualCount": 128,
-        "actualVirtualCount": 128,
     },
     # highlight-end
 }
@@ -641,45 +616,6 @@ client.schema.property.create("Article", add_prop)
 # Test
 result = client.schema.get(class_name)
 assert result["properties"][-1]["name"] == "body"
-
-
-# START ModifyParam
-class_obj = {
-    "invertedIndexConfig": {
-      "stopwords": {
-        "preset": "en",
-        "removals": ["a", "the"]
-      },
-    },
-}
-
-client.schema.update_config("Article", class_obj)
-# END ModifyParam
-
-# Test
-result = client.schema.get(class_name)
-assert result["invertedIndexConfig"]["stopwords"]["removals"] == ["a", "the"]
-
-# ==============================
-# ===== MODIFY A PARAMETER =====
-# ==============================
-
-# START ModifyParam
-class_obj = {
-    "invertedIndexConfig": {
-      "stopwords": {
-        "preset": "en",
-        "removals": ["a", "the"]
-      },
-    },
-}
-
-client.schema.update_config("Article", class_obj)
-# END ModifyParam
-
-# Test
-result = client.schema.get(class_name)
-assert result["invertedIndexConfig"]["stopwords"]["removals"] == ["a", "the"]
 
 # ================================
 # ===== READ A COLLECTION =====

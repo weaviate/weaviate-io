@@ -10,7 +10,8 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/weaviate/weaviate-go-client/v4/weaviate"
 	"github.com/weaviate/weaviate/entities/models"
-	"github.com/weaviate/weaviate/entities/vectorindex/common"
+	"github.com/weaviate/weaviate/entities/schema"
+	sharding "github.com/weaviate/weaviate/usecases/sharding/config"
 	"weaviate.io/docs/docs/helper"
 )
 
@@ -27,10 +28,10 @@ func Test_ManageDataClasses(t *testing.T) {
 	err = client.Schema().AllDeleter().Do(ctx)
 	require.NoError(t, err)
 
-	// START BasicCreateCollection  // START ReadOneCollection  // START UpdateCollection
+	// START BasicCreateCollection  // START ReadOneCollection
 	className := "Article"
 
-	// END BasicCreateCollection  // END ReadOneCollection  // END UpdateCollection
+	// END BasicCreateCollection  // END ReadOneCollection
 
 	t.Run("create class", func(t *testing.T) {
 		// START BasicCreateCollection
@@ -38,7 +39,7 @@ func Test_ManageDataClasses(t *testing.T) {
 			Class: className,
 		}
 
-		// Add the class to the schema
+		// Create the collection (also called class)
 		err := client.Schema().ClassCreator().
 			WithClass(emptyClass).
 			Do(ctx)
@@ -85,41 +86,552 @@ func Test_ManageDataClasses(t *testing.T) {
 		// END ReadAllCollections
 	})
 
-	t.Run("update class", func(t *testing.T) {
-		errDel := client.Schema().ClassDeleter().WithClassName(className).Do(ctx)
-		require.NoError(t, errDel)
-
-		// START UpdateCollectionTODO
-		// Define class
-		originalClass := &models.Class{
-			Class: className,
-			VectorIndexConfig: map[string]interface{}{
-				"distance": common.DistanceCosine, // Note the distance metric
-			},
-		}
-
-		// Add the class to the schema
-		err := client.Schema().ClassCreator().
-			WithClass(originalClass).
-			Do(ctx)
-
-		// END UpdateCollectionTODO
-
+	t.Run("create class with properties", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
 		require.NoError(t, err)
 
-		// START UpdateCollectionTODO
-		// Define updated class
-		updatedClass := &models.Class{
-			Class: className,
-			VectorIndexConfig: map[string]interface{}{
-				"distance": common.DistanceDot, // Note the distance metric
+		// START CreateCollectionWithProperties
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+			Properties: []*models.Property{
+				{
+					Name:     "title",
+					DataType: schema.DataTypeText.PropString(),
+				},
+				{
+					Name:     "body",
+					DataType: schema.DataTypeText.PropString(),
+				},
 			},
 		}
+		// END CreateCollectionWithProperties
 
-		// Update the class definition
-		_ = updatedClass
-		// TODO Not yet available in GO
+		err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
 
-		// END UpdateCollectionTODO
+		require.NoError(t, err)
+	})
+
+	t.Run("create class with vectorizer", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		// START CreateCollectionWithVectorizer
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+			Vectorizer:  "text2vec-openai",
+			Properties: []*models.Property{
+				{
+					Name:     "title",
+					DataType: schema.DataTypeText.PropString(),
+				},
+				{
+					Name:     "body",
+					DataType: schema.DataTypeText.PropString(),
+				},
+			},
+		}
+		// END CreateCollectionWithVectorizer
+
+		err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("create class with named vectors", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("ArticleNV").Do(ctx)
+		require.NoError(t, err)
+
+		// START CreateCollectionWithNamedVectors
+		articleClass := &models.Class{
+			Class:       "ArticleNV",
+			Description: "Collection of articles with named vectors",
+			Properties: []*models.Property{
+				{
+					Name:     "title",
+					DataType: schema.DataTypeText.PropString(),
+				},
+				{
+					Name:     "country",
+					DataType: schema.DataTypeText.PropString(),
+				},
+			},
+			VectorConfig: map[string]models.VectorConfig{
+				"title": {
+					Vectorizer: map[string]interface{}{
+						"text2vec-openai": map[string]interface{}{
+							"sourceProperties": []string{"title"},
+						},
+					},
+					VectorIndexType: "hnsw",
+				},
+				"title_country": {
+					Vectorizer: map[string]interface{}{
+						"text2vec-openai": map[string]interface{}{
+							"sourceProperties": []string{"title", "country"},
+						},
+					},
+					VectorIndexType: "hnsw",
+				},
+				"custom_vector": {
+					Vectorizer: map[string]interface{}{
+						"none": map[string]interface{}{},
+					},
+					VectorIndexType: "hnsw",
+				},
+			},
+		}
+		// END CreateCollectionWithNamedVectors
+
+		err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("create class with vectorizer settings", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		// START ModuleSettings
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+			Vectorizer:  "text2vec-cohere",
+			ModuleConfig: map[string]interface{}{
+				"text2vec-cohere": map[string]interface{}{
+					"model":              "embed-multilingual-v2.0",
+					"vectorizeClassName": true,
+				},
+			},
+		}
+		// END ModuleSettings
+
+		err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("create class with vector index type", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		// START SetVectorIndexType
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+			Properties: []*models.Property{
+				{
+					Name:     "title",
+					DataType: schema.DataTypeText.PropString(),
+				},
+				{
+					Name:     "country",
+					DataType: schema.DataTypeText.PropString(),
+				},
+			},
+			Vectorizer:      "text2vec-openai",
+			VectorIndexType: "hnsw", // Or "flat", "dynamic"
+		}
+		// END SetVectorIndexType
+
+		err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("create class with vector index parameters", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		// START SetVectorIndexParams
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+			Properties: []*models.Property{
+				{
+					Name:     "title",
+					DataType: schema.DataTypeText.PropString(),
+				},
+				{
+					Name:     "country",
+					DataType: schema.DataTypeText.PropString(),
+				},
+			},
+			Vectorizer:      "text2vec-openai",
+			VectorIndexType: "hnsw",
+			VectorIndexConfig: map[string]interface{}{
+				"bq": map[string]interface{}{
+					"enabled": true,
+				},
+				"efConstruction": 300,
+				"distance":       "cosine",
+				"filterStrategy": "acorn",
+			},
+		}
+		// END SetVectorIndexParams
+
+		err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("create class with property settings like tokenization", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		// START PropModuleSettings
+		vTrue := true
+		vFalse := false
+
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+			Properties: []*models.Property{
+				{
+					Name:            "title",
+					DataType:        schema.DataTypeText.PropString(),
+					Tokenization:    "lowercase",
+					IndexFilterable: &vTrue,
+					IndexSearchable: &vFalse,
+					ModuleConfig: map[string]interface{}{
+						"text2vec-cohere": map[string]interface{}{
+							"vectorizePropertyName": true,
+						},
+					},
+				},
+				{
+					Name:            "body",
+					DataType:        schema.DataTypeText.PropString(),
+					Tokenization:    "whitespace",
+					IndexFilterable: &vTrue,
+					IndexSearchable: &vTrue,
+					ModuleConfig: map[string]interface{}{
+						"text2vec-cohere": map[string]interface{}{
+							"vectorizePropertyName": false,
+						},
+					},
+				},
+			},
+			Vectorizer: "text2vec-cohere",
+		}
+		// END PropModuleSettings
+
+		err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("create class with distance metric", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		// START DistanceMetric
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+			VectorIndexConfig: map[string]interface{}{
+				"distance": "cosine",
+			},
+		}
+		// END DistanceMetric
+
+		err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("create class with inverted index parameters", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		// START SetInvertedIndexParams
+		vTrue := true
+		vFalse := false
+
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+			Properties: []*models.Property{
+				{
+					Name:            "title",
+					DataType:        schema.DataTypeText.PropString(),
+					Tokenization:    "lowercase",
+					IndexFilterable: &vTrue,
+					IndexSearchable: &vFalse,
+				},
+				{
+					Name:            "chunk",
+					DataType:        schema.DataTypeText.PropString(),
+					Tokenization:    "word",
+					IndexFilterable: &vTrue,
+					IndexSearchable: &vTrue,
+				},
+				{
+					Name:              "chunk_no",
+					DataType:          schema.DataTypeInt.PropString(),
+					IndexRangeFilters: &vTrue,
+				},
+			},
+			InvertedIndexConfig: &models.InvertedIndexConfig{
+				Bm25: &models.BM25Config{
+					B:  0.7,
+					K1: 1.25,
+				},
+				IndexNullState:      true,
+				IndexPropertyLength: true,
+				IndexTimestamps:     true,
+			},
+		}
+		// END SetInvertedIndexParams
+
+		err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("create class with reranker model integration", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		// START SetReranker
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+			Vectorizer:  "text2vec-openai",
+			ModuleConfig: map[string]interface{}{
+				"reranker-cohere": map[string]interface{}{
+					"model": "rerank-v3.5",
+				},
+			},
+		}
+		// END SetReranker
+
+		err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("update class with reranker model integration", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+		}
+
+		creation_err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, creation_err)
+
+		// START UpdateReranker
+		updatedArticleClassConfig := &models.Class{
+			// Note: The new collection config must be provided in full,
+			// including the configuration that is not being updated.
+			// We suggest using the original class config as a starting point.
+			Class: "Article",
+			ModuleConfig: map[string]interface{}{
+				"reranker-cohere": map[string]interface{}{
+					"model": "rerank-v3.5",
+				},
+			},
+		}
+		// END UpdateReranker
+
+		err := client.Schema().ClassUpdater().
+			WithClass(updatedArticleClassConfig).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("create class with generative model integration", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		// START SetGenerative
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+			Vectorizer:  "text2vec-openai",
+			ModuleConfig: map[string]interface{}{
+				"generative-openai": map[string]interface{}{
+					"model": "gpt-4o",
+				},
+			},
+		}
+		// END SetGenerative
+
+		err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("update collection with generative model integration", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+		}
+
+		creation_err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, creation_err)
+
+		// START UpdateGenerative
+		updatedArticleClassConfig := &models.Class{
+			Class: "Article",
+			ModuleConfig: map[string]interface{}{
+				"generative-cohere": map[string]interface{}{},
+			},
+		}
+		// END UpdateGenerative
+
+		err := client.Schema().ClassUpdater().
+			WithClass(updatedArticleClassConfig).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("create class with replication settings", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		// START AllReplicationSettings
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+			ReplicationConfig: &models.ReplicationConfig{
+				AsyncEnabled:     true,
+				Factor:           3,
+				DeletionStrategy: models.ReplicationConfigDeletionStrategyTimeBasedResolution,
+			},
+		}
+		// END AllReplicationSettings
+
+		err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("create class with sharding settings", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		// START ShardingSettings
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+			ShardingConfig: sharding.Config{
+				VirtualPerPhysical:  128,
+				DesiredCount:        1,
+				DesiredVirtualCount: 128,
+				Key:                 sharding.DefaultKey,
+				Strategy:            sharding.DefaultStrategy,
+				Function:            sharding.DefaultFunction,
+			},
+		}
+		// END ShardingSettings
+
+		err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("create multi-tenant class", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		// START Multi-tenancy
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+			MultiTenancyConfig: &models.MultiTenancyConfig{
+				Enabled: true,
+			},
+		}
+		// END Multi-tenancy
+
+		err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("update collection with generative model integration", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		articleClass := &models.Class{
+			Class:       "Article",
+			Description: "Collection of articles",
+		}
+
+		creation_err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, creation_err)
+
+		// START UpdateCollection
+		updatedArticleClassConfig := &models.Class{
+			// Note: The new collection config must be provided in full,
+			// including the configuration that is not being updated.
+			// We suggest using the original class config as a starting point.
+			Class: "Article",
+			InvertedIndexConfig: &models.InvertedIndexConfig{
+				Bm25: &models.BM25Config{
+					K1: 1.5,
+				},
+			},
+			VectorIndexConfig: map[string]interface{}{
+				"filterStrategy": "acorn",
+			},
+			ReplicationConfig: &models.ReplicationConfig{
+				DeletionStrategy: models.ReplicationConfigDeletionStrategyTimeBasedResolution,
+			},
+		}
+		// END UpdateCollection
+
+		err := client.Schema().ClassUpdater().
+			WithClass(updatedArticleClassConfig).
+			Do(ctx)
+
+		require.NoError(t, err)
 	})
 }

@@ -219,7 +219,15 @@ client.collections.create(
             # highlight-end
         ),
         Property(
-            name="Chunk",
+            name="chunk",
+            data_type=DataType.TEXT,
+            # highlight-start
+            index_filterable=True,
+            index_searchable=True,
+            # highlight-end
+        ),
+        Property(
+            name="chunk_number",
             data_type=DataType.INT,
             # highlight-start
             index_range_filters=True,
@@ -325,7 +333,9 @@ client.collections.create(
     "Article",
     vectorizer_config=Configure.Vectorizer.text2vec_openai(),
     # highlight-start
-    generative_config=Configure.Generative.openai(),
+    generative_config=Configure.Generative.openai(
+        model="gpt-4o"  # set your generative model (optional parameter)
+    ),
     # highlight-end
 )
 # END SetGenerative
@@ -337,35 +347,6 @@ assert config.generative_config.generative == "generative-openai"
 
 # Delete the collection to recreate it
 client.collections.delete("Article")
-
-# =======================================================================
-# ===== CREATE A COLLECTION WITH A GENERATIVE MODULE AND MODEL NAME =====
-# =======================================================================
-
-client.collections.delete("Article")
-
-# START SetGenModel
-from weaviate.classes.config import Configure, Property, DataType
-
-client.collections.create(
-    "Article",
-    vectorizer_config=Configure.Vectorizer.text2vec_openai(),
-    # highlight-start
-    generative_config=Configure.Generative.openai(
-        model="gpt-4"
-    ),
-    # highlight-end
-)
-# END SetGenModel
-
-# Test
-collection = client.collections.get("Article")
-config = collection.config.get()
-assert config.generative_config.generative == "generative-openai"
-
-# Delete the collection to recreate it
-client.collections.delete("Article")
-
 
 # ===============================================
 # ===== UPDATE A COLLECTION'S GENERATIVE MODULE =====
@@ -568,7 +549,7 @@ from weaviate.classes.config import Configure, Property, DataType, Tokenization
 
 client.collections.create(
     "Article",
-    vectorizer_config=Configure.Vectorizer.text2vec_huggingface(),
+    vectorizer_config=Configure.Vectorizer.text2vec_cohere(),
 
     properties=[
         Property(
@@ -824,32 +805,6 @@ collection = client.collections.get("Article")
 config = collection.config.get()
 assert len(config.properties) == 1
 assert config.properties[0].name == "body"
-
-# ==============================
-# ===== MODIFY A PARAMETER =====
-# ==============================
-
-# START ModifyParam
-from weaviate.classes.config import Reconfigure
-
-# Get the Article collection object
-articles = client.collections.get("Article")
-
-# Update the collection configuration
-# highlight-start
-articles.config.update(
-    # Note, use Reconfigure here (not Configure)
-    inverted_index_config=Reconfigure.inverted_index(
-        stopwords_removals=["a", "the"]
-    )
-)
-# highlight-end
-# END ModifyParam
-
-# Test
-collection = client.collections.get("Article")
-config = collection.config.get()
-assert config.inverted_index_config.stopwords.removals == ["a", "the"]
 
 # ================================
 # ===== READ A COLLECTION =====

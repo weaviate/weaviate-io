@@ -15,8 +15,6 @@ import (
 	"github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
 )
 
-
-
 // Helper functions to convert to base64
 func urlToBase64(url string) (string, error) {
 
@@ -66,7 +64,7 @@ func TestSearchByBase64(t *testing.T) {
 	// END search with base64 Go
 
 	require.NoError(t, err)
-	
+
 	jsonResponse, _ := json.MarshalIndent(response, "", "  ")
 	fmt.Printf("%s\n", jsonResponse)
 
@@ -102,7 +100,7 @@ func TestSearchByImageFilename(t *testing.T) {
 	// END ImageFileSearch Go
 
 	require.NoError(t, err)
-	
+
 	jsonResponse, _ := json.MarshalIndent(response, "", "  ")
 	fmt.Printf("%s\n", jsonResponse)
 
@@ -132,7 +130,7 @@ func TestMaximumDistance(t *testing.T) {
 	// END Distance Go
 
 	require.NoError(t, err)
-	
+
 	jsonResponse, _ := json.MarshalIndent(response, "", "  ")
 	fmt.Printf("%s\n", jsonResponse)
 

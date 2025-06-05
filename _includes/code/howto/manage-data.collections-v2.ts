@@ -397,7 +397,6 @@ await client.schema.classDeleter().withClassName(className).do();
 // START SetInvertedIndexParams
 const classWithInvIndexSettings = {
   class: 'Article',
-  vectorizer: 'text2vec-huggingface', // this could be any vectorizer
   properties: [
     {
       name: 'title',
@@ -406,12 +405,17 @@ const classWithInvIndexSettings = {
       indexFilterable: true,
       indexSearchable: true,
       // highlight-end
-      moduleConfig: {
-        'text2vec-huggingface': {},
-      },
     },
     {
       name: 'chunk',
+      dataType: ['text'],
+      // highlight-start
+      indexFilterable: true,
+      indexSearchable: true,
+      // highlight-end
+    },
+    {
+      name: 'chunk_no',
       dataType: ['int'],
       // highlight-start
       indexRangeFilters: true,
@@ -528,7 +532,9 @@ const classWithGenerative = {
   vectorizer: 'text2vec-openai', // this could be any vectorizer
   // highlight-start
   moduleConfig: {
-    'generative-openai': {}, // set your generative module
+    'generative-openai': {
+      model: 'gpt-4o'  // set your generative model (optional parameter)
+    },
   },
   // highlight-end
 };
@@ -536,39 +542,6 @@ const classWithGenerative = {
 // Add the class to the schema
 result = await client.schema.classCreator().withClass(classWithGenerative).do();
 // END SetGenerative
-
-// Test
-Object.keys(result['moduleConfig']).includes('generative-openai');
-
-// Delete the class to recreate it
-await client.schema.classDeleter().withClassName(className).do();
-
-// =======================================================================
-// ===== CREATE A COLLECTION WITH A GENERATIVE MODULE AND MODEL NAME =====
-// =======================================================================
-
-// START SetGenModel
-const classWithGenerativeModel = {
-  class: 'Article',
-  properties: [
-    {
-      name: 'title',
-      dataType: ['text'],
-    },
-  ],
-  vectorizer: 'text2vec-openai', // this could be any vectorizer
-  moduleConfig: {
-    // highlight-start
-    'generative-openai': {
-      'model': 'gpt-4' // set your generative model
-    },
-    // highlight-end
-  },
-};
-
-// Add the class to the schema
-result = await client.schema.classCreator().withClass(classWithGenerativeModel).do();
-// END SetGenModel
 
 // Test
 Object.keys(result['moduleConfig']).includes('generative-openai');
@@ -692,9 +665,7 @@ const classWithSharding = {
   shardingConfig: {
     virtualPerPhysical: 128,
     desiredCount: 1,
-    actualCount: 1,
     desiredVirtualCount: 128,
-    actualVirtualCount: 128,
   },
   // highlight-end
 };
@@ -745,14 +716,6 @@ const resultProp = await client.schema
 
 // Test
 assert.equal(resultProp.name, 'body');
-
-// ==============================
-// ===== MODIFY A PARAMETER =====
-// ==============================
-
-// START ModifyParam
-// Not available yet - https://github.com/weaviate/typescript-client/issues/64
-// END ModifyParam
 
 // ================================
 // ===== READ A CLASS =====

@@ -4,8 +4,9 @@ package docs
 import (
 	"context"
 	"fmt"
-	"github.com/weaviate/weaviate/entities/models"
 	"testing"
+
+	"github.com/weaviate/weaviate/entities/models"
 	"weaviate.io/docs/docs/helper"
 
 	"github.com/stretchr/testify/require"

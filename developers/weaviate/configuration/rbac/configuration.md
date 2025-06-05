@@ -19,8 +19,8 @@ Weaviate comes with a set of predefined roles. These roles are:
 
 The `root` role can be assigned through the Weaviate configuration file. A predefined role cannot be modified. The user can, however, be assigned additional roles through the Weaviate API.
 
-:::tip At least one root user required
-If RBAC is enabled, you must specify at least one user with the built-in root role. This user will have full permissions to perform all actions in Weaviate. Otherwise, Weaviate will not start.
+:::tip Root user requirement in older versions
+In Weaviate versions `v1.30.6` and `v1.31.0` or below, if RBAC is enabled, you must configure at least one user with the built-in root role. Otherwise, Weaviate will not start. This requirement was removed in versions `v1.30.7` and `v1.31.1`.
 :::
 
 ## Docker <i class="fa-brands fa-docker"></i> {#docker}

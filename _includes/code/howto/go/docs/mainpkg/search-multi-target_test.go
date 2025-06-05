@@ -63,7 +63,7 @@ func TestMultiTargetNearVector(t *testing.T) {
 	// First, fetch some vectors
 	resp, err := client.GraphQL().Get().
 		WithClassName("JeopardyTiny").
-		WithFields(graphql.Field{Name:"jeopardy_questions_vector"}, graphql.Field{Name:"jeopardy_answers_vector"}).
+		WithFields(graphql.Field{Name: "jeopardy_questions_vector"}, graphql.Field{Name: "jeopardy_answers_vector"}).
 		WithLimit(1).
 		Do(ctx)
 
@@ -76,13 +76,13 @@ func TestMultiTargetNearVector(t *testing.T) {
 	// START MultiTargetNearVector Go
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyTiny").
-		WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"},graphql.Field{
+		WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"}, graphql.Field{
 			Name: "_additional",
 			Fields: []graphql.Field{
 				{Name: "distance"},
 			},
 		}).
-		WithNearVector(client.GraphQL().NearVectorArgBuilder().WithVectorPerTarget(  map[string][]float32{"jeopardy_questions_vector": v1, "jeopardy_answers_vector": v2})).
+		WithNearVector(client.GraphQL().NearVectorArgBuilder().WithVectorPerTarget(map[string][]float32{"jeopardy_questions_vector": v1, "jeopardy_answers_vector": v2})).
 		WithLimit(2).
 		Do(ctx)
 	// END MultiTargetNearVector Go
@@ -115,13 +115,12 @@ func TestMultiTargetWithSimpleJoin(t *testing.T) {
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyTiny").
 		WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"},
-		graphql.Field{
-			Name: "_additional",
-			Fields: []graphql.Field{
-				{Name: "distance"},
-			},
-		}).
-
+			graphql.Field{
+				Name: "_additional",
+				Fields: []graphql.Field{
+					{Name: "distance"},
+				},
+			}).
 		WithNearText(client.GraphQL().NearTextArgBuilder().
 			WithConcepts([]string{"a wild animal"}).
 			WithTargets(client.GraphQL().MultiTargetArgumentBuilder().Average("jeopardy_questions_vector", "jeopardy_answers_vector"))).
@@ -157,12 +156,12 @@ func TestMultiTargetManualWeights(t *testing.T) {
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyTiny").
 		WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"},
-		graphql.Field{
-			Name: "_additional",
-			Fields: []graphql.Field{
-				{Name: "distance"},
-			},
-		}).
+			graphql.Field{
+				Name: "_additional",
+				Fields: []graphql.Field{
+					{Name: "distance"},
+				},
+			}).
 		WithNearText((&graphql.NearTextArgumentBuilder{}).
 			WithConcepts([]string{"a wild animal"}).
 			WithTargets(client.GraphQL().MultiTargetArgumentBuilder().ManualWeights(map[string]float32{
@@ -201,12 +200,12 @@ func TestMultiTargetRelativeScore(t *testing.T) {
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyTiny").
 		WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"},
-		graphql.Field{
-			Name: "_additional",
-			Fields: []graphql.Field{
-				{Name: "distance"},
-			},
-		}).
+			graphql.Field{
+				Name: "_additional",
+				Fields: []graphql.Field{
+					{Name: "distance"},
+				},
+			}).
 		WithNearText(client.GraphQL().NearTextArgBuilder().
 			WithConcepts([]string{"a wild animal"}).
 			WithTargetVectors("jeopardy_questions_vector", "jeopardy_answers_vector").

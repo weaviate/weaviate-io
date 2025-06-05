@@ -64,9 +64,9 @@ func TestNearTextAfterRerank(t *testing.T) {
 				Name: "_additional",
 				Fields: []graphql.Field{
 					{Name: "rerank(property: \"answer\" query: \"floating\") { score }"},
-						{Name: "score"},
-					},
+					{Name: "score"},
 				},
+			},
 		).
 		WithNearText((&graphql.NearTextArgumentBuilder{}).WithConcepts([]string{"flying"})).
 		WithLimit(10).
