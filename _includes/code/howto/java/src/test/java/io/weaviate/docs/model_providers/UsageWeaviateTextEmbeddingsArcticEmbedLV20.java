@@ -14,7 +14,7 @@ import java.util.Map;
 // WEAVIATE_API_KEY      Your Weaviate instance API key
 // <PROVIDER>_APIKEY    Your Provider API key
 
-public class UsageWeaviateTextEmbeddings {
+public class UsageWeaviateTextEmbeddingsArcticEmbedLV20 {
   public static void main(String[] args) throws Exception {
 
     String host = System.getenv("WEAVIATE_HOSTNAME");
