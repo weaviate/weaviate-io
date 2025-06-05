@@ -806,32 +806,6 @@ config = collection.config.get()
 assert len(config.properties) == 1
 assert config.properties[0].name == "body"
 
-# ==============================
-# ===== MODIFY A PARAMETER =====
-# ==============================
-
-# START ModifyParam
-from weaviate.classes.config import Reconfigure
-
-# Get the Article collection object
-articles = client.collections.get("Article")
-
-# Update the collection configuration
-# highlight-start
-articles.config.update(
-    # Note, use Reconfigure here (not Configure)
-    inverted_index_config=Reconfigure.inverted_index(
-        stopwords_removals=["a", "the"]
-    )
-)
-# highlight-end
-# END ModifyParam
-
-# Test
-collection = client.collections.get("Article")
-config = collection.config.get()
-assert config.inverted_index_config.stopwords.removals == ["a", "the"]
-
 # ================================
 # ===== READ A COLLECTION =====
 # ================================

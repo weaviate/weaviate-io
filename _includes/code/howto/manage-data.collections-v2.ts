@@ -717,14 +717,6 @@ const resultProp = await client.schema
 // Test
 assert.equal(resultProp.name, 'body');
 
-// ==============================
-// ===== MODIFY A PARAMETER =====
-// ==============================
-
-// START ModifyParam
-// Not available yet - https://github.com/weaviate/typescript-client/issues/64
-// END ModifyParam
-
 // ================================
 // ===== READ A CLASS =====
 // ================================

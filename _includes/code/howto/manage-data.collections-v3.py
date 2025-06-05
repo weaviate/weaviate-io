@@ -617,45 +617,6 @@ client.schema.property.create("Article", add_prop)
 result = client.schema.get(class_name)
 assert result["properties"][-1]["name"] == "body"
 
-
-# START ModifyParam
-class_obj = {
-    "invertedIndexConfig": {
-      "stopwords": {
-        "preset": "en",
-        "removals": ["a", "the"]
-      },
-    },
-}
-
-client.schema.update_config("Article", class_obj)
-# END ModifyParam
-
-# Test
-result = client.schema.get(class_name)
-assert result["invertedIndexConfig"]["stopwords"]["removals"] == ["a", "the"]
-
-# ==============================
-# ===== MODIFY A PARAMETER =====
-# ==============================
-
-# START ModifyParam
-class_obj = {
-    "invertedIndexConfig": {
-      "stopwords": {
-        "preset": "en",
-        "removals": ["a", "the"]
-      },
-    },
-}
-
-client.schema.update_config("Article", class_obj)
-# END ModifyParam
-
-# Test
-result = client.schema.get(class_name)
-assert result["invertedIndexConfig"]["stopwords"]["removals"] == ["a", "the"]
-
 # ================================
 # ===== READ A COLLECTION =====
 # ================================

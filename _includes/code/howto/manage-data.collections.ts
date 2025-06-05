@@ -31,9 +31,9 @@ import { reconfigure } from 'weaviate-client';
 // END UpdateCollection // END UpdateReranker // END UpdateGenerative
 */
 
-// START UpdateCollection // START ReadOneCollection // START ModifyParam
+// START UpdateCollection // START ReadOneCollection
 let articles = client.collections.get('Article')
-// END UpdateCollection // END ReadOneCollection // END ModifyParam
+// END UpdateCollection // END ReadOneCollection
 
 // ================================
 // ===== CREATE A CLASS =====
@@ -662,29 +662,6 @@ await client.collections.create({
 
 // // Test
 // assert.equal(resultProp.name, 'body');
-
-// ==============================
-// ===== MODIFY A PARAMETER =====
-// ==============================
-
-articles = client.collections.get('Article')
-
-/*
-// START ModifyParam
-import { reconfigure } from 'weaviate-client';
-
-// END ModifyParam
-*/
-
-// START ModifyParam
-// highlight-start
-articles.config.update({
-  invertedIndex: reconfigure.invertedIndex({
-    stopwordsRemovals: ['a', 'the'],
-  })
-})
-// highlight-end
-// END ModifyParam
 
 // ================================
 // ===== READ A CLASS =====
