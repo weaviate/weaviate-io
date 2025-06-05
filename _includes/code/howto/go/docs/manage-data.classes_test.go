@@ -8,7 +8,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate"
+	"github.com/weaviate/weaviate-go-client/v5/weaviate"
 	"github.com/weaviate/weaviate/entities/models"
 	"github.com/weaviate/weaviate/entities/schema"
 	sharding "github.com/weaviate/weaviate/usecases/sharding/config"
@@ -439,7 +439,6 @@ func Test_ManageDataClasses(t *testing.T) {
 		articleClass := &models.Class{
 			Class:       "Article",
 			Description: "Collection of articles",
-			Vectorizer:  "text2vec-openai",
 		}
 
 		creation_err := client.Schema().ClassCreator().
@@ -450,6 +449,9 @@ func Test_ManageDataClasses(t *testing.T) {
 
 		// START UpdateReranker
 		updatedArticleClassConfig := &models.Class{
+			// Note: The new collection config must be provided in full,
+			// including the configuration that is not being updated.
+			// We suggest using the original class config as a starting point.
 			Class: "Article",
 			ModuleConfig: map[string]interface{}{
 				"reranker-cohere": map[string]interface{}{
@@ -497,7 +499,6 @@ func Test_ManageDataClasses(t *testing.T) {
 		articleClass := &models.Class{
 			Class:       "Article",
 			Description: "Collection of articles",
-			Vectorizer:  "text2vec-openai",
 		}
 
 		creation_err := client.Schema().ClassCreator().
@@ -557,6 +558,9 @@ func Test_ManageDataClasses(t *testing.T) {
 				VirtualPerPhysical:  128,
 				DesiredCount:        1,
 				DesiredVirtualCount: 128,
+				Key:                 sharding.DefaultKey,
+				Strategy:            sharding.DefaultStrategy,
+				Function:            sharding.DefaultFunction,
 			},
 		}
 		// END ShardingSettings
@@ -596,7 +600,6 @@ func Test_ManageDataClasses(t *testing.T) {
 		articleClass := &models.Class{
 			Class:       "Article",
 			Description: "Collection of articles",
-			Vectorizer:  "text2vec-openai",
 		}
 
 		creation_err := client.Schema().ClassCreator().
@@ -607,6 +610,9 @@ func Test_ManageDataClasses(t *testing.T) {
 
 		// START UpdateCollection
 		updatedArticleClassConfig := &models.Class{
+			// Note: The new collection config must be provided in full,
+			// including the configuration that is not being updated.
+			// We suggest using the original class config as a starting point.
 			Class: "Article",
 			InvertedIndexConfig: &models.InvertedIndexConfig{
 				Bm25: &models.BM25Config{
