@@ -632,6 +632,15 @@ Configure individual properties in a collection. Each property can have it's own
       language="java"
     />
   </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START PropModuleSettings"
+      endMarker="// END PropModuleSettings"
+      language="gonew"
+    />
+  </TabItem>
 </Tabs>
 
 ## Specify a distance metric
@@ -676,13 +685,22 @@ If you choose to bring your own vectors, you should specify the `distance metric
   </TabItem>
 
   <TabItem value="java" label="Java">
-    <FilteredTextBlock
-      text={JavaCode}
-      startMarker="// START DistanceMetric"
-      endMarker="// END DistanceMetric"
-      language="java"
-    />
-  </TabItem>
+      <FilteredTextBlock
+        text={JavaCode}
+        startMarker="// START DistanceMetric"
+        endMarker="// END DistanceMetric"
+        language="java"
+      />
+    </TabItem>
+
+  <TabItem value="go" label="Go">
+      <FilteredTextBlock
+        text={GoCode}
+        startMarker="// START DistanceMetric"
+        endMarker="// END DistanceMetric"
+        language="gonew"
+      />
+    </TabItem>
 </Tabs>
 
 <details>
@@ -737,6 +755,15 @@ Various [inverted index parameters](../config-refs/schema/index.md#invertedindex
       language="tsv2"
     />
   </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START SetInvertedIndexParams"
+      endMarker="// END SetInvertedIndexParams"
+      language="gonew"
+    />
+  </TabItem>
 </Tabs>
 
 ## Specify a reranker model integration
@@ -781,6 +808,15 @@ Configure a [`reranker`](../concepts/search/index.md#rerank) model integration f
       startMarker="// START SetReranker"
       endMarker="// END SetReranker"
       language="tsv2"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START SetReranker"
+      endMarker="// END SetReranker"
+      language="gonew"
     />
   </TabItem>
 </Tabs>
@@ -829,6 +865,15 @@ Update the [`reranker`](../concepts/search/index.md#rerank) model integration fo
       language="tsv2"
     />
   </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START UpdateReranker"
+      endMarker="// END UpdateReranker"
+      language="gonew"
+    />
+  </TabItem>
 </Tabs>
 
 ## Specify a generative model integration
@@ -875,46 +920,13 @@ Specify a `generative` model integration for a collection (for RAG).
       language="tsv2"
     />
   </TabItem>
-</Tabs>
 
-## Specify a generative model name
-
-Specify a generative `model name`.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python Client v4">
+  <TabItem value="go" label="Go">
     <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START SetGenModel"
-      endMarker="# END SetGenModel"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="py3" label="Python Client v3">
-    <FilteredTextBlock
-      text={PyCodeV3}
-      startMarker="# START SetGenModel"
-      endMarker="# END SetGenModel"
-      language="pyv3"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS Client v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START SetGenModel"
-      endMarker="// END SetGenModel"
-      language="ts"
-    />
-  </TabItem>
-
-  <TabItem value="js2" label="JS/TS Client v2">
-    <FilteredTextBlock
-      text={TSCodeLegacy}
-      startMarker="// START SetGenModel"
-      endMarker="// END SetGenModel"
-      language="tsv2"
+      text={GoCode}
+      startMarker="// START SetGenerative"
+      endMarker="// END SetGenerative"
+      language="gonew"
     />
   </TabItem>
 </Tabs>

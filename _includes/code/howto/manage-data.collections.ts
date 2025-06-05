@@ -420,6 +420,14 @@ await client.collections.create({
     },
     {
       name: 'chunk',
+      dataType: dataType.TEXT,
+      // highlight-start
+      indexFilterable: true,
+      indexSearchable: true,
+      // highlight-end
+    },
+    {
+      name: 'chunk_no',
       dataType: dataType.INT,
       // highlight-start
       indexRangeFilters: true,
@@ -495,39 +503,12 @@ await client.collections.create({
   name: 'Article',
   vectorizers: vectorizer.text2VecOpenAI(),
   // highlight-start
-  generative: generative.openAI(),
-  // highlight-end
-})
-// END SetGenerative
-
-// Test
-Object.keys(result['moduleConfig']).includes('generative-openai');
-
-// Delete the class to recreate it
-await client.collections.delete(collectionName)
-
-// =======================================================================
-// ===== CREATE A COLLECTION WITH A GENERATIVE MODULE AND MODEL NAME =====
-// =======================================================================
-
-/*
-// START SetGenModel
-import { vectorizer, generative } from 'weaviate-client';
-
-// END SetGenModel
-*/
-
-// START SetGenModel
-await client.collections.create({
-  name: 'Article',
-  vectorizers: vectorizer.text2VecOpenAI(),
-  // highlight-start
   generative: generative.openAI({
-    model: "gpt-4"
+    model: "gpt-4o"  // set your generative model (optional parameter)
   }),
   // highlight-end
 })
-// END SetGenModel
+// END SetGenerative
 
 // Test
 Object.keys(result['moduleConfig']).includes('generative-openai');
