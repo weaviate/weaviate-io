@@ -249,6 +249,67 @@ Collection level settings override default values and general configuration para
 </Tabs>
 
 
+## Specify vectorizer settings
+
+To configure how a vectorizer works (i.e. what model to use) with a specific collection, set the vectorizer parameters.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ModuleSettings"
+      endMarker="# END ModuleSettings"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START ModuleSettings"
+      endMarker="# END ModuleSettings"
+      language="pyv3"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ModuleSettings"
+      endMarker="// END ModuleSettings"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START ModuleSettings"
+      endMarker="// END ModuleSettings"
+      language="tsv2"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START ModuleSettings"
+      endMarker="// END ModuleSettings"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START ModuleSettings"
+      endMarker="// END ModuleSettings"
+      language="gonew"
+    />
+  </TabItem>
+
+</Tabs>
+
 ## Define named vectors
 
 :::info Added in `v1.24`
@@ -379,67 +440,6 @@ Multi-vector embeddings, also known as multi-vectors, represent a single object 
 :::tip Use quantization and encoding to compress your vectors
 Multi-vector embeddings use up more memory than single vector embeddings. You can use [vector quantization](../configuration/compression/multi-vectors.md#quantization) and [encoding](../configuration/compression/multi-vectors.md#encoding-muvera) to compress them and reduce memory usage.
 :::
-
-## Specify vectorizer settings
-
-To configure how a vectorizer works (i.e. what model to use) with a specific collection, set the vectorizer parameters.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python Client v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START ModuleSettings"
-      endMarker="# END ModuleSettings"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="py3" label="Python Client v3">
-    <FilteredTextBlock
-      text={PyCodeV3}
-      startMarker="# START ModuleSettings"
-      endMarker="# END ModuleSettings"
-      language="pyv3"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS Client v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START ModuleSettings"
-      endMarker="// END ModuleSettings"
-      language="ts"
-    />
-  </TabItem>
-
-  <TabItem value="js2" label="JS/TS Client v2">
-    <FilteredTextBlock
-      text={TSCodeLegacy}
-      startMarker="// START ModuleSettings"
-      endMarker="// END ModuleSettings"
-      language="tsv2"
-    />
-  </TabItem>
-
-  <TabItem value="java" label="Java">
-    <FilteredTextBlock
-      text={JavaCode}
-      startMarker="// START ModuleSettings"
-      endMarker="// END ModuleSettings"
-      language="java"
-    />
-  </TabItem>
-
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START ModuleSettings"
-      endMarker="// END ModuleSettings"
-      language="gonew"
-    />
-  </TabItem>
-
-</Tabs>
 
 ## Set vector index type
 
