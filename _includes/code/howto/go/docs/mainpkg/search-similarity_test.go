@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/weaviate/weaviate-go-client/v5/weaviate/filters"
-	"github.com/weaviate/weaviate-go-client/v5/weaviate/graphql"
+	"github.com/weaviate/weaviate-go-client/v4/weaviate/filters"
+	"github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
 )
 
 func TestNearText(t *testing.T) {
@@ -341,7 +341,7 @@ func TestWithWhere(t *testing.T) {
 	ctx := context.Background()
 
 	// START GetWithFilter
-	// Add "github.com/weaviate/weaviate-go-client/v5/weaviate/filters" to import
+	// Add "github.com/weaviate/weaviate-go-client/v4/weaviate/filters" to import
 
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").

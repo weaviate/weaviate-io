@@ -7,8 +7,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/weaviate/weaviate-go-client/v5/weaviate/filters"
-	"github.com/weaviate/weaviate-go-client/v5/weaviate/graphql"
+	"github.com/weaviate/weaviate-go-client/v4/weaviate/filters"
+	"github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
 )
 
 // ===============================
@@ -269,7 +269,7 @@ func TestWhereFilter(t *testing.T) {
 	ctx := context.Background()
 
 	// START whereFilter
-	// Add this line to imports: "github.com/weaviate/weaviate-go-client/v5/weaviate/filters"
+	// Add this line to imports: "github.com/weaviate/weaviate-go-client/v4/weaviate/filters"
 
 	response, err := client.GraphQL().Aggregate().
 		WithClassName("JeopardyQuestion").
