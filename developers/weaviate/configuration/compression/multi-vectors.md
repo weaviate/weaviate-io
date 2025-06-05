@@ -9,6 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/\_includes/code/howto/manage-data.collections.py';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.classes_test.go';
 
 Multi-vector embeddings represent a single data object, like a document or image, using a set of multiple vectors rather than a single vector. This approach allows for a more granular capture of semantic information, as each vector can represent different parts of the object. However, this leads to a significant increase in memory consumption, as multiple vectors are stored for each item.
 
@@ -44,12 +45,13 @@ Compression techniques become especially crucial for multi-vector systems to man
 
  </TabItem>
   <TabItem value="go" label="Go">
-
-```go
-// Go support coming soon
-```
-
-</TabItem>
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START MultiValueVectorCollection"
+      endMarker="// END MultiValueVectorCollection"
+      language="go"
+    />
+  </TabItem>
 </Tabs>
 
 The final dimensionality of the MUVERA encoded vector will be

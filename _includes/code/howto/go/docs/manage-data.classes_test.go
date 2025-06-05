@@ -634,4 +634,119 @@ func Test_ManageDataClasses(t *testing.T) {
 
 		require.NoError(t, err)
 	})
+
+	t.Run("add multi-vector collection", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		// START MultiValueVectorCollection
+		// Define the collection with multi-vector configurations
+		articleClass := &models.Class{
+			Class: "Article",
+			Properties: []*models.Property{
+				{
+					Name:     "text",
+					DataType: []string{"text"},
+				},
+			},
+			// Named vectors configuration
+			VectorConfig: map[string]models.VectorConfig{
+				// Example 1: Jina AI ColBERT integration
+				"jina_colbert": {
+					Vectorizer: map[string]interface{}{
+						"text2colbert-jinaai": map[string]interface{}{
+							"sourceProperties": []string{"text"},
+						},
+					},
+					VectorIndexType: "hnsw",
+				},
+				// Example 2: Custom multi-vector configuration
+				"custom_multi_vector": {
+					Vectorizer: map[string]interface{}{
+						"none": nil,
+					},
+					VectorIndexType: "hnsw",
+					VectorIndexConfig: map[string]interface{}{
+						"multivector": map[string]interface{}{
+							"enabled": true,
+						},
+					},
+				},
+			},
+		}
+		// END MultiValueVectorCollection
+
+		err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
+
+	t.Run("multi-vector with muvera encoding", func(t *testing.T) {
+		err = client.Schema().ClassDeleter().WithClassName("Article").Do(ctx)
+		require.NoError(t, err)
+
+		// START MultiValueVectorMuvera
+		// Create class with multi-vector configurations using MUVERA encoding
+		articleClass := &models.Class{
+			Class: "Article",
+			Properties: []*models.Property{
+				{
+					Name:     "text",
+					DataType: []string{"text"},
+				},
+			},
+			VectorConfig: map[string]models.VectorConfig{
+				// Example 1 - Use a model integration (Jina AI ColBERT)
+				"jina_colbert": {
+					Vectorizer: map[string]interface{}{
+						"text2colbert-jinaai": map[string]interface{}{
+							"sourceProperties": []string{"text"},
+						},
+					},
+					VectorIndexType: "hnsw",
+					VectorIndexConfig: map[string]interface{}{
+						// Multi-vector configuration with MUVERA encoding
+						"multivector": map[string]interface{}{
+							"enabled": true,
+							// Configure MUVERA encoding
+							"muvera": map[string]interface{}{
+								"enabled":      true,
+								"ksim":         4,
+								"dprojections": 16,
+								"repetitions":  20,
+							},
+						},
+					},
+				},
+				// Example 2 - User-provided multi-vector representations
+				"custom_multi_vector": {
+					Vectorizer: map[string]interface{}{
+						"none": nil,
+					},
+					VectorIndexType: "hnsw",
+					VectorIndexConfig: map[string]interface{}{
+						// Multi-vector configuration with MUVERA encoding (minimal config)
+						"multivector": map[string]interface{}{
+							"enabled": true,
+							"muvera": map[string]interface{}{
+								"enabled":      true,
+								"ksim":         4,
+								"dprojections": 16,
+								"repetitions":  20,
+							},
+						},
+					},
+				},
+			},
+		}
+		// END MultiValueVectorMuvera
+
+		err := client.Schema().ClassCreator().
+			WithClass(articleClass).
+			Do(ctx)
+
+		require.NoError(t, err)
+	})
 }
