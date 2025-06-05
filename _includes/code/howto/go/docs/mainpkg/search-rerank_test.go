@@ -8,7 +8,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
+	"github.com/weaviate/weaviate-go-client/v5/weaviate/graphql"
 )
 
 // ==================================
@@ -64,9 +64,9 @@ func TestNearTextAfterRerank(t *testing.T) {
 				Name: "_additional",
 				Fields: []graphql.Field{
 					{Name: "rerank(property: \"answer\" query: \"floating\") { score }"},
-						{Name: "score"},
-					},
+					{Name: "score"},
 				},
+			},
 		).
 		WithNearText((&graphql.NearTextArgumentBuilder{}).WithConcepts([]string{"flying"})).
 		WithLimit(10).

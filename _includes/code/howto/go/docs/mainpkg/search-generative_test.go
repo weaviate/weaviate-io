@@ -9,7 +9,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
+	"github.com/weaviate/weaviate-go-client/v5/weaviate/graphql"
 )
 
 // =====================================
@@ -25,7 +25,7 @@ func TestSingleGenerative(t *testing.T) {
 	generatePrompt := "Convert the following into a question for twitter. Include emojis for fun, but do not include the answer: {question}."
 
 	gs := graphql.NewGenerativeSearch().SingleResult(generatePrompt)
-	
+
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
 		WithFields(
@@ -39,7 +39,7 @@ func TestSingleGenerative(t *testing.T) {
 	// END SingleGenerativeProperties Go
 
 	require.NoError(t, err)
-	
+
 	jsonResponse, _ := json.MarshalIndent(response, "", "  ")
 	fmt.Printf("%s\n", jsonResponse)
 
@@ -69,7 +69,7 @@ func TestSingleGenerativeProperties(t *testing.T) {
 	generatePrompt := "Convert this quiz question: {question} and answer: {answer} into a trivia tweet."
 
 	gs := graphql.NewGenerativeSearch().SingleResult(generatePrompt)
-	
+
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
 		WithFields(
@@ -84,7 +84,7 @@ func TestSingleGenerativeProperties(t *testing.T) {
 	// END SingleGenerativeProperties Go
 
 	require.NoError(t, err)
-	
+
 	jsonResponse, _ := json.MarshalIndent(response, "", "  ")
 	fmt.Printf("%s\n", jsonResponse)
 
@@ -113,7 +113,7 @@ func TestGroupedGenerative(t *testing.T) {
 	generatePrompt := "What do these animals have in common, if anything?"
 
 	gs := graphql.NewGenerativeSearch().GroupedResult(generatePrompt)
-	
+
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
 		WithFields(
@@ -127,7 +127,7 @@ func TestGroupedGenerative(t *testing.T) {
 	// END GroupedGenerative Go
 
 	require.NoError(t, err)
-	
+
 	jsonResponse, _ := json.MarshalIndent(response, "", "  ")
 	fmt.Printf("%s\n", jsonResponse)
 
@@ -163,7 +163,6 @@ func TestGroupedGenerativeProperties(t *testing.T) {
 		WithFields(
 			graphql.Field{Name: "question"},
 			graphql.Field{Name: "points"},
-
 		).
 		WithGenerativeSearch(gs).
 		WithNearText((&graphql.NearTextArgumentBuilder{}).
@@ -173,7 +172,7 @@ func TestGroupedGenerativeProperties(t *testing.T) {
 	// END GroupedGenerativeProperties Go
 
 	require.NoError(t, err)
-	
+
 	jsonResponse, _ := json.MarshalIndent(response, "", "  ")
 	fmt.Printf("%s\n", jsonResponse)
 

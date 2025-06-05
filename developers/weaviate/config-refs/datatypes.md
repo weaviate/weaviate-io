@@ -302,7 +302,7 @@ import GeoTypeTs from '!!raw-loader!/_includes/code/typescript/config-refs.datat
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
-      text={UUIDTypeTs}
+      text={GeoTypeTs}
       startMarker="// START ConfigureDataType"
       endMarker="// END ConfigureDataType"
       language="ts"

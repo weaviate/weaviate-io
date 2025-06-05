@@ -81,7 +81,7 @@ import InitialCaps from '/_includes/schemas/initial-capitalization.md'
       text={GoCode}
       startMarker="// START BasicCreateCollection"
       endMarker="// END BasicCreateCollection"
-      language="go"
+      language="gonew"
     />
   </TabItem>
 </Tabs>
@@ -161,6 +161,15 @@ For details, see:
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START CreateCollectionWithProperties"
+      endMarker="// END CreateCollectionWithProperties"
+      language="gonew"
+    />
+  </TabItem>
+
 </Tabs>
 
 ## Disable auto-schema
@@ -229,8 +238,78 @@ Collection level settings override default values and general configuration para
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START CreateCollectionWithVectorizer"
+      endMarker="// END CreateCollectionWithVectorizer"
+      language="gonew"
+    />
+  </TabItem>
+
 </Tabs>
 
+
+## Specify vectorizer settings
+
+To configure how a vectorizer works (i.e. what model to use) with a specific collection, set the vectorizer parameters.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ModuleSettings"
+      endMarker="# END ModuleSettings"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START ModuleSettings"
+      endMarker="# END ModuleSettings"
+      language="pyv3"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ModuleSettings"
+      endMarker="// END ModuleSettings"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START ModuleSettings"
+      endMarker="// END ModuleSettings"
+      language="tsv2"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START ModuleSettings"
+      endMarker="// END ModuleSettings"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START ModuleSettings"
+      endMarker="// END ModuleSettings"
+      language="gonew"
+    />
+  </TabItem>
+
+</Tabs>
 
 ## Define named vectors
 
@@ -284,6 +363,15 @@ As such, each named vector configuration can include its own vectorizer and vect
       startMarker="// START CreateCollectionWithNamedVectors"
       endMarker="// END CreateCollectionWithNamedVectors"
       language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START CreateCollectionWithNamedVectors"
+      endMarker="// END CreateCollectionWithNamedVectors"
+      language="gonew"
     />
   </TabItem>
 
@@ -359,60 +447,8 @@ Multi-vector embeddings, also known as multi-vectors, represent a single object 
 </Tabs>
 
 :::tip Use quantization and encoding to compress your vectors
-Multi-vector embeddings use up more memory than single vector embeddings. You can use [vector quantization](../configuration/compression/multi-vectors.md#quantization) and [encoding](../configuration/compression/multi-vectors.md#encoding-muvera) to compress them and reduce memory usage.
+Multi-vector embeddings use up more memory than single vector embeddings. You can use [vector quantization](../configuration/compression/multi-vectors.md#quantization) and [encoding](../configuration/compression/multi-vectors.md#muvera-encoding) to compress them and reduce memory usage.
 :::
-
-## Specify vectorizer settings
-
-To configure how a vectorizer works (i.e. what model to use) with a specific collection, set the vectorizer parameters.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python Client v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START ModuleSettings"
-      endMarker="# END ModuleSettings"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="py3" label="Python Client v3">
-    <FilteredTextBlock
-      text={PyCodeV3}
-      startMarker="# START ModuleSettings"
-      endMarker="# END ModuleSettings"
-      language="pyv3"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS Client v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START ModuleSettings"
-      endMarker="// END ModuleSettings"
-      language="ts"
-    />
-  </TabItem>
-
-  <TabItem value="js2" label="JS/TS Client v2">
-    <FilteredTextBlock
-      text={TSCodeLegacy}
-      startMarker="// START ModuleSettings"
-      endMarker="// END ModuleSettings"
-      language="tsv2"
-    />
-  </TabItem>
-
-  <TabItem value="java" label="Java">
-    <FilteredTextBlock
-      text={JavaCode}
-      startMarker="// START ModuleSettings"
-      endMarker="// END ModuleSettings"
-      language="java"
-    />
-  </TabItem>
-
-</Tabs>
 
 ## Set vector index type
 
@@ -461,6 +497,15 @@ The vector index type can be set for each collection at creation time, between `
       startMarker="// START SetVectorIndexType"
       endMarker="// END SetVectorIndexType"
       language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START SetVectorIndexType"
+      endMarker="// END SetVectorIndexType"
+      language="gonew"
     />
   </TabItem>
 </Tabs>
@@ -525,6 +570,15 @@ Was added in `v1.27`
       language="java"
     />
   </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START SetVectorIndexParams"
+      endMarker="// END SetVectorIndexParams"
+      language="gonew"
+    />
+  </TabItem>
 </Tabs>
 
 <details>
@@ -587,6 +641,15 @@ Configure individual properties in a collection. Each property can have it's own
       language="java"
     />
   </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START PropModuleSettings"
+      endMarker="// END PropModuleSettings"
+      language="gonew"
+    />
+  </TabItem>
 </Tabs>
 
 ## Specify a distance metric
@@ -631,13 +694,22 @@ If you choose to bring your own vectors, you should specify the `distance metric
   </TabItem>
 
   <TabItem value="java" label="Java">
-    <FilteredTextBlock
-      text={JavaCode}
-      startMarker="// START DistanceMetric"
-      endMarker="// END DistanceMetric"
-      language="java"
-    />
-  </TabItem>
+      <FilteredTextBlock
+        text={JavaCode}
+        startMarker="// START DistanceMetric"
+        endMarker="// END DistanceMetric"
+        language="java"
+      />
+    </TabItem>
+
+  <TabItem value="go" label="Go">
+      <FilteredTextBlock
+        text={GoCode}
+        startMarker="// START DistanceMetric"
+        endMarker="// END DistanceMetric"
+        language="gonew"
+      />
+    </TabItem>
 </Tabs>
 
 <details>
@@ -700,6 +772,14 @@ Various [inverted index parameters](../config-refs/schema/index.md#invertedindex
       endMarker="// END SetInvertedIndexParams"
       language="java"
     />
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START SetInvertedIndexParams"
+      endMarker="// END SetInvertedIndexParams"
+      language="gonew"
+    />
   </TabItem>
 </Tabs>
 
@@ -745,6 +825,15 @@ Configure a [`reranker`](../concepts/search/index.md#rerank) model integration f
       startMarker="// START SetReranker"
       endMarker="// END SetReranker"
       language="tsv2"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START SetReranker"
+      endMarker="// END SetReranker"
+      language="gonew"
     />
   </TabItem>
 </Tabs>
@@ -793,6 +882,15 @@ Update the [`reranker`](../concepts/search/index.md#rerank) model integration fo
       language="tsv2"
     />
   </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START UpdateReranker"
+      endMarker="// END UpdateReranker"
+      language="gonew"
+    />
+  </TabItem>
 </Tabs>
 
 ## Specify a generative model integration
@@ -839,46 +937,13 @@ Specify a `generative` model integration for a collection (for RAG).
       language="tsv2"
     />
   </TabItem>
-</Tabs>
 
-## Specify a generative model name
-
-Specify a generative `model name`.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python Client v4">
+  <TabItem value="go" label="Go">
     <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START SetGenModel"
-      endMarker="# END SetGenModel"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="py3" label="Python Client v3">
-    <FilteredTextBlock
-      text={PyCodeV3}
-      startMarker="# START SetGenModel"
-      endMarker="# END SetGenModel"
-      language="pyv3"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS Client v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START SetGenModel"
-      endMarker="// END SetGenModel"
-      language="ts"
-    />
-  </TabItem>
-
-  <TabItem value="js2" label="JS/TS Client v2">
-    <FilteredTextBlock
-      text={TSCodeLegacy}
-      startMarker="// START SetGenModel"
-      endMarker="// END SetGenModel"
-      language="tsv2"
+      text={GoCode}
+      startMarker="// START SetGenerative"
+      endMarker="// END SetGenerative"
+      language="gonew"
     />
   </TabItem>
 
@@ -936,6 +1001,15 @@ Update a [`generative`](../concepts/search/index.md#retrieval-augmented-generati
       language="tsv2"
     />
   </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START UpdateGenerative"
+      endMarker="// END UpdateGenerative"
+      language="gonew"
+    />
+  </TabItem>
 </Tabs>
 
 import RuntimeGenerative from '/_includes/runtime-generative.mdx';
@@ -981,14 +1055,15 @@ Configure replication settings, such as [async replication](/developers/weaviate
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS Client v2">
+  <TabItem value="go" label="Go">
     <FilteredTextBlock
-      text={TSCodeLegacy}
+      text={GoCode}
       startMarker="// START AllReplicationSettings"
       endMarker="// END AllReplicationSettings"
-      language="tsv2"
+      language="gonew"
     />
   </TabItem>
+
   <TabItem value="curl" label="cURL">
 
 ```bash
@@ -1089,6 +1164,16 @@ Configure sharding per collection.
       language="java"
     />
   </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START ShardingSettings"
+      endMarker="// END ShardingSettings"
+      language="gonew"
+    />
+  </TabItem>
+
 </Tabs>
 
 <details>
@@ -1153,6 +1238,14 @@ Create a collection with multi-tenancy enabled.
       endMarker="// END MultiTenancy"
       language="java"
     />
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START Multi-tenancy"
+      endMarker="// END Multi-tenancy"
+      language="gonew"
+    />
   </TabItem>
 </Tabs>
 
@@ -1210,7 +1303,7 @@ Retrieve a collection definition from the schema.
       text={GoCode}
       startMarker="// START ReadOneCollection"
       endMarker="// END ReadOneCollection"
-      language="go"
+      language="gonew"
     />
   </TabItem>
 </Tabs>
@@ -1435,7 +1528,7 @@ Fetch the database schema to retrieve all of the collection definitions.
       text={GoCode}
       startMarker="// START ReadAllCollections"
       endMarker="// END ReadAllCollections"
-      language="go"
+      language="gonew"
     />
   </TabItem>
 </Tabs>
@@ -1493,50 +1586,12 @@ You can update a collection definition to change the [mutable collection setting
   </TabItem>
 
   <TabItem value="go" label="Go">
-
-```go
-// This feature is under development
-```
-
-  </TabItem>
-</Tabs>
-
-## Update a parameter
-
-Some parameters cannot be modified after you create your collection.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START ModifyParam"
-      endMarker="# END ModifyParam"
-      language="py"
+      text={GoCode}
+      startMarker="// START UpdateCollection"
+      endMarker="// END UpdateCollection"
+      language="gonew"
     />
-  </TabItem>
-
-  <TabItem value="py3" label="Python Client v3">
-    <FilteredTextBlock
-      text={PyCodeV3}
-      startMarker="# START ModifyParam"
-      endMarker="# END ModifyParam"
-      language="pyv3"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS Client v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START ModifyParam"
-      endMarker="// END ModifyParam"
-      language="ts"
-    />
-  </TabItem>
-
-  <TabItem value="js2" label="JS/TS Client v2">
-
-  ([Vote for the feature request.](https://github.com/weaviate/typescript-client/issues/72))
-
   </TabItem>
 </Tabs>
 
