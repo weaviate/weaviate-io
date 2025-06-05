@@ -975,6 +975,15 @@ Update a [`generative`](../concepts/search/index.md#retrieval-augmented-generati
       language="tsv2"
     />
   </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START UpdateGenerative"
+      endMarker="// END UpdateGenerative"
+      language="gonew"
+    />
+  </TabItem>
 </Tabs>
 
 import RuntimeGenerative from '/_includes/runtime-generative.mdx';
@@ -1020,14 +1029,15 @@ Configure replication settings, such as [async replication](/developers/weaviate
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS Client v2">
+  <TabItem value="go" label="Go">
     <FilteredTextBlock
-      text={TSCodeLegacy}
+      text={GoCode}
       startMarker="// START AllReplicationSettings"
       endMarker="// END AllReplicationSettings"
-      language="tsv2"
+      language="gonew"
     />
   </TabItem>
+
   <TabItem value="curl" label="cURL">
 
 ```bash
@@ -1110,6 +1120,16 @@ Configure sharding per collection.
       language="tsv2"
     />
   </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START ShardingSettings"
+      endMarker="// END ShardingSettings"
+      language="gonew"
+    />
+  </TabItem>
+
 </Tabs>
 
 <details>
@@ -1164,6 +1184,15 @@ Create a collection with multi-tenancy enabled.
       startMarker="// START Multi-tenancy"
       endMarker="// END Multi-tenancy"
       language="tsv2"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START Multi-tenancy"
+      endMarker="// END Multi-tenancy"
+      language="gonew"
     />
   </TabItem>
 </Tabs>
@@ -1504,11 +1533,12 @@ You can update a collection definition to change the [mutable collection setting
   </TabItem>
 
   <TabItem value="go" label="Go">
-
-```go
-// This feature is under development
-```
-
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START UpdateCollection"
+      endMarker="// END UpdateCollection"
+      language="gonew"
+    />
   </TabItem>
 </Tabs>
 

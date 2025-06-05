@@ -563,9 +563,7 @@ class_obj = {
     "shardingConfig": {
         "virtualPerPhysical": 128,
         "desiredCount": 1,
-        "actual_actualCountcount": 1,
         "desiredVirtualCount": 128,
-        "actualVirtualCount": 128,
     },
     # highlight-end
 }

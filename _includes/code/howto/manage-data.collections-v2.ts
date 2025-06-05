@@ -665,9 +665,7 @@ const classWithSharding = {
   shardingConfig: {
     virtualPerPhysical: 128,
     desiredCount: 1,
-    actualCount: 1,
     desiredVirtualCount: 128,
-    actualVirtualCount: 128,
   },
   // highlight-end
 };
