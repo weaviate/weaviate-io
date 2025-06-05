@@ -731,10 +731,7 @@ func Test_ManageDataClasses(t *testing.T) {
 						"multivector": map[string]interface{}{
 							"enabled": true,
 							"muvera": map[string]interface{}{
-								"enabled":      true,
-								"ksim":         4,
-								"dprojections": 16,
-								"repetitions":  20,
+								"enabled": true,
 							},
 						},
 					},
