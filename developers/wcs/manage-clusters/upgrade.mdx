@@ -10,7 +10,11 @@ If you have a stand-alone cluster, an upgrade requires system downtime. Consider
 
 ## Upgrade the Weaviate Database version
 
-The `Cluster details` panel contains information about the current Weaviate version and if an update is available:
+When a Weaviate Database version update is available, a notification banner appears at the top of your cluster details page. The banner color and urgency depend on the update deadline:
+
+- **Info (Green background)**: Standard update notification
+- **Warning (Yellow/Orange background)**: Update deadline approaching
+- **Critical (Red background)**: Update deadline is imminent
 
 import Link from '@docusaurus/Link';
 import UpdateCluster from '/developers/wcs/img/weaviate-cloud-update-cluster.png';
@@ -20,15 +24,17 @@ import UpdateCluster from '/developers/wcs/img/weaviate-cloud-update-cluster.png
     <ol>
       <li>
         Open the{' '}
-        <Link to="https://console.weaviate.cloud">Weaviate Cloud console</Link> and{' '}
+        <Link to="https://console.weaviate.cloud">Weaviate Cloud console</Link>{' '}
+        and{' '}
         <Link to="/developers/wcs/manage-clusters/status#select-your-cluster">
           select your cluster
         </Link>
         .
       </li>
       <li>
-        Click the <code>Update</code> button if available (
-        <span class="callout">1</span>).
+        If an update is available, you'll see a notification banner at the top
+        of the cluster details page (<span class="callout">1</span>). Click the{' '}
+        <code>Update</code> button in the banner.
       </li>
     </ol>
   </div>
@@ -37,7 +43,9 @@ import UpdateCluster from '/developers/wcs/img/weaviate-cloud-update-cluster.png
       <div class="card__image">
         <img src={UpdateCluster} alt="Upgrade a Weaviate Cloud cluster" />
       </div>
-      <div class="card__body">Update a Weaviate Cloud cluster.</div>
+      <div class="card__body">
+        Update notification banner with button to confirm update.
+      </div>
     </div>
   </div>
 </div>
@@ -53,7 +61,7 @@ import UpdateClusterConfirm from '/developers/wcs/img/weaviate-cloud-update-clus
         <span class="callout">2</span>).
       </li>
       <li>
-        Enter the necessary text to confirm the upgrade (
+        Enter the cluster name to confirm the upgrade (
         <span class="callout">3</span>).
       </li>
       <li>
@@ -70,13 +78,32 @@ import UpdateClusterConfirm from '/developers/wcs/img/weaviate-cloud-update-clus
           alt="Confirm Weaviate Cloud cluster upgrade"
         />
       </div>
-      <div class="card__body">Confirm Weaviate Cloud cluster upgrade.</div>
+      <div class="card__body">
+        Confirm cluster upgrade.
+      </div>
     </div>
   </div>
 </div>
 <br />
 
-During the upgrade, the console displays a status indicator. The indicator disappears and Weaviate Cloud sends a confirmation email when the cluster is ready.
+## Update process and status
+
+During the upgrade, the `Update` button becomes disabled and displays a loading indicator with descriptive text based on the current status:
+
+- **Preparing**: The cluster is being prepared for update (may be unhealthy, being created, restarted, or expanding disk)
+- **Updating**: The cluster is undergoing update operations or the version is being updated
+- **Backup in Progress**: A data backup is currently in progress
+
+The console displays status indicators throughout the process. The indicators disappear and Weaviate Cloud sends a confirmation email when the cluster is ready.
+
+:::info Important notes about the update process
+
+- A complete backup of your data will be created before the Weaviate database version is updated
+- The total duration of this process depends on the amount of data in your cluster
+- For clusters with large volumes of data, the total duration to update may be lengthy
+- Status indicators may not appear in a specific order, as they reflect real-time provisioning status
+
+::: 
 
 ## Support
 
