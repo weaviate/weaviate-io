@@ -4,36 +4,36 @@ sidebar_position: 10
 # image: og/wcs/user_guides.jpg
 ---
 
-[Weaviate Cloud (WCD)](https://console.weaviate.cloud/) hosts clusters that run the Weaviate core database server. Weaviate Cloud runs the current production version of Weaviate core.
+[Weaviate Cloud (WCD)](https://console.weaviate.cloud/) hosts clusters that run Weaviate.
 
 ## New clusters
 
-When you provision a new cluster, Weaviate Cloud uses the current version of Weaviate core to set up the new cluster. You can also choose from a limited number of older versions.
+When you provision a new cluster, Weaviate Cloud uses the latest available version of Weaviate to set up the new cluster.
 
-## Upgrade
+## Updates
 
-Weaviate Cloud does not automatically update existing clusters when a new version of Weaviate core is released.
+Weaviate Cloud does not automatically update existing clusters when a new version of Weaviate is released.
 
-The Weaviate Cloud console informs you when a newer version is available. Consider your business needs, and [upgrade your cluster](/developers/wcs/platform/version) when you have a suitable maintenance window.
+The Weaviate Cloud console informs you when a newer version is available. Consider your business needs, and [update your cluster](/developers/wcs/platform/version) when you have a suitable maintenance window.
 
-<!-- TODO[g-despot]: Add upgrade notification example -->
+<!-- TODO[g-despot]: Add update notification example -->
 
 import Downtime125Note from '/_includes/wcs/wcs.update-to-125-downtime.mdx';
 
-<Downtime125Note/>
+<Downtime125Note />
 
-## Security upgrades
+## Security updates
 
- Weaviate Cloud does not automatically update clusters, however if an existing cluster has a security vulnerability, Weaviate Cloud upgrades the cluster when a fix is released.
+Weaviate Cloud does not automatically update clusters, however if an existing cluster has a security vulnerability, Weaviate Cloud updates the cluster when a fix is released.
 
- For security updates, Weaviate Cloud upgrades the cluster to the most current production release unless there are known compatibility issues. If there are compatibility issues, the cluster is updated to the most recent compatible version.
+For security updates, Weaviate Cloud updates the cluster to the most current production release unless there are known compatibility issues. If there are compatibility issues, the cluster is updated to the most recent compatible version.
 
 ## Additional considerations
 
-- **Billing**. If your cluster's Weaviate core version cannot support the billing requirements for your pricing plan, Weaviate Cloud upgrades your cluster to the current production version or the most recent compatible version.
-- **Data integrity**. If your cluster's Weaviate core version has a known risk of data loss or corruption, Weaviate Cloud upgrades the cluster when a fix is released.
-- **Downgrade**. You cannot downgrade your cluster to an earlier version of Weaviate core.
-- **Enterprise cloud customers**. If you are an enterprise customer and you require a specific version of Weaviate core, contact your support representative. In some circumstances, Weaviate Cloud can install a specific Weaviate core version.
+- **Billing**. If your cluster's Weaviate version cannot support the billing requirements for your pricing plan, Weaviate Cloud updates your cluster to the current production version or the most recent compatible version.
+- **Data integrity**. If your cluster's Weaviate version has a known risk of data loss or corruption, Weaviate Cloud updates the cluster when a fix is released.
+- **Downgrade**. You cannot downgrade your cluster to an earlier version of Weaviate.
+- **Enterprise cloud customers**. If you are an enterprise customer and you require a specific version of Weaviate, contact your support representative. In some circumstances, Weaviate Cloud can install a specific Weaviate version.
 
 ## Support
 
@@ -43,4 +43,4 @@ import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
 
 import CustomScriptLoader from '/src/components/scriptSwitch';
 
-<CustomScriptLoader/>
+<CustomScriptLoader />
