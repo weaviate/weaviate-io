@@ -57,23 +57,52 @@ To create a sandbox cluster, follow these steps:
   <div class="col col--6">
     <ol>
       <li>
-        Select the <code>Sandbox</code> tab.
+        Select the <code>Sandbox</code> tab (<span class="callout">1</span>).
       </li>
-      <li>Choose a name for your cluster.</li>
-      <li>Select a cloud region from the dropdown.</li>
+      <li>
+        Choose a name for your cluster (<span class="callout">2</span>).
+      </li>
+      <li>
+        Select a cloud region from the dropdown (<span class="callout">3</span>
+        ).
+      </li>
+      <li>
+        Configure the <code>Advanced configuration</code>
+        settings if needed (<span class="callout">4</span>).
+      </li>
       <li>
         Click the <code>Create</code> button.
       </li>
     </ol>
+    <h4>Advanced configuration for Serverless clusters</h4>
+    <p>The following advanced configuration settings are available:</p>
+    <ul>
+      <li>
+        <a href="/developers/weaviate/config-refs/schema#auto-schema">
+          <code>Enable auto schema generation</code>
+        </a>
+      </li>
+      <li>
+        <a href="/developers/weaviate/concepts/vector-index#asynchronous-indexing">
+          <code>Enable async indexing</code>
+        </a>
+      </li>
+      <li>
+        <a href="/developers/weaviate/configuration/replication#async-replication-settings">
+          <code>Enable async replication</code>
+        </a>
+      </li>
+      <li>
+        <code>Allow all CORS origins</code>
+      </li>
+    </ul>
   </div>
   <div class="col col--6">
     <div class="card">
       <div class="card__image">
-        <img src={SandboxCluster} alt="Create a cluster" />
+        <img src={SandboxCluster} alt="Create a sandbox cluster" />
       </div>
-      <div class="card__body">
-        Choose a name and a cloud region to create a cluster.
-      </div>
+      <div class="card__body">Configure your sandbox cluster settings.</div>
     </div>
   </div>
 </div>
@@ -90,62 +119,44 @@ import Link from '@docusaurus/Link';
   <div class="col col--6">
     <ol>
       <li>
-        Select the <code>Serverless</code> tab.
+        Select the <code>Serverless</code> tab (<span class="callout">1</span>).
       </li>
-      <li>Choose a name for your cluster.</li>
-      <li>Select a cloud region from the dropdown.</li>
       <li>
-        Set the{' '}
-        <Link to="#advanced-configuration">
-          <code>Advanced configuration</code>
-        </Link>
-        settings.
+        Choose a name for your cluster (<span class="callout">2</span>).
+      </li>
+      <li>
+        Select a cloud region from the dropdown (<span class="callout">3</span>
+        ).
+      </li>
+      <li>
+        Optionally, enable <code>High Availability</code> to reduce downtime
+        during upgrades or scaling.
+      </li>
+      <li>
+        Configure the <code>Advanced configuration</code> settings if needed (
+        <span class="callout">4</span>).
       </li>
       <li>
         Click the <code>Create</code> button.
       </li>
     </ol>
-  </div>
-  <div class="col col--6">
-    <div class="card">
-      <div class="card__image">
-        <img src={ServerlessCluster} alt="Create a cluster" />
-      </div>
-      <div class="card__body">
-        Choose a name and a cloud region to create a cluster.
-      </div>
-    </div>
-  </div>
-</div>
-
-#### Advanced configuration
-
-import AdvancedConfiguration from '/developers/wcs/img/weaviate-cloud-advanced-configuration.png';
-
-The following advanced configuration settings are available:
-
-<div class="row">
-  <div class="col col--6">
+    <h4>Advanced configuration for Serverless clusters</h4>
+    <p>The following advanced configuration settings are available:</p>
     <ul>
       <li>
-        <Link to="/developers/weaviate/configuration/rbac">
-          <code>Enabl RBAC</code>
-        </Link>
-      </li>
-      <li>
-        <Link to="/developers/weaviate/config-refs/schema#auto-schema">
+        <a href="/developers/weaviate/config-refs/schema#auto-schema">
           <code>Enable auto schema generation</code>
-        </Link>
+        </a>
       </li>
       <li>
-        <Link to="/developers/weaviate/concepts/vector-index#asynchronous-indexing">
+        <a href="/developers/weaviate/concepts/vector-index#asynchronous-indexing">
           <code>Enable async indexing</code>
-        </Link>
+        </a>
       </li>
       <li>
-        <Link to="/developers/weaviate/configuration/replication#async-replication-settings">
+        <a href="/developers/weaviate/configuration/replication#async-replication-settings">
           <code>Enable async replication</code>
-        </Link>
+        </a>
       </li>
       <li>
         <code>Allow all CORS origins</code>
@@ -155,29 +166,39 @@ The following advanced configuration settings are available:
   <div class="col col--6">
     <div class="card">
       <div class="card__image">
-        <img
-          src={AdvancedConfiguration}
-          alt=" Set the Advanced configuration settings"
-        />
+        <img src={ServerlessCluster} alt="Create a serverless cluster" />
       </div>
-      <div class="card__body">Set the Advanced configuration settings.</div>
+      <div class="card__body">Configure your serverless cluster settings.</div>
     </div>
   </div>
 </div>
 
 ## Authentication
 
-By default, API keys are enabled for all Weaviate Cloud clusters. Both Serverless and Sandbox clusters have an administrator key and a read-only key.
+Weaviate Cloud clusters use API key authentication. The authentication approach depends on whether [RBAC (Role-Based Access Control)](/developers/weaviate/configuration/rbac) is enabled:
 
-When you develop your client application, use an API key to connect your client to the cluster. For more details on where to find the API keys, check out this guide:
+### Authentication with RBAC enabled
 
-- **[Manage clusters: Connect to Weaviate Cloud](/developers/wcs/manage-clusters/connect)**.
+New clusters with Weaviate version `v1.30` (or later) have RBAC enabled by default. With RBAC enabled, you create API keys with specific roles for granular access control.
 
-## Weaviate core version
+When you develop your client application, use an API key to connect your client to the cluster. For detailed instructions on finding and managing your API keys, including creating new keys and managing roles, check out this guide:
 
-When you provision a new cluster, Weaviate Cloud uses the current version of Weaviate core to set up the new cluster. You can also choose from a limited number of older versions. There may be a short delay between the release of a new Weaviate core version and its availability in Weaviate Cloud.
+- **[Manage clusters: Authentication](/developers/wcs/manage-clusters/authentication.mdx)**
 
-Weaviate Cloud does not automatically update existing clusters when a new version of Weaviate core is released.
+### Authentication with RBAC disabled
+
+If RBAC is not enabled (before `v1.30`), clusters use the traditional approach with two default API keys:
+
+- **Admin keys**: Provide read-write access to the database
+- **ReadOnly keys**: Provide read-only access to the database
+
+Serverless clusters can create, delete, edit, and rotate API keys, while Sandbox clusters cannot modify the default keys.
+
+## Weaviate Database version
+
+When you provision a new cluster, Weaviate Cloud uses the latest version of Weaviate to set up the new cluster. There may be a short delay between the release of a new Weaviate version and its availability in Weaviate Cloud.
+
+Weaviate Cloud does not automatically update existing clusters when a new version of Weaviate is released.
 
 For more details on Weaviate Cloud versioning, see:
 
