@@ -557,7 +557,8 @@ client.collections.create(
             data_type=DataType.TEXT,
             # highlight-start
             vectorize_property_name=True,  # Use "title" as part of the value to vectorize
-            tokenization=Tokenization.LOWERCASE  # Use "lowecase" tokenization
+            tokenization=Tokenization.LOWERCASE,  # Use "lowecase" tokenization
+            description="The title of the article."  # Optional description
             # highlight-end
         ),
         Property(
@@ -571,6 +572,29 @@ client.collections.create(
     ]
 )
 # END PropModuleSettings
+
+# ===================================
+# === UPDATE PROPERTY DESCRIPTION ===
+# ===================================
+
+# START UpdatePropertyDescriptions
+collection = client.collections.get("Article")
+
+collection.config.update(
+    property_descriptions={
+        "title": "The updated title description for article",
+        "body": "The updated body description for article"
+    }
+)
+# END UpdatePropertyDescriptions
+
+# Verify the update by getting the collection config
+config = collection.config.get(simple=True)
+
+# Assert that the descriptions were updated correctly
+property_descriptions = {prop.name: prop.description for prop in config.properties}
+assert property_descriptions["title"] == "The updated title description for article"
+assert property_descriptions["body"] == "The updated body description for article"
 
 # ====================================
 # ===== MODULE SETTINGS PROPERTY =====
@@ -593,7 +617,7 @@ articles.config.add_vector(
 collection = client.collections.get("Article")
 config = collection.config.get()
 
-assert config.vectorizer.value == "text2vec-huggingface"
+assert config.vectorizer_config.vectorizer.value == "text2vec-cohere"
 for p in config.properties:
     if p.name == "title":
         assert p.tokenization.name == "LOWERCASE"
@@ -868,6 +892,7 @@ articles = client.collections.get("Article")
 
 # Update the collection definition
 articles.config.update(
+    description="An updated collection description.",
     inverted_index_config=Reconfigure.inverted_index(
         bm25_k1=1.5
     ),
