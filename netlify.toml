@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/docs/*"
+  to = "/developers/:splat"
+  status = 302
