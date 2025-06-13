@@ -26,9 +26,7 @@ To use SQ, enable it in the collection definition, then add data to the collecti
 
 ## Basic configuration
 
-SQ must be enabled at collection creation time. You cannot enable SQ after you add data to a collection.
-
-To enable SQ, set `vector_index_config`.
+SQ can be enabled at collection creation time. To enable SQ, set `vector_index_config`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -49,6 +47,11 @@ To enable SQ, set `vector_index_config`.
   </TabItem>
 </Tabs>
 
+:::info Added in `v1.31`
+The ability to enable SQ compression after collection creation was added in Weaviate `v1.31`.
+:::
+
+SQ can also be enabled for an existing collection by updating the collection configuration with the appropriate vector index configuration.
 
 ## Custom configuration
 
