@@ -557,7 +557,8 @@ client.collections.create(
             data_type=DataType.TEXT,
             # highlight-start
             vectorize_property_name=True,  # Use "title" as part of the value to vectorize
-            tokenization=Tokenization.LOWERCASE  # Use "lowecase" tokenization
+            tokenization=Tokenization.LOWERCASE,  # Use "lowecase" tokenization
+            description="The title of the article."  # Optional description
             # highlight-end
         ),
         Property(
@@ -593,7 +594,7 @@ articles.config.add_vector(
 collection = client.collections.get("Article")
 config = collection.config.get()
 
-assert config.vectorizer.value == "text2vec-huggingface"
+assert config.vectorizer_config.vectorizer.value == "text2vec-cohere"
 for p in config.properties:
     if p.name == "title":
         assert p.tokenization.name == "LOWERCASE"
@@ -849,7 +850,17 @@ client.collections.create(
     inverted_index_config=Configure.inverted_index(
         bm25_b=0.7,
         bm25_k1=1.2
-    )
+    ),
+    properties=[
+        Property(
+            name="title",
+            data_type=DataType.TEXT,
+        ),
+        Property(
+            name="body",
+            data_type=DataType.TEXT,
+        ),
+    ]
 )
 old_config = articles.config.get()
 
@@ -868,6 +879,10 @@ articles = client.collections.get("Article")
 
 # Update the collection definition
 articles.config.update(
+    description="An updated collection description.",
+    property_descriptions={
+        "title": "The updated title description for article",
+    },  # Available from Weaviate v1.31.0
     inverted_index_config=Reconfigure.inverted_index(
         bm25_k1=1.5
     ),
@@ -885,6 +900,8 @@ new_config = articles.config.get()
 assert old_config.inverted_index_config.bm25.k1 == 1.2
 assert new_config.inverted_index_config.bm25.k1 == 1.5
 
+property_descriptions = {prop.name: prop.description for prop in new_config.properties}
+assert property_descriptions["title"] == "The updated title description for article"
 
 # ================================
 # ===== DELETE A COLLECTION =====
