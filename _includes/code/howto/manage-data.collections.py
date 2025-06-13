@@ -573,29 +573,6 @@ client.collections.create(
 )
 # END PropModuleSettings
 
-# ===================================
-# === UPDATE PROPERTY DESCRIPTION ===
-# ===================================
-
-# START UpdatePropertyDescriptions
-collection = client.collections.get("Article")
-
-collection.config.update(
-    property_descriptions={
-        "title": "The updated title description for article",
-        "body": "The updated body description for article"
-    }
-)
-# END UpdatePropertyDescriptions
-
-# Verify the update by getting the collection config
-config = collection.config.get(simple=True)
-
-# Assert that the descriptions were updated correctly
-property_descriptions = {prop.name: prop.description for prop in config.properties}
-assert property_descriptions["title"] == "The updated title description for article"
-assert property_descriptions["body"] == "The updated body description for article"
-
 # ====================================
 # ===== MODULE SETTINGS PROPERTY =====
 # ====================================
@@ -873,7 +850,17 @@ client.collections.create(
     inverted_index_config=Configure.inverted_index(
         bm25_b=0.7,
         bm25_k1=1.2
-    )
+    ),
+    properties=[
+        Property(
+            name="title",
+            data_type=DataType.TEXT,
+        ),
+        Property(
+            name="body",
+            data_type=DataType.TEXT,
+        ),
+    ]
 )
 old_config = articles.config.get()
 
@@ -893,6 +880,9 @@ articles = client.collections.get("Article")
 # Update the collection definition
 articles.config.update(
     description="An updated collection description.",
+    property_descriptions={
+        "title": "The updated title description for article",
+    },
     inverted_index_config=Reconfigure.inverted_index(
         bm25_k1=1.5
     ),
@@ -910,6 +900,8 @@ new_config = articles.config.get()
 assert old_config.inverted_index_config.bm25.k1 == 1.2
 assert new_config.inverted_index_config.bm25.k1 == 1.5
 
+property_descriptions = {prop.name: prop.description for prop in new_config.properties}
+assert property_descriptions["title"] == "The updated title description for article"
 
 # ================================
 # ===== DELETE A COLLECTION =====
