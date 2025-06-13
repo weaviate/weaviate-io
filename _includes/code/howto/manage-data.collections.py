@@ -882,7 +882,7 @@ articles.config.update(
     description="An updated collection description.",
     property_descriptions={
         "title": "The updated title description for article",
-    },
+    },  # Available from Weaviate v1.31.0
     inverted_index_config=Reconfigure.inverted_index(
         bm25_k1=1.5
     ),
