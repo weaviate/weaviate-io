@@ -91,8 +91,8 @@ Go to the [Weaviate Cloud console](https://console.weaviate.cloud) and create a 
 
 <div style={{position: "relative", paddingBottom: "calc(54.10879629629629% + 50px)", height: 0}}>
   <iframe 
-    id="gky9oo0u4p" 
-    src="https://app.guideflow.com/embed/gky9oo0u4p" 
+    id="xrgwlygc1p" 
+    src="https://app.guideflow.com/embed/xrgwlygc1p" 
     width="100%" 
     height="100%" 
     style={{overflow: "hidden", position: "absolute", border: "none"}} 
@@ -103,7 +103,7 @@ Go to the [Weaviate Cloud console](https://console.weaviate.cloud) and create a 
     allowFullScreen 
     allowTransparency="true"
   />
-  <script src="https://app.guideflow.com/assets/opt.js" data-iframe-id="gky9oo0u4p"></script>
+  <script src="https://app.guideflow.com/assets/opt.js" data-iframe-id="xrgwlygc1p"></script>
 </div>
 
 <br/>
@@ -145,8 +145,8 @@ New clusters with Weaviate version `v1.30` (or later) have [RBAC (Role-Based Acc
 
 <div style={{position: "relative", paddingBottom: "calc(54.10879629629629% + 50px)", height: 0}}>
   <iframe 
-    id="dr9o0g2anr" 
-    src="https://app.guideflow.com/embed/dr9o0g2anr" 
+    id="mk6zxyws6p" 
+    src="https://app.guideflow.com/embed/mk6zxyws6p" 
     width="100%" 
     height="100%" 
     style={{overflow: "hidden", position: "absolute", border: "none"}} 
@@ -157,7 +157,7 @@ New clusters with Weaviate version `v1.30` (or later) have [RBAC (Role-Based Acc
     allowFullScreen 
     allowTransparency="true"
   />
-  <script src="https://app.guideflow.com/assets/opt.js" data-iframe-id="dr9o0g2anr"></script>
+  <script src="https://app.guideflow.com/assets/opt.js" data-iframe-id="mk6zxyws6p"></script>
 </div>
 
 <br/>
