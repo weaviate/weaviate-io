@@ -134,15 +134,6 @@ export default function Main() {
               <h3>Transforming Risk Management with Generative AI</h3>
             </div>
           </Link>
-          <Link
-            to="https://innovativesol.com/success-stories/humach/"
-            className={styles.bentoSmall}
-          >
-            <div className={styles.bentoText}>
-              <div className={`${styles.bentoLogo} ${styles.logo03}`}></div>
-              <h3>Solving Operational Challenges with Weaviate</h3>
-            </div>
-          </Link>
 
           <div className={styles.bento05}>
             <div className={styles.bentoText}>
