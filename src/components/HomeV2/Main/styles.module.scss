@@ -147,6 +147,10 @@
   border-radius: 0.625rem;
   box-shadow: 0px 3px 5px rgba(79, 150, 172, 0.1);
   padding: 2rem 3rem;
+
+  @media (max-width: 1400px) {
+    width: 66.75rem;
+  }
 }
 
 .CodeBlockContainer {
@@ -379,7 +383,7 @@
 
 .leftContainer {
   width: 36.25rem;
-  height: 43rem;
+  height: 45rem;
   flex-shrink: 0;
   border-radius: 0.625rem;
   background: #130c49;
@@ -482,13 +486,20 @@
 
 .rightContainer {
   width: 36.25rem;
-  height: 43rem;
+  height: 45rem;
   flex-shrink: 0;
   background: url('/img/site/slide-bg-grain2.png');
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 0.625rem;
   box-shadow: 0px 3px 5px 0px rgba(79, 150, 172, 0.1);
+}
+
+@media screen and (max-width: 1440px) {
+  .leftContainer {
+    width: 30.25rem;
+    height: 47rem;
+  }
 }
 
 @media (max-width: 900px) {
@@ -548,20 +559,15 @@
     }
   }
 
-  .whyContainer {
-    flex-direction: column;
-  }
-
   .leftContainer {
     width: 100%;
-
     height: auto;
     padding: 2rem;
   }
 
   .rightContainer {
     width: 100%;
-    min-height: 43rem;
+    height: 36rem;
     padding: 0rem 2rem;
   }
 }
@@ -607,20 +613,16 @@
     gap: 1rem;
   }
 
-  .whyContainer {
-    flex-direction: column;
-  }
-
-  .leftContainer {
-    width: 100%;
-    height: auto;
-    padding: 2rem;
-  }
-
   .rightContainer {
     width: 100%;
-    height: 43rem;
+    height: 45rem;
     padding: 2rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .whyContainer {
+    flex-direction: column;
   }
 }
 

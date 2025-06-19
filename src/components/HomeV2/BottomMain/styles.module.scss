@@ -86,8 +86,11 @@
     height: 17.5rem;
     flex-shrink: 0;
 
-    background: linear-gradient(128deg, #00d508 19.35%, #29a6dd 80.19%);
+    background: linear-gradient(128deg, #00d5088a 19.35%, #29a6dd91 80.19%);
 
+    @media (max-width: 1440px) {
+      width: 15rem;
+    }
     @media (max-width: 900px) {
       width: 48%;
     }
@@ -374,6 +377,10 @@
     background-repeat: no-repeat;
     mix-blend-mode: normal;
 
+    @media (max-width: 1300px) {
+      width: 27.25rem;
+    }
+
     @media (max-width: 900px) {
       width: 100%;
       height: auto;
@@ -463,6 +470,16 @@
       height: 10rem;
       flex-shrink: 0;
       background: linear-gradient(128deg, #00d5076d 19.35%, #29a7dd70 80.19%);
+
+      @media (max-width: 1440px) {
+        width: 100%;
+        max-width: 12.5rem;
+      }
+
+      @media (max-width: 1000px) {
+        width: 100%;
+        max-width: 9.5rem;
+      }
 
       @media (max-width: 900px) {
         width: 100%;

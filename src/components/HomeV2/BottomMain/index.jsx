@@ -122,7 +122,7 @@ export default function BottomMain() {
                 </h3>
                 <div className={styles.bentoNameRow}>
                   <div>
-                    <p>&nbsp;</p>
+                    <p>&nbsp;&nbsp;</p>
                     <span>Principal Engineer</span>
                   </div>
                   <img src="/img/site/build-factset.svg" alt="Factset logo" />
