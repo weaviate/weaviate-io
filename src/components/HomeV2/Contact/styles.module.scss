@@ -1,0 +1,150 @@
+.contactBackground {
+  background: #ddebf2;
+  padding: 60px 0;
+
+  :global(.container) {
+    padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
+  }
+}
+
+.newsletterBar {
+  background: #f7f9fd;
+  border-radius: 1.25rem;
+  padding: 40px;
+  margin-bottom: 60px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-direction: row;
+
+  h3 {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 130%; /* 1.95rem */
+  }
+
+  iframe {
+    width: 100%;
+    max-width: 600px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    padding: 20px;
+    h3 {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.contactSplit {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  background: #ddebf2;
+  border-radius: 1.25rem;
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    padding: 20px;
+  }
+}
+
+.leftContent {
+  flex: 1;
+  min-width: 300px;
+  background: url('/img/site/weaviate-graffiti-bg-1.png'), #c4ff58;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply;
+  border-radius: 1.25rem 0rem 0rem 1.25rem;
+  padding: 40px;
+  color: #130c49;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%; /* 2.8rem */
+  }
+
+  p {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%; /* 1.575rem */
+  }
+
+  .tryButton {
+    display: inline-block;
+    margin: 20px 0;
+    padding: 10px 20px;
+    font-weight: 600;
+    border: 2px solid #130c49;
+    background: #fff;
+    border-radius: 8px;
+    color: #130c49;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.3s ease;
+    width: 13.875rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .linkList {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+
+    li {
+      margin-bottom: 10px;
+
+      a {
+        color: #130c49;
+        font-weight: 600;
+        text-decoration: underline;
+      }
+    }
+
+    li::before {
+      content: '';
+      display: inline-block;
+      width: 0.8125rem;
+      height: 0.8125rem;
+      margin-right: 8px;
+      background: url('/img/site/build-contact-icon.svg') no-repeat center;
+      background-size: contain;
+      vertical-align: middle;
+    }
+  }
+}
+
+.rightForm {
+  flex: 1;
+  min-width: 300px;
+  background: #fff;
+  padding: 40px;
+  border-radius: 0rem 1.25rem 1.25rem 0rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+
+  @media screen and (max-width: 900px) {
+    padding: 20px;
+  }
+}

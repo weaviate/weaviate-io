@@ -1,0 +1,65 @@
+.codeTabs {
+  width: 100%;
+  border-radius: 1.25rem;
+
+  overflow: hidden;
+}
+
+.tabHeader {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid #2b2d55;
+
+  button {
+    all: unset;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; // space between dot and text
+    color: #8396b1;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-right: 2rem;
+    cursor: pointer;
+
+    &::before {
+      content: '';
+      display: none;
+      width: 0.5rem;
+      height: 0.5rem;
+      background: #61d384;
+      border-radius: 50%;
+    }
+  }
+
+  .active {
+    color: white;
+
+    &::before {
+      display: inline-block; // show only on active
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #61d384;
+      border-radius: 2px;
+    }
+  }
+}
+
+.codeBlock {
+  padding: 1.5rem 2rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  background: transparent !important;
+}

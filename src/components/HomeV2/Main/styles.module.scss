@@ -1,0 +1,487 @@
+.mainContainer {
+  background: #ddebf2;
+}
+
+.boxContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  margin: 3rem 0;
+}
+
+.boxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.benefitBox {
+  width: 23.75rem;
+  height: 28.375rem;
+  flex-shrink: 0;
+  border-radius: 0.625rem;
+  background: #f7f9fd;
+  box-shadow: 0px 3px 5px 0px rgba(79, 150, 172, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 2rem;
+
+  p {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.375rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 1.925rem */
+  }
+
+  a {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 157.33%; /* 1.57331rem */
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+  }
+
+  .image {
+    width: 100%;
+    height: 12.5rem;
+    border-radius: 0.625rem 0.625rem 0 0;
+
+    background: url('/img/site/search-home-header-icon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .rag {
+    background: url('/img/site/rag-home-header-icon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .agentic {
+    background: url('/img/site/agentic-home-header-icon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .titleBG {
+    background: #61d384;
+    opacity: 0.5;
+    width: 11.75rem;
+    height: 1.6875rem;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .retrieval {
+    background: #7487ec;
+    width: 19.5625rem;
+  }
+
+  .agenticAI {
+    width: 6.75rem;
+    background: #97df44;
+  }
+}
+.benefitBox.BB01 {
+  background: linear-gradient(
+    to bottom,
+    white 0%,
+    white 43%,
+    rgba(0, 213, 8, 0.5) 43%,
+    rgba(41, 166, 221, 0.5) 100%
+  );
+}
+
+.benefitBox.BB02 {
+  background: linear-gradient(
+    to bottom,
+    white 0%,
+    white 43%,
+    rgba(200, 168, 231, 0.5) 43%,
+    rgba(116, 135, 236, 0.5) 100%
+  );
+}
+
+.benefitBox.BB03 {
+  background: linear-gradient(
+    to bottom,
+    white 0%,
+    white 43%,
+    rgba(117, 251, 174, 0.5) 43%,
+    rgba(182, 248, 116, 0.5) 100%
+  );
+}
+
+.bigBox {
+  width: 73.75rem;
+  height: auto;
+  flex-shrink: 0;
+  background: #f7f9fd;
+  border-radius: 0.625rem;
+  box-shadow: 0px 3px 5px rgba(79, 150, 172, 0.1);
+  padding: 2rem 3rem;
+}
+
+.CodeBlockContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.25rem;
+  margin: 2rem 0;
+
+  .CodeBlockSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+
+    h3 {
+      color: #130c49;
+      width: 70%;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 2rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 140%; /* 2.8rem */
+    }
+
+    p {
+      color: #130c49;
+      font-family: Inter;
+      width: 80%;
+      font-size: 1.125rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%; /* 1.575rem */
+    }
+
+    .buttonLight {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 15rem;
+      height: 2.75rem;
+      flex-shrink: 0;
+      border-radius: 0.3125rem;
+      border: 2px solid #130c49;
+      background: #61d384;
+      color: #130c49;
+      text-align: center;
+      font-family: Inter;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 157.33%;
+    }
+
+    .buttonDark {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 15rem;
+      height: 2.75rem;
+      flex-shrink: 0;
+      border-radius: 0.3125rem;
+      border: 2px solid #130c49;
+      background: #ffffff;
+      color: #130c49;
+      text-align: center;
+      font-family: Inter;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 157.33%;
+    }
+  }
+
+  .CodeBlock {
+    width: 36.1875rem;
+    height: 22.0625rem;
+    flex-shrink: 0;
+    border-radius: 1.25rem;
+    border: 1px solid #0073b4;
+    background: #130c49;
+    box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.04);
+  }
+}
+
+.USPContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.25rem;
+  margin: 2rem 0;
+
+  hr {
+    width: 0.125rem;
+    height: 8.5625rem;
+    background: #b9c8de;
+  }
+}
+
+.USPBox {
+  h4 {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 1.75rem */
+  }
+
+  h4::after {
+    content: '';
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: url('/img/site/build-arrow.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin: 0rem 0.5rem;
+  }
+}
+
+.logoContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 1.25rem;
+  margin: 2rem 0;
+
+  .bottomlogo {
+    width: 2.25094rem;
+    height: 2.25094rem;
+    flex-shrink: 0;
+    background: url('/img/site/build-meta-logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .bl01 {
+    background: url('/img/site/build-meta-logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .bl02 {
+    background: url('/img/site/build-amazon-logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .bl03 {
+    background: url('/img/site/build-openai-logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .bl04 {
+    background: url('/img/site/build-streamlit-logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .bl05 {
+    background: url('/img/site/build-cohere-logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .bl06 {
+    background: url('/img/site/build-huggingface-logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .bl07 {
+    background: url('/img/site/build-llama-logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .bl08 {
+    background: url('/img/site/build-haystack-logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .bl09 {
+    background: url('/img/site/build-google-logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .bl10 {
+    background: url('/img/site/build-langchain-logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+.linkContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin: 2rem 0;
+
+  a {
+    color: #8396b1;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 1.4rem */
+    text-transform: uppercase;
+  }
+}
+
+.whyContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.leftContainer {
+  width: 36.25rem;
+  height: 43rem;
+  flex-shrink: 0;
+  border-radius: 0.625rem;
+  background: #130c49;
+  box-shadow: 0px 3px 5px 0px rgba(79, 150, 172, 0.1);
+  padding: 2rem 3rem;
+
+  h4 {
+    color: #61d384;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 2.8rem */
+    margin: 1rem 0;
+  }
+
+  .benefitText {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+
+    h5 {
+      color: #61d384;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 1.25rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 130%; /* 1.625rem */
+    }
+
+    p {
+      color: #ddebf2;
+      font-family: Inter;
+      font-size: 0.875rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%; /* 1.225rem */
+    }
+  }
+
+  .benefitText::before {
+    content: '';
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    flex-shrink: 0;
+    background: url('/img/site/ww-icon-01.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+  }
+
+  .ww01::before {
+    background: url('/img/site/ww-icon-01.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+  }
+
+  .ww02::before {
+    background: url('/img/site/ww-icon-02.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+  }
+
+  .ww03::before {
+    background: url('/img/site/ww-icon-03.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+  }
+
+  .ww04::before {
+    background: url('/img/site/ww-icon-04.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+  }
+
+  .ww05::before {
+    background: url('/img/site/ww-icon-05.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+  }
+}
+
+.rightContainer {
+  width: 36.25rem;
+  height: 43rem;
+  flex-shrink: 0;
+  background: url('/img/site/slide-bg-grain2.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 0.625rem;
+  box-shadow: 0px 3px 5px 0px rgba(79, 150, 172, 0.1);
+}

@@ -4,16 +4,17 @@ import Layout from '@theme/Layout';
 import { MetaSEO } from '/src/theme/MetaSEO';
 import Head from '@docusaurus/Head';
 
-import HomepageHeader from '/src/components/Home/Redesign/Header';
-import HomepageWhatYouCanDo from '/src/components/Home/Redesign/WhatYouCanDoUpdate';
-import HomepageLovedByDevelopers from '/src/components/Home/Redesign/LovedByDeveloperUpdate/index.jsx';
-import HomepageJoinCommunity from '/src/components/Home/Redesign/JoinCommunityUpdate';
-import HomepageIntegrations from '/src/components/Home/Redesign/IntegrationsUpdate/v2.jsx';
-import HomepageTestimonials from '/src/components/Home/Redesign/Testimonials';
-import Resources from '/src/components/Home/Redesign/Resources';
-import CTA from '/src/components/Home/Redesign/CTA';
-
-import ContactForm from '/src/components/Home/Redesign/Contact/contactForm';
+import HomepageHeader from '/src/components/HomeV2/Header';
+import HomepageWhatYouCanDo from '/src/components/HomeV2/WhatYouCanDoUpdate';
+import HomepageLovedByDevelopers from '/src/components/HomeV2/LovedByDeveloperUpdate/index.jsx';
+import HomepageJoinCommunity from '/src/components/HomeV2/JoinCommunityUpdate';
+import HomepageIntegrations from '/src/components/HomeV2/IntegrationsUpdate/v2.jsx';
+import HomepageTestimonials from '/src/components/HomeV2/Testimonials';
+import Resources from '/src/components/HomeV2/Resources';
+import CTA from '/src/components/HomeV2/CTA';
+import Main from '/src/components/HomeV2/Main';
+import BottomMain from '/src/components/HomeV2/BottomMain';
+import ContactForm from '/src/components/HomeV2/Contact/contactForm';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 
 export default function Home() {
@@ -28,16 +29,10 @@ export default function Home() {
         <MetaSEO img="og/website/home.jpg" />
         <HomepageHeader />
 
-        <main>
-          <HomepageLovedByDevelopers />
-          <HomepageTestimonials />
-          <HomepageWhatYouCanDo />
-          <HomepageIntegrations />
+        <Main />
+        <BottomMain />
 
-          <Resources />
-          <CTA />
-          <ContactForm />
-        </main>
+        <ContactForm />
       </Layout>
       <ThemeSwitch />
     </div>
