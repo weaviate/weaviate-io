@@ -28,6 +28,9 @@ export default function StudyHeader() {
               </div>
             </div>
           </div>
+          <div className={styles.right}>
+            <div className={styles.image}></div>
+          </div>
         </div>
       </div>
       <div className={styles.bottomBar}>
@@ -46,6 +49,12 @@ export default function StudyHeader() {
           <div className={`${styles.logo} ${styles.logo12}`}></div>
           <div className={`${styles.logo} ${styles.logo13}`}></div>
           <div className={`${styles.logo} ${styles.logo14}`}></div>
+          <div className={`${styles.logo} ${styles.logo15}`}></div>
+          <div className={`${styles.logo} ${styles.logo16}`}></div>
+          <div className={`${styles.logo} ${styles.logo17}`}></div>
+          <div className={`${styles.logo} ${styles.logo18}`}></div>
+          <div className={`${styles.logo} ${styles.logo19}`}></div>
+          <div className={`${styles.logo} ${styles.logo20}`}></div>
 
           <div className={styles.logo}></div>
           <div className={`${styles.logo} ${styles.logo1}`}></div>
@@ -61,6 +70,12 @@ export default function StudyHeader() {
           <div className={`${styles.logo} ${styles.logo12}`}></div>
           <div className={`${styles.logo} ${styles.logo13}`}></div>
           <div className={`${styles.logo} ${styles.logo14}`}></div>
+          <div className={`${styles.logo} ${styles.logo15}`}></div>
+          <div className={`${styles.logo} ${styles.logo16}`}></div>
+          <div className={`${styles.logo} ${styles.logo17}`}></div>
+          <div className={`${styles.logo} ${styles.logo18}`}></div>
+          <div className={`${styles.logo} ${styles.logo19}`}></div>
+          <div className={`${styles.logo} ${styles.logo20}`}></div>
         </div>
       </div>
     </header>

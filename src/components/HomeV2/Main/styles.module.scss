@@ -499,11 +499,11 @@
 
   .CodeBlockContainer {
     flex-direction: column;
+    margin: 1rem 0;
 
     .CodeBlockSection {
       width: 100%;
       align-items: center;
-      text-align: center;
 
       h3,
       p {
@@ -527,7 +527,8 @@
     align-items: flex-start;
 
     hr {
-      display: none;
+      width: 100%;
+      height: 0.1rem;
     }
   }
 
@@ -561,8 +562,7 @@
   .rightContainer {
     width: 100%;
     min-height: 43rem;
-
-    padding: 2rem;
+    padding: 0rem 2rem;
   }
 }
 
@@ -596,7 +596,8 @@
     }
 
     hr {
-      display: none;
+      width: 100%;
+      height: 0.1rem;
     }
   }
 
@@ -620,5 +621,12 @@
     width: 100%;
     height: 43rem;
     padding: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .benefitBox {
+    width: 100%;
+    min-width: 23rem;
   }
 }

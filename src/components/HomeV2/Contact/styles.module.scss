@@ -60,7 +60,13 @@
 .leftContent {
   flex: 1;
   min-width: 300px;
-  background: url('/img/site/weaviate-graffiti-bg-1.png'), #c4ff58;
+
+  background-image: linear-gradient(
+      218deg,
+      rgba(247, 249, 253, 0) 5.67%,
+      #c4ff58 48.39%
+    ),
+    url('/img/site/weaviate-graffiti-bg-1.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-blend-mode: multiply;

@@ -376,6 +376,7 @@
 
     @media (max-width: 900px) {
       width: 100%;
+      height: auto;
     }
 
     .bentoText {
@@ -465,7 +466,12 @@
 
       @media (max-width: 900px) {
         width: 100%;
-        max-width: 20rem;
+        max-width: 12.5rem;
+      }
+
+      @media (max-width: 500px) {
+        width: 100%;
+        max-width: 100%;
       }
     }
 

@@ -3,7 +3,7 @@
 .box {
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   text-align: left;
 
   @media screen and (max-width: 900px) {
@@ -59,11 +59,17 @@
   }
   .image {
     background: url('/img/site/weaviate-graffiti-w-light-bg.png');
-    width: 42.4375rem;
-    height: 38.5625rem;
+    width: 36.4375rem;
+    height: 28.5625rem;
     flex-shrink: 0;
-    aspect-ratio: 679/617;
+    aspect-ratio: 679 / 617;
+    background-size: contain;
+    background-repeat: no-repeat;
     transition: all 0.3s ease-in-out;
+
+    @media screen and (max-width: 1450px) {
+      width: 30.4375rem;
+    }
 
     @media screen and (max-width: 900px) {
       width: 100%;
@@ -155,7 +161,7 @@
   justify-content: space-evenly;
   align-items: center;
   gap: 40px;
-  animation: scroll 100s linear infinite;
+  animation: scroll 200s linear infinite;
   width: calc(200% + 40px);
 
   @media (min-width: 1800px) {
@@ -251,6 +257,36 @@
 .logo14 {
   background-image: url('/img/site/lightlogos/bunq.svg');
   width: 4.27531rem;
+}
+
+.logo15 {
+  background-image: url('/img/site/lightlogos/build-vw-logo.svg');
+  width: 2.53694rem;
+  height: 2.53694rem;
+}
+
+.logo16 {
+  background-image: url('/img/site/lightlogos/build-trc-logo.svg');
+}
+
+.logo17 {
+  background-image: url('/img/site/lightlogos/build-servier-logo.svg');
+  width: 8.51125rem;
+  height: 1.69131rem;
+}
+
+.logo18 {
+  background-image: url('/img/site/lightlogos/build-ltk-logo.svg');
+}
+
+.logo19 {
+  background-image: url('/img/site/lightlogos/build-gsk-logo.svg');
+}
+
+.logo20 {
+  background-image: url('/img/site/lightlogos/build-datagrid-logo.svg');
+  width: 6.99588rem;
+  height: 1.69131rem;
 }
 
 @keyframes scroll {
