@@ -39,7 +39,7 @@ export default function ContactForm() {
               margin: 0,
               borderRadius: '0px',
               width: '100%',
-              height: '70px',
+              height: '53px',
               backgroundColor: 'transparent',
             }}
           ></iframe>

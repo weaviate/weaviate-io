@@ -22,7 +22,10 @@ export default function BottomMain() {
         <div className={styles.bentoGrid}>
           {/* Row 1 - Four small */}
           <div className={styles.row}>
-            <Link to="..." className={`${styles.bentoSmall} ${styles.BS01}`}>
+            <Link
+              to="/case-studies/morningstar"
+              className={`${styles.bentoSmall} ${styles.BS01}`}
+            >
               <div className={styles.bentoText}>
                 <div className={styles.innerText}>
                   <div className={styles.bentoLogo}></div>
@@ -30,13 +33,16 @@ export default function BottomMain() {
                 </div>
                 <div className={styles.buttons}>
                   <Link
-                    to="case-studies/kapa"
+                    to="/case-studies/morningstar"
                     className={styles.arrowButton}
                   ></Link>
                 </div>
               </div>
             </Link>
-            <Link to="..." className={`${styles.bentoSmall} ${styles.BS02}`}>
+            <Link
+              to="/case-studies/kapa"
+              className={`${styles.bentoSmall} ${styles.BS02}`}
+            >
               <div className={styles.bentoText}>
                 <div className={styles.innerText}>
                   <div className={styles.bentoLogo}></div>
@@ -50,7 +56,10 @@ export default function BottomMain() {
                 </div>
               </div>
             </Link>
-            <Link to="..." className={`${styles.bentoSmall} ${styles.BS03}`}>
+            <Link
+              to="/case-studies/neople"
+              className={`${styles.bentoSmall} ${styles.BS03}`}
+            >
               <div className={styles.bentoText}>
                 <div className={styles.innerText}>
                   <div className={styles.bentoLogo}></div>
@@ -64,7 +73,10 @@ export default function BottomMain() {
                 </div>
               </div>
             </Link>
-            <Link to="..." className={`${styles.bentoSmall} ${styles.BS04}`}>
+            <Link
+              to="case-studies/instabase"
+              className={`${styles.bentoSmall} ${styles.BS04}`}
+            >
               <div className={styles.bentoText}>
                 <div className={styles.innerText}>
                   <div className={styles.bentoLogo}></div>
@@ -90,10 +102,16 @@ export default function BottomMain() {
                   very powerful, low latency search engines in minutes with
                   little to no code.”
                 </h3>
-                <p>Aisis Julian</p>
-                <span>Senior Software Engineer</span>
+                <div className={styles.bentoNameRow}>
+                  <div>
+                    <p>Aisis Julian</p>
+                    <span>Senior Software Engineer</span>
+                  </div>
+                  <img src="/img/site/Morningstar.svg" alt="Morningstar logo" />
+                </div>
               </div>
             </div>
+
             <div className={`${styles.bentoWithImage} ${styles.BWI02}`}>
               <div className={styles.bentoImage}></div>
               <div className={styles.bentoText}>
@@ -102,8 +120,13 @@ export default function BottomMain() {
                   Weaviate to the speed of delivering commercial AI products
                   within a year.”
                 </h3>
-                <p></p>
-                <span>Principal Engineer</span>
+                <div className={styles.bentoNameRow}>
+                  <div>
+                    <p>&nbsp;</p>
+                    <span>Principal Engineer</span>
+                  </div>
+                  <img src="/img/site/build-factset.svg" alt="Factset logo" />
+                </div>
               </div>
             </div>
             <div className={`${styles.bentoWithImage} ${styles.BWI03}`}>
@@ -115,8 +138,13 @@ export default function BottomMain() {
                   receive through their engineering team and support channels
                   has been company-saving help.”
                 </h3>
-                <p>Antoni Rosinol</p>
-                <span>Co-founder</span>
+                <div className={styles.bentoNameRow}>
+                  <div>
+                    <p>Antoni Rosinol</p>
+                    <span>Co-founder</span>
+                  </div>
+                  <img src="/img/site/build-stack-ai.svg" alt="Stack-AI logo" />
+                </div>
               </div>
             </div>
           </div>
@@ -182,7 +210,7 @@ export default function BottomMain() {
                 </div>
               </Link>
               <Link
-                to="/community/events"
+                to="/blog"
                 className={`${styles.bentoSmall} ${styles.small03}`}
               >
                 <div className={styles.bentoText}>
@@ -195,7 +223,7 @@ export default function BottomMain() {
                 </div>
               </Link>
               <Link
-                to="/community/events"
+                to="/developers/weaviate"
                 className={`${styles.bentoSmall} ${styles.small04}`}
               >
                 <div className={styles.bentoText}>

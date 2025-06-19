@@ -16,12 +16,12 @@ export default function Main() {
           </h2>
         </div>
         <div className={styles.boxContainer}>
-          <span>WHAT ARE YOU BUILDING?</span>
+          <span className={styles.buildTitle}>WHAT ARE YOU BUILDING?</span>
           <div className={styles.boxes}>
             <div className={`${styles.benefitBox} ${styles.BB01}`}>
               <span className={styles.titleBG}>AI-POWERED SEARCH</span>
               <p>Smart, contextual search across unstructured data</p>
-              <Link to="">Learn more</Link>
+              <Link to="/hybrid-search">Learn more</Link>
               <div className={styles.image}></div>
             </div>
             <div className={`${styles.benefitBox} ${styles.BB02}`}>
@@ -29,7 +29,7 @@ export default function Main() {
                 RETRIEVAL AUGMENTED GENERATION
               </span>
               <p>Trustworthy chat experiences grounded in your data</p>
-              <Link to="">Learn more</Link>
+              <Link to="/rag">Learn more</Link>
               <div className={`${styles.image} ${styles.rag}`}></div>
             </div>
             <div className={`${styles.benefitBox} ${styles.BB03}`}>
@@ -37,13 +37,13 @@ export default function Main() {
                 AGENTIC AI
               </span>
               <p>Knowledgeable AI agents and agentic workflows </p>
-              <Link to="">Learn more</Link>
+              <Link to="/agentic-ai">Learn more</Link>
               <div className={`${styles.image} ${styles.agentic}`}></div>
             </div>
           </div>
         </div>
         <div className={styles.boxContainer}>
-          <span>HOW WILL YOU BUILD?</span>
+          <span className={styles.buildTitle}>HOW WILL YOU BUILD?</span>
           <div className={styles.bigBox}>
             <div className={styles.CodeBlockContainer}>
               <div className={styles.CodeBlockSection}>
@@ -53,10 +53,16 @@ export default function Main() {
                   takes care of embeddings, ranking, and auto-scaling so you can
                   ship features, not infrastructure.
                 </p>
-                <Link to="" className={styles.buttonLight}>
+                <Link
+                  to="https://auth.wcs.api.weaviate.io/auth/realms/SeMI/protocol/openid-connect/auth?client_id=wcs-frontend&scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fconsole.weaviate.cloud%2Fapi%2Fauth%2Fcallback%2Fkeycloak&state=P3BeeUEpGZNBXSXHycDajZNjrHT_HliA14qrtGovlk8&code_challenge=VZLcWPLzlwCsrvkYzjY3yC9XwUN3KzJqvzXAlzdNYTo&code_challenge_method=S256&__hstc=76629258.2a08ce98ef4ed956e84f6755a768e341.1750342624201.1750342624201.1750342624201.1&__hssc=76629258.1.1750342624201&__hsfp=2985992378"
+                  className={styles.buttonLight}
+                >
                   Try Weaviate Cloud
                 </Link>
-                <Link to="" className={styles.buttonDark}>
+                <Link
+                  to="/developers/weaviate/quickstart"
+                  className={styles.buttonDark}
+                >
                   Weaviate Quickstart
                 </Link>
               </div>
@@ -67,7 +73,9 @@ export default function Main() {
 
             <div className={styles.USPContainer}>
               <div className={styles.USPBox}>
-                <h4>Seamless model integration</h4>
+                <Link to="/product">
+                  <h4>Seamless model integration</h4>
+                </Link>
                 <p>
                   Connect your ML models of choice, or use our built-in
                   embedding service.
@@ -75,7 +83,9 @@ export default function Main() {
               </div>
               <hr></hr>
               <div className={styles.USPBox}>
-                <h4>Weaviate Cloud Quickstart</h4>
+                <Link to="/developers/wcs/quickstart">
+                  <h4>Weaviate Cloud Quickstart</h4>
+                </Link>
                 <p>
                   Set up your first cluster in minutes using our fully-managed
                   vector database.
@@ -83,7 +93,9 @@ export default function Main() {
               </div>
               <hr></hr>
               <div className={styles.USPBox}>
-                <h4>Weaviate Agents</h4>
+                <Link to="/product">
+                  <h4>Weaviate Agents</h4>
+                </Link>
                 <p>
                   Reduce manual work with pre-built agents that interact with
                   and improve your data.
@@ -105,13 +117,15 @@ export default function Main() {
             </div>
 
             <div className={styles.linkContainer}>
-              <span>MORE DEVELOPER RESOURCES {'-->'}</span>
+              <Link to="/developers/weaviate/">
+                MORE DEVELOPER RESOURCES {'-->'}
+              </Link>
             </div>
           </div>
         </div>
 
         <div className={styles.boxContainer}>
-          <span>WHY USE WEAVIATE?</span>
+          <span className={styles.buildTitle}>WHY USE WEAVIATE?</span>
 
           <div className={styles.whyContainer}>
             <div className={styles.leftContainer}>

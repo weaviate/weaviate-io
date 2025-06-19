@@ -2,18 +2,35 @@
   background: #ddebf2;
 }
 
+.box {
+  h2 {
+    text-align: center;
+  }
+}
+
 .boxContainer {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 1.25rem;
   margin: 3rem 0;
+
+  .buildTitle {
+    color: #8396b1;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%; /* 1.4rem */
+    text-transform: uppercase;
+  }
 }
 
 .boxes {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  overflow: auto;
+  width: 100%;
+  justify-content: flex-start;
   gap: 1.25rem;
 }
 
@@ -46,11 +63,7 @@
     font-weight: 500;
     line-height: 157.33%; /* 1.57331rem */
     text-decoration-line: underline;
-    text-decoration-style: solid;
-    text-decoration-skip-ink: none;
-    text-decoration-thickness: auto;
-    text-underline-offset: auto;
-    text-underline-position: from-font;
+    margin-bottom: 1.25rem;
   }
 
   .image {
@@ -79,8 +92,7 @@
   }
 
   .titleBG {
-    background: #61d384;
-    opacity: 0.5;
+    background: #61d3847d;
     width: 11.75rem;
     height: 1.6875rem;
     text-align: center;
@@ -88,13 +100,13 @@
   }
 
   .retrieval {
-    background: #7487ec;
+    background: #7486ec76;
     width: 19.5625rem;
   }
 
   .agenticAI {
     width: 6.75rem;
-    background: #97df44;
+    background: #97df4483;
   }
 }
 .benefitBox.BB01 {
@@ -381,14 +393,13 @@
     font-style: normal;
     font-weight: 600;
     line-height: 140%; /* 2.8rem */
-    margin: 1rem 0;
   }
 
   .benefitText {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.5rem;
-    margin: 1rem 0;
+    margin: 1.4rem 0;
 
     h5 {
       color: #61d384;
@@ -412,15 +423,14 @@
   .benefitText::before {
     content: '';
     display: inline-block;
-    width: 3rem;
-    height: 3rem;
+    width: 3.2rem;
+    height: 3.2rem;
     flex-shrink: 0;
     background: url('/img/site/ww-icon-01.svg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     vertical-align: middle;
-    border-radius: 50%;
     margin-right: 0.5rem;
   }
 
@@ -430,7 +440,6 @@
     background-repeat: no-repeat;
     background-position: center;
     vertical-align: middle;
-    border-radius: 50%;
     margin-right: 0.5rem;
   }
 
@@ -440,7 +449,6 @@
     background-repeat: no-repeat;
     background-position: center;
     vertical-align: middle;
-    border-radius: 50%;
     margin-right: 0.5rem;
   }
 
@@ -450,7 +458,6 @@
     background-repeat: no-repeat;
     background-position: center;
     vertical-align: middle;
-    border-radius: 50%;
     margin-right: 0.5rem;
   }
 
@@ -460,7 +467,6 @@
     background-repeat: no-repeat;
     background-position: center;
     vertical-align: middle;
-    border-radius: 50%;
     margin-right: 0.5rem;
   }
 
@@ -470,7 +476,6 @@
     background-repeat: no-repeat;
     background-position: center;
     vertical-align: middle;
-    border-radius: 50%;
     margin-right: 0.5rem;
   }
 }
@@ -484,4 +489,136 @@
   background-repeat: no-repeat;
   border-radius: 0.625rem;
   box-shadow: 0px 3px 5px 0px rgba(79, 150, 172, 0.1);
+}
+
+@media (max-width: 900px) {
+  .bigBox {
+    width: 100%;
+    padding: 2rem 1.5rem;
+  }
+
+  .CodeBlockContainer {
+    flex-direction: column;
+
+    .CodeBlockSection {
+      width: 100%;
+      align-items: center;
+      text-align: center;
+
+      h3,
+      p {
+        width: 100%;
+      }
+
+      .buttonLight,
+      .buttonDark {
+        width: 100%;
+      }
+    }
+
+    .CodeBlock {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .USPContainer {
+    flex-direction: column;
+    align-items: flex-start;
+
+    hr {
+      display: none;
+    }
+  }
+
+  .logoContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .bottomlogo {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  .linkContainer {
+    a {
+      font-size: 0.875rem;
+    }
+  }
+
+  .whyContainer {
+    flex-direction: column;
+  }
+
+  .leftContainer {
+    width: 100%;
+
+    height: auto;
+    padding: 2rem;
+  }
+
+  .rightContainer {
+    width: 100%;
+    min-height: 43rem;
+
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 1300px) and (min-width: 901px) {
+  .bigBox {
+    width: 100%;
+    padding: 2rem 2rem;
+  }
+
+  .CodeBlockContainer {
+    gap: 2rem;
+    .CodeBlockSection {
+      h3,
+      p {
+        width: 100%;
+      }
+    }
+
+    .CodeBlock {
+      width: 100%;
+      max-width: 540px;
+    }
+  }
+
+  .USPContainer {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+
+    .USPBox {
+      flex: 1 1 100%;
+    }
+
+    hr {
+      display: none;
+    }
+  }
+
+  .logoContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .whyContainer {
+    flex-direction: column;
+  }
+
+  .leftContainer {
+    width: 100%;
+    height: auto;
+    padding: 2rem;
+  }
+
+  .rightContainer {
+    width: 100%;
+    height: 43rem;
+    padding: 2rem;
+  }
 }

@@ -62,4 +62,17 @@
   line-height: 1.5;
   overflow-x: auto;
   background: transparent !important;
+  max-width: 100%;
+  white-space: pre;
+
+  // hide scrollbar - Chrome, Safari
+  &::-webkit-scrollbar {
+    height: 0px;
+  }
+
+  // Firefox
+  scrollbar-width: none;
+
+  // Edge, IE (fallback)
+  -ms-overflow-style: none;
 }

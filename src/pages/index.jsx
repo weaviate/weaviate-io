@@ -5,13 +5,6 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 import Head from '@docusaurus/Head';
 
 import HomepageHeader from '/src/components/HomeV2/Header';
-import HomepageWhatYouCanDo from '/src/components/HomeV2/WhatYouCanDoUpdate';
-import HomepageLovedByDevelopers from '/src/components/HomeV2/LovedByDeveloperUpdate/index.jsx';
-import HomepageJoinCommunity from '/src/components/HomeV2/JoinCommunityUpdate';
-import HomepageIntegrations from '/src/components/HomeV2/IntegrationsUpdate/v2.jsx';
-import HomepageTestimonials from '/src/components/HomeV2/Testimonials';
-import Resources from '/src/components/HomeV2/Resources';
-import CTA from '/src/components/HomeV2/CTA';
 import Main from '/src/components/HomeV2/Main';
 import BottomMain from '/src/components/HomeV2/BottomMain';
 import ContactForm from '/src/components/HomeV2/Contact/contactForm';

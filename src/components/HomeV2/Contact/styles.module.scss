@@ -25,6 +25,7 @@
     font-style: normal;
     font-weight: 600;
     line-height: 130%; /* 1.95rem */
+    margin: 0;
   }
 
   iframe {
@@ -146,5 +147,54 @@
 
   @media screen and (max-width: 900px) {
     padding: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .contactSplit {
+    flex-direction: column;
+    border-radius: 1.25rem;
+    overflow: hidden;
+  }
+
+  .leftContent {
+    border-radius: 1.25rem 1.25rem 0 0;
+    padding: 30px 20px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .rightForm {
+    border-radius: 0 0 1.25rem 1.25rem;
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .newsletterBar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+
+    h3 {
+      font-size: 1rem;
+    }
+
+    iframe {
+      max-width: 100%;
+    }
+  }
+
+  .leftContent h2 {
+    font-size: 1.5rem;
+  }
+
+  .leftContent p,
+  .leftContent .linkList a {
+    font-size: 1rem;
+  }
+
+  .rightForm {
+    padding: 20px 15px;
   }
 }

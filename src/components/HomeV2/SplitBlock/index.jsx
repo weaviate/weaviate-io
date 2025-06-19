@@ -37,7 +37,7 @@ export default function SplitImageSlider() {
         <div className={styles.afterLabel}>WITH WEAVIATE</div>
       )}
 
-      {/* Base image always visible */}
+      {/* Base image*/}
       <div className={styles.imageWrapperBase}>
         <img
           src="/img/site/gen-feedback-code-block.png"
@@ -47,7 +47,13 @@ export default function SplitImageSlider() {
       </div>
 
       {/* Overlay (clipped) */}
-      <div className={styles.overlay} style={{ width: `${sliderPos}%` }}>
+      <div
+        className={styles.overlay}
+        style={{
+          clipPath: `inset(0 ${100 - sliderPos}% 0 0)`,
+          WebkitClipPath: `inset(0 ${100 - sliderPos}% 0 0)`,
+        }}
+      >
         <div className={styles.imageWrapperOverlay}>
           <img
             src="/img/site/hybrid-search-code-block.png"
@@ -58,7 +64,12 @@ export default function SplitImageSlider() {
       </div>
 
       {/* Handle */}
+
       <div className={styles.sliderHandle} style={{ left: `${sliderPos}%` }} />
+      <div
+        className={styles.sliderLine}
+        style={{ left: `${sliderPos}%` }}
+      ></div>
     </div>
   );
 }

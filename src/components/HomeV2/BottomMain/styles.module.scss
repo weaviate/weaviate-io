@@ -118,7 +118,7 @@
         font-style: normal;
         font-weight: 600;
         line-height: 130%; /* 1.95rem */
-        width: 85%;
+        width: 97%;
 
         @media screen and (max-width: 900px) {
           width: 100%;
@@ -166,7 +166,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     width: 12.3125rem;
-    height: 1.3125rem;
+    height: 2rem;
     flex-shrink: 0;
     margin: 30px 0px;
   }
@@ -219,6 +219,7 @@
 
 .rowWide {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 1.25rem;
 
@@ -249,8 +250,16 @@
       border-radius: 1rem 0rem 0rem 1rem;
 
       @media (max-width: 900px) {
-        width: 100%;
+        width: 30%;
         height: 12rem;
+        border-radius: 1rem;
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin: auto;
+      }
+
+      @media (max-width: 500px) {
+        display: none;
       }
     }
 
@@ -290,6 +299,28 @@
         font-weight: 400;
         line-height: 157.33%; /* 0.98331rem */
       }
+
+      .bentoNameRow {
+        display: flex;
+        align-items: flex-end;
+        gap: 1rem;
+
+        img {
+          height: 1rem;
+          width: auto;
+          object-fit: contain;
+        }
+
+        p {
+          margin: 0;
+          color: #b9c8de;
+          font-family: Inter;
+          font-size: 0.75rem;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 157.33%;
+        }
+      }
     }
   }
 
@@ -311,6 +342,10 @@
 
   .bentoWithImage.BWI03 .bentoText h3 {
     font-size: 0.875rem;
+
+    @media (max-width: 900px) {
+      font-size: 1rem;
+    }
   }
 }
 
@@ -318,6 +353,10 @@
   display: flex;
   gap: 20px;
   justify-content: center;
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+  }
 
   .bento05 {
     width: 35.25rem;
@@ -423,6 +462,11 @@
       height: 10rem;
       flex-shrink: 0;
       background: linear-gradient(128deg, #00d5076d 19.35%, #29a7dd70 80.19%);
+
+      @media (max-width: 900px) {
+        width: 100%;
+        max-width: 20rem;
+      }
     }
 
     .small02 {
@@ -439,7 +483,6 @@
 
     @media (max-width: 900px) {
       width: 100%;
-      flex-direction: column;
     }
   }
 }
