@@ -226,15 +226,12 @@ response.display()
 
 # START BasicQuery
 # Perform a query
-from weaviate.agents.utils import print_query_agent_response
-
 response = qa.run(
     "I like vintage clothes and and nice shoes. Recommend some of each below $60."
 )
 
 # Print the response
-print_query_agent_response(response)    # Use the helper function
-response.display()                      # Use the class method
+response.display()
 # END BasicQuery
 
 # START FollowUpQuery
