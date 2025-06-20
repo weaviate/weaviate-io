@@ -49,8 +49,8 @@ export default function Main() {
               <div className={styles.CodeBlockSection}>
                 <h3>Ship production-ready AI faster</h3>
                 <p>
-                  Spin up a cluster, point it at your data, and go. Weaviate
-                  takes care of embeddings, ranking, and auto-scaling so you can
+                  Spin up a cluster, point it at your data, and go. Weaviate can
+                  take care of embeddings, ranking, and auto-scaling so you can
                   ship features, not infrastructure.
                 </p>
                 <Link
@@ -129,13 +129,13 @@ export default function Main() {
 
           <div className={styles.whyContainer}>
             <div className={styles.leftContainer}>
-              <h4>Your legacy database wasn’t built for this</h4>
+              <h4>Easy start, boundless scale, deploy anywhere.</h4>
               <div className={`${styles.benefitText} ${styles.ww01}`}>
                 <div>
                   <h5>AI-first features under one roof</h5>
                   <p>
-                    Avoid separate systems and complex data pipelines. Spend
-                    less time writing code for basic AI functionality.
+                    Avoid separate systems and complex data pipelines. Write
+                    less custom code and build AI-native apps faster.
                   </p>
                 </div>
               </div>

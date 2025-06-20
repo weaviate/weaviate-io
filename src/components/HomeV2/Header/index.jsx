@@ -25,6 +25,9 @@ export default function StudyHeader() {
                 >
                   Get Started
                 </Link>
+                <Link to="/blog" className={styles.buttonDark}>
+                  Learn more {'-->'}
+                </Link>
               </div>
             </div>
           </div>

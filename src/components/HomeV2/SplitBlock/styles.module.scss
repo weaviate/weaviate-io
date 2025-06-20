@@ -47,19 +47,18 @@
 .sliderHandle {
   position: absolute;
   top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
   width: 2.5rem;
   height: 2.5rem;
   background: #61d384;
   border-radius: 50%;
   border: 2px solid white;
-  box-shadow: 0 0 0 4px rgba(19, 12, 73, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10;
   pointer-events: none;
+  animation: pulse 2s infinite;
 
   &::before,
   &::after {
@@ -69,7 +68,6 @@
     height: 0.5rem;
     border-top: 2px solid #fff;
     border-right: 2px solid #fff;
-    transform: rotate(45deg);
     position: absolute;
   }
 
@@ -81,6 +79,18 @@
   &::after {
     right: 0.4rem;
     transform: rotate(45deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 4px rgba(97, 211, 132, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(97, 211, 132, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 4px rgba(97, 211, 132, 0.4);
   }
 }
 

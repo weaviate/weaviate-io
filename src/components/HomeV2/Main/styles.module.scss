@@ -166,6 +166,10 @@
   gap: 1.25rem;
   margin: 2rem 0;
 
+  @media (max-width: 970px) {
+    flex-wrap: wrap;
+  }
+
   .CodeBlockSection {
     display: flex;
     flex-direction: column;
@@ -508,7 +512,20 @@
   }
 }
 
-@media (max-width: 900px) {
+@media screen and (max-width: 1140px) {
+  .leftContainer {
+    width: 25.25rem;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .leftContainer {
+    width: 23.25rem;
+  }
+}
+
+@media (max-width: 970px) {
   .bigBox {
     width: 100%;
     padding: 2rem 1.5rem;
@@ -520,15 +537,9 @@
 
     .CodeBlockSection {
       width: 100%;
-      align-items: center;
 
       h3,
       p {
-        width: 100%;
-      }
-
-      .buttonLight,
-      .buttonDark {
         width: 100%;
       }
     }
@@ -595,21 +606,14 @@
 
     .CodeBlock {
       width: 100%;
-      max-width: 540px;
     }
   }
 
   .USPContainer {
-    flex-wrap: wrap;
     gap: 1.5rem;
 
     .USPBox {
       flex: 1 1 100%;
-    }
-
-    hr {
-      width: 100%;
-      height: 0.1rem;
     }
   }
 
@@ -626,7 +630,7 @@
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 900px) {
   .whyContainer {
     flex-direction: column;
   }

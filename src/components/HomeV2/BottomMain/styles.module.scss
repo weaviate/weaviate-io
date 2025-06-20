@@ -748,13 +748,21 @@
     line-height: 140%;
     margin: 0;
   }
-
+  @media screen and (max-width: 1200px) {
+    h3 {
+      font-size: 1.2rem;
+    }
+  }
   @media screen and (max-width: 900px) {
     width: 100%;
     height: auto;
     padding: 20px;
     .bentoText {
       gap: 10px;
+    }
+
+    h3 {
+      font-size: 1.75rem;
     }
   }
 }
