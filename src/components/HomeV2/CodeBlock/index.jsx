@@ -22,7 +22,7 @@ collection.data.insert(
         "title": "Cannot reset password",
         "content": "User is unable to reset their password using the provided link."
     }
-)`
+)`;
 
 let searching = `import weaviate
 from weaviate.classes.query import HybridFusion
@@ -40,7 +40,7 @@ response = collection.query.hybrid(
 )
 
 for obj in response.objects:
-    print(obj.properties)`
+    print(obj.properties)`;
 
 let tenanting = `import weaviate
 from weaviate.classes.config import Configure
@@ -61,7 +61,7 @@ collection.tenants.offload("ACME")
 
 # Active from S3
 collection.tenants.activate("StarkIndustries")
-`
+`;
 
 let agenting = `import weaviate
 from weaviate.agents.classes import Operations
@@ -84,7 +84,7 @@ agent = TransformationAgent(
 )
 
 # Run the transformation on all objects in the collection
-agent.update_all()`
+agent.update_all()`;
 
 const codeExamples = {
   searching: searching,
@@ -114,12 +114,17 @@ export default function CodeTabs() {
         {...defaultProps}
         theme={theme}
         code={codeExamples[active]}
-        language='python'
+        language="python"
       >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre
             className={`${className} ${styles.codeBlock}`}
-            style={{ ...style, backgroundColor: 'transparent', overflowX: 'auto', maxHeight: '18rem' }}
+            style={{
+              ...style,
+              backgroundColor: 'transparent',
+              overflowX: 'auto',
+              maxHeight: '100%',
+            }}
           >
             {tokens.map((line, i) => (
               <div key={i} {...getLineProps({ line, key: i })}>
