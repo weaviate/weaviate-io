@@ -25,26 +25,24 @@ export default function Soc2(props) {
             <div className={styles.drataLogo}></div>
             <div className={styles.soc2Logo}></div>
           </div>
-        </div>
-        {/*  <div className={`${styles.card} ${styles.longCard}`}>
-          <div className={styles.contentDiv}>
-            <h3 className={styles.cTextColor}>
-              “Weaviate facilitates fast development of generative AI
-              applications by our team, removing the need for creating
-              boilerplate code, setting up databases, and managing
-              infrastructure.”
-            </h3>
-            <p>Ben Selleslagh, Vectrix</p>
-            <div className={styles.buttons}>
-              <Link
-                className={styles.buttonGradient}
-                to="https://console.weaviate.cloud/"
-              >
-                Start Building with Weaviate
-              </Link>
+
+          <div className={`${styles.box} ${styles.secondBox}`}>
+            <div className={styles.soc2Box}>
+              <h3>HIPAA Compliance</h3>
+              <p>
+                Our AWS Enterprise environments meet HIPAA requirements,
+                enabling the secure storage, handling, and processing of
+                Protected Health Information (PHI). Support for Azure and GCP
+                deployments is actively in development and will be available
+                soon.
+              </p>
+            </div>
+
+            <div className={styles.hipaaBox}>
+              <div className={styles.hipaaLogo}></div>
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );

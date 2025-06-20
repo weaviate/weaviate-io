@@ -31,6 +31,7 @@ export default function Soc2(props) {
             <div className={styles.soc2Logos}>
               <div className={styles.drataLogo}></div>
               <div className={styles.soc2Logo}></div>
+              <div className={styles.hipaaLogo}></div>
             </div>
           </div>
         </div>

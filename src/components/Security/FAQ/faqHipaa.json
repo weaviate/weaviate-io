@@ -1,0 +1,30 @@
+[
+  {
+    "question": "What is HIPAA and Why It Matters?",
+    "answer": "The Health Insurance Portability and Accountability Act (HIPAA) is a U.S. federal law enacted in 1996 to safeguard the privacy and security of individuals’ medical information. Over the past three decades, HIPAA has become the gold standard for handling Protected Health Information (PHI or ePHI), covering everything from diagnoses and treatment histories to prescription records and billing details. Any organization that creates, receives, or stores PHI must adhere to HIPAA’s stringent requirements."
+  },
+  {
+    "question": "Core Principles of HIPAA",
+    "answer": "<ul>\n<li><strong>Confidentiality:</strong> Only authorized individuals and systems may access PHI.</li>\n<li><strong>Integrity:</strong> PHI must remain accurate and unaltered, unless modified through authorized workflows.</li>\n<li><strong>Availability:</strong> Systems must guarantee PHI is accessible even in outages.</li>\n<li><strong>Minimum-Necessary Use:</strong> Organizations should collect and use only the minimum required PHI for a given task.</li>\n</ul>"
+  },
+  {
+    "question": "Who Must Comply?",
+    "answer": "<ul>\n<li><strong>Covered Entities:</strong> Insurers, hospitals, clinics, labs.</li>\n<li><strong>Business Associates:</strong> Vendors and service providers like Weaviate.</li>\n<li><strong>Subcontractors:</strong> Any downstream partners processing PHI.</li>\n</ul>"
+  },
+  {
+    "question": "What Counts as PHI?",
+    "answer": "PHI includes:\n<ul>\n<li>Name, address</li>\n<li>Phone, fax, email, IPs</li>\n<li>SSNs, patient IDs</li>\n<li>Vehicle and biometric info</li>\n<li>Geographic or identifiable traits</li>\n</ul>\nWe must access only when authorized, never move data out of bounds, and always respect access policies."
+  },
+  {
+    "question": "Are Vector Embeddings PHI?",
+    "answer": "Vector embeddings are not PHI on their own. However, if they can be linked to identifiable information, they must be treated under HIPAA controls."
+  },
+  {
+    "question": "Enforcement & Penalties",
+    "answer": "HIPAA violations can cost up to $50,000 per incident with a $1.5M annual cap. Willful neglect can lead to criminal charges and prison time."
+  },
+  {
+    "question": "Appendix / Resources",
+    "answer": "<ul>\n<li><a href='https://hhs.gov' target='_blank'>HHS.gov overview</a></li>\n<li><a href='https://weaviate.io/security' target='_blank'>Weaviate Security & Compliance</a></li>\n<li><a href='https://weaviate.io/trust' target='_blank'>Weaviate Trust Portal</a></li>\n<li><strong>Glossary:</strong></li>\n<ul>\n<li>HIPAA = Health Insurance Portability and Accountability Act</li>\n<li>PHI = Protected Health Information</li>\n<li>BAA = Business Associate Agreement</li>\n<li>SOC II = Service Organization Control 2</li>\n<li>GDPR = General Data Protection Regulation</li>\n<li>ISO 27001:2022 = InfoSec Management Standard</li>\n<li>AES-256 = Advanced Encryption Standard</li>\n</ul>\n</ul>"
+  }
+]

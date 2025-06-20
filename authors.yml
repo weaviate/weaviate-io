@@ -261,10 +261,10 @@ jobi:
   url: https://www.linkedin.com/in/jobigeorge/
   image_url: /img/people/icon/jobi.jpg
 spiros:
-  name: Spiros
-  title: Head of Security
+  name: Spiros Andreou
+  title: Director of Security & Compliance
   url: https://github.com/spiros-spiros
-  image_url: /img/people/icon/spiros.jpg
+  image_url: /img/people/team/spiros.jpg
 staci:
   name: Staci Blue
   title: Event Marketing Manager
@@ -300,4 +300,3 @@ daniellew:
   title: Technical Documentation Writer
   url: https://www.linkedin.com/in/dwashington-clouddani/
   image_url: /img/people/icon/daniellew.jpeg
-
