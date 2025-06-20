@@ -21,23 +21,27 @@ collection.data.insert_many([
     }
 ])`;
 
-let searching = `from weaviate.classes.query import HybridFusion
-
-# Retrieve the collection
+let searching = `# Retrieve the collection
 collection = client.collections.get("SupportTickets")
 
-# End-to-end hybrid search in less than 10 lines of code
-response = collection.query.hybrid(
-    query="I have login issues after the OS upgrade",
-    alpha=0.75,
-    fusion_type=HybridFusion.RANKED,
-    auto_limit=1,
-    limit=10,
+# Pure vector search
+response = jeopardy.query.near_vector(
+    near_vector=[0.1, 0.1, 0.1],
+    limit=5
 )
 
-# Loop over results
-for obj in response.objects:
-    print(obj.properties)`;
+# Semantic search
+response = collection.query.near_text(
+    query="login issues after OS upgrade",
+    limit=5
+)
+
+# Hybrid search (vector + keyword)
+response = collection.query.hybrid(
+    query="login issues after OS upgrade",
+    alpha=0.75,
+    limit=5
+)`;
 
 let tenanting = `from weaviate.classes.config import Configure
 
@@ -64,18 +68,18 @@ from weaviate.collections.classes.config import DataType
 from weaviate.agents.transformation import TransformationAgent
 
 # Define the agentic operation
-add_summary = Operations.append_property(
-    property_name="summary",
+add_severity = Operations.append_property(
+    property_name="severity",
     data_type=DataType.TEXT,
     view_properties=["content"],
-    instruction="Summarize the content of the support ticket in one sentence."
+    instruction="Classify the severity of the ticket as Notice, Moderate, Important or Critical"
 )
 
 # Initialize the agent
 agent = TransformationAgent(
     client=client,
     collection="SupportTickets",
-    operations=[add_summary]
+    operations=[add_severity]
 )
 
 # Run the transformation on all objects in the collection
