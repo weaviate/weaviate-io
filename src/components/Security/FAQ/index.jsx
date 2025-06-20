@@ -13,25 +13,63 @@ export default function SecurityFAQ(props) {
 
   const [expandedQuestion, setExpandedQuestion] = useState(null);
 
-  // FAQ schema for structured data
+  // Generate FAQPage schema
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: faqData.map((item) => ({
       '@type': 'Question',
-      name: item.question.replace(/<\/?[^>]+(>|$)/g, ''), // strip HTML
+      name: item.question.replace(/<\/?[^>]+(>|$)/g, ''),
       acceptedAnswer: {
         '@type': 'Answer',
-        text: item.answer.replace(/<\/?[^>]+(>|$)/g, ''), // plain text version
+        text: item.answer.replace(/<\/?[^>]+(>|$)/g, ''),
       },
+    })),
+  };
+
+  // Extract glossary/resources manually from appendix
+  const appendixLinks = [
+    {
+      name: 'HHS.gov overview',
+      url: 'https://hhs.gov',
+    },
+    {
+      name: 'Weaviate Security & Compliance',
+      url: 'https://weaviate.io/security',
+    },
+    {
+      name: 'Weaviate Trust Portal',
+      url: 'https://weaviate.io/trust',
+    },
+    { name: 'HIPAA = Health Insurance Portability and Accountability Act' },
+    { name: 'PHI = Protected Health Information' },
+    { name: 'BAA = Business Associate Agreement' },
+    { name: 'SOC II = Service Organization Control 2' },
+    { name: 'GDPR = General Data Protection Regulation' },
+    { name: 'ISO 27001:2022 = InfoSec Management Standard' },
+    { name: 'AES-256 = Advanced Encryption Standard' },
+  ];
+
+  const itemListSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Glossary and Resources',
+    itemListElement: appendixLinks.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      ...(item.url ? { url: item.url } : {}),
     })),
   };
 
   return (
     <div className={styles.faqBG} id="faq">
-      {/* Inject schema into <head> */}
+      {/* Inject structured data */}
       <Head>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <script type="application/ld+json">
+          {JSON.stringify(itemListSchema)}
+        </script>
       </Head>
 
       <div className="container">
