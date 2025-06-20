@@ -102,7 +102,7 @@ response = supportTickets.generate.near_text(
 )`
 
 const codeExamples = {
-  'hybrid search': searching,
+  search: searching,
   vectorize: vectorizing,
   RAG: rag,
   tenants: tenanting,
@@ -110,7 +110,7 @@ const codeExamples = {
 };
 
 export default function CodeTabs() {
-  const [active, setActive] = useState('hybrid search');
+  const [active, setActive] = useState('search');
 
   return (
     <div className={styles.codeTabs}>
