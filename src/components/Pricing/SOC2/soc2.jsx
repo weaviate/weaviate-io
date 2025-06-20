@@ -28,13 +28,13 @@ export default function Soc2(props) {
 
           <div className={`${styles.box} ${styles.secondBox}`}>
             <div className={styles.soc2Box}>
-              <h3>HIPAA Compliance</h3>
+              <h2>HIPAA Compliance</h2>
               <p>
-                Our AWS Enterprise environments meet HIPAA requirements,
-                enabling the secure storage, handling, and processing of
-                Protected Health Information (PHI). Support for Azure and GCP
-                deployments is actively in development and will be available
-                soon.
+                Our Enterprise Cloud on AWS environments meet HIPAA
+                requirements, enabling the secure storage, handling, and
+                processing of Protected Health Information (PHI). Support for
+                Azure and GCP deployments is actively in development and will be
+                available soon.
               </p>
             </div>
 
