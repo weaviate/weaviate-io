@@ -119,7 +119,7 @@ export default function CodeTabs() {
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre
             className={`${className} ${styles.codeBlock}`}
-            style={{ ...style, backgroundColor: 'transparent' }}
+            style={{ ...style, backgroundColor: 'transparent', overflowX: 'auto', maxHeight: '18rem' }}
           >
             {tokens.map((line, i) => (
               <div key={i} {...getLineProps({ line, key: i })}>
