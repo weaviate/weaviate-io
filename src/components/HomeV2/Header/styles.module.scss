@@ -52,23 +52,30 @@
     }
   }
 }
-
 .right {
+  position: relative;
+  z-index: 1;
+
   @media screen and (max-width: 970px) {
     display: none;
   }
+
   .image {
-    background: url('/img/site/weaviate-graffiti-w-light-bg.png');
-    width: 36.4375rem;
-    height: 28.5625rem;
-    flex-shrink: 0;
-    aspect-ratio: 679 / 617;
+    background: url('/img/site/weaviate-graffiti.png');
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: bottom right;
+
+    width: 42rem; // increased size
+    height: 34rem; // increased height
+    margin-bottom: -4rem; // pulls it behind the bottomBar
+    z-index: 1;
+    position: relative;
     transition: all 0.3s ease-in-out;
 
     @media screen and (max-width: 1450px) {
-      width: 30.4375rem;
+      width: 34rem;
+      height: 28rem;
     }
 
     @media screen and (max-width: 900px) {
@@ -76,6 +83,7 @@
       min-width: 29rem;
       height: 26.6875rem;
       background-position: unset;
+      margin-bottom: 0; // reset for smaller screens
     }
   }
 }
@@ -153,6 +161,8 @@
   justify-content: center;
   overflow: hidden;
   position: relative;
+  z-index: 2; // ensures it appears above the image
+  margin-top: -2rem; // optional: create a tighter overlap
 }
 
 .logoWrapper {
@@ -160,7 +170,7 @@
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  gap: 40px;
+  gap: 60px;
   animation: scroll 200s linear infinite;
   width: calc(200% + 40px);
 

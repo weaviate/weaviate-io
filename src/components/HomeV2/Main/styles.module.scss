@@ -5,6 +5,12 @@
 .box {
   h2 {
     text-align: center;
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.75rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%;
   }
 }
 
@@ -28,7 +34,7 @@
 
 .boxes {
   display: flex;
-  overflow: auto;
+  flex-wrap: wrap;
   width: 100%;
   justify-content: flex-start;
   gap: 1.25rem;

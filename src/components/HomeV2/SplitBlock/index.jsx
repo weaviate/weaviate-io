@@ -40,7 +40,7 @@ export default function SplitImageSlider() {
       {/* Base image*/}
       <div className={styles.imageWrapperBase}>
         <img
-          src="/img/site/gen-feedback-code-block.png"
+          src="/img/site/code-before-block.png"
           className={styles.image}
           alt="Before"
         />
@@ -56,7 +56,7 @@ export default function SplitImageSlider() {
       >
         <div className={styles.imageWrapperOverlay}>
           <img
-            src="/img/site/hybrid-search-code-block.png"
+            src="/img/site/code-after-block.png"
             className={styles.image}
             alt="After"
           />
