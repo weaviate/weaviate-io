@@ -34,15 +34,14 @@
 
 .boxes {
   display: flex;
-  flex-wrap: wrap;
   width: 100%;
   justify-content: flex-start;
-  gap: 1.25rem;
+  gap: 3.25rem;
 }
 
 .benefitBox {
-  width: 23.75rem;
-  height: 28.375rem;
+  width: 22.5rem;
+  height: 26.9rem;
   flex-shrink: 0;
   border-radius: 0.625rem;
   background: #f7f9fd;
@@ -51,11 +50,12 @@
   flex-direction: column;
   justify-content: space-evenly;
   padding: 2rem;
+  transition: all 0.2s ease-in-out;
 
   p {
     color: #130c49;
     font-family: 'Plus Jakarta Sans';
-    font-size: 1.375rem;
+    font-size: 1.2rem;
     font-style: normal;
     font-weight: 600;
     line-height: 140%; /* 1.925rem */
@@ -99,19 +99,21 @@
 
   .titleBG {
     background: #61d3847d;
-    width: 11.75rem;
+    width: 10rem;
     height: 1.6875rem;
     text-align: center;
     flex-shrink: 0;
+
+    font-size: 0.875rem;
   }
 
   .retrieval {
     background: #7486ec76;
-    width: 19.5625rem;
+    width: 16.9rem;
   }
 
   .agenticAI {
-    width: 6.75rem;
+    width: 5.75rem;
     background: #97df4483;
   }
 }
@@ -510,12 +512,22 @@
     width: 30.25rem;
     height: 47rem;
   }
+
+  .benefitBox {
+    width: 20.5rem;
+    height: 26.9rem;
+  }
 }
 
 @media screen and (max-width: 1140px) {
   .leftContainer {
     width: 25.25rem;
     height: auto;
+  }
+
+  .boxes {
+    gap: 1.25rem;
+    flex-wrap: wrap;
   }
 }
 
@@ -576,12 +588,6 @@
     }
   }
 
-  .leftContainer {
-    width: 100%;
-    height: auto;
-    padding: 2rem;
-  }
-
   .rightContainer {
     width: 100%;
     height: 36rem;
@@ -602,10 +608,6 @@
       p {
         width: 100%;
       }
-    }
-
-    .CodeBlock {
-      width: 100%;
     }
   }
 
@@ -633,6 +635,14 @@
 @media (max-width: 900px) {
   .whyContainer {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 900px) {
+  .leftContainer {
+    width: 100%;
+    height: auto;
+    padding: 2rem;
   }
 }
 
