@@ -3,8 +3,7 @@ import Highlight, { defaultProps } from 'prism-react-renderer';
 import theme from 'prism-react-renderer/themes/nightOwl';
 import styles from './styles.module.scss';
 
-let vectorizing = `import weaviate
-from weaviate.classes.config import Configure
+let vectorizing = `from weaviate.classes.config import Configure
 
 # Choose one of the many built-in vectorizers
 client.collections.create(
@@ -24,8 +23,7 @@ collection.data.insert(
     }
 )`;
 
-let searching = `import weaviate
-from weaviate.classes.query import HybridFusion
+let searching = `from weaviate.classes.query import HybridFusion
 
 # Retrieve the collection
 collection = client.collections.get("SupportTickets")
@@ -42,8 +40,7 @@ response = collection.query.hybrid(
 for obj in response.objects:
     print(obj.properties)`;
 
-let tenanting = `import weaviate
-from weaviate.classes.config import Configure
+let tenanting = `from weaviate.classes.config import Configure
 
 # Optimize for speed (memory) or storage (disk)
 memo_idx = Configure.VectorIndex.flat()
@@ -63,8 +60,7 @@ collection.tenants.offload("ACME")
 collection.tenants.activate("StarkIndustries")
 `;
 
-let agenting = `import weaviate
-from weaviate.agents.classes import Operations
+let agenting = `from weaviate.agents.classes import Operations
 from weaviate.collections.classes.config import DataType
 from weaviate.agents.transformation import TransformationAgent
 
@@ -86,15 +82,31 @@ agent = TransformationAgent(
 # Run the transformation on all objects in the collection
 agent.update_all()`;
 
+let rag = `from weaviate.classes.generate import GenerativeConfig
+
+wiki = client.collections.get("SupportTickets")
+
+response = wiki.generate.near_text(
+    query="How do I fix my latest OS login bug?",
+    generative_provider=GenerativeConfig.openai(
+        model="gpt-4o-mini",
+    ),
+    single_prompt="Explain what this is about? {text}"
+)
+
+for item in response.objects:
+    print(item.generative.text)`
+
 const codeExamples = {
-  searching: searching,
-  vectorizing: vectorizing,
-  tenanting: tenanting,
-  agenting: agenting,
+  'hybrid search': searching,
+  vectorize: vectorizing,
+  RAG: rag,
+  tenants: tenanting,
+  agents: agenting,
 };
 
 export default function CodeTabs() {
-  const [active, setActive] = useState('searching');
+  const [active, setActive] = useState('hybrid search');
 
   return (
     <div className={styles.codeTabs}>
