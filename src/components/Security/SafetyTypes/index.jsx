@@ -91,7 +91,7 @@ export default function SafetyTypes() {
             <div className={styles.contentDiv}>
               <h3 className={styles.cardTextColor}>Compliant with Standards</h3>
               <p className={styles.textCardContent}>
-                Stay compliant with SOC2, HIPAA, data privacy, and
+                Stay compliant with SOC 2, HIPAA, data privacy, and
                 explainability.
               </p>
             </div>
