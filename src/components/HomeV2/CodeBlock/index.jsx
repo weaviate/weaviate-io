@@ -114,7 +114,7 @@ export default function CodeTabs() {
         {...defaultProps}
         theme={theme}
         code={codeExamples[active]}
-        language={active}
+        language='python'
       >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre
