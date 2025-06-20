@@ -6,22 +6,20 @@ import styles from './styles.module.scss';
 let vectorizing = `from weaviate.classes.config import Configure
 
 # Choose one of the many built-in vectorizers
-client.collections.create(
+collection = client.collections.create(
     "SupportTickets",
-    vectorizer_config=[
-        Configure.NamedVectors.text2vec_weaviate(
-            model="Snowflake/snowflake-arctic-embed-l-v2.0"
-        )
-    ]
+    vectorizer_config=Configure.Vectorizer.text2vec_weaviate(
+        model="Snowflake/snowflake-arctic-embed-l-v2.0"
+    )
 )
 
 # Insert data in bulk
-collection.data.insert(
-    properties={
+collection.data.insert_many([
+    {
         "title": "Cannot reset password",
         "content": "User is unable to reset their password using the provided link."
     }
-)`;
+])`;
 
 let searching = `from weaviate.classes.query import HybridFusion
 
@@ -37,6 +35,7 @@ response = collection.query.hybrid(
     limit=10,
 )
 
+# Loop over results
 for obj in response.objects:
     print(obj.properties)`;
 
@@ -84,18 +83,19 @@ agent.update_all()`;
 
 let rag = `from weaviate.classes.generate import GenerativeConfig
 
-wiki = client.collections.get("SupportTickets")
+# Select collection
+supportTickets = client.collections.get("SupportTicket")
 
-response = wiki.generate.near_text(
-    query="How do I fix my latest OS login bug?",
+# Generate an RAG response by piping
+# results through a generative model
+response = supportTickets.generate.near_text(
+    query="Solutions to OS login bug",
+    auto_limit=1,
     generative_provider=GenerativeConfig.openai(
         model="gpt-4o-mini",
     ),
-    single_prompt="Explain what this is about? {text}"
-)
-
-for item in response.objects:
-    print(item.generative.text)`
+    grouped_task="How do I fix my latest OS login bug?"
+)`
 
 const codeExamples = {
   'hybrid search': searching,
