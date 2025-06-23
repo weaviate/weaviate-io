@@ -331,6 +331,7 @@ for await (const event of qa.stream(query, { includeProgress: true })) {  // Thi
         // This is the final response, as returned by QueryAgent.run()
         event.display();
     }
+}
 // END StreamResponse
 
 // START InspectResponseExample
