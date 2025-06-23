@@ -30,11 +30,11 @@ export default function SplitImageSlider() {
       onTouchEnd={handleEnd}
       onTouchMove={handleMove}
     >
-      {sliderPos <= 55 && (
-        <div className={styles.beforeLabel}>BEFORE WEAVIATE</div>
-      )}
       {sliderPos >= 45 && (
         <div className={styles.afterLabel}>WITH WEAVIATE</div>
+      )}
+      {sliderPos <= 55 && (
+        <div className={styles.beforeLabel}>BEFORE WEAVIATE</div>
       )}
 
       {/* Base image*/}
