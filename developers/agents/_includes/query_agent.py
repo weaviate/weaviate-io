@@ -360,6 +360,7 @@ asyncio.run(run_concurrent_queries())
 # END UsageAsyncQueryAgent
 
 
+# START StreamAsyncResponse
 async def stream_query(async_query_agent: AsyncQueryAgent):
     async for output in async_query_agent.stream(
         "What are the top top 5 products sold in the last 30 days?",
@@ -401,3 +402,4 @@ async def run_streaming_query():
         await async_client.close()
 
 asyncio.run(run_streaming_query())
+# END StreamAsyncResponse
