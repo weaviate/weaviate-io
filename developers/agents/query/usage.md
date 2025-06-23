@@ -151,6 +151,10 @@ The Query Agent can be instantiated with additional options, such as:
 - `system_prompt`: A custom system prompt to replace the default system prompt provided by the Weaviate team (`systemPrompt` for JavaScript).
 - `timeout`: The maximum time the Query Agent will spend on a single query, in seconds (server-side default: 60).
 
+### Async Python client
+
+For usage example with the async Python client, see the [Async Python client section](#usage---async-python-client).
+
 ## Perform queries
 
 Provide a natural language query to the Query Agent. The Query Agent will process the query, perform the necessary searches in Weaviate, and return the answer.
@@ -258,6 +262,21 @@ The Query Agent can even handle follow-up queries, using the previous response a
         />
     </TabItem>
 
+</Tabs>
+
+## Stream responses
+
+The Query Agent can also stream responses, allowing you to receive the answer as it is being generated.
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START StreamResponse"
+            endMarker="# END StreamResponse"
+            language="py"
+        />
+    </TabItem>
 </Tabs>
 
 ## Inspect responses
@@ -402,6 +421,38 @@ This example outputs:
         />
     </TabItem>
 
+</Tabs>
+
+## Usage - Async Python client
+
+If you are using the async Python Weaviate client, the instantiation pattern remains similar. The difference is use of the `AsyncQueryAgent` class instead of the `QueryAgent` class.
+
+The resulting async pattern works as shown below:
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START UsageAsyncQueryAgent"
+            endMarker="# END UsageAsyncQueryAgent"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
+
+### Streaming
+
+The async Query Agent can also stream responses, allowing you to receive the answer as it is being generated.
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START StreamAsyncResponse"
+            endMarker="# END StreamAsyncResponse"
+            language="py"
+        />
+    </TabItem>
 </Tabs>
 
 ## Limitations & Troubleshooting
