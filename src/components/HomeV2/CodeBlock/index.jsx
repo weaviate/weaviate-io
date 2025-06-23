@@ -3,7 +3,7 @@ import Highlight, { defaultProps } from 'prism-react-renderer';
 import theme from 'prism-react-renderer/themes/nightOwl';
 import styles from './styles.module.scss';
 
-let searchExample = `# Retrieve the collection
+let searchExample = `# Select collection
 collection = client.collections.get("SupportTickets")
 
 # Pure vector search
@@ -48,7 +48,7 @@ const ragExample = `from weaviate.classes.generate import GenerativeConfig
 # Select collection
 supportTickets = client.collections.get("SupportTicket")
 
-# Generate an RAG response by piping
+# Generate a RAG response by piping
 # results through a generative model
 response = supportTickets.generate.near_text(
     query="Solutions to OS login bug",
@@ -57,7 +57,10 @@ response = supportTickets.generate.near_text(
         model="gpt-4o-mini",
     ),
     grouped_task="How do I fix my latest OS login bug?"
-)`
+)
+
+print(response.generative.text)
+`
 
 const tenantExample = `# Create a multi-tenanant collection
 emails = client.collections.create(
@@ -69,11 +72,11 @@ emails = client.collections.create(
     )
 )
 
-# Manage tenant data and query
+# Manage and query tenant data
 acmeTenant = emails.tenants.get("ACME")
 acmeTenant.data.insert_many(acme_data)
 
-response = acmeTenant.query.near_text(query="ACME question", limit=3)
+response = acmeTenant.query.near_text(query="ACME query", limit=3)
 
 # Offload to S3
 emails.tenants.offload("ACME")
@@ -130,8 +133,8 @@ const codeExamples = {
   vectorize: vectorizerExample,
   RAG: ragExample,
   tenants: tenantExample,
-  agents: agentExample,
   index: vectorIndexExample,
+  agents: agentExample,
 };
 
 export default function CodeTabs() {
