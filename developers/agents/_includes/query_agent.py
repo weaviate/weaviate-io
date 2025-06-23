@@ -4,7 +4,6 @@ from weaviate.classes.config import Configure, Property, DataType
 def populate_weaviate(client, overwrite_existing=False):
 
     if overwrite_existing:
-        client.collections.delete("ECommerce")
         client.collections.delete("Ecommerce")
         client.collections.delete("Weather")
         client.collections.delete("FinancialContracts")
@@ -205,7 +204,7 @@ response.display()
 from weaviate_agents.classes import QueryAgentCollectionConfig
 
 response = qa.run(
-    "I like vintage clothes and and nice shoes. Recommend some of each below $60.",
+    "I like vintage clothes and nice shoes. Recommend some of each below $60.",
     collections=[
         # Use QueryAgentCollectionConfig class to provide further collection configuration
         QueryAgentCollectionConfig(
@@ -226,19 +225,16 @@ response.display()
 
 # START BasicQuery
 # Perform a query
-from weaviate.agents.utils import print_query_agent_response
-
 response = qa.run(
-    "I like vintage clothes and and nice shoes. Recommend some of each below $60."
+    "I like vintage clothes and nice shoes. Recommend some of each below $60."
 )
 
 # Print the response
-print_query_agent_response(response)    # Use the helper function
-response.display()                      # Use the class method
+response.display()
 # END BasicQuery
 
 # START FollowUpQuery
-# Perform a follow-up query to 'I like vintage clothes and and nice shoes. Recommend some of each below $60.'
+# Perform a follow-up query to 'I like vintage clothes and nice shoes. Recommend some of each below $60.'
 following_response = qa.run(
     "I like the vintage clothes options, can you do the same again but above $200?",
     context=response,
@@ -248,6 +244,25 @@ following_response = qa.run(
 response.display()
 # END FollowUpQuery
 
+# START StreamResponse
+from weaviate.agents.classes import ProgressMessage, StreamedTokens
+
+for output in qa.stream(
+    "What are the top top 5 products sold in the last 30 days?",
+    # Setting this to false will skip ProgressMessages, and only stream
+    # the StreamedTokens / the final QueryAgentResponse
+    include_progress=True  # Default is True
+):
+    if isinstance(output, ProgressMessage):
+        # The message is a human-readable string, structured info available in output.details
+        print(output.message)
+    elif isinstance(output, StreamedTokens):
+        # The delta is a string containing the next chunk of the final answer
+        print(output.delta, end='', flush=True)
+    else:
+        # This is the final response, as returned by QueryAgent.run()
+        output.display()
+# END StreamResponse
 
 # START InspectResponseExample
 print("\n=== Query Agent Response ===")
@@ -279,3 +294,110 @@ if response.missing_information:
 assert response.final_answer != "" and response.final_answer is not None
 
 client.close()
+
+# START UsageAsyncQueryAgent
+import asyncio
+import os
+import weaviate
+from weaviate.agents.query import AsyncQueryAgent
+
+
+async_client = weaviate.use_async_with_weaviate_cloud(
+    cluster_url=os.environ.get("WEAVIATE_URL"),
+    auth_credentials=os.environ.get("WEAVIATE_API_KEY"),
+    headers=headers,
+)
+
+async def query_vintage_clothes(async_query_agent: AsyncQueryAgent):
+    response = await async_query_agent.run(
+        "I like vintage clothes and nice shoes. Recommend some of each below $60."
+    )
+    return ("Vintage Clothes", response)
+
+async def query_financial_data(async_query_agent: AsyncQueryAgent):
+    response = await async_query_agent.run(
+        "What kinds of contracts are listed? What's the most common type of contract?",
+    )
+    return ("Financial Contracts", response)
+
+async def run_concurrent_queries():
+    try:
+        await async_client.connect()
+
+        async_qa = AsyncQueryAgent(
+            async_client,
+            collections=[
+                QueryAgentCollectionConfig(
+                    name="ECommerce",  # The name of the collection to query
+                    target_vector=["name_description_brand_vector"], # Optional target vector name(s) for collections with named vectors
+                    view_properties=["name", "description", "category", "brand"], # Optional list of property names the agent can view
+                ),
+                QueryAgentCollectionConfig(
+                    name="FinancialContracts",  # The name of the collection to query
+                    # Optional tenant name for collections with multi-tenancy enabled
+                    # tenant="tenantA"
+                ),
+            ],
+        )
+
+        # Wait for both to complete
+        vintage_response, financial_response = await asyncio.gather(
+            query_vintage_clothes(async_qa),
+            query_financial_data(async_qa)
+        )
+
+        # Display results
+        print(f"=== {vintage_response[0]} ===")
+        vintage_response[1].display()
+
+        print(f"=== {financial_response[0]} ===")
+        financial_response[1].display()
+
+    finally:
+        await async_client.close()
+
+asyncio.run(run_concurrent_queries())
+# END UsageAsyncQueryAgent
+
+
+async def stream_query(async_query_agent: AsyncQueryAgent):
+    async for output in async_query_agent.stream(
+        "What are the top top 5 products sold in the last 30 days?",
+        # Setting this to false will skip ProgressMessages, and only stream
+        # the StreamedTokens / the final QueryAgentResponse
+        include_progress=True  # Default is True
+    ):
+        if isinstance(output, ProgressMessage):
+            # The message is a human-readable string, structured info available in output.details
+            print(output.message)
+        elif isinstance(output, StreamedTokens):
+            # The delta is a string containing the next chunk of the final answer
+            print(output.delta, end='', flush=True)
+        else:
+            # This is the final response, as returned by QueryAgent.run()
+            output.display()
+
+async def run_streaming_query():
+    try:
+        await async_client.connect()
+        async_qa = AsyncQueryAgent(
+            async_client,
+            collections=[
+                QueryAgentCollectionConfig(
+                    name="ECommerce",  # The name of the collection to query
+                    target_vector=["name_description_brand_vector"], # Optional target vector name(s) for collections with named vectors
+                    view_properties=["name", "description", "category", "brand"], # Optional list of property names the agent can view
+                ),
+                QueryAgentCollectionConfig(
+                    name="FinancialContracts",  # The name of the collection to query
+                    # Optional tenant name for collections with multi-tenancy enabled
+                    # tenant="tenantA"
+                ),
+            ]
+        )
+        await stream_query(async_qa)
+
+    finally:
+        await async_client.close()
+
+asyncio.run(run_streaming_query())
