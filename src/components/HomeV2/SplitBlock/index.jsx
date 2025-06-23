@@ -31,18 +31,18 @@ export default function SplitImageSlider() {
       onTouchMove={handleMove}
     >
       {sliderPos >= 45 && (
-        <div className={styles.afterLabel}>WITH WEAVIATE</div>
+        <div className={styles.beforeLabel}>BEFORE WEAVIATE</div>
       )}
       {sliderPos <= 55 && (
-        <div className={styles.beforeLabel}>BEFORE WEAVIATE</div>
+        <div className={styles.afterLabel}>WITH WEAVIATE</div>
       )}
 
       {/* Base image*/}
       <div className={styles.imageWrapperBase}>
         <img
-          src="/img/site/code-before-block.png"
+          src="/img/site/code-after-block.png"
           className={styles.image}
-          alt="Before"
+          alt="After"
         />
       </div>
 
@@ -56,9 +56,9 @@ export default function SplitImageSlider() {
       >
         <div className={styles.imageWrapperOverlay}>
           <img
-            src="/img/site/code-after-block.png"
+            src="/img/site/code-before-block.png"
             className={styles.image}
-            alt="After"
+            alt="Before"
           />
         </div>
       </div>
