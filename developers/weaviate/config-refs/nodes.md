@@ -11,7 +11,7 @@ You can retrieve information about individual nodes in a Weaviate cluster. The q
 
 | Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
-| `output` | body | string | How much information to include in the output. Options:  `minimal` (default) and `verbose` (includes shard information). |
+| `output` | query | string | How much information to include in the output. Options:  `minimal` (default) and `verbose` (includes shard information). |
 
 ### Returned data:
 
