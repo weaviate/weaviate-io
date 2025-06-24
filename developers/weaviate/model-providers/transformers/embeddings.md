@@ -415,7 +415,7 @@ They are indicated by the `-onnx` suffix in the image name.
 </TabItem>
 </Tabs>
 
-We add new model support over time. For a complete list of available models, see the Docker Hub tags for the [transformers-inference](https://hub.docker.com/r/semitechnologies/transformers-inference/tags) container.
+We add new model support over time. For the latest list of available models, see the Docker Hub tags for the [transformers-inference](https://hub.docker.com/r/semitechnologies/transformers-inference/tags) container.
 
 ## Advanced configuration
 
