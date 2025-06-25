@@ -206,7 +206,7 @@ Any search in Weaviate can be combined with a reranker to perform reranking oper
 
 These pre-trained models are open-sourced on Hugging Face. The `cross-encoder/ms-marco-MiniLM-L-6-v2` model, for example, provides approximately the same benchmark performance as the largest model (L-12) when evaluated on [MS-MARCO](https://microsoft.github.io/msmarco/) (39.01 vs. 39.02).
 
-We add new model support over time. For a complete list of available models, see the Docker Hub tags for the [reranker-transformers](https://hub.docker.com/r/semitechnologies/reranker-transformers/tags) container.
+We add new model support over time. For the latest list of available models, see the Docker Hub tags for the [reranker-transformers](https://hub.docker.com/r/semitechnologies/reranker-transformers/tags) container.
 
 ## Further resources
 

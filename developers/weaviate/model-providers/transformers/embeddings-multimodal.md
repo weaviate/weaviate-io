@@ -334,6 +334,8 @@ Lists of pre-built Docker images for this integration are below.
 
 | Model Name | Image Name | Notes |
 | --- | --- | --- |
+| google/siglip2-so400m-patch16-512 |  `cr.weaviate.io/semitechnologies/multi2vec-clip:google-siglip2-so400m-patch16-512` | SigLIP 2 model with 512x512 input size, added in `multi2vec-clip` `v1.4.0` (Multilingual, 1152d) |
+| google/siglip2-so400m-patch16-384 |  `cr.weaviate.io/semitechnologies/multi2vec-clip:google-siglip2-so400m-patch16-384` | SigLIP 2 model with 384x384 input size, added in `multi2vec-clip` `v1.4.0` (Multilingual, 1152d) |
 | sentence-transformers-clip-ViT-B-32 | `cr.weaviate.io/semitechnologies/multi2vec-clip:sentence-transformers-clip-ViT-B-32` | Texts must be in English. (English, 768d) |
 | sentence-transformers-clip-ViT-B-32-multilingual-v1 | `cr.weaviate.io/semitechnologies/multi2vec-clip:sentence-transformers-clip-ViT-B-32-multilingual-v1` | Supports a wide variety of languages for text. See sbert.net for details. (Multilingual, 768d) |
 | openai-clip-vit-base-patch16 | `cr.weaviate.io/semitechnologies/multi2vec-clip:openai-clip-vit-base-patch16` | The base model uses a ViT-B/16 Transformer architecture as an image encoder and uses a masked self-attention Transformer as a text encoder. |
@@ -341,7 +343,7 @@ Lists of pre-built Docker images for this integration are below.
 | ViT-B-32-quickgelu-laion400m_e32 | `cr.weaviate.io/semitechnologies/multi2vec-clip:ViT-B-32-quickgelu-laion400m_e32` | The base model uses a ViT-B/32 Transformer architecture as an image encoder trained with LAION-400M dataset using OpenCLIP. |
 | xlm-roberta-base-ViT-B-32-laion5b_s13b_b90k | `cr.weaviate.io/semitechnologies/multi2vec-clip:xlm-roberta-base-ViT-B-32-laion5b_s13b_b90k` | Uses ViT-B/32 xlm roberta base model trained with the LAION-5B dataset using OpenCLIP. |
 
-We add new model support over time. For a complete list of available models, see the Docker Hub tags for the [multi2vec-clip](https://hub.docker.com/r/semitechnologies/multi2vec-clip/tags) container.
+We add new model support over time. For the latest list of available models, see the Docker Hub tags for the [multi2vec-clip](https://hub.docker.com/r/semitechnologies/multi2vec-clip/tags) container.
 
 ## Advanced configuration
 

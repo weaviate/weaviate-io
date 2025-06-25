@@ -244,7 +244,7 @@ following_response = qa.run(
 response.display()
 # END FollowUpQuery
 
-query = "What are the top top 5 products sold in the last 30 days?"
+query = "What are the top 5 products sold in the last 30 days?"
 
 # START StreamResponse
 from weaviate.agents.classes import ProgressMessage, StreamedTokens
@@ -365,7 +365,7 @@ asyncio.run(run_concurrent_queries())
 # START StreamAsyncResponse
 async def stream_query(async_query_agent: AsyncQueryAgent):
     async for output in async_query_agent.stream(
-        "What are the top top 5 products sold in the last 30 days?",
+        "What are the top 5 products sold in the last 30 days?",
         # Setting this to false will skip ProgressMessages, and only stream
         # the StreamedTokens / the final QueryAgentResponse
         include_progress=True  # Default is True
