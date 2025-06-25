@@ -276,11 +276,10 @@ for collection_searches in response.searches:
     for result in collection_searches:
         print(f"- {result}\n")
 
-if response.has_aggregation_answer:
-    print("📊 Aggregation Results:")
-    for collection_aggs in response.aggregations:
-        for agg in collection_aggs:
-            print(f"- {agg}\n")
+print("📊 Aggregations Executed:")
+for collection_aggs in response.aggregations:
+    for agg in collection_aggs:
+        print(f"- {agg}\n")
 
 if response.missing_information:
     if response.is_partial_answer:
