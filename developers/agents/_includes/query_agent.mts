@@ -250,7 +250,7 @@ await populateWeaviate(client);
 const qa = new QueryAgent(
     client, {
     collections: ['ECommerce', 'FinancialContracts', 'Weather'],
-    
+
 });
 // END InstantiateQueryAgent
 
@@ -303,7 +303,7 @@ const basicResponse = await qaWithConfig.run(
     "I like vintage clothes and nice shoes. Recommend some of each below $60."
 );
 
-basicResponse.display();                  
+basicResponse.display();
 // END BasicQuery
 
 // START FollowUpQuery
@@ -315,6 +315,24 @@ const followUpResponse = await qaWithConfig.run(
 followUpResponse.display();
 // END FollowUpQuery
 
+var query = "What is the weather like in San Francisco?";
+
+// START StreamResponse
+// Setting includeProgress to false will skip progressMessages, and only stream
+// the streamedTokens / the final response.
+for await (const event of qa.stream(query, { includeProgress: true })) {  // This is true by default, this example is just being explicit
+    if (event.outputType === "progressMessage") {
+        // The message is a human-readable string, structured info available in event.details
+        console.log(event.message);
+    } else if (event.outputType === "streamedTokens") {
+        // The delta is a string containing the next chunk of the final answer
+        process.stdout.write(event.delta);
+    } else {
+        // This is the final response, as returned by QueryAgent.run()
+        event.display();
+    }
+}
+// END StreamResponse
 
 // START InspectResponseExample
 console.log('\n=== Query Agent Response ===');

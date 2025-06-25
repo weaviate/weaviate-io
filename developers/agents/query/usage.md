@@ -277,6 +277,14 @@ The Query Agent can also stream responses, allowing you to receive the answer as
             language="py"
         />
     </TabItem>
+    <TabItem value="ts_agents" label="JavaScript/TypeScript">
+        <FilteredTextBlock
+            text={TSCode}
+            startMarker="// START StreamResponse"
+            endMarker="// END StreamResponse"
+            language="ts"
+        />
+    </TabItem>
 </Tabs>
 
 ## Inspect responses
