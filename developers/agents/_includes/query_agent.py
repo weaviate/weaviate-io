@@ -244,11 +244,13 @@ following_response = qa.run(
 response.display()
 # END FollowUpQuery
 
+query = "What are the top 5 products sold in the last 30 days?"
+
 # START StreamResponse
 from weaviate.agents.classes import ProgressMessage, StreamedTokens
 
 for output in qa.stream(
-    "What are the top 5 products sold in the last 30 days?",
+    query,
     # Setting this to false will skip ProgressMessages, and only stream
     # the StreamedTokens / the final QueryAgentResponse
     include_progress=True  # Default is True
