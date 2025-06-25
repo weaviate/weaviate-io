@@ -11,6 +11,12 @@ Reranking computes a relevance score between the query and each data object, and
 
 As the reranker works on a smaller subset of data after retrieval, different, potentially more computationally expensive approaches can be used to improve search relevance.
 
+:::info
+
+Learn how to [set up a reranker for your collection](../manage-data/collections.mdx#specify-a-reranker-model-integration) and [apply reranking to your search results](../search/rerank.md).
+
+:::
+
 ## Reranking in Weaviate
 
 With our reranker modules, you can conveniently perform [multi-stage searches](/blog/cross-encoders-as-reranker) without leaving Weaviate.
