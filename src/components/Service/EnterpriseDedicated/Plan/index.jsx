@@ -29,7 +29,8 @@ export default function ServicePlan() {
               <span>Security and compliance</span>
               <p>
                 Enhanced security, continuous monitoring, and guaranteed
-                adherence to industry standards and best practices.
+                adherence to industry standards and best practices—including SOC
+                II certification and HIPAA compliance.
               </p>
             </div>
             <div className={styles.rightContent}>

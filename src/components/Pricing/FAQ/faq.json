@@ -48,6 +48,10 @@
     "answer": "Yes, for more info email <a href=\"mailto:infosec@weaviate.io\">infosec@weaviate.io</a>"
   },
   {
+    "question": "Is Weaviate Enterprise Cloud HIPAA compliant?",
+    "answer": "Yes, for more info email <a href=\"mailto:infosec@weaviate.io\">infosec@weaviate.io</a>"
+  },
+  {
     "question": "Do I pay for data objects without embeddings?",
     "answer": "No, storage of data objects without vector embeddings is on us."
   },
