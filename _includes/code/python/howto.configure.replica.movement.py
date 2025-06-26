@@ -27,7 +27,7 @@ replica_collection.data.insert(
     }
 )
 
-_collection_sharding_state_for_setup = client.replication.query_sharding_state(
+_collection_sharding_state_for_setup = client.cluster.query_sharding_state(
     collection=collection_name
 )
 assert (
@@ -51,9 +51,9 @@ target_node_name = next(
 # 1. Replicate (Copy) a Shard
 # Initiates the copy of a shard to another node.
 # START ReplicateShard
-from weaviate.replication.models import TransferType
+from weaviate.cluster.models import TransferType
 
-operation_id = client.replication.replicate(
+operation_id = client.cluster.replicate(
     collection=collection_name,
     shard=shard_name,
     source_node=source_node_name,
@@ -65,7 +65,7 @@ print(f"Replication initiated, ID: {operation_id}")
 
 # 2. Get Replication Operation Status
 # START CheckOperationStatus
-op_status = client.replication.operations.get(
+op_status = client.cluster.replications.get(
     uuid=operation_id,
     # include_history=True
 )
@@ -74,10 +74,10 @@ print(f"Status for {operation_id}: {op_status.status.state}")
 
 # 3. List Replication Operations
 # START ListReplicationOperations
-all_ops = client.replication.operations.list_all()
+all_ops = client.cluster.replications.list_all()
 print(f"Total replication operations: {len(all_ops)}")
 
-filtered_ops = client.replication.operations.query(
+filtered_ops = client.cluster.replications.query(
     collection=collection_name,
     target_node=target_node_name,
 )
@@ -88,17 +88,17 @@ print(
 
 # 4. Cancel a Replication Operation
 # START CancelOperation
-client.replication.operations.cancel(uuid=operation_id)
+client.cluster.replications.cancel(uuid=operation_id)
 # END CancelOperation
 
 # 5. Delete a Replication Operation Record
 # START DeleteOperationRecord
-client.replication.operations.delete(uuid=operation_id)
+client.cluster.replications.delete(uuid=operation_id)
 # END DeleteOperationRecord
 
 # 6. Query Sharding State
 # START CheckShardingState
-collection_sharding_state = client.replication.query_sharding_state(
+collection_sharding_state = client.cluster.query_sharding_state(
     collection=collection_name
 )
 if collection_sharding_state and collection_sharding_state.shards:
@@ -107,7 +107,7 @@ if collection_sharding_state and collection_sharding_state.shards:
     )
 
 # This uses 'shard_name' defined earlier in the script, for example, shard_name = "tF9DtxC59ykC"
-specific_shard_state = client.replication.query_sharding_state(
+specific_shard_state = client.cluster.query_sharding_state(
     collection=collection_name, shard=shard_name
 )
 if specific_shard_state and specific_shard_state.shards:

@@ -120,6 +120,16 @@ import QueryReplication from '/\_includes/code/replication.get.object.by.id.mdx'
 
 <QueryReplication/>
 
+## Replica movement and status
+
+:::caution Do not use in production
+
+Available starting in `v1.31`. This is an experimental feature and shouldn't be used in a production environment for now.
+
+:::
+
+Beyond setting the initial replication factor, you can actively manage the placement of shard replicas within your Weaviate cluster. This is useful for rebalancing data after scaling, decommissioning nodes, or optimizing data locality. Replica movement is managed through a set of dedicated [RESTful API endpoints](../../api/rest.md#tag/replication) or [programmatically through client libraries](./replica-movement.mdx).
+
 ## Related pages
 
 - [Concepts: Replication Architecture](../concepts/replication-architecture/index.md)

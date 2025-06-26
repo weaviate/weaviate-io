@@ -132,11 +132,11 @@ Available starting in `v1.31`. This is an experimental feature and shouldn't be 
 
 :::
 
-Weaviate allows operators to manually move or copy individual shard replicas from a source node to a destination node in a Weaviate cluster. This capability addresses operational scenarios such as cluster rebalancing after scaling, node decommissioning, optimizing data locality for improved performance, or increasing data availability.
+Weaviate allows users to manually move or copy individual shard replicas from a source node to a destination node in a Weaviate cluster. This capability addresses operational scenarios such as cluster rebalancing after scaling, node decommissioning, optimizing data locality for improved performance, or increasing data availability.
 
 Replica movement operates as a state machine with stages that ensure data integrity throughout the process. The feature works for both single-tenant collections and multi-tenant collections. 
 
-Unlike the static replication factor configured at collection creation, replica movement allows the replication factor to be adjusted for specific shards as replicas are moved or copied across the cluster. When a copy operation is performed, the newly created replica increases the replication factor for that specific shard. While a collection may have a default replication factor, individual shards within that collection can temporarily have a higher replication factor. However, shards can't have a replication factor lower then the one set on the collection level. This means that a replica deletion isn't possible if the factor for that individual shard will fall under the collection factor. 
+Unlike the static replication factor configured at collection creation, replica movement allows the replication factor to be adjusted for specific shards as replicas are moved or copied across the cluster. When a copy operation is performed, the newly created replica increases the replication factor for that specific shard. While a collection may have a default replication factor, individual shards within that collection can temporarily have a higher replication factor. However, shards can't have a replication factor lower then the one set on the collection level. 
 
 ### Movement states
 
