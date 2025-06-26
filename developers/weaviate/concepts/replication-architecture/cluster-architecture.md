@@ -66,7 +66,7 @@ As a result, a Weaviate cluster will include a leader node that is responsible f
 
 Weaviate uses a leaderless architecture for data replication. This means there is no central leader or primary node that will replicate to follower nodes. Instead, all nodes can accept writes and reads from the client, which can offer better availability. There is no single point of failure. A leaderless replication approach, also known as [Dynamo-style](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf) data replication (after Amazon's implementation), has been adopted by other open-source projects like [Apache Cassandra](https://cassandra.apache.org).
 
-In Weaviate, a coordination pattern is used to relay a client’s read and write requests to the correct nodes. Unlike in a leader-based database, a coordinator node does not enforce any ordering of the operations.
+In Weaviate, a coordination pattern is used to relay a client's read and write requests to the correct nodes. Unlike in a leader-based database, a coordinator node does not enforce any ordering of the operations.
 
 The following illustration shows a leaderless replication design in Weaviate. There is one coordination node, which leads traffic from the client to the correct replicas. There is nothing special about this node; it was chosen to be the coordinator because this node received the request from the load balancer. A future request for the same data may be coordinated by a different node.
 
@@ -91,10 +91,9 @@ A replication factor of 3 is commonly used, since this provides a right balance 
 
 <p align="center"><img src="/img/docs/replication-architecture/replication-factor.png" alt="Replication Factor" width="75%"/></p>
 
-
 ## Write operations
 
-On a write operation, the client’s request will be sent to any node in the cluster. The first node which receives the request is assigned as the coordinator. The coordinator node sends the request to a number of predefined replicas and returns the result to the client. So, any node in the cluster can be a coordinator node. A client will only have direct contact with this coordinator node. Before sending the result back to the client, the coordinator node waits for a number of write acknowledgments from different nodes depending on the configuration. How many acknowledgments Weaviate waits for, depends on the [consistency configuration](./consistency.md).
+On a write operation, the client's request will be sent to any node in the cluster. The first node which receives the request is assigned as the coordinator. The coordinator node sends the request to a number of predefined replicas and returns the result to the client. So, any node in the cluster can be a coordinator node. A client will only have direct contact with this coordinator node. Before sending the result back to the client, the coordinator node waits for a number of write acknowledgments from different nodes depending on the configuration. How many acknowledgments Weaviate waits for, depends on the [consistency configuration](./consistency.md).
 
 **Steps**
 1. The client sends data to any node, which will be assigned as the coordinator node
@@ -124,6 +123,43 @@ Read operations are also coordinated by a coordinator node, which directs a quer
 If the cluster size is 3 and the replication factor is also 3, then all nodes can serve the query. The consistency level determines how many nodes will be queried.
 
 If the cluster size is 10 and the replication factor is 3, the 3 nodes which contain that data (collection) can serve queries, coordinated by the coordinator node. The client waits until x (the consistency level) nodes have responded.
+
+## Replica movement
+
+:::caution Do not use in production
+
+Available starting in `v1.31`. This is an experimental feature and shouldn't be used in a production environment for now.
+
+:::
+
+Weaviate allows operators to manually move or copy individual shard replicas from a source node to a destination node in a Weaviate cluster. This capability addresses operational scenarios such as cluster rebalancing after scaling, node decommissioning, optimizing data locality for improved performance, or increasing data availability.
+
+Replica movement operates as a state machine with stages that ensure data integrity throughout the process. The feature works for both single-tenant collections and multi-tenant collections. 
+
+Unlike the static replication factor configured at collection creation, replica movement allows the replication factor to be adjusted for specific shards as replicas are moved or copied across the cluster. When a copy operation is performed, the newly created replica increases the replication factor for that specific shard. While a collection may have a default replication factor, individual shards within that collection can temporarily have a higher replication factor. However, shards can't have a replication factor lower then the one set on the collection level. This means that a replica deletion isn't possible if the factor for that individual shard will fall under the collection factor. 
+
+### Movement states
+
+The replica movement process follows a coordinated workflow that maintains data consistency and availability. Each operation progresses through distinct states that reflect the current stage of the movement:
+
+1. **REGISTERED**: The movement operation has been initiated and logged by the Raft leader. The request has been received and the operation is queued for processing.
+
+2. **HYDRATING**: A new replica is being created on the destination node. Data segments are transferred from an existing replica (usually the source replica, or another available peer) to establish the new shard instance.
+
+3. **FINALIZING**: The bulk data transfer is complete, and the new replica is catching up on any writes that occurred during the transfer. This ensures the replica is fully synchronized with the latest data.
+
+4. **DEHYDRATING**: For move operations, after the new replica is ready, the original replica on the source node is being decommissioned and prepared for removal.
+
+5. **READY**: The operation has completed successfully. The new replica is fully synchronized and ready to serve traffic. For move operations, the source replica has been removed.
+
+6. **CANCELLED**: The operation has been cancelled before completion. This can happen either through manual intervention or if the operation encounters an unrecoverable error.
+
+Replica movement supports two distinct operation modes:
+
+- **Move operations**: Transfer a replica from one node to another, maintaining the same replication factor
+- **Copy operations**: Create an additional replica on a new node, increasing the replication factor for that specific shard
+
+It's worth noting that increasing the replication factor to an even number through copy operations might make it harder to achieve quorum in certain scenarios.
 
 ## Questions and feedback
 
