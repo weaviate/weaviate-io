@@ -1,4 +1,48 @@
+# [[redirects]]
+# from = "/wcs/guides/console"
+# to   = "https://docs.weaviate.io/cloud/tools/query-tool"
+# status = 302
+# force = true
+
+# [[redirects]]
+#   from = "/developers/agents/*"
+#   to = "https://docs.weaviate.io/agents/:splat"
+#   status = 302
+#   force = true
+
+# [[redirects]]
+#   from = "/developers/academy/*"
+#   to = "https://docs.weaviate.io/academy/:splat"
+#   status = 302
+#   force = true
+
+# [[redirects]]
+#   from = "/developers/contributor-guide/*"
+#   to = "https://docs.weaviate.io/contributor-guide/:splat"
+#   status = 302
+#   force = true
+
+# [[redirects]]
+#   from = "/developers/integrations/*"
+#   to = "https://docs.weaviate.io/integrations/:splat"
+#   status = 302
+#   force = true
+
+# [[redirects]]
+#   from = "/developers/wcs/*"
+#   to = "https://docs.weaviate.io/cloud/:splat"
+#   status = 302
+#   force = true
+
+# [[redirects]]
+#   from = "/developers/weaviate/*"
+#   to = "https://docs.weaviate.io/weaviate/:splat"
+#   status = 302
+#   force = true
+
+# fallback for all the other /developers links
 [[redirects]]
-  from = "/docs/*"
-  to = "/developers/:splat"
-  status = 302
+  from = "/developers/*"
+  to = "https://docs.weaviate.io/:splat"
+  status = 301
+  force = true
