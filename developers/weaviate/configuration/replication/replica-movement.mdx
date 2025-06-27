@@ -64,7 +64,7 @@ Nodes for shard 'BoMYGMWFncSG': ['node3', 'node1']
 
 ## Initiating a replica movement operation
 
-This starts the asynchronous process of creating a replica on a new node and, if moving, removing it from the old one. When copying a replica, the replication factor for that shard will be increased as opposed to moving the replica. You'll need to specify the source node, destination node, collection name, shard ID and whether the operation is a 'MOVE' or 'COPY'.
+This starts the asynchronous process of creating a replica on a new node and, if moving, removing it from the old one. When copying a replica, the replication factor for that shard will be increased as opposed to moving the replica. You'll need to specify the source node, destination node, collection name, shard ID and whether the operation is a `MOVE` or `COPY`.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
@@ -209,7 +209,7 @@ Filtered operations for collection 'MyReplicatedDocCollection' on 'node3': 1
 
 ## Cancelling a replication operation
 
-If a movement needs to be stopped before completion. The operation will be stopped and will remain in a 'CANCELLED' state.
+If a movement needs to be stopped before completion. The operation will be stopped and will remain in a `CANCELLED` state.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
@@ -243,9 +243,9 @@ language="py"
 </TabItem>
 </Tabs>
 
-## Deleting a replication operation record
+## Deleting a replication operation
 
-To remove the record of a completed, cancelled, or failed operation. If the operation is active, it will be cancelled first.
+Remove a replication operation, no matter what state it's in. If the operation is active, it will be cancelled first.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
@@ -281,7 +281,7 @@ language="py"
 
 ## Deleting all replication operations
 
-Synchronously force delete all replication operations. This will not perform any checks on which state the operation is in so may lead to data corruption or loss. It is recommended to first scale the number of replication engine workers ([`REPLICATION_ENGINE_MAX_WORKERS`](../../config-refs/env-vars/index.md)) to `0` to make sure no replication operations are being executed.
+Remove all replication operations, no matter what state they are in. If an operation is active, it will be cancelled first.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
