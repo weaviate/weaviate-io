@@ -349,6 +349,34 @@ Permissions can be defined with the following resources, access levels and optio
         </div>
       </td>
     </tr>
+    <tr>
+      <td>
+        <Link to="/developers/weaviate/configuration/rbac/manage-roles#replications-permissions">
+          <strong>Replications</strong>
+        </Link>
+      </td>
+      <td>
+        <div class="access-level">Create replications</div>
+        <div class="access-level">Read replications</div>
+        <div class="access-level">Update replications</div>
+        <div class="access-level">Delete replications</div>
+      </td>
+      <td>
+        <p>Collection name filter:</p>
+        <ul>
+          <li>
+            <code>string or regex</code>: specifies which collections' objects
+            can be managed
+          </li>
+        </ul>
+        <p>Shard name filter:</p>
+        <ul>
+          <li>
+            <code>string or regex</code>: specifies which shards can be managed
+          </li>
+        </ul>
+      </td>
+    </tr>
   </tbody>
 </table>
 

@@ -8,7 +8,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: cr.weaviate.io/semitechnologies/weaviate:1.31.0
+    image: cr.weaviate.io/semitechnologies/weaviate:1.31.3
     restart: on-failure:0
     ports:
      - "8180:8080"
@@ -28,6 +28,7 @@ services:
       CLUSTER_DATA_BIND_PORT: '7101'
       RAFT_JOIN: 'node1,node2,node3'
       RAFT_BOOTSTRAP_EXPECT: 3
+      REPLICA_MOVEMENT_ENABLED: 'true'
   weaviate-node-2:  # Founding member service name
     command:
     - --host
@@ -36,7 +37,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: cr.weaviate.io/semitechnologies/weaviate:1.31.0
+    image: cr.weaviate.io/semitechnologies/weaviate:1.31.3
     restart: on-failure:0
     ports:
      - "8181:8080"
@@ -57,6 +58,7 @@ services:
       CLUSTER_JOIN: 'weaviate-node-1:7100'
       RAFT_JOIN: 'node1,node2,node3'
       RAFT_BOOTSTRAP_EXPECT: 3
+      REPLICA_MOVEMENT_ENABLED: 'true'
   weaviate-node-3:  # Founding member service name
     command:
     - --host
@@ -65,7 +67,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: cr.weaviate.io/semitechnologies/weaviate:1.31.0
+    image: cr.weaviate.io/semitechnologies/weaviate:1.31.3
     restart: on-failure:0
     ports:
      - "8182:8080"
@@ -86,4 +88,5 @@ services:
       CLUSTER_JOIN: 'weaviate-node-1:7100'
       RAFT_JOIN: 'node1,node2,node3'
       RAFT_BOOTSTRAP_EXPECT: 3
+      REPLICA_MOVEMENT_ENABLED: 'true'
 ...
