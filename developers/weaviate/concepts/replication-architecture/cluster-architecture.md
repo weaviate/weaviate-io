@@ -126,10 +126,7 @@ If the cluster size is 10 and the replication factor is 3, the 3 nodes which con
 
 ## Replica movement
 
-:::caution Do not use in production
-
-Available starting in `v1.31`. This is an experimental feature and shouldn't be used in a production environment for now.
-
+:::info Added in `v1.32`
 :::
 
 Weaviate allows users to manually move or copy individual shard replicas from a source node to a destination node in a Weaviate cluster. This capability addresses operational scenarios such as cluster rebalancing after scaling, node decommissioning, optimizing data locality for improved performance, or increasing data availability.
