@@ -279,6 +279,42 @@ language="py"
 </TabItem>
 </Tabs>
 
+## Deleting all replication operations
+
+Synchronously force delete all replication operations. This will not perform any checks on which state the operation is in so may lead to data corruption or loss. It is recommended to first scale the number of replication engine workers ([`REPLICATION_ENGINE_MAX_WORKERS`](../../config-refs/env-vars/index.md)) to `0` to make sure no replication operations are being executed.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+<FilteredTextBlock
+text={PyCode}
+startMarker="# START DeleteAllOperationRecords"
+endMarker="# END DeleteAllOperationRecords"
+language="py"
+/>
+</TabItem>
+<TabItem value="js" label="JS/TS Client v3">
+
+```typescript
+// JS/TS support coming soon
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+</TabItem>
+</Tabs>
+
 ## Further resources
 
 - [RESTful API: Replication endpoints](../../api/rest.md)

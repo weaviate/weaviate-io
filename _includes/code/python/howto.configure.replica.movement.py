@@ -48,7 +48,7 @@ target_node_name = next(
     (node for node in potential_target_nodes if node not in replicas), "node2"
 )  # Default to "node2" if no other node is available; adjust as needed
 
-# 1. Replicate (Copy) a Shard
+# 1. Replicate (Copy) a shard
 # Initiates the copy of a shard to another node.
 # START ReplicateShard
 from weaviate.cluster.models import TransferType
@@ -63,7 +63,7 @@ operation_id = client.cluster.replicate(
 print(f"Replication initiated, ID: {operation_id}")
 # END ReplicateShard
 
-# 2. Get Replication Operation Status
+# 2. Get replication operation status
 # START CheckOperationStatus
 op_status = client.cluster.replications.get(
     uuid=operation_id,
@@ -72,7 +72,7 @@ op_status = client.cluster.replications.get(
 print(f"Status for {operation_id}: {op_status.status.state}")
 # END CheckOperationStatus
 
-# 3. List Replication Operations
+# 3. List replication operations
 # START ListReplicationOperations
 all_ops = client.cluster.replications.list_all()
 print(f"Total replication operations: {len(all_ops)}")
@@ -86,17 +86,22 @@ print(
 )
 # END ListReplicationOperations
 
-# 4. Cancel a Replication Operation
+# 4. Cancel a replication operation
 # START CancelOperation
 client.cluster.replications.cancel(uuid=operation_id)
 # END CancelOperation
 
-# 5. Delete a Replication Operation Record
+# 5. Delete a replication operation record
 # START DeleteOperationRecord
 client.cluster.replications.delete(uuid=operation_id)
 # END DeleteOperationRecord
 
-# 6. Query Sharding State
+# 6. Delete all replication operations
+# START DeleteAllOperationRecords
+client.cluster.replications.delete_all()
+# END DeleteAllOperationRecords
+
+# 7. Query Sharding State
 # START CheckShardingState
 collection_sharding_state = client.cluster.query_sharding_state(
     collection=collection_name
