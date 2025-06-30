@@ -7,7 +7,8 @@ export default function Jobs() {
     const scriptId = 'ashby-embed-script';
     if (!document.getElementById(scriptId)) {
       const script = document.createElement('script');
-      script.src = 'https://jobs.ashbyhq.com/weaviate/embed';
+      script.src =
+        'https://jobs.ashbyhq.com/weaviate/embed?css=/ashby-custom.css';
       script.async = true;
       script.id = scriptId;
       document.body.appendChild(script);
