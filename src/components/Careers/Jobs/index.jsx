@@ -4,12 +4,13 @@ import Link from '@docusaurus/Link';
 
 export default function Jobs() {
   useEffect(() => {
-    const scriptId = 'teamtailor-widget';
+    const scriptId = 'ashby-embed-script';
     if (!document.getElementById(scriptId)) {
       const script = document.createElement('script');
-      script.src = 'https://scripts.teamtailor-cdn.com/widgets/eu-pink/jobs.js';
+      script.src =
+        'https://jobs.ashbyhq.com/weaviate/embed?css=https://weaviate.io/css/ashby-custom.css';
+
       script.async = true;
-      script.charset = 'utf-8';
       script.id = scriptId;
       document.body.appendChild(script);
     }
@@ -28,11 +29,7 @@ export default function Jobs() {
 
         <div className={styles.fakeWidth}>
           <div className={styles.jobBox}>
-            <div
-              className="teamtailor-jobs-widget"
-              data-teamtailor-api-key="627t2m5j5DXEp2PzGXXIlsf_NTyBj_OATYIOkRYN"
-              data-teamtailor-limit="20"
-            />
+            <div id="ashby_embed"></div>
           </div>
         </div>
 
