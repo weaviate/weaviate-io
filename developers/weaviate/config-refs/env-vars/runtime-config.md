@@ -73,6 +73,7 @@ If Weaviate attempts to start with an invalid runtime configuration file (e.g., 
 
 When modifying the runtime configuration file for a running Weaviate instance, if the new configuration is invalid, Weaviate continues using the last valid configuration that is stored in memory. Error logs and metrics will indicate when configuration loading fails.
 
+### Metrics
 Weaviate provides the following [metrics to help you monitor](../../configuration/monitoring.md) runtime configuration status:
 
 | Metric Name                                 | Description                                                                                                       |
@@ -80,8 +81,31 @@ Weaviate provides the following [metrics to help you monitor](../../configuratio
 | `weaviate_runtime_config_last_load_success` | Indicates whether the last loading attempt was successful (`1` for success, `0` for failure)                      |
 | `weaviate_runtime_config_hash`              | Hash value of the currently active runtime configuration, useful for tracking when new configurations take effect |
 
-:::note
+### Logs
 
-It's important to set up proper alerting based on these metrics and logs to quickly identify configuration issues. If any Weaviate process is failing to load its runtime configuration, it won't be able to start until the configuration is fixed.
+Weaviate also provides following logs to about runtime configuration changes and failures.
 
-:::
+1. When new config is invalid and weaviate is using the old config. You see following `ERROR` log.
+```
+loading runtime config every 2m failed, using old config: invalid yaml
+```
+
+2. When any value of the runtime config is changed. You see following `INFO` log
+```
+ runtime overrides: config 'MaximumAllowedCollectionsCount' changed from '-1' to '7'  action=runtime_overrides_changed field=MaximumAllowedCollectionsCount new_value=7 old_value=-1
+```
+### Failure modes
+
+1. When you try to start Weaviate process with invalid runtime config, Weaviate will fail to start until the config is fixed.
+1. Once Weaviate is started with "good" runtime config and for any reason, the runtime config is changed and became invalid, Weaviate will keep using the old "good" runtime config. But care to be taken that for any reason, this Weaviate process OOMs (goes Out Of Memory) or crashes, then it won't be able to start back up until the config is fixed.
+
+The rationale for (2) is based on principle of "Fail early and fail fast". Basically if we let Weaviate to start with old ENV configs instead, then that may be wrong config and we should never let any database to start with wrong config which usually leads to series problems like data corruption or slient failures that is very hard to debug.
+
+Example:
+1. You have ENV variable `MAXIMUM_ALLOWED_COLLECTIONS_COUNT` set to 10.
+1. You have runtime config to override that `MaximumAllowedCollectionsCount` to 4.
+1. Let's say after a year, runtime config becomes invalid and Weaviate cannot load the new runtime config.
+1. Weaviate now will be keep using `MaximumAllowedCollectionCount` as 4 (old runtime config).
+1. Now say if Weaviate crashes and it cannot load runtime config at the startup (because it's invalid), we cannot let Weaviate start with default ENV config then it's a wrong config (`MAXIMUM_ALLOWED_COLLECTION_COUNT` is 10). So we fail to start and let the operator fix the runtime config.
+
+That's why it's important to set up proper alerting based on these metrics and logs to quickly identify configuration issues proactively.
