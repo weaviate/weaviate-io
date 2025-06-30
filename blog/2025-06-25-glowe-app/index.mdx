@@ -2,19 +2,19 @@
 title: 'Introducing Glowe: Agent-Powered Korean Skincare Routines'
 slug: glowe-app
 authors: [victoria, prajjwal]
-date: 2025-07-01
+date: 2025-07-08
 tags: ['how-to', 'agents', 'search']
 image: ./img/glowe-hero.png
 description: "Glowe is a Korean beauty recommendation app that uses domain knowledge agents, custom embedding strategies, and vector search to create personalized skincare routines. Try now: https://www.glowe.app/"
 ---
 
-Skincare is deeply personal, and finding the right products to build an effective routine can feel overwhelming and impossible. The skincare industry generates thousands of products with millions of reviews annually, yet most recommendation systems fail to capture the nuanced relationships between ingredients, user experiences, and skincare outcomes based on *actual user data*. That's why we built **Glowe,** a Korean beauty recommendation app that demonstrates how domain knowledge agents, custom embedding strategies, and vector search can create genuinely intelligent product recommendations.
+Skincare is deeply personal, and finding the right products to build an effective routine can feel overwhelming and impossible. The skincare industry generates thousands of products with millions of reviews annually, yet most recommendation systems fail to capture the nuanced relationships between ingredients, user experiences, and skincare outcomes based on *actual user data*. That's why we built **Glowe**, a Korean beauty recommendation app that demonstrates how domain knowledge agents, custom embedding strategies, and vector search can create genuinely intelligent product recommendations.
 
 Whether you're aiming for intense hydration, a radiant glow, or targeting specific concerns like acne or redness, Glowe leverages Agentic AI to recommend effective and safe product combinations based on your skin profile. It considers positive and negative effects, ingredient compatibility, and your own personal skin goals to create your very own skincare stack. Glowe also features an agentic chat interface, allowing you to engage naturally with its domain-specific knowledge and receive personalized skincare guidance in real time.
 
 :::info Try it out!
 
-Glowe is available to use here: [www.glowe.app](https://www.glowe.app/)
+Glowe is available to use here: [glowe.app](https://www.glowe.app/)
 :::
 
 **‼️ TODO:** 
@@ -23,8 +23,12 @@ Glowe is available to use here: [www.glowe.app](https://www.glowe.app/)
 ## Why Domain Knowledge Agents Matter in Skincare
 
 At the heart of Glowe's personalized experience is a **skincare domain agent**. 
+Unlike general-purpose AI that tries to cover everything, a domain agent is deeply focused on one specific area. Glowe doesn’t just generate routines, it understands the science behind them. Backed by Weaviate Agents integrated through Elysia (which we’ll discuss shortly), it combines smart retrieval, tailored prompts, and expert-level reasoning to offer advice that's genuinely useful **and not generic**.
 
-Unlike general-purpose AI that tries to cover everything, a domain agent is deeply focused on one area. In this case, that means it truly understands skincare. It uses advanced techniques like smart retrieval, tailored prompts, and expert-level instructions to offer advice that goes beyond the surface.
+:::info
+
+Weaviate Agents are pre-built agentic services designed for specific tasks. They are available out-of-the-box for Weaviate Cloud users to interact with their data in Weaviate Cloud to simplify data engineering and AI development workflows. Learn more about Weaviate Agents [here](/developers/agents).
+:::
 
 Why does that matter for skincare? Because real solutions require more than just popular products! They require understanding your unique skin type, goals, conditions, and how different ingredients interact. A skincare domain agent should:
 
