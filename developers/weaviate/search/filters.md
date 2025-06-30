@@ -13,6 +13,7 @@ import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.filters-v3.py';
 import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.filters.ts';
 import JavaScriptCodeLegacy from '!!raw-loader!/_includes/code/howto/search.filters-v2.ts';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/mainpkg/search-filters_test.go';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/search/FiltersSearchTest.java';
 
 
 Filters let you include, or exclude, particular objects from your result set based on provided conditions.<br/>
@@ -65,6 +66,15 @@ Add a `filter` to your query, to limit the result set.
       startMarker="// START SingleFilter"
       endMarker="// END SingleFilter"
       language="gonew"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START SingleFilter"
+      endMarker="// END SingleFilter"
+      language="java"
     />
   </TabItem>
 
