@@ -8,7 +8,7 @@ export default function Jobs() {
     if (!document.getElementById(scriptId)) {
       const script = document.createElement('script');
       script.src =
-        'https://jobs.ashbyhq.com/weaviate/embed?css=https://ashby-update--tangerine-buttercream-20c32f.netlify.app/css/ashby-custom.css';
+        'https://jobs.ashbyhq.com/weaviate/embed?css=https://weaviate.io/css/ashby-custom.css';
 
       script.async = true;
       script.id = scriptId;
