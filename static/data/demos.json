@@ -67,7 +67,7 @@
     "title": "QuoteFinder",
     "description": "Find a Quote to Support Any Argument",
     "demoLink": "https://quotefinder.weaviate.io/",
-    "details": "HealthSearch is an open source demo that decodes user-written reviews of supplements, performing semantic and generative searches to retrieve related products for specific health effects. It leverages Large Language Models to understand natural language queries and generate product and review summaries.",
+    "details": "Find a quote to support any argument! QuoteFinder is a tool that uses hybrid search, combining semantic and keyword search. Semantic search finds text meaning for big ideas, while keyword search matches exact phrases, helping you find the best quotes for your query.",
     "blogLink": "https://weaviate.io/blog/hybrid-search-for-web-developers",
     "githubLink": "https://github.com/weaviate/quote-finder"
   }
