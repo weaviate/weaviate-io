@@ -790,48 +790,175 @@ await client.collections.create({
   ],
   // highlight-end
   // Additional parameters not shown
-});// END FullVectorizerMistral
+});
+// END FullVectorizerMistral
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
 // START BasicVectorizerNVIDIA
-// Coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecNvidia({
+      name: 'title_vector',
+      sourceProperties: ['title'],
+    }),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
 // END BasicVectorizerNVIDIA
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
 // START VectorizerNVIDIACustomModel
-// Coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    { name: 'title', dataType: 'text' as const },
+    { name: 'poster', dataType: 'blob' as const },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecNvidia({
+      name: 'title_vector',
+      sourceProperties: ["title"],
+      model: "nvidia/nv-embed-v1"
+    },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
 // END VectorizerNVIDIACustomModel
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
 // START FullVectorizerNVIDIA
-// Coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    { name: 'title', dataType: 'text' as const },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecNvidia({
+      name: 'title_vector',
+      sourceProperties: ['title'],
+      model: "nvidia/nv-embed-v1",
+      baseURL: "https://integrate.api.nvidia.com/v1"
+    },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
 // END FullVectorizerNVIDIA
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
 // START BasicMMVectorizerNVIDIA
-// Coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [{
+    name: 'title', dataType: 'text' as const },
+  { name: 'poster', dataType: 'blob' as const },
+],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.multi2VecNvidia({
+      name: 'title_vector',
+      // Define the fields to be used for the vectorization - using imageFields, textFields
+      imageFields: [{
+        name: "poster",
+        weight: 0.9
+      }],
+      textFields: [{
+        name: "title",
+        weight: 0.1
+      }],
+    },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
 // END BasicMMVectorizerNVIDIA
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
 // START MMVectorizerNVIDIACustomModel
-// Coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [{
+      name: 'title', dataType: 'text' as const },
+    { name: 'poster', dataType: 'blob' as const },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.multi2VecNvidia({
+      name: 'title_vector',
+      model: "nvidia/nvclip",
+      // Define the fields to be used for the vectorization - using imageFields, textFields
+      imageFields: [{
+        name: "poster",
+        weight: 0.9
+      }],
+      textFields: [{
+        name: "title",
+        weight: 0.1
+      }],
+    },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
 // END MMVectorizerNVIDIACustomModel
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
 // START FullMMVectorizerNVIDIA
-// Coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [{
+    name: 'title', dataType: 'text' as const },
+  { name: 'poster', dataType: 'blob' as const },
+],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.multi2VecNvidia({
+      name: 'title_vector',
+      // Define the fields to be used for the vectorization - using imageFields, textFields
+      imageFields: [{
+        name: "poster",
+        weight: 0.9
+      }],
+      textFields: [{
+        name: "title",
+        weight: 0.1
+      }],
+      // Further options
+      // model: 'nvidia/nvclip'
+    },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
 // END FullMMVectorizerNVIDIA
 
 // Clean up
@@ -856,7 +983,8 @@ await client.collections.create({
   ],
   // highlight-end
   // Additional parameters not shown
-}); // END BasicVectorizerOctoAI
+}); 
+// END BasicVectorizerOctoAI
 
 // Clean up
 await client.collections.delete('DemoCollection');
@@ -1220,7 +1348,8 @@ await client.collections.create({
     })],
     // highlight-end
     // Additional parameters not shown
-})// END BasicMMVectorizerVoyageAI
+})
+// END BasicMMVectorizerVoyageAI
 
 
 // Clean up
@@ -1297,7 +1426,8 @@ await client.collections.create({
     })],
     // highlight-end
     // Additional parameters not shown
-})// END FullMMVectorizerVoyageAI
+})
+// END FullMMVectorizerVoyageAI
 
 
 // Clean up

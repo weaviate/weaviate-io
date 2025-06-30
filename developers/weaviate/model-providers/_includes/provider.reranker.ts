@@ -62,12 +62,24 @@ await client.collections.create({
 // END RerankerJinaAICustomModel
 
 // START RerankerNVIDIABasic
-// Coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  reranker: weaviate.configure.reranker.nvidia(),
+  // highlight-end
+});
 // END RerankerNVIDIABasic
 
 // START RerankerNVIDIACustomModel
-// Coming soon
-// END RerankerNVIDIACustomModel
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  reranker: weaviate.configure.reranker.nvidia({
+    model: "nvidia/llama-3.2-nv-rerankqa-1b-v2",
+    baseURL: "https://integrate.api.nvidia.com/v1",
+  }),
+  // highlight-end
+});// END RerankerNVIDIACustomModel
 
 // START RerankerVoyageAI
 await client.collections.create({
