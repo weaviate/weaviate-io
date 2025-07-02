@@ -144,10 +144,6 @@ While both RQ and SQ provide 4x compression through 8-bit quantization, they hav
 | Query performance | As fast or faster | Fast |
 | Best for | Standard embeddings (≥128 dims) | Low-dimensional or special structure data |
 
-:::note
-RQ is currently only supported with HNSW indexes and was added in Weaviate v1.31.
-:::
-
 :::tip
 Learn more about how to [configure rotational quantization](../configuration/compression/rq-compression.md) in Weaviate.
 :::
