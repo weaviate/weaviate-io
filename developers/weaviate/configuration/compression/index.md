@@ -11,4 +11,5 @@ To balance resource costs and system performance, consider one of these options:
 
 - [Binary Quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression)
 - [Product Quantization (PQ)](/developers/weaviate/configuration/compression/pq-compression)
+- [Rotational Quantization (RQ)](/developers/weaviate/configuration/compression/rq-compression)
 - [Scalar Quantization (SQ)](/developers/weaviate/configuration/compression/sq-compression)

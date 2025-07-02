@@ -86,7 +86,7 @@ These parameters can be used to fine-tune MUVERA:
   of the original multi-vector similarity.
 
 :::note Quantization
-Quantization is also available as a compression technique for multi-vector embeddings. It reduces the memory footprint of individual vectors by approximating their values with less precision. Just like with single vectors, multi-vectors support [PQ](./pq-compression.md), [BQ](./bq-compression.md) and [SQ](./sq-compression.md) quantization.
+Quantization is also available as a compression technique for multi-vector embeddings. It reduces the memory footprint of individual vectors by approximating their values with less precision. Just like with single vectors, multi-vectors support [PQ](./pq-compression.md), [BQ](./bq-compression.md), [RQ](./rq-compression.md) and [SQ](./sq-compression.md) quantization.
 :::
 
 ## Further resources
