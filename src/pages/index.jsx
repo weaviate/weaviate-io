@@ -5,7 +5,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 import Head from '@docusaurus/Head';
 
 import HomepageHeader from '/src/components/HomeV2/Header';
-import Main from '/src/components/HomeV2/Main';
+import Main from '/src/components/HomeV2/Main/V2';
 import BottomMain from '/src/components/HomeV2/BottomMain';
 import ContactForm from '/src/components/HomeV2/Contact/contactForm';
 import ThemeSwitch from '/src/components/ThemeSwitch';

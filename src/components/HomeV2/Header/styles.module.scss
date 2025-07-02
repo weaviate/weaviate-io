@@ -79,7 +79,11 @@
       min-width: 29rem;
       height: 26.6875rem;
       background-position: unset;
-      margin-bottom: 0; // reset for smaller screens
+      margin-bottom: 0;
+    }
+
+    @media screen and (max-width: 400px) {
+      min-width: 20rem;
     }
   }
 }
