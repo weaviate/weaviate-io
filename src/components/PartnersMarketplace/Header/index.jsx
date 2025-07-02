@@ -17,13 +17,13 @@ export default function ServiceHeader() {
           </div>
           <div className={styles.buttonsContainer}>
             <Link
-              to="/developers/weaviate/model-providers"
+              to="https://weaviate.io/developers/weaviate/model-providers"
               className={styles.buttonGradient}
             >
               Model Providers
             </Link>
             <Link
-              to="/developers/integrations"
+              to="https://weaviate.io/developers/integrations"
               className={styles.buttonOutline}
             >
               Integrations

@@ -54,7 +54,7 @@ export default function QueryPage() {
                         </button>
                       </Link>
                     )}
-                    <Link to="/developers/wcs/embeddings">
+                    <Link to="https://weaviate.io/developers/wcs/embeddings">
                       <button className={styles.docButton}>
                         Read the Docs
                       </button>

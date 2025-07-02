@@ -56,7 +56,7 @@ Vector libraries are commonly used for applications that do not have changing da
 One of the core features that set vector databases apart from libraries is the ability to store and update your data. Vector databases have full **CRUD** (create, read, update, and delete) support that solves the limitations of a vector library. Additionally, databases are more focused on enterprise-level [production deployments](https://www.youtube.com/watch?v=gXPuhyM11_k).
 
 ### Store Vectors and Objects
-Databases can store both the data objects and vectors. Since both are stored, you can combine vector search with structured filters. Filters allow you to make sure the nearest neighbors match the filter from the metadata. [Here](https://towardsdatascience.com/effects-of-filtered-hnsw-searches-on-recall-and-latency-434becf8041c) is an article on the effects of filtered [Hierarchical Navigable Small World](/developers/weaviate/concepts/vector-index#hnsw) (HNSW) searches on recall and latency.
+Databases can store both the data objects and vectors. Since both are stored, you can combine vector search with structured filters. Filters allow you to make sure the nearest neighbors match the filter from the metadata. [Here](https://towardsdatascience.com/effects-of-filtered-hnsw-searches-on-recall-and-latency-434becf8041c) is an article on the effects of filtered [Hierarchical Navigable Small World](https://weaviate.io/developers/weaviate/concepts/vector-index#hnsw) (HNSW) searches on recall and latency.
 
 ### CRUD Support
 Vector databases solve a few limitations that vector libraries have. One example is being able to add, remove, or update entries in your index after it has been created. This is especially useful when working with data that is continuously changing.
@@ -69,9 +69,9 @@ As you upload millions of objects, the imported data remains fully accessible an
 Note your queries won't return any objects that are not imported yet, as you can't query what you don't have. 🤔
 
 ### Weaviate
-[Weaviate](/developers/weaviate/) is an open-source vector database. If you're new to Weaviate, take a look at the [Getting Started guide](/developers/weaviate/quickstart). 🙂
+[Weaviate](https://weaviate.io/developers/weaviate/) is an open-source vector database. If you're new to Weaviate, take a look at the [Getting Started guide](https://weaviate.io/developers/weaviate/quickstart). 🙂
 
-The HNSW graph is the first implementation of an ANN algorithm supported by Weaviate. [Here](/developers/weaviate/benchmarks/ann) is a benchmark that measures Weaviate's ANN performance for different use-cases.
+The HNSW graph is the first implementation of an ANN algorithm supported by Weaviate. [Here](https://weaviate.io/developers/weaviate/benchmarks/ann) is a benchmark that measures Weaviate's ANN performance for different use-cases.
 
 Weaviate was built to combine the speed and capabilities of ANN algorithms with the features of a database such as backups, real-time queries, persistence, and replication (part of the v1.17 release). Weaviate can be accessed through GraphQL, REST, and client libraries in multiple programming languages.
 

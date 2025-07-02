@@ -19,7 +19,7 @@ export default function Resources() {
           </p>
         </div>
         <div className={styles.latestModule}>
-          <Link to="/developers/weaviate">
+          <Link to="https://weaviate.io/developers/weaviate">
             <div className={styles.resourceBox}>
               <div
                 className={`${styles.resourceIcon} ${styles.resource3}`}

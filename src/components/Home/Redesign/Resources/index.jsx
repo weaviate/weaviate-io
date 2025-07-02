@@ -26,7 +26,7 @@ export default function Resources() {
               <p>Concepts, releases, research, how-tos, and more.</p>
             </div>
           </Link>
-          <Link to="/developers/academy">
+          <Link to="https://weaviate.io/developers/academy">
             <div className={styles.resourceBox}>
               <div
                 className={`${styles.resourceIcon} ${styles.resource2}`}
@@ -38,7 +38,7 @@ export default function Resources() {
               </p>
             </div>
           </Link>
-          <Link to="/developers/weaviate">
+          <Link to="https://weaviate.io/developers/weaviate">
             <div className={styles.resourceBox}>
               <div
                 className={`${styles.resourceIcon} ${styles.resource3}`}
@@ -52,7 +52,7 @@ export default function Resources() {
           </Link>
         </div>
         <div className={styles.latestModule}>
-          <Link to="/developers/weaviate/quickstart">
+          <Link to="https://weaviate.io/developers/weaviate/quickstart">
             <div className={styles.resourceBox}>
               <div
                 className={`${styles.resourceIcon} ${styles.resource4}`}

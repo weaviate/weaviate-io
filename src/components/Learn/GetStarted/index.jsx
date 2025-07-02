@@ -27,7 +27,7 @@ export default function GetStarted() {
                   <li>
                     <Link
                       className={`${styles.external} ${styles.bold}`}
-                      to="/developers/weaviate/quickstart"
+                      to="https://weaviate.io/developers/weaviate/quickstart"
                     >
                       Quickstart: cloud
                     </Link>{' '}
@@ -36,7 +36,7 @@ export default function GetStarted() {
                   <li>
                     <Link
                       className={`${styles.external} ${styles.bold}`}
-                      to="/developers/weaviate/quickstart/local"
+                      to="https://weaviate.io/developers/weaviate/quickstart/local"
                     >
                       Quickstart: local
                     </Link>{' '}
@@ -81,7 +81,7 @@ export default function GetStarted() {
                 <li>
                   <Link
                     className={`${styles.external} ${styles.bold}`}
-                    to="/developers/weaviate/connections"
+                    to="https://weaviate.io/developers/weaviate/connections"
                   >
                     Connect to Weaviate
                   </Link>
@@ -89,7 +89,7 @@ export default function GetStarted() {
                 <li>
                   <Link
                     className={`${styles.external} ${styles.bold}`}
-                    to="/developers/weaviate/starter-guides/generative"
+                    to="https://weaviate.io/developers/weaviate/starter-guides/generative"
                   >
                     Generative search (RAG)
                   </Link>{' '}
@@ -97,7 +97,7 @@ export default function GetStarted() {
                 <li>
                   <Link
                     className={`${styles.external} ${styles.bold}`}
-                    to="/developers/weaviate/starter-guides/which-weaviate"
+                    to="https://weaviate.io/developers/weaviate/starter-guides/which-weaviate"
                   >
                     Which Weaviate is right for me?
                   </Link>{' '}
@@ -105,7 +105,7 @@ export default function GetStarted() {
                 <li>
                   <Link
                     className={`${styles.external} ${styles.bold}`}
-                    to="/developers/weaviate/starter-guides/managing-collections"
+                    to="https://weaviate.io/developers/weaviate/starter-guides/managing-collections"
                   >
                     Collection definitions & data schema
                   </Link>{' '}
@@ -113,14 +113,14 @@ export default function GetStarted() {
                 <li>
                   <Link
                     className={`${styles.external} ${styles.bold}`}
-                    to="/developers/weaviate/starter-guides/managing-resources"
+                    to="https://weaviate.io/developers/weaviate/starter-guides/managing-resources"
                   >
                     Managing resources (hot, warm & cold)
                   </Link>{' '}
                 </li>
               </ul>
               <Link
-                to="/developers/weaviate/starter-guides"
+                to="https://weaviate.io/developers/weaviate/starter-guides"
                 className={styles.button}
               >
                 More <strong>starter guides</strong>

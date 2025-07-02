@@ -38,7 +38,7 @@ export default function Steps() {
               applications and to make the process as smooth and transparent as
               possible.
             </p>
-            <Link to="/developers/weaviate">Get started with Weaviate</Link>
+            <Link to="https://weaviate.io/developers/weaviate">Get started with Weaviate</Link>
           </div>
 
           <div className={styles.valuesBox}>

@@ -18,7 +18,7 @@ export default function Header() {
           <div className={styles.buttons}>
             <Link
               className={styles.buttonGradient}
-              to="/developers/weaviate/client-libraries/typescript/typescript-v3"
+              to="https://weaviate.io/developers/weaviate/client-libraries/typescript/typescript-v3"
             >
               Explore the Docs
             </Link>

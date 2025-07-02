@@ -31,16 +31,16 @@ In this article, we will cover the need for disk-based solutions, explore Vamana
 ## Need for approximation
 In order for a vector database to efficiently search through a vast number of vectors, the database needs to be smart about it. A brute-force approach would calculate the distance between the query vector and every data vector in the queried collection, but this is computationally very expensive. For a database with millions of objects and thousands of high-dimensional vectors, this would take far too long.
 
-[Weaviate](/developers/weaviate/), an open-source vector database written in Go, can serve thousands of queries per second. Running Weaviate on [Sift1M](https://www.tensorflow.org/datasets/catalog/sift1m) (a 128-dimensional representation of objects) lets you serve queries in single-digit milliseconds. But how is this possible?
+[Weaviate](https://weaviate.io/developers/weaviate/), an open-source vector database written in Go, can serve thousands of queries per second. Running Weaviate on [Sift1M](https://www.tensorflow.org/datasets/catalog/sift1m) (a 128-dimensional representation of objects) lets you serve queries in single-digit milliseconds. But how is this possible?
 
 ![SIFT1M Benchmark example](./img/SIFT1M-benchmark.png)
-*See the [benchmark](/developers/weaviate/benchmarks/ann) page for more stats.*
+*See the [benchmark](https://weaviate.io/developers/weaviate/benchmarks/ann) page for more stats.*
 
 Weaviate does not look for the exact closest vectors in the store. Instead, it looks for approximate (close enough) elements. This means you could have a much faster reply, but there is no guarantee that you will actually have the closest element from your search. In the vector search space, we use [recall](https://en.wikipedia.org/wiki/Precision_and_recall) to measure the rate of the expected matches returned. The trade-off between recall and latency can be tuned by adjusting indexing parameters. Weaviate comes with reasonable defaults, but also it allows you to adjust build and query-time parameters to find the right balance.
 
 Weaviate incrementally builds up an index (graph representation of the vectors and their closest neighbors) with each incoming object. Then when a query arrives, Weaviate traverses the index to obtain a good approximated answer to the query in a fraction of the time that a brute-force approach would take.
 
-[HNSW](/developers/weaviate/concepts/vector-index#hnsw) is the first production-ready indexing algorithm we implemented in Weaviate. It is a robust and fast algorithm that builds a hierarchical representation of the index **in memory** that could be quickly traversed to find the k nearest neighbors of a query vector.
+[HNSW](https://weaviate.io/developers/weaviate/concepts/vector-index#hnsw) is the first production-ready indexing algorithm we implemented in Weaviate. It is a robust and fast algorithm that builds a hierarchical representation of the index **in memory** that could be quickly traversed to find the k nearest neighbors of a query vector.
 
 ## Need for disk solutions
 There are other challenges to overcome. Databases have grown so fast that even the above-described algorithms will not be enough. We no longer talk about thousands of vectors but **hundred of millions** or **even billions**! Keeping all the vectors in memory and adding a graph representation of vector connections **requires a lot of RAM**. This sparked the emergence of a new set of algorithms that allow vectors to reside on disk instead of in memory whilst retaining high performance.

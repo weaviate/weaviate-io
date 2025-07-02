@@ -48,13 +48,13 @@ export default function QueryPage() {
                         </button>
                       </Link>
                     ) : (
-                      <Link to="/developers/agents/personalization/usage">
+                      <Link to="https://weaviate.io/developers/agents/personalization/usage">
                         <button className={styles.installButton}>
                           Public Preview
                         </button>
                       </Link>
                     )}
-                    <Link to="/developers/agents/personalization">
+                    <Link to="https://weaviate.io/developers/agents/personalization">
                       <button className={styles.docButton}>
                         Read the Docs
                       </button>
@@ -103,7 +103,7 @@ export default function QueryPage() {
                     <h3>Additional details</h3>
                     <p>
                       Availability:{' '}
-                      <Link to="/developers/agents/personalization/usage">
+                      <Link to="https://weaviate.io/developers/agents/personalization/usage">
                         <strong>
                           <u>Public Preview in Weaviate Cloud</u>
                         </strong>

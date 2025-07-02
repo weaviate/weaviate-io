@@ -56,9 +56,9 @@ import WV8onRaft from './img/raft-weaviate.png';
 
 Weaviate clusters can be large; there can be a lot of nodes to coordinate. The host systems have to work together reliably and efficiently, even under high loads. [Raft](https://raft.github.io/) is a robust consensus algorithm that helps make multi-node clusters more fault tolerant.
 
-There are two types of data in a Weaviate cluster: your actual data, and system state information. Earlier releases use a two-phase commit protocol to store schema information. This mechanism doesn't scale well and can leads to locking behavior in multi-node clusters. Starting in 1.25, Weaviate uses Raft to store schema information and cluster state details. Raft ensures your schemas are safe and helps you to reliably scale multi-node clusters for production workloads. The underlying data [storage](/developers/weaviate/concepts/storage) is managed the same way as before - [replication](/developers/weaviate/concepts/replication-architecture) and [sharding](/developers/weaviate/concepts/cluster) continue to safeguard your data while making it available for your applications.
+There are two types of data in a Weaviate cluster: your actual data, and system state information. Earlier releases use a two-phase commit protocol to store schema information. This mechanism doesn't scale well and can leads to locking behavior in multi-node clusters. Starting in 1.25, Weaviate uses Raft to store schema information and cluster state details. Raft ensures your schemas are safe and helps you to reliably scale multi-node clusters for production workloads. The underlying data [storage](https://weaviate.io/developers/weaviate/concepts/storage) is managed the same way as before - [replication](https://weaviate.io/developers/weaviate/concepts/replication-architecture) and [sharding](https://weaviate.io/developers/weaviate/concepts/cluster) continue to safeguard your data while making it available for your applications.
 
-If you are new to Weaviate, you can take immediate advantage of Raft. If you are upgrading a Kubernetes deployment from an earlier version, be sure to review the [migration guide](/developers/weaviate/more-resources/migration/weaviate-1-25) before you upgrade. There is a one-time migration step to update the [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/).
+If you are new to Weaviate, you can take immediate advantage of Raft. If you are upgrading a Kubernetes deployment from an earlier version, be sure to review the [migration guide](https://weaviate.io/developers/weaviate/more-resources/migration/weaviate-1-25) before you upgrade. There is a one-time migration step to update the [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/).
 
 ## New model integrations
 
@@ -66,9 +66,75 @@ This release brings important new integrations with third party APIs.
 
 ### OctoAI integration
 
-import OctoAIDeprecationNote from '/developers/weaviate/model-providers/octoai/_includes/octoai_deprecation.md';
+:::warning Deprecated integrations
 
-<OctoAIDeprecationNote/>
+### OctoAI integrations are deprecated
+
+<!-- They have been removed from the Weaviate codebase from `v1.25.22`, `v1.26.8` and `v1.27.1`. -->
+
+OctoAI announced that they are winding down the commercial availability of its services by **31 October 2024**. Accordingly, the Weaviate OctoAI integrations are deprecated. Do not use these integrations for new projects.
+<br/>
+
+If you have a collection that is using an OctoAI integration, consider your options depending on whether you are using OctoAI's embedding models ([your options](#for-collections-with-octoai-embedding-integrations)) or generative models ([your options](#for-collections-with-octoai-generative-ai-integrations)).
+
+#### For collections with OctoAI embedding integrations
+
+OctoAI provided `thenlper/gte-large` as the embedding model. This model is also available through the [Hugging Face API](https://weaviate.io/developers/weaviate/model-providers/huggingface/embeddings).
+<br/>
+
+After the shutdown date, this model will no longer be available through OctoAI. If you are using this integration, you have the following options:
+<br/>
+
+**Option 1: Use the existing collection, and provide your own vectors**
+<br/>
+
+You can continue to use the existing collection, provided that you rely on some other method to generate the required embeddings yourself for any new data, and for queries. If you are unfamiliar with the "bring your own vectors" approach, [refer to this starter guide](https://weaviate.io/developers/weaviate/starter-guides/custom-vectors).
+<br/>
+
+**Option 2: Migrate to a new collection with another model provider**
+
+Alternatively, you can migrate your data to a new collection ([read how](#how-to-migrate)). At this point, you can re-use the existing embeddings or choose a new model.
+<br/>
+
+- **Re-using the existing embeddings** will save on time and inference costs.
+- **Choosing a new model** will allow you to explore new models and potentially improve the performance of your application.
+
+If you would like to re-use the existing embeddings, you must select a model provider (e.g. [Hugging Face API](https://weaviate.io/developers/weaviate/model-providers/huggingface/embeddings)) that offers the same embedding model.
+<br/>
+
+You can also select a new model with any embedding model provider. This will require you to re-generate the embeddings for your data, as the existing embeddings will not be compatible with the new model.
+<br/>
+
+#### For collections with OctoAI generative AI integrations
+
+If you are only using the generative AI integration, you do not need to migrate your data to a new collection.
+<br/>
+
+Follow [this how-to](https://weaviate.io/developers/weaviate/manage-data/collections#update-the-generative-model-integration) to re-configure your collection with a new generative AI model provider. Note this requires Weaviate `v1.25.23`, `v1.26.8`, `v1.27.1`, or later.
+<br/>
+
+You can select any model provider that offers generative AI models.
+<br/>
+
+If you would like to continue to use the same model that you used with OctoAI, providers such as [Anyscale](https://weaviate.io/developers/weaviate/model-providers/anyscale/generative), [FriendliAI](https://weaviate.io/developers/weaviate/model-providers/friendliai/generative), [Mistral](https://weaviate.io/developers/weaviate/model-providers/mistral/generative) or local models with [Ollama](https://weaviate.io/developers/weaviate/model-providers/ollama/generative) each offer some of the suite of models that OctoAI provided.
+<br/>
+
+#### How to migrate
+
+An outline of the migration process is as follows:
+<br/>
+
+- Create a new collection with the desired model provider integration(s).
+- Export the data from the existing collection.
+	- (Optional) To re-use the existing embeddings, export the data with the existing embeddings.
+- Import the data into the new collection.
+	- (Optional) To re-use the existing embeddings, import the data with the existing embeddings.
+- Update your application to use the new collection.
+<br/>
+
+See [How-to manage data: migrate data](https://weaviate.io/developers/weaviate/manage-data/migrate) for examples on migrating data objects between collections.
+
+:::
 
 With version 1.25 we’re announcing an integration with OctoAI which will make it even easier for users to access many open source embedding and language models such as Llama3-70b, Mixtral-8x22b and more.
 
@@ -91,7 +157,7 @@ The current models supported include:
 	"llama-2-13b-chat"
 	"llama-2-70b-chat"
 
-To get started using Weaviate with OctoAI all you need is an OctoAI API key that you can get [from here](https://octo.ai/)! Read more about how you can use the [`generative-octoai` integration model](/developers/weaviate/model-providers/octoai/generative) and the [`text2vec-octoai` integration model](/developers/weaviate/model-providers/octoai/embeddings).
+To get started using Weaviate with OctoAI all you need is an OctoAI API key that you can get [from here](https://octo.ai/)! Read more about how you can use the [`generative-octoai` integration model](https://weaviate.io/developers/weaviate/model-providers/octoai/generative) and the [`text2vec-octoai` integration model](https://weaviate.io/developers/weaviate/model-providers/octoai/embeddings).
 
 ### Multimodal Google PaLM integration
 
@@ -101,13 +167,13 @@ Prior to the release of this model if users wanted to embed multimodal data they
 
 Using Google’s [multimodal embedding model](https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-multimodal-embeddings) you can now embed text, images and videos all into the same vector space and perform cross-modal retrieval!
 
-Learn more about how you can use the integration model [here](/developers/weaviate/model-providers/google/embeddings-multimodal).
+Learn more about how you can use the integration model [here](https://weaviate.io/developers/weaviate/model-providers/google/embeddings-multimodal).
 
 ## Batch vectorization
 
 Data imports often involve a vectorization step. You designate a third party vectorization service in your collection schema, and Weaviate sends objects to the service's API during data imports. In earlier versions, each object is sent as a single API call. This creates a bottleneck and leads to long import times.
 
-Some third part services offer more efficient, batch APIs. Starting in 1.25, you can configure Weaviate to [send batches of objects](/developers/weaviate/manage-data/import#batch-vectorization) to vectorization services that offer batch APIs.
+Some third part services offer more efficient, batch APIs. Starting in 1.25, you can configure Weaviate to [send batches of objects](https://weaviate.io/developers/weaviate/manage-data/import#batch-vectorization) to vectorization services that offer batch APIs.
 
 Batch operations have two primary advantages:
 
@@ -116,15 +182,15 @@ Batch operations have two primary advantages:
 
 ## Automatic tenant creation
 
-[Multi-tenant collections](/developers/weaviate/manage-data/multi-tenancy) are a useful way to separate and organize data. Earlier version of Weaviate, [batch imports](/developers/weaviate/manage-data/import) already support multi-tenant operations. However, you have to create the tenants before you import data. This extra step can be inconvenient.
+[Multi-tenant collections](https://weaviate.io/developers/weaviate/manage-data/multi-tenancy) are a useful way to separate and organize data. Earlier version of Weaviate, [batch imports](https://weaviate.io/developers/weaviate/manage-data/import) already support multi-tenant operations. However, you have to create the tenants before you import data. This extra step can be inconvenient.
 
-Starting in 1.25, you can configure Weaviate to [create new tenants](/developers/weaviate/manage-data/multi-tenancy#automatically-add-new-tenants)  during batch imports if the tenants don't already exist. Use automatic multi-tenant creation to streamline your data imports.
+Starting in 1.25, you can configure Weaviate to [create new tenants](https://weaviate.io/developers/weaviate/manage-data/multi-tenancy#automatically-add-new-tenants)  during batch imports if the tenants don't already exist. Use automatic multi-tenant creation to streamline your data imports.
 
 ## Search improvements
 
-Standalone vector searches use the [`nearText`](/developers/weaviate/search/similarity#search-with-text) and [`nearVector`](/developers/weaviate/search/similarity#search-with-a-vector) similarity operators to fine tune search results. Since [hybrid search](/developers/weaviate/search/hybrid) combines the strengths of vector search and keyword search, many of you asked for this feature in hybrid search too. It's here! The 1.25 release adds the [similarity operators](/developers/weaviate/search/hybrid#vector-similarity-search) to the vector component of hybrid search.
+Standalone vector searches use the [`nearText`](https://weaviate.io/developers/weaviate/search/similarity#search-with-text) and [`nearVector`](https://weaviate.io/developers/weaviate/search/similarity#search-with-a-vector) similarity operators to fine tune search results. Since [hybrid search](https://weaviate.io/developers/weaviate/search/hybrid) combines the strengths of vector search and keyword search, many of you asked for this feature in hybrid search too. It's here! The 1.25 release adds the [similarity operators](https://weaviate.io/developers/weaviate/search/hybrid#vector-similarity-search) to the vector component of hybrid search.
 
-There is another search improvement that the Weaviate community is asking for. Starting in 1.25, the `groupBy` operator is available for [hybrid search](/developers/weaviate/search/hybrid#group-results) and [keyword search](/developers/weaviate/search/bm25#group-results). Use `groupBy` to categorize your search results or to aggregate and summarize the data.
+There is another search improvement that the Weaviate community is asking for. Starting in 1.25, the `groupBy` operator is available for [hybrid search](https://weaviate.io/developers/weaviate/search/hybrid#group-results) and [keyword search](https://weaviate.io/developers/weaviate/search/bm25#group-results). Use `groupBy` to categorize your search results or to aggregate and summarize the data.
 
 ## Summary
 

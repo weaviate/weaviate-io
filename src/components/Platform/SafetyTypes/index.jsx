@@ -19,7 +19,7 @@ export default function SafetyTypes() {
             <p>
               <Link
                 className={styles.cardLink}
-                to="/developers/weaviate/search/hybrid"
+                to="https://weaviate.io/developers/weaviate/search/hybrid"
               >
                 Learn more
               </Link>
@@ -36,7 +36,7 @@ export default function SafetyTypes() {
             <p>
               <Link
                 className={styles.cardLink}
-                to="/developers/weaviate/concepts/filtering"
+                to="https://weaviate.io/developers/weaviate/concepts/filtering"
               >
                 Learn more
               </Link>
@@ -53,7 +53,7 @@ export default function SafetyTypes() {
             <p>
               <Link
                 className={styles.cardLink}
-                to="/developers/weaviate/starter-guides/generative"
+                to="https://weaviate.io/developers/weaviate/starter-guides/generative"
               >
                 Learn more
               </Link>
@@ -70,7 +70,7 @@ export default function SafetyTypes() {
             <p>
               <Link
                 className={styles.cardLink}
-                to="/developers/weaviate/model-providers"
+                to="https://weaviate.io/developers/weaviate/model-providers"
               >
                 Learn more
               </Link>
@@ -87,7 +87,7 @@ export default function SafetyTypes() {
             <p>
               <Link
                 className={styles.cardLink}
-                to="/developers/weaviate/configuration/backups"
+                to="https://weaviate.io/developers/weaviate/configuration/backups"
               >
                 Learn more
               </Link>
@@ -104,7 +104,7 @@ export default function SafetyTypes() {
             <p>
               <Link
                 className={styles.cardLink}
-                to="/developers/weaviate/concepts/cluster"
+                to="https://weaviate.io/developers/weaviate/concepts/cluster"
               >
                 Learn more
               </Link>
@@ -121,7 +121,7 @@ export default function SafetyTypes() {
             <p>
               <Link
                 className={styles.cardLink}
-                to="/developers/weaviate/configuration/compression/pq-compression"
+                to="https://weaviate.io/developers/weaviate/configuration/compression/pq-compression"
               >
                 Learn more
               </Link>
@@ -140,7 +140,7 @@ export default function SafetyTypes() {
             <p>
               <Link
                 className={styles.cardLink}
-                to="/developers/weaviate/concepts/data#multi-tenancy"
+                to="https://weaviate.io/developers/weaviate/concepts/data#multi-tenancy"
               >
                 Learn more
               </Link>

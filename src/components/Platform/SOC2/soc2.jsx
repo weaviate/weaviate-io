@@ -30,7 +30,7 @@ export default function Soc2(props) {
                 easily with an open source, developer-friendly platform and
                 ecosystem.
               </p>
-              <Link to="/developers/weaviate">Learn more</Link>
+              <Link to="https://weaviate.io/developers/weaviate">Learn more</Link>
             </div>
           </div>
           <div className={styles.twoRow}>
@@ -41,7 +41,7 @@ export default function Soc2(props) {
                 frameworks. Quickly adopt and test new models as the ecosystem
                 evolves.
               </p>
-              <Link to="/developers/weaviate/model-providers">Learn more</Link>
+              <Link to="https://weaviate.io/developers/weaviate/model-providers">Learn more</Link>
             </div>
             <div className={`${styles.platformImage} ${styles.pImage02}`}></div>
           </div>
@@ -54,7 +54,7 @@ export default function Soc2(props) {
                 insights. Leverage both vector search and BM25 keyword search -
                 to create hybrid search - without any extra overhead.
               </p>
-              <Link to="/developers/weaviate/search/hybrid">Learn more</Link>
+              <Link to="https://weaviate.io/developers/weaviate/search/hybrid">Learn more</Link>
             </div>
           </div>
           <div className={styles.twoRow}>

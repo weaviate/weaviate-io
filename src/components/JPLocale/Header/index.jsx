@@ -28,7 +28,7 @@ export default function HomepageHeader() {
             >
               無料で始める
             </Link>
-            <Link className={styles.buttonOutline} to="/developers/weaviate">
+            <Link className={styles.buttonOutline} to="https://weaviate.io/developers/weaviate">
               ドキュメント
             </Link>
           </div>

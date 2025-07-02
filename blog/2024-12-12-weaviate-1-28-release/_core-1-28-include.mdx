@@ -46,13 +46,13 @@ A "devops" role with access to view cluster and node metadata
 
 Permissions can be as specific as needed - from broad access to all collections down to operations on individual collections. The system is additive, meaning if a user has multiple roles, they'll gain the combined permissions of all their roles.
 
-To learn more, check out our [Authentication](/developers/weaviate/configuration/authentication) and [Authorization and RBAC](/developers/weaviate/configuration/authorization) documentation, along with the [Roles](/developers/weaviate/configuration/rbac/manage-roles-users) guide.
+To learn more, check out our [Authentication](https://weaviate.io/developers/weaviate/configuration/authentication) and [Authorization and RBAC](https://weaviate.io/developers/weaviate/configuration/authorization) documentation, along with the [Roles](https://weaviate.io/developers/weaviate/configuration/rbac/manage-roles-users) guide.
 
 While RBAC is currently in technical preview (meaning there might be changes before the final release), we're excited to get feedback from the community on this important security feature. For production environments, we recommend continuing to use the existing authentication and authorization mechanisms for now.
 
 ## Async indexing improvements
 
-We've enhanced our [asynchronous vector indexing](/developers/weaviate/concepts/vector-index#asynchronous-indexing) feature in `v1.28`, making it more robust and capable than ever. While async indexing (introduced in `v1.22`) already helped speed up batch imports by handling vector indexing in the background, we've now expanded its capabilities and rebuilt its foundations.
+We've enhanced our [asynchronous vector indexing](https://weaviate.io/developers/weaviate/concepts/vector-index#asynchronous-indexing) feature in `v1.28`, making it more robust and capable than ever. While async indexing (introduced in `v1.22`) already helped speed up batch imports by handling vector indexing in the background, we've now expanded its capabilities and rebuilt its foundations.
 
 The async indexing system now handles all operations related to the vector index, including:
 - Single object imports
@@ -72,7 +72,7 @@ As you can see, we are still making improvements to the async indexing feature. 
 
 ## Conflict resolution improvements
 
-When running Weaviate across multiple replicas, it's crucial to maintain [consistency](/developers/weaviate/concepts/replication-architecture/consistency) across the cluster. One common challenge is how to handle conflicts when objects are deleted, as a deleted object might be mistaken for an object that is yet to be created.
+When running Weaviate across multiple replicas, it's crucial to maintain [consistency](https://weaviate.io/developers/weaviate/concepts/replication-architecture/consistency) across the cluster. One common challenge is how to handle conflicts when objects are deleted, as a deleted object might be mistaken for an object that is yet to be created.
 
 `v1.28` introduces three deletion resolution strategies that you can choose from based on your needs:
 
@@ -84,7 +84,7 @@ These strategies work seamlessly with Weaviate's existing replication and repair
 
 This improvement is particularly valuable for production deployments where data consistency is critical and manual intervention should be minimized.
 
-To use this feature, [set the deletion strategy at the collection level under replication settings](/developers/weaviate/manage-data/collections#replication-settings).
+To use this feature, [set the deletion strategy at the collection level under replication settings](https://weaviate.io/developers/weaviate/manage-data/collections#replication-settings).
 
 ### New Japanese tokenizer
 
@@ -92,7 +92,7 @@ We 🫶 our community, and seeing Weaviate usage grow around the world. So we ar
 
 This feature adds a new Japanese tokenizer, `kagome_ja`, to Weaviate's keyword and hybrid search capabilities. This tokenizer uses the [Kagome](https://github.com/ikawaha/kagome) library, a morphological analyzer for Japanese text, to break down Japanese text into individual tokens for indexing and searching.
 
-To use this tokenizer, set the `ENABLE_TOKENIZER_KAGOME_JA` [environment variable](/developers/weaviate/config-refs/env-vars) to `true`, and set the [tokenization method](/developers/weaviate/config-refs/schema#kagome_ja-tokenization-method) for the relevant properties to `kagome_ja`.
+To use this tokenizer, set the `ENABLE_TOKENIZER_KAGOME_JA` [environment variable](https://weaviate.io/developers/weaviate/config-refs/env-vars) to `true`, and set the [tokenization method](https://weaviate.io/developers/weaviate/config-refs/schema#kagome_ja-tokenization-method) for the relevant properties to `kagome_ja`.
 
 ## BlockMax WAND (Experimental)
 
@@ -118,11 +118,11 @@ We're excited about the potential performance improvements this could bring to k
 
 ### Voyage AI Multimodal model support
 
-![Voyage AI embeddings integration schematic](../../developers/weaviate/model-providers/_includes/integration_voyageai_embedding.png)
+![Voyage AI embeddings integration schematic](./img/integration_voyageai_embedding.png)
 
 Weaviate recently added support for [Voyage AI's Multimodal model](https://blog.voyageai.com/2024/11/12/voyage-multimodal-3/), a powerful model that combines text and image embeddings for multimodal search.
 
-This model integration was added to Weaviate recently, with `v1.27.8`, `v1.26.12` and `v1.25.28`. You can now use the [Voyage AI model integration](/developers/weaviate/model-providers/voyageai) to build AI-driven applications that can search for objects based on both text and image data.
+This model integration was added to Weaviate recently, with `v1.27.8`, `v1.26.12` and `v1.25.28`. You can now use the [Voyage AI model integration](https://weaviate.io/developers/weaviate/model-providers/voyageai) to build AI-driven applications that can search for objects based on both text and image data.
 
 Note: Client support and official documentation will follow very soon
 
@@ -130,7 +130,7 @@ Note: Client support and official documentation will follow very soon
 
 ![Weaviate Embeddings](https://weaviate.io/img/site/weaviate-embedding-image.svg)
 
-In case you missed it, we recently introduced a new service called [Weaviate Embeddings](/developers/wcs/embeddings). This service provides secure, scalable embedding generation as a fully managed service, tightly integrated with Weaviate Cloud instances.
+In case you missed it, we recently introduced a new service called [Weaviate Embeddings](https://weaviate.io/developers/wcs/embeddings). This service provides secure, scalable embedding generation as a fully managed service, tightly integrated with Weaviate Cloud instances.
 
 This allows you to generate text embeddings using single authentication, and benefits of unified billing with your Weaviate Cloud account. Read more about it in our [announcement blog post](/blog/introducing-weaviate-embeddings).
 
@@ -140,7 +140,7 @@ Ready to Get Started?
 
 Enjoy the new features and improvements in Weaviate `1.28`. The release is available open-source as always [on GitHub](https://github.com/weaviate/weaviate/releases/tag/v1.28.0), and will be available for new Sandboxes on [Weaviate Cloud](https://console.weaviate.cloud/) very shortly.
 
-For those of you upgrading a self-hosted version, please check the [migration guide](/developers/weaviate/more-resources/migration#general-upgrade-instructions) for detailed instructions.
+For those of you upgrading a self-hosted version, please check the [migration guide](https://weaviate.io/developers/weaviate/more-resources/migration#general-upgrade-instructions) for detailed instructions.
 
 It will be available for Serverless clusters on Weaviate Cloud soon as well.
 

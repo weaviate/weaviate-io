@@ -153,7 +153,7 @@ Here is an [example project](https://github.com/weaviate/weaviate-examples/tree/
 Just spin everything up, run a few queries and navigate to the Grafana instance in the browser to see the dashboard.
 
 ### Learn more
-To learn more, see the [documentation](/developers/weaviate/configuration/monitoring).
+To learn more, see the [documentation](https://weaviate.io/developers/weaviate/configuration/monitoring).
 
 ## Support for non-cosine distances
 ![Support for non-cosine distances](./img/non-cosine-distances.png)
@@ -177,7 +177,7 @@ The distance values provided are raw numbers, which allow you to interpret the r
 For example, you can normalize and convert **distance values** to **certainty values** that fit the machine learning model you use and the kind of results you expect.
 
 ### Learn more
-For more info, check out [the documentation](/developers/weaviate/config-refs/distances).
+For more info, check out [the documentation](https://weaviate.io/developers/weaviate/config-refs/distances).
 
 ### Contribute
 Adding other distances is surprisingly easy, which could be a great way to contribute to the Weaviate project.
@@ -193,9 +193,9 @@ The REST API CRUD operations now require you to use both an **object ID** and th
 This ensures that the operations are performed on the correct objects.
 
 ### Background
-One of Weaviate's features is full CRUD support. CRUD operations enable the mutability of data objects and their vectors, which is a key difference between a vector database and an ANN library. In Weaviate, every data object has an ID (UUID). This ID is stored with the data object in a key-value store. IDs don't have to be globally unique, because in Weaviate [classes](/developers/weaviate/manage-data/collections) act as namespaces. While each class has a different [HNSW index](/developers/weaviate/concepts/vector-index#hnsw), including the store around it, which is isolated on disk.
+One of Weaviate's features is full CRUD support. CRUD operations enable the mutability of data objects and their vectors, which is a key difference between a vector database and an ANN library. In Weaviate, every data object has an ID (UUID). This ID is stored with the data object in a key-value store. IDs don't have to be globally unique, because in Weaviate [classes](https://weaviate.io/developers/weaviate/manage-data/collections) act as namespaces. While each class has a different [HNSW index](https://weaviate.io/developers/weaviate/concepts/vector-index#hnsw), including the store around it, which is isolated on disk.
 
-There was however one point in the API where reusing IDs between classes was causing serious issues. Most noticeable this was for the [v1/objects/{id}](/developers/weaviate/api/rest#tag/objects) REST endpoints.
+There was however one point in the API where reusing IDs between classes was causing serious issues. Most noticeable this was for the [v1/objects/{id}](https://weaviate.io/developers/weaviate/api/rest#tag/objects) REST endpoints.
 If you wanted to retrieve, modify or delete a data object by its ID, you would just need to specify the ID, without specifying the class name. So if the same ID exists for objects in multiple classes (which is fine because of the namespaces per class), Weaviate would not know which object to address and would address all objects with that ID instead. I.e. if you tried to delete an object by ID, this would result in the deletion of all objects with that ID.
 
 ### Endpoint changes
@@ -246,7 +246,7 @@ If at any point during your journey with Weaviate, you discover any bugs or you 
 We have a little favour to ask. Often reproducing the issue takes a lot more time than it takes to fix it. When you report a new issue, please include steps on how to reproduce the issue, together with some info about your environment. That will help us tremendously to identify the root cause and fix it.
 
 ### Guide
-Here is a little guide on [how to write great bug reports](/developers/weaviate/more-resources/write-great-bug-reports).
+Here is a little guide on [how to write great bug reports](https://weaviate.io/developers/weaviate/more-resources/write-great-bug-reports).
 
 ## Enjoy
 We hope you enjoy the most reliable and observable Weaviate release yet!

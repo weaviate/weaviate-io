@@ -1,46 +1,14 @@
-# [[redirects]]
-# from = "/wcs/guides/console"
-# to   = "https://docs.weaviate.io/cloud/tools/query-tool"
-# status = 302
-# force = true
+[[redirects]]
+from = "/weaviate/release-notes/older-releases/release_1_*"
+to = "https://weaviate.io/blog/weaviate-1-:splat-release"
+status = 301
 
-# [[redirects]]
-#   from = "/developers/agents/*"
-#   to = "https://docs.weaviate.io/agents/:splat"
-#   status = 302
-#   force = true
+[[redirects]]
+from = "/weaviate/release-notes/release_1_*"
+to = "https://weaviate.io/blog/weaviate-1-:splat-release"
+status = 301
 
-# [[redirects]]
-#   from = "/developers/academy/*"
-#   to = "https://docs.weaviate.io/academy/:splat"
-#   status = 302
-#   force = true
-
-# [[redirects]]
-#   from = "/developers/contributor-guide/*"
-#   to = "https://docs.weaviate.io/contributor-guide/:splat"
-#   status = 302
-#   force = true
-
-# [[redirects]]
-#   from = "/developers/integrations/*"
-#   to = "https://docs.weaviate.io/integrations/:splat"
-#   status = 302
-#   force = true
-
-# [[redirects]]
-#   from = "/developers/wcs/*"
-#   to = "https://docs.weaviate.io/cloud/:splat"
-#   status = 302
-#   force = true
-
-# [[redirects]]
-#   from = "/developers/weaviate/*"
-#   to = "https://docs.weaviate.io/weaviate/:splat"
-#   status = 302
-#   force = true
-
-# fallback for all the other /developers links
+# Redirect all remaining /developers requests to docs subdomain
 [[redirects]]
   from = "/developers/*"
   to = "https://docs.weaviate.io/:splat"

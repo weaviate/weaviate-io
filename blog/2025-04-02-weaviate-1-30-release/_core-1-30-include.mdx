@@ -17,7 +17,7 @@ Here are the release ⭐️*highlights*⭐️!
 
 ## BlockMax WAND in GA
 
-BlockMax WAND [significantly speeds up keyword and hybrid searches](/developers/weaviate/concepts/indexing#blockmax-wand-algorithm) in Weaviate. Originally introduced as a technical preview in `1.28`, it is now generally available in `v1.30`. In fact, it is now the default indexing algorithm for all new Weaviate instances from this version onwards.
+BlockMax WAND [significantly speeds up keyword and hybrid searches](https://weaviate.io/developers/weaviate/concepts/indexing#blockmax-wand-algorithm) in Weaviate. Originally introduced as a technical preview in `1.28`, it is now generally available in `v1.30`. In fact, it is now the default indexing algorithm for all new Weaviate instances from this version onwards.
 
 At a high level, BlockMax WAND is an algorithm that optimizes the scoring of documents in a search index for lexical (keyword) queries. This can be especially useful for large datasets, for example large e-commerce catalogs or a library of complex (legal/medical/domain-specific) documents.
 
@@ -35,7 +35,7 @@ import BMWExampleCalc from './img/bmw_example.png';
   </small></figcaption>
 </Figure>
 
-Existing instances' data can be migrated to use BlockMax WAND by following [this guide](/developers/weaviate/more-resources/migration/weaviate-1-30). This is a one-time operation, and once completed, the instance will use BlockMax WAND for all future searches.
+Existing instances' data can be migrated to use BlockMax WAND by following [this guide](https://weaviate.io/developers/weaviate/more-resources/migration/weaviate-1-30). This is a one-time operation, and once completed, the instance will use BlockMax WAND for all future searches.
 
 If you are going to create a new Weaviate instance, you do not need to do anything - BlockMax WAND will be used by default.
 
@@ -43,13 +43,13 @@ Enjoy the speedup! 🚀🚀🚀
 
 :::info Related resources
 - [BlockMax WAND blog](/blog/blockmax-wand/)
-- [Concepts: Indexing - BlockMax WAND](/developers/weaviate/concepts/indexing#blockmax-wand-algorithm)
-- [Migration Guide: BlockMax WAND](/developers/weaviate/more-resources/migration/weaviate-1-30)
+- [Concepts: Indexing - BlockMax WAND](https://weaviate.io/developers/weaviate/concepts/indexing#blockmax-wand-algorithm)
+- [Migration Guide: BlockMax WAND](https://weaviate.io/developers/weaviate/more-resources/migration/weaviate-1-30)
 :::
 
 ## Multi-vector embeddings
 
-ColBERT or ColPali-like [multi-vector embeddings](/developers/weaviate/tutorials/multi-vector-embeddings) are now generally available in Weaviate for production use. Here is an illustration showing the difference between single-vector and multi-vector embeddings.
+ColBERT or ColPali-like [multi-vector embeddings](https://weaviate.io/developers/weaviate/tutorials/multi-vector-embeddings) are now generally available in Weaviate for production use. Here is an illustration showing the difference between single-vector and multi-vector embeddings.
 
 import MVEmbeddingVizLight from './img/single_multi_vector_comparison_light.png';
 import MVEmbeddingVizDark from './img/single_multi_vector_comparison_dark.png';
@@ -88,8 +88,8 @@ We know this would be a welcome feature for those of you looking to go to produc
 If you have been waiting for multi-vector embeddings to be generally available, or if you are interested in quantization, now is the time to try it out!
 
 :::info Related resources
-- [Multi-vector embeddings tutorial](/developers/weaviate/tutorials/multi-vector-embeddings)
-- [How-to Configure: Vector Quantization](/developers/weaviate/configuration/compression)
+- [Multi-vector embeddings tutorial](https://weaviate.io/developers/weaviate/tutorials/multi-vector-embeddings)
+- [How-to Configure: Vector Quantization](https://weaviate.io/developers/weaviate/configuration/compression)
 :::
 
 ## Database user management API
@@ -108,7 +108,7 @@ You can create, delete, and even rotate these database users' API keys without r
 Individual users' access can be granted, revoked or made secure again in real-time without the need for downtime. It can be combined with role-based access control (RBAC) to provide a powerful and flexible access control system.
 
 :::info Related resources
-- [Database user management API](/developers/weaviate/configuration/rbac/manage-users)
+- [Database user management API](https://weaviate.io/developers/weaviate/configuration/rbac/manage-users)
 :::
 
 ## Generative capability improvements
@@ -137,18 +137,18 @@ For example, you might want to use a different model for a specific query, or us
 Additionally, you can now add images to the input of the generative model as context. This can help you to get more out of modern vision language models from providers such as Anthropic, Google, and OpenAI, for example.
 
 :::info Related resources
-- [How-to: Search: Configure a generative model provider](/developers/weaviate/search/generative#configure-a-generative-model-provider)
+- [How-to: Search: Configure a generative model provider](https://weaviate.io/developers/weaviate/search/generative#configure-a-generative-model-provider)
 :::
 
 
 ## xAI model integration
 
-Weaviate's suite of [model integrations](/developers/weaviate/model-providers/) now includes support for xAI's generative AI models.
+Weaviate's suite of [model integrations](https://weaviate.io/developers/weaviate/model-providers/) now includes support for xAI's generative AI models.
 
-To use xAI's generative AI models with Weaviate, take a look at the [xAI model integration page](/developers/weaviate/model-providers/xai/) for detailed instructions on how to configure Weaviate with xAI models and start using them in your applications.
+To use xAI's generative AI models with Weaviate, take a look at the [xAI model integration page](https://weaviate.io/developers/weaviate/model-providers/xai/) for detailed instructions on how to configure Weaviate with xAI models and start using them in your applications.
 
 :::info Related resources
-- [Model provider integrations: xAI](/developers/weaviate/model-providers/xai)
+- [Model provider integrations: xAI](https://weaviate.io/developers/weaviate/model-providers/xai)
 :::
 
 ## Other enhancements
@@ -161,11 +161,11 @@ Weaviate will now periodically look for the presence of a configuration file to 
 
 This means that you can now change these settings without restarting Weaviate, which can be useful for managing Weaviate instances in production.
 
-For detailed instructions on how to set this up, and what settings are available, refer to the [Runtime config management page](/developers/weaviate/config-refs/env-vars/runtime-config).
+For detailed instructions on how to set this up, and what settings are available, refer to the [Runtime config management page](https://weaviate.io/developers/weaviate/config-refs/env-vars/runtime-config).
 
 :::info Related resources
-- [References: Configuration: Runtime config management](/developers/weaviate/config-refs/env-vars/runtime-config)
-- [References: Configuration: Environment variables](/developers/weaviate/config-refs/env-vars)
+- [References: Configuration: Runtime config management](https://weaviate.io/developers/weaviate/config-refs/env-vars/runtime-config)
+- [References: Configuration: Environment variables](https://weaviate.io/developers/weaviate/config-refs/env-vars)
 :::
 
 ### Collection count limits
@@ -176,13 +176,13 @@ One, it prevents a user from creating too many collections, which can slow down 
 
 The default limit is set to 1000 collections per Weaviate instance. You can change this limit by setting `MAXIMUM_ALLOWED_COLLECTIONS_COUNT` in the environment variables.
 
-However, if you finding yourself hitting or even nearing this limit, we advise you to check out this guide on [scaling limits with collections](/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits) to see if you can optimize your Weaviate instance.
+However, if you finding yourself hitting or even nearing this limit, we advise you to check out this guide on [scaling limits with collections](https://weaviate.io/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits) to see if you can optimize your Weaviate instance.
 
 This is a good opportunity to consider whether you need to create so many collections, or whether you can use a multi-tenant approach instead.
 
 :::info Related resources
-- [Guide: Scaling limits with collections](/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits)
-- [References: Configuration: Environment variables](/developers/weaviate/config-refs/env-vars)
+- [Guide: Scaling limits with collections](https://weaviate.io/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits)
+- [References: Configuration: Environment variables](https://weaviate.io/developers/weaviate/config-refs/env-vars)
 :::
 
 ### Tokenizer concurrency limits
@@ -194,18 +194,18 @@ This can help you to balance the needs between performance and resource consumpt
 If you need to change this limit, you can do so by setting the `TOKENIZER_CONCURRENCY_COUNT` environment variable.
 
 :::info Related resources
-- [References: Configuration: Environment variables](/developers/weaviate/config-refs/env-vars)
-- [References: Collection definition: Limit tokenizer concurrency](/developers/weaviate/config-refs/schema#limit-the-number-of-gse-and-kagome-tokenizers)
+- [References: Configuration: Environment variables](https://weaviate.io/developers/weaviate/config-refs/env-vars)
+- [References: Collection definition: Limit tokenizer concurrency](https://weaviate.io/developers/weaviate/config-refs/schema#limit-the-number-of-gse-and-kagome-tokenizers)
 :::
 
 ### RBAC updates
 
 The engineering team continue to make even more improvements to the role-based access control (RBAC) API to allow further granular control over user permissions. The latest updates include the ability to filter for tenants for `Data` and `Tenant` permissions.
 
-See the [RBAC documentation](/developers/weaviate/configuration/rbac) for more information.
+See the [RBAC documentation](https://weaviate.io/developers/weaviate/configuration/rbac) for more information.
 
 :::info Related resources
-- [How-to configure: Role-based access control](/developers/weaviate/configuration/rbac)
+- [How-to configure: Role-based access control](https://weaviate.io/developers/weaviate/configuration/rbac)
 :::
 
 ## Summary
@@ -214,7 +214,7 @@ Ready to Get Started?
 
 Enjoy the new features and improvements in Weaviate `1.30`. The release is available open-source as always [on GitHub](https://github.com/weaviate/weaviate/releases/tag/v1.30.0), and will be available for new Sandboxes on [Weaviate Cloud](https://console.weaviate.cloud/) very shortly.
 
-For those of you upgrading a self-hosted version, please check the [migration guide](/developers/weaviate/more-resources/migration#general-upgrade-instructions) for detailed instructions.
+For those of you upgrading a self-hosted version, please check the [migration guide](https://weaviate.io/developers/weaviate/more-resources/migration#general-upgrade-instructions) for detailed instructions.
 
 It will be available for Serverless clusters on Weaviate Cloud soon as well.
 

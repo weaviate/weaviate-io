@@ -18,17 +18,17 @@ export default function Integrations() {
 
       <div className={styles.integrationsLogos} id={'interLogos'}>
         <div className={styles.inside}>
-          <Link to="/developers/weaviate/model-providers/openai/embeddings">
+          <Link to="https://weaviate.io/developers/weaviate/model-providers/openai/embeddings">
             <div className={styles.logoBg}>
               <span className={styles.logoGoogle} />
             </div>
           </Link>
-          <Link to="/developers/weaviate/model-providers/cohere/embeddings">
+          <Link to="https://weaviate.io/developers/weaviate/model-providers/cohere/embeddings">
             <div className={styles.logoBg}>
               <span className={styles.logoCo} />
             </div>
           </Link>
-          <Link to="/developers/weaviate/model-providers/openai/embeddings">
+          <Link to="https://weaviate.io/developers/weaviate/model-providers/openai/embeddings">
             <div className={styles.logoBg}>
               <span className={styles.logoAI} />
             </div>
@@ -51,17 +51,17 @@ export default function Integrations() {
         </div>
 
         <div className={styles.inside}>
-          <Link to="/developers/weaviate/model-providers/openai/embeddings">
+          <Link to="https://weaviate.io/developers/weaviate/model-providers/openai/embeddings">
             <div className={styles.logoBg}>
               <span className={styles.logoGoogle} />
             </div>
           </Link>
-          <Link to="/developers/weaviate/model-providers/cohere/embeddings">
+          <Link to="https://weaviate.io/developers/weaviate/model-providers/cohere/embeddings">
             <div className={styles.logoBg}>
               <span className={styles.logoCo} />
             </div>
           </Link>
-          <Link to="/developers/weaviate/model-providers/openai/embeddings">
+          <Link to="https://weaviate.io/developers/weaviate/model-providers/openai/embeddings">
             <div className={styles.logoBg}>
               <span className={styles.logoAI} />
             </div>
