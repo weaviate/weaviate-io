@@ -1,12 +1,19 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 
 export default function SplitImageSlider() {
   const containerRef = useRef(null);
   const [sliderPos, setSliderPos] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
+  const [autoAnimating, setAutoAnimating] = useState(true);
+  const animationCountRef = useRef(0);
+  const rafRef = useRef(null);
 
-  const handleStart = () => setIsDragging(true);
+  const handleStart = () => {
+    setIsDragging(true);
+    setAutoAnimating(false);
+    cancelAnimationFrame(rafRef.current);
+  };
   const handleEnd = () => setIsDragging(false);
 
   const handleMove = (e) => {
@@ -17,6 +24,55 @@ export default function SplitImageSlider() {
     const newPos = ((x - bounds.left) / bounds.width) * 100;
     setSliderPos(Math.max(5, Math.min(95, newPos)));
   };
+
+  useEffect(() => {
+    if (!autoAnimating) return;
+
+    let direction = 1;
+    let pos = 50;
+    let lastTime = null;
+    let loopCount = 0;
+    const maxLoops = 3;
+
+    const animate = (time) => {
+      if (!lastTime) lastTime = time;
+      const delta = time - lastTime;
+      lastTime = time;
+
+      const speed = 0.009;
+
+      pos += direction * delta * speed;
+
+      if (pos >= 90) {
+        pos = 90;
+        direction = -1;
+        loopCount++;
+      }
+      if (pos <= 10) {
+        pos = 10;
+        direction = 1;
+        loopCount++;
+      }
+
+      setSliderPos(pos);
+
+      if (loopCount < maxLoops * 2) {
+        rafRef.current = requestAnimationFrame(animate);
+      } else {
+        // Pause, then restart after 2s if no interaction
+        setTimeout(() => {
+          if (!isDragging && autoAnimating) {
+            loopCount = 0;
+            rafRef.current = requestAnimationFrame(animate);
+          }
+        }, 4000);
+      }
+    };
+
+    rafRef.current = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [autoAnimating, isDragging]);
 
   return (
     <div
@@ -30,14 +86,13 @@ export default function SplitImageSlider() {
       onTouchEnd={handleEnd}
       onTouchMove={handleMove}
     >
-      {sliderPos >= 45 && (
+      {sliderPos >= 49 && (
         <div className={styles.beforeLabel}>BEFORE WEAVIATE</div>
       )}
-      {sliderPos <= 55 && (
+      {sliderPos <= 50 && (
         <div className={styles.afterLabel}>WITH WEAVIATE</div>
       )}
 
-      {/* Base image*/}
       <div className={styles.imageWrapperBase}>
         <img
           src="/img/site/code-after-block.png"
@@ -46,7 +101,6 @@ export default function SplitImageSlider() {
         />
       </div>
 
-      {/* Overlay (clipped) */}
       <div
         className={styles.overlay}
         style={{
@@ -62,8 +116,6 @@ export default function SplitImageSlider() {
           />
         </div>
       </div>
-
-      {/* Handle */}
 
       <div className={styles.sliderHandle} style={{ left: `${sliderPos}%` }} />
       <div

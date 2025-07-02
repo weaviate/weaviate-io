@@ -56,10 +56,6 @@
   position: relative;
   z-index: 1;
 
-  @media screen and (max-width: 970px) {
-    display: none;
-  }
-
   .image {
     background: url('/img/site/weaviate-graffiti.png');
     background-size: contain;
