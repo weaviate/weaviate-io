@@ -631,7 +631,7 @@
   }
 
   .benefitBox {
-    width: 22.5rem;
+    width: 21.5rem;
     height: 26.9rem;
 
     .titleBG {
@@ -790,6 +790,8 @@
 }
 
 .smallStaticBox {
+  display: flex;
+  justify-content: center;
   flex-shrink: 0;
   border-radius: 0.625rem;
   border-radius: 0.625rem;
@@ -924,4 +926,32 @@
 .centered {
   text-align: center;
   align-self: center;
+}
+
+@media screen and (max-width: 900px) {
+  .staticBoxesWrapper {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .bigStaticBox {
+    width: 100%;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .smallBoxesColumn {
+    width: 100%;
+  }
+
+  .smallStaticBox {
+    width: 100%;
+    padding: 2rem;
+    margin-top: 2rem;
+  }
+
+  .smallBenefitBox {
+    width: 100%;
+    padding: 2rem;
+  }
 }

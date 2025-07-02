@@ -49,6 +49,7 @@
     width: 80%;
     @media screen and (max-width: 1000px) {
       width: 100%;
+      font-size: 1.5rem;
     }
   }
 }
@@ -62,9 +63,9 @@
     background-repeat: no-repeat;
     background-position: bottom right;
 
-    width: 42rem; // increased size
-    height: 34rem; // increased height
-    margin-bottom: -4rem; // pulls it behind the bottomBar
+    width: 42rem;
+    height: 34rem;
+    margin-bottom: -4rem;
     z-index: 1;
     position: relative;
     transition: all 0.3s ease-in-out;
@@ -72,6 +73,12 @@
     @media screen and (max-width: 1450px) {
       width: 34rem;
       height: 28rem;
+    }
+
+    @media screen and (max-width: 1000px) {
+      width: 30rem;
+      height: 28rem;
+      margin-bottom: -2rem;
     }
 
     @media screen and (max-width: 900px) {
@@ -82,8 +89,8 @@
       margin-bottom: 0;
     }
 
-    @media screen and (max-width: 400px) {
-      min-width: 20rem;
+    @media screen and (max-width: 450px) {
+      min-width: 24rem;
     }
   }
 }
@@ -104,7 +111,7 @@
 
     font-size: 1rem;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 157.33%;
     display: flex;
     width: 11.3125rem;
@@ -168,20 +175,28 @@
 .logoWrapper {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
   align-items: center;
   gap: 60px;
-  animation: scroll 200s linear infinite;
-  width: calc(200% + 40px);
 
-  @media (min-width: 1800px) {
-    animation: none;
+  /* Duplicate logos inside this wrapper (already done in your code) */
+  width: fit-content;
+
+  animation: scrollLoop 200s linear infinite;
+}
+
+@keyframes scrollLoop {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
   }
 }
 
 .logo {
   background-image: url('/img/site/lightlogos/stackoverflow.svg');
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center;
   width: 4.05294rem;
   height: 1.2745rem;
@@ -287,6 +302,9 @@
 
 .logo18 {
   background-image: url('/img/site/lightlogos/build-ltk-logo.svg');
+  height: 1.69131rem;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .logo19 {
@@ -297,15 +315,6 @@
   background-image: url('/img/site/lightlogos/build-datagrid-logo.svg');
   width: 6.99588rem;
   height: 1.69131rem;
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
 }
 
 @media (max-width: 1600px) {
