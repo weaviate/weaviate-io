@@ -41,18 +41,18 @@ The following visualization shows how late interaction works in a ColBERT model,
 
 This feature is available as a technical preview in `1.29`, so we're excited to hear your feedback and suggestions for further improvements.
 
-If you would like to try out multi-vector embeddings in Weaviate, check out the [Multi-vector embeddings tutorial](https://weaviate.io/developers/weaviate/tutorials/multi-vector-embeddings) which will take you end-to-end, for both:
+If you would like to try out multi-vector embeddings in Weaviate, check out the [Multi-vector embeddings tutorial](https://docs.weaviate.io/weaviate/tutorials/multi-vector-embeddings) which will take you end-to-end, for both:
 
-- [Using Jina AI ColBERT model integration](https://weaviate.io/developers/weaviate/tutorials/multi-vector-embeddings#option-1-colbert-model-integration), or
-- [Using user-provided multi-vector embeddings](https://weaviate.io/developers/weaviate/tutorials/multi-vector-embeddings#option-2-user-provided-embeddings).
+- [Using Jina AI ColBERT model integration](https://docs.weaviate.io/weaviate/tutorials/multi-vector-embeddings#option-1-colbert-model-integration), or
+- [Using user-provided multi-vector embeddings](https://docs.weaviate.io/weaviate/tutorials/multi-vector-embeddings#option-2-user-provided-embeddings).
 
 ## NVIDIA model support
 
-Weaviate's suite of [model integrations](https://weaviate.io/developers/weaviate/model-providers/) now includes support for NVIDIA's NIM inference service.
+Weaviate's suite of [model integrations](https://docs.weaviate.io/weaviate/model-providers/) now includes support for NVIDIA's NIM inference service.
 
 ![Embedding integration illustration](./img/integration_nvidia_embedding.png)
 
-Weaviate users can now use NVIDIA model integration to [create text embeddings](https://weaviate.io/developers/weaviate/model-providers/nvidia/embeddings), [create multi-modal embeddings](https://weaviate.io/developers/weaviate/model-providers/nvidia/embeddings-multimodal), and use [generative AI models](https://weaviate.io/developers/weaviate/model-providers/nvidia/generative). (Reranker model support coming soon)
+Weaviate users can now use NVIDIA model integration to [create text embeddings](https://docs.weaviate.io/weaviate/model-providers/nvidia/embeddings), [create multi-modal embeddings](https://docs.weaviate.io/weaviate/model-providers/nvidia/embeddings-multimodal), and use [generative AI models](https://docs.weaviate.io/weaviate/model-providers/nvidia/generative). (Reranker model support coming soon)
 
 These model integration pages provide detailed instructions on how to configure Weaviate with NVIDIA models and start using them in your applications.
 
@@ -66,7 +66,7 @@ There have been a number of changes to the RBAC API in `1.29` from the preview A
 
 This was done to make the API more consistent and easier to use, and to introduce new features. Keep also in mind that the RBAC features is still in development, and we have plans to add more features in the future.
 
-Refer to the [RBAC documentation](https://weaviate.io/developers/weaviate/configuration/rbac) for more information.
+Refer to the [RBAC documentation](https://docs.weaviate.io/weaviate/configuration/rbac) for more information.
 
 ## BlockMax WAND (Technical Preview)
 
@@ -82,7 +82,7 @@ In our internal testing, we have seen up to a 10x speedup in keyword searches du
 
 If you are experiencing slow BM25 (or hybrid) searches, try enabling BlockMax WAND to see if it improves performance.
 
-To read more about BlockMax WAND, and to try it out, refer to the [Indexing page](https://weaviate.io/developers/weaviate/concepts/indexing#blockmax-wand-algorithm).
+To read more about BlockMax WAND, and to try it out, refer to the [Indexing page](https://docs.weaviate.io/weaviate/concepts/indexing#blockmax-wand-algorithm).
 
 **To use BlockMax WAND in Weaviate `v1.29`, it must be enabled prior to collection creation.** As of this version, Weaviate will not migrate existing collections to use BlockMax WAND.
 
@@ -94,7 +94,7 @@ When each shard is replicated across multiple nodes, async replication guarantee
 
 Async replication supplements the existing repair-on-read mechanism. If a node becomes inconsistent between sync checks, the repair-on-read mechanism catches the problem at read time.
 
-To activate async replication, set `asyncEnabled` to true in the [`replicationConfig` section of your collection definition](https://weaviate.io/developers/weaviate/manage-data/collections#replication-settings). Visit the [How-to: Replication](https://weaviate.io/developers/weaviate/configuration/replication#async-replication-settings) page to learn more about the available async replication settings, and [Concepts: Replication/Consistency](https://weaviate.io/developers/weaviate/concepts/replication-architecture/consistency) for more information on how async replication works.
+To activate async replication, set `asyncEnabled` to true in the [`replicationConfig` section of your collection definition](https://docs.weaviate.io/weaviate/manage-data/collections#replication-settings). Visit the [How-to: Replication](https://docs.weaviate.io/weaviate/configuration/replication#async-replication-settings) page to learn more about the available async replication settings, and [Concepts: Replication/Consistency](https://docs.weaviate.io/weaviate/concepts/replication-architecture/consistency) for more information on how async replication works.
 
 ## Summary
 
@@ -102,7 +102,7 @@ Ready to Get Started?
 
 Enjoy the new features and improvements in Weaviate `1.29`. The release is available open-source as always [on GitHub](https://github.com/weaviate/weaviate/releases/tag/v1.28.0), and will be available for new Sandboxes on [Weaviate Cloud](https://console.weaviate.cloud/) very shortly.
 
-For those of you upgrading a self-hosted version, please check the [migration guide](https://weaviate.io/developers/weaviate/more-resources/migration#general-upgrade-instructions) for detailed instructions.
+For those of you upgrading a self-hosted version, please check the [migration guide](https://docs.weaviate.io/weaviate/more-resources/migration#general-upgrade-instructions) for detailed instructions.
 
 It will be available for Serverless clusters on Weaviate Cloud soon as well.
 

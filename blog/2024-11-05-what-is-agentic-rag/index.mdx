@@ -133,7 +133,7 @@ In June 2023, [OpenAI released function calling](https://platform.openai.com/doc
 
 Function calling isn’t only for proprietary models. Ollama introduced tool support for popular open-source models like `Llama3.2`, `nemotron-mini`, and [others](https://ollama.com/search?c=tools).
 
-To build a tool, you first need to define the function. In this snippet, we’re writing a function that is using Weaviate’s [hybrid search](https://weaviate.io/developers/weaviate/search/hybrid) to retrieve objects from the database:
+To build a tool, you first need to define the function. In this snippet, we’re writing a function that is using Weaviate’s [hybrid search](https://docs.weaviate.io/weaviate/search/hybrid) to retrieve objects from the database:
 
 ```python
 def get_search_results(query: str) -> str:

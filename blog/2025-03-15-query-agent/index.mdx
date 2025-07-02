@@ -43,14 +43,14 @@ In essence, we’ve released a multi-agent system that can route queries to one 
 
 ### Routing to Search vs Aggregations
 
-Not all queries are the same. While some may require us to do semantic search using embeddings over a dataset, other queries may require us to make [aggregations](https://weaviate.io/developers/weaviate/api/graphql/aggregate) (such as counting objects, calculating the average value of a property and so on). We can demonstrate the difference with a simple example. Think of two queries assuming we have a dataset containing the [Weaviate Blog](https://weaviate.io/blog):
+Not all queries are the same. While some may require us to do semantic search using embeddings over a dataset, other queries may require us to make [aggregations](https://docs.weaviate.io/weaviate/api/graphql/aggregate) (such as counting objects, calculating the average value of a property and so on). We can demonstrate the difference with a simple example. Think of two queries assuming we have a dataset containing the [Weaviate Blog](https://weaviate.io/blog):
 
 1.  What are the components of an AI agent discussed in the “Agents Simplified” blog?
 2.  How many blog posts has Leonie published?
 
 For question 1, we may need to filter to the “Agents Simplified” blog and search for “AI agent components”. Whereas for question 2, the task is closer to a counting task. We have to count how many blogs appear for the author Leonie.
 
-Weaviate is a [vector database](/blog/what-is-a-vector-database), meaning for case 1, we have [embeddings](/blog/vector-embeddings-explained) stored on which we can perform regular semantic search on. However, for case 2, we need to create an [Aggregation Query](https://weaviate.io/developers/weaviate/api/graphql/aggregate).
+Weaviate is a [vector database](/blog/what-is-a-vector-database), meaning for case 1, we have [embeddings](/blog/vector-embeddings-explained) stored on which we can perform regular semantic search on. However, for case 2, we need to create an [Aggregation Query](https://docs.weaviate.io/weaviate/api/graphql/aggregate).
 
 The good news is, the Weaviate Query Agent is capable of handling both. Depending on the user query, the agent will generate a search query, or an aggregation query, or in some cases both.
 

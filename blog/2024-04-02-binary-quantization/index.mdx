@@ -38,7 +38,7 @@ The process of binary quantization(BQ) takes all the numbers stored per dimensio
 
 
 :::info Enabling Binary Quantization in Weaviate
-To learn how to enable and configure Weaviate to use BQ refer to the docs [here](https://weaviate.io/developers/weaviate/configuration/compression/bq-compression). You can read more about HNSW+BQ in the documentation [here](https://weaviate.io/developers/weaviate/concepts/vector-quantization#binary-quantization).
+To learn how to enable and configure Weaviate to use BQ refer to the docs [here](https://docs.weaviate.io/weaviate/configuration/compression/bq-compression). You can read more about HNSW+BQ in the documentation [here](https://docs.weaviate.io/weaviate/concepts/vector-quantization#binary-quantization).
 :::
 
 Binarizing is not exclusive to embedding vectors, we can also understand it from the other domains in which it is used - for example in computer vision. Imagine you have an image. The process of binarizing that image entails looking at every pixel. If that pixel is larger than a certain threshold value, we will replace it with 1; otherwise, we will replace it with 0. The resulting image is a black-and-white binary image. This process loses image details but significantly compresses the image size.
@@ -160,7 +160,7 @@ So, what's the bottom line? Can Weaviate deliver lightning-fast brute-force sear
 
 There are several advantages to brute force searching your data. Firstly, you can bypass the need for data indexing, saving the time required to build the index. While indexing in Weaviate isn't overly sluggish, brute forcing allows you to skip this step entirely. Secondly, you no longer need to store a proximity graph, resulting in further memory savings. In fact, if you opt to brute force search your data directly from disk, memory usage becomes negligible – a mere 100MB is sufficient to host your application.
 
-Weaviate recently introduced the [flat index](https://weaviate.io/developers/weaviate/concepts/vector-index#flat-index), offering the option to brute force data either from disk (the default behavior) or by retaining only compressed data in memory and fetching a small selection of full vectors from disk for final candidate rescoring. Both approaches expedite data ingestion compared to the traditional HNSW index while also reducing memory consumption. However, if your requirements demand high performance, HNSW remains the preferred choice. Nevertheless, the flat index presents a cost-effective, high-performing alternative. Furthermore, Weaviate now supports binary quantization (BQ) for use with both the flat and HNSW indexes.
+Weaviate recently introduced the [flat index](https://docs.weaviate.io/weaviate/concepts/vector-index#flat-index), offering the option to brute force data either from disk (the default behavior) or by retaining only compressed data in memory and fetching a small selection of full vectors from disk for final candidate rescoring. Both approaches expedite data ingestion compared to the traditional HNSW index while also reducing memory consumption. However, if your requirements demand high performance, HNSW remains the preferred choice. Nevertheless, the flat index presents a cost-effective, high-performing alternative. Furthermore, Weaviate now supports binary quantization (BQ) for use with both the flat and HNSW indexes.
 
 ### Indexing Time Improvements
 

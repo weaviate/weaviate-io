@@ -18,7 +18,7 @@ In this blog post, you will learn how we improved Weaviate’s inverted index, h
 
 :::caution 🚧 Technical Preview
 BlockMax WAND algorithm is available in `v1.29` as a **technical preview**. This means that the feature is still under development and may change in future releases, including potential breaking changes. **We do not recommend using this feature in production environments at this time.**
-[Instructions on how to enable it are available here.](https://weaviate.io/developers/weaviate/concepts/indexing#blockmax-wand-algorithm)
+[Instructions on how to enable it are available here.](https://docs.weaviate.io/weaviate/concepts/indexing#blockmax-wand-algorithm)
 :::
 
 
@@ -28,7 +28,7 @@ Keyword search works by comparing the terms in your queries to the terms in your
 In keyword search context, these `terms` are called `tokens`, but we'll use the terms interchangeably in this blog post.
 
 Keyword search requires us to first define what terms we want to search. 
-A big part of this process is [tokenization](https://weaviate.io/developers/academy/py/tokenization/basics). It splits the input documents into [tokens](https://en.wikipedia.org/wiki/Lexical_analysis#Token) (i.e. terms, numbers or anything else one would consider important to be searched individually).  
+A big part of this process is [tokenization](https://docs.weaviate.io/academy/py/tokenization/basics). It splits the input documents into [tokens](https://en.wikipedia.org/wiki/Lexical_analysis#Token) (i.e. terms, numbers or anything else one would consider important to be searched individually).  
 In this simple example, consider a dataset made of three documents with a single property, title, composed of a single sentence and a *whitespace* tokenizer that lowercases the documents and splits them by whitespace. 
 
 | Doc Id | Document Title | Tokenized Title |
@@ -245,7 +245,7 @@ These optimizations make keyword searches in Weaviate faster and more resource-e
 
 :::caution 🚧 Technical Preview
 BlockMax WAND algorithm is available in `v1.29` as a **technical preview**. This means that the feature is still under development and may change in future releases, including potential breaking changes. **We do not recommend using this feature in production environments at this time.**
-[Instructions on how to enable it are available here.](https://weaviate.io/developers/weaviate/concepts/indexing#blockmax-wand-algorithm)
+[Instructions on how to enable it are available here.](https://docs.weaviate.io/weaviate/concepts/indexing#blockmax-wand-algorithm)
 :::
 
 

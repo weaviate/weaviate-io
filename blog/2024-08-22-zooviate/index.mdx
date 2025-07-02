@@ -17,7 +17,7 @@ The applications of a vector database for Retrieval Augmented Generation reach f
 
 RAG is a common design pattern that enables an applications to leverage the power of large language models with contextual data that wasn't part of a language models initial training dataset. There are many options you have when building your own RAG pipelines. In this blog post, we're going to implement a simple RAG pipeline to showcase how you can integrate Weaviate directly into your applications.
 
-If you want to learn more about RAG and Weaviate, check out our Quickstart and developer docs, [here](https://weaviate.io/developers/weaviate/quickstart).
+If you want to learn more about RAG and Weaviate, check out our Quickstart and developer docs, [here](https://docs.weaviate.io/weaviate/quickstart).
 
 Let's get started!
 
@@ -55,7 +55,7 @@ When the message arrives at the web service, it's responsible for parsing that m
 
 ### User Queries
 
-In the scenario where the message is not "update" and is a question related to the Zoom Workplace data, the orchestrator is responsible for retrieving the most relevant data from Weaviate and then passing that data to a language model to generate a response with the retrieved context, and then pass the language model response back to the user. We call this [Generative Search](https://weaviate.io/developers/weaviate/search/generative). The orchestrator retrieves relevant documents by applying a search algorithm over HNSW Indexed data in Weaviate. This search algorithm takes advantage of the vector embeddings that are generated through Weaviate to find relevant documents that have been uploaded through the "update" command.
+In the scenario where the message is not "update" and is a question related to the Zoom Workplace data, the orchestrator is responsible for retrieving the most relevant data from Weaviate and then passing that data to a language model to generate a response with the retrieved context, and then pass the language model response back to the user. We call this [Generative Search](https://docs.weaviate.io/weaviate/search/generative). The orchestrator retrieves relevant documents by applying a search algorithm over HNSW Indexed data in Weaviate. This search algorithm takes advantage of the vector embeddings that are generated through Weaviate to find relevant documents that have been uploaded through the "update" command.
 
 If you're new to vector embeddings, check out [our blog post](/blog/vector-embeddings-explained) explaining what vector embeddings are. The Orchestrator will use Weaviate's vector search capabilities to retrieve the most relevant data from Weaviate.
 

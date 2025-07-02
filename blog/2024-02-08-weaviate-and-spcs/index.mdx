@@ -72,7 +72,7 @@ This data only includes reviews and has no product information except the ASIN, 
 
 Now that my data is available in Snowflake I need to start creating Docker images locally that I can upload to SPCS. In the repository for this blog, I have included the commands you will need to create the docker images for Weaviate, a text2vec vectorizer module, Jupyter Notebooks, and Ollama.
 
-I am using the [text2vec-transformers](https://weaviate.io/developers/weaviate/model-providers/transformers/embeddings) module to create the embeddings Weaviate will use, and using [Ollama](https://ollama.ai/) to host our Mistral model locally.
+I am using the [text2vec-transformers](https://docs.weaviate.io/weaviate/model-providers/transformers/embeddings) module to create the embeddings Weaviate will use, and using [Ollama](https://ollama.ai/) to host our Mistral model locally.
 
 The goal is to send data from Snowflake, to Mistral, back to Snowflake, then to Weaviate.  Weaviate will automatically vectorize the data using the text2vec vectorizer, then we are ready to start searching!
 

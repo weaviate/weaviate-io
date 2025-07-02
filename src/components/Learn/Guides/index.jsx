@@ -28,7 +28,7 @@ export default function Guides() {
                   <li>
                     <Link 
                       className={`${styles.external} ${styles.bold}`}
-                      to="https://weaviate.io/developers/academy/py/starter_text_data"
+                      to="https://docs.weaviate.io/academy/py/starter_text_data"
                     >
                       <strong>PY_101T</strong>: Work with text data
                     </Link>                 
@@ -36,7 +36,7 @@ export default function Guides() {
                   <li>
                     <Link 
                       className={`${styles.external} ${styles.bold}`}
-                      to="https://weaviate.io/developers/academy/py/starter_custom_vectors"
+                      to="https://docs.weaviate.io/academy/py/starter_custom_vectors"
                     >
                       <strong>PY_101V</strong>: Work with your own vectors
                     </Link>                      
@@ -44,7 +44,7 @@ export default function Guides() {
                   <li>
                     <Link 
                       className={`${styles.external} ${styles.bold}`}
-                      to="https://weaviate.io/developers/academy/py/starter_multimodal_data"
+                      to="https://docs.weaviate.io/academy/py/starter_multimodal_data"
                     >
                       <strong>PY_101M</strong>: Work with multimodal data
                     </Link>                      
@@ -52,7 +52,7 @@ export default function Guides() {
                   <li>
                     <Link 
                       className={`${styles.external} ${styles.bold}`}
-                      to="https://weaviate.io/developers/academy/py/compression"
+                      to="https://docs.weaviate.io/academy/py/compression"
                     >
                       <strong>PY_250</strong>: Vector compression
                     </Link>                                       
@@ -60,7 +60,7 @@ export default function Guides() {
                   <li>
                     <Link 
                       className={`${styles.external} ${styles.bold}`}
-                      to="https://weaviate.io/developers/academy/py/multitenancy"
+                      to="https://docs.weaviate.io/academy/py/multitenancy"
                     >
                       <strong>PY_280</strong>: Multi-tenancy
                     </Link>                                       
@@ -72,7 +72,7 @@ export default function Guides() {
                   <li>
                     <Link 
                       className={`${styles.external} ${styles.bold}`}
-                      to="https://weaviate.io/developers/academy/py/standalone/which_search"
+                      to="https://docs.weaviate.io/academy/py/standalone/which_search"
                     >
                       Which search is right for me?
                     </Link>                                       
@@ -80,7 +80,7 @@ export default function Guides() {
                   <li>
                     <Link 
                       className={`${styles.external} ${styles.bold}`}
-                      to="https://weaviate.io/developers/academy/py/standalone/chunking"
+                      to="https://docs.weaviate.io/academy/py/standalone/chunking"
                     >
                       Chunking long texts
                     </Link>                                       
@@ -88,7 +88,7 @@ export default function Guides() {
                   <li>
                     <Link 
                       className={`${styles.external} ${styles.bold}`}
-                      to="https://weaviate.io/developers/academy/deployment/k8s"
+                      to="https://docs.weaviate.io/academy/deployment/k8s"
                     >
                       Run Weaviate on Kubernetes
                     </Link>                                       
@@ -96,7 +96,7 @@ export default function Guides() {
                 </ul>
               </div>
 
-              <Link to="https://weaviate.io/developers/academy" className={styles.button}>
+              <Link to="https://docs.weaviate.io/academy" className={styles.button}>
                 Go to <strong>Weaviate Academy</strong>
               </Link>
             </div>

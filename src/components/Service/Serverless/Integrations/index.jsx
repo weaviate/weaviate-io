@@ -28,7 +28,7 @@ export default function Integrations() {
                 </Link>
               </div>
               <div className={`${styles.iconText} ${styles.docs}`}>
-                <Link href="https://weaviate.io/developers/weaviate">Read the Docs</Link>
+                <Link href="https://docs.weaviate.io/weaviate">Read the Docs</Link>
               </div>
               <div className={`${styles.iconText} ${styles.console}`}>
                 <Link href="https://console.weaviate.cloud/">

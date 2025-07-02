@@ -25,7 +25,7 @@ For machine learning programs, we use modality to describe the type of input or 
 
 ### Single Modality
 
-Historically, search has been over text, emphasizing the relevance of [keyword search](https://weaviate.io/developers/weaviate/search/bm25). This type of search was focused on matching text search terms to large datasets of text and returning the most relevant. This was the single modality; text search through data and get back text.
+Historically, search has been over text, emphasizing the relevance of [keyword search](https://docs.weaviate.io/weaviate/search/bm25). This type of search was focused on matching text search terms to large datasets of text and returning the most relevant. This was the single modality; text search through data and get back text.
 
 Even with the onset of multimedia; images, videos and audio. We leveraged metadata and attached text to these more complex modalities and essentially ran keyword searches. Still a single-modality search.
 
@@ -39,7 +39,7 @@ Early versions of large language models followed suit. With most being single mo
 
 In today's world, not only are people optimizing for TikTok searches but the video hosting service is the search engine of choice for a [majority of Gen Z](https://www.campaignasia.com/article/tiktok-trumps-google-as-a-search-engine-research-finds/492905). Multimodality enables search queries with multiple media types over multiple media types. Enabling you to text search over datasets of video or mixed media.
 
-Mostly enabled by [vector](https://weaviate.io/developers/weaviate/search/similarity) and [hybrid search](https://weaviate.io/developers/weaviate/search/hybrid), Vector databases by design are uniquely adapted to storing, indexing and enabling efficient retrieval for multimodal use cases. On the machine learning model side of things, we’re seeing the rise of multimodal models that can infer numerous modalities.
+Mostly enabled by [vector](https://docs.weaviate.io/weaviate/search/similarity) and [hybrid search](https://docs.weaviate.io/weaviate/search/hybrid), Vector databases by design are uniquely adapted to storing, indexing and enabling efficient retrieval for multimodal use cases. On the machine learning model side of things, we’re seeing the rise of multimodal models that can infer numerous modalities.
 
 This means we can interact with an LLM via chat and have the LLMs generate text, audio or video. By definition, this would enable interaction with similar models via text or even video.
 
@@ -74,9 +74,9 @@ create-next-app <project-name> –ts –tailwind –app
 
 ### Step 1: Getting Weaviate Running
 
-To get started with Weaviate, we'll create a Weaviate instance on Weaviate Cloud Services as described in [this guide](https://weaviate.io/developers/wcs/quickstart). Weaviate is an AI-Native database. It gives you the flexibility to pick what embedding models you use. Embedding models come in all shapes and sizes, for this project, you will be using [Vertex's multimodal embedding](https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-multimodal-embeddings) models. 
+To get started with Weaviate, we'll create a Weaviate instance on Weaviate Cloud Services as described in [this guide](https://docs.weaviate.io/wcs/quickstart). Weaviate is an AI-Native database. It gives you the flexibility to pick what embedding models you use. Embedding models come in all shapes and sizes, for this project, you will be using [Vertex's multimodal embedding](https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-multimodal-embeddings) models. 
 
-Once set up add your Weaviate URL, Admin API key and [Vertex API](https://weaviate.io/developers/weaviate/model-providers/google/embeddings-multimodal#api-credentials) key to a .env file in the root of your project.
+Once set up add your Weaviate URL, Admin API key and [Vertex API](https://docs.weaviate.io/weaviate/model-providers/google/embeddings-multimodal#api-credentials) key to a .env file in the root of your project.
 
 ### Step 2: Importing Data
 

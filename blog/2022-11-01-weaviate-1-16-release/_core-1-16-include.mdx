@@ -91,7 +91,7 @@ where: {
 }
 ```
 
-For more information on how to use the `IsNull` filter, check out the [documentation](https://weaviate.io/developers/weaviate/api/graphql/filters#by-null-state).
+For more information on how to use the `IsNull` filter, check out the [documentation](https://docs.weaviate.io/weaviate/api/graphql/filters#by-null-state).
 
 ### Filtering by Array Length
 While designing the solution for filtering null values, we realized that we also needed an elegant solution to filter by array length. <br/>
@@ -137,7 +137,7 @@ where: {
 }
 ```
 
-For more information on how to filter by the property length, check out the [documentation](https://weaviate.io/developers/weaviate/api/graphql/filters#by-property-length).
+For more information on how to filter by the property length, check out the [documentation](https://docs.weaviate.io/weaviate/api/graphql/filters#by-property-length).
 
 ## Distributed Backups
 ![Distributed Backups](./img/distributed-backups.png)
@@ -168,7 +168,7 @@ Every great choreographed dance needs a conductor. And the conductor of this who
 ## ref2vec-centroid Module
 ![ref2vec-centroid Module](./img/ref2vec-centroid.png)
 
-Weaviate `1.16` unveils the [ref2vec-centroid](https://weaviate.io/developers/weaviate/modules/ref2vec-centroid) module! Ref2Vec is about representing a data object based on the objects it references. The `ref2vec-centroid` module uses the average, or centroid vector, of the cross-referenced vectors to represent the referencing object.
+Weaviate `1.16` unveils the [ref2vec-centroid](https://docs.weaviate.io/weaviate/modules/ref2vec-centroid) module! Ref2Vec is about representing a data object based on the objects it references. The `ref2vec-centroid` module uses the average, or centroid vector, of the cross-referenced vectors to represent the referencing object.
 
 Or in other words, if you have an object (i.e. a shopping basket) that contains a number of cross-references (i.e. *"shorts"*, *"shoes"*, and a *"t-shirt"*), Ref2Vec can provide you with a vector that is at the center (i.e. close to all other similar clothing items). This way you can use the references to find more relevant objects.
 
@@ -201,7 +201,7 @@ As excited as we are about the applications in personalization and recommendatio
 
 ### Learn more
 
-Check the [ref2vec-centroid](https://weaviate.io/developers/weaviate/modules/ref2vec-centroid) documentation to learn how to work with Ref2Vec.
+Check the [ref2vec-centroid](https://docs.weaviate.io/weaviate/modules/ref2vec-centroid) documentation to learn how to work with Ref2Vec.
 
 ## Node Status API
 ![Node status API](./img/node-status-api.png)
@@ -258,26 +258,26 @@ While right now this API can only display the current state of your clusters, in
 
 ### Learn more
 
-Check the [/v1/nodes](https://weaviate.io/developers/weaviate/config-refs/nodes) documentation to learn how to use the `Node Status API`.
+Check the [/v1/nodes](https://docs.weaviate.io/weaviate/config-refs/nodes) documentation to learn how to use the `Node Status API`.
 
 ## More powerful OIDC Auth
 ![More powerful OIDC Auth](./img/oidc.png)
 
-Security is very, very important. And let's face it - nobody wants to deal with yet another password. That's why we support OpenID Connect (OIDC) [authentication](https://weaviate.io/developers/weaviate/configuration/authentication) in Weaviate, which users experience as a convenient and secure single sign-on.
+Security is very, very important. And let's face it - nobody wants to deal with yet another password. That's why we support OpenID Connect (OIDC) [authentication](https://docs.weaviate.io/weaviate/configuration/authentication) in Weaviate, which users experience as a convenient and secure single sign-on.
 
 ### Azure-based OIDC
 OIDC implementations can vary across authentication servers, so we are steadily adding support for major providers. From this release onwards, Weaviate works with Microsoft Azure-based OIDC authentication in addition to other popular solutions such as Keycloak or dex. This will allow Weaviate to authenticate users based on their Azure Active Directory (AD) credentials. Support for `scopes`, and `group claims` have been added in this release, which also means that you can apply group-based authorizations.
 
-OIDC adds resiliency to the authentication workflow, as it is robust to authentication server downtime outside of the short windows required for the client to obtain the ID token or for Weaviate to obtain the public key. While Weaviate runs without authentication by default, you can configure OIDC-based authentication schemes to provide differentiated access permissions. You can even configure Weaviate with multiple authentication schemes and allow tiered [authorizations](https://weaviate.io/developers/weaviate/configuration/authorization).
+OIDC adds resiliency to the authentication workflow, as it is robust to authentication server downtime outside of the short windows required for the client to obtain the ID token or for Weaviate to obtain the public key. While Weaviate runs without authentication by default, you can configure OIDC-based authentication schemes to provide differentiated access permissions. You can even configure Weaviate with multiple authentication schemes and allow tiered [authorizations](https://docs.weaviate.io/weaviate/configuration/authorization).
 
 For example, your Weaviate instance could be set up so that anonymous users can read some resources, all authenticated users can read all resources, and a subset of authenticated users can write or delete resources.
 
 We are pleased to add Azure-based OIDC authentication support. It will make managing your authentication and authorization needs even easier, especially for organizations already using Azure.
 
 You can read more about each aspect below:
-* [Authentication](https://weaviate.io/developers/weaviate/configuration/authentication)
-* [Authorization](https://weaviate.io/developers/weaviate/configuration/authorization)
-* [Environment variables](https://weaviate.io/developers/weaviate/installation/docker-compose#environment-variables)
+* [Authentication](https://docs.weaviate.io/weaviate/configuration/authentication)
+* [Authorization](https://docs.weaviate.io/weaviate/configuration/authorization)
+* [Environment variables](https://docs.weaviate.io/weaviate/installation/docker-compose#environment-variables)
 
 ## Patch releases ready sooner
 

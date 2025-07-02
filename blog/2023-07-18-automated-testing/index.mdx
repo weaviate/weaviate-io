@@ -24,7 +24,7 @@ As a software engineer with experience in test automation, I firmly believe in [
 
 But you probably know that writing tests is quite a task in itself, and in many cases running them can also be a chore. For example, the test suite may need to set up and tear down a separate service such as a database, which can be time-consuming and error-prone.
 
-I'm here to tell you that it doesn't have to be that way. In this article, I'll show you how to make testing easier with [Embedded Weaviate](https://weaviate.io/developers/weaviate/installation/embedded), and other tips for better automated testing.
+I'm here to tell you that it doesn't have to be that way. In this article, I'll show you how to make testing easier with [Embedded Weaviate](https://docs.weaviate.io/weaviate/installation/embedded), and other tips for better automated testing.
 
 And doing so, you might just discover the hidden gem that is the value provided by adding tests to your applications.
 
@@ -36,7 +36,7 @@ For one, Weaviate must interact with the application in a variety of ways. And a
 
 Such complexity makes it important to test the application as a whole, and not just its individual components. This complexity also means that arranging the test suite can be cumbersome with a variety of moving parts that need to be set up and torn down.
 
-[Embedded Weaviate](https://weaviate.io/developers/weaviate/installation/embedded) makes one part of this puzzle much easier, since Weaviate can be instantiated directly from the client. The following is all you need to do to start a Weaviate server:
+[Embedded Weaviate](https://docs.weaviate.io/weaviate/installation/embedded) makes one part of this puzzle much easier, since Weaviate can be instantiated directly from the client. The following is all you need to do to start a Weaviate server:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -66,14 +66,14 @@ But Embedded Weaviate is not the only way to make testing easier. In the followi
 ## Scoping tests
 
 While you may be familiar with tests and integration tests in general, here are some specific suggestions for Weaviate-powered applications:
-* **Whether to test search quality**: This depends primarily on the model used for vectorization, such as by a [Weaviate vectorizer module](https://weaviate.io/developers/weaviate/model-providers). We suggest evaluating models separately, but not tested as a part of the application.
+* **Whether to test search quality**: This depends primarily on the model used for vectorization, such as by a [Weaviate vectorizer module](https://docs.weaviate.io/weaviate/model-providers). We suggest evaluating models separately, but not tested as a part of the application.
 * **Focus on interactions with the inference provider**: Search itself is a core Weaviate functionality that we can trust. So, we suggest any integration tests focus on the interaction with the inference provider. For example,
   * is the vectorization model the expected one?
   * if switching to a different inference provider or model, does the application still function as expected?
 * **Other common issues to test** include:
   * Connection or authentication issues with the inference provider
   * Incomplete or incorrect data imports
-  * Specifying the vector correctly when [bringing your own vectors](https://weaviate.io/developers/weaviate/starter-guides/custom-vectors)
+  * Specifying the vector correctly when [bringing your own vectors](https://docs.weaviate.io/weaviate/starter-guides/custom-vectors)
   * Data definition issues, like invalid class names, properties, or data types
 
 
@@ -81,7 +81,7 @@ While you may be familiar with tests and integration tests in general, here are 
 
 ### Set up
 
-[Embedded Weaviate](https://weaviate.io/developers/weaviate/installation/embedded) lets us spawn a Weaviate server instance from the client, and automatically tear it down when the client terminates. The data is [persisted](https://weaviate.io/developers/weaviate/installation/embedded#lifecycle) between sessions, so we recommend deleting your data before each test.
+[Embedded Weaviate](https://docs.weaviate.io/weaviate/installation/embedded) lets us spawn a Weaviate server instance from the client, and automatically tear it down when the client terminates. The data is [persisted](https://docs.weaviate.io/weaviate/installation/embedded#lifecycle) between sessions, so we recommend deleting your data before each test.
 
 Here's how to instantiate an embedded Weaviate server and perform this cleanup:
 
@@ -143,7 +143,7 @@ Now, let's walk through some examples of how you might construct integration tes
 
 As a simple example, let's create a class and then test that it was created correctly.
 
-We'll create a class for question & answer objects from the game show *Jeopardy!*, by specifying its name and the vectorizer ([`text2vec-openai`](https://weaviate.io/developers/weaviate/model-providers/openai/embeddings)).
+We'll create a class for question & answer objects from the game show *Jeopardy!*, by specifying its name and the vectorizer ([`text2vec-openai`](https://docs.weaviate.io/weaviate/model-providers/openai/embeddings)).
 
 Here, the integration test will consist of checking that the class was created with the expected default OpenAI vectorization model type, [`ada`](https://platform.openai.com/docs/guides/embeddings/embedding-models).
 
@@ -178,10 +178,10 @@ All we've done so far (instantiate and connect to Weaviate and OpenAI, perform c
 
 One particularly common issue we see is skipped objects during import due to rate limits from the vectorization provider. So, let's see how we might test that all objects were imported correctly.
 
-In this section, we'll import a small subset (100 objects) of the [original Jeopardy dataset](https://www.kaggle.com/datasets/tunguz/200000-jeopardy-questions). As always, we'll use [batching](https://weaviate.io/developers/weaviate/manage-data/import) for optimal speed.
+In this section, we'll import a small subset (100 objects) of the [original Jeopardy dataset](https://www.kaggle.com/datasets/tunguz/200000-jeopardy-questions). As always, we'll use [batching](https://docs.weaviate.io/weaviate/manage-data/import) for optimal speed.
 
 :::tip For very large files
-While we load the JSON into memory here, you can use other methods such as [streaming](https://weaviate.io/developers/weaviate/manage-data/import#tip-stream-data-from-large-files) for very large JSON or CSV files.
+While we load the JSON into memory here, you can use other methods such as [streaming](https://docs.weaviate.io/weaviate/manage-data/import#tip-stream-data-from-large-files) for very large JSON or CSV files.
 :::
 
 The test is simple; it verifies that all specified objects have been imported by performing an object count and checking it is 100.
@@ -353,7 +353,7 @@ As a result, your application will be more robust, and you'll be able to deploy 
 
 ## Closing thoughts
 
-In this post, we've seen how to write an integration test for an application using Weaviate &mdash; [Embedded Weaviate](https://weaviate.io/developers/weaviate/installation/embedded) in particular.
+In this post, we've seen how to write an integration test for an application using Weaviate &mdash; [Embedded Weaviate](https://docs.weaviate.io/weaviate/installation/embedded) in particular.
 
 With just a few lines of code, we are able to verify how we import a data set, vectorize it, then export the vectorized objects. The test can be extended with search, insertion, updates, deletes, and other operations that are part of the user journey.
 

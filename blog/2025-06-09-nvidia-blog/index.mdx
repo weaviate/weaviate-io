@@ -18,13 +18,13 @@ At Weaviate, we are focused on innovation and empowering developers to build and
 
 Weaviate is an open-source, AI-native vector database. Unlike traditional databases that might bolt on AI features, Weaviate is designed from the ground up for the Agentic era. 
 
-It supports [vector search](https://weaviate.io/developers/weaviate/search/similarity) for semantic retrieval, [hybrid search](https://weaviate.io/developers/weaviate/search/hybrid) that combines keyword and vector search, [reranking](https://weaviate.io/developers/weaviate/search/rerank) to improve search relevance, and [generative search](https://weaviate.io/developers/weaviate/search/generative) to connect your private data to language models. These features power applications like product search, RAG, and customer chatbots. Organizations across various industries use Weaviate to build production ready AI solutions. 
+It supports [vector search](https://docs.weaviate.io/weaviate/search/similarity) for semantic retrieval, [hybrid search](https://docs.weaviate.io/weaviate/search/hybrid) that combines keyword and vector search, [reranking](https://docs.weaviate.io/weaviate/search/rerank) to improve search relevance, and [generative search](https://docs.weaviate.io/weaviate/search/generative) to connect your private data to language models. These features power applications like product search, RAG, and customer chatbots. Organizations across various industries use Weaviate to build production ready AI solutions. 
 
 ![architecture visual](./img/image1.png)
 
 ## The Growing Need for Speed: Addressing Performance Bottlenecks
 
-As AI applications scale from prototypes to production systems handling billions of objects, performance becomes critical. While [Weaviate's native HNSW](https://weaviate.io/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) (Hierarchical Navigable Small Worlds) algorithm performs well on CPUs, a large-scale index presents significant challenges:
+As AI applications scale from prototypes to production systems handling billions of objects, performance becomes critical. While [Weaviate's native HNSW](https://docs.weaviate.io/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) (Hierarchical Navigable Small Worlds) algorithm performs well on CPUs, a large-scale index presents significant challenges:
 
 * Datasets in the billion-object range can take hours or even days to build, hindering rapid iteration.  
 * Long re-indexing times prevent developers from quickly updating their systems with the latest, most performant embedding models.  
@@ -62,7 +62,7 @@ Our partnership with NVIDIA is about more than just speed improvements. We've fo
 * We've contributed directly to cuVS, implementing pooled memory (pre-allocating GPU memory for frequent small allocations) and pinned memory (ensuring host memory isn't paged out to disk for faster DMA transfers). These granular optimizations significantly reduce overhead and improve query latency.  
 * Weaviate intelligently batches incoming queries to fully exploit the GPU's high parallelism, particularly during peak loads, maximizing throughput without requiring manual batching from the user.  
 * We're proud to be contributing Go bindings and memory optimizations back to the open-source cuVS repository, fostering a collaborative ecosystem where everyone benefits.  
-* Weaviate seamlessly [integrates with NVIDIA NIM](https://weaviate.io/developers/weaviate/model-providers/nvidia) to support various models from the NVIDIA Model Garden and [NeMo Retriever](https://developer.nvidia.com/nemo-retriever/?sortBy=developer_learning_library%2Fsort%2Ffeatured_in.nemo_retriever%3Adesc%2Ctitle%3Aasc&hitsPerPage=12) for embedding and re-ranking. We're also working on blueprints to easily spin up entire AI pipelines powered by Weaviate and NVIDIA AI Enterprise for on-premises, enterprise supported workloads.
+* Weaviate seamlessly [integrates with NVIDIA NIM](https://docs.weaviate.io/weaviate/model-providers/nvidia) to support various models from the NVIDIA Model Garden and [NeMo Retriever](https://developer.nvidia.com/nemo-retriever/?sortBy=developer_learning_library%2Fsort%2Ffeatured_in.nemo_retriever%3Adesc%2Ctitle%3Aasc&hitsPerPage=12) for embedding and re-ranking. We're also working on blueprints to easily spin up entire AI pipelines powered by Weaviate and NVIDIA AI Enterprise for on-premises, enterprise supported workloads.
 
 ## The Future is Agentic: Scaling Parallel Queries
 
@@ -72,7 +72,7 @@ Weaviate's integration with NVIDIA cuVS is perfectly positioned to handle this q
 
 ## Get Started Today!
 
-We invite you to experience the power of Weaviate and NVIDIA cuVS for yourself. Start with  Weaviate embedding and generative models [here](https://weaviate.io/developers/weaviate/model-providers/nvidia).
+We invite you to experience the power of Weaviate and NVIDIA cuVS for yourself. Start with  Weaviate embedding and generative models [here](https://docs.weaviate.io/weaviate/model-providers/nvidia).
 
 Together, Weaviate and NVIDIA are accelerating the development and deployment of production-grade, AI-native applications, empowering developers to build the future of AI.  
 

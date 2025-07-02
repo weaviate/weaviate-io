@@ -60,7 +60,7 @@ The following section shows how Inngest and Weaviate make building such agentic 
 
 [Huggingface datasets are available as `.parquet` files](https://huggingface.co/Thefoodprocessor), primarily designed for Python scripts.  
 For this reason, [our repository](https://github.com/inngest/weaviate-agentic-workflow) contains the translated`.json` files to facilitate processing in Node.js.  
-The `npm run load` script leverages Weaviate [batching](https://weaviate.io/developers/weaviate/client-libraries/typescript/typescript-v3#batch-inserts) and [vectorizer](https://weaviate.io/blog/typescript-client-stable-release#vectorizer-configuration) APIs to create new collections with a few lines of code:
+The `npm run load` script leverages Weaviate [batching](https://docs.weaviate.io/weaviate/client-libraries/typescript/typescript-v3#batch-inserts) and [vectorizer](https://weaviate.io/blog/typescript-client-stable-release#vectorizer-configuration) APIs to create new collections with a few lines of code:
 
 ```javascript
 async function processJsonFile(
@@ -272,7 +272,7 @@ You’ll be able to generate multiple menu variations by trying different food p
 
 This article covered how Weaviate’s rich embedding and query APIs make indexing and querying large vectorized datasets easy. It also demonstrated how Inngest’s composable API enables writing robust and dynamic workflows with simple APIs.
 
-This demo only scratches the surface of how combining Weaviate and Inngest can enable. If you want to build Agentic workflows with more autonomy, such as AI Agents, you should look at [Weaviate Generative Search](https://weaviate.io/developers/weaviate/model-providers/openai#generative-ai-models-for-rag) and Inngest’s new [AgentKit library](https://agentkit.inngest.com/overview). Or, you can wait for our next article on AI Agents.  
+This demo only scratches the surface of how combining Weaviate and Inngest can enable. If you want to build Agentic workflows with more autonomy, such as AI Agents, you should look at [Weaviate Generative Search](https://docs.weaviate.io/weaviate/model-providers/openai#generative-ai-models-for-rag) and Inngest’s new [AgentKit library](https://agentkit.inngest.com/overview). Or, you can wait for our next article on AI Agents.  
 
 import WhatNext from '/_includes/what-next.mdx';
 

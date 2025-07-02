@@ -55,13 +55,13 @@ message GenerativeSearch {
 
 Additionally, gRPC uses HTTP/2 under the hood, which is faster than the existing REST API’s HTTP/1.1 due to its support for concurrent requests and lower overhead.
 
-These add up to big speed and reliability advantages for the [gRPC API in Weaviate](https://weaviate.io/developers/weaviate/api/grpc) in comparison to the current GraphQL + REST solution.
+These add up to big speed and reliability advantages for the [gRPC API in Weaviate](https://docs.weaviate.io/weaviate/api/grpc) in comparison to the current GraphQL + REST solution.
 
 ### Type safety
 
 Another benefit of gRPC is its enhanced type safety, achieved through the explicit definition of data structures and types in protobufs. This approach significantly reduces common challenges encountered when working with GraphQL and JSON, such as ambiguity in data types and difficulties in ensuring readability.
 
-In the context of JSON and GraphQL, determining the correct data type for numbers (e.g., distinguishing between integers and floating-point numbers) or interpreting empty properties can be problematic. In Weaviate, this can lead to [AutoSchema](https://weaviate.io/developers/weaviate/config-refs/schema#auto-schema) inferring inappropriate data types, potentially leading to data integrity issues.
+In the context of JSON and GraphQL, determining the correct data type for numbers (e.g., distinguishing between integers and floating-point numbers) or interpreting empty properties can be problematic. In Weaviate, this can lead to [AutoSchema](https://docs.weaviate.io/weaviate/config-refs/schema#auto-schema) inferring inappropriate data types, potentially leading to data integrity issues.
 
 Moreover, parsing complex and deeply nested JSON responses, or crafting intricate GraphQL queries, can degrade the developer experience and elevate the risk of errors. This is also partly due to having to conform to the structure of the GraphQL schema. This has been a challenge for certain tasks, such as implementing GroupBy queries and responses in Weaviate.
 
@@ -112,7 +112,7 @@ The chart shows that each query takes 40-70% less time to return results when us
 Query throughput is usually measured in queries per second (QPS). The chart shows query throughput values based on averages of 10,000 queries.
 <br/>
 
-The different settings relate to a [vector index (HNSW) parameter](https://weaviate.io/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) `ef`.
+The different settings relate to a [vector index (HNSW) parameter](https://docs.weaviate.io/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) `ef`.
 
 This parameter sets the size of the dynamic candidate list used in the HNSW search algorithm, and drives the speed and accuracy trade-off. In this test, it will impact the ANN-search portion of each query. Regardless, you can see that even at high `ef` numbers the gRPC-driven improvements are significant.
 
@@ -159,7 +159,7 @@ Currently, the Python client is the only one to take full advantage of the gRPC 
 We’ll have more on these topics in the future 😉.
 
 :::tip Check out the latest Python client library
-By the way - if you’ve missed it, the new `v4` client library is a [major update](https://weaviate.io/blog/py-client-v4-release). Not just for its gRPC use, but also the hugely improved Python API. So if you have an existing codebase, the speed will be another incentive to [migrate it to the latest client](https://weaviate.io/developers/weaviate/client-libraries/python/v3_v4_migration), along with the improved client API and support for the shiny new features.
+By the way - if you’ve missed it, the new `v4` client library is a [major update](https://weaviate.io/blog/py-client-v4-release). Not just for its gRPC use, but also the hugely improved Python API. So if you have an existing codebase, the speed will be another incentive to [migrate it to the latest client](https://docs.weaviate.io/weaviate/client-libraries/python/v3_v4_migration), along with the improved client API and support for the shiny new features.
 :::
 
 ## What about the GraphQL API?

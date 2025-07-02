@@ -15,7 +15,7 @@ description: "Semantic search on Wikipedia dataset with Weaviate – vector data
 
 To conduct semantic search queries on a large scale, one needs a vector database to search through the large number of vector representations that represent the data. To show you how this can be done, [we have open-sourced the complete English language Wikipedia corpus](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate) backup in Weaviate. In this article, I will outline how we've created the dataset, show you how you can run the dataset yourself, and present search strategies on how to implement similar vector and semantic search solutions in your own projects and how to bring them to production.
 
-The Wikipedia dataset used is the "truthy" version of October 9th, 2021. After processing it contains 11.348.257 articles, 27.377.159 paragraphs, and 125.447.595 graph cross-references. Although a bigger machine (see below) is needed for importing the data, the serving is done on a 12 CPU, 100 GB RAM, 250Gb SSD Google Cloud VM with 1 x NVIDIA Tesla P4. The ML-models used are [multi-qa-MiniLM-L6-cos-v1](https://huggingface.co/sentence-transformers/multi-qa-MiniLM-L6-cos-v1) and [bert-large-uncased-whole-word-masking-finetuned-squad](https://huggingface.co/bert-large-uncased-whole-word-masking-finetuned-squad) both are available as [pre-built modules](https://weaviate.io/developers/weaviate/model-providers/transformers/embeddings#available-models) in Weaviate.
+The Wikipedia dataset used is the "truthy" version of October 9th, 2021. After processing it contains 11.348.257 articles, 27.377.159 paragraphs, and 125.447.595 graph cross-references. Although a bigger machine (see below) is needed for importing the data, the serving is done on a 12 CPU, 100 GB RAM, 250Gb SSD Google Cloud VM with 1 x NVIDIA Tesla P4. The ML-models used are [multi-qa-MiniLM-L6-cos-v1](https://huggingface.co/sentence-transformers/multi-qa-MiniLM-L6-cos-v1) and [bert-large-uncased-whole-word-masking-finetuned-squad](https://huggingface.co/bert-large-uncased-whole-word-masking-finetuned-squad) both are available as [pre-built modules](https://docs.weaviate.io/weaviate/model-providers/transformers/embeddings#available-models) in Weaviate.
 
 📄 The complete dataset and code is open-source and available [on GitHub](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate).
 
@@ -96,7 +96,7 @@ Last, we want to make graph relations, in the dataset from step one we will dist
 ```
 *Paragraph cross-references*
 
-The complete schema we import using the [Python client](https://weaviate.io/developers/weaviate/client-libraries/python) can be found [here](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate/blob/main/step-2/import.py#L19-L120).
+The complete schema we import using the [Python client](https://docs.weaviate.io/weaviate/client-libraries/python) can be found [here](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate/blob/main/step-2/import.py#L19-L120).
 
 ## Step 2.2 — Import the Data
 Because we are going to vectorize a lot of data. We will be using the same machine as mentioned in the opening but with 4 instead of 1 GPU.
@@ -135,9 +135,9 @@ volumes:
 You can find the complete Docker Compose file we've used here.
 
 ## Query the Data
-The current Weaviate setup has two modules enabled: semantic search and Q&A. The modules can be used for different types of queries. The query language used is GraphQL and can be used with a wide variety of [client libraries](https://weaviate.io/developers/weaviate/client-libraries) in different programming languages.
+The current Weaviate setup has two modules enabled: semantic search and Q&A. The modules can be used for different types of queries. The query language used is GraphQL and can be used with a wide variety of [client libraries](https://docs.weaviate.io/weaviate/client-libraries) in different programming languages.
 
-To follow along, and try out these examples, [create an account in Weaviate Cloud](https://weaviate.io/developers/wcs/quickstart).
+To follow along, and try out these examples, [create an account in Weaviate Cloud](https://docs.weaviate.io/wcs/quickstart).
 
 ### Example 1 — natural language questions
 In this example, we pose a natural language question, and we will assume that the first result contains the answer (hence the limit is set to 1). The result based on the latest dataset contains a certainty (i.e., the distance from the query to the answer in the vector space) of ≈ 0.68. In your end application, you can set limits to the certainty to determine if you want to present the results to the end-user, in the latest paragraph of this article (Implementation Strategies — Bringing Semantic Search to Production) you'll find more info about this.
@@ -260,7 +260,7 @@ With Weaviate you can also use the GraphQL interface to make graph relations lik
 The goal of Weaviate is to allow you to bring large ML-first applications to production. But like with any technology, it is not a silver bullet and success depends on your implementation.
 
 ### Scalability
-The demo dataset runs on a Docker setup on a single machine, you can easily spin up a Kubernetes cluster if you want to use the Weaviate dataset in production. How to do this, is outlined [here](https://weaviate.io/developers/weaviate/concepts/cluster).
+The demo dataset runs on a Docker setup on a single machine, you can easily spin up a Kubernetes cluster if you want to use the Weaviate dataset in production. How to do this, is outlined [here](https://docs.weaviate.io/weaviate/concepts/cluster).
 
 ## Conclusion
 To bring semantic search solutions to production, you need three things:

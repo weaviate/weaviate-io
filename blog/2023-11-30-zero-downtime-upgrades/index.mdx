@@ -248,13 +248,13 @@ While replication and high availability are wonderful, we won’t quite pretend 
 
 This means that a replication factor of 3 leads to the cluster essentially handling three times the load as no replication. The benefit here is of course redundancy and thus availability, but the cost is additional cost, such as increased hardware (e.g. memory) requirements. Note that the rolling update time was longer on our replication example than the non-replication example, as each pod now holds ~10,000 tenants rather than ~3,333 tenants.
 
-Another challenge is that any write request that comes in while any nodes are down will be temporarily missing on that node for a while. This will be repaired in time through a read-repair that [happens automatically in the background](https://weaviate.io/developers/weaviate/concepts/replication-architecture/consistency#repairs).
+Another challenge is that any write request that comes in while any nodes are down will be temporarily missing on that node for a while. This will be repaired in time through a read-repair that [happens automatically in the background](https://docs.weaviate.io/weaviate/concepts/replication-architecture/consistency#repairs).
 
 :::note Proposed feature
 To reduce the length of this time, there is a proposed feature to proactively start repairing those inconsistencies (i.e. perform async replication). If this is important, please [upvote the feature here](https://github.com/weaviate/weaviate/issues/2405).
 :::
 
-But we think that the cost of high availability is worth these prices. We take system availability seriously, and architect Weaviate according to this philosophy. This is one of the reasons that we use [leaderless replication](https://weaviate.io/developers/weaviate/concepts/replication-architecture/cluster-architecture#data-replication-leaderless), and why replication in the first place is so important to us - because it enables our users to have robust systems on which they can rely.
+But we think that the cost of high availability is worth these prices. We take system availability seriously, and architect Weaviate according to this philosophy. This is one of the reasons that we use [leaderless replication](https://docs.weaviate.io/weaviate/concepts/replication-architecture/cluster-architecture#data-replication-leaderless), and why replication in the first place is so important to us - because it enables our users to have robust systems on which they can rely.
 
 Take the longer start-up time for example. Adding replication caused node-level start-up time to increase in our experiment. But the end result was that a hundred percent of requests succeeded. In other words, the end user would not have noticed anything was going on. And again, what are peace of mind and avoiding the wrath of angry users during downtime worth to you??
 

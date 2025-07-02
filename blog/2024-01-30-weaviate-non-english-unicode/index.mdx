@@ -28,7 +28,7 @@ Different languages, such as vocabulary, grammar, and alphabets, differ in many 
 
 ### Language models
 
-Whether you are using English or any other language, you need to make sure the embedding model and LLM you are using support your specific language. For example, [`text2vec-cohere`’s `embed-multilingual-v3.0`](https://weaviate.io/blog/cohere-multilingual-with-weaviate) or `text2vec-openai`’s `text-embedding-ada-002` both support multiple languages. Make sure to check the chosen [vectorizer module’s](https://weaviate.io/developers/weaviate/model-providers) documentation to ensure the embedding model supports your language of choice. The same applies to the [generator integrations](https://weaviate.io/developers/weaviate/model-providers).
+Whether you are using English or any other language, you need to make sure the embedding model and LLM you are using support your specific language. For example, [`text2vec-cohere`’s `embed-multilingual-v3.0`](https://weaviate.io/blog/cohere-multilingual-with-weaviate) or `text2vec-openai`’s `text-embedding-ada-002` both support multiple languages. Make sure to check the chosen [vectorizer module’s](https://docs.weaviate.io/weaviate/model-providers) documentation to ensure the embedding model supports your language of choice. The same applies to the [generator integrations](https://docs.weaviate.io/weaviate/model-providers).
 
 ### Character encoding
 
@@ -44,15 +44,15 @@ This is a sequence of escaped Unicode characters and can be easily converted to 
 
 ## How to use Weaviate with Non-English Languages
 
-This section uses our standard [Quickstart](https://weaviate.io/developers/weaviate/quickstart) tutorial to showcase a simple semantic search query on Japanese text data instead of English. The sample data points are taken from the [forum question](https://forum.weaviate.io/t/weaviate-use-case-with-other-language/899). You can find the related Notebook in [our GitHub repository](https://github.com/weaviate/recipes/blob/main/weaviate-features/search-with-vectors-or-multi-lingual/vector_search_japanese.ipynb).
+This section uses our standard [Quickstart](https://docs.weaviate.io/weaviate/quickstart) tutorial to showcase a simple semantic search query on Japanese text data instead of English. The sample data points are taken from the [forum question](https://forum.weaviate.io/t/weaviate-use-case-with-other-language/899). You can find the related Notebook in [our GitHub repository](https://github.com/weaviate/recipes/blob/main/weaviate-features/search-with-vectors-or-multi-lingual/vector_search_japanese.ipynb).
 
-### Step 1: Create a Weaviate database and install a client library[](https://weaviate.io/developers/weaviate/quickstart#step-1-create-a-weaviate-database)
+### Step 1: Create a Weaviate database and install a client library[](https://docs.weaviate.io/weaviate/quickstart#step-1-create-a-weaviate-database)
 
 The first couple of steps are exactly the same for any language.
 
-First, you need to create a Weaviate instance to work with. For testing purposes, we recommend creating a free cloud sandbox instance on [Weaviate Cloud (WCD)](https://console.weaviate.cloud/) by following the [WCD quickstart](https://weaviate.io/developers/wcs/quickstart) instructions.
+First, you need to create a Weaviate instance to work with. For testing purposes, we recommend creating a free cloud sandbox instance on [Weaviate Cloud (WCD)](https://console.weaviate.cloud/) by following the [WCD quickstart](https://docs.weaviate.io/wcs/quickstart) instructions.
 
-Next, you need to install your preferred [Weaviate client](https://weaviate.io/developers/weaviate/client-libraries) to work with your preferred programming language.
+Next, you need to install your preferred [Weaviate client](https://docs.weaviate.io/weaviate/client-libraries) to work with your preferred programming language.
 
 ```powershell
 pip install "weaviate-client==3.*"
@@ -98,7 +98,7 @@ schema = {
 client.schema.create_class(schema)
 ```
 
-### Step 3: Add data objects in Japanese[](https://weaviate.io/developers/weaviate/quickstart#step-5-add-objects)
+### Step 3: Add data objects in Japanese[](https://docs.weaviate.io/weaviate/quickstart#step-5-add-objects)
 
 You can now add objects to Weaviate. The defined `vectorizer` automatically creates a vector embedding for each object during import. The following code loads the sample data and individually adds the data objects to the target class (`MyCollection`).
 
@@ -127,7 +127,7 @@ with client.batch as batch:
         )
 ```
 
-### Step 4: Semantic search query[](https://weaviate.io/developers/weaviate/quickstart#step-6-queries)
+### Step 4: Semantic search query[](https://docs.weaviate.io/weaviate/quickstart#step-6-queries)
 
 Finally, you can run a simple semantic search query on your Weaviate instance. In this case, a `nearText` search looks for objects in Weaviate with vectors most similar to those for the given input text. Run the following code to search for objects whose vectors are most similar to that of バトミントン(badminton).
 
@@ -189,9 +189,9 @@ To explore different queries, such as semantic search with filters or generative
 
 As you saw, you can use the Weaviate vector database for semantic and generative search applications in non-English languages. However, we currently don’t have any official support/policy for non-English languages, which leads to some limitations.
 
-This limitation mainly affects [Weaviate’s keyword-based search functionality BM25](https://weaviate.io/developers/weaviate/search/bm25), as we currently only have the standard English tokenizer. This means the BM25 search will return an error for most non-alphabetic languages, especially ones requiring Unicode encoding.
+This limitation mainly affects [Weaviate’s keyword-based search functionality BM25](https://docs.weaviate.io/weaviate/search/bm25), as we currently only have the standard English tokenizer. This means the BM25 search will return an error for most non-alphabetic languages, especially ones requiring Unicode encoding.
 
-This limitation also affects [Weaviate’s hybrid search functionality](https://weaviate.io/developers/weaviate/search/hybrid). While you can conduct hybrid search queries without getting an error, all hybrid search queries with an `alpha != 0` will return the same results as pure semantic search. Hybrid search with an `alpha = 0` (pure keyword-based search) will return an empty result list.
+This limitation also affects [Weaviate’s hybrid search functionality](https://docs.weaviate.io/weaviate/search/hybrid). While you can conduct hybrid search queries without getting an error, all hybrid search queries with an `alpha != 0` will return the same results as pure semantic search. Hybrid search with an `alpha = 0` (pure keyword-based search) will return an empty result list.
 
 As you can see, Weaviate currently doesn’t cover full support for non-English languages. However, we would love to support other languages in the future. Currently, we are experimenting with implementing [tokenisers for Japanese and Chinese](https://github.com/weaviate/weaviate/pull/4028/files/b7b60b32662209e9ce58dd4d32e29ed919f5590b#). Please contact us on [Slack](https://weaviate.io/slack) if you are interested in contributing to adding non-English language support.
 

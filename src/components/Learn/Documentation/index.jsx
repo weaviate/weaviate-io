@@ -16,7 +16,7 @@ export default function Documentation() {
           <div className={styles.typeContainer}>
             <Link
               className={styles.linkBox}
-              to="https://weaviate.io/developers/weaviate/model-providers"
+              to="https://docs.weaviate.io/weaviate/model-providers"
             >
               <div className={styles.typeBox}>
                 <div className={styles.typeIcon}>
@@ -34,7 +34,7 @@ export default function Documentation() {
             </Link>
             <Link
               className={styles.linkBox}
-              to="https://weaviate.io/developers/weaviate/configuration"
+              to="https://docs.weaviate.io/weaviate/configuration"
             >
               <div className={styles.typeBox}>
                 <div className={styles.typeIcon}>
@@ -50,7 +50,7 @@ export default function Documentation() {
                 </div>
               </div>
             </Link>
-            <Link className={styles.linkBox} to="https://weaviate.io/developers/weaviate/search">
+            <Link className={styles.linkBox} to="https://docs.weaviate.io/weaviate/search">
               <div className={styles.typeBox}>
                 <div className={styles.typeIcon}>
                   <div className={`${styles.homeIcon} ${styles.blog}`}></div>
@@ -67,7 +67,7 @@ export default function Documentation() {
             </Link>
             <Link
               className={styles.linkBox}
-              to="https://weaviate.io/developers/weaviate/manage-data"
+              to="https://docs.weaviate.io/weaviate/manage-data"
             >
               <div className={styles.typeBox}>
                 <div className={styles.typeIcon}>
@@ -81,7 +81,7 @@ export default function Documentation() {
                 </div>
               </div>
             </Link>
-            <Link className={styles.linkBox} to="https://weaviate.io/developers/weaviate/concepts">
+            <Link className={styles.linkBox} to="https://docs.weaviate.io/weaviate/concepts">
               <div className={styles.typeBox}>
                 <div className={styles.typeIcon}>
                   <div className={`${styles.homeIcon} ${styles.starter}`}></div>
@@ -94,7 +94,7 @@ export default function Documentation() {
                 </div>
               </div>
             </Link>
-            <Link className={styles.linkBox} to="https://weaviate.io/developers/weaviate/api">
+            <Link className={styles.linkBox} to="https://docs.weaviate.io/weaviate/api">
               <div className={styles.typeBox}>
                 <div className={styles.typeIcon}>
                   <div
@@ -111,7 +111,7 @@ export default function Documentation() {
             </Link>
             <Link
               className={styles.linkBox}
-              to="https://weaviate.io/developers/weaviate/client-libraries"
+              to="https://docs.weaviate.io/weaviate/client-libraries"
             >
               <div className={styles.typeBox}>
                 <div className={styles.typeIcon}>

@@ -33,8 +33,8 @@ This means that scaling your business or infrastructure to include data from a l
 The result is a multi-tenancy solution that we are very proud of. This is an opt-in feature, where to use multi-tenancy, you simply enable the feature and add the tenant key for each operation as required.
 
 :::tip Read more:
-- [Concepts: Data # Multi-tenancy](https://weaviate.io/developers/weaviate/concepts/data#multi-tenancy)
-- [How-to manage data: Multi-tenancy operations](https://weaviate.io/developers/weaviate/manage-data/multi-tenancy)
+- [Concepts: Data # Multi-tenancy](https://docs.weaviate.io/weaviate/concepts/data#multi-tenancy)
+- [How-to manage data: Multi-tenancy operations](https://docs.weaviate.io/weaviate/manage-data/multi-tenancy)
 :::
 
 ## PQ + Re-scoring
@@ -112,8 +112,8 @@ As can be clearly seen above, previously there was a cost to be paid for compres
 </details>
 
 :::tip Read more:
-- [Concepts: Vector Indexing # Product Quantization](https://weaviate.io/developers/weaviate/concepts/vector-index#hnsw-with-product-quantizationpq)
-- [How-to configure: Indexes # Vector index (see `pq`)](https://weaviate.io/developers/weaviate/config-refs/schema/vector-index#weaviates-vector-index)
+- [Concepts: Vector Indexing # Product Quantization](https://docs.weaviate.io/weaviate/concepts/vector-index#hnsw-with-product-quantizationpq)
+- [How-to configure: Indexes # Vector index (see `pq`)](https://docs.weaviate.io/weaviate/config-refs/schema/vector-index#weaviates-vector-index)
 :::
 
 ## Autocut
@@ -174,7 +174,7 @@ This example searches the `Article` class for articles related to "america", and
 ```
 
 :::tip See our documentation for more examples
-Please refer to [our documentation](https://weaviate.io/developers/weaviate/api/graphql/additional-operators#autocut) for more code examples, including for various Weaviate client libraries.
+Please refer to [our documentation](https://docs.weaviate.io/weaviate/api/graphql/additional-operators#autocut) for more code examples, including for various Weaviate client libraries.
 :::
 
 </details>
@@ -188,13 +188,13 @@ The first motivation for Autocut was to provide a better experience to human sea
 
 Autocut aims approximate where a user would “cut” the results intuitively after observing N jumps in the distance from the query.
 
-It can be combined with all [vector search operators](https://weaviate.io/developers/weaviate/api/graphql/get#vector-search-operators): `nearXXX`, `bm25`, and `hybrid`. `autocut` is placed after the operator, at the same level with `limit`/`offset`. It is disabled by default and can be explicitly disabled by setting its value to 0 or a negative number.
+It can be combined with all [vector search operators](https://docs.weaviate.io/weaviate/api/graphql/get#vector-search-operators): `nearXXX`, `bm25`, and `hybrid`. `autocut` is placed after the operator, at the same level with `limit`/`offset`. It is disabled by default and can be explicitly disabled by setting its value to 0 or a negative number.
 
 :::tip Read more:
-- [GraphQL references: Additional operators # Autocut](https://weaviate.io/developers/weaviate/api/graphql/additional-operators#autocut)
-- [How-to search: Similarity search # Autocut](https://weaviate.io/developers/weaviate/search/similarity#autocut)
-- [How-to search: BM25 search # Autocut](https://weaviate.io/developers/weaviate/search/bm25#autocut)
-- [How-to search: Hybrid search # Autocut](https://weaviate.io/developers/weaviate/search/hybrid#autocut)
+- [GraphQL references: Additional operators # Autocut](https://docs.weaviate.io/weaviate/api/graphql/additional-operators#autocut)
+- [How-to search: Similarity search # Autocut](https://docs.weaviate.io/weaviate/search/similarity#autocut)
+- [How-to search: BM25 search # Autocut](https://docs.weaviate.io/weaviate/search/bm25#autocut)
+- [How-to search: Hybrid search # Autocut](https://docs.weaviate.io/weaviate/search/hybrid#autocut)
 :::
 
 ## Search re-ranking
@@ -245,7 +245,7 @@ You can use reranking in a GraphQL query as follows:
 ```
 
 :::tip See our documentation for more examples
-Please refer to [our documentation](https://weaviate.io/developers/weaviate/search/rerank) for more code examples, including for various Weaviate client libraries.
+Please refer to [our documentation](https://docs.weaviate.io/weaviate/search/rerank) for more code examples, including for various Weaviate client libraries.
 :::
 
 This query retrieves 50 results from the `Product` class, using a hybrid search with the query “What is ref2vec?”. It then re-ranks the results using the `content` property of the `Product` class, and the query “what is ref2vec?”.
@@ -257,9 +257,9 @@ You can specify which `property` of the `Product` class you want to pass to the 
 This is just a first step in integrating ranking models with Weaviate. Read [our blog here](/blog/ranking-models-for-better-search) for further thoughts on this exciting space, and let us know what you want to see next 😉!
 
 :::tip Read more:
-- [Modules / Reranker-cohere](https://weaviate.io/developers/weaviate/model-providers/cohere/reranker)
-- [Modules / Reranker-transformers](https://weaviate.io/developers/weaviate/model-providers/transformers/reranker)
-- [How-to search: Reranking](https://weaviate.io/developers/weaviate/search/rerank)
+- [Modules / Reranker-cohere](https://docs.weaviate.io/weaviate/model-providers/cohere/reranker)
+- [Modules / Reranker-transformers](https://docs.weaviate.io/weaviate/model-providers/transformers/reranker)
+- [How-to search: Reranking](https://docs.weaviate.io/weaviate/search/rerank)
 :::
 
 ## New hybrid search ranking algorithm
@@ -298,7 +298,7 @@ In this example, we perform a hybrid search on the `Question` class, using the q
 ```
 
 :::tip See our documentation for more examples
-Please refer to [our documentation](https://weaviate.io/developers/weaviate/search/hybrid#fusion-ranking-method) for more code examples, including for various Weaviate client libraries.
+Please refer to [our documentation](https://docs.weaviate.io/weaviate/search/hybrid#fusion-ranking-method) for more code examples, including for various Weaviate client libraries.
 :::
 
 </details>
@@ -308,8 +308,8 @@ In our internal benchmarks, it showed improved recall performance over the exist
 Stay tuned, as we’ll be describing the `relative score fusion` feature in more detail in a separate blog post soon 👀.
 
 :::tip Read more:
-- [GraphQL references: Search operators # hybrid](https://weaviate.io/developers/weaviate/api/graphql/search-operators#variables-2)
-- [How-to search: Hybrid](https://weaviate.io/developers/weaviate/search/hybrid)
+- [GraphQL references: Search operators # hybrid](https://docs.weaviate.io/weaviate/api/graphql/search-operators#variables-2)
+- [How-to search: Hybrid](https://docs.weaviate.io/weaviate/search/hybrid)
 :::
 
 ## And more!
@@ -356,7 +356,7 @@ requests_total{api="rest",class_name="n/a",query_type="schema",status="user_erro
 
 </details>
 
-The full list of metrics that are offered can be found [here](https://weaviate.io/developers/weaviate/configuration/monitoring#obtainable-metrics)
+The full list of metrics that are offered can be found [here](https://docs.weaviate.io/weaviate/configuration/monitoring#obtainable-metrics)
 
 ### Chaos benchmarks improvements
 

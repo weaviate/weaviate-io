@@ -16,13 +16,13 @@ Weaviate is designed to be easy to monitor and observe by following a cloud nati
 
 1. Publishing of Prometheus metrics to the standard `/metrics` endpoint
 
-2. Use of built-in Kubernetes [liveness and readiness](https://weaviate.io/developers/weaviate/config-refs/status) checks
+2. Use of built-in Kubernetes [liveness and readiness](https://docs.weaviate.io/weaviate/config-refs/status) checks
 
 3. Configuration of settings via environment variables
 
 4. Simplified deployment via [helm charts](https://github.com/weaviate/weaviate-helm)
 
-There is existing documentation on [the exported metrics](https://weaviate.io/developers/weaviate/configuration/monitoring) which also has [an example](https://github.com/weaviate/weaviate-examples/tree/main/monitoring-prometheus-grafana) for how to use a Prometheus instance for metrics.
+There is existing documentation on [the exported metrics](https://docs.weaviate.io/weaviate/configuration/monitoring) which also has [an example](https://github.com/weaviate/weaviate-examples/tree/main/monitoring-prometheus-grafana) for how to use a Prometheus instance for metrics.
 
 One common question though is: How can I integrate Weaviate with my existing observability stack?
 
@@ -160,7 +160,7 @@ go_memstats_heap_inuse_bytes
 
 Batch latency is important as batch operations are the most efficient way to write data to
 Weaviate. Monitoring this can give an indication if there is a problem with indexing data. This metric has a label `operation` which
-allows you to see how long objects, vectors, and inverted index sub operations take. If you are using a [vectorizer module](https://weaviate.io/developers/weaviate/model-providers/) you will see additional latency due to the overhead of sending data to the module.
+allows you to see how long objects, vectors, and inverted index sub operations take. If you are using a [vectorizer module](https://docs.weaviate.io/weaviate/model-providers/) you will see additional latency due to the overhead of sending data to the module.
 
 ```
 rate(batch_durations_ms_sum[30s])/rate(batch_durations_ms_count[30s])

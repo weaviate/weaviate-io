@@ -135,7 +135,7 @@ collection = client.collections.create(
 collection = client.collections.get("AmazonProducts")
 ```
 
-We’ve created an AmazonProducts collection with two properties, title and description, which aligns with the columns in our DataFrame. Additionally, the collection is using the [Databricks module](https://weaviate.io/developers/weaviate/model-providers/databricks) to: 
+We’ve created an AmazonProducts collection with two properties, title and description, which aligns with the columns in our DataFrame. Additionally, the collection is using the [Databricks module](https://docs.weaviate.io/weaviate/model-providers/databricks) to: 
 
 * Vectorize Objects (`vectorizer_config`): The `text2vec_databricks` configuration enables Weaviate to generate embeddings for the Amazon products using the Databricks endpoint specified in `EMBEDDINGS_ENDPOINT`.   
 * Generative Model (`generative_config`): The `generative_databricks` configuration connects to a Databricks hosted large language model at `LLM_ENDPOINT`, to enable generative search.
@@ -245,7 +245,7 @@ The Spark Connector integration is just the first of many planned collaborations
 
 These planned integrations are designed to make Weaviate and Databricks a powerful, interconnected ecosystem, empowering Weaviate users to incorporate the Databricks Data Intelligence Platform into their Gen AI stack. Stay tuned—there’s much more to come.
 
-Ready to dive deeper? Learn more about [Weaviate’s partnership with Databricks](https://weaviate.io/partners/databricks) and [our integration](https://weaviate.io/developers/integrations/data-platforms/databricks)! 
+Ready to dive deeper? Learn more about [Weaviate’s partnership with Databricks](https://weaviate.io/partners/databricks) and [our integration](https://docs.weaviate.io/integrations/data-platforms/databricks)! 
 
 
 import WhatsNext from '/_includes/what-next.mdx'

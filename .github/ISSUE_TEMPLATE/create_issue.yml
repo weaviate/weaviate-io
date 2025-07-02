@@ -6,7 +6,7 @@ body:
       value: |
 
         * For questions, check the [Community Forum](https:/forum.weaviate.io), or ask in [Slack](https://weaviate.io/slack).
-        * Before you file an issue read the [Contributing guide](https://weaviate.io/developers/contributor-guide).
+        * Before you file an issue read the [Contributing guide](https://docs.weaviate.io/contributor-guide).
         * Check to make sure someone hasn't already opened a similar [issue](https://github.com/weaviate/weaviate-io/issues).
 
   - type: checkboxes
@@ -15,7 +15,7 @@ body:
       label: Code of Conduct
       description: This project has a Code of Conduct that all participants are expected to understand and follow.
       options:
-        - label: I have read and agree to the Weaviate's [Contributor Guide](https://weaviate.io/developers/contributor-guide) and [Code of Conduct](https://weaviate.io/service/code-of-conduct)
+        - label: I have read and agree to the Weaviate's [Contributor Guide](https://docs.weaviate.io/contributor-guide) and [Code of Conduct](https://weaviate.io/service/code-of-conduct)
           required: true
 
   - type: textarea

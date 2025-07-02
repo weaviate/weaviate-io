@@ -34,27 +34,27 @@ Weaviate Agents is not a framework for building agents. It is a set of pre-built
 
 ## Query Agent
 
-The [Query Agent]https://weaviate.io/developers/agents/query) provides an answer to your natural language questions, by querying your stored data.
+The [Query Agent](https://docs.weaviate.io/agents/query) provides an answer to your natural language questions, by querying your stored data.
 
-[![Click to read more about the Query Agent](./_includes/query_agent_usage_light.png#gh-light-mode-only "Click to read more about the Query Agent")](https://weaviate.io/developers/agents/query)
-[![Click to read more about the Query Agent](./_includes/query_agent_usage_dark.png#gh-dark-mode-only "Click to read more about the Query Agent")](https://weaviate.io/developers/agents/query)
+[![Click to read more about the Query Agent](./_includes/query_agent_usage_light.png#gh-light-mode-only "Click to read more about the Query Agent")](https://docs.weaviate.io/agents/query)
+[![Click to read more about the Query Agent](./_includes/query_agent_usage_dark.png#gh-dark-mode-only "Click to read more about the Query Agent")](https://docs.weaviate.io/agents/query)
 
-[Read more about the Query Agent](https://weaviate.io/developers/agents/query)
+[Read more about the Query Agent](https://docs.weaviate.io/agents/query)
 
 ## Transformation Agent
 
-The [Transformation Agent](https://weaviate.io/developers/agents/transformation) enhances your data by manipulating it based on your instructions.
+The [Transformation Agent](https://docs.weaviate.io/agents/transformation) enhances your data by manipulating it based on your instructions.
 
-[![Click to read more about the Transformation Agent](./_includes/transformation_agent_overview_light.png#gh-light-mode-only "Click to read more about the Transformation Agent")](https://weaviate.io/developers/agents/transformation)
-[![Click to read more about the Transformation Agent](./_includes/transformation_agent_overview_dark.png#gh-dark-mode-only "Click to read more about the Transformation Agent")](https://weaviate.io/developers/agents/transformation)
+[![Click to read more about the Transformation Agent](./_includes/transformation_agent_overview_light.png#gh-light-mode-only "Click to read more about the Transformation Agent")](https://docs.weaviate.io/agents/transformation)
+[![Click to read more about the Transformation Agent](./_includes/transformation_agent_overview_dark.png#gh-dark-mode-only "Click to read more about the Transformation Agent")](https://docs.weaviate.io/agents/transformation)
 
-[Read more about the Transformation Agent](https://weaviate.io/developers/agents/transformation)
+[Read more about the Transformation Agent](https://docs.weaviate.io/agents/transformation)
 
 ## Personalization Agent
 
-The [Personalization Agent](https://weaviate.io/developers/agents/personalization) customizes outputs based on persona-specific information, which can even be learned over time.
+The [Personalization Agent](https://docs.weaviate.io/agents/personalization) customizes outputs based on persona-specific information, which can even be learned over time.
 
-[![Click to read more about the Personalization Agent](./_includes/personalization_agent_overview_light.png#gh-light-mode-only "Click to read more about the Personalization Agent")](https://weaviate.io/developers/agents/personalization)
-[![Click to read more about the Personalization Agent](./_includes/personalization_agent_overview_dark.png#gh-dark-mode-only "Click to read more about the Personalization Agent")](https://weaviate.io/developers/agents/personalization)
+[![Click to read more about the Personalization Agent](./_includes/personalization_agent_overview_light.png#gh-light-mode-only "Click to read more about the Personalization Agent")](https://docs.weaviate.io/agents/personalization)
+[![Click to read more about the Personalization Agent](./_includes/personalization_agent_overview_dark.png#gh-dark-mode-only "Click to read more about the Personalization Agent")](https://docs.weaviate.io/agents/personalization)
 
-[Read more about the Personalization Agent](https://weaviate.io/developers/agents/personalization)
+[Read more about the Personalization Agent](https://docs.weaviate.io/agents/personalization)

@@ -54,7 +54,7 @@ These numerical representations are usually presented as an array of numbers and
 
 ![embeddings](./img/embeddings.png)
 
-At Weaviate, we’ve implemented a custom [HNSW](https://weaviate.io/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) [indexing](https://weaviate.io/developers/weaviate/concepts/vector-index) algorithm to allow for highly performant querying over your dataset which enables all sorts of business use cases at scale.
+At Weaviate, we’ve implemented a custom [HNSW](https://docs.weaviate.io/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) [indexing](https://docs.weaviate.io/weaviate/concepts/vector-index) algorithm to allow for highly performant querying over your dataset which enables all sorts of business use cases at scale.
 
 ## Features for Enterprise
 
@@ -66,21 +66,21 @@ Weaviate has way too many features and capabilities to describe in a single blog
 
 Weaviate’s core competency can be boiled down to search.
 
-We enable highly relevant search in all use cases. As mentioned previously we support [vector search](https://weaviate.io/developers/weaviate/search/similarity), which allows for semantic relevance retrieval. We support text based search to “near text concepts”. These near text concepts are calculated by semantic relevance based on the embedding model weights. We also support image based search to find objects with the nearest vector to an image.
+We enable highly relevant search in all use cases. As mentioned previously we support [vector search](https://docs.weaviate.io/weaviate/search/similarity), which allows for semantic relevance retrieval. We support text based search to “near text concepts”. These near text concepts are calculated by semantic relevance based on the embedding model weights. We also support image based search to find objects with the nearest vector to an image.
 
-In other use cases, we’ve found that [keyword search](https://weaviate.io/developers/weaviate/search/bm25) is more important for some applications. "BM25 (Best match 25)" or "sparse vector" search, returns objects that have the highest BM25F scores.
+In other use cases, we’ve found that [keyword search](https://docs.weaviate.io/weaviate/search/bm25) is more important for some applications. "BM25 (Best match 25)" or "sparse vector" search, returns objects that have the highest BM25F scores.
 
-Vector Search and Keyword Search each have their advantages, but often times, the results from vector search or keyword search are too restrictive and the optimal set of results are somewhere in-between. This is why we also have [hybrid search](https://weaviate.io/developers/weaviate/search/hybrid) which combines results of a vector search and a keyword (BM25F) search. You can set the [weights](https://weaviate.io/developers/weaviate/search/hybrid#balance-keyword-and-vector-search) or the [ranking method](https://weaviate.io/developers/weaviate/search/hybrid#change-the-ranking-method).
+Vector Search and Keyword Search each have their advantages, but often times, the results from vector search or keyword search are too restrictive and the optimal set of results are somewhere in-between. This is why we also have [hybrid search](https://docs.weaviate.io/weaviate/search/hybrid) which combines results of a vector search and a keyword (BM25F) search. You can set the [weights](https://docs.weaviate.io/weaviate/search/hybrid#balance-keyword-and-vector-search) or the [ranking method](https://docs.weaviate.io/weaviate/search/hybrid#change-the-ranking-method).
 
-Another format of search built right into Weaviate couples the language model right into your search queries. This allows you to build in more constrained prompts to ensure the language model makes inferences based on the datasets provided further reducing hallucination. We call this [generative search](https://weaviate.io/developers/weaviate/search/generative). Generative search is the foundation to building RAG applications with Weaviate. We’ll go further into detail about RAG later in this blog post.
+Another format of search built right into Weaviate couples the language model right into your search queries. This allows you to build in more constrained prompts to ensure the language model makes inferences based on the datasets provided further reducing hallucination. We call this [generative search](https://docs.weaviate.io/weaviate/search/generative). Generative search is the foundation to building RAG applications with Weaviate. We’ll go further into detail about RAG later in this blog post.
 
 ### Named Vectors
 
-Search is a core competency, but Weaviate offers features that help you build more fine grained search controls as well. One of these features is multiple vector embeddings, or [named vectors](https://weaviate.io/developers/weaviate/config-refs/schema/multi-vector), for a single collection. A named vector is independent and has its own index from other vectors on the collection. It has it’s own compression and can be configured with its own vectorizer. The advantage of using named vectors, beyond being able to query within constrained vector spaces is that you also have different metrics to the same object creating more “dimensions” for which it can be described or queried.
+Search is a core competency, but Weaviate offers features that help you build more fine grained search controls as well. One of these features is multiple vector embeddings, or [named vectors](https://docs.weaviate.io/weaviate/config-refs/schema/multi-vector), for a single collection. A named vector is independent and has its own index from other vectors on the collection. It has it’s own compression and can be configured with its own vectorizer. The advantage of using named vectors, beyond being able to query within constrained vector spaces is that you also have different metrics to the same object creating more “dimensions” for which it can be described or queried.
 
 ### Multi Tenancy
 
-[Multi tenancy](https://weaviate.io/developers/weaviate/manage-data/multi-tenancy) isolates data in individual tenants to avoid cross querying of search results. Each tenant is a separate shard in Weaviate, giving you high guarantees of isolation between data.
+[Multi tenancy](https://docs.weaviate.io/weaviate/manage-data/multi-tenancy) isolates data in individual tenants to avoid cross querying of search results. Each tenant is a separate shard in Weaviate, giving you high guarantees of isolation between data.
 
 This feature is ideal if you have different customers where each wants to load data into your enterprise application, but don’t want cross pollination of results between those tenants. The Weaviate multi tenancy scales to millions of tenants.
 

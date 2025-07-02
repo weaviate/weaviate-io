@@ -68,7 +68,7 @@ Cloud-native backups in Weaviate are handled with the addition of the new **back
 * `backup-gcs` - for GCS
 * `backup-fs` - for local filesystem
 
-Without getting into too many details (see the [docs for more precise instructions](https://weaviate.io/developers/weaviate/configuration/backups)), each module requires a different set of settings.
+Without getting into too many details (see the [docs for more precise instructions](https://docs.weaviate.io/weaviate/configuration/backups)), each module requires a different set of settings.
 
 For S3 and GCS, you need your cloud bucket name, authentication details and some extra details like a project name or the cloud region.
 
@@ -160,7 +160,7 @@ So, if one day you find yourself with an environment that is not set up for what
 
 ### Follow up
 Are you ready to set up backups for your environment?
-Head to the [documentation](https://weaviate.io/developers/weaviate/configuration/backups) for a more in-depth overview and instructions.
+Head to the [documentation](https://docs.weaviate.io/weaviate/configuration/backups) for a more in-depth overview and instructions.
 
 ## Reduced memory usage
 
@@ -227,7 +227,7 @@ Now, you can set your **soft memory cap** by setting the `GOMEMLIMIT` environmen
 GOMEMLIMIT=120GiB
 ```
 
-For more information, see the [Docker Compose environment variables](https://weaviate.io/developers/weaviate/installation/docker-compose#environment-variables) in the docs.
+For more information, see the [Docker Compose environment variables](https://docs.weaviate.io/weaviate/installation/docker-compose#environment-variables) in the docs.
 
 ## Faster imports for ordered data
 
@@ -309,7 +309,7 @@ But don't take our word for it, this was from a test run by one of our community
 
 Thanks to the community contributions from [Aakash Thatte](https://github.com/sky-2002), Weaviate `v1.15` adds two new distance metrics: **Hamming** distance and **Manhattan** distance. In total, you can now choose between five various distance metrics to support your datasets.
 
-Check out the [metrics documentation page](https://weaviate.io/developers/weaviate/config-refs/distances#distance-implementations-and-optimizations) for a complete overview of all available metrics in Weaviate.
+Check out the [metrics documentation page](https://docs.weaviate.io/weaviate/config-refs/distances#distance-implementations-and-optimizations) for a complete overview of all available metrics in Weaviate.
 
 ### Hamming distance
 The Hamming distance is a metric for comparing two numerical vectors. <br/>
@@ -406,7 +406,7 @@ Which would return the following result:
 }
 ```
 
-Head to the [Summarization Module docs page](https://weaviate.io/developers/weaviate/modules/sum-transformers) to learn more.
+Head to the [Summarization Module docs page](https://docs.weaviate.io/weaviate/modules/sum-transformers) to learn more.
 
 ### Hugging Face Module
 The Hugging Face module (`text2vec-huggingface`) opens up doors to over 600 [Hugging Face sentence similarity models](https://huggingface.co/models?pipeline_tag=sentence-similarity), ready to be used in Weaviate as a vectorization module.
@@ -420,7 +420,7 @@ You need a `Hugging Face API Token` to use the Hugging Face module. You can [req
 *Note. Hugging Face Inference uses [a pay-per-use pricing model](https://huggingface.co/inference-api#pricing).<br />
 Make sure to study it well before you run a big job.*
 
-To learn more, head to the [HuggingFace Module docs page](https://weaviate.io/developers/weaviate/model-providers/cohere/embeddings).
+To learn more, head to the [HuggingFace Module docs page](https://docs.weaviate.io/weaviate/model-providers/cohere/embeddings).
 
 ## Other improvements and bug fixes
 

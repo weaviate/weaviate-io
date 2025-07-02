@@ -21,11 +21,11 @@ In this article, you will learn about these two machine learning models, and why
 
 ## Bi-Encoder models
 
-Vector databases like [Weaviate](https://weaviate.io/developers/weaviate/) use Bi-Encoder machine learning models to compute the similarity between search queries and data in a vector space. Those machine learning models are trained to represent data (like text, images, videos, audio, etc) as **vectors**, which capture the context and semantics of the data. Similarly, search queries can also be represented by a vector embedding. A vector database can then perform a similarity search to retrieve the vectors closest to the query embedding.
+Vector databases like [Weaviate](https://docs.weaviate.io/weaviate/) use Bi-Encoder machine learning models to compute the similarity between search queries and data in a vector space. Those machine learning models are trained to represent data (like text, images, videos, audio, etc) as **vectors**, which capture the context and semantics of the data. Similarly, search queries can also be represented by a vector embedding. A vector database can then perform a similarity search to retrieve the vectors closest to the query embedding.
 
 The models that compute **dense vector embeddings for data** (which later can be used for **search queries**) are so-called *Bi-Encoder models*. Data vectors and query vectors can be compared by computing the similarity (for example cosine similarity) between vectors. All data items in the database can be represented by a vector embedding using a Bi-Encoder model.
 
-> Note. Vector databases **compute** dense vector embeddings **during import**. Calculating vectors up-front coupled with [ANN algorithms](https://weaviate.io/developers/weaviate/concepts/vector-index) (for faster retrieval) makes working with Bi-Encoder highly efficient.
+> Note. Vector databases **compute** dense vector embeddings **during import**. Calculating vectors up-front coupled with [ANN algorithms](https://docs.weaviate.io/weaviate/concepts/vector-index) (for faster retrieval) makes working with Bi-Encoder highly efficient.
 
 ![Vector Database](./img/vector-database.png)
 
