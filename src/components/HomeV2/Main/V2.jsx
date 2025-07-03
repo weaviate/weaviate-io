@@ -75,7 +75,7 @@ export default function Main() {
 
             <div className={styles.USPContainer}>
               <div className={styles.USPBox}>
-                <Link to="/product">
+                <Link to="/developers/weaviate/client-libraries">
                   <h4>
                     <span>Language agnostic by design</span>
                     <span className={styles.arrowIcon}></span>
@@ -88,7 +88,7 @@ export default function Main() {
               </div>
               <hr></hr>
               <div className={styles.USPBox}>
-                <Link to="/developers/wcs/quickstart">
+                <Link to="/developers/weaviate/model-providers">
                   <h4>
                     <span>Seamless model integration</span>
                     <span className={styles.arrowIcon}></span>
