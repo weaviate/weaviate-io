@@ -392,6 +392,10 @@
       width: 27.25rem;
     }
 
+    @media screen and (max-width: 975px) and (min-width: 900px) {
+      width: 27rem;
+    }
+
     @media (max-width: 900px) {
       width: 100%;
       height: auto;
@@ -477,28 +481,28 @@
     justify-content: center;
 
     .bentoSmall {
-      width: 17.5rem;
+      flex: 1 1 200px;
+      min-width: 200px;
+      max-width: 240px;
       height: 10rem;
-      flex-shrink: 0;
+      flex-shrink: 1;
+
       background: linear-gradient(128deg, #00d5076d 19.35%, #29a7dd70 80.19%);
+      border-radius: 1.25rem;
 
-      @media (max-width: 1440px) {
-        width: 100%;
-        max-width: 12.5rem;
-      }
-
-      @media (max-width: 1000px) {
-        width: 100%;
-        max-width: 9.5rem;
+      @media screen and (max-width: 975px) and (min-width: 900px) {
+        flex: 1 1 200px;
+        min-width: 170px;
+        max-width: 170px;
       }
 
       @media (max-width: 900px) {
-        width: 100%;
-        max-width: 12.5rem;
+        flex: 1 1 100%;
+        max-width: 48%;
       }
 
-      @media (max-width: 500px) {
-        width: 100%;
+      @media (max-width: 600px) {
+        flex: 1 1 100%;
         max-width: 100%;
       }
     }

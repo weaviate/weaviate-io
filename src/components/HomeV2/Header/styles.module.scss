@@ -65,7 +65,7 @@
 
     width: 42rem;
     height: 34rem;
-    margin-bottom: -4rem;
+    margin-bottom: -3rem;
     z-index: 1;
     position: relative;
     transition: all 0.3s ease-in-out;
@@ -86,7 +86,6 @@
       min-width: 29rem;
       height: 26.6875rem;
       background-position: unset;
-      margin-bottom: 0;
     }
 
     @media screen and (max-width: 450px) {

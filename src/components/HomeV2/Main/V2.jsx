@@ -48,7 +48,7 @@ export default function Main() {
             <div className={styles.CodeBlockContainer}>
               <div className={styles.CodeBlockSection}>
                 <h3>
-                  Production-ready<br></br>AI applications, faster
+                  Production-ready<br></br> AI applications, faster
                 </h3>
                 <p>
                   Spin up a cluster, point it at your data, and go. Weaviate can

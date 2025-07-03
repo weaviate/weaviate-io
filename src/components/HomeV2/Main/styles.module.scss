@@ -116,6 +116,9 @@
 
   .titleBG {
     background: #61d3847d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 10rem;
     height: 1.6875rem;
     text-align: center;
@@ -203,6 +206,16 @@
       font-style: normal;
       font-weight: 600;
       line-height: 140%; /* 2.8rem */
+
+      @media screen and (max-width: 600px) {
+        font-size: 1.5rem;
+        width: 100%;
+        margin: 0;
+
+        br {
+          display: none;
+        }
+      }
     }
 
     p {
@@ -232,6 +245,10 @@
       font-style: normal;
       font-weight: 500;
       line-height: 157.33%;
+
+      @media screen and (max-width: 600px) {
+        width: 100%;
+      }
     }
 
     .buttonDark {
@@ -251,6 +268,10 @@
       font-style: normal;
       font-weight: 500;
       line-height: 157.33%;
+
+      @media screen and (max-width: 600px) {
+        width: 100%;
+      }
     }
   }
 
@@ -773,20 +794,20 @@
 
     .titleBG {
       background: #61d3847d;
-      width: 10rem;
-      height: 1.4rem;
+      width: 7rem;
+      height: 1rem;
       text-align: center;
       flex-shrink: 0;
-      font-size: 0.75rem;
+      font-size: 0.5rem;
     }
 
     .retrieval {
       background: #7486ec76;
-      width: 15rem;
+      width: 10rem;
     }
 
     .agenticAI {
-      width: 5.75rem;
+      width: 3.75rem;
       background: #97df4483;
     }
   }
