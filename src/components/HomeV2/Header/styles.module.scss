@@ -91,6 +91,15 @@
 
     @media screen and (max-width: 450px) {
       min-width: 24rem;
+      height: 22.6875rem;
+    }
+
+    @media screen and (max-width: 400px) {
+      min-width: 20rem;
+    }
+
+    @media screen and (max-width: 300px) {
+      min-width: 15rem;
     }
   }
 }
@@ -143,7 +152,6 @@
 }
 
 .headerBG {
-  background: #130c49;
   background-image: url('/img/site/weaviate-graffiti-bg-1.png');
   background-size: cover;
 }
