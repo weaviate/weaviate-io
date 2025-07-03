@@ -288,10 +288,12 @@
     font-weight: 600;
     line-height: 140%; /* 1.75rem */
     white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
-  h4::after {
-    content: '';
+  .arrowIcon {
     display: inline-block;
     width: 1.5rem;
     height: 1.5rem;
@@ -299,9 +301,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    vertical-align: middle;
     border-radius: 50%;
-    margin: 0rem 0.5rem;
   }
 }
 
@@ -731,6 +731,10 @@
 }
 
 @media (max-width: 600px) {
+  .bigBox {
+    padding: 1rem 1rem;
+  }
+
   .benefitBox {
     width: 100%;
     min-width: 23rem;
@@ -752,6 +756,12 @@
     .agenticAI {
       width: 5.75rem;
       background: #97df4483;
+    }
+  }
+
+  .USPBox {
+    h4 {
+      font-size: 1.12rem;
     }
   }
 }

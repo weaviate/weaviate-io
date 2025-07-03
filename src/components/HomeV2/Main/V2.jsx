@@ -76,7 +76,10 @@ export default function Main() {
             <div className={styles.USPContainer}>
               <div className={styles.USPBox}>
                 <Link to="/product">
-                  <h4>Language agnostic by design</h4>
+                  <h4>
+                    <span>Language agnostic by design</span>
+                    <span className={styles.arrowIcon}></span>
+                  </h4>
                 </Link>
                 <p>
                   Use SDKs for Python, Go, TypeScript, or JavaScript—or connect
@@ -86,7 +89,10 @@ export default function Main() {
               <hr></hr>
               <div className={styles.USPBox}>
                 <Link to="/developers/wcs/quickstart">
-                  <h4>Seamless model integration</h4>
+                  <h4>
+                    <span>Seamless model integration</span>
+                    <span className={styles.arrowIcon}></span>
+                  </h4>
                 </Link>
                 <p>
                   Connect your ML models of choice, or use our built-in
@@ -96,7 +102,10 @@ export default function Main() {
               <hr></hr>
               <div className={styles.USPBox}>
                 <Link to="/product">
-                  <h4>Database Agents</h4>
+                  <h4>
+                    <span>Database Agents</span>
+                    <span className={styles.arrowIcon}></span>
+                  </h4>
                 </Link>
                 <p>
                   Reduce manual work with pre-built agents that interact with
