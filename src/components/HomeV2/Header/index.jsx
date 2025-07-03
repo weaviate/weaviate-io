@@ -26,7 +26,7 @@ export default function StudyHeader() {
                   Get Started
                 </Link>
                 <Link to="/blog" className={styles.buttonDark}>
-                  Learn more {'-->'}
+                  How we empower<br></br> AI-native builders →
                 </Link>
               </div>
             </div>
@@ -38,7 +38,7 @@ export default function StudyHeader() {
       </div>
       <div className={styles.bottomBar}>
         <div className={styles.logoWrapper}>
-          <div className={styles.logo}></div>
+          <div className={`${styles.logo} ${styles.logo0}`}></div>
           <div className={`${styles.logo} ${styles.logo1}`}></div>
           <div className={`${styles.logo} ${styles.logo2}`}></div>
           <div className={`${styles.logo} ${styles.logo3}`}></div>
@@ -57,9 +57,8 @@ export default function StudyHeader() {
           <div className={`${styles.logo} ${styles.logo17}`}></div>
           <div className={`${styles.logo} ${styles.logo18}`}></div>
           <div className={`${styles.logo} ${styles.logo19}`}></div>
-          <div className={`${styles.logo} ${styles.logo20}`}></div>
 
-          <div className={styles.logo}></div>
+          <div className={`${styles.logo} ${styles.logo0}`}></div>
           <div className={`${styles.logo} ${styles.logo1}`}></div>
           <div className={`${styles.logo} ${styles.logo2}`}></div>
           <div className={`${styles.logo} ${styles.logo3}`}></div>
@@ -78,7 +77,6 @@ export default function StudyHeader() {
           <div className={`${styles.logo} ${styles.logo17}`}></div>
           <div className={`${styles.logo} ${styles.logo18}`}></div>
           <div className={`${styles.logo} ${styles.logo19}`}></div>
-          <div className={`${styles.logo} ${styles.logo20}`}></div>
         </div>
       </div>
     </header>

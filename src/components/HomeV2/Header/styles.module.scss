@@ -106,7 +106,7 @@
 
   .buttonDark {
     color: #130c49;
-    text-align: center;
+    text-align: left;
     font-family: Inter;
 
     font-size: 1rem;
@@ -193,14 +193,8 @@
   }
 }
 
-.logo {
+.logo0 {
   background-image: url('/img/site/lightlogos/stackoverflow.svg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 4.05294rem;
-  height: 1.2745rem;
-  flex-shrink: 0;
 }
 
 .logo1 {
@@ -315,6 +309,15 @@
   background-image: url('/img/site/lightlogos/build-datagrid-logo.svg');
   width: 6.99588rem;
   height: 1.69131rem;
+}
+
+.logo {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 4.05294rem;
+  height: 1.2745rem;
+  flex-shrink: 0;
 }
 
 @media (max-width: 1600px) {

@@ -47,7 +47,9 @@ export default function Main() {
           <div className={styles.bigBox}>
             <div className={styles.CodeBlockContainer}>
               <div className={styles.CodeBlockSection}>
-                <h3>Ship production-ready AI faster</h3>
+                <h3>
+                  Production-ready<br></br>AI applications, faster
+                </h3>
                 <p>
                   Spin up a cluster, point it at your data, and go. Weaviate can
                   take care of embeddings, ranking, and auto-scaling so you can
@@ -74,6 +76,16 @@ export default function Main() {
             <div className={styles.USPContainer}>
               <div className={styles.USPBox}>
                 <Link to="/product">
+                  <h4>Language agnostic by design</h4>
+                </Link>
+                <p>
+                  Use SDKs for Python, Go, TypeScript, or JavaScript—or connect
+                  to GraphQL or REST APIs.
+                </p>
+              </div>
+              <hr></hr>
+              <div className={styles.USPBox}>
+                <Link to="/developers/wcs/quickstart">
                   <h4>Seamless model integration</h4>
                 </Link>
                 <p>
@@ -83,18 +95,8 @@ export default function Main() {
               </div>
               <hr></hr>
               <div className={styles.USPBox}>
-                <Link to="/developers/wcs/quickstart">
-                  <h4>Weaviate Cloud Quickstart</h4>
-                </Link>
-                <p>
-                  Set up your first cluster in minutes using our fully-managed
-                  vector database.
-                </p>
-              </div>
-              <hr></hr>
-              <div className={styles.USPBox}>
                 <Link to="/product">
-                  <h4>Weaviate Agents</h4>
+                  <h4>Database Agents</h4>
                 </Link>
                 <p>
                   Reduce manual work with pre-built agents that interact with
@@ -124,15 +126,11 @@ export default function Main() {
           </div>
         </div>
 
-        {/* UPDATED WHY USE SECTION */}
         <div className={styles.box}>
-          <h2>Easy start, boundless scale, deploy anywhere</h2>
+          <span className={styles.Title}>WHY USE WEAVIATE?</span>
+          <h2>Start easy, scale boundlessly, deploy anywhere</h2>
         </div>
         <div className={styles.boxContainer}>
-          <span className={`${styles.buildTitle} ${styles.centered}`}>
-            WHY USE WEAVIATE?
-          </span>
-
           <div className={styles.staticBoxesWrapper}>
             <div className={styles.bigStaticBox}>
               <span className={styles.boxLabel}>BEFORE WEAVIATE</span>

@@ -3,6 +3,12 @@
 }
 
 .box {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+
   h2 {
     text-align: center;
     color: #130c49;
@@ -11,6 +17,16 @@
     font-style: normal;
     font-weight: 600;
     line-height: 140%;
+  }
+
+  .Title {
+    color: #8396b1;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%; /* 1.4rem */
+    text-transform: uppercase;
   }
 }
 
@@ -271,6 +287,7 @@
     font-style: normal;
     font-weight: 600;
     line-height: 140%; /* 1.75rem */
+    white-space: nowrap;
   }
 
   h4::after {
@@ -953,5 +970,24 @@
   .smallBenefitBox {
     width: 100%;
     padding: 2rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .staticBoxesWrapper {
+    gap: 1rem;
+  }
+
+  .bigStaticBox {
+    padding: 1.5rem;
+  }
+
+  .smallStaticBox,
+  .smallBenefitBox {
+    padding: 1.5rem;
+  }
+
+  .boxLabel {
+    font-size: 0.8rem;
   }
 }

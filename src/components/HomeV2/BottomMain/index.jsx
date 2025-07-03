@@ -11,7 +11,8 @@ export default function BottomMain() {
           <h2>The best teams choose Weaviate to power their AI products</h2>
           <p>
             With over 20M open source downloads and thousands of customers,
-            Weaviate is a core piece of the stack for leading AI teams.
+            Weaviate is a core piece of the stack for leading startups,
+            scale-ups, and enterprises.
           </p>
           <Link to="/case-studies" className={styles.caseLink}>
             {' '}
