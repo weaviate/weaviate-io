@@ -8,9 +8,11 @@ image: ./img/glowe-hero.png
 description: "Glowe is a Korean beauty recommendation app that uses domain knowledge agents, custom embedding strategies, and vector search to create personalized skincare routines. Try now: https://www.glowe.app/"
 ---
 
-Skincare is deeply personal, and finding the right products to build an effective routine can feel overwhelming and impossible. The skincare industry generates thousands of products with millions of reviews annually, yet most recommendation systems fail to capture the nuanced relationships between ingredients, user experiences, and skincare outcomes based on *actual user data*. That's why we built **Glowe**, a Korean beauty recommendation app that demonstrates how domain knowledge agents, custom embedding strategies, and vector search can create genuinely intelligent product recommendations.
+![hero image](./img/glowe-hero.png)
 
-Whether you're aiming for intense hydration, a radiant glow, or targeting specific concerns like acne or redness, Glowe leverages Agentic AI to recommend effective and safe product combinations based on your skin profile. It considers positive and negative effects, ingredient compatibility, and your own personal skin goals to create your very own skincare stack. Glowe also features an agentic chat interface, allowing you to engage naturally with its domain-specific knowledge and receive personalized skincare guidance in real time.
+Skincare is deeply personal, and finding the right products to build an effective routine can feel overwhelming and impossible. The skincare industry generates thousands of products with millions of reviews annually, yet most recommendation systems fail to capture the nuanced relationships between ingredients, user experiences, and skincare outcomes based on *actual user data*. That's why we built **Glowe**, a Korean beauty recommendation app that demonstrates how domain knowledge agents, custom embedding strategies, and [vector search](/blog/vector-search-explained) can create genuinely intelligent product recommendations.
+
+Whether you're aiming for intense hydration, a radiant glow, or targeting specific concerns like acne or redness, Glowe leverages [Agentic AI](/blog/ai-agents) to recommend effective and safe product combinations based on your skin profile. It considers positive and negative effects, ingredient compatibility, and your own personal skin goals to create your very own skincare stack. Glowe also features an agentic chat interface, allowing you to engage naturally with its domain-specific knowledge and receive personalized skincare guidance in real time.
 
 :::info Try it out!
 
@@ -25,7 +27,7 @@ Glowe is available to use here: [glowe.app](https://www.glowe.app/)
 At the heart of Glowe's personalized experience is a **skincare domain agent**. 
 Unlike general-purpose AI that tries to cover everything, a domain agent is deeply focused on one specific area. Glowe doesn’t just generate routines, it understands the science behind them. 
 
-Backed by Weaviate Agents integrated through Elysia (which we’ll discuss shortly), it combines smart retrieval, tailored prompts, and expert-level reasoning to offer advice that's genuinely useful and not generic.
+Backed by [Weaviate Agents](/blog/weaviate-agents) integrated through Elysia (which we’ll discuss shortly), it combines smart retrieval, tailored prompts, and expert-level reasoning to offer advice that's genuinely useful and not generic.
 
 :::info
 
@@ -70,7 +72,7 @@ A common approach in product recommendation is to embed the entire product objec
 
 ### Solution: A Dual Embedding Strategy
 
-We separate the concept of a product into two distinct embeddings:
+We separate the concept of a product into two distinct embeddings, using [named vectors in Weaviate](/developers/weaviate/config-refs/schema/multi-vector) so that each vector is independently searchable:
 
 1. **Product Embedding:**
     - Captures descriptive metadata: name, brand, category, ingredients, etc.
@@ -78,6 +80,9 @@ We separate the concept of a product into two distinct embeddings:
 2. **Effect Embedding (Positive and Negative):**
     - Captures the *skincare benefits* of a product, primarily extracted and weighted from actual user reviews.
     - **Use Case:** Matching products to user skin profiles and building personalized skincare stacks (which helps in effective routine generation).
+
+
+![Glowe Product Embedding Strategy](./img/embedding-strategy.png)
 
 ### Effect Embedding
 
@@ -95,8 +100,6 @@ TF-IDF gives us two numbers:
 
 - **TF (Term Frequency):** How often an effect is mentioned for this product
 - **IDF (Inverse Document Frequency):** How rare this effect is across all products
-
-![Glowe Product Embedding Strategy](./img/embedding-strategy.png)
 
 Now, let’s explore the effect embedding process step by step:
 
@@ -232,7 +235,7 @@ Then, based on your specific skin conditions and goals, we layer in other catego
 Once we know which types of products you need, it’s time to find the actual products.
 
 That’s where **Weaviate** comes in! If you recall from the previous section on **Effect Embedding**, each product in our collection has an `effect_vector`, which basically is a fingerprint of what it’s good at (hydrating, soothing, exfoliating, etc.). 
-Weaviate uses these vectors to run a similarity search against your skin needs and goals. This is done concurrently across all selected categories, resulting in a shortlist of top-matching products for each step in your routine.
+Weaviate uses these vectors to run a [similarity search](/blog/vector-search-explained#how-does-vector-search-work) against your skin needs and goals. This is done concurrently across all selected categories, resulting in a shortlist of top-matching products for each step in your routine.
 
 ### Assembling Your Routine with Gemini 2.5 Flash
 
