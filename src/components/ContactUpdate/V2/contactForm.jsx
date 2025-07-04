@@ -46,7 +46,7 @@ export default function ContactForm() {
             </p>
             <ul>
               <li>
-                <Link to="/products">Weaviate Products</Link>
+                <Link to="/product">Weaviate Products</Link>
               </li>
               <li>
                 <Link to="/pricing">Pricing</Link>
