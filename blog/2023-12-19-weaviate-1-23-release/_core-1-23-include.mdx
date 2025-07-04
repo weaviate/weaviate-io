@@ -23,9 +23,9 @@ For more details, keep scrolling ⬇️!
 ![AutoPQ](./img/weaviate-release-1-23-lazy.png#gh-dark-mode-only)
 ![AutoPQ](./img/weaviate-release-1-23-lazy_1.png#gh-light-mode-only)
 
-Weaviate introduced Product Quantization (PQ) earlier this year. Since then, we've improved how PQ works with your data. In v1.23 we've made it easier to get started. PQ requires a training step. We've heard that the training step was tricky to configure, so we created AutoPQ to take care of the training for you. Just [enable AutoPQ](/developers/weaviate/configuration/compression/pq-compression/#configure-autopq) in your system configuration. Then, any time you enable PQ on a new collection, AutoPQ takes care of training and initializes PQ for you.
+Weaviate introduced Product Quantization (PQ) earlier this year. Since then, we've improved how PQ works with your data. In v1.23 we've made it easier to get started. PQ requires a training step. We've heard that the training step was tricky to configure, so we created AutoPQ to take care of the training for you. Just [enable AutoPQ](https://docs.weaviate.io/weaviate/configuration/compression/pq-compression/#configure-autopq) in your system configuration. Then, any time you enable PQ on a new collection, AutoPQ takes care of training and initializes PQ for you.
 
-We have other improvements too. PQ uses [segments](/developers/weaviate/concepts/vector-quantization/#product-quantization) to compress vectors. In this release we have a new algorithm to determine the optimal segment size for your vectors. You can still set the segment size manually, but you shouldn't have to.
+We have other improvements too. PQ uses [segments](https://docs.weaviate.io/weaviate/concepts/vector-quantization/#product-quantization) to compress vectors. In this release we have a new algorithm to determine the optimal segment size for your vectors. You can still set the segment size manually, but you shouldn't have to.
 
 Together, AutoPQ and improved segment sizing make using PQ easier than ever.
 
@@ -56,14 +56,14 @@ We expect that BQ will generally work better for vectors with higher dimensions.
 
 When BQ is enabled, a vector cache can be used to improve query performance by storing the quantized vectors of the most recently used data objects. Note that it must be balanced with memory usage considerations.
 
-* Read more about the `flat` index [here](/developers/weaviate/concepts/vector-index#flat-index).
+* Read more about the `flat` index [here](https://docs.weaviate.io/weaviate/concepts/vector-index#flat-index).
 
 
 ## OSS LLM integration with `generative-anyscale`
 
 ![Weaviate 1.23](./img/generative-anyscale.png)
 
-With the `1.23` release, it is easier to use Weaviate with many open-source large language models (LLMs) such as Llama2-70b, CodeLlama-34b or Mistral-7B-Instruct. This is made possible by the [generative-anyscale](/developers/weaviate/model-providers/anyscale/generative) module.
+With the `1.23` release, it is easier to use Weaviate with many open-source large language models (LLMs) such as Llama2-70b, CodeLlama-34b or Mistral-7B-Instruct. This is made possible by the [generative-anyscale](https://docs.weaviate.io/weaviate/model-providers/anyscale/generative) module.
 
 This module integrates Weaviate with the [Anyscale](https://www.anyscale.com/) service, which provides a hosted inference service for large language models. This allows Weaviate users to perform retrieval augmented generation (RAG) with open-source LLMs, without having to worry about the infrastructure required to run these models.
 
@@ -78,7 +78,7 @@ Currently, these models are supported:
 
 If you have used any of the other `generative` modules in Weaviate, the usage pattern is identical. Make sure you supply your Anyscale API key to Weaviate, and enjoy using these models!
 
-* Read more about the `generative-anyscale` module [here](/developers/weaviate/model-providers/anyscale/generative).
+* Read more about the `generative-anyscale` module [here](https://docs.weaviate.io/weaviate/model-providers/anyscale/generative).
 
 
 ## Python client beta update
@@ -97,18 +97,18 @@ Some of the changes in this release include:
     * Returned query results include a `references` attribute where cross-references were queried.
 * Native `datetime` objects are used where applicable, such as for time-based `metadata` attributes or date properties.
 
-* Read more about the `Python` client `v4` [here](/developers/weaviate/client-libraries/python).
+* Read more about the `Python` client `v4` [here](https://docs.weaviate.io/weaviate/client-libraries/python).
 
 
 ## Performance improvements
 
-* [Lazy shard loading](/developers/weaviate/concepts/data#lazy-shard-loading) allows you to start working with your data sooner. After a restart, shards load in the background. If the shard you want to query is already loaded, you can get your results right away. If the shard is not loaded yet, Weaviate prioritizes loading that shard and returns a response when it is ready.
+* [Lazy shard loading](https://docs.weaviate.io/weaviate/concepts/data#lazy-shard-loading) allows you to start working with your data sooner. After a restart, shards load in the background. If the shard you want to query is already loaded, you can get your results right away. If the shard is not loaded yet, Weaviate prioritizes loading that shard and returns a response when it is ready.
 
-* You can now enable an option to [auto-limit available resources](/developers/weaviate/concepts/resources#limit-available-resources) in Weaviate. In applicable systems, you can set the `LIMIT_RESOURCES` [environment variable](/developers/weaviate/config-refs/env-vars).
+* You can now enable an option to [auto-limit available resources](https://docs.weaviate.io/weaviate/concepts/resources#limit-available-resources) in Weaviate. In applicable systems, you can set the `LIMIT_RESOURCES` [environment variable](https://docs.weaviate.io/weaviate/config-refs/env-vars).
 
 ## Minor changes
 
-The [`nodes` endpoint](developers/weaviate/config-refs/nodes) can be used to output information about the nodes in your cluster.
+The [`nodes` endpoint](https://docs.weaviate.io/weaviate/config-refs/nodes) can be used to output information about the nodes in your cluster.
 
 This endpoint has been updated with a new `output` parameter that has a `minimal` default. This is useful for those of you with many shards or tenants, as it reduces the amount of data returned by the endpoint.
 

@@ -158,7 +158,7 @@ The search will eventually find some low priced jewelry, but it can require the 
 
 ## Internal test results - ACORN vs pre-ACORN
 
-We next show some experiments using for filtered vector search and differing correlation between the filters and the queries. You can easily test ACORN with your own data in Weaviate by [switching the filtering strategy in the collection definition to sweeping or acorn](/developers/weaviate/manage-data/collections#set-vector-index-parameters). The [benchmark tool](https://github.com/weaviate/weaviate-benchmarking) has been updated to easily test your data with the flags `-–filter` to signal that we are doing a filtered test, pre-filtering disabled with `--flatSearchCutoff` set to zero, and `-–filterStrategy` which accepts acorn as a valid strategy to indicate that we want to activate the new logic during querying.
+We next show some experiments using for filtered vector search and differing correlation between the filters and the queries. You can easily test ACORN with your own data in Weaviate by [switching the filtering strategy in the collection definition to sweeping or acorn](https://docs.weaviate.io/weaviate/manage-data/collections#set-vector-index-parameters). The [benchmark tool](https://github.com/weaviate/weaviate-benchmarking) has been updated to easily test your data with the flags `-–filter` to signal that we are doing a filtered test, pre-filtering disabled with `--flatSearchCutoff` set to zero, and `-–filterStrategy` which accepts acorn as a valid strategy to indicate that we want to activate the new logic during querying.
 
 ### Low correlation between filters and queries
 
@@ -236,7 +236,7 @@ The results speak for themselves: up to 10x performance improvement in challengi
 
 Ready to try it out? ACORN is available in [Weaviate 1.27](/blog/weaviate-1-27-release/) and newer. Simply enable it in your collection configuration and start experimenting with your own datasets. We're excited to hear about your experiences and use cases!
 
-For more information on using ACORN in Weaviate, check out our [documentation](/developers/weaviate/), such as [how to enable ACORN](/developers/weaviate/manage-data/collections#set-vector-index-parameters), and [how to perform filtered searches](/developers/weaviate/search/filters).
+For more information on using ACORN in Weaviate, check out our [documentation](https://docs.weaviate.io/weaviate/), such as [how to enable ACORN](https://docs.weaviate.io/weaviate/manage-data/collections#set-vector-index-parameters), and [how to perform filtered searches](https://docs.weaviate.io/weaviate/search/filters).
 
 import WhatsNext from '/_includes/what-next.mdx';
 

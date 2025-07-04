@@ -18,17 +18,17 @@ Named vectors make your collections richer and more versatile.
 
 Starting in 1.24, an object can have more than one vector embedding. Each vector is independent. Each vector has its own index, its own compression, and its own vectorizer. This means you can create vectors for properties, use different vectorization models, and apply different metrics to fine tune interactions with your data.
 
-In earlier versions, objects in your collections are limited to one vector. Now, you can vectorize meta data like titles and descriptions so that it is available for vector search. You can group things that are logically related, like a music video and a lyric sheet, in the same object. You don't have to create [cross-references](/developers/weaviate/manage-data/cross-references) or manage shared metadata. A single object in a collection can have multiple named vectors.
+In earlier versions, objects in your collections are limited to one vector. Now, you can vectorize meta data like titles and descriptions so that it is available for vector search. You can group things that are logically related, like a music video and a lyric sheet, in the same object. You don't have to create [cross-references](https://docs.weaviate.io/weaviate/manage-data/cross-references) or manage shared metadata. A single object in a collection can have multiple named vectors.
 
 You don't have to use named vectors in your collections, but if you do, adjust your queries to specify which vector you want to use.
 
-For details, see [Multiple vector embeddings](/developers/weaviate/config-refs/schema/multi-vector).
+For details, see [Multiple vector embeddings](https://docs.weaviate.io/weaviate/config-refs/schema/multi-vector).
 
 ## HNSW and binary quantization
 
 ![HNSW and binary quantization](./img/hnsw-and-bq.png)
 
-Weaviate improves [binary quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression) in 1.24 to be faster, more memory efficient, and more cost-effective. Use BQ vector compression with [HNSW indexes](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) to dramatically improve your query speed.
+Weaviate improves [binary quantization (BQ)](https://docs.weaviate.io/weaviate/configuration/compression/bq-compression) in 1.24 to be faster, more memory efficient, and more cost-effective. Use BQ vector compression with [HNSW indexes](https://docs.weaviate.io/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) to dramatically improve your query speed.
 
 BQ compresses vector representations while preserving essential information. Uncompressed, Weaviate uses a `float32` to store each dimension. BQ uses one bit per dimension to encode Vector directionality. This means BQ compresses vectors from 32 bits per dimension to 1 bit per dimension - a savings of 32 times the space. This compression significantly reduces storage requirements.
 
@@ -52,7 +52,7 @@ Compare each value in the first vector one with the corresponding value in the s
 
 Efficient BQ processing compliments our HNSW index to enable mind dizzyingly fast vector search and throughput!
 
-Let’s talk numbers! You might know from our v1.23 release that combining a [flat index](/developers/weaviate/concepts/vector-index#flat-index) with BQ enables real-time search capabilities. Even so, a brute force a search on 1 million vectors, where each vector has 768 dimensions, takes about 23 milliseconds with a flat index. When you use HNSW and BQ, even with vectors six times as big (4608 dimensions), the same brute force search only takes about 90 milliseconds.
+Let’s talk numbers! You might know from our v1.23 release that combining a [flat index](https://docs.weaviate.io/weaviate/concepts/vector-index#flat-index) with BQ enables real-time search capabilities. Even so, a brute force a search on 1 million vectors, where each vector has 768 dimensions, takes about 23 milliseconds with a flat index. When you use HNSW and BQ, even with vectors six times as big (4608 dimensions), the same brute force search only takes about 90 milliseconds.
 
 A flat index combined with BQ is fast, but compare a HNSW index combined with BQ. Together HNSW and BQ enable vector search capabilities that reach nearly 10,000 queries per second at 85% recall!
 
@@ -68,7 +68,7 @@ docker run -p 8080:8080 -p 50051:50051 cr.weaviate.io/semitechnologies/weaviate:
 
 Alternatively, you can edit the `docker-compose.yml` file to customize your instance.
 
-For details, see [Docker configuration](/developers/weaviate/installation/docker-compose)
+For details, see [Docker configuration](https://docs.weaviate.io/weaviate/installation/docker-compose)
 
 ## Backend improvements
 
@@ -76,10 +76,10 @@ Weaviate is a robust platform that handles many kinds of workloads. This release
 
 ## Python client
 
-The new Weaviate [Python client v4](/developers/weaviate/client-libraries/python) is available. The latest release adds support for named vectors and brings numerous other updates. If you have feedback on the new client, please let us know.
+The new Weaviate [Python client v4](https://docs.weaviate.io/weaviate/client-libraries/python) is available. The latest release adds support for named vectors and brings numerous other updates. If you have feedback on the new client, please let us know.
 
 - To learn more about the new client, read the [client release blog post](/blog/py-client-v4-release).
-- To learn how to upgrade your code, see the [v3 to v4 migration guide](/developers/weaviate/client-libraries/python/v3_v4_migration).
+- To learn how to upgrade your code, see the [v3 to v4 migration guide](https://docs.weaviate.io/weaviate/client-libraries/python/v3_v4_migration).
 
 ## Summary
 

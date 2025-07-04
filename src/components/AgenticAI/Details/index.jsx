@@ -32,7 +32,7 @@ export default function Details() {
                 Help AI agents quickly adapt to new information and provide
                 context for future interactions with real-time ingestion and
                 querying of multimodal data, at scale.<br></br>
-                <Link to="/developers/weaviate/concepts/search/hybrid-search">
+                <Link to="https://docs.weaviate.io/weaviate/concepts/search/hybrid-search">
                   Learn more
                 </Link>
               </p>

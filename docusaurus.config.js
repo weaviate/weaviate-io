@@ -5,7 +5,8 @@ require('dotenv').config();
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const remarkReplace = require('./src/remark/remark-replace');
-const siteRedirects = require('./site.redirects');
+// SUBDOMAIN_MIGRATION - to do: delete site.redirects.js
+// const siteRedirects = require('./site.redirects');
 const path = require('path');
 
 
@@ -51,7 +52,8 @@ const config = {
         ],
 
         'docusaurus-plugin-sass',
-        ['@docusaurus/plugin-client-redirects', siteRedirects],
+        // SUBDOMAIN_MIGRATION - todo: delete _developers
+        // ['@docusaurus/plugin-client-redirects', siteRedirects], 
 
         // Playbook configuration
         [
@@ -107,22 +109,23 @@ const config = {
                 showReadingTime: true,
             },
         ],
-        [
-            '@scalar/docusaurus',
-            {
-              label: '.',
-              route: '/developers/weaviate/api/rest',
-              configuration: {
-                spec: {
-                    // Last updated: 2025-02-15 TODO[g-despot] Update to correct openapi_docs branch
-                  url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs_v1-30/openapi-specs/schema.json',
-                },
-                hideModels: true,
-                // This feature currently broken - potentially fixed in: https://github.com/scalar/scalar/pull/1387
-                // hiddenClients: [...],
-              },
-            },
-        ],
+        // SUBDOMAIN_MIGRATION
+        // [
+        //     '@scalar/docusaurus',
+        //     {
+        //       label: '.',
+        //       route: '/developers/weaviate/api/rest',
+        //       configuration: {
+        //         spec: {
+        //             // Last updated: 2025-02-15 TODO[g-despot] Update to correct openapi_docs branch
+        //           url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs_v1-30/openapi-specs/schema.json',
+        //         },
+        //         hideModels: true,
+        //         // This feature currently broken - potentially fixed in: https://github.com/scalar/scalar/pull/1387
+        //         // hiddenClients: [...],
+        //       },
+        //     },
+        // ],
 
         // Add HTML Header tags
         () => ({
@@ -330,11 +333,10 @@ const config = {
                     path: 'developers', // folder name – where the docs are
                     routeBasePath: 'developers', // route name – where to navigate for docs i.e. weaviate.io/<route-base-path>/...
 
-                    // TODO: Update to 'main' for release
-                    editUrl:
-                        'https://github.com/weaviate/weaviate-io/tree/main/',
-                    remarkPlugins: [remarkReplace, math],
-                    rehypePlugins: [katex],
+                    // editUrl:
+                    //     'https://github.com/weaviate/weaviate-io/tree/main/',
+                    // remarkPlugins: [remarkReplace, math],
+                    // rehypePlugins: [katex],
                 },
                 blog: {
                     blogTitle: 'Blog',

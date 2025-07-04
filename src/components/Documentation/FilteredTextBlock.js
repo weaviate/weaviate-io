@@ -231,7 +231,7 @@ const FilteredTextBlock = ({
                 )}
                 {language === 'pyv3' && (
                     <a
-                        href="https://weaviate.io/developers/weaviate/client-libraries/python/python_v3"
+                        href="https://docs.weaviate.io/weaviate/client-libraries/python/python_v3"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="badge badge--warning"

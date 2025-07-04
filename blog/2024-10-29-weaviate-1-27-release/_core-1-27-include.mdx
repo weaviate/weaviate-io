@@ -48,11 +48,11 @@ The ACORN algorithm improves filtered search performance in three different ways
 - The algorithm reaches the relevant part of the HNSW graph faster, by using a multi-hop approach to evaluate the neighborhood of candidates.
 - The entry points are randomly seeded to speed up convergence to the filtered zone.
 
-This implementation is [Weaviate's own version](/developers/weaviate/concepts/filtering) of that described in the original paper, with modifications to make it even better for Weaviate users.
+This implementation is [Weaviate's own version](https://docs.weaviate.io/weaviate/concepts/filtering) of that described in the original paper, with modifications to make it even better for Weaviate users.
 
 ### How to use ACORN
 
-ACORN can be enabled as the filter strategy by setting `filterStrategy` for the relevant HNSW vector index [in the collection configuration](/developers/weaviate/manage-data/collections#set-vector-index-parameters).
+ACORN can be enabled as the filter strategy by setting `filterStrategy` for the relevant HNSW vector index [in the collection configuration](https://docs.weaviate.io/weaviate/manage-data/collections#set-vector-index-parameters).
 
 :::note Note: Filter strategy parameter not yet supported by all clients
 At the time of writing, the `filterStrategy` parameter is not yet supported by all Weaviate clients. It will be added to all clients shortly.
@@ -74,15 +74,15 @@ We would love to hear from you about your experiences with ACORN. Please drop by
 
 ## Multi-Target Vector Search Enhancement
 
-In Weaviate `1.27`, multi-target vector search has been improved further to allow searching the [same vector field multiple times](/developers/weaviate/search/multi-vector#specify-query-vectors) in one query.
+In Weaviate `1.27`, multi-target vector search has been improved further to allow searching the [same vector field multiple times](https://docs.weaviate.io/weaviate/search/multi-vector#specify-query-vectors) in one query.
 
 These new options provide even more flexibility for comprehensive searches through your data with Weaviate.
 
-Take a look at the [multi-target vector search page](/developers/weaviate/search/multi-vector) for more examples.
+Take a look at the [multi-target vector search page](https://docs.weaviate.io/weaviate/search/multi-vector) for more examples.
 
 :::info What is a multi-target vector search?
 
-Weaviate `1.26` introduced [multi-target vector searches](/developers/weaviate/search/multi-vector), where one search query can search across multiple target vectors.
+Weaviate `1.26` introduced [multi-target vector searches](https://docs.weaviate.io/weaviate/search/multi-vector), where one search query can search across multiple target vectors.
 <br/>
 
 For example, you can search a product object with a query, and compare the query to the product's:
@@ -95,17 +95,17 @@ In one search!
 
 ## Jina V3 embedding support
 
-Weaviate's [Jina AI embedding integration](/developers/weaviate/model-providers/jinaai/embeddings) now supports Jina AI's new V3 embeddings.
+Weaviate's [Jina AI embedding integration](https://docs.weaviate.io/weaviate/model-providers/jinaai/embeddings) now supports Jina AI's new V3 embeddings.
 
 ### How to use the v3 embedding model
 
-From your perspective, all you have to set is the model name, to `jina-embeddings-v3` [here](/developers/weaviate/model-providers/jinaai/embeddings#configure-the-vectorizer).
+From your perspective, all you have to set is the model name, to `jina-embeddings-v3` [here](https://docs.weaviate.io/weaviate/model-providers/jinaai/embeddings#configure-the-vectorizer).
 
 With the v3 model, you can optionally specify the `dimensions` parameter in the collection configuration with the Jina AI model integration. This will set Weaviate's Jina AI model integration to obtain vectors of the correct length. You can balance your search quality needs here with resource usage.
 
-Note you can combine Weaviate's [quantization techniques](/developers/weaviate/starter-guides/managing-resources/compression) with this to further manage resource usage.
+Note you can combine Weaviate's [quantization techniques](https://docs.weaviate.io/weaviate/starter-guides/managing-resources/compression) with this to further manage resource usage.
 
-See the [Jina AI model integration page](/developers/weaviate/model-providers/jinaai/embeddings) for information on how to use this model.
+See the [Jina AI model integration page](https://docs.weaviate.io/weaviate/model-providers/jinaai/embeddings) for information on how to use this model.
 
 You can find more information about the model on [JinaAI's website](https://jina.ai/news/jina-embeddings-v3-a-frontier-multilingual-embedding-model/).
 
@@ -125,31 +125,31 @@ Furthermore, the v3 model produces Matryoshka-style embeddings, This means that 
 
 ## Cancel backups
 
-[Creating backups](/developers/weaviate/configuration/backups) is a big part of database administration, especially in a production setting.
+[Creating backups](https://docs.weaviate.io/weaviate/configuration/backups) is a big part of database administration, especially in a production setting.
 
 In some cases, however, a backup process may be unwanted. Perhaps a backup was triggered by accident, or a backup process may be stuck.
 
 To address this, we have added a backup cancellation feature. Now, an unwanted, ongoing backup process can be stopped instead of consuming valuable CPU cycles.
 
-Backups can be cancelled [through a supported Weaviate client](/developers/weaviate/configuration/backups#cancel-backup), or through the [REST endpoint](/developers/weaviate/api/rest).
+Backups can be cancelled [through a supported Weaviate client](https://docs.weaviate.io/weaviate/configuration/backups#cancel-backup), or through the [REST endpoint](https://docs.weaviate.io/weaviate/api/rest).
 
 ## Other changes
 
 ### Case sensitive vectorization
 
 :::info How does Weaviate vectorize text?
-Weaviate [integrates with embedding model providers](/developers/weaviate/model-providers) in order to conveniently vectorize data during import.
+Weaviate [integrates with embedding model providers](https://docs.weaviate.io/weaviate/model-providers) in order to conveniently vectorize data during import.
 :::
 
 From `v1.27`, text is no longer lowercased by default before vectorization.
 
 This change reflects the modern embeddings' capabilities to deal with uppercase (vs lowercase) characters. We expect that any changes to embeddings here will be very small, but we expect this to be closer to how modern embedding models expect inputs to look.
 
-If you prefer the previous behavior where the inputs are lowercased before import, set the `LOWERCASE_VECTORIZATION_INPUT` [environment variable](/developers/weaviate/config-refs/env-vars#general) to `true`.
+If you prefer the previous behavior where the inputs are lowercased before import, set the `LOWERCASE_VECTORIZATION_INPUT` [environment variable](https://docs.weaviate.io/weaviate/config-refs/env-vars#general) to `true`.
 
 ### Google modules renamed
 
-The Weaviate modules that underpin its [Google model integrations](/developers/weaviate/model-providers/google) have been renamed. Historically, they were named after the `PaLM` generation of models, thus having names `text2vec-palm`, `generative-palm`, `multi2vec-palm`.
+The Weaviate modules that underpin its [Google model integrations](https://docs.weaviate.io/weaviate/model-providers/google) have been renamed. Historically, they were named after the `PaLM` generation of models, thus having names `text2vec-palm`, `generative-palm`, `multi2vec-palm`.
 
 They have been renamed to `text2vec-google`, `generative-google`, `multi2vec-google` respectively.
 
@@ -157,7 +157,7 @@ These modules are aliased under-the-hood in Weaviate, so your existing codebase 
 
 ### PQ training set sampling
 
-[Product quantization (PQ)](/developers/weaviate/concepts/vector-quantization#product-quantization) is a technique used to compress vectors for efficient storage and retrieval.
+[Product quantization (PQ)](https://docs.weaviate.io/weaviate/concepts/vector-quantization#product-quantization) is a technique used to compress vectors for efficient storage and retrieval.
 
 PQ requires calculation of centroids using a training set. From `1.27`, if you have ingested more objects than the training set size, Weaviate will now sample the training set from the ingested objects. This should make it more likely that the training set is representative of the data.
 

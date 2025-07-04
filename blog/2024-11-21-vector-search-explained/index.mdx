@@ -130,7 +130,7 @@ To fix all these problems, we can use a vector database to store and search thro
 
 Vector search, also called semantic search, using a vector database is able to handle large amounts of [unstructured data](https://weaviate.io/learn/knowledgecards/unstructured-data-objects) (think paragraphs instead of spreadsheets) quickly and efficiently, and provides relevant results in search and recommendation systems based on semantic similarity rather than exact matches. This can allow you to do advanced search through millions of documents, for example, [a Wikipedia dataset with over 28 million paragraphs](https://huggingface.co/datasets/weaviate/wiki-sample).
 
-If we query for articles related to: "urban planning in Europe", the vector database (like [Weaviate](https://weaviate.io/developers/weaviate)) responds with a series of articles about the topic, such as "The cities designed to be capitals".
+If we query for articles related to: "urban planning in Europe", the vector database (like [Weaviate](https://docs.weaviate.io/weaviate)) responds with a series of articles about the topic, such as "The cities designed to be capitals".
 
 Finding the correct answer in a gigantic repository of unstructured data is not the most impressive part of [vector databases](https://weaviate.io/blog/what-is-a-vector-database) (I mean, it is very impressive), but it is the 🚀 speed at which it all happens. To find the most relevant answer to our semantic search query, it only takes milliseconds in a dataset containing 28 million paragraphs. This is super important when dealing with massive amounts of data, like in recommendation engines or large document datasets. 
 
@@ -169,7 +169,7 @@ So, while ANN is not some magic method that will always find the true k nearest 
 
 ### HNSW in Weaviate
 
-[Weaviate](https://weaviate.io/developers/weaviate) is a great example of a vector database that uses ANN algorithms to offer ultra-fast queries. The ANN algorithm that Weaviate uses is a custom implementation of [Hierarchical Navigable Small World graphs (HNSW)](https://weaviate.io/developers/weaviate/concepts/vector-index#hnsw).
+[Weaviate](https://docs.weaviate.io/weaviate) is a great example of a vector database that uses ANN algorithms to offer ultra-fast queries. The ANN algorithm that Weaviate uses is a custom implementation of [Hierarchical Navigable Small World graphs (HNSW)](https://docs.weaviate.io/weaviate/concepts/vector-index#hnsw).
 
 <img
   src={require('./img/ann-hnsw.png').default}
@@ -183,7 +183,7 @@ HNSW works by organizing vectors into a hierarchical, multi-layered graph struct
 
 In Weaviate's implementation, HNSW is enhanced to support full [CRUD operations](https://weaviate.io/blog/crud-support-in-weaviate) and allows for real-time querying, updates, and deletions, with features like incremental disk writes for crash recovery and [asynchronous cleanup processes](https://github.com/nmslib/hnswlib/issues/4#issuecomment-678315156) for maintaining index freshness.
 
-Check out [Weaviate ANN benchmarks](https://weaviate.io/developers/weaviate/benchmarks/ann) to see how HNSW performed on realistic large-scale datasets. You can use it to compare the tradeoffs between recall, QPS, latency, and import time.
+Check out [Weaviate ANN benchmarks](https://docs.weaviate.io/weaviate/benchmarks/ann) to see how HNSW performed on realistic large-scale datasets. You can use it to compare the tradeoffs between recall, QPS, latency, and import time.
 
 You will find it interesting to see that Weaviate can maintain very high recall rates (\>95%), whilst keeping high throughput and low latency (both in milliseconds). That is exactly what you need for fast, but reliable vector search\!
 
@@ -205,7 +205,7 @@ Vector search is not just limited to text, or even text in a single language. An
 
 ### Image Vector Search
 
-[Image vector search](https://weaviate.io/developers/weaviate/search/image) converts images into vector representations to enable similarity searches between images. The vector embeddings encode features like colors, shapes, and textures so that you can search for images based on visual similarity rather than metadata alone. This type of search is frequently used in fields like e-commerce for finding visually similar products, or in content moderation.
+[Image vector search](https://docs.weaviate.io/weaviate/search/image) converts images into vector representations to enable similarity searches between images. The vector embeddings encode features like colors, shapes, and textures so that you can search for images based on visual similarity rather than metadata alone. This type of search is frequently used in fields like e-commerce for finding visually similar products, or in content moderation.
 
 ### Audio Vector Search
 
@@ -219,7 +219,7 @@ Video vector search converts videos into vector embeddings through methods like 
 
 ![multimodal vector search](./img/any2any_L.png)
 
-[Multimodal vector search](https://weaviate.io/developers/academy/py/starter_multimodal_data/mm_searches/multimodal) combines different data types—like text, images, and audio—in the same vector space for cross-type comparisons. For example, you could find images or audio most similar to a text query, like retrieving images of a lion or a lion’s roar based on a description alone. This can be used in applications to search across various media formats, like e-commerce, digital asset management, and social media platforms.
+[Multimodal vector search](https://docs.weaviate.io/academy/py/starter_multimodal_data/mm_searches/multimodal) combines different data types—like text, images, and audio—in the same vector space for cross-type comparisons. For example, you could find images or audio most similar to a text query, like retrieving images of a lion or a lion’s roar based on a description alone. This can be used in applications to search across various media formats, like e-commerce, digital asset management, and social media platforms.
 
 ### Multilingual Vector Search
 
@@ -241,7 +241,7 @@ Vector search can power a variety of different applications and use cases, from 
 
 ### Search Systems
 
-Vector search can be applied to a wide range of different search systems, from billion-scale e-commerce applications to multi-modal and multi-lingual search apps to internal document search in large enterprises. For example, in e-commerce, semantic search can recommend products based on customer intent, even if they don't have the exact keywords in their search query. With the right embedding model selection, you could create [multilingual](https://weaviate.io/blog/weaviate-non-english-languages), like [WeaLingo](https://weaviate.io/blog/wealingo-demo), or [multimodal](https://weaviate.io/developers/academy/py/starter_multimodal_data/mm_searches/multimodal) search apps out of the box. Vector search can also speed up result time for use cases like enterprise search, because the ANN algorithms allow for such fast retrieval speeds over large numbers of unstructured documents. 
+Vector search can be applied to a wide range of different search systems, from billion-scale e-commerce applications to multi-modal and multi-lingual search apps to internal document search in large enterprises. For example, in e-commerce, semantic search can recommend products based on customer intent, even if they don't have the exact keywords in their search query. With the right embedding model selection, you could create [multilingual](https://weaviate.io/blog/weaviate-non-english-languages), like [WeaLingo](https://weaviate.io/blog/wealingo-demo), or [multimodal](https://docs.weaviate.io/academy/py/starter_multimodal_data/mm_searches/multimodal) search apps out of the box. Vector search can also speed up result time for use cases like enterprise search, because the ANN algorithms allow for such fast retrieval speeds over large numbers of unstructured documents. 
 
 ### Recommendation Systems
 

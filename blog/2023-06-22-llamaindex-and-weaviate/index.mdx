@@ -46,7 +46,7 @@ Let’s walk through a simple example of how LlamaIndex can be used with Weaviat
 
 The full code can be found in the [Weaviate recipes repo](https://github.com/weaviate/recipes/tree/main/integrations/llm-agent-frameworks/llamaindex/simple-query-engine).
 
-The first step is to setup your Weaviate client. In this example, we connect to an [Embedded Weaviate](https://weaviate.io/developers/weaviate/installation/embedded) instance.
+The first step is to setup your Weaviate client. In this example, we connect to an [Embedded Weaviate](https://docs.weaviate.io/weaviate/installation/embedded) instance.
 
 ```python
 import os
@@ -74,7 +74,7 @@ nodes = parser.get_nodes_from_documents(blogs)
 
 Here, we use the SimpleDirectoryReader to load in all documents from a given directory. We then use our `SimpleNodeParser` to chunk up the source documents into Node objects (text chunks).
 
-The next step is to 1) define a `WeaviateVectorStore`, and 2) build a [vector index](/developers/weaviate/concepts/vector-index) over this vector store using LlamaIndex.
+The next step is to 1) define a `WeaviateVectorStore`, and 2) build a [vector index](https://docs.weaviate.io/weaviate/concepts/vector-index) over this vector store using LlamaIndex.
 
 ```python
 from llama_index.vector_stores import WeaviateVectorStore

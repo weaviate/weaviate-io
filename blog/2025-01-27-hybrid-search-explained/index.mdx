@@ -14,7 +14,7 @@ description: "Learn about the hybrid search feature that enables you to combine 
 Hybrid search is a technique that **combines multiple search algorithms** to improve the accuracy and relevance of search results. It uses the best features of both keyword-based search algorithms with vector search techniques. By leveraging the strengths of different algorithms, it provides a more effective search experience for users.
 
 The [hybrid search](/hybrid-search) feature was introduced in Weaviate `1.17`. It uses sparse and dense vectors to represent the semantic meaning and context of search queries and documents.
-In this blog post, you will learn the definition of hybrid search, the role of sparse and dense vectors, when to use hybrid search, and more about the implementation of [hybrid search](/developers/weaviate/api/graphql/search-operators#hybrid) in Weaviate and how to use it.
+In this blog post, you will learn the definition of hybrid search, the role of sparse and dense vectors, when to use hybrid search, and more about the implementation of [hybrid search](https://docs.weaviate.io/weaviate/api/graphql/search-operators#hybrid) in Weaviate and how to use it.
 
 ## Sparse and Dense Vectors
 Sparse and dense vectors are calculated with distinct algorithms. Sparse vectors have mostly zero values with only a few non-zero values, while dense vectors mostly contain non-zero values. Sparse embeddings are generated from algorithms like [BM25](https://en.wikipedia.org/wiki/Okapi_BM25) and [SPLADE](https://arxiv.org/abs/2107.05720). Dense embeddings  are generated from machine learning models like [GloVe](https://text2vec.org/glove.html) and [Transformers](https://huggingface.co/docs/transformers/index).
@@ -46,7 +46,7 @@ BM25F was also implemented in Weaviate `1.17`. BM25F is a variant of BM25 that a
 
 Dense vectors represent information stored in a database; this includes text, images, and other types of data. These embeddings are generated from machine learning models that convert data to vectors. The vectors are densely packed with information and are mostly made up of non-zero values. The meaning of each value in the vector depends on the machine learning model that you used.
 
-[Vector databases](/blog/what-is-a-vector-database), like [Weaviate](/developers/weaviate), store these embeddings and calculate the distance between the two vectors. [Distance metrics](/blog/distance-metrics-in-vector-search) show how similar or dissimilar two [vector embeddings](/blog/vector-embeddings-explained) are. The search query is converted to a vector, similar to the data vectors, and the distance value determines how close the vectors are.
+[Vector databases](/blog/what-is-a-vector-database), like [Weaviate](https://docs.weaviate.io/weaviate), store these embeddings and calculate the distance between the two vectors. [Distance metrics](/blog/distance-metrics-in-vector-search) show how similar or dissimilar two [vector embeddings](/blog/vector-embeddings-explained) are. The search query is converted to a vector, similar to the data vectors, and the distance value determines how close the vectors are.
 
 ![hybrid search](img/hybrid-search.png)
 
@@ -94,7 +94,7 @@ In addition to its flexibility, hybrid search significantly improves the user ex
 This makes hybrid search engines an ideal choice for applications in e-commerce, customer support, and other search-driven domains.
 
 ## A Simple Hybrid Search Pipeline in Weaviate
-To use [Weaviate hybrid search](/developers/weaviate/search/hybrid) you only need to confirm that you’re using Weaviate `v1.17` or a later version. There are five parameters needed to run the hybrid search query (some are optional):
+To use [Weaviate hybrid search](https://docs.weaviate.io/weaviate/search/hybrid) you only need to confirm that you’re using Weaviate `v1.17` or a later version. There are five parameters needed to run the hybrid search query (some are optional):
 
 * `hybrid`: shows that you want to use a hybrid search query
 * `query`: search query
@@ -124,7 +124,7 @@ You can find end-to-end notebooks on using hybrid search in [Weaviate Recipes](h
 
 This article explained the concept of hybrid search. In the context of the Weaviate vector database, hybrid search is a combination of keyword search and semantic search. By combining these two types of searches, hybrid search queries can lead to more relevant results in use cases where you want to leverage the power of semantic search but also rely on exact matches of certain keywords, such as product or brand names.
 
-Check out the [documentation](/developers/weaviate/api/graphql/search-operators#hybrid) for more information on hybrid search\!
+Check out the [documentation](https://docs.weaviate.io/weaviate/api/graphql/search-operators#hybrid) for more information on hybrid search\!
 
 import WhatNext from '/_includes/what-next.mdx'
 

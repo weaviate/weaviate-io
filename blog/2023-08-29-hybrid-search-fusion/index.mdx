@@ -197,7 +197,7 @@ So, how did they get there?
 A short answer is that Weaviate calculates for each object a weighted score, using both result sets. But given that they are two very different search types, how might we combine any numerical outputs from each search? This is not a trivial decision due to the two search types producing different metrics to each other. In some ways, this is where the rubber meets the road, and thus the implementation here is an important part of the hybrid search story.
 
 :::info Weighing scores
-Hybrid searches can be ‘weighted’ to give more weight to the vector or keyword search. This is done using the `alpha` parameter. You can read more [here](/developers/weaviate/search/hybrid#weight-keyword-vs-vector-results).
+Hybrid searches can be ‘weighted’ to give more weight to the vector or keyword search. This is done using the `alpha` parameter. You can read more [here](https://docs.weaviate.io/weaviate/search/hybrid#weight-keyword-vs-vector-results).
 :::.
 
 ## Fusion algorithms
@@ -345,7 +345,7 @@ AutoCut works well with `relativeScoreFusion`, which often results in natural cl
 
 Given our earlier explanations, you might be wondering why `rankedFusion` was the default algorithm. In fact, currently we believe that `relativeScoreFusion` is more likely to be the better-performing algorithm.
 
-The answer is that `rankedFusion` is the older, reliable choice that has worked quite well. In the meantime, we have been reviewing how `relativeScoreFusion` is received by the community, and making small tweaks like adding [over-search](/developers/weaviate/api/graphql/search-operators#oversearch-with-relativescorefusion) to make it more robust.
+The answer is that `rankedFusion` is the older, reliable choice that has worked quite well. In the meantime, we have been reviewing how `relativeScoreFusion` is received by the community, and making small tweaks like adding [over-search](https://docs.weaviate.io/weaviate/api/graphql/search-operators#oversearch-with-relativescorefusion) to make it more robust.
 
 So far, the reaction has been positive. But we are still in the evaluation phase, and we would love to get additional feedback from you, our users. We have prepared [this short survey](https://docs.google.com/forms/d/e/1FAIpQLSfxekC2eh5Xkl0iJYEAoOkfhK4FA5AO-Od3KUz4srreOpq00g/viewform?usp=sf_link). We would really appreciate your input. Please let us know what you think!
 
@@ -359,8 +359,8 @@ As we've explored, the introduction of `relativeScoreFusion` expands Weaviate’
 
 ### Further resources
 
-- [How-to: Hybrid search](/developers/weaviate/search/hybrid)
-- [API References: Hybrid search](/developers/weaviate/api/graphql/search-operators#hybrid)
+- [How-to: Hybrid search](https://docs.weaviate.io/weaviate/search/hybrid)
+- [API References: Hybrid search](https://docs.weaviate.io/weaviate/api/graphql/search-operators#hybrid)
 
 import WhatsNext from '/_includes/what-next.mdx';
 

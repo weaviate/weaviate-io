@@ -1,4 +1,22 @@
 [[redirects]]
+from = "/weaviate/release-notes/older-releases/release_1_*"
+to = "https://weaviate.io/blog/weaviate-1-:splat-release"
+status = 301
+
+[[redirects]]
+from = "/weaviate/release-notes/release_1_*"
+to = "https://weaviate.io/blog/weaviate-1-:splat-release"
+status = 301
+
+# Redirect all remaining /developers & /docs requests to docs subdomain
+[[redirects]]
+  from = "/developers/*"
+  to = "https://docs.weaviate.io/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/docs/*"
-  to = "/developers/:splat"
-  status = 302
+  to = "https://docs.weaviate.io/:splat"
+  status = 301
+  force = true

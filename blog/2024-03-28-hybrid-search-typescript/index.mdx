@@ -12,7 +12,7 @@ description: 'Hybrid Search for curious Web Developers with the new Weaviate Typ
 
 :::info
 
-This tutorial is built with Next.js and Weaviate. It uses a beta version of the v3 TypeScript Client. Find out more about the new client here - [Experimental clients](/developers/weaviate/client-libraries/typescript/typescript-v3).
+This tutorial is built with Next.js and Weaviate. It uses a beta version of the v3 TypeScript Client. Find out more about the new client here - [Experimental clients](https://docs.weaviate.io/weaviate/client-libraries/typescript/typescript-v3).
 
 :::
 
@@ -143,7 +143,7 @@ const client = await weaviate.connectToWeaviateCloud(process.env.WEAVIATE_URL!!,
 });
 ```
 
-The code above helps us connect to our WCD database instance. The variables prefixed with `process.env` are called environment variables. These are usually values that should not be public and therefore should not be specified directly in the code itself. To supply these values, create a file named `.env.local` at the root of your project. Specify your values like this, replacing the values in angle brackets with the values from WCD. As we use [text2vec-openai](/developers/weaviate/model-providers/openai/embeddings) to vectorize our data, you will need to add your Open AI API key as well.
+The code above helps us connect to our WCD database instance. The variables prefixed with `process.env` are called environment variables. These are usually values that should not be public and therefore should not be specified directly in the code itself. To supply these values, create a file named `.env.local` at the root of your project. Specify your values like this, replacing the values in angle brackets with the values from WCD. As we use [text2vec-openai](https://docs.weaviate.io/weaviate/model-providers/openai/embeddings) to vectorize our data, you will need to add your Open AI API key as well.
 
 ```bash
 WEAVIATE_URL=<YOUR_WEAVIATE_URL

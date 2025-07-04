@@ -162,7 +162,7 @@ export default function PricingCalculator({ props }) {
             SLA's have different pricing.
             <br /> For more information on the pricing have a look at the FAQ
             below or go to the{' '}
-            <Link to="/developers/weaviate">Weaviate docs</Link>
+            <Link to="https://docs.weaviate.io/weaviate">Weaviate docs</Link>
           </p>
         </div>
       </div>

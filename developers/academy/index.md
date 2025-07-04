@@ -7,4 +7,4 @@ hide_title: true
 # tags: []
 ---
 
-Henlo, I am a ghost page
+Henlo, I am a ghost page - Academy

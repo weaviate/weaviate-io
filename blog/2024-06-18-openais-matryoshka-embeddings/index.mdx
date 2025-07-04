@@ -174,7 +174,7 @@ First you need to pip install the relevant Python packages.
 pip install -U weaviate-client
 ```
 
-Next, you need to setup a Weaviate vector database instance. For this example, you can [start up a local instance of Weaviate via Docker](/developers/weaviate/installation/docker-compose), as follows:
+Next, you need to setup a Weaviate vector database instance. For this example, you can [start up a local instance of Weaviate via Docker](https://docs.weaviate.io/weaviate/installation/docker-compose), as follows:
 ```powershell
 docker run -p 8080:8080 -p 50051:50051 cr.weaviate.io/semitechnologies/weaviate:1.25.0
 ````
@@ -190,7 +190,7 @@ client = weaviate.connect_to_local()
 ### With default dimensions
 
 As the OpenAI models are tightly integrated with Weaviate, you can use them through the `text2vec_openai` module, which enabled automatic vectorization of data at import and query time. You only need to define the model name and the dimensions. The `text2vec_openai`
-module has some pre-defined dimensions. Available default dimensions for these models in Weaviate can be found [in our documentation](https://weaviate.io/developers/weaviate/model-providers/openai/embeddings#available-models) and are:
+module has some pre-defined dimensions. Available default dimensions for these models in Weaviate can be found [in our documentation](https://docs.weaviate.io/weaviate/model-providers/openai/embeddings#available-models) and are:
 * `text-embedding-3-small`:  512, 1536
 * `text-embedding-3-large`: 256, 1024, 3072
 

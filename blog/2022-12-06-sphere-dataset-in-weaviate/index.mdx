@@ -45,7 +45,7 @@ Get it? ... It's a Sphere 🥁ba dum tsss🥁 I'll show myself out…
 There are two ways to import the Sphere dataset into Weaviate. You can use the Python client (less than 75 lines of code) or the Weaviate Spark connector.
 
 ### Importing Sphere with Python
-The setup is quite straightforward, all you need is the [Weaviate Client](/developers/weaviate/client-libraries). We provide an example that uses the Python Client and the dpr-question_encoder-single-nq-base model (i.e., the module that is used to vectorize objects in Sphere).
+The setup is quite straightforward, all you need is the [Weaviate Client](https://docs.weaviate.io/weaviate/client-libraries). We provide an example that uses the Python Client and the dpr-question_encoder-single-nq-base model (i.e., the module that is used to vectorize objects in Sphere).
 
 We have prepared files ranging from 100K data points all the way up to the entire Sphere dataset, which consists of 899 million lines. You can download them from here:
 * [100k lines](https://storage.googleapis.com/sphere-demo/sphere.100k.jsonl.tar.gz)
@@ -125,9 +125,9 @@ print('Done in', end - start)
 ### Importing Sphere with Spark
 If you want to start training large language models for knowledge-intensive tasks on Sphere, then you might want to leverage big data frameworks. This is where Apache Spark enters the picture!
 
-To process Sphere with Spark, you can use [PySpark](https://spark.apache.org/docs/latest/api/python/) and [Weaviate's Python Client](/developers/weaviate/client-libraries/python). The setup is slightly more difficult than simply importing the dataset with python; however, once you do have it setup, it is lightning fast! ⚡
+To process Sphere with Spark, you can use [PySpark](https://spark.apache.org/docs/latest/api/python/) and [Weaviate's Python Client](https://docs.weaviate.io/weaviate/client-libraries/python). The setup is slightly more difficult than simply importing the dataset with python; however, once you do have it setup, it is lightning fast! ⚡
 
-You can see the step-by-step instructions detailed in this [tutorial](/developers/weaviate/tutorials/spark-connector). The tutorial demonstrates how to get Sphere into a Spark dataframe, import it into Weaviate, and conduct queries. Once you have Sphere imported into your Spark instance you can leverage Spark functionality to start training powerful models. In this particular example we are using the [Weaviate Spark connector](https://github.com/weaviate/weaviate-spark-connector) making it easy to load data from Spark to Weaviate.
+You can see the step-by-step instructions detailed in this [tutorial](https://docs.weaviate.io/weaviate/tutorials/spark-connector). The tutorial demonstrates how to get Sphere into a Spark dataframe, import it into Weaviate, and conduct queries. Once you have Sphere imported into your Spark instance you can leverage Spark functionality to start training powerful models. In this particular example we are using the [Weaviate Spark connector](https://github.com/weaviate/weaviate-spark-connector) making it easy to load data from Spark to Weaviate.
 
 We have also prepared two Parquet files one with 1M data points and another with the entire Sphere dataset, which consists of 899 million lines. You can download them into a dataframe as follows:
 

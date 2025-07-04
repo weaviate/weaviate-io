@@ -46,7 +46,7 @@ To undertake this ambitious quest, we had a stern set of requirements. Here is e
 
 We’re in public beta with thousands of users and growing. From day one, we needed to isolate each user’s data to avoid cross-contamination and simplify access controls.
 
-[Weaviate supports true multi-tenancy](/developers/weaviate/manage-data/multi-tenancy) at the collection level. Each tenant has its own namespace within a class, with full CRUD capabilities. This meant we didn’t have to spin up separate clusters or databases per user \- we just define tenants and assign data accordi
+[Weaviate supports true multi-tenancy](https://docs.weaviate.io/weaviate/manage-collections/multi-tenancy) at the collection level. Each tenant has its own namespace within a class, with full CRUD capabilities. This meant we didn’t have to spin up separate clusters or databases per user \- we just define tenants and assign data accordi
 
 ```
 POST /v1/schema

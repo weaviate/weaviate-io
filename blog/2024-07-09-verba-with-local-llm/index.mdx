@@ -56,7 +56,7 @@ If you used Verba before, you may have noticed that Verba looks different! Verba
 
 Under the hood, `verba start` looks for a `.env` environments file to configure Verba. Since we did not create any `.env` files yet, Verba defaults to loading an embedded instance of Weaviate locally on your computer as well. 
 
-Embedded Weaviate is an experimental feature that runs an instance of Weaviate through your application code. It stores data on disk at some configurable location, so that even if your application code stops running, the data will persist. Learn more about Embedded Weaviate [here](/developers/weaviate/installation/embedded).
+Embedded Weaviate is an experimental feature that runs an instance of Weaviate through your application code. It stores data on disk at some configurable location, so that even if your application code stops running, the data will persist. Learn more about Embedded Weaviate [here](https://docs.weaviate.io/weaviate/installation/embedded).
 
 Embedded Weaviate is perfect if you're testing or prototyping with small datasets, but you may find that you are limited in how much data you can load into this embedded database, especially if the machine you're working on is also hardware constrained.
 
@@ -196,7 +196,7 @@ Weaviate Cloud is great, but there are reasons why you might want to manage the 
 
 With Weaviate running in a Docker container, you'll have to manage which modules are enabled for your instance of Weaviate running in docker. For example, if you want to use OpenAI for vectorization, you'll have to ensure the `text2vec-openai` module is included in your docker configuration.
 
-You can read more about docker-compose configuration from the documentation [here](https://weaviate.io/developers/weaviate/installation/docker-compose).
+You can read more about docker-compose configuration from the documentation [here](https://docs.weaviate.io/weaviate/installation/docker-compose).
 
 Once you've configured your docker-compose correctly, you can start Weaviate by running this command `$ docker-compose up -d` in the same directory as your docker-compose.yml file.
 

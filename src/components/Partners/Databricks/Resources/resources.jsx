@@ -30,7 +30,7 @@ export default function Resources() {
             </div>
           </Link>
 
-          <Link to="https://weaviate.io/developers/weaviate/model-providers/databricks">
+          <Link to="https://docs.weaviate.io/weaviate/model-providers/databricks">
             <div className={styles.latestBox}>
               <div className={`${styles.insideBox} `}></div>
               <div className={styles.textBox}>
@@ -40,7 +40,7 @@ export default function Resources() {
             </div>
           </Link>
 
-          <Link to="https://weaviate.io/developers/integrations/data-platforms/databricks">
+          <Link to="https://docs.weaviate.io/integrations/data-platforms/databricks">
             <div className={styles.latestBox}>
               <div className={`${styles.insideBox} `}></div>
               <div className={styles.textBox}>

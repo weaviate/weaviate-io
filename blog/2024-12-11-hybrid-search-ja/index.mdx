@@ -32,7 +32,7 @@ Weaviateのハイブリッド検索は、デンスベクトルとスパースベ
 Weaviateにおける現在のハイブリッド検索実装では、BM25/BM25Fが使用されています。
 
 スパース埋め込みを生成するためには、トークナイザーが必要です。
-Weaviateでは、日本語テキスト向けに以下の[3つのトークナイザーが利用可能](/developers/academy/py/tokenization/options)です。
+Weaviateでは、日本語テキスト向けに以下の[3つのトークナイザーが利用可能](https://docs.weaviate.io/academy/py/tokenization/options)です。
 
 | トークナイザー | `TRIGAM` | `GSE` | `KAGOME_JA`<br/>（Weaviate `v1.28`で導入） |
 | :---- | :---- | :---- | :---- |
@@ -99,13 +99,13 @@ data = [
 
 ### 1. Weaviate データベース作成
 
-日本語のKAGOMEトークナイザーを使用したハイブリッド検索をWeaviateで利用するには、Weaviate`v1.28`以降のバージョンを使用していることを確認する必要があります。以下の手順で、[Dockerを使用してWeaviateベクトルデータベースのインスタンスをローカル環境にセットアップ](/developers/weaviate/installation/docker-compose)できます：
+日本語のKAGOMEトークナイザーを使用したハイブリッド検索をWeaviateで利用するには、Weaviate`v1.28`以降のバージョンを使用していることを確認する必要があります。以下の手順で、[Dockerを使用してWeaviateベクトルデータベースのインスタンスをローカル環境にセットアップ](https://docs.weaviate.io/weaviate/installation/docker-compose)できます：
 
 ```
 docker run -p 8080:8080 -p 50051:50051  -e ENABLE_TOKENIZER_KAGOME_JA='true' -e ENABLE_MODULES='text2vec-cohere' cr.weaviate.io/semitechnologies/weaviate:1.28.1
 ```
 
-次は[Weaviate ClientのPythonライブラリ](/developers/weaviate/client-libraries)を準備します。バージョン4.9.6以上が必要です。
+次は[Weaviate ClientのPythonライブラリ](https://docs.weaviate.io/weaviate/client-libraries)を準備します。バージョン4.9.6以上が必要です。
 
 ```
 !pip install weaviate-client
@@ -128,7 +128,7 @@ client = weaviate.connect_to_local(
 
 ### 3. データコレクションの定義
 
-次に、クラスを作成して[Schema](developers/weaviate/config-refs/schema)を定義します。クラスは、オブジェクトを格納するデータコレクションです。クラスのSchemaには、Cohereの多言語（日本語対応）埋め込みモデル `embed-multilingual-v3.0` を定義します。また、`KAGOME_JA`トークナイザーを有効化します。
+次に、クラスを作成して[Schema](https://docs.weaviate.io/weaviate/config-refs/schema)を定義します。クラスは、オブジェクトを格納するデータコレクションです。クラスのSchemaには、Cohereの多言語（日本語対応）埋め込みモデル `embed-multilingual-v3.0` を定義します。また、`KAGOME_JA`トークナイザーを有効化します。
 
 ```py
 import weaviate.classes.config as wc
@@ -222,7 +222,7 @@ for item in response.objects:
 
 日本語テキストに対して、Weaviateではキーワード検索およびハイブリッド検索のために3つの異なるトークナイザーを選択できるようになりました。上記のKAGOME\_JAトークナイザーを使用したハイブリッド検索の例について、コードは[このノートブック](https://github.com/weaviate/recipes/blob/main/weaviate-features/hybrid-search/hybrid_search_cohere_japanese.ipynb)で確認できます。
 
-ハイブリッド検索の詳細については、[ドキュメント](/developers/weaviate/api/graphql/search-operators#hybrid)をご覧ください！
+ハイブリッド検索の詳細については、[ドキュメント](https://docs.weaviate.io/weaviate/api/graphql/search-operators#hybrid)をご覧ください！
 
 import WhatNext from '/_includes/what-next.mdx';
 

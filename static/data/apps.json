@@ -68,7 +68,7 @@
     "updated": "June 28, 2023",
     "size": "11.09MB",
     "languages": ["English", "Spanish", "French", "German"],
-    "url": "/developers/weaviate/model-providers#self-hosted",
+    "url": "https://docs.weaviate.io/weaviate/model-providers#self-hosted",
     "released": "yes"
   },
   {
@@ -123,7 +123,7 @@
     "url": "/product/query-agent",
     "released": "no",
     "privatePreview": "yes",
-    "ppLink": "/developers/agents/query/usage"
+    "ppLink": "https://docs.weaviate.io/agents/query/usage"
   },
   {
     "id": "8",
@@ -142,7 +142,7 @@
     "url": "/product/transformation-agent",
     "released": "no",
     "privatePreview": "yes",
-    "ppLink": "/developers/agents/transformation/usage"
+    "ppLink": "https://docs.weaviate.io/agents/transformation/usage"
   },
   {
     "id": "9",
@@ -161,7 +161,7 @@
     "url": "/product/personalization-agent",
     "released": "no",
     "privatePreview": "yes",
-    "ppLink": "/developers/agents/personalization/usage"
+    "ppLink": "https://docs.weaviate.io/agents/personalization/usage"
   },
   {
     "id": "10",

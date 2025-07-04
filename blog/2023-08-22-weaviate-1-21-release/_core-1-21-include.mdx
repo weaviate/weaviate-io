@@ -100,11 +100,11 @@ We introduced multi-tenancy (MT) with `1.20`, and we are thrilled by your respon
 
 This is possible because under the hood, each [tenant is a partition shard](https://www.weaviate.io/blog/multi-tenancy-vector-search#built-in-isolation-through-lightweight-shards), and tenant shards can now be deactivated while still retaining the data. Deactivated (`INACTIVE`) shards do not consume memory or file descriptors, so this enables an unlimited number of non-active shards, limited only by disk space, while giving active (`ACTIVE`) shards access to resources that they need.
 
-Deactivating unused subsets of data will help to reduce cost and improve the overall performance. We are very excited for you to [try it out](/developers/weaviate/manage-data/multi-tenancy).
+Deactivating unused subsets of data will help to reduce cost and improve the overall performance. We are very excited for you to [try it out](https://docs.weaviate.io/weaviate/manage-data/multi-tenancy).
 
 > Read more:
-> - [REST API: Schema: Multi-tenancy](/developers/weaviate/api/rest#tag/schema/post/schema/%7BclassName%7D/tenants)
-> - [Concepts: Data: Multi-tenancy](/developers/weaviate/concepts/data#multi-tenancy)
+> - [REST API: Schema: Multi-tenancy](https://docs.weaviate.io/weaviate/api/rest#tag/schema/post/schema/%7BclassName%7D/tenants)
+> - [Concepts: Data: Multi-tenancy](https://docs.weaviate.io/weaviate/concepts/data#multi-tenancy)
 
 :::note This is an experimental feature
 Please use it with caution.
@@ -138,7 +138,7 @@ If you are looking to perform local vectorization and don't have a GPU, this mod
 :::
 
 > Read more:
-> - [Modules: text2vec-gpt4all](/developers/weaviate/model-providers/gpt4all/embeddings)
+> - [Modules: text2vec-gpt4all](https://docs.weaviate.io/weaviate/model-providers/gpt4all/embeddings)
 
 ### `multi2vec-bind` module
 
@@ -201,10 +201,10 @@ Top retrieved image:
 
 ![Image of a bird representing the top retrieved image from a video search](./img/bird.jpg)
 
-We’ll explore the awesomeness of this new module more in a blog soon but for now, you can read more about the details of how you can use `multi2vec-bind` in the [documentation](/developers/weaviate/model-providers/imagebind/embeddings-multimodal).
+We’ll explore the awesomeness of this new module more in a blog soon but for now, you can read more about the details of how you can use `multi2vec-bind` in the [documentation](https://docs.weaviate.io/weaviate/model-providers/imagebind/embeddings-multimodal).
 
 > Read more:
-> - [Modules: multi2vec-bind](/developers/weaviate/model-providers/imagebind/embeddings-multimodal)
+> - [Modules: multi2vec-bind](https://docs.weaviate.io/weaviate/model-providers/imagebind/embeddings-multimodal)
 
 ## Performance improvements
 
@@ -212,7 +212,7 @@ We’ll explore the awesomeness of this new module more in a blog soon but for n
 
 ### Alternative virtual memory access (pread vs mmap)
 
-There is now an option to use `pread` for virtual memory access by setting it in the `PERSISTENCE_LSM_ACCESS_STRATEGY` [environment variable](/developers/weaviate/config-refs/env-vars).
+There is now an option to use `pread` for virtual memory access by setting it in the `PERSISTENCE_LSM_ACCESS_STRATEGY` [environment variable](https://docs.weaviate.io/weaviate/config-refs/env-vars).
 
 Weaviate has been using `mmap` to map a portion of disk space to virtual memory. While `mmap` is performant, it can lead to stalling situations under heavy load or memory pressure due to Weaviate not being aware that the memory is in fact virtual.
 
@@ -220,7 +220,7 @@ If this is an issue for you, you can use `pread` for virtual memory access.
 
 `pread` provides better responsiveness and avoids inducing downtime in a cluster. The tradeoff is that `pread` does not provide the same memory management benefits as `mmap`, and may not be as fast as memory access.
 
-The current default will remain `mmap` - so if you want to change it, you must set the `PERSISTENCE_LSM_ACCESS_STRATEGY` [environment variable](/developers/weaviate/config-refs/env-vars) to `pread`.
+The current default will remain `mmap` - so if you want to change it, you must set the `PERSISTENCE_LSM_ACCESS_STRATEGY` [environment variable](https://docs.weaviate.io/weaviate/config-refs/env-vars) to `pread`.
 
 <details>
   <summary>Further technical details</summary>
@@ -254,7 +254,7 @@ With `pread`, When a goroutine is waiting for disk I/O, the Go runtime parks it 
 </details>
 
 > Read more:
-> - [References: Configuration: Environment variables](/developers/weaviate/config-refs/env-vars)
+> - [References: Configuration: Environment variables](https://docs.weaviate.io/weaviate/config-refs/env-vars)
 > - Paper: ["Do you really want to use mmap in your DBMS?"](https://db.cs.cmu.edu/mmap-cidr2022/)
 
 ### Multiprocessing speedups for ARM64 processors
@@ -269,7 +269,7 @@ You don't have to do anything to take advantage of this feature. Weaviate automa
 :::
 
 > Read more:
-> - [References: Distance metrics: Implementations](/developers/weaviate/config-refs/distances#distance-implementations-and-optimizations)
+> - [References: Distance metrics: Implementations](https://docs.weaviate.io/weaviate/config-refs/distances#distance-implementations-and-optimizations)
 
 ### Vector indexing improvements
 
