@@ -140,7 +140,7 @@ export default function Main() {
           <span className={styles.Title}>WHY USE WEAVIATE?</span>
           <h2>Start easy, scale boundlessly, deploy anywhere</h2>
         </div>
-        <div className={styles.boxContainer}>
+        {/*    <div className={styles.boxContainer}>
           <div className={styles.staticBoxesWrapper}>
             <div className={styles.bigStaticBox}>
               <span className={styles.boxLabel}>BEFORE WEAVIATE</span>
@@ -204,7 +204,7 @@ export default function Main() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <WhyUse />
         {/* END UPDATED SECTION */}
       </div>
