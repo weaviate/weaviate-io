@@ -603,12 +603,6 @@
     "team": "database"
   },
   {
-    "name": "Mike Hoppe",
-    "title": "Client-Focused SRE",
-    "photo": "Mike-Hoppe.jpg",
-    "team": "delivery"
-  },
-  {
     "name": "Mike Wyer",
     "title": "Site Reliability Engineer",
     "photo": "mike.jpg",
