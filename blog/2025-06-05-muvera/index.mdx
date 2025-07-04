@@ -34,14 +34,14 @@ State-of-the-art multi-vector models can dramatically improve retrieval performa
 
 import SingleMultiComp from './img/single-multi-comp.png';
 
-<Figure>
+<figure>
   <img
     alt="Single vector to multi-vector comparison"
     src={SingleMultiComp}
     width="600"
   />
   <figcaption><small>Single vector to multi-vector comparison<br /><br /></small></figcaption>
-</Figure>
+</figure>
 
 These advantages make multi-vector models a great fit for many use cases. However, multi-vector embeddings carry two potential disadvantages over their single-vector cousins, owing to their size and relative complexity.
 
@@ -51,14 +51,14 @@ Multi-vector embeddings comprise multiple vectors, each one representing a part 
 
 import MultiVectorEmbeddings1 from './img/multi-vector-embeddings1.png';
 
-<Figure>
+<figure>
   <img
     alt="Multi-vector embeddings memory comparison"
     src={MultiVectorEmbeddings1}
     width="100%"
   />
   <figcaption><small>Multi-vector embeddings memory comparison<br /><br /></small></figcaption>
-</Figure>
+</figure>
 
 This can lead to a higher memory footprint in use, as many vector search systems use in-memory indexes such as [HNSW](/blog/vector-search-explained).
 
@@ -68,14 +68,14 @@ If we embed a million documents of ~100 tokens per document, a single-vector emb
 
 import SingleMultiMemory from './img/single-multi-memory.png';
 
-<Figure>
+<figure>
   <img
     alt="Single vs multi-vector memory usage"
     src={SingleMultiMemory}
     width="600"
   />
   <figcaption><small>Single vs multi-vector memory usage<br /><br /></small></figcaption>
-</Figure>
+</figure>
 
 And of course, higher memory use also means higher costs, whether it is your own hardware or via cloud infrastructure such as Weaviate Cloud.
 
@@ -132,14 +132,14 @@ This transform simplifies the approximate nearest neighbor search problem for mu
 
 import MuveraHighLevel from './img/muvera_high_level.png';
 
-<Figure>
+<figure>
   <img
     alt="MUVERA high level overview"
     src={MuveraHighLevel}
     width="100%"
   />
   <figcaption><small>MUVERA high level overview<br /><br /></small></figcaption>
-</Figure>
+</figure>
 
 Recall the above scenario with a million documents and 100 vectors per document. Without the MUVERA encoding we would have  `100M` vectors to be indexed. Instead, using the FDE vector we will be working with only `1M` vectors, leading to an HNSW graph of only **1%** of the size!
 
@@ -165,23 +165,23 @@ Ideally, we want a partitioning function $\varphi$ that given an input vector $x
 import MuveraSteps1 from './img/muvera_steps_1.png';
 import MuveraSteps2 from './img/muvera_steps_2.png';
 
-<Figure>
+<figure>
   <img
     alt="MUVERA steps 1 - space partitioning"
     src={MuveraSteps1}
     width="100%"
   />
   <figcaption><small>MUVERA steps 1<br /><br /></small></figcaption>
-</Figure>
+</figure>
 
-<Figure>
+<figure>
   <img
     alt="MUVERA steps 2 - fill empty clusters"
     src={MuveraSteps2}
     width="100%"
   />
   <figcaption><small>MUVERA steps 2<br /><br /></small></figcaption>
-</Figure>
+</figure>
 
 As shown in the figure, each vector is assigned to one of the clusters. Two further calculations are done - one to derive a representative (e.g. average or centroid) sub-vector, and another to fill empty clusters.
 
@@ -266,14 +266,14 @@ Notice the dimensionality will no longer be $B*dim$, but $B *d_{proj}$ where $d_
 
 import MuveraSteps3 from './img/muvera_steps_3.png';
 
-<Figure>
+<figure>
   <img
     alt="MUVERA steps 3 - dimensionality reduction"
     src={MuveraSteps3}
     width="100%"
   />
   <figcaption><small>MUVERA steps 3<br /><br /></small></figcaption>
-</Figure>
+</figure>
 
 Applying a random projection may seem... random! However, this is part of the secret sauce of making MUVERA work. The original authors chose the particular distribution of the random matrics to follow the Johnson Lindenstrauss Lemma, which in turn preserves the dot products between vectors that we care about.
 
@@ -344,41 +344,41 @@ import TestResultsTime from './img/test_results_time.png';
 import TestResultsQps from './img/test_results_qps.png';
 import TestResultsRecall from './img/test_results_recall.png';
 
-<Figure>
+<figure>
   <img
     alt="Heap allocation without using MUVERA + sq vs. MUVERA + sq"
     src={TestResultsHeapUsage}
     width="600"
   />
   <figcaption><small>Heap allocation without using MUVERA + sq vs. MUVERA + sq<br /><br /></small></figcaption>
-</Figure>
+</figure>
 
-<Figure>
+<figure>
   <img
     alt="Import time without using MUVERA + sq vs. MUVERA + sq"
     src={TestResultsTime}
     width="600"
   />
   <figcaption><small>Import time without using MUVERA + sq vs. MUVERA + sq<br /><br /></small></figcaption>
-</Figure>
+</figure>
 
-<Figure>
+<figure>
   <img
     alt="QPS without using MUVERA + sq vs. MUVERA + sq"
     src={TestResultsQps}
     width="600"
   />
   <figcaption><small>QPS without using MUVERA + sq vs. MUVERA + sq<br /><br /></small></figcaption>
-</Figure>
+</figure>
 
-<Figure>
+<figure>
   <img
     alt="Recall without using MUVERA + sq vs. MUVERA + sq"
     src={TestResultsRecall}
     width="600"
   />
   <figcaption><small>Recall without using MUVERA + sq vs. MUVERA + sq<br /><br /></small></figcaption>
-</Figure>
+</figure>
 
 :::note Test setup
 The experiments have been run on the following machine:
@@ -419,14 +419,14 @@ Nothing's ever so simple, right? 😅 What's clear from these charts is that the
 
 import MuveraCompared from './img/muvera_compared.png';
 
-<Figure>
+<figure>
   <img
     alt="MUVERA compared"
     src={MuveraCompared}
     width="100%"
   />
   <figcaption><small>MUVERA compared<br /><br /></small></figcaption>
-</Figure>
+</figure>
 
 In summary, MUVERA offers a compelling path forward for working with multi-vector models at scale.
 
