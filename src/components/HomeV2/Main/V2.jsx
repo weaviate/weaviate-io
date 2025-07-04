@@ -4,6 +4,7 @@ import styles from './styles.module.scss';
 import { LinkButton, ButtonContainer } from '/src/theme/Buttons';
 import CodeTabs from '../CodeBlock';
 import SplitImageSlider from '../SplitBlock';
+import WhyUse from './index.jsx';
 
 export default function Main() {
   return (
@@ -204,6 +205,7 @@ export default function Main() {
             </div>
           </div>
         </div>
+        <WhyUse />
         {/* END UPDATED SECTION */}
       </div>
     </main>

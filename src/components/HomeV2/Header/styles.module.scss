@@ -88,7 +88,12 @@
       background-position: unset;
     }
 
+    @media screen and (max-width: 650px) {
+      display: none;
+    }
+
     @media screen and (max-width: 450px) {
+      display: none;
       min-width: 24rem;
       height: 22.6875rem;
     }
