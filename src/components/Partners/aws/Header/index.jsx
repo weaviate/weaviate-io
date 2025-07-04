@@ -19,9 +19,9 @@ export default function PartnersHeader() {
               <div className={styles.buttons}>
                 <Link
                   className={styles.buttonGradient}
-                  to="https://aws.amazon.com/marketplace/pp/prodview-ng2dfhb4yjoic?sr=0-3&ref_=beagle&applicationId=AWSMPContessa&utm_source=website&utm_medium=button&utm_campaign=AWSMarketplace"
+                  to="https://aws.amazon.com/marketplace/procurement?productId=prod-nyc7w7skxyu5q&sellerId=seller-jxgfug62rvpxs&isBuyWithAWS=true&sourceURL=https%3A%2F%2Fweaviate.io%2F"
                 >
-                  Try free on AWS Marketplace
+                  Buy with AWS
                 </Link>
               </div>
             </div>

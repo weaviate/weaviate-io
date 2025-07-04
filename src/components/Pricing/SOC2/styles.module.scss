@@ -58,6 +58,33 @@
     }
   }
 
+  .hipaaBox {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    margin-left: 6%;
+
+    @media screen and (max-width: 680px) {
+      margin-left: 0%;
+      justify-content: center;
+      width: 100%;
+    }
+  }
+
+  .hipaaLogo {
+    background: url('/img/site/HIPAA-logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 130px; // match SOC 2 logo height
+
+    @media screen and (max-width: 680px) {
+      width: 100%;
+      height: 150px; // taller for mobile
+    }
+  }
+
   .soc2Logo {
     background: url('/img/site/soc2-logo.svg');
     background-size: 100% 100%;
@@ -95,6 +122,10 @@
     }
   }
 
+  .secondBox {
+    margin: 3rem 0rem;
+  }
+
   .soc2Container {
     background: #ededed;
   }
@@ -128,6 +159,33 @@
     @media screen and (max-width: 680px) {
       flex: none;
       margin-left: 0%;
+    }
+  }
+
+  .hipaaBox {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    margin-left: 6%;
+
+    @media screen and (max-width: 680px) {
+      margin-left: 0%;
+      justify-content: center;
+      width: 100%;
+    }
+  }
+
+  .hipaaLogo {
+    background: url('/img/site/HIPAA-logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 130px; // match SOC 2 logo height
+
+    @media screen and (max-width: 680px) {
+      width: 100%;
+      height: 150px; // taller for mobile
     }
   }
 

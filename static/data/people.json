@@ -174,7 +174,7 @@
     "team": "weaviate-labs"
   },
   {
-    "name": "Christopher McCurry",
+    "name": "Luke McCurry",
     "title": "Commercial Account Executive",
     "photo": "Christopher-McCurry.jpg",
     "team": "sales"
@@ -278,6 +278,12 @@
     "title": "Partner Solution Engineer",
     "photo": "deepti.jpg",
     "linkedin": "deeptinaidu",
+    "team": "partnerships"
+  },
+  {
+    "name": "Dhruv Gorasiya",
+    "title": "Partnerships Intern",
+    "photo": "Dhruv_Gorasiya.jpeg",
     "team": "partnerships"
   },
   {
@@ -412,13 +418,6 @@
     "team": "developer-relations",
     "linkedin": "ivan-g-despot",
     "twitter": "ivan_g_despot"
-  },
-  {
-    "name": "Jacob Heier",
-    "title": "Enterprise Account Executive",
-    "photo": "Jacob-Heier.jpg",
-    "linkedin": "jake-heier-0543034a",
-    "team": "sales"
   },
   {
     "name": "JP Hwang",
@@ -636,13 +635,6 @@
     "title": "Distributed Systems Engineer",
     "photo": "nate-wilkinson.jpg",
     "team": "database"
-  },
-  {
-    "name": "Nathaniel Ma",
-    "title": "Enterprise Account Executive",
-    "photo": "Nathaniel.jpg",
-    "linkedin": "manathaniel",
-    "team": "sales"
   },
   {
     "name": "Nenad Malić",
