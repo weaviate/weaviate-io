@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { lazy, Suspense } from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import { MetaSEO } from '/src/theme/MetaSEO';
@@ -6,21 +6,15 @@ import Head from '@docusaurus/Head';
 
 import HomepageHeader from '/src/components/HomeV2/Header';
 import Main from '/src/components/HomeV2/Main/V2';
-import BottomMain from '/src/components/HomeV2/BottomMain';
 import ContactForm from '/src/components/HomeV2/Contact/contactForm';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 
+// New lazy import
+
+const BottomMain = lazy(() => import('/src/components/HomeV2/BottomMain'));
+
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
-
-  // Hydration guard
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) return null;
 
   return (
     <div className="custom-page noBG">
@@ -32,7 +26,10 @@ export default function Home() {
         <HomepageHeader />
 
         <Main />
-        <BottomMain />
+
+        <Suspense fallback={null}>
+          <BottomMain />
+        </Suspense>
 
         <ContactForm />
       </Layout>
