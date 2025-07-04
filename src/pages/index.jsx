@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import { MetaSEO } from '/src/theme/MetaSEO';
@@ -12,6 +12,15 @@ import ThemeSwitch from '/src/components/ThemeSwitch';
 
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
+
+  // Hydration guard
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) return null;
 
   return (
     <div className="custom-page noBG">

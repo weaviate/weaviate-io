@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 import { LinkButton, ButtonContainer } from '/src/theme/Buttons';
 import CodeTabs from '../CodeBlock';
 import SplitImageSlider from '../SplitBlock';
-import WhyUse from './index.jsx';
+import WhyUse from './WhyUse.jsx';
 
 export default function Main() {
   return (

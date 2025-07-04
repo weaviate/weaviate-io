@@ -6,8 +6,8 @@ export default function SplitImageSlider() {
   const [sliderPos, setSliderPos] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const [autoAnimating, setAutoAnimating] = useState(true);
+  const animationCountRef = useRef(0);
   const rafRef = useRef(null);
-  const [isMounted, setIsMounted] = useState(false); // NEW
 
   const handleStart = () => {
     setIsDragging(true);
@@ -24,10 +24,6 @@ export default function SplitImageSlider() {
     const newPos = ((x - bounds.left) / bounds.width) * 100;
     setSliderPos(Math.max(5, Math.min(95, newPos)));
   };
-
-  useEffect(() => {
-    setIsMounted(true); // Hydration done, show slider
-  }, []);
 
   useEffect(() => {
     if (!autoAnimating) return;
@@ -63,7 +59,7 @@ export default function SplitImageSlider() {
       if (loopCount < maxLoops * 2) {
         rafRef.current = requestAnimationFrame(animate);
       } else {
-        // Pause, then restart after 4s if no interaction
+        // Pause, then restart after 2s if no interaction
         setTimeout(() => {
           if (!isDragging && autoAnimating) {
             loopCount = 0;
@@ -77,8 +73,6 @@ export default function SplitImageSlider() {
 
     return () => cancelAnimationFrame(rafRef.current);
   }, [autoAnimating, isDragging]);
-
-  if (!isMounted) return null; // Do not render on first server paint
 
   return (
     <div

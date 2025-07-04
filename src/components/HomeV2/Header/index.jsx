@@ -25,7 +25,10 @@ export default function StudyHeader() {
                 >
                   Get Started
                 </Link>
-                <Link to="/blog" className={styles.buttonDark}>
+                <Link
+                  to="/blog/building-core-of-ai-native-stack"
+                  className={styles.buttonDark}
+                >
                   How we empower<br></br> AI-native builders →
                 </Link>
               </div>
