@@ -63,6 +63,9 @@ export default function StudyHeader() {
           <div className={`${styles.logo} ${styles.logo21}`}></div>
           <div className={`${styles.logo} ${styles.logo22}`}></div>
           <div className={`${styles.logo} ${styles.logo23}`}></div>
+          <div className={`${styles.logo} ${styles.logo24}`}></div>
+          <div className={`${styles.logo} ${styles.logo25}`}></div>
+          <div className={`${styles.logo} ${styles.logo26}`}></div>
 
           <div className={`${styles.logo} ${styles.logo0}`}></div>
           <div className={`${styles.logo} ${styles.logo1}`}></div>
@@ -85,6 +88,9 @@ export default function StudyHeader() {
           <div className={`${styles.logo} ${styles.logo21}`}></div>
           <div className={`${styles.logo} ${styles.logo22}`}></div>
           <div className={`${styles.logo} ${styles.logo23}`}></div>
+          <div className={`${styles.logo} ${styles.logo24}`}></div>
+          <div className={`${styles.logo} ${styles.logo25}`}></div>
+          <div className={`${styles.logo} ${styles.logo26}`}></div>
         </div>
       </div>
     </header>
