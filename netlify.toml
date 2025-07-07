@@ -1,10 +1,10 @@
 [[redirects]]
-from = "/weaviate/release-notes/older-releases/release_1_*"
+from = "/developers/weaviate/release-notes/older-releases/release_1_*"
 to = "https://weaviate.io/blog/weaviate-1-:splat-release"
 status = 301
 
 [[redirects]]
-from = "/weaviate/release-notes/release_1_*"
+from = "/developers/weaviate/release-notes/release_1_*"
 to = "https://weaviate.io/blog/weaviate-1-:splat-release"
 status = 301
 
@@ -20,3 +20,13 @@ status = 301
   to = "https://docs.weaviate.io/:splat"
   status = 301
   force = true
+
+[[redirects]]
+  from = "/blog/chatgpt-for-generative-search"
+  to = "https://docs.weaviate.io/weaviate/model-providers/openai/generative"
+  status = 301
+
+[[redirects]]
+  from = "/collections-count-limit"
+  to = "https://docs.weaviate.io/weaviate/starter-guides/managing-collections/collections-scaling-limits"
+  status = 301

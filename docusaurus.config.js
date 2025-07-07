@@ -6,7 +6,7 @@ const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const remarkReplace = require('./src/remark/remark-replace');
 // SUBDOMAIN_MIGRATION - to do: delete site.redirects.js
-// const siteRedirects = require('./site.redirects');
+const siteRedirects = require('./site.redirects');
 const path = require('path');
 
 
@@ -52,8 +52,11 @@ const config = {
         ],
 
         'docusaurus-plugin-sass',
-        // SUBDOMAIN_MIGRATION - todo: delete _developers
-        // ['@docusaurus/plugin-client-redirects', siteRedirects], 
+
+        [
+            '@docusaurus/plugin-client-redirects',
+            siteRedirects
+        ],
 
         // Playbook configuration
         [
