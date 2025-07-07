@@ -35,7 +35,7 @@ export default function HomepageWhatYouCanDo() {
         </p>
         <p>
           クラウド環境のセットアップにあたっては、
-          <a href="https://docs.weaviate.io/wcs/quickstart">
+          <a href="https://docs.weaviate.io/cloud/quickstart">
             WCD クイックスタート
           </a>{' '}
           も参考にしてください。

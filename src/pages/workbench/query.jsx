@@ -50,7 +50,7 @@ export default function QueryPage() {
                         </button>
                       </Link>
                     )}
-                    <Link to="https://docs.weaviate.io/wcs/tools/query-tool">
+                    <Link to="https://docs.weaviate.io/cloud/tools/query-tool">
                       <button className={styles.docButton}>
                         Read the Docs
                       </button>
