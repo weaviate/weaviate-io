@@ -47,6 +47,6 @@ Thus, tests can be run against a permanent WCD instance, or one of these ephemer
 
 #### (Optional) ☕️ Run TypeScript tests separately
 
-As we're migrating from JavaScript to TypeScript, examples are gradually being migrated into `_includes/code/*` directories. You can already see there tests for the [Search howtos](/developers/weaviate/search). The `_includes/code/` directory contains a local `package.json` file for the code samples, which sets the "type" to "module" to enable `import` statements.
+As we're migrating from JavaScript to TypeScript, examples are gradually being migrated into `_includes/code/*` directories. You can already see there tests for the [Search howtos](https://docs.weaviate.io/weaviate/search). The `_includes/code/` directory contains a local `package.json` file for the code samples, which sets the "type" to "module" to enable `import` statements.
 
 To run tests for the TypeScript examples, execute `npm test` in the `_includes/code/` directory. (You may have to replace sample API keys and host URLs like `YOUR-OPENAI-API-KEY` or `WEAVIATE_INSTANCE_URL` in files that don't use environment variables.)

@@ -65,7 +65,7 @@ const DocHomePage = () => {
                 <li>(Optional) Zero-downtime updates</li>
               </ul>
               <button className={styles.deployButton}>
-                <a href="https://docs.weaviate.io/wcs/manage-clusters/create">
+                <a href="https://docs.weaviate.io/cloud/manage-clusters/create">
                   Set up a WCD instance
                 </a>
               </button>

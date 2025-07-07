@@ -26,7 +26,7 @@ export function GiscusDocComment() {
   const location = useLocation();
   // Extract the path from the location, because frontmatter.slug might not be defined.
   // The path is used to disambiguate between pages with the same title (e.g. 'Modules').
-  const path = location.pathname.replace('/developers/weaviate', '');
+  const path = location.pathname.replace('https://docs.weaviate.io/weaviate', '');
 
   return (
     <Giscus

@@ -121,7 +121,7 @@ Searches from mobile send a semantic query to Weaviate and retrieve results (plu
 
 Here is a visual representation of the architecture behind such a setup. Our frontend consists of four platforms (Android, iOS, Windows & Mac), our backend (the FastAPI server as well as the embedding service). 
 
-We run a high-availability Weaviate cluster in US-East. We went with the [serverless HA managed cloud offering](/developers/wcs) to keep ops light.  
+We run a high-availability Weaviate cluster in US-East. We went with the [serverless HA managed cloud offering](https://docs.weaviate.io/cloud) to keep ops light.  
 
 ![Constella System Architecture with Weaviate](./img/System_Architecture.png)
 
@@ -184,7 +184,7 @@ We get fast, accurate results, no matter where the notes came from.
 Managing a database service requires a lot of effort beyond just the technicals. These are some points about our experience with Weaviate so far.
 
 1. **Support That Shows Up:** When we ran into edge cases (e.g., multi-tenant schema mutations), their team responded quickly with examples and suggestions.  
-2. **Useful Docs:** The [developer documentation](/developers/weaviate) made it easy to set up classes, schemas, and mutations. No guesswork.  
+2. **Useful Docs:** The [developer documentation](https://docs.weaviate.io/weaviate) made it easy to set up classes, schemas, and mutations. No guesswork.  
 3. **Python + gRPC \= Speed:** We started with REST, but moved to the [gRPC-based Python client](/blog/grpc-performance-improvements) for faster throughput during batch ingest. It made a noticeable difference for onboarding large user datasets.  
 4. **High Availability That Just Works:** One node going down didn’t impact search latency. The HA cluster kept things smooth.
 
