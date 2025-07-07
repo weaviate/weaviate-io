@@ -148,7 +148,7 @@
   }
 
   .bentoSmall.BS01 .bentoLogo {
-    background: url('/img/site/Morningstar.svg');
+    background: url('/img/site/instabase-logo.svg');
     background-size: contain;
     background-repeat: no-repeat;
     width: 12.3125rem;
@@ -189,7 +189,7 @@
   }
 
   .bentoSmall.BS04 .bentoLogo {
-    background: url('/img/site/instabase-logo.svg');
+    background: url('/img/site/finster-logo.svg');
     background-size: contain;
     background-repeat: no-repeat;
     width: 11.77794rem;
@@ -249,7 +249,7 @@
     }
 
     .bentoImage {
-      background: url('/img/site/morningstar-bento-image.png');
+      background: url('/img/site/kerry-chang-hp.png');
       background-size: cover;
       background-position: center;
       width: 30rem;
@@ -311,7 +311,28 @@
       .bentoNameRow {
         display: flex;
         align-items: flex-end;
-        gap: 1rem;
+        gap: 0.5rem;
+
+        .visuallyHidden {
+          border: 0;
+          clip: rect(0 0 0 0);
+          height: 1px;
+          margin: -1px;
+          overflow: hidden;
+          padding: 0;
+          position: absolute;
+          width: 1px;
+          white-space: nowrap;
+        }
+
+        div {
+          flex: 0 1 auto;
+          max-width: 6rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          flex-shrink: 1;
+        }
 
         img {
           height: 1rem;
@@ -319,14 +340,25 @@
           object-fit: contain;
         }
 
+        .instabase {
+          height: 0.6rem;
+        }
+
         p {
           margin: 0;
           color: #b9c8de;
           font-family: Inter;
           font-size: 0.75rem;
-          font-style: normal;
           font-weight: 600;
-          line-height: 157.33%;
+          line-height: 1.2;
+        }
+
+        span {
+          color: #b9c8de;
+          font-family: Inter;
+          font-size: 0.625rem;
+          font-weight: 400;
+          line-height: 1.2;
         }
       }
     }
@@ -483,7 +515,7 @@
     .bentoSmall {
       flex: 1 1 200px;
       min-width: 200px;
-      max-width: 240px;
+      max-width: 290px;
       height: 10rem;
       flex-shrink: 1;
 

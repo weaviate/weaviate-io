@@ -37,11 +37,11 @@ export default function BottomMain() {
               <div className={styles.bentoText}>
                 <div className={styles.innerText}>
                   <div className={styles.bentoLogo}></div>
-                  <h3>Building a compliant financial data platform</h3>
+                  <h3>Turning over 450K data types into customer insights </h3>
                 </div>
                 <div className={styles.buttons}>
                   <Link
-                    to="/case-studies/morningstar"
+                    to="case-studies/instabase"
                     className={styles.arrowButton}
                   ></Link>
                 </div>
@@ -88,7 +88,7 @@ export default function BottomMain() {
               <div className={styles.bentoText}>
                 <div className={styles.innerText}>
                   <div className={styles.bentoLogo}></div>
-                  <h3>Turning over 450K data types into customer insights </h3>
+                  <h3>Successful management of 42M vectors in production</h3>
                 </div>
                 <div className={styles.buttons}>
                   <Link
@@ -106,16 +106,19 @@ export default function BottomMain() {
               <div className={styles.bentoImage}></div>
               <div className={styles.bentoText}>
                 <h3>
-                  “Through our Corpus API connected to Weaviate, users can build
-                  very powerful, low latency search engines in minutes with
-                  little to no code.”
+                  "Accuracy — how good the answer is — is the first thing we
+                  want to optimize for. That’s how we found Weaviate."
                 </h3>
                 <div className={styles.bentoNameRow}>
                   <div>
-                    <p>Aisis Julian</p>
-                    <span>Senior Software Engineer</span>
+                    <p>Kerry Chang</p>
+                    <span>Head of Product Engineering</span>
                   </div>
-                  <img src="/img/site/Morningstar.svg" alt="Morningstar logo" />
+                  <img
+                    className={styles.instabase}
+                    src="/img/site/instabase-cs.svg"
+                    alt="Instabase logo"
+                  />
                 </div>
               </div>
             </div>
@@ -130,7 +133,7 @@ export default function BottomMain() {
                 </h3>
                 <div className={styles.bentoNameRow}>
                   <div>
-                    <p>&nbsp;&nbsp;</p>
+                    <p className={styles.visuallyHidden}>Hidden Name</p>
                     <span>Principal Engineer</span>
                   </div>
                   <img src="/img/site/build-factset.svg" alt="Factset logo" />
