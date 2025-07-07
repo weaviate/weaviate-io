@@ -109,23 +109,6 @@ const config = {
                 showReadingTime: true,
             },
         ],
-        // SUBDOMAIN_MIGRATION
-        // [
-        //     '@scalar/docusaurus',
-        //     {
-        //       label: '.',
-        //       route: '/developers/weaviate/api/rest',
-        //       configuration: {
-        //         spec: {
-        //             // Last updated: 2025-02-15 TODO[g-despot] Update to correct openapi_docs branch
-        //           url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs_v1-30/openapi-specs/schema.json',
-        //         },
-        //         hideModels: true,
-        //         // This feature currently broken - potentially fixed in: https://github.com/scalar/scalar/pull/1387
-        //         // hiddenClients: [...],
-        //       },
-        //     },
-        // ],
 
         // Add HTML Header tags
         () => ({
@@ -450,7 +433,7 @@ const config = {
                         items: [
                             {
                                 type: 'html',
-                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Build</li><li><a class="dropdown__link" href="/developers/weaviate">Documentation</a></li><li><a class="dropdown__link" href="/developers/wcs">Weaviate Cloud Docs</a></li><li><a class="dropdown__link" href="/developers/agents">Weaviate Agents Docs</a></li><li><a class="dropdown__link" href="/developers/integrations">Integrations Docs</a></li><li><a class="dropdown__link" href="https://github.com/weaviate/weaviate">GitHub</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Learn</li><li><a class="dropdown__link" href="/learn">Learning Center</a></li><li><a class="dropdown__link" href="/blog">Blog</a></li><li><a class="dropdown__link" href="/developers/academy">Academy</a></li><li><a class="dropdown__link" href="/community/events">Workshops</a></li><li><a class="dropdown__link" href="/community/build-with-weaviate">Showcases</a></li><li><a class="dropdown__link" href="/learn/knowledgecards">Knowledge Cards</a></li><li><a class="dropdown__link" href="/javascript">JavaScript</a></li><li><a class="dropdown__link" href="/papers">Paper Reviews</a></li><li><a class="dropdown__link" href="/podcast">Podcasts</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Engage</li><li><a class="dropdown__link" href="/community/events">Events & Webinars</a></li><li><a class="dropdown__link" href="/community">Weaviate Hero Program</a></li><li><a class="dropdown__link" href="https://forum.weaviate.io/">Forum</a></li><li><a class="dropdown__link" href="https://weaviate.io/slack">Slack</a></li></ul></div><ul class="menu__list mobileNav"><li class="menu__list-item"><li class="dropDownLabel mobDrop">Build</li><a class="menu__link" href="/developers/weaviate">Documentation</a></li><li class="menu__list-item"><a class="menu__link" href="/developers/wcs">Weaviate Cloud Docs</a></li><li class="menu__list-item"><a class="menu__link" href="/developers/agents">Weaviate Agents Docs</a></li><li class="menu__list-item"><a class="menu__link" href="/developers/integrations">Integrations Docs</a></li><li class="menu__list-item"><a class="menu__link" href="https://github.com/weaviate/weaviate">GitHub</a></li><li class="dropDownLabel mobDrop">Learn</li><li class="menu__list-item"><a class="menu__link" href="/learn">Learning Center</a></li><li class="menu__list-item"><a class="menu__link" href="/blog">Blog</a></li><li class="menu__list-item"><a class="menu__link" href="/developers/academy">Academy</a></li><li class="menu__list-item"><a class="menu__link" href="/community/events">Workshops</a></li></li><li class="menu__list-item"><li class="menu__list-item"><a class="menu__link" href="/community/build-with-weaviate">Showcases</a></li><li class="menu__list-item"><a class="menu__link" href="/learn/knowledgecards">Knowledge Cards</a></li><li class="menu__list-item"><a class="menu__link" href="/papers">Paper Reviews</a></li><li class="menu__list-item"><a class="menu__link" href="/podcast">Podcasts</a></li><li class="dropDownLabel mobDrop">Engage</li><li class="menu__list-item"><a class="menu__link" href="/community/events">Events & Webinars</a></li><li class="menu__list-item"><a class="menu__link" href="/community">Weaviate Hero Program</a></li><li class="menu__list-item"><a class="menu__link" href="https://forum.weaviate.io/">Forum</a></li><li class="menu__list-item"><a class="menu__link" href="https://weaviate.io/slack">Slack</a></li></ul>',
+                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Build</li><li><a class="dropdown__link" href="https://docs.weaviate.io/weaviate">Documentation</a></li><li><a class="dropdown__link" href="https://docs.weaviate.io/cloud">Weaviate Cloud Docs</a></li><li><a class="dropdown__link" href="https://docs.weaviate.io/agents">Weaviate Agents Docs</a></li><li><a class="dropdown__link" href="https://docs.weaviate.io/integrations">Integrations Docs</a></li><li><a class="dropdown__link" href="https://github.com/weaviate/weaviate">GitHub</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Learn</li><li><a class="dropdown__link" href="/learn">Learning Center</a></li><li><a class="dropdown__link" href="/blog">Blog</a></li><li><a class="dropdown__link" href="https://docs.weaviate.io/academy">Academy</a></li><li><a class="dropdown__link" href="/community/events">Workshops</a></li><li><a class="dropdown__link" href="/community/build-with-weaviate">Showcases</a></li><li><a class="dropdown__link" href="/learn/knowledgecards">Knowledge Cards</a></li><li><a class="dropdown__link" href="/javascript">JavaScript</a></li><li><a class="dropdown__link" href="/papers">Paper Reviews</a></li><li><a class="dropdown__link" href="/podcast">Podcasts</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Engage</li><li><a class="dropdown__link" href="/community/events">Events & Webinars</a></li><li><a class="dropdown__link" href="/community">Weaviate Hero Program</a></li><li><a class="dropdown__link" href="https://forum.weaviate.io/">Forum</a></li><li><a class="dropdown__link" href="https://weaviate.io/slack">Slack</a></li></ul></div><ul class="menu__list mobileNav"><li class="menu__list-item"><li class="dropDownLabel mobDrop">Build</li><a class="menu__link" href="https://docs.weaviate.io/weaviate">Documentation</a></li><li class="menu__list-item"><a class="menu__link" href="https://docs.weaviate.io/cloud">Weaviate Cloud Docs</a></li><li class="menu__list-item"><a class="menu__link" href="https://docs.weaviate.io/agents">Weaviate Agents Docs</a></li><li class="menu__list-item"><a class="menu__link" href="https://docs.weaviate.io/integrations">Integrations Docs</a></li><li class="menu__list-item"><a class="menu__link" href="https://github.com/weaviate/weaviate">GitHub</a></li><li class="dropDownLabel mobDrop">Learn</li><li class="menu__list-item"><a class="menu__link" href="/learn">Learning Center</a></li><li class="menu__list-item"><a class="menu__link" href="/blog">Blog</a></li><li class="menu__list-item"><a class="menu__link" href="https://docs.weaviate.io/academy">Academy</a></li><li class="menu__list-item"><a class="menu__link" href="/community/events">Workshops</a></li></li><li class="menu__list-item"><li class="menu__list-item"><a class="menu__link" href="/community/build-with-weaviate">Showcases</a></li><li class="menu__list-item"><a class="menu__link" href="/learn/knowledgecards">Knowledge Cards</a></li><li class="menu__list-item"><a class="menu__link" href="/papers">Paper Reviews</a></li><li class="menu__list-item"><a class="menu__link" href="/podcast">Podcasts</a></li><li class="dropDownLabel mobDrop">Engage</li><li class="menu__list-item"><a class="menu__link" href="/community/events">Events & Webinars</a></li><li class="menu__list-item"><a class="menu__link" href="/community">Weaviate Hero Program</a></li><li class="menu__list-item"><a class="menu__link" href="https://forum.weaviate.io/">Forum</a></li><li class="menu__list-item"><a class="menu__link" href="https://weaviate.io/slack">Slack</a></li></ul>',
                                 className: 'dropDownContainer2',
                             },
                         ],
@@ -466,36 +449,6 @@ const config = {
                                className: 'dropDownContainer2',
                             },
                         ],
-                        /* items: [
-                            {
-                                label: 'About us',
-                                to: '/company/about-us',
-                            },
-                            {
-                                label: 'Playbook',
-                                to: '/company/playbook',
-                            },
-                            {
-                                label: 'Careers',
-                                to: '/company/careers',
-                            },
-                            {
-                                label: 'Remote',
-                                to: '/company/remote',
-                            },
-                            {
-                                label: 'Investors',
-                                to: '/company/investors',
-                            },
-                            {
-                                label: 'Partners',
-                                href: '/partners',
-                            },
-                            {
-                                label: 'Contact us',
-                                href: '/contact',
-                            },
-                        ], */
                     },
                     {
 
@@ -652,7 +605,7 @@ const config = {
                             {
 
                                 label: 'Academy',
-                                to: '/developers/academy',
+                                to: 'https://docs.weaviate.io/academy',
                             },
                             {
                                 label: 'Workshops',
@@ -679,15 +632,15 @@ const config = {
                             },
                             {
                                 label: 'Documentation',
-                                to: '/developers/weaviate',
+                                to: 'https://docs.weaviate.io/weaviate',
                             },
                             {
                                 label: 'Weaviate Cloud Docs',
-                                to: '/developers/wcs',
+                                to: 'https://docs.weaviate.io/cloud',
                             },
                             {
                                 label: 'Weaviate Agents Docs',
-                                to: '/developers/agents',
+                                to: 'https://docs.weaviate.io/agents',
                             },
                             {
                                 label: 'GitHub',

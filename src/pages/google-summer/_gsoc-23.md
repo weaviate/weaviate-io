@@ -11,7 +11,7 @@ Read more about the program and [apply below](#how-to-register).
 
 ## About Weaviate
 
-Weaviate is an open-source vector database that stores both objects and vectors, allowing for combining vector search with structured filtering with the fault-tolerance and scalability of a cloud-native database, all accessible through GraphQL, REST, and various language, clients. Read more about Weaviate [here](/developers/weaviate/).
+Weaviate is an open-source vector database that stores both objects and vectors, allowing for combining vector search with structured filtering with the fault-tolerance and scalability of a cloud-native database, all accessible through GraphQL, REST, and various language, clients. Read more about Weaviate [here](https://docs.weaviate.io/weaviate/).
 
 ## How to register
 
@@ -78,7 +78,7 @@ The demo app is expected to be developed in Python or JavaScript, but we are ope
 
 This project is a great opportunity to gain hands-on experience, and should be suitable even for those new to Weaviate.
 
-There are opportunities to build demo apps that will stand out incorporating one of many new cutting-edge Weaviate modules. For example, our [`ref2vec`](/developers/weaviate/modules/ref2vec-centroid), ['text2vec-openai'](/developers/weaviate/model-providers/openai/embeddings), ['text2vec-cohere'](/developers/weaviate/model-providers/cohere/embeddings) or ['qna-openai`](/developers/weaviate/modules/qna-openai) modules are relatively new and could be used to create a demo app that is unique and exciting.
+There are opportunities to build demo apps that will stand out incorporating one of many new cutting-edge Weaviate modules. For example, our [`ref2vec`](https://docs.weaviate.io/weaviate/modules/ref2vec-centroid), ['text2vec-openai'](https://docs.weaviate.io/weaviate/model-providers/openai/embeddings), ['text2vec-cohere'](https://docs.weaviate.io/weaviate/model-providers/cohere/embeddings) or ['qna-openai`](https://docs.weaviate.io/weaviate/modules/qna-openai) modules are relatively new and could be used to create a demo app that is unique and exciting.
 
 **Required Skills:** Some experience with Python (or another appropriate language), git + GitHub, and conceptual familiarity with vectors in machine learning context. Ability to work independently and communicate clearly.
 
@@ -95,8 +95,8 @@ There are opportunities to build demo apps that will stand out incorporating one
 **Documentation:**
 
 * [Awesome Weaviate · GitHub](https://github.com/weaviate/awesome-weaviate)
-* [Quickstart · Weaviate](/developers/weaviate/quickstart)
-* [Tutorials · Weaviate](/developers/weaviate/tutorials)
+* [Quickstart · Weaviate](https://docs.weaviate.io/weaviate/quickstart)
+* [Tutorials · Weaviate](https://docs.weaviate.io/weaviate/tutorials)
 * [Blog · Weaviate](/blog/)
 
 ---
@@ -129,8 +129,8 @@ This project is a great opportunity to gain hands-on experience, and should be s
 
 **Documentation:**
 
-* [Quickstart · Weaviate](/developers/weaviate/quickstart)
-* [Tutorials · Weaviate](/developers/weaviate/tutorials)
+* [Quickstart · Weaviate](https://docs.weaviate.io/weaviate/quickstart)
+* [Tutorials · Weaviate](https://docs.weaviate.io/weaviate/tutorials)
 * [Blog · Weaviate](/blog/)
 * [Django documentation](https://docs.djangoproject.com/)
 
@@ -186,7 +186,7 @@ Your focus should be on building a fast and efficient import process that delive
 
 **Project Description:** Weaviate is a modularized vector database that can be extended with various modules. For example, modules can be added to *vectorize* data or provide additional functionalities such as *question answering*.
 
-In this project, you will contribute to the growing library of Weaviate [modules](/developers/weaviate/modules/) by developing a new module. We have some suggestions in mind, like a module that can handle audio vectorization, but we're also open to your unique ideas.
+In this project, you will contribute to the growing library of Weaviate [modules](https://docs.weaviate.io/weaviate/modules/) by developing a new module. We have some suggestions in mind, like a module that can handle audio vectorization, but we're also open to your unique ideas.
 
 The module will be written in Go, and you'll receive guidance and support from Etienne and Marcin, who are experts in the language.
 
@@ -204,13 +204,13 @@ A great example of a module would be – to create a scalable inference containe
 
 **Mentors**: Marcin Antas
 
-**Expected outcome:** A new Weaviate module [code](https://github.com/weaviate/weaviate/tree/master/modules) and [documentation](/developers/weaviate/modules/).
+**Expected outcome:** A new Weaviate module [code](https://github.com/weaviate/weaviate/tree/master/modules) and [documentation](https://docs.weaviate.io/weaviate/modules/).
 
 ---
 
 ### 6.  Improve Weaviate Client of choice (Python, Java, JavaScript or Go)
 
-**Project Description**: Weaviate provides a selection of [language clients](/developers/weaviate/client-libraries) (in Python, Java, JavaScript and Go), which allow developers to integrate with Weaviate in the language of their choice.
+**Project Description**: Weaviate provides a selection of [language clients](https://docs.weaviate.io/weaviate/client-libraries) (in Python, Java, JavaScript and Go), which allow developers to integrate with Weaviate in the language of their choice.
 
 In this project you will work on a selected Weaviate client to help us improve the Development Experience (DX) and help us make it more intuitive to code with it. Plus there is an opportunity to help us implement the batch process to make it work like we have it in the Python client.
 
@@ -245,7 +245,7 @@ In this project you will work on a selected Weaviate client to help us improve t
 **Expected outcome:** A new great idea... Surprise us!
 
 **Documentation:**
-* [Developers · Weaviate Documentation](/developers/weaviate/)
+* [Developers · Weaviate Documentation](https://docs.weaviate.io/weaviate/)
 
 ---
 

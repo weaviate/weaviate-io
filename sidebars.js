@@ -25,12 +25,12 @@ const sidebars = {
     {
       type: 'link',
       label: 'Weaviate Cloud docs',
-      href: '/developers/wcs',
+      href: 'https://docs.weaviate.io/cloud',
     },
     {
       type: 'link',
       label: 'Contributor guide',
-      href: '/developers/contributor-guide',
+      href: 'https://docs.weaviate.io/contributor-guide',
     },
   ],
   academySidebar: [
@@ -63,12 +63,12 @@ const sidebars = {
     {
       type: 'link',
       label: 'Weaviate docs',
-      href: '/developers/weaviate',
+      href: 'https://docs.weaviate.io/weaviate',
     },
     {
       type: 'link',
       label: 'Contributor guide',
-      href: '/developers/contributor-guide',
+      href: 'https://docs.weaviate.io/contributor-guide',
     },
   ],
   integrationsSidebar: [

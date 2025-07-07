@@ -18,7 +18,7 @@ Weaviate (current version v1.18.1, first release 2019) is an open-source vector 
 
 Weaviate stores data objects and vector embeddings from ML-models, helping our user scale the impact and power of these models into production. Weaviate enables efficient searching, ranking, and recommendation algorithms, making them the foundation of ML deployments across various industries. It can be used with pre-built or custom-trained ML models to perform semantic search, one-shot classification, question answering, NER, multi-modal search, and much more, on a large scale.
 
-Read more about Weaviate [here](/developers/weaviate/).
+Read more about Weaviate [here](https://docs.weaviate.io/weaviate/).
 
 ### About our users and contributors
 Weaviate caters to industry-agnostic data challenges, attracting users from diverse fields.
@@ -31,7 +31,7 @@ Current contributors to Weaviate include developers and data scientists, who hav
 
 ### The problem
 
-We have a [Weaviate documentation](/developers/weaviate/) site that is itself maintained as an open-source project ([GitHub](https://github.com/weaviate/weaviate-io)).
+We have a [Weaviate documentation](https://docs.weaviate.io/weaviate/) site that is itself maintained as an open-source project ([GitHub](https://github.com/weaviate/weaviate-io)).
 
 Our documentation includes extensive code examples in many languages (`Python`, `JavaScript`, `Java`, `Go`, `shell` and `GraphQL`).
 
