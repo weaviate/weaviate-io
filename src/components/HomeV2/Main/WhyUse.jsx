@@ -10,7 +10,7 @@ export default function WhyUse() {
     <div className={styles.boxContainer}>
       <div className={styles.whyContainer}>
         <div className={styles.leftContainer}>
-          <h4>Easy start, boundless scale, deploy anywhere.</h4>
+          <h4>Easy start, boundless scale, deploy anywhere</h4>
           <div className={`${styles.benefitText} ${styles.ww01}`}>
             <div>
               <h5>AI-first features under one roof</h5>

@@ -27,6 +27,7 @@
     font-weight: 500;
     line-height: 140%; /* 1.4rem */
     text-transform: uppercase;
+    align-self: flex-start;
   }
 }
 
@@ -301,6 +302,9 @@
 }
 
 .USPBox {
+  flex: 1;
+  height: 180px;
+
   h4 {
     color: #130c49;
     font-family: 'Plus Jakarta Sans';
@@ -597,6 +601,18 @@
     .CodeBlock {
       width: 70%;
       height: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 1040px) {
+  .USPContainer {
+    flex-direction: column;
+    align-items: flex-start;
+
+    hr {
+      width: 100%;
+      height: 0.1rem;
     }
   }
 }

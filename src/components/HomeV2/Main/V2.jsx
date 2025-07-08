@@ -138,7 +138,6 @@ export default function Main() {
 
         <div className={styles.box}>
           <span className={styles.Title}>WHY USE WEAVIATE?</span>
-          <h2>Start easy, scale boundlessly, deploy anywhere</h2>
         </div>
         {/*    <div className={styles.boxContainer}>
           <div className={styles.staticBoxesWrapper}>
