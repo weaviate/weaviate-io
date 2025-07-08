@@ -1375,3 +1375,149 @@ a.navbar__item.navbar__link:hover {
     }
   }
 }
+
+/* Container styling */
+#hubspotForm form.hs-form {
+  font-family: inherit;
+  color: #1f1f1f;
+}
+
+/* Labels */
+#hubspotForm .hs-form-field label span {
+  color: #201047;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+#hubspotForm .hs-form-field label span.hs-form-required {
+  color: #ff3c3c;
+  margin-left: 2px;
+}
+
+/* Inputs and textareas */
+#hubspotForm input.hs-input,
+#hubspotForm textarea.hs-input,
+#hubspotForm select.hs-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 16px;
+  border: 1px solid #e1e5e8;
+  border-radius: 6px;
+  background-color: #f9fafb;
+  color: #1f1f1f;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#hubspotForm input.hs-input:focus,
+#hubspotForm textarea.hs-input:focus,
+#hubspotForm select.hs-input:focus {
+  border-color: #8a63d2;
+  outline: none;
+  background-color: #fff;
+}
+
+/* Checkbox area */
+#hubspotForm .inputs-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+#hubspotForm .inputs-list li {
+  margin-bottom: 0;
+}
+
+/* Consent checkbox fix (remove dot) */
+#hubspotForm .inputs-list::before {
+  display: none;
+}
+
+/* Submit button */
+#hubspotForm input.hs-button.primary {
+  background-color: #28a745; /* Match your green button */
+  color: #fff;
+  border: none;
+  padding: 0.75rem 2rem;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#hubspotForm input.hs-button.primary:hover {
+  background-color: #218838;
+}
+
+/* Error messages */
+#hubspotForm label.hs-error-msg {
+  color: #e55353;
+  font-size: 14px;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+/* Fixing spacing for columns */
+#hubspotForm .form-columns-2 .hs-form-field {
+  width: calc(50% - 0.5rem);
+}
+
+#hubspotForm .form-columns-2 .hs-form-field:first-child {
+  margin-right: 1rem;
+}
+
+#hubspotForm .form-columns-1 .hs-form-field {
+  width: 100%;
+}
+
+/* Adjust message textarea height if needed */
+#hubspotForm textarea.hs-input {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Remove bullet (dot) in the privacy checkbox */
+#hubspotForm .inputs-list li::marker {
+  display: none;
+}
+
+/* Privacy policy text adjustments */
+#hubspotForm .legal-consent-container p {
+  margin: 0;
+  font-size: 14px;
+}
+
+#hubspotForm .legal-consent-container a {
+  color: #28a745; /* Match green link color */
+}
+
+#hubspotForm .legal-consent-container a:hover {
+  text-decoration: underline;
+}
+
+/* Fix list item alignment for consent checkbox */
+#hubspotForm .inputs-list li.hs-form-booleancheckbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#hubspotForm .inputs-list li.hs-form-booleancheckbox label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+#hubspotForm .inputs-list li.hs-form-booleancheckbox input[type='checkbox'] {
+  margin-top: 15px;
+  width: 30px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0px;
+}
