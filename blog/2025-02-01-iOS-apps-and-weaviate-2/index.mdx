@@ -3,7 +3,7 @@ title: Weaviate Cloud (WCD) Queries - A Practical Guide
 
 slug: apple-and-weaviate-2
 authors: [randy, adam]
-date: 2025-02-01
+date: 2025-06-11
 tags: ['how-to']
 image: ./img/hero.png
 description: "A practical guide on using Weaviate Cloud Queries."
@@ -12,11 +12,77 @@ description: "A practical guide on using Weaviate Cloud Queries."
 
 ![Weaviate Cloud (WCD) Queries: A Practical Guide](./img/hero.png)
 
-## Overview
+## Introduction
 
-Understanding the capabilities of Weaviate Cloud (WCD) queries and implementing them practically in your applications is not always obvious. This article aims to help you bridge that gap by providing detailed explanations of common and easily implemented query types, along with a live tool to demonstrate the results.
+Understanding how to effectively use Weaviate Cloud (WCD) queries and integrate them into
+your iOS or macOS applications can be complex.
 
-Included is a downloadable application for Mac users to run live examples directly on their laptop. 
+The goal of this article is to focus on the different types of queries available and to provide an for you to run your queries.
+
+Included is a detailed explanation of common and easily implemented query types,
+complemented by a live tool to demonstrate their results.
+
+Mac users can download the provided custom application to run live examples directly on their
+laptop. These queries can be copied and pasted into your own projects as templates. 
+
+Content is based on Adam Chan's Book Recommendation project found at this Git repo [here](https://github.com/weaviate/BookRecs).
+
+
+![Integrating Weaviate Cloud Queries into Applications](./img/wcs_summary_21_integrate_cloud.png)
+
+## Searching a Vector Database
+
+Imagine you have a giant library with books described by numbers instead of words. A vector
+similarity search is like a special tool that helps you find books similar to the one you're holding
+by comparing their numbers. It's faster than reading every book description and works well for
+things like finding similar images or recommending products.
+
+Let's say you're in the library and love a particular mystery novel. This book can be represented
+by a vector, a fancy way of saying it's a bunch of numbers that capture information about the
+book. These numbers might encode things like genre, character count, or how many times certain
+words appear.
+
+Now, you want to find other similar mystery novels. The library (or the Weaviate platform in this
+case) uses the same kind of number code (vector) for all the books. The search tool then
+compares the vector of your favorite book to all the others. Books with similar vectors, meaning
+their numbers are close together, are likely similar mystery novels you might enjoy. This way,
+you can find new reads without sifting through every single book description.
+
+![Vector Search Concept](./img/wcs_summary_22_vector_search.png)
+
+
+## Weaviate Cloud (WCD)
+Weaviate Cloud is a fully managed cloud service that provides a vector database, simplifying the
+creation and deployment of AI applications. It handles the infrastructure, letting developers focus
+on building features like semantic search and recommendation engines. WCD offers flexible
+hosting options, including serverless and enterprise plans, built upon the powerful open-source
+Weaviate database.
+
+![Weaviate Cloud](./img/wcs_summary_23_weaviate_cloud.png)
+
+## Core Concepts 
+
+This guide utilizes the Query Helper Application, a custom MacOS app signed by Apple,
+designed for live testing of Weaviate Queries.
+
+Before using the application, you'll need to set up API keys. The following keys are relevant:
+
+1. Weaviate API Key: Provides access to the Weaviate Vector Database holding your
+domain data. For this demo app, the Weaviate API key is pre-defined and cannot be
+changed.
+1. OpenAI API Key: Used by Weaviate to access OpenAI's Large Language Models for
+querying embeddings. You can create a key at OpenAI.
+1. Cohere API Key: Utilized by Weaviate for text embedding, generative AI, and
+reranking. A key can be created at Cohere.
+
+API keys can be configured within the application by clicking the settings icon to open the API Key Settings Panel.
+
+![API Keys](./img/wcs_summary_24_api_keys.png)
+
+
+## Application Overview
+
+Included is a downloadable application for Mac users to run live query examples directly on their laptop. 
 
 Feel free to copy and paste these queries into your own projects for use as a template for your own queries.
 
@@ -33,12 +99,6 @@ To get familiar with the data used and how the Weaviate Database was created you
 
 [https://github.com/weaviate/BookRecs](https://github.com/weaviate/BookRecs)
 
-
-These articles are based on Adam Chan’s Book Recommendation project found at this Git repo [here](https://github.com/weaviate/BookRecs).
-
-
-
-Without his collaboration and support these articles would not have been possible.
 
 <a id="query_app"></a>
 
@@ -85,7 +145,7 @@ Query Prompt Buttons
 Query Prompt Features include:
 
 - **Copy Prompt:** For use in your own apps.    ![Copy Icon](./img/wcs_summary_05_iconCopy.png)
-- **Reset Prompt to the Original One Selected:** Reset, if prompt was changed  ![Reset Icon](./img/wcs_summary_06_iconReset.png)manually.   
+- **Reset Prompt to the Original One Selected:** Reset, if prompt was changed  ![Reset Icon](./img/wcs_summary_06_iconReset.png) manually.   
 - **Search Prompt:** Begin Search using prompt.![Reset Icon](./img/wcs_summary_07_iconSearch.png)
 
 Query Prompt
