@@ -2,7 +2,7 @@
 title: 'Introducing Glowe: Agent-Powered Korean Skincare Routines'
 slug: glowe-app
 authors: [victoria, prajjwal]
-date: 2025-07-08
+date: 2025-07-09
 tags: ['how-to', 'agents', 'search']
 image: ./img/glowe-hero.png
 description: "Glowe is a Korean beauty recommendation app that uses domain knowledge agents, custom embedding strategies, and vector search to create personalized skincare routines. Try now: https://www.glowe.app/"
@@ -19,8 +19,12 @@ Whether you're aiming for intense hydration, a radiant glow, or targeting specif
 Glowe is available to use here: [glowe.app](https://www.glowe.app/)
 :::
 
-**‼️ TODO:** 
-**Glowe App demo video gif (dynamic, fast-paced, screenstudio style)**
+import gloweVideo from './img/glowe-app-demo.mp4';
+
+<video width="100%" autoplay loop controls>
+  <source src={gloweVideo} type="video/mp4" />
+Your browser does not support the video tag.
+</video>
 
 ## Why Domain Knowledge Agents Matter in Skincare
 
@@ -300,8 +304,7 @@ For example, if you ask something like, "Find me a hydrating serum for sensitive
 The final products are then displayed to the user through the Glowe chat interface. 
 To put simply, think of Elysia as the conductor or the main tree, and the Weaviate Query Agent as a specialized musician or a leaf node, handling specific data retrieval tasks with high precision.
 
-**‼️ TODO:
-Add a screenshot of products being displayed in the chat interface**
+![Glowe Chat Interface](./img/glowe-chat-screen.png)
 
 ## Conclusion: The Future is Specialized and Agentic
 
