@@ -82,7 +82,7 @@ export default function BottomMain() {
               </div>
             </Link>
             <Link
-              to="case-studies/instabase"
+              to="/case-studies/finster"
               className={`${styles.bentoSmall} ${styles.BS04}`}
             >
               <div className={styles.bentoText}>
@@ -92,7 +92,7 @@ export default function BottomMain() {
                 </div>
                 <div className={styles.buttons}>
                   <Link
-                    to="case-studies/instabase"
+                    to="/case-studies/finster"
                     className={styles.arrowButton}
                   ></Link>
                 </div>
