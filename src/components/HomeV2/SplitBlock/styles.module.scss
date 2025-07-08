@@ -1,0 +1,129 @@
+.sliderContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 0.625rem;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+.imageWrapperBase,
+.imageWrapperOverlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 800px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  max-height: 500px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  border-right: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.sliderHandle {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 2.5rem;
+  height: 2.5rem;
+  background: #61d384;
+  border-radius: 50%;
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  pointer-events: none;
+  animation: pulse 2s infinite;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-top: 2px solid #fff;
+    border-right: 2px solid #fff;
+    position: absolute;
+  }
+
+  &::before {
+    left: 0.4rem;
+    transform: rotate(225deg);
+  }
+
+  &::after {
+    right: 0.4rem;
+    transform: rotate(45deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 4px rgba(97, 211, 132, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(97, 211, 132, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 4px rgba(97, 211, 132, 0.4);
+  }
+}
+
+.beforeLabel,
+.afterLabel {
+  position: absolute;
+  top: 1rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.4rem 1rem;
+  border-radius: 0.4rem;
+  z-index: 10;
+  transition: opacity 0.3s ease;
+}
+
+.beforeLabel {
+  left: 1rem;
+  background: white;
+  color: #130c49;
+}
+
+.afterLabel {
+  right: 1rem;
+  background: #130c49;
+  color: white;
+}
+
+.sliderLine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: white;
+  z-index: 5;
+  pointer-events: none;
+}
