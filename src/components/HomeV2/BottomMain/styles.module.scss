@@ -126,9 +126,18 @@
         font-weight: 600;
         line-height: 130%; /* 1.95rem */
         width: 97%;
+        height: 9rem;
+
+        @media screen and (max-width: 1440px) and (min-width: 900px) {
+          width: 96%;
+          font-size: 1.4rem;
+          height: 8rem;
+        }
 
         @media screen and (max-width: 900px) {
           width: 100%;
+          font-size: 1.5rem;
+          height: auto;
         }
       }
 
