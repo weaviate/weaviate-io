@@ -234,7 +234,7 @@ export default function BottomMain() {
                 </div>
               </Link>
               <Link
-                to="/developers/weaviate"
+                to="https://docs.weaviate.io/weaviate"
                 className={`${styles.bentoSmall} ${styles.small04}`}
               >
                 <div className={styles.bentoText}>
@@ -243,7 +243,7 @@ export default function BottomMain() {
                   </div>
                   <div className={styles.buttons}>
                     <Link
-                      to="/developers/weaviate"
+                      to="https://docs.weaviate.io/weaviate"
                       className={styles.arrowButton}
                     ></Link>
                   </div>
