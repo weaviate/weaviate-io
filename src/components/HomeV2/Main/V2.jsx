@@ -63,7 +63,7 @@ export default function Main() {
                   Try Weaviate Cloud
                 </Link>
                 <Link
-                  to="/developers/weaviate/quickstart"
+                  to="https://docs.weaviate.io/weaviate/quickstart"
                   className={styles.buttonDark}
                 >
                   Weaviate Quickstart
@@ -76,7 +76,7 @@ export default function Main() {
 
             <div className={styles.USPContainer}>
               <div className={styles.USPBox}>
-                <Link to="/developers/weaviate/client-libraries">
+                <Link to="https://docs.weaviate.io/weaviate/client-libraries">
                   <h4>
                     <span>Language agnostic by design</span>
                     <span className={styles.arrowIcon}></span>
@@ -89,7 +89,7 @@ export default function Main() {
               </div>
               <hr></hr>
               <div className={styles.USPBox}>
-                <Link to="/developers/weaviate/model-providers">
+                <Link to="https://docs.weaviate.io/weaviate/model-providers">
                   <h4>
                     <span>Seamless model integration</span>
                     <span className={styles.arrowIcon}></span>
@@ -129,7 +129,7 @@ export default function Main() {
             </div>
 
             <div className={styles.linkContainer}>
-              <Link to="/developers/weaviate/">
+              <Link to="https://docs.weaviate.io/weaviate">
                 MORE DEVELOPER RESOURCES {'-->'}
               </Link>
             </div>

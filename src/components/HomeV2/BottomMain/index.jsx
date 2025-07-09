@@ -37,7 +37,7 @@ export default function BottomMain() {
               <div className={styles.bentoText}>
                 <div className={styles.innerText}>
                   <div className={styles.bentoLogo}></div>
-                  <h3>Turning over 450K data types into customer insights </h3>
+                  <h3>Turning over 450 data types into customer insights </h3>
                 </div>
                 <div className={styles.buttons}>
                   <Link
