@@ -1,3 +1,7 @@
+> [!IMPORTANT]
+> The documentation for this project has been moved to a new repository: [weaviate/docs](https://github.com/weaviate/docs/).
+  You can now find it live at [https://docs.weaviate.io](https://docs.weaviate.io).
+
 # How to Build this Website
 
 Weaviate uses [Docusaurus 2](https://docusaurus.io/) to build our
