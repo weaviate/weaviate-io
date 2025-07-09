@@ -192,10 +192,10 @@ export default function Study() {
           <div className={`${styles.bottomSection} ${styles.navy}`}>
             <div className={styles.avatar}></div>
             <p className={styles.quote}>
-              “Many use cases in large banks are focusing on basic, quick wins
-              trying to prove the capabilities of AI. We saw a huge opportunity
-              to go beyond that and reimagine research workflows in a AI-native
-              way, from start to finish.”
+              “Many use cases in large banks are focusing on quick wins trying
+              to prove the capabilities of AI. We saw a huge opportunity to go
+              beyond that and reimagine research workflows in a AI-native way,
+              from start to finish.”
             </p>
             <p className={styles.name}>Seán Kilgarriff</p>
             <span>Product Lead and Founding Team member, Finster</span>
