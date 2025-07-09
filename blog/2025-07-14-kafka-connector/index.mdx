@@ -74,33 +74,20 @@ All properties are documented in [Github](https://github.com/weaviate/kafka-conn
 
 Example of configuration for Weaviate Cloud:
 
-```shell
+```json
 {
-
   "connector.class": "io.weaviate.connector.WeaviateSinkConnector",
-
   "topics": "test",
-
-  "weaviate.connection.url": "$WEAVIATE\_REST\_URL",
-
-  "weaviate.grpc.url": "$WEAVIATE\_GRPC\_URL",
-
+  "weaviate.connection.url": "$WEAVIATE_REST_URL",
+  "weaviate.grpc.url": "$WEAVIATE_GRPC_URL",
   "weaviate.grpc.secured": true,
-
-  "weaviate.auth.scheme": "API\_KEY",
-
-  "weaviate.api.key": "$WEAVIATE\_API\_KEY",
-
-  "collection.mapping": "Weaviate\_test",
-
+  "weaviate.auth.scheme": "API_KEY",
+  "weaviate.api.key": "$WEAVIATE_API_KEY",
+  "collection.mapping": "Weaviate_test",
   "document.id.strategy": "io.weaviate.connector.idstrategy.FieldIdStrategy",
-
   "document.id.field.name": "id",
-
   "value.converter": "org.apache.kafka.connect.json.JsonConverter",
-
   "value.converter.schemas.enable": false
-
 }
 ```
 
@@ -111,7 +98,7 @@ Start the connector on Kafka Connect, you can rely on Confluent Cloud UI or by l
 Example of curl command to create the connector: 
 
 ```shell
-$\> curl \-i \-X PUT https://\<KAFKA\_CONNECT\_URL\>/connectors/weaviate/config \-H 'Content-Type:application/json' \--data @connector.json
+$> curl -i -X PUT https://<KAFKA_CONNECT_URL>/connectors/weaviate/config -H 'Content-Type:application/json' --data @connector.json
 ```
 
 ## Conclusion
@@ -119,11 +106,6 @@ $\> curl \-i \-X PUT https://\<KAFKA\_CONNECT\_URL\>/connectors/weaviate/config 
 The Weaviate Kafka Connector is a powerful enabler for teams that want real-time, scalable, and intelligent data pipelines or organizations that are already using Apache Kafka. It removes the friction from ingesting and vectorizing data, helping you go from stream to semantic search in minutes.
 
 Ready to accelerate your pipeline? Check out the [full documentation](https://github.com/weaviate/kafka-connect-weaviate/tree/main) to get started.
-
-
-
-
-
 
 import WhatsNext from '/_includes/what-next.mdx'
 <WhatsNext />
