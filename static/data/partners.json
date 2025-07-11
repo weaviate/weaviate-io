@@ -559,5 +559,16 @@
     "programmingLanguage": "",
     "weaviateFeatures": "",
     "featured": false
+  },
+  {
+    "name": "N8n",
+    "image": "/img/site/n8n-logo.png",
+    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/n8n",
+    "description": "N8n is a low‑code workflow automation platform that lets users build generative AI applications.",
+    "tags": ["LLM and Agent Frameworks", "Integration"],
+    "maintainedBy": "Internal",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
   }
 ]
