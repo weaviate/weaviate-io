@@ -7,7 +7,7 @@ let searchExample = `# Select collection
 collection = client.collections.get("SupportTickets")
 
 # Pure vector search
-response = jeopardy.query.near_vector(
+response = collection.query.near_vector(
     near_vector=[0.1, 0.1, 0.1],
     limit=5
 )
@@ -23,7 +23,7 @@ response = collection.query.hybrid(
     query="login issues after OS upgrade",
     alpha=0.75,
     limit=5
-)`
+)`;
 
 let vectorizerExample = `from weaviate.classes.config import Configure
 
@@ -41,7 +41,7 @@ collection.data.insert_many([
         "title": "Cannot reset password",
         "content": "User is unable to reset their password using the provided link."
     }
-])`
+])`;
 
 const ragExample = `from weaviate.classes.generate import GenerativeConfig
 
@@ -60,7 +60,7 @@ response = supportTickets.generate.near_text(
 )
 
 print(response.generative.text)
-`
+`;
 
 const tenantExample = `# Create a multi-tenanant collection
 emails = client.collections.create(
@@ -82,7 +82,7 @@ response = acmeTenant.query.near_text(query="ACME query", limit=3)
 emails.tenants.offload("ACME")
 
 # Activate from S3
-emails.tenants.activate("StarkIndustries")`
+emails.tenants.activate("StarkIndustries")`;
 
 const vectorIndexExample = `# Pick your vector indexing strategy
 memory_index = Configure.VectorIndex.hnsw() # Use HNSW for lightning-fast in-memory search
@@ -104,7 +104,7 @@ client.collections.create(
     vector_index_config=Configure.VectorIndex.hnsw(
         quantizer=Configure.VectorIndex.Quantizer.pq()
     ),
-)`
+)`;
 
 const agentExample = `from weaviate.agents.classes import Operations
 from weaviate.collections.classes.config import DataType
@@ -126,7 +126,7 @@ agent = TransformationAgent(
 )
 
 # Run the transformation on all objects in the collection
-agent.update_all()`
+agent.update_all()`;
 
 const codeExamples = {
   search: searchExample,
