@@ -49,7 +49,14 @@
 
 .mainContent {
   flex-grow: 1;
+
+  min-width: 1000px;
+  flex-basis: 0;
   padding: 2rem 2rem 0rem 0rem;
+
+  @media screen and (max-width: 1200px) {
+    min-width: 100%;
+  }
 
   @media screen and (max-width: 900px) {
     padding: 0rem 1rem;
