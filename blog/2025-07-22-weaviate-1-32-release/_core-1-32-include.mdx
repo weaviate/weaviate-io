@@ -92,13 +92,13 @@ A majority of Weaviate's memory usage is due to the HNSW index, which is the vec
 
 ![img/hnsw_explained.png](./img/hnsw_explained.png)
 
-In Weaviate `1.32`, we introduce **optimized HNSW connections**, which can significantly reduce the memory footprint of the HNSW graph structure. This is achieved by carefully selecting the precision of the connections between the nodes in the HNSW graph.
+In Weaviate `1.32`, we introduce **optimized HNSW connections**, which can significantly reduce the memory footprint of the HNSW graph structure. This is achieved by optimizing the precision of the connections between the nodes in the HNSW graph, based on the number of objects on that particular HNSW layer.
 
-Two amazing things about this feature:
-- It works out-of-the-box, without any configuration needed.
-- You don't need to re-index your data, either. Once you upgrade to Weaviate `1.32`, the HNSW index will automatically start using the optimized connections.
+From a user perspective, this is a completely transparent change. It works out-of-the-box, without any configuration needed. Even better, you don't need to re-index your data, either. Once you upgrade to Weaviate `1.32`, the HNSW index will automatically start using the optimized connections.
 
-The amount of memory reduction depends a number of factors. Generally, you will get the most benefit if you are using ColBERT, or ColPali-type multi-vector embeddings, which are made up of many, smaller vectors. In this case, you could get up to 20% memory reduction for the HNSW index, as the HNSW graph structure takes up a larger relative share of the total memory usage.
+How much memory reduction can you expect? Well, it depends on a number of factors.
+
+Generally, you will see the most benefit if you are using ColBERT, or ColPali-type multi-vector embeddings, which are made up of many, smaller vectors. In this case, you could get up to 20% memory reduction for the HNSW index, as the HNSW graph structure takes up a larger relative share of the total memory usage.
 
 ## Replica movement goes GA
 
@@ -142,6 +142,10 @@ The new cost-aware sorting implementation is much smarter. It leverages Weaviate
 This improvement will significantly speed up many use cases that previously couldn't efficiently use sorting, making Weaviate even faster for your production workloads.
 
 Keep an eye out for a future blog post that will go into more detail on this feature, including internal test results and examples.
+
+## Performance improvements
+
+As is often the case, Weaviate `1.32` also includes a number of performance improvements that will benefit all users. These include performance improvements to HNSW indexing, LSM store performance, and more.
 
 ## Community contributions
 
