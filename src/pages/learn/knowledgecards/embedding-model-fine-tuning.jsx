@@ -140,7 +140,11 @@ const KnowledgeBasePage = () => {
                 <h3 className={styles.cardTitle}>{card.title}</h3>
                 <p className={styles.modalText}>{card.longText}</p>
 
-                <ShareOptions url={pageUrl} />
+                <ShareOptions
+                  url={
+                    'https://weaviate.io/learn/knowledgecards/embedding-model-fine-tuning'
+                  }
+                />
                 <div className={styles.bottomCard}>
                   {/* {card.tags.map((tag, index) => (
               <span key={index} className={styles.tag}>
