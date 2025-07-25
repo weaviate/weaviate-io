@@ -39,7 +39,6 @@ In this [template](https://n8n.io/workflows/5817-build-a-weekly-ai-trend-alerter
 This workflow is divided into two parts:
 
 1. Fetch, clean, enrich and insert arXiv abstracts into Weaviate.
-
 2. Use agentic RAG to identify research trends and send them in a weekly email.
 
 ### Prerequisites
@@ -91,7 +90,7 @@ Here are the steps for part one:
 https://export.arxiv.org/api/query?search_query=cat:cs.LG+OR+cat:stat.ML&sortBy=submittedDate&sortOrder=descending&start=0&max_results=200&last_update_date_from={{ $('Date & Time').item.json.startDate.toDateTime().toFormat("yyyyMMdd") }}
 ```
 
-3. Pre-process fetched data. The arXiv API returns our results in XML, so we need to convert the XML to JSON. Then, we parse the JSON file and extract our desired fields, format the data for Weaviate, and remove duplicates (if they exist). Specifically, we need to merge fields that have multiple entries like author or category into a single array of strings so that it can be passed intro Weaviate as metadata. Here’s an example of what this looks like:
+3. **Pre-process fetched data.** The arXiv API returns our results in XML, so we need to convert the XML to JSON. Then, we parse the JSON file and extract our desired fields, format the data for Weaviate, and remove duplicates (if they exist). Specifically, we need to merge fields that have multiple entries like author or category into a single array of strings so that it can be passed intro Weaviate as metadata. Here’s an example of what this looks like:
 
 ```json
 # ❌ Before preparing data for Weaviate
@@ -112,7 +111,7 @@ https://export.arxiv.org/api/query?search_query=cat:cs.LG+OR+cat:stat.ML&sortBy=
   }
 ```
 
-4. Enrich arXiv articles with topic classifications and potential impact predictions. In this part of the workflow, we feed the title and abstract to the LLM and prompt it to enrich our articles by assigning each of the articles primary topic category from a list of pre-defined categories. Each article also gets assigned up to two different secondary categories, and is given a score from 1-5 that predicts its potential impact in the field. You can see the system prompt we use below:
+4. **Enrich arXiv articles with topic classifications and potential impact predictions.** In this part of the workflow, we feed the title and abstract to the LLM and prompt it to enrich our articles by assigning each of the articles primary topic category from a list of pre-defined categories. Each article also gets assigned up to two different secondary categories, and is given a score from 1-5 that predicts its potential impact in the field. You can see the system prompt we use below:
 
 ```Text
 You are an expert AI agent designed to classify academic research papers. Your task is to analyze the provided arXiv paper data and categorize it based on its content.
@@ -184,25 +183,22 @@ The purpose of this step is to eventually give our agent more structured data ab
 
 5. **Post-process enriched data.** In this step, we simply merge the output from the LLM to the existing article metadata to upload all of them in Weaviate.
 6. **Create a new Weaviate collection (in an existing cluster).** Double click on the [Weaviate Vector Store](https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreweaviate/) node to configure these settings.
-
-  - Connect to your Weaviate Cloud or local credentials.
-  - Set `Operation Mode` to `Insert Documents`.
-  - To insert new data into a **new** `Weaviate Collection`, select `By ID` and give your collection a name in SnakeCase format.
-  - To insert data into an **existing** `Weaviate Collection`, select `From List` and choose your existing collection from the drop down menu.
-  - Under `Options`, click `Add Option` and select `Text Key`. This is the field for which embeddings will be generated. In this example, we are embedding the `summary` field in our data, as this is the abstract text for the articles.
+    - Connect to your Weaviate Cloud or local credentials.
+    - Set `Operation Mode` to `Insert Documents`.
+    - To insert new data into a **new** `Weaviate Collection`, select `By ID` and give your collection a name in SnakeCase format.
+    - To insert data into an **existing** `Weaviate Collection`, select `From List` and choose your existing collection from the drop down menu.
+    - Under `Options`, click `Add Option` and select `Text Key`. This is the field for which embeddings will be generated. In this example, we are embedding the `summary` field in our data, as this is the abstract text for the articles.
 
 ![Create new Weaviate collection in n8n](./img/n8n-create-new-collection.png)
 
 7. **Configure components for embeddings.** Double click on the `Embeddings OpenAI` node.
     - Select your embedding provider and model connect it to your credentials.
 8. **Configure components for the data loader.** Double click on the `Default Data Loader` node.
-
 ![Configure n8n data loader](./img/n8n-config-data-loader.png)
-
-  - The `Type of Data` we're loading is `JSON`.
-  - If you are including metadata (we are), set `Mode` to `Load Specific Data`.
-  - The `Data` field represents the data we want to generate embeddings for.
-  - Under `Options` we define our metadata schema.
+    - The `Type of Data` we're loading is `JSON`.
+    - If you are including metadata (we are), set `Mode` to `Load Specific Data`.
+    - The `Data` field represents the data we want to generate embeddings for.
+    - Under `Options` we define our metadata schema.
 
 9. **Configure the text splitter.** 
     - We're using the Recursive Character Text Splitter and setting our `Chunk Size` to `2000` to get one chunk per abstract (but feel free to experiment!).
@@ -262,10 +258,10 @@ The tool description for n8n agents is very important! A poor tool description c
 :::
 
 3. **Add model, memory, and output parser.** 
-- We're using the OpenRouter Chat Model node so that we can use Google Gemini for the agent.
-- Add simple (short-term) memory to the agent, setting `Session ID` to `Define Below` and `Key` to `sessionId` (which is our static session ID because we are only using short-term memory and not storing the agent output for future use.
-- Add the `Structured Output Parser` node and set `Schema Type` to `Generate from JSON Example`.
-- In `JSON Example`, we define the format of the output for the agent, which will be a subject line and body text for the resulting summary email we want to generate:
+    - We're using the OpenRouter Chat Model node so that we can use Google Gemini for the agent.
+    - Add simple (short-term) memory to the agent, setting `Session ID` to `Define Below` and `Key` to `sessionId` (which is our static session ID because we are only using short-term memory and not storing the agent output for future use.
+    - Add the `Structured Output Parser` node and set `Schema Type` to `Generate from JSON Example`.
+    - In `JSON Example`, we define the format of the output for the agent, which will be a subject line and body text for the resulting summary email we want to generate:
 
 ```json
 {
@@ -291,9 +287,9 @@ In this post, we showed you how to use the Weaviate Vector Store Community Node 
 
 This is just one of many possible ways to use the Weaviate Community Node in n8n and we encourage you to experiment with using different embedding models, chunking strategies, prompt engineering, and even incorporating multiple agents into your workflow.
 
-If you come up with a cool template using Weaviate, [let us know](https://www.notion.so/1cb70562ccd68097a442d3119b361609?pvs=21) and maybe we’ll share it with our community. 💚
+If you come up with a cool template using Weaviate, [let us know](grow@weaviate.io) and maybe we’ll share it with our community. 💚
 
-### Resource Guide
+## Resource Guide
 
 🔗  [Create an n8n account](https://n8n.partnerlinks.io/blog)
 
