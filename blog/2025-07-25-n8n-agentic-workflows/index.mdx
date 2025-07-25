@@ -194,11 +194,11 @@ The purpose of this step is to eventually give our agent more structured data ab
 7. **Configure components for embeddings.** Double click on the `Embeddings OpenAI` node.
     - Select your embedding provider and model connect it to your credentials.
 8. **Configure components for the data loader.** Double click on the `Default Data Loader` node.
-![Configure n8n data loader](./img/n8n-config-data-loader.png)
     - The `Type of Data` we're loading is `JSON`.
     - If you are including metadata (we are), set `Mode` to `Load Specific Data`.
     - The `Data` field represents the data we want to generate embeddings for.
     - Under `Options` we define our metadata schema.
+![Configure n8n data loader](./img/n8n-config-data-loader.png)
 
 9. **Configure the text splitter.** 
     - We're using the Recursive Character Text Splitter and setting our `Chunk Size` to `2000` to get one chunk per abstract (but feel free to experiment!).
