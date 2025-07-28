@@ -96,7 +96,7 @@ After external data is encoded and stored, it’s ready to be retrieved during *
 
 The inference stage starts with retrieval, in which data is retrieved from an external knowledge source in relation to a user query. Retrieval methods vary in format and complexity, however in the naive RAG schema, in which external knowledge is embedded and stored in a vector database, similarity search is the simplest form of retrieval.
 
-To perform similarity search, the user query must be first embedded in the same multi-dimensional space as the external data, which allows for direct comparison between the query and embedded external data. During [**similarity search**](https://weaviate.io/developers/weaviate/search/similarity), the distance between the query and external data points is calculated, returning those with the shortest distance and completing the retrieval process.
+To perform similarity search, the user query must be first embedded in the same multi-dimensional space as the external data, which allows for direct comparison between the query and embedded external data. During [**similarity search**](https://docs.weaviate.io/weaviate/search/similarity), the distance between the query and external data points is calculated, returning those with the shortest distance and completing the retrieval process.
 
 #### Augmentation
 
@@ -136,7 +136,7 @@ LangChain, LlamaIndex, and DSPy are all robust open source Python libraries with
 
 :::note
 
-Weaviate provides [integrations](https://weaviate.io/developers/integrations) and [recipes](https://github.com/weaviate/recipes) for each of these frameworks. For specific examples, take a look at our notebooks that show how to build RAG pipelines with Weaviate and [LlamaIndex](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/llamaindex/retrieval-augmented-generation/naive_rag.ipynb) and [DSPy](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/dspy/1.Getting-Started-with-RAG-in-DSPy.ipynb).
+Weaviate provides [integrations](https://docs.weaviate.io/integrations) and [recipes](https://github.com/weaviate/recipes) for each of these frameworks. For specific examples, take a look at our notebooks that show how to build RAG pipelines with Weaviate and [LlamaIndex](https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/llamaindex/retrieval-augmented-generation/naive_rag.ipynb) and [DSPy](https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/dspy/1.Getting-Started-with-RAG-in-DSPy.ipynb).
 
 :::
 
@@ -218,9 +218,9 @@ At a minimum, each section in this post deserves its own individual blog post, i
 
 📄 [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401) (Original RAG paper)
 
-👩‍🍳 [Getting Started with RAG in DSPy](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/dspy/1.Getting-Started-with-RAG-in-DSPy.ipynb) (Recipe)
+👩‍🍳 [Getting Started with RAG in DSPy](https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/dspy/1.Getting-Started-with-RAG-in-DSPy.ipynb) (Recipe)
 
-👩‍🍳 [Naive RAG with LlamaIndex](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/llamaindex/retrieval-augmented-generation/naive_rag.ipynb) (Recipe)
+👩‍🍳 [Naive RAG with LlamaIndex](https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/llamaindex/retrieval-augmented-generation/naive_rag.ipynb) (Recipe)
 
 📝 [Advanced RAG Techniques](https://weaviate.io/blog/advanced-rag#3-fine-tuning-embedding-models) (Blog post)
 

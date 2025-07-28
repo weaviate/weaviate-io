@@ -29,7 +29,11 @@ const ModalComponent = ({
   }
 
   const formattedTitle = formatTitleForUrl(details.title);
-  const shareUrl = `${window.location.origin}/learn/knowledgecards/${formattedTitle}`;
+  const shareUrl =
+    details.title === 'Embedding Model Fine-Tuning'
+      ? `${window.location.origin}/learn/knowledgecards/embedding-model-fine-tuning`
+      : `${window.location.origin}/learn/knowledgecards/${formattedTitle}`;
+
   const [showShareOptions, setShowShareOptions] = useState(false);
   const [shareSuccess, setShareSuccess] = useState(false);
   const imageFullUrl = details.cardImage

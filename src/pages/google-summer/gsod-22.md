@@ -22,20 +22,20 @@ Weaviate is a unique open-source project in the vector search world. The communi
 ### **The problem that Weaviate solves**
 In machine learning, e.g. recommendation tools or data classification, data is often represented as high-dimensional vectors. These vectors are stored in so-called vector databases. With vector databases you can efficiently run searching, ranking and recommendation algorithms. Therefore, vector databases became the backbone of ML deployments in industry. Weaviate is a vector database that enables combining vector search with structured filtering. Weaviate can be used with out-of-the-box or custom trained ML models to do semantic search, one-shot classification, question answering, NER, multi-modal search, and much more, on a large scale.
 
-Read more about Weaviate [here](/developers/weaviate/).
+Read more about Weaviate [here](https://docs.weaviate.io/weaviate/).
 
 
 ### **Users and contributors**
 Weaviate can be used to solve industry-agnostic data problems, so our current users come from multiple disciplines. Current users range from companies who are using Weaviate for product search and categorization in e-commerce to companies who use Weaviate to search through video captions, and from users who use Weaviate to do image-text search to users who use Weaviate to browse through scientific papers.
 
-Current contributors to Weaviate are mainly people who [make their own Weaviate module](/developers/contributor-guide/weaviate-modules/how-to-build-a-new-module) (for example to use a new type of ML model with Weaviate).
+Current contributors to Weaviate are mainly people who [make their own Weaviate module](https://docs.weaviate.io/contributor-guide/weaviate-modules/how-to-build-a-new-module) (for example to use a new type of ML model with Weaviate).
 
 
 ## **About the project**
 
 ### **The project's problem**
 
-We have a [Weaviate documentation](/developers/weaviate/) and a [contributors guide](/developers/contributor-guide/). Currently, the contributors guide is very limited. Good documentation on how to get started on contributing to Weaviate is lacking. The pages that are in the current guide helps Weaviate developers who have a good amount of background knowledge and have been contributing to Weaviate before, but it is hard to get started as an unexperienced contributor.
+We have a [Weaviate documentation](https://docs.weaviate.io/weaviate/) and a [contributors guide](https://docs.weaviate.io/contributor-guide/). Currently, the contributors guide is very limited. Good documentation on how to get started on contributing to Weaviate is lacking. The pages that are in the current guide helps Weaviate developers who have a good amount of background knowledge and have been contributing to Weaviate before, but it is hard to get started as an unexperienced contributor.
 
 We would like to have a contributors guide that is a complete guide that helps new contributors from the beginning until the end. This includes pages about how to get involved & onboarding, how to open a first issue on GitHub, how to structure Pull Requests and more. Ideally, the contributors guide will, like Weaviate's documentation, also contain tutorials with examples and perhaps even videos (can be outside the scope of this project).
 

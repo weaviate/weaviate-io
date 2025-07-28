@@ -27,7 +27,7 @@ export default function ContactHeader() {
               className={styles.buttonOutline}
               to="https://newsletter.weaviate.io/"
             >
-              Subscribe for news
+              Subscribe
             </Link>
           </div>
         </div>

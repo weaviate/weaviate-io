@@ -7,12 +7,6 @@
     "team": "wcd"
   },
   {
-    "name": "Aaron Trott",
-    "title": "Enterprise Account Executive",
-    "photo": "Aaron.jpg",
-    "team": "sales"
-  },
-  {
     "name": "Abdel Rodriquez",
     "title": "Vector Index Researcher",
     "photo": "abdel.jpg",
@@ -47,6 +41,19 @@
     "photo": "alea.jpg",
     "linkedin": "alea-abed",
     "team": "marketing"
+  },
+  {
+    "name": "Alec Berry",
+    "title": "Enterprise Account Executive",
+    "photo": "Alec-Berry.jpg",
+    "team": "sales"
+  },
+  {
+    "name": "Alexandre El Khoury",
+    "title": "Full Stack Engineer",
+    "photo": "Alexandre-El-Khoury.jpg",
+    "linkedin": "alexandre-el-khoury",
+    "team": "wcd"
   },
   {
     "name": "Alvin Richards",
@@ -108,13 +115,6 @@
     "team": "delivery"
   },
   {
-    "name": "Benjamin Sabrin",
-    "title": "VP of Sales",
-    "photo": "benjamin.jpg",
-    "linkedin": "bsabrin",
-    "team": "sales"
-  },
-  {
     "name": "Bob van Luijt",
     "title": "Co-founder and CEO",
     "photo": "bob.jpg",
@@ -122,6 +122,13 @@
     "twitter": "bobvanluijt",
     "github": "bobvanluijt",
     "team": "ceo-team"
+  },
+  {
+    "name": "Brave Okafor",
+    "title": "Client-Focused SRE",
+    "photo": "Brave.jpg",
+    "team": "delivery",
+    "linkedin": "braveokafor"
   },
   {
     "name": "Brendan McNally",
@@ -146,27 +153,11 @@
     "team": "delivery"
   },
   {
-    "name": "Chad Tindel",
-    "title": "Solution Engineer",
-    "photo": "Chad.jpg",
-    "linkedin": "ctindel",
-    "twitter": "ctindel",
-    "team": "sales"
-  },
-  {
     "name": "Chara Tzimi",
     "title": "People Operations Specialist",
     "photo": "Chara.jpg",
     "linkedin": "chara-tzimi",
     "team": "people-and-culture"
-  },
-  {
-    "name": "Charles Harr",
-    "title": "Software Engineer",
-    "photo": "charles.jpg",
-    "linkedin": "ceharr",
-    "github": "harrlight00",
-    "team": "wcd"
   },
   {
     "name": "Charles Pierse",
@@ -177,7 +168,7 @@
     "team": "weaviate-labs"
   },
   {
-    "name": "Christopher McCurry",
+    "name": "Luke McCurry",
     "title": "Commercial Account Executive",
     "photo": "Christopher-McCurry.jpg",
     "team": "sales"
@@ -206,8 +197,21 @@
     "team": "sales"
   },
   {
+    "name": "Daniel Janicek",
+    "title": "QA Engineer",
+    "photo": "Daniel-Janicek.jpg",
+    "team": "database"
+  },
+  {
+    "name": "Dan Jones",
+    "title": "Machine Learning Engineer",
+    "photo": "Dan-Jones.jpg",
+    "linkedin": "daniel-jones-9a8a3b185",
+    "team": "weaviate-labs"
+  },
+  {
     "name": "Daniel Phiri",
-    "title": "Developer Advocate",
+    "title": "Developer Experience and Education Engineer",
     "photo": "daniel.jpg",
     "team": "developer-relations",
     "linkedin": "malgamves",
@@ -222,6 +226,13 @@
     "team": "developer-growth"
   },
   {
+    "name": "Daniela Costa",
+    "title": "Marketing Campaign Coordinator",
+    "photo": "Daniela-Costa.jpg",
+    "linkedin": "daniela-costa",
+    "team": "marketing"
+  },
+  {
     "name": "Danielle Nugent",
     "title": "Talent Acquisition Manager",
     "photo": "Danielle.jpg",
@@ -234,6 +245,12 @@
     "photo": "Danielle-Washington.jpg",
     "linkedin": "dwashington-clouddani",
     "team": "developer-relations"
+  },
+  {
+    "name": "David Tran",
+    "title": "Client-Focused SRE",
+    "photo": "David-Tran.jpg",
+    "team": "delivery"
   },
   {
     "name": "David Street",
@@ -251,10 +268,22 @@
     "team": "delivery"
   },
   {
+    "name": "Dennis Schipper",
+    "title": "UI/UX Front End Developer",
+    "photo": "Dennis-Schipper.jpg",
+    "team": "developer-growth"
+  },
+  {
     "name": "Deepti Naidu",
     "title": "Partner Solution Engineer",
     "photo": "deepti.jpg",
     "linkedin": "deeptinaidu",
+    "team": "partnerships"
+  },
+  {
+    "name": "Dhruv Gorasiya",
+    "title": "Partnerships Intern",
+    "photo": "Dhruv_Gorasiya.jpeg",
     "team": "partnerships"
   },
   {
@@ -281,13 +310,6 @@
     "team": "delivery"
   },
   {
-    "name": "Emma O'Keefe",
-    "title": "Director of Business Data Strategy & Enablement",
-    "photo": "emma.jpg",
-    "linkedin": "emma-o-keefe-03777b80",
-    "team": "finance"
-  },
-  {
     "name": "Edward Schmuhl",
     "title": "Machine Learning Engineer",
     "photo": "edward.jpg",
@@ -301,6 +323,26 @@
     "title": "Enterprise Account Executive",
     "photo": "Elisa-Seay.jpg",
     "team": "sales"
+  },
+  {
+    "name": "Emma Dikmessalim",
+    "title": "People Operations Specialist",
+    "photo": "Emma-Dikmessalim.jpg",
+    "linkedin": "emmadikmessalim",
+    "team": "people-and-culture"
+  },
+  {
+    "name": "Emma O'Keefe",
+    "title": "Director of Business Data Strategy & Enablement",
+    "photo": "emma.jpg",
+    "linkedin": "emma-o-keefe-03777b80",
+    "team": "finance"
+  },
+  {
+    "name": "Eoin O'Reilly",
+    "title": "BI Data Engineer",
+    "photo": "Eoin.jpg",
+    "team": "finance"
   },
   {
     "name": "Eric Caleb",
@@ -351,6 +393,12 @@
     "team": "sales"
   },
   {
+    "name": "Hamdi Hmimy",
+    "title": "Enterprise Solution Engineer",
+    "photo": "Hamdi-Hmimy.jpg",
+    "team": "delivery"
+  },
+  {
     "name": "Ian Gregson",
     "title": "Full Stack Engineer",
     "photo": "ian.jpg",
@@ -381,10 +429,25 @@
     "team": "developer-relations"
   },
   {
+    "name": "Jenny Morris",
+    "title": "Customer Solution Engineer",
+    "photo": "Jenny-Morris.jpg",
+    "team": "delivery"
+  },
+  {
     "name": "Jeremy Price",
     "title": "Core Engineer",
     "photo": "jeremy.jpg",
     "github": "donomii",
+    "team": "database"
+  },
+  {
+    "name": "Jerónimo Irazábal",
+    "title": "Software Engineer",
+    "photo": "Jeronimo.jpg",
+    "linkedin": "jeronimoirazabal",
+    "twitter": "jeroiraz",
+    "github": "jeroiraz",
     "team": "database"
   },
   {
@@ -413,13 +476,11 @@
     "team": "applied-research"
   },
   {
-    "name": "Jonathan Tuite",
-    "title": "Sales Engineer",
-    "photo": "jonathan.jpg",
-    "linkedin": "jontuite",
-    "twitter": "pendragn00",
-    "github": "tuitejc",
-    "team": "sales"
+    "name": "Jolanta Marczewska",
+    "title": "Product Designer",
+    "photo": "Jolanta-Marczewska.jpg",
+    "linkedin": "jolanta-marczewska",
+    "team": "wcd"
   },
   {
     "name": "Jose Luis Franco",
@@ -442,6 +503,12 @@
     "linkedin": "joshsgoldstein"
   },
   {
+    "name": "Kamil Tyborowski",
+    "title": "Software Engineer",
+    "photo": "Kamil.jpg",
+    "team": "developer-growth"
+  },
+  {
     "name": "Kaviraj Kanagaraj",
     "title": "Senior Software Engineer",
     "photo": "Kaviraj.jpg",
@@ -458,7 +525,7 @@
   },
   {
     "name": "Leonie Monigatti",
-    "title": "Developer Advocate",
+    "title": "Machine Learning Engineer",
     "photo": "leonie.jpg",
     "linkedin": "804250ab",
     "team": "developer-growth"
@@ -487,7 +554,7 @@
   },
   {
     "name": "Marion Nehring",
-    "title": "Community Manager",
+    "title": "Developer Experience Program Manager",
     "photo": "marion.jpg",
     "linkedin": "marionnehring",
     "team": "developer-relations"
@@ -514,6 +581,13 @@
     "team": "developer-growth"
   },
   {
+    "name": "Michael Choueri",
+    "title": "IT Operations Manager",
+    "photo": "Michael-Choueri.jpg",
+    "linkedin": "michael-choueri-66aaa254",
+    "team": "delivery"
+  },
+  {
     "name": "Michael Morgan",
     "title": "Marketing Operations and Lifecycle Manager",
     "photo": "Michael-Morgan.jpg",
@@ -521,10 +595,12 @@
     "team": "marketing"
   },
   {
-    "name": "Mike Hoppe",
-    "title": "Client-Focused SRE",
-    "photo": "Mike-Hoppe.jpg",
-    "team": "delivery"
+    "name": "Michelangelo Partipilo",
+    "title": "Software Engineer",
+    "photo": "Michelangelo-Partipilo.jpg",
+    "linkedin": "mpartipilo",
+    "twitter": "mpartipilom",
+    "team": "database"
   },
   {
     "name": "Mike Wyer",
@@ -555,18 +631,17 @@
     "team": "database"
   },
   {
-    "name": "Nathaniel Ma",
-    "title": "Enterprise Account Executive",
-    "photo": "Nathaniel.jpg",
-    "linkedin": "manathaniel",
-    "team": "sales"
-  },
-  {
     "name": "Nenad Malić",
     "title": "Product Marketing Manager",
     "photo": "nenad.jpg",
     "team": "marketing",
     "linkedin": "nenadmalic"
+  },
+  {
+    "name": "Nick Wong",
+    "title": "Solution Engineer",
+    "photo": "Nick-Wong.jpg",
+    "team": "delivery"
   },
   {
     "name": "Parker Duckworth",
@@ -622,6 +697,13 @@
     "team": "applied-research"
   },
   {
+    "name": "Rohan Thomas",
+    "title": "Commercial Account Executive",
+    "photo": "rohan.jpg",
+    "linkedin": "rohan-mathews-thomas",
+    "team": "sales"
+  },
+  {
     "name": "Ryan Colbert",
     "title": "Enterprise Account Executive",
     "photo": "ryan.jpg",
@@ -629,16 +711,31 @@
     "team": "sales"
   },
   {
-    "name": "Scott Alexander",
-    "title": "Client-Focused SRE",
-    "photo": "scott-alexander.jpg",
-    "team": "delivery"
+    "name": "Salvatore Campagna",
+    "title": "Software Engineer",
+    "photo": "Salvatore-Campagna.jpg",
+    "team": "database"
+  },
+  {
+    "name": "Scott Askinosie",
+    "title": "Technical Trainer",
+    "photo": "Scott-Askinosie.jpg",
+    "team": "developer-relations",
+    "linkedin": "scott-askinosie",
+    "twitter": "scottaskinosie"
   },
   {
     "name": "Sebastian Neira Farriol",
     "title": "Client-Focused SRE",
     "photo": "Sebastian-Farriol.jpg",
     "team": "delivery"
+  },
+  {
+    "name": "Sean Forde",
+    "title": "Business Development Representative",
+    "photo": "Sean-Forde.jpg",
+    "team": "sales",
+    "linkedin": "seanf0rde"
   },
   {
     "name": "Sean Romberg",
@@ -692,14 +789,6 @@
     "team": "marketing"
   },
   {
-    "name": "Stefan Bogdan",
-    "title": "Engineer",
-    "photo": "stefan.jpg",
-    "linkedin": "stefan-bogdan",
-    "github": "StefanBogdan",
-    "team": "developer-relations"
-  },
-  {
     "name": "Svitlana Smolianova",
     "title": "Creative Director",
     "photo": "svitlana.jpg",
@@ -722,12 +811,17 @@
     "team": "database"
   },
   {
-    "name": "Tuana Celik",
-    "title": "Developer Relations Engineer",
-    "photo": "Tuana.jpg",
-    "team": "developer-growth",
-    "linkedin": "tuanacelik",
-    "twitter": "tuanacelik"
+    "name": "Tobias Christiani",
+    "title": "Research Engineer",
+    "photo": "Tobias.jpg",
+    "team": "applied-research",
+    "linkedin": "tobias-christiani-0055"
+  },
+  {
+    "name": "Tony Le",
+    "title": "Business Development Director",
+    "photo": "tony.jpg",
+    "team": "partnerships"
   },
   {
     "name": "Victoria Slocum",
@@ -744,6 +838,20 @@
     "linkedin": "wera-kr",
     "github": "Weroiko",
     "team": "wcd"
+  },
+  {
+    "name": "Willem Bens",
+    "title": "System Integrator Partner Manager",
+    "photo": "Willem-Bens.jpg",
+    "linkedin": "Willem-bens",
+    "team": "partnerships"
+  },
+  {
+    "name": "Yaru Lin",
+    "title": "Product Manager",
+    "photo": "yaru-lin.jpg",
+    "linkedin": "linyaru",
+    "team": "product"
   },
   {
     "name": "Chrétien Minke",
@@ -788,13 +896,6 @@
     "team": "board-advisors"
   },
   {
-    "name": "Rohan Thomas",
-    "title": "Commercial Account Executive",
-    "photo": "rohan.jpg",
-    "linkedin": "rohan-mathews-thomas",
-    "team": "sales"
-  },
-  {
     "name": "Sam Ramji",
     "title": "Advisor",
     "photo": "sam-ramji.jpg",
@@ -823,20 +924,5 @@
     "linkedin": "zackkass",
     "twitter": "iamthezack",
     "team": "board-advisors"
-  },
-  {
-    "name": "Jerónimo Irazábal",
-    "title": "Software Engineer",
-    "photo": "Jeronimo.jpg",
-    "linkedin": "jeronimoirazabal",
-    "twitter": "jeroiraz",
-    "github": "jeroiraz",
-    "team": "database"
-  },
-  {
-    "name": "Tony Le",
-    "title": "Business Development Director",
-    "photo": "tony.jpg",
-    "team": "partnerships"
   }
 ]

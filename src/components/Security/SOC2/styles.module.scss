@@ -117,7 +117,8 @@
 
   .drataLogo {
     background: url('/img/site/CIS-logo.png');
-    background-size: 100% 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
 
     width: 50%;
     height: 120px;
@@ -137,6 +138,20 @@
 
     @media screen and (max-width: 680px) {
       flex: none;
+    }
+  }
+
+  .hipaaLogo {
+    background: url('/img/site/HIPAA-logo.png');
+
+    background-size: contain;
+    width: 50%;
+    height: 200px;
+    background-repeat: no-repeat;
+    margin-left: 6%;
+
+    @media screen and (max-width: 680px) {
+      width: 100%;
     }
   }
 }

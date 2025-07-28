@@ -4,7 +4,7 @@ slug: google-rag-api
 description: "Learn how to build RAG Applications on Google Cloud using the new RAG Engine on Vertex AI! "
 authors: [erika, crispin]
 date: 2025-01-10
-tags: [how-to, integrations]
+tags: [how-to, integrations, partnerships]
 image: ./img/hero.png
 ---
 
@@ -27,17 +27,17 @@ Vertex AI RAG Engine is a fully managed solution for RAG orchestration. Each pro
 
 ## Weaviate’s Integration with Vertex AI RAG Engine
 
-[Weaviate](http://www.weaviate.io) is an open-source, AI-native vector database. You will need to configure and deploy your Weaviate cluster by using [Weaviate Cloud](https://console.weaviate.cloud), [Google Cloud Marketplace](https://weaviate.io/developers/weaviate/installation/gc-marketplace), as a few options. The only requirement is that the Weaviate endpoint is accessible.
+[Weaviate](http://www.weaviate.io) is an open-source, AI-native vector database. You will need to configure and deploy your Weaviate cluster by using [Weaviate Cloud](https://console.weaviate.cloud) as an option. The only requirement is that the Weaviate endpoint is accessible.
 
 ### Indexing
 
 Once you’ve created your Weaviate cluster and defined your collection, you can now import your data into Weaviate. Since we’ve defined the vectorizer (`text2vec_palm`), Weaviate will automatically generate the embeddings and store it in an index. 
 
-Weaviate supports [multiple indexes](https://weaviate.io/developers/weaviate/concepts/indexing) (vector and inverted index) for efficient storage and retrieval. The vector index is used for vector search queries and the inverted index is used for keyword and hybrid search. 
+Weaviate supports [multiple indexes](https://docs.weaviate.io/weaviate/concepts/indexing) (vector and inverted index) for efficient storage and retrieval. The vector index is used for vector search queries and the inverted index is used for keyword and hybrid search. 
 
 ### Retrieval
 
-Vertex AI RAG Engine supports Weaviate’s [vector and hybrid search](https://weaviate.io/developers/weaviate/concepts/search). Vector search is used to find semantically similar objects in your database. For example, if you search for 'seafood pasta' using vector search, a recipe about making lobster linguine will be returned because the model understands the semantic relationship between 'seafood pasta' and 'lobster linguine.' Conversely, running the same query with keyword search will only return recipes where the title explicitly includes the words 'seafood' or 'pasta,' potentially missing relevant dishes like lobster linguine.
+Vertex AI RAG Engine supports Weaviate’s [vector and hybrid search](https://docs.weaviate.io/weaviate/concepts/search). Vector search is used to find semantically similar objects in your database. For example, if you search for 'seafood pasta' using vector search, a recipe about making lobster linguine will be returned because the model understands the semantic relationship between 'seafood pasta' and 'lobster linguine.' Conversely, running the same query with keyword search will only return recipes where the title explicitly includes the words 'seafood' or 'pasta,' potentially missing relevant dishes like lobster linguine.
 
 Hybrid search on the other hand, combines vector and keyword search. It uses the best of both search methods to boost retrieval accuracy. The inverted index is built at import automatically unless you set a property to `indexSearchable=False` in your collection. The `alpha` parameter in hybrid search determines the weighting of the two search methods. `alpha=0` is pure keyword search, `alpha=1` is pure vector search, and `alpha=0.5` is an equal weighting of the two. [Here](https://cloud.google.com/vertex-ai/generative-ai/docs/use-weaviate-db#hybrid-grounded-generation) is an example of a hybrid search request sent to the Vertex AI RAG Engine. 
 
@@ -54,7 +54,7 @@ You’ll need to configure and deploy your cluster. You have a few options to sp
 1. Subscribe to the [Weaviate Cloud Serverless listing](https://console.cloud.google.com/marketplace/product/weaviate-gcp-mktplace/weaviate?authuser=1&project=rag-api-test) on GCP marketplace and easily deploy a cluster  
 2. Configure Weaviate on a [Kubernetes cluster](https://console.cloud.google.com/marketplace/product/weaviate-gcp-mktplace/weaviate?hl=en&project=clean-pen-427907-c5&invt=AbnfrQ&utm_source=website&utm_medium=button&utm_campaign=GCPMarketplace?authuser=1&project=rag-api-test) on GCP marketplace  
 3. Create a cluster [directly on Weaviate Cloud](https://console.weaviate.cloud/) (WCD)  
-4. Other installation options are listed [here](https://weaviate.io/developers/weaviate/installation)
+4. Other installation options are listed [here](https://docs.weaviate.io/weaviate/installation)
 
 ### API Keys in Secret Manager
 
@@ -174,7 +174,7 @@ Additional resources:
 
 * [Documentation on the Vertex AI RAG Engine](https://cloud.google.com/vertex-ai/generative-ai/docs/rag-overview)  
 * [Using Weaviate on Vertex AI RAG Engine](https://cloud.google.com/vertex-ai/generative-ai/docs/use-weaviate-db)  
-* [Weaviate Quickstart Guide](https://weaviate.io/developers/weaviate/quickstart)
+* [Weaviate Quickstart Guide](https://docs.weaviate.io/weaviate/quickstart)
 
 import WhatNext from '/_includes/what-next.mdx';
 

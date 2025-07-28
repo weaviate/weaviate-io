@@ -50,7 +50,7 @@ Alternatively, a [REST API](https://github.com/ollama/ollama/blob/main/docs/api.
 
 ## How to Setup a Local Vector Database Instance with Docker
 
-In a local RAG pipeline, you want to host your vector database locally as well. This tutorial shows you how you can [host an instance of the open source Weaviate vector database locally with Docker](https://weaviate.io/developers/weaviate/installation/docker-compose).
+In a local RAG pipeline, you want to host your vector database locally as well. This tutorial shows you how you can [host an instance of the open source Weaviate vector database locally with Docker](https://docs.weaviate.io/weaviate/installation/docker-compose).
 
 ### Step 1: Download and install Docker
 
@@ -128,7 +128,7 @@ Now, you can load the data into the predefined structure. For this, you can iter
 import ollama
 
 # Store each document in a vector embedding database
-with collection.batch.dynamic() as batch:
+with collection.batch.fixed_size(batch_size=200) as batch:
   for i, d in enumerate(documents):
     # Generate embeddings
     response = ollama.embeddings(model = "all-minilm",

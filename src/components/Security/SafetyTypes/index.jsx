@@ -45,9 +45,11 @@ export default function SafetyTypes() {
           </div>
           <div className={styles.card}>
             <div className={styles.contentDiv}>
-              <h3 className={styles.cardTextColor}>User Authentication</h3>
+              <h3 className={styles.cardTextColor}>
+                Role Based Access Controls
+              </h3>
               <p className={styles.textCardContent}>
-                Rely on built-in mechanisms from your identity provider.
+                Granular access controls and permissions.
               </p>
             </div>
           </div>
@@ -89,7 +91,8 @@ export default function SafetyTypes() {
             <div className={styles.contentDiv}>
               <h3 className={styles.cardTextColor}>Compliant with Standards</h3>
               <p className={styles.textCardContent}>
-                Stay compliant with SOC2, data privacy, and explainability.
+                Stay compliant with SOC 2, HIPAA, data privacy, and
+                explainability.
               </p>
             </div>
           </div>

@@ -18,7 +18,7 @@ The use of generics aim for flexible, reusable code that works with different da
 
 To some, they add little value while creating noise in a codebase, leading to bloat and an additional maintenance burden for developers. To others, they're powerful tools that empower cleaner, safer code with fewer bugs. We see both perspectives, but tend to agree with the latter camp.
 
-In fact, generics and typing systems have helped us make important developer experience improvements in our [v4 Python client](/developers/weaviate/client-libraries/python). In this article, we’ll present the story of Python’s typing system since its inception in `v3.5`, which is now 9 years ago 👴 to the current landscape of `v3.12` wherein the typing system has undergone a significant improvement in usability and readability.
+In fact, generics and typing systems have helped us make important developer experience improvements in our [v4 Python client](https://docs.weaviate.io/weaviate/client-libraries/python). In this article, we’ll present the story of Python’s typing system since its inception in `v3.5`, which is now 9 years ago 👴 to the current landscape of `v3.12` wherein the typing system has undergone a significant improvement in usability and readability.
 
 So come aboard the journey - and along the way, we hope to convince skeptics of their benefit, and teach you a nifty trick or two for use with the Weaviate client.
 
@@ -74,7 +74,7 @@ In other words, type hinting with type checkers brings order and robustness of s
 
 ## Type Hinting in Weaviate’s `v4` Python Client
 
-This type hinting syntax is a core basis for the API surface of the [`weaviate-python-client` v4](/developers/weaviate/client-libraries/python). It enables us as developers to iterate faster, since the type hinting in functions allow them to be treated as logical black boxes that can be knitted together at a higher level of abstraction. In addition, through the use of the `mypy` and `pyright` static type checkers, subtle bugs are avoided and any feature regressions are minimised before any runtime tests occur. This means more robustness for you, the end user.
+This type hinting syntax is a core basis for the API surface of the [`weaviate-python-client` v4](https://docs.weaviate.io/weaviate/client-libraries/python). It enables us as developers to iterate faster, since the type hinting in functions allow them to be treated as logical black boxes that can be knitted together at a higher level of abstraction. In addition, through the use of the `mypy` and `pyright` static type checkers, subtle bugs are avoided and any feature regressions are minimised before any runtime tests occur. This means more robustness for you, the end user.
 
 But the improvements aren't just under-the-hood. These changes also helped us improve the public API surface that you, the user, interacts with. The `v4` Client API is also fully typed and available to use with static type checking and IDE auto-completion ready to rock!
 

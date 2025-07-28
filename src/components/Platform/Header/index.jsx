@@ -22,7 +22,7 @@ export default function PlatformHeader() {
             >
               Start Free
             </Link>
-            <Link className={styles.buttonOutline} to="/developers/weaviate">
+            <Link className={styles.buttonOutline} to="https://docs.weaviate.io/weaviate">
               Documentation
             </Link>
           </div>

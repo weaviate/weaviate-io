@@ -27,9 +27,9 @@ The rangeable index is a powerful new tool for quantitative comparisons.
 
 Object properties in Weaviate can be indexed for faster filtering. In earlier releases, range queries are computationally expensive. The new rangeable index (`indexRangeFilters`) provides a more efficient way to quickly filter ranges of data.
 
-When you anticipate using numerical comparisons over ranges of values, enable the new rangeable index in your [collection schema](/developers/weaviate/config-refs/schema). The rangeable index is available for `int`, `number`, and `date` data types.
+When you anticipate using numerical comparisons over ranges of values, enable the new rangeable index in your [collection schema](https://docs.weaviate.io/weaviate/config-refs/schema). The rangeable index is available for `int`, `number`, and `date` data types.
 
-The rangeable index can be enabled alone or with the [filterable index](/developers/weaviate/concepts/filtering#indexrangefilters). Efficient range filters can be combined with other filters, such as the `Equal` filter, to quickly narrow your searches to the most relevant information.
+The rangeable index can be enabled alone or with the [filterable index](https://docs.weaviate.io/weaviate/concepts/filtering#indexrangefilters). Efficient range filters can be combined with other filters, such as the `Equal` filter, to quickly narrow your searches to the most relevant information.
 
 Internally, rangeable indexes are implemented as [roaring bitmap slices](https://www.featurebase.com/blog/range-encoded-bitmaps). This is an exciting data structure that combines several clever ideas to reduce memory requirements while improving processing speeds.
 
@@ -37,7 +37,7 @@ This feature is only available for new properties and new collections.
 
 ## Async Replication
 
-Data consistency is an important consideration for multi-node clusters. Weaviate v1.18 introduces a [repair-on-read](https://weaviate.io/blog/weaviate-1-18-release#repair-on-read) feature that finds and fixes problems at read time. The current release adds another powerful tool, async replication. [Async replication](/developers/weaviate/concepts/replication-architecture/consistency#async-replication) works in the background, checking and updating your data to keep it consistent.
+Data consistency is an important consideration for multi-node clusters. Weaviate v1.18 introduces a [repair-on-read](https://weaviate.io/blog/weaviate-1-18-release#repair-on-read) feature that finds and fixes problems at read time. The current release adds another powerful tool, async replication. [Async replication](https://docs.weaviate.io/weaviate/concepts/replication-architecture/consistency#async-replication) works in the background, checking and updating your data to keep it consistent.
 
 Weaviate uses the [Raft](https://raft.github.io/) algorithm to manage schema replication, while using repair-on-read and async replication to manage object replication.
 
@@ -45,7 +45,7 @@ The async replication mechanism uses an efficient algorithm to monitor and compa
 
 Async replication is more effective than repair-on-read when there are many inconsistencies between nodes. If, for example, an offline node misses a series of updates, async replication quickly restores consistency for all of the objects when the node returns to service. Under a repair-on-read approach, the missing updates might not be noticed for a long time.
 
-For details, see [async replication](/developers/weaviate/concepts/replication-architecture/consistency#async-replication).
+For details, see [async replication](https://docs.weaviate.io/weaviate/concepts/replication-architecture/consistency#async-replication).
 
 ## Anthropic integration
 
@@ -53,35 +53,35 @@ An Anthropic generative AI integration is available in Weaviate. This integratio
 
 The Anthropic integration is enabled by default on Weaviate Cloud [WCD](https://console.weaviate.cloud/) instances.
 
-To enable the Anthropic integration on a local deployment, add `generative-anthropic` to the `ENABLE_MODULES` [environment variable](/developers/weaviate/config-refs/env-vars), or set the `ENABLE_API_BASED_MODULES` environment variable to `true`.
+To enable the Anthropic integration on a local deployment, add `generative-anthropic` to the `ENABLE_MODULES` [environment variable](https://docs.weaviate.io/weaviate/config-refs/env-vars), or set the `ENABLE_API_BASED_MODULES` environment variable to `true`.
 
-For details, see the [Anthropic integration page](/developers/weaviate/model-providers/anthropic).
+For details, see the [Anthropic integration page](https://docs.weaviate.io/weaviate/model-providers/anthropic).
 
 ## Bulk enable modules
 
 **Experimental** This feature is experimental and may change in future releases.
 
-To enable all API-based [model provider integrations](/developers/weaviate/model-providers), set the `ENABLE_API_BASED_MODULES` [environment variable](/developers/weaviate/config-refs/env-vars) to `true`.
+To enable all API-based [model provider integrations](https://docs.weaviate.io/weaviate/model-providers), set the `ENABLE_API_BASED_MODULES` [environment variable](https://docs.weaviate.io/weaviate/config-refs/env-vars) to `true`.
 
 This means you do not have to enable individual API-based modules in the `ENABLE_MODULES` environment variable.
 
 `ENABLE_API_BASED_MODULES` and `ENABLE_MODULES` are additive. Set `ENABLE_API_BASED_MODULES` to `true` to enable API based modules. Use `ENABLE_MODULES` to configure additional modules such as `text2vec-ollama`, `generative-ollama`, and `backup-s3`.
 
-When `ENABLE_API_BASED_MODULES` is `true`, the GraphQL [`Explore`](/developers/weaviate/api/graphql/explore) feature is unavailable.
+When `ENABLE_API_BASED_MODULES` is `true`, the GraphQL [`Explore`](https://docs.weaviate.io/weaviate/api/graphql/explore) feature is unavailable.
 
 ## Multi target vector search
 
-Weaviate 1.24 introduces objects with multiple vectors. Each vector may come from a different vectorizer, or be derived using different source properties. This release introduces multi target vector search. Starting in 1.26, you can make a single query that combines results from across multiple target vectors.
+Weaviate 1.24 introduced objects with multiple vector embeddings. Each vector may come from a different vectorizer, or be derived using different source properties. This release introduces multi target vector search. Starting in 1.26, you can make a single query that combines results from across multiple target vectors.
 
-When you search multiple vectors, add a list of target vectors to the query instead of a single, named vector. Weaviate automatically combines the results from all of the target search vectors. The mechanism is conceptually similar to the [hybrid fusion](/blog/hybrid-search-fusion-algorithms) algorithm in [hybrid search](/developers/weaviate/search/hybrid).
+When you perform a multi-target vector search, add a list of target vectors to the query instead of a single, named vector. Weaviate automatically combines the results from all of the target search vectors. The mechanism is conceptually similar to the [hybrid fusion](/blog/hybrid-search-fusion-algorithms) algorithm in [hybrid search](https://docs.weaviate.io/weaviate/search/hybrid).
 
 This allows you to tune your multi vector search to balance the target vectors in a way that reflects your application needs.
 
-For details, see [multi target vector search](/developers/weaviate/search/multi-vector).
+For details, see [multi target vector search](https://docs.weaviate.io/weaviate/search/multi-vector).
 
 ## Tenant states changed
 
-Tenant [activity status](/developers/weaviate/concepts/data#tenant-status) is used to manage resource usage.
+Tenant [activity status](https://docs.weaviate.io/weaviate/concepts/data#tenant-status) is used to manage resource usage.
 
 The old status names change to `ACTIVE` and `INACTIVE` in Weaviate `1.26` to better reflect the tenant status. The status definitions are the same as before.
 
@@ -100,23 +100,23 @@ A tenant that is in cloud storage is marked as `OFFLOADED` and is not available 
 
 Currently, tenant offload is supported for AWS S3 storage. Additional cloud storage providers are coming in future releases.
 
-This feature is only available for self-hosted instances and Weaviate Enterprise Cloud. It is not available for [Weaviate Cloud](/developers/wcs) serverless instances.
+This feature is only available for self-hosted instances and Weaviate Enterprise Cloud. It is not available for [Weaviate Cloud](https://docs.weaviate.io/wcs) serverless instances.
 
-For details, see [tenant activity statuses](/developers/weaviate/manage-data/multi-tenancy#activate-tenant) and the [`s3-offload` module](/developers/weaviate/configuration/modules#offload-s3-module).
+For details, see [tenant activity statuses](https://docs.weaviate.io/weaviate/manage-data/multi-tenancy#activate-tenant) and the [`s3-offload` module](https://docs.weaviate.io/weaviate/configuration/modules#offload-s3-module).
 
 ## Async Python client
 
 The Weaviate Python client library adds a `WeaviateAsyncClient` object and a new API that supports asynchronous operations. Highly concurrent applications can use the new API for more efficient processing.
 
-For detailed information on the new async client API, see [Async API](/developers/weaviate/client-libraries/python/async). The async API is very similar to the synchronous client API. The [helper methods](/developers/weaviate/client-libraries/python/async#instantiation-helper-functions) to connect to the aysnc API are analogous to the sync connection methods:
+For detailed information on the new async client API, see [Async API](https://docs.weaviate.io/weaviate/client-libraries/python/async). The async API is very similar to the synchronous client API. The [helper methods](https://docs.weaviate.io/weaviate/client-libraries/python/async#instantiation-helper-functions) to connect to the aysnc API are analogous to the sync connection methods:
 
 - `use_async_with_local`
 - `use_async_with_weaviate_cloud`
 - `use_async_with_custom`
 
-For code examples, see [async usage examples](/developers/weaviate/client-libraries/python/async#async-usage-examples).
+For code examples, see [async usage examples](https://docs.weaviate.io/weaviate/client-libraries/python/async#async-usage-examples).
 
-[FastAPI](https://fastapi.tiangolo.com/) is a popular asynchronous web framework for creating modular, web API microservices. For sample application code that uses the async client with FastAPI, see the [application example](/developers/weaviate/client-libraries/python/async#application-level-example).
+[FastAPI](https://fastapi.tiangolo.com/) is a popular asynchronous web framework for creating modular, web API microservices. For sample application code that uses the async client with FastAPI, see the [application example](https://docs.weaviate.io/weaviate/client-libraries/python/async#application-level-example).
 
 ## Scalar Quantization
 
@@ -138,11 +138,11 @@ import ChartsGraphic from '/blog/2024-07-31-weaviate-1-26-release/img/Charts.jpg
 
 <p align="center"><img src={ChartsGraphic} width="75%" alt="Charts section graphic"/></p>
 
-Weaviate can gather metrics that are compatible with the open-source [Prometheus](https://prometheus.io/docs/introduction/overview/) monitoring and alerting system. The v1.26 Weaviate release adds [new metrics](/developers/weaviate/configuration/monitoring) that monitor aysnc indexing queues.
+Weaviate can gather metrics that are compatible with the open-source [Prometheus](https://prometheus.io/docs/introduction/overview/) monitoring and alerting system. The v1.26 Weaviate release adds [new metrics](https://docs.weaviate.io/weaviate/configuration/monitoring) that monitor aysnc indexing queues.
 
 Use these metrics with Prometheus and [Grafana](https://grafana.com/docs/) to monitor your Weaviate instance.
 
-If you don't see a metric that you need, you can extend Weaviate to add new metrics. To suggest a new metric, or to get started writing your own, see the [contributor guide](/developers/contributor-guide).
+If you don't see a metric that you need, you can extend Weaviate to add new metrics. To suggest a new metric, or to get started writing your own, see the [contributor guide](https://docs.weaviate.io/contributor-guide).
 
 ## Korean tokenizer
 
@@ -150,7 +150,7 @@ If you don't see a metric that you need, you can extend Weaviate to add new metr
 
 A new Korean tokenizer is available in Weaviate `1.26` (and `1.25.7`). This tokenizer is based on the `kagome` library and a Korean `MeCab` dictionary.
 
-To enable the Korean tokenizer, set the `ENABLE_TOKENIZER_KAGOME_KR` [environment variable](/developers/weaviate/config-refs/env-vars) to `true`, and set the [tokenization method](/developers/weaviate/config-refs/schema/#kagome_kr-tokenization-method) for the relevant properties to `kagome_kr`.
+To enable the Korean tokenizer, set the `ENABLE_TOKENIZER_KAGOME_KR` [environment variable](https://docs.weaviate.io/weaviate/config-refs/env-vars) to `true`, and set the [tokenization method](https://docs.weaviate.io/weaviate/config-refs/schema/#kagome_kr-tokenization-method) for the relevant properties to `kagome_kr`.
 
 ## Additional changes
 

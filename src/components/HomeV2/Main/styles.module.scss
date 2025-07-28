@@ -1,0 +1,1041 @@
+.mainContainer {
+  background: #ddebf2;
+}
+
+.box {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+
+  h2 {
+    text-align: center;
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.75rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%;
+  }
+
+  .Title {
+    color: #8396b1;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%; /* 1.4rem */
+    text-transform: uppercase;
+    align-self: flex-start;
+  }
+}
+
+.boxContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  margin: 3rem 0;
+
+  .buildTitle {
+    color: #8396b1;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%; /* 1.4rem */
+    text-transform: uppercase;
+  }
+}
+
+.boxes {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  gap: 3.25rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.benefitBox {
+  width: 22.5rem;
+  height: 26.9rem;
+  flex-shrink: 0;
+  border-radius: 0.625rem;
+  background: #f7f9fd;
+  box-shadow: 0px 3px 5px 0px rgba(79, 150, 172, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 2rem;
+  transition: all 0.2s ease-in-out;
+
+  p {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 1.925rem */
+  }
+
+  a {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 157.33%; /* 1.57331rem */
+    text-decoration-line: underline;
+    margin-bottom: 1.25rem;
+  }
+
+  .image {
+    width: 100%;
+    height: 12.5rem;
+    border-radius: 0.625rem 0.625rem 0 0;
+
+    background: url('/img/site/search-home-header-icon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .rag {
+    background: url('/img/site/rag-home-header-icon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .agentic {
+    background: url('/img/site/agentic-home-header-icon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .titleBG {
+    background: #61d3847d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10rem;
+    height: 1.6875rem;
+    text-align: center;
+    flex-shrink: 0;
+    font-size: 0.875rem;
+  }
+
+  .retrieval {
+    background: #7486ec76;
+    width: 16.9rem;
+  }
+
+  .agenticAI {
+    width: 5.75rem;
+    background: #97df4483;
+  }
+}
+.benefitBox.BB01 {
+  background: linear-gradient(
+    to bottom,
+    white 0%,
+    white 43%,
+    rgba(0, 213, 8, 0.5) 43%,
+    rgba(41, 166, 221, 0.5) 100%
+  );
+}
+
+.benefitBox.BB02 {
+  background: linear-gradient(
+    to bottom,
+    white 0%,
+    white 43%,
+    rgba(200, 168, 231, 0.5) 43%,
+    rgba(116, 135, 236, 0.5) 100%
+  );
+}
+
+.benefitBox.BB03 {
+  background: linear-gradient(
+    to bottom,
+    white 0%,
+    white 43%,
+    rgba(117, 251, 174, 0.5) 43%,
+    rgba(182, 248, 116, 0.5) 100%
+  );
+}
+
+.bigBox {
+  width: 73.75rem;
+  height: auto;
+  flex-shrink: 0;
+  background: #f7f9fd;
+  border-radius: 0.625rem;
+  box-shadow: 0px 3px 5px rgba(79, 150, 172, 0.1);
+  padding: 2rem 3rem;
+  transition: all 0.2s ease-in-out;
+
+  @media (max-width: 1400px) {
+    width: 66.75rem;
+  }
+}
+
+.CodeBlockContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.25rem;
+  margin: 2rem 0;
+
+  @media (max-width: 970px) {
+    flex-wrap: wrap;
+  }
+
+  .CodeBlockSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+
+    h3 {
+      color: #130c49;
+      width: 80%;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 2rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 140%; /* 2.8rem */
+
+      @media screen and (max-width: 600px) {
+        font-size: 1.5rem;
+        width: 100%;
+        margin: 0;
+
+        br {
+          display: none;
+        }
+      }
+    }
+
+    p {
+      color: #130c49;
+      font-family: Inter;
+      width: 80%;
+      font-size: 1.125rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%; /* 1.575rem */
+    }
+
+    .buttonLight {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 15rem;
+      height: 2.75rem;
+      flex-shrink: 0;
+      border-radius: 0.3125rem;
+      border: 2px solid #130c49;
+      background: #61d384;
+      color: #130c49;
+      text-align: center;
+      font-family: Inter;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 157.33%;
+
+      @media screen and (max-width: 600px) {
+        width: 100%;
+      }
+    }
+
+    .buttonDark {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 15rem;
+      height: 2.75rem;
+      flex-shrink: 0;
+      border-radius: 0.3125rem;
+      border: 2px solid #130c49;
+      background: #ffffff;
+      color: #130c49;
+      text-align: center;
+      font-family: Inter;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 157.33%;
+
+      @media screen and (max-width: 600px) {
+        width: 100%;
+      }
+    }
+  }
+
+  .CodeBlock {
+    width: 37.8rem;
+    height: 35.0625rem;
+    flex-shrink: 0;
+    border-radius: 1.25rem;
+    border: 1px solid #0073b4;
+    background: #130c49;
+    box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.04);
+  }
+}
+
+.USPContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.25rem;
+  margin: 2rem 0;
+
+  hr {
+    width: 0.125rem;
+    height: 8.5625rem;
+    background: #b9c8de;
+  }
+}
+
+.USPBox {
+  flex: 1;
+  height: 180px;
+
+  h4 {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 1.75rem */
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .arrowIcon {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: url('/img/site/build-arrow.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+  }
+}
+
+.logoContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 1.25rem;
+  margin: 2rem 0;
+
+  .bottomlogo {
+    width: 2.25094rem;
+    height: 2.25094rem;
+    flex-shrink: 0;
+    background: url('/img/site/build-meta-logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .bl01 {
+    background: url('/img/site/build-meta-logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .bl02 {
+    background: url('/img/site/build-amazon-logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .bl03 {
+    background: url('/img/site/build-openai-logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .bl04 {
+    background: url('/img/site/build-streamlit-logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .bl05 {
+    background: url('/img/site/build-cohere-logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .bl06 {
+    background: url('/img/site/build-huggingface-logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .bl07 {
+    background: url('/img/site/build-llama-logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .bl08 {
+    background: url('/img/site/build-haystack-logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .bl09 {
+    background: url('/img/site/build-google-logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .bl10 {
+    background: url('/img/site/build-langchain-logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+.linkContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin: 2rem 0;
+
+  a {
+    color: #8396b1;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 1.4rem */
+    text-transform: uppercase;
+  }
+}
+
+.whyContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.leftContainer {
+  width: 36.25rem;
+  height: 45rem;
+  flex-shrink: 0;
+  border-radius: 0.625rem;
+  background: #130c49;
+  box-shadow: 0px 3px 5px 0px rgba(79, 150, 172, 0.1);
+  padding: 2rem 3rem;
+
+  h4 {
+    color: #61d384;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 2.8rem */
+  }
+
+  .benefitText {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin: 1.4rem 0;
+
+    h5 {
+      color: #61d384;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 1.25rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 130%; /* 1.625rem */
+    }
+
+    p {
+      color: #ddebf2;
+      font-family: Inter;
+      font-size: 0.875rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%; /* 1.225rem */
+    }
+  }
+
+  .benefitText::before {
+    content: '';
+    display: inline-block;
+    width: 3.2rem;
+    height: 3.2rem;
+    flex-shrink: 0;
+    background: url('/img/site/ww-icon-01.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+  }
+
+  .ww01::before {
+    background: url('/img/site/ww-icon-01.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+  }
+
+  .ww02::before {
+    background: url('/img/site/ww-icon-02.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+  }
+
+  .ww03::before {
+    background: url('/img/site/ww-icon-03.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+  }
+
+  .ww04::before {
+    background: url('/img/site/ww-icon-04.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+  }
+
+  .ww05::before {
+    background: url('/img/site/ww-icon-05.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+  }
+}
+
+.rightContainer {
+  width: 36.25rem;
+  height: 45rem;
+  flex-shrink: 0;
+  background: url('/img/site/slide-bg-grain2.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 0.625rem;
+  box-shadow: 0px 3px 5px 0px rgba(79, 150, 172, 0.1);
+}
+
+@media screen and (max-width: 1440px) {
+  .leftContainer {
+    width: 30.25rem;
+    height: 47rem;
+  }
+
+  .benefitBox {
+    width: 20.5rem;
+    height: 26.9rem;
+  }
+}
+
+@media screen and (max-width: 1140px) {
+  .leftContainer {
+    width: 25.25rem;
+    height: auto;
+  }
+
+  .boxes {
+    gap: 1.25rem;
+    justify-content: center;
+  }
+
+  .benefitBox {
+    width: 17.5rem;
+    height: 26.9rem;
+
+    .titleBG {
+      background: #61d3847d;
+      width: 10rem;
+      height: 1rem;
+      font-size: 0.65rem;
+    }
+
+    .retrieval {
+      background: #7486ec76;
+      width: 13.9rem;
+    }
+
+    .agenticAI {
+      width: 5.75rem;
+      background: #97df4483;
+    }
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .CodeBlockContainer {
+    .CodeBlock {
+      width: 70%;
+      height: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 1040px) {
+  .USPContainer {
+    flex-direction: column;
+    align-items: flex-start;
+
+    hr {
+      width: 100%;
+      height: 0.1rem;
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .leftContainer {
+    width: 23.25rem;
+  }
+}
+
+@media (max-width: 970px) {
+  .bigBox {
+    width: 100%;
+    padding: 2rem 1.5rem;
+  }
+
+  .CodeBlockContainer {
+    flex-direction: column;
+    margin: 1rem 0;
+
+    .CodeBlockSection {
+      width: 100%;
+
+      h3,
+      p {
+        width: 100%;
+      }
+    }
+
+    .CodeBlock {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .USPContainer {
+    flex-direction: column;
+    align-items: flex-start;
+
+    hr {
+      width: 100%;
+      height: 0.1rem;
+    }
+  }
+
+  .logoContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .bottomlogo {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  .linkContainer {
+    a {
+      font-size: 0.875rem;
+    }
+  }
+
+  .rightContainer {
+    width: 100%;
+    height: 36rem;
+    padding: 0rem 2rem;
+  }
+
+  .boxes {
+    flex-wrap: wrap;
+  }
+
+  .benefitBox {
+    width: 21.5rem;
+    height: 26.9rem;
+
+    .titleBG {
+      background: #61d3847d;
+      width: 10rem;
+      height: 1.6875rem;
+      text-align: center;
+      flex-shrink: 0;
+      font-size: 0.875rem;
+    }
+
+    .retrieval {
+      background: #7486ec76;
+      width: 16.9rem;
+    }
+
+    .agenticAI {
+      width: 5.75rem;
+      background: #97df4483;
+    }
+  }
+}
+
+@media (max-width: 1300px) and (min-width: 901px) {
+  .bigBox {
+    padding: 2rem 2rem;
+  }
+
+  .CodeBlockContainer {
+    gap: 2rem;
+    padding: 20px;
+    .CodeBlockSection {
+      h3,
+      p {
+        width: 100%;
+      }
+    }
+  }
+
+  .USPContainer {
+    gap: 1.5rem;
+
+    .USPBox {
+      flex: 1 1 100%;
+    }
+  }
+
+  .logoContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .rightContainer {
+    width: 100%;
+    height: 45rem;
+    padding: 2rem;
+  }
+}
+
+@media screen and (max-width: 1140px) {
+  .bigBox {
+    width: 100%;
+    padding: 2rem 2rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .whyContainer {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 900px) {
+  .leftContainer {
+    width: 100%;
+    height: auto;
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .bigBox {
+    padding: 1rem 1rem;
+  }
+
+  .benefitBox {
+    width: 100%;
+    min-width: 23rem;
+
+    .titleBG {
+      background: #61d3847d;
+      width: 10rem;
+      height: 1.6875rem;
+      text-align: center;
+      flex-shrink: 0;
+      font-size: 0.875rem;
+    }
+
+    .retrieval {
+      background: #7486ec76;
+      width: 16.9rem;
+    }
+
+    .agenticAI {
+      width: 5.75rem;
+      background: #97df4483;
+    }
+  }
+
+  .USPBox {
+    h4 {
+      white-space: normal;
+      font-size: 1.125rem;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .benefitBox {
+    min-width: 100%;
+
+    .titleBG {
+      background: #61d3847d;
+      width: 7rem;
+      height: 1rem;
+      text-align: center;
+      flex-shrink: 0;
+      font-size: 0.5rem;
+    }
+
+    .retrieval {
+      background: #7486ec76;
+      width: 10rem;
+    }
+
+    .agenticAI {
+      width: 3.75rem;
+      background: #97df4483;
+    }
+  }
+}
+
+.staticBoxesWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.bigStaticBox {
+  flex: 1;
+
+  background: linear-gradient(142deg, #c8a8e7 8.29%, #7487ec 96.29%);
+  border-radius: 0.625rem;
+  padding: 2rem;
+  text-align: center;
+
+  position: relative;
+}
+
+.smallBoxesColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+.smallStaticBox {
+  display: flex;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 0.625rem;
+  border-radius: 0.625rem;
+  position: relative;
+  background: linear-gradient(128deg, #00d507bd 19.35%, #29a7ddb6 80.19%);
+  box-shadow: 0px 3px 5px 0px rgba(79, 150, 172, 0.1);
+  padding: 2rem 3rem;
+}
+
+.smallBenefitBox {
+  flex-shrink: 0;
+  border-radius: 0.625rem;
+  background: #130c49;
+  box-shadow: 0px 3px 5px 0px rgba(79, 150, 172, 0.1);
+  padding: 2rem 3rem;
+}
+
+.boxLabel {
+  position: absolute;
+  top: -1.5rem; // adjust this to move it above or overlap
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #130c49;
+  color: #ffffff;
+  font-family: 'Plus Jakarta Sans';
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.3125rem;
+  z-index: 2;
+}
+
+.benefitsContent {
+  display: flex;
+  flex-direction: column;
+
+  h4 {
+    color: #61d384;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 2.8rem */
+  }
+
+  .benefitText {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin: 1.4rem 0;
+
+    h5 {
+      color: #61d384;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 1.25rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 130%; /* 1.625rem */
+    }
+
+    p {
+      color: #ddebf2;
+      font-family: Inter;
+      font-size: 0.875rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%; /* 1.225rem */
+    }
+  }
+
+  .benefitText::before {
+    content: '';
+    display: inline-block;
+    width: 3.2rem;
+    height: 3.2rem;
+    flex-shrink: 0;
+    background: url('/img/site/ww-icon-01.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+  }
+
+  .ww01::before {
+    background: url('/img/site/ww-icon-01.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+  }
+
+  .ww02::before {
+    background: url('/img/site/ww-icon-02.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+  }
+
+  .ww03::before {
+    background: url('/img/site/ww-icon-03.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+  }
+
+  .ww04::before {
+    background: url('/img/site/ww-icon-04.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+  }
+
+  .ww05::before {
+    background: url('/img/site/ww-icon-05.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+  }
+}
+
+.centered {
+  text-align: center;
+  align-self: center;
+}
+
+@media screen and (max-width: 900px) {
+  .staticBoxesWrapper {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .bigStaticBox {
+    width: 100%;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .smallBoxesColumn {
+    width: 100%;
+  }
+
+  .smallStaticBox {
+    width: 100%;
+    padding: 2rem;
+    margin-top: 2rem;
+  }
+
+  .smallBenefitBox {
+    width: 100%;
+    padding: 2rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .staticBoxesWrapper {
+    gap: 1rem;
+  }
+
+  .bigStaticBox {
+    padding: 1.5rem;
+  }
+
+  .smallStaticBox,
+  .smallBenefitBox {
+    padding: 1.5rem;
+  }
+
+  .boxLabel {
+    font-size: 0.8rem;
+  }
+}

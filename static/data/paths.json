@@ -1,17 +1,17 @@
 {
   "siteSearch": [
     {
-      "link": "developers/academy/js/standalone/which-search",
+      "link": "https://docs.weaviate.io/academy/js/standalone/which-search",
       "title": "What type of search is right for me?",
       "description": "Discover what type of search might be best for your application."
     },
     {
-      "link": "developers/academy/js/standalone/using-ml-models",
+      "link": "https://docs.weaviate.io/academy/js/standalone/using-ml-models",
       "title": "Using Machine Learning Models",
       "description": "Learn how to pick and use various machine learning models."
     },
     {
-      "link": "developers/academy/js/standalone/client-server",
+      "link": "https://docs.weaviate.io/academy/js/standalone/client-server",
       "title": "Building client-server Applications",
       "description": "Understand the client-server approach to building with Weaviate."
     },
@@ -33,19 +33,19 @@
       "description": "Get an intuitive understanding of what vector embeddings are, how they're generated, and how they're used in semantic search."
     },  
     {
-      "link": "developers/academy/js/starter_text_data",
+      "link": "https://docs.weaviate.io/academy/js/starter_text_data",
       "title": "Semantic Search for Text Data",
       "description": "Learn how to work with text data using Weaviate and semantic search to power your text-based search applications."
     }
   ],
   "chatbots": [
     {
-      "link": "developers/academy/js/starter_text_data",
+      "link": "https://docs.weaviate.io/academy/js/starter_text_data",
       "title": "Getting Started with Vector Search",
       "description": "Understand the concepts and technology behind Vector Search."
     },
     {
-      "link": "developers/academy/js/standalone/using-ml-models/generative",
+      "link": "https://docs.weaviate.io/academy/js/standalone/using-ml-models/generative",
       "title": "Using Generative AI Models",
       "description": "Learn how to pick and use various generative models"
     },
@@ -55,51 +55,51 @@
       "description": "Learn about Retrieval Augmented Generation & how to implement it."
     },
     {
-      "link": "developers/academy/js",
+      "link": "https://docs.weaviate.io/academy/js",
       "title": "Building Stateful RAG Applications",
       "description": "Coming soon!"
     }
   ],
   "ecommerce": [
     {
-      "link": "developers/academy/js/starter_text_data",
+      "link": "https://docs.weaviate.io/academy/js/starter_text_data",
       "title": "Getting Started with Vector Search",
       "description": "Understand the concepts and technology behind Vector Search."
     },
     {
-      "link": "developers/academy/js/standalone/using-ml-models/embedding",
+      "link": "https://docs.weaviate.io/academy/js/standalone/using-ml-models/embedding",
       "title": "Using Embedding AI Models",
       "description": "Learn how to pick and use various embedding models."
     },
     {
-      "link": "developers/academy/js",
+      "link": "https://docs.weaviate.io/academy/js",
       "title": "Building Recommender Systems Applications",
       "description": "Coming soon!"
     },
     {
-      "link": "developers/academy/js/starter_multimodal_data",
+      "link": "https://docs.weaviate.io/academy/js/starter_multimodal_data",
       "title": "Working with Multimodal Data",
       "description": "Learn how to handle and treat multimodal data."
     }
   ],
   "automation": [
     {
-      "link": "developers/academy/js/starter_text_data",
+      "link": "https://docs.weaviate.io/academy/js/starter_text_data",
       "title": "Getting Started with Vector Search",
       "description": "Understand the concepts and technology behind Vector Search."
     },
     {
-      "link": "developers/academy/js/standalone/using-ml-models/generative",
+      "link": "https://docs.weaviate.io/academy/js/standalone/using-ml-models/generative",
       "title": "Using Generative AI Models",
       "description": "Learn how to pick and use various generative models."
     },
     {
-      "link": "developers/academy/js/set_up_typescript",
+      "link": "https://docs.weaviate.io/academy/js/set_up_typescript",
       "title": "Demystifying Agents",
       "description": "Coming soon!"
     },
     {
-      "link": "/developers/academy/js",
+      "link": "https://docs.weaviate.io/academy/js",
       "title": "Building Agentic Applications",
       "description": "Coming soon!"
     }

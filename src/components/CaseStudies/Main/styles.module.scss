@@ -118,12 +118,13 @@
 
 .bento02 {
   width: 26.5625rem;
-  height: 24.875rem;
+  height: 33.875rem;
+
   border-radius: 1.25rem;
   background: #f7f9fd;
   background: linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 1) 0%,
       rgba(47, 47, 169, 0.1) 100%
     ),
     url('/img/site/neople-background-image.png');
@@ -135,7 +136,7 @@
   padding: 40px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   transition: all 0.3s ease-in-out;
 
   .bentoText {
@@ -171,17 +172,17 @@
 
 .bento03 {
   width: 26.5625rem;
-  height: 33.9375rem;
+  height: 22.6875rem;
   border-radius: 1.25rem;
 
   background: linear-gradient(
       180deg,
-      rgba(247, 249, 253, 0) 0%,
+      rgba(247, 249, 253, 0.6) 0%,
       rgba(46, 40, 139, 0.8) 100%
     ),
     url('/img/site/moonsift-background-image.png');
-  background-size: contain;
-  background-position-y: bottom;
+  background-size: cover;
+
   background-repeat: no-repeat;
   transition: all 0.3s ease-in-out;
   position: relative;
@@ -228,7 +229,7 @@
 }
 
 .bentoSmall {
-  width: 20.875rem;
+  width: 31.875rem;
   height: 19.9375rem;
   flex-shrink: 0;
   border-radius: 1.25rem;
@@ -293,7 +294,7 @@
 
 .bento04 {
   width: 37.1875rem;
-  height: 33.75rem;
+  height: 22.6875rem;
   border-radius: 1.25rem;
   background: #85e3bc;
   background-size: cover;
@@ -302,7 +303,7 @@
   padding: 40px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
 
   .bentoText {
     margin: 0;
@@ -314,7 +315,7 @@
       background-size: contain;
       background-repeat: no-repeat;
       width: 100%;
-      height: 18.25rem;
+      height: 11.25rem;
       flex-shrink: 0;
       margin: 0px 0px 20px 0px;
 
@@ -334,7 +335,35 @@
       font-style: normal;
       font-weight: 700;
       line-height: 140%;
+
+      @media screen and (max-width: 1080px) {
+        font-size: 1.7rem;
+        width: 100%;
+      }
     }
+  }
+}
+
+.stack {
+  width: 37.1875rem;
+  height: auto;
+  background: #5bd787 !important;
+
+  .bentoLogo {
+    background: url('/img/site/stackai-logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 9.02219rem;
+    height: 2.875rem;
+    flex-shrink: 0;
+    margin: 30px 0px;
+  }
+
+  .bentoImage {
+    background: url('/img/site/stack-ai-overview.png') !important;
+    border-radius: 10px;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
   }
 }
 
@@ -385,6 +414,7 @@
 
       @media screen and (max-width: 900px) {
         font-size: 1.5rem;
+        width: 100%;
       }
     }
 
@@ -409,15 +439,49 @@
 }
 
 .finance {
+  width: 64.875rem;
   background: url('/img/site/header-bg.svg') #130c49;
   background-size: cover;
-  background-position-x: center;
+  background-position-x: 70%;
   background-position-y: center;
   background-repeat: no-repeat;
 
-  @media screen and (max-width: 900px) {
-    br {
-      display: none;
+  h3 {
+    color: #f7f9fd;
+    width: 85%;
+
+    @media screen and (max-width: 1320px) {
+      font-size: 1.6rem !important;
+      width: 100%;
+    }
+  }
+}
+
+.agent {
+  width: 26.5625rem;
+  height: 24.875rem;
+  background: url('/img/site/header-bg.svg') #130c49;
+  background-size: cover;
+  background-position-x: 70%;
+  background-position-y: center;
+  background-repeat: no-repeat;
+
+  .bentoLogo {
+    background: url('/img/site/kapa-logo-dark.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 7.3125rem;
+    height: 2.3125rem;
+    flex-shrink: 0;
+    margin: 20px 0px;
+  }
+
+  h3 {
+    width: 85%;
+
+    @media screen and (max-width: 1320px) {
+      font-size: 1.6rem !important;
+      width: 100%;
     }
   }
 }
@@ -465,47 +529,78 @@
 }
 
 @media (max-width: 1300px) {
+  .stack {
+    width: 100% !important;
+    max-width: 33rem !important;
+    height: auto;
+  }
+
+  .bento05 {
+    width: 56rem;
+  }
+
   .bento01,
   .bento04 {
     width: 33rem;
   }
+  .agent,
   .bento02,
   .bento03 {
     width: 22rem;
   }
-  .bento05,
+
   .bento06 {
     width: 56rem;
+  }
+
+  .bentoSmall {
+    width: 25.875rem;
   }
 }
 
 @media (max-width: 1100px) {
   .bento01,
-  .bento04 {
+  .finance {
     width: 30rem;
   }
-  .bento02,
-  .bento03 {
+  .bento02 {
     width: 20rem;
   }
+
   .bento05,
   .bento06 {
     width: 100%;
+    max-width: 54rem;
+  }
+
+  .agent {
+    width: 20rem;
+  }
+  .bento04 {
+    width: 31rem;
   }
 }
 
 @media (max-width: 960px) {
-  .bento01,
-  .bento04 {
+  .stack {
+    width: 100% !important;
+    max-width: fit-content !important;
+    height: auto;
+  }
+  .bento01 {
     width: 27rem;
   }
+
+  .bento04 {
+    width: 50%;
+  }
+
   .bento02,
   .bento03 {
     width: 23rem;
   }
-  .bento05,
-  .bento06,
-  .bentoSmall {
+
+  .bento06 {
     width: 100%;
     height: auto;
   }
@@ -518,11 +613,12 @@
   }
   .bento02,
   .bento03 {
-    width: 24rem;
+    width: 100%;
     height: 33.9375rem;
   }
   .bento05,
-  .bento06 {
+  .bento06,
+  .bentoSmall {
     width: 100%;
   }
 }
@@ -539,9 +635,14 @@
   .bento03 {
     width: 100%;
   }
-  .bento05,
+
   .bento06 {
     width: 100%;
+  }
+
+  .bento05 {
+    width: 100%;
+    height: auto;
   }
 }
 @media (max-width: 795px) {
@@ -572,8 +673,9 @@
     width: 100%;
   }
 
-  .bento01 {
-    height: 25.875rem;
+  .bento01,
+  .bento04 {
+    height: auto;
   }
 
   .bento02 {
@@ -587,10 +689,6 @@
     background-repeat: no-repeat;
     background-position-y: bottom;
     background-position-x: right;
-  }
-
-  .bento04 {
-    height: 30.75rem;
   }
 }
 

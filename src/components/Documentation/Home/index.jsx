@@ -23,7 +23,7 @@ const DocHomePage = () => {
             </div>
             <p>
               Start with the{' '}
-              <a href="/developers/weaviate/quickstart">Quickstart tutorial</a>{' '}
+              <a href="https://docs.weaviate.io/weaviate/quickstart">Quickstart tutorial</a>{' '}
               - an end-to-end demo that takes 15-30 minutes.
             </p>
           </div>
@@ -53,7 +53,7 @@ const DocHomePage = () => {
           <div className={styles.deployBox}>
             <div className={styles.tabContainer}>
               <div className={styles.deployTab}>Evaluation</div>
-              <div className={styles.deployTab}>Deployment</div>
+              <div className={styles.deployTab}>Development</div>
               <div className={styles.deployTab}>Production</div>
             </div>
             <div className={styles.deployContent}>
@@ -65,7 +65,7 @@ const DocHomePage = () => {
                 <li>(Optional) Zero-downtime updates</li>
               </ul>
               <button className={styles.deployButton}>
-                <a href="/developers/wcs/create-instance">
+                <a href="https://docs.weaviate.io/cloud/manage-clusters/create">
                   Set up a WCD instance
                 </a>
               </button>
@@ -75,7 +75,7 @@ const DocHomePage = () => {
           <div className={styles.deployBox}>
             <div className={styles.tabContainer}>
               <div className={styles.deployTab}>Evaluation</div>
-              <div className={styles.deployTab}>Deployment</div>
+              <div className={styles.deployTab}>Development</div>
               <div className={`${styles.deployTab} ${styles.inactive}`}>
                 Production
               </div>
@@ -91,7 +91,7 @@ const DocHomePage = () => {
                 <li>Customizable configurations</li>
               </ul>
               <button className={styles.deployButton}>
-                <a href="/developers/weaviate/installation/docker-compose">
+                <a href="https://docs.weaviate.io/weaviate/installation/docker-compose">
                   Run Weaviate with Docker
                 </a>
               </button>
@@ -106,7 +106,7 @@ const DocHomePage = () => {
               <div className={`${styles.deployTab} ${styles.inactive}`}>
                 Evaluation
               </div>
-              <div className={styles.deployTab}>Deployment</div>
+              <div className={styles.deployTab}>Development</div>
               <div className={styles.deployTab}>Production</div>
             </div>
             <div className={styles.deployContent}>
@@ -122,7 +122,7 @@ const DocHomePage = () => {
                 <li>(Optional) Zero-downtime updates</li>
               </ul>
               <button className={styles.deployButton}>
-                <a href="/developers/weaviate/installation/kubernetes">
+                <a href="https://docs.weaviate.io/weaviate/installation/kubernetes">
                   Run Weaviate with Kubernetes
                 </a>
               </button>
@@ -133,7 +133,7 @@ const DocHomePage = () => {
             <div className={styles.tabContainer}>
               <div className={styles.deployTab}>Evaluation</div>
               <div className={`${styles.deployTab} ${styles.inactive}`}>
-                Deployment
+                Development
               </div>
               <div className={`${styles.deployTab} ${styles.inactive}`}>
                 Production
@@ -148,7 +148,7 @@ const DocHomePage = () => {
                 </li>
               </ul>
               <button className={styles.deployButton}>
-                <a href="/developers/weaviate/installation/embedded">
+                <a href="https://docs.weaviate.io/weaviate/installation/embedded">
                   Run Embedded Weaviate
                 </a>
               </button>
@@ -169,37 +169,37 @@ const DocHomePage = () => {
             <div className={styles.scenarioText}>
               <span>
                 <span>
-                  Work with text data 
+                  Work with text data
                 </span>
                 <span>
                 <p>
-                  <a href="/developers/academy/py/starter_text_data/">
+                  <a href="https://docs.weaviate.io/academy/py/starter_text_data/">
                   Python
-                </a> / <a href="/developers/academy/js/starter_text_data/">
+                </a> / <a href="https://docs.weaviate.io/academy/js/starter_text_data/">
                   JavaScript
                 </a>
                 </p>
               </span>
               </span>
-              
+
 
               <p>
                 Just bring your text data to Weaviate and it will do the rest.
               </p>
               <p>
                 Just{' '}
-                <a href="/developers/academy/py/starter_text_data/text_collections/">
+                <a href="https://docs.weaviate.io/academy/py/starter_text_data/text_collections/">
                   populate Weaviate
                 </a>{' '}
                 with your text data and start using powerful{' '}
-                <a href="/developers/academy/py/starter_text_data/text_searches/">
+                <a href="https://docs.weaviate.io/academy/py/starter_text_data/text_searches/">
                   vector, keyword and hybrid search capabilities
                 </a>
                 .
               </p>
               <p>
                 And use our integrations to{' '}
-                <a href="/developers/academy/py/starter_text_data/text_rag/">
+                <a href="https://docs.weaviate.io/academy/py/starter_text_data/text_rag/">
                   build generative ai tools
                 </a>{' '}
                 with your data.
@@ -210,7 +210,7 @@ const DocHomePage = () => {
             <div className={`${styles.scenarioLogo} ${styles.custom}`}></div>
             <div className={styles.scenarioText}>
               <span>
-                <a href="/developers/weaviate/starter-guides/custom-vectors">
+                <a href="https://docs.weaviate.io/weaviate/starter-guides/custom-vectors">
                   Bring your own vectors
                 </a>
               </span>
@@ -218,18 +218,18 @@ const DocHomePage = () => {
               <p>Do you prefer to work with your own vectors? No problem.</p>
               <p>
                 You can{' '}
-                <a href="/developers/academy/py/starter_custom_vectors/object_collections/">
+                <a href="https://docs.weaviate.io/academy/py/starter_custom_vectors/object_collections/">
                   add your own vectors to Weaviate
                 </a>{' '}
                 and still benefit from{' '}
-                <a href="/developers/academy/py/starter_custom_vectors/object_searches/">
+                <a href="https://docs.weaviate.io/academy/py/starter_custom_vectors/object_searches/">
                   all of its indexing and search capabilities.
                 </a>
                 .
               </p>
               <p>
                 Our integrations to{' '}
-                <a href="/developers/academy/py/starter_custom_vectors/object_rag/">
+                <a href="https://docs.weaviate.io/academy/py/starter_custom_vectors/object_rag/">
                   build generative ai tools
                 </a>{' '}
                 work just as well with your data and vectors.
@@ -245,31 +245,31 @@ const DocHomePage = () => {
                 </span>
                 <span>
                 <p>
-                  <a href="/developers/academy/py/starter_multimodal_data">
+                  <a href="https://docs.weaviate.io/academy/py/starter_multimodal_data">
                   Python
-                </a> / <a href="/developers/academy/js/starter_multimodal_data">
+                </a> / <a href="https://docs.weaviate.io/academy/js/starter_multimodal_data">
                   JavaScript
                 </a>
                 </p>
               </span>
               </span>
-              
+
 
               <p>For many, data comes in multiple forms beyond text.</p>
               <p>
                 Weaviate's multimodal modules{' '}
-                <a href="/developers/academy/py/starter_multimodal_data/mm_collections/">
+                <a href="https://docs.weaviate.io/academy/py/starter_multimodal_data/mm_collections/">
                   can import text, audio and video and more
                 </a>{' '}
                 as well as{' '}
-                <a href="/developers/academy/py/starter_multimodal_data/mm_searches/">
+                <a href="https://docs.weaviate.io/academy/py/starter_multimodal_data/mm_searches/">
                   perform multimodal searches
                 </a>
                 .
               </p>
               <p>
                 Use these modules to{' '}
-                <a href="/developers/academy/py/starter_multimodal_data/mm_rag/">
+                <a href="https://docs.weaviate.io/academy/py/starter_multimodal_data/mm_rag/">
                   build generative ai tools
                 </a>{' '}
                 from your entire dataset.
@@ -291,7 +291,7 @@ const DocHomePage = () => {
               objects and vectors.
             </p>
             <div className={styles.wtLearn}>
-              <a href="/developers/weaviate/introduction#what-is-weaviate">
+              <a href="https://docs.weaviate.io/weaviate/introduction#what-is-weaviate">
                 Learn more
               </a>
             </div>
@@ -302,7 +302,7 @@ const DocHomePage = () => {
               Features, examples, demo applications, recipes, use cases, etc..
             </p>
             <div className={styles.wtLearn}>
-              <a href="/developers/weaviate/more-resources/example-use-cases">
+              <a href="https://docs.weaviate.io/weaviate/more-resources/example-use-cases">
                 Learn more
               </a>
             </div>
@@ -314,7 +314,7 @@ const DocHomePage = () => {
               instructions on installation and configuration.
             </p>
             <div className={styles.wtLearn}>
-              <a href="/developers/weaviate/installation">Learn more</a>
+              <a href="https://docs.weaviate.io/weaviate/installation">Learn more</a>
             </div>
           </div>
           <div className={`${styles.whatnextBox} ${styles.small}`}>
@@ -323,7 +323,7 @@ const DocHomePage = () => {
               Discover how to configure Weaviate to suit your specific needs.
             </p>
             <div className={styles.wtLearn}>
-              <a href="/developers/weaviate/configuration">Learn more</a>
+              <a href="https://docs.weaviate.io/weaviate/configuration">Learn more</a>
             </div>
           </div>
           <div className={`${styles.whatnextBox} ${styles.small}`}>
@@ -333,7 +333,7 @@ const DocHomePage = () => {
               various features.
             </p>
             <div className={styles.wtLearn}>
-              <a href="/developers/weaviate/concepts">Learn more</a>
+              <a href="https://docs.weaviate.io/weaviate/concepts">Learn more</a>
             </div>
           </div>
         </div>
@@ -353,20 +353,20 @@ const DocHomePage = () => {
           <h3>Client Libraries</h3>
           <div className={styles.tabRow}>
             <div className={`${styles.secondaryTabs} ${styles.python}`}>
-              <a href="/developers/weaviate/client-libraries/python">Python</a>
+              <a href="https://docs.weaviate.io/weaviate/client-libraries/python">Python</a>
             </div>
             <div className={`${styles.secondaryTabs} ${styles.ts}`}>
-              <a href="/developers/weaviate/client-libraries/typescript">
+              <a href="https://docs.weaviate.io/weaviate/client-libraries/typescript">
                 JS/TS
               </a>
             </div>
           </div>
 
           <div className={`${styles.secondaryTabs} ${styles.go}`}>
-            <a href="/developers/weaviate/client-libraries/go">Go</a>
+            <a href="https://docs.weaviate.io/weaviate/client-libraries/go">Go</a>
           </div>
           <div className={`${styles.secondaryTabs} ${styles.java}`}>
-            <a href="/developers/weaviate/client-libraries/java">Java</a>
+            <a href="https://docs.weaviate.io/weaviate/client-libraries/java">Java</a>
           </div>
         </div>
       </div>

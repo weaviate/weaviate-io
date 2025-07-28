@@ -27,10 +27,28 @@ export default function Main() {
               ></Link>
             </div>
           </div>
+          <div className={`${styles.bento05} ${styles.agent}`}>
+            <div className={styles.bentoText}>
+              <div className={styles.innerText}>
+                <div className={styles.bentoLogo}></div>
+
+                <h3>
+                  How Kapa takes the pain out of finding accurate technical
+                  answers
+                </h3>
+              </div>
+              <div className={styles.buttons}>
+                <Link
+                  to="case-studies/kapa"
+                  className={styles.arrowButton}
+                ></Link>
+              </div>
+            </div>
+          </div>
           <div className={styles.bento02}>
             <div className={styles.bentoText}>
               <div className={styles.bentoLogo}></div>
-              <h3>Transforming Customer Service with Generative AI</h3>
+              <h3>Transforming Customer Service with Agentic AI</h3>
             </div>
             <div className={styles.buttons}>
               <Link
@@ -39,14 +57,17 @@ export default function Main() {
               ></Link>
             </div>
           </div>
-          <div className={styles.bento03}>
+          <div className={`${styles.bento04} ${styles.stack}`}>
             <div className={styles.bentoText}>
               <div className={styles.bentoLogo}></div>
-              <h3>Building an AI-Powered Shopping Copilot</h3>
+              <div className={styles.bentoImage}></div>
+              <h3>
+                How Stack AI Delivers Lighting-Fast Agentic AI for Enterprises
+              </h3>
             </div>
             <div className={styles.buttons}>
               <Link
-                to="/blog/moonsift-story"
+                to="/case-studies/stack-ai"
                 className={styles.arrowButton}
               ></Link>
             </div>
@@ -63,13 +84,27 @@ export default function Main() {
               ></Link>
             </div>
           </div>
+
+          <div className={styles.bento03}>
+            <div className={styles.bentoText}>
+              <div className={styles.bentoLogo}></div>
+              <h3>Building an AI-Powered Shopping Copilot</h3>
+            </div>
+            <div className={styles.buttons}>
+              <Link
+                to="/blog/moonsift-story"
+                className={styles.arrowButton}
+              ></Link>
+            </div>
+          </div>
+
           <div className={`${styles.bento05} ${styles.finance}`}>
             <div className={styles.bentoText}>
               <div className={styles.innerText}>
                 <span>CASE STUDY</span>
                 <h3>
-                  How a Leading Financial Data Company<br></br> Commercialized
-                  AI in Under a Year
+                  How a Leading Financial Data Company Commercialized AI in
+                  Under a Year
                 </h3>
               </div>
               <div className={styles.buttons}>
@@ -80,6 +115,7 @@ export default function Main() {
               </div>
             </div>
           </div>
+
           <Link
             to="https://www.astronomer.io/blog/ask-astro-open-source-llm-application-apache-airflow/"
             className={styles.bentoSmall}
@@ -96,15 +132,6 @@ export default function Main() {
             <div className={styles.bentoText}>
               <div className={`${styles.bentoLogo} ${styles.logo02}`}></div>
               <h3>Transforming Risk Management with Generative AI</h3>
-            </div>
-          </Link>
-          <Link
-            to="https://innovativesol.com/success-stories/humach/"
-            className={styles.bentoSmall}
-          >
-            <div className={styles.bentoText}>
-              <div className={`${styles.bentoLogo} ${styles.logo03}`}></div>
-              <h3>Solving Operational Challenges with Weaviate</h3>
             </div>
           </Link>
 

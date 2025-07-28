@@ -109,7 +109,7 @@ Products for sleep from the Now Foods brand
 
 Now, let's delve deeper into what happens behind the scenes. Upon receiving the natural language query, we use the [GPT4 Chat Completion API](https://platform.openai.com/docs/guides/gpt/chat-completions-api) to generate a GraphQL query. The Chat Completion feature works like having a conversation with an AI. You provide a series of messages as input, and the model generates a relevant response as output.
 
-We provide the model with examples of using Weaviate’s [nearText feature](https://weaviate.io/developers/weaviate/search/similarity), sorting mechanisms, filters, and limits, to let it generate a query that is compatible with Weaviate.
+We provide the model with examples of using Weaviate’s [nearText feature](https://docs.weaviate.io/weaviate/search/similarity), sorting mechanisms, filters, and limits, to let it generate a query that is compatible with Weaviate.
 
 <figure>
 <img
@@ -289,7 +289,7 @@ This greatly enhances user experience, as you can quickly understand the product
 
 For a more detailed exploration of the generative feedback loop with Weaviate, we have an [amazing blog post](https://weaviate.io/blog/generative-feedback-loops-with-llms) by Connor.
 
-The implementation of Generative Search in Weaviate involves using the [generate module](https://weaviate.io/developers/weaviate/search/generative) to define the prompt and the fields that will be used as context. For every generated query, another query is created using the generate module. This is done to ensure only the top 5 products are considered (to manage context length), and these queries are executed in parallel. The result is a list of the top 5 products with their generated summaries.
+The implementation of Generative Search in Weaviate involves using the [generate module](https://docs.weaviate.io/weaviate/search/generative) to define the prompt and the fields that will be used as context. For every generated query, another query is created using the generate module. This is done to ensure only the top 5 products are considered (to manage context length), and these queries are executed in parallel. The result is a list of the top 5 products with their generated summaries.
 
 <details>
   <summary>GraphQL with generate module</summary>

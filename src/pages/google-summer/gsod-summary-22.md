@@ -33,7 +33,7 @@ As a proof of concept, we created a sample site and deployed it on Vercel. Here 
 * [PoC repository](https://github.com/Asmit2952/weaviate-docusaurus)
 * [Docs - preview](https://weaviate-docusaurus.vercel.app/developers/weaviate/)
 * [Contributor's Guide - preview](https://weaviate-docusaurus.vercel.app/developers/contributor-guide/)
-* [Contributor's Guide - in production](/developers/contributor-guide/)
+* [Contributor's Guide - in production](https://docs.weaviate.io/contributor-guide/)
 
 ## Timeline
 Here are some milestones from the project timeline.

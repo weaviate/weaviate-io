@@ -96,12 +96,12 @@ export default defineNuxtConfig({
 })
 ```
 
-> To get Typescript and Weaviate setup, please follow these instructions detailed in the [client library documentation](https://weaviate.io/developers/weaviate/client-libraries/typescript/typescript-v3#typescript-setup). 
+> To get Typescript and Weaviate setup, please follow these instructions detailed in the [client library documentation](https://docs.weaviate.io/weaviate/client-libraries/typescript/typescript-v3#typescript-setup). 
 
 ### Step 2: Getting Weaviate Running
 
 
-To get started with Weaviate, we'll create a Weaviate instance on Weaviate Cloud Services as described in [this guide](https://weaviate.io/developers/wcs/quickstart). Weaviate is an AI-Native database. It gives you the flexibility to pick what embedding models you use. Embedding models come in all shapes and sizes, for this project, you will be using Cohere's multilingual embedding models. This will enable us to run searches in multiple languages helping us overcome one of the pitfalls. 
+To get started with Weaviate, we'll create a Weaviate instance on Weaviate Cloud Services as described in [this guide](https://docs.weaviate.io/wcs/quickstart). Weaviate is an AI-Native database. It gives you the flexibility to pick what embedding models you use. Embedding models come in all shapes and sizes, for this project, you will be using Cohere's multilingual embedding models. This will enable us to run searches in multiple languages helping us overcome one of the pitfalls. 
 
 Once set up add your Weaviate URL, Admin API key and Cohere API key to a `.env` file in the root of your project. 
 
@@ -128,8 +128,8 @@ let client: WeaviateClient | null = null;
 
 async function initClient() {
     if (!client) {
-        client = await weaviate.connectToWeaviateCloud(process.env.NUXT_WEAVIATE_HOST_URL || '', {
-            authCredentials: new weaviate.ApiKey(process.env.NUXT_WEAVIATE_ADMIN_KEY!!),
+        client = await weaviate.connectToWeaviateCloud(process.env.NUXT_WEAVIATE_URL || '', {
+            authCredentials: new weaviate.ApiKey(process.env.NUXT_WEAVIATE_API_KEY!!),
             headers: {
                 "X-Cohere-Api-Key": process.env.NUXT_COHERE_API_KEY!!,
  },

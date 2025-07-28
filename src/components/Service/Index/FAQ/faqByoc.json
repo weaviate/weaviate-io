@@ -9,7 +9,7 @@
   },
   {
     "question": "How does performance and storage optimization work?",
-    "answer": "Within Weaviate you can store vector embeddings for both storage optimization as well as performance optimization. If you <a href=\"https://weaviate.io/developers/weaviate/concepts/vector-index#conversion-of-an-existing-class-to-use-pq\" target=\"_blank\">enable compression</a>, Weaviate will automatically count these as compressed vectors."
+    "answer": "Within Weaviate you can store vector embeddings for both storage optimization as well as performance optimization. If you <a href=\"https://docs.weaviate.io/weaviate/concepts/vector-index#conversion-of-an-existing-class-to-use-pq\" target=\"_blank\">enable compression</a>, Weaviate will automatically count these as compressed vectors."
   },
   {
     "question": "Is there a difference between Weaviate open source and the Weaviate version used by the Weaviate Cloud (WCD)?",

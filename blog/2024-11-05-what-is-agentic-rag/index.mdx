@@ -3,7 +3,7 @@ title: What is Agentic RAG
 slug: what-is-agentic-rag
 authors: [erika, leonie]
 date: 2024-11-05
-tags: ['concepts']
+tags: ['concepts', 'agents']
 image: ./img/hero.png
 description: 'Learn about Agentic Retrieval Augmented Generation (RAG), including architecture, implementation, and and difference to vanilla RAG.'
 ---
@@ -133,7 +133,7 @@ In June 2023, [OpenAI released function calling](https://platform.openai.com/doc
 
 Function calling isn’t only for proprietary models. Ollama introduced tool support for popular open-source models like `Llama3.2`, `nemotron-mini`, and [others](https://ollama.com/search?c=tools).
 
-To build a tool, you first need to define the function. In this snippet, we’re writing a function that is using Weaviate’s [hybrid search](https://weaviate.io/developers/weaviate/search/hybrid) to retrieve objects from the database:
+To build a tool, you first need to define the function. In this snippet, we’re writing a function that is using Weaviate’s [hybrid search](https://docs.weaviate.io/weaviate/search/hybrid) to retrieve objects from the database:
 
 ```python
 def get_search_results(query: str) -> str:
@@ -211,7 +211,7 @@ ollama_generation_with_tools("How is HNSW different from DiskANN?",
                             tools_schema=tools_schema, tool_mapping=tool_mapping)
 ```
 
-You can follow along [this recipe](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/function-calling/ollama/ollama-weaviate-agents.ipynb) to recreate the above.
+You can follow along [this recipe](https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/function-calling/ollama/ollama-weaviate-agents.ipynb) to recreate the above.
 
 ### Agent Frameworks
 
@@ -250,10 +250,10 @@ Finally, this article discussed the benefits and limitations of agentic RAG pipe
 
 ## Further Resources
 
-- [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/function-calling/openai/openai-swarm.ipynb) using Swarm
-- [Notebook](https://github.com/weaviate/recipes/tree/main/integrations/llm-frameworks/letta) using Letta and Weaviate
-- [Notebooks](https://github.com/weaviate/recipes/tree/main/integrations/llm-frameworks/function-calling/ollama) on using function calling in Ollama
-- [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/agentic-rag-benchmark/vanilla-rag-vs-agentic-rag.ipynb) on Vanilla RAG versus Agentic RAG
+- [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/function-calling/openai/openai-swarm.ipynb) using Swarm
+- [Notebook](https://github.com/weaviate/recipes/tree/main/integrations/llm-agent-frameworks/letta) using Letta and Weaviate
+- [Notebooks](https://github.com/weaviate/recipes/tree/main/integrations/llm-agent-frameworks/function-calling/ollama) on using function calling in Ollama
+- [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/agentic-rag-benchmark/vanilla-rag-vs-agentic-rag.ipynb) on Vanilla RAG versus Agentic RAG
 
 import WhatsNext from '/_includes/what-next.mdx';
 

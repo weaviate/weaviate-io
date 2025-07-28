@@ -5,6 +5,7 @@ require('dotenv').config();
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const remarkReplace = require('./src/remark/remark-replace');
+// SUBDOMAIN_MIGRATION - to do: delete site.redirects.js
 const siteRedirects = require('./site.redirects');
 const path = require('path');
 
@@ -32,6 +33,7 @@ const config = {
     projectName: 'weaviate-io', // Usually your repo name.
     customFields: {
         googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
+        teamtailorApiKey: process.env.TEAMTAILOR_API_KEY
       },
     plugins: [
         [
@@ -50,7 +52,11 @@ const config = {
         ],
 
         'docusaurus-plugin-sass',
-        ['@docusaurus/plugin-client-redirects', siteRedirects],
+
+        [
+            '@docusaurus/plugin-client-redirects',
+            siteRedirects
+        ],
 
         // Playbook configuration
         [
@@ -75,7 +81,7 @@ const config = {
             '@docusaurus/plugin-content-blog',
             {
                 blogTitle: 'Paper Reviews',
-                blogDescription: 'Papers',
+                blogDescription: 'Explore research papers and documentation supporting Weaviate.',
                 blogSidebarCount: 0,
                 postsPerPage: 6,
                 blogSidebarTitle: 'Weaviate Paper Reviews',
@@ -106,29 +112,13 @@ const config = {
                 showReadingTime: true,
             },
         ],
-        [
-            '@scalar/docusaurus',
-            {
-              label: '.',
-              route: '/developers/weaviate/api/rest',
-              configuration: {
-                spec: {
-                    // Last updated: 2024-11-13
-                  url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs/openapi-specs/schema.json',
-                },
-                hideModels: true,
-                // This feature currently broken - potentially fixed in: https://github.com/scalar/scalar/pull/1387
-                // hiddenClients: [...],
-              },
-            },
-        ],
 
         // Add HTML Header tags
         () => ({
             name: 'inject-tag',
             injectHtmlTags() {
                 return {
-                   
+
                     headTags: [
                         // Add plausible
                         {
@@ -137,6 +127,17 @@ const config = {
                                 defer: '',
                                 'data-domain': 'weaviate.io',
                                 src: 'https://plausible.io/js/plausible.js',
+                            },
+                        },
+                            // Add Hubspot
+                          {
+                            tagName: 'script',
+                            attributes: {
+                            type: 'text/javascript',
+                            id: 'hs-script-loader',
+                            async: true,
+                            defer: true,
+                            src: 'https://js.hs-scripts.com/8738733.js',
                             },
                         },
                         // Add Scarf
@@ -153,6 +154,19 @@ const config = {
                         {
                             tagName: 'script',
                             innerHTML: `(function(h,o,t,j,a,r){h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};h._hjSettings={hjid:3237492,hjsv:6};a=o.getElementsByTagName('head')[0];r=o.createElement('script');r.async=1;r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;a.appendChild(r);})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`,
+                        },
+                        // Add Cookiebot
+                        {
+                            tagName: 'script',
+                            attributes: {
+                              id: 'Cookiebot',
+                              src: 'https://consent.cookiebot.com/uc.js',
+                              'data-cbid': '4397b0f9-0b32-41f5-b24a-9370be245e85',
+                              'data-blockingmode': 'manual',
+                              type: 'text/javascript',
+                              async: true
+                              
+                            },
                         },
                         // Add emailpig
                         {
@@ -205,7 +219,7 @@ const config = {
       }("1021522", document.location.href, document));
     `,
   },
-  
+
                 // Retention
     {
         tagName: 'script',
@@ -249,6 +263,19 @@ const config = {
           })(window, document, "clarity", "script", "orzk1oie18");
         `,
       },
+
+       // Clearbit
+{
+
+    tagName: 'script',
+    attributes: {
+        src: 'https://tag.clearbitscripts.com/v1/pk_a3c0f3319a4418be0789e1d6f1db45cf/tags.js',
+        type: 'text/javascript',
+      async: true,
+      referrerPolicy: 'strict-origin-when-cross-origin',
+    },
+},
+       
                     ],
                 };
             },
@@ -280,7 +307,7 @@ const config = {
    locales: ['en','ja'],
     }, */
 
-   
+
 
     presets: [
         [
@@ -292,11 +319,10 @@ const config = {
                     path: 'developers', // folder name – where the docs are
                     routeBasePath: 'developers', // route name – where to navigate for docs i.e. weaviate.io/<route-base-path>/...
 
-                    // TODO: Update to 'main' for release
-                    editUrl:
-                        'https://github.com/weaviate/weaviate-io/tree/main/',
-                    remarkPlugins: [remarkReplace, math],
-                    rehypePlugins: [katex],
+                    // editUrl:
+                    //     'https://github.com/weaviate/weaviate-io/tree/main/',
+                    // remarkPlugins: [remarkReplace, math],
+                    // rehypePlugins: [katex],
                 },
                 blog: {
                     blogTitle: 'Blog',
@@ -328,12 +354,12 @@ const config = {
         ({
             image: 'og/default.jpg',
              announcementBar: {
-               id: 'announcement-bar-decemeber-2024',
-                content:`<a target="_blank" rel="noopener noreferrer" href="/reports/gigaom-sonar-report-for-vector-databases">Ready to level up your AI tech stack? Read GigaOm's Sonar Report for Vector Databases</a>`,
+               id: 'announcement-bar-march-2025',
+                content:`<a href="/blog/weaviate-agents">Product Update: Meet Weaviate Agents — Read the blog</a>`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
-            },  
+            },
             docs: {
                 sidebar: {
                     hideable: true,
@@ -356,7 +382,7 @@ const config = {
                         items: [
                             {
                                 type: 'html',
-                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Overview</li><li><a class="dropdown__link" href="/platform">Vector Database</a></li><li><a class="dropdown__link" href="/workbench">Workbench</a></li><li><a class="dropdown__link" href="/product/integrations">Integrations</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Deployment</li><li><a class="dropdown__link" href="/deployment/serverless">Serverless Cloud</a></li><li><a class="dropdown__link" href="/deployment/enterprise-cloud">Enterprise Cloud</a></li><li><a class="dropdown__link" href="/deployment/byoc">Bring Your Own Cloud</a></li><li><a class="dropdown__link" href="/deployment/enablement">Enablement</a></li></ul></div><ul class="menu__list mobileNav"><li class="dropDownLabel mobDrop">Overview</li><li class="menu__list-item"><a class="menu__link" href="/platform">Vector Database</a></li><li class="menu__list-item"><a class="menu__link" href="/workbench">Workbench</a></li><li class="menu__list-item"><a class="menu__link" href="/product/integrations">Integrations</a></li><li class="dropDownLabel mobDrop">Deployment</li><li class="menu__list-item"><a class="menu__link" href="/deployment/serverless">Serverless Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enterprise-cloud">Enterprise Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/byoc">Bring Your Own Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enablement">Enablement</a></li></ul>',
+                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Overview</li><li><a class="dropdown__link" href="/platform">Vector Database</a></li><li><a class="dropdown__link" href="/product/embeddings">Embeddings</a></li><li><a class="dropdown__link" href="/product/integrations">Integrations</a></li><li><a class="dropdown__link" href="/product">All Products</a></li><li class="dropDownLabel">Weaviate Agents</li><li><a class="dropdown__link" href="/product/query-agent">Query Agent</a></li><li><a class="dropdown__link" href="/product/transformation-agent">Transformation Agent</a></li><li><a class="dropdown__link" href="/product/personalization-agent">Personalization Agent</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Deployment</li><li><a class="dropdown__link" href="/deployment/serverless">Serverless Cloud</a></li><li><a class="dropdown__link" href="/deployment/enterprise-cloud">Enterprise Cloud</a></li><li><a class="dropdown__link" href="/deployment/byoc">Bring Your Own Cloud</a></li><li><a class="dropdown__link" href="/deployment/enablement">Enablement</a></li></ul></div><ul class="mobileNav menu__list" style="display: none;"><li class="dropDownLabel mobDrop">Overview</li><li class="menu__list-item"><a class="menu__link" href="/platform">Vector Database</a></li><li class="menu__list-item"><a class="menu__link" href="/product/embeddings">Embeddings</a></li><li class="menu__list-item"><a class="menu__link" href="/product/integrations">Integrations</a></li><li class="menu__list-item"><a class="menu__link" href="/product">All Products</a></li><li class="dropDownLabel mobDrop">Weaviate Agents</li><li class="menu__list-item"><a class="menu__link" href="/product/query-agent">Query Agent</a></li><li class="menu__list-item"><a class="menu__link" href="/product/transformation-agent">Transformation Agent</a></li><li class="menu__list-item"><a class="menu__link" href="/product/personalization-agent">Personalization Agent</a></li><li class="dropDownLabel mobDrop">Deployment</li><li class="menu__list-item"><a class="menu__link" href="/deployment/serverless">Serverless Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enterprise-cloud">Enterprise Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/byoc">Bring Your Own Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enablement">Enablement</a></li></ul>',
                                className: 'dropDownContainer2',
                             },
                         ]
@@ -368,7 +394,7 @@ const config = {
                     items: [
                         {
                             type: 'html',
-                            value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Use Cases</li><li><a class="dropdown__link" href="/rag">RAG</a></li><li><a class="dropdown__link" href="/hybrid-search">Hybrid Search</a></li><li><a class="dropdown__link" href="/gen-feedback-loops">Generative Feedback Loops</a></li><li><a class="dropdown__link" href="/cost-performance-optimization">Cost-Performance Optimization</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Examples</li><li><a class="dropdown__link" href="/case-studies">Case Studies</a></li><li><a class="dropdown__link" href="/community/demos">Demos</a></li></ul></div><ul class="menu__list mobileNav"><li class="dropDownLabel mobDrop">Use Cases</li><li class="menu__list-item"><a class="menu__link" href="/rag">RAG</a></li><li class="menu__list-item"><a class="menu__link" href="/hybrid-search">Hybrid Search</a></li><li class="menu__list-item"><a class="menu__link" href="/gen-feedback-loops">Generative Feedback Loops </a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enterprise-cloud">Infrastructure Optimization</a></li><li class="dropDownLabel mobDrop">Examples</li><li class="menu__list-item"><a class="menu__link" href="/case-studies">Case Studies</a></li><li class="menu__list-item"><a class="menu__link" href="/community/demos">Demos</a></li></ul>',
+                            value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Use Cases</li><li><a class="dropdown__link" href="/rag">RAG</a></li><li><a class="dropdown__link" href="/hybrid-search">Hybrid Search</a></li><li><a class="dropdown__link" href="/agentic-ai">Agentic AI</a></li><li><a class="dropdown__link" href="/cost-performance-optimization">Cost-Performance Optimization</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Examples</li><li><a class="dropdown__link" href="/case-studies">Case Studies</a></li><li><a class="dropdown__link" href="/community/demos">Demos</a></li></ul></div><ul class="menu__list mobileNav"><li class="dropDownLabel mobDrop">Use Cases</li><li class="menu__list-item"><a class="menu__link" href="/rag">RAG</a></li><li class="menu__list-item"><a class="menu__link" href="/hybrid-search">Hybrid Search</a></li><li class="menu__list-item"><li class="menu__list-item"><a class="menu__link" href="/agentic-ai">Agentic AI</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enterprise-cloud">Infrastructure Optimization</a></li><li class="dropDownLabel mobDrop">Examples</li><li class="menu__list-item"><a class="menu__link" href="/case-studies">Case Studies</a></li><li class="menu__list-item"><a class="menu__link" href="/community/demos">Demos</a></li></ul>',
                             className: 'dropDownContainer2',
                         },
 
@@ -410,80 +436,9 @@ const config = {
                         items: [
                             {
                                 type: 'html',
-                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Build</li><li><a class="dropdown__link" href="/developers/weaviate">Documentation</a></li><li><a class="dropdown__link" href="/developers/wcs">Weaviate Cloud Docs</a></li><li><a class="dropdown__link" href="/developers/integrations">Integrations Docs</a></li><li><a class="dropdown__link" href="https://github.com/weaviate/weaviate">GitHub</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Learn</li><li><a class="dropdown__link" href="/learn">Learning Center</a></li><li><a class="dropdown__link" href="/blog">Blog</a></li><li><a class="dropdown__link" href="/developers/academy">Academy</a></li><li><a class="dropdown__link" href="/community/events">Workshops</a></li><li><a class="dropdown__link" href="/community/build-with-weaviate">Showcases</a></li><li><a class="dropdown__link" href="/learn/knowledgecards">Knowledge Cards</a></li><li><a class="dropdown__link" href="/javascript">JavaScript</a></li><li><a class="dropdown__link" href="/papers">Paper Reviews</a></li><li><a class="dropdown__link" href="/podcast">Podcasts</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Engage</li><li><a class="dropdown__link" href="/community/events">Events & Webinars</a></li><li><a class="dropdown__link" href="/community">Weaviate Hero Program</a></li><li><a class="dropdown__link" href="https://forum.weaviate.io/">Forum</a></li><li><a class="dropdown__link" href="https://weaviate.io/slack">Slack</a></li></ul></div><ul class="menu__list mobileNav"><li class="menu__list-item"><li class="dropDownLabel mobDrop">Build</li><a class="menu__link" href="/developers/weaviate">Documentation</a></li><li class="menu__list-item"><a class="menu__link" href="/developers/wcs">Weaviate Cloud Docs</a></li><li class="menu__list-item"><a class="menu__link" href="/developers/wcs">Integrations Docs</a></li><li class="menu__list-item"><a class="menu__link" href="https://github.com/weaviate/weaviate">GitHub</a></li><li class="dropDownLabel mobDrop">Learn</li><li class="menu__list-item"><a class="menu__link" href="/learn">Learning Center</a></li><li class="menu__list-item"><a class="menu__link" href="/blog">Blog</a></li><li class="menu__list-item"><a class="menu__link" href="/developers/academy">Academy</a></li><li class="menu__list-item"><a class="menu__link" href="/community/events">Workshops</a></li></li><li class="menu__list-item"><li class="menu__list-item"><a class="menu__link" href="/community/build-with-weaviate">Showcases</a></li><li class="menu__list-item"><a class="menu__link" href="/learn/knowledgecards">Knowledge Cards</a></li><li class="menu__list-item"><a class="menu__link" href="/papers">Paper Reviews</a></li><li class="menu__list-item"><a class="menu__link" href="/podcast">Podcasts</a></li><li class="dropDownLabel mobDrop">Engage</li><li class="menu__list-item"><a class="menu__link" href="/community/events">Events & Webinars</a></li><li class="menu__list-item"><a class="menu__link" href="/community">Weaviate Hero Program</a></li><li class="menu__list-item"><a class="menu__link" href="https://forum.weaviate.io/">Forum</a></li><li class="menu__list-item"><a class="menu__link" href="https://weaviate.io/slack">Slack</a></li></ul>',
+                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Build</li><li><a class="dropdown__link" href="https://docs.weaviate.io/weaviate" data-hsdo-not-track="true">Documentation</a></li><li><a class="dropdown__link" href="https://docs.weaviate.io/cloud" data-hsdo-not-track="true">Weaviate Cloud Docs</a></li><li><a class="dropdown__link" href="https://docs.weaviate.io/deploy" data-hsdo-not-track="true">Weaviate Deployment Docs</a></li><li><a class="dropdown__link" href="https://docs.weaviate.io/agents" data-hsdo-not-track="true">Weaviate Agents Docs</a></li><li><a class="dropdown__link" href="https://docs.weaviate.io/integrations" data-hsdo-not-track="true">Integrations Docs</a></li><li><a class="dropdown__link" href="https://github.com/weaviate/weaviate">GitHub</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Learn</li><li><a class="dropdown__link" href="/learn">Learning Center</a></li><li><a class="dropdown__link" href="/blog">Blog</a></li><li><a class="dropdown__link" href="https://docs.weaviate.io/academy" data-hsdo-not-track="true">Academy</a></li><li><a class="dropdown__link" href="/community/events">Workshops</a></li><li><a class="dropdown__link" href="/community/build-with-weaviate">Showcases</a></li><li><a class="dropdown__link" href="/learn/knowledgecards">Knowledge Cards</a></li><li><a class="dropdown__link" href="/javascript">JavaScript</a></li><li><a class="dropdown__link" href="/papers">Paper Reviews</a></li><li><a class="dropdown__link" href="/podcast">Podcasts</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Engage</li><li><a class="dropdown__link" href="/community/events">Events & Webinars</a></li><li><a class="dropdown__link" href="/community">Weaviate Hero Program</a></li><li><a class="dropdown__link" href="https://forum.weaviate.io/">Forum</a></li><li><a class="dropdown__link" href="https://weaviate.io/slack">Slack</a></li></ul></div><ul class="menu__list mobileNav"><li class="menu__list-item"><li class="dropDownLabel mobDrop">Build</li><a class="menu__link" href="https://docs.weaviate.io/weaviate" data-hsdo-not-track="true">Documentation</a></li><li class="menu__list-item"><a class="menu__link" href="https://docs.weaviate.io/cloud" data-hsdo-not-track="true">Weaviate Cloud Docs</a></li><li class="menu__list-item"><a class="menu__link" href="https://docs.weaviate.io/deploy" data-hsdo-not-track="true">Weaviate Deployment Docs</a></li><li class="menu__list-item"><a class="menu__link" href="https://docs.weaviate.io/agents" data-hsdo-not-track="true">Weaviate Agents Docs</a></li><li class="menu__list-item"><a class="menu__link" href="https://docs.weaviate.io/integrations" data-hsdo-not-track="true">Integrations Docs</a></li><li class="menu__list-item"><a class="menu__link" href="https://github.com/weaviate/weaviate">GitHub</a></li><li class="dropDownLabel mobDrop">Learn</li><li class="menu__list-item"><a class="menu__link" href="/learn">Learning Center</a></li><li class="menu__list-item"><a class="menu__link" href="/blog">Blog</a></li><li class="menu__list-item"><a class="menu__link" href="https://docs.weaviate.io/academy" data-hsdo-not-track="true">Academy</a></li><li class="menu__list-item"><a class="menu__link" href="/community/events">Workshops</a></li></li><li class="menu__list-item"><li class="menu__list-item"><a class="menu__link" href="/community/build-with-weaviate">Showcases</a></li><li class="menu__list-item"><a class="menu__link" href="/learn/knowledgecards">Knowledge Cards</a></li><li class="menu__list-item"><a class="menu__link" href="/papers">Paper Reviews</a></li><li class="menu__list-item"><a class="menu__link" href="/podcast">Podcasts</a></li><li class="dropDownLabel mobDrop">Engage</li><li class="menu__list-item"><a class="menu__link" href="/community/events">Events & Webinars</a></li><li class="menu__list-item"><a class="menu__link" href="/community">Weaviate Hero Program</a></li><li class="menu__list-item"><a class="menu__link" href="https://forum.weaviate.io/">Forum</a></li><li class="menu__list-item"><a class="menu__link" href="https://weaviate.io/slack">Slack</a></li></ul>',
                                 className: 'dropDownContainer2',
                             },
-                         /*    {
-                                label: 'Weaviate Docs',
-                                docId: 'weaviate/index',
-                                sidebarid: 'docsSidebar',
-                                type: 'doc',
-                            },
-                            {
-                                label: 'Weaviate Cloud Docs',
-                                docId: 'wcs/index',
-                                sidebarid: 'wcsSidebar',
-                                type: 'doc',
-                            },
-                            {
-                                label: 'Integrations',
-                                docId: 'integrations/index',
-                                sidebarid: 'integrationsSidebar',
-                                type: 'doc',
-                            },
-                            {
-                                label: 'Learn with Academy',
-                                docId: 'academy/index',
-                                sidebarid: 'academySidebar',
-                                type: 'doc',
-                            },
-                            {
-                                label: 'Learning Center',
-                                to: '/learn',
-
-                            },
-                            {
-                                label: 'Blog',
-                                to: '/blog',
-                            },
-                            {
-                                label: 'Online Workshops & Events',
-                                to: '/community/events',
-                            },
-                            {
-                                label: 'Knowledge Cards',
-                                to: '/learn/knowledgecards',
-                            },
-                            {
-                                label: 'Newsletter',
-                                to: 'https://newsletter.weaviate.io/',
-                            },
-                            {
-                                label: 'Community',
-                                href: '/community',
-                            },
-                            {
-                                label: 'Paper Reviews',
-                                to: '/papers',
-                            },
-                            {
-                                label: 'Contributor Guide',
-                                docId: 'contributor-guide/index',
-                                sidebarid: 'contributorSidebar',
-                                type: 'doc',
-                            },
-                            {
-                             label: 'Forum',
-                             href: 'https://forum.weaviate.io',
-                            },
-                            {
-                                label: 'GitHub',
-                                href: 'https://github.com/weaviate/weaviate',
-                            },
-                            {
-                                label: 'Slack',
-                                href: 'https://weaviate.io/slack',
-                            }, */
                         ],
                     },
                     {
@@ -493,40 +448,10 @@ const config = {
                         items: [
                             {
                                 type: 'html',
-                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Partners</li><li><a class="dropdown__link" href="/partners">Overview</a></li><li><a class="dropdown__link" href="/partners/aws">AWS</a></li><li><a class="dropdown__link" href="/partners/gcp">Google</a></li><li><a class="dropdown__link" href="/partners/snowflake">Snowflake</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >About</li><li><a class="dropdown__link" href="/company/about-us">Company</a></li><li><a class="dropdown__link" href="/company/careers">Careers</a></li><li><a class="dropdown__link" href="/company/remote">Remote</a></li><li><a class="dropdown__link" href="/company/playbook">Playbook</a></li><li><a class="dropdown__link" href="/company/investors">Investors</a></li><li><a class="dropdown__link" href="/contact">Contact Us</a></li></ul></div><ul class="menu__list mobileNav"><li class="dropDownLabel mobDrop">About</li><li class="menu__list-item"><a class="menu__link" href="/company/about-us">Company</a></li><li class="menu__list-item"><a class="menu__link" href="/company/careers">Careers</a></li><li class="menu__list-item"><a class="menu__link" href="/company/remote">Remote</a></li><li class="menu__list-item"><a class="menu__link" href="/company/playbook">Playbook</a></li><li class="menu__list-item"><a class="menu__link" href="/company/investors">Investors</a></li><li class="menu__list-item"><a class="menu__link" href="/contact">Contact Us</a></li><li class="dropDownLabel mobDrop">Partners</li><li class="menu__list-item"><a class="menu__link" href="/partners">Overview</a></li><li class="menu__list-item"><a class="menu__link" href="/partners/aws">AWS</a></li><li class="menu__list-item"><a class="menu__link" href="/partners/gcp">Google</a></li><li class="menu__list-item"><a class="menu__link" href="/partners/snowflake">Snowflake</a></li><li class="menu__list-item"></ul>',
+                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Partners</li><li><a class="dropdown__link" href="/partners">Overview</a></li><li><a class="dropdown__link" href="/partners/aws">AWS</a></li><li><a class="dropdown__link" href="/partners/gcp">Google</a></li><li><a class="dropdown__link" href="/partners/snowflake">Snowflake</a></li><li><a class="dropdown__link" href="/partners/databricks">Databricks</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >About</li><li><a class="dropdown__link" href="/company/about-us">Company</a></li><li><a class="dropdown__link" href="/company/careers">Careers</a></li><li><a class="dropdown__link" href="/company/remote">Remote</a></li><li><a class="dropdown__link" href="/company/playbook">Playbook</a></li><li><a class="dropdown__link" href="/company/investors">Investors</a></li><li><a class="dropdown__link" href="/contact">Contact Us</a></li></ul></div><ul class="menu__list mobileNav"><li class="dropDownLabel mobDrop">About</li><li class="menu__list-item"><a class="menu__link" href="/company/about-us">Company</a></li><li class="menu__list-item"><a class="menu__link" href="/company/careers">Careers</a></li><li class="menu__list-item"><a class="menu__link" href="/company/remote">Remote</a></li><li class="menu__list-item"><a class="menu__link" href="/company/playbook">Playbook</a></li><li class="menu__list-item"><a class="menu__link" href="/company/investors">Investors</a></li><li class="menu__list-item"><a class="menu__link" href="/contact">Contact Us</a></li><li class="dropDownLabel mobDrop">Partners</li><li class="menu__list-item"><a class="menu__link" href="/partners">Overview</a></li><li class="menu__list-item"><a class="menu__link" href="/partners/aws">AWS</a></li><li class="menu__list-item"><a class="menu__link" href="/partners/gcp">Google</a></li><li class="menu__list-item"><a class="menu__link" href="/partners/snowflake">Snowflake</a></li><li class="menu__list-item"><a class="menu__link" href="/partners/databricks">Databricks</a></li><li class="menu__list-item"></ul>',
                                className: 'dropDownContainer2',
                             },
                         ],
-                        /* items: [
-                            {
-                                label: 'About us',
-                                to: '/company/about-us',
-                            },
-                            {
-                                label: 'Playbook',
-                                to: '/company/playbook',
-                            },
-                            {
-                                label: 'Careers',
-                                to: '/company/careers',
-                            },
-                            {
-                                label: 'Remote',
-                                to: '/company/remote',
-                            },
-                            {
-                                label: 'Investors',
-                                to: '/company/investors',
-                            },
-                            {
-                                label: 'Partners',
-                                href: '/partners',
-                            },
-                            {
-                                label: 'Contact us',
-                                href: '/contact',
-                            },
-                        ], */
                     },
                     {
 
@@ -540,12 +465,20 @@ const config = {
                         to: 'https://github.com/weaviate/weaviate',
                         position: 'right',
                     },
+                   
                     {
                         label: 'Try Now',
                         className: 'tryNow',
-                        to: 'https://console.weaviate.cloud',
+                        to: 'https://auth.wcs.api.weaviate.io/auth/realms/SeMI/protocol/openid-connect/auth?client_id=wcs-frontend&scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fconsole.weaviate.cloud%2Fapi%2Fauth%2Fcallback%2Fkeycloak&state=P3BeeUEpGZNBXSXHycDajZNjrHT_HliA14qrtGovlk8&code_challenge=VZLcWPLzlwCsrvkYzjY3yC9XwUN3KzJqvzXAlzdNYTo&code_challenge_method=S256',
                         position: 'right',
                     },
+                  {
+                        label: 'Contact',
+                        className: 'loginButton',
+                        to: '/contact',
+                        position: 'right',
+                    }, 
+                    
                     {
                         type: 'search',
                         position: 'right',
@@ -567,8 +500,8 @@ const config = {
                             },
 
                             {
-                                label: 'Workbench',
-                                to: '/workbench',
+                                label: 'Products',
+                                to: '/product',
                             },
                             {
                                 label: 'Pricing',
@@ -617,6 +550,11 @@ const config = {
                                 label: 'Report a Vulnerability',
                                 to: '/security-report',
                             },
+                            {
+                                label: 'Cookie Settings',
+                                to: '#',
+                                id: 'cookie-settings',
+                            },
 
                         ],
                     },
@@ -633,8 +571,8 @@ const config = {
                                 to: '/hybrid-search',
                             },
                             {
-                                label: 'Generative Feedback Loops',
-                                to: '/gen-feedback-loops',
+                                label: 'Agentic AI',
+                                to: '/agentic-ai',
                             },
                             {
                                 label: 'Cost Performance Optimization',
@@ -670,7 +608,7 @@ const config = {
                             {
 
                                 label: 'Academy',
-                                to: '/developers/academy',
+                                to: 'https://docs.weaviate.io/academy',
                             },
                             {
                                 label: 'Workshops',
@@ -697,11 +635,19 @@ const config = {
                             },
                             {
                                 label: 'Documentation',
-                                to: '/developers/weaviate',
-                            },
+                                to: 'https://docs.weaviate.io/weaviate',
+                            },                            
                             {
                                 label: 'Weaviate Cloud Docs',
-                                to: '/developers/wcs',
+                                to: 'https://docs.weaviate.io/cloud',
+                            },
+                            {
+                                label: 'Weaviate Deployment Docs',
+                                to: 'https://docs.weaviate.io/deploy',
+                            },
+                            {
+                                label: 'Weaviate Agents Docs',
+                                to: 'https://docs.weaviate.io/agents',
                             },
                             {
                                 label: 'GitHub',
@@ -785,6 +731,11 @@ const config = {
 
                             },
                             {
+                                label: 'Databricks',
+                                to: '/partners/databricks',
+
+                            },
+                            {
                                 label: 'Become a Partner',
                                 to: '/partners',
                             },
@@ -818,7 +769,7 @@ const config = {
                                 label: 'LinkedIn',
                                 to: 'https://www.linkedin.com/company/weaviate-io',
                             },
-                           
+
 
 
                         ],

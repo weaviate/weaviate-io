@@ -35,14 +35,14 @@ export default function HomepageWhatYouCanDo() {
         </p>
         <p>
           クラウド環境のセットアップにあたっては、
-          <a href="https://weaviate.io/developers/wcs/quickstart">
+          <a href="https://docs.weaviate.io/cloud/quickstart">
             WCD クイックスタート
           </a>{' '}
           も参考にしてください。
         </p>
         <p>
           オープンソースのWeaviateは、
-          <a href="https://weaviate.io/developers/weaviate/installation">
+          <a href="https://docs.weaviate.io/weaviate/installation">
             DockerやKubernetesなどでローカルに立てる
           </a>
           こともできます。
@@ -52,7 +52,7 @@ export default function HomepageWhatYouCanDo() {
         <h2>2. Weaviate Clientライブラリのインストール</h2>
         <p>
           次は
-          <a href="https://weaviate.io/developers/weaviate/client-libraries">
+          <a href="https://docs.weaviate.io/weaviate/client-libraries">
             Weaviate Clientライブラリ
           </a>
           の準備をします。ライブラリは以下の言語をサポートしています。
@@ -159,7 +159,7 @@ export default function HomepageWhatYouCanDo() {
         <h3>データコレクションの定義</h3>
         <p>
           次は、クラスを作成して
-          <a href="https://weaviate.io/developers/weaviate/tutorials/schema">
+          <a href="https://docs.weaviate.io/weaviate/tutorials/schema">
             Schema
           </a>
           を定義します。
@@ -168,7 +168,7 @@ export default function HomepageWhatYouCanDo() {
         <p>クラスは、オブジェクトを格納するデータコレクションです。</p>
         <p>
           クラスのSchemaに
-          <a href="https://weaviate.io/developers/weaviate/modules">
+          <a href="https://docs.weaviate.io/weaviate/modules">
             モジュール
           </a>
           を定義します。

@@ -21,7 +21,7 @@ The ecosystem is divided into these categories:
 * **Cloud Hyperscalers** - Large-scale computing and storage
 * **Compute Infrastructure** - Run and scale containerized applications
 * **Data Platforms** - Data ingestion and web scraping 
-* **LLM Frameworks** - Build generative AI applications
+* **LLM and Agent Frameworks** - Build agents and generative AI applications
 * **Operations** - Tools for monitoring and analyzing generative AI workflows
 
 
@@ -30,13 +30,13 @@ The ecosystem is divided into these categories:
 
 | Company Category | Companies |
 |------------------|-----------|
-| Cloud Hyperscalers | [AWS](/developers/integrations/cloud-hyperscalers/aws), [Google](/developers/integrations/cloud-hyperscalers/google)|
-| Compute Infrastructure | [Modal](/developers/integrations/compute-infrastructure/modal), [Replicate](/developers/integrations/compute-infrastructure/replicate) |
-| Data Platforms |[Airbyte](/developers/integrations/data-platforms/airbyte), [Aryn](/developers/integrations/data-platforms/aryn/), [Confluent Cloud](/developers/integrations/data-platforms/confluent-cloud), [Astronomer](/developers/integrations/data-platforms/astronomer), [Context Data](/developers/integrations/data-platforms/context-data/), [Databricks](/developers/integrations/data-platforms/databricks/), [Firecrawl](/developers/integrations/data-platforms/firecrawl), [IBM](/developers/integrations/data-platforms/ibm/),  [Unstructured](/developers/integrations/data-platforms/unstructured) |
-| LLM Frameworks | [Composio](/developers/integrations/llm-frameworks/composio/), [DSPy](/developers/integrations/llm-frameworks/dspy/), [Haystack](/developers/integrations/llm-frameworks/haystack/), [LangChain](/developers/integrations/llm-frameworks/langchain/), [LlamaIndex](/developers/integrations/llm-frameworks/llamaindex/), [Semantic Kernel](/developers/integrations/llm-frameworks/semantic-kernel/) |
-| Operations | [Arize](/developers/integrations/operations/arize/), [Langtrace](/developers/integrations/operations/langtrace/), [LangWatch](/developers/integrations/operations/langwatch/), [Nomic](/developers/integrations/operations/nomic/), [Ragas](/developers/integrations/operations/ragas/), [Weights & Biases](/developers/integrations/operations/wandb/) |
+| Cloud Hyperscalers | [AWS](https://docs.weaviate.io/integrations/cloud-hyperscalers/aws), [Google](https://docs.weaviate.io/integrations/cloud-hyperscalers/google)|
+| Compute Infrastructure | [Modal](https://docs.weaviate.io/integrations/compute-infrastructure/modal), [Replicate](https://docs.weaviate.io/integrations/compute-infrastructure/replicate) |
+| Data Platforms |[Airbyte](https://docs.weaviate.io/integrations/data-platforms/airbyte), [Aryn](https://docs.weaviate.io/integrations/data-platforms/aryn/), [Boomi](https://docs.weaviate.io/integrations/data-platforms/boomi/), [Box](https://docs.weaviate.io/integrations/data-platforms/box/), [Confluent](https://docs.weaviate.io/integrations/data-platforms/confluent), [Astronomer](https://docs.weaviate.io/integrations/data-platforms/astronomer), [Context Data](https://docs.weaviate.io/integrations/data-platforms/context-data/), [Databricks](https://docs.weaviate.io/integrations/data-platforms/databricks/), [Firecrawl](https://docs.weaviate.io/integrations/data-platforms/firecrawl), [IBM](https://docs.weaviate.io/integrations/data-platforms/ibm/),  [Unstructured](https://docs.weaviate.io/integrations/data-platforms/unstructured) |
+| LLM and Agent Frameworks | [Agno](https://docs.weaviate.io/integrations/llm-agent-frameworks/agno/) , [Composio](https://docs.weaviate.io/integrations/llm-agent-frameworks/composio/), [CrewAI](https://docs.weaviate.io/integrations/llm-agent-frameworks/crewai/), [DSPy](https://docs.weaviate.io/integrations/llm-agent-frameworks/dspy/), [Dynamiq](https://docs.weaviate.io/integrations/llm-agent-frameworks/dynamiq/), [Haystack](https://docs.weaviate.io/integrations/llm-agent-frameworks/haystack/), [LangChain](https://docs.weaviate.io/integrations/llm-agent-frameworks/langchain/), [LlamaIndex](https://docs.weaviate.io/integrations/llm-agent-frameworks/llamaindex/), [Semantic Kernel](https://docs.weaviate.io/integrations/llm-agent-frameworks/semantic-kernel/) |
+| Operations | [AIMon](https://docs.weaviate.io/integrations/operations/aimon/), [Arize](https://docs.weaviate.io/integrations/operations/arize/), [Cleanlab](https://docs.weaviate.io/integrations/operations/cleanlab/), [Comet](https://docs.weaviate.io/integrations/operations/comet/), [DeepEval](https://docs.weaviate.io/integrations/operations/deepeval/), [Langtrace](https://docs.weaviate.io/integrations/operations/langtrace/), [LangWatch](https://docs.weaviate.io/integrations/operations/langwatch/), [Nomic](https://docs.weaviate.io/integrations/operations/nomic/), [Patronus AI](https://docs.weaviate.io/integrations/operations/patronus/), [Ragas](https://docs.weaviate.io/integrations/operations/ragas/), [TruLens](https://docs.weaviate.io/integrations/operations/trulens/), [Weights & Biases](https://docs.weaviate.io/integrations/operations/wandb/) |
 
 ## Model Provider Integrations 
 Weaviate integrates with self-hosted and API-based embedding models from a range of providers.
 
-Refer to the [documentation page](/developers/weaviate/model-providers) to see the full list of model providers.
+Refer to the [documentation page](https://docs.weaviate.io/weaviate/model-providers) to see the full list of model providers.

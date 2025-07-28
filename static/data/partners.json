@@ -1,19 +1,8 @@
 [
   {
-    "name": "Microsoft Azure",
-    "image": "/img/site/azure-logo-partners.svg",
-    "link": "/developers/weaviate/model-providers/openai-azure",
-    "description": "Deploy Weaviate on the Azure Marketplace and access models from OpenAI via the Microsoft Azure API.",
-    "tags": ["Cloud Hyperscalers", "Model Providers", "Module"],
-    "maintainedBy": "Internal",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
-  },
-  {
     "name": "Google Cloud Platform",
     "image": "/img/site/gcp-icon-partners.svg",
-    "link": "/developers/integrations/cloud-hyperscalers/google",
+    "link": "https://docs.weaviate.io/integrations/cloud-hyperscalers/google",
     "description": "Deploy Weaviate on the GCP Marketplace and seamlessly access models on AI Studio and Vertex AI.",
     "tags": ["Cloud Hyperscalers", "Model Providers", "Module", "Popular"],
     "maintainedBy": "Internal",
@@ -24,7 +13,7 @@
   {
     "name": "Amazon Web Services",
     "image": "/img/site/awsLogo.svg",
-    "link": "/developers/integrations/cloud-hyperscalers/aws",
+    "link": "https://docs.weaviate.io/integrations/cloud-hyperscalers/aws",
     "description": "Deploy Weaviate on the AWS Marketplace and use the SageMaker and Bedrock API to access a variety of models.",
     "tags": ["Cloud Hyperscalers", "Model Providers", "Module", "Popular"],
     "maintainedBy": "Internal",
@@ -33,9 +22,20 @@
     "featured": true
   },
   {
+    "name": "Microsoft Azure",
+    "image": "/img/site/azure-logo-partners.svg",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/openai-azure",
+    "description": "Deploy Weaviate on the Azure Marketplace and access models from OpenAI via the Microsoft Azure API.",
+    "tags": ["Cloud Hyperscalers", "Model Providers", "Module"],
+    "maintainedBy": "Internal",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": true
+  },
+  {
     "name": "Firecrawl",
     "image": "/img/site/firecrawl_logo.svg",
-    "link": "/developers/integrations/data-platforms/firecrawl",
+    "link": "https://docs.weaviate.io/integrations/data-platforms/firecrawl",
     "description": "AI-first web scraping tool.",
     "tags": ["Data Platforms", "Integration"],
     "maintainedBy": "External",
@@ -46,7 +46,7 @@
   {
     "name": "Context Data",
     "image": "/img/site/contextdata_logo.png",
-    "link": "/developers/integrations/data-platforms/context-data",
+    "link": "https://docs.weaviate.io/integrations/data-platforms/context-data",
     "description": "VectorETL enables you to ingest data into Weaviate by using the target connection.",
     "tags": ["Data Platforms", "Integration"],
     "maintainedBy": "",
@@ -57,7 +57,7 @@
   {
     "name": "Aryn",
     "image": "/img/site/aryn_logo.svg",
-    "link": "/developers/integrations/data-platforms/aryn",
+    "link": "https://docs.weaviate.io/integrations/data-platforms/aryn",
     "description": "AI powered ETL system for language model applications.",
     "tags": ["Data Platforms", "Integration"],
     "maintainedBy": "External",
@@ -68,7 +68,7 @@
   {
     "name": "Airbyte",
     "image": "/img/site/airbyte_logo.svg",
-    "link": "/developers/integrations/data-platforms/airbyte",
+    "link": "https://docs.weaviate.io/integrations/data-platforms/airbyte",
     "description": "An open-source data integration engine.",
     "tags": ["Data Platforms", "Integration"],
     "maintainedBy": "External",
@@ -79,7 +79,7 @@
   {
     "name": "Confluent",
     "image": "/img/site/confluent_logo.svg",
-    "link": "/developers/integrations/data-platforms/confluent-cloud",
+    "link": "https://docs.weaviate.io/integrations/data-platforms/confluent",
     "description": "Fully managed Apache Kafka service for real-time streaming. ",
     "tags": ["Data Platforms", "Integration"],
     "maintainedBy": "Internal",
@@ -90,7 +90,7 @@
   {
     "name": "Astronomer",
     "image": "/img/site/astronomer_logo.svg",
-    "link": "/developers/integrations/data-platforms/astronomer",
+    "link": "https://docs.weaviate.io/integrations/data-platforms/astronomer",
     "description": "Managed Apache Airflow for data ingestion into Weaviate.",
     "tags": ["Data Platforms", "Integration"],
     "maintainedBy": "External",
@@ -101,7 +101,7 @@
   {
     "name": "Databricks",
     "image": "/img/site/databricks_logo.svg",
-    "link": "/developers/integrations/data-platforms/databricks",
+    "link": "https://docs.weaviate.io/integrations/data-platforms/databricks",
     "description": "Use models hosted on the Databricks platform and ingest Spark data structured from Databricks into Weaviate.",
     "tags": ["Data Platforms", "Model Providers", "Module", "Popular"],
     "maintainedBy": "Internal",
@@ -112,7 +112,7 @@
   {
     "name": "Unstructured",
     "image": "/img/site/unstructuredio_logo.png",
-    "link": "/developers/integrations/data-platforms/unstructured",
+    "link": "https://docs.weaviate.io/integrations/data-platforms/unstructured",
     "description": "Platform and tools to work with unstructured data for RAG applications.",
     "tags": ["Data Platforms", "Integration"],
     "maintainedBy": "External",
@@ -123,7 +123,7 @@
   {
     "name": "Replicate",
     "image": "/img/site/replicate_logo.jpeg",
-    "link": "/developers/integrations/compute-infrastructure/replicate",
+    "link": "https://docs.weaviate.io/integrations/compute-infrastructure/replicate",
     "description": "Run machine learning models through a cloud API.",
     "tags": ["Compute Infrastructure", "Integration"],
     "maintainedBy": "",
@@ -134,7 +134,7 @@
   {
     "name": "Modal",
     "image": "/img/site/modal_logo.svg",
-    "link": "/developers/integrations/compute-infrastructure/modal",
+    "link": "https://docs.weaviate.io/integrations/compute-infrastructure/modal",
     "description": "Serverless platform for on-demand access to GPUs.",
     "tags": ["Compute Infrastructure", "Integration"],
     "maintainedBy": "",
@@ -145,9 +145,9 @@
   {
     "name": "Composio",
     "image": "/img/site/composio_logo.png",
-    "link": "/developers/integrations/llm-frameworks/composio",
+    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/composio",
     "description": "Manage and integrate tools with language models and AI agents. ",
-    "tags": ["LLM Framework", "Integration"],
+    "tags": ["LLM and Agent Frameworks", "Integration"],
     "maintainedBy": "External",
     "programmingLanguage": "Python",
     "weaviateFeatures": "",
@@ -156,9 +156,9 @@
   {
     "name": "Semantic Kernel",
     "image": "/img/site/sk_logo.png",
-    "link": "/developers/integrations/llm-frameworks/semantic-kernel",
+    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/semantic-kernel",
     "description": "Framework by Microsoft for building large language model (LLM) applications.",
-    "tags": ["LLM Framework", "Integration"],
+    "tags": ["LLM and Agent Frameworks", "Integration"],
     "maintainedBy": "External",
     "programmingLanguage": "C#, Python",
     "weaviateFeatures": "",
@@ -167,9 +167,9 @@
   {
     "name": "Deepset",
     "image": "/img/site/deepset_logo.svg",
-    "link": "/developers/integrations/llm-frameworks/haystack",
+    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/haystack",
     "description": "Build with Haystack for a simple way to build LLM applications.",
-    "tags": ["LLM Framework", "Integration"],
+    "tags": ["LLM and Agent Frameworks", "Integration"],
     "maintainedBy": "External",
     "programmingLanguage": "Python",
     "weaviateFeatures": "",
@@ -178,9 +178,9 @@
   {
     "name": "LlamaIndex",
     "image": "/img/site/llamaindex_logo.svg",
-    "link": "/developers/integrations/llm-frameworks/llamaindex",
+    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/llamaindex",
     "description": "Framework for building large language model (LLM) applications and ingesting data.",
-    "tags": ["LLM Framework", "Integration", "Popular"],
+    "tags": ["LLM and Agent Frameworks", "Integration", "Popular"],
     "maintainedBy": "External",
     "programmingLanguage": "Python, TS/JS",
     "weaviateFeatures": "Filters, Hybrid Search",
@@ -189,9 +189,9 @@
   {
     "name": "LangChain",
     "image": "/img/site/langchain_logo.png",
-    "link": "/developers/integrations/llm-frameworks/langchain",
+    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/langchain",
     "description": "Framework for building large language models (LLM) applications.",
-    "tags": ["LLM Framework", "Integration", "Popular"],
+    "tags": ["LLM and Agent Frameworks", "Integration", "Popular"],
     "maintainedBy": "Internal",
     "programmingLanguage": "Python, TS/JS",
     "weaviateFeatures": "Filters, Hybrid Search, Multi-tenancy",
@@ -200,9 +200,9 @@
   {
     "name": "DSPy",
     "image": "/img/site/dspy_logo.png",
-    "link": "/developers/integrations/llm-frameworks/dspy",
+    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/dspy",
     "description": "Framework for programming language model applications. ",
-    "tags": ["LLM Framework", "Integration", "Popular"],
+    "tags": ["LLM and Agent Frameworks", "Integration", "Popular"],
     "maintainedBy": "Internal",
     "programmingLanguage": "Python",
     "weaviateFeatures": "Hybrid Search",
@@ -211,7 +211,7 @@
   {
     "name": "KubeAI",
     "image": "/img/site/kubeai_logo.png",
-    "link": "/developers/weaviate/model-providers/kubeai",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/kubeai",
     "description": "Run Open AI embedding and generative models on kubernetes.",
     "tags": ["Model Providers", "Module"],
     "maintainedBy": "Internal",
@@ -222,7 +222,7 @@
   {
     "name": "Anyscale",
     "image": "/img/site/anyscale_logo.jpg",
-    "link": "/developers/weaviate/model-providers/anyscale",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/anyscale",
     "description": "Seamlessly connect to models on Anyscale directly from Weaviate.",
     "tags": ["Model Providers", "Module"],
     "maintainedBy": "Internal",
@@ -233,7 +233,7 @@
   {
     "name": "FriendliAI",
     "image": "/img/site/friendliai_logo.svg",
-    "link": "/developers/weaviate/model-providers/friendliai",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/friendliai",
     "description": "Access models on FriendliAI directly from Weaviate.",
     "tags": ["Model Providers", "Module"],
     "maintainedBy": "Internal",
@@ -244,7 +244,7 @@
   {
     "name": "Mistral",
     "image": "/img/site/mistralai_logo.png",
-    "link": "/developers/weaviate/model-providers/mistral",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/mistral",
     "description": "Access embedding and generative models from Mistral.",
     "tags": ["Model Providers", "Module"],
     "maintainedBy": "Internal",
@@ -255,7 +255,7 @@
   {
     "name": "Jina AI",
     "image": "/img/site/jina_logo.svg",
-    "link": "/developers/weaviate/model-providers/jinaai",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/jinaai",
     "description": "Access embedding models from Jina AI.",
     "tags": ["Model Providers", "Module"],
     "maintainedBy": "Internal",
@@ -266,7 +266,7 @@
   {
     "name": "Hugging Face",
     "image": "/img/site/huggingface_logo.svg",
-    "link": "/developers/weaviate/model-providers/huggingface",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/huggingface",
     "description": "Weaviate integrates with Hugging Face\u2019s API and Transformers library.",
     "tags": ["Model Providers", "Module"],
     "maintainedBy": "Internal",
@@ -277,7 +277,7 @@
   {
     "name": "Ollama",
     "image": "/img/site/ollama_logo.png",
-    "link": "/developers/weaviate/model-providers/ollama",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/ollama",
     "description": "Easily run a range of embedding and generative models locally.",
     "tags": ["Model Providers", "Module"],
     "maintainedBy": "Internal",
@@ -288,7 +288,7 @@
   {
     "name": "OctoAI",
     "image": "/img/site/octoai_logo.png",
-    "link": "/developers/weaviate/model-providers/octoai",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/octoai",
     "description": "Access models on OctoAI directly from Weaviate.",
     "tags": ["Model Providers", "Module"],
     "maintainedBy": "Internal",
@@ -299,7 +299,7 @@
   {
     "name": "VoyageAI",
     "image": "/img/site/voyageai_logo.svg",
-    "link": "/developers/weaviate/model-providers/voyageai",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/voyageai",
     "description": "Access Voyage AI\u2019s models (embedding and reranker) directly from Weaviate.",
     "tags": ["Model Providers", "Module"],
     "maintainedBy": "Internal",
@@ -310,7 +310,7 @@
   {
     "name": "Anthropic",
     "image": "/img/site/anthropic_logo.svg",
-    "link": "/developers/weaviate/model-providers/anthropic",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/anthropic",
     "description": "Access a variety of generative models from Anthropic.",
     "tags": ["Model Providers", "Module", "Popular"],
     "maintainedBy": "Internal",
@@ -321,7 +321,7 @@
   {
     "name": "Cohere",
     "image": "/img/site/cohere_logo.svg",
-    "link": "/developers/weaviate/model-providers/cohere",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/cohere",
     "description": "Use a variety of embedding, reranker, and language models from Cohere.",
     "tags": ["Model Providers", "Module", "Popular"],
     "maintainedBy": "Internal",
@@ -332,7 +332,7 @@
   {
     "name": "OpenAI",
     "image": "/img/site/openai_logo.svg",
-    "link": "/developers/weaviate/model-providers/openai",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/openai",
     "description": "Use a variety of embedding and language models from OpenAI",
     "tags": ["Model Providers", "Module", "Popular"],
     "maintainedBy": "Internal",
@@ -343,7 +343,7 @@
   {
     "name": "Weights and Biases",
     "image": "/img/site/wandb_logo2.png",
-    "link": "/developers/integrations/operations/wandb",
+    "link": "https://docs.weaviate.io/integrations/operations/wandb",
     "description": "Weave by W&B offers data analysis APIs for monitoring applications.",
     "tags": ["Operations", "Integration"],
     "maintainedBy": "External",
@@ -354,7 +354,7 @@
   {
     "name": "Ragas",
     "image": "/img/site/ragas_logo.png",
-    "link": "/developers/integrations/operations/ragas",
+    "link": "https://docs.weaviate.io/integrations/operations/ragas",
     "description": "Evaluate your retrieval augmented generation (RAG) applications. ",
     "tags": ["Operations", "Integration"],
     "maintainedBy": "External",
@@ -365,7 +365,7 @@
   {
     "name": "Nomic",
     "image": "/img/site/nomic_logo.svg",
-    "link": "/developers/integrations/operations/nomic",
+    "link": "https://docs.weaviate.io/integrations/operations/nomic",
     "description": "Run GPT4All models and use Atlas to visualize vector embeddings.",
     "tags": ["Model Providers", "Operations", "Integration", "Module"],
     "maintainedBy": "External",
@@ -376,7 +376,7 @@
   {
     "name": "LangWatch",
     "image": "/img/site/langwatch_logo.png",
-    "link": "/developers/integrations/operations/langwatch",
+    "link": "https://docs.weaviate.io/integrations/operations/langwatch",
     "description": "Connect LangWatch to your Weaviate instance to log operational traces.",
     "tags": ["Operations", "Integration"],
     "maintainedBy": "External",
@@ -387,8 +387,8 @@
   {
     "name": "Langtrace",
     "image": "/img/site/langtrace_logo.png",
-    "link": "/developers/integrations/operations/langtrace",
-    "description": "View vector search queries and generative calls that are made to your Weaviate cluster.",
+    "link": "https://docs.weaviate.io/integrations/operations/langtrace",
+    "description": "View vector search queries and generative calls that are made to your Weaviate cluster",
     "tags": ["Operations", "Integration"],
     "maintainedBy": "External",
     "programmingLanguage": "Python",
@@ -398,8 +398,8 @@
   {
     "name": "Arize AI",
     "image": "/img/site/arize_logo.svg",
-    "link": "/developers/integrations/operations/arize",
-    "description": "Log search queries sent to Weaviate and requests sent to LLM providers in Phoenix.",
+    "link": "https://docs.weaviate.io/integrations/operations/arize",
+    "description": "Log search queries sent to Weaviate and requests sent to LLM providers in Phoenix",
     "tags": ["Operations", "Integration"],
     "maintainedBy": "External",
     "programmingLanguage": "Python",
@@ -409,10 +409,164 @@
   {
     "name": "IBM",
     "image": "/img/site/IBM_logo.svg.png",
-    "link": "/developers/integrations/data-platforms/ibm",
+    "link": "https://docs.weaviate.io/integrations/data-platforms/ibm",
     "description": "IBM offers a variety of solutions for building generative AI applications",
     "tags": ["Data Platforms", "Integration"],
     "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
+  },
+  {
+    "name": "DeepEval",
+    "image": "/img/site/deepeval-logo.png",
+    "link": "https://docs.weaviate.io/integrations/operations/deepeval",
+    "description": "Evaluate your generative AI applications with DeepEval's open-source LLM framework",
+    "tags": ["Operations", "Integration"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
+  },
+  {
+    "name": "Box",
+    "image": "/img/site/box-logo.png",
+    "link": "https://docs.weaviate.io/integrations/data-platforms/box",
+    "description": "Connect data in Box to Weaviate for advanced search and generative AI applications",
+    "tags": ["Data Platforms", "Integration"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": true
+  },
+  {
+    "name": "NVIDIA",
+    "image": "/img/site/nvidia.png",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/nvidia",
+    "description": "Connect to a variety of models on NVIDIA NIM",
+    "tags": ["Model Providers", "Module"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
+  },
+  {
+    "name": "Dynamiq",
+    "image": "/img/site/dynamiq.png",
+    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/dynamiq",
+    "description": "Operating platform for agentic AI applications",
+    "tags": ["LLM and Agent Frameworks", "Integration"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
+  },
+  {
+    "name": "CrewAI",
+    "image": "/img/site/crewai.png",
+    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/crewai",
+    "description": "LLM and Agent Framework for building multi-agent applications",
+    "tags": ["LLM and Agent Frameworks", "Integration"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
+  },
+  {
+    "name": "Agno",
+    "image": "/img/site/agno.png",
+    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/agno",
+    "description": "A lightweight library for building Multimodal Agents ",
+    "tags": ["LLM and Agent Frameworks", "Integration"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
+  },
+  {
+    "name": "Boomi",
+    "image": "/img/site/boomi.png",
+    "link": "https://docs.weaviate.io/integrations/data-platforms/boomi",
+    "description": "Perform operations such as data ingestion and retrieval directly from Boomi's low-code environment",
+    "tags": ["Data Platforms", "Integration"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
+  },
+  {
+    "name": "Snowflake",
+    "image": "/img/site/snowflake.png",
+    "link": "https://docs.weaviate.io/weaviate/installation/spcs-integration",
+    "description": "Leverage generative AI capabilities within the boundaries of your Snowflake data environment",
+    "tags": ["Cloud Hyperscalers"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
+  },
+  {
+    "name": "TruLens",
+    "image": "/img/site/trulens-logo.png",
+    "link": "https://docs.weaviate.io/integrations/operations/trulens",
+    "description": "TruLens is an open source project for evaluating and tracking LLM applications",
+    "tags": ["Operations", "Integration"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
+  },
+  {
+    "name": "AIMon",
+    "image": "/img/site/aimon.png",
+    "link": "https://docs.weaviate.io/integrations/operations/aimon",
+    "description": "AIMon offers monitoring and reranking tools to evaluate, optimize, and improve LLM applications",
+    "tags": ["Operations", "Integration"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
+  },
+  {
+    "name": "Cleanlab",
+    "image": "/img/site/cleanlab-logo.png",
+    "link": "https://docs.weaviate.io/integrations/operations/cleanlab",
+    "description": "Cleanlab provides software to detect and remediate inaccurate responses from Enterprise AI applications",
+    "tags": ["Operations", "Integration"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
+  },
+  {
+    "name": "Patronus AI",
+    "image": "/img/site/patronus-logo.png",
+    "link": "https://docs.weaviate.io/integrations/operations/patronus",
+    "description": "Patronus AI offers many tools and solutions for observability and evaluations",
+    "tags": ["Operations", "Integration"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
+  },
+  {
+    "name": "Comet",
+    "image": "/img/site/comet-logo.png",
+    "link": "https://docs.weaviate.io/integrations/operations/comet",
+    "description": "Comet allows you to track, evaluate, and monitor both traditional and LLM models end-to-end.",
+    "tags": ["Operations", "Integration"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
+  },
+  {
+    "name": "N8n",
+    "image": "/img/site/n8n-logo.png",
+    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/n8n",
+    "description": "N8n is a low‑code workflow automation platform that lets users build generative AI applications.",
+    "tags": ["LLM and Agent Frameworks", "Integration"],
+    "maintainedBy": "Internal",
     "programmingLanguage": "",
     "weaviateFeatures": "",
     "featured": false

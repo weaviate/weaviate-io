@@ -92,7 +92,7 @@ For example, if a user asks the AI to generate questions about  “buying a bouq
   />
 </figure>
 
-Under the hood,  the app first gathers the query and relevant profile data, such as the user’s past mistakes, and sends this information to **Weaviate**. Weaviate uses these inputs to craft a prompt, which it then passes to an LLM (OpenAI in this case) via the [generative-openai](https://weaviate.io/developers/weaviate/model-providers/openai/generative) module. The LLM generates personalized questions that are sent back to the app and saved in the **PostgreSQL** database, which serves as the system of record. To capture the fluency of the user, Wealingo fetches the past unanswered or wrong questions and uses them in the context. 
+Under the hood,  the app first gathers the query and relevant profile data, such as the user’s past mistakes, and sends this information to **Weaviate**. Weaviate uses these inputs to craft a prompt, which it then passes to an LLM (OpenAI in this case) via the [generative-openai](https://docs.weaviate.io/weaviate/model-providers/openai/generative) module. The LLM generates personalized questions that are sent back to the app and saved in the **PostgreSQL** database, which serves as the system of record. To capture the fluency of the user, Wealingo fetches the past unanswered or wrong questions and uses them in the context. 
 
 ```python
 context = "Create 3 new questions based on fluency of user"

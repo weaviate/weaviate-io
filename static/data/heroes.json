@@ -43,5 +43,14 @@
       "linkedin": "https://www.linkedin.com/in/eda-johnson-0a2783/",
       "slack": "https://weaviate.slack.com/team/U05R1P491L4"
     }
+  },
+  {
+    "name": "Michael Pont",
+    "title": "CTO",
+    "image": "/img/people/heroes/michael-pont.jpg",
+    "socialLinks": {
+      "linkedin": "https://www.linkedin.com/in/michael-t-pont/",
+      "slack": "https://weaviate.slack.com/team/U06HWGP43LN"
+    }
   }
 ]

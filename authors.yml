@@ -9,7 +9,8 @@ alea:
   image_url: /img/people/icon/alea.jpg
 alvin:
   name: Alvin Richards
-  title: Head of Product
+  title: VP of Product
+  url: mailto:alvin@weaviate.io
   image_url: /img/people/icon/alvin.jpg
 ara:
   name: Ara Gonzalez
@@ -28,7 +29,7 @@ bob:
   image_url: /img/people/icon/bob.jpg
 byron:
   name: Byron Voorbach
-  title: Head of Customer Success
+  title: Field CTO
   url: https://github.com/byronvoorbach
   image_url: /img/people/icon/byron.jpg
 connor:
@@ -101,11 +102,26 @@ mary:
   title: Machine Learning Engineer
   url: https://www.linkedin.com/in/mary-newhauser-02273551/
   image_url: /img/people/icon/mary.jpg
+nenand:
+  name: Nenad Malić
+  title: Product Marketing Manager
+  url: mailto:nenad@weaviate.io
+  image_url: /img/people/icon/nenand.jpeg
 pete:
   name: Peter Schramm
   title: WCD Tech Lead
   url: https://github.com/glockenbeat
   image_url: /img/people/icon/pete.jpg
+prajjwal:
+  name: Prajjwal Yadav
+  title: Developer Advocate Intern
+  url: https://www.linkedin.com/in/prajjwalyd
+  image_url: /img/people/icon/prajjwal.jpg
+roberto:
+  name: Roberto Esposito
+  title: Research Engineer
+  url: https://www.linkedin.com/in/robbespo00
+  image_url: /img/people/icon/roberto.jpg
 sebastian:
   name: Sebastian Witalec
   title: Head of DevRel
@@ -136,11 +152,26 @@ shukri:
   title: Integration Solution Engineer
   url: https://github.com/hsm207
   image_url: /img/people/icon/shukri.jpg
+tejas:
+  name: Tejas Sharma
+  title: Founder of Constella
+  url: https://x.com/taayjus
+  image_url: /img/people/icon/tejas.jpeg
+tomaz:
+  name: Tomaz Bratanic
+  title: GenAI Research at Neo4J
+  url: https://github.com/tomasonjo
+  image_url: /img/people/icon/tomaz-neo4j.jpg
 tommy:
   name: Tommy Smith
   title: Polyglot Engineer
   url: https://github.com/tsmith023
   image_url: /img/people/icon/tommy.jpg
+tuana:
+  name: Tuana Çelik
+  title: Developer Relations Engineer
+  url: https://linkedin.com/in/tuanacelik
+  image_url: /img/people/icon/tuana.jpg
 jerry:
   name: Jerry Liu
   title: Co-Founder/CEO LlamaIndex
@@ -235,10 +266,10 @@ jobi:
   url: https://www.linkedin.com/in/jobigeorge/
   image_url: /img/people/icon/jobi.jpg
 spiros:
-  name: Spiros
-  title: Head of Security
+  name: Spiros Andreou
+  title: Director of Security & Compliance
   url: https://github.com/spiros-spiros
-  image_url: /img/people/icon/spiros.jpg
+  image_url: /img/people/team/spiros.jpg
 staci:
   name: Staci Blue
   title: Event Marketing Manager
@@ -254,3 +285,28 @@ crispin:
   title: Cloud Vertex AI Lead
   url: https://www.linkedin.com/in/crispinvelez/
   image_url: /img/people/icon/crispin.jpeg
+amourao:
+  name: André Mourão
+  title: Core Engineer
+  url: https://github.com/amourao
+  image_url: /img/people/icon/amourao.jpg
+danny:
+  name: Danny Williams
+  title: Machine Learning Engineer
+  url: https://www.linkedin.com/in/dannyjameswilliams/
+  image_url: /img/people/icon/danny.jpeg
+prasad:
+  name: Prasad Kona
+  title: Lead Solution Architect
+  url: https://www.linkedin.com/in/pkona/
+  image_url: /img/people/icon/prasad.jpeg
+daniellew:
+  name: Danielle Washington
+  title: Technical Documentation Writer
+  url: https://www.linkedin.com/in/dwashington-clouddani/
+  image_url: /img/people/icon/daniellew.jpeg
+damien:
+  name: Damien Gasparina
+  title: Solution Engineer
+  url: https://www.linkedin.com/in/gasparinadamien/
+  image_url: /img/people/icon/damien.png
