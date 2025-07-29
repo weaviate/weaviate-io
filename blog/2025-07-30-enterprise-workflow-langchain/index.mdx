@@ -12,9 +12,9 @@ description: "TODO"
 
 As demand for generative AI applications grows, so does the complexity of the infrastructure needed to support them. Developers today are no longer working with a single database or a single data source. They need flexible, robust, and scalable tools that can streamline their AI workflows and enhance their ability to innovate.
 
-The synergy between **[LangChain’s](https://js.langchain.com/docs/introduction/) flexible interface** and **Weaviate’s powerful vector storage and search** makes them a compelling combo for building modern, scalable, and intelligent applications. Whether you’re prototyping a chatbot, developing a knowledge base, or scaling enterprise AI workloads, these tools provide the flexibility and performance you need.
+The synergy between **[LangChain’s](https://js.langchain.com/docs/introduction/) flexible interface** and **Weaviate’s powerful vector storage and search** makes them a compelling combination for building modern, scalable, and intelligent applications. Whether you’re prototyping a chatbot, developing a knowledge base, or scaling enterprise AI workloads, these tools provide the flexibility and performance you need.
 
-By abstracting infrastructure complexity and focusing on developer experience, both LangChain and Weaviate are lowering the barrier to entry for AI application development—without compromising on capability or scale. Weaviate supports a wide range of search capabilities, enabling developers to conduct basic similarity searches and more advanced queries with metadata filtering. The real power for Enterprise workflows, however, emerges when you **combine LangChain's orchestration layer with Weaviate’s storage and search capabilities**.
+By abstracting infrastructure complexity and focusing on developer experience, both LangChain and Weaviate are lowering the barrier to entry for AI application development—without compromising on capability or scale. Weaviate supports a wide range of search capabilities, enabling developers to conduct basic similarity searches and more advanced queries with metadata filtering. The real power for enterprise workflows, however, emerges when you **combine LangChain's orchestration layer with Weaviate’s storage and search capabilities**.
 
 ### Example Architecture
 
@@ -30,11 +30,11 @@ Let’s consider a pipeline that ingests customer support tickets, enriches them
     - LangChain orchestrates the search, summarization, and answer generation
     - Use LangChain agents to handle follow-up questions or route to other tools
 
-This workflow is incredibly flexible. If you want to switch from OpenAI to Hugging Face for embeddings, LangChain’s abstractions make it as simple as changing a few lines of code. To enable Hybrid search and RAG via Weaviate, you need to migrate to the Weaviate v3 typescipt client.
+This workflow is incredibly flexible. If you want to switch from OpenAI to Hugging Face for embeddings, LangChain’s abstractions make it as simple as changing a few lines of code. To enable Hybrid search and RAG via Weaviate, you need to migrate to the Weaviate v3 Typescipt client.
 
-### Why migrate to Weaviate typescript v3?
+### Why migrate to Weaviate Typescript v3?
 
-With v3, the typescript client provides full type safety and clear compile-time checks, significantly improving the developer experience by reducing runtime errors. Importantly, the client uses gRPC transport, offering [better performance over previous versions](https://weaviate.io/blog/grpc-performance-improvements) using REST. To understand the differences between version v2 and v3 in detail, check [documentation](https://docs.weaviate.io/weaviate/client-libraries/typescript). 
+With v3, the Typescript client provides full type safety and clear compile-time checks, significantly improving the developer experience by reducing runtime errors. Importantly, the client uses gRPC transport, offering [improved performance over previous versions](https://weaviate.io/blog/grpc-performance-improvements) using REST. To understand the differences between version v2 and v3 in detail, check [documentation](https://docs.weaviate.io/weaviate/client-libraries/typescript). 
 
 | **Feature** | **v2 client** | **v3 client** |
 | --- | --- | --- |
@@ -55,13 +55,13 @@ npm install weaviate-client @langchain/core @langchain/weaviate openai dotenv -D
 
 ### Initiating Weaviate store in Langchain
 
-To initiate Weaviate store in Langchain, we need to first create an instance of Weaviate client. Use one of the connection helper functions to connect to a weaviate instance. 
+To initiate a Weaviate store in Langchain, you first need to create an instance of Weaviate client. Use one of the connection helper functions to connect to a Weaviate instance. 
 
 - `connectToWeaviateCloud`
 - `connectToLocal`
 - `connectToCustom`
 
-If connecting to Weaviate cloud, you’d need both an API key and a url. Configure the necessary environment variables, as shown below. If your model needs an API key to access it, include them too. To learn more how to configure and use the v3 client, visit [this page](https://weaviate.io/developers/weaviate/client-libraries/typescript/typescript-v3).
+If connecting to Weaviate Cloud, you’d need both an API key and a url. Configure the necessary environment variables, as shown below. If your model needs an API key to access it, include it too. To learn more how to configure and use the v3 client, visit [this page](https://weaviate.io/developers/weaviate/client-libraries/typescript/typescript-v3).
 
 ```python
 export WEAVIATE_URL="https://[url]:8080"
@@ -87,7 +87,7 @@ const weaviateClient = weaviate.connectToWeaviateCloud(
 );
 ```
 
-Next, use Weaviate client to initiate a vector store in Langchain. `indexName` is the name of the collection, while `metadataKeys` are the other fields for the collection. If [auto-schema](https://docs.weaviate.io/weaviate/config-refs/schema#auto-schema) is enabled, Weaviate can infer missing elements and add them to the collection definition. 
+Next, use the Weaviate client to initiate a vector store in Langchain. `indexName` is the name of the collection, while `metadataKeys` are the other fields for the collection. If [auto-schema](https://docs.weaviate.io/weaviate/config-refs/schema#auto-schema) is enabled, Weaviate can infer missing elements and add them to the collection definition. 
 
 ```python
 import { OpenAIEmbeddings } from '@langchain/openai';
@@ -104,7 +104,7 @@ const weaviateStore = new WeaviateStore(
 );
 ```
 
-It is a best practice to manually define as much of the data schema as possible since manual definition gives you the most control. Following is a simple example of a collection/schema definition. To learn more configuration options, visit the [collection](https://docs.weaviate.io/weaviate/starter-guides/managing-collections#collection-definitions-in-detail) docs. 
+It is best practice to manually define as much of the data schema as possible since manual definition gives you the most control. Following is a simple example of a collection/schema definition. To learn more configuration options, visit the [collection](https://docs.weaviate.io/weaviate/starter-guides/managing-collections#collection-definitions-in-detail) docs. 
 
 ```python
 import { OpenAIEmbeddings } from '@langchain/openai';
@@ -133,7 +133,7 @@ const weaviateStore = new WeaviateStore(
 );
 ```
 
-If `schema` is provided, the values within it’s definition (collection name, metadata/properties etc.) will take precedence. 
+If a `schema` is provided, the values within its definition (collection name, metadata/properties etc.) will take precedence. 
 
 ### Indexing Data
 
