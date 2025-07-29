@@ -2,4 +2,3 @@ Sitemap: https://weaviate.io/sitemap-index.xml
 User-agent: *
 Allow: /
 Disallow: /*?*
-Disallow: /developers

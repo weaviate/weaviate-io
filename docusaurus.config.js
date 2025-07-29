@@ -312,18 +312,8 @@ const config = {
     presets: [
         [
             '@docusaurus/preset-classic',
-            /** @type {import('@docusaurus/preset-classic').Options} */
-            ({
-                docs: {
-                    sidebarPath: require.resolve('./sidebars.js'),
-                    path: 'developers', // folder name – where the docs are
-                    routeBasePath: 'developers', // route name – where to navigate for docs i.e. weaviate.io/<route-base-path>/...
-
-                    // editUrl:
-                    //     'https://github.com/weaviate/weaviate-io/tree/main/',
-                    // remarkPlugins: [remarkReplace, math],
-                    // rehypePlugins: [katex],
-                },
+            {
+                docs: false,
                 blog: {
                     blogTitle: 'Blog',
                     blogDescription: 'Blog',
@@ -343,7 +333,7 @@ const config = {
                         require.resolve('./src/css/blog-and-docs.scss'),
                     ],
                 },
-            }),
+            },
         ],
     ],
 
@@ -360,12 +350,12 @@ const config = {
                 textColor: '#F5F5F5',
                 isCloseable: true,
             },
-            docs: {
-                sidebar: {
-                    hideable: true,
-                    autoCollapseCategories: true,
-                },
-            },
+            // docs: {
+            //     sidebar: {
+            //         hideable: true,
+            //         autoCollapseCategories: true,
+            //     },
+            // },
             navbar: {
                 title: '',
                 // hideOnScroll: true,
