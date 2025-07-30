@@ -35,7 +35,7 @@ Backed by [Weaviate Agents](/blog/weaviate-agents) integrated through Elysia (wh
 
 :::info
 
-Weaviate Agents are pre-built agentic services designed for specific tasks. They are available out-of-the-box for Weaviate Cloud users to interact with their data in Weaviate Cloud to simplify data engineering and AI development workflows. Learn more about Weaviate Agents [here](/developers/agents).
+Weaviate Agents are pre-built agentic services designed for specific tasks. They are available out-of-the-box for Weaviate Cloud users to interact with their data in Weaviate Cloud to simplify data engineering and AI development workflows. Learn more about Weaviate Agents [here](https://docs.weaviate.io/agents).
 :::
 
 Why does that matter for skincare? Because real solutions require more than just popular products! They require understanding your unique skin type, goals, conditions, and how different ingredients interact. A skincare domain agent should:
@@ -76,7 +76,7 @@ A common approach in product recommendation is to embed the entire product objec
 
 ### Solution: A Dual Embedding Strategy
 
-We separate the concept of a product into two distinct embeddings, using [named vectors in Weaviate](/developers/weaviate/config-refs/schema/multi-vector) so that each vector is independently searchable:
+We separate the concept of a product into two distinct embeddings, using [named vectors in Weaviate](https://docs.weaviate.io/weaviate/config-refs/schema/multi-vector) so that each vector is independently searchable:
 
 1. **Product Embedding:**
     - Captures descriptive metadata: name, brand, category, ingredients, etc.
@@ -292,7 +292,7 @@ One of Elysia's most useful tools is the **Weaviate Query Agent**. This agent 
 
 :::info
 
-The Weaviate Query Agent is a pre-built agentic service designed to answer natural language queries based on the data stored in Weaviate Cloud. The user simply provides a prompt/question in natural language, and the Query Agent takes care of all intervening steps to provide an answer. [Learn more](/developers/agents/query).
+The Weaviate Query Agent is a pre-built agentic service designed to answer natural language queries based on the data stored in Weaviate Cloud. The user simply provides a prompt/question in natural language, and the Query Agent takes care of all intervening steps to provide an answer. [Learn more](https://docs.weaviate.io/agents/query).
 ::: 
 
 For example, if you ask something like, "Find me a hydrating serum for sensitive skin," the Agent Manager hands your request to Elysia, which then will decide to call on the Weaviate Query Agent. Here’s how it works:
