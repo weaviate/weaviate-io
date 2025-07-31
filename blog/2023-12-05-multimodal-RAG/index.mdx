@@ -12,20 +12,20 @@ description: "Learn how to build Multimodal Retrieval Augmented Generation (MM-R
 
 ![The wonderful world of multimodality in Retrieval-Augmented Generation](./img/hero.png)
 
-Multimodal Retrieval-Augmented Generation (MM-RAG) extends the capabilities of traditional [Retrieval-Augmented Generation (RAG)](https://weaviate.io/blog/introduction-to-rag) systems from text-only modalities to other modalities, like images, audio, and video. The multimodal aspect refers to both the retrieval pipeline with [multimodal embedding models](https://weaviate.io/blog/multimodal-models) the generation pipeline with multimodal generative models, such as vision language models.
+Multimodal Retrieval-Augmented Generation (MM-RAG) extends the capabilities of traditional [Retrieval-Augmented Generation (RAG)](/blog/introduction-to-rag) systems from text-only modalities to other modalities, like images, audio, and video. The multimodal aspect refers to both the retrieval pipeline with [multimodal embedding models](/blog/multimodal-models) the generation pipeline with multimodal generative models, such as vision language models.
 
 [The average human hears and learns from about 1 billion words in their entire lifetime](https://youtu.be/Ckz8XA2hW84?t=2286). This might be an over-approximation, but it is in the correct ballpark because 1 billion seconds is about 30 years, and we don’t hear more than a few words per second. Accounting for sleeping, eating, and other activities, doing some back-of-the-napkin calculations, we can arrive at the above number.
 
 The issue, however, is that current Large Language Models (LLMs) are trained on trillions of tokens, many orders of magnitude more data than we ever see in our lifetime. Yet they still don’t have as vivid of an understanding of the causal relationships that exist in the world. From this, we can infer that the way humans learn is fundamentally different from how our current state-of-the-art models learn.
 Humans have a remarkable ability to learn and build world models through the integration of multiple sensory inputs. Our combination of senses works synergistically to provide us with rich and diverse information about our environment. By combining and interpreting these sensory inputs, we can form a coherent understanding of the world, make predictions, acquire new knowledge, and establish causal relationships very efficiently. Not only do humans capture and use multimodal representations of information, but given a task, we can also incorporate any of these modalities as context to help us guide our answers.
 
-If you’d like to explore this line of thinking further and the potential problems that need to be addressed when getting computers to take advantage of multimodal data, have a look at my previous [blog on multimodal embedding models](https://weaviate.io/blog/multimodal-models).
+If you’d like to explore this line of thinking further and the potential problems that need to be addressed when getting computers to take advantage of multimodal data, have a look at my previous [blog on multimodal embedding models](/blog/multimodal-models).
 
 :::info TLDR
 In this post, we’ll touch on:
 
 - **Contrastive Learning:** One particular approach to training multimodal embedding models that can understand images, audio, video, text, and more
-- **Any-to-Any Search and Retrieval:** Using multimodal embedding models to perform any-to-any search and scaling these multimodal embeddings into production using [vector databases](https://www.notion.so/blog/what-is-a-vector-database), like Weaviate (w*ith code examples!*)
+- **Any-to-Any Search and Retrieval:** Using multimodal embedding models to perform any-to-any search and scaling these multimodal embeddings into production using [vector databases](/blog/what-is-a-vector-database), like Weaviate (*with code examples!*)
 - **Multimodal Retrieval-Augmented Generation (MM-RAG)**: Augmenting the generation from Large Multimodal Models (LMMs) with multimodal information retrieval of images and more for visual question answering systems.
 - **Code Demo of RAG**
 :::
@@ -48,7 +48,6 @@ To get a better intuitive understanding of how this process works, imagine you e
 *Source: [Zolfaghari et al. 2021](https://lmb.informatik.uni-freiburg.de/Publications/2021/ZB21/)*
 
 If we can continually do this for a large enough dataset of labeled points, then we can tighten the representations of data objects in embedding space and even unify the models of different modalities. Another benefit of ImageBind was the use of frozen image model representations to bind other modalities with cross-modal contrastive loss training. This is why it's called ImageBind. Embeddings that start differently can then be pulled towards the image representations. Thus, all of the similar concepts across modalities can be unified such that a concept across all modalities will have similar vectors - demonstrated in the image below. To learn in more depth about contrastive representation learning, I would recommend this [blog](https://lilianweng.github.io/posts/2021-05-31-contrastive/).
-
 
 ![unified_emb_Dark](./img/unified_emb_D.png#gh-dark-mode-only)
 ![unified_emb__Light](./img/unified_emb_L.png#gh-light-mode-only)
@@ -247,7 +246,7 @@ image_url = generate_image_dalee3(GENERATED_DESCRIPTION)
 ![generated puppy](./img/puppy_dalle.png)
 ## Recent Advancements in Multimodal RAG
 
-Recent advancements in the retrieval mechanism with multimodal [late-interaction models](https://weaviate.io/blog/late-interaction-overview), such as ColPali, ColQwen, or ColQwen-Omni, as accelerated developments in multimodal RAG systems. In these modern AI systems, PDF documents are treated as multimodal documents that contain texts, images, tables, charts, etc.
+Recent advancements in the retrieval mechanism with multimodal [late-interaction models](/blog/late-interaction-overview), such as ColPali, ColQwen, or ColQwen-Omni, as accelerated developments in multimodal RAG systems. In these modern AI systems, PDF documents are treated as multimodal documents that contain texts, images, tables, charts, etc.
 
 For an example implementation, refer to [this notebook showcasing multimodal RAG on PDF documents using ColPali](https://github.com/weaviate/recipes/blob/main/weaviate-features/multi-vector/multi-vector-colipali-rag.ipynb)
 
