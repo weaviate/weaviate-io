@@ -570,5 +570,16 @@
     "programmingLanguage": "",
     "weaviateFeatures": "",
     "featured": false
+  },
+    {
+    "name": "Replicated",
+    "image": "/img/site/replicated-logo.png",
+    "link": "https://docs.weaviate.io/integrations/compute-infrastructure/replicated",
+    "description": "Replicated enables vendors to deliver and manage Kubernetes apps in secure environments.",
+    "tags": ["Compute Infrastructure"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
   }
 ]
