@@ -9,10 +9,10 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate/auth"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate/filters"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
+	"github.com/weaviate/weaviate-go-client/v5/weaviate"
+	"github.com/weaviate/weaviate-go-client/v5/weaviate/auth"
+	"github.com/weaviate/weaviate-go-client/v5/weaviate/filters"
+	"github.com/weaviate/weaviate-go-client/v5/weaviate/graphql"
 )
 
 // ================================
@@ -21,28 +21,28 @@ import (
 
 func setupClient() *weaviate.Client {
 	// Best practice: store your credentials in environment variables
-	wcdURL := os.Getenv("WCD_DEMO_URL")
-	wcdAPIKey := os.Getenv("WCD_DEMO_RO_KEY")
+	weaviateURL := os.Getenv("WEAVIATE_URL")
+	weaviateAPIKey := os.Getenv("WEAVIATE_API_KEY")
 	//openaiAPIKey := os.Getenv("OPENAI_APIKEY")
-	wcdScheme := os.Getenv("WCD_DEMO_SCHEME")
-	if wcdScheme == "" {
-		wcdScheme = "https"
+	weaviateScheme := os.Getenv("WEAVIATE_SCHEME")
+	if weaviateScheme == "" {
+		weaviateScheme = "https"
 	}
 
 	var cfg weaviate.Config
 
-	if strings.Contains(wcdURL, "localhost") {
+	if strings.Contains(weaviateURL, "localhost") {
 		cfg = weaviate.Config{
-			Host:   wcdURL,
-			Scheme: wcdScheme,
+			Host:   weaviateURL,
+			Scheme: weaviateScheme,
 		}
 	} else {
 
 		cfg = weaviate.Config{
-			Host:   wcdURL,
-			Scheme: wcdScheme,
+			Host:   weaviateURL,
+			Scheme: weaviateScheme,
 			AuthConfig: auth.ApiKey{
-				Value: wcdAPIKey,
+				Value: weaviateAPIKey,
 			},
 			//Headers: map[string]string{
 			//	"X-OpenAI-Api-Key": openaiAPIKey,

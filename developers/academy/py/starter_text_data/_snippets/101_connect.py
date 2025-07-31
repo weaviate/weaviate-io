@@ -4,9 +4,9 @@ from weaviate.classes.init import Auth
 import os
 
 client = weaviate.connect_to_weaviate_cloud(
-    cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your WCD URL
+    cluster_url=os.getenv("WEAVIATE_URL"),  # Replace with your WCD URL
     auth_credentials=Auth.api_key(
-        os.getenv("WCD_DEMO_ADMIN_KEY")
+        os.getenv("WEAVIATE_API_KEY")
     ),  # Replace with your WCD key
 )
 # END WCDInstantiation
@@ -23,9 +23,9 @@ headers = {
 }  # Replace with your OpenAI API key
 
 client = weaviate.connect_to_weaviate_cloud(
-    cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your WCD URL
+    cluster_url=os.getenv("WEAVIATE_URL"),  # Replace with your WCD URL
     auth_credentials=Auth.api_key(
-        os.getenv("WCD_DEMO_ADMIN_KEY")
+        os.getenv("WEAVIATE_API_KEY")
     ),  # Replace with your WCD key
     headers=headers,
 )
@@ -140,9 +140,9 @@ import os
 from weaviate.classes.init import Auth
 
 client = weaviate.connect_to_weaviate_cloud(
-    cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your WCD URL
+    cluster_url=os.getenv("WEAVIATE_URL"),  # Replace with your WCD URL
     auth_credentials=Auth.api_key(
-        os.getenv("WCD_DEMO_ADMIN_KEY")
+        os.getenv("WEAVIATE_API_KEY")
     ),  # Replace with your WCD key
 )
 

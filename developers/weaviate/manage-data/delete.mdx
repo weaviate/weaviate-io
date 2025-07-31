@@ -187,7 +187,7 @@ To delete objects that match a set of criteria, specify the collection and a [`w
     Additional information
   </summary>
 
-- There is a configurable [maximum limit (QUERY_MAXIMUM_RESULTS)](../config-refs/env-vars.md#general) on the number of objects that can be deleted in a single query (default 10,000). To delete more objects than the limit, re-run the query.
+- There is a configurable [maximum limit (QUERY_MAXIMUM_RESULTS)](../config-refs/env-vars/index.md#general) on the number of objects that can be deleted in a single query (default 10,000). To delete more objects than the limit, re-run the query.
 
 </details>
 
@@ -296,7 +296,7 @@ There is an upper limit (`QUERY_MAXIMUM_RESULTS`) to how many objects can be del
 
 Objects are deleted in the same order that they would be fetched, by order of UUID. To delete more objects than the limit, run the same query multiple times until no objects are matched anymore.
 
-The default `QUERY_MAXIMUM_RESULTS` value is 10,000. This may be configurable, e.g. in [the environment variables](../config-refs/env-vars.md).
+The default `QUERY_MAXIMUM_RESULTS` value is 10,000. This may be configurable, e.g. in [the environment variables](../config-refs/env-vars/index.md).
 
 </details>
 
@@ -383,7 +383,7 @@ client.batch().objectsBatchDeleter()
 
 ## Delete all objects
 
-Objects must belong to a collection in Weaviate. Accordingly, <a href="/developers/weaviate/manage-data/collections#delete-a-collection">deleting collections</a> will remove all objects within them.
+Objects must belong to a collection in Weaviate. Accordingly [deleting collections](/developers/weaviate/manage-data/collections#delete-a-collection) will remove all objects within them.
 
 ## Optional parameters
 

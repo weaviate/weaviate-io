@@ -18,7 +18,7 @@ import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
 Weaviate's integration with OpenAI-style APIs allows you to access KubeAI models' directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use KubeAI, and Weaviate will perform retrieval augmented generation (RAG) using the specified model.
+[Configure a Weaviate collection](#configure-collection) to use a generative AI model with KubeAI. Weaviate will perform retrieval augmented generation (RAG) using the specified model.
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the KubeAI generative model to generate outputs.
 
@@ -108,6 +108,29 @@ Configure Weaviate to use a KubeAI generative AI model:
 Any model that is supported by vLLM or Ollama can be used with KubeAI.
 
 Refer to the [KubeAI docs on model management](https://www.kubeai.org/how-to/manage-models/) for more information on available models and how to configure them.
+
+## Select a model at runtime
+
+Aside from setting the default model provider when creating the collection, you can also override it at query time.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START RuntimeModelSelectionKubeAI"
+      endMarker="# END RuntimeModelSelectionKubeAI"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START RuntimeModelSelectionKubeAI"
+      endMarker="// END RuntimeModelSelectionKubeAI"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
 
 ## Retrieval augmented generation
 

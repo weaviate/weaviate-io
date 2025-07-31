@@ -25,9 +25,10 @@ const DOC_SYSTEMS = {
         constructUrl: (baseUrl, ref) => `${baseUrl}/${ref}`,
         icon: '/img/site/logo-ts.svg',
     },
+    // tsv2: {}  // No inline docs for the old version
     go: {
         baseUrl:
-            'https://pkg.go.dev/github.com/weaviate/weaviate-go-client/v4/weaviate',
+            'https://pkg.go.dev/github.com/weaviate/weaviate-go-client/v5/weaviate',
         constructUrl: (baseUrl, ref) => `${baseUrl}#${ref}`,
         icon: '/img/site/logo-go.svg',
     },
@@ -135,6 +136,9 @@ const FilteredTextBlock = ({
     switch (language2) {
         case 'pyv3':
             language2 = 'py';
+            break;
+        case 'tsv2':
+            language2 = 'ts';
             break;
         case 'gonew':
         case 'goraw':

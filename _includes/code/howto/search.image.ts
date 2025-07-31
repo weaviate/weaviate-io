@@ -43,11 +43,11 @@ import fetch from 'node-fetch';
 import fs from 'fs';
 
 const client = await weaviate.connectToWeaviateCloud(
-  'WCD-URL',
+  'WEAVIATE_URL',
   {
-    authCredentials: new weaviate.ApiKey('WEAVIATE-API-KEY'),
+    authCredentials: new weaviate.ApiKey('WEAVIATE_API_KEY'),
     headers: {
-      'X-OpenAI-Api-Key': 'OPENAI-API-KEY',  // Replace with your inference API key
+      'X-OpenAI-Api-Key': 'OPENAI_API_KEY',  // Replace with your inference API key
     }
   }
 )

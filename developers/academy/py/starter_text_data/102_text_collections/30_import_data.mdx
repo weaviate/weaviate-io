@@ -44,7 +44,7 @@ The `batch` object is a context manager that allows you to add objects to the ba
   language="py"
 />
 
-This example uses the `.dynamic()` method to create a dynamic batcher, which automatically determines and updates the batch size during the import process. There are also other batcher types, like `.fixed_size()` for specifying the number of objects per batch, and `.rate_limit()` for specifying the number of objects per minute.
+This example uses the `.fixed_size()` method to create a batcher which sets the number of objects per batch. There are also other batcher types, like `.rate_limit()` for specifying the number of objects per minute and `.dynamic()` to create a dynamic batcher, which automatically determines and updates the batch size during the import process.
 
 ### <i class="fa-solid fa-chalkboard"></i> Add data to the batcher
 

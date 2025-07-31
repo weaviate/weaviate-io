@@ -24,7 +24,7 @@ Each shard houses three main components:
 
 * An object store, essentially a key-value store
 * An [inverted index](https://en.wikipedia.org/wiki/Inverted_index)
-* A vector index store (plugable, currently a [custom implementation of HNSW](/developers/weaviate/concepts/vector-index.md#hnsw))
+* A vector index store (plugable, currently a [custom implementation of HNSW](/developers/weaviate/concepts/vector-index.md#hierarchical-navigable-small-world-hnsw-index))
 
 #### Object and Inverted Index Store
 
@@ -46,6 +46,8 @@ Each shard contains a vector index that corresponds to the object and inverted i
 
 By grouping a vector index with the object storage within a shard, Weaviate can make sure that each shard is a fully self-contained unit which can independently serve requests for the data it owns. By placing the vector index next to the object store (instead of within), Weaviate can avoid the downsides of a segmented vector index.
 
+Furthermore, its persistence and loading at startup are optimized through a combination of Write-Ahead-Logging and HNSW snapshots, detailed in the [Persistence and Crash Recovery](#persistence-and-crash-recovery) section.
+
 ### Shard Components Optimizations
 
 Weaviate's storage mechanisms use segmentation for structured/object data. Segments are cheap to merge and even unmerged segments can be navigated efficiently thanks to Bloom filters. In turn, ingestion speed is high and does not degrade over time.
@@ -63,21 +65,54 @@ When Weaviate starts, it loads data from all of the shards in your deployment. T
 
 Lazy shard loading allows you to start working with your data sooner. After a restart, shards load in the background. If the shard you want to query is already loaded, you can get your results sooner. If the shard is not loaded yet, Weaviate prioritizes loading that shard and returns a response when it is ready.
 
-To enable lazy shard loading, set `DISABLE_LAZY_LOAD_SHARDS = false` in your system configuration file.
+To enable lazy shard loading, set the `DISABLE_LAZY_LOAD_SHARDS` environment variable to `false` in your system configuration file.
+
+:::caution Disable lazy shard loading for single-tenant collections
+For single-tenant collections, lazy loading can cause import operations to slow down or partially fail. In these scenarios, we recommend disabling lazy shard loading.
+:::
 
 ## Persistence and Crash Recovery
 
-Both the LSM stores used for object and inverted storage, as well as the HNSW vector index store make use of memory at some point of the ingestion journey. To prevent data loss on a crash, each operation is additionally written into a [Write-Ahead-Log (WAL)](https://martinfowler.com/articles/patterns-of-distributed-systems/wal.html). WALs are append-only files that are very efficient to write to and that are rarely a bottleneck for ingestion.
+### Write-Ahead-Log
+
+Both the LSM stores used for object and inverted storage, as well as the HNSW vector index store make use of memory at some point of the ingestion journey. To prevent data loss on a crash, each operation is additionally written into a **[Write-Ahead-Log (WAL)](https://martinfowler.com/articles/patterns-of-distributed-systems/wal.html)** (also known as a *commit log*). WALs are append-only files that are very efficient to write to and that are rarely a bottleneck for ingestion.
 
 By the time Weaviate has responded with a successful status to your ingestion request, a WAL entry will have been created. If a WAL entry could not be created - for example because the disks are full - Weaviate will respond with an error to the insert or update request.
 
 The LSM stores will try to flush a segment on an orderly shutdown. Only if the operation is successful, will the WAL be marked as "complete". This means that if an unexpected crash happens and Weaviate encounters an "incomplete" WAL, it will recover from it. As part of the recovery process, Weaviate will flush a new segment based on the WAL and mark it as complete. As a result, future restarts will no longer have to recover from this WAL.
 
-For the HNSW vector index, the WAL serves two purposes: It is both the disaster-recovery mechanism, as well as the primary persistence mechanism. The cost in building up an HNSW index is in figuring out where to place a new object and how to link it with its neighbors. The WAL contains only the result of those calculations. Therefore, by reading the WAL into memory, the HNSW index will be in the same state as it was prior to a shutdown.
+For the HNSW vector index, the Write-Ahead-Log (WAL) is a critical component for disaster recovery and persisting the most recent changes. The cost in building up an HNSW index is in figuring out where to place a new object and how to link it with its neighbors. The WAL contains only the result of those calculations.
 
-Over time, an append only WAL will contain a lot of redundant information. For example, imagine two subsequent entries which reassign all the links of a specific node. The second operation will completely replace the result of the first operation, thus the WAL no longer needs the first entry. To keep the WALs fresh, a background process will continuously compact WAL files and remove redundant information. This keeps the disk footprint small and the startup times fast, as Weaviate does not need to store (or load) outdated information.
+The entire HNSW index state can be reconstructed by replaying these WAL entries.
 
-As a result, any change to the HNSW index is immediately persisted and there is no need for periodic snapshots.
+For very large indexes of tens or hundreds of millions of objects, this can be time-consuming. If you have a large index and you want to speed up the startup time, you can use the **[HNSW snapshots](../configuration/hnsw-snapshots.md)** feature.
+
+### HNSW snapshots
+
+:::info Added in `v1.31`
+:::
+
+For very large HNSW vector indexes, HNSW snapshots can significantly reduce the startup time.
+
+A snapshot represents a point-in-time state of the HNSW index. When Weaviate starts, if a valid snapshot exists, it will be loaded into memory first. This significantly reduces startup time, as the number of WAL entries that need to be processed, as only the changes made after the snapshot was taken need to be replayed from the WAL.
+
+If a snapshot cannot be loaded for any reason, it is safely removed, and Weaviate falls back to the traditional method of loading the full commit log from the beginning, ensuring resilience.
+
+Snapshots can be created at startup and periodically based on time passed or changes in the commit log.
+
+Weaviate will try to create a new snapshot during startup if there are changes in the commit log since the last snapshot. If there are no changes, then the existing snapshot will be loaded.
+
+A snapshot will also be created if the corresponding conditions are met, meaning the specified time interval has passed and a sufficient number of new commits exist. This is handled by the same background process that manages commit log combining and condensing, ensuring stability as the commit logs used for snapshot creation are not mutable during this process.
+
+Each new HNSW snapshot is based on the previous snapshot and newer (delta) commit logs.
+
+It's important to note that even with a fresh snapshot, the server typically still has to load at least one subsequent commit log file.
+
+The WAL is still used to persist every change immediately, guaranteeing that any acknowledged write is durable. Over time, the append-only WAL will contain redundant information for operations occurring after the last snapshot. A background process continuously compacts these newer WAL files, removing redundant information. This, combined with snapshotting, keeps the disk footprint manageable and startup times fast.
+
+See **[the HNSW snapshots configuration](../configuration/hnsw-snapshots.md)** for more details on how to configure this feature.
+
+As of `v1.31`, HNSW snapshots are disabled by default.
 
 ## Conclusions
 

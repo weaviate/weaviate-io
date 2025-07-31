@@ -5,13 +5,13 @@ image: og/docs/concepts.jpg
 # tags: ['architecture']
 ---
 
-Replication factor in Weaviate determines how many copies of shards (also called replicas) will be stored across a Weaviate cluster.
+The replication factor in Weaviate determines how many copies of shards (also called replicas) will be stored across a Weaviate cluster.
 
 <p align="center"><img src="/img/docs/replication-architecture/replication-factor.png" alt="Replication factor" width="80%"/></p>
 
 When the replication factor is > 1, consistency models balance the system's reliability, scalability, and/or performance requirements.
 
-Weaviate uses multiple consistency models. One for its cluster metadata, and another for its data objects.
+Weaviate uses multiple consistency models. One for its cluster metadata and another for its data objects.
 
 ### Consistency models in Weaviate
 
@@ -51,6 +51,21 @@ A clean (without fails) execution has two phases:
 
 </details>
 
+### Collection definition requests in queries
+
+:::info Added in `v1.27.10`, `v1.28.4`
+:::
+
+Some queries require the collection definition. Prior to the introduction of this feature, every such query led to the local (requesting) node to fetch the collection definition from the leader node. This meant that the definition was strongly consistent, but it could lead to additional traffic and load.
+
+Where available, the `COLLECTION_RETRIEVAL_STRATEGY` [environment variable](../../config-refs/env-vars/index.md#multi-node-instances) can be set to `LeaderOnly`, `LocalOnly`, or `LeaderOnMismatch`.
+
+- `LeaderOnly` (default): Always requests the definition from the leader node. This is the most consistent behavior but can lead to higher intra-cluster traffic.
+- `LocalOnly`: Always use the local definition; leading to eventually consistent behavior while reducing intra-cluster traffic.
+- `LeaderOnMismatch`: Checks if the local definition is outdated, and requests the definition if necessary. Balances consistency and intra-cluster traffic.
+
+The default behavior is `LeaderOnly` to achieve strong consistency. However, `LocalOnly` and `LeaderOnMismatch` can be used to reduce intra-cluster traffic according to the desired consistency level.
+
 ## Data objects
 
 Weaviate uses two-phase commits for objects, adjusted for the consistency level. For example for a `QUORUM` write (see below), if there are 5 nodes, 3 requests will be sent out, each of them using a 2-phase commit under the hood.
@@ -63,7 +78,7 @@ As a result, data objects in Weaviate are eventually consistent. Eventual consis
 
 Weaviate uses eventual consistency to improve availability. Read and write consistency are tunable, so you can tradeoff between availability and consistency to match your application needs.
 
-*The animation below is an example of how a write or a read is performed with Weaviate with a replication factor of 3 and 8 nodes. The blue node acts as coordinator node. The consistency level is set to `QUORUM`, so the coordinator node only waits for two out of three responses before sending the result back to the client.*
+*The animation below is an example of how a write or a read is performed with Weaviate with a replication factor of 3 and 8 nodes. The blue node acts as the coordinator node. The consistency level is set to `QUORUM`, so the coordinator node only waits for two out of three responses before sending the result back to the client.*
 
 <p align="center"><img src="/img/docs/replication-architecture/replication-quorum-animation.gif" alt="Write consistency QUORUM" width="75%"/></p>
 
@@ -75,10 +90,10 @@ Adding or changing data objects are **write** operations.
 Write operations are tunable starting with Weaviate v1.18, to `ONE`, `QUORUM` (default) or `ALL`. In v1.17, write operations are always set to `ALL` (highest consistency).
 :::
 
-The main reason for introducing configurable write consistency in v1.18 is because that is also when automatic repairs are introduced. A write will always be written to n (replication factor) nodes, regardless of the chosen consistency level. The coordinator node however waits for acknowledgements from `ONE`, `QUORUM` or `ALL` nodes before it returns. To guarantee that a write is applied everywhere without the availability of repairs on read requests, write consistency is set to `ALL` for now. Possible settings in v1.18+ are:
-* **ONE** - a write must receive an acknowledgement from at least one replica node. This is the fastest (most available), but least consistent option.
-* **QUORUM** - a write must receive an acknowledgement from at least `QUORUM` replica nodes. `QUORUM` is calculated as _n / 2 + 1_, where _n_ is the number of replicas (replication factor). For example, using a replication factor of 6, the quorum is 4, which means the cluster can tolerate 2 replicas down.
-* **ALL** - a write must receive an acknowledgement from all replica nodes. This is the most consistent, but 'slowest' (least available) option.
+The main reason for introducing configurable write consistency in v1.18 is because that is also when automatic repairs are introduced. A write will always be written to n (replication factor) nodes, regardless of the chosen consistency level. The coordinator node however waits for acknowledgments from `ONE`, `QUORUM` or `ALL` nodes before it returns. To guarantee that a write is applied everywhere without the availability of repairs on read requests, write consistency is set to `ALL` for now. Possible settings in v1.18+ are:
+* **ONE** - a write must receive an acknowledgment from at least one replica node. This is the fastest (most available), but least consistent option.
+* **QUORUM** - a write must receive an acknowledgment from at least `QUORUM` replica nodes. `QUORUM` is calculated as _n / 2 + 1_, where _n_ is the number of replicas (replication factor). For example, using a replication factor of 6, the quorum is 4, which means the cluster can tolerate 2 replicas down.
+* **ALL** - a write must receive an acknowledgment from all replica nodes. This is the most consistent, but 'slowest' (least available) option.
 
 
 *Figure below: a replicated Weaviate setup with write consistency of ONE. There are 8 nodes in total out of which 3 replicas.*
@@ -107,6 +122,7 @@ The following consistency levels are applicable to most read operations:
 
 - Starting with `v1.18`, consistency levels are applicable to REST endpoint operations.
 - Starting with `v1.19`, consistency levels are applicable to GraphQL `Get` requests.
+- All gRPC based read and write operations support tunable consistency levels.
 
 * **ONE** - a read response must be returned by at least one replica. This is the fastest (most available), but least consistent option.
 * **QUORUM** - a response must be returned by `QUORUM` amount of replica nodes. `QUORUM` is calculated as _n / 2 + 1_, where _n_ is the number of replicas (replication factor). For example, using a replication factor of 6, the quorum is 4, which means the cluster can tolerate 2 replicas down.
@@ -135,6 +151,22 @@ Depending on the desired tradeoff between consistency and speed, below are three
 * `ONE` / `ALL` => fast write and slow read (optimized for write)
 * `ALL` / `ONE` => slow write and fast read (optimized for read)
 
+### Tunable consistency and queries
+
+Note that tunable consistency levels for read operations do not affect consistency of the list of objects returned by a query. In other words, the list of object UUIDs returned by a query depends only on the coordinator node's (and any other required shards') local index, and is independent of the read consistency level.
+
+This is due to the fact that each query is performed by the coordinator node and any other shards required to answer the query. Even if the read consistency level is set to `ALL`, it does not mean that multiple replicas will be queried and the results merged together.
+
+Where the read consistency level is applied is in retrieving the identified objects from the replicas. For example, if the read consistency level is set to `ALL`, the coordinator node will wait for all replicas to return the identified objects. And if the read consistency level is set to `ONE`, the coordinator node may simply return the objects from itself.
+
+In other words, the read consistency level only affects which versions of the objects are retrieved, but it does not lead to a more (or less) consistent query result.
+
+:::note When might this occur?
+
+By default, Weaviate writes to all nodes on an insert/update/delete. So, most of the time this won't matter as all shards will have identical local indexes to each other. This is a rare care which may only occur if there is a problem, such as a node being down, or there is a network problem.
+
+:::
+
 ### Tenant states and data objects
 
 Each tenant in a [multi-tenant collection](../data.md#multi-tenancy) has a configurable [tenant state](../../starter-guides/managing-resources/tenant-states.mdx), which determines the availability and location of the tenant's data. The tenant state can be set to `active`, `inactive`, or `offloaded`.
@@ -160,13 +192,81 @@ Weaviate uses [async replication](#async-replication), [deletion resolution](#de
 :::info Added in `v1.26`
 :::
 
-Async replication runs in the background. It uses a Merkle tree algorithm to monitor and compare the state of nodes within a cluster. If the algorithm identifies an inconsistency, it resyncs the data on the inconsistent node.
+Async replication is a background synchronization process in Weaviate that ensures eventual consistency across nodes storing the same data. When each shard is replicated across multiple nodes, async replication guarantees that all nodes holding copies of the same data remain in sync by periodically comparing and propagating data.
+
+It uses a Merkle tree (hash tree) algorithm to monitor and compare the state of nodes within a cluster. If the algorithm identifies an inconsistency, it resyncs the data on the inconsistent node.
 
 Repair-on-read works well with one or two isolated repairs. Async replication is effective in situations where there are many inconsistencies. For example, if an offline node misses a series of updates, async replication quickly restores consistency when the node returns to service.
 
 Async replication supplements the repair-on-read mechanism. If a node becomes inconsistent between sync checks, the repair-on-read mechanism catches the problem at read time.
 
-To activate async replication, set `asyncEnabled` to true in the [`replicationConfig` section of your collection definition](../../manage-data/collections.mdx#replication-settings).
+To activate async replication, set `asyncEnabled` to true in the [`replicationConfig` section of your collection definition](../../manage-data/collections.mdx#replication-settings). Visit the [How-to: Replication](/developers/weaviate/configuration/replication#async-replication-settings) page to learn more about the available async replication settings.
+
+#### Memory and performance considerations for async replication
+
+:::info Added in `v1.29`
+:::
+
+Async replication uses a hash tree to compare and synchronize data between the database cluster nodes, based on objects' latest update time. The additional memory required for this process is determined by the height of the hash tree (`H`). A higher hash tree uses more memory but allows faster hashing, reducing the time required to detect and repair inconsistencies.
+
+The trade-offs can be summarized like this:
+  - **Higher** `H`: Higher memory usage, faster replication.
+  - **Lower** `H`: Lower memory usage, slower replication.
+
+:::tip Memory management for multi-tenancy
+Each tenant is backed by a shard. Therefore, when there is a high number of tenants, the memory consumption of async replication can be significant. (e.g. 1,000 tenants with a hash tree height of 16 will require an extra ~2 GB of memory per node, while a height of 20 will require ~34 GB per node).
+<br/>
+
+To reduce memory consumption, reduce the hash tree height. Keep in mind that this will result in slower hashing and potentially slower replication.
+:::
+
+Use the following formulas and examples as a quick reference:
+
+##### Memory calculation
+
+- **Total number of nodes in the hash tree:**
+  For a hash tree with height `H`, the total number of nodes is:
+  ```
+  Number of hash tree nodes = 2^(H+1) - 1 ≈ 2^(H+1)
+  ```
+
+- **Total memory required (per shard/tenant on each node):**
+  Each hash tree node uses approximately **16 bytes** of memory.
+  ```
+  Memory Required ≈ 2^(H+1) * 16 bytes
+  ```
+
+##### Examples
+
+- Hash tree with height `16`:
+  - `Total hash tree nodes ≈ 2^(16+1) = 131,072`
+  - `Memory required ≈ 131072 * 16 bytes ≈ 2,097,152 bytes (~2 MB)`
+
+- Hash tree with height `20`:
+  - `Total hash tree nodes ≈ 2^(20+1) = 2,097,152`
+  - `Memory required ≈ 2,097,152 * 16 bytes ≈ 33,554,432 bytes (~33 MB)`
+
+##### Performance Consideration: Number of Leaves
+
+The objects in a shard (e.g. tenant) are distributed among the leaves of the hash tree.
+A larger hash tree means less data for each leaf to hash, leading to faster comparisons and faster replication.
+
+- **Number of Leaves in the hash tree:**
+  ```
+  Number of leaves = 2^H
+  ```
+
+##### Examples
+
+- Hash tree with height `16`:
+  - `Number of Leaves = 2^16 = 65,536`
+
+- Hash tree with height `20`:
+  - `Number of Leaves = 2^20 = 1,048,576`
+
+:::note Default settings
+The default hash tree height of `16` is chosen to balance memory consumption with replication performance. Adjust this value based on your cluster node’s available resources and performance requirements.
+:::
 
 ### Deletion resolution strategies
 
@@ -175,11 +275,13 @@ To activate async replication, set `asyncEnabled` to true in the [`replicationCo
 
 When an object is present on some replicas but not others, this can be because a creation has not yet been propagated to all replicas, or because a deletion has not yet been propagated to all replicas. It is important to distinguish between these two cases.
 
-Deletion resolution works alongside async replication and repair-on-read to ensure consistent handling of deleted objects across the cluster. For each collection, you can set one of the following deletion resolution strategies:
+Deletion resolution works alongside async replication and repair-on-read to ensure consistent handling of deleted objects across the cluster. For each collection, [you can set one of the following](../../manage-data/collections.mdx#replication-settings) deletion resolution strategies:
 
 - `NoAutomatedResolution`
 - `DeleteOnConflict`
 - `TimeBasedResolution`
+
+Deletion resolution strategies are mutable. [Read more about how to update collection definitions](../../manage-data/collections.mdx#update-a-collection-definition).
 
 #### `NoAutomatedResolution`
 

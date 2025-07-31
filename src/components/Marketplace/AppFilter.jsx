@@ -6,9 +6,24 @@ import styles from './styles.module.scss';
 
 const categoryDescriptions = {
   All: 'Browse all available apps.',
-  'Cloud Tools':
-    'Improve developer experience and accessibility for non-technical users. Available only in Weaviate Cloud.',
-  'AI-Native Services': 'Simplify the development of end-to-end AI solutions.',
+  'Vector Database': (
+    <>
+      Weaviate’s{' '}
+      <u>
+        <strong>
+          <a href="/platform">open source vector database</a>
+        </strong>
+      </u>{' '}
+      can be self-hosted or run as a managed service in Weaviate Cloud to reduce
+      operational overhead.
+    </>
+  ),
+  'Weaviate Agents':
+    'Pre-built agentic workflows that dynamically interact with your data in Weaviate to perform sync, async, and multi-step tasks.',
+  'Embeddings and Integrations':
+    'Services and integrations to simplify end-to-end AI-native application development.',
+  'Cloud Console Tools':
+    'Tools that improve developer experience and accessibility within Weaviate Cloud console.',
 };
 
 export default function AppFilter() {
@@ -46,8 +61,12 @@ export default function AppFilter() {
     if (appsInCategory.length === 0) return null;
 
     return (
-      <div key={category} className={styles.categorySection}>
-        <h2>{category}</h2>
+      <div
+        key={category}
+        id={category === 'Weaviate Agents' ? 'weaviate-agents' : ''}
+        className={styles.categorySection}
+      >
+        <h2>{category === 'Weaviate Agents' ? 'Agents' : category}</h2>
         <p className={styles.categoryDescriptions}>
           {categoryDescriptions[category]}
         </p>
@@ -116,10 +135,18 @@ export default function AppFilter() {
             </>
           ) : (
             <>
-              <h2>{selectedCategory}</h2>
+              <h2>
+                {selectedCategory === 'Weaviate Agents'
+                  ? 'Agents'
+                  : selectedCategory}
+              </h2>
+
               <p className={styles.categoryDescriptions}>
-                {categoryDescriptions[selectedCategory]}
+                {selectedCategory === 'Weaviate Agents'
+                  ? 'Agents'
+                  : categoryDescriptions[selectedCategory]}
               </p>
+
               <div className={styles.cardContainer}>
                 {filteredApps.map((app) => (
                   <AppCard key={app.id} app={app} />

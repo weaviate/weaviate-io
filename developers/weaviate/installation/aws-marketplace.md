@@ -15,8 +15,10 @@ You can use [AWS Marketplace](https://aws.amazon.com/marketplace) to directly la
 We use an [AWS CloudFormation template](https://aws.amazon.com/cloudformation/) for delivery.
 
 :::info Prerequisites
+
 - An AWS account with sufficient credit / payment method.
 - (Recommended) Familiarity with AWS and the AWS console.
+
 :::
 
 <details>
@@ -25,12 +27,13 @@ We use an [AWS CloudFormation template](https://aws.amazon.com/cloudformation/) 
   </summary>
 
 This will set up the following resources:
+
 - EKS Cluster with a Single Node Group
-    - In the default VPC or a fresh VPC with CIDR 10.0.0.0/16
+  - In the default VPC or a fresh VPC with CIDR 10.0.0.0/16
 - Load Balancer Controller for EKS
 - aws-ebs-csi-driver for EKS
 - The latest selected version of Weaviate (e.g. `1.20.3` if you select `1.20`)
-    - This will be installed using our official Helm chart
+  - This will be installed using our official Helm chart
 
 </details>
 
@@ -40,32 +43,41 @@ This will set up the following resources:
 
 If you prefer a video, you can watch the following walkthrough. This video is recorded in September 2023, some details may have changed since then.
 
+<details>
+  <summary>
+    VIDEO: How to run Weaviate on AWS Marketplace
+  </summary>
+
 <ReactPlayer className="react-player" url='https://youtu.be/_2rBrKp83iM' controls='true' />
 <br/>
+
+</details>
 
 ### AWS Marketplace
 
 1. Go to Weaviate's [AWS Marketplace listing](https://aws.amazon.com/marketplace/pp/prodview-cicacyv63r43i)
 1. Subscribe to the product in AWS Marketplace by following the instructions on the page. At the time of writing (August 2023), the steps are to:
-    1. Click <kbd>Continue to Subscribe</kbd>, then go to the next page
-    1. Click <kbd>Continue to Configuration</kbd>, then go to the next page
-    1. Select the fulfillment option & software version from the list. Then click <kbd>Continue to Launch</kbd>.
+   1. Click <kbd>Continue to Subscribe</kbd>, then go to the next page
+   1. Click <kbd>Continue to Configuration</kbd>, then go to the next page
+   1. Select the fulfillment option & software version from the list. Then click <kbd>Continue to Launch</kbd>.
 1. Launch the software using a CloudFormation template (select the one for your preferred availability zone in the table below):
 
-| Region | CloudFormation template link (per Availability Zone) |
-| --- | --- |
-| AP | [ap-northeast-1](https://ap-northeast-1.console.aws.amazon.com/cloudformation/home?region=ap-northeast-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [ap-northeast-2](https://ap-northeast-2.console.aws.amazon.com/cloudformation/home?region=ap-northeast-2#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [ap-northeast-3](https://ap-northeast-3.console.aws.amazon.com/cloudformation/home?region=ap-northeast-3#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [ap-south-1](https://ap-south-1.console.aws.amazon.com/cloudformation/home?region=ap-south-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [ap-southeast-1](https://ap-southeast-1.console.aws.amazon.com/cloudformation/home?region=ap-southeast-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [ap-southeast-2](https://ap-southeast-2.console.aws.amazon.com/cloudformation/home?region=ap-southeast-2#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json) |
-| CA | [ca-central-1](https://ca-central-1.console.aws.amazon.com/cloudformation/home?region=ca-central-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json) |
-| EU | [eu-central-1](https://eu-central-1.console.aws.amazon.com/cloudformation/home?region=eu-central-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [eu-north-1](https://eu-north-1.console.aws.amazon.com/cloudformation/home?region=eu-north-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [eu-west-1](https://eu-west-1.console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [eu-west-2](https://eu-west-2.console.aws.amazon.com/cloudformation/home?region=eu-west-2#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [eu-west-3](https://eu-west-3.console.aws.amazon.com/cloudformation/home?region=eu-west-3#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json) |
-| SA | [sa-east-1](https://sa-east-1.console.aws.amazon.com/cloudformation/home?region=sa-east-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json) |
-| US | [us-east-1](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [us-east-2](https://us-east-2.console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [us-west-1](https://us-west-1.console.aws.amazon.com/cloudformation/home?region=us-west-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [us-west-2](https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json) |
+| Region | CloudFormation template link (per Availability Zone)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AP     | [ap-northeast-1](https://ap-northeast-1.console.aws.amazon.com/cloudformation/home?region=ap-northeast-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [ap-northeast-2](https://ap-northeast-2.console.aws.amazon.com/cloudformation/home?region=ap-northeast-2#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [ap-northeast-3](https://ap-northeast-3.console.aws.amazon.com/cloudformation/home?region=ap-northeast-3#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [ap-south-1](https://ap-south-1.console.aws.amazon.com/cloudformation/home?region=ap-south-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [ap-southeast-1](https://ap-southeast-1.console.aws.amazon.com/cloudformation/home?region=ap-southeast-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [ap-southeast-2](https://ap-southeast-2.console.aws.amazon.com/cloudformation/home?region=ap-southeast-2#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json) |
+| CA     | [ca-central-1](https://ca-central-1.console.aws.amazon.com/cloudformation/home?region=ca-central-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| EU     | [eu-central-1](https://eu-central-1.console.aws.amazon.com/cloudformation/home?region=eu-central-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [eu-north-1](https://eu-north-1.console.aws.amazon.com/cloudformation/home?region=eu-north-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [eu-west-1](https://eu-west-1.console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [eu-west-2](https://eu-west-2.console.aws.amazon.com/cloudformation/home?region=eu-west-2#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [eu-west-3](https://eu-west-3.console.aws.amazon.com/cloudformation/home?region=eu-west-3#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json)                                                                                                                                                                                                                                                                                             |
+| SA     | [sa-east-1](https://sa-east-1.console.aws.amazon.com/cloudformation/home?region=sa-east-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| US     | [us-east-1](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [us-east-2](https://us-east-2.console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [us-west-1](https://us-west-1.console.aws.amazon.com/cloudformation/home?region=us-west-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [us-west-2](https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
 ### Configuration & Cluster creation
 
 :::info Before you get started
+
 #### Some settings may not be changed after launch
 
 Not all settings may be changed after launch. For example, these settings are currently not changeable after launch:
+
 - weaviatePVCSize
 - albDriver
 - ebsDriver
@@ -80,6 +92,7 @@ Not all settings may be changed after launch. For example, these settings are cu
 - The default values should be suitable for a majority of cases.
 - `weaviatePVCSize`: For production environments, at least 500GB per StatefulSet pod is recommended. (Smaller disks may be sufficient for dev environments.)
 - `weaviateAuthType`: We recommend not running Weaviate with anonymous access. We suggest setting it to `apikey` and setting a key, for example by executing `pwgen -A -s 32` to generate a random string.
+
 :::
 
 Once you open the CloudFormation template, you should see a set of options similar to below.
@@ -88,11 +101,11 @@ Here, you can:
 
 1. Set the `stack name` for identifying the stack in AWS (required).
 1. Set Weaviate/AWS parameters, such as:
-    - number of nodes
-    - instance types
-    - Weaviate authentication parameters.
+   - number of nodes
+   - instance types
+   - Weaviate authentication parameters.
 1. Confirm required resources & proceed to <kbd>Create stack</kbd>.
-    - This template may require additional resources and capabilities.
+   - This template may require additional resources and capabilities.
 
 After clicking <kbd>Create stack</kbd>, the creation process may take a while, such as around 30 minutes.
 
@@ -124,6 +137,7 @@ Once that's set up, you can run `kubectl` commands as usual. For example
 Once the stack has been created, you can access Weaviate via the load balancer URL.
 
 You can find the Weaviate endpoint URL by any of:
+
 - Going to the `Services` section of AWS, under `EC2` > `Load Balancers`. Find the load balancer, and look for the `DNS name` column.
 - Running `kubectl get svc -n weaviate` and looking for the `EXTERNAL-IP` of the `weaviate` service.
 
@@ -151,16 +165,14 @@ You must delete these manually.
 - Review the `Resources` tab of the CloudFormation stack to find resources that may not have been deleted.
 - Key Management Service (KMS) keys may be deleted by going to the KMS console, and deleting the keys manually. You may need to schedule deletion of the keys.
 
-
 ## Billing
 
 You will be charged for Weaviate and associated resources directly by AWS.
 
 This will, for example, include the EC2 instances, EBS volumes, and any other resources used by the cluster.
 
-
 ## Questions and feedback
 
-import DocsFeedback from '/_includes/docs-feedback.mdx';
+import DocsFeedback from '/\_includes/docs-feedback.mdx';
 
 <DocsFeedback/>

@@ -78,14 +78,18 @@ client.close()
 ### Custom connection ###
 #########################
 
-# START CustomConnect  # START TimeoutCustom
+# START CustomConnect  # START TimeoutCustom  # START ConnectWithApiKeyExample
 import weaviate, os
 from weaviate.classes.init import Auth
+from weaviate.config import AdditionalConfig, Timeout
 
 # Best practice: store your credentials in environment variables
-http_host = os.environ["WCD_HTTP_HOST"]
-grpc_host = os.environ["WCD_GRPC_HOST"]
-weaviate_api_key = os.environ["WCD_DEMO_RO_KEY"]
+http_host = os.environ["WEAVIATE_HTTP_HOST"]
+grpc_host = os.environ["WEAVIATE_GRPC_HOST"]
+weaviate_api_key = os.environ["WEAVIATE_API_KEY"]
+# END CustomConnect  # END TimeoutCustom  # START ConnectWithApiKeyExample
+cohere_api_key = os.environ["COHERE_API_KEY"]
+# START CustomConnect  # START TimeoutCustom  # START ConnectWithApiKeyExample
 
 client = weaviate.connect_to_custom(
     http_host=http_host,        # Hostname for the HTTP API connection
@@ -94,16 +98,18 @@ client = weaviate.connect_to_custom(
     grpc_host=grpc_host,        # Hostname for the gRPC API connection
     grpc_port=443,              # Default is 50051, WCD uses 443
     grpc_secure=True,           # Whether to use a secure channel for the gRPC API connection
-    auth_credentials=Auth.api_key(weaviate_api_key),  # API key for authentication
-    # END CustomConnect  # START TimeoutCustom
+    auth_credentials=Auth.api_key(weaviate_api_key),    # API key for authentication
+    # END CustomConnect  # END TimeoutCustom  # START ConnectWithApiKeyExample
+    headers={"X-Cohere-Api-Key": cohere_api_key},       # Third party API key (e.g. Cohere)
+    # END CustomConnect  # START TimeoutCustom  # END ConnectWithApiKeyExample
     additional_config=AdditionalConfig(
         timeout=Timeout(init=30, query=60, insert=120)  # Values in seconds
     )
-    # START CustomConnect  # START TimeoutCustom
+    # START CustomConnect  # START TimeoutCustom  # START ConnectWithApiKeyExample
 )
 
 print(client.is_ready())
-# END CustomConnect  # END TimeoutCustom
+# END CustomConnect  # END TimeoutCustom  # END ConnectWithApiKeyExample
 
 assert client.is_ready()
 
@@ -127,12 +133,10 @@ client = weaviate.connect_to_weaviate_cloud(
     auth_credentials=Auth.api_key(weaviate_api_key),
 )
 
-print(client.is_ready())
+print(client.is_ready())  # Should print: `True`
+
+client.close()  # Free up resources
 # END APIKeyWCD
-
-assert client.is_ready()
-
-client.close()
 
 ################################
 ### Local connection no auth ###

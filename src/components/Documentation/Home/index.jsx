@@ -53,7 +53,7 @@ const DocHomePage = () => {
           <div className={styles.deployBox}>
             <div className={styles.tabContainer}>
               <div className={styles.deployTab}>Evaluation</div>
-              <div className={styles.deployTab}>Deployment</div>
+              <div className={styles.deployTab}>Development</div>
               <div className={styles.deployTab}>Production</div>
             </div>
             <div className={styles.deployContent}>
@@ -65,7 +65,7 @@ const DocHomePage = () => {
                 <li>(Optional) Zero-downtime updates</li>
               </ul>
               <button className={styles.deployButton}>
-                <a href="/developers/wcs/create-instance">
+                <a href="/developers/wcs/manage-clusters/create">
                   Set up a WCD instance
                 </a>
               </button>
@@ -75,7 +75,7 @@ const DocHomePage = () => {
           <div className={styles.deployBox}>
             <div className={styles.tabContainer}>
               <div className={styles.deployTab}>Evaluation</div>
-              <div className={styles.deployTab}>Deployment</div>
+              <div className={styles.deployTab}>Development</div>
               <div className={`${styles.deployTab} ${styles.inactive}`}>
                 Production
               </div>
@@ -106,7 +106,7 @@ const DocHomePage = () => {
               <div className={`${styles.deployTab} ${styles.inactive}`}>
                 Evaluation
               </div>
-              <div className={styles.deployTab}>Deployment</div>
+              <div className={styles.deployTab}>Development</div>
               <div className={styles.deployTab}>Production</div>
             </div>
             <div className={styles.deployContent}>
@@ -133,7 +133,7 @@ const DocHomePage = () => {
             <div className={styles.tabContainer}>
               <div className={styles.deployTab}>Evaluation</div>
               <div className={`${styles.deployTab} ${styles.inactive}`}>
-                Deployment
+                Development
               </div>
               <div className={`${styles.deployTab} ${styles.inactive}`}>
                 Production
@@ -169,7 +169,7 @@ const DocHomePage = () => {
             <div className={styles.scenarioText}>
               <span>
                 <span>
-                  Work with text data 
+                  Work with text data
                 </span>
                 <span>
                 <p>
@@ -181,7 +181,7 @@ const DocHomePage = () => {
                 </p>
               </span>
               </span>
-              
+
 
               <p>
                 Just bring your text data to Weaviate and it will do the rest.
@@ -253,7 +253,7 @@ const DocHomePage = () => {
                 </p>
               </span>
               </span>
-              
+
 
               <p>For many, data comes in multiple forms beyond text.</p>
               <p>

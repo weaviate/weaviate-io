@@ -364,7 +364,13 @@ To review the current `pq` configuration, you can retrieve it as shown below.
   </TabItem>
 </Tabs>
 
-## Multiple vectors (named vectors)
+## Multiple vector embeddings (named vectors)
+
+import NamedVectorCompress from '/_includes/named-vector-compress.mdx';
+
+<NamedVectorCompress />
+
+## Multi-vector embeddings (ColBERT, ColPali, etc.)
 
 import MultiVectorCompress from '/_includes/multi-vector-compress.mdx';
 
@@ -374,7 +380,7 @@ import MultiVectorCompress from '/_includes/multi-vector-compress.mdx';
 - [Configuration: Vector index](/developers/weaviate/config-refs/schema/vector-index.md)
 - [Concepts: Vector index](/developers/weaviate/concepts/vector-index.md)
 - [Concepts: Vector quantization](/developers/weaviate/concepts/vector-quantization.md)
-- [Guide: Schemas and collection definitions](/developers/weaviate/starter-guides/schema)
+- [Guide: Schemas and collection definitions](/developers/weaviate/starter-guides/managing-collections)
 
 ## Questions and feedback
 

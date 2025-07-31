@@ -67,6 +67,16 @@ image: og/docs/more-resources.jpg
 
 </details>
 
+#### Q: How to enable RBAC in Weaviate?
+
+<details>
+  <summary>Answer</summary>
+
+> Role-based access control (RBAC) can be enabled when configuring Weaviate via the `AUTHORIZATION_RBAC_ENABLED` environment variable.
+> For more info visit the [RBAC: Configuration](/developers/weaviate/configuration/rbac/configuration) guide.
+
+</details>
+
 ## Schema and data structure
 
 #### Q: Are there any 'best practices' or guidelines to consider when designing a schema?
@@ -178,7 +188,7 @@ Yes. Each collection itself acts like namespaces. Additionally, you can use the 
 <details>
   <summary>Answer</summary>
 
-> Every data object [gets its vector representation](../) based on its semantic meaning. In a nutshell, we calculate the vector position of the data object based on the words and concepts used in the data object. The existing model in the contextionary gives already enough context. If you want to get in the nitty-gritty, you can [browse the code here](https://github.com/weaviate/contextionary/tree/master/server), but you can also ask a [specific question on Stackoverflow](https://stackoverflow.com/tags/weaviate/) and tag it with Weaviate.
+> Every data object [gets its vector embedding](../) based on its semantic meaning. In a nutshell, we calculate the vector position of the data object based on the words and concepts used in the data object. The existing model in the contextionary gives already enough context. If you want to get in the nitty-gritty, you can [browse the code here](https://github.com/weaviate/contextionary/tree/master/server), but you can also ask a [specific question on Stackoverflow](https://stackoverflow.com/tags/weaviate/) and tag it with Weaviate.
 
 </details>
 
@@ -332,7 +342,7 @@ If you need a higher search quality for a given limit you can consider the follo
 > More information:
 >
 > - [Weaviate, an ANN Database with CRUD support – DB-Engines.com](https://db-engines.com/en/blog_post/87) ⬅️ best resource on the topic
-> - [Weaviate's HNSW implementation in the docs](/developers/weaviate/concepts/vector-index.md#hnsw)
+> - [Weaviate's HNSW implementation in the docs](/developers/weaviate/concepts/vector-index.md#hierarchical-navigable-small-world-hnsw-index)
 >
 > _Note I: HNSW is just one implementation in Weaviate, but Weaviate can support multiple indexing algoritmns as outlined [here](/developers/weaviate/concepts/vector-index.md)_
 
@@ -547,7 +557,16 @@ docker compose up
 
 </details>
 
-## More questions?
+#### Q: Can I run Weaviate on Windows?
+
+<details>
+  <summary>Answer</summary>
+
+Weaviate can be used on Windows via containerized environments like [Docker](../installation/docker-compose.md) or [WSL](https://learn.microsoft.com/en-us/windows/wsl/), 
+
+Keep in mind that we don't offer native Windows support at this time and deployment options like [Weaviate Embedded](../installation/embedded.md) should be avoided.
+
+</details>
 
 ## Questions and feedback
 

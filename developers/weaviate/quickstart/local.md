@@ -177,6 +177,8 @@ Run this code to create the collection to which you can add data.
 
 Weaviate is very flexible. If you prefer a different model provider integration, or prefer to import your own vectors, see one of the following guides:
 
+import Link from '@docusaurus/Link';
+
 <div class="row">
   <div class="col col--6 margin-top--xs padding-top--xs">
     <div class="card">
@@ -184,7 +186,7 @@ Weaviate is very flexible. If you prefer a different model provider integration,
         <h4>Prefer a different model provider?</h4>
       </div>
       <div class="card__body">
-        See <a href="#can-i-use-different-integrations">this section</a> for information on how to user another provider, such as AWS, Cohere, Google, and many more.
+        See <Link to="#can-i-use-different-integrations">this section</Link> for information on how to user another provider, such as AWS, Cohere, Google, and many more.
       </div>
     </div>
   </div>
@@ -194,7 +196,7 @@ Weaviate is very flexible. If you prefer a different model provider integration,
         <h4>Want to specify object vectors?</h4>
       </div>
       <div class="card__body">
-        If you prefer to add vectors yourself along with the object data, see <a href="/developers/weaviate/starter-guides/custom-vectors">Starter Guide: Bring Your Own Vectors</a>.
+        If you prefer to add vectors yourself along with the object data, see <Link to="/developers/weaviate/starter-guides/custom-vectors">Starter Guide: Bring Your Own Vectors</Link>.
       </div>
     </div>
   </div>
@@ -410,7 +412,7 @@ Try these additional resources to learn more about Weaviate:
         </div>
         <div class="card__body">
           <p>
-            See <a href="/developers/weaviate/search">how to perform searches</a>, such as <a href="/developers/weaviate/search/bm25">keyword</a>, <a href="/developers/weaviate/search/similarity">similarity</a>, <a href="/developers/weaviate/search/hybrid">hybrid</a>, <a href="/developers/weaviate/search/image">image</a>, <a href="/developers/weaviate/search/filters">filtered</a> and <a href="/developers/weaviate/search/rerank">reranked</a> searches.
+            See <Link to="/developers/weaviate/search">how to perform searches</Link>, such as <Link to="/developers/weaviate/search/bm25">keyword</Link>, <Link to="/developers/weaviate/search/similarity">similarity</Link>, <Link to="/developers/weaviate/search/hybrid">hybrid</Link>, <Link to="/developers/weaviate/search/image">image</Link>, <Link to="/developers/weaviate/search/filters">filtered</Link> and <Link to="/developers/weaviate/search/rerank">reranked</Link> searches.
           </p>
         </div>
       </div>
@@ -422,7 +424,7 @@ Try these additional resources to learn more about Weaviate:
         </div>
         <div class="card__body">
           <p>
-            See <a href="/developers/weaviate/manage-data">how to manage data</a>, such as <a href="/developers/weaviate/manage-data/collections">manage collections</a>, <a href="/developers/weaviate/manage-data/create">create objects</a>, <a href="/developers/weaviate/manage-data/import">batch import data</a> and <a href="/developers/weaviate/manage-data/multi-tenancy">use multi-tenancy</a>.
+            See <Link to="/developers/weaviate/manage-data">how to manage data</Link>, such as <Link to="/developers/weaviate/manage-data/collections">manage collections</Link>, <Link to="/developers/weaviate/manage-data/create">create objects</Link>, <Link to="/developers/weaviate/manage-data/import">batch import data</Link> and <Link to="/developers/weaviate/manage-data/multi-tenancy">use multi-tenancy</Link>.
           </p>
         </div>
       </div>
@@ -434,7 +436,7 @@ Try these additional resources to learn more about Weaviate:
         </div>
         <div class="card__body">
           <p>
-            Check out the <a href="/developers/weaviate/starter-guides/generative">Starter guide: retrieval augmented generation</a>, and the <a href="/developers/academy">Weaviate Academy</a> unit on <a href="/developers/academy/py/standalone/chunking">chunking</a>.
+            Check out the <Link to="/developers/weaviate/starter-guides/generative">Starter guide: retrieval augmented generation</Link>, and the <Link to="/developers/academy">Weaviate Academy</Link> unit on <Link to="/developers/academy/py/standalone/chunking">chunking</Link>.
           </p>
         </div>
       </div>
@@ -446,7 +448,7 @@ Try these additional resources to learn more about Weaviate:
         </div>
         <div class="card__body">
           <p>
-          We hold in-person and online <a href="/community/events">workshops, office hours and events</a> for different experience levels. Join us!
+          We hold in-person and online <Link to="/community/events">workshops, office hours and events</Link> for different experience levels. Join us!
           </p>
         </div>
       </div>

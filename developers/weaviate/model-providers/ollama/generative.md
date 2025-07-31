@@ -19,7 +19,7 @@ import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
 Weaviate's integration with Ollama's models allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use an Ollama generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model via your local Ollama instance.
+[Configure a Weaviate collection](#configure-collection) to use a generative AI model with Ollama. Weaviate will perform retrieval augmented generation (RAG) using the specified model via your local Ollama instance.
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the Ollama generative model to generate outputs.
 
@@ -38,7 +38,13 @@ Your Weaviate instance must be configured with the Ollama generative AI integrat
 <details>
   <summary>For Weaviate Cloud (WCD) users</summary>
 
-This integration is not available for Weaviate Cloud (WCD) serverless instances, as it requires a locally running Ollama instance.
+This integration is enabled by default on Weaviate Cloud (WCD) serverless instances.
+<br/>
+
+To use Ollama with Weaviate Cloud, make sure your Ollama server is running and accessible from the Weaviate Cloud instance. If you are running Ollama on your own machine, you may need to expose it to the internet. Carefully consider the security implications of exposing your Ollama server to the internet.
+<br/>
+
+For use cases such as this, consider using a self-hosted Weaviate instance, or another API-based integration method.
 
 </details>
 
@@ -113,6 +119,29 @@ import APIEndpoint from '/developers/weaviate/model-providers/_includes/ollama/a
 
 The [default model](#available-models) is used if no model is specified.
 
+## Select a model at runtime
+
+Aside from setting the default model provider when creating the collection, you can also override it at query time.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START RuntimeModelSelectionOllama"
+      endMarker="# END RuntimeModelSelectionOllama"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START RuntimeModelSelectionOllama"
+      endMarker="// END RuntimeModelSelectionOllama"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
 ## Retrieval augmented generation
 
 After configuring the generative AI integration, perform RAG operations, either with the [single prompt](#single-prompt) or [grouped task](#grouped-task) method.
@@ -177,6 +206,30 @@ In other words, when you have `n` search results, the generative model generates
     />
   </TabItem>
 
+</Tabs>
+
+### RAG with images
+
+You can also supply images as a part of the input when performing retrieval augmented generation in both single prompts and grouped tasks. 
+
+<Tabs groupId="languages">
+
+ <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START WorkingWithImagesOllama"
+      endMarker="# END WorkingWithImagesOllama"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+        text={TSCode}
+        startMarker="// START WorkingWithImagesOllama"
+        endMarker="// END WorkingWithImagesOllama"
+        language="ts"
+      />
+  </TabItem>
 </Tabs>
 
 ## References

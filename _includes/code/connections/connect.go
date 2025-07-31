@@ -6,8 +6,8 @@
 
 // START APIKeyWCD
 // Set these environment variables
-// WEAVIATE_URL      your Weaviate instance URL
-// WEAVIATE_API_KEY  your Weaviate instance API key
+// WEAVIATE_HOSTNAME    Your Weaviate instance hostname
+// WEAVIATE_API_KEY  	Your Weaviate instance API key
 
 package main
 
@@ -16,14 +16,14 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/weaviate/weaviate-go-client/v4/weaviate"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate/auth"
+	"github.com/weaviate/weaviate-go-client/v5/weaviate"
+	"github.com/weaviate/weaviate-go-client/v5/weaviate/auth"
 )
 
 // Create the client
 func CreateClient() {
 	cfg := weaviate.Config{
-		Host:       os.Getenv("WEAVIATE_URL"),
+		Host:       os.Getenv("WEAVIATE_HOSTNAME"),
 		Scheme:     "https",
 		AuthConfig: auth.ApiKey{Value: os.Getenv("WEAVIATE_API_KEY")},
 		Headers:    nil,
@@ -59,7 +59,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/weaviate/weaviate-go-client/v4/weaviate"
+	"github.com/weaviate/weaviate-go-client/v5/weaviate"
 )
 
 // Create the client
@@ -100,7 +100,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/weaviate/weaviate-go-client/v4/weaviate"
+	"github.com/weaviate/weaviate-go-client/v5/weaviate"
 )
 
 // Create the client
@@ -147,8 +147,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/weaviate/weaviate-go-client/v4/weaviate"
-    "github.com/weaviate/weaviate-go-client/v4/weaviate/auth"
+	"github.com/weaviate/weaviate-go-client/v5/weaviate"
+    "github.com/weaviate/weaviate-go-client/v5/weaviate/auth"
 )
 
 // Create the client
@@ -194,7 +194,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/weaviate/weaviate-go-client/v4/weaviate"
+	"github.com/weaviate/weaviate-go-client/v5/weaviate"
 )
 
 // Create the client
@@ -242,14 +242,14 @@ import (
   "context"
   "fmt"
   "os"
-  "github.com/weaviate/weaviate-go-client/v4/weaviate"
-  "github.com/weaviate/weaviate-go-client/v4/weaviate/auth"
+  "github.com/weaviate/weaviate-go-client/v5/weaviate"
+  "github.com/weaviate/weaviate-go-client/v5/weaviate/auth"
 )
 
 // Create the client
 func CreateClient() {
 cfg := weaviate.Config{
-    Host: os.Getenv("WEAVIATE_URL"),   // URL only, no scheme prefix
+    Host: os.Getenv("WEAVIATE_HOSTNAME"),   // URL only, no scheme prefix
     Scheme: "https",
     AuthConfig: auth.ApiKey{Value: os.Getenv("WEAVIATE_API_KEY")},
     Headers: map[string]string{

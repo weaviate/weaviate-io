@@ -756,14 +756,20 @@
   width: 100%;
   height: auto;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+  }
 
   .tab {
+    flex: 1 1 0;
     border-radius: 0.625rem 0.625rem 0rem 0rem;
-    width: 100%;
-    max-width: 21.91rem;
+    min-width: 160px;
     padding: 1rem;
-    flex-shrink: 0;
     color: #ffffff36;
     background: #130c49;
     display: flex;
@@ -771,10 +777,11 @@
     align-items: center;
     gap: 10px;
     cursor: pointer;
+    text-align: center;
 
-    @media screen and (max-width: 1215px) {
-      max-width: 66rem;
+    @media screen and (max-width: 1000px) {
       width: 100%;
+      max-width: unset;
     }
   }
 

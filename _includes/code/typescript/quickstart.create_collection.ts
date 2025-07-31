@@ -2,13 +2,13 @@
 import weaviate, { WeaviateClient, vectorizer, generative } from 'weaviate-client';
 
 // Best practice: store your credentials in environment variables
-const wcdUrl = process.env.WCD_URL as string;
-const wcdApiKey = process.env.WCD_API_KEY as string;
+const weaviateUrl = process.env.WEAVIATE_URL as string;
+const weaviateApiKey = process.env.WEAVIATE_API_KEY as string;
 
 const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
-  wcdUrl, // Replace with your Weaviate Cloud URL
+  weaviateUrl, // Replace with your Weaviate Cloud URL
   {
-    authCredentials: new weaviate.ApiKey(wcdApiKey), // Replace with your Weaviate Cloud API key
+    authCredentials: new weaviate.ApiKey(weaviateApiKey), // Replace with your Weaviate Cloud API key
   }
 );
 
@@ -20,7 +20,7 @@ await client.collections.delete('Question');
 // highlight-start
 await client.collections.create({
   name: 'Question',
-  vectorizers: vectorizer.text2VecCohere(),
+  vectorizers: vectorizer.text2VecWeaviate(),
   generative: generative.cohere(),
 });
 // highlight-end

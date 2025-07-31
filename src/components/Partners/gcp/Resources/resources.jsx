@@ -26,18 +26,6 @@ export default function Resources() {
               </div>
             </div>
           </Link>
-          <Link to="https://weaviate.io/developers/weaviate/installation/gc-marketplace">
-            <div className={styles.latestBox}>
-              <div className={`${styles.insideBox} ${styles.resource2}`}></div>
-              <div className={styles.textBox}>
-                <h3>Docs</h3>
-                <p>
-                  How to use Google Cloud Marketplace to launch a Weaviate
-                  cluster
-                </p>
-              </div>
-            </div>
-          </Link>
           <Link to="https://weaviate.io/blog/announcing-palm-modules">
             <div className={styles.latestBox}>
               <div className={`${styles.insideBox} ${styles.resource1}`}></div>

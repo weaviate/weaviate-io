@@ -68,8 +68,8 @@ import (
   "context"
   "fmt"
 
-  "github.com/weaviate/weaviate-go-client/v4/weaviate"
-  "github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
+  "github.com/weaviate/weaviate-go-client/v5/weaviate"
+  "github.com/weaviate/weaviate-go-client/v5/weaviate/graphql"
 )
 
 func main() {
@@ -91,18 +91,18 @@ func main() {
     },
   }
 
-  query := string{"fox"}
-  properties: []string{"title"},
+  query := "fox"
+  properties := []string{"title"}
   bm25 := client.GraphQL().Bm25ArgBuilder().
     WithQuery(query).
-    WithProperties(properties)
+    WithProperties(properties...)
 
   ctx := context.Background()
 
   result, err := client.GraphQL().Get().
     WithClassName(className).
     WithFields(title, _additional).
-    WithBm25(bm25).
+    WithBM25(bm25).
     Do(ctx)
 
   if err != nil {

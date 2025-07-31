@@ -22,7 +22,7 @@ Weaviate does not collect any other telemetry information.
 
 ## Disabling Telemetry Data
 
-To disable telemetry data collection, add this line to your [system configuration](./env-vars.md) file:
+To disable telemetry data collection, add this line to your [system configuration](./env-vars/index.md) file:
 
 ```bash
 DISABLE_TELEMETRY=true

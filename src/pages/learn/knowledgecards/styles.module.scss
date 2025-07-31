@@ -643,9 +643,16 @@
   .modalText {
     text-align: left;
     width: 90%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
 
     @media screen and (max-width: 550px) {
       width: 100%;
+    }
+
+    @media screen and (max-width: 450px) {
+      max-width: 100%;
     }
   }
 
@@ -656,6 +663,7 @@
     margin-right: auto;
     justify-content: space-between;
     gap: 20px;
+    width: 100%;
   }
 
   .cardType {
@@ -754,7 +762,6 @@
     }
 
     @media screen and (max-width: 400px) {
-      width: 300px;
       height: 150px;
     }
   }
@@ -834,6 +841,7 @@
 
     @media screen and (max-width: 400px) {
       width: 100%;
+      flex-wrap: wrap;
     }
 
     a {
@@ -858,13 +866,12 @@
     cursor: pointer;
 
     @media screen and (max-width: 500px) {
-      width: 10.47769rem;
+      width: 9.47769rem;
       height: 2.84969rem;
     }
 
     @media screen and (max-width: 400px) {
-      width: 8.47769rem;
-      height: 2.84969rem;
+      width: 7.47769rem;
     }
   }
 }
@@ -961,5 +968,9 @@
   color: #130c49;
   a {
     color: #130c49;
+  }
+
+  @media screen and (max-width: 500px) {
+    font-size: 13px;
   }
 }

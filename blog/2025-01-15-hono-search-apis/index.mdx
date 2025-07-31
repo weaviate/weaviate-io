@@ -103,7 +103,7 @@ This file sets up a simple Node.js server that you can interact with on `localho
 
 ### Step 3: Setup Weaviate
 
-We'll start by creating a free sandbox account on [Weaviate Cloud](https://console.weaviate.cloud/). Follow [this guide](https://weaviate.io/developers/wcs/connect) if you have trouble setting up a sandbox project.
+We'll start by creating a free sandbox account on [Weaviate Cloud](https://console.weaviate.cloud/). Follow [this guide](https://weaviate.io/developers/wcs/manage-clusters/connect) if you have trouble setting up a sandbox project.
 
 You will need your Weaviate cluster URL and API key. If you don't already have one, you'll also need to create a Cohere [API key](https://dashboard.cohere.com/api-keys), we use Cohere as our [embedding model](https://weaviate.io/developers/academy/js/standalone/using-ml-models/embedding). When done, add all three to your `.env` file, as shown in your [`.env.example`](https://github.com/malgamves/weaviate-servers/blob/main/hono-server/.env.example) file.
 
@@ -120,8 +120,8 @@ In your `config` folder, create a file called `weaviate.ts`. You can create the 
 import weaviate from 'weaviate-client';
 import 'dotenv/config';
 
-const weaviateURL = process.env.WEAVIATE_HOST_URL as string;
-const weaviateKey = process.env.WEAVIATE_READ_KEY as string;
+const weaviateURL = process.env.WEAVIATE_URL as string;
+const weaviateKey = process.env.WEAVIATE_API_KEY as string;
 const cohereKey = process.env.COHERE_API_KEY as string;
 
 export const connectToDB = async () => {

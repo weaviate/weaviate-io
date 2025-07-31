@@ -15,10 +15,10 @@ At the instance (i.e. Weaviate cluster) level, you can:
 - Configure the default vectorizer module
 - Configure module-specific variables (e.g. API keys), where applicable
 
-This can be done by setting the appropriate [environment variables](../config-refs/env-vars.md) as shown below.
+This can be done by setting the appropriate [environment variables](../config-refs/env-vars/index.md) as shown below.
 
 :::tip What about WCD?
-Weaviate Cloud (WCD) instances come with modules pre-configured. See [this page](../../wcs/cluster-status.mdx#enabled-modules) for details.
+Weaviate Cloud (WCD) instances come with modules pre-configured. See [this page](/developers/wcs/manage-clusters/status#enabled-modules) for details.
 :::
 
 ### Enable individual modules

@@ -16,12 +16,16 @@ By default, Weaviate nodes in a cluster use a gossip-like protocol through [Hash
 
 Weaviate is optimized to run on Kubernetes, especially when operating as a cluster. The [Weaviate Helm chart](/developers/weaviate/installation/kubernetes.md#weaviate-helm-chart) makes use of a `StatefulSet` and a headless `Service` that automatically configures node discovery.
 
-### FQDN for node discovery
+<details>
+  <summary>FQDN for node discovery</summary>
 
-:::info Added in `v1.25.15`
+:::caution Added in `v1.25.15` and removed in `v1.30`
+
+This was an experimental feature. Use with caution.
+
 :::
 
-There can be a situation where IP-address based node discovery is not optimal. In such cases, you can set `RAFT_ENABLE_FQDN_RESOLVER` and `RAFT_FQDN_RESOLVER_TLD` [environment variables](../../config-refs/env-vars.md#multi-node-instances) to enable [fully qualified domain name (FQDN)](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) based node discovery.
+There can be a situation where IP-address based node discovery is not optimal. In such cases, you can set `RAFT_ENABLE_FQDN_RESOLVER` and `RAFT_FQDN_RESOLVER_TLD` [environment variables](../../config-refs/env-vars/index.md#multi-node-instances) to enable [fully qualified domain name (FQDN)](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) based node discovery.
 
 If this feature is enabled, Weaviate uses the FQDN resolver to resolve the node name to the node IP address for metadata (e.g., Raft) communication.
 
@@ -42,6 +46,8 @@ It can also be useful when using services (for example, Kubernetes) where the IP
 `RAFT_FQDN_RESOLVER_TLD` is a string that is appended in the format `[node-id].[tld]` when resolving a node-id to an IP address, where `[tld]` is the top-level domain.
 
 To use this feature, set `RAFT_ENABLE_FQDN_RESOLVER` to `true`.
+
+</details>
 
 ## Metadata replication: Raft
 
@@ -88,12 +94,12 @@ A replication factor of 3 is commonly used, since this provides a right balance 
 
 ## Write operations
 
-On a write operation, the client’s request will be sent to any node in the cluster. The first node which receives the request is assigned as the coordinator. The coordinator node sends the request to a number of predefined replicas and returns the result to the client. So, any node in the cluster can be a coordinator node. A client will only have direct contact with this coordinator node. Before sending the result back to the client, the coordinator node waits for a number of write acknowledgements from different nodes depending on the configuration. How many acknowledgements Weaviate waits for, depends on the [consistency configuration](./consistency.md).
+On a write operation, the client’s request will be sent to any node in the cluster. The first node which receives the request is assigned as the coordinator. The coordinator node sends the request to a number of predefined replicas and returns the result to the client. So, any node in the cluster can be a coordinator node. A client will only have direct contact with this coordinator node. Before sending the result back to the client, the coordinator node waits for a number of write acknowledgments from different nodes depending on the configuration. How many acknowledgments Weaviate waits for, depends on the [consistency configuration](./consistency.md).
 
 **Steps**
 1. The client sends data to any node, which will be assigned as the coordinator node
 2. The coordinator node sends the data to more than one replica node in the cluster
-3. The coordinator node waits for acknowledgement from a specified proportion (let's call it `x`) of cluster nodes. Starting with v1.18, `x` is [configurable](./consistency.md), and defaults to `ALL` nodes.
+3. The coordinator node waits for acknowledgment from a specified proportion (let's call it `x`) of cluster nodes. Starting with v1.18, `x` is [configurable](./consistency.md), and defaults to `ALL` nodes.
 4. When `x` ACKs are received by the coordinator node, the write is successful.
 
 As an example, consider a cluster size of 3 with replication factor of 3. So, all nodes in the distributed setup contain a copy of the data. When the client sends new data, this will be replicated to all three nodes.

@@ -29,7 +29,7 @@ Some HNSW parameters are mutable, but others cannot be modified after you create
 | `flatSearchCutoff` | integer | 40000 | Yes | Optional. Threshold for the [flat-search cutoff](/developers/weaviate/concepts/filtering.md#flat-search-cutoff). To force a vector index search, set `"flatSearchCutoff": 0`. |
 | `skip` | boolean | `false` | No | When true, do not index the collection. <br/><br/> Weaviate decouples vector creation and vector storage. If you skip vector indexing, but a vectorizer is configured (or a vector is provided manually), Weaviate logs a warning each import. <br/><br/> To skip indexing and vector generation, set `"vectorizer": "none"` when you set `"skip": true`. <br/><br/> See [When to skip indexing](../../concepts/vector-index.md#when-to-skip-indexing). |
 | `vectorCacheMaxObjects`| integer | `1e12` | Yes | Maximum number of objects in the memory cache. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created. For sizing recommendations, see [Vector cache considerations](../../concepts/vector-index.md#vector-cache-considerations). |
-| `pq` | object | -- | Yes | Enable and configure [product quantization (PQ)](/developers/weaviate/concepts/vector-index.md#hnsw-with-product-quantizationpq) compression. <br/><br/> PQ assumes some data has already been loaded. You should have 10,000 to 100,000 vectors per shard loaded before you enable PQ. <br/><br/> For PQ configuration details, see [PQ configuration parameters](#pq-configuration-parameters). |
+| `pq` | object | -- | Yes | Enable and configure [product quantization (PQ)](/developers/weaviate/concepts/vector-quantization.md) compression. <br/><br/> PQ assumes some data has already been loaded. You should have 10,000 to 100,000 vectors per shard loaded before you enable PQ. <br/><br/> For PQ configuration details, see [PQ configuration parameters](#pq-configuration-parameters). |
 
 ### Database parameters for HNSW
 
@@ -54,7 +54,7 @@ Tombstones are records that mark deleted objects. In an HNSW index, tombstones a
 
 As the index grows in size, the cleanup process may take longer to complete and require more resources. For very large indexes, this may cause performance issues.
 
-To control the number of tombstones deleted per cleanup cycle and prevent performance issues, set the [`TOMBSTONE_DELETION_MAX_PER_CYCLE` and `TOMBSTONE_DELETION_MIN_PER_CYCLE` environment variables](../env-vars.md#general).
+To control the number of tombstones deleted per cleanup cycle and prevent performance issues, set the [`TOMBSTONE_DELETION_MAX_PER_CYCLE` and `TOMBSTONE_DELETION_MIN_PER_CYCLE` environment variables](../env-vars/index.md#general).
 
 - Set `TOMBSTONE_DELETION_MIN_PER_CYCLE` to prevent occurrences of unnecessary cleanup cycles.
 - Set `TOMBSTONE_DELETION_MAX_PER_CYCLE` to prevent the cleanup process from taking too long and consuming too many resources.
@@ -294,7 +294,7 @@ The `vectorQueueLength` field will show the number of remaining objects to be in
 ```
 </details>
 
-## Multiple vectors (named vectors)
+## Multiple vector embeddings (named vectors)
 
 import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 

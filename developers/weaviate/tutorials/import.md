@@ -1,7 +1,7 @@
 ---
 title: Imports in detail
 description: Understand data import techniques in Weaviate for efficient data integration.
-sidebar_position: 30
+sidebar_position: 4
 image: og/docs/tutorials.jpg
 # tags: ['import']
 ---
@@ -22,7 +22,7 @@ Before you start this tutorial, you should follow the steps in the tutorials to 
 - An API key for your preferred inference API, such as OpenAI, Cohere, or Hugging Face,
 - Installed your preferred Weaviate client library, and
 - Set up a `Question` class in your schema.
-    - You can follow the Quickstart guide, or the [schema tutorial](../starter-guides/schema.md) to construct the Question class if you have not already.
+    - You can follow the Quickstart guide, or the [schema tutorial](/developers/weaviate/starter-guides/managing-collections) to construct the Question class if you have not already.
 
 We will use the dataset below. We suggest that you download it to your working directory.
 
@@ -32,7 +32,7 @@ We will use the dataset below. We suggest that you download it to your working d
 
 ## Import setup
 
-As mentioned in the [schema tutorial](../starter-guides/schema.md), the `schema` specifies the data structure for Weaviate.
+As mentioned in the [schema tutorial](/developers/weaviate/starter-guides/managing-collections), the `schema` specifies the data structure for Weaviate.
 
 So the data import must map properties of each record to those of the relevant class in the schema. In this case, the relevant class is **Question** as defined in the previous section.
 
@@ -132,7 +132,7 @@ When importing large datasets, it may be worth planning out an optimized import 
 1. To use multiple CPUs efficiently, enable sharding when you import data. For the fastest imports, enable sharding even on a single node.
 1. Use [parallelization](https://www.computerhope.com/jargon/p/parallelization.htm#:~:text=Parallelization%20is%20the%20act%20of,the%20next%2C%20then%20the%20next.); if the CPUs are not maxed out, just add another import process.
 1. Use `htop` when importing to see if all CPUs are maxed out.
-1. To avoid out-of-memory issues during imports, set `LIMIT_RESOURCES` to `True` or configure the `GOMEMLIMIT` environment variable. For details, see [Environment variables](../config-refs/env-vars.md).
+1. To avoid out-of-memory issues during imports, set `LIMIT_RESOURCES` to `True` or configure the `GOMEMLIMIT` environment variable. For details, see [Environment variables](../config-refs/env-vars/index.md).
 1. For Kubernetes, a few large machines are faster than many small machines (due to network latency).
 
 Our rules of thumb are:
@@ -160,7 +160,7 @@ A request with a `200` response may still include object-level errors, which is 
 
 ## Suggested reading
 
-- [Tutorial: Schemas in detail](../starter-guides/schema.md)
+- [Tutorial: Schemas in detail](/developers/weaviate/starter-guides/managing-collections)
 - [Tutorial: Queries in detail](./query.md)
 - [Tutorial: Introduction to modules](./modules.md)
 - [Tutorial: Introduction to Weaviate Console](/developers/wcs/tools/query-tool.mdx)

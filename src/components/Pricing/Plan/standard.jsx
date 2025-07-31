@@ -71,7 +71,7 @@ export default function PricingStandard() {
           </p>
           <div className={styles.bottomPrice}>
             <span>Starting at $25 /mo</span>
-            <p>per 1M vector dimensions stored/month</p>
+            <p>$0.095 per 1M vector dimensions stored/month</p>
           </div>
           <Link
             className={styles.buttonTryOutline}
@@ -90,7 +90,7 @@ export default function PricingStandard() {
           <ul>
             <li>Get started with a free trial in minutes</li>
             <li>Various SLA tiers to meet your needs</li>
-            <li>Weaviate Embeddings available starting at $0.04/M tokens</li>
+            <li>Weaviate Embeddings available</li>
           </ul>
           <Link className={styles.buttonView} onClick={openModal}>
             View pricing

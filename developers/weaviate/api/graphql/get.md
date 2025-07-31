@@ -52,14 +52,18 @@ import GraphQLGetSimple from '/_includes/code/graphql.get.simple.mdx';
 
 The above query will result in something like the following:
 
-import GraphQLGetSimpleUnfiltered from '!!raw-loader!/_includes/code/graphql.get.simple.py';
-
-<FilteredTextBlock
-  text={GraphQLGetSimpleUnfiltered}
-  startMarker="// ===== EXPECTED RESULT ====="
-  endMarker="// ===== END EXPECTED RESULT ====="
-  language="json"
-/>
+```
+{'points': 400.0, 'answer': 'Refrigerator Car', 'air_date': '1997-02-14', 'hasCategory': 'TRANSPORTATION', 'question': 'In the 19th century Gustavus Swift developed this type of railway car to preserve his packed meat', 'round': 'Jeopardy!'}
+{'points': 800.0, 'hasCategory': 'FICTIONAL CHARACTERS', 'answer': 'Forsyte', 'air_date': '1998-05-27', 'question': 'Last name of Soames & Irene, the 2 principal characters in John Galsworthy\'s 3 novel "saga"', 'round': 'Double Jeopardy!'}
+{'points': 500.0, 'answer': 'Duluth', 'air_date': '1996-12-17', 'hasCategory': 'MUSEUMS', 'question': 'This eastern Minnesota city is home to the Lake Superior Museum of Transportation', 'round': 'Jeopardy!'}
+{'points': 1000.0, 'answer': 'Ear', 'air_date': '1988-11-16', 'hasCategory': 'HISTORY', 'round': 'Double Jeopardy!', 'question': "An eighteenth-century war was named for this part of Robert Jenkins' body, reputedly cut off by Spaniards"}
+{'points': 400.0, 'answer': 'Bonnie Blair', 'air_date': '1997-02-28', 'hasCategory': 'SPORTS', 'round': 'Jeopardy!', 'question': "At the 1994 Olympics, this U.S. woman speed skater surpassed Eric Heiden's medal total"}
+{'points': 1600.0, 'answer': 'Turkish', 'air_date': '2008-03-24', 'hasCategory': 'LANGUAGES', 'question': 'In the 1920s this language of Anatolia switched from the Arabic to the Latin alphabet', 'round': 'Double Jeopardy!'}
+{'points': 100.0, 'answer': 'Ireland', 'air_date': '1998-10-01', 'hasCategory': 'POTPOURRI', 'round': 'Jeopardy!', 'question': "Country in which you'd find the Book of Kells"}
+{'points': 800.0, 'answer': 'Ichabod Crane', 'air_date': '2008-01-03', 'hasCategory': 'LITERATURE', 'round': 'Double Jeopardy!', 'question': 'Washington Irving based this character on his friend Jesse Merwin, a schoolteacher'}
+{'points': 300.0, 'air_date': '1997-12-05', 'hasCategory': 'LITERATURE', 'answer': '"The Prince and the Pauper"', 'question': 'Tom Canty, born in a slum called Offal Court, & Edward Tudor are the title characters in this Twain novel', 'round': 'Jeopardy!'}
+{'points': 500.0, 'answer': 'Seattle', 'air_date': '1999-05-10', 'hasCategory': 'U.S. CITIES', 'round': 'Jeopardy!', 'question': "The site of the World's Fair in 1962, it's flanked on the west by Puget Sound & on the east by Lake Washington"}
+```
 
 </details>
 

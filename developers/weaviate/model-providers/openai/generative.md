@@ -22,7 +22,7 @@ import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
 Weaviate's integration with OpenAI's APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use an OpenAI generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your OpenAI API key.
+[Configure a Weaviate collection](#configure-collection) to use a generative AI model with OpenAI. Weaviate will perform retrieval augmented generation (RAG) using the specified model and your OpenAI API key.
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the OpenAI generative model to generate outputs.
 
@@ -165,6 +165,41 @@ Configure the following generative parameters to customize the model behavior.
 
 For further details on model parameters, see the [OpenAI API documentation](https://platform.openai.com/docs/api-reference/chat).
 
+## Select a model at runtime
+
+Aside from setting the default model provider when creating the collection, you can also override it at query time.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START RuntimeModelSelectionOpenAI"
+      endMarker="# END RuntimeModelSelectionOpenAI"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START RuntimeModelSelectionOpenAI"
+      endMarker="// END RuntimeModelSelectionOpenAI"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+## Header parameters
+
+You can provide the API key as well as some optional parameters at runtime through additional headers in the request. The following headers are available:
+
+- `X-OpenAI-Api-Key`: The OpenAI API key.
+- `X-OpenAI-Baseurl`: The base URL to use (e.g. a proxy) instead of the default OpenAI URL.
+- `X-OpenAI-Organization`: The OpenAI organization ID.
+
+Any additional headers provided at runtime will override the existing Weaviate configuration.
+
+Provide the headers as shown in the [API credentials examples](#api-credentials) above.
+
 ## Retrieval augmented generation
 
 After configuring the generative AI integration, perform RAG operations, either with the [single prompt](#single-prompt) or [grouped task](#grouped-task) method.
@@ -229,6 +264,30 @@ In other words, when you have `n` search results, the generative model generates
     />
   </TabItem>
 
+</Tabs>
+
+### RAG with images
+
+You can also supply images as a part of the input when performing retrieval augmented generation in both single prompts and grouped tasks. 
+
+<Tabs groupId="languages">
+
+ <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START WorkingWithImagesOpenAI"
+      endMarker="# END WorkingWithImagesOpenAI"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS API v3">
+  <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START WorkingWithImagesOpenAI"
+      endMarker="// END WorkingWithImagesOpenAI"
+      language="ts"
+    />
+  </TabItem>
 </Tabs>
 
 ## References

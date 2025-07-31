@@ -57,21 +57,21 @@ import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/w
 
 ```bash
 # Best practice: store your credentials in environment variables
-# export WCD_URL="YOUR_INSTANCE_URL"  # Your Weaviate instance URL
-# export WCD_API_KEY="YOUR_API_KEY"   # Your Weaviate instance API key
+# export WEAVIATE_URL="YOUR_INSTANCE_URL"  # Your Weaviate instance URL
+# export WEAVIATE_API_KEY="YOUR_API_KEY"   # Your Weaviate instance API key
 
 curl -X POST \
 -H "Content-Type: application/json" \
--H "Authorization: Bearer $WCD_API_KEY" \
+-H "Authorization: Bearer $WEAVIATE_API_KEY" \
 -d '{
   "class": "Question",
-  "vectorizer": "text2vec-cohere",
+  "vectorizer": "text2vec-weaviate",
   "moduleConfig": {
-    "text2vec-cohere": {},
+    "text2vec-weaviate": {},
     "generative-cohere": {}
   }
 }' \
-"$WCD_URL/v1/schema"
+"$WEAVIATE_URL/v1/schema"
 ```
 
 </TabItem>

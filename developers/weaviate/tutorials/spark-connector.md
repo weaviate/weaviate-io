@@ -6,6 +6,11 @@ image: og/docs/tutorials.jpg
 # tags: ['how to', 'spark connector', 'spark']
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/developers/weaviate/tutorials/_includes/spark-tutorial.py';
+
 This tutorial is designed to show you an example of how to use the [Spark Connector](https://github.com/weaviate/spark-connector) to import data into Weaviate from Spark.
 
 By the end of this tutorial, you'll be able to see how to you can import your data into [Apache Spark](https://spark.apache.org/) and then use the Spark Connector to write your data to Weaviate.
@@ -35,7 +40,7 @@ You will also need Java 8+ and Scala 2.12 installed. You can get these separatel
 
 The Spark Connector gives you the ability to easily write data from Spark data structures into Weaviate. This is quite useful when used in conjunction with Spark extract, transform, load (ETLs) processes to populate a Weaviate vector database.
 
-The Spark Connector is able to automatically infer the correct Spark DataType based on your schema for the class in Weaviate. You can choose to vectorize your data when writing to Weaviate, or if you already have vectors available, you can supply them. By default, the Weaviate client will create document IDs for you for new documents but if you already have IDs you can also supply those in the dataframe. All of this and more can be specified as options in the Spark Connector.
+The Spark Connector is able to automatically infer the correct Spark DataType based on your schema for the collection in Weaviate. You can choose to vectorize your data when writing to Weaviate, or if you already have vectors available, you can supply them. By default, the Weaviate client will create document IDs for you for new documents but if you already have IDs you can also supply those in the `dataframe`. All of this and more can be specified as options in the Spark Connector.
 
 ## Initializing a Spark session
 
@@ -43,22 +48,16 @@ Often a Spark Session will be created as part of your Spark environment (such as
 
 If you want to create a local Spark Session manually, use the following code to create a session with the connector:
 
-```python
-from pyspark.sql import SparkSession
-import os
-
-spark = (
-    SparkSession.builder.config(
-        "spark.jars",
-        "spark-connector-assembly-||site.spark_connector_version||.jar",  #specify the spark connector JAR
-    )
-    .master("local[*]")
-    .appName("weaviate")
-    .getOrCreate()
-)
-
-spark.sparkContext.setLogLevel("WARN")
-```
+<Tabs groupId="languages">
+ <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START InitiateSparkSession"
+      endMarker="# END InitiateSparkSession"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
 
 You should now have a Spark Session created and will be able to view it using the **Spark UI** at `http://localhost:4040`.
 
@@ -76,15 +75,29 @@ You can download this dataset from [here](https://storage.googleapis.com/sphere-
 
 The following line of code can be used to read the dataset into your Spark Session:
 
-```python
-df = spark.read.load("sphere.100k.jsonl", format="json")
-```
+<Tabs groupId="languages">
+ <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ReadDataIntoSpark"
+      endMarker="# END ReadDataIntoSpark"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
 
 To verify this is done correctly we can have a look at the first few records:
 
-```python
-df.limit(3).toPandas().head()
-```
+<Tabs groupId="languages">
+ <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START VerifyDataRead"
+      endMarker="# END VerifyDataRead"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
 
 ## Writing to Weaviate
 
@@ -129,52 +142,44 @@ Then, navigate to the directory and start Weaviate according to the `docker-comp
 docker compose up -d
 ```
 
-The Spark Connector assumes that a schema has already been created in Weaviate. For this reason we will use the Python client to create this schema. For more information on how we create the schema see this [tutorial](../starter-guides/schema.md).
+The Spark Connector assumes that a schema has already been created in Weaviate. For this reason we will use the Python client to create this schema. For more information on how we create the schema see this [tutorial](/developers/weaviate/starter-guides/managing-collections).
 
-```python
-import weaviate
+<Tabs groupId="languages">
+ <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START CreateCollection"
+      endMarker="# END CreateCollection"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
 
-client = weaviate.Client("http://localhost:8080")
+Next we will write the Spark `dataframe` to Weaviate. The `.limit(1500)` could be removed to load the full dataset.
 
-client.schema.delete_all()
+<Tabs groupId="languages">
+ <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START WriteToWeaviate"
+      endMarker="# END WriteToWeaviate"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
 
-client.schema.create_class(
-    {
-        "class": "Sphere",
-        "properties": [
-            {
-                "name": "raw",
-                "dataType": ["text"]
-            },
-            {
-                "name": "sha",
-                "dataType": ["text"]
-            },
-            {
-                "name": "title",
-                "dataType": ["text"]
-            },
-            {
-                "name": "url",
-                "dataType": ["text"]
-            },
-        ],
-    }
-)
-```
+And don't forget to close the connection to Weaviate after you are done.
 
-Next we will write the Spark dataframe to Weaviate. The `.limit(1500)` could be removed to load the full dataset.
-
-```python
-df.limit(1500).withColumnRenamed("id", "uuid").write.format("io.weaviate.spark.Weaviate") \
-    .option("batchSize", 200) \
-    .option("scheme", "http") \
-    .option("host", "localhost:8080") \
-    .option("id", "uuid") \
-    .option("className", "Sphere") \
-    .option("vector", "vector") \
-    .mode("append").save()
-```
+<Tabs groupId="languages">
+ <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START CloseConnection"
+      endMarker="# END CloseConnection"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
 
 ## Spark connector options
 
@@ -182,11 +187,11 @@ Let's examine the code above to understand exactly what's happening and all the 
 
 - Using `.option("host", "localhost:8080")` we specify the Weaviate instance we want to write to
 
-- Using `.option("className", "Sphere")` we ensure that the data is written to the class we just created.
+- Using `.option("className", "Sphere")` we ensure that the data is written to the collection we just created.
 
-- Since we already have document IDs in our dataframe, we can supply those for use in Weaviate by renaming the column that is storing them to `uuid` using `.withColumnRenamed("id", "uuid")` followed by the `.option("id", "uuid")`.
+- Since we already have document IDs in our `dataframe`, we can supply those for use in Weaviate by renaming the column that is storing them to `uuid` using `.withColumnRenamed("id", "uuid")` followed by the `.option("id", "uuid")`.
 
-- Using `.option("vector", "vector")` we can specify for Weaviate to use the vectors stored in our dataframe under the column named `vector` instead of re-vectorizing the data from scratch.
+- Using `.option("vector", "vector")` we can specify for Weaviate to use the vectors stored in our `dataframe` under the column named `vector` instead of re-vectorizing the data from scratch.
 
 - Using `.option("batchSize", 200)` we specify how to batch the data when writing to Weaviate. Aside from batching operations, streaming is also allowed.
 
@@ -199,6 +204,8 @@ client.query.get("Sphere", "title").do()
 ```
 
 ## Additional options
+
+### Connecting to Weaviate
 
 If using an authenticated cluster such as on [WCD](../../wcs/quickstart.mdx) you can provide `.option("apiKey", WEAVIATE_API_KEY)` for api key authentication like below:
 
@@ -224,6 +231,37 @@ df.limit(1500).withColumnRenamed("id", "uuid").write.format("io.weaviate.spark.W
 
 - Additionally OIDC options are supported `.option("oidc:username", ...)`, `.option("oidc:password", ...)`, `.option("oidc:clientSecret", ...)`, `.option("oidc:accessToken", ...)`, `.option("oidc:accessTokenLifetime", ...)`, `.option("oidc:refreshToken", ...)`. For more information on these options See the [Java client documentation](../client-libraries/java.md#oidc-authentication).
 
+### Named vectors and multi-vector embeddings
+
+The Spark Connector supports Weaviate named vectors, enabling users to import multiple vectors (including multi-vector embeddings) into a collection. If the collection is defined with named vectors, you can reference them using `vectors:*` or `multiVectors:*` options.
+
+For example, let's create a `BringYourOwnVectors` collection with two named vectors:
+- `regular` - normal embedding (example: `[0.1, 0.2]`)
+- `colbert` - multi vector embedding (example: `[[0.1, 0.2], [0.3, 0.4]]`)
+
+<Tabs groupId="languages">
+ <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START CreateNamedVectorCollection"
+      endMarker="# END CreateNamedVectorCollection"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+The corresponding Spark code that will insert `regularVector` and `multiVector` data into `regular` and `colbert` named vectors looks like this:
+
+<Tabs groupId="languages">
+ <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ReadNamedVectorDataIntoSpark"
+      endMarker="# END ReadNamedVectorDataIntoSpark"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
 
 ## Questions and feedback
 

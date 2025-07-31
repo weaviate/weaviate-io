@@ -219,7 +219,15 @@ client.collections.create(
             # highlight-end
         ),
         Property(
-            name="Chunk",
+            name="chunk",
+            data_type=DataType.TEXT,
+            # highlight-start
+            index_filterable=True,
+            index_searchable=True,
+            # highlight-end
+        ),
+        Property(
+            name="chunk_number",
             data_type=DataType.INT,
             # highlight-start
             index_range_filters=True,
@@ -325,7 +333,9 @@ client.collections.create(
     "Article",
     vectorizer_config=Configure.Vectorizer.text2vec_openai(),
     # highlight-start
-    generative_config=Configure.Generative.openai(),
+    generative_config=Configure.Generative.openai(
+        model="gpt-4o"  # set your generative model (optional parameter)
+    ),
     # highlight-end
 )
 # END SetGenerative
@@ -337,35 +347,6 @@ assert config.generative_config.generative == "generative-openai"
 
 # Delete the collection to recreate it
 client.collections.delete("Article")
-
-# =======================================================================
-# ===== CREATE A COLLECTION WITH A GENERATIVE MODULE AND MODEL NAME =====
-# =======================================================================
-
-client.collections.delete("Article")
-
-# START SetGenModel
-from weaviate.classes.config import Configure, Property, DataType
-
-client.collections.create(
-    "Article",
-    vectorizer_config=Configure.Vectorizer.text2vec_openai(),
-    # highlight-start
-    generative_config=Configure.Generative.openai(
-        model="gpt-4"
-    ),
-    # highlight-end
-)
-# END SetGenModel
-
-# Test
-collection = client.collections.get("Article")
-config = collection.config.get()
-assert config.generative_config.generative == "generative-openai"
-
-# Delete the collection to recreate it
-client.collections.delete("Article")
-
 
 # ===============================================
 # ===== UPDATE A COLLECTION'S GENERATIVE MODULE =====
@@ -403,6 +384,131 @@ assert config.generative_config.generative == "generative-cohere"
 # Delete the collection to recreate it
 client.collections.delete("Article")
 
+
+# ======================================================
+# ===== MULTI-VECTOR EMBEDDINGS (ColBERT, ColPali)
+# ======================================================
+
+# Clean slate
+client.collections.delete("DemoCollection")
+
+# START MultiValueVectorCollection
+from weaviate.classes.config import Configure, Property, DataType
+
+client.collections.create(
+    "DemoCollection",
+    vectorizer_config=[
+        # Example 1 - Use a model integration
+        # The factory function will automatically enable multi-vector support for the HNSW index
+        # highlight-start
+        Configure.NamedVectors.text2colbert_jinaai(
+            name="jina_colbert",
+            source_properties=["text"],
+        ),
+        # highlight-end
+        # Example 2 - User-provided multi-vector representations
+        # Must explicitly enable multi-vector support for the HNSW index
+        # highlight-start
+        Configure.NamedVectors.none(
+        # highlight-end
+            name="custom_multi_vector",
+            vector_index_config=Configure.VectorIndex.hnsw(
+                # highlight-start
+                multi_vector=Configure.VectorIndex.MultiVector.multi_vector()
+                # highlight-end
+            ),
+        ),
+    ],
+    properties=[
+        Property(name="text", data_type=DataType.TEXT)
+    ]
+    # Additional parameters not shown
+)
+# END MultiValueVectorCollection
+
+# ==========================================
+# ===== MULTI-VECTOR EMBEDDINGS MUVERA
+# ==========================================
+
+# Clean slate
+client.collections.delete("DemoCollection")
+
+# START MultiValueVectorMuvera
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    vectorizer_config=[
+        # Example 1 - Use a model integration
+        Configure.NamedVectors.text2colbert_jinaai(
+            name="jina_colbert",
+            source_properties=["text"],
+            # highlight-start
+            vector_index_config=Configure.VectorIndex.hnsw(
+                multi_vector=Configure.VectorIndex.MultiVector.multi_vector(
+                    encoding=Configure.VectorIndex.MultiVector.Encoding.muvera(
+                        # Optional parameters for tuning MUVERA
+                        # ksim: 4,
+                        # dprojections: 16,
+                        # repetitions: 20,
+                    )
+                )
+            ),
+            # highlight-end
+        ),
+        # Example 2 - User-provided multi-vector representations
+        Configure.NamedVectors.none(
+            name="custom_multi_vector",
+            vector_index_config=Configure.VectorIndex.hnsw(
+                multi_vector=Configure.VectorIndex.MultiVector.multi_vector(
+                    # highlight-start
+                    encoding=Configure.VectorIndex.MultiVector.Encoding.muvera()
+                    # highlight-end
+                )
+            ),
+        ),
+    ],
+    # Additional parameters not shown
+)
+# END MultiValueVectorMuvera
+
+# ================================================
+# ===== MULTI-VECTOR EMBEDDINGS QUANTIZATION
+# ================================================
+
+# Clean slate
+client.collections.delete("DemoCollection")
+
+# START MultiValueVectorPQ
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    vectorizer_config=[
+        # Example 1 - Use a model integration
+        Configure.NamedVectors.text2colbert_jinaai(
+            name="jina_colbert",
+            source_properties=["text"],
+            # highlight-start
+            vector_index_config=Configure.VectorIndex.hnsw(
+                quantizer=Configure.VectorIndex.Quantizer.pq(training_limit=50000)
+            ),
+            # highlight-end
+        ),
+        # Example 2 - User-provided multi-vector representations
+        Configure.NamedVectors.none(
+            name="custom_multi_vector",
+            vector_index_config=Configure.VectorIndex.hnsw(
+                # highlight-start
+                quantizer=Configure.VectorIndex.Quantizer.pq(training_limit=50000),
+                # highlight-end
+                multi_vector=Configure.VectorIndex.MultiVector.multi_vector(),
+            ),
+        ),
+    ],
+    # Additional parameters not shown
+)
+# END MultiValueVectorPQ
 
 # ===========================
 # ===== MODULE SETTINGS =====
@@ -443,7 +549,7 @@ from weaviate.classes.config import Configure, Property, DataType, Tokenization
 
 client.collections.create(
     "Article",
-    vectorizer_config=Configure.Vectorizer.text2vec_huggingface(),
+    vectorizer_config=Configure.Vectorizer.text2vec_cohere(),
 
     properties=[
         Property(
@@ -465,6 +571,23 @@ client.collections.create(
     ]
 )
 # END PropModuleSettings
+
+# ====================================
+# ===== MODULE SETTINGS PROPERTY =====
+# ====================================
+
+# START AddNamedVectors
+from weaviate.classes.config import Configure
+
+articles = client.collections.get("Article")
+
+articles.config.add_vector(
+    vector_config=Configure.NamedVectors.text2vec_cohere(
+        name="body_vector",
+        source_properties=["body"],
+    )
+)
+# END AddNamedVectors
 
 # Test
 collection = client.collections.get("Article")
@@ -683,32 +806,6 @@ config = collection.config.get()
 assert len(config.properties) == 1
 assert config.properties[0].name == "body"
 
-# ==============================
-# ===== MODIFY A PARAMETER =====
-# ==============================
-
-# START ModifyParam
-from weaviate.classes.config import Reconfigure
-
-# Get the Article collection object
-articles = client.collections.get("Article")
-
-# Update the collection configuration
-# highlight-start
-articles.config.update(
-    # Note, use Reconfigure here (not Configure)
-    inverted_index_config=Reconfigure.inverted_index(
-        stopwords_removals=["a", "the"]
-    )
-)
-# highlight-end
-# END ModifyParam
-
-# Test
-collection = client.collections.get("Article")
-config = collection.config.get()
-assert config.inverted_index_config.stopwords.removals == ["a", "the"]
-
 # ================================
 # ===== READ A COLLECTION =====
 # ================================
@@ -765,7 +862,7 @@ for _ in range(5):
 
 
 # START UpdateCollection
-from weaviate.classes.config import Reconfigure, VectorFilterStrategy
+from weaviate.classes.config import Reconfigure, VectorFilterStrategy, ReplicationDeletionStrategy
 
 articles = client.collections.get("Article")
 
@@ -776,6 +873,9 @@ articles.config.update(
     ),
     vector_index_config=Reconfigure.VectorIndex.hnsw(
         filter_strategy=VectorFilterStrategy.ACORN  # Available from Weaviate v1.27.0
+    ),
+    replication_config=Reconfigure.replication(
+        deletion_strategy=ReplicationDeletionStrategy.TIME_BASED_RESOLUTION  # Available from Weaviate v1.28.0
     )
 )
 # END UpdateCollection

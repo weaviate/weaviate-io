@@ -61,6 +61,14 @@ await client.collections.create({
 });
 // END RerankerJinaAICustomModel
 
+// START RerankerNVIDIABasic
+// Coming soon
+// END RerankerNVIDIABasic
+
+// START RerankerNVIDIACustomModel
+// Coming soon
+// END RerankerNVIDIACustomModel
+
 // START RerankerVoyageAI
 await client.collections.create({
   name: 'DemoCollection',

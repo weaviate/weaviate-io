@@ -9,13 +9,13 @@ from weaviate.classes.init import Auth
 import os
 
 # Best practice: store your credentials in environment variables
-wcd_url = os.environ["WCD_DEMO_URL"]
-wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
+weaviate_url = os.environ["WEAVIATE_URL"]
+weaviate_api_key = os.environ["WEAVIATE_API_KEY"]
 openai_api_key = os.environ["OPENAI_APIKEY"]
 
 client = weaviate.connect_to_weaviate_cloud(
-    cluster_url=wcd_url,
-    auth_credentials=Auth.api_key(wcd_api_key),
+    cluster_url=weaviate_url,
+    auth_credentials=Auth.api_key(weaviate_api_key),
     headers={
         "X-OpenAI-Api-Key": openai_api_key,
     },
@@ -154,7 +154,7 @@ assert response.objects[0].collection == "JeopardyQuestion"
 # ===================================
 
 # HybridWithAlphaPython
-client.collections.get("JeopardyQuestion")
+jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
     query="food",
     # highlight-start
@@ -193,6 +193,60 @@ response = jeopardy.query.hybrid(
 for o in response.objects:
     print(o.properties)
 # END HybridWithFusionTypePython
+
+# Tests
+assert response.objects[0].collection == "JeopardyQuestion"
+# End test
+
+
+# ========================================
+# ===== Hybrid Query with BM25 Operator (Or) =====
+# ========================================
+
+# START HybridWithBM25OperatorOrWithMin
+# highlight-start
+from weaviate.classes.query import BM25Operator
+# highlight-end
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.hybrid(
+    # highlight-start
+    query="Australian mammal cute",
+    bm25_operator=BM25Operator.or_(minimum_match=2),
+    # highlight-end
+    limit=3,
+)
+
+for o in response.objects:
+    print(o.properties)
+# END HybridWithBM25OperatorOrWithMin
+
+# Tests
+assert response.objects[0].collection == "JeopardyQuestion"
+# End test
+
+
+# ========================================
+# ===== Hybrid Query with BM25 Operator (And) =====
+# ========================================
+
+# START HybridWithBM25OperatorAnd
+# highlight-start
+from weaviate.classes.query import BM25Operator
+# highlight-end
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.hybrid(
+    # highlight-start
+    query="Australian mammal cute",
+    bm25_operator=BM25Operator.and_(),  # Each result must include all tokens (e.g. "australian", "mammal", "cute")
+    # highlight-end
+    limit=3,
+)
+
+for o in response.objects:
+    print(o.properties)
+# END HybridWithBM25OperatorAnd
 
 # Tests
 assert response.objects[0].collection == "JeopardyQuestion"

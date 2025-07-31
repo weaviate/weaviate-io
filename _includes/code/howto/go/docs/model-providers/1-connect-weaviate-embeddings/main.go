@@ -1,7 +1,7 @@
 // START-ANY
-// Set these environment variables
-// WCD_HOSTNAME			your Weaviate instance hostname
-// WCD_API_KEY  		your Weaviate instance API key
+// Best practice: store your credentials in environment variables
+// WEAVIATE_URL		    Weaviate URL: "REST Endpoint" in Weaviate Cloud console
+// WEAVIATE_API_KEY		Weaviate API key: "ADMIN" API key in Weaviate Cloud console
 
 package main
 
@@ -10,18 +10,18 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/weaviate/weaviate-go-client/v4/weaviate"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate/auth"
+	"github.com/weaviate/weaviate-go-client/v5/weaviate"
+	"github.com/weaviate/weaviate-go-client/v5/weaviate/auth"
 )
 
 func main() {
 	cfg := weaviate.Config{
-		Host:       os.Getenv("WCD_W_EMB_HOSTNAME"),
+		Host:       os.Getenv("WEAVIATE_URL"),
 		Scheme:     "https",
-		AuthConfig: auth.ApiKey{Value: os.Getenv("WCD_W_EMB_API_KEY")},
+		AuthConfig: auth.ApiKey{Value: os.Getenv("WEAVIATE_API_KEY")},
 		Headers: map[string]string{
-			"X-Weaviate-Api-Key":     os.Getenv("WCD_W_EMB_API_KEY"),
-			"X-Weaviate-Cluster-Url": fmt.Sprintf("https://%s", os.Getenv("WCD_W_EMB_HOSTNAME")),
+			"X-Weaviate-Api-Key":     os.Getenv("WEAVIATE_API_KEY"),
+			"X-Weaviate-Cluster-Url": fmt.Sprintf("https://%s", os.Getenv("WEAVIATE_URL")),
 		},
 	}
 

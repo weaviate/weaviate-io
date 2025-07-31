@@ -260,6 +260,18 @@ The following examples show how to configure OpenAI-specific options.
 
 For further details on model parameters, see the [OpenAI API documentation](https://platform.openai.com/docs/api-reference/embeddings).
 
+## Header parameters
+
+You can provide the API key as well as some optional parameters at runtime through additional headers in the request. The following headers are available:
+
+- `X-OpenAI-Api-Key`: The OpenAI API key.
+- `X-OpenAI-Baseurl`: The base URL to use (e.g. a proxy) instead of the default OpenAI URL.
+- `X-OpenAI-Organization`: The OpenAI organization ID.
+
+Any additional headers provided at runtime will override the existing Weaviate configuration.
+
+Provide the headers as shown in the [API credentials examples](#api-credentials) above.
+
 ## Data import
 
 After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for text objects using the specified model.

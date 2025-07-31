@@ -5,15 +5,38 @@ import assert from 'assert';
 // ================================
 import weaviate from 'weaviate-client';
 
-const client = await weaviate.connectToLocal({
-  headers: {
-    'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY || '',
-    'X-Cohere-Api-Key': process.env.COHERE_APIKEY || '',
-  },
-});
+// START RuntimeModelSelectionAnthropic  // START WorkingWithImagesAnthropic // START WorkingWithImagesAWS // START WorkingWithImagesGoogle // START WorkingWithImagesOpenAI // START RuntimeModelSelectionAnyscale // START RuntimeModelSelectionMistral // START RuntimeModelSelectionOpenAI // START RuntimeModelSelectionAWS // START RuntimeModelSelectionCohere // START RuntimeModelSelectionDatabricks // START RuntimeModelSelectionFriendliAI // START RuntimeModelSelectionGoogle // START RuntimeModelSelectionNVIDIA // START RuntimeModelSelectionKubeAI // START RuntimeModelSelectionAzureOpenAI // START RuntimeModelSelectionOllama
+import { generativeParameters } from 'weaviate-client';
 
-// Clean up
-await client.collections.delete('DemoCollection');
+// END RuntimeModelSelectionAnthropic  // END WorkingWithImagesAnthropic // END WorkingWithImagesAWS // END WorkingWithImagesGoogle // END WorkingWithImagesOpenAI // END RuntimeModelSelectionAnyscale // END RuntimeModelSelectionMistral // END RuntimeModelSelectionOpenAI // END RuntimeModelSelectionAWS // END RuntimeModelSelectionCohere // END RuntimeModelSelectionDatabricks // END RuntimeModelSelectionFriendliAI // END RuntimeModelSelectionGoogle // END RuntimeModelSelectionNVIDIA // END RuntimeModelSelectionKubeAI // END RuntimeModelSelectionAzureOpenAI // END RuntimeModelSelectionOllama
+
+// START WorkingWithImagesAnthropic // START WorkingWithImagesAWS // START WorkingWithImagesGoogle // START WorkingWithImagesOpenAI
+function arrayBufferToBase64(buffer: ArrayBuffer): string {
+  const bytes = new Uint8Array(buffer);
+  let binary = '';
+  const chunkSize = 1024; // Process in chunks to avoid call stack issues
+
+  for (let i = 0; i < bytes.length; i += chunkSize) {
+    const chunk = bytes.slice(i, Math.min(i + chunkSize, bytes.length));
+    binary += String.fromCharCode.apply(null, Array.from(chunk));
+  }
+
+  return btoa(binary);
+}
+
+// END WorkingWithImagesAnthropic // END WorkingWithImagesAWS // END WorkingWithImagesGoogle // END WorkingWithImagesOpenAI
+
+async function main() {
+
+  const client = await weaviate.connectToLocal({
+    headers: {
+      'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY as string,
+      'X-Cohere-Api-Key': process.env.COHERE_APIKEY as string,
+    },
+  });
+
+  // Clean up
+  await client.collections.delete('DemoCollection');
 
 // START BasicGenerativeAnthropic
 await client.collections.create({
@@ -48,14 +71,14 @@ await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
   generative: weaviate.configure.generative.anthropic({
-    // // These parameters are optional
-    // baseUrlProperty: 'https://api.anthropic.com',
+    // These parameters are optional
+    // baseURL: 'https://api.anthropic.com',
     // model: 'claude-3-opus-20240229',
-    // maxTokensProperty: 512,
-    // temperatureProperty: 0.7,
-    // stopSequencesProperty: ['\n\n'],
-    // topPProperty: 0.9,
-    // topKProperty: 5,
+    // maxTokens: 512,
+    // temperature: 0.7,
+    // stopSequences: ['\n\n'],
+    // topP: 0.9,
+    // topK: 5,
   }),
   // highlight-end
   // Additional parameters not shown
@@ -65,6 +88,70 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
+
+// START RuntimeModelSelectionAnthropic  // START WorkingWithImagesAnthropic // START WorkingWithImagesAWS // START WorkingWithImagesGoogle // START WorkingWithImagesOpenAI // START RuntimeModelSelectionAnyscale // START RuntimeModelSelectionMistral // START RuntimeModelSelectionOpenAI // START RuntimeModelSelectionAWS // START RuntimeModelSelectionCohere // START RuntimeModelSelectionDatabricks // START RuntimeModelSelectionFriendliAI // START RuntimeModelSelectionGoogle // START RuntimeModelSelectionNVIDIA // START RuntimeModelSelectionKubeAI // START RuntimeModelSelectionAzureOpenAI // START RuntimeModelSelectionOllama // START SinglePromptExample  // START GroupedTaskExample
+let response;
+const myCollection = client.collections.use("DemoCollection");
+
+// END RuntimeModelSelectionAnthropic  // END WorkingWithImagesAnthropic // END WorkingWithImagesAWS // END WorkingWithImagesGoogle // END WorkingWithImagesOpenAI // END RuntimeModelSelectionAnyscale // END RuntimeModelSelectionMistral // END RuntimeModelSelectionOpenAI // END RuntimeModelSelectionAWS // END RuntimeModelSelectionCohere // END RuntimeModelSelectionDatabricks // END RuntimeModelSelectionFriendliAI // END RuntimeModelSelectionGoogle // END RuntimeModelSelectionNVIDIA // END RuntimeModelSelectionKubeAI // END RuntimeModelSelectionAzureOpenAI // END RuntimeModelSelectionOllama // END SinglePromptExample  // END GroupedTaskExample
+
+
+// START RuntimeModelSelectionAnthropic
+response = await myCollection.generate.nearText("A holiday film", {
+  // highlight-start
+  groupedTask: "Write a tweet promoting these two movies",
+  config: generativeParameters.anthropic({
+    // These parameters are optional
+    // baseURL: "https://api.anthropic.com",
+    // model: "claude-3-opus-20240229",
+    // maxTokens: 512,
+    // temperature: 0.7,
+    // stopSequences: ["\n\n"],
+    // topP: 0.9,
+    // topK: 5,
+  }),
+  // highlight-end
+}, {
+  limit: 2,
+}
+  // Additional parameters not shown
+);
+// END RuntimeModelSelectionAnthropic
+(async () => {
+// START WorkingWithImagesAnthropic
+const srcImgPath = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Winter_forest_silver.jpg/960px-Winter_forest_silver.jpg"
+const responseImg = await fetch(srcImgPath);
+const image = await responseImg.arrayBuffer();
+
+const base64String = arrayBufferToBase64(image);
+
+const prompt = {
+  // highlight-start
+  prompt: "Which movie is closest to the image in terms of atmosphere",
+  images: [base64String],      // A list of base64 encoded strings of the image bytes
+  // imageProperties: ["img"], // Properties containing images in Weaviate
+  // highlight-end
+}
+
+response = await myCollection.generate.nearText("Movies", {
+  // highlight-start
+  groupedTask: prompt,
+  // highlight-end
+  config: generativeParameters.anthropic({
+    maxTokens: 1000
+  }),
+}, {
+  limit: 5,
+})
+
+// Print the source property and the generated response
+for (const item of response.objects) {
+  console.log("Title property:", item.properties['title'])
+}
+
+console.log("Grouped task result:", response.generative?.text)
+// END WorkingWithImagesAnthropic
+})();
 // START BasicGenerativeAnyscale
 await client.collections.create({
   name: 'DemoCollection',
@@ -98,7 +185,7 @@ await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
   generative: weaviate.configure.generative.anyscale({
-    // // These parameters are optional
+    // These parameters are optional
     // model: 'meta-llama/Llama-2-70b-chat-hf',
     // temperature: 0.7,
   }),
@@ -106,6 +193,30 @@ await client.collections.create({
   // Additional parameters not shown
 });
 // END FullGenerativeAnyscale
+
+// START RuntimeModelSelectionAnyscale
+response = myCollection.generate.nearText("A holiday film", {
+  // highlight-start
+  groupedTask: "Write a tweet promoting these two movies",
+  config: generativeParameters.anthropic({
+    // These parameters are optional
+    // baseURL: "https://api.anthropic.com",
+    // model: "claude-3-opus-20240229",
+    // maxTokens: 512,
+    // temperature: 0.7,
+    // stopSequences: ["\n\n"],
+    // topP: 0.9,
+    // topK: 5,
+  }),
+  // highlight-end
+
+}, {
+  limit: 2,
+}
+  // Additional parameters not shown
+)
+
+// END RuntimeModelSelectionAnyscale
 
 // Clean up
 await client.collections.delete('DemoCollection');
@@ -139,8 +250,63 @@ await client.collections.create({
 })
 // END BasicGenerativeAWSSagemaker
 
+// START RuntimeModelSelectionAWS
+response = await myCollection.generate.nearText("A holiday film", {
+  // highlight-start
+  groupedTask: "Write a tweet promoting these two movies",
+  config: generativeParameters.aws({
+    region: 'us-east-1',
+    service: 'bedrock', // You can also use sagemaker
+    model: 'cohere.command-r-plus-v1:0',
+  }),
+  // highlight-end
+}, {
+  limit: 2,
+}
+  // Additional parameters not shown
+);
+// END RuntimeModelSelectionAWS
+
+(async () => {
+// START WorkingWithImagesAWS
+const srcImgPath = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Winter_forest_silver.jpg/960px-Winter_forest_silver.jpg"
+const responseImg = await fetch(srcImgPath);
+const image = await responseImg.arrayBuffer();
+
+const base64String = arrayBufferToBase64(image);
+
+const prompt = {
+  // highlight-start
+  prompt: "Which movie is closest to the image in terms of atmosphere",
+  images: [base64String],      // A list of base64 encoded strings of the image bytes
+  // imageProperties: ["img"], // Properties containing images in Weaviate
+  // highlight-end
+}
+
+response = await myCollection.generate.nearText("Movies", {
+  // highlight-start
+  groupedTask: prompt,
+  // highlight-end
+  config: generativeParameters.aws({
+    region: 'us-east-1',
+    service: 'bedrock', // You can also use sagemaker
+    model: 'cohere.command-r-plus-v1:0',
+  }),
+}, {
+  limit: 5,
+})
+
+// Print the source property and the generated response
+for (const item of response.objects) {
+  console.log("Title property:", item.properties['title'])
+}
+
+console.log("Grouped task result:", response.generative?.text)
+// END WorkingWithImagesAWS
+})();
+
 // Clean up
-await client.collections.delete('DemoCollection');
+  await client.collections.delete('DemoCollection');
 
 // START BasicGenerativeCohere
 await client.collections.create({
@@ -176,18 +342,41 @@ await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
   generative: weaviate.configure.generative.cohere({
-    // // These parameters are optional
-    // model: 'command-r',
-    // temperatureProperty: 0.7,
-    // maxTokensProperty: 500,
-    // kProperty: 5,
-    // stopSequencesProperty: ['\n\n'],
-    // returnLikelihoodsProperty: 'GENERATION'
+    // These parameters are optional
+    model: 'command-r',
+    // temperature: 0.7,
+    // maxTokens: 500,
+    // k: 5,
+    // stopSequences: ['\n\n'],
+    // returnLikelihoods: 'GENERATION'
   }),
   // highlight-end
   // Additional parameters not shown
 });
 // END FullGenerativeCohere
+
+// START RuntimeModelSelectionCohere
+response = await myCollection.generate.nearText("A holiday film", {
+  // highlight-start
+  groupedTask: "Write a tweet promoting these two movies",
+  config: generativeParameters.cohere({
+    // These parameters are optional
+    // model: 'command-r',
+    // temperature: 0.7,
+    // maxTokens: 500,
+    // k: 5,
+    // stopSequences: ['\n\n'],
+    // returnLikelihoods: 'GENERATION' // coming soon
+
+  }),
+  // highlight-end
+}, {
+  limit: 2,
+}
+  // Additional parameters not shown
+)
+// END RuntimeModelSelectionCohere
+
 
 // Clean up
 await client.collections.delete('DemoCollection');
@@ -226,6 +415,25 @@ await client.collections.create({
   // Additional parameters not shown
 });
 // END FullGenerativeDatabricks
+
+// START RuntimeModelSelectionDatabricks
+response = await myCollection.generate.nearText("A holiday film", {
+  // highlight-start
+  groupedTask: "Write a tweet promoting these two movies",
+  config: generativeParameters.databricks({
+    // These parameters are optional
+    // maxTokens: 500,
+    // temperature: 0,
+    // topP: 0.7,
+    // topK: 0.1,
+  }),
+  // highlight-end
+}, {
+  limit: 2,
+}
+  // Additional parameters not shown
+)
+// END RuntimeModelSelectionDatabricks
 
 // Clean up
 await client.collections.delete('DemoCollection');
@@ -273,6 +481,25 @@ await client.collections.create({
 });
 // END FullGenerativeFriendliAI
 
+// START RuntimeModelSelectionFriendliAI
+response = await myCollection.generate.nearText("A holiday film", {
+  // highlight-start
+  groupedTask: "Write a tweet promoting these two movies",
+  config: generativeParameters.friendliai({
+    // These parameters are optional
+    // model: 'meta-llama-3.1-70b-instruct',
+    // maxTokens: 500,
+    // temperature: 0.7,
+    // baseURL: 'https://inference.friendli.ai'
+  }),
+  // highlight-end
+}, {
+  limit: 2,
+}
+  // Additional parameters not shown
+)
+// END RuntimeModelSelectionFriendliAI
+
 // Clean up
 await client.collections.delete('DemoCollection');
 
@@ -313,7 +540,7 @@ await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
   generative: weaviate.configure.generative.google({
-    modelId: 'gemini-pro'
+    modelId: 'gemini-pro',
   }),
   // highlight-end
   // Additional parameters not shown
@@ -329,18 +556,73 @@ await client.collections.create({
   // highlight-start
   generative: weaviate.configure.generative.google({
     projectId: '<google-cloud-project-id>',  // Required for Vertex AI
-    // model_id='<google-model-id>',
-    // api_endpoint='<google-api-endpoint>',
-    // temperature=0.7,
-    // top_k=5,
-    // top_p=0.9,
-    // vectorize_collection_name=False,
+    modelId: '<google-model-id>',
+    apiEndpoint: '<google-api-endpoint>',
+    temperature: 0.7,
+    topK: 5,
+    topP: 0.9,
   }),
   // highlight-end
   // Additional parameters not shown
 });
 // END FullGenerativeGoogle
 
+// START RuntimeModelSelectionGoogle
+response = await myCollection.generate.nearText("A holiday film", {
+  // highlight-start
+  groupedTask: "Write a tweet promoting these two movies",
+  config: generativeParameters.google({
+    // These parameters are optional
+    // projectId: '<google-cloud-project-id>',  // Required for Vertex AI
+    // modelId: '<google-model-id>',
+    // apiEndpoint: '<google-api-endpoint>',
+    // temperature: 0.7,
+    // topK: 5,
+    // topP: 0.9,
+  }),
+  // highlight-end
+}, {
+  limit: 2,
+}
+  // Additional parameters not shown
+);
+// END RuntimeModelSelectionGoogle
+
+(async () => {
+// START WorkingWithImagesGoogle
+const srcImgPath = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Winter_forest_silver.jpg/960px-Winter_forest_silver.jpg"
+const responseImg = await fetch(srcImgPath);
+const image = await responseImg.arrayBuffer();
+
+const base64String = arrayBufferToBase64(image);
+
+const prompt = {
+  // highlight-start
+  prompt: "Which movie is closest to the image in terms of atmosphere",
+  images: [base64String],      // A list of base64 encoded strings of the image bytes
+  // imageProperties: ["img"], // Properties containing images in Weaviate
+  // highlight-end
+}
+
+response = await myCollection.generate.nearText("Movies", {
+  // highlight-start
+  groupedTask: prompt,
+  // highlight-end
+  config: generativeParameters.google({
+    maxTokens: 1000,
+  }),
+}, {
+  limit: 5,
+})
+
+// Print the source property and the generated response
+for (const item of response.objects) {
+  console.log("Title property:", item.properties['title'])
+}
+
+console.log("Grouped task result:", response.generative?.text)
+// END WorkingWithImagesGoogle
+})();
 // Clean up
 await client.collections.delete('DemoCollection');
 
@@ -377,7 +659,7 @@ await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
   generative: weaviate.configure.generative.mistral({
-    // // These parameters are optional
+    // These parameters are optional
     // model: 'mistral-large',
     // temperature: 0.7,
     // maxTokens: 500
@@ -385,6 +667,90 @@ await client.collections.create({
   // highlight-end
 });
 // END FullGenerativeMistral
+
+// START RuntimeModelSelectionMistral
+response = await myCollection.generate.nearText("A holiday film", {
+  // highlight-start
+  groupedTask: "Write a tweet promoting these two movies",
+  config: generativeParameters.mistral({
+    // These parameters are optional
+    // model: 'mistral-large',
+    // temperature: 0.7,
+    // maxTokens: 0.7,
+  }),
+  // highlight-end
+}, {
+  limit: 2,
+}
+  // Additional parameters not shown
+)
+// END RuntimeModelSelectionMistral
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START BasicGenerativeNVIDIA
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.nvidia(),
+  // highlight-end
+  // Additional parameters not shown
+});// END BasicGenerativeNVIDIA
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START GenerativeNVIDIACustomModel
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.nvidia({
+    model: 'nvidia/llama-3.1-nemotron-70b-instruct'
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END GenerativeNVIDIACustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullGenerativeNVIDIA
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.nvidia({
+    // These parameters are optional
+    // model: 'nvidia/llama-3.1-nemotron-70b-instruct'
+    // baseURL: "https://integrate.api.nvidia.com/v1",
+    // temperature: 0.7,
+    // maxTokens: 1024
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END FullGenerativeNVIDIA
+
+
+// START RuntimeModelSelectionNVIDIA
+response = await myCollection.generate.nearText("A holiday film", {
+  // highlight-start
+  groupedTask: "Write a tweet promoting these two movies",
+  config: generativeParameters.nvidia({
+    // These parameters are optional
+    // baseURL: "https://integrate.api.nvidia.com/v1",
+    // model: 'nvidia/llama-3.1-nemotron-70b-instruct',
+    // temperature: 0.7,
+    // maxTokens: 1000,
+  }),
+  // highlight-end
+}, {
+  limit: 2,
+}
+  // Additional parameters not shown
+)
+// END RuntimeModelSelectionNVIDIA
 
 // Clean up
 await client.collections.delete('DemoCollection');
@@ -443,12 +809,12 @@ await client.collections.create({
   // highlight-end
   // Additional parameters not shown
 });
-// END GenerativeOpenAICustomModel
+// END BasicGenerativeOpenAI
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
-// START BasicGenerativeOpenAI
+// START GenerativeOpenAICustomModel
 await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
@@ -468,19 +834,76 @@ await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
   generative: weaviate.configure.generative.openAI({
-    // // These parameters are optional
+    // These parameters are optional
     // model: 'gpt-4',
-    // frequencyPenaltyProperty: 0,
-    // maxTokensProperty: 500,
-    // presencePenaltyProperty: 0,
-    // temperatureProperty: 0.7,
-    // topPProperty: 0.7,
+    // frequencyPenalty: 0,
+    // maxTokens: 500,
+    // presencePenalty: 0,
+    // temperature: 0.7,
+    // topP: 0.7,
   }),
   // highlight-end
   // Additional parameters not shown
 });
 // END FullGenerativeOpenAI
 
+// START RuntimeModelSelectionOpenAI
+response = await myCollection.generate.nearText("A holiday film", {
+  // highlight-start
+  groupedTask: "Write a tweet promoting these two movies",
+  config: generativeParameters.openAI({
+    // These parameters are optional
+    // model: 'gpt-4',
+    // frequencyPenalty: 0,
+    // maxTokens: 500,
+    // presencePenalty: 0,
+    // temperature: 0.7,
+    // topP: 0.7,
+    // baseURL: "<custom-openai-url>",
+  }),
+  // highlight-end
+}, {
+  limit: 2,
+}
+  // Additional parameters not shown
+);
+// END RuntimeModelSelectionOpenAI
+
+(async () => {
+// START WorkingWithImagesOpenAI
+const srcImgPath = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Winter_forest_silver.jpg/960px-Winter_forest_silver.jpg"
+const responseImg = await fetch(srcImgPath);
+const image = await responseImg.arrayBuffer();
+
+const base64String = arrayBufferToBase64(image);
+
+const prompt = {
+  // highlight-start
+  prompt: "Which movie is closest to the image in terms of atmosphere",
+  images: [base64String],      // A list of base64 encoded strings of the image bytes
+  // imageProperties: ["img"], // Properties containing images in Weaviate
+  // highlight-end
+}
+
+response = await myCollection.generate.nearText("Movies", {
+  // highlight-start
+  groupedTask: prompt,
+  // highlight-end
+  config: generativeParameters.openAI({
+    maxTokens: 1000,
+  }),
+}, {
+  limit: 5,
+})
+
+// Print the source property and the generated response
+for (const item of response.objects) {
+  console.log("Title property:", item.properties['title'])
+}
+
+console.log("Grouped task result:", response.generative?.text)
+// END WorkingWithImagesOpenAI
+})();
 // Clean up
 await client.collections.delete('DemoCollection');
 
@@ -493,16 +916,39 @@ await client.collections.create({
     model: 'gpt-3.5-turbo',
     baseURL: 'http://kubeai/openai',
     // These parameters are optional
-    // frequencyPenaltyProperty: 0,
-    // maxTokensProperty: 500,
-    // presencePenaltyProperty: 0,
-    // temperatureProperty: 0.7,
-    // topPProperty: 0.7,
+    // frequencyPenalty: 0,
+    // maxTokens: 500,
+    // presencePenalty: 0,
+    // temperature: 0.7,
+    // topP: 0.7,
   }),
   // highlight-end
   // Additional parameters not shown
 });
 // END FullGenerativeKubeAI
+
+// START RuntimeModelSelectionKubeAI
+response = await myCollection.generate.nearText("A holiday film", {
+  // highlight-start
+  groupedTask: "Write a tweet promoting these two movies",
+  config: generativeParameters.openAI({
+    // Setting the model and baseURL is required
+    model: 'gpt-3.5-turbo',
+    baseURL: 'http://kubeai/openai',
+    // These parameters are optional
+    // frequencyPenalty: 0,
+    // maxTokens: 500,
+    // presencePenalty: 0,
+    // temperature: 0.7,
+    // topP: 0.7,
+  }),
+  // highlight-end
+}, {
+  limit: 2,
+}
+  // Additional parameters not shown
+)
+// END RuntimeModelSelectionKubeAI
 
 // Clean up
 await client.collections.delete('DemoCollection');
@@ -530,17 +976,42 @@ await client.collections.create({
   generative: weaviate.configure.generative.azureOpenAI({
     resourceName: '<azure-resource-name>',
     deploymentId: '<azure-deployment-id>',
-    // // These parameters are optional
-    // frequencyPenaltyProperty: 0,
-    // maxTokensProperty: 500,
-    // presencePenaltyProperty: 0,
-    // temperatureProperty: 0.7,
-    // topPProperty: 0.7,
+    // These parameters are optional
+    // frequencyPenalty: 0,
+    // maxTokens: 500,
+    // presencePenalty: 0,
+    // temperature: 0.7,
+    // topP: 0.7,
   }),
   // highlight-end
   // Additional parameters not shown
 });
 // END FullGenerativeAzureOpenAI
+
+// START RuntimeModelSelectionAzureOpenAI
+response = await myCollection.generate.nearText("A holiday film", {
+  // highlight-start
+  groupedTask: "Write a tweet promoting these two movies",
+  config: generativeParameters.azureOpenAI({
+    resourceName: '<azure-resource-name>',
+    deploymentId: '<azure-deployment-id>',
+    // These parameters are optional
+    // frequencyPenalty: 0,
+    // maxTokens: 500,
+    // presencePenalty: 0,
+    // temperature: 0.7,
+    // topP: 0.7,
+    // baseURL: "<custom-azure-url>",
+  }),
+  // highlight-end
+}, {
+  limit: 2,
+}
+  // Additional parameters not shown
+)
+// END RuntimeModelSelectionAzureOpenAI
+// Clean up
+await client.collections.delete('DemoCollection');
 
 // START BasicGenerativeOllama
 await client.collections.create({
@@ -571,48 +1042,107 @@ await client.collections.create({
 });
 // END FullGenerativeOllama
 
+// START RuntimeModelSelectionOllama
+response = await myCollection.generate.nearText("A holiday film", {
+  // highlight-start
+  groupedTask: "Write a tweet promoting these two movies",
+  config: generativeParameters.ollama({
+    apiEndpoint: 'http://host.docker.internal:11434',  // If using Docker, use this to contact your local Ollama instance
+    model: 'llama3',  // The model to use, e.g. 'phi3', or 'mistral', 'command-r-plus', 'gemma'
+  }),
+  // highlight-end
+}, {
+  limit: 2,
+}
+  // Additional parameters not shown
+)
+// END RuntimeModelSelectionOllama
+
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START BasicGenerativexAI
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.xai(),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicGenerativexAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START GenerativexAICustomModel
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.xai({
+    model: 'grok-2-latest'
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END GenerativexAICustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullGenerativexAI
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.xai({
+    // // These parameters are optional
+    // baseURL: 'https://api.x.ai/v1',
+    // model: 'grok-2-latest',
+    // maxTokens: 512,
+    // temperature: 0.7,
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END FullGenerativexAI
+
 // Clean up
 await client.collections.delete('DemoCollection');
 
 // START SinglePromptExample  // START GroupedTaskExample
 let myCollection = client.collections.get('DemoCollection');
-// START SinglePromptExample  // END GroupedTaskExample
 
-const singlePromptResults = await myCollection.generate.nearText(
-  ['A holiday film'],
+// START SinglePromptExample  // END GroupedTaskExample
+const singlePromptResults = await myCollection.generate.nearText('A holiday film', {
   // highlight-start
-  {
-    singlePrompt: `Translate this into French: {title}`,
-  },
+  singlePrompt: `Translate this into French: {title}`,
   // highlight-end
-  {
-    limit: 2,
-  }
-);
+}, {
+  limit: 2,
+});
 
 for (const obj of singlePromptResults.objects) {
   console.log(obj.properties['title']);
-  console.log(`Generated output: ${obj.generated}`);  // Note that the generated output is per object
+  console.log(`Generated output: ${obj.generative?.text}`);  // Note that the generated output is per object
 }
 // END SinglePromptExample
 
 // START GroupedTaskExample
-const groupedTaskResults = await myCollection.generate.nearText(
-  ['A holiday film'],
+const groupedTaskResults = await myCollection.generate.nearText('A holiday film', {
   // highlight-start
-  {
-    groupedTask: `Write a fun tweet to promote readers to check out these films.`,
-  },
+  groupedTask: `Write a fun tweet to promote readers to check out these films.`,
   // highlight-end
-  {
-    limit: 2,
-  }
-);
+}, {
+  limit: 2,
+});
 
-console.log(`Generated output: ${groupedTaskResults.generated}`);  // Note that the generated output is per query
+console.log(`Generated output: ${groupedTaskResults.generative?.text}`);  // Note that the generated output is per query
 for (const obj of groupedTaskResults.objects) {
   console.log(obj.properties['title']);
 }
 // END GroupedTaskExample
 
 client.close();
+
+}
+void main()

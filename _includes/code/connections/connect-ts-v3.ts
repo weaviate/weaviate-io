@@ -13,7 +13,7 @@
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const weaviateURL = process.env.WEAVIATE_URL as string
-const weaviateKey = process.env.WEAVIATE_ADMIN_KEY as string
+const weaviateKey = process.env.WEAVIATE_API_KEY as string
 
 const client: WeaviateClient = await weaviate.connectToWeaviateCloud(weaviateURL, {
     authCredentials: new weaviate.ApiKey(weaviateKey),
@@ -33,7 +33,7 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(weaviateURL
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const weaviateURL = process.env.WEAVIATE_URL as string
-const weaviateKey = process.env.WEAVIATE_ADMIN_KEY as string
+const weaviateKey = process.env.WEAVIATE_API_KEY as string
 
 const client: WeaviateClient = await weaviate.connectToWeaviateCloud(weaviateURL, {
   authCredentials: new weaviate.ApiKey(weaviateKey),
@@ -66,7 +66,7 @@ console.log(client)
 
 import weaviate from 'weaviate-client'
 
-const weaviateKey = process.env.WEAVIATE_ADMIN_KEY as string
+const weaviateKey = process.env.WEAVIATE_API_KEY as string
 
 const client = await weaviate.connectToLocal(
    {  authCredentials: new weaviate.ApiKey(weaviateKey),}
@@ -128,7 +128,7 @@ console.log(client)
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const weaviateURL = process.env.WEAVIATE_URL as string
-const weaviateKey = process.env.WEAVIATE_ADMIN_KEY as string
+const weaviateKey = process.env.WEAVIATE_API_KEY as string
 const cohereKey = process.env.COHERE_API_KEY as string
 
 const client: WeaviateClient = await weaviate.connectToWeaviateCloud(weaviateURL, {
@@ -144,7 +144,7 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(weaviateURL
 /// Custom connect ///
 //////////////////////
 
-// START CustomConnect
+// START CustomConnect  // START ConnectWithApiKeyExample
 // Set these environment variables
 // WEAVIATE_URL       your Weaviate instance URL
 // WEAVIATE_GPC_URL   your Weaviate instance GPC URL
@@ -162,13 +162,15 @@ const client = await weaviate.connectToCustom(
     grpcSecure: true,
     httpSecure: true,
     authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY),
+    // END CustomConnect  // START ConnectWithApiKeyExample
     headers: {
       'X-Cohere-Api-Key': process.env.COHERE_API_KEY || ''
     }
+    // START CustomConnect  // START ConnectWithApiKeyExample
   })
 
 console.log(client)
-// END CustomConnect
+// END CustomConnect  // END ConnectWithApiKeyExample
 
 
 //////////////////////

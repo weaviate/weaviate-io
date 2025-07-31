@@ -12,9 +12,9 @@ import { reconfigure } from 'weaviate-client';
 
 
 const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
-  process.env.WCD_URL as string,
+  process.env.WEAVIATE_URL as string,
  {
-   authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
+   authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY as string),
    headers: {
      'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY as string,  // Replace with your inference API key
    }

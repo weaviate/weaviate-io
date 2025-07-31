@@ -75,7 +75,7 @@ import ProvideOpenAIAPIKey from '/_includes/provide-openai-api-key-headers.mdx'
 
 ## Create the schema
 
-The [schema](../starter-guides/schema.md) defines the data structure for objects in a given Weaviate class. We'll create a schema for a Wikipedia `Article` class mapping the CSV columns, and using the [text2vec-openai vectorizer](../manage-data/collections.mdx#specify-a-vectorizer). The schema will have two properties:
+The [schema](/developers/weaviate/starter-guides/managing-collections) defines the data structure for objects in a given Weaviate class. We'll create a schema for a Wikipedia `Article` class mapping the CSV columns, and using the [text2vec-openai vectorizer](../manage-data/collections.mdx#specify-a-vectorizer). The schema will have two properties:
 * `title` - article title, not vectorized
 * `content` - article content, corresponding to the `text` column from the CSV
 
@@ -152,7 +152,7 @@ Now that we have the articles imported, let's run some queries!
 
 ### nearText
 
-The [`nearText` filter](../api/graphql/search-operators.md#neartext) lets us search for objects close (in vector space) to the vector representation of one or more concepts. For example, the vector for the query "modern art in Europe" would be close to the vector for the article [Documenta](https://simple.wikipedia.org/wiki/Documenta), which describes
+The [`nearText` filter](../api/graphql/search-operators.md#neartext) lets us search for objects close (in vector space) to the vector embedding of one or more concepts. For example, the vector for the query "modern art in Europe" would be close to the vector for the article [Documenta](https://simple.wikipedia.org/wiki/Documenta), which describes
 > "one of the most important exhibitions of modern art in the world... [taking] place in Kassel, Germany".
 
 import NearText from '/_includes/code/tutorials.wikipedia.nearText.mdx';
@@ -179,7 +179,7 @@ In this tutorial, we've learned
 
 ## Suggested reading
 
-- [Tutorial: Schemas in detail](../starter-guides/schema.md)
+- [Tutorial: Schemas in detail](/developers/weaviate/starter-guides/managing-collections)
 - [Tutorial: Queries in detail](./query.md)
 - [Tutorial: Introduction to modules](./modules.md)
 

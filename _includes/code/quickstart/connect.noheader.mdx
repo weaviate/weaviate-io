@@ -13,8 +13,8 @@ import weaviate, os
 import weaviate.classes as wvc
 
 # Set these environment variables
-URL = os.getenv("WCD_URL")
-APIKEY = os.getenv("WCD_API_KEY")
+URL = os.getenv("WEAVIATE_URL")
+APIKEY = os.getenv("WEAVIATE_API_KEY")
 
 # Connect to Weaviate Cloud
 client = weaviate.connect_to_weaviate_cloud(
@@ -81,8 +81,8 @@ package main
 import (
   "context"
 
-  "github.com/weaviate/weaviate-go-client/v4/weaviate"
-  "github.com/weaviate/weaviate-go-client/v4/weaviate/auth"
+  "github.com/weaviate/weaviate-go-client/v5/weaviate"
+  "github.com/weaviate/weaviate-go-client/v5/weaviate/auth"
   "github.com/weaviate/weaviate/entities/models"
 )
 

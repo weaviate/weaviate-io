@@ -34,7 +34,7 @@ Vectors are like coordinates in a multi-dimensional space. A very simple vector 
 
 In the graph below, the words `Apple` and `Banana` are shown close to each other. `Newspaper` and `Magazine` are also close to each other, but they are far away from `Apple` and `Banana` in the same vector space.
 
-Within each pair, the distance between words is small because the objects have similar vector representations. The distance between the pairs is larger because the difference between the vectors is larger. Intuitively, fruits are similar to each other, but fruits are not similar to reading material.
+Within each pair, the distance between words is small because the objects have similar vector embeddings. The distance between the pairs is larger because the difference between the vectors is larger. Intuitively, fruits are similar to each other, but fruits are not similar to reading material.
 
 For more details of this representation, see: ([GloVe](https://github.com/stanfordnlp/GloVe)) and [vector embeddings](https://weaviate.io/blog/vector-embeddings-explained#what-exactly-are-vector-embeddings).
 
@@ -246,7 +246,7 @@ To avoid indexing a collection, set `"skip"` to `"true"`. By default, collection
 
 ### What ANN algorithms exist?
 
-There are different ANN algorithms, you can find a nice overview of them on <a href="http://ann-benchmarks.com/" data-proofer-ignore>this website</a>.
+There are different ANN algorithms, you can find a nice overview of them on [this website](http://ann-benchmarks.com/).
 
 ### Are there indicative benchmarks for Weaviate's ANN performance?
 

@@ -67,18 +67,16 @@ Note that API key and OIDC authentication can be both enabled at the same time.
 The way to configure authentication differs by your deployment method, depending on whether you are running Weaviate in Docker or Kubernetes. Below, we provide examples for both.
 
 :::info What about Weaviate Cloud (WCD)?
-For Weaviate Cloud (WCD) instances, authentication is pre-configured with OIDC and API key access. You can [authenticate against Weaviate](../connections/connect-cloud.mdx) with your WCD credentials using OIDC, or [with API keys](/developers/wcs/platform/manage-api-keys).
+For Weaviate Cloud (WCD) instances, authentication is pre-configured with OIDC and API key access. You can [authenticate against Weaviate](../connections/connect-cloud.mdx) with your WCD credentials using OIDC, or [with API keys](/developers/wcs/manage-clusters/authentication.mdx).
 :::
 
 ## API Key Authentication
 
 API key authentication is a simple and effective way to authenticate users. Each user is assigned a unique API key, which is used to authenticate the user.
 
-Note that you can either:
-- Set one user for all API keys, or
-- Define one user per API key (the number of users must match the number of API keys)
+### API keys: Database users
 
-Make sure all listed users are also configured in the authorization settings.
+When [creating database users programatically](./rbac/manage-users.mdx#create-a-user), each user is assigned a distinct API key at creation time. These API keys can also be [regenerated (rotated)](./rbac/manage-users.mdx#rotate-user-api-key). 
 
 ### API keys: Docker
 
@@ -110,6 +108,20 @@ This configuration:
 - Associates users with the API keys in `AUTHENTICATION_APIKEY_USERS`
 
 These users can now be assigned permissions based on the authorization settings.
+
+import DynamicUserManagement from '/_includes/configuration/dynamic-user-management.mdx';
+
+<DynamicUserManagement />
+
+:::note
+
+Note that you can either:
+- Set one user for all API keys, or
+- Define one user per API key (the number of users must match the number of API keys)
+
+Make sure all listed users are also configured in the authorization settings.
+
+:::
 
 ### API keys: Kubernetes
 
@@ -173,6 +185,12 @@ that it was indeed signed by the configured token issuer. If the signature is
 correct, all contents of the token are trusted, which authenticates the user based on the information in the token.
 
 </details>
+
+:::tip TIP: OIDC and RBAC
+
+The [user management API](./rbac/manage-users.mdx#oidc-user-permissions-management) allows you to assign custom roles and permissions to OIDC users via [Role-Based Access Control (RBAC)](./rbac/index.mdx).
+
+:::
 
 ### OIDC: Docker
 
@@ -345,7 +363,7 @@ OIDC authentication flows are outside the scope of this documentation, but here 
     - Validated using Okta and Azure as identity providers; GCP does not support client credentials grant flow (as of December 2022).
     - Weaviate's Python client directly supports this method.
     - Client credential flows usually do not come with a refresh token and the credentials are saved in the respective clients to acquire a new access token on expiration of the old one.
-1. Use the `resource owner password flow` for trusted applications like [Weaviate Cloud](/developers/wcs/connect.mdx).
+1. Use the `resource owner password flow` for trusted applications like [Weaviate Cloud](/developers/wcs/manage-clusters/connect).
 1. Use `hybrid flow` if Azure is your token issuer or if you would like to prevent exposing passwords.
 
 ### Support for Weaviate clients
@@ -474,7 +492,7 @@ curl https://localhost:8080/v1/objects -H "Authorization: Bearer ${WEAVIATE_API_
 ## Further resources
 
 - [Configuration: Authorization and RBAC](./authorization.md)
-- [References: Environment variables / Authentication and Authorization](../config-refs/env-vars.md#authentication-and-authorization)
+- [References: Environment variables / Authentication and Authorization](../config-refs/env-vars/index.md#authentication-and-authorization)
 
 ## Questions and feedback
 

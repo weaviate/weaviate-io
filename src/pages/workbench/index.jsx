@@ -6,6 +6,7 @@ import AppFilter from '/src/components/Marketplace/AppFilter';
 import KnowledgeBase from '/src/components/Marketplace/knowledgebase';
 import CTA from '/src/components/HybridSearch/CTA';
 import ThemeSwitch from '/src/components/ThemeSwitch';
+import ContactUsForm from '/src/components/Contact/contactForm';
 
 export default function MarketplacePage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -23,6 +24,7 @@ export default function MarketplacePage() {
         <Header />
         <AppFilter searchQuery={searchQuery} />
         <CTA />
+        <ContactUsForm />
       </Layout>
       <ThemeSwitch />
     </div>

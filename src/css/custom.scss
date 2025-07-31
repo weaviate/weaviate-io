@@ -304,7 +304,7 @@
   gap: 0px;
   justify-content: flex-start;
 
-  @media screen and (max-width: 1100px) {
+  @media screen and (max-width: 1200px) {
     gap: 0px;
   }
 }
@@ -350,7 +350,8 @@
 .tryNow {
   border-radius: 0.3125rem;
   border: 1px solid #1c1468;
-  background: #61bd73;
+  background: #130c49;
+  color: #ffffff;
   margin: 0 20px;
   width: 8rem;
   height: 2.625rem;
@@ -359,50 +360,260 @@
   display: flex;
   align-content: center;
   justify-content: center;
-  transition: background-color 1s ease-out, border-color 1s ease-out,
-    color 1s ease-out;
 
-  @media screen and (max-width: 1190px) {
+  &:hover {
+    color: #ffffff !important;
+  }
+
+  @media screen and (max-width: 1250px) {
     margin: 0px;
+    margin-right: 10px;
+    width: unset;
   }
 
   @media screen and (max-width: 1150px) {
-    display: none;
+    display: block;
+    border: unset;
+    background-color: unset;
+    color: #2b3854;
+    margin: 0px;
+
+    &:hover {
+      color: #00c342 !important;
+    }
   }
 
-  &:hover {
-    background: #130c49;
-    color: #fff;
-    font-weight: 400;
+  @media screen and (max-width: 996px) {
+    display: none;
+    color: #606770;
+    height: 2rem;
+    &:hover {
+      color: #606770 !important;
+    }
+  }
+}
+
+[data-theme='dark'] {
+  .tryNow {
+    background: #61bd73;
+    color: #130c49;
+
+    @media screen and (min-width: 1250px) {
+      &:hover {
+        color: #130c49 !important;
+      }
+    }
+    @media screen and (max-width: 1250px) {
+      margin: 0px;
+      margin-right: 10px;
+      width: unset;
+    }
+
+    @media screen and (max-width: 1150px) {
+      display: block;
+      border: unset;
+      background-color: unset;
+      color: #ffffff;
+      margin: 0px;
+
+      &:hover {
+        color: #00c342 !important;
+      }
+    }
+
+    @media screen and (max-width: 996px) {
+      display: none;
+      color: #ffffff;
+      height: 2rem;
+
+      &:hover {
+        color: #ffffff !important;
+        background: var(--ifm-menu-color-background-hover) !important;
+      }
+    }
   }
 }
 
 .custom-page .tryNow {
-  margin: 0px 70px 0px 0px;
+  margin: 0px 0px 0px 0px;
 
   align-items: center;
   display: flex;
   align-content: center;
   justify-content: center;
-  width: 10.625rem;
-  height: 3.5rem;
-
+  width: 8rem;
+  height: 3.125rem;
+  transition: all 0.3s ease;
   border-radius: 0.3125rem;
   background: #130c49;
   color: #ffffff;
+  font-weight: 600;
 
-  @media screen and (max-width: 1160px) {
-    margin: 0px;
+  &:hover {
+    color: #ffffff !important;
   }
 
-  @media screen and (max-width: 999px) {
+  @media screen and (max-width: 1300px) {
+    margin: 0px;
+    width: unset;
+  }
+
+  @media screen and (max-width: 996px) {
     display: none;
   }
 
-  &:hover {
-    background: #130c49;
-    color: #fff;
+  @media screen and (max-width: 990px) {
+    margin: 0px;
+    width: unset;
+    height: unset;
+    color: var(--ifm-menu-color);
+    flex: 1;
+    line-height: 1.25;
+    padding: var(--ifm-menu-link-padding-vertical)
+      var(--ifm-menu-link-padding-horizontal);
+    display: block;
+    border: unset;
+    background-color: unset;
     font-weight: 400;
+
+    &:hover {
+      background: var(--ifm-menu-color-background-hover);
+      color: var(--ifm-menu-color) !important;
+    }
+  }
+}
+
+.custom-page .loginButton {
+  margin: 0px 0px 0px 0px;
+
+  align-items: center;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  width: 8rem;
+  height: 3.125rem;
+
+  border-radius: 0.3125rem;
+  color: #130c49;
+  background: #ffffff;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  &:hover {
+    color: #130c49 !important;
+  }
+
+  @media screen and (max-width: 1300px) {
+    margin: 0px;
+    width: unset;
+  }
+
+  @media screen and (max-width: 996px) {
+    display: none;
+  }
+
+  @media screen and (max-width: 990px) {
+    margin: 0px;
+    width: unset;
+    height: unset;
+    color: var(--ifm-menu-color);
+    flex: 1;
+    line-height: 1.25;
+    padding: var(--ifm-menu-link-padding-vertical)
+      var(--ifm-menu-link-padding-horizontal);
+    display: block;
+    border: unset;
+    background-color: unset;
+    font-weight: 400;
+
+    &:hover {
+      background: var(--ifm-menu-color-background-hover);
+      color: var(--ifm-menu-color) !important;
+    }
+  }
+}
+
+.loginButton {
+  margin: 0px 10px 0px 0px;
+
+  align-items: center;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  width: 8rem;
+  height: 2.625rem;
+
+  border-radius: 0.3125rem;
+  color: #130c49;
+  background: #ffffff;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: #130c49 !important;
+  }
+
+  @media screen and (max-width: 1250px) {
+    margin: 0px;
+    width: unset;
+  }
+
+  @media screen and (max-width: 1150px) {
+    display: block;
+    border: unset;
+    background-color: unset;
+    color: #2b3854;
+
+    &:hover {
+      color: #00c342 !important;
+    }
+  }
+
+  @media screen and (max-width: 996px) {
+    display: none;
+    color: #606770;
+    height: 2rem;
+    &:hover {
+      color: #606770 !important;
+    }
+  }
+}
+
+[data-theme='dark'] {
+  .loginButton {
+    @media screen and (max-width: 1250px) {
+      margin: 0px;
+      margin-right: 10px;
+      width: unset;
+    }
+
+    @media screen and (max-width: 1150px) {
+      display: block;
+      border: unset;
+      background-color: unset;
+      color: #ffffff;
+      margin: 0px;
+
+      &:hover {
+        color: #00c342 !important;
+      }
+    }
+
+    @media screen and (max-width: 996px) {
+      display: none;
+      color: #ffffff;
+      height: 2rem;
+      background: var(--ifm-menu-color-background-hover) !important;
+
+      &:hover {
+        color: #ffffff !important;
+      }
+    }
+  }
+}
+
+a.menu__link.tryNow,
+a.menu__link.loginButton {
+  @media screen and (max-width: 1150px) {
+    display: block;
   }
 }
 
@@ -957,15 +1168,59 @@ ul.dropdown__menu {
 
 .mobileNav {
   display: none !important;
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
 }
 
 @media screen and (max-width: 996px) {
+  .mobileNav {
+    display: block !important;
+    visibility: visible;
+    opacity: 1;
+    height: auto;
+    position: relative;
+    pointer-events: auto;
+  }
+
   .dropDownContainer2 .holder {
     display: none;
   }
+}
 
-  .mobileNav {
+.custom-dropdown-wrapper .mobileNav {
+  display: none !important;
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+}
+
+@media screen and (max-width: 996px) {
+  .custom-dropdown-wrapper .holder {
+    display: none !important;
+  }
+
+  .custom-dropdown-wrapper .mobileNav {
     display: block !important;
+    visibility: visible;
+    opacity: 1;
+    height: auto;
+    overflow: visible;
+    pointer-events: auto;
+    position: relative;
+  }
+}
+
+@media screen and (max-width: 1400px) and (min-width: 1000px) {
+  .dropdown--right .dropdown__menu {
+    left: inherit;
+    right: -140px;
   }
 }
 
@@ -1039,4 +1294,84 @@ ul.dropdown__menu {
 
 .support-page li {
   font-size: 1.2rem;
+}
+
+// Cookiebot styling
+
+.CybotCookiebotDialogBodyButton {
+  width: 150px !important;
+  border-radius: 0.3125rem !important;
+
+  @media screen and (max-width: 768px) {
+    width: 100% !important;
+  }
+}
+
+// RBAC table styling
+
+.rbac-table tbody tr:hover {
+  background-color: #ececec !important;
+}
+
+.rbac-table a:hover {
+  text-decoration: underline;
+}
+
+.access-level {
+  margin: 1.5rem 0;
+}
+.access-level:not(:last-child) {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+
+.constraints-level {
+  margin: 1.5rem 0;
+}
+.constraints-level:not(:last-child) {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+
+.step-list {
+  list-style: none;
+  padding-left: 2em; /* space for the icon */
+
+  .icon-list {
+    display: inline-block;
+    width: 1.2em; /* adjust as needed */
+    text-align: left;
+  }
+}
+
+.step-list li {
+  position: relative;
+}
+
+.iconHide {
+  @media screen and (max-width: 995px) {
+    display: none !important;
+  }
+}
+
+a.navbar__item.navbar__link:hover {
+  i {
+    color: #00a142 !important;
+  }
+}
+
+[data-theme='dark'] {
+  a.navbar__item.navbar__link {
+    i {
+      color: #ffffff !important;
+    }
+  }
+
+  a.navbar__item.navbar__link:hover {
+    i {
+      color: #00a142 !important;
+    }
+  }
 }

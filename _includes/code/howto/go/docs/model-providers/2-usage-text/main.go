@@ -1,6 +1,6 @@
 // Set these environment variables
-// WCD_HOSTNAME			your Weaviate instance hostname
-// WCD_API_KEY  		your Weaviate instance API key
+// WEAVIATE_HOSTNAME			your Weaviate instance hostname
+// WEAVIATE_API_KEY  		your Weaviate instance API key
 
 package main
 
@@ -10,10 +10,10 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/weaviate/weaviate-go-client/v4/weaviate"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate/auth"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate/fault"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
+	"github.com/weaviate/weaviate-go-client/v5/weaviate"
+	"github.com/weaviate/weaviate-go-client/v5/weaviate/auth"
+	"github.com/weaviate/weaviate-go-client/v5/weaviate/fault"
+	"github.com/weaviate/weaviate-go-client/v5/weaviate/graphql"
 	"github.com/weaviate/weaviate/entities/models"
 )
 
@@ -27,9 +27,9 @@ func main() {
 
 	// END-ANY
 	cfg := weaviate.Config{
-		Host:       os.Getenv("WCD_HOSTNAME"),
+		Host:       os.Getenv("WEAVIATE_HOSTNAME"),
 		Scheme:     "https",
-		AuthConfig: auth.ApiKey{Value: os.Getenv("WCD_API_KEY")},
+		AuthConfig: auth.ApiKey{Value: os.Getenv("WEAVIATE_API_KEY")},
 		Headers: map[string]string{
 			"X-Cohere-Api-Key": os.Getenv("COHERE_APIKEY"),
 		},
@@ -57,10 +57,10 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-aws": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"region":           "us-east-1",
-						"service":          "bedrock",
-						"model":            "cohere.embed-multilingual-v3",
+						"properties": []string{"title"},
+						"region":     "us-east-1",
+						"service":    "bedrock",
+						"model":      "cohere.embed-multilingual-v3",
 					},
 				},
 			},
@@ -92,10 +92,10 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-aws": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"region":           "us-east-1",
-						"service":          "sagemaker",
-						"endpoint":         "<custom_sagemaker_url>",
+						"properties": []string{"title"},
+						"region":     "us-east-1",
+						"service":    "sagemaker",
+						"endpoint":   "<custom_sagemaker_url>",
 					},
 				},
 			},
@@ -127,10 +127,10 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-aws": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"region":           "us-east-1",
-						"service":          "bedrock",                      // "bedrock" or "sagemaker"
-						"model":            "cohere.embed-multilingual-v3", // If using `bedrock`, this is required
+						"properties": []string{"title"},
+						"region":     "us-east-1",
+						"service":    "bedrock",                      // "bedrock" or "sagemaker"
+						"model":      "cohere.embed-multilingual-v3", // If using `bedrock`, this is required
 						// "endpoint":         "<custom_sagemaker_url>",       // If using `sagemaker`, this is required
 					},
 				},
@@ -163,7 +163,7 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-cohere": map[string]interface{}{
-						"sourceProperties": []string{"title"},
+						"properties": []string{"title"},
 					},
 				},
 			},
@@ -187,8 +187,8 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-cohere": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"model":            "embed-multilingual-v3.0",
+						"properties": []string{"title"},
+						"model":      "embed-multilingual-v3.0",
 					},
 				},
 			},
@@ -212,7 +212,7 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-cohere": map[string]interface{}{
-						"sourceProperties": []string{"title"},
+						"properties": []string{"title"},
 						// "model":            "embed-multilingual-v3.0",
 						// "truncate":         "END", // "NONE", "START" or "END"
 						// "base_url":         "<custom_cohere_url>",
@@ -247,8 +247,8 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-databricks": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"endpoint":         "<databricks_vectorizer_endpoint>", // Required for Databricks
+						"properties": []string{"title"},
+						"endpoint":   "<databricks_vectorizer_endpoint>", // Required for Databricks
 					},
 				},
 			},
@@ -321,8 +321,8 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-google": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"model_id":         "text-embedding-004", // (Optional) To manually set the model ID
+						"properties": []string{"title"},
+						"model_id":   "text-embedding-004", // (Optional) To manually set the model ID
 					},
 				},
 			},
@@ -354,10 +354,10 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-aws": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"project_id":       "<google-cloud-project-id>",  // Required for Vertex AU
-						"model_id":         "textembedding-gecko@latest", // (Optional) To manually set the model ID
-						"api_endpoint":     "<google-api-endpoint>",      // (Optional) To manually set the API endpoint
+						"properties":   []string{"title"},
+						"project_id":   "<google-cloud-project-id>",  // Required for Vertex AU
+						"model_id":     "textembedding-gecko@latest", // (Optional) To manually set the model ID
+						"api_endpoint": "<google-api-endpoint>",      // (Optional) To manually set the API endpoint
 					},
 				},
 			},
@@ -389,8 +389,8 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-huggingface": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"model":            "sentence-transformers/all-MiniLM-L6-v2",
+						"properties": []string{"title"},
+						"model":      "sentence-transformers/all-MiniLM-L6-v2",
 					},
 				},
 			},
@@ -422,7 +422,7 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-huggingface": map[string]interface{}{
-						"sourceProperties": []string{"title"},
+						"properties": []string{"title"},
 						//  Note: Use only one of (`model`), (`passage_model` and `query_model`), or (`endpoint_url`)
 						"model": "sentence-transformers/all-MiniLM-L6-v2",
 						// "passage_model":  "sentence-transformers/facebook-dpr-ctx_encoder-single-nq-base",      // Required if using `query_model`
@@ -463,7 +463,7 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-jinaai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
+						"properties": []string{"title"},
 					},
 				},
 			},
@@ -495,8 +495,8 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-jinaai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"model":            "jina-embeddings-v3",
+						"properties": []string{"title"},
+						"model":      "jina-embeddings-v3",
 					},
 				},
 			},
@@ -528,9 +528,9 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-jinaai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"model":            "jina-embeddings-v3",
-						"dimensions":       512, // e.g. 1024, 512, 256 (only applicable for some models)
+						"properties": []string{"title"},
+						"model":      "jina-embeddings-v3",
+						"dimensions": 512, // e.g. 1024, 512, 256 (only applicable for some models)
 					},
 				},
 			},
@@ -553,6 +553,105 @@ func main() {
 		}
 	}
 
+	// START BasicColBERTVectorizerJinaAI
+	// highlight-start
+	// Define the collection
+	basicJinaColbertVectorizerDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2colbert-jinaai": map[string]interface{}{
+						"properties": []string{"title"},
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(basicJinaColbertVectorizerDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END BasicColBERTVectorizerJinaAI
+
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START ColBERTVectorizerJinaCustomModel
+	// highlight-start
+	// Define the collection
+	jinaColbertWithModelDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2colbert-jinaai": map[string]interface{}{
+						"properties": []string{"title"},
+						"model":      "jina-colbert-v2",
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(jinaColbertWithModelDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END ColBERTVectorizerJinaCustomModel
+
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START FullColBERTVectorizerJinaAI
+	// highlight-start
+	// Define the collection
+	jinaColbertFullDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2colbert-jinaai": map[string]interface{}{
+						"properties": []string{"title"},
+						"model":      "jina-colbert-v2",
+						"dimensions": 96, // e.g. 128, 64 (only applicable for some models)
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(jinaColbertFullDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END FullColBERTVectorizerJinaAI
+
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
 	// START BasicVectorizerMistral
 	// highlight-start
 	// Define the collection
@@ -562,7 +661,7 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-mistral": map[string]interface{}{
-						"sourceProperties": []string{"title"},
+						"properties": []string{"title"},
 					},
 				},
 			},
@@ -594,8 +693,8 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-mistral": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"model":            "mistral-embed",
+						"properties": []string{"title"},
+						"model":      "mistral-embed",
 					},
 				},
 			},
@@ -618,6 +717,88 @@ func main() {
 		}
 	}
 
+	// START BasicVectorizerNVIDIA
+	// highlight-start
+	// Define the collection
+	basicNVIDIAVectorizerDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-nvidia": map[string]interface{}{
+						"properties": []string{"title"},
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(basicNVIDIAVectorizerDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END BasicVectorizerNVIDIA
+
+	// START VectorizerNVIDIACustomModel
+	// highlight-start
+	// Define the collection
+	nvidiaVectorizerWithModelDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-nvidia": map[string]interface{}{
+						"properties": []string{"title"},
+						"model":      "nvidia/nv-embed-v1",
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(nvidiaVectorizerWithModelDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END VectorizerNVIDIACustomModel
+
+	// START FullVectorizerNVIDIA
+	// highlight-start
+	// Define the collection
+	nvidiaVectorizerFullDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-nvidia": map[string]interface{}{
+						"properties": []string{"title"},
+						// "model":            "nvidia/nv-embed-v1",
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(nvidiaVectorizerFullDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END FullVectorizerNVIDIA
+
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
 	// START BasicVectorizerOpenAI
 	// highlight-start
 	// Define the collection
@@ -627,7 +808,7 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-openai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
+						"properties": []string{"title"},
 					},
 				},
 			},
@@ -659,9 +840,9 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-openai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"model":            "text-embedding-3-large",
-						"dimensions":       1024, // Optional (e.g. 1024, 512, 256)
+						"properties": []string{"title"},
+						"model":      "text-embedding-3-large",
+						"dimensions": 1024, // Optional (e.g. 1024, 512, 256)
 					},
 				},
 			},
@@ -693,10 +874,10 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-openai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"model":            "ada",
-						"model_version":    "002",
-						"type":             "text",
+						"properties":    []string{"title"},
+						"model":         "ada",
+						"model_version": "002",
+						"type":          "text",
 					},
 				},
 			},
@@ -728,12 +909,12 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-openai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"model":            "text-embedding-3-large",
-						"dimensions":       1024,   // Parameter only applicable for `v3` model family and newer
-						"model_version":    "002",  // Parameter only applicable for `ada` model family and older
-						"type":             "text", // Parameter only applicable for `ada` model family and older
-						"base_url":         "<custom_openai_url>",
+						"properties":    []string{"title"},
+						"model":         "text-embedding-3-large",
+						"dimensions":    1024,   // Parameter only applicable for `v3` model family and newer
+						"model_version": "002",  // Parameter only applicable for `ada` model family and older
+						"type":          "text", // Parameter only applicable for `ada` model family and older
+						"base_url":      "<custom_openai_url>",
 					},
 				},
 			},
@@ -765,9 +946,9 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-openai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"resourceName":     "<azure-resource-name>",
-						"deploymentID":     "<azure-deployment-id>",
+						"properties":   []string{"title"},
+						"resourceName": "<azure-resource-name>",
+						"deploymentId": "<azure-deployment-id>",
 					},
 				},
 			},
@@ -799,10 +980,10 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-openai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"resourceName":     "<azure-resource-name>",
-						"deploymentID":     "<azure-deployment-id>",
-						// "baseURL":          "<custom-azure-url>",
+						"properties":   []string{"title"},
+						"resourceName": "<azure-resource-name>",
+						"deploymentId": "<azure-deployment-id>",
+						// "baseURL":      "<custom-azure-url>",
 					},
 				},
 			},
@@ -834,7 +1015,7 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-voyageai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
+						"properties": []string{"title"},
 					},
 				},
 			},
@@ -866,8 +1047,8 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-voyageai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"model":            "voyage-3-lite",
+						"properties": []string{"title"},
+						"model":      "voyage-3-lite",
 					},
 				},
 			},
@@ -899,7 +1080,7 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-voyageai": map[string]interface{}{
-						"sourceProperties": []string{"title"},
+						"properties": []string{"title"},
 						// "model":            "voyage-3-lite",
 						// "base_url":         "<custom-voyageai-url>",
 						// "truncate":         true,
@@ -948,7 +1129,7 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-weaviate": map[string]interface{}{
-						"model": "arctic-embed-m-v1.5",
+						"model": "arctic-embed-l-v2.0",
 					},
 				},
 			},
@@ -963,17 +1144,25 @@ func main() {
 	// highlight-end
 	// END VectorizerWeaviateCustomModel
 
-	// START FullVectorizerWeaviate
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START SnowflakeArcticEmbedMV15
 	// highlight-start
 	// Define the collection
-	weaviateVectorizerFullDef := &models.Class{
+	weaviateVectorizerArcticEmbedMV15 := &models.Class{
 		Class: "DemoCollection",
 		VectorConfig: map[string]models.VectorConfig{
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-weaviate": map[string]interface{}{
-						"model":      "arctic-embed-m-v1.5",
-						"dimensions": 256, // Or 756
+						"model":      "Snowflake/snowflake-arctic-embed-m-v1.5",
+						"dimensions": 256, // Or 768
 						"base_url":   "<custom_weaviate_url>",
 					},
 				},
@@ -982,23 +1171,55 @@ func main() {
 	}
 
 	// add the collection
-	err = client.Schema().ClassCreator().WithClass(weaviateVectorizerFullDef).Do(ctx)
+	err = client.Schema().ClassCreator().WithClass(weaviateVectorizerArcticEmbedMV15).Do(ctx)
 	if err != nil {
 		panic(err)
 	}
 	// highlight-end
-	// END FullVectorizerWeaviate
+	// END SnowflakeArcticEmbedMV15
+
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START SnowflakeArcticEmbedLV20
+	// highlight-start
+	// Define the collection
+	weaviateVectorizerArcticEmbedLV20 := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				VectorIndexType: `hnsw`,
+				Vectorizer: map[string]interface{}{
+					"text2vec-weaviate": map[string]interface{}{
+						"model":      "Snowflake/snowflake-arctic-embed-l-v2.0",
+						"dimensions": 1024, // Or 256
+						// "base_url":   "<custom_weaviate_url>",
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(weaviateVectorizerArcticEmbedLV20).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END SnowflakeArcticEmbedLV20
 
 	// START BatchImportExample
 	var sourceObjects = []map[string]string{
-		// Objects not shown
-		// END BatchImportExample
-		{"title": "The Shawshank Redemption", "description": "Prison drama about hope"},
-		{"title": "The Godfather", "description": "Mafia family epic"},
-		{"title": "The Dark Knight", "description": "Batman vs Joker thriller"},
-		{"title": "Jingle All the Way", "description": "Holiday shopping adventure"},
-		{"title": "A Christmas Carol", "description": "Ghost story of redemption"},
-		// START BatchImportExample
+		{"title": "The Shawshank Redemption", "description": "A wrongfully imprisoned man forms an inspiring friendship while finding hope and redemption in the darkest of places."},
+		{"title": "The Godfather", "description": "A powerful mafia family struggles to balance loyalty, power, and betrayal in this iconic crime saga."},
+		{"title": "The Dark Knight", "description": "Batman faces his greatest challenge as he battles the chaos unleashed by the Joker in Gotham City."},
+		{"title": "Jingle All the Way", "description": "A desperate father goes to hilarious lengths to secure the season's hottest toy for his son on Christmas Eve."},
+		{"title": "A Christmas Carol", "description": "A miserly old man is transformed after being visited by three ghosts on Christmas Eve in this timeless tale of redemption."},
 	}
 
 	// highlight-start
@@ -1007,10 +1228,8 @@ func main() {
 	for i := range sourceObjects {
 		objects = append(objects, map[string]interface{}{
 			// Populate the object with the data
-			// END BatchImportExample
 			"title":       sourceObjects[i]["title"],
 			"description": sourceObjects[i]["description"],
-			// START BatchImportExample
 		})
 	}
 

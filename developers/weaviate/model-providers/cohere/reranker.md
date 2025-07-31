@@ -133,6 +133,17 @@ You can specify one of the [available models](#available-models) for Weaviate to
 
 The [default model](#available-models) is used if no model is specified.
 
+## Header parameters
+
+You can provide the API key as well as some optional parameters at runtime through additional headers in the request. The following headers are available:
+
+- `X-Cohere-Api-Key`: The Cohere API key.
+- `X-Cohere-Baseurl`: The base URL to use (e.g. a proxy) instead of the default Cohere URL.
+
+Any additional headers provided at runtime will override the existing Weaviate configuration.
+
+Provide the headers as shown in the [API credentials examples](#api-credentials) above.
+
 ## Reranking query
 
 Once the reranker is configured, Weaviate performs [reranking operations](../../search/rerank.md) using the specified Cohere model.
@@ -169,8 +180,9 @@ Any search in Weaviate can be combined with a reranker to perform reranking oper
 
 ### Available models
 
+- `rerank-v3.5` (default)
 - `rerank-english-v3.0`
-- `rerank-multilingual-v3.0 (default)`
+- `rerank-multilingual-v3.0`
 - `rerank-english-v2.0`
 - `rerank-multilingual-v2.0`
 

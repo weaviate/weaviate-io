@@ -15,24 +15,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 // Set these environment variables
-// WCD_HOSTNAME     Your Weaviate instance hostname
-// WCD_API_KEY      Your Weaviate instance API key
-// COHERE_APIKEY    Your Cohere API key
+// WEAVIATE_HOSTNAME     Your Weaviate instance hostname
+// WEAVIATE_API_KEY      Your Weaviate instance API key
 
 public class NearText {
   public static void main(String[] args) throws Exception {
 
-    String host = System.getenv("WCD_HOSTNAME");
-    String apiKey = System.getenv("WCD_API_KEY");
-    String cohereKey = System.getenv("COHERE_APIKEY");
+    String host = System.getenv("WEAVIATE_HOSTNAME");
+    String apiKey = System.getenv("WEAVIATE_API_KEY");
 
-    // highlight-start
-    Map<String, String> headers = new HashMap<String, String>() { {
-      put("X-Cohere-Api-Key", cohereKey);
-    } };
-
-    Config config = new Config("https", host, headers);
-    // highlight-end
+    Config config = new Config("https", host);
     WeaviateClient client = WeaviateAuthClient.apiKey(config, apiKey);
 
     // highlight-start

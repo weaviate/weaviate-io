@@ -20,7 +20,7 @@ import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
 Weaviate's integration with Databricks' APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use an Databricks' generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified endpoint and your Databricks token.
+[Configure a Weaviate collection](#configure-collection) to use a generative AI model with Databricks. Weaviate will perform retrieval augmented generation (RAG) using the specified endpoint and your Databricks token.
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the Databricks generative model to generate outputs.
 
@@ -133,6 +133,41 @@ Configure the following generative parameters to customize the model behavior.
 </Tabs>
 
 For further details on model parameters, see the [Databricks documentation](https://docs.databricks.com/en/machine-learning/foundation-models/api-reference.html#chat-task).
+
+## Select a model at runtime
+
+Aside from setting the default model provider when creating the collection, you can also override it at query time.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START RuntimeModelSelectionDatabricks"
+      endMarker="# END RuntimeModelSelectionDatabricks"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+          text={TSCode}
+          startMarker="// START RuntimeModelSelectionDatabricks"
+          endMarker="// END RuntimeModelSelectionDatabricks"
+          language="ts"
+        />
+  </TabItem>
+</Tabs>
+
+## Header parameters
+
+You can provide the API key as well as some optional parameters at runtime through additional headers in the request. The following headers are available:
+
+- `X-Databricks-Token`: The Databricks API token.
+- `X-Databricks-Endpoint`: The endpoint to use for the Databricks model.
+- `X-Databricks-User-Agent`: The user agent to use for the Databricks model.
+
+Any additional headers provided at runtime will override the existing Weaviate configuration.
+
+Provide the headers as shown in the [API credentials examples](#api-credentials) above.
 
 ## Retrieval augmented generation
 

@@ -17,8 +17,8 @@ let client: WeaviateClient;
 
 // END CreateMovieCollection
 
-client = await weaviate.connectToWeaviateCloud(process.env.WCD_URL as string,{
-    authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
+client = await weaviate.connectToWeaviateCloud(process.env.WEAVIATE_URL as string,{
+    authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY as string),
   } 
 )
 // CreateMovieCollection
@@ -33,9 +33,9 @@ const requestHeaders = {'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY as string,
 
 
 client = await weaviate.connectToWeaviateCloud(
-  process.env.WCD_URL as string,
+  process.env.WEAVIATE_URL as string,
   {
-    authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
+    authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY as string),
     headers: requestHeaders
   } 
 )
@@ -68,7 +68,7 @@ client.close()
 // END CreateMovieCollection
 
 const weaviateURL = process.env.WEAVIATE_URL as string
-const weaviateKey = process.env.WEAVIATE_ADMIN_KEY as string
+const weaviateKey = process.env.WEAVIATE_API_KEY as string
 const openaiKey = process.env.OPENAI_API_KEY as string
 
 client = await weaviate.connectToWeaviateCloud(weaviateURL,{

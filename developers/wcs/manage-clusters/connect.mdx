@@ -1,0 +1,210 @@
+---
+title: Connect to Weaviate Cloud
+sidebar_label: Connect to a cluster
+sidebar_position: 1
+image: og/wcs/user_guides.jpg
+---
+
+import CompareURLs from '/developers/wcs/img/wcs-console-url-check.jpg';
+
+[Weaviate Cloud (WCD)](https://console.weaviate.cloud/) offers multiple options on how to connect to your cluster:
+
+- **[Connect with APIs](#connect-with-an-api)**:
+
+  - Use [client libraries](/developers/weaviate/client-libraries) to connect to a Weaviate Cloud instance.
+  - Use a tool, such as cURL, to connect to the [REST API](/developers/weaviate/api/rest).
+
+- **[Connect through the Weaviate Cloud console](#connect-to-the-weaviate-cloud-console)**:
+
+  - Login to manage your clusters, users, and billing.
+  - Use built-in tools to work with your data.
+
+## Connect with an API
+
+The guide below applies to clusters that have [RBAC (Role-Based Access Control)](/developers/weaviate/configuration/rbac/index.mdx) enabled. New clusters with Weaviate version `v1.30` (or later) have RBAC enabled by default. 
+
+<details>
+    <summary>Connecting with API keys when RBAC is disabled</summary>
+
+The Weaviate client libraries use API keys to authenticate to Weaviate Cloud instances. If RBAC is disabled, two API keys are created by default. Both **Serverless** and **Sandbox** clusters have these two types of keys:
+
+- `Admin key`: An administrator that enables read-write access to the cluster.
+- `ReadOnly key`: A viewer key that only allows read access to the cluster.
+
+The Weaviate server authenticates every request.
+
+- If you use a Weaviate client library, pass the API key when you instantiate the client connection. After the connection is established, you do not have to pass the API key when you make additional requests.
+- If you use a tool like cURL, add your API key to the request header.
+
+</details>
+
+### Retrieve your API key and REST endpoint
+
+import CreateAPIKeys from '/_includes/wcs/create-api-keys.mdx';
+
+<CreateAPIKeys />
+
+import RetrieveRESTEndpoint from '/_includes/wcs/retrieve-rest-endpoint.mdx';
+
+<RetrieveRESTEndpoint />
+
+### Environment variables
+
+Do not hard-code your API key and Weaviate URL in your client code. Consider passing them as environment variables or using a similar secure coding technique.
+
+```bash
+export WEAVIATE_URL="replaceThisWithYourRESTEndpointURL"
+export WEAVIATE_API_KEY="replaceThisWithYourAPIKey"
+```
+
+### Connection example
+
+To connect, use the `REST Endpoint` URL and the `Admin` API key:
+
+import ConnectIsReady from '/_includes/code/quickstart/quickstart.is_ready.mdx';
+
+<ConnectIsReady />
+
+## Connect to the Weaviate Cloud console
+
+The Weaviate Cloud console uses your email address and password for authentication. You create the password when you create your Weaviate Cloud account.
+
+To connect to the console, follow these steps:
+
+1. Open the [Weaviate Cloud login page](https://console.weaviate.cloud/) in a browser.
+1. Enter your email address and password to authenticate.
+1. Click `Login`.
+
+## Connect an instance with the Query Tool
+
+The built-in [Query tool](/developers/wcs/tools/query-tool) connects directly to clusters in your Weaviate Cloud organization without any additional authentication.
+
+import APIKeyInHeader from '/developers/wcs/img/wcs-auth-header.jpg';
+
+<div class="row">
+  <div class="col col--6">
+    <p>
+      To connect the Query tool to a Weaviate instance that is not part of your
+      Weaviate Cloud organization, provide an API key for the remote instance.{' '}
+      <br />
+      <br />
+      Add the API key to the connection <code>Headers</code> at the bottom of
+      the Query tool tab.
+    </p>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img src={APIKeyInHeader} alt="Create a cluster" />
+      </div>
+      <div class="card__body">
+        Copy the appropriate API key for your cluster.
+      </div>
+    </div>
+  </div>
+</div>
+
+## Troubleshooting
+
+This section has solutions for some common problems. For additional help, [contact support](#support).
+
+### Reset your password
+
+To reset your Weaviate Cloud password, follow these steps:
+
+1. Go to the Weaviate Cloud [login page](https://console.weaviate.cloud).
+1. Click on click the login button.
+1. Click `Forgot Password`.
+1. Check your email account for a password reset email from Weaviate Cloud.
+1. Click the link and follow the instructions to reset your password. The link is only valid for five minutes.
+
+### Connection timeouts
+
+The new Python client uses the gRPC protocol to connect to Weaviate Cloud. The gRPC protocol improves query performance, but the protocol is sensitive to network speeds. If you run into timeout errors, increase the connection timeout value in your connection code.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCodeSupp from '!!raw-loader!/_includes/code/client-libraries/python_slow_connection.py';
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCodeSupp}
+      startMarker="# START ConnectWithLongTimeOut"
+      endMarker="# END ConnectWithLongTimeOut"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+Alternatively, leave the default timeout values, but skip the initial connection checks.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCodeSupp}
+      startMarker="# START ConnectWithSkipChecks"
+      endMarker="# END ConnectWithSkipChecks"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+### gRPC health check error
+
+**Problem**: gRPC returns a health check error after you update a Serverless cluster.
+
+```
+weaviate.exceptions.WeaviateGRPCUnavailableError: gRPC health check could not be completed.
+```
+
+**Solution**: Verify the cluster URL is correct and update the URL if needed.
+
+When a Serverless cluster is updated, the cluster URL may change slightly. Weaviate Cloud still routes the old URL, so some connections work, however the new gRPC and the old HTTP URLS are different so connections that require gRCP fail.
+
+To check the URLs, open the Weaviate Cloud Console and check the details panel for your cluster. If you prefix Cluster URL with `grpc-`, the Cluster URL and the Cluster gRPC URL should match.
+
+import EndpointURLs from '/developers/wcs/img/weaviate-cloud-endpoint-urls.png';
+
+<div class="row">
+  <div class="col col--4">
+    <p>
+      Compare the Cluster URL with the connection URL in your application. The
+      old URL and the new URL are similar, but the new one may have an extra
+      subdomain such as <code>.c0.region</code>.
+    </p>
+    <br />
+    <p>
+      If the URLs are different, update your application's connection code to
+      use the new Cluster URL.
+    </p>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img src={EndpointURLs} alt="Cluster URLs" />
+      </div>
+      <div class="card__body">Cluster URLs.</div>
+    </div>
+  </div>
+</div>
+
+## More resources
+
+To authenticate with a Weaviate client library, see the following:
+
+- [Python](/developers/weaviate/client-libraries/python/index.md#authentication)
+- [TypeScript/JavaScript](/developers/weaviate/client-libraries/typescript/typescript-v3#authentication)
+- [Go](/developers/weaviate/client-libraries/go.md#authentication)
+- [Java](/developers/weaviate/client-libraries/java.md#authentication)
+
+## Support
+
+import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
+
+<SupportAndTrouble />
+
+import CustomScriptLoader from '/src/components/scriptSwitch';
+
+<CustomScriptLoader />

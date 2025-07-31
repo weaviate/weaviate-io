@@ -203,6 +203,17 @@ The following examples show how to configure Voyage AI-specific options.
 
 For further details on model parameters, see the [Voyage AI Embedding API documentation](https://docs.voyageai.com/docs/embeddings).
 
+## Header parameters
+
+You can provide the API key as well as some optional parameters at runtime through additional headers in the request. The following headers are available:
+
+- `X-VoyageAI-Api-Key`: The Voyage AI API key.
+- `X-VoyageAI-Baseurl`: The base URL to use (e.g. a proxy) instead of the default Voyage AI URL.
+
+Any additional headers provided at runtime will override the existing Weaviate configuration.
+
+Provide the headers as shown in the [API credentials examples](#api-credentials) above.
+
 ## Data import
 
 After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for text objects using the specified model.
@@ -330,6 +341,9 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ### Available models
 
+- voyage-3.5
+- voyage-3.5-lite
+- voyage-3-large
 - voyage-3 (default)
 - voyage-3-lite
 - voyage-large-2 (default for <= `v1.24.24`, `v1.25.17`, `v1.26.4`)

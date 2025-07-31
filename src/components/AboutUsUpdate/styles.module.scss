@@ -239,7 +239,7 @@ p {
       font-weight: 200;
       border: none;
       background: whitesmoke;
-      transition: all 0.2s ease-out;
+      transition: background-color 0.2s ease;
       cursor: pointer;
     }
 
@@ -386,4 +386,9 @@ p {
 
 .linkActive {
   font-weight: 500 !important;
+
+  background-color: #130c49 !important;
+  color: white !important;
+  padding: 4px;
+  border-radius: 0.3125rem;
 }

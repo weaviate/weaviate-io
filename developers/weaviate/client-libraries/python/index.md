@@ -280,6 +280,25 @@ To create an older, `v3` style `Client` object, use the `weaviate.Client` class.
 
 To create a `v3` style client, refer to the [`v3` client documentation](./python_v3.md).
 
+### Using Custom SSL Certificates
+
+The Python client doesn't directly support passing SSL certificates. If you need to work with self-signed certificates (e.g. for enterprise environments), you have two options:
+
+#### Option 1: Add the certificate to the underlying libraries
+
+You can add the custom SSL certificates to the underlying libraries such as `certifi` that the Weaviate client library uses.
+
+#### Option 2: Set the environment variables
+
+Alternatively, you can set the environment variables `GRPC_DEFAULT_SSL_ROOTS_FILE_PATH` and `SSL_CERT_FILE` to the path of the certificate file. At instantiation, also set `additional_config=AdditionalConfig(trust_env=True)`. Otherwise, the client library will not use the environment variables.
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# START CustomSSLExample"
+  endMarker="# END CustomSSLExample"
+  language="py"
+/>
+
 ## Initial connection checks
 
 When establishing a connection to the Weaviate server, the client performs a series of checks. These includes checks for the server version, and to make sure that the REST and gRPC ports are available.
@@ -306,13 +325,14 @@ We recommend using the collection object to perform batch imports of single coll
 
 ### Batch sizing
 
-There are three methods to configure the batching behavior. They are `dynamic`, `fixed_size` and `rate_limit`.
+There are three methods to configure the batching behavior. They are `fixed_size`, `rate_limit` and `dynamic`.
 
 | Method | Description | When to use |
 | :-- | :-- | :-- |
-| `dynamic` | The batch size and the number of concurrent requests are dynamically adjusted on-the-fly during import, depending on the server load. | Recommended starting point. |
-| `fixed_size` | The batch size and number of concurrent requests are fixed to sizes specified by the user. | When you want to specify fixed parameters. |
+| `fixed_size` | The batch size and number of concurrent requests are fixed to sizes specified by the user. | When you want to specify fixed parameters. Recommended method. |
 | `rate_limit` | The number of objects sent to Weaviate is rate limited (specified as n_objects per minute). | When you want to avoid hitting third-party vectorization API rate limits. |
+| `dynamic` | The batch size and the number of concurrent requests are dynamically adjusted on-the-fly during import, depending on the server load. | Not recommended for Weaviate Cloud Serverless instances at this time. |
+<!-- TODO[g-despot]: remove dynamic warning once the logic is moved to the server side -->
 
 #### Usage
 
@@ -321,16 +341,6 @@ We recommend using a context manager as shown below.
 These methods return a new context manager for each batch. Attributes that are returned from one batch, such as `failed_objects` or `failed_references`, are not included in any subsequent calls.
 
 <Tabs groupId="languages">
-<TabItem value="dynamic" label="Dynamic">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# START BatchDynamic"
-    endMarker="# END BatchDynamic"
-    language="py"
-  />
-
-</TabItem>
 <TabItem value="fixedSize" label="Fixed Size">
 
   <FilteredTextBlock
@@ -349,6 +359,16 @@ These methods return a new context manager for each batch. Attributes that are r
   endMarker="# END BatchRateLimit"
   language="py"
 />
+
+</TabItem>
+<TabItem value="dynamic" label="Dynamic">
+
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START BatchDynamic"
+    endMarker="# END BatchDynamic"
+    language="py"
+  />
 
 </TabItem>
 </Tabs>

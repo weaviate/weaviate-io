@@ -66,7 +66,7 @@ for row in data:
 
 # Upload the sample data
 nvjc_collection = client.collections.get("JeopardyTiny")
-with nvjc_collection.batch.dynamic() as batch:
+with nvjc_collection.batch.fixed_size(batch_size=200) as batch:
     for q in question_objects:
         batch.add_object(properties=q)
 

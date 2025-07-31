@@ -19,7 +19,7 @@ import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
 Weaviate's integration with [Google AI Studio](https://ai.google.dev/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=) and [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use a Google generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your Google API key.
+[Configure a Weaviate collection](#configure-collection) to use a generative AI model with Google. Weaviate will perform retrieval augmented generation (RAG) using the specified model and your Google API key.
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the Google generative model to generate outputs.
 
@@ -203,6 +203,29 @@ Configure the following generative parameters to customize the model behavior.
 
 </Tabs>
 
+## Select a model at runtime
+
+Aside from setting the default model provider when creating the collection, you can also override it at query time.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START RuntimeModelSelectionGoogle"
+      endMarker="# END RuntimeModelSelectionGoogle"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START RuntimeModelSelectionGoogle"
+      endMarker="// END RuntimeModelSelectionGoogle"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
 ## Retrieval augmented generation
 
 After configuring the generative AI integration, perform RAG operations, either with the [single prompt](#single-prompt) or [grouped task](#grouped-task) method.
@@ -267,6 +290,30 @@ In other words, when you have `n` search results, the generative model generates
     />
   </TabItem>
 
+</Tabs>
+
+### RAG with images
+
+You can also supply images as a part of the input when performing retrieval augmented generation in both single prompts and grouped tasks. 
+
+<Tabs groupId="languages">
+
+ <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START WorkingWithImagesGoogle"
+      endMarker="# END WorkingWithImagesGoogle"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+        text={TSCode}
+        startMarker="// START WorkingWithImagesGoogle"
+        endMarker="// END WorkingWithImagesGoogle"
+        language="ts"
+      />
+  </TabItem>
 </Tabs>
 
 ## References

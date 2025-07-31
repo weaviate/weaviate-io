@@ -18,7 +18,7 @@ import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
 Weaviate's integration with Anthropic's APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use an Anthropic generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your Anthropic API key.
+[Configure a Weaviate collection](#configure-collection) to use a generative AI model with Anthropic. Weaviate will perform retrieval augmented generation (RAG) using the specified model and your Anthropic API key.
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the Anthropic generative model to generate outputs.
 
@@ -159,6 +159,40 @@ Configure the following generative parameters to customize the model behavior.
 
 For further details on model parameters, see the [Anthropic API documentation](https://www.anthropic.com/docs).
 
+## Select a model at runtime
+
+Aside from setting the default model provider when creating the collection, you can also override it at query time.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START RuntimeModelSelectionAnthropic"
+      endMarker="# END RuntimeModelSelectionAnthropic"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START RuntimeModelSelectionAnthropic"
+      endMarker="// END RuntimeModelSelectionAnthropic"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+## Header parameters
+
+You can provide the API key as well as some optional parameters at runtime through additional headers in the request. The following headers are available:
+
+- `X-Anthropic-Api-Key`: The Anthropic API key.
+- `X-Anthropic-Baseurl`: The base URL to use (e.g. a proxy) instead of the default Anthropic URL.
+
+Any additional headers provided at runtime will override the existing Weaviate configuration.
+
+Provide the headers as shown in the [API credentials examples](#api-credentials) above.
+
 ## Retrieval augmented generation
 
 After configuring the generative AI integration, perform RAG operations, either with the [single prompt](#single-prompt) or [grouped task](#grouped-task) method.
@@ -223,6 +257,30 @@ In other words, when you have `n` search results, the generative model generates
     />
   </TabItem>
 
+</Tabs>
+
+### RAG with images
+
+You can also supply images as a part of the input when performing retrieval augmented generation in both single prompts and grouped tasks. 
+
+<Tabs groupId="languages">
+
+ <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START WorkingWithImagesAnthropic"
+      endMarker="# END WorkingWithImagesAnthropic"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START WorkingWithImagesAnthropic"
+      endMarker="// END WorkingWithImagesAnthropic"
+      language="ts"
+    />
+  </TabItem>
 </Tabs>
 
 ## References
