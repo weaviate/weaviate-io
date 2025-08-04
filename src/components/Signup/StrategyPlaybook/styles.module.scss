@@ -289,9 +289,14 @@
     line-height: 160%; /* 2rem */
   }
 
+  ul {
+    margin-bottom: 20px;
+    margin-top: -20px;
+  }
+
   .listHeader {
     font-style: italic;
-    margin-left: -21px;
+    margin-left: -35px;
     margin-bottom: 10px;
   }
 }
