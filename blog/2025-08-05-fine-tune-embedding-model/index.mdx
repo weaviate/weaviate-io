@@ -2,7 +2,7 @@
 title: 'Why, When and How to Fine-Tune a Custom Embedding Model'
 slug: 'fine-tune-embedding-model'
 authors: [leonie]
-date: 2025-07-31
+date: 2025-08-05
 tags: ['concepts']
 image: ./img/hero.png
 description: "Key consideration for customizing an embedding model through fine-tuning it on company- or domain-specific data to improve the downstream retrieval performance in RAG applications."
@@ -113,15 +113,15 @@ Let's explore a few approaches to give you a better intuition:
 
 - **Multiple Negatives Ranking Loss:** Requires simple text pairs of related sentences (`query`, `context`). It doesn’t require you to explicitly provide negative samples because it treats all other examples in the batch as negatives, which makes it a popular technique. Many modern embedding models use variants of this loss for tasks like semantic search.
     
-    ![image.png](img/placeholder.png)
+    ![multiple negatives ranking loss](img/multiple-negatives.gif)
     
 - **Triplet Loss:** Requires text triplets consisting of (`anchor`, `positive`, `negative`) with careful data preparation to find meaningful triplets. This is great for cases when you need precise control over what is similar or dissimilar, but it can be difficult to curate a good dataset because you need to find meaningful hard negatives to avoid trivial triplets. Hard negatives are examples that are similar to the anchor but should be ranked lower than the positive example.
     
-    ![image.png](img/placeholder.png)
+    ![triplet loss](img/triplet-loss.gif)
     
 - **Cosine Embedding Loss:** Requires sentence pairs with a similarity score indicating how related they are (`sentence_A`, `sentence_B`, `score`). This is ideal for cases where you have different grades of similarity rather than binary relevant/irrelevant judgments.
     
-    ![image.png](img/placeholder.png)
+    ![cosine embedding loss](img/cosine-embeddings.gif)
     
 
 During training, the optimization process adjusts the model's parameters to pull positive pairs closer together in the embedding space while pushing negative pairs further apart. This creates a representation space where semantically similar content naturally groups together, enabling effective retrieval and similarity search.
