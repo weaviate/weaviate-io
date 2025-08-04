@@ -219,8 +219,8 @@ const siteRedirects = {
 
          // // Build with Weaviate Offline
         {
-            to: '/community/build-with-weaviate',
-            from: '/',
+            to: '/',
+            from: '/community/build-with-weaviate',
         },
     ],
 };
