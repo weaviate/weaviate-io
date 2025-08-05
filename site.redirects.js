@@ -216,6 +216,12 @@ const siteRedirects = {
             to: '/agentic-ai',
             from: '/gen-feedback-loops',
         },
+
+         // // Build with Weaviate Offline
+        {
+            to: '/',
+            from: '/community/build-with-weaviate',
+        },
     ],
 };
 

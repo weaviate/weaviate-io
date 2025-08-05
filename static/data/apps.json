@@ -121,7 +121,7 @@
     "size": "2.09MB",
     "languages": ["English", "Spanish", "French", "German"],
     "url": "/product/query-agent",
-    "released": "no",
+    "released": "yes",
     "privatePreview": "yes",
     "ppLink": "https://docs.weaviate.io/agents/query/usage"
   },

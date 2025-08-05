@@ -18,7 +18,6 @@ export default function DemoPage() {
         <Header />
         <Highlights />
         <Projects />
-        <Opensource />
       </Layout>
       <ThemeSwitch />
     </div>
