@@ -42,7 +42,7 @@ export default function QueryPage() {
                   <p>{app.description}</p>
                   <div className={styles.installButtons}>
                     {app.released === 'yes' ? (
-                      <Link to="https://events.weaviate.io/weaviate-agents">
+                      <Link to="https://console.weaviate.cloud/">
                         <button className={styles.installButton}>
                           Open in Weaviate Cloud
                         </button>
