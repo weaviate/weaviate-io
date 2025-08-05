@@ -44,13 +44,13 @@ export default function QueryPage() {
                     {app.released === 'yes' ? (
                       <Link to="https://events.weaviate.io/weaviate-agents">
                         <button className={styles.installButton}>
-                          Sign up for updates
+                          Open in Weaviate Cloud
                         </button>
                       </Link>
                     ) : (
                       <Link to="https://docs.weaviate.io/agents/query/usage">
                         <button className={styles.installButton}>
-                          Public Preview
+                          Open in Weaviate Cloud
                         </button>
                       </Link>
                     )}
@@ -109,7 +109,7 @@ export default function QueryPage() {
                       Availability:{' '}
                       <Link to="https://docs.weaviate.io/agents/query/usage">
                         <strong>
-                          <u>Public Preview in Weaviate Cloud</u>
+                          <u>Open in Weaviate Cloud</u>
                         </strong>
                       </Link>
                     </p>
