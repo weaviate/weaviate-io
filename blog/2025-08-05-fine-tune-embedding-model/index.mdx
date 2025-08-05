@@ -35,8 +35,8 @@ Should you always fine-tune an embedding model when your retrieval performance i
 Vector search can lead to bad performance for many different reasons. Here are some questions to help you debug why your retrieval pipeline might not be meeting your performance requirements:
 
 - Do you have many queries requiring exact keyword matches? Then, you might want to explore [keyword](https://docs.weaviate.io/weaviate/concepts/search/keyword-search) or [hybrid search](https://docs.weaviate.io/weaviate/concepts/search/hybrid-search) techniques before spending time and computing resources fine-tuning an embedding model.
-- Are you using the right chunking technique? Maybe the chunking technique you’re currently using is either resulting in chunks with too little context, oddly split chunks, or too large chunks. Look at a few chunks and evaluate if you might need to experiment with another chunking technique.
-- Is your embedding model capturing enough contextual nuances? If it does not understand semantic relationships in general and domain knowledge, try a model with more dimensions first.
+- Are you using the right chunking technique? Maybe the chunking technique you’re currently using is either resulting in chunks with too little context, oddly split chunks, or too large chunks. Look at a few chunks and evaluate if you might need to experiment with another chunking technique, such as [late chunking](/blog/2024-09-05-late-chunking/).
+- Is your embedding model capturing enough contextual nuances? If it does not understand semantic relationships in general and domain knowledge, try a model with more dimensions or a [late-intreaction model](/blog/2025-04-09-late-interaction-overview/) first.
 - Is your embedding model only failing to capture domain- or company-specific semantic relationships? Then fine-tuning might be the right choice.
 
 As you can see, before blindly fine-tuning an embedding model, it is important to evaluate whether your use case can benefit from domain-specific fine-tuning.
@@ -71,7 +71,7 @@ Changing the embedding model affects downstream results and requires extra work,
 
 Therefore, it is important to first evaluate the performance of the base model on your use case to determine if your use case could benefit from customizing the embedding model. This evaluation will also serve as the baseline model to compare the fine-tuned model against.
 
-To evaluate retrieval performance, we will first need to prepare an evaluation dataset. Note that retrieval performance is evaluated using a dataset of queries and their corresponding relevant documents from a corpus of documents. The structure of the evaluation dataset is thus different from that of the fine-tuning dataset (see "Preparing and Curating a Fine-Tuning Dataset"). Similar to other machine learning training, make sure your training dataset is separate from the evaluation dataset to avoid data leakage.
+To evaluate retrieval performance, we will first need to prepare an evaluation dataset. Note that retrieval performance is evaluated using a dataset of queries and their corresponding relevant documents from a corpus of documents. The structure of the evaluation dataset is thus different from that of the fine-tuning dataset (see "Preparing and Curating a Fine-Tuning Dataset"). Similar to other machine learning training, make sure your training dataset is separate from the evaluation dataset to avoid overfitting and data leakage.
 
 During evaluation, the top-k most similar documents according to the embedding model are evaluated against the ground truth relevant documents for each query with a [retrieval metric](/blog/retrieval-evaluation-metrics), such as:
 
@@ -128,7 +128,7 @@ During training, the optimization process adjusts the model's parameters to pull
 
 ### Best Practices for the Fine-tuning Process
 
-Like common machine learning fine-tuning, hyperparameter tuning through extensive experimentation is recommended to avoid challenges like overfitting. Running hyperparameter sweeps over key hyperparameters like number of epochs, learning rate, batch size, etc., can help you find the best hyperparameter configuration that leads to the best retrieval performance.
+Like common machine learning fine-tuning, hyperparameter tuning through extensive experimentation is recommended to avoid challenges like overfitting. Running hyperparameter sweeps over key hyperparameters like number of epochs, learning rate, batch size, etc., can help you find the best hyperparameter configuration that leads to the best retrieval performance. Make sure you have a robust cross-validation strategy in place.
 
 Additionally, using a model registry to track your embedding models can be helpful, especially if you plan on regularly updating them with fresh data.
 
