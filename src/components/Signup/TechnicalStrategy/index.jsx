@@ -38,9 +38,7 @@ export default function Introduction() {
               <h1 classname={styles.headerTag}>
                 How to Build a Technical Strategy for AI
               </h1>
-              <span className={styles.subTitle}>
-                The AI Leader’s Guide to Technical Strategy
-              </span>
+              <span className={styles.subTitle}></span>
               <div className={styles.signUp}>
                 <div className={styles.signUpBox}>
                   <div className={styles.formWrapper}>

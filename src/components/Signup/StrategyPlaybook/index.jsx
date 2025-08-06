@@ -37,7 +37,7 @@ export default function Introduction() {
               <span>GUIDE</span>
               <h1 classname={styles.headerTag}>The AI Strategy Playbook</h1>
               <span className={styles.subTitle}>
-                The Leader’s Guide to AI Strategy
+                The AI Leader’s Guide to Operationalizing AI
               </span>
               <div className={styles.signUp}>
                 <div className={styles.signUpBox}>

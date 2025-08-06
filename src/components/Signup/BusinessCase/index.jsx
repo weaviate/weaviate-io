@@ -38,9 +38,7 @@ export default function Introduction() {
               <h1 classname={styles.headerTag}>
                 How to Build a Business Case for AI
               </h1>
-              <span className={styles.subTitle}>
-                The AI Leader’s Guide to Operationalizing AI
-              </span>
+              <span className={styles.subTitle}></span>
               <div className={styles.signUp}>
                 <div className={styles.signUpBox}>
                   <div className={styles.formWrapper}>
