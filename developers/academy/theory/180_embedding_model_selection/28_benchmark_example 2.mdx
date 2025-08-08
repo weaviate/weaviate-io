@@ -1,0 +1,266 @@
+---
+title: "Custom benchmarks: an example"
+description: An example of running your own benchmarks for embedding model evaluation
+---
+
+import ThemedImage from '@theme/ThemedImage';
+
+## <i class="fa-solid fa-chalkboard-user"></i> Example custom benchmark
+
+Here is how you might perform a custom benchmark.
+
+Imagine your end goal is to implement a [RAG (retrieval augmented generation)](/blog/introduction-to-rag) system over your company's technical documentation (e.g., product documentation, code examples, support forum logs).
+
+You've shortlisted two embedding models (Model A and Model B) to retrieve objects based on MTEB scores and practical considerations. Let’s go through the steps discussed earlier.
+
+### <i class="fa-solid fa-chalkboard"></i> Set benchmark objectives
+
+Since your data comes from different sources, you may be concerned that the targets are very diverse, whether it be writing style (informal forum posts vs formal documentation), text lengths (comprehensive snippets vs short answers) or language (code vs English).
+
+So you may set the goal of testing *how each model deals with the style, length and language variability*.
+
+### <i class="fa-solid fa-code"></i> Determine metrics to use
+
+This is a classic retrieval problem, where some results are more relevant than others. So, we can use an NDCG@k metric. NDCG@k can be calculated as follows:
+
+```python
+def calculate_dcg(relevance_scores: list[int], k: Optional[int] = None) -> float:
+    """
+    Args:
+        relevance_scores: List of relevance scores (0, 1, or 2)
+        k: Number of results to consider. If None, uses all results.
+    """
+    if k is not None:
+        relevance_scores = relevance_scores[:k]
+
+    gains = [2**score - 1 for score in relevance_scores]
+    dcg = 0
+    for i, gain in enumerate(gains):
+        dcg += gain / np.log2(i + 2) if i > 0 else gain
+
+    return dcg
+
+def calculate_ndcg(
+    actual_scores: list[int], ideal_scores: list[int], k: Optional[int] = None
+) -> float:
+    """
+    Args:
+        actual_scores: List of relevance scores in predicted order
+        ideal_scores: List of relevance scores in ideal order
+        k: Number of results to consider
+    """
+    dcg = calculate_dcg(actual_scores, k)
+    idcg = calculate_dcg(ideal_scores, k)
+    return dcg / idcg if idcg > 0 else 0.0
+```
+
+Note: some libraries such as [scikit-learn have built-in implementations](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.ndcg_score.html) of NDCG.
+
+### <i class="fa-solid fa-code"></i> Curate a benchmark dataset
+
+The benchmark dataset should be suitable for achieving the stated goal. Since we want to assess *how each model deals with the style, length and language variability*, the dataset might look something like this:
+
+```python
+dataset = {
+	# Search query
+	"query": "How to set up a vector index with binary quantization",
+	# Candidate document set, with scores on a scale of 0-3
+	"documents": [
+		{
+			"id": "doc001",
+			# Highly relevant documentation text
+			"text": "Each collection can be configured to use BQ compression. BQ must be enabled at collection creation time, before data is added to it. This can be done by setting the vector_index_config of the collection to enable BQ compression.",
+			"score": 3
+		},
+		{
+			"id": "doc002",
+			# Highly relevant, long code example
+			"text": "from weaviate.classes.config import Configure, Property, DataType, VectorDistances, VectorFilterStrateg\n\nclient.collections.create(\n    'Article',\n    # Additional configuration not shown\n    vector_index_config=Configure.VectorIndex.hnsw(\n        quantizer=Configure.VectorIndex.Quantizer.bq(\n            cache=True,\n            rescore_limit=1000\n        ),\n        ef_construction=300,\n        distance_metric=VectorDistances.COSINE,\n        filter_strategy=VectorFilterStrategy.SWEEPING  # or ACORN (Available from Weaviate v1.27.0)\n    ),)",
+			"score": 3
+		},
+		{
+			"id": "doc003",
+			# Highly relevant, short code example
+			"text": "client.collections.create(\nname='Movie',\nvector_index_config=wc.Configure.VectorIndex.flat(\nquantizer=wc.Configure.VectorIndex.Quantizer.bq()\n))",
+			"score": 3
+		},
+		{
+			"id": "doc004",
+			# Less relevant forum post, even though the right words appear
+			"text": "No change in vector size after I set up Binary Quantization\nHello! I was curious to try out how binary quantization works. To embed data I use gtr-t5-large model, which creates 768-dimensional vectors. My database stores around 2k of vectors. My python code to turn PQ on is following: client.schema.update_config(\n    'Document',\n    {\n        'vectorIndexConfig': {\n            'bq': {\n                'enabled': True, \n            }\n        }\n    },\n)",
+			"score": 1
+		},
+		# And so on ...
+		{
+			"id": "doc030",
+			# Irrrelevant documentation text
+			"text": "Weaviate stores data objects in collections. Data objects are represented as JSON-documents. Objects normally include a vector that is derived from a machine learning model. The vector is also called an embedding or a vector embedding.",
+			"score": 0
+		},
+	]
+}
+```
+
+The example dataset here contains a mix of document with varying relevance scores. Equally importantly, it includes a mix of document types, lengths, and languages. Ideally, each variable would be sufficiently represented, so that any disparities in retrieval performance would show up.
+
+### <i class="fa-solid fa-code"></i> Run benchmark
+
+Now, follow these steps for each embedding model:
+
+1. Create embeddings of each document and query
+2. Perform retrieval for the top `k` results, using these embeddings
+3. Calculate the quantitative metrics (e.g. NDCG@k)
+4. Collate results (top k results vs true top k labels) for qualitative analysis
+
+In pseudocode form, it might look something like this:
+
+```python
+import numpy as np
+from typing import List, Dict, Any
+
+class Document:
+    """Document with text and relevance score"""
+    def __init__(self, id, text, relevance_score):
+        self.id = id
+        self.text = text
+        self.relevance_score = relevance_score
+
+class EmbeddingModel:
+    """Abstract embedding model interface"""
+    def __init__(self, name):
+        self.name = name
+
+    def embed(self, text):
+        """Generate embedding for text"""
+        return embedding
+
+class BenchmarkRunner:
+    """Runs embedding model benchmarks"""
+    def __init__(self, queries, documents, models):
+        self.queries = queries
+        self.documents = documents
+        self.models = models
+
+    def run(self, k=10):
+        """Run benchmark for all models
+
+        Returns: Dict mapping model names to metrics
+        """
+        results = {}
+
+        for model in self.models:
+            # Get embeddings for all texts
+            query_embeddings = {q: model.embed(q) for q in self.queries}
+            doc_embeddings = {doc.id: model.embed(doc.text) for doc in self.documents}
+
+            # Calculate metrics for each query
+            ndcg_scores = []
+            for query, query_emb in query_embeddings.items():
+                # Get top k documents by similarity
+                top_docs = self._retrieve_top_k(query_emb, doc_embeddings, k)
+
+                # Calculate NDCG
+                ndcg = self._calculate_ndcg(top_docs, query, k)
+                ndcg_scores.append(ndcg)
+
+            # Store results
+            results[model.name] = {
+                'avg_ndcg': np.mean(ndcg_scores),
+                'all_scores': ndcg_scores
+            }
+
+        return results
+
+    def _retrieve_top_k(self, query_emb, doc_embeddings, k):
+        """Retrieve top k docs by similarity"""
+        # Implementation: calculate similarities and return top k
+        pass
+
+    def _calculate_ndcg(self, retrieved_docs, query, k):
+        """Calculate NDCG@k for retrieved documents"""
+        # Implementation: calculate DCG and IDCG
+        pass
+
+# Example usage
+def run_benchmark_example():
+    # 1. Initialize data
+    queries = ["How to set up binary quantization"]
+    documents = [
+        Document("doc1", "BQ can be enabled at collection creation...", 3),
+        # other documents ...
+        Document("doc2", "Weaviate stores data objects in collections...", 0)
+    ]
+
+    # 2. Initialize models
+    models = [
+        # Model implementations...
+    ]
+
+    # 3. Run benchmark
+    runner = BenchmarkRunner(queries, documents, models)
+    results = runner.run(k=5)
+
+    # 4. Print results
+    for model_name, metrics in results.items():
+        print(f"{model_name}: NDCG@5 = {metrics['avg_ndcg']:.4f}")
+```
+
+### <i class="fa-solid fa-code"></i> Evaluate the results
+
+Once the benchmarks are run, you'll have a set of results to analyze. Combine both quantitative metrics and qualitative observations to get a complete picture of model performance.
+
+#### Quantitative analysis
+
+Start by comparing the overall metrics for each model:
+
+```python
+# Example benchmark results
+results = {
+    'Model A': {'avg_ndcg': 0.87, 'all_scores': [0.92, 0.85, 0.84]},
+    'Model B': {'avg_ndcg': 0.79, 'all_scores': [0.95, 0.72, 0.70]}
+}
+
+# Print summary
+for model_name, metrics in results.items():
+    print(f"{model_name}: NDCG@10 = {metrics['avg_ndcg']:.4f}")
+```
+
+Look beyond the averages to understand:
+
+- **Score distribution**: Does a model perform consistently, or excel in some areas while failing in others?
+- **Performance by query type**: Group scores by query characteristics (length, complexity, domain)
+- **Statistical significance**: For larger benchmark sets, determine if differences are statistically significant
+
+#### Qualitative analysis
+
+Examining actual retrieval results often reveals more actionable insights:
+
+1. **Identify patterns in successes and failures**
+    - Does a model struggle with certain document types? (code, long-form text)
+    - Are there consistent mismatches between queries and retrieved documents?
+2. **Compare results across models**
+    - Do models prioritize different aspects of relevance?
+    - Where do models disagree most significantly?
+3. **Domain-specific considerations**
+    - Are technical terms and jargon handled appropriately?
+    - How well do models interpret domain context?
+
+### <i class="fa-solid fa-chalkboard"></i> Making the final decision
+
+With both quantitative and qualitative insights, you can make an informed decision that balances:
+
+- **Raw performance**: Which model achieves the best metrics?
+- **Specific strengths**: Does a model excel in areas most critical to your application?
+- **Practical considerations**: Remember factors like cost, latency, and deployment requirements
+
+And remember to take results of the standard benchmark in this evaluation process as well.
+
+The ideal model isn't necessarily the one with the highest average score. It's the one that best addresses your specific requirements and performs well on the queries and document types that matter most to your application.
+
+Note that this evaluation process isn't just about selecting a model—it's also about understanding its strengths and limitations. This knowledge will help you design more effective systems around the embedding model and set appropriate expectations for its performance.
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
