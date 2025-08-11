@@ -31,7 +31,7 @@ Your browser does not support the video tag.
 
 ## How Does It Work?
 
-Elysia is architectured as a modern web application with a full-featured frontend for a responsive, real-time interface and a FastAPI backend serving both the web interface and API. The core logic is written in pure Python – what we call "blood, sweat, and tears" custom logic – with [DSPy](/integrations/llm-agent-frameworks/dspy) handling LLM interactions for flexible, future-proof implementations. 
+Elysia is architectured as a modern web application with a full-featured frontend for a responsive, real-time interface and a FastAPI backend serving both the web interface and API. The core logic is written in pure Python – what we call "blood, sweat, and tears" custom logic – with [DSPy](https://docs.weaviate.io/integrations/llm-agent-frameworks/dspy) handling LLM interactions for flexible, future-proof implementations. 
 
 We’ve aimed to make [getting started](#getting-started) as easy as possible - everything comes in a single pip-installable package. To use Elysia as an app, you need a [Weaviate Cloud](https://console.weaviate.cloud/) instance with your data. Once installed with `pip install elysia-ai`, you can either run the full web interface with `elysia start` or use it as a Python library by importing it and initializing the tree object for programmatic queries.
 
@@ -114,11 +114,11 @@ Naive RAG systems, like our very own [Verba](https://github.com/weaviate/Verba),
 
 As mentioned above, after connecting your Weaviate Cloud instance to Elysia, an LLM analyzes your collections to examine the data structure, create summaries, generate metadata, and choose display types. This isn't just useful information for users to see - it significantly enhances Elysia's ability to handle complex queries and provide knowledgeable responses. This capability was lacking in previous systems like Verba, which often failed with ambiguous data due to it’s blind search approach.
 
-Generating metadata actually proved pretty essential for handling complex queries and tasks within the tree. The other traditional RAG and querying systems we’ve seen often perform blind vector searches without knowing the overall structure and meaning of the data their searching through, and just hope for relevant results. But with Elysia, we built the system to **understand and take into account the structure and content of your particular data** before performing actions like querying. 
+Generating metadata actually proved pretty essential for handling complex queries and tasks within the tree. The other traditional RAG and querying systems we’ve seen often perform blind vector searches without knowing the overall structure and meaning of the data they're searching through, and just hope for relevant results. But with Elysia, we built the system to **understand and take into account the structure and content of your particular data** before performing actions like querying. 
 
 The web platform also features a comprehensive data explorer with BM25 search, sorting, and filtering capabilities. It automatically groups unique values within fields and provides min/max ranges for numeric data, giving both Elysia and users a clear understanding of what's available.
 
-The data dashboard provides a high-level overview of all available collections, while the collection explorer allows detailed inspection of individual datasets. When viewing table data, we give you a full object view for selected entries, so that that large and nested data objects can be displayed in a structured, readable format. Additionally, within the metadata tab, users can edit the LLM-generated metadata, display types, and summaries because, as we all know, LLMs are far from perfect.
+The data dashboard provides a high-level overview of all available collections, while the collection explorer allows detailed inspection of individual datasets. When viewing table data, we give you a full object view for selected entries, so that that large and nested data objects can be displayed in a structured, readable format. Additionally, within the metadata tab, users can edit the LLM-generated metadata, display types, and summaries because, as we all know, LLMs are *far* from perfect.
 
 
 import elysiadatatab from './img/elysiadatatab.mp4';
@@ -186,7 +186,7 @@ In order to test whether Elysia actually worked as a flexible agentic framework 
 
 ![Glowe built with Elysia](./img/glowe-elysia.png)
 
-For the Glowe-Elysia tree, we created three custom tools specifically to the app’s needs: 
+For the Glowe-Elysia tree, we created three custom tools specifically for the app’s needs: 
 
 1. A query agent tool for finding the right products with complex filters (powered by the [Weaviate Query Agent](https://docs.weaviate.io/agents/query))
 2. A stack generation tool that creates product collections specific to a user through natural language
@@ -479,18 +479,7 @@ Whether you're building an e-commerce chatbot, a internal company knowledge expe
 So, ready to get started? Visit the [demo](https://elysia.weaviate.io/), check out the [GitHub repository](https://github.com/weaviate/elysia), or dive into the [documentation](https://weaviate.github.io/elysia/) to start building.
 
 
-import team from './img/team.png';
-
-<figure>
-  <img
-    alt="Elysia team"
-    src={team}
-    width="300"
-  />
-</figure>
-
-**The Elysian Council in Session |** Oil on canvas, contemporary   
-*Danny, Edward, and Victoria review architectural plans during a council meeting.*
+![Team picture](./img/team.png)
 
 ---
 import WhatsNext from '/_includes/what-next.mdx'
