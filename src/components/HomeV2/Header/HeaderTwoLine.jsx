@@ -1,7 +1,6 @@
 import Link from '@docusaurus/Link';
 import React from 'react';
-import styles from './styles.module.scss';
-import { LinkButton, ButtonContainer } from '/src/theme/Buttons';
+import styles from './stylesTwoLine.module.scss';
 
 const hpLogos = [
   'akamai-logo.svg',
@@ -51,7 +50,11 @@ const hpLogos = [
   'yabble-logo.svg',
 ];
 
-export default function StudyHeader() {
+const mid = Math.ceil(hpLogos.length / 2);
+const logosTop = hpLogos.slice(0, mid);
+const logosBottom = hpLogos.slice(mid);
+
+export default function StudyHeaderTwoLine() {
   return (
     <header className={styles.headerBG}>
       <div className="container">
@@ -92,13 +95,24 @@ export default function StudyHeader() {
       </div>
 
       <div className={styles.bottomBar}>
-        <div className={styles.logoWrapper}>
-          {[...hpLogos, ...hpLogos].map((file, i) => (
+        <div className={`${styles.logoWrapper} ${styles.logoWrapperOffset}`}>
+          {[...logosTop, ...logosTop].map((file, i) => (
             <div
-              key={i}
+              key={`line1-${i}`}
               className={styles.logo}
               style={{ backgroundImage: `url('/img/site/HP-logos/${file}')` }}
-              aria-label={file.replace(/\.(svg|png)$/i, '')}
+              aria-label={file}
+              role="img"
+            />
+          ))}
+        </div>
+        <div className={`${styles.logoWrapper} ${styles.logoWrapperReverse}`}>
+          {[...logosBottom, ...logosBottom].map((file, i) => (
+            <div
+              key={`line2-${i}`}
+              className={styles.logo}
+              style={{ backgroundImage: `url('/img/site/HP-logos/${file}')` }}
+              aria-label={file}
               role="img"
             />
           ))}
