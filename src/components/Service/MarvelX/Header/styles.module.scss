@@ -5,6 +5,7 @@
   align-items: flex-start;
   text-align: left;
   margin-bottom: 40px;
+  gap: 20px;
 
   span {
     color: #61bb73;
@@ -14,7 +15,7 @@
   }
 
   .logo {
-    background-image: url('/img/site/marvelx-logo.png');
+    background-image: url('/img/site/marveIx-logo.svg');
     background-size: contain;
     background-repeat: no-repeat;
     width: 12.09331rem;

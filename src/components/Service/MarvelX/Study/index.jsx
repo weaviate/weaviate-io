@@ -28,7 +28,7 @@ export default function Study() {
               customer satisfaction and operational costs.
             </p>
 
-            <h2>Why Weaviate</h2>
+            <h2>Why did MarvelX choose Weaviate?</h2>
             <p>MarvelX had the following requirements for a vector database:</p>
             <ul>
               <li>
@@ -62,7 +62,7 @@ export default function Study() {
               just compounded,” notes el Hassouni.
             </p>
 
-            <h2>Solution</h2>
+            <h2>What solution did MarvelX build with Weaviate?</h2>
             <p>
               Marvel AI uses Weaviate as a foundation for their autonomous agent
               platform, allowing them to deliver:
