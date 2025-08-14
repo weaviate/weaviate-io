@@ -212,10 +212,8 @@ p {
   }
 
   .headerBox {
-    width: 50%;
-    @media screen and (max-width: 900px) {
-      width: 100%;
-    }
+    text-align: center;
+    margin-bottom: 20px;
   }
 
   .teamFilter {
@@ -238,9 +236,10 @@ p {
       font-style: normal;
       font-weight: 200;
       font-size: 0.87rem;
-      border: none;
+      padding: 4px;
+      border: 0.3125rem;
       background: whitesmoke;
-      transition: background-color 0.2s ease;
+      transition: all 0.2s ease;
       cursor: pointer;
     }
 
@@ -390,6 +389,6 @@ p {
 
   background-color: #130c49 !important;
   color: white !important;
-  padding: 4px;
+  padding: 6px 4px;
   border-radius: 0.3125rem;
 }

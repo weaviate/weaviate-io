@@ -25,7 +25,7 @@ export default function MeetTheTeam() {
       <div className="container" id="meet_the_team">
         <div className={styles.box}>
           <h1>Meet the Team</h1>
-          <p className="text-center">
+          <p className={styles.headerBox}>
             Weaviate is a global remote-first startup, with teams hailing from
             many different parts of the world, where it is not totally uncommon
             for someone to work remotely from fun places.
