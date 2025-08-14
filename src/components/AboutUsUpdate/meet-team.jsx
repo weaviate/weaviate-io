@@ -90,8 +90,6 @@ export default function MeetTheTeam() {
             >
               #Growth
             </Link>
-          </div>
-          <div className={styles.teamFilter}>
             <Link
               className={
                 selectedTeam === 'weaviate-labs' ? styles.linkActive : ''
@@ -106,7 +104,8 @@ export default function MeetTheTeam() {
             >
               #Legal & Finance
             </Link>
-
+          </div>
+          <div className={styles.teamFilter}>
             <Link
               className={
                 selectedTeam === 'partnerships' ? styles.linkActive : ''
@@ -136,10 +135,32 @@ export default function MeetTheTeam() {
               #People & Culture
             </Link>
             <Link
+              className={selectedTeam === 'rev-ops' ? styles.linkActive : ''}
+              onClick={() => handleTeamFilter('rev-ops')}
+            >
+              #Revenue Operations & BDR
+            </Link>
+            <Link
               className={selectedTeam === 'sales' ? styles.linkActive : ''}
               onClick={() => handleTeamFilter('sales')}
             >
               #Sales
+            </Link>
+            <Link
+              className={
+                selectedTeam === 'solution-engineering' ? styles.linkActive : ''
+              }
+              onClick={() => handleTeamFilter('solution-engineering')}
+            >
+              #Solution Engineering
+            </Link>
+            <Link
+              className={
+                selectedTeam === 'support-engineering' ? styles.linkActive : ''
+              }
+              onClick={() => handleTeamFilter('support-engineering')}
+            >
+              #Support Engineering
             </Link>
 
             <Link

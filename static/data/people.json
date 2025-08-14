@@ -30,12 +30,6 @@
     "linkedin": "ajaxchavan"
   },
   {
-    "name": "Ajit Mistry",
-    "title": "ML Engineering Intern",
-    "photo": "ajit.jpg",
-    "team": "applied-research"
-  },
-  {
     "name": "Alec Berry",
     "title": "Enterprise Account Executive",
     "photo": "Alec-Berry.jpg",
@@ -105,7 +99,7 @@
     "title": "Director of Customer Success Engineering",
     "photo": "Austin.jpg",
     "linkedin": "austin-freels",
-    "team": "delivery"
+    "team": "solution-engineering"
   },
   {
     "name": "Bob van Luijt",
@@ -171,7 +165,7 @@
     "title": "Business Development Representative",
     "photo": "Connor-Alkin.jpg",
     "linkedin": "connor-alkin-766497151",
-    "team": "sales"
+    "team": "rev-ops"
   },
   {
     "name": "Connor Shorten",
@@ -187,7 +181,7 @@
     "title": "Enterprise Solution Engineer",
     "photo": "Damien.jpg",
     "linkedin": "gasparinadamien",
-    "team": "sales"
+    "team": "solution-engineering"
   },
   {
     "name": "Daniel Janicek",
@@ -286,7 +280,7 @@
     "title": "Community Technical Support",
     "photo": "duda.jpg",
     "linkedin": "dudanogueira",
-    "team": "delivery"
+    "team": "support-engineering"
   },
   {
     "name": "Edward Schmuhl",
@@ -375,7 +369,7 @@
     "name": "Hamdi Hmimy",
     "title": "Enterprise Solution Engineer",
     "photo": "Hamdi-Hmimy.jpg",
-    "team": "delivery"
+    "team": "solution-engineering"
   },
   {
     "name": "Ian Gregson",
@@ -404,7 +398,7 @@
     "name": "Jenny Morris",
     "title": "Customer Solution Engineer",
     "photo": "Jenny-Morris.jpg",
-    "team": "delivery"
+    "team": "solution-engineering"
   },
   {
     "name": "Jeremy Price",
@@ -464,14 +458,14 @@
     "name": "Joseph Green",
     "title": "Director of Support Engineering",
     "photo": "joseph-green.jpg",
-    "team": "delivery",
+    "team": "support-engineering",
     "linkedin": "joe-green-11381620a"
   },
   {
     "name": "Josh Goldstein",
     "title": "Enterprise Solution Engineer",
     "photo": "josh-goldstein.jpg",
-    "team": "sales",
+    "team": "solution-engineering",
     "linkedin": "joshsgoldstein"
   },
   {
@@ -543,14 +537,7 @@
     "title": "Product Support Engineer",
     "photo": "Mary-Ann.jpg",
     "linkedin": "mary-ann-casugod-362a5",
-    "team": "delivery"
-  },
-  {
-    "name": "Mary Newhauser",
-    "title": "Machine Learning Engineer",
-    "photo": "Mary-Newhauser.jpg",
-    "linkedin": "mary-newhauser-02273551/",
-    "team": "developer-growth"
+    "team": "support-engineering"
   },
   {
     "name": "Michael Choueri",
@@ -594,7 +581,7 @@
     "photo": "mohamed.jpg",
     "linkedin": "shahinmohamed",
     "twitter": "shah91n",
-    "team": "delivery"
+    "team": "support-engineering"
   },
   {
     "name": "Nathan Wilkinson",
@@ -613,7 +600,7 @@
     "name": "Nick Wong",
     "title": "Solution Engineer",
     "photo": "Nick-Wong.jpg",
-    "team": "delivery"
+    "team": "solution-engineering"
   },
   {
     "name": "Parker Duckworth",
@@ -706,14 +693,14 @@
     "name": "Sean Forde",
     "title": "Business Development Representative",
     "photo": "Sean-Forde.jpg",
-    "team": "sales",
+    "team": "rev-ops",
     "linkedin": "seanf0rde"
   },
   {
     "name": "Sean Romberg",
     "title": "Business Development Representative",
     "photo": "Sean-Romberg.jpg",
-    "team": "sales"
+    "team": "rev-ops"
   },
   {
     "name": "Sebastian Witalec",
@@ -732,20 +719,12 @@
     "team": "developer-growth"
   },
   {
-    "name": "Shukri Hasan",
-    "title": "Community Solution Engineer",
-    "photo": "shukri.jpg",
-    "linkedin": "mohdshukrihasan",
-    "twitter": "MohdShukriHasa1",
-    "team": "partnerships"
-  },
-  {
     "name": "Soham Maniar",
     "title": "Director of RevOps",
     "photo": "soham-maniar.jpg",
     "linkedin": "sohammaniar",
     "twitter": "sohammaniar",
-    "team": "sales"
+    "team": "rev-ops"
   },
   {
     "name": "Spiros Andreou",
