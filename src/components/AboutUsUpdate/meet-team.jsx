@@ -106,12 +106,7 @@ export default function MeetTheTeam() {
             >
               #Legal & Finance
             </Link>
-            <Link
-              className={selectedTeam === 'marketing' ? styles.linkActive : ''}
-              onClick={() => handleTeamFilter('marketing')}
-            >
-              #Marketing
-            </Link>
+
             <Link
               className={
                 selectedTeam === 'partnerships' ? styles.linkActive : ''

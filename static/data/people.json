@@ -36,13 +36,6 @@
     "team": "applied-research"
   },
   {
-    "name": "Alea Abed",
-    "title": "VP of Marketing",
-    "photo": "alea.jpg",
-    "linkedin": "alea-abed",
-    "team": "marketing"
-  },
-  {
     "name": "Alec Berry",
     "title": "Enterprise Account Executive",
     "photo": "Alec-Berry.jpg",
@@ -143,7 +136,7 @@
     "linkedin": "byronvoorbach",
     "twitter": "byronvoorbach",
     "github": "byronvoorbach",
-    "team": "sales"
+    "team": "delivery"
   },
   {
     "name": "Cari Liebenberg",
@@ -224,20 +217,6 @@
     "photo": "daniel-williams.jpg",
     "linkedin": "dannyjameswilliams",
     "team": "developer-growth"
-  },
-  {
-    "name": "Daniela Costa",
-    "title": "Marketing Campaign Coordinator",
-    "photo": "Daniela-Costa.jpg",
-    "linkedin": "daniela-costa",
-    "team": "marketing"
-  },
-  {
-    "name": "Danielle Nugent",
-    "title": "Talent Acquisition Manager",
-    "photo": "Danielle.jpg",
-    "linkedin": "daniellesnugent",
-    "team": "people-and-culture"
   },
   {
     "name": "Danielle Washington",
@@ -403,13 +382,6 @@
     "title": "Full Stack Engineer",
     "photo": "ian.jpg",
     "team": "wcd"
-  },
-  {
-    "name": "Ieva Urbaite",
-    "title": "Corporate Marketing Lead",
-    "photo": "ieva.jpg",
-    "linkedin": "ievaurbaite",
-    "team": "marketing"
   },
   {
     "name": "Ivan Despot",
@@ -592,7 +564,7 @@
     "title": "Marketing Operations and Lifecycle Manager",
     "photo": "Michael-Morgan.jpg",
     "linkedin": "michaelkmorgan",
-    "team": "marketing"
+    "team": "finance"
   },
   {
     "name": "Michelangelo Partipilo",
@@ -634,7 +606,7 @@
     "name": "Nenad Malić",
     "title": "Product Marketing Manager",
     "photo": "nenad.jpg",
-    "team": "marketing",
+    "team": "product",
     "linkedin": "nenadmalic"
   },
   {
@@ -757,7 +729,7 @@
     "title": "Web Developer",
     "photo": "shan.jpg",
     "linkedin": "shan-blackwood-79251876",
-    "team": "marketing"
+    "team": "developer-growth"
   },
   {
     "name": "Shukri Hasan",
@@ -782,19 +754,12 @@
     "team": "delivery"
   },
   {
-    "name": "Staci Blue",
-    "title": "Event Marketing Manager",
-    "photo": "staci.jpg",
-    "linkedin": "staci-blue",
-    "team": "marketing"
-  },
-  {
     "name": "Svitlana Smolianova",
     "title": "Creative Director",
     "photo": "svitlana.jpg",
     "linkedin": "svitlana-sm",
     "twitter": "switlana_c",
-    "team": "marketing"
+    "team": "developer-growth"
   },
   {
     "name": "Thomas Maurice",
