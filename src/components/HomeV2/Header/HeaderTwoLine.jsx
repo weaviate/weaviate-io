@@ -1,5 +1,5 @@
 import Link from '@docusaurus/Link';
-import React, { useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './stylesTwoLine.module.scss';
 
 const hpLogos = [
@@ -50,19 +50,25 @@ const hpLogos = [
   'yabble-logo.svg',
 ];
 
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 export default function StudyHeaderTwoLine() {
-  // Shuffle once per load
-  const { logosTop, logosBottom } = useMemo(() => {
-    const shuffled = [...hpLogos];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
+  const midInit = Math.ceil(hpLogos.length / 2);
+  const [logosTop, setLogosTop] = useState(hpLogos.slice(0, midInit));
+  const [logosBottom, setLogosBottom] = useState(hpLogos.slice(midInit));
+
+  useEffect(() => {
+    const shuffled = shuffle(hpLogos);
     const mid = Math.ceil(shuffled.length / 2);
-    return {
-      logosTop: shuffled.slice(0, mid),
-      logosBottom: shuffled.slice(mid),
-    };
+    setLogosTop(shuffled.slice(0, mid));
+    setLogosBottom(shuffled.slice(mid));
   }, []);
 
   return (
@@ -97,7 +103,6 @@ export default function StudyHeaderTwoLine() {
               </div>
             </div>
           </div>
-
           <div className={styles.right}>
             <div className={styles.image}></div>
           </div>
@@ -116,6 +121,7 @@ export default function StudyHeaderTwoLine() {
             />
           ))}
         </div>
+
         <div className={`${styles.logoWrapper} ${styles.logoWrapperReverse}`}>
           {[...logosBottom, ...logosBottom].map((file, i) => (
             <div

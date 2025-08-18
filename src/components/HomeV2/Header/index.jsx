@@ -1,5 +1,5 @@
 import Link from '@docusaurus/Link';
-import React, { useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import { LinkButton, ButtonContainer } from '/src/theme/Buttons';
 
@@ -51,15 +51,20 @@ const hpLogos = [
   'yabble-logo.svg',
 ];
 
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 export default function StudyHeader() {
-  // Shuffle only once per page load
-  const shuffledLogos = useMemo(() => {
-    const arr = [...hpLogos];
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
+  const [logos, setLogos] = useState(hpLogos);
+
+  useEffect(() => {
+    setLogos(shuffle(hpLogos));
   }, []);
 
   return (
@@ -94,7 +99,6 @@ export default function StudyHeader() {
               </div>
             </div>
           </div>
-
           <div className={styles.right}>
             <div className={styles.image}></div>
           </div>
@@ -103,7 +107,7 @@ export default function StudyHeader() {
 
       <div className={styles.bottomBar}>
         <div className={styles.logoWrapper}>
-          {[...shuffledLogos, ...shuffledLogos].map((file, i) => (
+          {[...logos, ...logos].map((file, i) => (
             <div
               key={i}
               className={styles.logo}
