@@ -1,5 +1,5 @@
 import Link from '@docusaurus/Link';
-import React from 'react';
+import React, { useMemo } from 'react';
 import styles from './stylesTwoLine.module.scss';
 
 const hpLogos = [
@@ -50,11 +50,21 @@ const hpLogos = [
   'yabble-logo.svg',
 ];
 
-const mid = Math.ceil(hpLogos.length / 2);
-const logosTop = hpLogos.slice(0, mid);
-const logosBottom = hpLogos.slice(mid);
-
 export default function StudyHeaderTwoLine() {
+  // Shuffle once per load
+  const { logosTop, logosBottom } = useMemo(() => {
+    const shuffled = [...hpLogos];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    const mid = Math.ceil(shuffled.length / 2);
+    return {
+      logosTop: shuffled.slice(0, mid),
+      logosBottom: shuffled.slice(mid),
+    };
+  }, []);
+
   return (
     <header className={styles.headerBG}>
       <div className="container">

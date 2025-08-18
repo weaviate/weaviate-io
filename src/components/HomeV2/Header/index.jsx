@@ -1,5 +1,5 @@
 import Link from '@docusaurus/Link';
-import React from 'react';
+import React, { useMemo } from 'react';
 import styles from './styles.module.scss';
 import { LinkButton, ButtonContainer } from '/src/theme/Buttons';
 
@@ -52,6 +52,16 @@ const hpLogos = [
 ];
 
 export default function StudyHeader() {
+  // Shuffle only once per page load
+  const shuffledLogos = useMemo(() => {
+    const arr = [...hpLogos];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }, []);
+
   return (
     <header className={styles.headerBG}>
       <div className="container">
@@ -93,7 +103,7 @@ export default function StudyHeader() {
 
       <div className={styles.bottomBar}>
         <div className={styles.logoWrapper}>
-          {[...hpLogos, ...hpLogos].map((file, i) => (
+          {[...shuffledLogos, ...shuffledLogos].map((file, i) => (
             <div
               key={i}
               className={styles.logo}
