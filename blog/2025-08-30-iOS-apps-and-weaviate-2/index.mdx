@@ -1,12 +1,12 @@
 ﻿---
-title: Weaviate Cloud (WCD) Queries - A Practical Guide to using Weaviate Cloud Queries in MacOS apps
+title: Using Weaviate Cloud Queries in MacOS apps
 
 slug: apple-and-weaviate-2
 authors: [randy, adam]
-date: 2025-06-11
+date: 2025-08-30
 tags: ['how-to']
 image: ./img/hero.png
-description: "A practical guide on using Weaviate Cloud Queries."
+description: "A practical guide on using Weaviate Cloud Queries in MacOS apps."
 ---
 
 
@@ -16,7 +16,7 @@ description: "A practical guide on using Weaviate Cloud Queries."
 
 Learning how to effectively use and integrate Weaviate Cloud (WCD) queries into your iOS or macOS applications can be challenging. This article simplifies the process by focusing on the various types of queries available and providing a live tool for you to run them. We’ll offer a detailed explanation of common and easily implemented query types, and you can see the results in real-time. Additionally, Mac users can download our custom application to run live examples directly on their laptops, allowing them to copy and paste these queries as templates for their own projects.
 
-Content is based on Adam Chan's Book Recommendation project found at this Git repo [here](https://github.com/weaviate/BookRecs).
+The content is based on Adam Chan's Book Recommendation project found at this Git repo [here](https://github.com/weaviate/BookRecs).
 
 
 ![Integrating Weaviate Cloud Queries into Applications](./img/wcs_summary_21_integrate_cloud.png)
@@ -77,18 +77,14 @@ Included is a downloadable application for Mac users to run live query examples 
 
 Feel free to copy and paste these queries into your own projects for use as a template for your own queries.
 
-1. [Query App](#query_app). A working MacOS app that runs queries.
+1. [Query App](#query_app): A working MacOS app that runs queries.
 
-1. [Query Examples](#query_examples). Query prompt examples.
+1. [Query Examples](#query_examples): Query prompt examples.
 
 
-For IOS and Mac Developers looking to develop on Weaviate, check out this article.
+For IOS and Mac Developers looking to develop on Weaviate, check out this article: [weaviate.io/blog/apple-and-weaviate](/blog/apple-and-weaviate).
 
-[https://weaviate.io/blog/apple-and-weaviate](https://weaviate.io/blog/apple-and-weaviate)
-
-To get familiar with the data used and how the Weaviate Database was created you can reference.
-
-[https://github.com/weaviate/BookRecs](https://github.com/weaviate/BookRecs)
+To get familiar with the data used and how the Weaviate Database was created you can reference: [github.com/weaviate/BookRecs](https://github.com/weaviate/BookRecs).
 
 
 <a id="query_app"></a>
@@ -99,9 +95,12 @@ An application you can use to perform a live test of Weaviate Queries.
 
 The MacOS app is signed by Apple and can be [downloaded here](https://github.com/randallfonginc/weaviate-cloud-service-query-helper/releases).
 
-![Mac Query App](img/wcs_summary_01_macApp.png)
+<figure>
 
-Query Helper Application Screen
+![Mac Query App](img/wcs_summary_01_macApp.png)
+<figcaption> Query Helper Application Screen </figcaption>
+</figure>
+
 
 ### API Settings 
 
@@ -116,8 +115,8 @@ Of the 3 API Keys, the **Weaviate API key is already defined** for you and canno
 An explanation of each key, how it is used, and a link to how to define your own appears below.
 
 - **Weaviate API Key:** Access key to the Weaviate Vector DB that holds the domain data
-- **OpenAI API Key:** Access key to OpenAI that Weaviate uses to access OpenAI Large Language Models to query embeddings. Create a key at: <https://openai.com/>
-- **Cohere API Key:** Access key to Cohere that Weaviate uses for text embedding, generative AI and reranking. Create a key at: <https://cohere.com>/
+- **OpenAI API Key:** Access key to OpenAI that Weaviate uses to access OpenAI Large Language Models to query embeddings. Create a key at: <https://openai.com>
+- **Cohere API Key:** Access key to Cohere that Weaviate uses for text embedding, generative AI and reranking. Create a key at: <https://cohere.com>
 
 Keys can be defined to the application by clicking on the settings icon to bring up the **API Key Settings Panel**.
 
