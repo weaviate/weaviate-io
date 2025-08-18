@@ -21,7 +21,6 @@ export default function Home() {
         description="Bring AI-native applications to life with less hallucination, data leakage, and vendor lock-in"
       >
         <MetaSEO img="og/website/home.jpg" />
-        <HomepageHeader />
         <HeaderTwoLine />
 
         <Main />

@@ -6,7 +6,7 @@ import { LinkButton, ButtonContainer } from '/src/theme/Buttons';
 const hpLogos = [
   'akamai-logo.svg',
   'alexi-logo.svg',
-  'asksage-logo.png',
+  'asksage-logo.svg',
   'avara-logo.svg',
   'build_logo_Kapa_AI.svg',
   'build_logo_point72.svg',
@@ -27,15 +27,15 @@ const hpLogos = [
   'intuit-logo.svg',
   'inveniam-logo.svg',
   'Kantar-logo.svg',
-  'Kuhnelo-logo.png',
+  'Kuhnelo-logo.svg',
   'loti-white.svg',
   'MBH-bank-logo.svg',
-  'medengine-logo.png',
+  'medengine-logo.svg',
   'mednet-logo.svg',
   'MTG-logo.svg',
   'nato.svg',
   'netapp.svg',
-  'oliver-logo.png',
+  'oliver-logo.svg',
   'PA-Logo.svg',
   'Patronus-Logo.svg',
   'Perceptyx-logo.svg',
@@ -112,7 +112,7 @@ export default function StudyHeader() {
               key={i}
               className={styles.logo}
               style={{ backgroundImage: `url('/img/site/HP-logos/${file}')` }}
-              aria-label={file.replace(/\.(svg|png)$/i, '')}
+              aria-label={file.replace(/\.(png|svg)$/i, '')}
               role="img"
             />
           ))}
