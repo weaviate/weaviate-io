@@ -25,7 +25,7 @@ export default function MeetTheTeam() {
       <div className="container" id="meet_the_team">
         <div className={styles.box}>
           <h1>Meet the Team</h1>
-          <p className="text-center">
+          <p className={styles.headerBox}>
             Weaviate is a global remote-first startup, with teams hailing from
             many different parts of the world, where it is not totally uncommon
             for someone to work remotely from fun places.
@@ -90,8 +90,6 @@ export default function MeetTheTeam() {
             >
               #Growth
             </Link>
-          </div>
-          <div className={styles.teamFilter}>
             <Link
               className={
                 selectedTeam === 'weaviate-labs' ? styles.linkActive : ''
@@ -106,12 +104,8 @@ export default function MeetTheTeam() {
             >
               #Legal & Finance
             </Link>
-            <Link
-              className={selectedTeam === 'marketing' ? styles.linkActive : ''}
-              onClick={() => handleTeamFilter('marketing')}
-            >
-              #Marketing
-            </Link>
+          </div>
+          <div className={styles.teamFilter}>
             <Link
               className={
                 selectedTeam === 'partnerships' ? styles.linkActive : ''
@@ -141,10 +135,32 @@ export default function MeetTheTeam() {
               #People & Culture
             </Link>
             <Link
+              className={selectedTeam === 'rev-ops' ? styles.linkActive : ''}
+              onClick={() => handleTeamFilter('rev-ops')}
+            >
+              #Revenue Operations & BDR
+            </Link>
+            <Link
               className={selectedTeam === 'sales' ? styles.linkActive : ''}
               onClick={() => handleTeamFilter('sales')}
             >
               #Sales
+            </Link>
+            <Link
+              className={
+                selectedTeam === 'solution-engineering' ? styles.linkActive : ''
+              }
+              onClick={() => handleTeamFilter('solution-engineering')}
+            >
+              #Solution Engineering
+            </Link>
+            <Link
+              className={
+                selectedTeam === 'support-engineering' ? styles.linkActive : ''
+              }
+              onClick={() => handleTeamFilter('support-engineering')}
+            >
+              #Support Engineering
             </Link>
 
             <Link
