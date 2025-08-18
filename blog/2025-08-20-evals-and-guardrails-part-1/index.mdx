@@ -121,9 +121,16 @@ Significant reduction in financial losses due to fraud, Faster detection and res
 3. **Route & Recommend:**  
     A task-routing agent sends requests to the correct team and drafts reply templates.
 
-[![Enterprise Workflows](./img/workflows.png)](./img/workflows.png)
+--- 
+In summary, these examples highlight the versatility and impact of AI agents across diverse enterprise workflows — from trading and logistics to customer support and fraud detection. By embedding agents into core processes and leveraging vector databases, organizations can unlock new levels of automation, insight, and operational efficiency. 
 
-As autonomous agents begin to interact and scale within enterprise workflows, the risk of adverse consequences grows **nonlinearly**. Adding more functionalities and inter-agent dependencies increases complexity, making unforeseen and unintended outcomes almost inevitable. This creates an unpredictable ecosystem where failures can propagate rapidly across the workflow. 
+The following diagram provides a high-level overview of a typical enterprise AI workflow, illustrating how the components described in the examples above come together in practice. As seen in the trading, supply chain, retail, fraud detection, and customer support scenarios, diverse data sources are ingested and aggregated into a vector database. Multiple agents then collaborate to analyze this data, perform multi-step planning, and drive actions such as API calls, database updates, and other automated processes. The diagram visually connects these workflow stages, highlighting how orchestration, agent coordination, and automation underpin the real-world use cases discussed earlier.
+
+[![Enterprise Workflows](./img/workflows.png)](./img/workflows.png)
+--- 
+As enterprises embed AI agents deeper into their workflows, the stakes—and the complexity—rise quickly. Each new capability or agent adds not just value, but also new points of interaction and potential failure. As these systems scale and agents begin to collaborate, the risk of unintended consequences grows **nonlinearly**. Inter-agent dependencies and increased automation can create unpredictable dynamics, where a single error or oversight may ripple across the entire workflow. 
+
+This is why robust protection mechanisms are essential. Guardrails and evals serve as the critical safeguards that keep enterprise AI workflows reliable, safe, and aligned with business objectives, even as complexity increases.
 
 **What can go wrong, and how do we address it?**
 
@@ -152,7 +159,9 @@ The feedback mechanism. Evals are used to assess the quality of the model's outp
 
 ### **4. Traces**
 The "breadcrumbs" of the entire process. A trace captures the complete journey of a request—from the initial input, through the agent and model calls, to the final output. They let you inspect reasoning chains, measure latency, and refine agent orchestration. Traces are essential for debugging, understanding how a system is performing, and feeding data back into the evals.
-    
+
+---
+The following diagram builds on the concepts discussed above, visually mapping how agents, orchestration, guardrails, and evals interact within a typical enterprise workflow. It highlights how these components work together to ensure AI-driven automation remains safe, reliable, and scalable across complex business processes.
 
 [![Evals](./img/evals.png)](./img/evals.png)
 
