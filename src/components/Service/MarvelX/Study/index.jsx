@@ -64,8 +64,8 @@ export default function Study() {
 
             <h2>What solution did MarvelX build with Weaviate?</h2>
             <p>
-              Marvel AI uses Weaviate as a foundation for their autonomous agent
-              platform, allowing them to deliver:
+              MarvelX AI uses Weaviate as a foundation for their autonomous
+              agent platform, allowing them to deliver:
             </p>
 
             <ul>
@@ -112,7 +112,7 @@ export default function Study() {
         <div className={styles.rightContainer}>
           <div className={styles.topSection}>
             <h2 className={styles.white}>Results</h2>
-            <h2>90%+ accuracy</h2>
+            <h2>90%+ automation potential</h2>
             <p>Achieved via automated end-to-end claims processing.</p>
             <h2>99.9% faster turnaround</h2>
             <p>
