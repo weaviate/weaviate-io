@@ -43,62 +43,50 @@ In essence, **AI models are the neural network of the modern enterprise**—not 
 
 ## Representative Enterprise Workflows with Agents
 
-Want to see how this works in practice? These five examples reveal the strategic value of properly integrated AI agents:
+Want to see how this works in practice? These five examples below, reveal the strategic value of properly integrated AI agents. Each scenario outlines the specific workflow steps showing how vector databases, orchestration, and agent automation integrate.
 
 ### 1. Trading 
+- **Aggregator:**  Collect market feeds, news sentiment, trading signals, and analyst reports into WeaviateDB. Use semantic queries to find correlated signals.
 
-**Workflow Steps:**
+- **Orchestrator:** Distribute tasks to specialized agents that analyze technical indicators and trends (asset, sentiment, timestamp etc).
 
-1. **Aggregator:**  Collect market feeds, news sentiment, trading signals, and analyst reports into WeaviateDB. Use semantic queries to find correlated signals.
+- **Function Calling:** Trade executors that convert analysis to actionable, sized trading orders (interfaces with broker APIs)
 
-2. **Orchestrator:** Distribute tasks to specialized agents that analyze technical indicators and trends (asset, sentiment, timestamp etc).
-
-
-3. **Function Calling:** Trade executors that convert analysis to actionable, sized trading orders (interfaces with broker APIs)
-
-### 2. Optimized Supply Chain and Logistics
+### 2. Supply Chain and Logistics
 Manual and historical forecasting often leads to inefficiencies, stock-outs, overstocking, and suboptimal routing.
+- **Aggregator:**  Ingest weather patterns, traffic conditions, real-time demand fluctuations, and supplier performance feeds into the vector database.
 
-**Workflow Steps:**
+- **Analyzer:**  AI models query the database directly to predict demand more accurately, optimize inventory levels, identify potential disruptions, and determine the most efficient delivery routes.
 
-1. **Aggregator:**  Ingest weather patterns, traffic conditions, real-time demand fluctuations, and supplier performance feeds into the vector database.
-
-2. **Analyzer:**  AI models query the database directly to predict demand more accurately, optimize inventory levels, identify potential disruptions, and determine the most efficient delivery routes.
-
-3. **Real-Time Feeds:** Sends live updates to traders and logistics teams, enabling dynamic operational adjustments.
+- **Real-Time Feeds:** Sends live updates to traders and logistics teams, enabling dynamic operational adjustments.
 
 
-### 3. Retail Review Processing and Tagging
+### 3. Retail
+Automatically analyze customer reviews and apply intelligent tags to extract sentiment, topics, and actionable insights for business intelligence.
 
-**Workflow Steps:**
+**Aggregator:**  New product reviews are ingested into a vector database.
 
-1. **Aggregator:**  New product reviews are ingested into a vector database.
+**Analyzer:**   An NLP agent extracts sentiment, topics, and tags from the reviews.
 
-2. **Analyzer:**   An NLP agent extracts sentiment, topics, and tags from the reviews.
-
-3. **Router:**  Insights are pushed to dashboards, alerts, or recommendation engines.
+**Router:**  Insights are pushed to dashboards, alerts, or recommendation engines.
 
 
-### 4. Fraud Detection in Financial Services
+### 4. FS Fraud Detection
 
-Traditional approaches rely on rule-based systems and manual reviews, which are often slow, prone to false positives, and ineffective at detecting novel fraud schemes.
+Traditional approaches rely on rule-based systems and manual reviews, which are often slow, prone to false positives, and ineffective at detecting novel fraud schemes in financial services.
 
-**Workflow Steps:**
+**Aggregator:**  Aggregates multiple data sources (e.g., address, card activity, travel history) into a vector database.
 
-1. **Aggregator:**  Aggregates multiple data sources (e.g., address, card activity, travel history) into a vector database.
-
-2. **Analyzer:**  AI models, trained on large volumes of transactional data, identify subtle patterns and anomalies indicative of fraudulent activity—enabling real-time fraud detection, even identifying previously unknown fraud methods.
+**Analyzer:**  AI models, trained on large volumes of transactional data, identify subtle patterns and anomalies indicative of fraudulent activity—enabling real-time fraud detection, even identifying previously unknown fraud methods.
 
 
 ### 5. Customer Support Triage
 
-**Workflow Steps:**
+**Aggregator:** Emails, chat logs, and call transcripts are collected in a vector database.
 
-1. **Aggregator:** Emails, chat logs, and call transcripts are collected in a vector database.
+**Classifier:**  Agents tag each request for intent and urgency.
 
-2. **Classifier:**  Agents tag each request for intent and urgency.
-
-3. **Router:** A task-routing agent sends requests to the correct team and drafts reply templates.
+**Router:** A task-routing agent sends requests to the correct team and drafts reply templates.
 
 --- 
 In summary, these examples highlight the versatility and impact of AI agents across diverse enterprise workflows — from trading and logistics to customer support and fraud detection. By embedding agents into core processes and leveraging vector databases, organizations can unlock new levels of automation, insight, and operational efficiency. 
@@ -123,20 +111,20 @@ Without these critical components, autonomous systems, especially as they scale,
 
 Let's delve deeper into how these essential elements function, exploring the specific types of guardrails and evaluations that empower AI agents to operate with precision and integrity.
 
-### **1. Pre-Model Guardrails**
+### 1. Pre-Model Guardrails
  This is the first layer of defence to catch bad inputs early — this reduces wasted compute and ensures policy compliance from the start. These are **hard constraints** applied *before* the input reaches the model. Think of them as a security checkpoint that blocks inappropriate or dangerous requests upfront.
     
 **Examples:** A pre-filter for PII (personally identifiable information), content moderation checks, or blocking specific keywords.
     
-### **2. Post-Model Guardrails** 
+### 2. Post-Model Guardrails
 The second layer of defence which acts as a safety net — sanitising, constraining, or rejecting unsafe or non-compliant outputs. These are **hard constraints** applied *after* the model has generated a response but *before* it's sent back to the user. This catches anything the model might have generated that violates safety or quality standards.
     
 **Examples:** PII redaction from the model's output, checking for factuality against a knowledge base, or ensuring the response meets a specific formatting requirement.
     
-### **3. Evals** 
+### 3. Evals
 The feedback mechanism. Evals are used to assess the quality of the model's output. They don’t just measure; they trigger *active feedback loops* to correct agents in real-time. They are the key to **dynamic self-correction** and **shaping behaviour**. Evals can be automated (e.g., a test suite) or involve human feedback.
 
-### **4. Traces**
+### 4. Traces
 The "breadcrumbs" of the entire process. A trace captures the complete journey of a request—from the initial input, through the agent and model calls, to the final output. They let you inspect reasoning chains, measure latency, and refine agent orchestration. Traces are essential for debugging, understanding how a system is performing, and feeding data back into the evals.
 
 ---
@@ -147,7 +135,9 @@ The following diagram builds on the concepts discussed above, visually mapping h
 ---
 Now, let’s see how these principles apply in real-world enterprise scenarios we discussed earlier. For each workflow, we’ll break down the specific guardrails and evals that ensure safe, reliable, and effective agent-driven automation.
 
-### **1. Trading **
+## Safeguards in Agentic Enterprise Workflows
+
+### 1. Trading 
 
 **Guardrails:**
 - **Pre-Model:** Restrict trade types when volatility exceeds a threshold, or a key index moves more than X% in Y minutes.
@@ -160,7 +150,7 @@ Now, let’s see how these principles apply in real-world enterprise scenarios w
 - **Drift Detection:** Monitor if the aggregated signals' performance degrades over time, which may indicate a change in market conditions the model is not adapting to.
 
 
-### **2. Optimised Supply Chain and Logistics**
+### 2. Supply Chain and Logistics
 
 **Guardrails**
 - **Pre-Model:** Reject any logistical optimisation request that involves high risk routes or prohibited zones
@@ -172,7 +162,7 @@ Now, let’s see how these principles apply in real-world enterprise scenarios w
 - **Timeliness:** Evaluate the "on-time delivery" rate and the variance between the model's estimated time of arrival (ETA) and the actual delivery time.
 - **Robustness:** Test the model's ability to re-optimise a route in real-time when faced with unexpected events like road closures or traffic.
 
-### **3. Retail Review Processing and Tagging**
+### 3. Retail 
 
 **Guardrails**
 - **Pre-Model:** Censor or redact personally identifiable information (PII) like full names, addresses, or phone numbers before a review is processed.
@@ -185,7 +175,7 @@ Now, let’s see how these principles apply in real-world enterprise scenarios w
 - **Relevance:** Conduct a human-in-the-loop evaluation to score how relevant and helpful the generated tags are for other customers.
 - **Toxicity:** Use an external toxicity scoring model to verify that the final, cleaned review text meets a required safety threshold.
 
-### **4. Fraud Detection in Financial Services**
+### 4. FS Fraud Detection
 
 **Guardrails**
 - **Pre-Model:** Immediately reject any login attempt from an IP address or device that has been previously associated with a fraudulent account.
@@ -197,7 +187,7 @@ Now, let’s see how these principles apply in real-world enterprise scenarios w
 - **Timeliness:** Evaluate the latency of the fraud detection system from transaction initiation to the generation of an alert.
 - **Recall:** Track the percentage of confirmed fraudulent transactions that the model successfully identified.
 
-### **5. Customer Support Triage with Multi-Agent Coordination**
+### 5. Customer Support Triage
 
 **Guardrails**
 - **Pre-Model:** Reject and flag any customer message that contains malicious code or links (e.g., for phishing attempts).
