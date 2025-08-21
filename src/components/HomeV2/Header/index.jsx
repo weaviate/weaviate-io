@@ -20,7 +20,7 @@ const hpLogos = [
   'factset.svg',
   'finster-logo.svg',
   'givingcompass-logo.svg',
-  'globo-logo.svg',
+  'globo-logo.png',
   'gloo-logo.svg',
   'instabase.svg',
   'Intel-logo.svg',
