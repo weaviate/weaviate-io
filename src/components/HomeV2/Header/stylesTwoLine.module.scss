@@ -194,7 +194,7 @@
   position: absolute;
   top: 0;
   height: 100%;
-  width: 120px;
+  width: 100px;
   z-index: 1;
   pointer-events: none;
 }
@@ -254,5 +254,12 @@
 @media (hover: hover) and (pointer: fine) {
   .logoWrapper:hover {
     animation-play-state: paused;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .bottomBar::before,
+  .bottomBar::after {
+    width: 40px;
   }
 }
