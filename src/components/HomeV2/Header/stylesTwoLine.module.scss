@@ -212,12 +212,14 @@
   align-items: center;
   gap: 60px;
   width: fit-content;
-  animation: scrollLeft 400s linear infinite;
-  margin: 5px 0px;
+  animation: scrollLeft 380s linear infinite;
+  margin: 5px 0;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .logoWrapperReverse {
-  animation: scrollRight 420s linear infinite;
+  animation: scrollRight 400s linear infinite;
 }
 
 .logoWrapperOffset {
@@ -229,16 +231,16 @@
     transform: translateX(0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(-33.3333%);
   }
 }
 
 @keyframes scrollRight {
   from {
-    transform: translateX(0%);
+    transform: translateX(-33.3333%);
   }
   to {
-    transform: translateX(50%);
+    transform: translateX(0);
   }
 }
 
@@ -248,7 +250,7 @@
   background-position: center;
   width: 4.5rem;
   height: 1.5rem;
-  flex-shrink: 0;
+  flex: 0 0 auto;
 }
 
 @media (hover: hover) and (pointer: fine) {

@@ -111,7 +111,7 @@ export default function StudyHeaderTwoLine() {
 
       <div className={styles.bottomBar}>
         <div className={`${styles.logoWrapper} ${styles.logoWrapperOffset}`}>
-          {[...logosTop, ...logosTop].map((file, i) => (
+          {[...logosTop, ...logosTop, ...logosTop].map((file, i) => (
             <div
               key={`line1-${i}`}
               className={styles.logo}
@@ -123,7 +123,7 @@ export default function StudyHeaderTwoLine() {
         </div>
 
         <div className={`${styles.logoWrapper} ${styles.logoWrapperReverse}`}>
-          {[...logosBottom, ...logosBottom].map((file, i) => (
+          {[...logosBottom, ...logosBottom, ...logosBottom].map((file, i) => (
             <div
               key={`line2-${i}`}
               className={styles.logo}
