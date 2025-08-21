@@ -175,31 +175,72 @@
 .bottomBar {
   background: #130c49;
   width: 100%;
-  height: 5rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+  min-height: 7.25rem;
+  padding: 1rem 0;
+  margin-top: -2rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  position: relative;
-  z-index: 2;
-  margin-top: -2rem;
+  gap: 1rem;
+}
+
+.bottomBar::before,
+.bottomBar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100px;
+  z-index: 1;
+  pointer-events: none;
+}
+.bottomBar::before {
+  left: 0;
+  background: linear-gradient(to right, #130c49 40%, rgba(19, 12, 73, 0));
+}
+.bottomBar::after {
+  right: 0;
+  background: linear-gradient(to left, #130c49 40%, rgba(19, 12, 73, 0));
 }
 
 .logoWrapper {
   display: flex;
-  flex-direction: row;
   align-items: center;
   gap: 60px;
   width: fit-content;
-  animation: scrollLoop 400s linear infinite;
+  animation: scrollLeft 380s linear infinite;
+  margin: 5px 0;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
-@keyframes scrollLoop {
+.logoWrapperReverse {
+  animation: scrollRight 400s linear infinite;
+}
+
+.logoWrapperOffset {
+  animation-delay: -120s;
+}
+
+@keyframes scrollLeft {
   from {
     transform: translateX(0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(-33.3333%);
+  }
+}
+
+@keyframes scrollRight {
+  from {
+    transform: translateX(-33.3333%);
+  }
+  to {
+    transform: translateX(0);
   }
 }
 
@@ -207,32 +248,20 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  width: 4.7rem;
-  height: 1.7rem;
-  flex-shrink: 0;
+  width: 4.5rem;
+  height: 1.5rem;
+  flex: 0 0 auto;
 }
 
-@media (max-width: 1600px) {
-  .bottomBar {
-    justify-content: unset;
-  }
-
+@media (hover: hover) and (pointer: fine) {
   .logoWrapper:hover {
     animation-play-state: paused;
   }
+}
 
+@media screen and (max-width: 600px) {
   .bottomBar::before,
   .bottomBar::after {
-    content: '';
-    width: 100px;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    z-index: 1;
-    background: linear-gradient(to right, #130c49, transparent);
-  }
-  .bottomBar::after {
-    right: 0;
-    transform: rotate(180deg);
+    width: 40px;
   }
 }

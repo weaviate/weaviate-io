@@ -1,7 +1,6 @@
 import Link from '@docusaurus/Link';
 import React, { useEffect, useState } from 'react';
-import styles from './styles.module.scss';
-import { LinkButton, ButtonContainer } from '/src/theme/Buttons';
+import styles from './stylesTwoLine.module.scss';
 
 const hpLogos = [
   'akamai-logo.svg',
@@ -60,11 +59,16 @@ function shuffle(arr) {
   return a;
 }
 
-export default function StudyHeader() {
-  const [logos, setLogos] = useState(hpLogos);
+export default function StudyHeaderTwoLine() {
+  const midInit = Math.ceil(hpLogos.length / 2);
+  const [logosTop, setLogosTop] = useState(hpLogos.slice(0, midInit));
+  const [logosBottom, setLogosBottom] = useState(hpLogos.slice(midInit));
 
   useEffect(() => {
-    setLogos(shuffle(hpLogos));
+    const shuffled = shuffle(hpLogos);
+    const mid = Math.ceil(shuffled.length / 2);
+    setLogosTop(shuffled.slice(0, mid));
+    setLogosBottom(shuffled.slice(mid));
   }, []);
 
   return (
@@ -106,13 +110,25 @@ export default function StudyHeader() {
       </div>
 
       <div className={styles.bottomBar}>
-        <div className={styles.logoWrapper}>
-          {[...logos, ...logos].map((file, i) => (
+        <div className={`${styles.logoWrapper} ${styles.logoWrapperOffset}`}>
+          {[...logosTop, ...logosTop, ...logosTop].map((file, i) => (
             <div
-              key={i}
+              key={`line1-${i}`}
               className={styles.logo}
               style={{ backgroundImage: `url('/img/site/HP-logos/${file}')` }}
-              aria-label={file.replace(/\.(png|svg)$/i, '')}
+              aria-label={file}
+              role="img"
+            />
+          ))}
+        </div>
+
+        <div className={`${styles.logoWrapper} ${styles.logoWrapperReverse}`}>
+          {[...logosBottom, ...logosBottom, ...logosBottom].map((file, i) => (
+            <div
+              key={`line2-${i}`}
+              className={styles.logo}
+              style={{ backgroundImage: `url('/img/site/HP-logos/${file}')` }}
+              aria-label={file}
               role="img"
             />
           ))}
