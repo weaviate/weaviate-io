@@ -23,7 +23,7 @@ export default function AppCard({ app }) {
               <div className={styles.comingSoon}>Private Beta</div>
             ) : app.privatePreview ? (
               <Link to={app.ppLink}>
-                <div className={styles.comingSoon}>Public Preview</div>
+                <div className={styles.comingSoon}>Preview</div>
               </Link>
             ) : (
               <div className={styles.tba}>Coming Soon</div>
