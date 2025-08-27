@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './stylesTwoLine.module.scss';
 
 const hpLogos = [
+  'answear_logo.svg',
   'akamai-logo.svg',
   'alexi-logo.svg',
   'asksage-logo.svg',
@@ -40,6 +41,7 @@ const hpLogos = [
   'Perceptyx-logo.svg',
   'predori-logo.svg',
   'proposal-logo.svg',
+  'prm_logo.svg',
   'rohirrim-logo.svg',
   'scribd.svg',
   'Sing-Tao-logo.svg',
@@ -48,6 +50,7 @@ const hpLogos = [
   'toric-logo.svg',
   'Vecflow-august.svg',
   'yabble-logo.svg',
+  'wearmedicine_logo.svg',
 ];
 
 function shuffle(arr) {
