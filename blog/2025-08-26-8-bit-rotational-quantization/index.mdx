@@ -22,7 +22,7 @@ Combining a vector index with a fast and precise vector quantization scheme can 
 
 ## Vector Quantization to Reduce Memory Bottlenecks and Lower Cloud Costs
 
-Memory (RAM) typically becomes the bottleneck for fast approximate nearest neighbor search as vector collections grow larger. This limitation is especially pronounced in graph-based indexing structures like [Weaviate's HNSW index](https://docs.weaviate.io/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index), which depend on rapid random access to individual vectors. The problem is intensified by the high dimensionality of modern vector embeddings—OpenAI vectors commonly have 1536 or even 3072 dimensions—significantly increasing RAM requirements.
+Memory (RAM) typically becomes the bottleneck for fast approximate nearest neighbor search as vector collections grow larger. This limitation is especially pronounced in graph-based indexing structures like [Weaviate's HNSW index](https://docs.weaviate.io/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index), which depend on rapid random access to individual vectors. The problem is intensified by the high dimensionality of modern vector embeddings, for example dimension sizes from embedding providers such as OpenAI often have 1536 or even 3072 dimensions, significantly increasing RAM requirements.
 
 An important motivation for applying vector quantization is to reduce costs in a cloud setting where memory is an expensive resource. Fitting a simple linear regression across [AWS EC2 on-demand instance types](https://aws.amazon.com/ec2/instance-types/) indicates the following relationship between the instance price and its resource characteristics:
 
