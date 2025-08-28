@@ -45,7 +45,7 @@ What is relevant to you depends on your relationship with us. Therefore, this pr
 
 <br></br>
 
-The subsequent sections address general matters. More specifically, **Section** **6** clarifies what (third) parties may have access to or may receive your personal data. Furthermore, **Section 7** informs you about the measures we have taken to protect your personal data and the period during which we store your personal data. In **Section 8** you can read what rights you have in relation to your personal data and how you may exercise these rights. Finally, in **Section 9**, you can find our contact details in case you have any questions, remarks, or complaints regarding the processing of your personal data by us.
+The subsequent sections address general matters. More specifically, **Section** **7** clarifies what (third) parties may have access to or may receive your personal data. Furthermore, **Section 8** informs you about the measures we have taken to protect your personal data and the period during which we store your personal data. In **Section 9** you can read what rights you have in relation to your personal data and how you may exercise these rights. Finally, in **Section 10**, you can find our contact details in case you have any questions, remarks, or complaints regarding the processing of your personal data by us.
 
 <br></br>
 
@@ -320,11 +320,11 @@ If you subscribe to, or receive our newsletter, we process the following persona
 | We process your contact details. This includes but may not be limited to your email address.                                                                                                                                 | To send you our newsletter and for marketing purposes.                                                                                                                                                                  |
 | We may also process previous mailings you received, and details on when and how you unsubscribed to receiving our newsletter, whether you have opened our newsletter and/or clicked on any links included in our newsletter. | To improve our communications and for marketing purposes.Our newsletters make use of certain techniques to track visitor statistics. We use these statistics to improve our newsletters and offer you relevant content. |
 
-You may object to the use of your personal data for direct marketing purposes anytime (please see **Section 7** in this respect). For example, you can unsubscribe from receiving our newsletter at any time by clicking the unsubscribe link in the newsletter you received or by contacting hello@weaviate.io. Please find the relevant contact details in **Section 9**. When you unsubscribe, you will still receive our service emails. 
+You may object to the use of your personal data for direct marketing purposes anytime (please see **Section 9** in this respect). For example, you can unsubscribe from receiving our newsletter at any time by clicking the unsubscribe link in the newsletter you received or by contacting hello@weaviate.io. Please find the relevant contact details in **Section 10**. When you unsubscribe, you will still receive our service emails. 
 
 <br></br>
 
-For the purposes mentioned in this Section, we may share your personal information with third parties that help us to automate and analyze our mailings. For more information on the protection of your personal data in this regard, please refer to **Section 6**.
+For the purposes mentioned in this Section, we may share your personal information with third parties that help us to automate and analyze our mailings. For more information on the protection of your personal data in this regard, please refer to **Section 7**.
 
 <br></br>
 
@@ -346,7 +346,7 @@ If you take part in user interviews, usability testing sessions, surveys, worksh
 
 <br></br>
 
-You may object to the use of your personal data for research at any time (see **Section 8**). For example, if you are in a user interview, you may inform us that you do not wish to be contacted again, or you may email us to request removal from our research participant pool. Contact details can be found in **Section 10**. Please note that even if you unsubscribe from research communications, you will still receive essential service-related emails.  
+You may object to the use of your personal data for research at any time (see **Section 9**). For example, if you are in a user interview, you may inform us that you do not wish to be contacted again, or you may email us to request removal from our research participant pool. Contact details can be found in **Section 10**. Please note that even if you unsubscribe from research communications, you will still receive essential service-related emails.  
 
 <br></br>
 
