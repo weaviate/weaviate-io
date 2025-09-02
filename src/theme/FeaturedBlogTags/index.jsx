@@ -10,6 +10,7 @@ const featuredTags = [
   'release',
   'research',
   'search',
+  'community',
 ];
 
 export default function FeaturedBlogTags() {
