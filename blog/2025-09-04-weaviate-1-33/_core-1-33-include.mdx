@@ -2,19 +2,101 @@ import ThemedImage from '@theme/ThemedImage';
 
 Weaviate `v1.33` is now available open-source and on [Weaviate Cloud](https://console.weaviate.cloud). This release brings **compression by default** for optimal resource utilization, powerful **1-bit rotational quantization (RQ)**, streamlined **server-side batch imports**, enhanced **OIDC group management**, and **collection aliases** become generally available (GA).
 
-There's also expanded filtering capabilities with new **`ContainsNone` and `Not` operators**, plus significant performance improvements across the board.
+There's also expanded filtering capabilities with new **`ContainsNone` and `Not` operators**, plus a few additional improvements across the board.
 
 Here are the release ⭐️*highlights*⭐️!
 
 ![Weaviate 1.33 is released](./img/hero.png)
 
+- [Server-side batch imports](#server-side-batch-imports)
+- [Collection aliases goes GA](#collection-aliases-goes-ga)
 - [Compression by default (& 8-bit RQ goes GA)](#compression-by-default--8-bit-rq-goes-ga)
 - [1-bit rotational quantization (RQ)](#1-bit-rotational-quantization-rq)
-- [Server-side batch imports](#server-side-batch-imports)
-- [OIDC group management](#oidc-group-management)
-- [Collection aliases goes GA](#collection-aliases-goes-ga)
 - [`ContainsNone` and `Not` filter operators](#containsnone-and-not-filter-operators)
+- [OIDC group management](#oidc-group-management)
 - [Community contributions](#community-contributions)
+
+## Server-side batch imports
+
+Data import just got a whole lot easier with **server-side batch imports** (also called automatic batching). Instead of manually tuning batch parameters on the client side, you can now let the server manage the data flow rate for optimal performance.
+
+<!-- ![img/server_side_batching.png](./img/server_side_batching.png) -->
+
+Here's how the new automatic batching works:
+
+- **Persistent Connection**: Your client opens a persistent connection to the server for the duration of the batch job.
+
+- **Dynamic Backpressure**: The server continuously monitors its internal queue size and calculates an exponential moving average (EMA) of its workload. It then tells the client the ideal number of objects to send in the next chunk.
+
+- **Asynchronous Error Handling**: If an error occurs while processing an object, the server sends the error message back over a separate stream without interrupting the flow.
+
+<!-- ![img/automatic_batching_flow.png](./img/automatic_batching_flow.png) -->
+
+Using server-side batching in Python is straightforward:
+
+```python
+# Server-side batching automatically optimizes the data ingestion flow
+with client.batch.automatic() as batch:
+    for data_object in data_objects:
+        batch.add_object(
+            properties=data_object,
+            collection="Articles"
+        )
+```
+
+**Why use automatic batching?**
+
+- **Simplified client code** - No need to manually tune batch size and concurrent requests
+- **Improved stability** - Automatic backpressure prevents server overloads and timeouts
+- **Enhanced resilience** - Better handling of cluster scaling events and long-running vectorization tasks
+
+:::caution Preview Feature
+
+Server-side batching was added in `v1.33` as a **preview** feature. While functional, it may change in future releases and is not recommended for production use at this time.
+
+:::
+
+:::info Related resources
+
+- [How-to: Batch import](https://v1-33-main--docs-weaviate-io.netlify.app/weaviate/manage-objects/import#server-side-batching)
+- [Tutorial: Batch data import](https://v1-33-main--docs-weaviate-io.netlify.app/weaviate/tutorials/import)
+
+:::
+
+## Collection aliases goes GA
+
+**Collection aliases**, introduced as a preview in Weaviate `v1.32`, are now **generally available (GA)** and ready for production use. This feature provides an elegant solution for seamless collection migrations and production workflows.
+
+<!-- ![img/collection_aliases_ga.png](./img/collection_aliases_ga.png) -->
+
+Collection aliases allow you to:
+
+- **Create references** to collections that can be updated without downtime
+- **Perform zero-downtime migrations** when changing collection settings
+- **Simplify production deployments** with stable collection references
+
+**Creating and using aliases:**
+
+```python
+# Create an alias
+client.alias.create(alias_name="ProductsAlias", target_collection="Products_v1")
+
+# Use the alias like a regular collection
+products = client.collections.use("ProductsAlias")
+results = products.query.near_text("wireless headphones")
+
+# Update the alias to point to a new collection (zero downtime!)
+client.alias.update(alias_name="ProductsAlias", new_target_collection="Products_v2")
+```
+
+This GA release includes full client library support and comprehensive documentation, making collection aliases a robust tool for production environments.
+
+:::info Related resources
+
+- [How-to: Collection aliases](https://v1-33-main--docs-weaviate-io.netlify.app/weaviate/manage-collections/collection-aliases)
+- [Tutorial: Zero-downtime collection migrations with aliases](https://v1-33-main--docs-weaviate-io.netlify.app/weaviate/tutorials/collection-aliases)
+
+:::
 
 ## Compression by default (& 8-bit RQ goes GA)
 
@@ -30,7 +112,7 @@ This means that new collections will automatically benefit from:
 
 Additionally, **8-bit RQ is now generally available (GA)**, meaning it's fully supported and ready for production workloads. Our extensive testing has shown that RQ provides the best balance of compression, performance, and recall for most use cases.
 
-If you need different behavior, you can customize this through the [`DEFAULT_QUANTIZATION`](https://docs.weaviate.io/deploy/configuration/env-vars#DEFAULT_QUANTIZATION) environment variable:
+If you need different behavior, you can customize this through the [`DEFAULT_QUANTIZATION`](https://v1-33-main--docs-weaviate-io.netlify.app/deploy/configuration/env-vars#DEFAULT_QUANTIZATION) environment variable:
 
 ```bash
 # To disable compression by default
@@ -44,8 +126,8 @@ This change represents our commitment to making Weaviate efficient by default, w
 
 :::info Related resources
 
-- [Concepts: Vector quantization](https://docs.weaviate.io/weaviate/concepts/vector-quantization)
-- [How-to: Configure quantization](https://docs.weaviate.io/weaviate/configuration/compression)
+- [Concepts: Vector quantization](https://v1-33-main--docs-weaviate-io.netlify.app/weaviate/concepts/vector-quantization)
+- [How-to: Configure RQ](https://v1-33-main--docs-weaviate-io.netlify.app/weaviate/configuration/compression/rq-compression)
 
 :::
 
@@ -79,56 +161,8 @@ Our internal testing shows that 1-bit RQ serves as a more accurate alternative t
 
 :::info Related resources
 
-- [Concepts: Rotational quantization](https://docs.weaviate.io/weaviate/concepts/vector-quantization#rotational-quantization)
-- [How-to: Configure RQ compression](https://docs.weaviate.io/weaviate/configuration/compression/rq-compression)
-
-:::
-
-## Server-side batch imports
-
-Data import just got a whole lot easier with **server-side batch imports** (also called automatic batching). Instead of manually tuning batch parameters on the client side, you can now let the server manage the data flow rate for optimal performance.
-
-<!-- ![img/server_side_batching.png](./img/server_side_batching.png) -->
-
-Here's how the new automatic batching works:
-
-**1. Persistent Connection**: Your client opens a persistent connection to the server for the duration of the batch job.
-
-**2. Dynamic Backpressure**: The server continuously monitors its internal queue size and calculates an exponential moving average (EMA) of its workload. It then tells the client the ideal number of objects to send in the next chunk.
-
-**3. Asynchronous Error Handling**: If an error occurs while processing an object, the server sends the error message back over a separate stream without interrupting the flow.
-
-<!-- ![img/automatic_batching_flow.png](./img/automatic_batching_flow.png) -->
-
-Using server-side batching in Python is straightforward:
-
-```python
-# Server-side batching automatically optimizes the flow
-with client.batch.automatic() as batch:
-    for data_object in data_objects:
-        batch.add_object(
-            properties=data_object,
-            collection="Articles"
-        )
-```
-
-**Why use automatic batching?**
-
-- **Simplified client code** - No need to manually tune batch size and concurrent requests
-- **Improved stability** - Automatic backpressure prevents server overloads and timeouts
-- **Enhanced resilience** - Better handling of cluster scaling events and long-running vectorization tasks
-- **Optimal performance** - The server determines the ideal batch size based on current workload
-
-:::caution Preview Feature
-
-Server-side batching was added in `v1.33` as a **preview** feature. While functional, it may change in future releases and is not recommended for production use at this time.
-
-:::
-
-:::info Related resources
-
-- [How-to: Batch import](https://docs.weaviate.io/weaviate/manage-objects/batch-import)
-- [Tutorial: Efficient data import](https://docs.weaviate.io/developers/tutorials/batch-import)
+- [Concepts: Vector quantization](https://v1-33-main--docs-weaviate-io.netlify.app/weaviate/concepts/vector-quantization)
+- [How-to: Configure RQ](https://v1-33-main--docs-weaviate-io.netlify.app/weaviate/configuration/compression/rq-compression)
 
 :::
 
@@ -180,47 +214,12 @@ This powerful feature eliminates the need to assign roles to each user individua
 
 :::info Related resources
 
-- [Security: OIDC group management](https://docs.weaviate.io/weaviate/configuration/authentication#oidc-group-management)
-- [How-to: Manage user permissions](https://docs.weaviate.io/weaviate/manage-objects/permissions)
-  
-:::
-
-## Collection aliases goes GA
-
-**Collection aliases**, introduced as a preview in Weaviate `v1.32`, are now **generally available (GA)** and ready for production use. This feature provides an elegant solution for seamless collection migrations and production workflows.
-
-<!-- ![img/collection_aliases_ga.png](./img/collection_aliases_ga.png) -->
-
-Collection aliases allow you to:
-
-- **Create references** to collections that can be updated without downtime
-- **Perform zero-downtime migrations** when changing collection settings
-- **Simplify production deployments** with stable collection references
-
-**Creating and using aliases:**
-
-```python
-# Create an alias
-client.alias.create(alias_name="Products", target_collection="Products_v1")
-
-# Use the alias like a regular collection
-products = client.collections.get("Products")
-results = products.query.near_text("wireless headphones")
-
-# Update the alias to point to a new collection (zero downtime!)
-client.alias.update(alias_name="Products", new_target_collection="Products_v2")
-```
-
-This GA release includes full client library support and comprehensive documentation, making collection aliases a robust tool for production environments.
-
-:::info Related resources
-
-- [How-to: Collection aliases](https://docs.weaviate.io/weaviate/manage-collections/collection-aliases)
-- [Tutorial: Zero-downtime migrations](https://docs.weaviate.io/developers/tutorials/collection-migrations)
+- [How-to: Manage groups](https://v1-33-main--docs-weaviate-io.netlify.app/weaviate/configuration/rbac/manage-groups)
+- [Security: OIDC group management](https://v1-33-main--docs-weaviate-io.netlify.app/weaviate/configuration/authz-authn#oidc)
 
 :::
 
-## ContainsNone and Not filter operators
+## `ContainsNone` and `Not` filter operators
 
 Weaviate `v1.33` expands your filtering capabilities with two powerful new operators: **`ContainsNone`** and **`Not`**. These operators provide more flexible and intuitive ways to express complex filtering logic.
 
@@ -232,11 +231,13 @@ The `ContainsNone` operator works similarly to existing `ContainsAny` and `Conta
 
 ```python
 # Find articles that contain none of these topics
-results = client.query.get("Article", ["title", "content"]).where({
-    "path": ["topics"],
-    "operator": "ContainsNone",
-    "valueTextArray": ["politics", "sports", "entertainment"]
-}).do()
+results = collection.query.fetch_objects(
+    where=Filter.by_property("topics").contains_none(
+        ["politics", "sports", "entertainment"]
+    ),
+    return_properties=["title", "content"],
+    limit=10
+)
 ```
 
 Internally, `ContainsNone` is efficiently translated to:
@@ -251,14 +252,13 @@ The `Not` operator provides negation of its single operand, allowing you to expr
 
 ```python
 # Find products that are NOT in the electronics category
-results = client.query.get("Product", ["name", "price"]).where({
-    "operator": "Not",
-    "operands": [{
-        "path": ["category"],
-        "operator": "Equal",
-        "valueText": "electronics"
-    }]
-}).do()
+results = product_collection.query.fetch_objects(
+    where=wvc.query.Filter.not_(
+        Filter.by_property("category").equal("electronics")
+    ),
+    return_properties=["name", "price"],
+    limit=10
+)
 ```
 
 These operators work seamlessly with Weaviate's existing filtering system and can be combined with other operators for sophisticated queries.
@@ -269,17 +269,6 @@ These operators work seamlessly with Weaviate's existing filtering system and ca
 - [How-to: Combine filters](https://docs.weaviate.io/weaviate/search/filters#combining-filters)
 
 :::
-
-## Performance improvements
-
-As always, Weaviate `v1.33` includes numerous performance improvements that benefit all users:
-
-- **Enhanced HNSW indexing performance** for faster vector operations
-- **Improved LSM store efficiency** for better write throughput
-- **Optimized query planning** for complex filter combinations
-- **Memory usage optimizations** across core components
-
-These improvements work together to make Weaviate faster and more efficient, whether you're running simple queries or complex, multi-step operations.
 
 ## Community contributions
 
