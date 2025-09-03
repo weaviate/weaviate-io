@@ -57,7 +57,7 @@ export default function Main() {
                   ship features, not infrastructure.
                 </p>
                 <Link
-                  to="https://auth.wcs.api.weaviate.io/auth/realms/SeMI/protocol/openid-connect/auth?client_id=wcs-frontend&scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fconsole.weaviate.cloud%2Fapi%2Fauth%2Fcallback%2Fkeycloak&state=P3BeeUEpGZNBXSXHycDajZNjrHT_HliA14qrtGovlk8&code_challenge=VZLcWPLzlwCsrvkYzjY3yC9XwUN3KzJqvzXAlzdNYTo&code_challenge_method=S256&__hstc=76629258.2a08ce98ef4ed956e84f6755a768e341.1750342624201.1750342624201.1750342624201.1&__hssc=76629258.1.1750342624201&__hsfp=2985992378"
+                  to="https://console.weaviate.cloud/&__hstc=76629258.2a08ce98ef4ed956e84f6755a768e341.1750342624201.1750342624201.1750342624201.1&__hssc=76629258.1.1750342624201&__hsfp=2985992378"
                   className={styles.buttonLight}
                 >
                   Try Weaviate Cloud
