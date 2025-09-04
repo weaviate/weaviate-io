@@ -74,6 +74,7 @@ const config = {
                 path: 'playbook',
                 authorsMapPath: '../authors.yml',
                 showReadingTime: true,
+      
             },
         ],
         // Paper Reviews configuration
@@ -92,6 +93,24 @@ const config = {
                 path: 'papers',
                 authorsMapPath: '../authors.yml',
                 showReadingTime: true,
+                 // Temporarily exclude MDX-v3 offenders
+    exclude: [
+      '2023-12-04-paper6/**',
+      '2024-01-02-paper14/**',
+      '2024-01-20-paper19/**',
+      '2024-07-28-lora/**',
+      '2023-12-04-paper6/**',
+      '2024-01-02-paper14/**',
+      '2024-01-20-paper19/**',
+      '2024-07-28-lora/**',
+      '**/*paper-4*/**',
+      '**/*paper-4*.mdx',
+      '**/*paper20*/**',
+      '**/*paper20*.mdx',
+       '**/*paper-4*/**',
+  '**/*paper-4*.md*',
+  '**/paper-4/**',
+    ],
             },
         ],
          // iOS Apps and Vector Databases configuration
@@ -110,8 +129,35 @@ const config = {
                 path: 'apple-and-weaviate',
                 authorsMapPath: '../authors.yml',
                 showReadingTime: true,
+                exclude: [
+      '2024-07-02-unpacking-search-functionality/**',
+    ],
             },
         ],
+ // Plugin to generate llms.txt
+       [
+  '@signalwire/docusaurus-plugin-llms-txt',
+  {
+    siteTitle: 'Weaviate',
+    siteDescription: 'Open-source vector database and cloud platform.',
+    depth: 2,
+    content: {
+      includeDocs: false,
+      includeBlog: true,
+      includePages: true,
+      enableLlmsFullTxt: false, // flip to true if you want /llms-full.txt
+    },
+    excludeRoutes: [
+      '/blog/page/**',
+      '/blog/tags/**',
+      '/**/tags/**',
+      '/**/authors',
+      '/**/archive',
+      '/secret/**',
+      '/payment/**',
+    ],
+  },
+],
 
         // Add HTML Header tags
         () => ({
@@ -326,6 +372,32 @@ const config = {
                     blogSidebarTitle: 'Weaviate Blog',
                     remarkPlugins: [math],
                     rehypePlugins: [katex],
+                         // Temporarily exclude MDX-v3 offenders
+    exclude: [
+      '2023-12-05-multimodal-RAG/**',
+      '2024-05-28-retrieval-evaluation-metrics/**',
+      '2024-06-18-openais-matryoshka-embeddings/**',
+      '2025-01-27-hybrid-search-explained/**',
+      '2025-04-02-weaviate-1-30-release/**', // contains _core-1-30-include.mdx
+      '2025-04-09-late-interaction-overview/**',
+      '2025-06-05-muvera/**',
+      '2025-06-18-scaling-blog/**',
+      '2025-06-25-glowe-app/**',
+      '2025-07-03-constella/**',
+      '2025-07-08-ai-native-stack/**',
+      '2025-07-10-latency-blog/**',
+      '2025-08-26-8-bit-rotational-quantization/**',
+      '2025-07-14-kafka-connector/**',
+        '**/*rag-evaluation*/**',
+          '**/*rag-evaluation*.mdx',
+          '**/*weaviate-1-14-release*/**',
+          '**/*weaviate-1-14-release*.mdx',
+          '**/*zooviate-zoom-and-weaviate*/**',
+          '**/*zooviate-zoom-and-weaviate*.mdx',
+          '**/*zooviate*zoom*weaviate*/**',
+  '**/*zooviate*zoom*weaviate*.md*',
+
+    ],
                 },
                 theme: {
                     customCss: [
@@ -333,6 +405,7 @@ const config = {
                         require.resolve('./src/css/blog-and-docs.scss'),
                     ],
                 },
+                   
             },
         ],
     ],

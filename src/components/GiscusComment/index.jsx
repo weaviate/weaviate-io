@@ -1,23 +1,23 @@
 import React from 'react';
-import Giscus from "@giscus/react";
+import Giscus from '@giscus/react';
 import { useColorMode } from '@docusaurus/theme-common';
 import { useDoc } from '@docusaurus/theme-common/internal';
-import { useBlogPost } from '@docusaurus/theme-common/internal';
+import { useBlogPost } from '@docusaurus/plugin-content-blog/client';
 import { useLocation } from 'react-router-dom';
 
 const GiscusParams = {
-  repo: "weaviate/weaviate-io",
-  repoId: "R_kgDOG2Daiw",
-  category: "Docs/blog comments",
-  categoryId: "DIC_kwDOG2Dai84CVAeq",
-  mapping: "specific",
-  strict: "0",
-  reactionsEnabled: "1",
-  emitMetadata: "0",
-  inputPosition: "bottom",
-  lang: "en",
-  crossorigin: "anonymous",
-  loading: "eager",
+  repo: 'weaviate/weaviate-io',
+  repoId: 'R_kgDOG2Daiw',
+  category: 'Docs/blog comments',
+  categoryId: 'DIC_kwDOG2Dai84CVAeq',
+  mapping: 'specific',
+  strict: '0',
+  reactionsEnabled: '1',
+  emitMetadata: '0',
+  inputPosition: 'bottom',
+  lang: 'en',
+  crossorigin: 'anonymous',
+  loading: 'eager',
 };
 
 export function GiscusDocComment() {
@@ -26,7 +26,10 @@ export function GiscusDocComment() {
   const location = useLocation();
   // Extract the path from the location, because frontmatter.slug might not be defined.
   // The path is used to disambiguate between pages with the same title (e.g. 'Modules').
-  const path = location.pathname.replace('https://docs.weaviate.io/weaviate', '');
+  const path = location.pathname.replace(
+    'https://docs.weaviate.io/weaviate',
+    ''
+  );
 
   return (
     <Giscus

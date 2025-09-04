@@ -15,7 +15,7 @@ const siteRedirects = {
             from: '/blog/2021/02/CRUD-support-in-Weaviate',
         },
         {
-            to: '/blog/weaviate-1-14-release',
+            to: '/blog/',
             from: '/blog/2022/07/Weaviate-release-1-14',
         },
         {
