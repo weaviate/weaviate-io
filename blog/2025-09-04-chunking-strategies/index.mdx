@@ -11,7 +11,7 @@ description: "Learn how chunking stragies can help improve your RAG performance 
 
 ![Chunking Strategies to Improve Your RAG Performance](./img/hero.png)
 
-If you’re building AI applications with Large Language Models (LLMs), grounding generated text responses with your specific data is key to accurate answers. [Retrieval-Augmented Generation (RAG)](/blog/introduction-to-rag) connects a large language model to an outside knowledge source, like a [vector database](/blog/what-is-a-vector-database). This lets it find relevant facts before creating a response. The quality of your **retrieval process** is one of the biggest factors influencing your application's performance. Many developers focus on picking the right vector database or embedding model. But the most important step is often how you prepare the data itself.
+If you’re building AI applications with Large Language Models (LLMs), grounding generated text responses with your specific data is key to accurate answers. [Retrieval-Augmented Generation (RAG)](/blog/introduction-to-rag) connects a large language model to an outside knowledge source, like a [vector database](/blog/what-is-a-vector-database). This lets it find relevant facts before creating a response. The quality of your retrieval process is one of the biggest factors influencing your application's performance. Many developers focus on picking the right vector database or embedding model. But the most important step is often **how you prepare the data itself.**
 
 This is where **chunking** comes in.
 
@@ -19,13 +19,20 @@ In this post, we’ll review some essential chunking strategies, from fundamenta
 
 ## What is Chunking?
 
-In simple terms, **chunking** is the process of breaking down large documents into smaller, manageable pieces called "chunks." This is a crucial first step when preparing data for use with Large Language Models (LLMs). The main reason is that LLMs have a limited **"context window",** meaning ****they can only focus on a certain amount of text at once. If there is too much text within the context window, important details are lost, resulting in incomplete or inaccurate answers. Chunking solves this by creating smaller, focused pieces of content that an LLM can use to answer the users query without getting lost in irrelevant information. The **size, content, and semantic boundaries** of each chunk influence retrieval performance, and so deciding which technique to use can have a huge downstream impact on your RAG system’s performance.
+In simple terms, **chunking** is the process of breaking down large documents into smaller, manageable pieces called *chunks*. This is a crucial first step when preparing data for use with Large Language Models (LLMs). 
+
+The main reason is that LLMs have a limited **context window,** meaning they can only focus on a certain amount of text at once. If there is too much text within the context window, important details are lost, resulting in incomplete or inaccurate answers. 
+
+Chunking solves this by creating smaller, focused pieces of content that an LLM can use to answer the users query without getting lost in irrelevant information. 
+
+The **size, content, and semantic boundaries** of each chunk influence retrieval performance, and so deciding which technique to use can have a huge downstream impact on your RAG system’s performance.
+
 
 ## Why is Chunking so Important for RAG?
 
 Chunking is arguably the **most important factor for RAG performance**. How you split your documents affects your system’s ability to find relevant information and give accurate answers. When a RAG system performs poorly, the issue is often not the retriever—it’s the **chunks**. Even a perfect retrieval system fails if it searches over poorly prepared data.
 
-This creates a fundamental challenge: **your chunks need to be easy for vector search to find, while also giving the LLM enough context to create useful answers.**
+This creates a fundamental challenge: your chunks need to be easy for vector search to find, while also **giving the LLM enough context** to create useful answers.
 
 ### 1. Optimizing for Retrieval Accuracy
 
@@ -90,7 +97,7 @@ Before chunking a PDF, you need clean, structured text. PDFs are a visual format
 
 ### Fixed-Size Chunking (or Token Chunking)
 
-Fixed-size chunking is the **simplest and most straightforward approach**. It splits text into chunks of a predetermined size, often measured in **tokens** (pieces of text that the model processes) or characters. This method is easy to implement but does not respect the semantic structure of the text. As a result, it can cut off in the middle of sentences or even words, resulting in awkward breaks.
+Fixed-size chunking is the simplest and most straightforward approach. It splits text into chunks of a **predetermined size**, often measured in tokens (pieces of text that the model processes) or characters. This method is easy to implement but does not respect the semantic structure of the text. As a result, it can cut off in the middle of sentences or even words, resulting in awkward breaks.
 
 A common solution is **chunk overlap**, where some tokens from the end of one chunk are repeated at the beginning of the next. This preserves context that might otherwise be lost at chunk boundaries.
 
@@ -129,7 +136,7 @@ def get_chunks_fixed_size_with_overlap(text: str, chunk_size: int, overlap_fract
 
 ### Recursive Chunking
 
-Recursive chunking is a more **nuanced** approach. It splits text using a prioritized list of common separators, such as double newlines (for paragraphs) or single newlines (for sentences). It first tries to split the text by the highest-priority separator (paragraphs). If any resulting chunk is still too large, the algorithm *recursively* applies the next separator (sentences) to that specific chunk.
+Recursive chunking is a more nuanced approach. It splits text using a prioritized list of common separators, such as double newlines (for paragraphs) or single newlines (for sentences). It first tries to split the text by the highest-priority separator (paragraphs). If any resulting chunk is still too large, the algorithm *recursively* applies the next separator (sentences) to that specific chunk.
 
 This method adapts to the document’s structure, keeping structurally related units together as much as possible. It avoids the abrupt cuts of fixed-size chunking and ensures that chunks retain the structure of their original format.
 
@@ -197,7 +204,7 @@ Document-based chunking uses the **intrinsic structure of a document**. Instead 
 - **PDF**: After preprocessing (e.g., OCR or conversion to Markdown), split by headers, paragraphs, tables, or other structural elements.
 - **Programming Code**: Split by functions or classes (e.g., `def` in Python) to maintain logical units of code.
 
-With this method, chunks stay aligned with the document’s **logical organization**, which often also correlates with semantic meaning as well. Both **LangChain** and **LlamaIndex** offer specialized splitters for various document types, including Markdown, code, and JSON.
+With this method, chunks stay aligned with the document’s logical organization, which often also correlates with semantic meaning as well. Both LangChain and LlamaIndex offer specialized splitters for various document types, including Markdown, code, and JSON.
 
 
 :::info
@@ -298,7 +305,7 @@ These 'LLM-powered methods' can create very clear and context-rich chunks. Howev
 
 In other chunking techniques, when you split a document first and then create embeddings, each chunk becomes isolated. This can result in ambiguous or lost context within the chunk that was explained or referenced earlier in a document. 
 
-Late chunking works backwards. Instead of splitting first, you start by feeding the **entire document** into a long-context embedding model. This creates detailed, token-level embeddings that understand the full picture. Only then do you split the document into chunks.
+Late chunking works backwards. Instead of splitting first, you start by feeding the entire document into a long-context embedding model. This creates detailed, token-level embeddings that understand the full picture. Only then do you split the document into chunks.
 
 When you create the embedding for each chunk, you use the token embeddings that were already created with full context. You simply average the relevant token embeddings for that chunk. This means every chunk retains context about the whole document.
 
@@ -325,7 +332,7 @@ This lets your RAG system start with the high-level overview and then drill down
 
 ### Adaptive Chunking
 
-Adaptive chunking techniques dynamically adjust key **parameters (**like chunk size and overlap) based on the document's content.
+Adaptive chunking techniques dynamically adjust key **parameters** (like chunk size and overlap) based on the document's content.
 
 Instead of applying a single, fixed rule for an entire document, this method treats the text as a varied landscape. It might use machine learning models to analyze the semantic density and structure of different sections. For example, it could automatically create smaller, more granular chunks for a complex, information-rich paragraph to capture fine-grained details, while using larger chunks for a more general, introductory section.
 
@@ -369,7 +376,7 @@ When setting up a data ingestion pipeline for your RAG application, you often fa
 
 ### Using a Library
 
-*Luckily*, you don’t have to start from scratch. The LLM community often turns to two powerful open-source libraries: **LangChain** and **LlamaIndex,** each with a different approach to chunking:
+*Luckily*, you don’t have to start from scratch. The LLM community often turns to two powerful open-source libraries: LangChain and LlamaIndex, each with a different approach to chunking:
 
 - **LangChain:** A broad framework for building LLM applications. Its flexible [`TextSplitters`](https://python.langchain.com/docs/concepts/text_splitters/) make it easy to integrate chunking as part of a larger system, like a multi-step AI agent.
     - **Best for:** modular workflows where chunking is just one piece of the puzzle.
@@ -398,7 +405,7 @@ Dive deeper into Advanced RAG Techniques with our **free** eBook: [https://weavi
 
 ## Summary
 
-Understanding the different chunking strategies is the first step, but the best way to master them is by seeing them in action. If you're looking for a practical example, check out **Verba**, our open-source RAG application. You can even fork the repository, load your own data, and start experimenting today. Open source is only possible because of you and the community 💚, so if you have questions or want to troubleshoot, join the conversation in the [Weaviate Community Slack](https://weaviate.slack.com/) or [Forum](https://forum.weaviate.io/). See you there!
+Understanding the different chunking strategies is the first step, but the best way to master them is by seeing them in action. If you're looking for a practical example, check out [**Verba**](https://weaviate.io/blog/verba-open-source-rag-app), our open-source RAG application. You can even fork the repository, load your own data, and start experimenting today. Open source is only possible because of you and the community 💚, so if you have questions or want to troubleshoot, join the conversation in the [Weaviate Community Slack](https://weaviate.slack.com/) or [Forum](https://forum.weaviate.io/). See you there!
 
 
 import WhatsNext from '/_includes/what-next.mdx'
