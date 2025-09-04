@@ -146,16 +146,21 @@ const config = {
       includeBlog: true,
       includePages: true,
       enableLlmsFullTxt: false, // flip to true if you want /llms-full.txt
-    },
-    excludeRoutes: [
+       excludeRoutes: [
       '/blog/page/**',
-      '/blog/tags/**',
-      '/**/tags/**',
-      '/**/authors',
-      '/**/archive',
-      '/secret/**',
-      '/payment/**',
+          '/blog/tags/**',
+          '/**/tags/**',
+          '/**/authors/**',   // note the /** to catch author detail pages
+          '/**/archive/**',
+          '/secret/**',
+          '/payment/**',
+          '**/*.xml',
+          '**/*.json',
+          '/404',
+          '/search'
     ],
+    },
+   
   },
 ],
 
