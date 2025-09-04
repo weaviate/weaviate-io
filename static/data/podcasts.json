@@ -1,5 +1,29 @@
 [
   {
+    "title": "Agentic Topic Modeling with Maarten Grootendorst - Weaviate Podcast #126",
+    "description": "Welcome to the 126th episode of the Weaviate Podcast featuring Maarten Grootendorst, a leading expert in agentic topic modeling!",
+    "youtube": "Lt6CRZ7ypPA",
+    "date": "25-07-09",
+    "cover_image": "/img/podcasts/podcast-126.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Sufficient Context with Hailey Joren - Weaviate Podcast #125",
+    "description": "Welcome to the 125th episode of the Weaviate Podcast featuring Hailey Joren, a Ph.D. student at UCSD!",
+    "youtube": "EU8BUMJLd54",
+    "date": "25-07-02",
+    "cover_image": "/img/podcasts/podcast-125.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "RAG Benchmarks with Nandan Thakur - Weaviate Podcast #124",
+    "description": "Welcome to the 124th episode of the Weaviate Podcast featuring Nandan Thakur, a leading expert in RAG benchmarks!",
+    "youtube": "x9zZ03XtAuY",
+    "date": "25-06-25",
+    "cover_image": "/img/podcasts/podcast-124.jpg",
+    "is_use_case": false
+  },
+  {
     "title": "MUVERA with Rajesh Jayaram and Roberto Esposito - Weaviate Podcast #123",
     "description": "Welcome to the 123nd episode of the Weaviate Podcast featuring Rajesh Jayaram, the first author of the groundbreaking MUVERA algorithm from Google and Roberto Esposito from Weaviate!",
     "youtube": "nSW5g1H4zoU",

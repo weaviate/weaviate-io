@@ -26,77 +26,80 @@ export default function Guides() {
                 <ul>
                   <strong>Featured units</strong>
                   <li>
-                    <Link 
+                    <Link
                       className={`${styles.external} ${styles.bold}`}
                       to="https://docs.weaviate.io/academy/py/starter_text_data"
                     >
                       <strong>PY_101T</strong>: Work with text data
-                    </Link>                 
+                    </Link>
                   </li>
                   <li>
-                    <Link 
+                    <Link
                       className={`${styles.external} ${styles.bold}`}
                       to="https://docs.weaviate.io/academy/py/starter_custom_vectors"
                     >
                       <strong>PY_101V</strong>: Work with your own vectors
-                    </Link>                      
+                    </Link>
                   </li>
                   <li>
-                    <Link 
+                    <Link
                       className={`${styles.external} ${styles.bold}`}
                       to="https://docs.weaviate.io/academy/py/starter_multimodal_data"
                     >
                       <strong>PY_101M</strong>: Work with multimodal data
-                    </Link>                      
+                    </Link>
                   </li>
                   <li>
-                    <Link 
+                    <Link
                       className={`${styles.external} ${styles.bold}`}
                       to="https://docs.weaviate.io/academy/py/compression"
                     >
                       <strong>PY_250</strong>: Vector compression
-                    </Link>                                       
+                    </Link>
                   </li>
                   <li>
-                    <Link 
+                    <Link
                       className={`${styles.external} ${styles.bold}`}
                       to="https://docs.weaviate.io/academy/py/multitenancy"
                     >
                       <strong>PY_280</strong>: Multi-tenancy
-                    </Link>                                       
-                  </li>                  
+                    </Link>
+                  </li>
                 </ul>
 
                 <ul>
                   <strong>Short units / theory</strong>
                   <li>
-                    <Link 
+                    <Link
                       className={`${styles.external} ${styles.bold}`}
                       to="https://docs.weaviate.io/academy/py/standalone/which_search"
                     >
                       Which search is right for me?
-                    </Link>                                       
-                  </li>     
+                    </Link>
+                  </li>
                   <li>
-                    <Link 
+                    <Link
                       className={`${styles.external} ${styles.bold}`}
                       to="https://docs.weaviate.io/academy/py/standalone/chunking"
                     >
                       Chunking long texts
-                    </Link>                                       
-                  </li>                                    
+                    </Link>
+                  </li>
                   <li>
-                    <Link 
+                    <Link
                       className={`${styles.external} ${styles.bold}`}
                       to="https://docs.weaviate.io/academy/deployment/k8s"
                     >
                       Run Weaviate on Kubernetes
-                    </Link>                                       
-                  </li> 
+                    </Link>
+                  </li>
                 </ul>
               </div>
 
-              <Link to="https://docs.weaviate.io/academy" className={styles.button}>
+              <Link
+                to="https://docs.weaviate.io/academy"
+                className={styles.button}
+              >
                 Go to <strong>Weaviate Academy</strong>
               </Link>
             </div>
@@ -179,7 +182,10 @@ export default function Guides() {
               Weaviate, and how to use<br></br> it with real data, including a
               demo app and an end-to-end Jupyter notebook example.
             </p>
-            <Link to="community/events" className={styles.button}>
+            <Link
+              to="community/events#on-demand-webinars"
+              className={styles.button}
+            >
               Register for Free
             </Link>
           </div>

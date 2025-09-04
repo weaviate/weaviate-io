@@ -10,8 +10,8 @@ export default function CaseStudyPage() {
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Case Study - FinstarAI"
-        description="How FinstarAI built a scalable, AI-driven financial data platform with Weaviate"
+        title="Case Study - Finster AI"
+        description="How Finster AI built a scalable, AI-driven financial data platform with Weaviate"
       >
         <StudyHeader />
         <Study />

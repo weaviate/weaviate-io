@@ -55,12 +55,12 @@ dirk:
 edward:
   name: Edward Schmuhl
   title: Machine Learning Engineer
-  url: https://github.com/thomashacker
+  url: https://www.linkedin.com/in/edwardschmuhl/
   image_url: /img/people/icon/edward.jpg
 erika:
   name: Erika Cardenas
   title: Technology Partner Manager
-  url: https://github.com/erika-cardenas
+  url: https://github.com/erika-shorten
   image_url: /img/people/icon/erika.jpg
 etienne:
   name: Etienne Dilocker
@@ -137,6 +137,11 @@ svitlana:
   title: Head of Design
   url: https://linkedin.com/in/svitlana-sm
   image_url: /img/people/icon/svitlana.jpg
+tobias:
+  name: Tobias Christiani
+  title: Research Engineer
+  url: https://www.linkedin.com/in/tobias-christiani-0055a57a
+  image_url: /img/people/icon/tobias.jpg
 zain:
   name: Zain Hasan
   title: Developer Advocate
@@ -305,3 +310,8 @@ daniellew:
   title: Technical Documentation Writer
   url: https://www.linkedin.com/in/dwashington-clouddani/
   image_url: /img/people/icon/daniellew.jpeg
+damien:
+  name: Damien Gasparina
+  title: Solution Engineer
+  url: https://www.linkedin.com/in/gasparinadamien/
+  image_url: /img/people/icon/damien.png

@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+.box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: left;
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 0px;
+  }
+
+  .headerBox {
+    width: 50%;
+    @media screen and (max-width: 900px) {
+      width: 100%;
+    }
+  }
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  h1 {
+    color: #130c49;
+    font-family: 'Anton', sans-serif;
+    font-size: 4.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 4.5rem */
+    text-transform: uppercase;
+
+    span {
+      color: #ffffff;
+      font-family: 'Anton', sans-serif;
+      font-size: 4.5rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 100%; /* 4.5rem */
+      text-transform: uppercase;
+    }
+  }
+
+  p {
+    width: 80%;
+    @media screen and (max-width: 1000px) {
+      width: 100%;
+      font-size: 1.5rem;
+    }
+  }
+}
+.right {
+  position: relative;
+  z-index: 1;
+
+  .image {
+    background: url('/img/site/weaviate-graffiti.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+
+    width: 42rem;
+    height: 34rem;
+    margin-bottom: -3rem;
+    z-index: 1;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+
+    @media screen and (max-width: 1450px) {
+      width: 34rem;
+      height: 28rem;
+    }
+
+    @media screen and (max-width: 1000px) {
+      width: 30rem;
+      height: 28rem;
+      margin-bottom: -2rem;
+    }
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      min-width: 29rem;
+      height: 26.6875rem;
+      background-position: unset;
+    }
+
+    @media screen and (max-width: 650px) {
+      display: none;
+    }
+
+    @media screen and (max-width: 450px) {
+      display: none;
+      min-width: 24rem;
+      height: 22.6875rem;
+    }
+
+    @media screen and (max-width: 400px) {
+      min-width: 20rem;
+    }
+
+    @media screen and (max-width: 300px) {
+      min-width: 15rem;
+    }
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .buttonDark {
+    color: #130c49;
+    text-align: left;
+    font-family: Inter;
+
+    font-size: 0.85rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 157.33%;
+    display: flex;
+    width: 11.3125rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.3125rem;
+  }
+
+  .buttonLight {
+    color: #130c49;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 157.33%; /* 1.57331rem */
+    display: flex;
+    width: 10.625rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.3125rem;
+    border: 1px solid #130c49;
+    background: #f7f9fd;
+  }
+}
+
+.headerBG {
+  background-image: url('/img/site/weaviate-graffiti-bg-1.png');
+  background-size: cover;
+}
+
+.topText {
+  color: #130c49;
+  text-align: center;
+  font-family: Plus Jakarta Sans;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  text-transform: uppercase;
+  margin: 10px 0px;
+}
+
+.bottomBar {
+  background: #130c49;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+  min-height: 7.25rem;
+  padding: 1rem 0;
+  margin-top: -2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.bottomBar::before,
+.bottomBar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100px;
+  z-index: 1;
+  pointer-events: none;
+}
+.bottomBar::before {
+  left: 0;
+  background: linear-gradient(to right, #130c49 40%, rgba(19, 12, 73, 0));
+}
+.bottomBar::after {
+  right: 0;
+  background: linear-gradient(to left, #130c49 40%, rgba(19, 12, 73, 0));
+}
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  width: fit-content;
+  animation: scrollLeft 380s linear infinite;
+  margin: 5px 0;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.logoWrapperReverse {
+  animation: scrollRight 400s linear infinite;
+}
+
+.logoWrapperOffset {
+  animation-delay: -120s;
+}
+
+@keyframes scrollLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-33.3333%);
+  }
+}
+
+@keyframes scrollRight {
+  from {
+    transform: translateX(-33.3333%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.logo {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 4.5rem;
+  height: 1.5rem;
+  flex: 0 0 auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .logoWrapper:hover {
+    animation-play-state: paused;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .bottomBar::before,
+  .bottomBar::after {
+    width: 40px;
+  }
+}

@@ -171,6 +171,7 @@
   text-transform: uppercase;
   margin: 10px 0px;
 }
+
 .bottomBar {
   background: #130c49;
   width: 100%;
@@ -180,8 +181,8 @@
   justify-content: center;
   overflow: hidden;
   position: relative;
-  z-index: 2; // ensures it appears above the image
-  margin-top: -2rem; // optional: create a tighter overlap
+  z-index: 2;
+  margin-top: -2rem;
 }
 
 .logoWrapper {
@@ -189,11 +190,8 @@
   flex-direction: row;
   align-items: center;
   gap: 60px;
-
-  /* Duplicate logos inside this wrapper (already done in your code) */
   width: fit-content;
-
-  animation: scrollLoop 200s linear infinite;
+  animation: scrollLoop 400s linear infinite;
 }
 
 @keyframes scrollLoop {
@@ -205,172 +203,12 @@
   }
 }
 
-.logo0 {
-  background-image: url('/img/site/lightlogos/stackoverflow.svg');
-}
-
-.logo1 {
-  background-image: url('/img/site/lightlogos/instabase.svg');
-  width: 7.00806rem;
-  height: 0.73581rem;
-}
-
-.logo2 {
-  background-image: url('/img/site/lightlogos/redhat.svg');
-  width: 5.41038rem;
-  height: 1.25881rem;
-}
-
-.logo3 {
-  background-image: url('/img/site/lightlogos/mutiny.svg');
-  width: 2.70644rem;
-  height: 1.30169rem;
-}
-
-.logo4 {
-  background-image: url('/img/site/lightlogos/shippo.svg');
-  width: 4.04431rem;
-  height: 1.02769rem;
-}
-
-.logo5 {
-  background-image: url('/img/site/lightlogos/redbull.svg');
-  width: 6.5175rem;
-  height: 1.03213rem;
-}
-
-.logo6 {
-  background-image: url('/img/site/lightlogos/writesonic.svg');
-  width: 5.296rem;
-  height: 1.33944rem;
-}
-
-.logo7 {
-  background-image: url('/img/site/lightlogos/netapp.svg');
-  width: 5.27531rem;
-  height: 0.927rem;
-}
-
-.logo8 {
-  background-image: url('/img/site/lightlogos/amd.svg');
-  width: 4.27531rem;
-  height: 0.927rem;
-}
-
-.logo9 {
-  background-image: url('/img/site/lightlogos/cisco.svg');
-  width: 3.27531rem;
-  height: 1.927rem;
-}
-
-.logo10 {
-  background-image: url('/img/site/lightlogos/morningstar.svg');
-  width: 4.27531rem;
-  height: 0.927rem;
-}
-
-.logo11 {
-  background-image: url('/img/site/lightlogos/stack.svg');
-  width: 4.27531rem;
-  height: 0.927rem;
-}
-
-.logo12 {
-  background-image: url('/img/site/lightlogos/factset.svg');
-  width: 5.27531rem;
-  height: 0.927rem;
-}
-
-.logo13 {
-  background-image: url('/img/site/lightlogos/rakuten.svg');
-}
-
-.logo14 {
-  background-image: url('/img/site/lightlogos/bunq.svg');
-  width: 4.27531rem;
-}
-
-.logo15 {
-  background-image: url('/img/site/lightlogos/build-vw-logo.svg');
-  width: 2.53694rem;
-  height: 2.53694rem;
-}
-
-.logo16 {
-  background-image: url('/img/site/lightlogos/build-trc-logo.svg');
-}
-
-.logo17 {
-  background-image: url('/img/site/lightlogos/build-servier-logo.svg');
-  width: 8.51125rem;
-  height: 1.69131rem;
-}
-
-.logo18 {
-  background-image: url('/img/site/lightlogos/build-ltk-logo.svg');
-  height: 1.69131rem;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-.logo19 {
-  background-image: url('/img/site/lightlogos/build-gsk-logo.svg');
-}
-
-.logo20 {
-  background-image: url('/img/site/lightlogos/build-datagrid-logo.svg');
-  width: 6.99588rem;
-  height: 1.69131rem;
-}
-
-.logo21 {
-  background-image: url('/img/site/lightlogos/build_logo_Kapa_AI.svg');
-  width: 6.99588rem;
-  height: 1.69131rem !important;
-}
-
-.logo22 {
-  background-image: url('/img/site/lightlogos/build_logo_point72.svg');
-  width: 6.99588rem;
-  height: 2.69131rem !important;
-}
-
-.logo23 {
-  background-image: url('/img/site/lightlogos/build_logo_superhuman.svg');
-  width: 6.99588rem !important;
-  height: 2.69131rem !important;
-}
-
-.logo23 {
-  background-image: url('/img/site/lightlogos/scribd.svg');
-  width: 6.99588rem;
-  height: 1.2745rem !important;
-}
-
-.logo24 {
-  background-image: url('/img/site/lightlogos/nato.svg');
-  width: 6.99588rem;
-  height: 1.9131rem !important;
-}
-
-.logo25 {
-  background-image: url('/img/site/lightlogos/fannie-mae.svg');
-  width: 5.05294rem !important;
-  height: 1.69131rem !important;
-}
-
-.logo26 {
-  background-image: url('/img/site/lightlogos/booking-com.svg');
-  width: 5.05294rem !important;
-  height: 1.69131rem !important;
-}
-
 .logo {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  width: 4.294rem;
-  height: 1.2745rem;
+  width: 4.7rem;
+  height: 1.7rem;
   flex-shrink: 0;
 }
 
@@ -393,7 +231,6 @@
     z-index: 1;
     background: linear-gradient(to right, #130c49, transparent);
   }
-
   .bottomBar::after {
     right: 0;
     transform: rotate(180deg);

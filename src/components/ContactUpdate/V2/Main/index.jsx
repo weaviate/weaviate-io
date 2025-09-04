@@ -69,12 +69,14 @@ export default function Main() {
             <div className={`${styles.bento04} ${styles.bentoKapa}`}>
               <div className={styles.bentoText}>
                 <div className={styles.bentoLogo}></div>
-                <h3>Building Foundations for AI-First App Development</h3>
+                <h3>
+                  How Kapa takes the pain out of finding technical answers
+                </h3>
                 <div className={styles.bentoImage}></div>
               </div>
               <div className={styles.buttons}>
                 <Link
-                  to="/blog/unbody-weaviate"
+                  to="/case-studies/kapa"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.arrowButton}

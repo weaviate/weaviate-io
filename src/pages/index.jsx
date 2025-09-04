@@ -5,6 +5,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 import Head from '@docusaurus/Head';
 
 import HomepageHeader from '/src/components/HomeV2/Header';
+import HeaderTwoLine from '/src/components/HomeV2/Header/HeaderTwoLine';
 import Main from '/src/components/HomeV2/Main/V2';
 import BottomMain from '/src/components/HomeV2/BottomMain';
 import ContactForm from '/src/components/HomeV2/Contact/contactForm';
@@ -20,7 +21,7 @@ export default function Home() {
         description="Bring AI-native applications to life with less hallucination, data leakage, and vendor lock-in"
       >
         <MetaSEO img="og/website/home.jpg" />
-        <HomepageHeader />
+        <HeaderTwoLine />
 
         <Main />
         <BottomMain />
