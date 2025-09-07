@@ -1,18 +1,15 @@
 ﻿---
 title: Using Weaviate Cloud Queries in MacOS apps
-
 slug: apple-and-weaviate-2
 authors: [randy, adam]
 date: 2025-09-09
-tags: ['how-to']
+tags: ['community']
 image: ./img/hero.png
 description: "A practical guide on using Weaviate Cloud Queries in MacOS apps."
 ---
 
 
 ![Weaviate Cloud (WCD) Queries: A Practical Guide](./img/hero.png)
-
-## Introduction
 
 Learning how to effectively use and integrate Weaviate Cloud (WCD) queries into your iOS or macOS applications can be challenging. This article simplifies the process by focusing on the various types of queries available and providing a live tool for you to run them. We’ll offer a detailed explanation of common and easily implemented query types, and you can see the results in real-time. Additionally, Mac users can download our custom application to run live examples directly on their laptops, allowing them to copy and paste these queries as templates for their own projects.
 
@@ -42,35 +39,6 @@ you can find new reads without sifting through every single book description.
 ![Vector Search Concept](./img/wcs_summary_22_vector_search.png)
 
 
-## Weaviate Cloud (WCD)
-[Weaviate Cloud](https://console.weaviate.cloud/) is a fully managed cloud service that provides a vector database, simplifying the
-creation and deployment of AI applications. It handles the infrastructure, letting developers focus
-on building features like semantic search and recommendation engines. WCD offers flexible
-hosting options, including serverless and enterprise plans, built upon the powerful open-source
-Weaviate database.
-
-![Weaviate Cloud](./img/wcs_summary_23_weaviate_cloud.png)
-
-## Core Concepts
-
-This guide utilizes the Query Helper Application, a custom MacOS app signed by Apple,
-designed for live testing of Weaviate Queries.
-
-Before using the application, you'll need to set up API keys. The following keys are relevant:
-
-1. Weaviate API Key: Provides access to the Weaviate Vector Database holding your
-domain data. For this demo app, the Weaviate API key is pre-defined and cannot be
-changed.
-1. OpenAI API Key: Used by Weaviate to access OpenAI's Large Language Models for
-querying embeddings. You can create a key at OpenAI.
-1. Cohere API Key: Utilized by Weaviate for text embedding, generative AI, and
-reranking. A key can be created at Cohere.
-
-API keys can be configured within the application by clicking the settings icon to open the API Key Settings Panel.
-
-![API Keys](./img/wcs_summary_24_api_keys.png)
-
-
 ## Application Overview
 
 Included is a downloadable application for Mac users to run live query examples directly on their laptop.
@@ -81,10 +49,9 @@ Feel free to copy and paste these queries into your own projects for use as a te
 
 1. [Query Examples](#query_examples): Query prompt examples.
 
+Read more on [how to use Weaviate for IOS and Mac Developers](/blog/apple-and-weaviate).
 
-For IOS and Mac Developers looking to develop on Weaviate, check out this article: [weaviate.io/blog/apple-and-weaviate](/blog/apple-and-weaviate).
-
-To get familiar with the data used and how the Weaviate Database was created you can reference: [github.com/weaviate/BookRecs](https://github.com/weaviate/BookRecs).
+To get familiar with the data used and how the Weaviate Database was created, you can reference [this project](https://github.com/weaviate/BookRecs).
 
 
 <a id="query_app"></a>
@@ -155,7 +122,7 @@ This article discusses several types of queries, all of which require a Weaviate
 
 - **Basic:** A simple query that retrieves a limited amount of items
 - **Third Item:**  Skip to the third item of a query
-- **Meta Data:** Properties (eg. ID, creation date, last update date, etc) available that go beyond the original values loaded on to the vector database
+- **Meta Data:** Properties (eg. ID, creation date, last update date, etc) available that go beyond the original values loaded on to the [vector database](/blog/what-is-a-vector-database)
 
 **Reorder:** Rearranging or prioritizing the data.
 
@@ -451,7 +418,7 @@ Summarize what the leaders of the result have in common.
 
 Hopefully, you have found this article to be a practical guide to building queries with **Weaviate Cloud (WCD)** on iOS and macOS, even if you're new to the platform. It simplifies the core concept of **vector similarity search**, showing you how to find similar data. The article positions Weaviate Cloud as a fully managed service that handles the technical complexities of AI infrastructure, allowing you to focus on developing engaging features like **recommendation engines** and **semantic search**.
 
-To help you get started, the guide offers a custom **Query Helper Application** for Mac users, which provides a hands-on way to test different queries. The article breaks down these queries into distinct categories, from basic data retrieval to more advanced functions like reordering results, summarizing data, and even translating text. This resource provides you with the foundational knowledge and practical tools—including a live testing app and code examples—to start creating your own sophisticated, AI-driven applications with confidence!
+To help you get started, the guide offers [a custom **Query Helper Application** for Mac users](https://github.com/randallfonginc/weaviate-cloud-service-query-helper/releases), which provides a hands-on way to test different queries. The article breaks down these queries into distinct categories, from basic data retrieval to more advanced functions like reordering results, summarizing data, and even translating text. This resource provides you with the foundational knowledge and practical tools—including a live testing app and code examples—to start creating your own sophisticated, AI-driven applications with confidence!
 
 
 
