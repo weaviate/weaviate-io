@@ -87,7 +87,7 @@
   }
 
   .reportImage {
-    background: url('/img/site/rag-ebook-cover.jpg');
+    background: url('/img/site/The-AI-Strategy-Playbook-Cover.jpg');
 
     background-size: contain;
     background-position: center;
@@ -297,6 +297,31 @@
   .listHeader {
     font-style: italic;
     margin-left: -35px;
+    margin-bottom: 10px;
+  }
+
+  .authorBox {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    gap: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .authorInfo {
+    text-align: left;
+  }
+
+  .authorImage {
+    background: url('/img/people/icon/byron.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
     margin-bottom: 10px;
   }
 }

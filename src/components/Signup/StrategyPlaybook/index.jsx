@@ -77,6 +77,13 @@ export default function Introduction() {
             <li>Scalability and growth</li>
           </ul>
           <h3>About the author</h3>
+          <div className={styles.authorBox}>
+            <div className={styles.authorImage}></div>
+            <div className={styles.authorInfo}>
+              <h4>Byron Voorbach</h4>
+              <h5>Field CTO at Weaviate</h5>
+            </div>
+          </div>
           <p>
             Byron Voorbach has spent over a decade in the search domain,
             consulting hundreds of companies and aiding in implementing
