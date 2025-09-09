@@ -2,1208 +2,1183 @@
 
 > Open-source vector database and cloud platform.
 
-- [Weaviate](/index.md)
+- [Weaviate](/)
 
 ## agentic-ai
 
 Build secure, explainable generative AI applications
 
-- [Empower AI agents with the context and adaptability they need](/agentic-ai.md): Build secure, explainable generative AI applications
+- [Empower AI agents with the context and adaptability they need](/agentic-ai): Build secure, explainable generative AI applications
 
 ## ai-database-signup-free
 
 All the power of our open-source vector database, without the burden of self-hosting.
 
-- [Fully-managed, AI database](/ai-database-signup-free.md): All the power of our open-source vector database, without the burden of self-hosting.
+- [Fully-managed, AI database](/ai-database-signup-free): All the power of our open-source vector database, without the burden of self-hosting.
 
 ## apple-and-weaviate
 
 iOS Apps and Vector Databases
 
-- [Weaviate Apple Ecosystem Apps](/apple-and-weaviate.md): iOS Apps and Vector Databases
+- [Weaviate Apple Ecosystem Apps](/apple-and-weaviate): iOS Apps and Vector Databases
 
 ### apple-apps-part-1
 
 Upgrade your app's search function and get a hands on intro to vector databases using the Weaviate Platform
 
-- [Search with Benefits](/apple-and-weaviate/apple-apps-part-1.md): Upgrade your app's search function and get a hands on intro to vector databases using the Weaviate Platform
+- [Search with Benefits](/apple-and-weaviate/apple-apps-part-1): Upgrade your app's search function and get a hands on intro to vector databases using the Weaviate Platform
 
 ### apple-apps-part-3
 
 Many data science frameworks are written in Python. In this article we'll get set up to run Python on your Mac!
 
-- [Running Python on your Mac](/apple-and-weaviate/apple-apps-part-3.md): Many data science frameworks are written in Python. In this article we'll get set up to run Python on your Mac!
+- [Running Python on your Mac](/apple-and-weaviate/apple-apps-part-3): Many data science frameworks are written in Python. In this article we'll get set up to run Python on your Mac!
 
 ### apple-apps-part-4
 
 Use Xcode to run your Python datapipelines. This article explains how you can set up external builders to integrate Python into your Xcode workflows.
 
-- [External Builder (Xcode) for Python](/apple-and-weaviate/apple-apps-part-4.md): Use Xcode to run your Python datapipelines. This article explains how you can set up external builders to integrate Python into your Xcode workflows.
+- [External Builder (Xcode) for Python](/apple-and-weaviate/apple-apps-part-4): Use Xcode to run your Python datapipelines. This article explains how you can set up external builders to integrate Python into your Xcode workflows.
 
 ### apple-apps-part-5
 
 Set up a Weaviate Cluster on WCD and load in book data using a python data pipeline that can be searched through your iOS and other Apple Ecosystem Applications.
 
-- [Create and Load a Weaviate Cluster](/apple-and-weaviate/apple-apps-part-5.md): Set up a Weaviate Cluster on WCD and load in book data using a python data pipeline that can be searched through your iOS and other Apple Ecosystem Applications.
+- [Create and Load a Weaviate Cluster](/apple-and-weaviate/apple-apps-part-5): Set up a Weaviate Cluster on WCD and load in book data using a python data pipeline that can be searched through your iOS and other Apple Ecosystem Applications.
 
 ## blog
 
 Blog
 
-- [Weaviate Blog](/blog.md): Blog
+- [Weaviate Blog](/blog): Blog
 
-### 2022
 
-- [weaviate-1-16-release/_core-1-16-include](/blog/2022/11/01/weaviate-1-16-release/_core-1-16-include.md): Weaviate 1.16 release
-- [weaviate-1-17-release/_core-1-17-include](/blog/2022/12/20/weaviate-1-17-release/_core-1-17-include.md): Weaviate 1.17 release
 
 ### 2023-recap
 
 A reflection on 2023 from team Weaviate!
 
-- [Weaviate 2023 Recap](/blog/2023-recap.md): A reflection on 2023 from team Weaviate!
+- [Weaviate 2023 Recap](/blog/2023-recap): A reflection on 2023 from team Weaviate!
 
-### 2023
-
-- [weaviate-1-18-release/_core-1-18-include](/blog/2023/03/07/weaviate-1-18-release/_core-1-18-include.md): Weaviate 1.18
-- [weaviate-1-19-release/_core-1-19-include](/blog/2023/05/04/weaviate-1-19-release/_core-1-19-include.md): Weaviate 1.19
-- [weaviate-1-20-release/_core-1-20-include](/blog/2023/07/11/weaviate-1-20-release/_core-1-20-include.md): Weaviate 1.20
-- [weaviate-1-21-release/_core-1-21-include](/blog/2023/08/22/weaviate-1-21-release/_core-1-21-include.md): Weaviate 1.21
-- [weaviate-1-22-release/_core-1-22-include](/blog/2023/10/31/weaviate-1-22-release/_core-1-22-include.md): Weaviate 1.22 is here!
-- [weaviate-1-23-release/_core-1-23-include](/blog/2023/12/19/weaviate-1-23-release/_core-1-23-include.md): Weaviate 1.23 is here!
-
-### 2024
-
-- [weaviate-1-24-release/_core-1-24-include](/blog/2024/02/27/weaviate-1-24-release/_core-1-24-include.md): Weaviate 1.24 is here!
-- [weaviate-1-25-release/_core-1-25-include](/blog/2024/05/20/weaviate-1-25-release/_core-1-25-include.md): Weaviate 1.25 is here!
-- [weaviate-1-26-release/_core-1-26-include](/blog/2024/07/31/weaviate-1-26-release/_core-1-26-include.md): Weaviate 1.26 is here!
-- [weaviate-1-27-release/_core-1-27-include](/blog/2024/10/29/weaviate-1-27-release/_core-1-27-include.md): Weaviate 1.27 is here!
-- [weaviate-1-28-release/_core-1-28-include](/blog/2024/12/12/weaviate-1-28-release/_core-1-28-include.md): Weaviate 1.28 brings enterprise-grade security, faster indexing, and improved multilingual support to your vector database. This release introduces role-based access control (RBAC), enhanced async indexing improvements, and native Japanese language support - making Weaviate more secure, faster, and globally accessible than ever.
-
-### 2025
-
-- [weaviate-1-29-release/_core-1-29-include](/blog/2025/02/25/weaviate-1-29-release/_core-1-29-include.md): Weaviate 1.29 brings a host of new features and improvements. It introduces multi-vector embedding support (preview) and new NVIDIA model support. Weaviate's role-based access control (RBAC) and async replication are now generally available. We've also made further improvements to the BlockMax WAND algorithm to speed up keyword and hybrid searches, among other enhancements.
-- [weaviate-1-31-release/_core-1-31-include](/blog/2025/06/03/weaviate-1-31-release/_core-1-31-include.md): Weaviate v1.31 is now available with some really exciting new features as always. It introduces MUVERA encoding for multi-vector embeddings, new BM25 operators for more customizable keyword searching, the ability to add new vectors to existing collections, just to name a few.
-- [weaviate-1-32-release/_core-1-32-include](/blog/2025/07/22/weaviate-1-32-release/_core-1-32-include.md): Weaviate v1.32 is now available open-source and on Weaviate Cloud. It introduces collection aliases for seamless collection migrations under the hood, powerful & efficient rotational quantization (RQ), memory reduction with compressed HNSW connections and the replica movement feature becomes generally available (GA).
 
 ### accelerate-enterprise-ai
 
 Weaviate Embeddings is Now Generally Available, and Weaviate 1.29 is Officially Here! Read more about it in our launch announcement.
 
-- [Accelerate Enterprise AI: 94% Faster Search, Simplified Embedding Creation, and Dedicated Azure Deployment](/blog/accelerate-enterprise-ai.md): Weaviate Embeddings is Now Generally Available, and Weaviate 1.29 is Officially Here! Read more about it in our launch announcement.
+- [Accelerate Enterprise AI: 94% Faster Search, Simplified Embedding Creation, and Dedicated Azure Deployment](/blog/accelerate-enterprise-ai): Weaviate Embeddings is Now Generally Available, and Weaviate 1.29 is Officially Here! Read more about it in our launch announcement.
 
 ### advanced-rag
 
 Learn how to improve the individual indexing, retreival and generation parts of your RAG pipeline!
 
-- [Advanced RAG Techniques](/blog/advanced-rag.md): Learn how to improve the individual indexing, retreival and generation parts of your RAG pipeline!
+- [Advanced RAG Techniques](/blog/advanced-rag): Learn how to improve the individual indexing, retreival and generation parts of your RAG pipeline!
 
 ### agent-workflow-automation-n8n-weaviate
 
 You can now use Weaviate with n8n for no-code agentic workflows. This article teaches you how.
 
-- [AI Agent Workflow Automation with n8n and Weaviate](/blog/agent-workflow-automation-n8n-weaviate.md): You can now use Weaviate with n8n for no-code agentic workflows. This article teaches you how.
+- [AI Agent Workflow Automation with n8n and Weaviate](/blog/agent-workflow-automation-n8n-weaviate): You can now use Weaviate with n8n for no-code agentic workflows. This article teaches you how.
 
 ### ai-agents
 
 What is an AI Agent? Learn how AI agents work, the benefits of using AI agents and more
 
-- [Agents Simplified: What we mean in the context of AI](/blog/ai-agents.md): What is an AI Agent? Learn how AI agents work, the benefits of using AI agents and more
+- [Agents Simplified: What we mean in the context of AI](/blog/ai-agents): What is an AI Agent? Learn how AI agents work, the benefits of using AI agents and more
 
 ### ai-enabled-ecommerce-typescript
 
 Dive into how AI enables better eCommerce experiences with a focus on one critical component; Search.
 
-- [AI-Enabled eCommerce in TypeScript](/blog/ai-enabled-ecommerce-typescript.md): Dive into how AI enables better eCommerce experiences with a focus on one critical component; Search.
+- [AI-Enabled eCommerce in TypeScript](/blog/ai-enabled-ecommerce-typescript): Dive into how AI enables better eCommerce experiences with a focus on one critical component; Search.
 
 ### ai-native-infrastructure-agentic-AI
 
 Learn how traditional CRUD-based applications are giving way to agentic workflows with vector databases at their core. 
 
-- [The Future Speaks in Vectors - Why AI-native infrastructure is critical for agentic AI](/blog/ai-native-infrastructure-agentic-AI.md): Learn how traditional CRUD-based applications are giving way to agentic workflows with vector databases at their core. 
+- [The Future Speaks in Vectors - Why AI-native infrastructure is critical for agentic AI](/blog/ai-native-infrastructure-agentic-AI): Learn how traditional CRUD-based applications are giving way to agentic workflows with vector databases at their core. 
 
 ### ann-algorithms-hnsw-pq
 
 Implementing HNSW + Product Quantization (PQ) vector compression in Weaviate.
 
-- [HNSW+PQ - Exploring ANN algorithms Part 2.1](/blog/ann-algorithms-hnsw-pq.md): Implementing HNSW + Product Quantization (PQ) vector compression in Weaviate.
+- [HNSW+PQ - Exploring ANN algorithms Part 2.1](/blog/ann-algorithms-hnsw-pq): Implementing HNSW + Product Quantization (PQ) vector compression in Weaviate.
 
 ### ann-algorithms-tiles-enocoder
 
 Using the Weaviate Tile Encoder to compress vectors with Product Quantization.
 
-- [The Tile Encoder - Exploring ANN algorithms Part 2.2](/blog/ann-algorithms-tiles-enocoder.md): Using the Weaviate Tile Encoder to compress vectors with Product Quantization.
+- [The Tile Encoder - Exploring ANN algorithms Part 2.2](/blog/ann-algorithms-tiles-enocoder): Using the Weaviate Tile Encoder to compress vectors with Product Quantization.
 
 ### ann-algorithms-vamana-vs-hnsw
 
 Vector search on disks: How does Vamana compare to HNSW?
 
-- [Vamana vs. HNSW - Exploring ANN algorithms Part 1](/blog/ann-algorithms-vamana-vs-hnsw.md): Vector search on disks: How does Vamana compare to HNSW?
+- [Vamana vs. HNSW - Exploring ANN algorithms Part 1](/blog/ann-algorithms-vamana-vs-hnsw): Vector search on disks: How does Vamana compare to HNSW?
 
 ### announcing-palm-modules
 
 Weaviate now supports the PaLM models for embeddings and generative search through two new modules.
 
-- [Try Google's newly announced PaLM API with Weaviate](/blog/announcing-palm-modules.md): Weaviate now supports the PaLM models for embeddings and generative search through two new modules.
+- [Try Google's newly announced PaLM API with Weaviate](/blog/announcing-palm-modules): Weaviate now supports the PaLM models for embeddings and generative search through two new modules.
 
 ### apple-and-weaviate
 
 A step by step guide on bringing AI Native to the Apple Ecosystem with Weaviate.
 
-- [Leveraging Weaviate in Your Xcode Projects - A Step-by-Step Guide](/blog/apple-and-weaviate.md): A step by step guide on bringing AI Native to the Apple Ecosystem with Weaviate.
+- [Leveraging Weaviate in Your Xcode Projects - A Step-by-Step Guide](/blog/apple-and-weaviate): A step by step guide on bringing AI Native to the Apple Ecosystem with Weaviate.
 
 ### authentication-in-weaviate
 
 Videos on authentication: an overview, how to log in, how to set it up, and core concepts - including recommendations.
 
-- [Authentication in Weaviate (videos)](/blog/authentication-in-weaviate.md): Videos on authentication: an overview, how to log in, how to set it up, and core concepts - including recommendations.
+- [Authentication in Weaviate (videos)](/blog/authentication-in-weaviate): Videos on authentication: an overview, how to log in, how to set it up, and core concepts - including recommendations.
 
 ### autogpt-and-weaviate
 
 Learn about Auto-GPT and how to give it long-term memory with Weaviate!
 
-- [Giving Auto-GPT Long-Term Memory with Weaviate](/blog/autogpt-and-weaviate.md): Learn about Auto-GPT and how to give it long-term memory with Weaviate!
+- [Giving Auto-GPT Long-Term Memory with Weaviate](/blog/autogpt-and-weaviate): Learn about Auto-GPT and how to give it long-term memory with Weaviate!
 
 ### automated-testing
 
 Learn how to make testing less of a chore with Embedded Weaviate, and other tips for better automated testing.
 
-- [Better automated testing with Embedded Weaviate](/blog/automated-testing.md): Learn how to make testing less of a chore with Embedded Weaviate, and other tips for better automated testing.
+- [Better automated testing with Embedded Weaviate](/blog/automated-testing): Learn how to make testing less of a chore with Embedded Weaviate, and other tips for better automated testing.
 
 ### aws-and-weaviate
 
 Learn about the partnership between AWS and Weaviate.
 
-- [Weaviate on AWS: Our Journey as an AWS GenAI Startup](/blog/aws-and-weaviate.md): Learn about the partnership between AWS and Weaviate.
+- [Weaviate on AWS: Our Journey as an AWS GenAI Startup](/blog/aws-and-weaviate): Learn about the partnership between AWS and Weaviate.
 
 ### binary-quantization
 
 In-depth technical breakdown of how binary quantization works and how to use it in Weaviate.
 
-- [32x Reduced Memory Usage With Binary Quantization](/blog/binary-quantization.md): In-depth technical breakdown of how binary quantization works and how to use it in Weaviate.
+- [32x Reduced Memory Usage With Binary Quantization](/blog/binary-quantization): In-depth technical breakdown of how binary quantization works and how to use it in Weaviate.
 
 ### blockmax-wand
 
 How Weaviate achieved 10x Faster Keyword Search and 90% index compression
 
-- [BlockMax WAND: How Weaviate Achieved 10x Faster Keyword Search](/blog/blockmax-wand.md): How Weaviate achieved 10x Faster Keyword Search and 90% index compression
+- [BlockMax WAND: How Weaviate Achieved 10x Faster Keyword Search](/blog/blockmax-wand): How Weaviate achieved 10x Faster Keyword Search and 90% index compression
 
 ### chicago-roadshow-recap
 
 Here's a recap of our Chicago Roadshow!
 
-- [Evolving AI use cases for large-scale enterprises](/blog/chicago-roadshow-recap.md): Here's a recap of our Chicago Roadshow!
+- [Evolving AI use cases for large-scale enterprises](/blog/chicago-roadshow-recap): Here's a recap of our Chicago Roadshow!
 
 ### chunking-strategies-for-rag
 
 Learn how chunking stragies can help improve your RAG performance and explore different chunking methods.
 
-- [Chunking Strategies to Improve Your RAG Performance](/blog/chunking-strategies-for-rag.md): Learn how chunking stragies can help improve your RAG performance and explore different chunking methods.
+- [Chunking Strategies to Improve Your RAG Performance](/blog/chunking-strategies-for-rag): Learn how chunking stragies can help improve your RAG performance and explore different chunking methods.
 
 ### cohere-multilingual-with-weaviate
 
 Cohere announced the release of the text-understanding multilingual model. Learn how to use it in Weaviate.
 
-- [Cohere Multilingual ML Models with Weaviate](/blog/cohere-multilingual-with-weaviate.md): Cohere announced the release of the text-understanding multilingual model. Learn how to use it in Weaviate.
+- [Cohere Multilingual ML Models with Weaviate](/blog/cohere-multilingual-with-weaviate): Cohere announced the release of the text-understanding multilingual model. Learn how to use it in Weaviate.
 
 ### collections-python-client-preview
 
 A preview release of our new Python client is now available! Help us make it better by trying it out and providing your feedback.
 
-- [Shape the Future - Try Our New Python Client API](/blog/collections-python-client-preview.md): A preview release of our new Python client is now available! Help us make it better by trying it out and providing your feedback.
+- [Shape the Future - Try Our New Python Client API](/blog/collections-python-client-preview): A preview release of our new Python client is now available! Help us make it better by trying it out and providing your feedback.
 
 ### combining-langchain-and-weaviate
 
 LangChain is one of the most exciting new tools in AI. It helps overcome many limitations of LLMs, such as hallucination and limited input lengths.
 
-- [Combining LangChain and Weaviate](/blog/combining-langchain-and-weaviate.md): LangChain is one of the most exciting new tools in AI. It helps overcome many limitations of LLMs, such as hallucination and limited input lengths.
+- [Combining LangChain and Weaviate](/blog/combining-langchain-and-weaviate): LangChain is one of the most exciting new tools in AI. It helps overcome many limitations of LLMs, such as hallucination and limited input lengths.
 
 ### confluent-and-weaviate
 
 Learn how to build an application using Weaviate and Confluent
 
-- [Make Real-Time AI a Reality with Weaviate + Confluent](/blog/confluent-and-weaviate.md): Learn how to build an application using Weaviate and Confluent
+- [Make Real-Time AI a Reality with Weaviate + Confluent](/blog/confluent-and-weaviate): Learn how to build an application using Weaviate and Confluent
 
 ### cross-encoders-as-reranker
 
 Learn about bi-encoder and cross-encoder machine learning models, and why combining them could improve the vector search experience.
 
-- [Using Cross-Encoders as reranker in multistage vector search](/blog/cross-encoders-as-reranker.md): Learn about bi-encoder and cross-encoder machine learning models, and why combining them could improve the vector search experience.
+- [Using Cross-Encoders as reranker in multistage vector search](/blog/cross-encoders-as-reranker): Learn about bi-encoder and cross-encoder machine learning models, and why combining them could improve the vector search experience.
 
 ### crud-support-in-weaviate
 
 How the vector database Weaviate overcomes the limitations of popular Approximate Nearest Neighbor (ANN) libraries.
 
-- [Weaviate, a vector database with ANN Index and CRUD support](/blog/crud-support-in-weaviate.md): How the vector database Weaviate overcomes the limitations of popular Approximate Nearest Neighbor (ANN) libraries.
+- [Weaviate, a vector database with ANN Index and CRUD support](/blog/crud-support-in-weaviate): How the vector database Weaviate overcomes the limitations of popular Approximate Nearest Neighbor (ANN) libraries.
 
 ### details-behind-the-sphere-dataset-in-weaviate
 
 Learn about the hardware, software and performance metric specifications behind our ~1B object import of the Sphere dataset into Weaviate.
 
-- [The Details Behind the Sphere Dataset in Weaviate](/blog/details-behind-the-sphere-dataset-in-weaviate.md): Learn about the hardware, software and performance metric specifications behind our ~1B object import of the Sphere dataset into Weaviate.
+- [The Details Behind the Sphere Dataset in Weaviate](/blog/details-behind-the-sphere-dataset-in-weaviate): Learn about the hardware, software and performance metric specifications behind our ~1B object import of the Sphere dataset into Weaviate.
 
 ### distance-metrics-in-vector-search
 
 Learn about why you need distance metrics in vector search and the metrics implemented in Weaviate (Cosine, Dot Product, L2-Squared, Manhattan, and Hamming).
 
-- [Distance Metrics in Vector Search](/blog/distance-metrics-in-vector-search.md): Learn about why you need distance metrics in vector search and the metrics implemented in Weaviate (Cosine, Dot Product, L2-Squared, Manhattan, and Hamming).
+- [Distance Metrics in Vector Search](/blog/distance-metrics-in-vector-search): Learn about why you need distance metrics in vector search and the metrics implemented in Weaviate (Cosine, Dot Product, L2-Squared, Manhattan, and Hamming).
 
 ### docker-and-containers-with-weaviate
 
 What Weaviate users should know about Docker & Containers.
 
-- [Docker and Containers with Weaviate](/blog/docker-and-containers-with-weaviate.md): What Weaviate users should know about Docker & Containers.
+- [Docker and Containers with Weaviate](/blog/docker-and-containers-with-weaviate): What Weaviate users should know about Docker & Containers.
 
 ### dspy-optimizers
 
 One prompt does not fit all language models. Learn how to optimize your prompts using DSPy compilers.
 
-- [Your Language Model Deserves Better Prompting](/blog/dspy-optimizers.md): One prompt does not fit all language models. Learn how to optimize your prompts using DSPy compilers.
+- [Your Language Model Deserves Better Prompting](/blog/dspy-optimizers): One prompt does not fit all language models. Learn how to optimize your prompts using DSPy compilers.
 
 ### elysia-agentic-rag
 
 Elysia is an open-source, decision tree-based agentic RAG framework that dynamically displays data, learns from user feedback, and chunks documents on-demand. Built with pure Python logic and powered by Weaviate, it's designed to be the next evolution beyond traditional text-only AI assistants.
 
-- [Elysia: Building an end-to-end agentic RAG app](/blog/elysia-agentic-rag.md): Elysia is an open-source, decision tree-based agentic RAG framework that dynamically displays data, learns from user feedback, and chunks documents on-demand. Built with pure Python logic and powered by Weaviate, it's designed to be the next evolution beyond traditional text-only AI assistants.
+- [Elysia: Building an end-to-end agentic RAG app](/blog/elysia-agentic-rag): Elysia is an open-source, decision tree-based agentic RAG framework that dynamically displays data, learns from user feedback, and chunks documents on-demand. Built with pure Python logic and powered by Weaviate, it's designed to be the next evolution beyond traditional text-only AI assistants.
 
 ### embedded-local-weaviate
 
 The Weaviate server can be run locally directly from client code
 
-- [How to run an embedded vector database in 10 lines of code](/blog/embedded-local-weaviate.md): The Weaviate server can be run locally directly from client code
+- [How to run an embedded vector database in 10 lines of code](/blog/embedded-local-weaviate): The Weaviate server can be run locally directly from client code
 
 ### enterprise-ai-trends-2025
 
 What trends we see arise in Enterprise AI in 2025.
 
-- [The State of Enterprise AI in 2025: Measured Progress Over Hype](/blog/enterprise-ai-trends-2025.md): What trends we see arise in Enterprise AI in 2025.
+- [The State of Enterprise AI in 2025: Measured Progress Over Hype](/blog/enterprise-ai-trends-2025): What trends we see arise in Enterprise AI in 2025.
 
 ### enterprise-use-cases-weaviate
 
 Explore enterprise use cases heavily used by our customers adopting generative AI features, search capabilities, and RAG with Weaviate vector database.
 
-- [Enterprise Use Cases of Weaviate Vector Database](/blog/enterprise-use-cases-weaviate.md): Explore enterprise use cases heavily used by our customers adopting generative AI features, search capabilities, and RAG with Weaviate vector database.
+- [Enterprise Use Cases of Weaviate Vector Database](/blog/enterprise-use-cases-weaviate): Explore enterprise use cases heavily used by our customers adopting generative AI features, search capabilities, and RAG with Weaviate vector database.
 
 ### enterprise-workflow-langchain-weaviate
 
 LangChain and Weaviate v3 power scalable AI with fast, type-safe RAG workflows, practical code, and future-ready features like LLM eval and event-driven design.
 
-- [Build enterprise workflows with Langchain and Weaviate v3](/blog/enterprise-workflow-langchain-weaviate.md): LangChain and Weaviate v3 power scalable AI with fast, type-safe RAG workflows, practical code, and future-ready features like LLM eval and event-driven design.
+- [Build enterprise workflows with Langchain and Weaviate v3](/blog/enterprise-workflow-langchain-weaviate): LangChain and Weaviate v3 power scalable AI with fast, type-safe RAG workflows, practical code, and future-ready features like LLM eval and event-driven design.
 
 ### evals-guardrails-enterprise-workflows-1
 
 Evals and Guardrails in enterprise workflows part 1
 
-- [Evals and Guardrails in Enterprise workflows (Part 1)](/blog/evals-guardrails-enterprise-workflows-1.md): Evals and Guardrails in enterprise workflows part 1
+- [Evals and Guardrails in Enterprise workflows (Part 1)](/blog/evals-guardrails-enterprise-workflows-1): Evals and Guardrails in enterprise workflows part 1
 
 ### find-waldo-with-weaviate
 
 Dive into using Weaviate for image recognition to find the "needle in a haystack"!
 
-- [Using Weaviate to Find Waldo](/blog/find-waldo-with-weaviate.md): Dive into using Weaviate for image recognition to find the "needle in a haystack"!
+- [Using Weaviate to Find Waldo](/blog/find-waldo-with-weaviate): Dive into using Weaviate for image recognition to find the "needle in a haystack"!
 
 ### fine-tune-embedding-model
 
 Key consideration for customizing an embedding model through fine-tuning it on company- or domain-specific data to improve the downstream retrieval performance in RAG applications.
 
-- [Why, When and How to Fine-Tune a Custom Embedding Model](/blog/fine-tune-embedding-model.md): Key consideration for customizing an embedding model through fine-tuning it on company- or domain-specific data to improve the downstream retrieval performance in RAG applications.
+- [Why, When and How to Fine-Tune a Custom Embedding Model](/blog/fine-tune-embedding-model): Key consideration for customizing an embedding model through fine-tuning it on company- or domain-specific data to improve the downstream retrieval performance in RAG applications.
 
 ### fine-tuning-coheres-reranker
 
 Learn how to fine-tune Cohere's reranker and generate synthetic data using DSPy!
 
-- [Fine-Tuning Cohere's Reranker](/blog/fine-tuning-coheres-reranker.md): Learn how to fine-tune Cohere's reranker and generate synthetic data using DSPy!
+- [Fine-Tuning Cohere's Reranker](/blog/fine-tuning-coheres-reranker): Learn how to fine-tune Cohere's reranker and generate synthetic data using DSPy!
 
 ### forbes-ai-50-2024
 
 Weaviate is happy to announce our inclusion in the Forbes AI 50 2024 list!
 
-- [Forbes AI 50 List: The most promising AI startups in 2024](/blog/forbes-ai-50-2024.md): Weaviate is happy to announce our inclusion in the Forbes AI 50 2024 list!
+- [Forbes AI 50 List: The most promising AI startups in 2024](/blog/forbes-ai-50-2024): Weaviate is happy to announce our inclusion in the Forbes AI 50 2024 list!
 
 ### genai-apps-with-weaviate-and-databricks
 
 Learn how to build generative AI data pipelines at scale with Weaviate and Databricks
 
-- [Build Scalable Gen AI Data Pipelines with Weaviate and Databricks](/blog/genai-apps-with-weaviate-and-databricks.md): Learn how to build generative AI data pipelines at scale with Weaviate and Databricks
+- [Build Scalable Gen AI Data Pipelines with Weaviate and Databricks](/blog/genai-apps-with-weaviate-and-databricks): Learn how to build generative AI data pipelines at scale with Weaviate and Databricks
 
 ### generative-feedback-loop-with-weaviate-and-spcs
 
 An end-to-end generative feedback loop demo using Weaviate, Ollama, Mistral and Snowflake’s Snowpark Container Services!
 
-- [Weaviate in Snowflake’s Snowpark Container Services](/blog/generative-feedback-loop-with-weaviate-and-spcs.md): An end-to-end generative feedback loop demo using Weaviate, Ollama, Mistral and Snowflake’s Snowpark Container Services!
+- [Weaviate in Snowflake’s Snowpark Container Services](/blog/generative-feedback-loop-with-weaviate-and-spcs): An end-to-end generative feedback loop demo using Weaviate, Ollama, Mistral and Snowflake’s Snowpark Container Services!
 
 ### generative-feedback-loops-with-LLMs
 
 An introduction to creating generative feedback loops with LLMs in Weaviate.
 
-- [Generative Feedback Loops with LLMs for Vector Databases](/blog/generative-feedback-loops-with-LLMs.md): An introduction to creating generative feedback loops with LLMs in Weaviate.
+- [Generative Feedback Loops with LLMs for Vector Databases](/blog/generative-feedback-loops-with-LLMs): An introduction to creating generative feedback loops with LLMs in Weaviate.
 
 ### generative-search
 
 Learn how you can customize Large Language Models prompt responses to your own data by leveraging vector databases.
 
-- [ChatGPT for Generative Search](/blog/generative-search.md): Learn how you can customize Large Language Models prompt responses to your own data by leveraging vector databases.
+- [ChatGPT for Generative Search](/blog/generative-search): Learn how you can customize Large Language Models prompt responses to your own data by leveraging vector databases.
 
 ### gomemlimit-a-game-changer-for-high-memory-applications
 
 Go 1.19 introduced GOMEMLIMIT, which completely changes how you can manage memory limits in Go. Learn how it helps Weaviate be more reliable.
 
-- [GOMEMLIMIT is a game changer for high-memory applications](/blog/gomemlimit-a-game-changer-for-high-memory-applications.md): Go 1.19 introduced GOMEMLIMIT, which completely changes how you can manage memory limits in Go. Learn how it helps Weaviate be more reliable.
+- [GOMEMLIMIT is a game changer for high-memory applications](/blog/gomemlimit-a-game-changer-for-high-memory-applications): Go 1.19 introduced GOMEMLIMIT, which completely changes how you can manage memory limits in Go. Learn how it helps Weaviate be more reliable.
 
 ### google-next-recap
 
 Here is our recap of Google Cloud Next!
 
-- [Highlights from Google Next ‘24](/blog/google-next-recap.md): Here is our recap of Google Cloud Next!
+- [Highlights from Google Next ‘24](/blog/google-next-recap): Here is our recap of Google Cloud Next!
 
 ### google-rag-api
 
 Learn how to build RAG Applications on Google Cloud using the new RAG Engine on Vertex AI! 
 
-- [Weaviate on Vertex AI RAG Engine: Building RAG Applications on Google Cloud](/blog/google-rag-api.md): Learn how to build RAG Applications on Google Cloud using the new RAG Engine on Vertex AI! 
+- [Weaviate on Vertex AI RAG Engine: Building RAG Applications on Google Cloud](/blog/google-rag-api): Learn how to build RAG Applications on Google Cloud using the new RAG Engine on Vertex AI! 
 
 ### graph-rag
 
 Learn when and how to use GraphRAG and how it can improve on some search tasks
 
-- [Exploring RAG and GraphRAG: Understanding when and how to use both](/blog/graph-rag.md): Learn when and how to use GraphRAG and how it can improve on some search tasks
+- [Exploring RAG and GraphRAG: Understanding when and how to use both](/blog/graph-rag): Learn when and how to use GraphRAG and how it can improve on some search tasks
 
 ### graphql-api-design
 
 Any kind of data storage architecture needs an API. Learn how and why Weaviate picked GraphQL.
 
-- [How Weaviate's GraphQL API was designed](/blog/graphql-api-design.md): Any kind of data storage architecture needs an API. Learn how and why Weaviate picked GraphQL.
+- [How Weaviate's GraphQL API was designed](/blog/graphql-api-design): Any kind of data storage architecture needs an API. Learn how and why Weaviate picked GraphQL.
 
 ### grpc-performance-improvements
 
 Learn how gRPC improves import and query speeds in Weaviate
 
-- [gRPC-Driven Performance Improvements in Weaviate](/blog/grpc-performance-improvements.md): Learn how gRPC improves import and query speeds in Weaviate
+- [gRPC-Driven Performance Improvements in Weaviate](/blog/grpc-performance-improvements): Learn how gRPC improves import and query speeds in Weaviate
 
 ### hacktoberfest-2023
 
 Join us in celebrating Hacktoberfest, a month-long celebration of open source!
 
-- [Hacktoberfest 2023 - Celebrating Open Source with Weaviate](/blog/hacktoberfest-2023.md): Join us in celebrating Hacktoberfest, a month-long celebration of open source!
+- [Hacktoberfest 2023 - Celebrating Open Source with Weaviate](/blog/hacktoberfest-2023): Join us in celebrating Hacktoberfest, a month-long celebration of open source!
 
 ### hardening-oss
 
 Moving your Weaviate OSS instance into production? Check out our handy guide to securing your Weaviate database in the cloud, including all the helpful modules we’ve added to make it as easy as possible to keep your vectors safe.
 
-- [Hardening your Weaviate OSS Installation](/blog/hardening-oss.md): Moving your Weaviate OSS instance into production? Check out our handy guide to securing your Weaviate database in the cloud, including all the helpful modules we’ve added to make it as easy as possible to keep your vectors safe.
+- [Hardening your Weaviate OSS Installation](/blog/hardening-oss): Moving your Weaviate OSS instance into production? Check out our handy guide to securing your Weaviate database in the cloud, including all the helpful modules we’ve added to make it as easy as possible to keep your vectors safe.
 
 ### healthsearch-demo
 
 Learn about our latest open source demo and how we used Semantic and Generative Search to improve access to health
 
-- [Discover Healthsearch Unlocking Health with Semantic Search ✨](/blog/healthsearch-demo.md): Learn about our latest open source demo and how we used Semantic and Generative Search to improve access to health
+- [Discover Healthsearch Unlocking Health with Semantic Search ✨](/blog/healthsearch-demo): Learn about our latest open source demo and how we used Semantic and Generative Search to improve access to health
 
 ### history-of-weaviate
 
 Weaviate is an open-source vector database with a built-in NLP model called the Contextionary. Learn what makes Weaviate unique.
 
-- [The History of Weaviate](/blog/history-of-weaviate.md): Weaviate is an open-source vector database with a built-in NLP model called the Contextionary. Learn what makes Weaviate unique.
+- [The History of Weaviate](/blog/history-of-weaviate): Weaviate is an open-source vector database with a built-in NLP model called the Contextionary. Learn what makes Weaviate unique.
 
 ### hono-search-apis
 
 Master modern search capabilities by building a powerful API server with Hono.js. Learn how to implement vector, hybrid, and generative search while maintaining performance and reliability.
 
-- [Building AI Search APIs with Hono.js](/blog/hono-search-apis.md): Master modern search capabilities by building a powerful API server with Hono.js. Learn how to implement vector, hybrid, and generative search while maintaining performance and reliability.
+- [Building AI Search APIs with Hono.js](/blog/hono-search-apis): Master modern search capabilities by building a powerful API server with Hono.js. Learn how to implement vector, hybrid, and generative search while maintaining performance and reliability.
 
 ### how-ai-creates-art
 
 Machine learning models can create beautiful and novel images. Learn how Diffusion Models work and how you could make use of them.
 
-- [How A.I. Creates Art - A Gentle Introduction to Diffusion Models](/blog/how-ai-creates-art.md): Machine learning models can create beautiful and novel images. Learn how Diffusion Models work and how you could make use of them.
+- [How A.I. Creates Art - A Gentle Introduction to Diffusion Models](/blog/how-ai-creates-art): Machine learning models can create beautiful and novel images. Learn how Diffusion Models work and how you could make use of them.
 
 ### how-to-build-an-image-search-application-with-weaviate
 
 Learn how to use build an image search application using the Img2vec-neural module in Weaviate.
 
-- [How to build an Image Search Application with Weaviate](/blog/how-to-build-an-image-search-application-with-weaviate.md): Learn how to use build an image search application using the Img2vec-neural module in Weaviate.
+- [How to build an Image Search Application with Weaviate](/blog/how-to-build-an-image-search-application-with-weaviate): Learn how to use build an image search application using the Img2vec-neural module in Weaviate.
 
 ### how-to-chatgpt-plugin
 
 A show-and-tell of how we created the Weaviate Retrieval Plugin for ChatGPT
 
-- [How to Create Your Own ChatGPT Plugin](/blog/how-to-chatgpt-plugin.md): A show-and-tell of how we created the Weaviate Retrieval Plugin for ChatGPT
+- [How to Create Your Own ChatGPT Plugin](/blog/how-to-chatgpt-plugin): A show-and-tell of how we created the Weaviate Retrieval Plugin for ChatGPT
 
 ### how-to-choose-a-sentence-transformer-from-hugging-face
 
 Learn about the various Sentence Transformers from Hugging Face!
 
-- [How to choose a Sentence Transformer from Hugging Face](/blog/how-to-choose-a-sentence-transformer-from-hugging-face.md): Learn about the various Sentence Transformers from Hugging Face!
+- [How to choose a Sentence Transformer from Hugging Face](/blog/how-to-choose-a-sentence-transformer-from-hugging-face): Learn about the various Sentence Transformers from Hugging Face!
 
 ### how-to-choose-an-embedding-model
 
 How to select an embedding model for your search and retrieval-augmented generation system.
 
-- [Step-by-Step Guide to Choosing the Best Embedding Model for Your Application](/blog/how-to-choose-an-embedding-model.md): How to select an embedding model for your search and retrieval-augmented generation system.
+- [Step-by-Step Guide to Choosing the Best Embedding Model for Your Application](/blog/how-to-choose-an-embedding-model): How to select an embedding model for your search and retrieval-augmented generation system.
 
 ### hugging-face-inference-api-in-weaviate
 
 Running ML Model Inference in production is hard. You can use Weaviate – a vector database – with Hugging Face Inference module to delegate the heavy lifting.
 
-- [Support for Hugging Face Inference API in Weaviate](/blog/hugging-face-inference-api-in-weaviate.md): Running ML Model Inference in production is hard. You can use Weaviate – a vector database – with Hugging Face Inference module to delegate the heavy lifting.
+- [Support for Hugging Face Inference API in Weaviate](/blog/hugging-face-inference-api-in-weaviate): Running ML Model Inference in production is hard. You can use Weaviate – a vector database – with Hugging Face Inference module to delegate the heavy lifting.
 
 ### hurricane-generative-feedback-loops
 
 Hurricane is a web application to demonstrate Generative Feedback Loops with blog posts.
 
-- [Hurricane: Writing Blog Posts with Generative Feedback Loops](/blog/hurricane-generative-feedback-loops.md): Hurricane is a web application to demonstrate Generative Feedback Loops with blog posts.
+- [Hurricane: Writing Blog Posts with Generative Feedback Loops](/blog/hurricane-generative-feedback-loops): Hurricane is a web application to demonstrate Generative Feedback Loops with blog posts.
 
 ### hybrid-search-for-web-developers
 
 Hybrid Search for curious Web Developers with the new Weaviate TypeScript client and Next.js
 
-- [A Web Developers Guide to Hybrid Search](/blog/hybrid-search-for-web-developers.md): Hybrid Search for curious Web Developers with the new Weaviate TypeScript client and Next.js
+- [A Web Developers Guide to Hybrid Search](/blog/hybrid-search-for-web-developers): Hybrid Search for curious Web Developers with the new Weaviate TypeScript client and Next.js
 
 ### hybrid-search-fusion-algorithms
 
 How hybrid search works, and under the hood of Weaviate's fusion algorithms.
 
-- [Unlocking the Power of Hybrid Search - A Deep Dive into Weaviate's Fusion Algorithms](/blog/hybrid-search-fusion-algorithms.md): How hybrid search works, and under the hood of Weaviate's fusion algorithms.
+- [Unlocking the Power of Hybrid Search - A Deep Dive into Weaviate's Fusion Algorithms](/blog/hybrid-search-fusion-algorithms): How hybrid search works, and under the hood of Weaviate's fusion algorithms.
 
 ### hybrid-search-ja
 
 ハイブリッド検索の説明とKAGOME_JAトークナイザーを使った実装
 
-- [ハイブリッド検索とは？](/blog/hybrid-search-ja.md): ハイブリッド検索の説明とKAGOME_JAトークナイザーを使った実装
+- [ハイブリッド検索とは？](/blog/hybrid-search-ja): ハイブリッド検索の説明とKAGOME_JAトークナイザーを使った実装
 
 ### ingesting-pdfs-into-weaviate
 
 Demo on how to ingest PDFs into Weaviate using Unstructured.
 
-- [Ingesting PDFs into Weaviate](/blog/ingesting-pdfs-into-weaviate.md): Demo on how to ingest PDFs into Weaviate using Unstructured.
+- [Ingesting PDFs into Weaviate](/blog/ingesting-pdfs-into-weaviate): Demo on how to ingest PDFs into Weaviate using Unstructured.
 
 ### inngest-ai-workflows
 
 Automate your RAG pipelines and dive into Workflow Driven Agentic Applications that leverage Inngest and Weaviate.
 
-- [Building Agentic Workflows with Inngest](/blog/inngest-ai-workflows.md): Automate your RAG pipelines and dive into Workflow Driven Agentic Applications that leverage Inngest and Weaviate.
+- [Building Agentic Workflows with Inngest](/blog/inngest-ai-workflows): Automate your RAG pipelines and dive into Workflow Driven Agentic Applications that leverage Inngest and Weaviate.
 
 ### instabase-and-weaviate
 
 Learn about how Instabase leverages AI to streamline operations and enhance efficiency!
 
-- [Shipping Trustworthy AI Products with Instabase and Weaviate](/blog/instabase-and-weaviate.md): Learn about how Instabase leverages AI to streamline operations and enhance efficiency!
+- [Shipping Trustworthy AI Products with Instabase and Weaviate](/blog/instabase-and-weaviate): Learn about how Instabase leverages AI to streamline operations and enhance efficiency!
 
 ### intel
 
 Boosting Weaviate using SIMD-AVX512, Loop Unrolling and Compiler Optimizations
 
-- [Accelerating Vector Search up to +40% with Intel’s latest Xeon CPU - Emerald Rapids](/blog/intel.md): Boosting Weaviate using SIMD-AVX512, Loop Unrolling and Compiler Optimizations
+- [Accelerating Vector Search up to +40% with Intel’s latest Xeon CPU - Emerald Rapids](/blog/intel): Boosting Weaviate using SIMD-AVX512, Loop Unrolling and Compiler Optimizations
 
 ### introducing-trust
 
 Looking for our security documentation or auditors reports? We have now launched our trust portal to make your compliance reviews easy! Head over to https://trust.weaviate.io to learn more.
 
-- [Introducing the Weaviate Trust Portal](/blog/introducing-trust.md): Looking for our security documentation or auditors reports? We have now launched our trust portal to make your compliance reviews easy! Head over to https://trust.weaviate.io to learn more.
+- [Introducing the Weaviate Trust Portal](/blog/introducing-trust): Looking for our security documentation or auditors reports? We have now launched our trust portal to make your compliance reviews easy! Head over to https://trust.weaviate.io to learn more.
 
 ### introducing-weaviate-embeddings
 
 Say goodbye to the headaches of creating and managing vector embeddings.
 
-- [Introducing Weaviate Embeddings](/blog/introducing-weaviate-embeddings.md): Say goodbye to the headaches of creating and managing vector embeddings.
+- [Introducing Weaviate Embeddings](/blog/introducing-weaviate-embeddings): Say goodbye to the headaches of creating and managing vector embeddings.
 
 ### introduction-to-rag
 
 Learn about Retrieval Augmented Generation (RAG), including architecture, use cases, implementation, and evaluation.
 
-- [Introduction to Retrieval Augmented Generation (RAG)](/blog/introduction-to-rag.md): Learn about Retrieval Augmented Generation (RAG), including architecture, use cases, implementation, and evaluation.
+- [Introduction to Retrieval Augmented Generation (RAG)](/blog/introduction-to-rag): Learn about Retrieval Augmented Generation (RAG), including architecture, use cases, implementation, and evaluation.
 
 ### javascript-june-recap
 
 We recap the events of JS June, our month of JavaScript!
 
-- [JS June Recap. Our month of JavaScript](/blog/javascript-june-recap.md): We recap the events of JS June, our month of JavaScript!
+- [JS June Recap. Our month of JavaScript](/blog/javascript-june-recap): We recap the events of JS June, our month of JavaScript!
 
 ### late-chunking
 
 Learn about Late Chunking and how it may be the right fit for balancing cost and performance in your long context retrieval applications
 
-- [Late Chunking: Balancing Precision and Cost in Long Context Retrieval](/blog/late-chunking.md): Learn about Late Chunking and how it may be the right fit for balancing cost and performance in your long context retrieval applications
+- [Late Chunking: Balancing Precision and Cost in Long Context Retrieval](/blog/late-chunking): Learn about Late Chunking and how it may be the right fit for balancing cost and performance in your long context retrieval applications
 
 ### launching-into-production
 
 Learn about Weaviate's new storage tiers and apps for fueling AI application development!
 
-- [Launching into the Production Era](/blog/launching-into-production.md): Learn about Weaviate's new storage tiers and apps for fueling AI application development!
+- [Launching into the Production Era](/blog/launching-into-production): Learn about Weaviate's new storage tiers and apps for fueling AI application development!
 
 ### llamaindex-and-weaviate
 
 An introductory overview of LlamaIndex, the LLM framework
 
-- [LlamaIndex and Weaviate](/blog/llamaindex-and-weaviate.md): An introductory overview of LlamaIndex, the LLM framework
+- [LlamaIndex and Weaviate](/blog/llamaindex-and-weaviate): An introductory overview of LlamaIndex, the LLM framework
 
 ### llms-and-search
 
 Learn about the intersection between LLMs and Search
 
-- [Large Language Models and Search](/blog/llms-and-search.md): Learn about the intersection between LLMs and Search
+- [Large Language Models and Search](/blog/llms-and-search): Learn about the intersection between LLMs and Search
 
 ### local-llm-with-verba-for-RAG
 
 Run your RAG pipelines entirely locally with Verba and Ollama.
 
-- [Locally running RAG pipeline with Verba and Llama3 with Ollama](/blog/local-llm-with-verba-for-RAG.md): Run your RAG pipelines entirely locally with Verba and Ollama.
+- [Locally running RAG pipeline with Verba and Llama3 with Ollama](/blog/local-llm-with-verba-for-RAG): Run your RAG pipelines entirely locally with Verba and Ollama.
 
 ### local-rag-with-ollama-and-weaviate
 
 How to implement a local Retrieval-Augmented Generation pipeline with Ollama language models and a self-hosted Weaviate vector database via Docker in Python.
 
-- [Building a Local RAG System for Privacy Preservation with Ollama and Weaviate](/blog/local-rag-with-ollama-and-weaviate.md): How to implement a local Retrieval-Augmented Generation pipeline with Ollama language models and a self-hosted Weaviate vector database via Docker in Python.
+- [Building a Local RAG System for Privacy Preservation with Ollama and Weaviate](/blog/local-rag-with-ollama-and-weaviate): How to implement a local Retrieval-Augmented Generation pipeline with Ollama language models and a self-hosted Weaviate vector database via Docker in Python.
 
 ### Lock-striping-pattern
 
 The Lock Striping pattern is a great way to solve race conditions without sacrificing performance. Lean about Weaviate's improvements.
 
-- [How we solved a race condition with the Lock Striping pattern](/blog/Lock-striping-pattern.md): The Lock Striping pattern is a great way to solve race conditions without sacrificing performance. Lean about Weaviate's improvements.
+- [How we solved a race condition with the Lock Striping pattern](/blog/Lock-striping-pattern): The Lock Striping pattern is a great way to solve race conditions without sacrificing performance. Lean about Weaviate's improvements.
 
 ### low-code-builder-lamatic
 
 Learn about Retrieval Augmented Generation (RAG), including architecture, use cases, implementation, and evaluation.
 
-- [Build Contextual GenAI Apps in low code with Lamatic and Weaviate](/blog/low-code-builder-lamatic.md): Learn about Retrieval Augmented Generation (RAG), including architecture, use cases, implementation, and evaluation.
+- [Build Contextual GenAI Apps in low code with Lamatic and Weaviate](/blog/low-code-builder-lamatic): Learn about Retrieval Augmented Generation (RAG), including architecture, use cases, implementation, and evaluation.
 
 ### modal-and-weaviate
 
 Learn how to vectorize ~50 million objects and ingest into Weaviate using Modal!
 
-- [Embed and Search Text at Scale with Modal and Weaviate](/blog/modal-and-weaviate.md): Learn how to vectorize ~50 million objects and ingest into Weaviate using Modal!
+- [Embed and Search Text at Scale with Modal and Weaviate](/blog/modal-and-weaviate): Learn how to vectorize ~50 million objects and ingest into Weaviate using Modal!
 
 ### monitoring-weaviate-in-production
 
 Learn about how to monitor Weaviate in production and observe key metrics.
 
-- [Monitoring Weaviate in Production](/blog/monitoring-weaviate-in-production.md): Learn about how to monitor Weaviate in production and observe key metrics.
+- [Monitoring Weaviate in Production](/blog/monitoring-weaviate-in-production): Learn about how to monitor Weaviate in production and observe key metrics.
 
 ### moonsift-story
 
 UK-based startup Moonsift is harnessing the power of AI with Weaviate.
 
-- [Building an AI-Powered Shopping Copilot with Weaviate](/blog/moonsift-story.md): UK-based startup Moonsift is harnessing the power of AI with Weaviate.
+- [Building an AI-Powered Shopping Copilot with Weaviate](/blog/moonsift-story): UK-based startup Moonsift is harnessing the power of AI with Weaviate.
 
 ### multi-tenancy-vector-search
 
 Learn about the new native multi-tenancy feature
 
-- [Multi-Tenancy Vector Search with millions of tenants](/blog/multi-tenancy-vector-search.md): Learn about the new native multi-tenancy feature
+- [Multi-Tenancy Vector Search with millions of tenants](/blog/multi-tenancy-vector-search): Learn about the new native multi-tenancy feature
 
 ### multimodal-models
 
 ML Models that can see, read, hear and more!
 
-- [Multimodal Embedding Models](/blog/multimodal-models.md): ML Models that can see, read, hear and more!
+- [Multimodal Embedding Models](/blog/multimodal-models): ML Models that can see, read, hear and more!
 
 ### multimodal-search-in-typescript
 
 We look at how to build Multimodal applications in TypeScript and dive into everything that needs to happen in between.
 
-- [Building Multimodal AI in TypeScript](/blog/multimodal-search-in-typescript.md): We look at how to build Multimodal applications in TypeScript and dive into everything that needs to happen in between.
+- [Building Multimodal AI in TypeScript](/blog/multimodal-search-in-typescript): We look at how to build Multimodal applications in TypeScript and dive into everything that needs to happen in between.
 
 ### nvidia-and-weaviate
 
 Learn how Weaviate and NVIDIA enable fast, scalable vector search for agentic AI.
 
-- [Unleashing AI Factories: Weaviate and NVIDIA Turbocharge Vector Search with GPU Acceleration](/blog/nvidia-and-weaviate.md): Learn how Weaviate and NVIDIA enable fast, scalable vector search for agentic AI.
+- [Unleashing AI Factories: Weaviate and NVIDIA Turbocharge Vector Search with GPU Acceleration](/blog/nvidia-and-weaviate): Learn how Weaviate and NVIDIA enable fast, scalable vector search for agentic AI.
 
 ### ny-roadshow-recap
 
 Learn how Instabase and Astronomer are leveraging AI technologies in production!
 
-- [Best Practices for Scaling Vector Embeddings and Shipping Reliable AI Products](/blog/ny-roadshow-recap.md): Learn how Instabase and Astronomer are leveraging AI technologies in production!
+- [Best Practices for Scaling Vector Embeddings and Shipping Reliable AI Products](/blog/ny-roadshow-recap): Learn how Instabase and Astronomer are leveraging AI technologies in production!
 
 ### personalization-agent
 
 Learn about how you can use our new agentic personalization service to provide user-catered recommendations from Weaviate collections.
 
-- [Introducing the Weaviate Personalization Agent](/blog/personalization-agent.md): Learn about how you can use our new agentic personalization service to provide user-catered recommendations from Weaviate collections.
+- [Introducing the Weaviate Personalization Agent](/blog/personalization-agent): Learn about how you can use our new agentic personalization service to provide user-catered recommendations from Weaviate collections.
 
 ### pq-rescoring
 
 The details behind how you can compress vectors using PQ with little loss of recall!
 
-- [How to Reduce Memory Requirements by up to 90%+ using Product Quantization](/blog/pq-rescoring.md): The details behind how you can compress vectors using PQ with little loss of recall!
+- [How to Reduce Memory Requirements by up to 90%+ using Product Quantization](/blog/pq-rescoring): The details behind how you can compress vectors using PQ with little loss of recall!
 
 ### private-LLM
 
 A discussion on data privacy and privacy-preserving machine learning for LLMs
 
-- [Running Large Language Models Privately - privateGPT and Beyond](/blog/private-LLM.md): A discussion on data privacy and privacy-preserving machine learning for LLMs
+- [Running Large Language Models Privately - privateGPT and Beyond](/blog/private-LLM): A discussion on data privacy and privacy-preserving machine learning for LLMs
 
 ### pulling-back-the-curtains-on-text2vec
 
 Ever wonder how Weaviate turns objects into vectors, behind-the-scenes? Find out in this post!
 
-- [Pulling back the curtains on text2vec](/blog/pulling-back-the-curtains-on-text2vec.md): Ever wonder how Weaviate turns objects into vectors, behind-the-scenes? Find out in this post!
+- [Pulling back the curtains on text2vec](/blog/pulling-back-the-curtains-on-text2vec): Ever wonder how Weaviate turns objects into vectors, behind-the-scenes? Find out in this post!
 
 ### py-client-v4-release
 
 The new (v4) release of the Weaviate Python Client is - faster (gRPC), provides better IDE support and more type-safety, and many other developer experience improvements. Check out the new release and let us know what you think!
 
-- [Weaviate Python client (v4) goes GA](/blog/py-client-v4-release.md): The new (v4) release of the Weaviate Python Client is - faster (gRPC), provides better IDE support and more type-safety, and many other developer experience improvements. Check out the new release and let us know what you think!
+- [Weaviate Python client (v4) goes GA](/blog/py-client-v4-release): The new (v4) release of the Weaviate Python Client is - faster (gRPC), provides better IDE support and more type-safety, and many other developer experience improvements. Check out the new release and let us know what you think!
 
 ### python-v3-client-deprecation
 
-- [Weaviate Python Client: v3 API deprecation](/blog/python-v3-client-deprecation.md)
+- [Weaviate Python Client: v3 API deprecation](/blog/python-v3-client-deprecation)
 
 ### query-agent
 
 Learn about the Query Agent, our new agentic search service that redefines how you interact with Weaviate’s database!
 
-- [Introducing the Weaviate Query Agent](/blog/query-agent.md): Learn about the Query Agent, our new agentic search service that redefines how you interact with Weaviate’s database!
+- [Introducing the Weaviate Query Agent](/blog/query-agent): Learn about the Query Agent, our new agentic search service that redefines how you interact with Weaviate’s database!
 
 ### ranking-models-for-better-search
 
 Learn about the different ranking models that are used for better search.
 
-- [Ranking Models for Better Search](/blog/ranking-models-for-better-search.md): Learn about the different ranking models that are used for better search.
+- [Ranking Models for Better Search](/blog/ranking-models-for-better-search): Learn about the different ranking models that are used for better search.
 
 ### recap-london-roadshow
 
 The Weaviate team was in London last month, where the presentations were packed with insights from the field, real-world use cases, and inspiration for what’s next in AI. From streamlining development to tackling challenges in nuclear energy, here’s a recap of the standout moments.
 
-- [Recap: London Roadshow](/blog/recap-london-roadshow.md): The Weaviate team was in London last month, where the presentations were packed with insights from the field, real-world use cases, and inspiration for what’s next in AI. From streamlining development to tackling challenges in nuclear energy, here’s a recap of the standout moments.
+- [Recap: London Roadshow](/blog/recap-london-roadshow): The Weaviate team was in London last month, where the presentations were packed with insights from the field, real-world use cases, and inspiration for what’s next in AI. From streamlining development to tackling challenges in nuclear energy, here’s a recap of the standout moments.
 
 ### ref2vec-centroid
 
 Weaviate introduces Ref2Vec, a new module that utilises Cross-References for Recommendation!
 
-- [What is Ref2Vec and why you need it for your recommendation system](/blog/ref2vec-centroid.md): Weaviate introduces Ref2Vec, a new module that utilises Cross-References for Recommendation!
+- [What is Ref2Vec and why you need it for your recommendation system](/blog/ref2vec-centroid): Weaviate introduces Ref2Vec, a new module that utilises Cross-References for Recommendation!
 
 ### reinvent-2023
 
 Recap the first Weaviate visit to Amazon re:Invent in Las Vegas
 
-- [Weaviate’s re:Invent 2023 recap](/blog/reinvent-2023.md): Recap the first Weaviate visit to Amazon re:Invent in Las Vegas
+- [Weaviate’s re:Invent 2023 recap](/blog/reinvent-2023): Recap the first Weaviate visit to Amazon re:Invent in Las Vegas
 
 ### research-insights-spider
 
 Self-Supervised Retrieval can surpass BM25 and Supervised techniques. This technique also pairs very well alongside BM25 in Hybrid Retrieval. Learn more about it.
 
-- [Research Insights – Learning to Retrieve Passages without Supervision](/blog/research-insights-spider.md): Self-Supervised Retrieval can surpass BM25 and Supervised techniques. This technique also pairs very well alongside BM25 in Hybrid Retrieval. Learn more about it.
+- [Research Insights – Learning to Retrieve Passages without Supervision](/blog/research-insights-spider): Self-Supervised Retrieval can surpass BM25 and Supervised techniques. This technique also pairs very well alongside BM25 in Hybrid Retrieval. Learn more about it.
 
 ### semantic-search-with-wikipedia-and-weaviate
 
 Semantic search on Wikipedia dataset with Weaviate – vector database.
 
-- [Wikipedia and Weaviate](/blog/semantic-search-with-wikipedia-and-weaviate.md): Semantic search on Wikipedia dataset with Weaviate – vector database.
+- [Wikipedia and Weaviate](/blog/semantic-search-with-wikipedia-and-weaviate): Semantic search on Wikipedia dataset with Weaviate – vector database.
 
 ### solution-to-tl-drs
 
 Did you know that Weaviate can summarize information during retrieval? Learn how you can summarize your data to tackle the problem of information overload.
 
-- [The solution to TL;DRs - Weaviate's summarizer module](/blog/solution-to-tl-drs.md): Did you know that Weaviate can summarize information during retrieval? Learn how you can summarize your data to tackle the problem of information overload.
+- [The solution to TL;DRs - Weaviate's summarizer module](/blog/solution-to-tl-drs): Did you know that Weaviate can summarize information during retrieval? Learn how you can summarize your data to tackle the problem of information overload.
 
 ### speed-up-filtered-vector-search
 
 Learn about the challenges of filtered vector search and how Weaviate tackles them with ACORN.
 
-- [How we speed up filtered vector search with ACORN](/blog/speed-up-filtered-vector-search.md): Learn about the challenges of filtered vector search and how Weaviate tackles them with ACORN.
+- [How we speed up filtered vector search with ACORN](/blog/speed-up-filtered-vector-search): Learn about the challenges of filtered vector search and how Weaviate tackles them with ACORN.
 
 ### sphere-dataset-in-weaviate
 
 Learn how to import and query the Sphere dataset in Weaviate!
 
-- [The Sphere Dataset in Weaviate](/blog/sphere-dataset-in-weaviate.md): Learn how to import and query the Sphere dataset in Weaviate!
+- [The Sphere Dataset in Weaviate](/blog/sphere-dataset-in-weaviate): Learn how to import and query the Sphere dataset in Weaviate!
 
 ### sycamore-and-weaviate
 
 Demo on how to ingest PDFs into Weaviate using Aryn.
 
-- [Enriching and Ingesting Data into Weaviate with Aryn](/blog/sycamore-and-weaviate.md): Demo on how to ingest PDFs into Weaviate using Aryn.
+- [Enriching and Ingesting Data into Weaviate with Aryn](/blog/sycamore-and-weaviate): Demo on how to ingest PDFs into Weaviate using Aryn.
 
 ### the-ai-first-database-ecosystem
 
 Learn about the vision of the AI-First Database Ecosystem, which drives the R&D of the databases of the future.
 
-- [The AI-First Database Ecosystem](/blog/the-ai-first-database-ecosystem.md): Learn about the vision of the AI-First Database Ecosystem, which drives the R&D of the databases of the future.
+- [The AI-First Database Ecosystem](/blog/the-ai-first-database-ecosystem): Learn about the vision of the AI-First Database Ecosystem, which drives the R&D of the databases of the future.
 
 ### tips-for-scaling-and-shipping-ai-products
 
 Learn all about the best practices for scaling and shipping reliable AI products!
 
-- [Best Practices for Scaling Vector Embeddings and Shipping Reliable AI Products](/blog/tips-for-scaling-and-shipping-ai-products.md): Learn all about the best practices for scaling and shipping reliable AI products!
+- [Best Practices for Scaling Vector Embeddings and Shipping Reliable AI Products](/blog/tips-for-scaling-and-shipping-ai-products): Learn all about the best practices for scaling and shipping reliable AI products!
 
 ### transformation-agent
 
 Learn how the new Transformation Agent will change the way we manage data. Say goodbye to the tedious tasks of database management!
 
-- [Introducing the Weaviate Transformation Agent](/blog/transformation-agent.md): Learn how the new Transformation Agent will change the way we manage data. Say goodbye to the tedious tasks of database management!
+- [Introducing the Weaviate Transformation Agent](/blog/transformation-agent): Learn how the new Transformation Agent will change the way we manage data. Say goodbye to the tedious tasks of database management!
 
 ### tutorial-backup-and-restore-in-weaviate
 
 Learn how to quickly and easily back up and restore your Weaviate data with the native backup feature.
 
-- [Tutorial - Backup and Restore in Weaviate](/blog/tutorial-backup-and-restore-in-weaviate.md): Learn how to quickly and easily back up and restore your Weaviate data with the native backup feature.
+- [Tutorial - Backup and Restore in Weaviate](/blog/tutorial-backup-and-restore-in-weaviate): Learn how to quickly and easily back up and restore your Weaviate data with the native backup feature.
 
 ### typescript-client-beta
 
 A beta release of our new TypeScript client is now available! Help us make it better by trying it out and providing your feedback.
 
-- [Announcing the Weaviate TypeScript Client Beta](/blog/typescript-client-beta.md): A beta release of our new TypeScript client is now available! Help us make it better by trying it out and providing your feedback.
+- [Announcing the Weaviate TypeScript Client Beta](/blog/typescript-client-beta): A beta release of our new TypeScript client is now available! Help us make it better by trying it out and providing your feedback.
 
 ### typescript-client-stable-release
 
 We're pleased to share that the Weaviate v3 TypeScript client is now stable!
 
-- [The Weaviate v3 Typescript Client goes GA](/blog/typescript-client-stable-release.md): We're pleased to share that the Weaviate v3 TypeScript client is now stable!
+- [The Weaviate v3 Typescript Client goes GA](/blog/typescript-client-stable-release): We're pleased to share that the Weaviate v3 TypeScript client is now stable!
 
 ### typing-systems-in-python
 
 Learn about the power of generics and typing systems in Python and how they can improve your codebase.
 
-- [Typing systems in Python](/blog/typing-systems-in-python.md): Learn about the power of generics and typing systems in Python and how they can improve your codebase.
+- [Typing systems in Python](/blog/typing-systems-in-python): Learn about the power of generics and typing systems in Python and how they can improve your codebase.
 
 ### unbody-weaviate
 
 Transforming data scattered across various sources into actionable insights, like searching or building chatbots, involves many complex tasks. Unbody - built on Weavaite’s technology - automates it all with just a few clicks and a line of code.
 
-- [Unbody: Using Weaviate to Build the Foundation for AI-First App Development](/blog/unbody-weaviate.md): Transforming data scattered across various sources into actionable insights, like searching or building chatbots, involves many complex tasks. Unbody - built on Weavaite’s technology - automates it all with just a few clicks and a line of code.
+- [Unbody: Using Weaviate to Build the Foundation for AI-First App Development](/blog/unbody-weaviate): Transforming data scattered across various sources into actionable insights, like searching or building chatbots, involves many complex tasks. Unbody - built on Weavaite’s technology - automates it all with just a few clicks and a line of code.
 
 ### unbody-weaviate-extension
 
 Unbody has enhanced Weaviate's generative capabilities by developing a custom Generative API that addresses limitations such as static project configurations, limited RAG syntax, and text-only input restrictions.
 
-- [Unbody’s Approach to Expanding Weaviate’s Generative Capabilities](/blog/unbody-weaviate-extension.md): Unbody has enhanced Weaviate's generative capabilities by developing a custom Generative API that addresses limitations such as static project configurations, limited RAG syntax, and text-only input restrictions.
+- [Unbody’s Approach to Expanding Weaviate’s Generative Capabilities](/blog/unbody-weaviate-extension): Unbody has enhanced Weaviate's generative capabilities by developing a custom Generative API that addresses limitations such as static project configurations, limited RAG syntax, and text-only input restrictions.
 
 ### understand-your-unstructured-data
 
 Learn how the AI-first vector database Weaviate unlocks the potential of unstructured data and why this is important.
 
-- [What if you could understand your unstructured data?](/blog/understand-your-unstructured-data.md): Learn how the AI-first vector database Weaviate unlocks the potential of unstructured data and why this is important.
+- [What if you could understand your unstructured data?](/blog/understand-your-unstructured-data): Learn how the AI-first vector database Weaviate unlocks the potential of unstructured data and why this is important.
 
 ### vector-embeddings-explained
 
 Get an intuitive understanding of what exactly vector embeddings are, how they're generated, and how they're used in semantic search.
 
-- [Vector Embeddings Explained](/blog/vector-embeddings-explained.md): Get an intuitive understanding of what exactly vector embeddings are, how they're generated, and how they're used in semantic search.
+- [Vector Embeddings Explained](/blog/vector-embeddings-explained): Get an intuitive understanding of what exactly vector embeddings are, how they're generated, and how they're used in semantic search.
 
 ### vector-library-vs-vector-database
 
 Learn more about the differences between vector libraries and vector databases!
 
-- [Vector Library versus Vector Database](/blog/vector-library-vs-vector-database.md): Learn more about the differences between vector libraries and vector databases!
+- [Vector Library versus Vector Database](/blog/vector-library-vs-vector-database): Learn more about the differences between vector libraries and vector databases!
 
 ### vector-search-explained
 
 Learn about vector search, a technique that uses mathematical representations of data to find similar items in large data sets.
 
-- [Vector Search Explained](/blog/vector-search-explained.md): Learn about vector search, a technique that uses mathematical representations of data to find similar items in large data sets.
+- [Vector Search Explained](/blog/vector-search-explained): Learn about vector search, a technique that uses mathematical representations of data to find similar items in large data sets.
 
 ### verba-open-source-rag-app
 
 Verba is an open source Retrieval Augmented Generation (RAG) application built using a modular, customizable architecture that makes it easy for anyone to use AI methods to get personalized answers on their own data. 
 
-- [Verba: Building an Open Source, Modular RAG Application](/blog/verba-open-source-rag-app.md): Verba is an open source Retrieval Augmented Generation (RAG) application built using a modular, customizable architecture that makes it easy for anyone to use AI methods to get personalized answers on their own data. 
+- [Verba: Building an Open Source, Modular RAG Application](/blog/verba-open-source-rag-app): Verba is an open source Retrieval Augmented Generation (RAG) application built using a modular, customizable architecture that makes it easy for anyone to use AI methods to get personalized answers on their own data. 
 
 ### wcs-public-beta
 
 The Weaviate Cloud Service is the easiest way to get a Weaviate cluster up and running within minutes. Learn more here.
 
-- [Weaviate Cloud Service Public Beta - Open Now!](/blog/wcs-public-beta.md): The Weaviate Cloud Service is the easiest way to get a Weaviate cluster up and running within minutes. Learn more here.
+- [Weaviate Cloud Service Public Beta - Open Now!](/blog/wcs-public-beta): The Weaviate Cloud Service is the easiest way to get a Weaviate cluster up and running within minutes. Learn more here.
 
 ### wealingo-demo
 
 A language-learning app built using Confluent Cloud and Weaviate.
 
-- [Wealingo](/blog/wealingo-demo.md): A language-learning app built using Confluent Cloud and Weaviate.
+- [Wealingo](/blog/wealingo-demo): A language-learning app built using Confluent Cloud and Weaviate.
 
 ### weaviate-1-15-1-release
 
 Two weeks after the 1.15 release, we have a patch (v1.15.1) release for you, which brings 15 bug fixes and 2 UX improvements.
 
-- [Weaviate 1.15.1 patch release](/blog/weaviate-1-15-1-release.md): Two weeks after the 1.15 release, we have a patch (v1.15.1) release for you, which brings 15 bug fixes and 2 UX improvements.
+- [Weaviate 1.15.1 patch release](/blog/weaviate-1-15-1-release): Two weeks after the 1.15 release, we have a patch (v1.15.1) release for you, which brings 15 bug fixes and 2 UX improvements.
 
 ### weaviate-1-15-release
 
 Weaviate 1.15 introduces Cloud-native Backups, Memory Optimizations, faster Filtered Aggregations and Ordered Imports, new Distance Metrics and new Weaviate modules.
 
-- [Weaviate 1.15 release](/blog/weaviate-1-15-release.md): Weaviate 1.15 introduces Cloud-native Backups, Memory Optimizations, faster Filtered Aggregations and Ordered Imports, new Distance Metrics and new Weaviate modules.
+- [Weaviate 1.15 release](/blog/weaviate-1-15-release): Weaviate 1.15 introduces Cloud-native Backups, Memory Optimizations, faster Filtered Aggregations and Ordered Imports, new Distance Metrics and new Weaviate modules.
 
 ### weaviate-1-16-release
 
 Weaviate 1.16 introduces New Filter Operators, Distributed Backups, Centroid Module, Node Status API, Azure-based OIDC, and more. Lear all about it.
 
-- [Weaviate 1.16 release](/blog/weaviate-1-16-release.md): Weaviate 1.16 introduces New Filter Operators, Distributed Backups, Centroid Module, Node Status API, Azure-based OIDC, and more. Lear all about it.
+- [Weaviate 1.16 release](/blog/weaviate-1-16-release): Weaviate 1.16 introduces New Filter Operators, Distributed Backups, Centroid Module, Node Status API, Azure-based OIDC, and more. Lear all about it.
 
 ### weaviate-1-17-release
 
 Weaviate 1.17 introduces Replication, Hybrid Search, BM25, Faster Startup and Imports and more. Learn all about it.
 
-- [Weaviate 1.17 release](/blog/weaviate-1-17-release.md): Weaviate 1.17 introduces Replication, Hybrid Search, BM25, Faster Startup and Imports and more. Learn all about it.
+- [Weaviate 1.17 release](/blog/weaviate-1-17-release): Weaviate 1.17 introduces Replication, Hybrid Search, BM25, Faster Startup and Imports and more. Learn all about it.
 
 ### weaviate-1-18-release
 
 Weaviate 1.18 introduces Faster Filtering through Bitmap Indexing, HNSW-PQ, Cursor API, and more! Learn all about it.
 
-- [Weaviate 1.18 release](/blog/weaviate-1-18-release.md): Weaviate 1.18 introduces Faster Filtering through Bitmap Indexing, HNSW-PQ, Cursor API, and more! Learn all about it.
+- [Weaviate 1.18 release](/blog/weaviate-1-18-release): Weaviate 1.18 introduces Faster Filtering through Bitmap Indexing, HNSW-PQ, Cursor API, and more! Learn all about it.
 
 ### weaviate-1-19-release
 
 Weaviate 1.19 introduces generative cohere module, gRPC API support, improved data types, and more.
 
-- [Weaviate 1.19 Release](/blog/weaviate-1-19-release.md): Weaviate 1.19 introduces generative cohere module, gRPC API support, improved data types, and more.
+- [Weaviate 1.19 Release](/blog/weaviate-1-19-release): Weaviate 1.19 introduces generative cohere module, gRPC API support, improved data types, and more.
 
 ### weaviate-1-2-transformer-models
 
 Weaviate v1.2 introduced support for transformers (DistilBERT, BERT, RoBERTa, Sentence-BERT, etc) to vectorize and semantically search through your data.
 
-- [Weaviate 1.2 release - transformer models](/blog/weaviate-1-2-transformer-models.md): Weaviate v1.2 introduced support for transformers (DistilBERT, BERT, RoBERTa, Sentence-BERT, etc) to vectorize and semantically search through your data.
+- [Weaviate 1.2 release - transformer models](/blog/weaviate-1-2-transformer-models): Weaviate v1.2 introduced support for transformers (DistilBERT, BERT, RoBERTa, Sentence-BERT, etc) to vectorize and semantically search through your data.
 
 ### weaviate-1-20-release
 
 Weaviate 1.20 released with multi-tenancy, PQ, search re-ranking, autocut, hybrid fusion algorithm ... take a look!
 
-- [Weaviate 1.20 Release](/blog/weaviate-1-20-release.md): Weaviate 1.20 released with multi-tenancy, PQ, search re-ranking, autocut, hybrid fusion algorithm ... take a look!
+- [Weaviate 1.20 Release](/blog/weaviate-1-20-release): Weaviate 1.20 released with multi-tenancy, PQ, search re-ranking, autocut, hybrid fusion algorithm ... take a look!
 
 ### weaviate-1-21-release
 
 Weaviate 1.21 released with new operators, performance improvements, multi-tenancy improvements, and more!
 
-- [Weaviate 1.21 Release](/blog/weaviate-1-21-release.md): Weaviate 1.21 released with new operators, performance improvements, multi-tenancy improvements, and more!
+- [Weaviate 1.21 Release](/blog/weaviate-1-21-release): Weaviate 1.21 released with new operators, performance improvements, multi-tenancy improvements, and more!
 
 ### weaviate-1-22-release
 
 Weaviate 1.22 released with nest object storage, async indexing, further gRPC support, and more!
 
-- [Weaviate 1.22 Release](/blog/weaviate-1-22-release.md): Weaviate 1.22 released with nest object storage, async indexing, further gRPC support, and more!
+- [Weaviate 1.22 Release](/blog/weaviate-1-22-release): Weaviate 1.22 released with nest object storage, async indexing, further gRPC support, and more!
 
 ### weaviate-1-23-release
 
 Weaviate 1.23 released with AutoPQ, flat indexing + Binary Quantization, OSS LLM support through Anyscale, and more!
 
-- [Weaviate 1.23 Release](/blog/weaviate-1-23-release.md): Weaviate 1.23 released with AutoPQ, flat indexing + Binary Quantization, OSS LLM support through Anyscale, and more!
+- [Weaviate 1.23 Release](/blog/weaviate-1-23-release): Weaviate 1.23 released with AutoPQ, flat indexing + Binary Quantization, OSS LLM support through Anyscale, and more!
 
 ### weaviate-1-24-release
 
 Weaviate 1.24 is released! Updates include named vectors, server telemetry, backend improvements, performance enhancements.
 
-- [Weaviate 1.24 Release](/blog/weaviate-1-24-release.md): Weaviate 1.24 is released! Updates include named vectors, server telemetry, backend improvements, performance enhancements.
+- [Weaviate 1.24 Release](/blog/weaviate-1-24-release): Weaviate 1.24 is released! Updates include named vectors, server telemetry, backend improvements, performance enhancements.
 
 ### weaviate-1-25-release
 
 Weaviate 1.25 is released! Updates include ...
 
-- [Weaviate 1.25 Release](/blog/weaviate-1-25-release.md): Weaviate 1.25 is released! Updates include ...
+- [Weaviate 1.25 Release](/blog/weaviate-1-25-release): Weaviate 1.25 is released! Updates include ...
 
 ### weaviate-1-26-release
 
 Weaviate 1.26 is released! Updates include ...
 
-- [Weaviate 1.26 Release](/blog/weaviate-1-26-release.md): Weaviate 1.26 is released! Updates include ...
+- [Weaviate 1.26 Release](/blog/weaviate-1-26-release): Weaviate 1.26 is released! Updates include ...
 
 ### weaviate-1-27-release
 
 1.27 adds filtered search and multi-target vector improvements, Jina V3 embedding support and more!
 
-- [Weaviate 1.27 Release](/blog/weaviate-1-27-release.md): 1.27 adds filtered search and multi-target vector improvements, Jina V3 embedding support and more!
+- [Weaviate 1.27 Release](/blog/weaviate-1-27-release): 1.27 adds filtered search and multi-target vector improvements, Jina V3 embedding support and more!
 
 ### weaviate-1-28-release
 
 Read about a preview of role-based access control, improved indexing, Weaviate Embeddings, new Voyage Multimodal model and a Japanese BM25 tokenizer!
 
-- [Weaviate 1.28 Release](/blog/weaviate-1-28-release.md): Read about a preview of role-based access control, improved indexing, Weaviate Embeddings, new Voyage Multimodal model and a Japanese BM25 tokenizer!
+- [Weaviate 1.28 Release](/blog/weaviate-1-28-release): Read about a preview of role-based access control, improved indexing, Weaviate Embeddings, new Voyage Multimodal model and a Japanese BM25 tokenizer!
 
 ### weaviate-1-29-release
 
 Read about multi-vector embedding support, improved keyword/hybrid searches, role-based access control and async replication going GA, new nvidia modules, and more.
 
-- [Weaviate 1.29 Release](/blog/weaviate-1-29-release.md): Read about multi-vector embedding support, improved keyword/hybrid searches, role-based access control and async replication going GA, new nvidia modules, and more.
+- [Weaviate 1.29 Release](/blog/weaviate-1-29-release): Read about multi-vector embedding support, improved keyword/hybrid searches, role-based access control and async replication going GA, new nvidia modules, and more.
 
 ### weaviate-1-31-release
 
 1.31 adds MUVERA for multi-vector embeddings, new BM25 operators, the ability to add new object vectors, and more!
 
-- [Weaviate 1.31 Release](/blog/weaviate-1-31-release.md): 1.31 adds MUVERA for multi-vector embeddings, new BM25 operators, the ability to add new object vectors, and more!
+- [Weaviate 1.31 Release](/blog/weaviate-1-31-release): 1.31 adds MUVERA for multi-vector embeddings, new BM25 operators, the ability to add new object vectors, and more!
 
 ### weaviate-1-32-release
 
 1.32 adds collection aliases for no-downtime collection migrations, efficient & powerful rotational quantization (RQ), GA replica movement, memory reduction with compressed HNSW connections and more!
 
-- [Weaviate 1.32 Release](/blog/weaviate-1-32-release.md): 1.32 adds collection aliases for no-downtime collection migrations, efficient & powerful rotational quantization (RQ), GA replica movement, memory reduction with compressed HNSW connections and more!
+- [Weaviate 1.32 Release](/blog/weaviate-1-32-release): 1.32 adds collection aliases for no-downtime collection migrations, efficient & powerful rotational quantization (RQ), GA replica movement, memory reduction with compressed HNSW connections and more!
 
 ### weaviate-agents
 
 We’re excited to announce Weaviate Agents, a new suite of agentic services in Weaviate designed to simplify data orchestration and accelerate generative AI development.
 
-- [Welcome to the Next Era of Data and AI: Meet Weaviate Agents](/blog/weaviate-agents.md): We’re excited to announce Weaviate Agents, a new suite of agentic services in Weaviate designed to simplify data orchestration and accelerate generative AI development.
+- [Welcome to the Next Era of Data and AI: Meet Weaviate Agents](/blog/weaviate-agents): We’re excited to announce Weaviate Agents, a new suite of agentic services in Weaviate designed to simplify data orchestration and accelerate generative AI development.
 
 ### weaviate-cloud-services
 
 Press Release: Pay-as-you-grow comes to Vector Search.
 
-- [Weaviate introduces an all-new business model for vector search](/blog/weaviate-cloud-services.md): Press Release: Pay-as-you-grow comes to Vector Search.
+- [Weaviate introduces an all-new business model for vector search](/blog/weaviate-cloud-services): Press Release: Pay-as-you-grow comes to Vector Search.
 
 ### weaviate-community-hero
 
 We’re excited to share the details of our newly launched Weaviate Hero Program! Let’s find out more ...
 
-- [Weaviate Hero](/blog/weaviate-community-hero.md): We’re excited to share the details of our newly launched Weaviate Hero Program! Let’s find out more ...
+- [Weaviate Hero](/blog/weaviate-community-hero): We’re excited to share the details of our newly launched Weaviate Hero Program! Let’s find out more ...
 
 ### weaviate-gorilla-part-1
 
 Fine-tuning LlaMA 7B to use the Weaviate GraphQL APIs
 
-- [Weaviate Gorilla Part 1 GraphQL APIs](/blog/weaviate-gorilla-part-1.md): Fine-tuning LlaMA 7B to use the Weaviate GraphQL APIs
+- [Weaviate Gorilla Part 1 GraphQL APIs](/blog/weaviate-gorilla-part-1): Fine-tuning LlaMA 7B to use the Weaviate GraphQL APIs
 
 ### weaviate-hipaa-compliant
 
 Announcing Weaviate Enterprise Cloud new HIPAA compliance on AWS, enabling secure PHI storage, search, and vector-powered AI for healthcare workloads.
 
-- [Secure AI for Healthcare: HIPAA-compliant vector search with Weaviate](/blog/weaviate-hipaa-compliant.md): Announcing Weaviate Enterprise Cloud new HIPAA compliance on AWS, enabling secure PHI storage, search, and vector-powered AI for healthcare workloads.
+- [Secure AI for Healthcare: HIPAA-compliant vector search with Weaviate](/blog/weaviate-hipaa-compliant): Announcing Weaviate Enterprise Cloud new HIPAA compliance on AWS, enabling secure PHI storage, search, and vector-powered AI for healthcare workloads.
 
 ### weaviate-non-english-languages
 
 What you need to consider when using the Weaviate vector database with non-English languages, such as Hindi, Chinese, or Japanese.
 
-- [Using Weaviate with Non-English Languages](/blog/weaviate-non-english-languages.md): What you need to consider when using the Weaviate vector database with non-English languages, such as Hindi, Chinese, or Japanese.
+- [Using Weaviate with Non-English Languages](/blog/weaviate-non-english-languages): What you need to consider when using the Weaviate vector database with non-English languages, such as Hindi, Chinese, or Japanese.
 
 ### weaviate-podcast-search
 
 Recent advances in AI are breathing new life into podcasting! The Whisper speech-to-text model is a game-changer!
 
-- [Weaviate Podcast Search](/blog/weaviate-podcast-search.md): Recent advances in AI are breathing new life into podcasting! The Whisper speech-to-text model is a game-changer!
+- [Weaviate Podcast Search](/blog/weaviate-podcast-search): Recent advances in AI are breathing new life into podcasting! The Whisper speech-to-text model is a game-changer!
 
 ### weaviate-retrieval-plugin
 
 Learn how you can connect Weaviate to ChatGPT to generate customized responses.
 
-- [The ChatGPT Retrieval Plugin - Weaviate as a Long-term Memory Store for Generative AI](/blog/weaviate-retrieval-plugin.md): Learn how you can connect Weaviate to ChatGPT to generate customized responses.
+- [The ChatGPT Retrieval Plugin - Weaviate as a Long-term Memory Store for Generative AI](/blog/weaviate-retrieval-plugin): Learn how you can connect Weaviate to ChatGPT to generate customized responses.
 
 ### what-are-agentic-workflows
 
 Agentic workflows give AI agents structure, purpose, and adaptability. This article breaks down their components, patterns, and practical applications.
 
-- [What Are Agentic Workflows? Patterns, Use Cases, Examples, and More](/blog/what-are-agentic-workflows.md): Agentic workflows give AI agents structure, purpose, and adaptability. This article breaks down their components, patterns, and practical applications.
+- [What Are Agentic Workflows? Patterns, Use Cases, Examples, and More](/blog/what-are-agentic-workflows): Agentic workflows give AI agents structure, purpose, and adaptability. This article breaks down their components, patterns, and practical applications.
 
 ### what-are-llms
 
 A gentle introduction to Large Language Models (LLMs) - how they work and what they learn.
 
-- [How GPT4.0 and other Large Language Models Work](/blog/what-are-llms.md): A gentle introduction to Large Language Models (LLMs) - how they work and what they learn.
+- [How GPT4.0 and other Large Language Models Work](/blog/what-are-llms): A gentle introduction to Large Language Models (LLMs) - how they work and what they learn.
 
 ### what-is-a-vector-database
 
 What is a Vector Database? Explaination of core concepts, such as vector embeddings, vector search, and vector indexing
 
-- [A Gentle Introduction to Vector Databases](/blog/what-is-a-vector-database.md): What is a Vector Database? Explaination of core concepts, such as vector embeddings, vector search, and vector indexing
+- [A Gentle Introduction to Vector Databases](/blog/what-is-a-vector-database): What is a Vector Database? Explaination of core concepts, such as vector embeddings, vector search, and vector indexing
 
 ### what-is-agentic-rag
 
 Learn about Agentic Retrieval Augmented Generation (RAG), including architecture, implementation, and and difference to vanilla RAG.
 
-- [What is Agentic RAG](/blog/what-is-agentic-rag.md): Learn about Agentic Retrieval Augmented Generation (RAG), including architecture, implementation, and and difference to vanilla RAG.
+- [What is Agentic RAG](/blog/what-is-agentic-rag): Learn about Agentic Retrieval Augmented Generation (RAG), including architecture, implementation, and and difference to vanilla RAG.
 
 ### what-to-expect-from-weaviate-in-2023
 
 Learn about the six pillars outlining how Weaviate will evolve in 2023.
 
-- [What to expect from Weaviate in 2023](/blog/what-to-expect-from-weaviate-in-2023.md): Learn about the six pillars outlining how Weaviate will evolve in 2023.
+- [What to expect from Weaviate in 2023](/blog/what-to-expect-from-weaviate-in-2023): Learn about the six pillars outlining how Weaviate will evolve in 2023.
 
 ### will-reed-announcement
 
 Weaviate is happy to announce our inclusion in the Will Reed's list!
 
-- [Weaviate Named to Will Reed’s Top 100](/blog/will-reed-announcement.md): Weaviate is happy to announce our inclusion in the Will Reed's list!
+- [Weaviate Named to Will Reed’s Top 100](/blog/will-reed-announcement): Weaviate is happy to announce our inclusion in the Will Reed's list!
 
 ### zero-downtime-upgrades
 
 Learn about high-availability setups with Weaviate, which can allow upgrades and other maintenance with zero downtime. 
 
-- [Achieve Zero-Downtime Upgrades with Weaviate’s Multi-Node Setup](/blog/zero-downtime-upgrades.md): Learn about high-availability setups with Weaviate, which can allow upgrades and other maintenance with zero downtime. 
+- [Achieve Zero-Downtime Upgrades with Weaviate’s Multi-Node Setup](/blog/zero-downtime-upgrades): Learn about high-availability setups with Weaviate, which can allow upgrades and other maintenance with zero downtime. 
 
 ### zooviate-zoom-and-weaviate
 
 Add AI Capabilities to your Zoom Workplace and chat with your data in Zoom Team Chat
 
-- [Integrating AI Search into your Zoom Workplace](/blog/zooviate-zoom-and-weaviate.md): Add AI Capabilities to your Zoom Workplace and chat with your data in Zoom Team Chat
+- [Integrating AI Search into your Zoom Workplace](/blog/zooviate-zoom-and-weaviate): Add AI Capabilities to your Zoom Workplace and chat with your data in Zoom Team Chat
 
 ## case-studies
 
 Read how companies are using Weaviate to build AI-powered applications.
 
-- [How Morningstar built a trustworthy, AI-driven financial data platform](/case-studies.md): Read how companies are using Weaviate to build AI-powered applications.
+- [How Morningstar built a trustworthy, AI-driven financial data platform](/case-studies): Read how companies are using Weaviate to build AI-powered applications.
 
 ### finance
 
 How a leading financial data company commercialized AI in under a year
 
-- [How a Leading Financial Data Company Commercialized AI in Under a Year](/case-studies/finance.md): How a leading financial data company commercialized AI in under a year
+- [How a Leading Financial Data Company Commercialized AI in Under a Year](/case-studies/finance): How a leading financial data company commercialized AI in under a year
 
 ### finster
 
 How Finster AI built a scalable, AI-driven financial data platform with Weaviate
 
-- [Finster Reimagines Investment Banking and Research with an AI-Native Platform](/case-studies/finster.md): How Finster AI built a scalable, AI-driven financial data platform with Weaviate
+- [Finster Reimagines Investment Banking and Research with an AI-Native Platform](/case-studies/finster): How Finster AI built a scalable, AI-driven financial data platform with Weaviate
 
 ### instabase
 
 How Instabase delivers enterprise-ready AI with Weaviate
 
-- [Turning Unstructured Data into Insights](/case-studies/instabase.md): How Instabase delivers enterprise-ready AI with Weaviate
+- [Turning Unstructured Data into Insights](/case-studies/instabase): How Instabase delivers enterprise-ready AI with Weaviate
 
 ### kapa
 
 How Kapa delivers enterprise-ready AI with Weaviate
 
-- [How Kapa takes the pain out of finding accurate technical answers](/case-studies/kapa.md): How Kapa delivers enterprise-ready AI with Weaviate
+- [How Kapa takes the pain out of finding accurate technical answers](/case-studies/kapa): How Kapa delivers enterprise-ready AI with Weaviate
 
 ### loti
 
 How Loti AI fights likeness infringement and digital impersonation with one of the world’s largest vector database deployments
 
-- [How Loti AI fights likeness infringement and digital impersonation with Weaviate](/case-studies/loti.md): How Loti AI fights likeness infringement and digital impersonation with one of the world’s largest vector database deployments
+- [How Loti AI fights likeness infringement and digital impersonation with Weaviate](/case-studies/loti): How Loti AI fights likeness infringement and digital impersonation with one of the world’s largest vector database deployments
 
 ### morningstar
 
 How Morningstar built a trustworthy, AI-driven financial data platform with Weaviate
 
-- [Building an Intelligence Engine](/case-studies/morningstar.md): How Morningstar built a trustworthy, AI-driven financial data platform with Weaviate
+- [Building an Intelligence Engine](/case-studies/morningstar): How Morningstar built a trustworthy, AI-driven financial data platform with Weaviate
 
 ### neople
 
 Learn how Neople Assistants transform customer service
 with Weaviate
 
-- [Transforming Customer Service with Agentic AI](/case-studies/neople.md): Learn how Neople Assistants transform customer service
+- [Transforming Customer Service with Agentic AI](/case-studies/neople): Learn how Neople Assistants transform customer service
 with Weaviate
 
 ### stack-ai
 
 How Stack AI delivers enterprise-ready AI with Weaviate
 
-- [How Stack AI Delivers Lighting-Fast Agentic AI for Enterprises](/case-studies/stack-ai.md): How Stack AI delivers enterprise-ready AI with Weaviate
+- [How Stack AI Delivers Lighting-Fast Agentic AI for Enterprises](/case-studies/stack-ai): How Stack AI delivers enterprise-ready AI with Weaviate
 
 ## community
 
-- [Community starts with YOU!](/community.md)
+- [Community starts with YOU!](/community)
 
 ### demos
 
 In-house Weaviate built projects leveraging Weaviate, AI-Native vector database.
 
-- [Weaviate Demos](/community/demos.md): In-house Weaviate built projects leveraging Weaviate, AI-Native vector database.
+- [Weaviate Demos](/community/demos): In-house Weaviate built projects leveraging Weaviate, AI-Native vector database.
 
 ### events
 
 -Join us at conferences, meetups, webinars or workshops
 
-- [Online Workshops & Events](/community/events.md): -Join us at conferences, meetups, webinars or workshops
+- [Online Workshops & Events](/community/events): -Join us at conferences, meetups, webinars or workshops
 
 ### share-the-weaviate-love
 
-- [Weaviate](/community/share-the-weaviate-love.md)
+- [Weaviate](/community/share-the-weaviate-love)
 
 ## company
 
 
 ### about-us
 
-- [We create open source,AI-first infrastructure.](/company/about-us.md)
+- [We create open source,AI-first infrastructure.](/company/about-us)
 
 ### careers
 
-- [We are hiring](/company/careers.md)
+- [We are hiring](/company/careers)
 
 ### investors
 
-- [Investors](/company/investors.md)
+- [Investors](/company/investors)
 
 ### playbook
 
 Learn how we run Weaviate as a Company
 
-- [Weaviate Playbook](/company/playbook.md): Learn how we run Weaviate as a Company
-- [On being a remote-first company](/company/playbook/being-a-remote-first-company.md): On being a remote-first company
-- [Building an open-source brand](/company/playbook/building-an-open-source-brand.md): Building an open-source brand
-- [Cell Theory - Planning for organic growth](/company/playbook/cell-theory-planning-for-organic-growth.md): The last six months we’ve felt a quantum shift at Weaviate...
-- [Creating a playful new identity for Weaviate](/company/playbook/creating-a-playful-new-identity-for-weaviate.md): In January 2023, SeMI Technologies became Weaviate as we aligned...
-- [Creating a remote-first Solution Engineering team](/company/playbook/creating-a-remote-first-solution-engineering-team.md): Creating a remote-first Solution Engineering team
-- [Creating an inclusive culture in remote work settings](/company/playbook/creating-an-inclusive-culture-in-remote-work-settings.md): Creating an inclusive culture in remote work settings
-- [Creating great talks](/company/playbook/creating-great-talks.md): Creating great talks
-- [The entire Company will soon gather for the first time… in Italy!](/company/playbook/first-company-workation.md): The entire Company will soon gather for the first time… in Italy!
-- [From Sunday night blues to Monday morning cheers - The magic of company culture](/company/playbook/from-sunday-nights-blues-to-monday-morning-cheers-the magic-of-company-culture.md): How do you explain culture, how do you put a feeling into words...
-- [Good design is good business](/company/playbook/good-design-is-good-business.md): Good design is good business
-- [Hiring at Weaviate - finding our perfect matches!](/company/playbook/hiring-at-weaviate-finding-our-perfect-matches.md): Over the last few months, we have been recruiting heavily...
-- [How a values-driven All Hands helps sustain our company culture](/company/playbook/how-a-values-driven-all-hands-helps-sustain-our-company-culture.md): When I arrived at Weaviate, our All Hands sessions were...
-- [I recently onboarded myself - Introducing People Operations](/company/playbook/i-recently-onboarded-myself-introducing-people-operations.md): A new approach to People Operations...
-- [Our mission at Weaviate](/company/playbook/our-mission-at-weaviate.md): Our mission at Weaviate
-- [Weaviate Playbook](/company/playbook/page/2.md): Learn how we run Weaviate as a Company - Page 2
-- [Weaviate Playbook](/company/playbook/page/3.md): Learn how we run Weaviate as a Company - Page 3
-- [Weaviate Playbook](/company/playbook/page/4.md): Learn how we run Weaviate as a Company - Page 4
-- [Reflections and insights on my internship at Weaviate](/company/playbook/reflections-and-insights-on-my-internship-at-weaviate.md): Hey! I am Ajit, and I am currently interning at Weaviate's Developer Growth team...
-- [Taking time off at Weaviate](/company/playbook/taking-time-off-at-weaviate.md): Taking time off at Weaviate
-- [The case for Product Engineering](/company/playbook/the-case-of-product-engineering.md): The case for Product Engineering
-- [Weaviate celebrates a fourth birthday!](/company/playbook/weaviate-celebrates-a-fourth-birthday.md): If Weaviate was a typical human child, this is about the stage...
-- [Why the business model of open-source software works](/company/playbook/why-the-business-model-of-open-source-software-works.md): Why the business model of open-source software works
+- [Weaviate Playbook](/company/playbook): Learn how we run Weaviate as a Company
+- [On being a remote-first company](/company/playbook/being-a-remote-first-company): On being a remote-first company
+- [Building an open-source brand](/company/playbook/building-an-open-source-brand): Building an open-source brand
+- [Cell Theory - Planning for organic growth](/company/playbook/cell-theory-planning-for-organic-growth): The last six months we’ve felt a quantum shift at Weaviate...
+- [Creating a playful new identity for Weaviate](/company/playbook/creating-a-playful-new-identity-for-weaviate): In January 2023, SeMI Technologies became Weaviate as we aligned...
+- [Creating a remote-first Solution Engineering team](/company/playbook/creating-a-remote-first-solution-engineering-team): Creating a remote-first Solution Engineering team
+- [Creating an inclusive culture in remote work settings](/company/playbook/creating-an-inclusive-culture-in-remote-work-settings): Creating an inclusive culture in remote work settings
+- [Creating great talks](/company/playbook/creating-great-talks): Creating great talks
+- [The entire Company will soon gather for the first time… in Italy!](/company/playbook/first-company-workation): The entire Company will soon gather for the first time… in Italy!
+- [From Sunday night blues to Monday morning cheers - The magic of company culture](/company/playbook/from-sunday-nights-blues-to-monday-morning-cheers-the magic-of-company-culture): How do you explain culture, how do you put a feeling into words...
+- [Good design is good business](/company/playbook/good-design-is-good-business): Good design is good business
+- [Hiring at Weaviate - finding our perfect matches!](/company/playbook/hiring-at-weaviate-finding-our-perfect-matches): Over the last few months, we have been recruiting heavily...
+- [How a values-driven All Hands helps sustain our company culture](/company/playbook/how-a-values-driven-all-hands-helps-sustain-our-company-culture): When I arrived at Weaviate, our All Hands sessions were...
+- [I recently onboarded myself - Introducing People Operations](/company/playbook/i-recently-onboarded-myself-introducing-people-operations): A new approach to People Operations...
+- [Our mission at Weaviate](/company/playbook/our-mission-at-weaviate): Our mission at Weaviate
+- [Weaviate Playbook](/company/playbook/page/2): Learn how we run Weaviate as a Company - Page 2
+- [Weaviate Playbook](/company/playbook/page/3): Learn how we run Weaviate as a Company - Page 3
+- [Weaviate Playbook](/company/playbook/page/4): Learn how we run Weaviate as a Company - Page 4
+- [Reflections and insights on my internship at Weaviate](/company/playbook/reflections-and-insights-on-my-internship-at-weaviate): Hey! I am Ajit, and I am currently interning at Weaviate's Developer Growth team...
+- [Taking time off at Weaviate](/company/playbook/taking-time-off-at-weaviate): Taking time off at Weaviate
+- [The case for Product Engineering](/company/playbook/the-case-of-product-engineering): The case for Product Engineering
+- [Weaviate celebrates a fourth birthday!](/company/playbook/weaviate-celebrates-a-fourth-birthday): If Weaviate was a typical human child, this is about the stage...
+- [Why the business model of open-source software works](/company/playbook/why-the-business-model-of-open-source-software-works): Why the business model of open-source software works
 
 ### remote
 
 Together, we create a space for flexibility and growth, innovation, making work more fun and fulfilling
 
-- [Remote work at Weaviate](/company/remote.md): Together, we create a space for flexibility and growth, innovation, making work more fun and fulfilling
+- [Remote work at Weaviate](/company/remote): Together, we create a space for flexibility and growth, innovation, making work more fun and fulfilling
 
 ## contact
 
 We are here to help you with any questions you might have.
 
-- [Contact](/contact.md): We are here to help you with any questions you might have.
+- [Contact](/contact): We are here to help you with any questions you might have.
 
 ## cookie-policy
 
 COOKIE POLICY OF WEAVIATE B.V.
 
-- [Weaviate Cookie Policy](/cookie-policy.md): COOKIE POLICY OF WEAVIATE B.V.
+- [Weaviate Cookie Policy](/cookie-policy): COOKIE POLICY OF WEAVIATE B.V.
 
 ## cost-performance-optimization
 
 Support your AI initiatives with AI infrastructure solutions that improve efficiency and scalability.
 
-- [AI infrastructure tailored to your use case](/cost-performance-optimization.md): Support your AI initiatives with AI infrastructure solutions that improve efficiency and scalability.
+- [AI infrastructure tailored to your use case](/cost-performance-optimization): Support your AI initiatives with AI infrastructure solutions that improve efficiency and scalability.
 
 ## demo
 
 All the power of our open-source vector database, without the burden of self-hosting.
 
-- [Our open-source vector database gives AI builders the tools needed to move fast—without compromising data privacy, performance, or costs.](/demo.md): All the power of our open-source vector database, without the burden of self-hosting.
+- [Our open-source vector database gives AI builders the tools needed to move fast—without compromising data privacy, performance, or costs.](/demo): All the power of our open-source vector database, without the burden of self-hosting.
 
 ## deployment
 
 Overview of Weaviate Services
 
-- [Overview of Weaviate Services](/deployment.md): Overview of Weaviate Services
+- [Overview of Weaviate Services](/deployment): Overview of Weaviate Services
 
 ### byoc
 
 Seamlessly integrate our BYOC vector database with AWS, GCP, and Azure to ensure optimized performance and security.
 
-- [Bring Your Own Cloud (BYOC)](/deployment/byoc.md): Seamlessly integrate our BYOC vector database with AWS, GCP, and Azure to ensure optimized performance and security.
+- [Bring Your Own Cloud (BYOC)](/deployment/byoc): Seamlessly integrate our BYOC vector database with AWS, GCP, and Azure to ensure optimized performance and security.
 
 ### enablement
 
 Get vector database tutorials, training courses, resources, and support for builders of all levels. We’re with you on your AI journey
 
-- [Vector Database Training & Enablement](/deployment/enablement.md): Get vector database tutorials, training courses, resources, and support for builders of all levels. We’re with you on your AI journey
+- [Vector Database Training & Enablement](/deployment/enablement): Get vector database tutorials, training courses, resources, and support for builders of all levels. We’re with you on your AI journey
 
 ### enterprise-cloud
 
 Fully managed vector database on dedicated resources, ensuring consistent, high-speed results without the complexities of self-management.
 
-- [Professionally-managed Cloud Vector Database.](/deployment/enterprise-cloud.md): Fully managed vector database on dedicated resources, ensuring consistent, high-speed results without the complexities of self-management.
+- [Professionally-managed Cloud Vector Database.](/deployment/enterprise-cloud): Fully managed vector database on dedicated resources, ensuring consistent, high-speed results without the complexities of self-management.
 
 ### serverless
 
 All the power of Weaviate, as a fully-managed vector database as a service.
 
-- [Fully-managed Serverless Vector Database.](/deployment/serverless.md): All the power of Weaviate, as a fully-managed vector database as a service.
+- [Fully-managed Serverless Vector Database.](/deployment/serverless): All the power of Weaviate, as a fully-managed vector database as a service.
 
 ## dpa
 
 DATA PROCESSING AGREEMENT
 
-- [Weaviate Data Processing Agreement](/dpa.md): DATA PROCESSING AGREEMENT
+- [Weaviate Data Processing Agreement](/dpa): DATA PROCESSING AGREEMENT
 
 ## ebooks
 
@@ -1212,23 +1187,23 @@ DATA PROCESSING AGREEMENT
 
 A guide on different techniques to improve the performance of your Retrieval-Augmented Generation applications.
 
-- [Advanced RAG Techniques](/ebooks/advanced-rag-techniques.md): A guide on different techniques to improve the performance of your Retrieval-Augmented Generation applications.
+- [Advanced RAG Techniques](/ebooks/advanced-rag-techniques): A guide on different techniques to improve the performance of your Retrieval-Augmented Generation applications.
 
 ### agentic-architectures
 
 A comprehensive guide to mastering fundamentals, patterns, and examples of agentic architectures.
 
-- [Agentic Architectures for Retrieval-intensive Applications](/ebooks/agentic-architectures.md): A comprehensive guide to mastering fundamentals, patterns, and examples of agentic architectures.
+- [Agentic Architectures for Retrieval-intensive Applications](/ebooks/agentic-architectures): A comprehensive guide to mastering fundamentals, patterns, and examples of agentic architectures.
 
 ### choosing-the-right-database-for-AI
 
 Practical tips for indexing, hybrid search, and seamless integration with AI models.
 
-- [Choosing the Right Database For AI](/ebooks/choosing-the-right-database-for-AI.md): Practical tips for indexing, hybrid search, and seamless integration with AI models.
+- [Choosing the Right Database For AI](/ebooks/choosing-the-right-database-for-AI): Practical tips for indexing, hybrid search, and seamless integration with AI models.
 
 ## explore
 
-- [More than just a vector database—a launchpad for AI innovation](/explore.md)
+- [More than just a vector database—a launchpad for AI innovation](/explore)
 
 ## google-summer
 
@@ -1237,458 +1212,458 @@ Practical tips for indexing, hybrid search, and seamless integration with AI mod
 
 Are you looking for a challenge in the summer? Apply for Google Summer of Code, learn about Open Source development and contribute to Weaviate!
 
-- [Contribute to Weaviate this summer during Google Summer of Code](/google-summer/gsoc-22.md): Are you looking for a challenge in the summer? Apply for Google Summer of Code, learn about Open Source development and contribute to Weaviate!
+- [Contribute to Weaviate this summer during Google Summer of Code](/google-summer/gsoc-22): Are you looking for a challenge in the summer? Apply for Google Summer of Code, learn about Open Source development and contribute to Weaviate!
 
 ### gsod-22
 
 This is a technical writing proposal for participating in Google Season of Docs 2022. Season of Docs gives technical writers the opportunity to gain experience in open source by contributing to documentation.
 
-- [Google Season of Docs 2022 - Proposal](/google-summer/gsod-22.md): This is a technical writing proposal for participating in Google Season of Docs 2022. Season of Docs gives technical writers the opportunity to gain experience in open source by contributing to documentation.
+- [Google Season of Docs 2022 - Proposal](/google-summer/gsod-22): This is a technical writing proposal for participating in Google Season of Docs 2022. Season of Docs gives technical writers the opportunity to gain experience in open source by contributing to documentation.
 
 ### gsod-23
 
 Google Season of Docs 2023 - Proposal
 
-- [Google Season of Docs 2023](/google-summer/gsod-23.md): Google Season of Docs 2023 - Proposal
+- [Google Season of Docs 2023](/google-summer/gsod-23): Google Season of Docs 2023 - Proposal
 
 ### gsod-summary-22
 
 Project Abstract
 
-- [Google Summer of Docs – Project 2022](/google-summer/gsod-summary-22.md): Project Abstract
+- [Google Summer of Docs – Project 2022](/google-summer/gsod-summary-22): Project Abstract
 
 ## hybrid-search
 
 Take search to new
 AI-powered heights
 
-- [Take search to new AI-powered heights](/hybrid-search.md): Take search to new
+- [Take search to new AI-powered heights](/hybrid-search): Take search to new
 AI-powered heights
 
 ## ja
 
 Weaviate ベクトルデータベース
 
-- [最も簡単にAIアプリケーションを構築し拡張する](/ja.md): Weaviate ベクトルデータベース
+- [最も簡単にAIアプリケーションを構築し拡張する](/ja): Weaviate ベクトルデータベース
 
 ## javascript
 
 Build AI-Native Applications with JavaScript
 
-- [AI-Native JavaScript](/javascript.md): Build AI-Native Applications with JavaScript
+- [AI-Native JavaScript](/javascript): Build AI-Native Applications with JavaScript
 
 ## learn
 
 Training courses, resources, and support options for builders of all levels. We’re with you on your AI journey.
 
-- [Weaviate Learning Center](/learn.md): Training courses, resources, and support options for builders of all levels. We’re with you on your AI journey.
+- [Weaviate Learning Center](/learn): Training courses, resources, and support options for builders of all levels. We’re with you on your AI journey.
 
 ### cards
 
-- [Weaviate](/learn/cards/embedding-model.md)
-- [Weaviate](/learn/cards/multimodal.md)
+- [Weaviate](/learn/cards/embedding-model)
+- [Weaviate](/learn/cards/multimodal)
 
 ### knowledgecards
 
 Unlock the power of vector search. Our guides will help you conquer vector embeddings and build better AI applications.
 
-- [Weaviate Knowledge Cards](/learn/knowledgecards.md): Unlock the power of vector search. Our guides will help you conquer vector embeddings and build better AI applications.
-- [Weaviate Knowledge Cards](/learn/knowledgecards/alpha-parameter.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/ann-approximate-nearest-neighbor.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/anytoany-search.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/autocut.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/binary-embeddings.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/bm25bm25f.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/chain-of-thoughts-cot.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/chunking.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/context-compression.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/cross-modal-reasoning.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/data-cleansing.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/data-extraction-and-parsing.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/data-pre-processing.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/data-transformation.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/dense-embeddings.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/dense-vectors.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/distance-thresholding.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/documentbased-chunking.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/embedding-model.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/embedding-model-fine-tuning.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/embeddings-model.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/finetuning.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/fixed-size-chunking.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/fusion-algorithm.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/generative-ai.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/graph-database.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/graphbased-index.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/hierarchical-graph-structure.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/hnsw.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/hybrid-search.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/inverted-indexes.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/keyword-search.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/Knowledgeheader.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/large-language-model-llm.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/layered-navigation.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/llmbased-chunking.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/metadata-filtering.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/multi-tenancy.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/multimodal.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/multimodal-contrastive-finetuning.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/multimodal-embeddings-models.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/multimodal-rag.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/multivector-embeddings.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/pq.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/prompt-engineering.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/quantized-embeddings.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/query-expansion.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/query-rewriting.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/query-routing.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/reasoning-and-acting-react.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/recursive-chunking.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/relational-database.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/reranking.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/retrieval-augmented-generation-rag.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/semantic-chunking.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/semanticvector-search.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/sharding.md)
-- [Weaviate](/learn/knowledgecards/shareOptions.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/sparse-embeddings.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/sparse-vectors.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/transformer-model.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/tree-of-thoughts-tot.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/unstructured-data-objects.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/variable-dimensions.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/vector.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/vector-database.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/vector-embedding.md)
-- [Weaviate Knowledge Cards](/learn/knowledgecards/vectorbased-index.md)
+- [Weaviate Knowledge Cards](/learn/knowledgecards): Unlock the power of vector search. Our guides will help you conquer vector embeddings and build better AI applications.
+- [Weaviate Knowledge Cards](/learn/knowledgecards/alpha-parameter)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/ann-approximate-nearest-neighbor)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/anytoany-search)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/autocut)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/binary-embeddings)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/bm25bm25f)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/chain-of-thoughts-cot)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/chunking)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/context-compression)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/cross-modal-reasoning)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/data-cleansing)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/data-extraction-and-parsing)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/data-pre-processing)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/data-transformation)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/dense-embeddings)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/dense-vectors)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/distance-thresholding)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/documentbased-chunking)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/embedding-model)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/embedding-model-fine-tuning)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/embeddings-model)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/finetuning)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/fixed-size-chunking)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/fusion-algorithm)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/generative-ai)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/graph-database)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/graphbased-index)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/hierarchical-graph-structure)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/hnsw)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/hybrid-search)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/inverted-indexes)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/keyword-search)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/Knowledgeheader)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/large-language-model-llm)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/layered-navigation)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/llmbased-chunking)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/metadata-filtering)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/multi-tenancy)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/multimodal)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/multimodal-contrastive-finetuning)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/multimodal-embeddings-models)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/multimodal-rag)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/multivector-embeddings)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/pq)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/prompt-engineering)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/quantized-embeddings)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/query-expansion)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/query-rewriting)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/query-routing)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/reasoning-and-acting-react)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/recursive-chunking)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/relational-database)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/reranking)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/retrieval-augmented-generation-rag)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/semantic-chunking)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/semanticvector-search)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/sharding)
+- [Weaviate](/learn/knowledgecards/shareOptions)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/sparse-embeddings)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/sparse-vectors)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/transformer-model)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/tree-of-thoughts-tot)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/unstructured-data-objects)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/variable-dimensions)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/vector)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/vector-database)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/vector-embedding)
+- [Weaviate Knowledge Cards](/learn/knowledgecards/vectorbased-index)
 
 ### what-is-an-ai-database
 
 Learn about AI databases, including AI database design, examples, and more.
 
-- [AI Databases Explained](/learn/what-is-an-ai-database.md): Learn about AI databases, including AI database design, examples, and more.
+- [AI Databases Explained](/learn/what-is-an-ai-database): Learn about AI databases, including AI database design, examples, and more.
 
 ## papers
 
 Explore research papers and documentation supporting Weaviate.
 
-- [Weaviate Paper Reviews](/papers.md): Explore research papers and documentation supporting Weaviate.
+- [Weaviate Paper Reviews](/papers): Explore research papers and documentation supporting Weaviate.
 
 ### axn
 
 The quality of a reranked retreiver and the speed of a bi-encoder retreiver!
 
-- [Adaptive Retrieval and Scalable Indexing for k-NN Search with Cross-Encoders](/papers/axn.md): The quality of a reranked retreiver and the speed of a bi-encoder retreiver!
+- [Adaptive Retrieval and Scalable Indexing for k-NN Search with Cross-Encoders](/papers/axn): The quality of a reranked retreiver and the speed of a bi-encoder retreiver!
 
 ### colbertpooling
 
 Clustering tokens to make ColBERT more efficient and usable with Vector DBs!
 
-- [Token Pooling to Scale Multi-Vector Retrieval Systems](/papers/colbertpooling.md): Clustering tokens to make ColBERT more efficient and usable with Vector DBs!
+- [Token Pooling to Scale Multi-Vector Retrieval Systems](/papers/colbertpooling): Clustering tokens to make ColBERT more efficient and usable with Vector DBs!
 
 ### distillation
 
 Distilling Large Language models in Small Language Models!
 
-- [Language Model Distillation](/papers/distillation.md): Distilling Large Language models in Small Language Models!
+- [Language Model Distillation](/papers/distillation): Distilling Large Language models in Small Language Models!
 
 ### distillation2
 
 Experiments comparing Distillation to Finetuning
 
-- [Distillation Experiments](/papers/distillation2.md): Experiments comparing Distillation to Finetuning
+- [Distillation Experiments](/papers/distillation2): Experiments comparing Distillation to Finetuning
 
 ### gliner
 
 Using Metadata Filters to Improve Recall in RAG!
 
-- [GLiNER: Generalist Model for Named Entity Recognition using Bidirectional Transformer](/papers/gliner.md): Using Metadata Filters to Improve Recall in RAG!
+- [GLiNER: Generalist Model for Named Entity Recognition using Bidirectional Transformer](/papers/gliner): Using Metadata Filters to Improve Recall in RAG!
 
 ### goldfish
 
 Training LLMs without making them memorize!
 
-- [Be like a Goldfish, Don't Memorize! Mitigating Memorization in Generative LLMs](/papers/goldfish.md): Training LLMs without making them memorize!
+- [Be like a Goldfish, Don't Memorize! Mitigating Memorization in Generative LLMs](/papers/goldfish): Training LLMs without making them memorize!
 
 ### manyshoticl
 
 All the details around teaching LLMs by giving examples!
 
-- [Many-Shot In-Context Learning](/papers/manyshoticl.md): All the details around teaching LLMs by giving examples!
+- [Many-Shot In-Context Learning](/papers/manyshoticl): All the details around teaching LLMs by giving examples!
 
 ### moa
 
 Combining small LLMs to outperform larger monolithic LLMs!
 
-- [Mixture-of-Agents Enhances Large Language Model Capabilities](/papers/moa.md): Combining small LLMs to outperform larger monolithic LLMs!
+- [Mixture-of-Agents Enhances Large Language Model Capabilities](/papers/moa): Combining small LLMs to outperform larger monolithic LLMs!
 
 ### page
 
-- [Weaviate Paper Reviews](/papers/page/2.md): Explore research papers and documentation supporting Weaviate. - Page 2
-- [Weaviate Paper Reviews](/papers/page/3.md): Explore research papers and documentation supporting Weaviate. - Page 3
-- [Weaviate Paper Reviews](/papers/page/4.md): Explore research papers and documentation supporting Weaviate. - Page 4
-- [Weaviate Paper Reviews](/papers/page/5.md): Explore research papers and documentation supporting Weaviate. - Page 5
+- [Weaviate Paper Reviews](/papers/page/2): Explore research papers and documentation supporting Weaviate. - Page 2
+- [Weaviate Paper Reviews](/papers/page/3): Explore research papers and documentation supporting Weaviate. - Page 3
+- [Weaviate Paper Reviews](/papers/page/4): Explore research papers and documentation supporting Weaviate. - Page 4
+- [Weaviate Paper Reviews](/papers/page/5): Explore research papers and documentation supporting Weaviate. - Page 5
 
 ### paper-1
 
 Comparing LLM performance using retreival vs longer context lengths.
 
-- [Retrieval meets Long Context Large Language Models](/papers/paper-1.md): Comparing LLM performance using retreival vs longer context lengths.
+- [Retrieval meets Long Context Large Language Models](/papers/paper-1): Comparing LLM performance using retreival vs longer context lengths.
 
 ### paper-2
 
 Why do large language models attend better over the beginning and end of thier context?
 
-- [Lost in the Middle: How Language Models Use Long Contexts](/papers/paper-2.md): Why do large language models attend better over the beginning and end of thier context?
+- [Lost in the Middle: How Language Models Use Long Contexts](/papers/paper-2): Why do large language models attend better over the beginning and end of thier context?
 
 ### paper-3
 
 Identify a key shortcoming of LLMs in terms of their causal inference skills.
 
-- [Can Large Language Models Infer Causation from Correlation?](/papers/paper-3.md): Identify a key shortcoming of LLMs in terms of their causal inference skills.
+- [Can Large Language Models Infer Causation from Correlation?](/papers/paper-3): Identify a key shortcoming of LLMs in terms of their causal inference skills.
 
 ### paper-4
 
 Can we use synthetic data to train future generations of LLM's?
 
-- [The Curse of Recursion: Training on Generated Data Makes Models Forget](/papers/paper-4.md): Can we use synthetic data to train future generations of LLM's?
+- [The Curse of Recursion: Training on Generated Data Makes Models Forget](/papers/paper-4): Can we use synthetic data to train future generations of LLM's?
 
 ### paper10
 
 A new way to chunk your data using LLM's.
 
-- [Dense X Retrieval: What Retrieval Granularity Should We Use?](/papers/paper10.md): A new way to chunk your data using LLM's.
+- [Dense X Retrieval: What Retrieval Granularity Should We Use?](/papers/paper10): A new way to chunk your data using LLM's.
 
 ### paper11
 
 Compares finetuning vs RAG for improvement on a specific domain.
 
-- [Fine-Tuning or Retrieval? Comparing Knowledge Injection in LLMs](/papers/paper11.md): Compares finetuning vs RAG for improvement on a specific domain.
+- [Fine-Tuning or Retrieval? Comparing Knowledge Injection in LLMs](/papers/paper11): Compares finetuning vs RAG for improvement on a specific domain.
 
 ### paper13
 
 text2image diffusion models learn and use a secret language.
 
-- [Discovering the Hidden Vocabulary of DALLE-2](/papers/paper13.md): text2image diffusion models learn and use a secret language.
+- [Discovering the Hidden Vocabulary of DALLE-2](/papers/paper13): text2image diffusion models learn and use a secret language.
 
 ### paper15
 
 Using persuasion ot jailbreak LLM's.
 
-- [How Johnny Can Persuade LLMs to Jailbreak Them: Rethinking Persuasion to Challenge AI Safety by Humanizing LLMs](/papers/paper15.md): Using persuasion ot jailbreak LLM's.
+- [How Johnny Can Persuade LLMs to Jailbreak Them: Rethinking Persuasion to Challenge AI Safety by Humanizing LLMs](/papers/paper15): Using persuasion ot jailbreak LLM's.
 
 ### paper16
 
 32k context length retreival models with sub-quadratic attention mechanism.
 
-- [Long-Context Retrieval Models with Monarch Mixer](/papers/paper16.md): 32k context length retreival models with sub-quadratic attention mechanism.
+- [Long-Context Retrieval Models with Monarch Mixer](/papers/paper16): 32k context length retreival models with sub-quadratic attention mechanism.
 
 ### paper18
 
 Provides a taxonomy of different types of hallucinations.
 
-- [Fine-grained Hallucination Detection and Editing for Language Models](/papers/paper18.md): Provides a taxonomy of different types of hallucinations.
+- [Fine-grained Hallucination Detection and Editing for Language Models](/papers/paper18): Provides a taxonomy of different types of hallucinations.
 
 ### paper21
 
 Overview of OpenAI's New Truncatable - Matryoshka Embeddings
 
-- [Matryoshka Representation Learning](/papers/paper21.md): Overview of OpenAI's New Truncatable - Matryoshka Embeddings
+- [Matryoshka Representation Learning](/papers/paper21): Overview of OpenAI's New Truncatable - Matryoshka Embeddings
 
 ### paper22
 
 Overview of the different RAG techniques.
 
-- [Retrieval-Augmented Generation for Large Language Models: A Survey](/papers/paper22.md): Overview of the different RAG techniques.
+- [Retrieval-Augmented Generation for Large Language Models: A Survey](/papers/paper22): Overview of the different RAG techniques.
 
 ### paper24
 
 Zero-shot detection of LLM generated content.
 
-- [Spotting LLMs With Binoculars: Zero-Shot Detection Of Machine-Generated Text](/papers/paper24.md): Zero-shot detection of LLM generated content.
+- [Spotting LLMs With Binoculars: Zero-Shot Detection Of Machine-Generated Text](/papers/paper24): Zero-shot detection of LLM generated content.
 
 ### paper5
 
 Differentiating between human-written language and AI-generated text.
 
-- [A Watermark for Large Language Model](/papers/paper5.md): Differentiating between human-written language and AI-generated text.
+- [A Watermark for Large Language Model](/papers/paper5): Differentiating between human-written language and AI-generated text.
 
 ### paper7
 
 Making LLMs forget by finetuning.
 
-- [Who’s Harry Potter? Approximate Unlearning in LLMs](/papers/paper7.md): Making LLMs forget by finetuning.
+- [Who’s Harry Potter? Approximate Unlearning in LLMs](/papers/paper7): Making LLMs forget by finetuning.
 
 ### paper8
 
 Using prompt engineering to solve the 'lost in the middle' problem.
 
-- [Long context prompting for Claude 2.1](/papers/paper8.md): Using prompt engineering to solve the 'lost in the middle' problem.
+- [Long context prompting for Claude 2.1](/papers/paper8): Using prompt engineering to solve the 'lost in the middle' problem.
 
 ### paper9
 
 Get an LLM to check its own responses for hallucination.
 
-- [SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models](/papers/paper9.md): Get an LLM to check its own responses for hallucination.
+- [SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models](/papers/paper9): Get an LLM to check its own responses for hallucination.
 
 ### prover
 
 Optimizing to improve legibility of an LLMs output!
 
-- [Prover-verifier Games Improve Legibility of LLM Outputs](/papers/prover.md): Optimizing to improve legibility of an LLMs output!
+- [Prover-verifier Games Improve Legibility of LLM Outputs](/papers/prover): Optimizing to improve legibility of an LLMs output!
 
 ### radit
 
 Fine-Tuning for Better Retrieval-Augmented Generation
 
-- [Retrieval-Augmented Dual Instruction Tuning (RA-DIT)](/papers/radit.md): Fine-Tuning for Better Retrieval-Augmented Generation
+- [Retrieval-Augmented Dual Instruction Tuning (RA-DIT)](/papers/radit): Fine-Tuning for Better Retrieval-Augmented Generation
 
 ### routellm
 
 Route between LLMs to optimize cost and quality!
 
-- [RouteLLM: Learning to Route LLMs with Preference Data](/papers/routellm.md): Route between LLMs to optimize cost and quality!
+- [RouteLLM: Learning to Route LLMs with Preference Data](/papers/routellm): Route between LLMs to optimize cost and quality!
 
 ### vit
 
 Training a LLM to understand images!
 
-- [Visual Instruction Tuning](/papers/vit.md): Training a LLM to understand images!
+- [Visual Instruction Tuning](/papers/vit): Training a LLM to understand images!
 
 ## partners
 
 Learn more about our partners and how we work together to provide the best solutions for our customers.
 
-- [Partners](/partners.md): Learn more about our partners and how we work together to provide the best solutions for our customers.
+- [Partners](/partners): Learn more about our partners and how we work together to provide the best solutions for our customers.
 
 ### aws
 
 Explore our AWS partner page to learn more about our partnership and how we can help you with your cloud journey.
 
-- [Partners](/partners/aws.md): Explore our AWS partner page to learn more about our partnership and how we can help you with your cloud journey.
-- [Weaviate](/partners/aws/awsreinvent.md)
-- [We’re here to help!](/partners/aws/contactus.md): Contact us for all information about our AWS Partnership
+- [Partners](/partners/aws): Explore our AWS partner page to learn more about our partnership and how we can help you with your cloud journey.
+- [Weaviate](/partners/aws/awsreinvent)
+- [We’re here to help!](/partners/aws/contactus): Contact us for all information about our AWS Partnership
 
 ### databricks
 
 Build sophisticated AI applications leveraging Databricks’ Foundation Model APIs directly from Weaviate.
 
-- [Partners](/partners/databricks.md): Build sophisticated AI applications leveraging Databricks’ Foundation Model APIs directly from Weaviate.
+- [Partners](/partners/databricks): Build sophisticated AI applications leveraging Databricks’ Foundation Model APIs directly from Weaviate.
 
 ### g2
 
 Help us spread the word, get a gift card!
 
-- [Help us spread the word, get a gift card!](/partners/g2.md): Help us spread the word, get a gift card!
+- [Help us spread the word, get a gift card!](/partners/g2): Help us spread the word, get a gift card!
 
 ### gcp
 
 Explore our Google Cloud partner page to learn more about our partnership and how we can help you with your cloud journey.
 
-- [Partners](/partners/gcp.md): Explore our Google Cloud partner page to learn more about our partnership and how we can help you with your cloud journey.
-- [Weaviate at Google Cloud Next](/partners/gcp/gcn.md): Weaviate -  Google Cloud Next 2024
+- [Partners](/partners/gcp): Explore our Google Cloud partner page to learn more about our partnership and how we can help you with your cloud journey.
+- [Weaviate at Google Cloud Next](/partners/gcp/gcn): Weaviate -  Google Cloud Next 2024
 
 ### snowflake
 
 Explore our Snowflake partner page to learn more about our partnership and how we can help you with your cloud journey.
 
-- [Partners](/partners/snowflake.md): Explore our Snowflake partner page to learn more about our partnership and how we can help you with your cloud journey.
+- [Partners](/partners/snowflake): Explore our Snowflake partner page to learn more about our partnership and how we can help you with your cloud journey.
 
 ## platform
 
 Simplify the development of AI applications and enable developers of all levels to build, iterate, and scale AI capabilities faster.
 
-- [The AI-Native, Open Source Vector Database](/platform.md): Simplify the development of AI applications and enable developers of all levels to build, iterate, and scale AI capabilities faster.
+- [The AI-Native, Open Source Vector Database](/platform): Simplify the development of AI applications and enable developers of all levels to build, iterate, and scale AI capabilities faster.
 
 ## podcast
 
 Welcome to Weaviate Podcasts
 
-- [Weaviate Podcast](/podcast.md): Welcome to Weaviate Podcasts
+- [Weaviate Podcast](/podcast): Welcome to Weaviate Podcasts
 
 ## pricing
 
 Compare pricing options for our different levels of vector database services and solutions.
 
-- [All the power of the AI-native vector database, without the overhead](/pricing.md): Compare pricing options for our different levels of vector database services and solutions.
+- [All the power of the AI-native vector database, without the overhead](/pricing): Compare pricing options for our different levels of vector database services and solutions.
 
 ### enterprise
 
 Enterprise Pricing models
 
-- [All the power of the AI-native vector database, without the overhead](/pricing/enterprise.md): Enterprise Pricing models
+- [All the power of the AI-native vector database, without the overhead](/pricing/enterprise): Enterprise Pricing models
 
 ### serverless
 
 Serverless Pricing models
 
-- [All the power of the AI-native vector database, without the overhead](/pricing/serverless.md): Serverless Pricing models
+- [All the power of the AI-native vector database, without the overhead](/pricing/serverless): Serverless Pricing models
 
 ## privacy
 
 PRIVACY POLICY OF WEAVIATE B.V.
 
-- [Weaviate Privacy Policy](/privacy.md): PRIVACY POLICY OF WEAVIATE B.V.
+- [Weaviate Privacy Policy](/privacy): PRIVACY POLICY OF WEAVIATE B.V.
 
 ## product
 
 Accelerate AI-native application development with GUI-based tools and apps to make building and scaling easier.
 
-- [Products](/product.md): Accelerate AI-native application development with GUI-based tools and apps to make building and scaling easier.
+- [Products](/product): Accelerate AI-native application development with GUI-based tools and apps to make building and scaling easier.
 
 ### collections
 
 Create an manage collections through a graphical user interface (GUI).
 
-- [Collections](/product/collections.md): Create an manage collections through a graphical user interface (GUI).
+- [Collections](/product/collections): Create an manage collections through a graphical user interface (GUI).
 
 ### embeddings
 
 Build personalized, multi-modal recommendations with simple interface.
 
-- [Embeddings](/product/embeddings.md): Build personalized, multi-modal recommendations with simple interface.
+- [Embeddings](/product/embeddings): Build personalized, multi-modal recommendations with simple interface.
 
 ### explorer
 
 Search and validate object data, without writing any code.
 
-- [Explorer](/product/explorer.md): Search and validate object data, without writing any code.
+- [Explorer](/product/explorer): Search and validate object data, without writing any code.
 
 ### integrations
 
 Find new ways to extend your applications and infrastructure with our partner integrations.
 
-- [Integration Ecosystem](/product/integrations.md): Find new ways to extend your applications and infrastructure with our partner integrations.
+- [Integration Ecosystem](/product/integrations): Find new ways to extend your applications and infrastructure with our partner integrations.
 
 ### personalization-agent
 
 Dynamically personalize experiences based on user behavior.
 
-- [Personalization Agent](/product/personalization-agent.md): Dynamically personalize experiences based on user behavior.
+- [Personalization Agent](/product/personalization-agent): Dynamically personalize experiences based on user behavior.
 
 ### query
 
 Work interactively with Weaviate Cloud clusters using GraphQL.
 
-- [Query](/product/query.md): Work interactively with Weaviate Cloud clusters using GraphQL.
+- [Query](/product/query): Work interactively with Weaviate Cloud clusters using GraphQL.
 
 ### query-agent
 
 Query your data in Weaviate using simple human language.
 
-- [Query Agent](/product/query-agent.md): Query your data in Weaviate using simple human language.
+- [Query Agent](/product/query-agent): Query your data in Weaviate using simple human language.
 
 ### transformation-agent
 
 Automatically improve your dataset with a single prompt.
 
-- [Transformation Agent](/product/transformation-agent.md): Automatically improve your dataset with a single prompt.
+- [Transformation Agent](/product/transformation-agent): Automatically improve your dataset with a single prompt.
 
 ## rag
 
 Build secure, explainable generative AI applications
 
-- [Build secure, explainable generative AI applications](/rag.md): Build secure, explainable generative AI applications
+- [Build secure, explainable generative AI applications](/rag): Build secure, explainable generative AI applications
 
 ## reports
 
@@ -1697,154 +1672,154 @@ Build secure, explainable generative AI applications
 
 The GigaOm Sonar Report for Vector Databases provides a thorough examination of the rapidly evolving vector database market
 
-- [GigaOm Sonar Report for Vector Databases](/reports/gigaom-sonar-report-for-vector-databases.md): The GigaOm Sonar Report for Vector Databases provides a thorough examination of the rapidly evolving vector database market
+- [GigaOm Sonar Report for Vector Databases](/reports/gigaom-sonar-report-for-vector-databases): The GigaOm Sonar Report for Vector Databases provides a thorough examination of the rapidly evolving vector database market
 
 ## security
 
 Trust, security, and privacy come first 
 
-- [Trust, security, and privacycome first](/security.md): Trust, security, and privacy come first 
+- [Trust, security, and privacycome first](/security): Trust, security, and privacy come first 
 
 ## security-faq
 
 Test page for HIPAA-related FAQ content
 
-- [HIPAA FAQ Test Page](/security-faq.md): Test page for HIPAA-related FAQ content
+- [HIPAA FAQ Test Page](/security-faq): Test page for HIPAA-related FAQ content
 
 ## security-report
 
 Trust, security, and privacy come first 
 
-- [Trust, security, and privacycome first](/security-report.md): Trust, security, and privacy come first 
+- [Trust, security, and privacycome first](/security-report): Trust, security, and privacy come first 
 
 ## service
 
 For more information related to one of the documents below, please reach out to hello@weaviate.io.
 
-- [Weaviate Service pages](/service.md): For more information related to one of the documents below, please reach out to hello@weaviate.io.
+- [Weaviate Service pages](/service): For more information related to one of the documents below, please reach out to hello@weaviate.io.
 
 ### code-of-conduct
 
 Be inclusive
 
-- [Code of ethics and professional conduct](/service/code-of-conduct.md): Be inclusive
+- [Code of ethics and professional conduct](/service/code-of-conduct): Be inclusive
 
 ### code-of-ethics-and-professional-conduct
 
 Weaviate Hero
 
-- [Weaviate Hero - Code of ethics and professional conduct](/service/code-of-ethics-and-professional-conduct.md): Weaviate Hero
+- [Weaviate Hero - Code of ethics and professional conduct](/service/code-of-ethics-and-professional-conduct): Weaviate Hero
 
 ### contributor-license-agreement
 
 In order to clarify the intellectual property license granted with Contributions from any person or entity,
 
-- [Contributor License Agreement](/service/contributor-license-agreement.md): In order to clarify the intellectual property license granted with Contributions from any person or entity,
+- [Contributor License Agreement](/service/contributor-license-agreement): In order to clarify the intellectual property license granted with Contributions from any person or entity,
 
 ### updates-to-terms-and-policies
 
 UPDATES TO TERMS & POLICIES
 
-- [Updates to Terms & Policies](/service/updates-to-terms-and-policies.md): UPDATES TO TERMS & POLICIES
+- [Updates to Terms & Policies](/service/updates-to-terms-and-policies): UPDATES TO TERMS & POLICIES
 
 ### weaviate-cloud-agreement
 
 WEAVIATE CLOUD AGREEMENT
 
-- [Weaviate Cloud Agreement](/service/weaviate-cloud-agreement.md): WEAVIATE CLOUD AGREEMENT
+- [Weaviate Cloud Agreement](/service/weaviate-cloud-agreement): WEAVIATE CLOUD AGREEMENT
 
 ### weaviate-enterprise-agreement-nonus
 
 Weaviate Enterprise Agreement (Non-US)
 
-- [Weaviate Enterprise Agreement](/service/weaviate-enterprise-agreement-nonus.md): Weaviate Enterprise Agreement (Non-US)
+- [Weaviate Enterprise Agreement](/service/weaviate-enterprise-agreement-nonus): Weaviate Enterprise Agreement (Non-US)
 
 ### weaviate-enterprise-agreement-us
 
 Weaviate Enterprise Agreement (US)
 
-- [Weaviate Enterprise Agreement](/service/weaviate-enterprise-agreement-us.md): Weaviate Enterprise Agreement (US)
+- [Weaviate Enterprise Agreement](/service/weaviate-enterprise-agreement-us): Weaviate Enterprise Agreement (US)
 
 ### weaviate-non-enterprise-agreement
 
 TERMS OF SERVICE
 
-- [Weaviate Non Enterprise Agreement](/service/weaviate-non-enterprise-agreement.md): TERMS OF SERVICE
+- [Weaviate Non Enterprise Agreement](/service/weaviate-non-enterprise-agreement): TERMS OF SERVICE
 
 ## SLA
 
 SERVICE LEVEL AGREEMENT (SLA)
 
-- [Weaviate Service Level Agreement](/SLA.md): SERVICE LEVEL AGREEMENT (SLA)
+- [Weaviate Service Level Agreement](/SLA): SERVICE LEVEL AGREEMENT (SLA)
 
 ## subprocessors
 
 Last Updated: March, 2025
 
-- [List of Subprocessors](/subprocessors.md): Last Updated: March, 2025
+- [List of Subprocessors](/subprocessors): Last Updated: March, 2025
 
 ## vector-database-signup-free
 
 All the power of our open-source vector database, without the burden of self-hosting.
 
-- [Fully managed, AI-native vector database](/vector-database-signup-free.md): All the power of our open-source vector database, without the burden of self-hosting.
+- [Fully managed, AI-native vector database](/vector-database-signup-free): All the power of our open-source vector database, without the burden of self-hosting.
 
 ## weaviate-eol-policy
 
 End of Life Policy for Weaviate Offering
 
-- [END OF LIFE POLICY FOR WEAVIATE OFFERING](/weaviate-eol-policy.md): End of Life Policy for Weaviate Offering
+- [END OF LIFE POLICY FOR WEAVIATE OFFERING](/weaviate-eol-policy): End of Life Policy for Weaviate Offering
 
 ## weaviate-support-terms
 
 Weaviate Support Offerings
 
-- [Weaviate Support Terms](/weaviate-support-terms.md): Weaviate Support Offerings
+- [Weaviate Support Terms](/weaviate-support-terms): Weaviate Support Offerings
 
 ## workbench
 
 Accelerate AI-native application development with GUI-based tools and apps to make building and scaling easier.
 
-- [Products](/workbench.md): Accelerate AI-native application development with GUI-based tools and apps to make building and scaling easier.
+- [Products](/workbench): Accelerate AI-native application development with GUI-based tools and apps to make building and scaling easier.
 
 ### collections
 
 Create an manage collections through a graphical user interface (GUI).
 
-- [Collections](/workbench/collections.md): Create an manage collections through a graphical user interface (GUI).
+- [Collections](/workbench/collections): Create an manage collections through a graphical user interface (GUI).
 
 ### embeddings
 
 Build personalized, multi-modal recommendations with simple interface.
 
-- [Embeddings](/workbench/embeddings.md): Build personalized, multi-modal recommendations with simple interface.
+- [Embeddings](/workbench/embeddings): Build personalized, multi-modal recommendations with simple interface.
 
 ### explorer
 
 Search and validate object data, without writing any code.
 
-- [Explorer](/workbench/explorer.md): Search and validate object data, without writing any code.
+- [Explorer](/workbench/explorer): Search and validate object data, without writing any code.
 
 ### personalization-agent
 
 Dynamically personalize experiences based on user behavior.
 
-- [Personalization Agent](/workbench/personalization-agent.md): Dynamically personalize experiences based on user behavior.
+- [Personalization Agent](/workbench/personalization-agent): Dynamically personalize experiences based on user behavior.
 
 ### query
 
 Work interactively with Weaviate Cloud clusters using GraphQL.
 
-- [Query](/workbench/query.md): Work interactively with Weaviate Cloud clusters using GraphQL.
+- [Query](/workbench/query): Work interactively with Weaviate Cloud clusters using GraphQL.
 
 ### query-agent
 
 Query your data in Weaviate using simple human language.
 
-- [Query Agent](/workbench/query-agent.md): Query your data in Weaviate using simple human language.
+- [Query Agent](/workbench/query-agent): Query your data in Weaviate using simple human language.
 
 ### transformation-agent
 
 Automatically improve your dataset with a single prompt.
 
-- [Transformation Agent](/workbench/transformation-agent.md): Automatically improve your dataset with a single prompt.
+- [Transformation Agent](/workbench/transformation-agent): Automatically improve your dataset with a single prompt.
