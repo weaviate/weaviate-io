@@ -312,6 +312,16 @@
 
   .authorInfo {
     text-align: left;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+
+    h4,
+    h5 {
+      margin-bottom: 0 !important;
+    }
   }
 
   .authorImage {
