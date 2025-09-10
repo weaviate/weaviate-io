@@ -417,3 +417,29 @@
   color: #fff;
   font-weight: 400;
 }
+
+.videoWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding-top: 56.25%;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.videoFrame {
+  position: absolute;
+  inset: 0;
+
+  border: 0;
+  display: block;
+  height: 23.0625rem;
+  max-width: 46.375rem;
+  width: 100%;
+  border-radius: 1.25rem;
+
+  @media screen and (max-width: 1000px) {
+    height: auto;
+    height: 100%;
+  }
+}
