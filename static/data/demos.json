@@ -9,7 +9,16 @@
     "githubLink": "https://github.com/weaviate/BookRecs/"
   },
   {
-    "stars": 6300,
+    "stars": 1600,
+    "title": "Elysia",
+    "description": "Agentic RAG Framework",
+    "demoLink": "https://elysia.weaviate.io/",
+    "details": "Elysia is a decision tree based agentic system which intelligently decides what tools to use, what results have been obtained, whether it should continue the process or whether its goal has been completed. It offers both a full frontend interface and an easily pip-installable Python package.",
+    "videoLink": "https://www.youtube.com/watch?v=PhCrlpUwEhU",
+    "githubLink": "https://github.com/weaviate/elysia"
+  },
+  {
+    "stars": 7300,
     "title": "Verba",
     "description": "The Golden RAGtriever",
     "demoLink": "https://verba.weaviate.io",
@@ -19,7 +28,7 @@
     "githubLink": "https://github.com/weaviate/Verba"
   },
   {
-    "stars": 79,
+    "stars": 95,
     "title": "Awesome-moviate",
     "description": "A Movie Search Engine",
     "demoLink": "https://awesome-moviate.weaviate.io/",
@@ -28,7 +37,7 @@
     "githubLink": "https://github.com/weaviate-tutorials/awesome-moviate"
   },
   {
-    "stars": 163,
+    "stars": 175,
     "title": "Heathsearch",
     "description": "Generative AI in Healthcare",
     "demoLink": "https://healthsearch.weaviate.io/",
@@ -37,7 +46,7 @@
     "githubLink": "https://github.com/weaviate/healthsearch-demo"
   },
   {
-    "stars": 12,
+    "stars": 17,
     "title": "Wealingo",
     "description": "A personalized language-learning app",
     "demoLink": "http://wealingo.weaviate.io/",
@@ -46,7 +55,7 @@
     "githubLink": "https://github.com/weaviate/wealingo-demo"
   },
   {
-    "stars": 46,
+    "stars": 48,
     "title": "Generator9000",
     "description": "Generate Synthetic Multimodal Data",
     "demoLink": "https://gen9000.co",
@@ -55,7 +64,7 @@
     "githubLink": "https://github.com/weaviate/generator9000"
   },
   {
-    "stars": 52,
+    "stars": 55,
     "title": "Magic Chat",
     "description": "The Generative Gathering",
     "demoLink": "https://weaviate-magic-chat.streamlit.app/",
@@ -63,7 +72,7 @@
     "githubLink": "https://github.com/weaviate/st-weaviate-connection/tree/main"
   },
   {
-    "stars": 9,
+    "stars": 10,
     "title": "QuoteFinder",
     "description": "Find a Quote to Support Any Argument",
     "demoLink": "https://quotefinder.weaviate.io/",
