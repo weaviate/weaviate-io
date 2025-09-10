@@ -34,8 +34,8 @@ export default function Highlights() {
               </span>
               <h3>Elysia</h3>
               <span>
-                Meet Elysia - our open source, agentic RAG framework that’s not
-                just another text-in, text-out chatbot.
+                Our open source, agentic RAG framework that’s not just another
+                text-in, text-out chatbot.
               </span>
               <Link
                 to="https://elysia.weaviate.io/"
@@ -47,12 +47,9 @@ export default function Highlights() {
             <div className={styles.contentDiv}>
               <div className={styles.textCardContent}>
                 <p>
-                  Elysia is a decision tree based agentic system which
-                  intelligently decides what tools to use, what results have
-                  been obtained, whether it should continue the process or
-                  whether its goal has been completed. It offers both a full
-                  frontend interface and an easily pip-installable Python
-                  package.
+                  Elysia is a decision-tree–driven agentic system that knows
+                  which tools to use, how to interpret outcomes and when to keep
+                  going or stop once its goal is achieved.
                 </p>
                 <div className={styles.bottomContainer}>
                   <Link
