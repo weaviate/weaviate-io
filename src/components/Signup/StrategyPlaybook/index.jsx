@@ -159,35 +159,37 @@ export default function Introduction() {
             <li>Technical readiness</li>
             <li>Scalability and growth</li>
           </ul>
-
-          <h3>About the author</h3>
-          <div className={styles.authorBox}>
-            <div className={styles.authorImage}></div>
-            <div className={styles.authorInfo}>
-              <h4>Byron Voorbach</h4>
-              <h5>Field CTO at Weaviate</h5>
+          <hr></hr>
+          <div className={styles.authorContainer}>
+            <h3>About the author</h3>
+            <div className={styles.authorBox}>
+              <div className={styles.authorImage}></div>
+              <div className={styles.authorInfo}>
+                <h4>Byron Voorbach</h4>
+                <h5>Field CTO at Weaviate</h5>
+              </div>
             </div>
+            <p>
+              Byron Voorbach has spent over a decade in the search domain,
+              consulting hundreds of companies and aiding in implementing
+              large-scale search systems. As the Field CTO at Weaviate, he
+              collaborates with customers globally to harness the power of
+              semantic search in their operations.
+            </p>
+            <p>
+              He’s also a regular conference speaker and active contributor to
+              open-source projects. When he’s not helping companies build and
+              scale their AI projects, he enjoys spending time with his two
+              cats, scuba diving, and traveling the world.
+            </p>
+            <p>
+              Connect with him on{' '}
+              <Link to="https://www.linkedin.com/in/byronvoorbach/">
+                LinkedIn
+              </Link>
+              .
+            </p>
           </div>
-          <p>
-            Byron Voorbach has spent over a decade in the search domain,
-            consulting hundreds of companies and aiding in implementing
-            large-scale search systems. As the Field CTO at Weaviate, he
-            collaborates with customers globally to harness the power of
-            semantic search in their operations.
-          </p>
-          <p>
-            He’s also a regular conference speaker and active contributor to
-            open-source projects. When he’s not helping companies build and
-            scale their AI projects, he enjoys spending time with his two cats,
-            scuba diving, and traveling the world.
-          </p>
-          <p>
-            Connect with him on{' '}
-            <Link to="https://www.linkedin.com/in/byronvoorbach/">
-              LinkedIn
-            </Link>
-            .
-          </p>
         </div>
       </div>
     </>
