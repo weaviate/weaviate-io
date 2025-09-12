@@ -5,16 +5,90 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 import appData from '/data/apps.json';
 import styles from '/src/components/Marketplace/styles.module.scss';
 import AppCard from '/src/components/Marketplace/card';
+import { useEffect } from 'react';
+
+function GuideflowEmbed() {
+  const iframeId = 'dr973w8bnp';
+
+  React.useEffect(() => {
+    const existing = document.querySelector(
+      'script[src="https://app.guideflow.com/assets/opt.js"]'
+    );
+
+    if (!existing) {
+      const s = document.createElement('script');
+      s.src = 'https://app.guideflow.com/assets/opt.js';
+      s.async = true;
+      s.setAttribute('data-cookieconsent', 'ignore');
+      s.setAttribute('data-iframe-id', iframeId);
+      document.body.appendChild(s);
+    } else {
+      if (!existing.getAttribute('data-iframe-id')) {
+        existing.setAttribute('data-iframe-id', iframeId);
+      }
+
+      window.dispatchEvent(new Event('guideflow:check'));
+    }
+  }, []);
+
+  return (
+    <div
+      className="guideflow-wrap"
+      style={{
+        position: 'relative',
+        paddingBottom: 'calc(54.285714285714285% + 50px)',
+        height: 0,
+        marginBottom: '24px',
+      }}
+    >
+      <iframe
+        id={iframeId}
+        src={`https://app.guideflow.com/embed/${iframeId}`}
+        width="100%"
+        height="100%"
+        style={{ overflow: 'hidden', position: 'absolute', border: 'none' }}
+        scrolling="no"
+        allow="clipboard-read; clipboard-write"
+        webkitallowfullscreen="true"
+        mozallowfullscreen="true"
+        allowFullScreen
+        allowTransparency
+        title="Guideflow"
+      />
+    </div>
+  );
+}
 
 export default function QueryPage() {
   const app = appData.find((app) => app.name === 'Query Agent');
 
   if (!app) return <div>App not found</div>;
 
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = '//js.hsforms.net/forms/embed/v2.js';
+    script.setAttribute('data-cookieconsent', 'ignore'); // Prevents Cookiebot from blocking
+    document.body.appendChild(script);
+
+    script.addEventListener('load', () => {
+      if (window.hbspt) {
+        window.hbspt.forms.create({
+          portalId: '8738733',
+          formId: 'f566dd66-19ef-4564-80b1-ca26f353105e',
+          target: '#hubspotForm',
+        });
+      }
+    });
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Query Agent | Weaviate Workbench"
+        title="Query Agent | Weaviate Agents"
         description="Query your data in Weaviate using simple human language."
       >
         <MetaSEO />
@@ -44,13 +118,13 @@ export default function QueryPage() {
                     {app.released === 'yes' ? (
                       <Link to="https://console.weaviate.cloud/">
                         <button className={styles.installButton}>
-                          Open in Weaviate Cloud
+                          Try Free
                         </button>
                       </Link>
                     ) : (
                       <Link to="https://docs.weaviate.io/agents/query/usage">
                         <button className={styles.installButton}>
-                          Open in Weaviate Cloud
+                          Try Free
                         </button>
                       </Link>
                     )}
@@ -77,41 +151,69 @@ export default function QueryPage() {
                     <h3>Overview</h3>
 
                     <p>
-                      Weaviate’s <strong>Query Agent</strong> allows users to
-                      query any Weaviate collection that you give it access to.
-                      Developers within your organization can configure a Query
-                      Agent with the data collections it has access to, as well
-                      as the search and aggregations needed to answer any given
-                      query. All the end-user has to do is ask a question, and
-                      the Query Agent will take care of the rest.
+                      Weaviate’s <strong>Query Agent</strong> is a
+                      Weaviate-native data agent that turns natural-language
+                      questions into precise database operations, making full
+                      use of dynamic filters, cross-collection routing, query
+                      optimization, and aggregations. It returns accurate and
+                      relevant results with source citations.
+                    </p>
+                    <p>
+                      It replaces manual query construction and ad-hoc logic
+                      with runtime, context-aware planning that optimizes and
+                      executes queries across user collections. It supports two
+                      modes:
                     </p>
                     <ul>
                       <li>
-                        <strong>Spend less time on syntax:</strong> Ask
-                        questions of your data using natural language, and let
-                        Weaviate handle the rest.
+                        <strong>Ask mode: for developers</strong> building
+                        agentic applications that require conversational
+                        interactions and answers backed by data stored in
+                        Weaviate.
                       </li>
                       <li>
-                        <strong>Deliver better results with less work:</strong>{' '}
-                        Serve accurate, contextual results to user queries
-                        without the hassle of building custom pipelines.
-                      </li>
-                      <li>
-                        <strong>Get insights faster:</strong> Identify risks,
-                        opportunities, and threats in your data more easily.
+                        <strong>Search mode:</strong> for developers who need
+                        out of the box, high quality information retrieval with
+                        strong recall and controlled precision.
                       </li>
                     </ul>
+                    <p>
+                      The Query Agent can be accessed through Python and
+                      TypeScript client SDKs to integrate retrieval directly
+                      into applications, or via the Weaviate Cloud Console for
+                      fast exploration, validation, and experimentation.
+                    </p>
+                    <GuideflowEmbed />
+                    <h3>Newsletter</h3>
+                    <div className={styles.hubspotForm} id="hubspotForm" />
                   </div>
 
                   <div className={styles.additionalInfo}>
-                    <h3>Additional details</h3>
+                    <h3>Query Agent is Generally Available</h3>
                     <p>
-                      Availability:{' '}
-                      <Link to="https://docs.weaviate.io/agents/query/usage">
+                      Read more in the announcement about how the interface to
+                      databases is shifting with the introduction of agentic
+                      retrievers, domain experts that use Weaviate’s APIs with
+                      your data.
+                    </p>
+                    <p>
+                      <Link to="https://console.weaviate.cloud/">
                         <strong>
-                          <u>Open in Weaviate Cloud</u>
+                          <u>Try Free in Weaviate Cloud</u>
                         </strong>
-                      </Link>
+                      </Link>{' '}
+                      <br></br>* Available as a 14-day free sandbox trial. No
+                      credit card required.
+                    </p>
+                    <p>
+                      <Link to="https://events.weaviate.io/weaviate-agents-newsletter">
+                        <strong>
+                          <u>Subscribe to Weaviate Agents newsletter</u>
+                        </strong>
+                      </Link>{' '}
+                      <br></br>Stay up to date with the latest news, product
+                      updates, and best practices for the Query Agent and other
+                      Weaviate Agents.
                     </p>
                   </div>
                 </div>
