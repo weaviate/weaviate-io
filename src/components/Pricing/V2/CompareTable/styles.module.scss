@@ -1,0 +1,155 @@
+.wrap {
+  background: #ecf4f8;
+  padding: clamp(16px, 3vw, 28px) 0;
+}
+
+.card {
+  background: #fff;
+  border-radius: 0.9375rem;
+  box-shadow: 0 24px 64px rgba(22, 27, 45, 0.08);
+  border: 1px solid rgba(19, 12, 73, 0.08);
+  padding: 2rem;
+}
+
+.title {
+  margin: 4px 8px 12px;
+  color: #130c49;
+  font-family: 'Plus Jakarta Sans';
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.scroll {
+  position: relative;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: separate;
+  border-spacing: 0;
+  color: #130c49;
+  font-size: 0.95rem;
+}
+
+tbody {
+  text-align: left;
+  border: 2px solid #718eb9;
+}
+
+/* HEADER */
+thead th {
+  background: #0f0032;
+  color: #fff;
+  text-align: left;
+  font-weight: 700;
+  padding: 12px 14px;
+}
+.planHead {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  background: #ecf4f8;
+  color: #130c49;
+  font-family: 'Plus Jakarta Sans';
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+.planCol {
+  background: #130c49;
+  color: #61d384;
+  font-family: 'Plus Jakarta Sans';
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+/* SECTION / BODY */
+.sectionCol {
+  background: #ecf4f8;
+  color: #130c49;
+  font-weight: 700;
+  padding: 12px 14px;
+  vertical-align: top;
+  border-left: 1px solid #e6e8f0;
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  font-family: 'Plus Jakarta Sans';
+  font-size: 0.875rem;
+  font-style: normal;
+  line-height: normal;
+}
+
+.rowHeader {
+  text-align: left;
+  padding: 12px 14px;
+  border-left: 1px solid #e6e8f0;
+  color: #130c49;
+  font-family: Inter;
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+tbody td {
+  padding: 12px 14px;
+  border-left: 1px solid #e6e8f0;
+  color: #130c49;
+  font-family: Inter;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+tbody tr td:last-child,
+tbody tr th:last-child {
+  border-right: 1px solid #e6e8f0;
+}
+
+tbody tr td,
+tbody tr th {
+  border-bottom: 1px solid #e6e8f0;
+}
+
+/* ✅ Mint highlight for cells */
+.mint {
+  background: #c2efdc; /* mint light */
+}
+
+/* Chips */
+.yes,
+.no {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.yes,
+.no {
+  color: #130c49;
+}
+
+/* Inline badge */
+.cellWithBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.badge {
+  color: #130c49;
+  font-family: Inter;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .table {
+    font-size: 0.9rem;
+    min-width: 820px;
+  }
+}

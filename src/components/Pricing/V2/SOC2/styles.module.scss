@@ -1,0 +1,100 @@
+.section {
+  background: #ecf4f8;
+  padding: clamp(28px, 6vw, 56px) 0;
+}
+
+/* 1) Stretch children so both cards take the same track height */
+.row {
+  display: flex;
+  align-items: stretch; /* was center */
+  justify-content: space-between;
+  gap: clamp(20px, 4vw, 48px);
+  margin: clamp(16px, 4vw, 36px) 0;
+}
+
+/* 2) Make each card fill the row height and share a min-height */
+.card {
+  flex: 1 1 620px;
+  max-width: 740px;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 24px 64px rgba(22, 27, 45, 0.08);
+  border: 1px solid rgba(19, 12, 73, 0.08);
+  padding: clamp(18px, 3vw, 28px);
+
+  /* equal-height trick */
+  display: flex; /* or grid with rows: auto 1fr */
+  flex-direction: column;
+  height: 100%;
+  min-height: clamp(280px, 28vw, 375px);
+
+  h2 {
+    margin: 0 0 10px;
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 157.33%;
+  }
+
+  p {
+    margin: 0;
+    color: #130c49;
+    font-family: Inter;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 160%;
+  }
+}
+
+/* 3) Keep logos from influencing row height */
+.media {
+  flex: 0 0 auto;
+  align-self: center; /* prevents stretching */
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  gap: clamp(12px, 2vw, 24px);
+  min-width: 260px;
+}
+
+.logoDrata {
+  height: clamp(32px, 4.5vw, 44px);
+  width: auto;
+}
+.logoSoc {
+  height: clamp(88px, 12vw, 140px);
+  width: auto;
+}
+.logoHipaa {
+  height: clamp(90px, 12vw, 150px);
+  width: auto;
+}
+
+/* Stack nicely on small screens */
+@media (max-width: 900px) {
+  .row {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: left;
+  }
+  .media {
+    grid-auto-flow: column;
+    justify-content: start;
+  }
+}
+@media (max-width: 560px) {
+  .card {
+    flex: 1 1;
+    height: auto;
+    min-height: unset;
+  }
+  .media {
+    justify-items: center;
+  }
+
+  .logoHipaa {
+    height: 130px;
+    width: auto;
+  }
+}

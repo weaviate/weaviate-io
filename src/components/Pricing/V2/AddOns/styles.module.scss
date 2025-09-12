@@ -1,0 +1,172 @@
+.section {
+  background: #ecf4f8;
+}
+
+.sectionHeader {
+  h2 {
+    text-align: center;
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 0 0 clamp(18px, 3vw, 28px);
+  }
+}
+
+.title {
+  text-align: center;
+  color: #130c49;
+  font-family: 'Plus Jakarta Sans';
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0 0 clamp(18px, 3vw, 28px);
+}
+
+.grid {
+  display: grid;
+  gap: clamp(16px, 2.4vw, 24px);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Card shell */
+.card {
+  border-radius: 0.9375rem;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 24px 64px rgba(22, 27, 45, 0.1);
+}
+.cardInner {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: clamp(18px, 2.4vw, 26px);
+  min-height: 360px;
+}
+
+.cardHeader h3 {
+  margin: 0 0 6px;
+  color: #130c49;
+  font-family: 'Plus Jakarta Sans';
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+.blurb {
+  margin: 6px 0 14px;
+  color: #130c49;
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+}
+
+/* two content modes */
+.priceList {
+  margin: 6px 0 12px;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 16px;
+}
+.priceList li {
+  padding-top: 14px;
+  border-top: 1px solid #8b9db8;
+}
+.priceLabel {
+  color: #130c49;
+  font-family: Inter;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  margin-bottom: 4px;
+}
+.priceValue {
+  color: #130c49;
+  font-family: 'Plus Jakarta Sans';
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.unit {
+  opacity: 0.85;
+  font-weight: 400;
+}
+
+.bullets {
+  margin: 6px 0 12px;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 10px;
+  color: #130c49;
+}
+.bullets li {
+  line-height: 1.35;
+}
+
+/* CTA */
+.ctaRow {
+  margin-top: auto;
+
+  a {
+    color: #130c49 !important;
+  }
+}
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 44px;
+  border-radius: 8px;
+  background: #ecf4f8;
+  color: #130c49;
+  border: 2px solid #130c49;
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform 0.05s ease, background 0.2s ease, color 0.2s ease;
+}
+.cta:hover {
+  background: #fff;
+
+  a {
+    color: #130c49 !important;
+  }
+}
+.cta:active {
+  transform: translateY(1px);
+}
+.cta:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 3px #61d384, 0 0 0 6px #130c49;
+  background: #fff;
+}
+
+/* Gradient variants */
+.v_green {
+  background: linear-gradient(140deg, #75fbae80 8.61%, #b6f87480 94.4%), #fff;
+}
+.v_lilac {
+  background: linear-gradient(142deg, #c8a8e780 8.29%, #7487ec80 96.29%), #fff;
+}
+.v_teal {
+  background: linear-gradient(128deg, #00d50880 19.35%, #29a6dd80 80.19%), #fff;
+}
+
+/* Optional hover lift */
+.card:hover {
+  outline: 2px solid #61d38422;
+}
