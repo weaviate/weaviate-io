@@ -15,11 +15,6 @@
     "photo": "adam.jpg"
   },
   {
-    "name": "Alea Abed",
-    "location": { "lat": 38.7759, "lng": -121.4204 },
-    "photo": "alea.jpg"
-  },
-  {
     "name": "André Duis",
     "location": { "lat": 51.1657, "lng": 7.0846 },
     "photo": "andre.jpg"
@@ -45,11 +40,6 @@
     "photo": "asdine.jpg"
   },
   {
-    "name": "Benjamin Paul Sabrin",
-    "location": { "lat": 30.2682, "lng": -97.7441 },
-    "photo": "benjamin.jpg"
-  },
-  {
     "name": "Bob van Luijt",
     "location": { "lat": 52.3686, "lng": 4.9051 },
     "photo": "bob.jpg"
@@ -68,11 +58,6 @@
     "name": "Charles Pierse",
     "location": { "lat": 53.3508, "lng": -6.2613 },
     "photo": "charles-pierse.jpg"
-  },
-  {
-    "name": "Charlie Harr",
-    "location": { "lat": 42.3611, "lng": -71.0599 },
-    "photo": "charles.jpg"
   },
   {
     "name": "Connor Shorten",
@@ -135,11 +120,6 @@
     "photo": "griffin.jpg"
   },
   {
-    "name": "Ieva Urbaite",
-    "location": { "lat": 40.7138, "lng": -74.007 },
-    "photo": "ieva.jpg"
-  },
-  {
     "name": "Jeremy Price",
     "location": { "lat": 35.2571, "lng": 139.1604 },
     "photo": "jeremy.jpg"
@@ -165,11 +145,6 @@
     "photo": "john.jpg"
   },
   {
-    "name": "Jonathan Tuite",
-    "location": { "lat": 47.6072, "lng": -122.3331 },
-    "photo": "jonathan.jpg"
-  },
-  {
     "name": "José Luis Franco Arza",
     "location": { "lat": 40.4178, "lng": -3.7048 },
     "photo": "Jose-Luis-Franco.jpg"
@@ -183,11 +158,6 @@
     "name": "JP Hwang",
     "location": { "lat": 55.9543, "lng": -3.1893 },
     "photo": "jp.jpg"
-  },
-  {
-    "name": "Kaviraj Kanagaraj",
-    "location": { "lat": 52.0917, "lng": 5.1224 },
-    "photo": "kaviraj.jpg"
   },
   {
     "name": "Laura Ann Webster Stoye",
@@ -225,11 +195,6 @@
     "photo": "Mike-Hoppe.jpg"
   },
   {
-    "name": "Mike Wyer",
-    "location": { "lat": 51.5094, "lng": -0.1298 },
-    "photo": "mike.jpg"
-  },
-  {
     "name": "Mohamed Badawi",
     "location": { "lat": 53.5521, "lng": 9.9947 },
     "photo": "Mohamed-Badawi.jpg"
@@ -243,11 +208,6 @@
     "name": "Nathan Wilkinson",
     "location": { "lat": 40.515, "lng": -111.9712 },
     "photo": "nate-wilkinson.jpg"
-  },
-  {
-    "name": "Nick Olivetti",
-    "location": { "lat": 40.1553, "lng": -75.2228 },
-    "photo": "nick.jpg"
   },
   {
     "name": "Parker Duckworth",
@@ -285,29 +245,14 @@
     "photo": "Sebastian-Farriol.jpg"
   },
   {
-    "name": "Sebastian Stefan Witalec",
-    "location": { "lat": 50.2659, "lng": 19.0248 },
-    "photo": "sebastian.jpg"
-  },
-  {
-    "name": "Shan Micah Blackwood",
+    "name": "Shan Blackwood",
     "location": { "lat": 51.5104, "lng": -0.1308 },
     "photo": "shan.jpg"
-  },
-  {
-    "name": "Shukri Hasan",
-    "location": { "lat": 52.523, "lng": 13.407 },
-    "photo": "shukri.jpg"
   },
   {
     "name": "Soham Maniar",
     "location": { "lat": 34.0532, "lng": -118.2447 },
     "photo": "soham-maniar.jpg"
-  },
-  {
-    "name": "Stefan Bogdan",
-    "location": { "lat": 52.3696, "lng": 4.9061 },
-    "photo": "stefan.jpg"
   },
   {
     "name": "Svitlana Smolianova",
