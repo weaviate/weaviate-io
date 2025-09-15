@@ -7,14 +7,11 @@ import styles from '/src/components/Marketplace/styles.module.scss';
 import AppCard from '/src/components/Marketplace/card';
 import { useEffect } from 'react';
 
-function GuideflowEmbed() {
-  const iframeId = 'dr973w8bnp';
-
+function GuideflowEmbed({ iframeId = 'dr973w8bnp' }) {
   React.useEffect(() => {
     const existing = document.querySelector(
       'script[src="https://app.guideflow.com/assets/opt.js"]'
     );
-
     if (!existing) {
       const s = document.createElement('script');
       s.src = 'https://app.guideflow.com/assets/opt.js';
@@ -26,34 +23,18 @@ function GuideflowEmbed() {
       if (!existing.getAttribute('data-iframe-id')) {
         existing.setAttribute('data-iframe-id', iframeId);
       }
-
       window.dispatchEvent(new Event('guideflow:check'));
     }
-  }, []);
+  }, [iframeId]);
 
   return (
-    <div
-      className="guideflow-wrap"
-      style={{
-        position: 'relative',
-        paddingBottom: 'calc(54.285714285714285% + 50px)',
-        height: 0,
-        marginBottom: '24px',
-      }}
-    >
+    <div className={styles.guideflowHero}>
       <iframe
         id={iframeId}
         src={`https://app.guideflow.com/embed/${iframeId}`}
-        width="100%"
-        height="100%"
-        style={{ overflow: 'hidden', position: 'absolute', border: 'none' }}
-        scrolling="no"
-        allow="clipboard-read; clipboard-write"
-        webkitallowfullscreen="true"
-        mozallowfullscreen="true"
-        allowFullScreen
-        allowTransparency
         title="Guideflow"
+        allow="clipboard-read; clipboard-write"
+        allowFullScreen
       />
     </div>
   );
@@ -63,27 +44,6 @@ export default function QueryPage() {
   const app = appData.find((app) => app.name === 'Query Agent');
 
   if (!app) return <div>App not found</div>;
-
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = '//js.hsforms.net/forms/embed/v2.js';
-    script.setAttribute('data-cookieconsent', 'ignore'); // Prevents Cookiebot from blocking
-    document.body.appendChild(script);
-
-    script.addEventListener('load', () => {
-      if (window.hbspt) {
-        window.hbspt.forms.create({
-          portalId: '8738733',
-          formId: 'f566dd66-19ef-4564-80b1-ca26f353105e',
-          target: '#hubspotForm',
-        });
-      }
-    });
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
 
   return (
     <div className="custom-page noBG">
@@ -135,13 +95,9 @@ export default function QueryPage() {
                     </Link>
                   </div>
                 </div>
-                <div className={styles.imageContainer}>
-                  <div className={styles.overviewImage}>
-                    <img
-                      src={'/img/site/' + app.overviewImage1}
-                      alt={app.name}
-                    />
-                  </div>
+
+                <div className={styles.mediaSlot}>
+                  <GuideflowEmbed iframeId="dr973w8bnp" />
                 </div>
               </div>
 
@@ -166,7 +122,7 @@ export default function QueryPage() {
                     </p>
                     <ul>
                       <li>
-                        <strong>Ask mode: for developers</strong> building
+                        <strong>Ask mode:</strong> for developers building
                         agentic applications that require conversational
                         interactions and answers backed by data stored in
                         Weaviate.
@@ -183,9 +139,6 @@ export default function QueryPage() {
                       into applications, or via the Weaviate Cloud Console for
                       fast exploration, validation, and experimentation.
                     </p>
-                    <GuideflowEmbed />
-                    <h3>Newsletter</h3>
-                    <div className={styles.hubspotForm} id="hubspotForm" />
                   </div>
 
                   <div className={styles.additionalInfo}>
@@ -198,18 +151,22 @@ export default function QueryPage() {
                     </p>
                     <p>
                       <Link to="https://console.weaviate.cloud/">
-                        <strong>
-                          <u>Try Free in Weaviate Cloud</u>
-                        </strong>
+                        <button
+                          className={`${styles.installButton} ${styles.sideButton}`}
+                        >
+                          Try Free in Weaviate Cloud
+                        </button>
                       </Link>{' '}
                       <br></br>* Available as a 14-day free sandbox trial. No
                       credit card required.
                     </p>
                     <p>
                       <Link to="https://events.weaviate.io/weaviate-agents-newsletter">
-                        <strong>
-                          <u>Subscribe to Weaviate Agents newsletter</u>
-                        </strong>
+                        <button
+                          className={`${styles.installButton} ${styles.sideButton}`}
+                        >
+                          Subscribe to Weaviate Agents newsletter
+                        </button>
                       </Link>{' '}
                       <br></br>Stay up to date with the latest news, product
                       updates, and best practices for the Query Agent and other
