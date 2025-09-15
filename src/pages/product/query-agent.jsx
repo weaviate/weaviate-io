@@ -156,11 +156,11 @@ export default function QueryPage() {
                         <button
                           className={`${styles.installButton} ${styles.sideButton}`}
                         >
-                          Try Free in Weaviate Cloud
+                          Try Free
                         </button>
                       </Link>{' '}
-                      <br></br>Available as a 14-day free sandbox trial. No
-                      credit card required.
+                      <br></br>Available as a 14-day free Weaviate Cloud sandbox
+                      trial. No credit card required.
                     </p>
                     <p>
                       <Link to="https://events.weaviate.io/weaviate-agents-newsletter">
