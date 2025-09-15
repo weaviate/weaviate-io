@@ -144,10 +144,12 @@ export default function QueryPage() {
                   <div className={styles.additionalInfo}>
                     <h3>Query Agent is Generally Available</h3>
                     <p>
-                      Read more in the announcement about how the interface to
-                      databases is shifting with the introduction of agentic
-                      retrievers, domain experts that use Weaviate’s APIs with
-                      your data.
+                      <Link to="blog/query-agent-generally-available">
+                        <u>Read more</u>
+                      </Link>{' '}
+                      in the announcement about how the interface to databases
+                      is shifting with the introduction of agentic retrievers,
+                      domain experts that use Weaviate’s APIs with your data.
                     </p>
                     <p>
                       <Link to="https://console.weaviate.cloud/">
@@ -157,7 +159,7 @@ export default function QueryPage() {
                           Try Free in Weaviate Cloud
                         </button>
                       </Link>{' '}
-                      <br></br>* Available as a 14-day free sandbox trial. No
+                      <br></br>Available as a 14-day free sandbox trial. No
                       credit card required.
                     </p>
                     <p>
