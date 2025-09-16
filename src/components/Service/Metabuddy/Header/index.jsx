@@ -11,7 +11,7 @@ export default function StudyHeader() {
           <div className={styles.logo}></div>
           <span>Case Study</span>
           <h1>
-            How Metabuddy Unifies Wellness Data and Powers Personalized AI
+            How MetaBuddy Unifies Wellness Data and Powers Personalized AI
             Coaching With Query Agent
           </h1>
         </div>

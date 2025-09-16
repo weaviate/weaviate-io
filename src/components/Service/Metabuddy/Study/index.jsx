@@ -141,7 +141,7 @@ export default function Study() {
               natural language interactions, and our trainers now have a
               powerful tool to personalize coaching at scale.”
             </p>
-            <p className={styles.name}>Waseem Sarwar,</p>
+            <p className={styles.name}>Waseem Sarwar</p>
             <span>Product Lead, MetaBuddy</span>
           </div>
         </div>

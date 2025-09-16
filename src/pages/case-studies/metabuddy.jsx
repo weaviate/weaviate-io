@@ -10,8 +10,8 @@ export default function CaseStudyPage() {
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Case Study - Metabuddy"
-        description="How Metabuddy Unifies Wellness Data and Powers Personalized AI Coaching With Query Agent"
+        title="Case Study - MetaBuddy"
+        description="How MetaBuddy Unifies Wellness Data and Powers Personalized AI Coaching With Query Agent"
       >
         <StudyHeader />
         <Study />
