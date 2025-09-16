@@ -73,7 +73,7 @@ Since releasing the Query Agent for preview in March, we’ve worked closely wit
 
 ## Advanced Retrieval & Search
 
-A major addition is [**Search Mode**](https://docs.weaviate.io/agents/query/usage#search-mode), built for teams that don’t need answer generation but still want the agent’s ability to adapt searches and create filters at runtime. In early benchmarks, this mode consistently outperformed hybrid search across common information retrieval tasks. (Stay tuned – next week we’ll share a deep dive into these results!)
+A major addition is [**Search Mode**](https://docs.weaviate.io/agents/query/usage#search), built for teams that don’t need answer generation but still want the agent’s ability to adapt searches and create filters at runtime. In early benchmarks, this mode consistently outperformed hybrid search across common information retrieval tasks. (Stay tuned – next week we’ll share a deep dive into these results!)
 
 We also added support for [**user-defined filters**](https://docs.weaviate.io/agents/query/usage#user-defined-filters), which are combined with the agent’s generated filters. This gives developers greater control and ensures that critical constraints are always applied, no matter how the query is phrased.
 
@@ -83,7 +83,7 @@ With [**multi-tenant collection support**](https://docs.weaviate.io/agents/query
 
 The agent now supports [**multi-turn context**](https://docs.weaviate.io/agents/query/usage#conversational-queries). Previously, it could only reference the immediately preceding message, but now it leverages standard message syntax to support full conversation memory - ideal for chat-style applications.
 
-We also introduced [**Ask Mode**](https://docs.weaviate.io/agents/query/usage#ask-mode), which replaces the old run() method with a clearer and more natural API for conversational and query-driven workflows. 
+We also introduced [**Ask Mode**](https://docs.weaviate.io/agents/query/usage#ask), which replaces the old run() method with a clearer and more natural API for conversational and query-driven workflows. 
 
 ## Performance & Tooling
 
