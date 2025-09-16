@@ -21,7 +21,7 @@ Database interfaces evolved through decades to meet the needs of developers and 
 
 The rise of **Retrieval-Augmented Generation (RAG)** marked a new shift. Instead of issuing queries against schemas, developers are able to ask questions in natural language, powered by vector embeddings and large language models. But RAG is not a silver bullet: while it excels at surfacing information from unstructured sources, it struggles to bridge the gap with structured data; tasks like filtering, joining, and aggregation still require manual intervention, leaving developers to stitch together results.
 
-**Agentic retrieval**, in addressing this very gap, represents the next landscape shift. Developers can query data in natural language, while the Query Agent acts as an expert intermediary – understanding schemas, APIs, and intent. By combining natural language reasoning with structured query planning, it can automatically apply filters, perform joins, and aggregate results across both structured and unstructured data. By iteratively evaluating outcomes and refining its approach, the Query Agent can introspect on results, adjust strategies, and deliver precise, relevant answers. In doing so, agentic retrieval overcomes the rigidity of SQL and inability of RAG to dynamically, decompose and expand queries, finally removing the barriers to truly seamless data interaction.
+**Agentic retrieval**, in addressing this very gap, represents the next landscape shift. Developers can query data in natural language, while the Query Agent acts as an expert intermediary – understanding schemas, APIs, and intent. By combining natural language reasoning with structured query planning, it can automatically apply filters, perform joins, and aggregate results across both structured and unstructured data. By iteratively evaluating outcomes and refining its approach, the Query Agent can introspect on results, adjust strategies, and deliver precise, relevant answers. In doing so, agentic retrieval overcomes the rigidity of SQL and inability of RAG to dynamically decompose and expand queries, finally removing the barriers to truly seamless data interaction.
 
 ![](./img/The%20Agentic%20Database.png)
 
@@ -38,7 +38,7 @@ The Query Agent is your expert navigator of Weaviate. It:
 The Query Agent works in two primary modes:
 
 * **Ask Mode**:  Examines your collections to determine effective query strategies, refines those strategies when more results are needed, and generates precise answers grounded in your data.  
-* **Search Mode**: Similar to ask mode but without answer generation, it optimizes for retrieval quality, eliminating the need for complex query understanding pipelines.
+* **Search Mode**: Similar to Ask Mode but without answer generation, it optimizes for retrieval quality, eliminating the need for complex query understanding pipelines.
 
 ![](./img/search%20mode.png)
 
@@ -63,7 +63,7 @@ For a full breakdown of supported features and technical details, see the Query 
 
 ## Build More, Wrangle Less
 
-The way developers interact with data is fundamentally changing. Agentic workflows enable reasoning and automation that go far beyond traditional search. The Query Agent embodies this shift by acting as a domain expert that is fluent in both your data models and Weaviate’s APIs. Instead of spending valuable time wrangling infrastructure or stitching together multiple tools, developers can focus on building. Complex applications that once required extensive pipelines and custom logic can now be created at lightspeed, without the buren of additional tooling.
+The way developers interact with data is fundamentally changing. Agentic workflows enable reasoning and automation that go far beyond traditional search. The Query Agent embodies this shift by acting as a domain expert that is fluent in both your data models and Weaviate’s APIs. Instead of spending valuable time wrangling infrastructure or stitching together multiple tools, developers can focus on building. Complex applications that once required extensive pipelines and custom logic can now be created at lightspeed, without the burden of additional tooling.
 
 Over the past months, we’ve evolved the Query Agent from an end-to-end agentic RAG flow into a robust, flexible agentic retrieval system. This progression reflects our vision that the **“Agentic Database” is not just a feature, but the future of data interactions.**
 
