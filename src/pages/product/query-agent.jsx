@@ -144,7 +144,7 @@ export default function QueryPage() {
                   <div className={styles.additionalInfo}>
                     <h3>Query Agent is Generally Available</h3>
                     <p>
-                      <Link to="blog/query-agent-generally-available">
+                      <Link to="/blog/query-agent-generally-available">
                         <u>Read more</u>
                       </Link>{' '}
                       in the announcement about how the interface to databases
