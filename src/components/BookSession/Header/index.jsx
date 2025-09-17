@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from './styles.module.scss';
 
 export default function Header() {
+  const meetingsRef = useRef(null);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return; // avoid SSR
+    if (!meetingsRef.current) return;
+
+    const SCRIPT_ID = 'hs-meetings-embed';
+    if (!document.getElementById(SCRIPT_ID)) {
+      const s = document.createElement('script');
+      s.src =
+        'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
+      s.async = true;
+      s.type = 'text/javascript';
+      s.id = SCRIPT_ID;
+      document.body.appendChild(s);
+    }
+  }, []);
+
   return (
     <section className={styles.hero}>
       <div className={styles.row}>
@@ -57,19 +75,18 @@ export default function Header() {
 
         <div className={styles.right} id="top-scheduler">
           <div className={styles.rightInner}>
-            {/*
-            <iframe
-              src="https://meetings.hubspot.com/YOUR_ID?embed=true"
-              title="Book a session"
-              className={styles.schedulerFrame}
-              loading="lazy"
+            <div
+              ref={meetingsRef}
+              className={`meetings-iframe-container ${styles.meetingsContainer}`}
+              data-src="https://meetings.hubspot.com/bob-van-luijt/expert-session?embed=true"
             />
-            */}
-            <div className={styles.schedulerShell} aria-live="polite">
-              <div className={styles.schedulerGhost}>
-                <span>Scheduler loads here</span>
-              </div>
-            </div>
+            <noscript>
+              <iframe
+                title="Book a session"
+                src="https://meetings.hubspot.com/bob-van-luijt/expert-session?embed=true"
+                className={styles.schedulerFrame}
+              />
+            </noscript>
           </div>
         </div>
       </div>
