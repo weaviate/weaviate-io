@@ -1,0 +1,38 @@
+.priceReview {
+  align-items: flex-end;
+  background: linear-gradient(150.47deg, #75FBAE 0%, #B6F874 100%);
+  border-radius: $space;
+  padding: calc($space * 2) calc($space * 2);
+  align-items: center;
+  justify-content: center;
+  gap: calc($space * 3);
+  flex-grow: 1;
+  flex-shrink: 0;
+  max-width: 340px;
+  width: 100%;
+
+  @media (max-width: 920px) { max-width: initial; }
+
+  h1 {
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  a {
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+  }
+
+  button {
+    font-size: 1.1em;
+    font-weight: 700;
+    background: $white;
+    width: 100%;
+    border-radius: calc($space / 2);
+    min-height: 56px;
+    border: 2px solid $mainColor;    
+    margin-top: 50px;
+  }
+}
