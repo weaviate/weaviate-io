@@ -1,11 +1,11 @@
 ---
-title: 'Evals and Guardrails in Enterprise workflows (Part 2) — Practical Patterns & Code'
+title: 'Evals and Guardrails in Enterprise workflows (Part 2)'
 slug: 'evals-guardrails-enterprise-workflows-2'
 authors: [deepti]
 date: 2025-09-03
-tags: ['concepts','Agents','Evals','Guardrails','LangChain']
+tags: ['concepts','Agents','Evals','Guardrails','LangChain','Weights&Biases']
 image: ./img/hero.png
-description: "Hands-on patterns: LLM-as-Judge, Self-Scoring, and Behaviour-Shaping Agents with LangChain, W&B, and Arize"
+description: "Hands-on patterns: LLM-as-Judge with LangChain and W&B"
 ---
 
 ![Evals and Guardrails in enterprise workflows — Part 2](./img/hero.png)
@@ -43,54 +43,39 @@ Let's now move to an actual implementation with code examples for LLM-as-Judge. 
 ```
 For this implementation, I use LangChain as the orchestration framework and Weights & Biases for evaluation tracking and observability. LangChain provides the composable chains that wire together the prompt template, judge model, and output parsing into a clean, testable pipeline. W&B captures evaluation metrics over time and provides execution traces for comprehensive system monitoring. This combination gives me both the architectural flexibility to iterate on evaluation logic and the operational visibility to monitor judge performance in production. 
 
-[![Evals](./img/scoring2.png)](./img/scoring2.png)
-
-
-
-<!-- The evaluation flow: `User query → Weaviate vector search → Retrieved products → Judge prompt (query + products) → Judge LLM → Structured judgment (score, reason, passed)` -->
-
-
+[![Evals](./img/scoring.png)](./img/scoring.png)
 
 ---
 
 ### Prerequisites 
 
-Install the required libraries for LangChain, Weaviate, Weights & Biases, and OpenAI. Set up your environment variables for API keys and endpoints. You will need api keys for W&B, Weaviate and for the model you choose for your LLM judge. Create a collection in Weaviate and initiate the weaviate client. For instructions, refer to ___
+This implementation requires LangChain for orchestration, Weaviate for vector search, Weights & Biases for evaluation tracking, and your choice of LLM provider (OpenAI, Anthropic, etc.) with their respective API keys configured. You'll need a Weaviate collection populated with product data that includes item descriptions, categories, and metadata that the judge can evaluate against.
 
-<!-- ```bash
-npm install @langchain/weaviate @langchain/core weaviate-client weave @langchain/openai 
-```
+The examples use TypeScript and assume familiarity with prompt engineering and evaluation frameworks. If you're new to any of these tools, I recommend reviewing the [LangChain documentation](https://docs.langchain.com), [Weaviate quickstart](https://weaviate.io/developers/weaviate/quickstart), and [W&B integration guide](https://docs.wandb.ai/) first.
 
-### Environment Variables
+The complete working code, sample datasets, and detailed setup instructions are available in the [GitHub repository](https://github.com/your-username/llm-judge-eval-examples).
 
-Set up your environment variables for API keys and endpoints. You will need api keys for W&B, Weaviate and for the model you choose for your LLM judge
-
-```bash
-export OPENAI_API_KEY=your_openai_api_key
-export WEAVIATE_URL=your_weaviate_cluster_url
-export WEAVIATE_API_KEY=your_weaviate_api_key
-export WANDB_API_KEY=your_wandb_api_key
-``` -->
 
 ### Weights & Biases 
 Weave within Weights & Biases (W&B) provides automatic experiment tracking and function tracing. The initialization creates a project namespace where all evaluation runs, model calls, and performance metrics are logged. This enables reproducible experiments visible on a dashboard and comprehensive observability across your evaluation iterations.
+
 ```typescript
 weave.init('Retail-Search-Evaluation');
 ```
 
 ### Build the LLM Judge Chain
 
-We create a reusable evaluation pipeline that takes a prompt and a model(judge) and parses the model output. 
-
-The Judge flow: `Prompt → LLM → String Parser → JSON Validator`
+This function creates a judge chain using LangChain's composable pipeline. We pass in a prompt template and model name, then chain them together; the prompt template encodes business rules and evaluation criteria that guide the judge's decision-making. 
 
 ```typescript
 const buildJudgeChain = (promptTemplate: ChatPromptTemplate, modelName: string) => {
-  const llm = new ChatOpenAI({ model: modelName, temperature: 0 });
-  return promptTemplate.pipe(llm).pipe(new StringOutputParser()).pipe(parseJudgment);
+
+    const llm = new ChatOpenAI({ model: modelName, temperature: 0 });
+    return promptTemplate.pipe(llm).pipe(new StringOutputParser()).pipe(parseJudgment);
+
 };
 ```
-In our example, we have instructed the judge LLM to provide a very simple score and the reason for scoring it that way.  
+`parseJudement` receives the LLM's raw output and ensures we have a structured response using the JSON validator. In our example, we have instructed the judge LLM to provide a very simple score and the reason for scoring it that way.  
 ```typescript
 const parseJudgment = (text: string) => {
     const parsed = JSON.parse(text);
@@ -100,25 +85,9 @@ const parseJudgment = (text: string) => {
     };
 };
 ```
+### Weave Eval 
 
-### Set Up the Scoring Function
-
-Define a simple scoring function that extracts the score and pass/fail status from the judge LLM 's output, which contains judgement results and scoring. This function is used to aggregate and report evaluation results. It keeps the scoring logic separate from model execution, enabling easy A/B testing of different evaluation criteria. `weave.op` wrapper enables automatic logging, tracing, and performance monitoring
-
-```typescript
-const simpleScorer = weave.op(
-  ({ modelOutput }) => 
-    ({ 
-        score: modelOutput.score, 
-        passed: modelOutput.passed 
-    }),
-  { name: 'simpleScore' }
-);
-```
-
-### Define the Evaluation Model
-
-Create an evaluation model that, for each dataset row, performs a vector search, invokes the judge chain, and returns a structured evaluation result. This encapsulates the full evaluation workflow:
+`evaluationModel` function ties the flow together. For each user query, it runs a Weaviate search, passes the search results to the judge chain, and returns structured evaluation data that is logged into weave. The `weave.op` wrapper enables automatic logging, tracing, and performance monitoring. We shall look at this data in W&B's console later in this post.
 
 ```typescript
 const evaluationModel = weave.op(
@@ -141,12 +110,36 @@ const evaluationModel = weave.op(
         };
     }, 
     { name: 'LLM-as-Judge' });
+``` 
+
+The following step runs the above evaluation model across a list of test questions and collects the results:
+
+```typescript
+const evaluation = new weave.Evaluation({
+  dataset,
+  scorers: [simpleScorer],
+});
+
+await evaluation.evaluate({ model: evaluationModel });  
+```
+The scoring function extracts key metrics from the judge's output for aggregation and reporting. 
+
+```typescript
+const simpleScorer = weave.op(
+  ({ modelOutput }) => 
+    ({ 
+        score: modelOutput.score, 
+        passed: modelOutput.passed 
+    }),
+  { name: 'simpleScore' }
+);
 ```
 
 ### Define the LLM Judge Prompt
 
-Craft a detailed prompt that instructs the LLM how to evaluate search results for relevance, including a scoring rubric and examples. This ensures the LLM's judgments are consistent and aligned with your business criteria. 
-In this example, we emphasize the retail search relevance and the intent of search over exact keyword matching. We also provide scoring examples of related items to guide the llm judge. For much more targeted use cases, the evaluation prompt should incorporate domain knowledge directly into the evaluation criteria provided in the judge prompt 
+The prompt template defines the evaluation logic and criteria that guide the judge's decision-making process. This prompt serves as the configuration layer where we encode business rules, scoring rubrics, and domain-specific examples that ensure consistent evaluation across different queries. 
+
+For this retail search implementation, the prompt prioritizes semantic relevance and customer intent over exact keyword matching. We include scoring examples and contextual guidelines that help the judge understand what constitutes a good product match. The prompt architecture allows us to modify evaluation criteria without changing the underlying code—making it possible to adapt the judge's behavior for different product categories, seasonal requirements, or business policies. 
 
 ```typescript
 const LLM_AS_JUDGE_PROMPT = ChatPromptTemplate.fromMessages([
@@ -180,25 +173,12 @@ Evaluate if this product is relevant to what the customer is searching for. Cons
 ]);
 ```
 
-### Run the Evaluation
+### Test Retail Questions
 
-Set up and execute the evaluation using your dataset and scoring function. This step runs the evaluation model across your questions and collects the results:
-
-```typescript
-const evaluation = new weave.Evaluation({
-  dataset,
-  scorers: [simpleScorer],
-});
-
-await evaluation.evaluate({ model: evaluationModel });  
-```
-
-### Example Retail Questions
-
-Here’s a sample set of customer queries you can use to test your evaluation pipeline.
+A sample set of customer queries you can use to test your evaluation pipeline.
 
 ```typescript
-const retailQuestions = [
+const retailTestQuestions = [
   "I need a black dress for a dinner party",
   "Looking for comfortable shoes for running",
   "Warm sweater for winter",
@@ -211,13 +191,15 @@ const retailQuestions = [
   "Winter ski jacket" // Edge case: Not in inventory
 ];
 
-const results = await evaluateWithJudge(
-    retailQuestions,
-    3,
-    "gpt-4o-mini",
-    LLM_AS_JUDGE_PROMPT
-);
 ```
+
+With the evaluation pipeline running, W&B automatically captures detailed metrics and traces for every judge decision. The console provides comprehensive visibility into how the judge performs across different query types, scoring patterns, and potential failure modes.
+
+The screenshot below shows the LLM judge evaluating each search result against our retail search criteria. With a threshold score of 3, any evaluation below this mark registers as a failure. Notice the edge case where the inventory lacks a ski jacket and returns a wool sweater instead—the judge correctly identifies this mismatch and fails the test. Each evaluation includes the judge's reasoning, demonstrating how the prompt configuration drives consistent decision-making across different scenarios. 
+
+[![Evals](./img/wnbscoring.png)](./img/wnbscoring.png)
+
+LLM-as-Judge transforms evaluation from static rules to adaptive reasoning. The modular architecture—prompt configuration, execution chains, and comprehensive observability—provides the foundation for production-ready AI safety. In Part 3, we'll explore the Supervisor pattern, where a dedicated oversight agent monitors and corrects other agents in real-time, using ArizeAI for deep observability into multi-agent workflows and decision chains.
 
 ---
 
