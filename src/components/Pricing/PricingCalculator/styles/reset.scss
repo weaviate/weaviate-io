@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap');
+
+body {
+  padding: 0;
+  margin: 0;
+  padding: 0;
+  font-family: $fontFamily;
+  font-weight: 450;
+  font-size: 16px;
+  color: $textDark;
+  box-sizing: border-box;
+  
+  * {
+    padding: 0;
+    margin: 0;
+    line-height: inherit;
+    box-sizing: border-box;
+  }
+
+  #root { 
+    padding: 20px; 
+    width: 100%;
+  }
+}
+
+
+
+
+

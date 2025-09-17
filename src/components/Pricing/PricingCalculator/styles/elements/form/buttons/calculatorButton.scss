@@ -1,0 +1,50 @@
+.calculatorButton {
+  display: flex;
+  width: 100%;
+  min-width: 80px;
+  height: 44px;
+  text-transform: capitalize;
+  font-weight: 400;
+  overflow: hidden;
+  font-size: 1.4em;
+  padding: 2px 0px; // Keep the button accesible in size.
+
+  &.dropdown {
+    font-size: 1.1em;
+    
+    > div { 
+      background-color: $buttonBgDropdown;
+      align-items: flex-start; 
+      background-image: url('src/assets/chevronDown.svg');
+      background-repeat: no-repeat;
+      background-position: calc(100% - 20px) center;
+    }
+  }
+
+  > div {
+    height: 100%;
+    padding: 0 $space;
+    border: 1px solid $buttonBorder;
+    border-radius: calc($space / 2);
+    background-color: $buttonBg;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    transition: $transition;
+  }
+
+  &.active {
+    font-weight: 600;
+    > div { background: $green; }
+  }
+  
+  &:hover, &:focus {
+    > div {
+      background-color: darken($buttonBgHover, 10%);
+      border: 1px solid darken($buttonBorder, 10%);
+    }
+
+    &.active > div { background-color: darken($green, 10%); }
+  }
+}

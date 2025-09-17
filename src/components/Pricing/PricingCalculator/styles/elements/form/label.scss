@@ -1,0 +1,11 @@
+label {
+  display: flex;
+  width: 150px;
+  flex-shrink: 0;
+  align-items: center;
+  height: 40px;
+}
+
+label + button {
+  margin-top: $space;
+}

@@ -1,0 +1,29 @@
+.price {
+  font-size: 2em;
+  font-weight: 800;
+  position: relative;
+  text-align: center;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: space;
+
+  .priceWrapper {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+  }
+
+  span.priceContainer {
+    font-size: 2.7em;
+    display: block;
+    position: absolute;
+    &.large { font-size: 2.1em; }
+  }
+
+  .small {
+    font-weight: 300;
+    font-size: 0.9em;
+    position: relative;
+    white-space: nowrap;
+  }
+}
