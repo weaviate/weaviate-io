@@ -1,0 +1,15 @@
+.buttonGroup {
+  flex-grow: 1;
+  
+  ul {
+    display: flex;
+    flex-direction: row;
+    gap: $space;
+    width: 100%;
+
+    li { 
+      width: 100%;
+      flex-grow: 1; 
+    }
+  }  
+}

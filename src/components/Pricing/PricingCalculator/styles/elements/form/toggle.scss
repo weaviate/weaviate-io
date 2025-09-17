@@ -1,0 +1,67 @@
+.toggle {
+  flex-direction: row;
+  align-items: center;
+    outline: none;
+  height: 44px;
+
+  .togglerWrapper {
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .toggler {
+    position: relative;
+    width: 55px;
+    height: 22px;
+    border: 1px solid $buttonBorder;
+    background: $toggleBg;
+    border-radius: 99px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: $transition;
+  }
+
+  &.active .toggler {
+    border: 1px solid $green;
+    background: $green;
+  }
+
+  &:focus, &:hover {
+    .toggler { border: 1px solid darken($buttonBorder, 20%); }
+    &.active .toggler { border: 1px solid darken($green, 20%); }
+  }
+
+  .disk {
+    z-index: 200;
+    position: absolute;
+    left: 0;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    background: $white;
+    border-radius: 99px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .text {
+    z-index: 199;
+    font-size: 0.8em;
+    font-weight: 700;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    align-items: flex-start;
+    cursor: pointer;
+
+    > span {
+      position: absolute;
+      left: 0px;
+      top: 2px;
+      width: auto;
+    }    
+  }
+}
