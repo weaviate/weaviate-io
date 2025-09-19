@@ -1,0 +1,19 @@
+.highAvailability {
+  flex-direction: row;
+  width: 100%;
+  gap: $space;
+  padding: 10px 0px;
+  align-items: center;
+  span {
+    height: 20px;
+    width: 20px;
+    background: $green;
+    border: 1.5px solid $darkBorder;
+    border-radius: 3px;
+    background-image: url('/img/pricing/chevronDownBlock.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  > div:first-of-type { flex: 1; }
+}
