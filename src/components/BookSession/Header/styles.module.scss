@@ -249,29 +249,18 @@
 
 .hsFormContainer {
   width: 100%;
-  min-height: 520px;
   border-radius: 12px;
   background: var(--lightColor);
   box-shadow: 0 8px 24px rgba(19, 12, 73, 0.08);
-  overflow: hidden;
+  overflow: visible;
   padding: clamp(8px, 1vw, 12px);
 }
 
 :global(#hs-form-expert-session iframe) {
   width: 100% !important;
-  height: 100% !important;
-  min-height: 520px !important;
+  height: auto !important;
+  min-height: 0 !important;
   border: 0 !important;
+  display: block !important;
   border-radius: 8px !important;
-}
-
-@media (max-width: 980px) {
-  :global(#hs-form-expert-session iframe) {
-    min-height: 420px !important;
-  }
-}
-@media (max-width: 640px) {
-  :global(#hs-form-expert-session iframe) {
-    min-height: 380px !important;
-  }
 }
