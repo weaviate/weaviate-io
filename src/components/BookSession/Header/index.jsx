@@ -2,22 +2,43 @@ import React, { useEffect, useRef } from 'react';
 import styles from './styles.module.scss';
 
 export default function Header() {
-  const meetingsRef = useRef(null);
+  const formRef = useRef(null);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return; // avoid SSR
-    if (!meetingsRef.current) return;
+    if (typeof window === 'undefined') return;
+    if (!formRef.current) return;
 
-    const SCRIPT_ID = 'hs-meetings-embed';
-    if (!document.getElementById(SCRIPT_ID)) {
-      const s = document.createElement('script');
-      s.src =
-        'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
-      s.async = true;
-      s.type = 'text/javascript';
-      s.id = SCRIPT_ID;
-      document.body.appendChild(s);
+    const SCRIPT_ID = 'hs-forms-v2';
+    const SRC = 'https://js.hsforms.net/forms/embed/v2.js';
+
+    const createForm = () => {
+      if (!window.hbspt || !window.hbspt.forms) return;
+      // Avoid double-initializing on fast refresh / route changes:
+      if (formRef.current.dataset.rendered === 'true') return;
+
+      window.hbspt.forms.create({
+        portalId: '8738733',
+        formId: 'd9b2ccc2-f6cf-446f-ae09-33dfff557a29',
+        region: 'na1',
+        target: '#hs-form-expert-session',
+      });
+      formRef.current.dataset.rendered = 'true';
+    };
+
+    const existing = document.getElementById(SCRIPT_ID);
+    if (existing) {
+      if (window.hbspt?.forms) createForm();
+      else existing.addEventListener('load', createForm, { once: true });
+      return;
     }
+
+    const s = document.createElement('script');
+    s.id = SCRIPT_ID;
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = SRC;
+    s.onload = createForm;
+    document.body.appendChild(s);
   }, []);
 
   return (
@@ -76,16 +97,19 @@ export default function Header() {
         <div className={styles.right} id="top-scheduler">
           <div className={styles.rightInner}>
             <div
-              ref={meetingsRef}
-              className={`meetings-iframe-container ${styles.meetingsContainer}`}
-              data-src="https://meetings.hubspot.com/bob-van-luijt/expert-session?embed=true"
+              id="hs-form-expert-session"
+              ref={formRef}
+              className={styles.hsFormContainer}
+              aria-live="polite"
             />
             <noscript>
-              <iframe
-                title="Book a session"
-                src="https://meetings.hubspot.com/bob-van-luijt/expert-session?embed=true"
-                className={styles.schedulerFrame}
-              />
+              <p>
+                Please enable JavaScript to load the booking form. You can also{' '}
+                <a href="https://share.hsforms.com/12bLMwvbPRG-uCTPf_1V6KQ57aul">
+                  book directly here
+                </a>
+                .
+              </p>
             </noscript>
           </div>
         </div>
