@@ -52,7 +52,7 @@ Shown above, these plots illustrate the consistent improvement we are seeing wit
 
 ## Results by Benchmark
 
-## BEIR
+## [BEIR](https://arxiv.org/abs/2104.08663)
 
 Drilling further into the results we found on the particular benchmarks, we begin with one of the most commonly studied benchmarks in information retrieval, BEIR. Published by Thakur et al. in 2021, BEIR was designed to evaluate the out-of-distribution generalization capabilities of retrieval systems. We focused on 3 subsets: Natural Questions (3,452 queries), SciFact (300 queries), and FiQA (648 queries). Natural Questions presents a large-scale retrieval challenge with 2.7 million documents, whereas SciFact and FiQA are smaller scale corpora focused on particular domains such as scientific papers and financial questions, respectively.
 
@@ -84,29 +84,104 @@ Drilling further into the results we found on the particular benchmarks, we begi
 | nDCG @ 10    | 0.45          | 0.54 ± 0.003      |
 
 
-## LoTTe
+## [LoTTe](https://arxiv.org/abs/2112.01488)
 
 The next benchmark we tested with is LoTTe, short for, Long-Tailed Topic-stratified Evaluation. Similarly to BEIR, LoTTe was developed to test how well search systems can generalize to particular domains. LoTTe interestingly uses natural search queries from Google, via GooAQ) mapped to StackExchange answers. Each benchmark in LoTTe contains two query sets, “search” and “forum”: "search" queries are derived from Google autocomplete, and "forum" queries are derived from StackExchange post titles. There are 2002 and 661 “forum” and “search” queries in LoTTe Lifestyle, respectively. There are 2002 and 924 “forum” and “search” queries in LoTTe Recreation, respectively.
 
+### Lifestyle
+
+| Metric       | Hybrid Search (Forum) | Search Mode (Forum)   | Hybrid Search (Search) | Search Mode (Search)   |
+|--------------|------------------------|-----------------------|-------------------------|------------------------|
+| Success @ 1  | 0.65                   | 0.80 ± 0.003          | 0.63                    | 0.73 ± 0.006           |
+| Recall @ 5   | 0.47                   | 0.58 ± 0.058          | 0.64                    | 0.71 ± 0.003           |
+| Recall @ 20  | 0.68                   | 0.74 ± 0.004          | 0.80                    | 0.83 ± 0.002           |
+| Success @ 5  | 0.86                   | 0.91 ± 0.005          | 0.89                    | 0.93 ± 0.002           |
+
+### Recreation
+
+| Metric       | Hybrid Search (Forum) | Search Mode (Forum)   | Hybrid Search (Search) | Search Mode (Search)   |
+|--------------|------------------------|-----------------------|-------------------------|------------------------|
+| Success @ 1  | 0.56                   | 0.72 ± 0.006          | 0.56                    | 0.66 ± 0.006           |
+| Recall @ 5   | 0.50                   | 0.59 ± 0.001          | 0.65                    | 0.71 ± 0.006           |
+| Recall @ 20  | 0.67                   | 0.72 ± 0.003          | 0.80                    | 0.80 ± 0.002           |
+| Success @ 5  | 0.80                   | 0.86 ± 0.006          | 0.83                    | 0.83 ± 0.006           |
+
 The original paper introducing the LoTTe benchmark finds the highest Succes @ 5 scores using ColBERTv2 with 0.85 and 0.77 on the Lifestyle search and forum test sets, respectively, as well as 0.72 and 0.77 on the Recreation search and forum test sets, respectively. Unlike Recall @ 5, Success @ 5 measures if at least 1 of the relevant documents were returned in the top 5 results, rather than all of them. Search Mode outperforms these results by absolute gains of +0.09,  +0.17, +0.13, and +0.09.
 
-## BRIGHT
+## [BRIGHT](https://arxiv.org/abs/2407.12883)
 
 The next benchmark we include is BRIGHT, introduced by Su et al. as a testbed for level 3 retrieval. While level 1 is keyword search and level 2 is semantic search, level 3 represents the frontier: reasoning-intensive retrieval. Unlike the other benchmarks we included, BRIGHT’s queries are long and descriptive. Sampled from user posts on StackExchange, each query is paired with gold documents sourced from external web pages cited in accepted or highly upvoted answers. There are 103, 116, 103, 101, and 101 queries in the respective Biology, Earth Science, Economics, Psychology, and Robotics subsets we test with. They further contain average query lengths of 115, 109, 182, 150, and 819 tokens, respectively. These query lengths highlight how BRIGHT forces retrieval systems to go beyond surface matching and utilize complex reasoning to find relevant search results.
 
+### Biology
+
+| Metric       | Hybrid Search | Search Mode       |
+|--------------|---------------|-------------------|
+| Success @ 1  | 0.13          | 0.44 ± 0.022      |
+| Recall @ 5   | 0.11          | 0.35 ± 0.009      |
+| Recall @ 20  | 0.21          | 0.51 ± 0.019      |
+| nDCG @ 10    | 0.13          | 0.40 ± 0.011      |
+
+### Earth Science
+
+| Metric       | Hybrid Search | Search Mode       |
+|--------------|---------------|-------------------|
+| Success @ 1  | 0.24          | 0.54 ± 0.024      |
+| Recall @ 5   | 0.25          | 0.41 ± 0.018      |
+| Recall @ 20  | 0.35          | 0.53 ± 0.021      |
+| nDCG @ 10    | 0.26          | 0.44 ± 0.020      |
+
+### Economics
+
+| Metric       | Hybrid Search | Search Mode       |
+|--------------|---------------|-------------------|
+| Success @ 1  | 0.12          | 0.22 ± 0.029      |
+| Recall @ 5   | 0.15          | 0.20 ± 0.008      |
+| Recall @ 20  | 0.25          | 0.30 ± 0.013      |
+| nDCG @ 10    | 0.17          | 0.25 ± 0.010      |
+
+### Psychology
+
+| Metric       | Hybrid Search | Search Mode       |
+|--------------|---------------|-------------------|
+| Success @ 1  | 0.16          | 0.39 ± 0.011      |
+| Recall @ 5   | 0.22          | 0.36 ± 0.025      |
+| Recall @ 20  | 0.33          | 0.50 ± 0.026      |
+| nDCG @ 10    | 0.22          | 0.40 ± 0.006      |
+
+### Robotics
+
+| Metric       | Hybrid Search | Search Mode       |
+|--------------|---------------|-------------------|
+| Success @ 1  | 0.17          | 0.26 ± 0.015      |
+| Recall @ 5   | 0.16          | 0.26 ± 0.026      |
+| Recall @ 20  | 0.28          | 0.39 ± 0.004      |
+| nDCG @ 10    | 0.19          | 0.27 ± 0.017      |
+
 The original paper introducing BRIGHT presents the results of several different dense embedding models, categorized by open-source models less than 1B parameters, open-source models greater than 1B parameters, and proprietary models, as well as BM25. The highest performing methods across the Biology, Earth Science, Economics, Psychology, and Robotics achieve nDCG @ 10 scores of 30.6, 36.4, 22.4, 27.8, and 18.2. Search Mode outperforms these methods by absolute gains of 13.4, 9.6, 2.6, 12.2, and 8.8.
 
-## EnronQA
+## [EnronQA](https://arxiv.org/abs/2505.00263)
 
 The next benchmark we experiment with is EnronQA. EnronQA uniquely addresses the challenge of retrieval over private corpora – 103,638 emails across 150 distinct user inboxes from the Enron corpus. We run our tests with a sample of 500 queries from the largest user inbox, dasovich-j. EnronQA uses synthetic queries derived from these emails. This is an interesting emerging technique for benchmarking information retrieval without having to manually annotate queries and their gold documents. For those interested, we have a recipe here showing how you can achieve this with the Weaviate Transformation Agent.
 
-## WixQA
+| Metric       | Hybrid Search | Search Mode       |
+|--------------|---------------|-------------------|
+| Success @ 1  | 0.56          | 0.74 ± 0.005      |
+| Recall @ 5   | 0.81          | 0.90 ± 0.001      |
+| Recall @ 20  | 0.92          | 0.94 ± 0.002      |
+
+## [WixQA](https://arxiv.org/abs/2505.08643)
 
 The last benchmark we experiment with is WixQA. Wix.com is a website building and hosting platform serving millions of users who encounter technical challenges ranging from domain configuration, payment processing, or design customization, to give a few examples. We use the Expert Written queries, containing 200 customer queries submitted through Wix support channels. Each of these questions are paired with comprehensive answers and gold documents manually authored by Wix support specialists.
 
+| Metric       | Hybrid Search | Search Mode       |
+|--------------|---------------|-------------------|
+| Success @ 1  | 0.42          | 0.66 ± 0.010      |
+| Recall @ 5   | 0.74          | 0.83 ± 0.006      |
+| Recall @ 20  | 0.90          | 0.93 ± 0.008      |
+
 ## Conclusion
 
-Our benchmarks show that Search Mode significantly improves search accuracy by applying best-practice IR techniques such as query expansion, query decomposition, schema introspection, and reranking. These additional model inferences trade off some latency for higher quality. If your use case requires highly accurate search results, you should check out Search Mode! iIf you are latency-sensitive, Weaviate’s Hybrid Search may be a better fit.
+Our benchmarks show that Search Mode significantly improves search accuracy by applying best-practice IR techniques such as query expansion, query decomposition, schema introspection, and reranking. These additional model inferences trade off some latency for higher quality. If your use case requires highly accurate search results, you should check out Search Mode! If you are latency-sensitive, Weaviate’s Hybrid Search may be a better fit.
 
 To learn more about how we ran these experiments, visit our benchmarking repo. It includes scripts to load the benchmarks into Weaviate, and uses the async Query Agent client for fast evaluation. Contributions are welcome - feel free to open a PR with new benchmarks or improvements! Thank you for reading!
 
