@@ -11,6 +11,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 **Last Updated: September, 2025**
 <br></br>
+
 1. **_September 2025_ - Document: Weaviate Data Processing Addendum**
    1. Update. Customer Responsibilities added
       
