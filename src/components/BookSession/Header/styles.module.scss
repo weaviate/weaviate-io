@@ -48,6 +48,9 @@
     max-width: none;
   }
 
+  @media (max-width: 600px) {
+    padding: 2rem;
+  }
   h1 {
     font-family: var(--headerFont);
     color: var(--darkColor);
@@ -253,7 +256,13 @@
   background: var(--lightColor);
   box-shadow: 0 8px 24px rgba(19, 12, 73, 0.08);
   overflow: visible;
-  padding: clamp(8px, 1vw, 12px);
+  padding: 3rem;
+}
+
+@media screen and (max-width: 640px) {
+  .hsFormContainer {
+    padding: 1.5rem;
+  }
 }
 
 :global(#hs-form-expert-session iframe) {
