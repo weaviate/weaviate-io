@@ -57,6 +57,7 @@
 }
 
 .card {
+  scroll-margin-top: 96px;
   background: #fff;
   border-radius: 16px;
   padding: clamp(14px, 1.6vw, 20px);
@@ -178,7 +179,7 @@
   }
 }
 
-.footer {
+.footerBlock {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -245,4 +246,63 @@
   width: 1rem;
   height: 1rem;
   display: inline-block;
+}
+
+/* --- Footer row: roles + time chip (Safari-friendly) --- */
+.footerBlock {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 6px;
+  flex-wrap: wrap;
+}
+
+.roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.time {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 0.5rem;
+  background: #ddebf2;
+  padding: 6px 10px;
+  color: #262262;
+  font-family: Inter;
+  font-size: clamp(0.8125rem, 2.8vw, 0.875rem);
+  font-weight: 600;
+  line-height: 1;
+  flex-shrink: 0;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+@media (max-width: 480px) {
+  .footerBlock {
+    gap: 8px;
+  }
+  .roles {
+    order: 1;
+    width: 100%;
+  }
+  .time {
+    order: 2;
+    margin-left: 0;
+  }
+}
+
+.clock {
+  background-image: url('/img/site/book-clock-icon.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 1rem;
+  height: 1rem;
+  display: inline-block;
+  flex: 0 0 auto;
 }

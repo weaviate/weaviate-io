@@ -58,7 +58,7 @@ export default function Header() {
 
             <ul className={styles.actionList}>
               <li>
-                <a href="#sessions" className={styles.item}>
+                <a href="#session-rag" className={styles.item}>
                   <span
                     className={`${styles.icon} ${styles.rag}`}
                     aria-hidden="true"
@@ -69,7 +69,7 @@ export default function Header() {
                 </a>
               </li>
               <li>
-                <a href="#sessions" className={styles.item}>
+                <a href="#session-scale" className={styles.item}>
                   <span
                     className={`${styles.icon} ${styles.optimize}`}
                     aria-hidden="true"
@@ -80,7 +80,7 @@ export default function Header() {
                 </a>
               </li>
               <li>
-                <a href="#sessions" className={styles.item}>
+                <a href="#session-agentic" className={styles.item}>
                   <span
                     className={`${styles.icon} ${styles.agent}`}
                     aria-hidden="true"

@@ -66,7 +66,7 @@ export default function SessionsGrid() {
 
         <div className={styles.grid}>
           {SESSIONS.map((s) => (
-            <article key={s.id} className={styles.card}>
+            <article key={s.id} id={`session-${s.id}`} className={styles.card}>
               <div className={styles.pill}>{s.pill}</div>
 
               <div className={styles.graphic}>
@@ -83,7 +83,7 @@ export default function SessionsGrid() {
                 ))}
               </ul>
 
-              <div className={styles.footer}>
+              <div className={styles.footerBlock}>
                 <div className={styles.roles}>
                   {s.roles.map((r) => {
                     const key = r.toLowerCase().replace(/\s+/g, '-');
