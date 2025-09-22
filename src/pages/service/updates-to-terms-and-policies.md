@@ -13,7 +13,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 <br></br>
 
 1. **_September 2025_ - Document: Weaviate Data Processing Addendum**
-   1. Update. Customer Responsibilities added
+   1. Update. Customer Obligations clause added
       
 
 2. **_April 2025_ - Document: Weaviate Cloud Agreement**
