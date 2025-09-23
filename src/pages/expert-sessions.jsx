@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from '@docusaurus/Head';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 import Header from '/src/components/BookSession/Header';
@@ -8,10 +8,20 @@ import CTASection from '../components/BookSession/CTASection';
 import Layout from '@theme/Layout';
 
 export default function BookASessionPage() {
+  useEffect(() => {
+    document.body.setAttribute('data-hide-annc', 'true');
+    return () => document.body.removeAttribute('data-hide-annc');
+  }, []);
+
   return (
     <div className="custom-page noBG">
       <Layout>
         <Head>
+          <style>{`
+            body[data-hide-annc="true"] .theme-announcement-bar { 
+              display: none !important; 
+            }
+          `}</style>
           <meta name="robots" content="noindex, nofollow" />
           <meta name="googlebot" content="noindex, nofollow" />
           <title>Expert Sessions | Weaviate</title>
