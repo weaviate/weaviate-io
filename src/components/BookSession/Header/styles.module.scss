@@ -42,7 +42,7 @@
   padding: clamp(20px, 3.5vw, 56px);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 
   @media (max-width: 980px) {
     max-width: none;
