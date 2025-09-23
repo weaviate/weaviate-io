@@ -161,7 +161,7 @@ The original paper introducing BRIGHT presents the results of several different 
 
 ## [EnronQA](https://arxiv.org/abs/2505.00263)
 
-The next benchmark we experiment with is EnronQA. EnronQA uniquely addresses the challenge of retrieval over private corpora – 103,638 emails across 150 distinct user inboxes from the Enron corpus. We run our tests with a sample of 500 queries from the largest user inbox, dasovich-j. EnronQA uses synthetic queries derived from these emails. This is an interesting emerging technique for benchmarking information retrieval without having to manually annotate queries and their gold documents. For those interested, we have a recipe here showing how you can achieve this with the Weaviate Transformation Agent.
+The next benchmark we experiment with is EnronQA. EnronQA uniquely addresses the challenge of retrieval over private corpora – 103,638 emails across 150 distinct user inboxes from the Enron corpus. We run our tests with a sample of 500 queries from the largest user inbox, dasovich-j. EnronQA uses synthetic queries derived from these emails. This is an interesting emerging technique for benchmarking information retrieval without having to manually annotate queries and their gold documents. For those interested, we have a recipe [here](https://github.com/weaviate/recipes/blob/main/weaviate-services/agents/transformation-agent-retrieval-benchmark.ipynb) showing how you can achieve this with the Weaviate Transformation Agent.
 
 | Metric       | Hybrid Search | Search Mode       |
 |--------------|---------------|-------------------|
