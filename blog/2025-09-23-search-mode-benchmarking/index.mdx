@@ -11,7 +11,7 @@ description: "Learn how Search Mode compares against Hybrid Search on the BEIR, 
 
 ![Hero image announcing Weaviate Query Agent is now generally available](./img/search-mode-benchmarking.png)
 
-A major highlight of the [GA release of the Query Agent](https://weaviate.io/blog/query-agent-generally-available) is the introduction of **Search Mode**! This feature draws on decades of information retrieval best practices such as query decomposition, query expansion, reranking, and more, to deliver higher quality search results. In this blog post, we compare Search Mode against Hybrid Search across several leading Information Retrieval benchmarks, including BEIR, LoTTe, BRIGHT, EnronQA, and WixQA.
+A major highlight of the [GA release of the Query Agent](https://weaviate.io/blog/query-agent-generally-available) is the introduction of **Search Mode**! This feature draws on decades of information retrieval best practices to deliver high quality search results. In this blog post, we compare Search Mode against Hybrid Search across several leading Information Retrieval benchmarks, including BEIR, LoTTe, BRIGHT, EnronQA, and WixQA.
 
 ---
 
@@ -22,7 +22,7 @@ Why did we build Search Mode? With early adopters, we saw a clear need for a ret
 
 ## Understanding IR Benchmarks
 
-Search Mode is a Compound AI System built into the Query Agent that is optimized for highly accurate search. To illustrate this, we present a comparison of Search Mode with a standard implementation of Weaviate’s Hybrid Search, combining Vector Search with the Snowflake Arctic 2.0 embeddings and BM25 using Reciprocal Rank Fusion (RRF). We compare these two systems on a curated selection of 12 Information Retrieval (IR) benchmarks from BEIR, LoTTe, and BRIGHT, as well as WixQA and EnronQA. 
+Search Mode is a Compound Retrieval System built into the Query Agent that is optimized for highly accurate search. To illustrate this, we present a comparison of Search Mode with a standard implementation of Weaviate’s Hybrid Search, combining Vector Search with the Snowflake Arctic 2.0 embeddings and BM25 using Reciprocal Rank Fusion (RRF). We compare these two systems on a curated selection of 12 Information Retrieval (IR) benchmarks from BEIR, LoTTe, and BRIGHT, as well as WixQA and EnronQA. 
 
 BEIR and LoTTe are two of the most popular IR benchmarks. Both focus on capturing diverse domains and information needs, but at different levels of granularity. For example, BEIR includes searching over both scientific papers and Quora question-answer pairs, whereas LoTTe focuses on different topics within StackExchange. BRIGHT is a newly introduced IR benchmark, designed to test reasoning-intensive retrieval. Distinctly from other IR benchmarks, the queries in BRIGHT are longer, with a mean token length of approximately 286. We additionally choose EnronQA and WixQA for their focus on emails and technical documentation, respectively. Throughout our experiments, we use the following metrics:
 
@@ -38,7 +38,7 @@ For all metrics, higher values indicate better performance. Each metric emphasiz
 
 ---
 
-To account for the stochasticity of models used in Search Mode, we run our experiments for 3 trials, finding fairly consistent performance across runs.  The full set of results shown in this blog and the benchmarking code used to produce them can be found on GitHub. To begin, the following plot shows the average results comparing Hybrid Search with Search Mode across these seven benchmarks.
+To account for the stochasticity of models used in Search Mode, we run our experiments for 3 trials, finding fairly consistent performance across runs.  The full set of results shown in this blog and the benchmarking code used to produce them can be found on [GitHub](https://github.com/weaviate/query-agent-benchmarking). To begin, the following plot shows the average results comparing Hybrid Search with Search Mode across these seven benchmarks.
 
 ![Average results across benchmarks.](./img/average-results.png)
 
