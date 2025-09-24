@@ -42,6 +42,11 @@ dan:
   title: Developer Advocate
   url: https://github.com/dandv
   image_url: /img/people/icon/dan.jpg
+dan-jones:
+  name: Dan Jones
+  title: Senior Machine Learning Engineer
+  url: https://github.com/danmichaeljones
+  image_url: /img/people/icon/dan-jones.jpg
 dave:
   name: Dave Cuthbert
   title: Technical Writer
@@ -102,11 +107,11 @@ mary:
   title: Machine Learning Engineer
   url: https://www.linkedin.com/in/mary-newhauser-02273551/
   image_url: /img/people/icon/mary.jpg
-nenand:
+nenad:
   name: Nenad Malić
   title: Product Marketing Manager
   url: mailto:nenad@weaviate.io
-  image_url: /img/people/icon/nenand.jpeg
+  image_url: /img/people/icon/nenad.jpeg
 pete:
   name: Peter Schramm
   title: WCD Tech Lead
@@ -316,3 +321,8 @@ damien:
   title: Solution Engineer
   url: https://www.linkedin.com/in/gasparinadamien/
   image_url: /img/people/icon/damien.png
+yaru:
+  name: Yaru Lin
+  title: Product Lead, Weaviate Cloud
+  url: mailto:yaru@weaviate.io
+  image_url: /img/people/icon/yaru.jpeg

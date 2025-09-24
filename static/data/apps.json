@@ -110,7 +110,7 @@
     "id": "7",
     "name": "Query Agent",
     "category": "Weaviate Agents",
-    "description": "Enable users to query your database in natural language.",
+    "description": "Query your database in natural language; retrieve exactly what matters.",
     "image": "query-agent.svg",
     "overviewImage1": "query-agent-screenshot.svg",
     "longDescription": "Weaviate’s Query Agent allows users within your organization to use a natural language prompt to query your database.",
