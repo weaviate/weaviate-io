@@ -44,7 +44,7 @@ export default function Main() {
             </div>
             <div className={styles.buttons}>
               <Link
-                to="/case-studies/instabase"
+                to="/case-studies/loti"
                 className={styles.arrowButton}
               ></Link>
             </div>
