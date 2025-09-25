@@ -459,7 +459,7 @@ const config = {
                     {
                         label: 'Try Now',
                         className: 'tryNow',
-                        to: 'https://console.weaviate.cloud/',
+                        to: '/go/console',
                         position: 'right',
                     },
                   {
