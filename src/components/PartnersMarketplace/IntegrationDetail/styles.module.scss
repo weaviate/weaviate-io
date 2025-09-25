@@ -1,0 +1,150 @@
+.hero {
+  /* allow custom bg if you add heroBg to JSON later */
+  background-position: center;
+  background-size: cover;
+  padding: 2.5rem 0 1rem;
+}
+
+.logoRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 0.5rem;
+}
+
+.heroLogo {
+  max-height: 48px;
+  width: auto;
+}
+
+.heroTitle {
+  color: #130c49;
+  font-family: Plus Jakarta Sans;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.tagRow {
+  margin: 0.75rem 0 0;
+}
+
+.sideNav {
+  /* reuse sideFilter look but remove checkboxes */
+  padding-top: 2rem;
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    margin: 0.5rem 0;
+  }
+  a {
+    color: #130c49;
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.bigCard {
+  /* same chrome as cards, just full width/content */
+  max-width: 100%;
+  width: 100%;
+}
+
+.cardInner {
+  display: block;
+  padding: 0.25rem;
+}
+
+.section {
+  padding: 1rem 0;
+  border-top: 1px solid #eee;
+  &:first-child {
+    border-top: 0;
+  }
+  h2 {
+    margin: 0 0 0.5rem;
+    color: #130c49;
+  }
+  p,
+  li {
+    font-size: 1rem;
+  }
+}
+
+.steps {
+  padding-left: 1.25rem;
+}
+
+/* Keep the hub hero exactly as-is via .headerSecurity; these are additive */
+.hero {
+  padding: 2.5rem 0 1rem; /* matches your hub spacing */
+}
+
+.pageBg {
+  background: #fafbfe; /* subtle content background */
+  padding: 2rem 0;
+}
+
+.logoRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 0.5rem;
+}
+.heroLogo {
+  max-height: 48px;
+  width: auto;
+}
+.heroTitle {
+  color: #130c49;
+  font-family: Plus Jakarta Sans;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+.tagRow {
+  margin-top: 0.75rem;
+}
+
+.sideNav {
+  position: sticky;
+  top: 96px; /* adjust to your header height */
+  padding-top: 2rem;
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    margin: 0.5rem 0;
+  }
+  a {
+    color: #130c49;
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.bigCard {
+  max-width: 100%;
+  width: 100%;
+}
+.section {
+  padding: 1.25rem 0;
+  border-top: 1px solid #eee;
+}
+.section:first-child {
+  border-top: 0;
+}
+.steps {
+  padding-left: 1.25rem;
+}

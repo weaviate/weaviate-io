@@ -5,10 +5,23 @@
     "link": "https://docs.weaviate.io/integrations/cloud-hyperscalers/google",
     "description": "Deploy Weaviate on the GCP Marketplace and seamlessly access models on AI Studio and Vertex AI.",
     "tags": ["Cloud Hyperscalers", "Model Providers", "Module", "Popular"],
-    "maintainedBy": "Internal",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": true
+    "overview": "Full overview text describing the joint value prop, supported models, pricing/marketplace notes, and common use cases.",
+    "resources": [
+      {
+        "title": "Marketplace listing",
+        "url": "https://console.cloud.google.com/marketplace"
+      },
+      {
+        "title": "Vertex AI overview",
+        "url": "https://cloud.google.com/vertex-ai"
+      }
+    ],
+    "cta": [
+      {
+        "label": "Launch on GCP",
+        "url": "https://console.cloud.google.com/marketplace"
+      }
+    ]
   },
   {
     "name": "Amazon Web Services",
@@ -571,7 +584,7 @@
     "weaviateFeatures": "",
     "featured": false
   },
-    {
+  {
     "name": "Replicated",
     "image": "/img/site/replicated-logo.png",
     "link": "https://docs.weaviate.io/integrations/compute-infrastructure/replicated",

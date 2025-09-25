@@ -20,7 +20,12 @@ function Card({ name, image, link, description, tags }) {
             </span>
           ))}
         </div>
-        <Link to={link} className={styles.cardLink}>
+        <Link
+          to={`/product/integrations/${name
+            .toLowerCase()
+            .replace(/\s+/g, '-')}`}
+          className={styles.cardLink}
+        >
           Learn More
         </Link>
       </div>
