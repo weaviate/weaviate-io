@@ -10,13 +10,9 @@ description: "Hands-on patterns: LLM-as-Judge with LangChain and W&B"
 
 ![Evals and Guardrails in enterprise workflows — Part 2](./img/hero.png)
 
-In Part 1, we drew the blueprint, establishing why evals and guardrails are essential for enterprise AI. We looked at how 
-enterprises that do not adapt to AI and use them in their workflows would lose out. We discussed concrete examples like trading, 
-logistics, and fraud detection to show how AI agents can be implemented. Then we examined how to make these AI flows safe by 
-incorporating guardrails (pre- and post-model), evals, and traces. We mapped out the risks of unpredictable behavior and the 
-necessity of trust. Now, we move from theory to implementation. This post is for the builders. 
+In [Part 1](https://weaviate.io/blog/evals-guardrails-enterprise-workflows-1), we covered the fundamentals: why evals and guardrails matter for enterprise AI systems. We explored how companies that ignore AI integration will fall behind their competitors. We walked through real-world examples—trading algorithms, logistics optimization, and fraud detection—to show how AI agents work in practice. We also discussed the safety measures needed to make these AI systems reliable: guardrails that filter inputs and outputs, evaluations that measure performance, and traces that track what happens behind the scenes. We identified the main risk—AI can behave unpredictably—and why building trust is crucial. Now it's time to get practical. This post shows you how to actually build these systems.  
 
-Guardrails are the real-time gatekeepers; they block, redact, and constrain inputs and outputs to prevent harm. Evals are the scorecard; they don't block a bad response, but provide the essential logging and performance data to understand system behavior, detect drift, and refine the guardrails. It's crucial to distinguish their roles in order to create a robust system. Guardrails are enforcement — pre model input filters and post model output constraints. Evals are measurement —s tructured scoring, assertions, and traces that tell us how the system behaves under real workloads. Evals don’t stop bad outputs; they make failures visible and comparable, so we can tighten policies with evidence instead of guesswork.
+Guardrails are the real-time gatekeepers; they block, redact, and constrain inputs and outputs to prevent harm. Evals are the scorecard; they don't block a bad response, but provide the essential logging and performance data to understand system behavior, detect drift, and refine the guardrails. It's crucial to distinguish their roles in order to create a robust system. Guardrails are enforcement — pre model input filters and post model output constraints. Evals are measurement — structured scoring, assertions, and traces that tell us how the system behaves under real workloads. Evals don’t stop bad outputs; they make failures visible and comparable, so we can tighten policies with evidence instead of guesswork.
 
 The most effective enterprise AI systems combine both capabilities to continuously improve their real-time 
 protection mechanisms. Evaluation signals can feed into company policies/guidelines that applications can use to redact, block or escalate to a human. This is where architectural patterns become essential. They transform static rules into adaptive systems that learn from their mistakes and evolve with changing requirements. In this post, we shall explore the LLM-as-Judge pattern, powerful design for automated, real-time quality assessment. 
@@ -28,11 +24,15 @@ LLM-as-Judge is the most versatile evaluation pattern, enabling real-time qualit
 
 [![Evals](./img/judge-2.png)](./img/judge-2.png)
 
-Let's circle back to those enterprise scenarios I covered in Part 1 — trading apps that evaluate multiple signals and make buy-sell decisions, supply chain logistics routing shipments, fraud detection flagging suspicious transactions. In each case, LLM-as-Judge can serve as the quality controller: Does this trading recommendation align with our risk parameters? Is this route optimization realistic given current traffic conditions? Does this fraud alert make sense based on the user's transaction pattern? The LLM judge doesn't replace domain-specific validation, but it adds a layer of reasoning that catches edge cases rule-based systems might miss. You're not replacing your existing validation—your risk models, route optimizers, and fraud rules still do the heavy lifting. But the judge adds a sanity check that thinks more like a human: "Is this trading order right, given the current volatility" or "This route looks fine on paper, but does it make sense with today's weather?"
+Let's circle back to those enterprise scenarios we covered in Part 1 — trading apps that evaluate multiple signals and make buy-sell decisions, supply chain logistics routing shipments, fraud detection flagging suspicious transactions. In each case, LLM-as-Judge can serve as the quality controller: Does this trading recommendation align with our risk parameters? Is this route optimization realistic given current traffic conditions? Does this fraud alert make sense based on the user's transaction pattern? The LLM judge doesn't replace domain-specific validation, but it adds a layer of reasoning that catches edge cases rule-based systems might miss. You're not replacing your existing validation—your risk models, route optimizers, and fraud rules still do the heavy lifting. But the judge adds a sanity check that thinks more like a human: "Is this trading order right, given the current volatility" or "This route looks fine on paper, but does it make sense with today's weather?"
 
 The LLM judge's evaluation criteria are entirely defined by what you encode in the prompt context. You can define what "good" looks like based on your business rules, brand guidelines, or customer experience standards. For trading systems, you might focus on risk parameters and market volatility thresholds. For fraud detection, transaction pattern analysis against known signatures. You can shape its evaluation logic through examples, scoring rubrics, and domain-specific guidelines.
 
-Let's now move to an actual implementation with code examples for LLM-as-Judge. I'll walk through a retail search application where customers query for clothing using natural language—"something nice for a summer wedding guest" or "professional blazer for meetings." Weaviate handles the vector search, retrieving semantically similar products from the catalog. The LLM judge evaluates whether these search results align with the customer's intent and requirements.
+## Implementation example 
+
+Let's now move to an actual implementation with code examples for LLM-as-Judge. This example demonstrates a retail search application where customers query for clothing using natural language—"something nice for a summer wedding guest" or "professional blazer for meetings." Weaviate handles the [vector search](https://weaviate.io/blog/vector-search-explained), retrieving semantically similar products from the catalog. The LLM judge evaluates whether these search results align with the customer's intent and requirements.
+
+Weaviate is an [ISO27001](https://weaviate.io/blog/weaviate-iso-compliant) certified open source vector database with built-in hybrid search, advanced filtering, and out-of-the-box [RAG](https://weaviate.io/blog/introduction-to-rag) capabilities. Features include flexible plug-and-play modules, zero-downtime backups, multi-tenancy, vector compression, and tenant isolation for secure, scalable ML applications.
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
@@ -41,7 +41,9 @@ Let's now move to an actual implementation with code examples for LLM-as-Judge. 
 │     guest"      │    │                 │    │   relevance     │    │                 │
 └─────────────────┘    └─────────────────┘    └─────────────────┘    └─────────────────┘
 ```
-For this implementation, I use LangChain as the orchestration framework and Weights & Biases for evaluation tracking and observability. LangChain provides the composable chains that wire together the prompt template, judge model, and output parsing into a clean, testable pipeline. W&B captures evaluation metrics over time and provides execution traces for comprehensive system monitoring. This combination gives me both the architectural flexibility to iterate on evaluation logic and the operational visibility to monitor judge performance in production. 
+For this implementation, the system uses two main tools: [LangChain](https://www.langchain.com/) and [Weights & Biases](https://wandb.ai/site/) (W&B).
+**LangChain** provides the composable chains that wire together the prompt template, judge model, and output parsing into a clean, testable pipeline. Think of it as an assembly line that ensures everything flows smoothly from input to output.
+**Weights & Biases** handles [evaluation tracking](https://wandb.ai/onlineinference/genai-research/reports/LLM-evaluation-Metrics-frameworks-and-best-practices--VmlldzoxMTMxNjQ4NA) and [observability](https://wandb.ai/onlineinference/genai-research/reports/What-is-LLM-observability---VmlldzoxMzI1Njk4MA). It records every evaluation, measures how well the judge performs over time, and provides detailed logs of what happened during each decision. Together, these tools provide the flexibility to experiment with different evaluation approaches while maintaining close visibility into how well everything performs in production. 
 
 [![Evals](./img/scoring.png)](./img/scoring.png)
 
@@ -49,15 +51,17 @@ For this implementation, I use LangChain as the orchestration framework and Weig
 
 ### Prerequisites 
 
-This implementation requires LangChain for orchestration, Weaviate for vector search, Weights & Biases for evaluation tracking, and your choice of LLM provider (OpenAI, Anthropic, etc.) with their respective API keys configured. You'll need a Weaviate collection populated with product data that includes item descriptions, categories, and metadata that the judge can evaluate against.
+The example uses TypeScript and assumes familiarity with prompt engineering and evaluation frameworks. If you're new to any of these tools, we recommend reviewing the [LangChain documentation](https://docs.langchain.com/oss/javascript/langchain/overview), [Weaviate quickstart](https://weaviate.io/developers/weaviate/quickstart), and [W&B integration](https://weave-docs.wandb.ai/reference/generated_typescript_docs/intro-notebook/) first. 
+Before getting started, ensure you have the following configured:
 
-The examples use TypeScript and assume familiarity with prompt engineering and evaluation frameworks. If you're new to any of these tools, I recommend reviewing the [LangChain documentation](https://docs.langchain.com/oss/javascript/langchain/overview), [Weaviate quickstart](https://weaviate.io/developers/weaviate/quickstart), and [W&B integration guide](https://docs.wandb.ai/) first.
+**API Keys**: Set up authentication for your chosen LLM provider (OpenAI, Anthropic, etc.) and configure API keys in your environment
 
-The complete working code, sample datasets, and detailed setup instructions are available in the [GitHub repository](https://github.com/your-username/llm-judge-eval-examples).
+**Weaviate Setup**: Follow the [Weaviate quickstart guide](https://docs.weaviate.io/weaviate/quickstart) to set up a Weaviate instance. Use the sample dataset provided in the [github repo](https://github.com/dee-at-weaviate/evals-and-guardrails/blob/main/llm-judge-wnb/src/retail-data.ts) to create a collection of products - that includes item descriptions, categories, and metadata.
 
+**Weights & Biases Account**: Check out the [guide here](https://weave-docs.wandb.ai/quickstart/?utm_source=wandb_site&utm_medium=weave_home) to create an account to begin tracking and evaluations. 
 
 ### Weights & Biases 
-Weave within Weights & Biases (W&B) provides automatic experiment tracking and function tracing. The initialization creates a project namespace where all evaluation runs, model calls, and performance metrics are logged. This enables reproducible experiments visible on a dashboard and comprehensive observability across your evaluation iterations.
+[Weave](https://weave-docs.wandb.ai/) within Weights & Biases (W&B) provides automatic experiment tracking and function tracing. The initialization creates a project namespace where all evaluation runs, model calls, and performance metrics are logged. This enables reproducible experiments visible on a dashboard and comprehensive observability across your evaluation iterations.
 
 ```typescript
 weave.init('Retail-Search-Evaluation');
@@ -199,7 +203,12 @@ The screenshot below shows the LLM judge evaluating each search result against o
 
 [![Evals](./img/wnbscoring.png)](./img/wnbscoring.png)
 
-LLM-as-Judge transforms evaluation from static rules to adaptive reasoning. The modular architecture—prompt configuration, execution chains, and comprehensive observability—provides the foundation for production-ready AI safety. In Part 3, we'll explore the Supervisor pattern, where a dedicated oversight agent monitors and corrects other agents in real-time, using ArizeAI for deep observability into multi-agent workflows and decision chains.
+The complete working code and sample dataset used above is available in this [GitHub repository](https://github.com/dee-at-weaviate/evals-and-guardrails/tree/main/llm-judge-wnb).
+
+## Summary
+LLM-as-Judge transforms evaluation from static rules to adaptive reasoning. The modular architecture—prompt configuration, execution chains, and comprehensive observability—provides the foundation for production-ready AI safety. 
+
+In Part 3, we'll explore a different pattern: behavior shaping. We'll show how to detect hallucinations and use an observability platform to improve retrieval-augmented generation (RAG) systems. This addresses a critical problem in enterprise AI—ensuring that systems not only work correctly, but learn from their mistakes and get better over time.
 
 ---
 
