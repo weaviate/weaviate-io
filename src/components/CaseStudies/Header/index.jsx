@@ -11,13 +11,13 @@ export default function StudyHeader() {
           <div className={styles.left}>
             <span>Case Study</span>
             <h1>
-              How Morningstar built a trustworthy, AI-driven financial data
-              platform
+              How MetaBuddy Unifies Wellness Data and Powers Personalized AI
+              Coaching With Query Agent
             </h1>
             <div className={styles.headerBox}>
               <div className={styles.buttons}>
                 <Link
-                  to="/case-studies/morningstar"
+                  to="/case-studies/metabuddy"
                   className={styles.buttonDark}
                 >
                   Read the story

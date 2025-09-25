@@ -14,6 +14,42 @@ export default function Main() {
         </div>
 
         <div className={styles.bentoGrid}>
+          <div className={`${styles.bento05} ${styles.finster}`}>
+            <div className={styles.bentoText}>
+              <div className={styles.innerText}>
+                <div className={styles.bentoLogo}></div>
+
+                <h3>
+                  Finster Reimagines Investment Banking and Research with an
+                  AI-Native Platform
+                </h3>
+              </div>
+              <div className={styles.buttons}>
+                <Link
+                  to="case-studies/finster"
+                  className={styles.arrowButton}
+                ></Link>
+              </div>
+            </div>
+          </div>
+
+          <div className={`${styles.bento01} ${styles.loti}`}>
+            <div className={styles.bentoText}>
+              <div className={styles.bentoLogo}></div>
+              <h3>Transforming Customer Service with Agentic AI</h3>
+              <p>
+                How Loti AI fights likeness infringement and digital
+                impersonation with Weaviate
+              </p>
+            </div>
+            <div className={styles.buttons}>
+              <Link
+                to="/case-studies/instabase"
+                className={styles.arrowButton}
+              ></Link>
+            </div>
+          </div>
+
           <div className={styles.bento01}>
             <div className={styles.bentoText}>
               <div className={styles.bentoLogo}></div>
