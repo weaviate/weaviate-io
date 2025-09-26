@@ -283,6 +283,11 @@
   flex: 0 0 auto;
   gap: 20px;
   justify-content: flex-start;
+  transition: all 0.3s ease;
+
+  @media screen and (max-width: 1340px) {
+    gap: 15px;
+  }
 
   @media screen and (max-width: 1223px) {
     gap: 8px;
@@ -290,7 +295,7 @@
 
   @media only screen and (min-device-width: 1040px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
     flex: 0 0 auto;
-    gap: 21px;
+    gap: 20px;
     justify-content: flex-start;
   }
 
