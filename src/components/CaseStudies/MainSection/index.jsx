@@ -159,7 +159,7 @@ export default function MainSection() {
           {/* Row 3 - 1 big/2 small */}
           <div className={styles.row}>
             <Link
-              to="/case-studies/stackai"
+              to="/case-studies/stack-ai"
               className={`${styles.bentoSmall} ${styles.BS08}`}
             >
               <div className={styles.bentoText}>
@@ -172,14 +172,14 @@ export default function MainSection() {
                 </div>
                 <div className={styles.buttons}>
                   <Link
-                    to="case-studies/stackai"
+                    to="case-studies/stack-ai"
                     className={`${styles.arrowButton} ${styles.arrowButtonLight}`}
                   ></Link>
                 </div>
               </div>
             </Link>
             <Link
-              to="/case-studies/moonsift"
+              to="blog/moonsift-story"
               className={`${styles.bentoSmall} ${styles.BS09}`}
             >
               <div className={styles.bentoText}>
@@ -189,7 +189,7 @@ export default function MainSection() {
                 </div>
                 <div className={styles.buttons}>
                   <Link
-                    to="case-studies/moonsift"
+                    to="/blog/moonsift-story"
                     className={`${styles.arrowButton} ${styles.arrowButtonLight}`}
                   ></Link>
                 </div>
