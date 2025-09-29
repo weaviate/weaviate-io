@@ -45,7 +45,7 @@ What is relevant to you depends on your relationship with us. Therefore, this pr
 
 <br></br>
 
-**Section 7, If you participate in the Weaviate Certification Program.**
+**Section 7, if you participate in the Weaviate Certification Program.**
 
 <br></br>
 
@@ -53,7 +53,7 @@ The subsequent sections address general matters. More specifically, **Section** 
 
 <br></br>
 
-This privacy policy was most recently amended in** February 2024 **and this version replaces earlier versions. We may need to amend this privacy policy from time to time. The most recent version of this privacy policy is available on our [website](/service). In case of important changes, we will actively inform you on these changes. 
+This privacy policy was most recently amended in **September 2025** and this version replaces earlier versions. We may need to amend this privacy policy from time to time. The most recent version of this privacy policy is available on our [website](/service). In case of important changes, we will actively inform you on these changes. 
 
 <br></br>
 
