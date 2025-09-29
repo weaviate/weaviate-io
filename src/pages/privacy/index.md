@@ -41,7 +41,11 @@ What is relevant to you depends on your relationship with us. Therefore, this pr
 
 <br></br>
 
-**Section 6, if you participate in user research studies.**
+**Section 6, if you participate in user research studies;**
+
+<br></br>
+
+**Section 7, If you participate in the Weaviate Certification Program.**
 
 <br></br>
 
@@ -412,7 +416,7 @@ For more information on how we protect your data in this context, please see **S
 
 Please note that some of these third-party providers may process your personal data outside the EU/EEA. Where this is the case, we ensure that appropriate safeguards (such as the European Commission’s Standard Contractual Clauses) are in place to protect your data in accordance with applicable data protection laws.  
 
-You may object to the use of your personal data for certification purposes at any time (see **Section 9**). Please note, however, that if you withdraw your consent, you may no longer be able to participate in the certification program or receive its associated credentials.  
+You may object to the use of your personal data for certification purposes at any time (see **Section 10**). Please note, however, that if you withdraw your consent, you may no longer be able to participate in the certification program or receive its associated credentials.  
 
 <br></br>
 
