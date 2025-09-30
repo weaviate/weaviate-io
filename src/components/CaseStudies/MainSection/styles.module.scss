@@ -246,6 +246,10 @@
       flex-shrink: 0;
     }
 
+    @media screen and (max-width: 1140px) {
+      width: 48%;
+    }
+
     @media screen and (max-width: 900px) {
       width: 48%;
     }
@@ -275,6 +279,10 @@
       width: 6.8125rem;
       height: 1.94225rem;
       flex-shrink: 0;
+    }
+
+    @media screen and (max-width: 1140px) {
+      width: 48%;
     }
 
     @media screen and (max-width: 900px) {
@@ -308,6 +316,11 @@
       flex-shrink: 0;
     }
 
+    @media screen and (max-width: 1440px) {
+      width: 100%;
+      max-width: 54rem;
+    }
+
     @media screen and (max-width: 900px) {
       width: 48%;
     }
@@ -336,6 +349,11 @@
       width: 9rem;
       height: 2.84925rem;
       flex-shrink: 0;
+    }
+
+    @media screen and (max-width: 1140px) {
+      width: 100%;
+      max-width: 54rem;
     }
 
     @media screen and (max-width: 900px) {
@@ -369,6 +387,10 @@
       flex-shrink: 0;
     }
 
+    @media screen and (max-width: 1140px) {
+      width: 43%;
+    }
+
     @media screen and (max-width: 900px) {
       width: 48%;
     }
@@ -390,6 +412,20 @@
 
     .bentoText h3 {
       color: #130c49;
+    }
+
+    @media screen and (max-width: 1440px) {
+      width: 100%;
+      max-width: 66rem;
+    }
+
+    @media screen and (max-width: 1140px) {
+      width: 100%;
+      max-width: 56rem;
+    }
+
+    @media screen and (max-width: 1140px) {
+      width: 43%;
     }
 
     @media screen and (max-width: 900px) {
@@ -421,6 +457,14 @@
       width: 10.5rem;
       height: 1.07625rem;
       flex-shrink: 0;
+    }
+
+    @media screen and (max-width: 1440px) {
+      width: 48%;
+    }
+
+    @media screen and (max-width: 1140px) {
+      width: 43%;
     }
 
     @media screen and (max-width: 900px) {
@@ -455,6 +499,13 @@
       flex-shrink: 0;
     }
 
+    @media screen and (max-width: 1440px) {
+      width: 48%;
+    }
+    @media screen and (max-width: 1140px) {
+      width: 43%;
+    }
+
     @media screen and (max-width: 900px) {
       width: 48%;
     }
@@ -485,8 +536,14 @@
       flex-shrink: 0;
     }
 
-    @media screen and (max-width: 900px) {
-      width: 48%;
+    @media screen and (max-width: 1440px) {
+      width: 100%;
+      max-width: 66rem;
+    }
+
+    @media screen and (max-width: 1140px) {
+      width: 100%;
+      max-width: 56rem;
     }
 
     @media screen and (max-width: 600px) {
