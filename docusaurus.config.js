@@ -459,7 +459,7 @@ const config = {
                     
                         html: ` <i class="fa-regular fa-user iconHide" style="color:#130c49;"></i> Login</span>`,
                         className: 'loginCTA',
-                        to: 'https://console.weaviate.cloud/',
+                        to: '/go/console',
                         position: 'right',
                     
                 },
