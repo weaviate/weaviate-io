@@ -1,6 +1,6 @@
 import ThemedImage from '@theme/ThemedImage';
 
-Weaviate `v1.33` is now available open-source and on [Weaviate Cloud](https://console.weaviate.cloud). This release brings **compression by default** for optimal resource utilization, powerful **1-bit rotational quantization (RQ)**, streamlined **server-side batch imports**, enhanced **OIDC group management**, and **collection aliases** become generally available (GA).
+Weaviate `v1.33` is now available open-source and on [Weaviate Cloud](https://console.weaviate.cloud). This release brings **compression by default** for optimal resource utilization, **1-bit rotational quantization (RQ)**, **server-side batch imports**, **OIDC group management**, and **collection aliases** become generally available (GA).
 
 There's also expanded filtering capabilities with new **`ContainsNone` and `Not` operators**, plus a few additional improvements across the board.
 
@@ -98,8 +98,6 @@ This means that new collections will automatically benefit from:
 - **No training phase required** - RQ works immediately at index creation
 - **No configuration needed** - just create a new collection to get started
 
-<!-- ![img/compression_default.png](./img/compression_default.png) -->
-
 Additionally, **8-bit RQ is now generally available (GA)**, meaning it's fully supported and ready for production workloads. Our extensive testing has shown that RQ provides the best balance of compression, performance, and recall for most use cases.
 
 If you need different behavior, you can customize this through the [`DEFAULT_QUANTIZATION`](https://docs.weaviate.io/deploy/configuration/env-vars#DEFAULT_QUANTIZATION) environment variable:
@@ -112,18 +110,17 @@ DEFAULT_QUANTIZATION=none
 DEFAULT_QUANTIZATION=pq
 ```
 
-This change represents our commitment to making Weaviate efficient by default, while still providing the flexibility to customize when needed.
-
 :::info Related resources
 
 - [Concepts: Vector quantization](https://docs.weaviate.io/weaviate/concepts/vector-quantization)
 - [How-to: Configure RQ](https://docs.weaviate.io/weaviate/configuration/compression/rq-compression)
+- [Blog post: 8-bit Rotational Quantization](https://weaviate.io/blog/8-bit-rotational-quantization)
 
 :::
 
 ## 1-bit rotational quantization (RQ)
 
-Building on the success of 8-bit RQ, Weaviate `v1.33` introduces **1-bit rotational quantization (RQ)** as a preview feature. This quantization technique provides massive compression rates while maintaining surprisingly good search quality.
+Building on the success of 8-bit RQ, Weaviate `v1.33` introduces **1-bit rotational quantization (RQ)** as a preview feature. This quantization technique provides massive compression rates while maintaining good search quality.
 
 <!-- ![img/1bit_rq_explained.png](./img/1bit_rq_explained.png) -->
 
@@ -199,7 +196,7 @@ admin_client.groups.oidc.revoke_roles(
 )
 ```
 
-This powerful feature eliminates the need to assign roles to each user individually, making it much easier to manage access for large teams and ensuring permissions stay in sync with your organization's structure.
+This feature eliminates the need to assign roles to each user individually, making it much easier to manage access for large teams and ensuring permissions stay in sync with your organization's structure.
 
 :::info Related resources
 
@@ -209,7 +206,7 @@ This powerful feature eliminates the need to assign roles to each user individua
 
 ## `ContainsNone` and `Not` filter operators
 
-Weaviate `v1.33` expands your filtering capabilities with two powerful new operators: **`ContainsNone`** and **`Not`**. These operators provide more flexible and intuitive ways to express complex filtering logic.
+Weaviate `v1.33` expands your filtering capabilities with two new operators: **`ContainsNone`** and **`Not`**. These operators provide more flexible and intuitive ways to express complex filtering logic.
 
 <!-- ![img/new_filter_operators.png](./img/new_filter_operators.png) -->
 
@@ -261,7 +258,10 @@ These operators work seamlessly with Weaviate's existing filtering system and ca
 
 Weaviate is an open-source project, and we're always thrilled to see contributions from our amazing community.
 
-<!-- We'll update this section with specific contributor acknowledgments for v1.33 -->
+For this release, we are super excited to shout-out the following contributor for their contributions to Weaviate. 🎉🎉🎉
+
+- [@yazan-abu-obaideh](https://github.com/yazan-abu-obaideh) contributed [#8811](https://github.com/weaviate/weaviate/pull/8811)
+
 
 If you're interested in contributing to Weaviate, please check out our [contribution guide](https://docs.weaviate.io/contributor-guide/), and browse the open issues on [GitHub](https://github.com/weaviate/weaviate/issues). Look for the `good-first-issue` label to find great starting points!
 
