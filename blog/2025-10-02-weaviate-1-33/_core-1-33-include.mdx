@@ -18,17 +18,7 @@ Here are the release ⭐️*highlights*⭐️!
 
 ## Server-side batch imports
 
-Data import just got a whole lot easier with **server-side batch imports** (also called automatic batching). Instead of manually tuning batch parameters on the client side, you can now let the server manage the data flow rate for optimal performance.
-
-<!-- ![img/server_side_batching.png](./img/server_side_batching.png) -->
-
-Here's how the new automatic batching works:
-
-- **Persistent Connection**: Your client opens a persistent connection to the server for the duration of the batch job.
-
-- **Dynamic Backpressure**: The server continuously monitors its internal queue size and calculates an exponential moving average (EMA) of its workload. It then tells the client the ideal number of objects to send in the next chunk.
-
-- **Asynchronous Error Handling**: If an error occurs while processing an object, the server sends the error message back over a separate stream without interrupting the flow.
+Data import just got a whole lot easier with **server-side batch imports** (also called automatic batching). Instead of manually tuning batch parameters on the client side, you can now let the server manage the data flow rate for optimal performance. Through **dynamic backpressure** the server continuously monitors its internal queue size and calculates an exponential moving average (EMA) of its workload. It then tells the client the ideal number of objects to send in the next chunk.
 
 <!-- ![img/automatic_batching_flow.png](./img/automatic_batching_flow.png) -->
 
@@ -58,8 +48,8 @@ Server-side batching was added in `v1.33` as a **preview** feature. While functi
 
 :::info Related resources
 
-- [How-to: Batch import](https://v1-33-main--docs-weaviate-io.netlify.app/weaviate/manage-objects/import#server-side-batching)
-- [Tutorial: Batch data import](https://v1-33-main--docs-weaviate-io.netlify.app/weaviate/tutorials/import)
+- [How-to: Batch import](https://docs.weaviate.io/weaviate/manage-objects/import#server-side-batching)
+- [Tutorial: Batch data import](https://docs.weaviate.io/weaviate/tutorials/import)
 
 :::
 
@@ -93,8 +83,8 @@ This GA release includes full client library support and comprehensive documenta
 
 :::info Related resources
 
-- [How-to: Collection aliases](https://v1-33-main--docs-weaviate-io.netlify.app/weaviate/manage-collections/collection-aliases)
-- [Tutorial: Zero-downtime collection migrations with aliases](https://v1-33-main--docs-weaviate-io.netlify.app/weaviate/tutorials/collection-aliases)
+- [How-to: Collection aliases](https://docs.weaviate.io/weaviate/manage-collections/collection-aliases)
+- [Tutorial: Zero-downtime collection migrations with aliases](https://docs.weaviate.io/weaviate/tutorials/collection-aliases)
 
 :::
 
@@ -106,13 +96,13 @@ This means that new collections will automatically benefit from:
 
 - **Up-to 4x memory compression** with 98-99% recall maintained
 - **No training phase required** - RQ works immediately at index creation
-- **Transparent operation** - no configuration needed to get started
+- **No configuration needed** - just create a new collection to get started
 
 <!-- ![img/compression_default.png](./img/compression_default.png) -->
 
 Additionally, **8-bit RQ is now generally available (GA)**, meaning it's fully supported and ready for production workloads. Our extensive testing has shown that RQ provides the best balance of compression, performance, and recall for most use cases.
 
-If you need different behavior, you can customize this through the [`DEFAULT_QUANTIZATION`](https://v1-33-main--docs-weaviate-io.netlify.app/deploy/configuration/env-vars#DEFAULT_QUANTIZATION) environment variable:
+If you need different behavior, you can customize this through the [`DEFAULT_QUANTIZATION`](https://docs.weaviate.io/deploy/configuration/env-vars#DEFAULT_QUANTIZATION) environment variable:
 
 ```bash
 # To disable compression by default
@@ -126,14 +116,14 @@ This change represents our commitment to making Weaviate efficient by default, w
 
 :::info Related resources
 
-- [Concepts: Vector quantization](https://v1-33-main--docs-weaviate-io.netlify.app/weaviate/concepts/vector-quantization)
-- [How-to: Configure RQ](https://v1-33-main--docs-weaviate-io.netlify.app/weaviate/configuration/compression/rq-compression)
+- [Concepts: Vector quantization](https://docs.weaviate.io/weaviate/concepts/vector-quantization)
+- [How-to: Configure RQ](https://docs.weaviate.io/weaviate/configuration/compression/rq-compression)
 
 :::
 
 ## 1-bit rotational quantization (RQ)
 
-Building on the success of 8-bit RQ, Weaviate `v1.33` introduces **1-bit rotational quantization (RQ)** as a preview feature. This cutting-edge quantization technique provides massive compression rates while maintaining surprisingly good search quality.
+Building on the success of 8-bit RQ, Weaviate `v1.33` introduces **1-bit rotational quantization (RQ)** as a preview feature. This quantization technique provides massive compression rates while maintaining surprisingly good search quality.
 
 <!-- ![img/1bit_rq_explained.png](./img/1bit_rq_explained.png) -->
 
@@ -146,12 +136,11 @@ Building on the success of 8-bit RQ, Weaviate `v1.33` introduces **1-bit rotatio
 This asymmetric design provides several key advantages:
 
 - **Close to 32x compression** as dimensionality increases
-- **More robust than binary quantization (BQ)** - works well even on datasets where BQ performs poorly
-- **Better recall than symmetric 1-bit schemes** by using higher precision for query vectors
+- **More robust than binary quantization (BQ)** - works well even on some datasets where BQ performs poorly
 
 <!-- ![img/compression_comparison.png](./img/compression_comparison.png) -->
 
-Our internal testing shows that 1-bit RQ serves as a more accurate alternative to binary quantization, with only about 10% decrease in throughput compared to BQ, but significantly better recall on challenging datasets.
+Our internal testing shows that 1-bit RQ serves as a good alternative to binary quantization, with only a slight decrease in throughput compared to BQ, but significantly better recall on some datasets.
 
 :::caution Preview Feature
 
@@ -161,8 +150,8 @@ Our internal testing shows that 1-bit RQ serves as a more accurate alternative t
 
 :::info Related resources
 
-- [Concepts: Vector quantization](https://v1-33-main--docs-weaviate-io.netlify.app/weaviate/concepts/vector-quantization)
-- [How-to: Configure RQ](https://v1-33-main--docs-weaviate-io.netlify.app/weaviate/configuration/compression/rq-compression)
+- [Concepts: Vector quantization](https://docs.weaviate.io/weaviate/concepts/vector-quantization)
+- [How-to: Configure RQ](https://docs.weaviate.io/weaviate/configuration/compression/rq-compression)
 
 :::
 
@@ -214,8 +203,7 @@ This powerful feature eliminates the need to assign roles to each user individua
 
 :::info Related resources
 
-- [How-to: Manage groups](https://v1-33-main--docs-weaviate-io.netlify.app/weaviate/configuration/rbac/manage-groups)
-- [Security: OIDC group management](https://v1-33-main--docs-weaviate-io.netlify.app/weaviate/configuration/authz-authn#oidc)
+- [How-to: Manage groups](https://docs.weaviate.io/weaviate/configuration/rbac/manage-groups)
 
 :::
 
@@ -265,8 +253,7 @@ These operators work seamlessly with Weaviate's existing filtering system and ca
 
 :::info Related resources
 
-- [API references: Filters](https://docs.weaviate.io/weaviate/search/filters)
-- [How-to: Combine filters](https://docs.weaviate.io/weaviate/search/filters#combining-filters)
+- [How-to: Filters](https://docs.weaviate.io/weaviate/search/filters)
 
 :::
 
@@ -280,7 +267,7 @@ If you're interested in contributing to Weaviate, please check out our [contribu
 
 :::info Related resources
 
-- [Contribution guide](https://docs.weaviate.io/weaviate/more-resources/contributing)
+- [Contributor guide](https://docs.weaviate.io/contributor-guide)
 
 :::
 
