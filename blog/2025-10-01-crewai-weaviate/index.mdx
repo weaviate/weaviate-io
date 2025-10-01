@@ -234,6 +234,10 @@ This blog post shows how CrewAI simplifies multi-agent systems using four buildi
 
 Together, retrieval, role specialization, and orchestration produce deeper, higher-quality outputs than a single agent working alone. The same pattern scales with hierarchical crews, guardrails and structured outputs, and Flows for event-driven branching and stateful automation.
 
+## Next Steps
+
+We're also currently working on adding the [`WeaviateStorage` as an `ExternalMemory`](https://github.com/crewAIInc/crewAI/pull/3124) to CrewAI. It uses Weaviate's multi-tenancy to store the memory per agent for data isolation and scale. This will help Agents continuously learn across various tasks and interactions.
+
 
 
 ---
