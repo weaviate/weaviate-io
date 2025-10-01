@@ -42,6 +42,11 @@ dan:
   title: Developer Advocate
   url: https://github.com/dandv
   image_url: /img/people/icon/dan.jpg
+dan-jones:
+  name: Dan Jones
+  title: Senior Machine Learning Engineer
+  url: https://github.com/danmichaeljones
+  image_url: /img/people/icon/dan-jones.jpg
 dave:
   name: Dave Cuthbert
   title: Technical Writer
@@ -58,7 +63,7 @@ edward:
   url: https://www.linkedin.com/in/edwardschmuhl/
   image_url: /img/people/icon/edward.jpg
 erika:
-  name: Erika Cardenas
+  name: Erika Shorten
   title: Technology Partner Manager
   url: https://github.com/erika-shorten
   image_url: /img/people/icon/erika.jpg
@@ -102,11 +107,11 @@ mary:
   title: Machine Learning Engineer
   url: https://www.linkedin.com/in/mary-newhauser-02273551/
   image_url: /img/people/icon/mary.jpg
-nenand:
+nenad:
   name: Nenad Malić
   title: Product Marketing Manager
   url: mailto:nenad@weaviate.io
-  image_url: /img/people/icon/nenand.jpeg
+  image_url: /img/people/icon/nenad.jpeg
 pete:
   name: Peter Schramm
   title: WCD Tech Lead
@@ -189,7 +194,8 @@ sam:
   image_url: /img/people/icon/sam.jpg
 femke:
   name: Femke Plantinga
-  title: Content Manager
+  title: Team Lead Growth
+  url: https://www.linkedin.com/in/femke-plantinga/
   image_url: /img/people/icon/femke.jpg
 daniel:
   name: Daniel Phiri
@@ -318,5 +324,10 @@ damien:
 ivan:
   name: Ivan Despot
   title: Technical Documentation Writer
-  url: https://github.com/g-despot
+  url: https://www.linkedin.com/in/ivan-g-despot/
   image_url: /img/people/icon/ivan.jpeg
+yaru:
+  name: Yaru Lin
+  title: Product Lead, Weaviate Cloud
+  url: mailto:yaru@weaviate.io
+  image_url: /img/people/icon/yaru.jpeg

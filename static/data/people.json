@@ -95,13 +95,6 @@
     "team": "weaviate-labs"
   },
   {
-    "name": "Austin Freels",
-    "title": "Director of Customer Success Engineering",
-    "photo": "Austin.jpg",
-    "linkedin": "austin-freels",
-    "team": "solution-engineering"
-  },
-  {
     "name": "Bob van Luijt",
     "title": "Co-founder and CEO",
     "photo": "bob.jpg",
@@ -473,14 +466,6 @@
     "title": "Software Engineer",
     "photo": "Kamil.jpg",
     "team": "developer-growth"
-  },
-  {
-    "name": "Kaviraj Kanagaraj",
-    "title": "Senior Software Engineer",
-    "photo": "Kaviraj.jpg",
-    "team": "database",
-    "linkedin": "kavirajkanagaraj",
-    "twitter": "kvrajk"
   },
   {
     "name": "Laura Stoye",

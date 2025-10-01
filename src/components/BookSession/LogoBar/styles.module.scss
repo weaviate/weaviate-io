@@ -1,0 +1,96 @@
+:root {
+  --darkColor: #130c49;
+  --barBg: #f7f9fd;
+} /* lighter, figma-like */
+
+.wrap {
+  background: var(--barBg);
+  padding: clamp(16px, 2.5vw, 28px) 0 clamp(22px, 3vw, 36px);
+}
+
+.kicker {
+  margin: 0 0 44px 0;
+  text-align: center;
+  font-family: 'Plus Jakarta Sans';
+  color: var(--darkColor);
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.375rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(88px, 1fr));
+  gap: clamp(18px, 2vw, 32px);
+  align-items: center;
+  justify-items: center;
+
+  @media (max-width: 1100px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  @media (max-width: 780px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.logo {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 6.28444rem;
+  height: 1.5rem;
+}
+
+.logoAkamai {
+  background-image: url('/img/site/akamai-logo-book.svg');
+}
+.logoAMD {
+  background-image: url('/img/site/amd-logo-book.svg');
+}
+
+.logoBumble {
+  background-image: url('/img/site/bumble-logo-book.svg');
+}
+.logoCisco {
+  background-image: url('/img/site/cisco-logo-book.svg');
+}
+
+.logoFactset {
+  background-image: url('/img/site/factset-logo-book.svg');
+}
+
+.logoVW {
+  background-image: url('/img/site/vw-logo-book.svg');
+}
+
+.logoMore {
+  background: none;
+  width: auto;
+  height: auto;
+  font-family: 'Inter';
+  font-size: 0.95rem;
+  color: var(--darkColor);
+  opacity: 0.7;
+  &::after {
+    content: '…and many more';
+  }
+}
+
+@media (max-width: 480px) {
+  .logoMore {
+    grid-column: 1 / -1;
+    justify-self: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 780px) and (min-width: 481px) {
+  .logoMore {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+}

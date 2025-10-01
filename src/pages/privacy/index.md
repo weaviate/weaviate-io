@@ -37,15 +37,23 @@ What is relevant to you depends on your relationship with us. Therefore, this pr
 
 <br></br>
 
-**Section 5, if you subscribe to or receive our newsletter.**
+**Section 5, if you subscribe to or receive our newsletter;**
 
 <br></br>
 
-The subsequent sections address general matters. More specifically, **Section** **6** clarifies what (third) parties may have access to or may receive your personal data. Furthermore, **Section 7** informs you about the measures we have taken to protect your personal data and the period during which we store your personal data. In **Section 8** you can read what rights you have in relation to your personal data and how you may exercise these rights. Finally, in **Section 9**, you can find our contact details in case you have any questions, remarks, or complaints regarding the processing of your personal data by us.
+**Section 6, if you participate in user research studies;**
 
 <br></br>
 
-This privacy policy was most recently amended in** February 2024 **and this version replaces earlier versions. We may need to amend this privacy policy from time to time. The most recent version of this privacy policy is available on our [website](/service). In case of important changes, we will actively inform you on these changes. 
+**Section 7, if you participate in the Weaviate Certification Program.**
+
+<br></br>
+
+The subsequent sections address general matters. More specifically, **Section** **8** clarifies what (third) parties may have access to or may receive your personal data. Furthermore, **Section 9** informs you about the measures we have taken to protect your personal data and the period during which we store your personal data. In **Section 10** you can read what rights you have in relation to your personal data and how you may exercise these rights. Finally, in **Section 11**, you can find our contact details in case you have any questions, remarks, or complaints regarding the processing of your personal data by us.
+
+<br></br>
+
+This privacy policy was most recently amended in **September 2025** and this version replaces earlier versions. We may need to amend this privacy policy from time to time. The most recent version of this privacy policy is available on our [website](/service). In case of important changes, we will actively inform you on these changes. 
 
 <br></br>
 
@@ -316,11 +324,11 @@ If you subscribe to, or receive our newsletter, we process the following persona
 | We process your contact details. This includes but may not be limited to your email address.                                                                                                                                 | To send you our newsletter and for marketing purposes.                                                                                                                                                                  |
 | We may also process previous mailings you received, and details on when and how you unsubscribed to receiving our newsletter, whether you have opened our newsletter and/or clicked on any links included in our newsletter. | To improve our communications and for marketing purposes.Our newsletters make use of certain techniques to track visitor statistics. We use these statistics to improve our newsletters and offer you relevant content. |
 
-You may object to the use of your personal data for direct marketing purposes anytime (please see **Section 7** in this respect). For example, you can unsubscribe from receiving our newsletter at any time by clicking the unsubscribe link in the newsletter you received or by contacting hello@weaviate.io. Please find the relevant contact details in **Section 9**. When you unsubscribe, you will still receive our service emails. 
+You may object to the use of your personal data for direct marketing purposes anytime (please see **Section 10** in this respect). For example, you can unsubscribe from receiving our newsletter at any time by clicking the unsubscribe link in the newsletter you received or by contacting hello@weaviate.io. Please find the relevant contact details in **Section 11**. When you unsubscribe, you will still receive our service emails. 
 
 <br></br>
 
-For the purposes mentioned in this Section, we may share your personal information with third parties that help us to automate and analyze our mailings. For more information on the protection of your personal data in this regard, please refer to **Section 6**.
+For the purposes mentioned in this Section, we may share your personal information with third parties that help us to automate and analyze our mailings. For more information on the protection of your personal data in this regard, please refer to **Section 8**.
 
 <br></br>
 
@@ -328,7 +336,96 @@ For the processing of this personal data, we rely on your consent.
 
 <br></br>
 
-### **6. What parties have access to your personal data?**
+### **6. If you participate in user research studies**
+
+If you take part in user interviews, usability testing sessions, surveys, workshops, or other UX research activities, we process the following personal data, for the following purposes and on the following legal basis:
+
+<br></br>
+
+|                                                                                                          |                                                                             |
+| -------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| **Type of data**                                                                                         | **Purposes**                                                                |
+| We collect your feedback and input on our products and services, which may include: <br /><br /> - Demographic details (e.g., occupation, work experience, location – optional, only if you choose to provide them) <br /> - Audio and video recordings of research sessions <br /> - Notes and transcripts summarizing your experiences and opinions | To conduct user research and inform product development decisions <br /> To generate aggregated and anonymized insights for research reports |
+| We collect your name and contact details (e.g., email address) | To communicate with you regarding the research activities you are participating in <br /> To invite you to future research studies, if you have agreed to be contacted again |
+
+<br></br>
+
+You may object to the use of your personal data for research at any time (see **Section 10**). For example, if you are in a user interview, you may inform us that you do not wish to be contacted again, or you may email us to request removal from our research participant pool. Contact details can be found in **Section 11**. Please note that even if you unsubscribe from research communications, you will still receive essential service-related emails.  
+
+<br></br>
+
+For these purposes, we may share your personal data with third-party providers that support us in managing, automating, or analyzing research activities. For more information on how we protect your data in this context, please see **Section 8**.  
+
+<br></br>
+
+For the processing of this personal data, we rely on your consent.
+
+<br></br>
+
+
+
+### **7. If you participate in the Weaviate Certification Program**
+
+
+
+**a) General Program Information**
+
+If you choose to participate in the Weaviate Certification Program, we process the following personal data, for the following purposes and on the following legal basis:
+
+<br></br>
+
+|                                                                                                          |                                                                             |
+| -------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| **Type of data**                                                                                         | **Purposes**                                                                |
+| We collect your name and contact details (e.g., email address).           | To communicate with you regarding the certification program and related activities. To send you exam invitations, exam schedules, and registration details. To deliver your digital credential (e.g., badge and certificate).            |
+| We collect your timezone.                                                 | To schedule exams and communications in accordance with your local time.                                                                                                                                                                   |
+| We collect your exam details and results.                                 | To administer exams, verify your participation and performance, analyze anomalies, improve provided content and materials, and issue certifications accordingly.                                                                            |
+
+<br></br>
+
+For these purposes, we may share your personal data with third-party providers that support us in managing certification activities:
+
+- **Synap**: to invite you to exams, deliver and manage assessments, verify your participation and performance, and analyze usage and anomalies.  
+- **Zapier**: to support workflow automation related to exam scheduling, notifications, and credential delivery.  
+- **Credly**: to issue, manage, and validate digital badges and certificates.  
+- **HubSpot**: to analyze participation and performance of the program, and manage communications regarding the certification program and related activities.  
+
+<br></br>
+
+**b) Weaviate Exams and Remote Proctoring**
+
+When you register for and take an exam through our platform, we work with trusted service providers who deliver remote proctoring and security services on our behalf.  
+
+Proctoring is the remote monitoring of an online exam, usually by recording a combination of your computer screen, webcam, and microphone for the duration of your exam.  
+
+We remain the controller of your personal data, and video proctoring of exams is optional. Our service providers act strictly as processors and process your data only in accordance with our instructions.  
+
+<br></br>
+
+|                                                                                                          |                                                                             |
+| -------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| **Type of data**                                                                                         | **Purposes**                                                                |
+| Identity information (e.g., your name, user account details, ID document for verification).        | Verify your identity and eligibility to take the exam.                                                                                |
+| Video and audio recordings of you and your surroundings during the exam session.                   | Ensure the integrity and fairness of the examination process; detect and prevent cheating or misconduct.                              |
+| Technical information (e.g., IP address, device/browser information, internet connection speed).   | Verify exam conditions and maintain security of the examination process.                                                               |
+| Activity data related to the exam (e.g., responses, time spent, potential integrity flags).        | Provide exam results and certification.                                                                                                |
+
+<br></br>
+
+For more information on how we protect your data in this context, please see **Section 8**.  
+
+Please note that some of these third-party providers may process your personal data outside the EU/EEA. Where this is the case, we ensure that appropriate safeguards (such as the European Commission’s Standard Contractual Clauses) are in place to protect your data in accordance with applicable data protection laws.  
+
+You may object to the use of your personal data for certification purposes at any time (see **Section 10**). Please note, however, that if you withdraw your consent, you may no longer be able to participate in the certification program or receive its associated credentials.  
+
+<br></br>
+
+For the processing of this personal data, we rely on your consent.  
+
+<br></br>
+
+
+### **8. What parties have access to your personal data?**
 
 <br></br>
 
@@ -350,6 +447,8 @@ We may disclose your personal data or make your personal data available to third
 
 - Zapier, for workflow automation.
 
+- Condens, for securely storing and analyzing UX research sessions, managing participant information, and organizing research findings.
+
 
 These third parties may be located outside the European Economic Area. The regulations in these countries do not always provide the same level of protection of personal data as the regulations in the Netherlands. Where required, Weaviate takes appropriate measures to comply with the requirements that the applicable privacy regulations impose on the international transfer of personal data.
 
@@ -359,7 +458,7 @@ We may, for instance, conclude so-called European Model Agreements for the trans
 
 <br></br>
 
-### **7. How do we secure your personal data and how long do we retain it?**
+### **9. How do we secure your personal data and how long do we retain it?**
 
 Weaviate has implemented various measures to protect your personal data. For instance, our internal procedures concerning your personal data are compliant with our internal security policy, we have obtained and commit to obtaining various data security certifications (such as SOC2 Type 1, SOC2 Type 2, and ISO27001), and we use end-to-end encryption to protect any stored personal data.
 
@@ -369,7 +468,7 @@ We retain your personal data for a period of 5 years or as long as required to r
 
 <br></br>
 
-### **8. Your rights and how to exercise them **
+### **10. Your rights and how to exercise them **
 
 You may contact legal@weaviate.io to exercise any of the rights you are granted under applicable personal data protection legislation, including the following rights:
 
@@ -403,7 +502,7 @@ Please note that we may require you to provide additional information to verify 
 
 <br></br>
 
-### **9. How to contact us**
+### **11. How to contact us**
 
 You can always contact us if you have any questions, remarks, or complaints in relation to this privacy policy. For any such questions, remarks, or complaints, please contact legal@weaviate.io.
 
@@ -413,7 +512,7 @@ If you have any unresolved concerns, you have the right to lodge a complaint wit
 
 <br></br>
 
-### **10. COOKIE POLICY OF WEAVIATE B.V.**
+### **12. COOKIE POLICY OF WEAVIATE B.V.**
 
 
 
@@ -421,7 +520,7 @@ This is the cookie policy of Weaviate B.V. (“**Weaviate**”, “**we**”, an
 
 <br></br>
 
-### **10.1. What are cookies?**
+### **12.1. What are cookies?**
 
 A cookie is a small file containing a string of characters stored on your device when you visit a website. Cookies enable websites to recognize your device and collect information about your browsing behavior. They may include details such as your IP address, device type, and pages visited.
 
@@ -429,7 +528,7 @@ We use session cookies (deleted when you close your browser) and persistent cook
 
 <br></br>
 
-### **10.2. Types of cookies we use**
+### **12.2. Types of cookies we use**
 
 We use various types of cookies for different purposes:
 
@@ -443,7 +542,7 @@ You can manage your cookie preferences via the "Cookie Settings" menu.
 
 <br></br>
 
-### **10.3. How can you control cookies?**
+### **12.3. How can you control cookies?**
 
 Upon your first visit, we seek consent for analytics, advertising, and social media cookies. You can withdraw consent or adjust settings anytime in the "Cookie Settings" menu.
 
@@ -458,7 +557,7 @@ For additional inquiries, contact us at finance@weaviate.io.
 <br></br>
 
 
-### **10.4. Amendments**
+### **12.4. Amendments**
 
 This cookie policy was last updated in **February 2024**. We may revise this policy periodically and inform you of significant changes.
 
@@ -466,7 +565,7 @@ This cookie policy was last updated in **February 2024**. We may revise this pol
 
 
 
-### **10.5. Cookie Declaration**
+### **12.5. Cookie Declaration**
 
 import CookieDeclaration from '/src/components/CookieDeclaration';
 
