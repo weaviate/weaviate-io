@@ -20,8 +20,6 @@ Here are the release ⭐️*highlights*⭐️!
 
 Data import just got a whole lot easier with **server-side batch imports** (also called automatic batching). Instead of manually tuning batch parameters on the client side, you can now let the server manage the data flow rate for optimal performance. Through **dynamic backpressure** the server continuously monitors its internal queue size and calculates an exponential moving average (EMA) of its workload. It then tells the client the ideal number of objects to send in the next chunk.
 
-<!-- ![img/automatic_batching_flow.png](./img/automatic_batching_flow.png) -->
-
 Using server-side batching in Python is straightforward:
 
 ```python
@@ -56,8 +54,6 @@ Server-side batching was added in `v1.33` as a **preview** feature. While functi
 ## Collection aliases goes GA
 
 **Collection aliases**, introduced as a preview in Weaviate `v1.32`, are now **generally available (GA)** and ready for production use. This feature provides an elegant solution for seamless collection migrations and production workflows.
-
-<!-- ![img/collection_aliases_ga.png](./img/collection_aliases_ga.png) -->
 
 Collection aliases allow you to:
 
@@ -122,8 +118,6 @@ DEFAULT_QUANTIZATION=pq
 
 Building on the success of 8-bit RQ, Weaviate `v1.33` introduces **1-bit rotational quantization (RQ)** as a preview feature. This quantization technique provides massive compression rates while maintaining good search quality.
 
-<!-- ![img/1bit_rq_explained.png](./img/1bit_rq_explained.png) -->
-
 **1-bit RQ** works through an asymmetric quantization approach:
 
 1. **Data vectors** are quantized using just 1 bit per dimension (storing only the sign)
@@ -134,8 +128,6 @@ This asymmetric design provides several key advantages:
 
 - **Close to 32x compression** as dimensionality increases
 - **More robust than binary quantization (BQ)** - works well even on some datasets where BQ performs poorly
-
-<!-- ![img/compression_comparison.png](./img/compression_comparison.png) -->
 
 Our internal testing shows that 1-bit RQ serves as a good alternative to binary quantization, with only a slight decrease in throughput compared to BQ, but significantly better recall on some datasets.
 
@@ -155,8 +147,6 @@ Our internal testing shows that 1-bit RQ serves as a good alternative to binary 
 ## OIDC group management
 
 Managing permissions for large teams just became much more streamlined with **OIDC group management**. You can now leverage user groups defined in your identity provider (like Keycloak, Okta, or Auth0) to manage permissions in Weaviate automatically.
-
-<!-- ![img/oidc_group_management.png](./img/oidc_group_management.png) -->
 
 Here's how it works:
 
@@ -207,8 +197,6 @@ This feature eliminates the need to assign roles to each user individually, maki
 ## `ContainsNone` and `Not` filter operators
 
 Weaviate `v1.33` expands your filtering capabilities with two new operators: **`ContainsNone`** and **`Not`**. These operators provide more flexible and intuitive ways to express complex filtering logic.
-
-<!-- ![img/new_filter_operators.png](./img/new_filter_operators.png) -->
 
 **ContainsNone Operator**
 
