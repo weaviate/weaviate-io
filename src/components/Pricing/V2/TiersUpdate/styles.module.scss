@@ -1,0 +1,297 @@
+/* styles.module.scss */
+
+/* ==== Section ==== */
+.section {
+  background: #ecf4f8;
+  position: relative;
+  padding: 0 0 clamp(2rem, 5vw, 3rem);
+}
+
+/* ==== Grid: 4-up, tight on desktop ==== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
+  --gap: 0; /* no gap on wide screens so cards butt together */
+  gap: var(--gap);
+  margin-top: -7rem;
+}
+
+/* Single outer border on desktop */
+.grouped {
+  border-radius: 0.9375rem;
+  box-shadow: 0 24px 64px 0 rgba(22, 27, 45, 0.08);
+  overflow: hidden;
+}
+
+/* Inside the grouped box: flatten cards so they look like one slab */
+.grouped .card {
+  border: 0;
+  box-shadow: none;
+  border-radius: 0;
+  transform: none; /* neutralize hover lift in the group */
+}
+
+/* Bring gaps & individual card chrome back when stacking */
+@media (max-width: 1200px) {
+  .grid {
+    --gap: clamp(12px, 1.6vw, 20px);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 1.5rem;
+  }
+  .grouped {
+    border: 0;
+    border-radius: 0;
+    overflow: visible;
+  }
+  .grouped .card {
+    border: 1px solid transparent;
+    border-radius: 12px;
+    box-shadow: 0 24px 64px rgba(22, 27, 45, 0.08);
+  }
+  .grouped .card + .card {
+    border-left: none;
+  }
+}
+
+@media (max-width: 680px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==== Card base ==== */
+.card {
+  display: grid;
+  grid-template-rows: auto minmax(clamp(7.5rem, 5.5vw, 10.5rem), auto) auto 1fr;
+  gap: 14px;
+  padding: 24px;
+  background: #fff; /* overridden per-variant below */
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+/* Per-tier backgrounds (Figma) */
+.v_free,
+.v_plus {
+  background: #f7f9fd;
+} /* Free & Plus */
+.v_flex,
+.v_premium {
+  background: #ecf4f8;
+} /* Flex & Premium */
+
+/* Header */
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  h3 {
+    margin: 0;
+    color: #130c49;
+    font-weight: 700;
+    font-size: 1.6rem;
+    line-height: normal;
+  }
+}
+
+/* Body */
+.cardBody {
+  display: grid;
+  gap: 14px;
+}
+
+/* Keep consistent blurb height as you requested */
+.blurb {
+  height: 80px;
+  margin: 0;
+  color: #130c49;
+  font-family: Inter;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 140%;
+}
+
+/* Price */
+.priceLine {
+  color: #130c49;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+
+  span {
+    opacity: 0.8;
+    color: #130c49;
+    font-family: Inter;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1;
+  }
+}
+
+/* CTA */
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  border-radius: 5px;
+  width: 100%;
+  border-radius: 0.3125rem;
+  border: 2px solid #130c49;
+  background: #61d384;
+  color: #130c49;
+  background: #61d384;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.primaryBtn:hover {
+  color: #130c49;
+}
+
+.btn_premium,
+.btn_plus,
+.btn_flex {
+  background: #130c49;
+  color: #ecf4f8;
+  text-align: center;
+  font-family: Inter;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 157.33%;
+}
+.btn_premium:hover,
+.btn_plus:hover,
+.btn_flex:hover {
+  background: #130c49;
+  color: #fff;
+}
+
+/* Divider + features (unchanged) */
+.divider {
+  height: 1px;
+  width: 100%;
+  border: 0;
+  background: #00a88b;
+  margin: 6px 0 2px;
+}
+
+.features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+.features li {
+  position: relative;
+  padding-left: 14px;
+  color: #130c49;
+  font-family: Inter;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 140%;
+}
+.features li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #130c49;
+}
+
+/* BYOC strip (unchanged) */
+.byoc {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr auto;
+  gap: 16px;
+  align-items: center;
+  margin-top: 24px;
+  padding: 18px 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 24px 64px rgba(22, 27, 45, 0.08);
+}
+@media (max-width: 900px) {
+  .byoc {
+    grid-template-columns: 1fr;
+    row-gap: 12px;
+  }
+}
+.byocCopy h4 {
+  margin: 0 0 20px;
+  color: #130c49;
+  font-family: 'Plus Jakarta Sans';
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+.byocCopy p {
+  margin: 0;
+  color: #130c49;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.byocFeatures {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 16px;
+  display: grid;
+  gap: 6px;
+  border-left: 1px solid #00a88b;
+  margin-left: 8px;
+}
+@media (max-width: 900px) {
+  .byocFeatures {
+    border-left: 0;
+    border-top: 1px solid #00a88b;
+    padding: 12px 0 0 0;
+    margin-left: 0;
+  }
+}
+.byocFeatures li {
+  position: relative;
+  padding-left: 14px;
+  color: #130c49;
+  font-size: 0.95rem;
+}
+.byocFeatures li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #130c49;
+}
+
+.byocBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18.5215rem;
+  height: 2.75rem;
+  flex-shrink: 0;
+  border-radius: 5px;
+  padding: 0 18px;
+  color: #ecf4f8;
+  border-radius: 0.3125rem;
+  border: 2px solid #130c49;
+  background: #130c49;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.byocBtn:hover {
+  background: #130c49;
+  color: #fff;
+}

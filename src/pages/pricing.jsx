@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '@theme/Layout';
 import PricingHeader from '../components/Pricing/V2/Header';
-import PricingTiers from '../components/Pricing/V2/Tiers/index.jsx';
+
+import PricingTiers from '../components/Pricing/V2/TiersUpdate/index.jsx';
 import CompareTable from '../components/Pricing/V2/CompareTable/index.jsx';
 import Availability from '../components/Pricing/V2/Availablity/index.jsx';
 import AddOnsSection from '../components/Pricing/V2/AddOns/index.jsx';
