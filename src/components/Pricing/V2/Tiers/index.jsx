@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
 import styles from './styles.module.scss';
+import { PriceCalculator } from '../../PriceCalculator/PriceCalculator';
 
 // Reusable card
 function TierCard({
@@ -202,6 +203,8 @@ export default function PricingTiers() {
             Contact Sales
           </Link>
         </div>
+        
+        <PriceCalculator />
       </div>
     </section>
   );
