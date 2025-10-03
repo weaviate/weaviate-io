@@ -4,6 +4,7 @@ import { RecallAccuracy, Throughput, Plans, VectorDimensionsSelect, NumberOfObje
 import { PriceReview } from "./components/Elements/PriceReview/PriceReview"
 import { ObjectSizeSelect } from "./components/Elements/Calculator"
 import { IData, starterState } from "./types"
+import { AccuracyToCost } from "./components/Elements/Calculator/AccuracyToCost/AccuracyToCost"
 
 export const PriceCalculator = () => {
   const [ data, updateData ] = useState<IData>(starterState)
@@ -19,8 +20,9 @@ export const PriceCalculator = () => {
           <NumberOfObjectsSelect data={data} updateValue={updateValue} />
           <ObjectSizeSelect data={data} updateValue={updateValue} />
         </div>
-        <RecallAccuracy data={data} updateValue={updateValue} />
-        <Throughput data={data} updateValue={updateValue} />
+        {/* <RecallAccuracy data={data} updateValue={updateValue} /> */}
+        {/* <Throughput data={data} updateValue={updateValue} /> */}
+        <AccuracyToCost data={data} updateValue={updateValue} />
       </div>
       <PriceReview data={data} />
     </div>

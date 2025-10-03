@@ -16,6 +16,17 @@ export const PriceReview = (props: IPriceReviewProps) => {
     whileFocus: {  scale: 1.05, boxShadow: '0px 5px 10px rgba(0, 0, 0, 0.1)' },
     transition: { duration: 0.1 }
   }
+
+  if (props.data.plan === 'premium') {
+    return (
+      <div className="priceReview premium">
+        <h1>For premium xyz, please get in touch for a personalised rate.</h1>
+        <motion.button {...motionProps}>
+          <span>Contact sales</span>
+        </motion.button>
+      </div>
+    )
+  }
   
   return (
     <div className="priceReview">

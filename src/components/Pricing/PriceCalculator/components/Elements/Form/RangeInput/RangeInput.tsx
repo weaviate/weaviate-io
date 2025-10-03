@@ -1,4 +1,4 @@
-import React, { type ChangeEventHandler, type ReactNode, useEffect, useRef, useState, type MouseEventHandler } from "react"
+import { type ChangeEventHandler, type ReactNode, useEffect, useRef, useState, type MouseEventHandler } from "react"
 import { Label } from "../Label/Label"
 import { RangeMark } from "./RangeMark/RangeMark"
 import type { IData } from "../../../../types"
