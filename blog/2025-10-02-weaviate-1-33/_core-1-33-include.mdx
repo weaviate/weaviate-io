@@ -1,6 +1,6 @@
 import ThemedImage from '@theme/ThemedImage';
 
-Weaviate `v1.33` is now available open-source and on [Weaviate Cloud](https://console.weaviate.cloud). This release brings **compression by default** for optimal resource utilization, **1-bit rotational quantization (RQ)**, **server-side batch imports**, **OIDC group management**, and **collection aliases** become generally available (GA).
+Weaviate `v1.33` is now available open-source and on [Weaviate Cloud](https://console.weaviate.cloud). This release brings **compression by default** for optimal resource utilization, **1-bit rotational quantization (RQ)**, **OIDC group management**, **server-side batch imports** and **collection aliases** become generally available (GA).
 
 There's also expanded filtering capabilities with new **`ContainsNone` and `Not` operators**, plus a few additional improvements across the board.
 
@@ -8,48 +8,13 @@ Here are the release ⭐️*highlights*⭐️!
 
 ![Weaviate 1.33 is released](./img/hero.png)
 
-- [Server-side batch imports](#server-side-batch-imports)
 - [Collection aliases goes GA](#collection-aliases-goes-ga)
 - [Compression by default (& 8-bit RQ goes GA)](#compression-by-default--8-bit-rq-goes-ga)
 - [1-bit rotational quantization (RQ)](#1-bit-rotational-quantization-rq)
 - [`ContainsNone` and `Not` filter operators](#containsnone-and-not-filter-operators)
 - [OIDC group management](#oidc-group-management)
+- [Server-side batch imports](#server-side-batch-imports)
 - [Community contributions](#community-contributions)
-
-## Server-side batch imports
-
-Data import just got a whole lot easier with **server-side batch imports** (also called automatic batching). Instead of manually tuning batch parameters on the client side, you can now let the server manage the data flow rate for optimal performance. Through **dynamic backpressure** the server continuously monitors its internal queue size and calculates an exponential moving average (EMA) of its workload. It then tells the client the ideal number of objects to send in the next chunk.
-
-Using server-side batching in Python is straightforward:
-
-```python
-# Server-side batching automatically optimizes the data ingestion flow
-with client.batch.automatic() as batch:
-    for data_object in data_objects:
-        batch.add_object(
-            properties=data_object,
-            collection="Articles"
-        )
-```
-
-**Why use automatic batching?**
-
-- **Simplified client code** - No need to manually tune batch size and concurrent requests
-- **Improved stability** - Automatic backpressure prevents server overloads and timeouts
-- **Enhanced resilience** - Better handling of cluster scaling events and long-running vectorization tasks
-
-:::caution Preview Feature
-
-Server-side batching was added in `v1.33` as a **preview** feature. While functional, it may change in future releases and is not recommended for production use at this time.
-
-:::
-
-:::info Related resources
-
-- [How-to: Batch import](https://docs.weaviate.io/weaviate/manage-objects/import#server-side-batching)
-- [Tutorial: Batch data import](https://docs.weaviate.io/weaviate/tutorials/import)
-
-:::
 
 ## Collection aliases goes GA
 
@@ -241,6 +206,34 @@ These operators work seamlessly with Weaviate's existing filtering system and ca
 - [How-to: Filters](https://docs.weaviate.io/weaviate/search/filters)
 
 :::
+
+## Server-side batch imports
+
+:::caution Preview Feature
+
+Server-side batching was added in `v1.33` as a **preview** feature and is **not supported in our client libraries** yet. 
+
+:::
+
+Data import just got a whole lot easier with **server-side batch imports** (also called automatic batching). Instead of manually tuning batch parameters on the client side, you can now let the server manage the data flow rate for optimal performance. Through **dynamic backpressure** the server continuously monitors its internal queue size and calculates an exponential moving average (EMA) of its workload. It then tells the client the ideal number of objects to send in the next chunk.
+
+Using server-side batching in Python is straightforward:
+
+```python
+# Server-side batching automatically optimizes the data ingestion flow
+with client.batch.automatic() as batch:
+    for data_object in data_objects:
+        batch.add_object(
+            properties=data_object,
+            collection="Articles"
+        )
+```
+
+**Why use automatic batching?**
+
+- **Simplified client code** - No need to manually tune batch size and concurrent requests
+- **Improved stability** - Automatic backpressure prevents server overloads and timeouts
+- **Enhanced resilience** - Better handling of cluster scaling events and long-running vectorization tasks
 
 ## Community contributions
 
