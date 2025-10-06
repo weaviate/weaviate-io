@@ -17,12 +17,12 @@ export const addNumSize = (text: string) => {
   
   if (num >= 1000000) {
     const millions = Math.round(num / 1000000)
-    return `${millions}M`
+    return `${millions}MiB`
   }
   
   if (num >= 1000) {
     const thousands = Math.round(num / 1000)
-    return `${thousands}K`
+    return `${thousands}KiB`
   }
   
   return text

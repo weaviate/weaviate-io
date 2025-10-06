@@ -19,7 +19,8 @@ export const Price = (props: IPriceProps) => {
     transition: { duration: 0.33 }
   }
 
-  const price = calculatePrice(props.data).toLocaleString()
+
+  const price = calculatePrice(props.data)
 
   const wrapperMotionProps: MotionProps = {
     animate: { width: Math.max(bounds.width, 40) + 20 }

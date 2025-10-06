@@ -1,84 +1,136 @@
 import type { IData } from "../types"
 
-const CONSTANTS = {
-  HNSWByteOverheadFactor: 306,
-  VectorOverheadBytes: 24,
-  FlatIndexOverhead: 1.1,
-  HNSWOverheadFactor: 2,
-  GCFactor: 1.4,
-  SizingErrorFactor: 1.2,
-  HybridFactorStorage: 2,
-  BackupCompressionReduction: 0.25
+const productTierFactor = (data: IData) => {
+  const tierFactors = {shared: 1.0, dedicated: 1.5 }
+  return tierFactors[data.deploymentType]
 }
 
-export const calculatePrice = (data: IData): number => {
-  const objCount = parseInt(data.numOfObjects)
-  const dims = parseInt(data.vectorDimensions)
-  const objDataSize = parseInt(data.objectSize)
-  const dataTieringPercent = parseInt(data.dataTiering)
-  const replicationFactor = data.highAvailability ? 3 : 1
-  const daysOfBackupRetention = 30
-
-  const objCountInMemory = objCount
-  const vectorCountInMemory = objCount
-
-  const dimSizeBytesUncompressed = dims * 4
-  const dimSizeBytesCompressed = getDimSizeBytesCompressed(dims, "None")
-
-  const vectorSizeGiBobjects = ((dimSizeBytesCompressed + CONSTANTS.VectorOverheadBytes) * objCountInMemory) / (1024 ** 3)
-  const vectorSizeGiBvectors = (((dimSizeBytesCompressed / dims) + CONSTANTS.VectorOverheadBytes) * vectorCountInMemory) / (1024 ** 3)
-
-  const vectorSizeGiB = Math.min(vectorSizeGiBobjects, vectorSizeGiBvectors)
-
-  const vectorHNSWGraphGiB = (CONSTANTS.HNSWByteOverheadFactor * objCount * CONSTANTS.HNSWOverheadFactor) / (1024 ** 3)
-
-  const vectorRAMGiB = (vectorSizeGiB + vectorHNSWGraphGiB) * CONSTANTS.GCFactor * CONSTANTS.SizingErrorFactor
-
-  const collectionRAMConsumptionGiB = vectorRAMGiB
-
-  const vectorSizeStoragehnsw = (dimSizeBytesCompressed !== dimSizeBytesUncompressed ? dimSizeBytesCompressed : 0) + dimSizeBytesUncompressed
-  const vectorSizeStorageflat = (dimSizeBytesUncompressed !== dimSizeBytesCompressed ? dimSizeBytesCompressed : dimSizeBytesUncompressed) * CONSTANTS.FlatIndexOverhead
-
-  const collectionObjSize = vectorSizeStoragehnsw + vectorSizeStorageflat + objDataSize
-
-  const collectionStorageGiB = (objCount * collectionObjSize * CONSTANTS.HybridFactorStorage) / (1024 ** 3)
-
-  const collectionBackupStorageGiB = collectionStorageGiB * (1 - CONSTANTS.BackupCompressionReduction) * daysOfBackupRetention
-
-  const clusterRAMConsumptionGiB = collectionRAMConsumptionGiB * replicationFactor
-  const clusterStorageConsumptionGiB = collectionStorageGiB * replicationFactor
-  const clusterBackupConsumptionGiB = collectionBackupStorageGiB * replicationFactor
-
-  const ramCostPerGiB = 50
-  const storageCostPerGiB = 0.1
-  const backupCostPerGiB = 0.05
-
-  const monthlyPrice = (clusterRAMConsumptionGiB * ramCostPerGiB) + 
-                      (clusterStorageConsumptionGiB * storageCostPerGiB) + 
-                      (clusterBackupConsumptionGiB * backupCostPerGiB)
-
-  const tierMultiplier = data.productTier === "enterprise" ? 1.5 : 1
-  return Math.round(monthlyPrice * tierMultiplier)
+const calculateVectorDimensionUnits = (data: IData) => {
+  const dimensions = parseInt(data.vectorDimensions);
+  const totalObjects = parseInt(data.numOfObjects);
+  return (dimensions * totalObjects) / 1_000_000;
 }
 
-const getDimSizeBytesCompressed = (dims: number, compression: string): number => {
-  if (compression === "SQ") {
-    return dims
+const calculateAccuracyCost = (data: IData) => {
+  const basePrice = {
+    hnsw: { None: 69500, pq: 62550, "rq-8": 59075 },
+    flat: { None: 6950, bq: 869 }
+  };
+
+  const accuracyMap = {
+    1: { indexType: "hnsw", compression: "None", price: basePrice.hnsw.None },
+    2: { indexType: "hnsw", compression: "pq", price: basePrice.hnsw.pq },
+    3: { indexType: "hnsw", compression: "rq-8", price: basePrice.hnsw["rq-8"] },
+    4: { indexType: "flat", compression: "None", price: basePrice.flat.None },
+    5: { indexType: "flat", compression: "bq", price: basePrice.flat.bq }
+  };
+
+  const step = parseInt(data.accuracyToCost);
+  // @ts-ignore
+  return (accuracyMap[step]).price
+}
+
+
+const calculateStoragePrice = (data: IData): number => {
+  const objCount = parseInt(data.numOfObjects);
+  const objDataSize = parseInt(data.objectSize);
+  const dims = parseInt(data.vectorDimensions);
+  const replicationFactor = 3;
+
+  const dimSizeBytesUncompressed = dims * 4;
+  const accuracyData = calculateAccuracyCost(data);
+  const indexType = accuracyData.indexType;
+
+  let collectionVectorSize: number;
+  if (indexType === "hnsw") {
+    collectionVectorSize = dimSizeBytesUncompressed;
+  } else {
+    const FlatIndexOverhead = 1.1;
+    collectionVectorSize = dimSizeBytesUncompressed * FlatIndexOverhead;
   }
+
+  const collectionObjSize = collectionVectorSize + objDataSize;
+
+  const HybridFactorStorage = 2;
+  const collectionStorageGiB = (collectionObjSize * objCount * HybridFactorStorage) / (1024 ** 3);
+
+  const storageUnitPrice = 212500;
+  const blockStorageRegionalFactor = 1.0;
+  const tierFactor = productTierFactor(data);
+
+  const totalUnitsConsumed = collectionStorageGiB * replicationFactor;
+  const totalStoragePrice = totalUnitsConsumed * storageUnitPrice * blockStorageRegionalFactor * tierFactor;
+
+  return totalStoragePrice / 1_000_000;
+}
+
+const calculateBackupPrice = (data: IData): number => {
+  const objCount = parseInt(data.numOfObjects);
+  const objDataSize = parseInt(data.objectSize);
+  const dims = parseInt(data.vectorDimensions);
+  const replicationFactor = 3;
+  const daysRetention = 30;
+
+  const dimSizeBytesUncompressed = dims * 4;
+  const accuracyData = calculateAccuracyCost(data);
+  const indexType = accuracyData.indexType;
+
+  let collectionVectorSize: number;
+  if (indexType === "hnsw") {
+    collectionVectorSize = dimSizeBytesUncompressed;
+  } else {
+    const FlatIndexOverhead = 1.1;
+    collectionVectorSize = dimSizeBytesUncompressed * FlatIndexOverhead;
+  }
+
+  const collectionObjSize = collectionVectorSize + objDataSize;
+
+  const HybridFactorStorage = 2;
+  const BackupCompressionReduction = 0.25;
+  const collectionStorageGiB = (collectionObjSize * objCount * HybridFactorStorage) / (1024 ** 3);
+  const backupStorageGiB = collectionStorageGiB * (1 - BackupCompressionReduction) * daysRetention;
+
+  const backupUnitPrice = 22000;
+  const objectStorageRegionalFactor = 1.0;
+  const tierFactor = productTierFactor(data);
+
+  const totalUnitsConsumed = backupStorageGiB * replicationFactor;
+  const totalBackupPrice = totalUnitsConsumed * backupUnitPrice * objectStorageRegionalFactor * tierFactor;
+
+  return totalBackupPrice / 1_000_000;
+}
+
+const calculateFinalPrice = (
+  dimensionUnits: number,
+  accuracyCost: number,
+  storagePrice: number,
+  backupPrice: number,
+  tierFactor: number
+): number => {
+  const replicationFactor = 3;
+  const scaleFactor = 1;
+  const nodeRegionalFactor = 1.0;
+
+  const dimensionPrice = (dimensionUnits * accuracyCost * replicationFactor * scaleFactor * nodeRegionalFactor * tierFactor) / 1_000_000;
+
+  return dimensionPrice + storagePrice + backupPrice;
+}
+
+export const calculatePrice = (data: IData): string => {
+  // The deployment type will always be shared for flex, shared or dedicated for plus.
+  // Premium will not need any calculations.
+  // const deployment_type = data.plan === 'flex' ? 'shared' : data.deploymentType
+  const days_retention = 30 // Retention is TBD it differs, i need to figure it out.
+  const dimension_units = calculateVectorDimensionUnits(data)
+  const product_tier_factor = productTierFactor(data)
+  const accuracy_cost = calculateAccuracyCost(data)
+  const object_size_cost = calculateStoragePrice(data)
   
-  if (compression === "BQ") {
-    return Math.ceil(dims * 0.125)
-  }
-
-  if (compression === "PQ") {
-    const optimalSegmentsPQ8 = (dims >= 2048 && dims % 8 === 0) ? dims / 8 : Infinity
-    const optimalSegmentsPQ6 = (dims >= 768 && dims % 6 === 0) ? dims / 6 : Infinity
-    const optimalSegmentsPQ4 = (dims >= 256 && dims % 4 === 0) ? dims / 4 : Infinity
-    const optimalSegmentsPQ2 = (dims % 2 === 0) ? dims / 2 : Infinity
-    const optimalSegmentsPQnone = dims
-
-    return Math.min(optimalSegmentsPQ8, optimalSegmentsPQ6, optimalSegmentsPQ4, optimalSegmentsPQ2, optimalSegmentsPQnone)
-  }
-
-  return dims * 4
+  const backup_price = calculateBackupPrice(data)
+  const finalPrice = calculateFinalPrice(dimension_units, accuracy_cost, object_size_cost, backup_price, product_tier_factor)
+  const roundedPrice = Math.round(finalPrice).toLocaleString()
+  
+  return roundedPrice
 }
+
+
