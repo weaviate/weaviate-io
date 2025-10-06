@@ -26,6 +26,8 @@ const config = {
     onBrokenLinks: 'warn',
     onBrokenMarkdownLinks: 'warn',
     favicon: 'img/favicon.ico',
+    clientModules: [require.resolve('./src/components/UTM/capture.js')],
+
 
     // GitHub pages deployment config.
     // If you aren't using GitHub pages, you don't need these.
