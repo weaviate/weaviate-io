@@ -597,19 +597,26 @@
 .loginCTA {
   border-radius: 0.3125rem;
   border: 1px solid #1c1468;
-  background: #130c49;
-  color: #ffffff;
-  margin: 0 20px;
-  width: 8rem;
-  height: 2.625rem;
-  flex-shrink: 0;
+  margin: 0px 0px 0px 0px;
+  background: #ededed;
+  color: #130c49;
+  gap: 4px;
   align-items: center;
   display: flex;
   align-content: center;
   justify-content: center;
+  width: 8rem;
+  height: 2.625rem;
+  transition: all 0.3s ease;
+  border-radius: 0.3125rem;
+  font-weight: 600;
 
   &:hover {
-    color: #ffffff !important;
+    color: #130c49 !important;
+  }
+
+  & i:hover {
+    color: #130c49 !important;
   }
 
   @media screen and (max-width: 1250px) {
@@ -620,7 +627,15 @@
 
   @media screen and (max-width: 1150px) {
     display: block;
+    border: unset;
+    background-color: unset;
+    color: #2b3854;
+    font-weight: 500;
     margin: 0px;
+    &:hover,
+    i:hover {
+      color: #00c342 !important;
+    }
   }
 
   @media screen and (max-width: 996px) {
@@ -712,7 +727,8 @@
 }
 
 a.menu__link.tryNow,
-a.menu__link.loginButton {
+a.menu__link.loginButton,
+a.menu__link.loginCTA {
   @media screen and (max-width: 1150px) {
     display: block;
   }
@@ -1459,7 +1475,15 @@ ul.dropdown__menu {
 
 a.navbar__item.navbar__link:hover {
   i {
-    color: #00a142 !important;
+    color: #130c49 !important;
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  a.navbar__item.navbar__link:hover {
+    i {
+      color: #00c342 !important;
+    }
   }
 }
 
