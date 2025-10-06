@@ -11,12 +11,13 @@ export const AccuracyToCost = (props: IAccuracyToCostProps) => {
     <div className="row">
       <RangeInput
         label="Accuracy/Cost"
-        name="throughput"
-        value={props.data.throughput}
+        name="accuracyToCost"
+        value={props.data.accuracyToCost}
         updateValue={props.updateValue}
         startExtra="Accuracy"
         endExtra="Cost"
-        step="10"
+        range={["1", "5"]}
+        step="1"
       />
     </div>
   )

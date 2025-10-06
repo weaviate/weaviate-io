@@ -35,7 +35,7 @@ export const PriceReview = (props: IPriceReviewProps) => {
       <motion.button {...motionProps}>
         <span>Get started</span>
       </motion.button>
-      <a href="">Contact Sales Team for more info</a>
+      <a href="">Contact Sales Team for more information</a>
     </div>
   )
 }
