@@ -63,5 +63,10 @@ export default function GoConsole() {
     window.location.replace(target);
   }, []);
 
-  return <noscript>Redirecting to Weaviate Console…</noscript>;
+  return (
+    <noscript>
+      Redirecting to Weaviate Console…{' '}
+      <a href="https://console.weaviate.cloud/">Continue</a>
+    </noscript>
+  );
 }
