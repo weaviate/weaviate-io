@@ -63,7 +63,7 @@ edward:
   url: https://www.linkedin.com/in/edwardschmuhl/
   image_url: /img/people/icon/edward.jpg
 erika:
-  name: Erika Cardenas
+  name: Erika Shorten
   title: Technology Partner Manager
   url: https://github.com/erika-shorten
   image_url: /img/people/icon/erika.jpg
@@ -321,8 +321,18 @@ damien:
   title: Solution Engineer
   url: https://www.linkedin.com/in/gasparinadamien/
   image_url: /img/people/icon/damien.png
+ivan:
+  name: Ivan Despot
+  title: Technical Documentation Writer
+  url: https://www.linkedin.com/in/ivan-g-despot/
+  image_url: /img/people/icon/ivan.jpeg
 yaru:
   name: Yaru Lin
   title: Product Lead, Weaviate Cloud
   url: mailto:yaru@weaviate.io
   image_url: /img/people/icon/yaru.jpeg
+tony-crewai:
+  name: Tony Kipkemboi
+  title: Senior Developer Relations Engineer, CrewAI
+  url: https://www.linkedin.com/in/tonykipkemboi/
+  image_url: /img/people/icon/tony-crewai.png

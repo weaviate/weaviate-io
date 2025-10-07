@@ -95,13 +95,6 @@
     "team": "weaviate-labs"
   },
   {
-    "name": "Austin Freels",
-    "title": "Director of Customer Success Engineering",
-    "photo": "Austin.jpg",
-    "linkedin": "austin-freels",
-    "team": "solution-engineering"
-  },
-  {
     "name": "Bob van Luijt",
     "title": "Co-founder and CEO",
     "photo": "bob.jpg",
@@ -399,13 +392,6 @@
     "title": "Customer Solution Engineer",
     "photo": "Jenny-Morris.jpg",
     "team": "solution-engineering"
-  },
-  {
-    "name": "Jeremy Price",
-    "title": "Core Engineer",
-    "photo": "jeremy.jpg",
-    "github": "donomii",
-    "team": "database"
   },
   {
     "name": "Jerónimo Irazábal",
