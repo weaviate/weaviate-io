@@ -75,6 +75,7 @@ They do **not** process customer-stored business data.
 | Support | Slack | Internal communications tool | https://slack.com |
 | Support | Stripe | Payment services provider | https://stripe.com |
 | Support | Sphere | Billing and tax automation | https://getsphere.com |
+| Support | Omni | Billing analytics | https://omniapp.co |
 
 ---
 
