@@ -120,11 +120,6 @@
     "photo": "griffin.jpg"
   },
   {
-    "name": "Jeremy Price",
-    "location": { "lat": 35.2571, "lng": 139.1604 },
-    "photo": "jeremy.jpg"
-  },
-  {
     "name": "Jerónimo Irazábal",
     "location": { "lat": -34.6047, "lng": -58.3826 },
     "photo": "Jeronimo.jpg"
