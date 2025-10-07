@@ -6,14 +6,66 @@
     "description": "Deploy Weaviate on the GCP Marketplace and seamlessly access models on AI Studio and Vertex AI.",
     "tags": ["Cloud Hyperscalers", "Model Providers", "Module", "Popular"],
     "overview": "Full overview text describing the joint value prop, supported models, pricing/marketplace notes, and common use cases.",
-    "resources": [
+    "resourcesGroups": [
       {
-        "title": "Marketplace listing",
-        "url": "https://console.cloud.google.com/marketplace"
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Build a multimodal application using Gemini Flash",
+            "description": "Use Weaviate and Gemini Flash to build a multimodal application.",
+            "type": "Notebook",
+            "url": "https://docs.weaviate.io/...",
+            "linkLabel": "Notebook"
+          },
+          {
+            "topic": "BigQuery and Weaviate",
+            "description": "Sync data between BigQuery and Weaviate using DSPy.",
+            "type": "Notebook",
+            "url": "https://docs.weaviate.io/..."
+          },
+          {
+            "topic": "Semantic Search with Gemini Ultra",
+            "description": "Use Weaviate and Gemini Ultra for semantic search.",
+            "type": "Notebook",
+            "url": "https://docs.weaviate.io/..."
+          },
+          {
+            "topic": "Weaviate Query Agent with Gemini API",
+            "description": "Use the Query Agent as a tool with the Gemini API.",
+            "type": "Notebook",
+            "url": "https://docs.weaviate.io/..."
+          },
+          {
+            "topic": "Weaviate Query Agent with Vertex AI",
+            "description": "Use the Query Agent as a tool with Vertex AI.",
+            "type": "Notebook",
+            "url": "https://docs.weaviate.io/..."
+          },
+          {
+            "topic": "Deploy a Weaviate vector database on GKE",
+            "description": "Deploy a Weaviate vector database cluster on Google Kubernetes Engine (GKE).",
+            "type": "Guide",
+            "url": "https://docs.weaviate.io/..."
+          },
+          {
+            "topic": "Personalized Product Descriptions with Weaviate and the Gemini API",
+            "description": "Embed data, run semantic search, call Gemini, and store the result back in Weaviate.",
+            "type": "Notebook",
+            "url": "https://docs.weaviate.io/..."
+          }
+        ]
       },
       {
-        "title": "Vertex AI overview",
-        "url": "https://cloud.google.com/vertex-ai"
+        "title": "Read & Listen",
+        "items": [
+          {
+            "topic": "Weaviate on Vertex AI RAG Engine: Building RAG Applications on Google Cloud",
+            "description": "Build RAG applications on Google Cloud using the Vertex AI RAG Engine.",
+            "type": "Blog",
+            "url": "https://docs.weaviate.io/...",
+            "linkLabel": "Blog"
+          }
+        ]
       }
     ],
     "cta": [

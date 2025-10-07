@@ -1,4 +1,3 @@
-// src/pages/product/integrations/google-cloud-platform.jsx
 import React from 'react';
 import Layout from '@theme/Layout';
 import partners from '/data/partners.json';
@@ -29,9 +28,9 @@ export default function GcpIntegrationPage() {
     link,
     overview = 'Full overview text…',
     resources = [],
+    resourcesGroups = [],
   } = item;
 
-  // 👇 handle both "cta" and "ctas" keys from JSON
   const ctas = item.ctas || item.cta || [];
 
   return (
@@ -43,7 +42,7 @@ export default function GcpIntegrationPage() {
           description={description}
           tags={tags}
           docsUrl={link}
-          ctas={ctas} // ✅ now populated
+          ctas={ctas}
         />
 
         <div className={css.pageBg}>
@@ -66,23 +65,29 @@ export default function GcpIntegrationPage() {
                   </li>
                 </ul>
               </nav>
-
               <main className={hub.mainContent}>
-                <article className={`${hub.card} ${css.bigCard}`}>
-                  <section id="overview" className={css.section}>
-                    <h2>Overview</h2>
+                <div className={css.panelGrid}>
+                  {/* Overview */}
+                  <section id="overview" className={`${hub.card} ${css.panel}`}>
+                    <h2 className={css.panelTitle}>Overview</h2>
                     <p>{overview}</p>
                   </section>
-
-                  <section id="how-it-works" className={css.section}>
-                    <h2>How it works</h2>
+                  <section
+                    id="how-it-works"
+                    className={`${hub.card} ${css.panel}`}
+                  >
+                    <h2 className={css.panelTitle}>How it works</h2>
                     <p>
-                      Explain marketplaces, auth, endpoints, data flow, etc.
+                      Explain marketplaces, auth, endpoints, and typical data
+                      flow between Weaviate and GCP services (Vertex AI, AI
+                      Studio). Replace this with your copy.
                     </p>
                   </section>
-
-                  <section id="setup" className={css.section}>
-                    <h2>Setup</h2>
+                  <section
+                    id="setup"
+                    className={`${hub.card} ${css.panel} ${css.panelWide}`}
+                  >
+                    <h2 className={css.panelTitle}>Setup</h2>
                     <ol className={css.steps}>
                       <li>Deploy Weaviate via GCP Marketplace.</li>
                       <li>Configure networking & credentials.</li>
@@ -90,20 +95,107 @@ export default function GcpIntegrationPage() {
                     </ol>
                   </section>
 
-                  <section id="resources" className={css.section}>
+                  <section
+                    id="resources"
+                    className={`${css.section} ${css.panelWide}`}
+                  >
                     <h2>Resources</h2>
-                    <ul>
-                      <li>
-                        <a href={link}>Weaviate docs for GCP</a>
-                      </li>
-                      {resources.map((r) => (
-                        <li key={r.url}>
-                          <a href={r.url}>{r.title}</a>
-                        </li>
+                    <h3 className={css.groupLabel}>Hands-on Learning</h3>
+                    <div className={css.resGrid}>
+                      {[
+                        {
+                          title:
+                            'Build a multimodal application using Gemini Flash',
+                          desc: 'Use Weaviate and Gemini Flash to build a multimodal application.',
+                          type: 'Notebook',
+                          url: '#',
+                        },
+                        {
+                          title: 'BigQuery and Weaviate',
+                          desc: 'Sync data between BigQuery and Weaviate using DSPy.',
+                          type: 'Notebook',
+                          url: '#',
+                        },
+                        {
+                          title: 'Semantic Search with Gemini Ultra',
+                          desc: 'How to use Weaviate and Gemini Ultra for semantic search.',
+                          type: 'Notebook',
+                          url: '#',
+                        },
+                        {
+                          title: 'Weaviate Query Agent with Gemini API',
+                          desc: 'Use the Query Agent as a tool with the Gemini API.',
+                          type: 'Notebook',
+                          url: '#',
+                        },
+                        {
+                          title: 'Weaviate Query Agent with Vertex AI',
+                          desc: 'Use the Query Agent as a tool with Vertex AI.',
+                          type: 'Notebook',
+                          url: '#',
+                        },
+                        {
+                          title: 'Deploy a Weaviate vector database on GKE',
+                          desc: 'Tutorial to deploy a Weaviate cluster on Google Kubernetes Engine (GKE).',
+                          type: 'Guide',
+                          url: '#',
+                        },
+                        {
+                          title:
+                            'Personalized Product Descriptions with Weaviate and the Gemini API',
+                          desc: 'Embed your data, run semantic search, call the Gemini API, and store the results in Weaviate.',
+                          type: 'Notebook',
+                          url: '#',
+                        },
+                      ].map((r) => (
+                        <a key={r.title} href={r.url} className={css.resCard}>
+                          <div className={css.resTopRow}>
+                            <span
+                              className={[
+                                css.pill,
+                                r.type === 'Notebook' && css.pillNotebook,
+                                r.type === 'Guide' && css.pillGuide,
+                                r.type === 'Blog' && css.pillBlog,
+                              ]
+                                .filter(Boolean)
+                                .join(' ')}
+                            >
+                              {r.type}
+                            </span>
+                          </div>
+                          <h4 className={css.resTitle}>{r.title}</h4>
+                          <p className={css.resDesc}>{r.desc}</p>
+                          <span className={css.resCta}>Open →</span>
+                        </a>
                       ))}
-                    </ul>
+                    </div>
+                    <h3 className={css.groupLabel}>Read & Listen</h3>
+                    <div className={css.resGrid}>
+                      {[
+                        {
+                          title:
+                            'Weaviate on Vertex AI RAG Engine: Building RAG Applications on Google Cloud',
+                          desc: 'Learn how to build RAG applications on Google Cloud using the new RAG Engine on Vertex AI.',
+                          type: 'Blog',
+                          url: '#',
+                        },
+                      ].map((r) => (
+                        <a key={r.title} href={r.url} className={css.resCard}>
+                          <div className={css.resTopRow}>
+                            <span
+                              className={[css.pill, css.pillBlog].join(' ')}
+                            >
+                              {r.type}
+                            </span>
+                          </div>
+                          <h4 className={css.resTitle}>{r.title}</h4>
+                          <p className={css.resDesc}>{r.desc}</p>
+                          <span className={css.resCta}>Read →</span>
+                        </a>
+                      ))}
+                    </div>
                   </section>
-                </article>
+                </div>
               </main>
             </div>
           </div>
