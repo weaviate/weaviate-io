@@ -84,19 +84,23 @@ export default function AddOnsSection() {
 
           <AddonCard
             variant="lilac"
-            title="Weaviate Agents"
-            blurb="Empower AI agents with the context and adaptability they need."
-            priceItems={[
-              {
-                label: 'SNOWFLAKE ARCTIC-EMBED-M-V1.5',
-                price: '$0.025',
-                unit: '/ 1M tokens',
-              },
-              {
-                label: 'SNOWFLAKE ARCTIC-EMBED-M-V2.0',
-                price: '$0.040',
-                unit: '/ 1M tokens',
-              },
+            title="Weaviate Query Agent"
+            blurb="Turn natural-language questions into precise Weaviate database operations."
+            bulletItems={[
+              <>
+                <strong>Free to try</strong>
+              </>,
+              <>
+                <strong>Monthly plan</strong>
+              </>,
+              <>
+                <strong>$30</strong> / organization
+              </>,
+              <>
+                <strong>4000 requests included</strong>
+                <br></br> + unlimited additional requests with usage-based
+                pricing
+              </>,
             ]}
             cta={{ href: '/agents', label: 'Learn more' }}
           />

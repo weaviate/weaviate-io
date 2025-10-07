@@ -48,7 +48,7 @@
   display: grid;
   grid-template-rows: auto 1fr auto;
   padding: clamp(18px, 2.4vw, 26px);
-  min-height: 360px;
+  min-height: 400px;
 }
 
 .cardHeader h3 {
@@ -61,7 +61,7 @@
   line-height: normal;
 }
 .blurb {
-  margin: 6px 0 14px;
+  margin: 20px 0 20px;
   color: #130c49;
   font-family: Inter;
   font-size: 1rem;
@@ -119,7 +119,7 @@
 
 /* CTA */
 .ctaRow {
-  margin-top: auto;
+  margin-top: 10px;
 
   a {
     color: #130c49 !important;

@@ -3,12 +3,10 @@ import styles from './styles.module.scss';
 
 const COLS = ['Flex', 'Plus', 'Premium'];
 
-/** Renders the content inside a table cell */
 function Cell({ value }) {
   if (value === true) return <span className={styles.yes}>✓</span>;
   if (value === false) return <span className={styles.no}>✕</span>;
   if (value && typeof value === 'object' && value.badge) {
-    // { text, badge } (optionally can include mint; mint handled at <td>)
     return (
       <span className={styles.cellWithBadge}>
         {value.text} <span className={styles.badge}>{value.badge}</span>
@@ -18,30 +16,23 @@ function Cell({ value }) {
   return <>{value ?? '—'}</>;
 }
 
-/** Normalize a "raw" cell spec to {content, mint} */
 function normalizeCell(raw) {
-  // Per-cell form: { value: <any>, mint?: boolean }
   if (raw && typeof raw === 'object' && 'value' in raw && !('badge' in raw)) {
     return { content: raw.value, mint: !!raw.mint };
   }
-  // Badge form can also carry mint: { text, badge, mint? }
+
   if (raw && typeof raw === 'object' && 'badge' in raw) {
     return { content: raw, mint: !!raw.mint };
   }
-  // Primitive (boolean/string/number)
+
   return { content: raw, mint: false };
 }
 
-/** Section renderer
- * layout: 'rowspan' => first column is a single TH with rowSpan across all rows
- * layout: 'flat'    => rows where the first TH spans 2 columns
- */
 function RenderSection({ section }) {
   const { heading, rows, layout = 'rowspan' } = section;
 
   if (layout === 'flat') {
     return rows.map((row, i) => {
-      // Row-level mint targeting: true = all, array = specific columns
       const rowMint =
         row.mint === true
           ? new Set(COLS.map((c) => c.toLowerCase()))
@@ -71,7 +62,6 @@ function RenderSection({ section }) {
     });
   }
 
-  // rowspan layout
   return rows.map((row, i) => {
     const rowMint =
       row.mint === true
@@ -111,7 +101,7 @@ function RenderSection({ section }) {
 
 export default function CompareTable() {
   const SECTIONS = [
-    // 4-column: Contract (no mint)
+    // Contract
     {
       heading: 'Contract',
       layout: 'flat',
@@ -140,7 +130,7 @@ export default function CompareTable() {
             premium: 'Dedicated',
           },
         },
-        // Example of minting all plan cells for this row:
+
         {
           label: 'Hybrid search',
           mint: true,
@@ -150,7 +140,7 @@ export default function CompareTable() {
           label: 'Backup retention',
           values: { flex: '7 days', plus: '30 days', premium: '45 days' },
         },
-        // Example of minting specific columns only:
+
         {
           label: 'Flexible index types',
           mint: ['flex', 'plus', 'premium'],
@@ -319,7 +309,7 @@ export default function CompareTable() {
       ],
     },
 
-    // 4-column: Upgrades
+    //  Upgrades
     {
       heading: 'Upgrades',
       layout: 'flat',
@@ -327,15 +317,21 @@ export default function CompareTable() {
         {
           label: 'Upgrades',
           values: {
-            flex: 'Controlled',
-            plus: 'Controlled',
-            premium: 'Controlled',
+            flex: 'Weaviate-managed',
+            plus: (
+              <>
+                Weaviate-managed (shared)
+                <br />
+                Customer-directed (dedicated)
+              </>
+            ),
+            premium: 'Customer-directed',
           },
         },
       ],
     },
 
-    // 5-column: Cloud Availability
+    //  Cloud Availability
     {
       heading: 'Cloud Availability',
       layout: 'rowspan',
