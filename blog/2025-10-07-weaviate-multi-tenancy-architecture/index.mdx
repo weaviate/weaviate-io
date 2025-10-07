@@ -38,7 +38,7 @@ This design prevents unused tenants from consuming valuable system resources, wh
 
 - **Operational Efficiency:** The tenant controller's ability to deactivate and reactivate tenants on demand means organizations can scale to millions of tenants without over provisioning resources. This mechanism is particularly effective in scenarios where user activity is sporadic or follows predictable patterns, such as business hours or seasonal usage spikes.  
 
-![](./img/hero.png)
+![](./img/TC.png)
 
 Weaviate's multi-tenancy design delivers the core benefits customers need: strong isolation, efficient resource utilization, and the flexibility to manage tenants dynamically at scale. Unlike approaches that treat multi-tenancy as an add-on, Weaviate builds it in as a first-class design principle that is capable of supporting over a million tenants per cluster without noisy neighbor issues or prohibitive costs.
 
@@ -66,7 +66,7 @@ The structural complexity of this bucketed architecture is fully abstracted away
 
 By channeling each tenant's data through isolated pipelines, down to the level of individual properties and data types, Weaviate's architecture ensures that multi-tenancy is both secure and efficient. Each tenant's workload is handled independently, supporting millions of tenants with predictable performance and robust data isolation.
 
-![](./img/hero.png)
+![](./img/NoOverlap.png)
    
 This per-tenant bucketed approach is a cornerstone of Weaviate's ability to deliver scalable, high-performance, and secure multi-tenant vector search.
 
@@ -81,7 +81,7 @@ Weaviate's write pipeline is engineered for durability, high throughput, and str
 - **Flushing**:  
     When the memtable reaches a size or time threshold, its contents are flushed to immutable segment files on disk. These segment files are periodically compacted to optimize long-term storage and query efficiency. After a successful flush, the corresponding WAL can be safely deleted or recycled, and a new memtable is initialized to continue accepting writes.
 
-![](./img/hero.png)
+![](./img/writeworkflow.png)
 
 The pipeline executes independently for every bucket, encompassing inverted indexes, vector data, and metadata within each tenant's shard. The outcome is a write workflow that is durable, efficient, and inherently multi-tenant and scalable.
 
@@ -95,7 +95,7 @@ To address this, Weaviate employs a **delayed Write-Ahead Log (WAL) flush** stra
 
 By delaying WAL flushes, Weaviate can efficiently manage the I/O load during periods of frequent tenant state changes, ensuring that the system remains responsive and scalable even under heavy write workloads. This design is particularly beneficial in multi-tenant environments, where the number of active and inactive tenants can fluctuate rapidly, and efficient resource management is critical.
 
-![](./img/hero.png)
+![](./img/DelayedWAL.png)
 
 ### Smart Reads and Lazy Loading
 
@@ -103,7 +103,7 @@ The other challenge in multi-tenant systems is managing **read performance** wit
 
 **Lazy shard loading** operates at the tenant level. Since each tenant is represented by its own shard, a deployment with hundreds of thousands or even millions of tenants might have an equally large number of shards. Loading every shard into memory at startup would be wasteful, especially if only a fraction of tenants are active at any given time. With lazy shard loading, Weaviate only loads a shard into memory the first time it is accessed, for example when a query is run or new data is added. Until then, inactive tenants consume no memory resources. This dramatically improves efficiency and makes multi-tenancy at scale more practical. It also ensures that inactive tenants sitting on disk don't impose any burden on the "hot" tenants actively being queried.
 
-![](./img/hero.png)
+![](./img/lazyshardloading.png)
 
 **Lazy segment loading**, on the other hand, works inside an individual shard. Shards persist data on disk using immutable segments, which accumulate over time as new data is flushed. Without optimization, all of these segments would be mapped into memory as soon as a shard is loaded. For large datasets, this could create significant overhead, even if most of the segments aren't immediately needed. Lazy segment loading addresses this by only pulling necessary segments into memory.
 
@@ -111,7 +111,7 @@ When a read query arrives, say, a UUID lookup or a filtered search, Weaviate fir
 
 This fine-grained, on-demand design brings several advantages. It avoids the need to load hundreds of segment files for inactive tenants, especially those with long histories or large amounts of data, keeping RAM usage low. The result is faster startup times, lower memory consumption, and a system that scales gracefully even when workloads are unevenly distributed across tenants.
 
-![](./img/hero.png)
+![](./img/lazySegmentLoading.png)
 
 Together, these two mechanisms complement each other: lazy shard loading reduces the memory cost of managing many tenants, while lazy segment loading ensures that even large shards remain lightweight until their data is actually queried.
 
