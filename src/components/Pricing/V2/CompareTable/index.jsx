@@ -1,8 +1,15 @@
 import React from 'react';
 import styles from './styles.module.scss';
 
-const COLS = ['Flex', 'Plus', 'Premium'];
+// Columns: stable data key + label for the UI
+const COLS = [
+  { key: 'free', label: 'Free\u00A0Trial' }, // \u00A0 = non-breaking space
+  { key: 'flex', label: 'Flex' },
+  { key: 'plus', label: 'Plus' },
+  { key: 'premium', label: 'Premium' },
+];
 
+/** Renders the content inside a table cell */
 function Cell({ value }) {
   if (value === true) return <span className={styles.yes}>✓</span>;
   if (value === false) return <span className={styles.no}>✕</span>;
@@ -16,18 +23,18 @@ function Cell({ value }) {
   return <>{value ?? '—'}</>;
 }
 
+/** Normalize a "raw" cell spec to {content, mint} */
 function normalizeCell(raw) {
   if (raw && typeof raw === 'object' && 'value' in raw && !('badge' in raw)) {
     return { content: raw.value, mint: !!raw.mint };
   }
-
   if (raw && typeof raw === 'object' && 'badge' in raw) {
     return { content: raw, mint: !!raw.mint };
   }
-
   return { content: raw, mint: false };
 }
 
+/** Section renderer */
 function RenderSection({ section }) {
   const { heading, rows, layout = 'rowspan' } = section;
 
@@ -35,9 +42,9 @@ function RenderSection({ section }) {
     return rows.map((row, i) => {
       const rowMint =
         row.mint === true
-          ? new Set(COLS.map((c) => c.toLowerCase()))
+          ? new Set(COLS.map((c) => c.key)) // mint all
           : Array.isArray(row.mint)
-          ? new Set(row.mint.map((c) => c.toLowerCase()))
+          ? new Set(row.mint) // mint specific keys
           : new Set();
 
       return (
@@ -48,11 +55,10 @@ function RenderSection({ section }) {
             </th>
           )}
           {COLS.map((col) => {
-            const key = col.toLowerCase();
-            const { content, mint } = normalizeCell(row.values[key]);
-            const isMint = mint || rowMint.has(key);
+            const { content, mint } = normalizeCell(row.values[col.key]);
+            const isMint = mint || rowMint.has(col.key);
             return (
-              <td key={col} className={isMint ? styles.mint : undefined}>
+              <td key={col.key} className={isMint ? styles.mint : undefined}>
                 <Cell value={content} />
               </td>
             );
@@ -62,12 +68,13 @@ function RenderSection({ section }) {
     });
   }
 
+  // rowspan layout
   return rows.map((row, i) => {
     const rowMint =
       row.mint === true
-        ? new Set(COLS.map((c) => c.toLowerCase()))
+        ? new Set(COLS.map((c) => c.key))
         : Array.isArray(row.mint)
-        ? new Set(row.mint.map((c) => c.toLowerCase()))
+        ? new Set(row.mint)
         : new Set();
 
     return (
@@ -85,11 +92,10 @@ function RenderSection({ section }) {
           {row.label}
         </th>
         {COLS.map((col) => {
-          const key = col.toLowerCase();
-          const { content, mint } = normalizeCell(row.values[key]);
-          const isMint = mint || rowMint.has(key);
+          const { content, mint } = normalizeCell(row.values[col.key]);
+          const isMint = mint || rowMint.has(col.key);
           return (
-            <td key={col} className={isMint ? styles.mint : undefined}>
+            <td key={col.key} className={isMint ? styles.mint : undefined}>
               <Cell value={content} />
             </td>
           );
@@ -100,6 +106,8 @@ function RenderSection({ section }) {
 }
 
 export default function CompareTable() {
+  const PAID = ['flex', 'plus', 'premium'];
+
   const SECTIONS = [
     // Contract
     {
@@ -109,6 +117,7 @@ export default function CompareTable() {
         {
           label: 'Contract',
           values: {
+            free: '14-day free trial',
             flex: 'Monthly (Pay-as-you-go)',
             plus: 'Prepaid Commitment',
             premium: 'Prepaid Commitment',
@@ -117,7 +126,7 @@ export default function CompareTable() {
       ],
     },
 
-    // 5-column sections
+    // Core DB
     {
       heading: 'Core Database',
       layout: 'rowspan',
@@ -125,36 +134,40 @@ export default function CompareTable() {
         {
           label: 'Deployment type',
           values: {
+            free: 'Shared',
             flex: 'Shared',
             plus: 'Shared or dedicated',
             premium: 'Dedicated',
           },
         },
-
         {
           label: 'Hybrid search',
           mint: true,
-          values: { flex: true, plus: true, premium: true },
+          values: { free: true, flex: true, plus: true, premium: true },
         },
         {
           label: 'Backup retention',
-          values: { flex: '7 days', plus: '30 days', premium: '45 days' },
+          values: {
+            free: false,
+            flex: '7 days',
+            plus: '30 days',
+            premium: '45 days',
+          },
         },
-
         {
           label: 'Flexible index types',
-          mint: ['flex', 'plus', 'premium'],
-          values: { flex: true, plus: true, premium: true },
+          mint: true,
+          values: { free: true, flex: true, plus: true, premium: true },
         },
         {
           label: 'Vector compression',
           mint: true,
-          values: { flex: true, plus: true, premium: true },
+          values: { free: true, flex: true, plus: true, premium: true },
         },
-        // Example of per-cell mint:
         {
           label: 'HA / replication',
           values: {
+            free: { value: true, mint: true },
             flex: { value: true, mint: true },
             plus: { value: true, mint: true },
             premium: { value: true, mint: true },
@@ -163,10 +176,12 @@ export default function CompareTable() {
         {
           label: 'Multi-tenancy',
           mint: true,
-          values: { flex: true, plus: true, premium: true },
+          values: { free: true, flex: true, plus: true, premium: true },
         },
       ],
     },
+
+    // Security
     {
       heading: 'Security',
       layout: 'rowspan',
@@ -174,11 +189,12 @@ export default function CompareTable() {
         {
           label: 'RBAC',
           mint: true,
-          values: { flex: true, plus: true, premium: true },
+          values: { free: true, flex: true, plus: true, premium: true },
         },
         {
           label: 'SSO/SAML',
           values: {
+            free: false,
             flex: { value: false, mint: false },
             plus: { value: true, mint: true },
             premium: { value: true, mint: true },
@@ -187,6 +203,7 @@ export default function CompareTable() {
         {
           label: 'Bring your own IdP',
           values: {
+            free: false,
             flex: { value: false, mint: false },
             plus: { value: true, mint: true },
             premium: { value: true, mint: true },
@@ -194,8 +211,8 @@ export default function CompareTable() {
         },
         {
           label: 'HIPAA compliant',
-
           values: {
+            free: false,
             flex: { value: false, mint: false },
             plus: { value: '✓ (dedicated)', mint: true },
             premium: { value: true, mint: true },
@@ -204,14 +221,21 @@ export default function CompareTable() {
         {
           label: 'PrivateLink (AWS)',
           values: {
+            free: false,
             flex: false,
             plus: false,
             premium: { value: true, mint: true },
           },
         },
         {
-          label: 'Encrypted volumes with customer keys',
+          label: (
+            <>
+              Encrypted volumes<br></br>
+              <small>with customer keys</small>
+            </>
+          ),
           values: {
+            free: false,
             flex: false,
             plus: false,
             premium: { value: true, mint: true },
@@ -219,6 +243,8 @@ export default function CompareTable() {
         },
       ],
     },
+
+    // Observability
     {
       heading: 'Observability',
       layout: 'rowspan',
@@ -226,6 +252,7 @@ export default function CompareTable() {
         {
           label: 'Metrics endpoint',
           values: {
+            free: false,
             flex: false,
             plus: { value: true, mint: true },
             premium: { value: true, mint: true },
@@ -233,6 +260,8 @@ export default function CompareTable() {
         },
       ],
     },
+
+    // AI-Native Services
     {
       heading: 'AI-Native Services',
       layout: 'rowspan',
@@ -240,6 +269,7 @@ export default function CompareTable() {
         {
           label: 'Agents (shared service)',
           values: {
+            free: { value: true, mint: true },
             flex: { value: true, mint: true },
             plus: { value: true, mint: true },
             premium: { text: '', badge: 'Coming soon' },
@@ -248,6 +278,7 @@ export default function CompareTable() {
         {
           label: 'Embeddings (shared service)',
           values: {
+            free: { value: true, mint: true },
             flex: { value: true, mint: true },
             plus: { value: true, mint: true },
             premium: { text: '', badge: 'Coming soon' },
@@ -255,18 +286,21 @@ export default function CompareTable() {
         },
       ],
     },
+
+    // Support / Onboarding
     {
       heading: 'Support / Onboarding',
       layout: 'rowspan',
       rows: [
         {
           label: 'Email support',
-          mint: true,
-          values: { flex: true, plus: true, premium: true },
+          mint: PAID,
+          values: { free: false, flex: true, plus: true, premium: true },
         },
         {
           label: 'Phone support',
           values: {
+            free: false,
             flex: false,
             plus: { value: true, mint: true },
             premium: { value: true, mint: true },
@@ -275,6 +309,7 @@ export default function CompareTable() {
         {
           label: 'Slack support',
           values: {
+            free: false,
             flex: false,
             plus: 'Available*',
             premium: { value: true, mint: true },
@@ -283,6 +318,7 @@ export default function CompareTable() {
         {
           label: 'Technical Account Team',
           values: {
+            free: false,
             flex: false,
             plus: { value: true, mint: true },
             premium: { value: true, mint: true },
@@ -290,26 +326,43 @@ export default function CompareTable() {
         },
         {
           label: 'Instructor-led jumpstart training',
-          values: { flex: false, plus: 'Available**', premium: 'Available**' },
+          values: {
+            free: false,
+            flex: false,
+            plus: 'Available**',
+            premium: 'Available**',
+          },
         },
       ],
     },
+
+    // SLAs
     {
       heading: 'SLAs',
       layout: 'rowspan',
       rows: [
         {
           label: 'Availability',
-          values: { flex: '99.5%', plus: '99.9%', premium: '99.95%' },
+          values: {
+            free: '99.5%',
+            flex: '99.5%',
+            plus: '99.9%',
+            premium: '99.95%',
+          },
         },
         {
           label: 'Severity 1 response time',
-          values: { flex: '1 business day', plus: '4-hour', premium: '1-hour' },
+          values: {
+            free: false,
+            flex: '1 business day',
+            plus: '4-hour',
+            premium: '1-hour',
+          },
         },
       ],
     },
 
-    //  Upgrades
+    // Upgrades
     {
       heading: 'Upgrades',
       layout: 'flat',
@@ -317,12 +370,17 @@ export default function CompareTable() {
         {
           label: 'Upgrades',
           values: {
+            free: false,
             flex: 'Weaviate-managed',
             plus: (
               <>
-                Weaviate-managed (shared)
+                Weaviate-managed
                 <br />
-                Customer-directed (dedicated)
+                <small>(shared)</small>
+                <br />
+                Customer-directed
+                <br />
+                <small>(dedicated)</small>
               </>
             ),
             premium: 'Customer-directed',
@@ -331,7 +389,7 @@ export default function CompareTable() {
       ],
     },
 
-    //  Cloud Availability
+    // Cloud Availability
     {
       heading: 'Cloud Availability',
       layout: 'rowspan',
@@ -339,16 +397,27 @@ export default function CompareTable() {
         {
           label: 'Cloud Service Provider (CSP)',
           values: {
+            free: 'GCP',
             flex: 'GCP, AWS (coming soon)',
-            plus: 'GCP, AWS, Azure (dedicated)',
+            plus: (
+              <>
+                GCP, AWS, Azure<br></br>
+                <small>(dedicated)</small>
+              </>
+            ),
             premium: 'GCP, AWS, Azure',
           },
         },
         {
           label: 'Regions',
           values: {
+            free: 'Limited',
             flex: 'Limited',
-            plus: 'Limited (shared), All regions (dedicated)',
+            plus: (
+              <>
+                Limited (shared)<br></br> All regions (dedicated)
+              </>
+            ),
             premium: 'All regions',
           },
         },
@@ -370,18 +439,23 @@ export default function CompareTable() {
           >
             <table className={styles.table}>
               <caption className="sr-only">
-                Feature comparison across Flex, Plus, and Premium plans
+                Feature comparison across Free, Flex, Plus, and Premium plans
               </caption>
-
-              {/* Header: Plan spans the first TWO columns; then Flex / Plus / Premium */}
+              <colgroup>
+                <col className={styles.colSection} />
+                <col className={styles.colRow} />
+                {COLS.map((c) => (
+                  <col key={c.key} className={styles.colPlan} />
+                ))}
+              </colgroup>
               <thead>
                 <tr>
                   <th colSpan={2} scope="col" className={styles.planHead}>
                     Plan
                   </th>
                   {COLS.map((c) => (
-                    <th scope="col" key={c} className={styles.planCol}>
-                      {c}
+                    <th scope="col" key={c.key} className={styles.planCol}>
+                      {c.label}
                     </th>
                   ))}
                 </tr>

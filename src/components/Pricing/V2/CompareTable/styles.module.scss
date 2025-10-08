@@ -153,3 +153,23 @@ tbody tr th {
     min-width: 820px;
   }
 }
+
+.table {
+  table-layout: fixed;
+}
+
+.colSection {
+  width: 22%;
+}
+
+.colRow {
+  width: 23%;
+}
+
+.colPlan {
+  width: 15.5rem;
+}
+
+.colPlan:first-of-type {
+  width: 15.5rem;
+}
