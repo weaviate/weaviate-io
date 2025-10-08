@@ -11,6 +11,11 @@ description: "Learn how to import and query the Sphere dataset in Weaviate!"
 
 <!-- truncate -->
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/blog.sphere.endtoend.py';
+
 ## What is Sphere?
 [Sphere](https://github.com/facebookresearch/sphere) is an open-source dataset recently [released](https://ai.facebook.com/blog/introducing-sphere-meta-ais-web-scale-corpus-for-better-knowledge-intensive-nlp/) by Meta. It is a collection of 134 million documents (broken up into 906 million 100-word snippets). It is one of the largest knowledge bases that can help solve knowledge-intensive natural language tasks such as question-answering, fact-checking, and much more.
 
@@ -56,6 +61,17 @@ We have prepared files ranging from 100K data points all the way up to the entir
 
 Once you have the dataset file downloaded and unpacked, the next step is to import the dataset into Weaviate with Python:
 
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START SphereEndToEnd"
+      endMarker="# END SphereEndToEnd"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="pyv3" label="Python Client v3">
+
 ```python
 import sys
 import os
@@ -88,15 +104,15 @@ client.schema.create_class({
         "queryModel": "sentence-transformers/facebook-dpr-question_encoder-single-nq-base",
         "options": {
             "waitForModel": True,
-            "useGPU": True,
+            "useGPU": False,  # Set to True if your account allows GPU usage
             "useCache": True
         }
     },
-    "properties": []
+    "properties": []  # Rely on auto-schema - make sure it is enabled on your Weaviate instance
 })
 
-# Import the data, Weaviate will use the auto-schema function to
-# create the other properties and other default settings.
+# Import the data#
+# The data schema will be inferred by Weaviate and created automatically
 start = time.time()
 c = 0
 with open(SPHERE_DATASET) as jsonl_file:
@@ -120,6 +136,10 @@ with open(SPHERE_DATASET) as jsonl_file:
 end = time.time()
 print('Done in', end - start)
 ```
+
+  </TabItem>
+</Tabs>
+
 *Make sure to update the SPHERE_DATASET property to correctly match your `.jsonl` filename.*
 
 ### Importing Sphere with Spark
