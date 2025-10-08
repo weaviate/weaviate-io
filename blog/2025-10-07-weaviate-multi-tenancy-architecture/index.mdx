@@ -8,6 +8,8 @@ tags: ['engineering']
 description: "Learn how Weaviate's native multi-tenancy architecture delivers scalable vector search with one shard per tenant, dynamic resource management, and true data isolation."
 ---
 
+![](./img/rethinking.png)
+
 As more organizations build AI powered applications that rely on [vector search](/blog/vector-search-explained), the [multi-tenancy](/blog/multi-tenancy-vector-search) capability has become a must-have. This is especially true for SaaS platforms that need to serve many clients while keeping their data and workloads separate. The problem is that most [vector databases](/blog/what-is-a-vector-database) treat multi-tenancy as an afterthought. They use workarounds like namespace conventions or partitioning, which often lead to data leakage, performance bottlenecks, and messy maintenance. As the number of tenants grows, it becomes harder and harder to manage resource allocation and data privacy.
 
 Weaviate takes a fundamentally different approach. Multi-tenancy is built directly into its core architecture. That means you get a scalable, cost-efficient, and high-performance solution designed for your multi-tenant applications. Whether you are building internal tools or customer-facing products, Weaviate makes sure each tenant's data is isolated, performance is more predictable, and overhead stays low. Best of all, you can achieve this without spinning up separate infrastructure for every tenant.
