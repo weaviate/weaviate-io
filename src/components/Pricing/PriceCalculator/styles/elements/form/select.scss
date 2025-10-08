@@ -1,0 +1,80 @@
+.selectContentWrapper {
+  z-index: 1999;
+  width: 100%;
+  max-width: 260px;
+
+  ul, li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-size: inherit;
+    font-weight: inherit;
+  }
+
+  button, input, textarea {
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: none;
+  }
+
+  button { cursor: pointer; }
+}
+
+.selectContent {
+  background: $selectBg;
+  border: 1px solid $buttonBorder;
+  border-radius: 5px;
+  box-shadow: $boxShadow; 
+  overflow: hidden;
+}
+
+.selectTarget {
+  display: flex;
+  padding: 0 $space;
+  border: 1px solid $borderColor;
+  border-radius: 5px;
+  align-self: center;
+  min-width: 200px;
+  height: 30px;
+  align-items: center;
+  justify-content: flex-start;
+  text-transform: capitalize;
+  color: inherit;
+  transition: $transition;
+
+  &:focus, &:hover { 
+    background: $white; 
+  }
+}
+
+ul.selectList {
+  button { 
+    cursor: pointer;
+    min-height: 22px;
+    width: 100%;
+    text-align: left;
+    padding: 0 10px;
+    color: $textGrey;
+    font-size: 0.9em;
+    transition: $transition;
+    padding-left: 30px;
+    background-position: 10px center;
+    background-repeat: no-repeat;
+
+    &:hover, &:focus { background-color: lighten($selectItemHover, 5%);}
+
+    &.active { 
+      color: $mainColor; 
+      background-color: $selectItemHover;
+      background-image: url('/img/pricing/check.svg');
+      background-position: 10px center;
+      background-repeat: no-repeat;
+    }
+  }
+}
