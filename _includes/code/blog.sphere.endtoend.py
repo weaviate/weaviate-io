@@ -3,7 +3,6 @@ import time
 import json
 import weaviate
 from weaviate.classes.config import Configure, Property, DataType
-from tqdm import tqdm
 
 
 WEAVIATE_URL     = '<YOUR-WEAVIATE-URL>' # replace with actual url
@@ -18,6 +17,7 @@ import os
 
 WEAVIATE_URL     = os.getenv('WEAVIATE_URL')     # replace with actual url
 WEAVIATE_API_KEY = os.getenv('WEAVIATE_API_KEY') # replace with actual api key
+MAX_LINES        = 10000  # Actually only read this many lines before breaking
 
 # START SphereEndToEnd
 try:
@@ -26,6 +26,10 @@ try:
         WEAVIATE_API_KEY,
     )
 
+    # END SphereEndToEnd
+    client.collections.delete('Sphere')  # Clean up before running
+
+    # START SphereEndToEnd
     collection = client.collections.create(
         'Sphere',
         vector_config=Configure.Vectors.text2vec_huggingface(
@@ -49,9 +53,8 @@ try:
     start = time.time()
     with open(SPHERE_DATASET) as jsonl_file:
         with collection.batch.fixed_size(batch_size=BATCH_SIZE) as batch:
-            for jsonl in tqdm(jsonl_file):
-                json_parsed = json.loads(jsonl)
-                json_parsed = json.loads(jsonl)
+            for i, jsonl in enumerate(jsonl_file):
+                json_parsed = json.loads(jsonl)  # Note this is a JSONL file, so only one object is loaded into memory at a time
                 batch.add_object(
                     properties={
                         "url": json_parsed["url"],
@@ -62,10 +65,18 @@ try:
                     uuid=json_parsed["id"],
                     vector=json_parsed["vector"],
                 )
+                if i+1 % 1000 == 0:
+                    print(f"Processed {i+1} objects")
+                # END SphereEndToEnd
+
+                if MAX_LINES and i >= MAX_LINES - 1:
+                    print(f"Breaking after {MAX_LINES} lines")
+                    break
+                # START SphereEndToEnd
 
     assert len(collection.batch.failed_objects) == 0
-    assert len(collection) == len(jsonl_file)
-    print(f"Imported {len(jsonl_file)} objects in {time.time() - start}")
+    assert len(collection) == i + 1
+    print(f"Imported {i + 1} objects in {time.time() - start:.3f} seconds")
 finally:
     client.close()
 # END SphereEndToEnd
