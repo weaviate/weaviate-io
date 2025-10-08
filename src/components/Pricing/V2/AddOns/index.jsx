@@ -58,7 +58,7 @@ export default function AddOnsSection() {
       <div className="container">
         <div className={styles.sectionHeader}>
           <h2 id="addons-heading" className={styles.title}>
-            Explore Add-ons
+            Explore Add{'\u2011'}ons
           </h2>
         </div>
 

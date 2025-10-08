@@ -68,8 +68,9 @@ export default function PricingTiers() {
             ctaHref="https://console.weaviate.cloud/"
             features={[
               <>
-                <strong>Free 14-day trial</strong>, then pay-as-you-go, monthly
-                instant, no-commit entry point.
+                <strong>Free 14-day trial</strong>, then{' '}
+                {'pay\u2011as\u2011you\u2011go'}, monthly instant,{' '}
+                {'no\u2011commit'} entry point.
               </>,
               <>
                 <strong>Sandbox cluster</strong> that delivers Weaviate’s full
@@ -107,8 +108,8 @@ export default function PricingTiers() {
             ctaVariant="flex"
             features={[
               <>
-                <strong>Pay-as-you-go</strong>, monthly instant, no-commit entry
-                point.
+                <strong>{'Pay\u2011as\u2011you\u2011go'}</strong>, monthly
+                instant, {'no\u2011commit'} entry point.
               </>,
               <>
                 <strong>Shared cloud cluster</strong> that delivers Weaviate’s
@@ -126,7 +127,7 @@ export default function PricingTiers() {
                 <strong>Compression by default.</strong>
               </>,
               <>
-                <strong>Email support</strong>, next-business-day Severity 1 
+                <strong>Email support</strong>, next-business-day Severity 1
                 response.
               </>,
             ]}
@@ -172,7 +173,7 @@ export default function PricingTiers() {
                 for dedicated deployments).
               </>,
               <>
-                <strong>Enterprise support:</strong> 4-hour Sev-1 response.
+                <strong>Enterprise support:</strong> 4-hour Severity 1 response.
               </>,
             ]}
           />
@@ -212,8 +213,9 @@ export default function PricingTiers() {
                 <strong>Any region</strong> on AWS, GCP or Azure.
               </>,
               <>
-                <strong>White-glove support:</strong> 1-hour Sev-1 response,
-                Technical Account Team, and access to training and experts.
+                <strong>White-glove support:</strong> 1-hour Severity 1
+                response, Technical Account Team, and access to training and
+                experts.
               </>,
             ]}
           />

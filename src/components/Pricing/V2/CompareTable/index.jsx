@@ -110,8 +110,8 @@ export default function CompareTable() {
           label: 'Contract',
           values: {
             flex: 'Monthly (Pay-as-you-go)',
-            plus: 'Pre-Paid Commitment',
-            premium: 'Pre-Paid Commitment',
+            plus: 'Prepaid Commitment',
+            premium: 'Prepaid Commitment',
           },
         },
       ],
