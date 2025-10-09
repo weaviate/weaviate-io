@@ -45,8 +45,6 @@ try:
             Property(name="raw", data_type=DataType.TEXT),
             Property(name="sha", data_type=DataType.TEXT),
         ]
-        # Note we don't define properties here and rely on auto-schema
-        # For this to work, your instance must have auto-schema enabled
     )
 
     # Import the data
@@ -54,7 +52,8 @@ try:
     with open(SPHERE_DATASET) as jsonl_file:
         with collection.batch.fixed_size(batch_size=BATCH_SIZE) as batch:
             for i, jsonl in enumerate(jsonl_file):
-                json_parsed = json.loads(jsonl)  # Note this is a JSONL file, so only one object is loaded into memory at a time
+                # Note this is a JSONL file, so only one object is loaded into memory at a time
+                json_parsed = json.loads(jsonl)
                 batch.add_object(
                     properties={
                         "url": json_parsed["url"],
