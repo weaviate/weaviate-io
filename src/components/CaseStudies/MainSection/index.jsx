@@ -270,7 +270,7 @@ export default function MainSection() {
             </Link>
           </div>
 
-          {/* Row 4 – Four quote tiles (image only) */}
+          {/* Row 4 – Four quote tiles */}
           <div className={styles.row}>
             <div
               className={`${styles.imageTile} ${styles.qLoti}`}
@@ -294,7 +294,7 @@ export default function MainSection() {
             />
           </div>
 
-          {/* Row 2 - Three medium bento with images */}
+          {/* Row 5 - One large CTA*/}
           <div className={styles.rowWide}>
             <div className={styles.bento06}>
               <div className={styles.bentoText}>
