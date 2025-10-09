@@ -198,7 +198,7 @@ export default function Highlights() {
                   />
                 </svg>
               </span>
-              <h3>Heathsearch</h3>
+              <h3>Healthsearch</h3>
               <span>Generative AI in Healthcare</span>
               <Link
                 to="https://healthsearch.weaviate.io/"
