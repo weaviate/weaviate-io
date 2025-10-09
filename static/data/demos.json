@@ -38,7 +38,7 @@
   },
   {
     "stars": 175,
-    "title": "Heathsearch",
+    "title": "Healthsearch",
     "description": "Generative AI in Healthcare",
     "demoLink": "https://healthsearch.weaviate.io/",
     "details": "HealthSearch is an open source demo that decodes user-written reviews of supplements, performing semantic and generative searches to retrieve related products for specific health effects. It leverages Large Language Models to understand natural language queries and generate product and review summaries.",
