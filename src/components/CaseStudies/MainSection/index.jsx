@@ -24,7 +24,7 @@ export default function MainSection() {
           {/* Row 1 - Four small */}
           <div className={styles.row}>
             <Link
-              to="/case-studies/morningstar"
+              to="/case-studies/instabase"
               className={`${styles.bentoSmall} ${styles.BS01}`}
             >
               <div className={styles.bentoText}>
@@ -33,10 +33,9 @@ export default function MainSection() {
                   <h3>Turning over 450 data types into customer insights </h3>
                 </div>
                 <div className={styles.buttons}>
-                  <Link
-                    to="case-studies/instabase"
-                    className={`${styles.arrowButton} ${styles.arrowButtonLight}`}
-                  ></Link>
+                  <Link className={styles.csLink} to="case-studies/instabase">
+                    Read Case Study {'->'}
+                  </Link>
                 </div>
               </div>
             </Link>
@@ -50,10 +49,9 @@ export default function MainSection() {
                   <h3>Production-ready AI assistant built in 7 days</h3>
                 </div>
                 <div className={styles.buttons}>
-                  <Link
-                    to="case-studies/kapa"
-                    className={`${styles.arrowButton} ${styles.arrowButtonLight}`}
-                  ></Link>
+                  <Link className={styles.csLink} to="case-studies/kapa">
+                    Read Case Study {'->'}
+                  </Link>
                 </div>
               </div>
             </Link>
@@ -67,10 +65,9 @@ export default function MainSection() {
                   <h3>Customer service agents with 90% faster search</h3>
                 </div>
                 <div className={styles.buttons}>
-                  <Link
-                    to="case-studies/neople"
-                    className={`${styles.arrowButton} ${styles.arrowButtonLight}`}
-                  ></Link>
+                  <Link className={styles.csLink} to="case-studies/neople">
+                    Read Case Study {'->'}
+                  </Link>
                 </div>
               </div>
             </Link>
@@ -84,10 +81,9 @@ export default function MainSection() {
                   <h3>Successful management of 42M vectors in production</h3>
                 </div>
                 <div className={styles.buttons}>
-                  <Link
-                    to="/case-studies/finster"
-                    className={`${styles.arrowButton} ${styles.arrowButtonLight}`}
-                  ></Link>
+                  <Link className={styles.csLink} to="case-studies/finster">
+                    Read Case Study {'->'}
+                  </Link>
                 </div>
               </div>
             </Link>
@@ -108,9 +104,11 @@ export default function MainSection() {
                 </div>
                 <div className={styles.buttons}>
                   <Link
+                    className={`${styles.csLink} ${styles.csLight}`}
                     to="case-studies/marvelx"
-                    className={`${styles.arrowButton} ${styles.arrowButtonLight}`}
-                  ></Link>
+                  >
+                    Read Case Study {'->'}
+                  </Link>
                 </div>
               </div>
             </Link>
@@ -127,10 +125,9 @@ export default function MainSection() {
                   </h3>
                 </div>
                 <div className={styles.buttons}>
-                  <Link
-                    to="case-studies/loti"
-                    className={`${styles.arrowButton} ${styles.arrowButtonLight}`}
-                  ></Link>
+                  <Link className={styles.csLink} to="case-studies/loti">
+                    Read Case Study {'->'}
+                  </Link>
                 </div>
               </div>
             </Link>
@@ -147,10 +144,9 @@ export default function MainSection() {
                   </h3>
                 </div>
                 <div className={styles.buttons}>
-                  <Link
-                    to="case-studies/morningstar"
-                    className={styles.arrowButton}
-                  ></Link>
+                  <Link className={styles.csLink} to="case-studies/morningstar">
+                    Read Case Study {'->'}
+                  </Link>
                 </div>
               </div>
             </Link>
@@ -171,10 +167,9 @@ export default function MainSection() {
                   </h3>
                 </div>
                 <div className={styles.buttons}>
-                  <Link
-                    to="case-studies/stack-ai"
-                    className={`${styles.arrowButton} ${styles.arrowButtonLight}`}
-                  ></Link>
+                  <Link className={styles.csLink} to="case-studies/stack-ai">
+                    Read Case Study {'->'}
+                  </Link>
                 </div>
               </div>
             </Link>
@@ -188,10 +183,9 @@ export default function MainSection() {
                   <h3>Building an AI-Powered Shopping Copilot</h3>
                 </div>
                 <div className={styles.buttons}>
-                  <Link
-                    to="/blog/moonsift-story"
-                    className={`${styles.arrowButton} ${styles.arrowButtonLight}`}
-                  ></Link>
+                  <Link className={styles.csLink} to="/blog/moonsift-story">
+                    Read Case Study {'->'}
+                  </Link>
                 </div>
               </div>
             </Link>
@@ -207,10 +201,9 @@ export default function MainSection() {
                   </h3>
                 </div>
                 <div className={styles.buttons}>
-                  <Link
-                    to="case-studies/finance"
-                    className={`${styles.arrowButton} ${styles.arrowButtonLight}`}
-                  ></Link>
+                  <Link className={styles.csLink} to="/case-studies/finance">
+                    Read Case Study {'->'}
+                  </Link>
                 </div>
               </div>
             </Link>
@@ -229,9 +222,11 @@ export default function MainSection() {
                 </div>
                 <div className={styles.buttons}>
                   <Link
+                    className={styles.csLink}
                     to="https://www.astronomer.io/blog/ask-astro-open-source-llm-application-apache-airflow/"
-                    className={styles.arrowButton}
-                  ></Link>
+                  >
+                    Read Case Study {'->'}
+                  </Link>
                 </div>
               </div>
             </Link>
@@ -246,9 +241,11 @@ export default function MainSection() {
                 </div>
                 <div className={styles.buttons}>
                   <Link
+                    className={styles.csLink}
                     to="https://innovativesol.com/success-stories/preverity/"
-                    className={styles.arrowButton}
-                  ></Link>
+                  >
+                    Read Case Study {'->'}
+                  </Link>
                 </div>
               </div>
             </Link>
@@ -263,30 +260,42 @@ export default function MainSection() {
                 </div>
                 <div className={styles.buttons}>
                   <Link
+                    className={`${styles.csLink} ${styles.csLight}`}
                     to="/blog/unbody-weaviate"
-                    className={`${styles.arrowButton} ${styles.arrowButtonLight}`}
-                  ></Link>
+                  >
+                    Read Case Study {'->'}
+                  </Link>
                 </div>
               </div>
             </Link>
           </div>
 
+          {/* Row 4 – Four quote tiles (image only) */}
+          <div className={styles.row}>
+            <div
+              className={`${styles.imageTile} ${styles.qLoti}`}
+              role="img"
+              aria-label="Loti testimonial"
+            />
+            <div
+              className={`${styles.imageTile} ${styles.qInstabase}`}
+              role="img"
+              aria-label="Instabase testimonial"
+            />
+            <div
+              className={`${styles.imageTile} ${styles.qStackAI}`}
+              role="img"
+              aria-label="Stack AI testimonial"
+            />
+            <div
+              className={`${styles.imageTile} ${styles.qMorningstar}`}
+              role="img"
+              aria-label="Morningstar testimonial"
+            />
+          </div>
+
           {/* Row 2 - Three medium bento with images */}
           <div className={styles.rowWide}>
-            <div className={styles.bento05}>
-              <div className={styles.bentoText}>
-                <div className={styles.bentoImage}></div>
-                <div className={styles.innerText}>
-                  <h3>
-                    “Through our Corpus API connected to Weaviate, users can
-                    build very powerful, low latency search engines in minutes
-                    with little to no code.”
-                  </h3>
-                  <p>Aisis Julian</p>
-                  <span>Senior Software Engineer, Morningstar</span>
-                </div>
-              </div>
-            </div>
             <div className={styles.bento06}>
               <div className={styles.bentoText}>
                 <div className={styles.innerText}>

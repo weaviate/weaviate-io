@@ -11,8 +11,8 @@ export default function StudyHeader() {
           <div className={styles.left}>
             <span>Case Study</span>
             <h1>
-              How MetaBuddy Unifies Wellness Data and Powers Personalized AI
-              Coaching With Query Agent
+              How MetaBuddy Boosted User Engagement by 3x and Cut Trainer
+              Analysis Time by 60% with AI Coaching
             </h1>
             <div className={styles.headerBox}>
               <div className={styles.buttons}>
@@ -20,7 +20,7 @@ export default function StudyHeader() {
                   to="/case-studies/metabuddy"
                   className={styles.buttonDark}
                 >
-                  Read the story
+                  Read the case study
                 </Link>
                 <Link to="/contact" className={styles.buttonLight}>
                   Contact sales

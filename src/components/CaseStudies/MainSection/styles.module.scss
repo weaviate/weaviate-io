@@ -125,7 +125,7 @@
       h3 {
         color: #130c49;
         font-family: 'Plus Jakarta Sans';
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         font-style: normal;
         font-weight: 600;
         line-height: 130%; /* 1.95rem */
@@ -133,8 +133,8 @@
         height: 9rem;
 
         @media screen and (max-width: 1440px) and (min-width: 900px) {
-          width: 96%;
-          font-size: 1.4rem;
+          width: 175px;
+          font-size: 1.2rem;
           height: 8rem;
         }
 
@@ -235,6 +235,12 @@
 
     .bentoText h3 {
       color: #ecf4f8;
+
+      @media screen and (max-width: 1440px) and (min-width: 900px) {
+        width: 80%;
+        font-size: 1.2rem;
+        height: 8rem;
+      }
     }
 
     .bentoLogo {
@@ -246,16 +252,18 @@
       flex-shrink: 0;
     }
 
-    @media screen and (max-width: 1140px) {
+    @media screen and (max-width: 1440px) {
       width: 48%;
     }
 
     @media screen and (max-width: 900px) {
       width: 48%;
+      height: 22rem;
     }
 
     @media screen and (max-width: 600px) {
       width: 100%;
+      height: 17.5rem;
     }
   }
 
@@ -270,6 +278,12 @@
 
     .bentoText h3 {
       color: #130c49;
+
+      @media screen and (max-width: 1440px) and (min-width: 900px) {
+        width: 80%;
+        font-size: 1.2rem;
+        height: 8rem;
+      }
     }
 
     .bentoLogo {
@@ -281,16 +295,18 @@
       flex-shrink: 0;
     }
 
-    @media screen and (max-width: 1140px) {
+    @media screen and (max-width: 1440px) {
       width: 48%;
     }
 
     @media screen and (max-width: 900px) {
       width: 48%;
+      height: 22rem;
     }
 
     @media screen and (max-width: 600px) {
       width: 100%;
+      height: 17.5rem;
     }
   }
 
@@ -305,6 +321,12 @@
 
     .bentoText h3 {
       color: #130c49;
+
+      @media screen and (max-width: 1440px) and (min-width: 900px) {
+        width: 80%;
+        font-size: 1.2rem;
+        height: 8rem;
+      }
     }
 
     .bentoLogo {
@@ -318,15 +340,16 @@
 
     @media screen and (max-width: 1440px) {
       width: 100%;
-      max-width: 54rem;
     }
 
     @media screen and (max-width: 900px) {
       width: 48%;
+      height: 20rem;
     }
 
     @media screen and (max-width: 600px) {
       width: 100%;
+      height: 17.5rem;
     }
   }
 
@@ -340,6 +363,12 @@
 
     .bentoText h3 {
       color: #130c49;
+
+      @media screen and (max-width: 1440px) and (min-width: 900px) {
+        width: 80%;
+        font-size: 1.2rem;
+        height: 8rem;
+      }
     }
 
     .bentoLogo {
@@ -351,6 +380,10 @@
       flex-shrink: 0;
     }
 
+    @media screen and (max-width: 1440px) {
+      width: 65%;
+    }
+
     @media screen and (max-width: 1140px) {
       width: 100%;
       max-width: 54rem;
@@ -358,10 +391,12 @@
 
     @media screen and (max-width: 900px) {
       width: 48%;
+      height: 22rem;
     }
 
     @media screen and (max-width: 600px) {
       width: 100%;
+      height: 17.5rem;
     }
   }
 
@@ -387,16 +422,22 @@
       flex-shrink: 0;
     }
 
+    @media screen and (max-width: 1440px) {
+      width: 33%;
+    }
+
     @media screen and (max-width: 1140px) {
       width: 43%;
     }
 
     @media screen and (max-width: 900px) {
       width: 48%;
+      height: 22rem;
     }
 
     @media screen and (max-width: 600px) {
       width: 100%;
+      height: 17.5rem;
     }
   }
 
@@ -412,6 +453,12 @@
 
     .bentoText h3 {
       color: #130c49;
+
+      @media screen and (max-width: 1440px) and (min-width: 900px) {
+        width: 80%;
+        font-size: 1.2rem;
+        height: 8rem;
+      }
     }
 
     @media screen and (max-width: 1440px) {
@@ -525,6 +572,12 @@
 
     .bentoText h3 {
       color: #ecf4f8;
+
+      @media screen and (max-width: 1440px) and (min-width: 900px) {
+        width: 80%;
+        font-size: 1.2rem;
+        height: 8rem;
+      }
     }
 
     .bentoLogo {
@@ -560,6 +613,51 @@
 
     @media (max-width: 900px) {
       width: 100%;
+    }
+  }
+
+  .imageTile {
+    width: 17.5rem;
+    height: 17.5rem;
+    border-radius: 0.625rem;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .qLoti {
+    background-image: url('/img/site/loti-quotebox.png');
+  }
+  .qInstabase {
+    background-image: url('/img/site/instabase-quotebox.png');
+  }
+  .qStackAI {
+    background-image: url('/img/site/stackai-quotebox.png');
+  }
+  .qMorningstar {
+    background-image: url('/img/site/morningstar-quotebox.png');
+  }
+
+  @media (max-width: 1440px) {
+    .imageTile {
+      width: 15rem;
+      height: 15rem;
+    }
+  }
+
+  @media (max-width: 1140px) {
+    .imageTile {
+      width: 48%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .imageTile {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
     }
   }
 }
@@ -1622,5 +1720,27 @@
     border-radius: 0.3125rem;
     border: 1px solid #130c49;
     background: #f7f9fd;
+  }
+}
+
+.csLink {
+  color: #130c49;
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 160%;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    color: #130c49;
+  }
+}
+
+.csLight {
+  color: #b9c8de;
+
+  &:hover {
+    color: #b9c8de;
   }
 }
