@@ -1,7 +1,7 @@
 :root {
   --darkColor: #130c49;
   --subColor: #8396b1;
-  --lightColor: ##f7f9fd;
+  --lightColor: #f7f9fd;
   --headerFont: 'Plus Jakarta Sans';
   --paraFont: 'Inter';
 }
@@ -70,7 +70,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  transition: all 0.3s ease-in-out;
 
   .bentoText {
     margin: 0;
@@ -112,6 +111,28 @@
       @media screen and (max-width: 1200px) {
         width: 80%;
       }
+    }
+  }
+}
+
+.loti {
+  background: url('/img/site/loti-banner.png');
+  background-size: cover;
+  background-position: center;
+
+  .bentoText {
+    h3,
+    p {
+      color: #130c49;
+    }
+
+    .bentoLogo {
+      background: url('/img/site/loti-dark.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 12.3125rem;
+      height: 1.3125rem;
+      margin: 30px 0;
     }
   }
 }
@@ -468,6 +489,35 @@
 
   .bentoLogo {
     background: url('/img/site/kapa-logo-dark.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 7.3125rem;
+    height: 2.3125rem;
+    flex-shrink: 0;
+    margin: 20px 0px;
+  }
+
+  h3 {
+    width: 85%;
+
+    @media screen and (max-width: 1320px) {
+      font-size: 1.6rem !important;
+      width: 100%;
+    }
+  }
+}
+
+.finster {
+  width: 26.5625rem;
+  height: 24.875rem;
+  background: url('/img/site/header-bg.svg') #130c49;
+  background-size: cover;
+  background-position-x: 70%;
+  background-position-y: center;
+  background-repeat: no-repeat;
+
+  .bentoLogo {
+    background: url('/img/site/finster-logo-white.svg');
     background-size: contain;
     background-repeat: no-repeat;
     width: 7.3125rem;
