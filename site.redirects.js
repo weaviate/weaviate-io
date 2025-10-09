@@ -222,6 +222,11 @@ const siteRedirects = {
             to: '/',
             from: '/community/build-with-weaviate',
         },
+        // Blog Update
+        {
+            to: '/blog/when-good-models-go-bad',
+            from: '/blog/when%20good%20models%20go%20bad',
+        },
     ],
 };
 
