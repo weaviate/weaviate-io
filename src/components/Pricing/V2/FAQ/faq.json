@@ -4,15 +4,15 @@
     "answer": "Currently, the ability to move tenants between hot, warm, and cold storage is only available if you are using Weaviate Dedicated Cloud or self-hosting Weaviate."
   },
   {
-    "question": "What is a 'dimension' in this context?",
+    "question": "What is a 'vector dimension' in this context?",
     "answer": "A vector dimension refers to one element in a vector representing an embedding for an object. The total number of these elements is the vector's dimensionality. A vector index holds all the vector dimensions for every object in a collection. Multiple vector indexes can be created in a collection, for example to utilize different models for refine specific types of searches."
   },
   {
-    "question": "Why is the pricing based on the total number of dimensions?",
+    "question": "Why is the pricing based on the total number of vector dimensions?",
     "answer": "The total count of vector dimensions is a good indicator of the resources required. This is a simple number that a user can calculate rather than trying to understand abstract concepts like Read/Write units, CPU cycles or other measurements of infrastructure usage.\n\nIn addition to vector dimensions, you will be billed for the persistent and backup storage of objects and their vector embeddings."
   },
   {
-    "question": "How can I determine the total number of dimensions?",
+    "question": "How can I determine the total number of vector dimensions?",
     "answer": "The number of vector dimensions is calculated by multiplying the number of objects by the vector dimensionality of each index. This value is further multiplied by the replication factor to account for data replicas, as all clusters are highly available with replicas."
   },
   {
@@ -25,7 +25,7 @@
   },
   {
     "question": "Does the Cloud provider and region I choose affect how much I will pay?",
-    "answer": "List prices for all pricing dimensions vary by Cloud provider and region to reflect regional variations."
+    "answer": "List prices for all pricing vector dimensions vary by Cloud provider and region to reflect regional variations."
   },
   {
     "question": "Is the open source Weaviate the same as that used on Weaviate Cloud?",
