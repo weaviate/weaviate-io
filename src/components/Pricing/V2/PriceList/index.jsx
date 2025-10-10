@@ -9,7 +9,7 @@ export default function PriceList() {
         <div className={styles.priceBox}>
           <div className={`${styles.title} ${styles.supportTitle}`}>
             <div className={styles.titleBox}>
-              <h3>Get the full pricing list for Enterprise Cloud</h3>
+              <h3>Get the full pricing list</h3>
             </div>
             <p>
               Questions about pricing? Download the full Pricing list or{' '}

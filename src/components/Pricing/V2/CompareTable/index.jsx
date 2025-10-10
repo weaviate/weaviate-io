@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './styles.module.scss';
 
-// Columns: stable data key + label for the UI
 const COLS = [
   { key: 'free', label: 'Free\u00A0Trial' }, // \u00A0 = non-breaking space
   { key: 'flex', label: 'Flex' },
@@ -9,7 +8,6 @@ const COLS = [
   { key: 'premium', label: 'Premium' },
 ];
 
-/** Renders the content inside a table cell */
 function Cell({ value }) {
   if (value === true) return <span className={styles.yes}>✓</span>;
   if (value === false) return <span className={styles.no}>✕</span>;
@@ -23,7 +21,6 @@ function Cell({ value }) {
   return <>{value ?? '—'}</>;
 }
 
-/** Normalize a "raw" cell spec to {content, mint} */
 function normalizeCell(raw) {
   if (raw && typeof raw === 'object' && 'value' in raw && !('badge' in raw)) {
     return { content: raw.value, mint: !!raw.mint };
@@ -42,9 +39,9 @@ function RenderSection({ section }) {
     return rows.map((row, i) => {
       const rowMint =
         row.mint === true
-          ? new Set(COLS.map((c) => c.key)) // mint all
+          ? new Set(COLS.map((c) => c.key))
           : Array.isArray(row.mint)
-          ? new Set(row.mint) // mint specific keys
+          ? new Set(row.mint)
           : new Set();
 
       return (
@@ -68,7 +65,6 @@ function RenderSection({ section }) {
     });
   }
 
-  // rowspan layout
   return rows.map((row, i) => {
     const rowMint =
       row.mint === true
@@ -76,6 +72,28 @@ function RenderSection({ section }) {
         : Array.isArray(row.mint)
         ? new Set(row.mint)
         : new Set();
+
+    if (row.wide) {
+      return (
+        <tr key={`${heading}-${row.label}-${i}`}>
+          {i === 0 && (
+            <th
+              scope="rowgroup"
+              rowSpan={rows.length}
+              className={styles.sectionCol}
+            >
+              {heading}
+            </th>
+          )}
+          <th scope="row" className={styles.rowHeader}>
+            {row.label}
+          </th>
+          <td colSpan={COLS.length} className={styles.pricingCell}>
+            <Cell value={row.all} />
+          </td>
+        </tr>
+      );
+    }
 
     return (
       <tr key={`${heading}-${row.label}-${i}`}>
@@ -103,6 +121,16 @@ function RenderSection({ section }) {
       </tr>
     );
   });
+}
+
+function BannerRow({ children }) {
+  return (
+    <tr className={styles.bannerRow}>
+      <td colSpan={2 + COLS.length}>
+        <div className={styles.bannerInner}>{children}</div>
+      </td>
+    </tr>
+  );
 }
 
 export default function CompareTable() {
@@ -425,6 +453,104 @@ export default function CompareTable() {
     },
   ];
 
+  const PRICING_DIMENSIONS = {
+    heading: 'Pricing Dimensions',
+    layout: 'rowspan',
+    rows: [
+      {
+        label: 'Vector Dimensions',
+        values: {
+          free: 'Free',
+          flex: (
+            <>
+              <small>from</small>
+              <br />
+              $0.000745 / 1M
+            </>
+          ),
+          plus: (
+            <>
+              <small>from</small>
+              <br />
+              $0.000327 / 1M
+            </>
+          ),
+          premium: (
+            <>
+              <small>from</small>
+              <br />
+              $0.000327 / 1M
+            </>
+          ),
+        },
+      },
+      {
+        label: 'Persistent Storage',
+        values: {
+          free: 'Free',
+          flex: (
+            <>
+              <small>from</small>
+              <br />
+              $0.255 / GiB
+            </>
+          ),
+          plus: (
+            <>
+              <small>from</small>
+              <br />
+              $0.2125 / GiB
+            </>
+          ),
+          premium: (
+            <>
+              <small>from</small>
+              <br />
+              $0.2125 / GiB
+            </>
+          ),
+        },
+      },
+      {
+        label: 'Backup Storage',
+        values: {
+          free: 'Free',
+          flex: (
+            <>
+              <small>from</small>
+              <br />
+              $0.0264 / GiB
+            </>
+          ),
+          plus: (
+            <>
+              <small>from</small>
+              <br />
+              $0.022 / GiB
+            </>
+          ),
+          premium: (
+            <>
+              <small>from</small>
+              <br />
+              $0.022 / GiB
+            </>
+          ),
+        },
+      },
+
+      {
+        label: 'Data Transfer',
+        wide: true,
+        all: (
+          <>
+            Free for promotional period<sup>1</sup>
+          </>
+        ),
+      },
+    ],
+  };
+
   return (
     <section className={styles.wrap}>
       <div className="container">
@@ -460,13 +586,24 @@ export default function CompareTable() {
                   ))}
                 </tr>
               </thead>
-
               <tbody>
+                <BannerRow>FEATURES</BannerRow>
                 {SECTIONS.map((sec) => (
                   <RenderSection key={sec.heading} section={sec} />
                 ))}
+                <BannerRow>PRICING DIMENSIONS</BannerRow>
+                <RenderSection section={PRICING_DIMENSIONS} />
               </tbody>
             </table>
+
+            <div className={styles.footnote}>
+              <sup>1</sup> Data transfers, including public internet egress,
+              cross-region transfers, and VPC-related network traffic, currently
+              incur no additional costs to customers for a limited promotional
+              period. Weaviate reserves the right to introduce data transfer
+              charges in the future, with any changes communicated in advance
+              and applied only after notice to customers.
+            </div>
           </div>
         </div>
       </div>

@@ -99,7 +99,7 @@ export default function PricingTiers() {
             title="Flex"
             priceLine={
               <>
-                <span>Starts at</span> <strong>$75</strong> <span>/mo</span>
+                <span>Starts at</span> <strong>$45</strong> <span>/mo</span>
               </>
             }
             blurb="Zero-commitment entry point to experiment and ship quickly. Ideal for prototypes, pilots, and small use cases."
@@ -140,7 +140,7 @@ export default function PricingTiers() {
             title="Plus"
             priceLine={
               <>
-                <span>Starts at</span> <strong>$XX</strong> <span>/mo</span>
+                <span>Starts at</span> <strong>$280</strong> <span>/mo</span>
               </>
             }
             blurb="For teams scaling AI in production who need predictable pricing, enterprise security, and enhanced reliability."

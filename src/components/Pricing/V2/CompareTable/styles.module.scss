@@ -90,7 +90,7 @@ thead th {
   color: #130c49;
   font-family: Inter;
   font-size: 0.875rem;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 tbody td {
@@ -172,4 +172,35 @@ tbody tr th {
 
 .colPlan:first-of-type {
   width: 15.5rem;
+}
+
+.bannerRow td {
+  padding: 18px 0;
+  background: #ffffff;
+  border-left: 1px solid #e6e8f0;
+  border-bottom: 1px solid #e6e8f0;
+  border-right: 1px solid #e6e8f0;
+}
+
+.bannerInner {
+  text-align: center;
+  color: #130c49;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.pricingCell {
+  text-align: center;
+  font-weight: 600;
+}
+
+.footnote {
+  margin-top: 12px;
+
+  font-size: 0.75rem;
+  color: #555770;
+  max-width: 900px;
 }

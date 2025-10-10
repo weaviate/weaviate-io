@@ -108,3 +108,35 @@
 .expanded {
   transform: rotate(180deg);
 }
+
+.box {
+  &[data-open='true'] .answerOuter {
+    grid-template-rows: 1fr;
+  }
+  &[data-open='true'] .answerInner {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.answerOuter {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 340ms ease;
+}
+
+.answerInner {
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 300ms ease, transform 300ms ease;
+  will-change: opacity, transform;
+}
+
+.priceHr {
+  height: 1px;
+  transition: height 180ms ease, opacity 180ms ease;
+}
+.box[data-open='true'] .priceHr {
+  height: 2px;
+}

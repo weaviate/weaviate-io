@@ -29,37 +29,47 @@ export default function PricingFAQ(props) {
 
         <div className={styles.boxGrid}>
           {faqData.map((item, index) => (
-            <div key={index} className={styles.box}>
-              <div className={styles.question} onClick={() => toggleFAQ(index)}>
-                <span
-                  dangerouslySetInnerHTML={{ __html: item.question }}
-                ></span>
-
+            <div
+              key={index}
+              className={styles.box}
+              data-open={expandedQuestion === index ? 'true' : 'false'}
+            >
+              <div
+                className={styles.question}
+                onClick={() => toggleFAQ(index)}
+                role="button"
+                aria-expanded={expandedQuestion === index}
+                aria-controls={`faq-panel-${index}`}
+              >
+                <span dangerouslySetInnerHTML={{ __html: item.question }} />
                 <span
                   className={`${styles.arrow} ${
                     expandedQuestion === index ? styles.expanded : ''
                   }`}
+                  aria-hidden="true"
                 >
                   ▼
                 </span>
               </div>
+
               <hr className={styles.priceHr} />
-              {expandedQuestion === index && (
-                <div>
+
+              <div className={styles.answerOuter} id={`faq-panel-${index}`}>
+                <div className={styles.answerInner}>
                   <p
                     dangerouslySetInnerHTML={{
-                      __html: item.answer,
+                      __html: (item.answer || '').replace(/\n/g, '<br />'),
                     }}
-                  ></p>
+                  />
                   {item.code && (
                     <p
                       dangerouslySetInnerHTML={{
-                        __html: item.code,
+                        __html: (item.code || '').replace(/\n/g, '<br />'),
                       }}
-                    ></p>
+                    />
                   )}
                 </div>
-              )}
+              </div>
             </div>
           ))}
         </div>
