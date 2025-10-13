@@ -131,16 +131,27 @@ const config = {
                                 src: 'https://plausible.io/js/plausible.js',
                             },
                         },
-                            // Add Hubspot
-                          {
+                          // Add Cookiebot
+                        {
                             tagName: 'script',
                             attributes: {
-                            type: 'text/javascript',
-                            id: 'hs-script-loader',
-                            async: true,
-                            defer: true,
-                            src: 'https://js.hs-scripts.com/8738733.js',
+                              id: 'Cookiebot',
+                              src: 'https://consent.cookiebot.com/uc.js',
+                              'data-cbid': '4397b0f9-0b32-41f5-b24a-9370be245e85',
+                              'data-blockingmode': 'manual',
+                              type: 'text/javascript',
+                              async: true
                             },
+                        },
+                            // Add Hubspot
+                        {
+                            tagName: 'script',
+                             attributes: {
+                            id: 'hs-script-loader',
+                            src: 'https://js.hs-scripts.com/8738733.js',
+                            type: 'text/plain',                
+                            'data-cookieconsent': 'marketing', 
+                         },
                         },
                         // Add Scarf
                         {
@@ -156,19 +167,6 @@ const config = {
                         {
                             tagName: 'script',
                             innerHTML: `(function(h,o,t,j,a,r){h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};h._hjSettings={hjid:3237492,hjsv:6};a=o.getElementsByTagName('head')[0];r=o.createElement('script');r.async=1;r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;a.appendChild(r);})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`,
-                        },
-                        // Add Cookiebot
-                        {
-                            tagName: 'script',
-                            attributes: {
-                              id: 'Cookiebot',
-                              src: 'https://consent.cookiebot.com/uc.js',
-                              'data-cbid': '4397b0f9-0b32-41f5-b24a-9370be245e85',
-                              'data-blockingmode': 'manual',
-                              type: 'text/javascript',
-                              async: true
-                              
-                            },
                         },
                         // Add emailpig
                         {
