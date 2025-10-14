@@ -12,8 +12,10 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 **Last Updated: October, 2025**
 <br></br>
 
+1. **_October 2025_ - Document: Weaviate Customer Agreement US & Non-US**
+   1. Updated Section 6. Indemnification Procedure clarified
 
-1. **_October 2025_ - Document: Weaviate List of Subprocessors**
+2. **_October 2025_ - Document: Weaviate List of Subprocessors**
    1. Added two new subprocessors - Omni and VoyageAI
    2. Re-worked the page to make it clear where customer Business Data is stored
    3. Split into different sections with explanitory statements for each
