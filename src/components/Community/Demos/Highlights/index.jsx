@@ -18,7 +18,7 @@ export default function Highlights() {
           <div className={styles.card}>
             <div className={styles.cardHeader}>
               <span className={styles.stars}>
-                1600
+                1800
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="19"
@@ -95,7 +95,7 @@ export default function Highlights() {
           <div className={styles.card}>
             <div className={styles.cardHeader}>
               <span className={styles.stars}>
-                7300
+                7400
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="19"
@@ -111,12 +111,6 @@ export default function Highlights() {
               </span>
               <h3>Verba</h3>
               <span>The Golden RAGtriever</span>
-              <Link
-                to="https://verba.weaviate.io"
-                className={`${styles.top} ${styles.cardButton} `}
-              >
-                <span className={styles.play}></span> Start Demo
-              </Link>
             </div>
             <div className={styles.contentDiv}>
               <div className={styles.textCardContent}>
@@ -184,7 +178,7 @@ export default function Highlights() {
           <div className={`${styles.card} ${styles.bigCard}`}>
             <div className={styles.cardHeader}>
               <span className={styles.stars}>
-                175
+                174
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="19"
@@ -200,12 +194,6 @@ export default function Highlights() {
               </span>
               <h3>Healthsearch</h3>
               <span>Generative AI in Healthcare</span>
-              <Link
-                to="https://healthsearch.weaviate.io/"
-                className={`${styles.top} ${styles.cardButton} `}
-              >
-                <span className={styles.play}></span> Start Demo
-              </Link>
             </div>
             <div className={styles.contentDiv}>
               <div className={`${styles.textCardContent} ${styles.bigText}`}>
@@ -270,7 +258,7 @@ export default function Highlights() {
           <div className={`${styles.card} ${styles.bigCard}`}>
             <div className={styles.cardHeader}>
               <span className={styles.stars}>
-                95
+                96
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="19"
@@ -286,12 +274,6 @@ export default function Highlights() {
               </span>
               <h3>Awesome-moviate</h3>
               <span>A Movie Search Engine</span>
-              <Link
-                to="https://awesome-moviate.weaviate.io/"
-                className={`${styles.top} ${styles.cardButton} `}
-              >
-                <span className={styles.play}></span> Start Demo
-              </Link>
             </div>
             <div className={styles.contentDiv}>
               <div className={`${styles.textCardContent} ${styles.bigText}`}>
