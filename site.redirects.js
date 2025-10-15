@@ -222,6 +222,17 @@ const siteRedirects = {
             to: '/',
             from: '/community/build-with-weaviate',
         },
+          // // Enterprise Cloud > Dedicated Cloud
+        {
+            to: '/deployment/dedicated',
+            from: '/deployment/enterprise-cloud',
+        },
+           // // Serverless Cloud > Shared Cloud
+        {
+            to: '/deployment/shared',
+            from: '/deployment/serverless',
+        },
+
     ],
 };
 
