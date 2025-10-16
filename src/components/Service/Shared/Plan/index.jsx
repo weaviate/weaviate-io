@@ -36,14 +36,19 @@ export default function ServicePlan() {
                 cloud-native AI services such as the Embedding Service and Query
                 Agent.
               </p>
-              <span>Ready to get started? Choose your plan.</span>
+            </div>
+            <div className={styles.rightContent}>
+              <div className={styles.diagram}></div>
+            </div>
+            <div className={styles.bottomContent}>
+              <h2 className={styles.getStarted}>
+                Ready to get started? Choose your{' '}
+                <Link to="/pricing">plan</Link>.
+              </h2>
               <p>
                 Visit our <Link to="/pricing">pricing page</Link> for details
                 and answers to frequently asked questions.
               </p>
-            </div>
-            <div className={styles.rightContent}>
-              <div className={styles.diagram}></div>
             </div>
           </div>
         </div>

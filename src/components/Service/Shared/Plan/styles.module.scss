@@ -39,6 +39,22 @@
     text-decoration: underline;
   }
 }
+
+.bottomContent {
+  margin: 50px 0px;
+
+  .getStarted {
+    color: #ffffff;
+    font-size: 2rem;
+    font-family: 'Plus Jakarta Sans';
+
+    a {
+      color: #fff;
+      text-decoration: underline;
+    }
+  }
+}
+
 .bgColor {
   background: #130c49;
 }

@@ -32,17 +32,19 @@ export default function ServicePlan() {
                 adherence to industry standards and best practices — including
                 SOC II certification and HIPAA compliance.
               </p>
-              <span>
+            </div>
+            <div className={styles.rightContent}>
+              <div className={styles.diagram}></div>
+            </div>
+            <div className={styles.bottomContent}>
+              <h2 className={styles.getStarted}>
                 Ready to get started? Choose your{' '}
                 <Link to="/pricing">plan</Link>.
-              </span>
+              </h2>
               <p>
                 Visit our <Link to="/pricing">pricing page</Link> for details
                 and answers to frequently asked questions.
               </p>
-            </div>
-            <div className={styles.rightContent}>
-              <div className={styles.diagram}></div>
             </div>
           </div>
         </div>
