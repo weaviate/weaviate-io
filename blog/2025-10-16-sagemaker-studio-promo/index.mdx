@@ -210,7 +210,8 @@ Weaviate lets you configure your hybrid search results by providing additional p
 
 ### RAG 
 
-Using retrieved reviews to generate informed analysis with the correct context.
+Retrieval augmented generation is a powerful technique that retrieves relevant data to provide to large language models (LLMs) as context, along with the task prompt. It is also called RAG, generative search, or in-context learning in some cases. In Weaviate, you can use RAG to either transform a [whole result set](https://docs.weaviate.io/weaviate/search/generative#grouped-task-search) into new text or generate new content for [individual objects](https://docs.weaviate.io/weaviate/search/generative#single-prompt-search). Please check docs to understand which suits your use case better. In our demo, we are using RAG `grouped_task` to retrieve reviews(correct context) and generate informed analysis.
+
 ```python
 instruction = """
 Based on the retrieved customer reviews, create a professional summary 
