@@ -1,17 +1,18 @@
 ---
-title: 'Legacy data to RAG : Modernise Your Apps with Sagemaker Studio'
+title: 'Legacy data to RAG : Modernise Your Apps with Amazon Sagemaker Unified Studio'
 slug: 'sagemaker-studio-rag'
 authors: [deepti, gitika-aws]
 date: 2025-10-16
-tags: ['Sagemaker Studio','AWS', 'how-to','Partnerships']
+tags: ['Sagemaker Unified Studio','AWS', 'how-to','Partnerships']
 image: ./img/hero.png
 description: "A guide to seamlessly transform data sitting in lakes and warehouses for GenAI capable applications"
 ---
 [![Model decay](./img/hero.png)](./img/hero.png)
 
-Organizations are building data-driven AI applications to drive business decisions, innovation, and improve efficiencies. However, leveraging distributed data effectively for modern AI applications can be challenging. [Amazon SageMaker Unified Studio](https://aws.amazon.com/sagemaker/unified-studio/) addresses this challenge by helping you find, access, and query data along with AI assets across your organization. Teams can easily collaborate on projects to securely build and share analytics and AI artifacts using [Amazon SageMaker Catalog](https://aws.amazon.com/sagemaker/catalog/), including data, models, and generative AI applications. Built on an open lakehouse architecture that's fully compatible with Apache Iceberg, SageMaker unifies access to data across Amazon S3 data lakes, S3 Tables, and Amazon Redshift data warehouses, enabling organizations to build powerful analytics and AI applications on a single copy of data.
 
-Weaviate is an AI-Native open-source vector database that combines powerful search capabilities with enterprise reliability. It offers built-in hybrid search (semantic + keyword), advanced filtering, and out-of-the-box RAG capabilities, all with sub-second query responses across hundreds of millions of vectors. Weaviate's flexible plug-and-play modules provide automatic embedding generation using state-of-the-art models. Available as a managed service through Weaviate Enterprise Cloud  features multi-tenancy, vector compression, role-based access control, API key management and zero-downtime backups. With native support for text, images and structured data, it can capture the full spectrum of customer interactions.
+Weaviate is an AI-Native open-source vector database that combines powerful search capabilities with enterprise reliability. It offers built-in hybrid search (semantic + keyword), advanced filtering, and out-of-the-box RAG capabilities, all with sub-second query responses across hundreds of millions of vectors. It's flexible plug-and-play modules provide automatic embedding generation using state-of-the-art models. Available as a hosted service, self managed instance or a fully managed Weaviate Cloud service, it features multi-tenancy, vector compression, role-based access control, API key management and zero-downtime backups. With native support for text, images and structured data, it can capture the full spectrum of customer interactions.
+
+[Amazon Sagemaker Unified Studio](https://aws.amazon.com/sagemaker/unified-studio/) complements Weaviate's strengths by simplifying how teams access and prepare legacy data. Organizations are building data-driven AI applications to drive business decisions, innovation, and improve efficiencies. However, leveraging distributed data effectively for modern AI applications can be challenging. SageMaker Unified Studio addresses this challenge by helping you find, access, and query data along with AI assets across your organization. Teams can easily collaborate on projects to securely build and share analytics and AI artifacts using [Amazon SageMaker Catalog](https://aws.amazon.com/sagemaker/catalog/), including data, models, and generative AI applications. Built on an open lakehouse architecture that's fully compatible with Apache Iceberg, SageMaker unifies access to data across Amazon S3 data lakes, S3 Tables, and Amazon Redshift data warehouses, enabling organizations to build powerful analytics and AI applications on a single copy of data.
 
 Weaviate and SageMaker Unified Studio together empower teams to build real-time generative AI applications powered by vector search and RAG. Whether you're a data scientist experimenting with embeddings, an ML engineer optimizing pipelines, or a developer building customer-facing applications, the integration lets you deploy your embedding models (custom or LLM-based) through SageMaker and seamlessly vectorize data stored in Weaviate.
 
@@ -26,7 +27,6 @@ The benefits of combining Weaviate and Sagemaker Unified Studio
 - Built-in governance and cataloging
 - Reduced operational friction as permissions and integrations are handled by the platform
 
-For this demo, we shall work with an airline company that stores customer reviews in S3 as it is simple, scalable and cost effective. This approach addresses critical customer service challenges prevalent across the aviation, retail, and hospitality sectors, where organizations must analyze vast amounts of customer feedback to improve service quality and satisfaction. Customer reviews are invaluable for these industries, making them ideal use cases for semantic search and RAG capabilities. For sample data, we use airlines review data from the [Hugging Face dataset](https://huggingface.co/datasets/Alisairlines/Airline_Reviews). 
 
 ### Unlocking Insights From Customer Feedback 
 
@@ -39,22 +39,24 @@ Customer facing organizations across the aviation, retail, and hospitality secto
 - Batch processing delays - Traditional ETL pipelines process reviews in scheduled batches. Sagemakers model endpoints combined with Weaviate’s streaming vectorizing can index new reviews within seconds.  
 - Rigid models - Switching between embedding approaches requires system reconfiguration and complete data reprocessing in traditional setups. Weaviate lets you reconfigure with easier approaches. 
 
-## Solution Architecture
-Our solution architecture leverages three powerful components that directly address the above challenges. 
+For this demo, we shall work with an airline company that stores customer reviews in Lakehouse as it is simple, scalable and cost effective. This approach addresses critical customer service challenges prevalent across the aviation, retail, and hospitality sectors, where organizations must analyze vast amounts of customer feedback to improve service quality and satisfaction. Customer reviews are invaluable for these industries, making them ideal use cases for semantic search and RAG capabilities. For sample data, we use airlines review data from the [Hugging Face dataset](https://huggingface.co/datasets/Alisairlines/Airline_Reviews). 
 
-- **SageMaker Lakehouse**: Unifies your data across S3 data lakes, Redshift data warehouses and third party data sources
-- **Amazon Bedrock**: Embedding models to convert data into vector embeddings that capture true semantic intent
+## Solution Architecture
+Our solution architecture leverages three powerful technologies that directly address the above challenges. 
+
+- **[SageMaker Lakehouse](https://aws.amazon.com/sagemaker/lakehouse/)**: uses an open lakehouse architecture with Apache Iceberg compatibility. It unifies data across Amazon S3 data lakes and Amazon Redshift warehouses, enabling analytics and AI/ML. This will serve as our data storage. 
+- **[Amazon Bedrock](https://aws.amazon.com/bedrock/)**: Bedrock is a comprehensive, secure, and flexible platform for building generative AI applications and agents. We will utilize Bedrock’s embedding models to convert data into vector embeddings, which capture true semantic intent.
 - **Weaviate**: Vector database for hybrid search and context aware out-of-the-box RAG
 
-We shall demonstrate an enterprise data pipeline within SageMaker unified Studio, designed to seamlessly transition from traditional data storage to AI-powered applications. We shall import customer data stored in S3 into a vector database, facilitating advanced semantic and RAG queries. Organizations choose S3 because they can store massive amounts of data flexibly, scale effortlessly, and pay only for what they use. 
+We shall demonstrate an enterprise data pipeline within SageMaker Unified Studio, designed to seamlessly transition from traditional data storage to AI-powered applications. We shall import customer data stored in Lakehouse into a vector database, facilitating advanced semantic and RAG queries. Organizations choose S3 in Lakehouse because they can store massive amounts of data flexibly, scale effortlessly, and pay only for what they use. 
 
 The notebook can be used to identify emerging customer satisfaction trends and review patterns through Weaviate's semantic (hybrid) searches. Additionally, Weaviate's RAG API can be used to retrieve relevant historical interactions and generate contextually appropriate customer responses.
 
-The data flow is straightforward. Raw reviews stored in S3 are processed in SageMaker Studio and stored in Apache Iceberg tables. These reviews are then vectorized using embedding models hosted within Bedrock and indexed in Weaviate for semantic search and RAG queries. 
+The data flow is straightforward. Raw reviews stored in Lakehouse are processed in SageMaker Unified Studio and stored in Apache Iceberg tables in the Lakehouse. We are doing this step for efficient querying but not needed if your data already exists in Iceberg format. These reviews are then vectorized using embedding models hosted within Bedrock and indexed in Weaviate for semantic search and RAG queries. 
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│      S3         | →  |  Iceberg Tables | →  |    Weaviate     | →  | Semantic search |
+│    Lakehouse    | →  |  Iceberg Tables | →  |    Weaviate     | →  | Semantic search |
 |  (raw reviews)  │    │                 │    │                 │    │    + RAG        │
 └─────────────────┘    └─────────────────┘    └─────────────────┘    └─────────────────┘
 ```
@@ -67,7 +69,7 @@ The data flow is straightforward. Raw reviews stored in S3 are processed in Sage
 
 ### SageMaker Lakehouse
 
-First, we upload our airline reviews CSV to S3, then create an Iceberg table for efficient querying
+First, we upload our airline reviews CSV to Lakehouse, then create an Iceberg table for efficient querying
 
 ```python
 from sagemaker_studio import Project
@@ -217,10 +219,9 @@ Sample output:
 "Based on analysis of recent service complaints, three primary issues emerge: cabin crew responsiveness (mentioned in 45% of negative reviews), meal quality concerns (32%), and boarding process delays (28%)."
 
 ## Next steps 
-Weaviate can scale horizontally as data volumes grow. In this workshop, while we used batch ingrestion, we could also implement streaming to ingest reviews in real-time. Sagemaker Studio shall soon add Kinesis and MSK to the ecosystem that shall enable this. To capture critical feedback immediately, apps could also add notifications with SNS and Cloudwatch alarms
-
+Weaviate can scale horizontally as data volumes grow. In this workshop, while we used batch ingrestion, we could also implement streaming to ingest reviews in real-time. To capture critical feedback immediately, apps could also add notifications with SNS and Cloudwatch alarms
 ## Conclusion
-Once you learn how to harness your data with vector databases, you can use them to improve queries in various parts of your application. For example, identifying patterns and detecting trends in customer feedback can also be used internally by teams to improve product roadmaps. By combining AWS SageMaker Studio's data management capabilities with Weaviate's semantic search and RAG features, companies can transform customer feedback from a compliance checkbox into a strategic asset. The architecture we've built processes reviews at scale, understands context beyond keywords, and generates actionable insights, all while maintaining production grade reliability.
+Once you learn how to harness your data with vector databases, you can use them to improve queries in various parts of your application. For example, identifying patterns and detecting trends in customer feedback can also be used internally by teams to improve product roadmaps. By combining Amazon SageMaker Unified Studio's data management capabilities with Weaviate's semantic search and RAG features, companies can transform customer feedback from a compliance checkbox into a strategic asset. The architecture we've built processes reviews at scale, understands context beyond keywords, and generates actionable insights, all while maintaining production grade reliability.
 
 
 
