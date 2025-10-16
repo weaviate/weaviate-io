@@ -68,7 +68,7 @@ The data flow is straightforward. Raw reviews stored in Lakehouse are processed 
 
 ### SageMaker Lakehouse
 
-First, we upload our airline reviews CSV to [Lakehouse](https://aws.amazon.com/sagemaker/lakehouse/), then create an Iceberg table for efficient querying
+For the purposes of this demo, we assume that the reviews have already been saved in [Lakehouse](https://aws.amazon.com/sagemaker/lakehouse/), under the root folder of our project `{project.s3.root}/reviews`. 
 
 ```python
 from sagemaker_studio import Project
@@ -82,7 +82,7 @@ tbl_name  = "product_reviews_v1"
 data_path = f"{project.s3.root}/reviews"
 
 ```
-Define table schema
+Define table schema in Iceberg for efficient querying 
 
 ```python
 spark.sql(f"""USE {project_database}""")
@@ -104,10 +104,19 @@ spark.sql(f"""
     LOCATION '{project.s3.root}/reviews'
 """)
 ```
+Seamlessly transfer data from Lakehouse to Iceberg
+```python
+raw_df = spark.read.option('delimiter',',').csv(data_path, header=True, inferSchema=True)
+raw_df.write.format("iceberg").mode("append").saveAsTable(f"{project_database}.{tbl_name}")
+
+df = spark.read.table(f"""{tbl_name}""")
+df.show()
+```
 
 ### Weaviate Collection
 
-We establish a connection to Weaviate 
+Weaviate offers [multiple deployment options](https://docs.weaviate.io/deploy) to satisfy your specific use case. In the example below, we are establishing a connection to [Weaviate Serverless Cloud](https://weaviate.io/deployment/serverless). Weaviate Cloud [quickstart](https://docs.weaviate.io/cloud/quickstart#11-create-a-cluster) will help you set up a cloud account and get started in minutes. For more deployment options and tutorials on how to connect, please refer to the docs. 
+
 ```python
 import weaviate
 import weaviate.classes as wvc
@@ -121,7 +130,7 @@ weaviate_client = weaviate.connect_to_weaviate_cloud(
     }
 )
 ```
-Next, we create a collection with AWS Bedrock models for vectorization and RAG
+Next, we create a collection with AWS Bedrock models for vectorization and RAG. For more information on the different properties of a vectorizer and your specific model, please refer to the docs [here](https://docs.weaviate.io/weaviate/manage-collections/vector-config). Likewise, the [generative config](https://docs.weaviate.io/weaviate/manage-collections/generative-reranker-models) docs will provide you more configuration options for your generative model.
 ```python
 weaviate_client.collections.create(
     name='Airline_Reviews',
@@ -170,7 +179,7 @@ def save_reviews_to_weaviate(client, df):
                 "review_text": row['review_text']
             }
             batch.add_object(review_obj)
-
+reviews_saved = save_reviews_to_weaviate(weaviate_client, df)
 ```
 ### Hybrid Search
 
@@ -197,9 +206,11 @@ An alpha parameter of 0.5 balances traditional and AI-powered search. With the h
 - a query like "uncomfortable seating" will match exact keyword mentions (BM25) AND semantically similar phrases like "cramped legroom" or "tight space"
 - ensure we only retrieve low-rated reviews with the filters
 
+Weaviate lets you configure your hybrid search results by providing additional parameters like [object rankings](https://docs.weaviate.io/weaviate/search/hybrid#explain-the-search-results) and [query weights](https://docs.weaviate.io/weaviate/search/hybrid#set-weights-on-property-values). For a full list of query options, check the docs [here](https://docs.weaviate.io/weaviate/search/hybrid). You can also find end-to-end notebooks on using hybrid search in [Weaviate Recipes](https://github.com/weaviate/recipes/tree/main/weaviate-features)!
+
 ### RAG 
 
-Using retrieved reviews to generate informed responses with the correct context.
+Using retrieved reviews to generate informed analysis with the correct context.
 ```python
 instruction = """
 Based on the retrieved customer reviews, create a professional summary 
