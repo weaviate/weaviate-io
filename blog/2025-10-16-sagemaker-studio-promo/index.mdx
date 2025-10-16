@@ -10,43 +10,42 @@ description: "A guide to seamlessly transform data sitting in lakes and warehous
 [![Model decay](./img/hero.png)](./img/hero.png)
 
 
-Weaviate is an AI-Native open-source vector database that combines powerful search capabilities with enterprise reliability. It offers built-in hybrid search (semantic + keyword), advanced filtering, and out-of-the-box RAG capabilities, all with sub-second query responses across hundreds of millions of vectors. It's flexible plug-and-play modules provide automatic embedding generation using state-of-the-art models. Available as a hosted service, self managed instance or a fully managed Weaviate Cloud service, it features multi-tenancy, vector compression, role-based access control, API key management and zero-downtime backups. With native support for text, images and structured data, it can capture the full spectrum of customer interactions.
+Weaviate is an AI-native open source vector database that combines powerful search capabilities with enterprise reliability. It offers built-in [hybrid](https://weaviate.io/blog/hybrid-search-explained) (semantic + keyword) search, advanced filtering, out-of-the-box RAG capabilities, and all with sub-second query responses across hundreds of millions of vectors. It's flexible [plug-and-play modules](https://docs.weaviate.io/weaviate/concepts/modules) provide automatic embedding generation using state-of-the-art models. Available as a hosted service, self managed instance or as a fully managed [Weaviate Cloud](https://docs.weaviate.io/cloud) service, it also features multi-tenancy, vector compression, role-based access control, API key management and zero-downtime backups.
 
 [Amazon Sagemaker Unified Studio](https://aws.amazon.com/sagemaker/unified-studio/) complements Weaviate's strengths by simplifying how teams access and prepare legacy data. Organizations are building data-driven AI applications to drive business decisions, innovation, and improve efficiencies. However, leveraging distributed data effectively for modern AI applications can be challenging. SageMaker Unified Studio addresses this challenge by helping you find, access, and query data along with AI assets across your organization. Teams can easily collaborate on projects to securely build and share analytics and AI artifacts using [Amazon SageMaker Catalog](https://aws.amazon.com/sagemaker/catalog/), including data, models, and generative AI applications. Built on an open lakehouse architecture that's fully compatible with Apache Iceberg, SageMaker unifies access to data across Amazon S3 data lakes, S3 Tables, and Amazon Redshift data warehouses, enabling organizations to build powerful analytics and AI applications on a single copy of data.
 
-Weaviate and SageMaker Unified Studio together empower teams to build real-time generative AI applications powered by vector search and RAG. Whether you're a data scientist experimenting with embeddings, an ML engineer optimizing pipelines, or a developer building customer-facing applications, the integration lets you deploy your embedding models (custom or LLM-based) through SageMaker and seamlessly vectorize data stored in Weaviate.
+Weaviate and SageMaker Unified Studio together empower teams to build real-time generative AI applications powered by vector search and RAG. Whether you're a data scientist experimenting with embeddings, an ML engineer optimizing pipelines, or a developer building customer-facing applications, the integration lets you deploy your embedding models (custom or LLM-based) through SageMaker and seamlessly vectorize data in Weaviate.
 
 
 The benefits of combining Weaviate and Sagemaker Unified Studio
-- Flexibility with models:  You can use any custom or open-source embedding model deployed to a SageMaker endpoint or within Bedrock. This includes AWS models like Titan and Nova, as well as proprietary models from OpenAI and Cohere.
-- Scalable infrastructure:  Both Sagemaker Unified Studio and Weaviate are designed to run and scale on AWS, allowing you to build and deploy production-ready AI applications that can handle billions of vectors.
-- End-to-end, integrated workflows
-- Rapid prototyping to production: Experiment in notebooks, validate with small datasets, then scale to production volumes without rewriting code or changing infrastructure.
-- Multiple roles: Data analysts, scientists and ML engineers can collaborate easily through shared projects
-- Native access to data sources, ETL flows and jupyter notebooks for Spark jobs, along with other AI tools
-- Built-in governance and cataloging
-- Reduced operational friction as permissions and integrations are handled by the platform
+- Flexibility with models - Use any custom or open source embedding model deployed to a SageMaker endpoint or within Bedrock. This includes AWS models like Titan and Nova, as well as proprietary models from OpenAI and Cohere.
+- Scalable infrastructure - Both Sagemaker Unified Studio and Weaviate are designed to run and scale on AWS, allowing you to build and deploy production ready AI applications that can handle billions of vectors.
+- End-to-end, integrated workflows.
+- Rapid prototyping to production - Experiment in notebooks, validate with small datasets, then scale to production volumes without rewriting code or changing infrastructure.
+- Multiple roles - Data analysts, scientists and ML engineers can collaborate easily through shared projects.
+- Native access to data sources, ETL flows and jupyter notebooks for Spark jobs, along with other AI tools.
+- Built-in governance and cataloging.
+- Reduced operational friction as permissions and integrations are handled by the platform.
 
 
 ### Unlocking Insights From Customer Feedback 
 
 Customer facing organizations across the aviation, retail, and hospitality sectors that engage with customers receive a lot of feedback from various channels - including surveys, social media, call logs, and review platforms. Legacy systems often struggle to efficiently process and interpret this vast amount of information, leading to significant challenges.
 
-- Losing customer intent - Keyword searches fail to grasp the semantic meaning behind customer feedback. A customer complaining about "uncomfortable seating" might use phrases like "cramped legroom," "tight space," or "hard seats", which are semantically similar to seating issues but not easy to gain insights with traditional methods.
-- Structured and unstructured data - Analysing reviews alongside flight schedules, passenger and operational data requires joining multiple SQL tables with text embeddings - traditional systems would struggle to handle this efficiently.
-- Context aware responses - Traditional keyword matching retrieves documents with matching words, but RAG with vector search retrieves data based on semantic relevance, meaning you get better context for generating responses.
-- Complex searches - Traditional systems force data analysts to write intricate SQL joins to answer queries like “find negative reviews on all transatlantic flights in the last quarter”. Weaviate’s vector search can combine semantic search with  metadata filtering and temporal search, turning complex analysis into simple API calls. 
-- Batch processing delays - Traditional ETL pipelines process reviews in scheduled batches. Sagemakers model endpoints combined with Weaviate’s streaming vectorizing can index new reviews within seconds.  
-- Rigid models - Switching between embedding approaches requires system reconfiguration and complete data reprocessing in traditional setups. Weaviate lets you reconfigure with easier approaches. 
+- Losing customer intent - Keyword searches fail to grasp the semantic meaning behind customer feedback. A customer complaining about "uncomfortable seating" might use phrases like "cramped legroom," "tight space," or "hard seats". Traditional keyword based analysis would struggle to group these related terms and lead to missed insights.
+- Structured and unstructured data - Analysing reviews alongside flight schedules, passenger and operational data requires joining multiple SQL tables with text embeddings. Legacy systems struggle to handle this combination of data types efficiently.
+- Context aware responses - Simple keyword matching retrieves documents with matching words, but it lacks context. RAG with vector search retrieves data based on semantic relevance, providing better context for generating responses.
+- Complex searches - Answering a query like “find negative reviews on all transatlantic flights in the last quarter” often forces data analysts to write intricate SQL joins in conventional systems. Weaviate’s vector search combines semantic search with [metadata filtering and temporal search](https://docs.weaviate.io/weaviate/search/filters), turning complex analysis into simple API calls. 
+- Rigid models - Switching between embedding approaches requires system reconfiguration and complete data reprocessing in traditional setups. Weaviate lets you reconfigure with easier strategies. 
 
-For this demo, we shall work with an airline company that stores customer reviews in Lakehouse as it is simple, scalable and cost effective. This approach addresses critical customer service challenges prevalent across the aviation, retail, and hospitality sectors, where organizations must analyze vast amounts of customer feedback to improve service quality and satisfaction. Customer reviews are invaluable for these industries, making them ideal use cases for semantic search and RAG capabilities. For sample data, we use airlines review data from the [Hugging Face dataset](https://huggingface.co/datasets/Alisairlines/Airline_Reviews). 
+For this demo, we shall work with an airline company that stores customer reviews in Lakehouse as it is simple, scalable and cost effective. This approach addresses critical customer service challenges prevalent across the aviation, retail and hospitality sectors, where organizations must analyze vast amounts of customer feedback to improve service quality and satisfaction. Customer reviews are invaluable for these industries, making them ideal use cases for semantic search and RAG upgrades. For sample data, we use airlines review data from the [Hugging Face dataset](https://huggingface.co/datasets/Alisairlines/Airline_Reviews). 
 
 ## Solution Architecture
 Our solution architecture leverages three powerful technologies that directly address the above challenges. 
 
 - **[SageMaker Lakehouse](https://aws.amazon.com/sagemaker/lakehouse/)**: uses an open lakehouse architecture with Apache Iceberg compatibility. It unifies data across Amazon S3 data lakes and Amazon Redshift warehouses, enabling analytics and AI/ML. This will serve as our data storage. 
 - **[Amazon Bedrock](https://aws.amazon.com/bedrock/)**: Bedrock is a comprehensive, secure, and flexible platform for building generative AI applications and agents. We will utilize Bedrock’s embedding models to convert data into vector embeddings, which capture true semantic intent.
-- **Weaviate**: Vector database for hybrid search and context aware out-of-the-box RAG
+- **Weaviate**: Vector database for hybrid search and context aware [out-of-the-box RAG](https://docs.weaviate.io/weaviate/starter-guides/generative). With native support for text, images and structured data, Weaviate can capture the full spectrum of customer interactions.
 
 We shall demonstrate an enterprise data pipeline within SageMaker Unified Studio, designed to seamlessly transition from traditional data storage to AI-powered applications. We shall import customer data stored in Lakehouse into a vector database, facilitating advanced semantic and RAG queries. Organizations choose S3 in Lakehouse because they can store massive amounts of data flexibly, scale effortlessly, and pay only for what they use. 
 
@@ -69,7 +68,7 @@ The data flow is straightforward. Raw reviews stored in Lakehouse are processed 
 
 ### SageMaker Lakehouse
 
-First, we upload our airline reviews CSV to Lakehouse, then create an Iceberg table for efficient querying
+First, we upload our airline reviews CSV to [Lakehouse](https://aws.amazon.com/sagemaker/lakehouse/), then create an Iceberg table for efficient querying
 
 ```python
 from sagemaker_studio import Project
