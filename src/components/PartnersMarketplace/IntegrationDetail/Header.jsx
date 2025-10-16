@@ -1,14 +1,8 @@
 // src/components/PartnersMarketplace/IntegrationDetail/Header.jsx
 import React from 'react';
 import Link from '@docusaurus/Link';
-
-// Hero/header layout + buttons live here
-import headerCss from '/src/components/PartnersMarketplace/Header/styles.module.scss';
-
-// Hub card/tag styles (e.g., .cardTag) live here
+import headerCss from './header.module.scss';
 import hubCss from '/src/components/PartnersMarketplace/styles.module.scss';
-
-// Detail-page additive styles (hero padding, tag row spacing, etc.)
 import css from './styles.module.scss';
 
 export default function IntegrationHeader({
@@ -37,7 +31,7 @@ export default function IntegrationHeader({
 
             <div className={css.tagRow}>
               {tags.map((t) => (
-                <span key={t} className={hubCss.cardTag}>
+                <span key={t} className={css.cardTag}>
                   {t}
                 </span>
               ))}

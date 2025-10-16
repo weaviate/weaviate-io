@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import partners from '/data/partners.json';
 import hub from '/src/components/PartnersMarketplace/styles.module.scss';
@@ -49,13 +50,16 @@ export default function GcpIntegrationPage() {
           <div className="container">
             <div className={hub.cardsFilterContainer}>
               <nav className={`${hub.sideFilter} ${css.sideNav}`}>
+                <Link className={hub.sideNavLink} to="/product/integrations">
+                  ← All Integrations
+                </Link>
                 <h3>On this page</h3>
                 <ul>
                   <li>
                     <a href="#overview">Overview</a>
                   </li>
                   <li>
-                    <a href="#how-it-works">How it works</a>
+                    <a href="#how-it-works">GCP and Weaviate</a>
                   </li>
                   <li>
                     <a href="#setup">Setup</a>
@@ -76,11 +80,18 @@ export default function GcpIntegrationPage() {
                     id="how-it-works"
                     className={`${hub.card} ${css.panel}`}
                   >
-                    <h2 className={css.panelTitle}>How it works</h2>
+                    <h2 className={css.panelTitle}>GCP and Weaviate</h2>
                     <p>
-                      Explain marketplaces, auth, endpoints, and typical data
-                      flow between Weaviate and GCP services (Vertex AI, AI
-                      Studio). Replace this with your copy.
+                      Weaviate integrates with GCP infrastructure and services
+                      like Google{' '}
+                      <Link to="https://ai.google.dev/aistudio">
+                        Gemini API
+                      </Link>{' '}
+                      and{' '}
+                      <Link to="https://cloud.google.com/vertex-ai">
+                        Vertex AI
+                      </Link>
+                      .
                     </p>
                   </section>
                   <section
@@ -100,52 +111,71 @@ export default function GcpIntegrationPage() {
                     className={`${css.section} ${css.panelWide}`}
                   >
                     <h2>Resources</h2>
-                    <h3 className={css.groupLabel}>Hands-on Learning</h3>
+                    <div className={css.sectionDesc}>
+                      <p>The resources are broken into categories:</p>
+                      <ol>
+                        <li>
+                          <Link to="#hands-on-learning">
+                            Hands on Learning:
+                          </Link>{' '}
+                          Build your technical understanding with end-to-end
+                          tutorials.
+                        </li>
+                        <li>
+                          <Link to="#read-and-listen">Read and Listen:</Link>{' '}
+                          Develop your conceptual understanding of these
+                          technologies.
+                        </li>
+                      </ol>
+                    </div>
+                    <h3 className={css.groupLabel} id="hands-on-learning">
+                      Hands-on Learning
+                    </h3>
                     <div className={css.resGrid}>
                       {[
                         {
                           title:
                             'Build a multimodal application using Gemini Flash',
-                          desc: 'Use Weaviate and Gemini Flash to build a multimodal application.',
+                          desc: 'This notebook shows you how to use Weaviate and Gemini Flash to build a multimodal application.',
                           type: 'Notebook',
-                          url: '#',
+                          url: 'https://github.com/weaviate/recipes/blob/main/integrations/cloud-hyperscalers/google/gemini/multimodal-and-gemini-flash/NY-Roadshow-Gemini.ipynb',
                         },
                         {
                           title: 'BigQuery and Weaviate',
                           desc: 'Sync data between BigQuery and Weaviate using DSPy.',
                           type: 'Notebook',
-                          url: '#',
+                          url: 'https://github.com/weaviate/recipes/blob/main/integrations/cloud-hyperscalers/google/bigquery/BigQuery-Weaviate-DSPy-RAG.ipynb',
                         },
                         {
                           title: 'Semantic Search with Gemini Ultra',
-                          desc: 'How to use Weaviate and Gemini Ultra for semantic search.',
+                          desc: 'This notebook shows you how to use Weaviate and Gemini Ultra.',
                           type: 'Notebook',
-                          url: '#',
+                          url: 'https://github.com/weaviate/recipes/blob/main/integrations/cloud-hyperscalers/google/gemini/gemini-ultra/gemini-ultra-weaviate.ipynb',
                         },
                         {
                           title: 'Weaviate Query Agent with Gemini API',
                           desc: 'Use the Query Agent as a tool with the Gemini API.',
                           type: 'Notebook',
-                          url: '#',
+                          url: 'https://github.com/weaviate/recipes/blob/main/integrations/cloud-hyperscalers/google/agents/gemini-api-query-agent.ipynb',
                         },
                         {
                           title: 'Weaviate Query Agent with Vertex AI',
                           desc: 'Use the Query Agent as a tool with Vertex AI.',
                           type: 'Notebook',
-                          url: '#',
+                          url: 'https://github.com/weaviate/recipes/blob/main/integrations/cloud-hyperscalers/google/agents/vertex-ai-query-agent.ipynb',
                         },
                         {
                           title: 'Deploy a Weaviate vector database on GKE',
-                          desc: 'Tutorial to deploy a Weaviate cluster on Google Kubernetes Engine (GKE).',
+                          desc: 'This tutorial shows you how to deploy a Weaviate vector database cluster on Google Kubernetes Engine (GKE).',
                           type: 'Guide',
-                          url: '#',
+                          url: 'https://cloud.google.com/kubernetes-engine/docs/tutorials/deploy-weaviate',
                         },
                         {
                           title:
                             'Personalized Product Descriptions with Weaviate and the Gemini API',
-                          desc: 'Embed your data, run semantic search, call the Gemini API, and store the results in Weaviate.',
+                          desc: 'Learn how to embed your data, run a semantic search, make a generative call to the Gemini API and store the output back in your database.',
                           type: 'Notebook',
-                          url: '#',
+                          url: 'https://github.com/google-gemini/cookbook/blob/main/examples/weaviate/personalized_description_with_weaviate_and_gemini_api.ipynb',
                         },
                       ].map((r) => (
                         <a key={r.title} href={r.url} className={css.resCard}>
@@ -169,15 +199,17 @@ export default function GcpIntegrationPage() {
                         </a>
                       ))}
                     </div>
-                    <h3 className={css.groupLabel}>Read & Listen</h3>
+                    <h3 className={css.groupLabel} id="read-and-listen">
+                      Read & Listen
+                    </h3>
                     <div className={css.resGrid}>
                       {[
                         {
                           title:
                             'Weaviate on Vertex AI RAG Engine: Building RAG Applications on Google Cloud',
-                          desc: 'Learn how to build RAG applications on Google Cloud using the new RAG Engine on Vertex AI.',
+                          desc: 'Learn how to build RAG Applications on Google Cloud using the new RAG Engine on Vertex AI.',
                           type: 'Blog',
-                          url: '#',
+                          url: 'https://weaviate.io/blog/google-rag-api',
                         },
                       ].map((r) => (
                         <a key={r.title} href={r.url} className={css.resCard}>

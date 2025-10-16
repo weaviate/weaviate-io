@@ -30,6 +30,19 @@
   }
 }
 
+.sideNavLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+  color: #130c49;
+  text-decoration: none;
+}
+
+.sideNavLink:hover {
+  text-decoration: underline;
+}
+
 .filterResults {
   display: flex;
   flex-wrap: wrap;
@@ -127,6 +140,7 @@
 .cardTag {
   display: inline-block;
   background-color: #f0f0f0;
+
   padding: 0.25rem 0.5rem;
   margin: 0.25rem 0.25rem 0.25rem 0rem;
   border-radius: 4px;

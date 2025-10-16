@@ -5,7 +5,7 @@
     "link": "https://docs.weaviate.io/integrations/cloud-hyperscalers/google",
     "description": "Deploy Weaviate on the GCP Marketplace and seamlessly access models on AI Studio and Vertex AI.",
     "tags": ["Cloud Hyperscalers", "Model Providers", "Module", "Popular"],
-    "overview": "Full overview text describing the joint value prop, supported models, pricing/marketplace notes, and common use cases.",
+    "overview": "Launch a Weaviate cluster from the Google Cloud Platform (GCP) marketplace. Weaviate integrates with Google Gemini API and Google Vertex AI.",
     "resourcesGroups": [
       {
         "title": "Hands-on Learning",
@@ -81,10 +81,26 @@
     "link": "https://docs.weaviate.io/integrations/cloud-hyperscalers/aws",
     "description": "Deploy Weaviate on the AWS Marketplace and use the SageMaker and Bedrock API to access a variety of models.",
     "tags": ["Cloud Hyperscalers", "Model Providers", "Module", "Popular"],
-    "maintainedBy": "Internal",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": true
+    "overview": "Launch a Weaviate cluster from the Amazon Web Services (AWS) marketplace. AWS supports model provider integrations through SageMaker and Bedrock.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "RAG with Cohere models on Amazon Bedrock and Weaviate",
+            "description": "The example use case generates targeted advertisements for vacation stay listings based on a target audience.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/cloud-hyperscalers/aws/RAG_Cohere_Weaviate_v4_client.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Launch on AWS",
+        "url": "https://aws.amazon.com/marketplace"
+      }
+    ]
   },
   {
     "name": "Microsoft Azure",
