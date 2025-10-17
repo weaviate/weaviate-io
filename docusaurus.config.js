@@ -344,8 +344,8 @@ const config = {
         ({
             image: 'og/default.jpg',
              announcementBar: {
-               id: 'announcement-bar-september-2025',
-                content:`<a href="/blog/query-agent-generally-available">Weaviate's Query Agent is Generally Available – Read the Announcement (Sep 17)</a>`,
+               id: 'announcement-bar-october-2025',
+                content:`<a href="/ebooks/the-context-engineering-guide">New Context Engineering Guide – Download </a>`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
