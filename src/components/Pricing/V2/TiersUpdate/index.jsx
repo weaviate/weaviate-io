@@ -62,7 +62,7 @@ export default function PricingTiers() {
             iconClass={styles.iconTrial}
             title="Free Trial"
             priceLine={null}
-            blurb="Fully-managed Serverless Vector Database. The easiest way to get started with Weaviate."
+            blurb="Fully managed Vector Database in shared cloud. The easiest way to get started with Weaviate."
             ctaLabel="Try Free"
             ctaVariant="trial"
             ctaHref="https://console.weaviate.cloud/"
