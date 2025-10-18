@@ -102,9 +102,15 @@ For standard applications (e.g., customer support, e-commerce), 10-15% gains mig
 ### Upgrade with minimal disruption
 Some vector databases like Weaviate offer features that significantly reduce the risks associated with embedding model upgrades. These features help you avoid risks like application downtime and high parallel infrastructure costs.
 
-You can add multiple embedding versions of the same data within a single collection, allowing your old and new model embeddings to coexist. This capability allows you to test the new model's performance with live queries and compare results side-by-side with the old model’s embeddings. 
+The recommended approach is by using [collection aliases](https://docs.weaviate.io/weaviate/tutorials/vectorizer-migration#method-a-collection-aliases-migration). When connecting to the database, your application can reference an alias name instead of a specific collection directly. Once you are ready to switch to a new model, you simply update the alias to point to the new collection. This transition is instantaneous, and in case of issues, you can roll back by simply changing the alias pointer again. 
 
-Another feature is the collection alias, which functions as a pointer. When connecting to the database, your application can reference an alias name instead of a specific collection directly. Once you are ready to switch to a new model, you simply update the alias to point to the new collection. This transition is instantaneous, and in case of issues, you can roll back by simply changing the alias pointer again. 
+Another way is by [adding multiple embedding versions](https://docs.weaviate.io/weaviate/tutorials/vectorizer-migration#method-b-add-new-vector) of the same data within a single collection, allowing your old and new model embeddings to coexist. This capability allows you to test the new model's performance with live queries and compare results side-by-side with the old model’s embeddings. 
+
+:::tip Tutorial: Switching vectorizers
+
+Check out our tutorial about [switching embedding models](https://docs.weaviate.io/weaviate/tutorials/vectorizer-migration) in Weaviate.
+
+:::
 
 ## Alternate approaches
 Not every company has the infrastructure, budget, or engineering capacity to re-embed their datasets. Given the substantial costs, operational complexity, and risks associated with embedding model upgrades, several strategic approaches can help you maintain competitive performance. The following solutions don't eliminate the need for eventual upgrades, but they provide more flexibility in how and when you evolve your embedding infrastructure.
