@@ -165,11 +165,6 @@
     "photo": "leonie.jpg"
   },
   {
-    "name": "Loic Reyreaud",
-    "location": { "lat": 47.3779, "lng": 8.5427 },
-    "photo": "loic.jpg"
-  },
-  {
     "name": "Marcin Antas",
     "location": { "lat": 51.1089, "lng": 17.0395 },
     "photo": "marcin.jpg"
