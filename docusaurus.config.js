@@ -38,6 +38,46 @@ const config = {
         teamtailorApiKey: process.env.TEAMTAILOR_API_KEY
       },
     plugins: [
+
+         () => ({
+    name: 'inject-pre-google',
+    injectHtmlTags() {
+      return {
+        headTags: [
+          {
+            tagName: 'script',
+            attributes: { 'data-cookieconsent': 'ignore' },
+            innerHTML: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){ dataLayer.push(arguments); }
+              gtag('consent', 'default', {
+                ad_personalization: 'denied',
+                ad_storage: 'denied',
+                ad_user_data: 'denied',
+                analytics_storage: 'denied',
+                functionality_storage: 'denied',
+                personalization_storage: 'denied',
+                security_storage: 'granted',
+                wait_for_update: 500
+              });
+              gtag('set', 'ads_data_redaction', true);
+              gtag('set', 'url_passthrough', false);
+            `,
+          },
+          {
+            tagName: 'script',
+            attributes: {
+              id: 'Cookiebot',
+              src: 'https://consent.cookiebot.com/uc.js',
+              'data-cbid': '4397b0f9-0b32-41f5-b24a-9370be245e85',
+              'data-blockingmode': 'manual',
+              type: 'text/javascript',
+            },
+          },
+        ],
+      };
+    },
+  }),
         [
             '@docusaurus/plugin-google-gtag',
             {
@@ -131,18 +171,8 @@ const config = {
                                 src: 'https://plausible.io/js/plausible.js',
                             },
                         },
-                          // Add Cookiebot
-                        {
-                            tagName: 'script',
-                            attributes: {
-                              id: 'Cookiebot',
-                              src: 'https://consent.cookiebot.com/uc.js',
-                              'data-cbid': '4397b0f9-0b32-41f5-b24a-9370be245e85',
-                              'data-blockingmode': 'manual',
-                              type: 'text/javascript',
-                              async: true
-                            },
-                        },
+                         
+                        
                             // Add Hubspot
                         {
                             tagName: 'script',
