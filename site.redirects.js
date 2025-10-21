@@ -227,6 +227,121 @@ const siteRedirects = {
             to: '/blog/when-good-models-go-bad',
             from: '/blog/when%20good%20models%20go%20bad',
         },
+
+        // Knowledge cards to Learn Cluster URLS
+
+        {
+            to: '/learn/knowledgecards/chunking',
+            from: '/learn/data-processing/chunking',
+        },
+        {
+            to: '/learn/knowledgecards/prompt-engineering',
+            from: '/learn/generative-ai/prompt-engineering',
+        },
+        {
+            to: '/learn/knowledgecards/generative-ai',
+            from: '/learn/generative-ai',
+        },
+        {
+            to: '/learn/knowledgecards/retrieval-augmented-generation-rag',
+            from: '/learn/rag',
+        },
+        {
+            to: '/learn/knowledgecards/multimodal-rag',
+            from: '/learn/rag/multimodal-rag',
+        },
+        {
+            to: '/learn/knowledgecards/vector-database',
+            from: '/learn/vector-database',
+        },
+        {
+            to: '/learn/knowledgecards/vectorbased-index',
+            from: '/learn/vector-database/vector-indexing',
+        },
+        {
+            to: '/learn/knowledgecards/multi-tenancy',
+            from: '/learn/vector-database/multi-tenancy',
+        },
+        {
+            to: '/learn/knowledgecards/unstructured-data-objects',
+            from: '/learn/vector-database/unstructured-data',
+        },
+        {
+            to: '/learn/knowledgecards/keyword-search',
+            from: '/learn/retrieval/keyword-search',
+        },
+        {
+            to: '/learn/knowledgecards/semanticvector-search',
+            from: '/learn/retrieval/vector-search',
+        },
+        {
+            to: '/learn/knowledgecards/vectorbased-index',
+            from: '/learn/vector-database/vector-indexing',
+        },
+        {
+            to: '/learn/knowledgecards/hybrid-search',
+            from: '/learn/retrieval/hybrid-search',
+        },
+        {
+            to: '/learn/knowledgecards/bm25bm25f',
+            from: '/learn/vector-database/keyword-search/bm25',
+        },
+        {
+            to: '/learn/knowledgecards/inverted-indexes',
+            from: '/learn/vector-database/keyword-search/inverted-index',
+        },
+        {
+            to: '/learn/knowledgecards/anytoany-search',
+            from: '/learn/vector-database/vector-search/multimodal-search',
+        },
+        {
+            to: '/learn/knowledgecards/metadata-filtering',
+            from: '/learn/vector-database/vector-search/metadata-filtering',
+        },
+        {
+            to: '/learn/knowledgecards/reasoning-and-acting-react',
+            from: '/learn/agents/ReAct',
+        },
+        {
+            to: '/learn/knowledgecards/pq',
+            from: '/learn/vector-database/vector-compression/product-quantization',
+        },
+        {
+            to: '/learn/knowledgecards/quantized-embeddings',
+            from: '/learn/vector-database/vector-compression',
+        },
+        {
+            to: '/learn/knowledgecards/binary-embeddings',
+            from: '/learn/vector-database/vector-embeddings/binary-embeddings',
+        },
+        {
+            to: '/learn/knowledgecards/multivector-embeddings',
+            from: '/learn/vector-database/vector-embeddings/multi-vector-embeddings',
+        },
+        {
+            to: '/learn/knowledgecards/sparse-embeddings',
+            from: '/learn/vector-database/vector-embeddings/sparse-embeddings',
+        },
+        {
+            to: '/learn/knowledgecards/variable-dimensions',
+            from: '/learn/vector-database/vector-embeddings/matryoshka',
+        },
+        {
+            to: '/learn/knowledgecards/hnsw',
+            from: '/learn/vector-database/vector-indexing/ann/hierarchical-navigable-small-world',
+        },
+        {
+            to: '/learn/knowledgecards/embedding-model',
+            from: '/learn/models/embedding-model/',
+        },
+        {
+            to: '/learn/knowledgecards/large-language-model-llm',
+            from: '/learn/models/large-language-model',
+        },
+        {
+            to: '/learn/knowledgecards/reranking',
+            from: '/learn/models/reranking',
+        }
     ],
 };
 
