@@ -3,55 +3,60 @@
     "name": "Google Cloud Platform",
     "image": "/img/site/gcp-icon-partners.svg",
     "link": "https://docs.weaviate.io/integrations/cloud-hyperscalers/google",
-    "description": "Deploy Weaviate on the GCP Marketplace and seamlessly access models on AI Studio and Vertex AI.",
+    "description": "Launch a Weaviate cluster from the Google Cloud Platform (GCP) marketplace. Weaviate integrates with Google Gemini API and Google Vertex AI.",
     "tags": ["Cloud Hyperscalers", "Model Providers", "Module", "Popular"],
-    "overview": "Launch a Weaviate cluster from the Google Cloud Platform (GCP) marketplace. Weaviate integrates with Google Gemini API and Google Vertex AI.",
+    "company": "GCP",
+    "howItWorks": "Weaviate integrates with GCP infrastructure and services like <a href=\"https://ai.google.dev/aistudio\">Gemini API</a> and <a href=\"https://cloud.google.com/vertex-ai\">Vertex AI</a>.",
+    "setup": [
+      "Deploy Weaviate via GCP Marketplace.",
+      "Configure networking & credentials.",
+      "Connect to Vertex AI / AI Studio and test."
+    ],
     "resourcesGroups": [
       {
         "title": "Hands-on Learning",
         "items": [
           {
             "topic": "Build a multimodal application using Gemini Flash",
-            "description": "Use Weaviate and Gemini Flash to build a multimodal application.",
+            "description": "This notebook shows you how to use Weaviate and Gemini Flash to build a multimodal application.",
             "type": "Notebook",
-            "url": "https://docs.weaviate.io/...",
-            "linkLabel": "Notebook"
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/cloud-hyperscalers/google/gemini/multimodal-and-gemini-flash/NY-Roadshow-Gemini.ipynb"
           },
           {
             "topic": "BigQuery and Weaviate",
             "description": "Sync data between BigQuery and Weaviate using DSPy.",
             "type": "Notebook",
-            "url": "https://docs.weaviate.io/..."
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/cloud-hyperscalers/google/bigquery/BigQuery-Weaviate-DSPy-RAG.ipynb"
           },
           {
             "topic": "Semantic Search with Gemini Ultra",
-            "description": "Use Weaviate and Gemini Ultra for semantic search.",
+            "description": "This notebook shows you how to use Weaviate and Gemini Ultra.",
             "type": "Notebook",
-            "url": "https://docs.weaviate.io/..."
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/cloud-hyperscalers/google/gemini/gemini-ultra/gemini-ultra-weaviate.ipynb"
           },
           {
             "topic": "Weaviate Query Agent with Gemini API",
             "description": "Use the Query Agent as a tool with the Gemini API.",
             "type": "Notebook",
-            "url": "https://docs.weaviate.io/..."
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/cloud-hyperscalers/google/agents/gemini-api-query-agent.ipynb"
           },
           {
             "topic": "Weaviate Query Agent with Vertex AI",
             "description": "Use the Query Agent as a tool with Vertex AI.",
             "type": "Notebook",
-            "url": "https://docs.weaviate.io/..."
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/cloud-hyperscalers/google/agents/vertex-ai-query-agent.ipynb"
           },
           {
             "topic": "Deploy a Weaviate vector database on GKE",
-            "description": "Deploy a Weaviate vector database cluster on Google Kubernetes Engine (GKE).",
+            "description": "This tutorial shows you how to deploy a Weaviate vector database cluster on Google Kubernetes Engine (GKE).",
             "type": "Guide",
-            "url": "https://docs.weaviate.io/..."
+            "url": "https://cloud.google.com/kubernetes-engine/docs/tutorials/deploy-weaviate"
           },
           {
             "topic": "Personalized Product Descriptions with Weaviate and the Gemini API",
-            "description": "Embed data, run semantic search, call Gemini, and store the result back in Weaviate.",
+            "description": "Learn how to embed your data, run a semantic search, make a generative call to the Gemini API and store the output back in your database.",
             "type": "Notebook",
-            "url": "https://docs.weaviate.io/..."
+            "url": "https://github.com/google-gemini/cookbook/blob/main/examples/weaviate/personalized_description_with_weaviate_and_gemini_api.ipynb"
           }
         ]
       },
@@ -59,11 +64,10 @@
         "title": "Read & Listen",
         "items": [
           {
-            "topic": "Weaviate on Vertex AI RAG Engine: Building RAG Applications on Google Cloud",
-            "description": "Build RAG applications on Google Cloud using the Vertex AI RAG Engine.",
+            "title": "Weaviate on Vertex AI RAG Engine: Building RAG Applications on Google Cloud",
+            "desc": "Learn how to build RAG Applications on Google Cloud using the new RAG Engine on Vertex AI.",
             "type": "Blog",
-            "url": "https://docs.weaviate.io/...",
-            "linkLabel": "Blog"
+            "url": "https://weaviate.io/blog/google-rag-api"
           }
         ]
       }
@@ -79,9 +83,15 @@
     "name": "Amazon Web Services",
     "image": "/img/site/awsLogo.svg",
     "link": "https://docs.weaviate.io/integrations/cloud-hyperscalers/aws",
-    "description": "Deploy Weaviate on the AWS Marketplace and use the SageMaker and Bedrock API to access a variety of models.",
+    "description": "Launch a Weaviate cluster from the Amazon Web Services (AWS) marketplace. AWS supports model provider integrations through SageMaker and Bedrock.",
     "tags": ["Cloud Hyperscalers", "Model Providers", "Module", "Popular"],
-    "overview": "Launch a Weaviate cluster from the Amazon Web Services (AWS) marketplace. AWS supports model provider integrations through SageMaker and Bedrock.",
+    "company": "AWS",
+    "howItWorks": "Weaviate integrates with AWS infrastructure and services like <a href=\"https://aws.amazon.com/sagemaker/\">Amazon SageMaker</a> and <a href=\"https://aws.amazon.com/bedrock/\">Amazon Bedrock</a>.",
+    "setup": [
+      "Deploy Weaviate via AWS Marketplace.",
+      "Configure networking, IAM roles & credentials.",
+      "Connect to Bedrock and/or SageMaker and test."
+    ],
     "resourcesGroups": [
       {
         "title": "Hands-on Learning",
