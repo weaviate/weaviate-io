@@ -592,5 +592,27 @@
     "programmingLanguage": "",
     "weaviateFeatures": "",
     "featured": false
+  },
+  {
+    "name": "Contextual AI",
+    "image": "/img/site/contextual-ai.png",
+    "link": "https://docs.weaviate.io/integrations/data-platforms/contextual-ai",
+    "description": "Document processing platform, powering your data workflows with their custom AI model.",
+    "tags": ["Data Platforms"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
+  },
+  {
+    "name": "Mem0",
+    "image": "/img/site/mem0-logo.png",
+    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/mem0",
+    "description": "Document processing platform, powering your data workflows with their custom AI model.",
+    "tags": ["LLM and Agent Frameworks"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
   }
 ]
