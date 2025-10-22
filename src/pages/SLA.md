@@ -17,14 +17,22 @@ This Service Level Agreement ("**SLA**") delineates the service levels for Weavi
 ### **Normal Use**
 
 Normal Use refers to the utilization of the service within the parameters outlined in our official documentation. The specifics of these parameters, including any limitations or restrictions, are detailed in the documentation available to all customers. In instances where a customer wishes to operate outside of these parameters, arrangements can be discussed and agreed upon in writing between the parties. For further details, please refer to our documentation.
+<br></br>
 
 ### **Definitions and Calculations**
 <br></br>
 
 #### **Availability**
 
-Availability signifies that the services are functional and accessible to the Customer. The details for each parameter are as follows:
+Availability signifies that the services are functional and accessible to the Customer. 
+For subscriptions beginning November 1, 2025 or later, the details are as follows per **subscription plan**:
+<br></br>
+| Parameter | Flex | Plus | Premium |
+|-----------|----------|--------------|-------------------|
+| Availability per Quarter | 99.5% | 99.9% | 99.5% |
 
+For subscriptions beginning prior to November 1, 2025 or later, the details are as follows per **support tier**:
+<br></br>
 | Parameter | Standard | Professional | Business Critical |
 |-----------|----------|--------------|-------------------|
 | Availability per Quarter | 99.5% | 99.9% | 99.9% |
@@ -62,27 +70,27 @@ Planned maintenance windows are periods during which the availability of the ser
 
 ### **Backup Policy**
 
-Weaviate employs different backup policies for each tier:
+For subscriptions beginning November 1, 2025 or later, Weaviate employs different backup policies for each **subscription plan**:
+<br></br>
+
+- **Flex:** Daily full backup, stored in the same region for 7 days.
+- **Plus:** Daily full backup, stored in the same region for 30 days.
+- **Premium:** Daily full backup, stored in the same region for 45 days.
+
+For subscriptions beginning before November 1, 2025, Weaviate employs different backup policies for each **support tier**:
+<br></br>
 
 - **Standard Tier:** Daily full backup, stored in the same region for 7 days.
 - **Professional Tier:** Daily full backup, stored in the same region for 14 days.
 - **Business Critical Tier:** Daily full backup, stored in the same region for 30 days.
-<br></br>
-
-### **Monitoring**
-
-Weaviate offers different monitoring solutions for each tier:
-
-- **Standard Tier:** Public Status Page.
-- **Professional Tier:** Dedicated Status Page.
-- **Business Critical Tier:** Dedicated Status Page.
+  
 <br></br>
 
 ### **Service Credits**
 
 In the event that the availability of the services as described herein is not met, Customer shall have the right to claim service credits according to the table below:
 
-| Service Level Targets | Standard Tier | Professional Tier | Business Critical Tier |
+| Service Level Targets | Flex Plan / Standard Tier | Plus Plan / Professional Tier | Premium Plan / Business Critical Tier |
 |-----------------------|---------------|-------------------|------------------------|
 | 99.9% or more | No service credits | No service credits | No service credits |
 | Less than 99.9% but more than 99.5% | No service credits | 5% service credit | 5% service credit |
