@@ -143,58 +143,44 @@ export default function QueryPage() {
 
                   <div className={styles.additionalInfo}>
                     <h3>Additional Details and Pricing</h3>
-                    <table className={styles.infoTable}>
-                      <thead>
-                        <tr>
-                          <th>Free Plan</th>
-                          <th>Paid Plan</th>
-                        </tr>
-                      </thead>
 
-                      <tbody>
-                        <tr>
-                          <td className={styles.planCell}>
-                            <p className={styles.planSubhead}>
-                              Per organization
-                            </p>
-                            <ul className={styles.planList}>
-                              <li>
-                                1000 requests<sup>1</sup> / month
-                              </li>
-                            </ul>
-                          </td>
+                    <div className={styles.agentPricingContainer}>
+                      <div className={styles.agentPricingPlan}>
+                        <h4>Free Plan</h4>
+                        <p className={styles.agentPlanLabel}>Per organization</p>
+                        <p className={styles.agentPlanPrice}>
+                          <strong>1000</strong> requests<sup>1</sup> / month
+                        </p>
+                      </div>
 
-                          <td className={styles.planCell}>
-                            <p className={styles.planSubhead}>
-                              Per organization
-                            </p>
+                      <div
+                        className={`${styles.agentPricingPlan} ${styles.agentPaidPlan}`}
+                      >
+                        <h4>Paid Plan</h4>
+                        <p className={styles.agentPlanLabel}>Per organization</p>
+                        <p className={styles.agentPlanPrice}>
+                          <strong>$30</strong> / month
+                        </p>
+                        <ul>
+                          <li>4000 requests<sup>1</sup> included / month</li>
+                          <li>
+                            Additional requests: $0.0001 per model unit
+                            <sup>2</sup>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
 
-                            <ul className={styles.planList}>
-                              <li>$30 / month</li>
-                              <li>
-                                4000 requests<sup>1</sup> included / month
-                              </li>
-                              <li>
-                                Additional requests: $0.0001 per model unit
-                                <sup>2</sup>
-                              </li>
-                            </ul>
-                          </td>
-                        </tr>
-
-                        <tr>
-                          <td colSpan={2} className={styles.infoDisclaimer}>
-                            <sup>1</sup> Requests consumption by query type:
-                            <ul>
-                              <li>Ask: 4 requests per query</li>
-                              <li>Search: 1 request per query</li>
-                            </ul>
-                            <sup>2</sup> Model units consumption varies by query
-                            complexity and size of retrieved content
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                    <div className={styles.agentPricingNotes}>
+                      <p>
+                        <sup>1</sup> Requests consumption by query type: Ask (4
+                        requests/query), Search (1 request/query)
+                      </p>
+                      <p>
+                        <sup>2</sup> Model units consumption varies by query
+                        complexity and size of retrieved content
+                      </p>
+                    </div>
 
                     <p>
                       <Link to="https://events.weaviate.io/weaviate-agents-newsletter">
