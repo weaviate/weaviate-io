@@ -125,11 +125,20 @@ export const calculatePrice = (data: IData): string => {
   const product_tier_factor = productTierFactor(data)
   const accuracy_cost = calculateAccuracyCost(data)
   const object_size_cost = calculateStoragePrice(data)
-  
+
   const backup_price = calculateBackupPrice(data)
   const finalPrice = calculateFinalPrice(dimension_units, accuracy_cost, object_size_cost, backup_price, product_tier_factor)
-  const roundedPrice = Math.round(finalPrice).toLocaleString()
-  
+
+  // Apply minimum pricing based on plan
+  let adjustedPrice = finalPrice
+  if (data.plan === 'flex') {
+    adjustedPrice = Math.max(finalPrice, 45)
+  } else if (data.plan === 'plus') {
+    adjustedPrice = Math.max(finalPrice, 280)
+  }
+
+  const roundedPrice = Math.round(adjustedPrice).toLocaleString()
+
   return roundedPrice
 }
 
