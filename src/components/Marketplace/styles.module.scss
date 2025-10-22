@@ -1630,3 +1630,99 @@
     height: 19rem;
   }
 }
+
+.infoTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.infoTable th,
+.infoTable td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  font-size: 13px;
+
+  ul {
+    width: 100%;
+    margin: 10px 0px;
+  }
+  li {
+    font-size: 12px;
+    margin: 0 !important;
+  }
+}
+
+.infoTable th {
+  background-color: #f4f4f4;
+  text-align: left;
+}
+
+.infoDisclaimer {
+  font-size: 0.875rem;
+  color: #6b7c93;
+  margin-top: 10px;
+
+  ul {
+    width: 100%;
+    margin: 10px 0px;
+  }
+
+  li {
+    font-size: 0.875rem;
+    color: #6b7c93;
+    margin: 0 !important;
+  }
+}
+
+.planCell {
+  align-content: start;
+  row-gap: 8px;
+}
+
+.planSubhead {
+  margin: 0 0 10px;
+  font-weight: 600;
+  color: #0c1428;
+}
+
+.planPrice {
+  margin: 4px 0 0;
+  font-weight: 700;
+  color: #130c49;
+}
+
+.planList {
+  margin: 8px 0 0;
+  padding-left: 1.1rem;
+  display: grid;
+  row-gap: 8px;
+
+  li {
+    margin: 0;
+    line-height: 1.5;
+    font-size: 13px;
+  }
+}
+
+.infoDisclaimer {
+  padding: 16px 18px;
+  color: #6b7c93;
+
+  ul {
+    margin: 8px 0 10px;
+    padding-left: 1.1rem;
+    display: grid;
+    row-gap: 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  .additionalInfo {
+    width: 100%;
+    padding: 0;
+  }
+  .infoTable {
+    width: 100%;
+  }
+}

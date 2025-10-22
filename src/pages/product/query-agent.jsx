@@ -142,26 +142,60 @@ export default function QueryPage() {
                   </div>
 
                   <div className={styles.additionalInfo}>
-                    <h3>Query Agent is Generally Available</h3>
-                    <p>
-                      <Link to="/blog/query-agent-generally-available">
-                        <u>Read more</u>
-                      </Link>{' '}
-                      in the announcement about how the interface to databases
-                      is shifting with the introduction of agentic retrievers,
-                      domain experts that use Weaviate’s APIs with your data.
-                    </p>
-                    <p>
-                      <Link to="https://console.weaviate.cloud/">
-                        <button
-                          className={`${styles.installButton} ${styles.sideButton}`}
-                        >
-                          Try Free
-                        </button>
-                      </Link>{' '}
-                      <br></br>Available as a 14-day free Weaviate Cloud sandbox
-                      trial. No credit card required.
-                    </p>
+                    <h3>Additional Details and Pricing</h3>
+                    <table className={styles.infoTable}>
+                      <thead>
+                        <tr>
+                          <th>Free Plan</th>
+                          <th>Paid Plan</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr>
+                          <td className={styles.planCell}>
+                            <p className={styles.planSubhead}>
+                              Per organization
+                            </p>
+                            <ul className={styles.planList}>
+                              <li>
+                                1000 requests<sup>1</sup> / month
+                              </li>
+                            </ul>
+                          </td>
+
+                          <td className={styles.planCell}>
+                            <p className={styles.planSubhead}>
+                              Per organization
+                            </p>
+
+                            <ul className={styles.planList}>
+                              <li>$30 / month</li>
+                              <li>
+                                4000 requests<sup>1</sup> included / month
+                              </li>
+                              <li>
+                                Additional requests: $0.0001 per model unit
+                                <sup>2</sup>
+                              </li>
+                            </ul>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td colSpan={2} className={styles.infoDisclaimer}>
+                            <sup>1</sup> Requests consumption by query type:
+                            <ul>
+                              <li>Ask: 4 requests per query</li>
+                              <li>Search: 1 request per query</li>
+                            </ul>
+                            <sup>2</sup> Model units consumption varies by query
+                            complexity and size of retrieved content
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
                     <p>
                       <Link to="https://events.weaviate.io/weaviate-agents-newsletter">
                         <button
