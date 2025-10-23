@@ -92,7 +92,9 @@ export default function Introduction() {
                 The Context Engineering Guide
               </h1>
               <span className={styles.subTitle}>
-                The AI Leader’s Guide to Operationalizing AI
+                Master the architectural patterns for building reliable,
+                production-ready AI applications that think with real-world
+                context.
               </span>
 
               <div className={styles.signUp}>

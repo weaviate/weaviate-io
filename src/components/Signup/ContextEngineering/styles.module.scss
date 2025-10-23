@@ -87,7 +87,7 @@
   }
 
   .reportImage {
-    background: url('/img/site/context-engineering-placeholder.png');
+    background: url('/img/site/context-engineering-header.jpg');
 
     background-size: contain;
     background-position: center;
@@ -365,10 +365,8 @@
 
 .typeQuote .image {
   width: 5rem;
-  height: 5rem; /* Smaller starting quote image size */
+  height: 5rem;
 }
-
-/* Increase Font and Image Size as Screen Size Decreases */
 
 @media screen and (max-width: 1100px) {
   .demoSideA h1,
