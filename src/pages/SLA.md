@@ -27,12 +27,14 @@ Normal Use refers to the utilization of the service within the parameters outlin
 Availability signifies that the services are functional and accessible to the Customer. 
 For subscriptions beginning October 27, 2025 or later, the details are as follows per **subscription plan**:
 <br></br>
+
 | Parameter | Flex | Plus | Premium |
 |-----------|----------|--------------|-------------------|
 | Availability per Quarter | 99.5% | 99.9% | 99.5% |
 
 For subscriptions beginning prior to October 27, 2025, the details are as follows per **support tier**:
 <br></br>
+
 | Parameter | Standard | Professional | Business Critical |
 |-----------|----------|--------------|-------------------|
 | Availability per Quarter | 99.5% | 99.9% | 99.9% |
@@ -51,6 +53,7 @@ The performance of the services is measured in regular intervals with the servic
 <br></br>
 
 #### **SLI Tests**
+<br></br>
 
 | Test # | SLI Test | How to test | Expected Result | Test interval |
 |--------|----------|-------------|-----------------|---------------|
@@ -89,6 +92,7 @@ For subscriptions beginning before October 27, 2025, Weaviate employs the follow
 ### **Service Credits**
 
 In the event that the availability of the services as described herein is not met, Customer shall have the right to claim service credits according to the table below:
+<br></br>
 
 | Service Level Targets | Flex Plan / Standard Tier | Plus Plan / Professional Tier | Premium Plan / Business Critical Tier |
 |-----------------------|---------------|-------------------|------------------------|
