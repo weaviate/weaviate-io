@@ -485,7 +485,7 @@ export default function CompareTable() {
         },
       },
       {
-        label: 'Persistent Storage',
+        label: 'Storage',
         values: {
           free: 'Free',
           flex: (
@@ -512,7 +512,7 @@ export default function CompareTable() {
         },
       },
       {
-        label: 'Backup Storage',
+        label: 'Backup',
         values: {
           free: 'Free',
           flex: (

@@ -25,13 +25,13 @@ Normal Use refers to the utilization of the service within the parameters outlin
 #### **Availability**
 
 Availability signifies that the services are functional and accessible to the Customer. 
-For subscriptions beginning November 1, 2025 or later, the details are as follows per **subscription plan**:
+For subscriptions beginning October 27, 2025 or later, the details are as follows per **subscription plan**:
 <br></br>
 | Parameter | Flex | Plus | Premium |
 |-----------|----------|--------------|-------------------|
 | Availability per Quarter | 99.5% | 99.9% | 99.5% |
 
-For subscriptions beginning prior to November 1, 2025 or later, the details are as follows per **support tier**:
+For subscriptions beginning prior to October 27, 2025, the details are as follows per **support tier**:
 <br></br>
 | Parameter | Standard | Professional | Business Critical |
 |-----------|----------|--------------|-------------------|
@@ -70,14 +70,14 @@ Planned maintenance windows are periods during which the availability of the ser
 
 ### **Backup Policy**
 
-For subscriptions beginning November 1, 2025 or later, Weaviate employs different backup policies for each **subscription plan**:
+For subscriptions beginning October 27, 2025 or later, Weaviate employs the following backup policies for each  **subscription plan**:
 <br></br>
 
 - **Flex:** Daily full backup, stored in the same region for 7 days.
 - **Plus:** Daily full backup, stored in the same region for 30 days.
 - **Premium:** Daily full backup, stored in the same region for 45 days.
 
-For subscriptions beginning before November 1, 2025, Weaviate employs different backup policies for each **support tier**:
+For subscriptions beginning before October 27, 2025, Weaviate employs the following backup policies for each **support tier**:
 <br></br>
 
 - **Standard Tier:** Daily full backup, stored in the same region for 7 days.
