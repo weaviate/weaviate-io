@@ -142,26 +142,46 @@ export default function QueryPage() {
                   </div>
 
                   <div className={styles.additionalInfo}>
-                    <h3>Query Agent is Generally Available</h3>
-                    <p>
-                      <Link to="/blog/query-agent-generally-available">
-                        <u>Read more</u>
-                      </Link>{' '}
-                      in the announcement about how the interface to databases
-                      is shifting with the introduction of agentic retrievers,
-                      domain experts that use Weaviate’s APIs with your data.
-                    </p>
-                    <p>
-                      <Link to="https://console.weaviate.cloud/">
-                        <button
-                          className={`${styles.installButton} ${styles.sideButton}`}
-                        >
-                          Try Free
-                        </button>
-                      </Link>{' '}
-                      <br></br>Available as a 14-day free Weaviate Cloud sandbox
-                      trial. No credit card required.
-                    </p>
+                    <h3>Additional Details and Pricing</h3>
+
+                    <div className={styles.agentPricingContainer}>
+                      <div className={styles.agentPricingPlan}>
+                        <h4>Free Plan</h4>
+                        <p className={styles.agentPlanLabel}>Per organization</p>
+                        <p className={styles.agentPlanPrice}>
+                          <strong>1000</strong> requests<sup>1</sup> / month
+                        </p>
+                      </div>
+
+                      <div
+                        className={`${styles.agentPricingPlan} ${styles.agentPaidPlan}`}
+                      >
+                        <h4>Paid Plan</h4>
+                        <p className={styles.agentPlanLabel}>Per organization</p>
+                        <p className={styles.agentPlanPrice}>
+                          <strong>$30</strong> / month
+                        </p>
+                        <ul>
+                          <li>4000 requests<sup>1</sup> included / month</li>
+                          <li>
+                            Additional requests: $0.0001 per model unit
+                            <sup>2</sup>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div className={styles.agentPricingNotes}>
+                      <p>
+                        <sup>1</sup> Requests consumption by query type: Ask (4
+                        requests/query), Search (1 request/query)
+                      </p>
+                      <p>
+                        <sup>2</sup> Model units consumption varies by query
+                        complexity and size of retrieved content
+                      </p>
+                    </div>
+
                     <p>
                       <Link to="https://events.weaviate.io/weaviate-agents-newsletter">
                         <button
