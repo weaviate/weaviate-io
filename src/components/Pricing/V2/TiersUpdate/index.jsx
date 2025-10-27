@@ -146,7 +146,7 @@ export default function PricingTiers() {
             blurb="For teams scaling AI in production who need predictable pricing, enterprise security, and enhanced reliability."
             ctaLabel="Contact Sales"
             ctaVariant="plus"
-            ctaHref="https://www.weaviate.io/contact"
+            ctaHref="#contact-sales"
             features={[
               <>
                 <strong>Prepaid contract</strong> with predictable spend.
@@ -187,7 +187,7 @@ export default function PricingTiers() {
             blurb="For teams running mission-critical workloads that require dedicated infra, advanced compliance, and white-glove support."
             ctaLabel="Contact Sales"
             ctaVariant="premium"
-            ctaHref="https://www.weaviate.io/contact"
+            ctaHref="#contact-sales"
             features={[
               <>
                 <strong>Prepaid contract</strong> with predictable spend.
@@ -244,7 +244,7 @@ export default function PricingTiers() {
             </li>
           </ul>
 
-          <Link className={styles.byocBtn} to="https://www.weaviate.io/contact">
+          <Link className={styles.byocBtn} to="#contact-sales">
             Contact Sales
           </Link>
         </div>
