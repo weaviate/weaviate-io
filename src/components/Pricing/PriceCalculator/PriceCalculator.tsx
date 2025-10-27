@@ -34,7 +34,7 @@ export const PriceCalculator = () => {
         <Plans data={data} updateValue={updateValue} />
 
         <div className="deploymentType" onClick={onClick}>
-          Deployment type (temporary ui): 
+          Deployment type : 
           <strong className={`${data.deploymentType === 'shared' ? 'active' : ''}`}>Shared</strong> 
           | 
           <strong className={`${data.deploymentType === 'dedicated' ? 'active' : ''} ${data.plan === 'flex' ? 'disabled' : ''}`}>Dedicated</strong>
