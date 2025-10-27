@@ -571,12 +571,45 @@
     "weaviateFeatures": "",
     "featured": false
   },
-    {
+  {
     "name": "Replicated",
     "image": "/img/site/replicated-logo.png",
     "link": "https://docs.weaviate.io/integrations/compute-infrastructure/replicated",
     "description": "Replicated enables vendors to deliver and manage Kubernetes apps in secure environments.",
     "tags": ["Compute Infrastructure"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
+  },
+  {
+    "name": "Cardinal",
+    "image": "/img/site/cardinal-logo.png",
+    "link": "https://docs.weaviate.io/integrations/data-platforms/cardinal",
+    "description": "Document processing platform, powering your data workflows with their custom AI model.",
+    "tags": ["Data Platforms"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
+  },
+  {
+    "name": "Contextual AI",
+    "image": "/img/site/contextual-ai.png",
+    "link": "https://docs.weaviate.io/integrations/data-platforms/contextual-ai",
+    "description": "Document processing platform, powering your data workflows with their custom AI model.",
+    "tags": ["Data Platforms"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
+  },
+  {
+    "name": "Mem0",
+    "image": "/img/site/mem0-logo.png",
+    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/mem0",
+    "description": "Document processing platform, powering your data workflows with their custom AI model.",
+    "tags": ["LLM and Agent Frameworks"],
     "maintainedBy": "External",
     "programmingLanguage": "",
     "weaviateFeatures": "",

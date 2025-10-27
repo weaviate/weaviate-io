@@ -95,13 +95,6 @@
     "team": "weaviate-labs"
   },
   {
-    "name": "Austin Freels",
-    "title": "Director of Customer Success Engineering",
-    "photo": "Austin.jpg",
-    "linkedin": "austin-freels",
-    "team": "solution-engineering"
-  },
-  {
     "name": "Bob van Luijt",
     "title": "Co-founder and CEO",
     "photo": "bob.jpg",
@@ -401,13 +394,6 @@
     "team": "solution-engineering"
   },
   {
-    "name": "Jeremy Price",
-    "title": "Core Engineer",
-    "photo": "jeremy.jpg",
-    "github": "donomii",
-    "team": "database"
-  },
-  {
     "name": "Jerónimo Irazábal",
     "title": "Software Engineer",
     "photo": "Jeronimo.jpg",
@@ -475,14 +461,6 @@
     "team": "developer-growth"
   },
   {
-    "name": "Kaviraj Kanagaraj",
-    "title": "Senior Software Engineer",
-    "photo": "Kaviraj.jpg",
-    "team": "database",
-    "linkedin": "kavirajkanagaraj",
-    "twitter": "kvrajk"
-  },
-  {
     "name": "Laura Stoye",
     "title": "Executive Operations Manager",
     "photo": "laura.jpg",
@@ -495,13 +473,6 @@
     "photo": "leonie.jpg",
     "linkedin": "804250ab",
     "team": "developer-growth"
-  },
-  {
-    "name": "Loic Reyreaud",
-    "title": "Software Engineer",
-    "photo": "loic.jpg",
-    "linkedin": "loic-reyreaud",
-    "team": "database"
   },
   {
     "name": "Madison Sanders",

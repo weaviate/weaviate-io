@@ -47,7 +47,7 @@ export default function List() {
             <p className={styles.textCardContent}>
               Get guided courses on various topics.
             </p>
-            <Link to="https://docs.weaviate.io/academy">Learn More</Link>
+            <Link to="https://academy.weaviate.io/">Learn More</Link>
           </div>
         </div>
       </div>

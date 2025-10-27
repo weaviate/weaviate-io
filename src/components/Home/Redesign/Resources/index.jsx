@@ -26,7 +26,7 @@ export default function Resources() {
               <p>Concepts, releases, research, how-tos, and more.</p>
             </div>
           </Link>
-          <Link to="https://docs.weaviate.io/academy">
+          <Link to="https://academy.weaviate.io/">
             <div className={styles.resourceBox}>
               <div
                 className={`${styles.resourceIcon} ${styles.resource2}`}

@@ -32,12 +32,14 @@ export default function Projects() {
                 </span>
                 <h3>{project.title}</h3>
                 <span>{project.description}</span>
-                <Link
-                  to={project.demoLink}
-                  className={`${styles.top} ${styles.cardButton} `}
-                >
-                  <span className={styles.play}></span> Start Demo
-                </Link>
+                {project.demoLink && (
+                  <Link
+                    to={project.demoLink}
+                    className={`${styles.top} ${styles.cardButton} `}
+                  >
+                    <span className={styles.play}></span> Start Demo
+                  </Link>
+                )}
               </div>
               <div className={styles.contentDiv}>
                 <div className={`${styles.bigText} ${styles.textCardContent}`}>
