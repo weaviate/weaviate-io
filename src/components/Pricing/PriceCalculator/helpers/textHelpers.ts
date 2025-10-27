@@ -14,16 +14,16 @@ export const addCommas = (text: string) => {
 export const addNumSize = (text: string) => {
   const num = parseInt(text)
   if (isNaN(num)) return text
-  
+
   if (num >= 1000000) {
-    const millions = Math.round(num / 1000000)
-    return `${millions}MiB`
+    const mb = num / 1000000
+    return `${mb} MB`
   }
-  
-  if (num >= 1000) {
-    const thousands = Math.round(num / 1000)
-    return `${thousands}KiB`
+
+  if (num >= 1024) {
+    const kb = num / 1024
+    return `${kb}k`
   }
-  
-  return text
+
+  return `${num} Bytes`
 }
