@@ -20,7 +20,7 @@ export const PriceReview = (props: IPriceReviewProps) => {
   if (props.data.plan === 'premium') {
     return (
       <div className="priceReview premium">
-        <h1>For premium xyz, please get in touch for a personalised rate.</h1>
+        <h1>For premium plans, please get in touch for a personalised rate.</h1>
         <motion.button {...motionProps}>
           <span>Contact sales</span>
         </motion.button>

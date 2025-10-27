@@ -43,7 +43,7 @@ export default function ProductPage() {
           // Render Serverless content
           <>
             <PricingTiers />
-            <div className="container">
+            <div className="container" id="calculator">
               <PriceCalculator />
             </div>
 
