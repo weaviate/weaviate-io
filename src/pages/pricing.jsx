@@ -14,6 +14,9 @@ import HybridBusinessCritical from '../components/Pricing/V2/HybridBusinessCriti
 import ThemeSwitch from '/src/components/ThemeSwitch';
 import SecurityCompliance from '../components/Pricing/V2/SOC2/soc2';
 import CustomScriptLoader from '../components/scriptSwitch/index.jsx';
+import { PriceCalculator } from '../components/Pricing/PriceCalculator/PriceCalculator';
+
+
 
 export default function ProductPage() {
   const [selectedType, setSelectedType] = useState('serverless');
@@ -41,6 +44,10 @@ export default function ProductPage() {
           // Render Serverless content
           <>
             <PricingTiers />
+            <div className="container" id="calculator">
+              <PriceCalculator />
+            </div>
+
             <CompareTable />
             <Availability />
             <AddOnsSection />
