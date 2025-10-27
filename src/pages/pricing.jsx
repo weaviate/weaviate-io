@@ -38,6 +38,7 @@ export default function ProductPage() {
         title="Vector Database Pricing"
         description="Compare pricing options for our different levels of vector database services and solutions."
       >
+        <PricingHeader />
 
         {selectedType === 'serverless' ? (
           // Render Serverless content
