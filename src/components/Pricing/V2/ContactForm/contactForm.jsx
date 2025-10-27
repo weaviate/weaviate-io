@@ -25,7 +25,7 @@ export default function ContactForm() {
   }, []);
 
   return (
-    <div className={styles.contactBackground} id="contact-us">
+    <div className={styles.contactBackground} id="contact-sales">
       <div className="container">
         {/* Main contact area */}
         <div className={styles.contactSplit}>
