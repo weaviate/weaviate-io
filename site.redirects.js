@@ -173,11 +173,11 @@ const siteRedirects = {
             from: '/services',
         },
         {
-            to: '/deployment/serverless',
+            to: '/deployment/shared',
             from: '/services/serverless',
         },
         {
-            to: '/deployment/enterprise-cloud',
+            to: '/deployment/dedicated',
             from: '/services/enterprise-cloud',
         },
         {
