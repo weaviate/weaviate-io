@@ -222,11 +222,17 @@ const siteRedirects = {
             to: '/',
             from: '/community/build-with-weaviate',
         },
-        // Blog Update
+          // // Enterprise Cloud > Dedicated Cloud
         {
-            to: '/blog/when-good-models-go-bad',
-            from: '/blog/when%20good%20models%20go%20bad',
+            to: '/deployment/dedicated',
+            from: '/deployment/enterprise-cloud',
         },
+           // // Serverless Cloud > Shared Cloud
+        {
+            to: '/deployment/shared',
+            from: '/deployment/serverless',
+        },
+
     ],
 };
 

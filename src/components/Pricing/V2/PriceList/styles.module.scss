@@ -1,0 +1,175 @@
+.section {
+  background: #ecf4f8;
+}
+
+.priceBox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
+  border-radius: 0.9375rem;
+  background: #130c49;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+  width: auto;
+  max-width: 76.8125rem;
+  height: 21.5rem;
+  height: 100%;
+
+  padding: 10px;
+  flex-shrink: 0;
+  align-content: center;
+  color: #130c49;
+
+  h3 {
+    color: #61bd73;
+
+    font-size: 1.625rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  p {
+    width: 92%;
+    color: #fff;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 1.575rem */
+  }
+  @media screen and (max-width: 1000px) {
+    margin-top: 1rem;
+  }
+
+  @media screen and (max-width: 800px) {
+    margin-top: 1rem;
+    .supportbox,
+    .title,
+    .features li {
+      font-size: smaller;
+      padding: smaller;
+    }
+    .features li {
+      flex-basis: auto;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    margin: 40px 0px;
+  }
+
+  .features {
+    font-size: 15px;
+    padding: 1rem;
+    flex: 1;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .supportLink {
+      display: flex;
+      margin: 10px 10px;
+      border-radius: 0.3125rem;
+      background: #fff;
+      width: 17.44125rem;
+      height: 2.625rem;
+      color: #130c49;
+      align-items: center;
+      justify-content: center;
+
+      @media screen and (max-width: 640px) {
+        padding: 0.5rem 2rem;
+        width: 100%;
+      }
+    }
+
+    li {
+      list-style: none;
+      display: flex;
+      gap: 10px;
+      padding: 6px 0px;
+      color: #ffffff;
+
+      font-size: 0.9375rem;
+
+      span {
+        color: #130c49;
+      }
+
+      svg {
+        // opacity: 0.5;
+        path {
+          fill: #00b800;
+        }
+      }
+      a {
+        text-decoration: none;
+        color: var(--ifm-heading-color);
+      }
+    }
+  }
+
+  .title {
+    display: flex;
+    padding: 1rem 2rem;
+    flex: 1 10%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 1.5625rem;
+
+    .supportTitle {
+      background-color: #f5f5f5;
+    }
+
+    @media screen and (max-width: 640px) {
+      flex: 1;
+      width: 100%;
+    }
+
+    h3 {
+      color: #61bd73;
+
+      font-size: 1.625rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+  }
+
+  .titleBox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .pricingIcon {
+    background-image: url('/img/site/serverless-pricing-icon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-y: center;
+    width: 2.49994rem;
+    height: 2.52913rem;
+    flex-shrink: 0;
+    margin: 15px 0px;
+  }
+}
+
+.underline {
+  color: #fff;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  text-decoration-line: underline;
+}
