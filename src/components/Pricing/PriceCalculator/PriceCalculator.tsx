@@ -22,9 +22,16 @@ export const PriceCalculator = () => {
     updateData({ ...data, [n]: v, deploymentType: deploymentType(n, v), })
   }
 
-  const onClick = () => {
-    const deploymentType: TDeploymentType = data.deploymentType === 'dedicated' ? 'shared' : 'dedicated'
-    updateValue("deploymentType", deploymentType)
+  const onSharedClick = () => {
+    if (data.deploymentType !== 'shared') {
+      updateValue("deploymentType", 'shared')
+    }
+  }
+
+  const onDedicatedClick = () => {
+    if (data.plan !== 'flex' && data.deploymentType !== 'dedicated') {
+      updateValue("deploymentType", 'dedicated')
+    }
   }
 
   return (
@@ -33,11 +40,21 @@ export const PriceCalculator = () => {
         <h1>Estimate costs with Pricing Calculator</h1>
         <Plans data={data} updateValue={updateValue} />
 
-        <div className="deploymentType" onClick={onClick}>
-          Deployment type (temporary ui): 
-          <strong className={`${data.deploymentType === 'shared' ? 'active' : ''}`}>Shared</strong> 
-          | 
-          <strong className={`${data.deploymentType === 'dedicated' ? 'active' : ''} ${data.plan === 'flex' ? 'disabled' : ''}`}>Dedicated</strong>
+        <div className="deploymentType">
+          Deployment type:
+          <strong
+            className={`${data.deploymentType === 'shared' ? 'active' : ''}`}
+            onClick={onSharedClick}
+          >
+            Shared
+          </strong>
+          |
+          <strong
+            className={`${data.deploymentType === 'dedicated' ? 'active' : ''} ${data.plan === 'flex' ? 'disabled' : ''}`}
+            onClick={onDedicatedClick}
+          >
+            Dedicated
+          </strong>
         </div>
 
         
