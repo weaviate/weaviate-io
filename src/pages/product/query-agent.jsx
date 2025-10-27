@@ -5,6 +5,40 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 import appData from '/data/apps.json';
 import styles from '/src/components/Marketplace/styles.module.scss';
 import AppCard from '/src/components/Marketplace/card';
+import { useEffect } from 'react';
+
+function GuideflowEmbed({ iframeId = 'dr973w8bnp' }) {
+  React.useEffect(() => {
+    const existing = document.querySelector(
+      'script[src="https://app.guideflow.com/assets/opt.js"]'
+    );
+    if (!existing) {
+      const s = document.createElement('script');
+      s.src = 'https://app.guideflow.com/assets/opt.js';
+      s.async = true;
+      s.setAttribute('data-cookieconsent', 'ignore');
+      s.setAttribute('data-iframe-id', iframeId);
+      document.body.appendChild(s);
+    } else {
+      if (!existing.getAttribute('data-iframe-id')) {
+        existing.setAttribute('data-iframe-id', iframeId);
+      }
+      window.dispatchEvent(new Event('guideflow:check'));
+    }
+  }, [iframeId]);
+
+  return (
+    <div className={styles.guideflowHero}>
+      <iframe
+        id={iframeId}
+        src={`https://app.guideflow.com/embed/${iframeId}`}
+        title="Guideflow"
+        allow="clipboard-read; clipboard-write"
+        allowFullScreen
+      />
+    </div>
+  );
+}
 
 export default function QueryPage() {
   const app = appData.find((app) => app.name === 'Query Agent');
@@ -14,7 +48,7 @@ export default function QueryPage() {
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Query Agent | Weaviate Workbench"
+        title="Query Agent | Weaviate Agents"
         description="Query your data in Weaviate using simple human language."
       >
         <MetaSEO />
@@ -44,13 +78,13 @@ export default function QueryPage() {
                     {app.released === 'yes' ? (
                       <Link to="https://console.weaviate.cloud/">
                         <button className={styles.installButton}>
-                          Open in Weaviate Cloud
+                          Try Free
                         </button>
                       </Link>
                     ) : (
                       <Link to="https://docs.weaviate.io/agents/query/usage">
                         <button className={styles.installButton}>
-                          Open in Weaviate Cloud
+                          Try Free
                         </button>
                       </Link>
                     )}
@@ -61,13 +95,9 @@ export default function QueryPage() {
                     </Link>
                   </div>
                 </div>
-                <div className={styles.imageContainer}>
-                  <div className={styles.overviewImage}>
-                    <img
-                      src={'/img/site/' + app.overviewImage1}
-                      alt={app.name}
-                    />
-                  </div>
+
+                <div className={styles.mediaSlot}>
+                  <GuideflowEmbed iframeId="dr973w8bnp" />
                 </div>
               </div>
 
@@ -77,41 +107,92 @@ export default function QueryPage() {
                     <h3>Overview</h3>
 
                     <p>
-                      Weaviate’s <strong>Query Agent</strong> allows users to
-                      query any Weaviate collection that you give it access to.
-                      Developers within your organization can configure a Query
-                      Agent with the data collections it has access to, as well
-                      as the search and aggregations needed to answer any given
-                      query. All the end-user has to do is ask a question, and
-                      the Query Agent will take care of the rest.
+                      Weaviate’s <strong>Query Agent</strong> is a
+                      Weaviate-native data agent that turns natural-language
+                      questions into precise database operations, making full
+                      use of dynamic filters, cross-collection routing, query
+                      optimization, and aggregations. It returns accurate and
+                      relevant results with source citations.
+                    </p>
+                    <p>
+                      It replaces manual query construction and ad-hoc logic
+                      with runtime, context-aware planning that optimizes and
+                      executes queries across user collections. It supports two
+                      modes:
                     </p>
                     <ul>
                       <li>
-                        <strong>Spend less time on syntax:</strong> Ask
-                        questions of your data using natural language, and let
-                        Weaviate handle the rest.
+                        <strong>Ask mode:</strong> for developers building
+                        agentic applications that require conversational
+                        interactions and answers backed by data stored in
+                        Weaviate.
                       </li>
                       <li>
-                        <strong>Deliver better results with less work:</strong>{' '}
-                        Serve accurate, contextual results to user queries
-                        without the hassle of building custom pipelines.
-                      </li>
-                      <li>
-                        <strong>Get insights faster:</strong> Identify risks,
-                        opportunities, and threats in your data more easily.
+                        <strong>Search mode:</strong> for developers who need
+                        out of the box, high quality information retrieval with
+                        strong recall and controlled precision.
                       </li>
                     </ul>
+                    <p>
+                      The Query Agent can be accessed through Python and
+                      TypeScript client SDKs to integrate retrieval directly
+                      into applications, or via the Weaviate Cloud Console for
+                      fast exploration, validation, and experimentation.
+                    </p>
                   </div>
 
                   <div className={styles.additionalInfo}>
-                    <h3>Additional details</h3>
+                    <h3>Additional Details and Pricing</h3>
+
+                    <div className={styles.agentPricingContainer}>
+                      <div className={styles.agentPricingPlan}>
+                        <h4>Free Plan</h4>
+                        <p className={styles.agentPlanLabel}>Per organization</p>
+                        <p className={styles.agentPlanPrice}>
+                          <strong>1000</strong> requests<sup>1</sup> / month
+                        </p>
+                      </div>
+
+                      <div
+                        className={`${styles.agentPricingPlan} ${styles.agentPaidPlan}`}
+                      >
+                        <h4>Paid Plan</h4>
+                        <p className={styles.agentPlanLabel}>Per organization</p>
+                        <p className={styles.agentPlanPrice}>
+                          <strong>$30</strong> / month
+                        </p>
+                        <ul>
+                          <li>4000 requests<sup>1</sup> included / month</li>
+                          <li>
+                            Additional requests: $0.0001 per model unit
+                            <sup>2</sup>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div className={styles.agentPricingNotes}>
+                      <p>
+                        <sup>1</sup> Requests consumption by query type: Ask (4
+                        requests/query), Search (1 request/query)
+                      </p>
+                      <p>
+                        <sup>2</sup> Model units consumption varies by query
+                        complexity and size of retrieved content
+                      </p>
+                    </div>
+
                     <p>
-                      Availability:{' '}
-                      <Link to="https://docs.weaviate.io/agents/query/usage">
-                        <strong>
-                          <u>Open in Weaviate Cloud</u>
-                        </strong>
-                      </Link>
+                      <Link to="https://events.weaviate.io/weaviate-agents-newsletter">
+                        <button
+                          className={`${styles.installButton} ${styles.sideButton}`}
+                        >
+                          Subscribe to Weaviate Agents newsletter
+                        </button>
+                      </Link>{' '}
+                      <br></br>Stay up to date with the latest news, product
+                      updates, and best practices for the Query Agent and other
+                      Weaviate Agents.
                     </p>
                   </div>
                 </div>

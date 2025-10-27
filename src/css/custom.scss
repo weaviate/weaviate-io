@@ -283,6 +283,11 @@
   flex: 0 0 auto;
   gap: 20px;
   justify-content: flex-start;
+  transition: all 0.3s ease;
+
+  @media screen and (max-width: 1340px) {
+    gap: 15px;
+  }
 
   @media screen and (max-width: 1223px) {
     gap: 8px;
@@ -290,7 +295,7 @@
 
   @media only screen and (min-device-width: 1040px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
     flex: 0 0 auto;
-    gap: 21px;
+    gap: 20px;
     justify-content: flex-start;
   }
 
@@ -483,6 +488,63 @@
   }
 }
 
+.custom-page .loginCTA {
+  margin: 0px 0px 0px 0px;
+  background: #ededed;
+  color: #130c49;
+  gap: 4px;
+  align-items: center;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  width: 8rem;
+  height: 3.125rem;
+  transition: all 0.3s ease;
+  border-radius: 0.3125rem;
+  font-weight: 600;
+
+  &:hover {
+    color: #130c49 !important;
+
+    i.fa-regular.fa-user.iconHide {
+      color: #130c49 !important;
+    }
+  }
+
+  & i:hover {
+    color: #130c49 !important;
+  }
+
+  @media screen and (max-width: 1300px) {
+    margin: 0px;
+    width: unset;
+  }
+
+  @media screen and (max-width: 996px) {
+    display: none;
+  }
+
+  @media screen and (max-width: 990px) {
+    margin: 0px;
+    width: unset;
+    height: unset;
+    color: var(--ifm-menu-color);
+    flex: 1;
+    line-height: 1.25;
+    padding: var(--ifm-menu-link-padding-vertical)
+      var(--ifm-menu-link-padding-horizontal);
+    display: block;
+    border: unset;
+    background-color: unset;
+    font-weight: 400;
+
+    &:hover {
+      background: var(--ifm-menu-color-background-hover);
+      color: var(--ifm-menu-color) !important;
+    }
+  }
+}
+
 .custom-page .loginButton {
   margin: 0px 0px 0px 0px;
 
@@ -528,6 +590,60 @@
     &:hover {
       background: var(--ifm-menu-color-background-hover);
       color: var(--ifm-menu-color) !important;
+    }
+  }
+}
+
+.loginCTA {
+  border-radius: 0.3125rem;
+  border: 1px solid #1c1468;
+  margin: 0px 0px 0px 0px;
+  background: #ededed;
+  color: #130c49;
+  gap: 4px;
+  align-items: center;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  width: 8rem;
+  height: 2.625rem;
+  transition: all 0.3s ease;
+  border-radius: 0.3125rem;
+  font-weight: 600;
+
+  &:hover {
+    color: #130c49 !important;
+  }
+
+  & i:hover {
+    color: #130c49 !important;
+  }
+
+  @media screen and (max-width: 1250px) {
+    margin: 0px;
+    margin-right: 10px;
+    width: unset;
+  }
+
+  @media screen and (max-width: 1150px) {
+    display: block;
+    border: unset;
+    background-color: unset;
+    color: #2b3854;
+    font-weight: 500;
+    margin: 0px;
+    &:hover,
+    i:hover {
+      color: #00c342 !important;
+    }
+  }
+
+  @media screen and (max-width: 996px) {
+    display: none;
+    color: #606770;
+    height: 2rem;
+    &:hover {
+      color: #606770 !important;
     }
   }
 }
@@ -611,7 +727,8 @@
 }
 
 a.menu__link.tryNow,
-a.menu__link.loginButton {
+a.menu__link.loginButton,
+a.menu__link.loginCTA {
   @media screen and (max-width: 1150px) {
     display: block;
   }
@@ -1358,7 +1475,15 @@ ul.dropdown__menu {
 
 a.navbar__item.navbar__link:hover {
   i {
-    color: #00a142 !important;
+    color: #130c49 !important;
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  a.navbar__item.navbar__link:hover {
+    i {
+      color: #00c342 !important;
+    }
   }
 }
 
