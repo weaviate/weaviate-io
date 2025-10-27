@@ -232,6 +232,11 @@ const siteRedirects = {
             to: '/deployment/shared',
             from: '/deployment/serverless',
         },
+          // Blog Update
+        {
+            to: '/blog/when-good-models-go-bad',
+            from: '/blog/when%20good%20models%20go%20bad',
+        }
 
     ],
 };
