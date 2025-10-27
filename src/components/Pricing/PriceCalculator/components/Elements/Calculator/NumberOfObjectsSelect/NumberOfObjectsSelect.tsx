@@ -19,7 +19,7 @@ export const NumberOfObjectsSelect = (props: INumberOfObjectsSelectProps) => {
   )
 
   const levels: IData['numOfObjects'][] = [
-    '1000', '10000', '100000', '1000000', '10000000'
+    '1000', '10000', '100000', '1000000', '10000000', '50000000'
   ]
   
   const items = levels.map(
