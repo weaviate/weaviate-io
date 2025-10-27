@@ -129,12 +129,18 @@ export const calculatePrice = (data: IData): string => {
   const backup_price = calculateBackupPrice(data)
   const finalPrice = calculateFinalPrice(dimension_units, accuracy_cost, object_size_cost, backup_price, product_tier_factor)
 
-  // Apply minimum pricing based on plan
+  // Apply minimum pricing based on plan and deployment type (all HA)
   let adjustedPrice = finalPrice
   if (data.plan === 'flex') {
+    // Flex is always shared Low tier
     adjustedPrice = Math.max(finalPrice, 45)
   } else if (data.plan === 'plus') {
-    adjustedPrice = Math.max(finalPrice, 280)
+    // Plus is High tier, can be shared or dedicated
+    if (data.deploymentType === 'shared') {
+      adjustedPrice = Math.max(finalPrice, 280)
+    } else if (data.deploymentType === 'dedicated') {
+      adjustedPrice = Math.max(finalPrice, 1900)
+    }
   }
 
   const roundedPrice = Math.round(adjustedPrice).toLocaleString()
