@@ -13,7 +13,7 @@ export interface IData {
 export const starterState: IData = {
   plan: 'flex',
   numOfObjects: "100000",
-  objectSize: "1000",
+  objectSize: "1024",
   vectorDimensions: "512",
   accuracyToCost: "2",
   deploymentType: 'shared'

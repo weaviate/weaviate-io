@@ -27,7 +27,13 @@ export const Price = (props: IPriceProps) => {
   }
 
   // If the number is too large, we need to resize the font to fit it's container.
-  const className = `priceContainer ${price.length > 5 ? 'large' : ''}`
+  const priceClass = () => {
+    if (price.length > 7) return 'largest'
+    if (price.length > 6) return 'larger'
+    if (price.length > 5) return 'large'
+    return ''
+  }
+  const className = `priceContainer ${priceClass()}`
 
   return (
     <div className={`price `}>

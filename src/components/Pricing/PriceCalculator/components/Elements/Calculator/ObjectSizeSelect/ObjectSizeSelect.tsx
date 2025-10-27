@@ -18,7 +18,7 @@ export const ObjectSizeSelect = (props: IObjectSizeSelectSelect) => {
       {addNumSize(props.data.objectSize)}
     </SelectTarget>
   )
-  const levels: IData['objectSize'][] = ["1000", "10000", "100000", "1000000"]
+  const levels: IData['objectSize'][] = ["512", "1024", "4096", "8192", "1000000", "4000000", "8000000"]
   const items = levels.map(
     level => {
       const onClick = () => {
