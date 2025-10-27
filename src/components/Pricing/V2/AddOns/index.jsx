@@ -79,7 +79,7 @@ export default function AddOnsSection() {
                 unit: '/ 1M tokens',
               },
             ]}
-            cta={{ href: '/embeddings', label: 'Learn more' }}
+            cta={{ href: '/product', label: 'Learn more' }}
           />
 
           <AddonCard
@@ -102,7 +102,7 @@ export default function AddOnsSection() {
                 pricing
               </>,
             ]}
-            cta={{ href: '/agents', label: 'Learn more' }}
+            cta={{ href: '/product#weaviate-agents', label: 'Learn more' }}
           />
 
           <AddonCard
@@ -115,7 +115,7 @@ export default function AddOnsSection() {
               'Free on-demand learning',
               'Live training',
             ]}
-            cta={{ href: '/training', label: 'Learn more' }}
+            cta={{ href: '/learn', label: 'Learn more' }}
           />
         </div>
       </div>
