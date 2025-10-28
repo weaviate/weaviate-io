@@ -222,6 +222,18 @@ const siteRedirects = {
             to: '/',
             from: '/community/build-with-weaviate',
         },
+        // // Enterprise pricing > Prcing
+        {
+            to: '/pricing',
+            from: '/pricing/enterprise',
+        },
+        // // Serverless pricing > Pricing
+        {
+            to: '/pricing',
+            from: '/pricing/serverless',
+        },
+
+
           // // Enterprise Cloud > Dedicated Cloud
         {
             to: '/deployment/dedicated',
