@@ -1,0 +1,127 @@
+.section {
+  background: #ecf4f8;
+  padding: clamp(28px, 6vw, 56px) 0;
+}
+
+/* Two grouped cards side-by-side (stack on small) */
+.groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(18px, 2.4vw, 28px);
+}
+
+@media (max-width: 1200px) {
+  .groups {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* One group = white copy panel + tinted media panel, one shared border */
+.group {
+  display: grid;
+  grid-template-columns: minmax(340px, 1.1fr) minmax(300px, 0.9fr);
+  align-items: stretch;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 24px 64px rgba(22, 27, 45, 0.08);
+}
+
+@media (max-width: 720px) {
+  .group {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Left side (text) */
+.copy {
+  padding: clamp(18px, 3vw, 28px);
+  background: #fff;
+
+  h2 {
+    margin: 0 0 10px;
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.75rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 157.33%;
+  }
+
+  p {
+    margin: 0;
+    color: #130c49;
+    font-family: Inter;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%;
+  }
+}
+
+/* Shared pane */
+.mediaPane {
+  background: #cedbe1;
+  padding: clamp(18px, 3vw, 28px);
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: clamp(12px, 2vw, 22px);
+  min-height: 260px;
+
+  img {
+    display: block;
+    transform: translate(var(--nudge-x, 0), var(--nudge-y, 0));
+  }
+}
+
+.mediaSoc .logoSoc {
+  --nudge-y: -6px;
+  --nudge-x: -15px;
+}
+.mediaSoc .logoDrata {
+  --nudge-y: 6px;
+  --nudge-x: -15px;
+}
+
+.mediaHipaa .logoHipaa {
+  --nudge-y: -4px;
+  --nudge-x: -15px;
+}
+
+.logoSoc {
+  width: 7.13831rem;
+  height: 7.24225rem;
+  flex-shrink: 0;
+}
+.logoDrata {
+  width: 10.5rem;
+  height: 1.84419rem;
+  flex-shrink: 0;
+}
+.logoHipaa {
+  width: 12.125rem;
+  height: 5.375rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 720px) {
+  .mediaPane {
+    justify-items: center;
+    gap: 20px;
+  }
+
+  .mediaSoc .logoSoc {
+    --nudge-y: 0px;
+    --nudge-x: 0px;
+  }
+  .mediaSoc .logoDrata {
+    --nudge-y: 0px;
+    --nudge-x: 0px;
+  }
+
+  .mediaHipaa .logoHipaa {
+    --nudge-y: 0px;
+    --nudge-x: 0px;
+  }
+}

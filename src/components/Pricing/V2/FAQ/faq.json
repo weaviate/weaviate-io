@@ -1,0 +1,54 @@
+[
+  {
+    "question": "Can I move tenants to different storage tiers?",
+    "answer": "Currently, the ability to move tenants between hot, warm, and cold storage is only available if you are using Weaviate Dedicated Cloud or self-hosting Weaviate."
+  },
+  {
+    "question": "What is a 'vector dimension' in this context?",
+    "answer": "A vector dimension refers to one element in a vector representing an embedding for an object. The total number of these elements is the vector's dimensionality. A vector index holds all the vector dimensions for every object in a collection. Multiple vector indexes can be created in a collection, for example to utilize different models for refine specific types of searches."
+  },
+  {
+    "question": "Why is the pricing based on the total number of vector dimensions?",
+    "answer": "The total count of vector dimensions is a good indicator of the resources required. This is a simple number that a user can calculate rather than trying to understand abstract concepts like Read/Write units, CPU cycles or other measurements of infrastructure usage.\n\nIn addition to vector dimensions, you will be billed for the persistent and backup storage of objects and their vector embeddings."
+  },
+  {
+    "question": "How can I determine the total number of vector dimensions?",
+    "answer": "The number of vector dimensions is calculated by multiplying the number of objects by the vector dimensionality of each index. This value is further multiplied by the replication factor to account for data replicas, as all clusters are highly available with replicas."
+  },
+  {
+    "question": "What are the differences between 'Accuracy' and 'Cost'?",
+    "answer": "Uncompressed vectors provide the highest accuracy for search results. However, this comes at the cost of requiring significant amounts of memory at scale. A compression technique called quantization allows the size of the vectors to be reduced and thus requires less memory, with some tradeoffs to accuracy for searches. Different vector quantization methods are able to deliver different balances between memory efficiency and search accuracy.  <a href=\"https://docs.weaviate.io/weaviate/concepts/vector-quantization\" target=\"_blank\">Read more</a>."
+  },
+  {
+    "question": "When Compression is used, does it change the cost?",
+    "answer": "Compression does not alter the number of vector dimensions stored, but it reduces the computational and memory resources required for search. The more aggressive the compression method, the greater the efficiency gains, which are reflected in discounted list prices for vector dimensions relative to uncompressed vectors."
+  },
+  {
+    "question": "Does the Cloud provider and region I choose affect how much I will pay?",
+    "answer": "List prices for all pricing vector dimensions vary by Cloud provider and region to reflect regional variations."
+  },
+  {
+    "question": "Is the open source Weaviate the same as that used on Weaviate Cloud?",
+    "answer": "Weaviate Cloud (WCD) utilizes the Weaviate open-source project. We have created a simple to use service that eliminates the typical administration tasks and overhead needs to manage a database at scale. We have incorporated a number of additional features like the Weaviate Embedding Service, Query Agent, Data Import etc. to further simplify the experience for the user."
+  },
+  {
+    "question": "Is Weaviate Cloud SOC2 compliant?",
+    "answer": "Yes, for more information see our <a href=\"https://app.drata.com/trust/6e7c8db4-d0a7-4ed1-90ae-f4710a557ea5\" target=\"_blank\">Trust Portal</a>"
+  },
+  {
+    "question": "Is Weaviate Enterprise Cloud HIPAA compliant?",
+    "answer": "Yes, for more information see our <a href=\"https://app.drata.com/trust/6e7c8db4-d0a7-4ed1-90ae-f4710a557ea5\" target=\"_blank\">Trust Portal</a>"
+  },
+  {
+    "question": "Do I pay for data objects without embeddings?",
+    "answer": "In addition to vector dimensions, you will be billed for the persistent and backup storage of objects and their vector embeddings. Objects without vector embeddings require less storage and therefore incur lower storage costs."
+  },
+  {
+    "question": "Which Models and Providers are available?",
+    "answer": "Weaviate is integrated with many model providers, which simplifies the work you need to do to vectorize your data. <a href=\"https://docs.weaviate.io/weaviate/model-providers\" target=\"_blank\">Read more</a> about model provider integrations, including Weaviate’s native Embedding Service."
+  },
+  {
+    "question": "Is Weaviate Cloud compatible with models of various embedding sizes?",
+    "answer": "Yes. <a href=\"https://docs.weaviate.io/weaviate/model-providers\" target=\"_blank\">Read more</a> about the models and providers that are supported out-of-the-box."
+  }
+]

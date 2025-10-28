@@ -1,0 +1,23 @@
+.rangeMark {
+  width: 50px;
+  font-size: 0.9em;
+
+  &:first-of-type { align-items: flex-end; }
+  &:last-of-type {
+    width: auto;
+    width: 80px;
+  }
+
+  @media (max-width: 920px) {
+    position: absolute;
+    top: -5px;
+    opacity: 0.66;
+    
+    &:first-of-type {  align-items: flex-start; }
+    
+    &:last-of-type {
+      right: 0px;
+      align-items: flex-end; 
+    }
+  }
+}
