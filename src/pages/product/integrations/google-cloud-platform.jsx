@@ -130,7 +130,7 @@ export default function GcpIntegrationPage() {
                   <h2>Setup</h2>
                   <ol className={css.steps}>
                     {setup.map((step, i) => (
-                      <li key={i}>{step}</li>
+                      <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
                     ))}
                   </ol>
                 </section>

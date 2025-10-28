@@ -1,3 +1,4 @@
+// src/pages/product/integrations/modal.jsx
 import React from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
@@ -6,10 +7,10 @@ import hub from '/src/components/PartnersMarketplace/styles.module.scss';
 import css from '/src/components/PartnersMarketplace/IntegrationDetail/styles.module.scss';
 import IntegrationHeader from '/src/components/PartnersMarketplace/IntegrationDetail/Header';
 
-const slug = 'amazon-web-services';
+const slug = 'unstructured';
 const slugify = (s) => s.toLowerCase().replace(/\s+/g, '-');
 
-export default function AwsIntegrationPage() {
+export default function UnstructuredIntegrationPage() {
   const item = partners.find((p) => (p.slug || slugify(p.name)) === slug);
   if (!item) {
     return (
@@ -27,6 +28,7 @@ export default function AwsIntegrationPage() {
     description,
     tags = [],
     link,
+    list,
     cta: ctasFromOldField,
     ctas,
     company = 'Vendor',
@@ -118,9 +120,10 @@ export default function AwsIntegrationPage() {
               </nav>
 
               <main className={hub.mainContent}>
-                {/* Company + Weaviate (HTML from JSON) */}
+                {/* Company + Weaviate  */}
                 <section id="how-it-works" className={css.section}>
                   <h2>{company} and Weaviate</h2>
+                  <p dangerouslySetInnerHTML={{ __html: list }} />
                   <p dangerouslySetInnerHTML={{ __html: howItWorks }} />
                 </section>
 

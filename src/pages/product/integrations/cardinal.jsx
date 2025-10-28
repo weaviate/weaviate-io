@@ -1,3 +1,4 @@
+// src/pages/product/integrations/airbyte.jsx
 import React from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
@@ -5,11 +6,12 @@ import partners from '/data/partners.json';
 import hub from '/src/components/PartnersMarketplace/styles.module.scss';
 import css from '/src/components/PartnersMarketplace/IntegrationDetail/styles.module.scss';
 import IntegrationHeader from '/src/components/PartnersMarketplace/IntegrationDetail/Header';
+import Admonition from '@theme/Admonition';
 
-const slug = 'amazon-web-services';
+const slug = 'cardinal';
 const slugify = (s) => s.toLowerCase().replace(/\s+/g, '-');
 
-export default function AwsIntegrationPage() {
+export default function BoxIntegrationPage() {
   const item = partners.find((p) => (p.slug || slugify(p.name)) === slug);
   if (!item) {
     return (
@@ -33,6 +35,7 @@ export default function AwsIntegrationPage() {
     howItWorks = '',
     setup = [],
     resourcesGroups = [],
+    admonitions = [],
   } = item;
 
   const finalCtas = ctas || ctasFromOldField || [];
@@ -118,13 +121,26 @@ export default function AwsIntegrationPage() {
               </nav>
 
               <main className={hub.mainContent}>
-                {/* Company + Weaviate (HTML from JSON) */}
                 <section id="how-it-works" className={css.section}>
                   <h2>{company} and Weaviate</h2>
+
+                  {!!admonitions.length && (
+                    <div style={{ margin: '0 0 1rem' }}>
+                      {admonitions.map((a, i) => (
+                        <Admonition
+                          key={i}
+                          type={a.type || 'note'}
+                          title={a.title}
+                        >
+                          <div dangerouslySetInnerHTML={{ __html: a.html }} />
+                        </Admonition>
+                      ))}
+                    </div>
+                  )}
+
                   <p dangerouslySetInnerHTML={{ __html: howItWorks }} />
                 </section>
 
-                {/* Setup */}
                 <section id="setup" className={css.section}>
                   <h2>Setup</h2>
                   <ol className={css.steps}>
@@ -134,7 +150,6 @@ export default function AwsIntegrationPage() {
                   </ol>
                 </section>
 
-                {/* Resources */}
                 <section id="resources" className={css.section}>
                   <h2>Resources</h2>
                   <div className={css.sectionDesc}>
@@ -152,7 +167,6 @@ export default function AwsIntegrationPage() {
                       </li>
                     </ol>
                   </div>
-
                   {renderGroups()}
                 </section>
               </main>

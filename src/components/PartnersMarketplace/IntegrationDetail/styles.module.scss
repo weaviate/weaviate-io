@@ -6,7 +6,8 @@
 
 .logoRow {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 16px;
   margin-bottom: 0.5rem;
 }
@@ -87,12 +88,6 @@
   padding: 2rem 0;
 }
 
-.logoRow {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 0.5rem;
-}
 .heroLogo {
   max-height: 48px;
   width: auto;
