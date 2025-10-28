@@ -22,7 +22,7 @@ export const PriceReview = (props: IPriceReviewProps) => {
       <div className="priceReview premium">
         <h1>For premium plans, please get in touch for a personalised rate.</h1>
         <motion.button {...motionProps}>
-          <span>Contact sales</span>
+          <a className="linkCTA" href="/pricing#contact-sales">Contact Sales</a>
         </motion.button>
       </div>
     )
@@ -33,9 +33,9 @@ export const PriceReview = (props: IPriceReviewProps) => {
       <h1>Your estimated cost:</h1>
       <Price data={props.data} />
       <motion.button {...motionProps}>
-        <span>Get started</span>
+        <a className="linkCTA" href="https://console.weaviate.cloud/">Get started</a>
       </motion.button>
-      <a href="">Contact Sales Team for more information</a>
+      <a href="/pricing#contact-sales">Contact Sales Team for more information</a>
     </div>
   )
 }
