@@ -92,9 +92,9 @@ export default function Introduction() {
                 The Context Engineering Guide
               </h1>
               <span className={styles.subTitle}>
-                Master the architectural patterns for building reliable,
-                production-ready AI applications that think with real-world
-                context.
+                Go beyond prompting. Become the architect who builds the world
+                your model lives in. This is your guide to engineering reliable,
+                context-aware AI systems.
               </span>
 
               <div className={styles.signUp}>
