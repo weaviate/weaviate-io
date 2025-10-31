@@ -248,6 +248,17 @@ const siteRedirects = {
         {
             to: '/blog/when-good-models-go-bad',
             from: '/blog/when%20good%20models%20go%20bad',
+        },
+
+        // Calendar redirects
+
+        {
+            to: '/rohan',
+            from: '/griffin',
+        },
+          {
+            to: '/rohan',
+            from: '/aaron',
         }
 
     ],
