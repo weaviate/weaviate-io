@@ -1,6 +1,23 @@
 .cardsFilterContainer {
   display: flex;
   gap: 2rem;
+  margin-top: -50px;
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    gap: 0rem;
+    margin-top: 0px;
+  }
+
+  @media (min-width: 1600px) {
+    max-width: 1515px;
+    margin: auto;
+  }
+}
+
+.cardsFilterContainerHome {
+  display: flex;
+  gap: 2rem;
 
   @media screen and (max-width: 900px) {
     flex-direction: column;

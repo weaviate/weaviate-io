@@ -1307,67 +1307,175 @@
     "name": "Weights and Biases",
     "image": "/img/site/wandb_logo2.png",
     "link": "https://docs.weaviate.io/integrations/operations/wandb",
-    "description": "Weave by W&B offers data analysis APIs for monitoring applications.",
+    "description": "Weights & Biases (W&B) is an AI developer platform with products such as Models and Weave.",
     "tags": ["Operations", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Weights & Biases ",
+    "howItWorks": "<code>Weave</code> has a user interface and data analysis APIs for monitoring applications that use LLM, RAG, Agents, and Vector Databases.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "W&B Logging with DSPy and Cohere RAG app",
+            "description": "An example of using wandb logging to monitor optimizing a RAG system with DSPy, Weaviate, and Cohere.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/weights_and_biases/wandb_logging_RAG_dspy_cohere.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Weights & Biases",
+        "url": "https://wandb.ai/site"
+      }
+    ]
   },
   {
     "name": "Ragas",
     "image": "/img/site/ragas_logo.png",
     "link": "https://docs.weaviate.io/integrations/operations/ragas",
-    "description": "Evaluate your retrieval augmented generation (RAG) applications. ",
+    "description": "Ragas is a framework to help you evaluate your retrieval augmented generation (RAG) applications.",
     "tags": ["Operations", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "Python",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Nomic",
+    "howItWorks": "The Ragas metrics are:<br></br><ol><li><code>faithfulness</code></li><li><code>answer_relevancy</code></li><li><code>context_precision</code></li><li><code>context_recall</code></li></ol>To use Ragas, you'll need to store the <code>question</code>, <code>answer</code>, <code>ground_truths</code>, and <code>contexts</code> in a json object to send to Ragas.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Introduction Ragas Demo",
+            "description": "Learn how to use Weaviate and Ragas",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/ragas/ragas-demo.ipynb"
+          },
+          {
+            "topic": "Ragas and LangChain",
+            "description": "Learn how to connect Ragas and LangChain.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/ragas/RAGAs-RAG-langchain.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Visit Ragas",
+        "url": "https://docs.ragas.io/en/stable/"
+      }
+    ]
   },
   {
     "name": "Nomic",
     "image": "/img/site/nomic_logo.svg",
     "link": "https://docs.weaviate.io/integrations/operations/nomic",
-    "description": "Run GPT4All models and use Atlas to visualize vector embeddings.",
+    "description": "Nomic AI's Atlas uses algorithms such as t-SNE, UMAP, or PCA to reduce high-dimensional vectors into 2 or 3 dimensions. The lower dimensional vectors are useful for visualizing vector embeddings.",
     "tags": ["Model Providers", "Operations", "Integration", "Module"],
-    "maintainedBy": "External",
-    "programmingLanguage": "Python",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Nomic",
+    "howItWorks": "Connect Nomic to your Weaviate cluster to visualize the embeddings in your collection.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Vector Space Visual",
+            "description": "Visualize the embeddings in your Weaviate cluster.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/nomic/vector_space_visual.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Nomic",
+        "url": "https://www.nomic.ai/"
+      }
+    ]
   },
   {
     "name": "LangWatch",
     "image": "/img/site/langwatch_logo.png",
     "link": "https://docs.weaviate.io/integrations/operations/langwatch",
-    "description": "Connect LangWatch to your Weaviate instance to log operational traces.",
+    "description": "LangWatch is an LLM operations platform that offers tools to control the quality of your AI application.",
     "tags": ["Operations", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "Python",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "LangWatch",
+    "howItWorks": "Connect LangWatch to your Weaviate instance to log operational traces. LangWatch also connects to DSPy to track the performance of each prompt paraphrasing.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "DSPy with Weaviate + LangWatch DSPy Visualizer",
+            "description": "This notebook shows an example of DSPy RAG program using Weaviate as the vector database and LangWatch for visualization of the DSPy optimization process.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/langwatch/weaviate_dspy_visualization.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "LangWatch",
+        "url": "https://langwatch.ai/"
+      }
+    ]
   },
   {
     "name": "Langtrace",
     "image": "/img/site/langtrace_logo.png",
     "link": "https://docs.weaviate.io/integrations/operations/langtrace",
-    "description": "View vector search queries and generative calls that are made to your Weaviate cluster",
+    "description": "Langtrace is an open-source project that uses OpenTelemetry for observability.",
     "tags": ["Operations", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "Python",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Langtrace",
+    "howItWorks": "This integration allows you to view vector search queries and generative calls that are made to your Weaviate cluster.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Weaviate and Langtrace Observability",
+            "description": "View the vector and generative calls made to your application.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/langtrace/weaviate_observability.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Langtrace",
+        "url": "https://langtrace.ai/"
+      }
+    ]
   },
   {
-    "name": "Arize AI",
+    "name": "Arize",
     "image": "/img/site/arize_logo.svg",
     "link": "https://docs.weaviate.io/integrations/operations/arize",
-    "description": "Log search queries sent to Weaviate and requests sent to LLM providers in Phoenix",
+    "description": "Arize AI created Phoenix, an open-source tool for tracing and evaluation.",
     "tags": ["Operations", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "Python",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Arize AI",
+    "howItWorks": "You can use <a href=\"https://opentelemetry.io//\">OpenTelemetry</a> to log search queries sent to Weaviate and requests sent to LLM providers in Phoenix. Phoenix provides a data visualization UI and additional APIs for accessing logged data.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "DSPy Instrumentor",
+            "description": "Log calls sent to DSPy using Phoenix",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/arize/DSPy-Instrumentor.py"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Arize AI",
+        "url": "https://arize.com/"
+      }
+    ]
   },
   {
     "name": "IBM",
@@ -1406,12 +1514,40 @@
     "name": "DeepEval",
     "image": "/img/site/deepeval-logo.png",
     "link": "https://docs.weaviate.io/integrations/operations/deepeval",
-    "description": "Evaluate your generative AI applications with DeepEval's open-source LLM framework",
+    "description": "DeepEval is an open-source LLM evaluation framework, built for engineers to unit-test LLM applications and AI Agents. It provides out-of-the-box LLM-powered metrics, including RAG, conversational, red-teaming, agentic, multimodal, and custom metrics.",
     "tags": ["Operations", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "DeepEval",
+    "howItWorks": "You can use DeepEval to optimize search, retrieval, and RAG with Weaviate by leveraging DeepEval's custom and RAG metrics to select the best hyperparameters like <code>embedding model</code> and <code>top-K</code> for your Weaviate collection.",
+    "setup": [
+      "Custom Metrics:",
+      "1. <a href=\"https://www.deepeval.com/docs/metrics-llm-evals\">G-Eval</a>",
+      "2. <a href=\"https://www.deepeval.com/docs/metrics-dag\">DAG</a>",
+      "RAG Metrics:",
+      "1. <a href=\"https://www.deepeval.com/docs/metrics-answer-relevancy\">Answer Relevancy</a>",
+      "2. <a href=\"https://www.deepeval.com/docs/metrics-faithfulness\">Faithfulness</a>",
+      "3. <a href=\"https://www.deepeval.com/docs/metrics-contextual-precision\">Contextual Precision</a>",
+      "4. <a href=\"https://www.deepeval.com/docs/metrics-contextual-recall\">Contextual Recall</a>",
+      "5. <a href=\"https://www.deepeval.com/docs/metrics-contextual-relevancy\">Contextual Relevancy</a>"
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Optimizing RAG with DeepEval",
+            "description": "This notebook shows how to build a RAG pipeline using Weaviate and how to optimize its performance with DeepEval.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/deepeval/rag_evaluation_deepeval.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "DeepEval",
+        "url": "https://www.deepeval.com/"
+      }
+    ]
   },
   {
     "name": "Box",
