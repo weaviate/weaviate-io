@@ -44,6 +44,8 @@ client.collections.create(
 
 This can speed up searches on disk-based flat indexes, making it perfect for smaller collections or use cases where you need exact nearest neighbor search.
 
+Additionally, RQ reduces the size of cached vectors, reducing the memory footprint of vectors that have been accessed recently.
+
 :::caution Preview Feature
 
 This is currently a **preview** feature. This means it's still under development and may change in future releases. We don't recommend using it in production environments at this time.
