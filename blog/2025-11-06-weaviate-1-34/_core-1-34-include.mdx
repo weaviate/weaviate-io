@@ -10,7 +10,6 @@ Here are the release ⭐️*highlights*⭐️!
 
 - [Flat index RQ quantization support](#flat-index-rq-quantization-support)
 - [Server-side dynamic batching](#server-side-dynamic-batching)
-- [Rolling updates support](#rolling-updates-support)
 - [Observability improvements](#observability-improvements)
 - [New C# and Java v6 clients](#new-c-and-java-v6-clients)
 - [ACORN filter strategy by default](#acorn-filter-strategy-by-default)
@@ -109,10 +108,6 @@ With these enhanced metrics, you can maintain production-grade observability and
 
 :::
 
-## Enhanced stability during version updates
-
-Weaviate v1.34 introduces a few improvements when it comes to **rolling updates**, with the aim of strengthening zero-downtime deployments. We are dedicated in ensuring version upgrades or scaling events cause no performance degradation, no increased error rates, and no observable side effects—regardless of the number of tenants, collection sizes, or query volume. This makes Weaviate suitable for mission-critical applications that require continuous availability.
-
 ## Upcoming C# and Java v6 clients
 
 :::caution Under development
@@ -163,7 +158,7 @@ client.close();
 
 ### C# - Example
 
-```java
+```csharp
 var dataObjects = new List<Dictionary<string, string>>
 {
     new() { { "title", "The Matrix" }, { "description", "A computer hacker learns about the true nature of reality and his role in the war against its controllers." }, { "genre", "Science Fiction" } },
@@ -215,7 +210,7 @@ results = collection.query.near_text(
 )
 ```
 
-ACORN works seamlessly with all existing filter operators and vector search methods, providing performance improvements without any code changes.
+ACORN works seamlessly with all existing filter operators and vector search methods, providing performance improvements without any code changes. When you create a new collection in Weaviate 1.34 or later, the default filter strategy will be `ACORN` instead of `SWEEPING`.
 
 :::info Related resources
 
@@ -240,9 +235,7 @@ If you're interested in contributing to Weaviate, please check out our [contribu
 
 ## Summary
 
-Weaviate `v1.34` focuses on production readiness and operational excellence. With rolling updates ensuring zero-downtime deployments, ACORN filter strategy delivering faster filtered searches by default, enhanced observability with 30+ new metrics, and production-grade client libraries for C# and Java, this release makes Weaviate easier to operate at scale.
-
-The addition of flat index RQ quantization and improved server-side dynamic batching further expands your options for optimizing performance and resource utilization.
+Weaviate `v1.34` focuses on production readiness and operational excellence. With **flat index RQ quantization**, **ACORN filter strategy** delivering faster filtered searches by default, **enhanced observability** with 30+ new metrics, **server-side batch imports** for faster data ingestion, this release makes Weaviate easier to operate at scale.
 
 **Ready to get started?**
 
