@@ -1,27 +1,27 @@
-Weaviate `v1.34` is now available open-source and on [Weaviate Cloud](https://console.weaviate.cloud). This release brings **ACORN filter strategy by default** for faster filtered searches, **flat index support with RQ quantization**, **server-side batching**, **30+ new observability metrics**, and a sneak peek into upcoming **C# and Java v6 client libraries**.
+Weaviate `v1.34` is now available open-source and on [Weaviate Cloud](https://console.weaviate.cloud).
 
-There's also continued refinements across the board, making Weaviate more performant, observable, and easier to operate at scale.
+This release brings a set of exciting preview features like **flat index support with RQ quantization**, **server-side batching** and a sneak peek into upcoming **C# and Java v6 client libraries**.
+
+It also brings ready-to-use improvements for production. They include **ACORN filter strategy by default** for faster filtered searches, **new observability metrics** for better monitoring, and **support for Contextual AI model integrations**.
+
+These improvements help make Weaviate more performant, observable, and easier to operate at scale.
 
 Here are the release ⭐️*highlights*⭐️!
 
 ![Weaviate 1.34 is released](./img/hero.png)
 
 - [Flat index RQ quantization support](#flat-index-rq-quantization-support)
-- [Server-side dynamic batching](#server-side-dynamic-batching)
+- [Server-side batching](#server-side-batching)
+- [Bugfixes and performance improvements](#bugfixes-and-performance-improvements)
 - [Observability improvements](#observability-improvements)
 - [Upcoming C# and Java v6 clients](#upcoming-c-and-java-v6-clients)
 - [ACORN filter strategy by default](#acorn-filter-strategy-by-default)
+- [Support for `Contextual AI` model integrations](#support-for-contextual-ai-model-integrations)
 - [Community contributions](#community-contributions)
 
 ## Flat index RQ quantization support
 
-:::caution Preview Feature
-
-Flat index with RQ quantization was added in `v1.34` as a **preview** feature. This means it's still under development and may change in future releases. We don't recommend using it in production environments at this time.
-
-:::
-
-Weaviate `v1.34` introduces **flat index support with rotational quantization (RQ)**, combining flat indexing with efficiency of RQ compression.
+Weaviate `v1.34` introduces **flat index support with rotational quantization (RQ)** as a preview, combining flat indexing with efficiency of RQ compression.
 
 A vector search on a flat index with RQ iterates through the compressed vectors, making it:
 
@@ -44,22 +44,22 @@ client.collections.create(
 
 This can speed up searches on disk-based flat indexes, making it perfect for smaller collections or use cases where you need exact nearest neighbor search.
 
+:::caution Preview Feature
+
+This is currently a **preview** feature. This means it's still under development and may change in future releases. We don't recommend using it in production environments at this time.
+
+:::
+
 :::info Related resources
 
-- [How-to: Configure RQ compression](https://docs.weaviate.iop/weaviate/configuration/compression/rq-compression)
+- [How-to: Configure RQ compression](https://docs.weaviate.io/weaviate/configuration/compression/rq-compression)
 - [Concepts: Vector quantization](https://docs.weaviate.io/weaviate/concepts/vector-quantization)
 
 :::
 
 ## Server-side batching
 
-:::caution Preview Feature
-
-Server-side batching in `v1.34` is a **preview** feature. This means it's still under development and may change in future releases. We don't recommend using it in production environments at this time.
-
-:::
-
-Building on the server-side batch imports introduced in `v1.33`, This release improves backpressure mechanisms and performance optimizations for data ingestion.
+Building on the server-side batch import preview in `v1.33`, this version improves backpressure mechanisms and performance optimizations for data ingestion.
 
 Benefits of server-side batching include:
 
@@ -80,12 +80,28 @@ with client.batch.experimental() as batch:
 
 Server-side batching should provide good import performance through closed-loop feedback, whether you're importing thousands or millions of objects.
 
+:::caution Preview Feature
+
+This is currently a **preview** feature. This means it's still under development and may change in future releases. We don't recommend using it in production environments at this time.
+
+:::
+
 :::info Related resources
 
 - [How-to: Import with server-side batching](https://docs.weaviate.io/weaviate/manage-objects/import#server-side-batching)
 - [Concepts: Server-side batching](https://docs.weaviate.io/weaviate/concepts/data-import#server-side-batching)
 
 :::
+
+## Bugfixes and performance improvements
+
+As always, Weaviate `v1.34` includes numerous bugfixes and performance improvements across the codebase, enhancing stability and reliability.
+
+<!-- TODO - review release notes for actual 1.34 release for notable bugfixes & improvements to highlight. -->
+
+As always, we recommend you:
+- Upgrade to the latest version of Weaviate to benefit from those improvements.
+- Review the [full changelog](https://github.com/weaviate/weaviate/releases/tag/v1.34.0) for detailed information on all fixes and improvements.
 
 ## Observability improvements
 
@@ -108,14 +124,11 @@ With these enhanced metrics, you can maintain production-grade observability and
 
 ## Upcoming C# and Java v6 clients
 
-:::caution Under development
+Soon you'll be able to use the new **C# client** and **Java v6 client**, both designed with modern language features and improved developer experience.
 
-The new C# client and Java v6 client are still under development. We're still gathering feedback before the general availability release.<br/>
-If you have any feedback or comments about the upcoming clients, feel free to open an issue in the their GitHub repositories ([Java](https://github.com/weaviate/java-client/issues) & [C#](https://github.com/weaviate/csharp-client/issues)).
+The new C# client is Weaviate's first official client library for the C# programming language. On the other hand, the Java v6 client is a complete rewrite of the existing Java client, designed provide a more idiomatic and user-friendly API.
 
-:::
-
-Soon you'll be able to use the new **C# client** and **Java v6 client**, both designed with modern language features and improved developer experience. Here are two sneak peeks into what the new client APIs will look like:
+Here are two sneak peeks into the new APIs:
 
 ### Java v6 - Example
 
@@ -182,12 +195,20 @@ foreach (var obj in response.Objects)
 }
 ```
 
+The new C# client and Java v6 client are still under development. We're still gathering feedback before official releases, but we would love for you to try them out early.
+
+You can find the pre-release versions here:
+- [Java v6 client](https://github.com/weaviate/java-client/tree/v6)
+- [C# client](https://github.com/weaviate/csharp-client/)
+
+If you have any feedback or comments about the upcoming clients, feel free to open an issue in their GitHub repositories ([Java](https://github.com/weaviate/java-client/issues) & [C#](https://github.com/weaviate/csharp-client/issues)).
+
 :::info Related resources
 
-- [Java v6 client documentation](https://docs.weaviate.io/weaviate/client-libraries/java/java-v6)
+- [Java v6 client documentation](https://client-libraries-beta--docs-weaviate-io.netlify.app/weaviate/client-libraries/java/java-v6)
 - [Java v6 client GitHub Repository](https://github.com/weaviate/java-client/tree/v6)
 
-- [C# client documentation](https://docs.weaviate.io/weaviate/client-libraries/csharp)
+- [C# client documentation](https://client-libraries-beta--docs-weaviate-io.netlify.app/weaviate/client-libraries/csharp)
 - [C# client GitHub Repository](https://github.com/weaviate/csharp-client/)
 
 :::
@@ -228,14 +249,13 @@ Weaviate `v1.34` adds model integrations for `Contextual AI`'s generative and re
 
 This allows you to perform integrated retrieval augmented generation (RAG) queries, or reranker queries using Contextual AI models directly within Weaviate.
 
-The default `Contextual AI` models are the `v2` GLMs for generation and `ctxl-rerank-v2-instruct-multilingual` for reranking.
+The default `Contextual AI` models are the `v2` generative AI models for RAG queries and `ctxl-rerank-v2-instruct-multilingual` for reranking.
 
 :::info Related resources
 
 - [Model integrations - Contextual AI](https://docs.weaviate.io/weaviate/model-providers/contextualai)
 
 :::
-
 
 ## Community contributions
 
@@ -253,7 +273,11 @@ If you're interested in contributing to Weaviate, please check out our [contribu
 
 ## Summary
 
-Weaviate `v1.34` focuses on production readiness and operational excellence. With **flat index RQ quantization**, **ACORN filter strategy** delivering faster filtered searches by default, **enhanced observability** with 30+ new metrics, **server-side batch imports** for faster data ingestion, this release makes Weaviate easier to operate at scale.
+Weaviate `v1.34` simultaneously looks forward with exciting preview features, while keeping grounded with the usual production-relevant improvements.
+
+Looking forward, **flat index RQ quantization** and **server-side batch imports** previews pave the way for performance improvements, while the **new C# and Java clients** significantly enhance the developer experience.
+
+On the production readiness front, **setting ACORN filter strategy as default** indicates its maturity, while the **new observability metrics** and various bugfixes and improvements enhance operational excellence.
 
 **Ready to get started?**
 
