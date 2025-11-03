@@ -38,7 +38,7 @@ The flat index stores vectors without hierarchical navigation structures like HN
 from weaviate.classes.config import Configure, VectorIndexType
 
 client.collections.create(
-    name="SmallCatalog",
+    name="MyCollection",
     vector_config=Configure.Vectors.text2vec_openai(),
     vector_index_config=Configure.VectorIndex.flat(),
     quantizer=Configure.VectorIndex.Quantizer.rq()
@@ -58,53 +58,41 @@ This combination provides a straightforward alternative to HNSW indexing while s
 
 :::caution Preview Feature
 
-Server-side dynamic batching was added in `v1.34` as a **preview** feature and continues to evolve based on user feedback.
+Server-side dynamic batching was added in `v1.34` as a **preview** feature. This means it's still under development and may change in future releases. We don't recommend using it in production environments at this time.
 
 :::
 
 Building on the server-side batch imports introduced in `v1.33`, Weaviate `v1.34` enhances **server-side dynamic batching** with improved backpressure mechanisms and performance optimizations. The server now more intelligently manages data ingestion rates, adapting in real-time to cluster conditions.
 
-**Key improvements in v1.34:**
+Benefits of server-side batching include:
 
 - **Enhanced backpressure algorithm** - More responsive adjustment to server load
 - **Better handling of vectorization latency** - Improved throughput when using external vectorizers
 - **Optimized for large-scale imports** - Better performance with millions of objects
 
-Using server-side dynamic batching remains simple:
+Using server-side dynamic batching is quite simple:
 
 ```python
-# Server dynamically optimizes batch size and flow control
-with client.batch.dynamic() as batch:
+with client.batch.experimental() as batch:
     for data_object in data_objects:
         batch.add_object(
+            collection="MyCollection",
             properties=data_object,
-            collection="Documents",
-            vector=data_object.get("vector")  # Optional pre-computed vector
         )
 ```
-
-The dynamic batching system automatically:
-
-- Monitors server queue depth and processing capacity
-- Adjusts batch sizes based on real-time conditions
-- Applies backpressure when the server is under heavy load
-- Resumes full throughput when capacity becomes available
 
 This means you get optimal import performance without manual tuning, whether you're importing thousands or millions of objects.
 
 :::info Related resources
 
 - [How-to: Import with server-side batching](https://v1-34-main--docs-weaviate-io.netlify.app/weaviate/manage-objects/import#server-side-batching)
+- [Concepts: Server-side batching](https://docs.weaviate.io/weaviate/concepts/data-import#server-side-batching)
 
 :::
 
-## Rolling updates support
-
-Weaviate v1.34 introduces **rolling updates support**, with the aim of enabling zero-downtime deployments and seamless cluster operations. We are dedicated in ensuring version upgrades or scaling events cause no performance degradation, no increased error rates, and no observable side effects—regardless of the number of tenants, collection sizes, or query volume. This makes Weaviate suitable for mission-critical applications that require continuous availability.
-
 ## Observability improvements
 
-Weaviate `v1.34` dramatically improves observability with **30+ new monitoring metrics**, giving you deeper insights into your vector database's performance, resource utilization, and operational health.
+Weaviate `v1.34` dramatically improves observability with **30+ new monitoring metrics**, giving you deeper insights into your vector database's performance, resource utilization, and operational health. The new metrics cover areas such as LSM bucket read/write operations, cursor management, bucket lifecycle events (initialization, shutdown, segments), WAL recovery, memtable flushing and async replication processes.
 
 These metrics integrate seamlessly with popular monitoring tools like Prometheus and Grafana, making it easier to:
 
@@ -121,21 +109,93 @@ With these enhanced metrics, you can maintain production-grade observability and
 
 :::
 
+## Enhanced stability during version updates
+
+Weaviate v1.34 introduces a few improvements when it comes to **rolling updates**, with the aim of strengthening zero-downtime deployments. We are dedicated in ensuring version upgrades or scaling events cause no performance degradation, no increased error rates, and no observable side effects—regardless of the number of tenants, collection sizes, or query volume. This makes Weaviate suitable for mission-critical applications that require continuous availability.
+
 ## Upcoming C# and Java v6 clients
 
 :::caution Under development
 
-The new C# client and Java v6 client are still under development. We're still gathering feedback before the general availability release.
+The new C# client and Java v6 client are still under development. We're still gathering feedback before the general availability release.<br/>
+If you have any feedback or comments about the upcoming clients, feel free to open an issue in the their GitHub repositories ([Java](https://github.com/weaviate/java-client/issues) & [C#](https://github.com/weaviate/csharp-client/issues)).
 
 :::
 
-Soon you'll be able to use the new C# client and Java v6 client, both designed with modern language features and improved developer experience.
+Soon you'll be able to use the new **C# client** and **Java v6 client**, both designed with modern language features and improved developer experience. Here are two sneak peeks into what the new client APIs will look like:
+
+### Java v6 - Example
+
+```java
+WeaviateClient client = WeaviateClient.connectToWeaviateCloud(
+    weaviateUrl,
+    weaviateApiKey
+);
+
+client.collections.create(
+    "Movie",
+    col -> col
+        .vectorConfig(VectorConfig.text2VecWeaviate())
+        .properties(
+            Property.text("title"),
+            Property.text("description"),
+            Property.text("genre")
+        )
+);
+
+List<Map<String, Object>> dataObjects = List.of(
+    Map.of("title", "The Matrix", "description", "A computer hacker learns about the true nature of reality and his role in the war against its controllers.", "genre", "Science Fiction"),
+    Map.of("title", "Spirited Away", "description", "A young girl becomes trapped in a mysterious world of spirits and must find a way to save her parents and return home.", "genre", "Animation"),
+    Map.of("title", "The Lord of the Rings: The Fellowship of the Ring", "description", "A meek Hobbit and his companions set out on a perilous journey to destroy a powerful ring and save Middle-earth.", "genre", "Fantasy")
+);
+
+CollectionHandle<Map<String, Object>> movies = client.collections.use("Movie");
+movies.data.insertMany(dataObjects.toArray(new Map[0]));
+
+var response = movies.query.nearText("sci-fi", q -> q.limit(2));
+
+for (var obj : response.objects()) {
+    System.out.println(obj.properties());
+}
+
+client.close();
+```
+
+### C# - Example
+
+```java
+var dataObjects = new List<Dictionary<string, string>>
+{
+    new() { { "title", "The Matrix" }, { "description", "A computer hacker learns about the true nature of reality and his role in the war against its controllers." }, { "genre", "Science Fiction" } },
+    new() { { "title", "Spirited Away" }, { "description", "A young girl becomes trapped in a mysterious world of spirits and must find a way to save her parents and return home." }, { "genre", "Animation" } },
+    new() { { "title", "The Lord of the Rings: The Fellowship of the Ring" }, { "description", "A meek Hobbit and his companions set out on a perilous journey to destroy a powerful ring and save Middle-earth." }, { "genre", "Fantasy" } },
+};
+
+var movies = client.Collections.Use(CollectionName);
+
+var weaviateObjects = dataObjects.Select(obj => new WeaviateObject { Properties = obj.ToDictionary(kvp => kvp.Key, kvp => (object)kvp.Value) }).ToList();
+var result = await movies.Data.InsertMany(weaviateObjects);
+
+Assert.False(result.HasErrors, $"Batch insertion failed: {result.Errors.FirstOrDefault()?.Message}");
+
+var response = await movies.Query.NearText(
+    query: "sci-fi",
+    limit: 2
+);
+
+foreach (var obj in response.Objects)
+{
+    Console.WriteLine(JsonSerializer.Serialize(obj.Properties, new JsonSerializerOptions { WriteIndented = true }));
+}
+```
 
 :::info Related resources
 
-- [C# Client Documentation](https://client-libraries-beta--docs-weaviate-io.netlify.app/weaviate/client-libraries/csharp)
-- [Java v6 Client Documentation](https://client-libraries-beta--docs-weaviate-io.netlify.app/weaviate/client-libraries/java/java-v6)
-- [Java v6 GitHub Repository](https://github.com/weaviate/java-client/tree/v6)
+- [Java v6 client documentation](https://client-libraries-beta--docs-weaviate-io.netlify.app/weaviate/client-libraries/java/java-v6)
+- [Java v6 client GitHub Repository](https://github.com/weaviate/java-client/tree/v6)
+
+- [C# client documentation](https://client-libraries-beta--docs-weaviate-io.netlify.app/weaviate/client-libraries/csharp)
+- [C# client GitHub Repository](https://github.com/weaviate/csharp-client/)
 
 :::
 
