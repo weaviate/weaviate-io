@@ -1,4 +1,4 @@
-Weaviate `v1.34` is now available open-source and on [Weaviate Cloud](https://console.weaviate.cloud). This release brings **ACORN filter strategy by default** for faster filtered searches, **flat index support with RQ quantization**, **server-side dynamic batching**, **30+ new observability metrics**, and a sneak peek into upcoming **C# and Java v6 client libraries**.
+Weaviate `v1.34` is now available open-source and on [Weaviate Cloud](https://console.weaviate.cloud). This release brings **ACORN filter strategy by default** for faster filtered searches, **flat index support with RQ quantization**, **server-side batching**, **30+ new observability metrics**, and a sneak peek into upcoming **C# and Java v6 client libraries**.
 
 There's also continued refinements across the board, making Weaviate more performant, observable, and easier to operate at scale.
 
@@ -21,44 +21,45 @@ Flat index with RQ quantization was added in `v1.34` as a **preview** feature. T
 
 :::
 
-Weaviate `v1.34` introduces **flat index support with rotational quantization (RQ)**, combining the simplicity of flat indexing with the memory efficiency of RQ compression. This is perfect for smaller collections or use cases where you want exact nearest neighbor search with compressed vectors.
+Weaviate `v1.34` introduces **flat index support with rotational quantization (RQ)**, combining flat indexing with efficiency of RQ compression.
 
-The flat index stores vectors without hierarchical navigation structures like HNSW graphs, making it:
+A vector search on a flat index with RQ iterates through the compressed vectors, making it:
 
 - **Simple and predictable** - No graph building or index tuning required
-- **Memory efficient with RQ** - Combine flat indexing with 8-bit or 1-bit RQ for up to 4x-32x compression
+- **Faster with RQ** - 8-bit or 1-bit RQ reduces size by up to 4x-32x, speeding up disk reads
 
 **Configuring flat index with RQ:**
 
 ```python
-from weaviate.classes.config import Configure, VectorIndexType
+from weaviate.classes.config import Configure
 
 client.collections.create(
     name="MyCollection",
     vector_config=Configure.Vectors.text2vec_openai(),
+    # Configure vector index as flat with RQ quantization
     vector_index_config=Configure.VectorIndex.flat(),
     quantizer=Configure.VectorIndex.Quantizer.rq()
 )
 ```
 
-This combination provides a straightforward alternative to HNSW indexing while still benefiting from RQ's compression advantages.
+This can speed up searches on disk-based flat indexes, making it perfect for smaller collections or use cases where you need exact nearest neighbor search.
 
 :::info Related resources
 
-- [How-to: Configure RQ compression](https://v1-34-main--docs-weaviate-io.netlify.app/weaviate/configuration/compression/rq-compression)
+- [How-to: Configure RQ compression](https://docs.weaviate.iop/weaviate/configuration/compression/rq-compression)
 - [Concepts: Vector quantization](https://docs.weaviate.io/weaviate/concepts/vector-quantization)
 
 :::
 
-## Server-side dynamic batching
+## Server-side batching
 
 :::caution Preview Feature
 
-Server-side dynamic batching was added in `v1.34` as a **preview** feature. This means it's still under development and may change in future releases. We don't recommend using it in production environments at this time.
+Server-side batching in `v1.34` is a **preview** feature. This means it's still under development and may change in future releases. We don't recommend using it in production environments at this time.
 
 :::
 
-Building on the server-side batch imports introduced in `v1.33`, Weaviate `v1.34` enhances **server-side dynamic batching** with improved backpressure mechanisms and performance optimizations. The server now more intelligently manages data ingestion rates, adapting in real-time to cluster conditions.
+Building on the server-side batch imports introduced in `v1.33`, This release improves backpressure mechanisms and performance optimizations for data ingestion.
 
 Benefits of server-side batching include:
 
@@ -66,7 +67,7 @@ Benefits of server-side batching include:
 - **Better handling of vectorization latency** - Improved throughput when using external vectorizers
 - **Optimized for large-scale imports** - Better performance with millions of objects
 
-Using server-side dynamic batching is quite simple:
+Try server-side batching through the `experimental` method in the Python client:
 
 ```python
 with client.batch.experimental() as batch:
@@ -77,11 +78,11 @@ with client.batch.experimental() as batch:
         )
 ```
 
-This means you get optimal import performance without manual tuning, whether you're importing thousands or millions of objects.
+Server-side batching should provide good import performance through closed-loop feedback, whether you're importing thousands or millions of objects.
 
 :::info Related resources
 
-- [How-to: Import with server-side batching](https://v1-34-main--docs-weaviate-io.netlify.app/weaviate/manage-objects/import#server-side-batching)
+- [How-to: Import with server-side batching](https://docs.weaviate.io/weaviate/manage-objects/import#server-side-batching)
 - [Concepts: Server-side batching](https://docs.weaviate.io/weaviate/concepts/data-import#server-side-batching)
 
 :::
@@ -101,7 +102,7 @@ With these enhanced metrics, you can maintain production-grade observability and
 
 :::info Related resources
 
-- [Configuration: Monitoring](https://v1-34-main--docs-weaviate-io.netlify.app/deploy/configuration/monitoring)
+- [Configuration: Monitoring](https://docs.weaviate.io/deploy/configuration/monitoring)
 
 :::
 
@@ -183,22 +184,27 @@ foreach (var obj in response.Objects)
 
 :::info Related resources
 
-- [Java v6 client documentation](https://client-libraries-beta--docs-weaviate-io.netlify.app/weaviate/client-libraries/java/java-v6)
+- [Java v6 client documentation](https://docs.weaviate.io/weaviate/client-libraries/java/java-v6)
 - [Java v6 client GitHub Repository](https://github.com/weaviate/java-client/tree/v6)
 
-- [C# client documentation](https://client-libraries-beta--docs-weaviate-io.netlify.app/weaviate/client-libraries/csharp)
+- [C# client documentation](https://docs.weaviate.io/weaviate/client-libraries/csharp)
 - [C# client GitHub Repository](https://github.com/weaviate/csharp-client/)
 
 :::
 
 ## ACORN filter strategy by default
 
-Weaviate `v1.34` makes **ACORN (Automatic Constraint Optimization for Retrieval Networks)** the default filter strategy, delivering faster filtered vector searches out of the box. ACORN intelligently optimizes how filters are applied during vector search, automatically choosing the most efficient execution path based on your query patterns.
+**ACORN (Automatic Constraint Optimization for Retrieval Networks)** was added to Weaviate as an alternate filter strategy to `SWEEPING` in `v1.27`.
+
+Weaviate `v1.34` makes ACORN the default filter strategy for new collections.
+
+This allows Weaviate to deliver faster filtered vector searches out of the box in more scenarios. ACORN intelligently optimizes how filters are applied during HNSW powered vector search, automatically choosing the most efficient exploration path based on your query patterns.
 
 Here is an example of using filtered queries:
 
 ```python
-# ACORN automatically optimizes this filtered search
+# ACORN automatically optimizes this filtered search,
+# where the filter may be quite restrictive, or even negatively correlated with the search query
 results = collection.query.near_text(
     query="sustainable fashion brands",
     where=Filter.by_property("price").less_than(100) &
@@ -211,10 +217,25 @@ ACORN works seamlessly with all existing filter operators and vector search meth
 
 :::info Related resources
 
-- [Concepts: Filtering - ACORN](https://v1-34-main--docs-weaviate-io.netlify.app/weaviate/concepts/filtering#acorn)
-- [How-to: Set vector index parameters](https://v1-34-main--docs-weaviate-io.netlify.app/weaviate/manage-collections/vector-config#set-vector-index-parameters)
+- [Concepts: Filtering - ACORN](https://docs.weaviate.io/weaviate/concepts/filtering#acorn)
+- [How-to: Set vector index parameters](https://docs.weaviate.io/weaviate/manage-collections/vector-config#set-vector-index-parameters)
 
 :::
+
+## Support for `Contextual AI` model integrations
+
+Weaviate `v1.34` adds model integrations for `Contextual AI`'s generative and reranker AI models.
+
+This allows you to perform integrated retrieval augmented generation (RAG) queries, or reranker queries using Contextual AI models directly within Weaviate.
+
+The default `Contextual AI` models are the `v2` GLMs for generation and `ctxl-rerank-v2-instruct-multilingual` for reranking.
+
+:::info Related resources
+
+- [Model integrations - Contextual AI](https://docs.weaviate.io/weaviate/model-providers/contextualai)
+
+:::
+
 
 ## Community contributions
 
