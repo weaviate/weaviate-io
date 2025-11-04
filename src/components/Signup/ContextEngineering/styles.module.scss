@@ -502,7 +502,7 @@
   label {
     list-style: none;
     color: #b5d2dc;
-    font-size: 14px !important;
+
     text-align: left;
     font-style: normal;
     text-transform: capitalize;
@@ -525,6 +525,12 @@
       max-width: 100%;
     }
   }
+}
+
+.ebookForm [class*='submitted-message'] span {
+  font-size: 21px !important;
+  line-height: 1.3;
+  color: #fff;
 }
 
 .formWrapper {
