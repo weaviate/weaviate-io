@@ -135,12 +135,15 @@ import weaviate from 'weaviate-client';
 import { parse } from 'csv-parse/sync';
 import fs from 'fs';
 
-const client = await weaviate.connectToWeaviateCloud(process.env.WEAVIATE_URL!!, {
-  authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY!!),
-  headers: {
-    'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY!!,
-  },
-});
+const client = await weaviate.connectToWeaviateCloud(
+  process.env.WEAVIATE_URL!!,
+  {
+    authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY!!),
+    headers: {
+      'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY!!,
+    },
+  }
+);
 ```
 
 The code above helps us connect to our WCD database instance. The variables prefixed with `process.env` are called environment variables. These are usually values that should not be public and therefore should not be specified directly in the code itself. To supply these values, create a file named `.env.local` at the root of your project. Specify your values like this, replacing the values in angle brackets with the values from WCD. As we use [text2vec-openai](https://docs.weaviate.io/weaviate/model-providers/openai/embeddings) to vectorize our data, you will need to add your Open AI API key as well.
@@ -167,7 +170,7 @@ const quotesCollection = await client.collections.create({
       skipVectorization: true,
     },
   ],
-  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI("default"),
+  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI('default'),
 });
 ```
 
@@ -218,12 +221,15 @@ import weaviate from 'weaviate-client';
 
 import { QuoteType } from './types';
 
-const client = await weaviate.connectToWeaviateCloud(process.env.WEAVIATE_URL!!, {
-  authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY!!),
-  headers: {
-    'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY!!,
-  },
-});
+const client = await weaviate.connectToWeaviateCloud(
+  process.env.WEAVIATE_URL!!,
+  {
+    authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY!!),
+    headers: {
+      'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY!!,
+    },
+  }
+);
 ```
 
 In the Next.js project, specify your environment variables again in the same way as described above.
@@ -318,7 +324,7 @@ This creates a very basic UI, allowing the user to search and display quotes. Fe
 
 To view your application, run `npm run dev` in the root directory of your project. A browser window should open and your hybrid search application is built and ready to use.
 
-We've got a deployed version of this project that you can find at [quotefinder.weaviate.io](https://quotefinder.weaviate.io). If you'd like to dive into the code, you can take a look at the projects [GitHub repository](https://github.com/weaviate/quote-finder).
+If you'd like to dive into the code, you can take a look at the projects [GitHub repository](https://github.com/weaviate/quote-finder).
 
 The project on GitHub should look like this once cloned and started.
 

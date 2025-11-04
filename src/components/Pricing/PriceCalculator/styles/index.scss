@@ -1,0 +1,26 @@
+@import 'variables.scss';
+@import 'priceCalculator.scss';
+@import 'elements/index.scss';
+
+// Just temporarily here, will extract.
+div.deploymentType {
+  flex-direction: row;
+  gap: 10px;
+
+  strong { 
+    display: inline;
+    cursor: pointer;
+    font-weight: 1000;
+  }
+  
+  .active {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    color: green;
+  }
+
+  .disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

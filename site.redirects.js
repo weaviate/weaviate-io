@@ -157,7 +157,7 @@ const siteRedirects = {
         },
         // Services Changes
         {
-            to: '/deployment/enterprise-cloud',
+            to: '/deployment/dedicated',
             from: '/services/enterprise-dedicated',
         },
 
@@ -173,11 +173,11 @@ const siteRedirects = {
             from: '/services',
         },
         {
-            to: '/deployment/serverless',
+            to: '/deployment/shared',
             from: '/services/serverless',
         },
         {
-            to: '/deployment/enterprise-cloud',
+            to: '/deployment/dedicated',
             from: '/services/enterprise-cloud',
         },
         {
@@ -222,11 +222,45 @@ const siteRedirects = {
             to: '/',
             from: '/community/build-with-weaviate',
         },
-        // Blog Update
+        // // Enterprise pricing > Prcing
+        {
+            to: '/pricing',
+            from: '/pricing/enterprise',
+        },
+        // // Serverless pricing > Pricing
+        {
+            to: '/pricing',
+            from: '/pricing/serverless',
+        },
+
+
+          // // Enterprise Cloud > Dedicated Cloud
+        {
+            to: '/deployment/dedicated',
+            from: '/deployment/enterprise-cloud',
+        },
+           // // Serverless Cloud > Shared Cloud
+        {
+            to: '/deployment/shared',
+            from: '/deployment/serverless',
+        },
+          // Blog Update
         {
             to: '/blog/when-good-models-go-bad',
             from: '/blog/when%20good%20models%20go%20bad',
         },
+
+        // Calendar redirects
+
+        {
+            to: '/rohan',
+            from: '/griffin',
+        },
+          {
+            to: '/rohan',
+            from: '/aaron',
+        }
+
     ],
 };
 

@@ -352,13 +352,6 @@
     "team": "wcd"
   },
   {
-    "name": "Griffin Foster",
-    "title": "Director of Sales - West",
-    "photo": "griffin.jpg",
-    "linkedin": "griffin-foster",
-    "team": "sales"
-  },
-  {
     "name": "Hamdi Hmimy",
     "title": "Enterprise Solution Engineer",
     "photo": "Hamdi-Hmimy.jpg",
@@ -473,13 +466,6 @@
     "photo": "leonie.jpg",
     "linkedin": "804250ab",
     "team": "developer-growth"
-  },
-  {
-    "name": "Loic Reyreaud",
-    "title": "Software Engineer",
-    "photo": "loic.jpg",
-    "linkedin": "loic-reyreaud",
-    "team": "database"
   },
   {
     "name": "Madison Sanders",
@@ -665,12 +651,6 @@
     "photo": "Sean-Forde.jpg",
     "team": "rev-ops",
     "linkedin": "seanf0rde"
-  },
-  {
-    "name": "Sean Romberg",
-    "title": "Business Development Representative",
-    "photo": "Sean-Romberg.jpg",
-    "team": "rev-ops"
   },
   {
     "name": "Sebastian Witalec",

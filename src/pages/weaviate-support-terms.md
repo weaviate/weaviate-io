@@ -15,9 +15,19 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 Weaviate shall provide the following Support to Customer for the licensed products:
 <br></br>
 
+- [Shared Cloud](/deployment/shared)
+- [Dedicated Cloud](/deployment/dedicated)
+- [Bring Your Own Cloud](/deployment/byoc)
+- [Embeddings](/product/embeddings)
+- [Query Agent](/product/query-agent)
+
+<br></br>
+
 ### **Support Access**
 
 Weaviate provides a ticketing system operated by the Weaviate technical team that brings product expertise. Support tickets can be opened 24x7.
+
+Weaviate provides a ticketing system operated by the Weaviate technical team that brings product expertise. Support tickets can be opened 24x7 by emailing [support@weaviate.io](mailto:support@weaviate.io) as well as through the [customer portal](https://support.weaviate.io/).
 <br></br>
 
 ### **Support Tickets**
@@ -48,6 +58,22 @@ Weaviate’s online documentation includes technical and user documentation, API
 
 ### **Support Plans and Target Response Times**
 
+Product plans are applicable to Weaviate Cloud subscriptions beginning on or after October 27, 2025 and have the following target response time per severity level:
+
+<br></br>
+
+| Severity Level | Criteria | Product Plan - Flex | Product Plan - Plus | Product Plan - Premium |
+|----------------|----------|------------------|----------------------|---------------------------|
+| Severity 1 (Critical) | Issues that are critical and require immediate attention, causing widespread disruption or outages. | 1 Business day | 4 hours (24/7) | 1 hour (24/7) |
+| Severity 2 (High) | High-priority problems that can impact service functionality or performance for a subset of users. | 2 Business days | 8 hours (24/7) | 4 hours (24/7) |
+| Severity 3 (Medium) | Medium-priority concerns that affect service functionality or performance for a limited number of users or use cases. | 3 Business days | 1 Business day | 8 hours (24/7) |
+| Severity 4 (Low) | Lower urgency and impact, causing minor inconveniences or issues for individual users. | 5 Business days | 2 Business days | 1 Business day |
+
+Support tiers are applicable to Weaviate Cloud subscriptions beginning before October 27, 2025 and have the following target response time per severity level:
+
+<br></br>
+
+
 | Severity Level | Criteria | Standard Support | Professional Support | Business Critical Support |
 |----------------|----------|------------------|----------------------|---------------------------|
 | Severity 1 (Critical) | Issues that are critical and require immediate attention, causing widespread disruption or outages. | 1 Business day | 4 hours (24/7) | 1 hour (24/7) |
@@ -55,13 +81,36 @@ Weaviate’s online documentation includes technical and user documentation, API
 | Severity 3 (Medium) | Medium-priority concerns that affect service functionality or performance for a limited number of users or use cases. | 3 Business days | 1 Business day | 8 hours (24/7) |
 | Severity 4 (Low) | Lower urgency and impact, causing minor inconveniences or issues for individual users. | 5 Business days | 2 Business days | 1 Business day |
 
- - *Note: All (24/7) cases must be followed up via phone. Business hours are defined based on the current timezone of the contracting entity of Weaviate, starting at 9am and ending at 5pm. Public holidays are excluded.*
+> *All (24/7) cases must be followed up via phone.* <br></br>
+*Business hours are defined based on the current timezone of the contracting entity of Weaviate. A business day starts at 9am and ends at 5pm. Public holidays are excluded.*
+
 <br></br>
 
 ### **Support Channels**
 
-- **Professional Support:** Email during business hours
-- **Business Critical Support:** Email and 24/7 Phone hotline for escalations
+Product plans are applicable to Weaviate Cloud subscriptions beginning on or after October 27, 2025 and have the following terms per channel:
+
+<br></br>
+
+| Channel | Product Plan - Flex | Product Plan - Plus | Product Plan - Premium | 
+|----------------|----------|------------------|----------------------|
+| Email | During business hours | During business hours | During business hours |
+| Phone | N/A | 24/7 hotline for escalations | 24/7 hotline for escalations |
+| Slack | N/A | Weaviate private Slack  | Weaviate private Slack  |
+| Technical Account Team | N/A | 1 hour per month | 4 hours per month |
+
+<br></br>
+
+Support tiers are applicable to Weaviate Cloud subscriptions beginning before October 27, 2025 and have the following terms per channel:
+
+<br></br>
+
+| Channel | Standard Support | Professional Support | Business Critical Support | 
+|----------------|----------|------------------|----------------------|
+| Email | During business hours | During business hours | During business hours |
+| Phone | N/A | N/A | 24/7 hotline for escalations |
+
+
 <br></br>
 
 ### **Severity Levels**
@@ -79,7 +128,7 @@ Weaviate shall categorize Support Tickets based on Customer’s characterization
 
 ### **End Of Life Policy**
 
-Our Support is aligned with our End of Life Policy, ensuring service and updates are provided for the most recent versions of the Weaviate Offering. Upon a version reaching end-of-life status, support will be discontinued as defined at [https://weaviate.io/weaviate-eol-policy](/weaviate-eol-policy).
+Our Support is aligned with our End of Life Policy, ensuring service and updates are provided for the most recent versions of the Weaviate Offering. Upon a version reaching end-of-life status, support will be discontinued as defined at [EOL Policy](/weaviate-eol-policy).
 
 
 </div>

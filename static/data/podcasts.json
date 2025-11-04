@@ -1,5 +1,29 @@
 [
   {
+    "title": "Saurabh Mishra and Bob van Luijt on Weaviate and SAS - Weaviate Podcast #129",
+    "description": "Welcome to the 129th episode of the Weaviate Podcast featuring Saurabh Mishra and Bob van Luijt, where they discuss Weaviate and SAS!",
+    "youtube": "INKV21AaYjE",
+    "date": "25-10-13",
+    "cover_image": "/img/podcasts/podcast-129.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Weaviate's Query Agent with Charles Pierse - Weaviate Podcast #128",
+    "description": "Welcome to the 128th episode of the Weaviate Podcast featuring Charles Pierse, the Director of the Weaviate Labs team, where he has recently lead the GA release of the Weaviate Query Agent.",
+    "youtube": "TRTHw6vdVso",
+    "date": "25-09-22",
+    "cover_image": "/img/podcasts/podcast-128.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "GEPA with Lakshya A. Agrawal - Weaviate Podcast #127",
+    "description": "Welcome to the 127th episode of the Weaviate Podcast featuring Lakshya A. Agrawal, a leading expert in GEPA!",
+    "youtube": "fREQrxhBSk0",
+    "date": "25-08-13",
+    "cover_image": "/img/podcasts/podcast-127.jpg",
+    "is_use_case": false
+  },
+  {
     "title": "Agentic Topic Modeling with Maarten Grootendorst - Weaviate Podcast #126",
     "description": "Welcome to the 126th episode of the Weaviate Podcast featuring Maarten Grootendorst, a leading expert in agentic topic modeling!",
     "youtube": "Lt6CRZ7ypPA",

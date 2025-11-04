@@ -115,11 +115,6 @@
     "photo": "femke.jpg"
   },
   {
-    "name": "Griffin James Foster",
-    "location": { "lat": 33.5311, "lng": -117.6361 },
-    "photo": "griffin.jpg"
-  },
-  {
     "name": "Jerónimo Irazábal",
     "location": { "lat": -34.6047, "lng": -58.3826 },
     "photo": "Jeronimo.jpg"
@@ -163,11 +158,6 @@
     "name": "Leonie Monigatti",
     "location": { "lat": 50.1119, "lng": 8.6831 },
     "photo": "leonie.jpg"
-  },
-  {
-    "name": "Loic Reyreaud",
-    "location": { "lat": 47.3779, "lng": 8.5427 },
-    "photo": "loic.jpg"
   },
   {
     "name": "Marcin Antas",

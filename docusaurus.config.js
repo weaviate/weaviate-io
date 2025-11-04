@@ -38,6 +38,46 @@ const config = {
         teamtailorApiKey: process.env.TEAMTAILOR_API_KEY
       },
     plugins: [
+
+         () => ({
+    name: 'inject-pre-google',
+    injectHtmlTags() {
+      return {
+        headTags: [
+          {
+            tagName: 'script',
+            attributes: { 'data-cookieconsent': 'ignore' },
+            innerHTML: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){ dataLayer.push(arguments); }
+              gtag('consent', 'default', {
+                ad_personalization: 'denied',
+                ad_storage: 'denied',
+                ad_user_data: 'denied',
+                analytics_storage: 'denied',
+                functionality_storage: 'denied',
+                personalization_storage: 'denied',
+                security_storage: 'granted',
+                wait_for_update: 500
+              });
+              gtag('set', 'ads_data_redaction', true);
+              gtag('set', 'url_passthrough', false);
+            `,
+          },
+          {
+            tagName: 'script',
+            attributes: {
+              id: 'Cookiebot',
+              src: 'https://consent.cookiebot.com/uc.js',
+              'data-cbid': '4397b0f9-0b32-41f5-b24a-9370be245e85',
+              'data-blockingmode': 'manual',
+              type: 'text/javascript',
+            },
+          },
+        ],
+      };
+    },
+  }),
         [
             '@docusaurus/plugin-google-gtag',
             {
@@ -131,18 +171,8 @@ const config = {
                                 src: 'https://plausible.io/js/plausible.js',
                             },
                         },
-                          // Add Cookiebot
-                        {
-                            tagName: 'script',
-                            attributes: {
-                              id: 'Cookiebot',
-                              src: 'https://consent.cookiebot.com/uc.js',
-                              'data-cbid': '4397b0f9-0b32-41f5-b24a-9370be245e85',
-                              'data-blockingmode': 'manual',
-                              type: 'text/javascript',
-                              async: true
-                            },
-                        },
+                         
+                        
                             // Add Hubspot
                         {
                             tagName: 'script',
@@ -372,7 +402,7 @@ const config = {
                         items: [
                             {
                                 type: 'html',
-                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Overview</li><li><a class="dropdown__link" href="/platform">Vector Database</a></li><li><a class="dropdown__link" href="/product/embeddings">Embeddings</a></li><li><a class="dropdown__link" href="/product/integrations">Integrations</a></li><li><a class="dropdown__link" href="/product">All Products</a></li><li class="dropDownLabel">Weaviate Agents</li><li><a class="dropdown__link" href="/product/query-agent">Query Agent</a></li><li><a class="dropdown__link" href="/product/transformation-agent">Transformation Agent</a></li><li><a class="dropdown__link" href="/product/personalization-agent">Personalization Agent</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Deployment</li><li><a class="dropdown__link" href="/deployment/serverless">Serverless Cloud</a></li><li><a class="dropdown__link" href="/deployment/enterprise-cloud">Enterprise Cloud</a></li><li><a class="dropdown__link" href="/deployment/byoc">Bring Your Own Cloud</a></li><li><a class="dropdown__link" href="/deployment/enablement">Enablement</a></li></ul></div><ul class="mobileNav menu__list" style="display: none;"><li class="dropDownLabel mobDrop">Overview</li><li class="menu__list-item"><a class="menu__link" href="/platform">Vector Database</a></li><li class="menu__list-item"><a class="menu__link" href="/product/embeddings">Embeddings</a></li><li class="menu__list-item"><a class="menu__link" href="/product/integrations">Integrations</a></li><li class="menu__list-item"><a class="menu__link" href="/product">All Products</a></li><li class="dropDownLabel mobDrop">Weaviate Agents</li><li class="menu__list-item"><a class="menu__link" href="/product/query-agent">Query Agent</a></li><li class="menu__list-item"><a class="menu__link" href="/product/transformation-agent">Transformation Agent</a></li><li class="menu__list-item"><a class="menu__link" href="/product/personalization-agent">Personalization Agent</a></li><li class="dropDownLabel mobDrop">Deployment</li><li class="menu__list-item"><a class="menu__link" href="/deployment/serverless">Serverless Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enterprise-cloud">Enterprise Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/byoc">Bring Your Own Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enablement">Enablement</a></li></ul>',
+                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Overview</li><li><a class="dropdown__link" href="/platform">Vector Database</a></li><li><a class="dropdown__link" href="/product/embeddings">Embeddings</a></li><li><a class="dropdown__link" href="/product/integrations">Integrations</a></li><li><a class="dropdown__link" href="/product">All Products</a></li><li class="dropDownLabel">Weaviate Agents</li><li><a class="dropdown__link" href="/product/query-agent">Query Agent</a></li><li><a class="dropdown__link" href="/product/transformation-agent">Transformation Agent</a></li><li><a class="dropdown__link" href="/product/personalization-agent">Personalization Agent</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Deployment</li><li><a class="dropdown__link" href="/deployment/shared">Shared Cloud</a></li><li><a class="dropdown__link" href="/deployment/dedicated">Dedicated Cloud</a></li><li><a class="dropdown__link" href="/deployment/byoc">Bring Your Own Cloud</a></li><li><a class="dropdown__link" href="/deployment/enablement">Enablement</a></li></ul></div><ul class="mobileNav menu__list" style="display: none;"><li class="dropDownLabel mobDrop">Overview</li><li class="menu__list-item"><a class="menu__link" href="/platform">Vector Database</a></li><li class="menu__list-item"><a class="menu__link" href="/product/embeddings">Embeddings</a></li><li class="menu__list-item"><a class="menu__link" href="/product/integrations">Integrations</a></li><li class="menu__list-item"><a class="menu__link" href="/product">All Products</a></li><li class="dropDownLabel mobDrop">Weaviate Agents</li><li class="menu__list-item"><a class="menu__link" href="/product/query-agent">Query Agent</a></li><li class="menu__list-item"><a class="menu__link" href="/product/transformation-agent">Transformation Agent</a></li><li class="menu__list-item"><a class="menu__link" href="/product/personalization-agent">Personalization Agent</a></li><li class="dropDownLabel mobDrop">Deployment</li><li class="menu__list-item"><a class="menu__link" href="/deployment/shared">Shared Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/dedicated">Dedicated Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/byoc">Bring Your Own Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enablement">Enablement</a></li></ul>',
                                className: 'dropDownContainer2',
                             },
                         ]
@@ -384,7 +414,7 @@ const config = {
                     items: [
                         {
                             type: 'html',
-                            value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Use Cases</li><li><a class="dropdown__link" href="/rag">RAG</a></li><li><a class="dropdown__link" href="/hybrid-search">Hybrid Search</a></li><li><a class="dropdown__link" href="/agentic-ai">Agentic AI</a></li><li><a class="dropdown__link" href="/cost-performance-optimization">Cost-Performance Optimization</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Examples</li><li><a class="dropdown__link" href="/case-studies">Case Studies</a></li><li><a class="dropdown__link" href="/community/demos">Demos</a></li></ul></div><ul class="menu__list mobileNav"><li class="dropDownLabel mobDrop">Use Cases</li><li class="menu__list-item"><a class="menu__link" href="/rag">RAG</a></li><li class="menu__list-item"><a class="menu__link" href="/hybrid-search">Hybrid Search</a></li><li class="menu__list-item"><li class="menu__list-item"><a class="menu__link" href="/agentic-ai">Agentic AI</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enterprise-cloud">Infrastructure Optimization</a></li><li class="dropDownLabel mobDrop">Examples</li><li class="menu__list-item"><a class="menu__link" href="/case-studies">Case Studies</a></li><li class="menu__list-item"><a class="menu__link" href="/community/demos">Demos</a></li></ul>',
+                            value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Use Cases</li><li><a class="dropdown__link" href="/rag">RAG</a></li><li><a class="dropdown__link" href="/hybrid-search">Hybrid Search</a></li><li><a class="dropdown__link" href="/agentic-ai">Agentic AI</a></li><li><a class="dropdown__link" href="/cost-performance-optimization">Cost-Performance Optimization</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Examples</li><li><a class="dropdown__link" href="/case-studies">Case Studies</a></li><li><a class="dropdown__link" href="/community/demos">Demos</a></li></ul></div><ul class="menu__list mobileNav"><li class="dropDownLabel mobDrop">Use Cases</li><li class="menu__list-item"><a class="menu__link" href="/rag">RAG</a></li><li class="menu__list-item"><a class="menu__link" href="/hybrid-search">Hybrid Search</a></li><li class="menu__list-item"><li class="menu__list-item"><a class="menu__link" href="/agentic-ai">Agentic AI</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/dedicated">Infrastructure Optimization</a></li><li class="dropDownLabel mobDrop">Examples</li><li class="menu__list-item"><a class="menu__link" href="/case-studies">Case Studies</a></li><li class="menu__list-item"><a class="menu__link" href="/community/demos">Demos</a></li></ul>',
                             className: 'dropDownContainer2',
                         },
 
@@ -394,7 +424,7 @@ const config = {
 
                             },
                             {
-                                label: 'Enterprise Cloud',
+                                label: 'Dedicated Cloud',
                                 href: '/services/enterprise-cloud',
 
                             },
@@ -516,12 +546,12 @@ const config = {
                                 className: 'footer__title subtitle',
                             },
                             {
-                                label: 'Serverless Cloud',
-                                to: '/deployment/serverless',
+                                label: 'Shared Cloud',
+                                to: '/deployment/shared',
                             },
                             {
-                                label: 'Enterprise Cloud',
-                                to: '/deployment/enterprise-cloud',
+                                label: 'Dedicated Cloud',
+                                to: '/deployment/dedicated',
                             },
                             {
                                 label: 'Bring Your Own Cloud',
