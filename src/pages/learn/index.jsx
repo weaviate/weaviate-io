@@ -8,6 +8,7 @@ import GetStarted from '/src/components/Learn/GetStarted';
 import Documentation from '/src/components/Learn/Documentation';
 import Examples from '/src/components/Learn/Examples';
 import Guides from '/src/components/Learn/Guides';
+import Ebooks from '../../components/Learn/Ebooks';
 import GoFurther from '/src/components/Learn/Further';
 import Resources from '../../components/Learn/Resources';
 import ThemeSwitch from '/src/components/ThemeSwitch';
@@ -27,6 +28,7 @@ export default function Home() {
           <Guides />
           <Documentation />
           <Examples />
+          <Ebooks />
           <GoFurther />
         </main>
       </Layout>
