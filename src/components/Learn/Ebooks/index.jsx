@@ -17,6 +17,21 @@ export default function Ebooks() {
         </div>
         <div className={styles.boxContainer}>
           <div className={styles.typeContainer}>
+            <Link to="/ebooks/the-context-engineering-guide">
+              <div className={styles.typeBox}>
+                <div className={styles.typeIcon}>
+                  <div className={`${styles.homeIcon} ${styles.papers}`}></div>
+                  <h2>The Context Engineering Guide</h2>
+                </div>
+                <div className={styles.typeText}>
+                  <p>
+                    This guide to mastering Context Engineering, the act of
+                    designing AI systems that leverage context to enhance
+                    performance and reliability.
+                  </p>
+                </div>
+              </div>
+            </Link>
             <Link to="/ebooks/advanced-rag-techniques">
               <div className={styles.typeBox}>
                 <div className={styles.typeIcon}>

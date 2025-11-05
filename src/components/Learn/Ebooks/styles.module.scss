@@ -62,7 +62,8 @@
 .typeContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  gap: 50px;
 
   @media screen and (max-width: 1440px) {
     justify-content: flex-start;
