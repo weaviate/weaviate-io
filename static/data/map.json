@@ -175,11 +175,6 @@
     "photo": "mariska.jpg"
   },
   {
-    "name": "Mike Hoppe",
-    "location": { "lat": 41.8791, "lng": -87.6308 },
-    "photo": "Mike-Hoppe.jpg"
-  },
-  {
     "name": "Mohamed Badawi",
     "location": { "lat": 53.5521, "lng": 9.9947 },
     "photo": "Mohamed-Badawi.jpg"
