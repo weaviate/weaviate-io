@@ -235,11 +235,6 @@
     "photo": "shan.jpg"
   },
   {
-    "name": "Soham Maniar",
-    "location": { "lat": 34.0532, "lng": -118.2447 },
-    "photo": "soham-maniar.jpg"
-  },
-  {
     "name": "Svitlana Smolianova",
     "location": { "lat": 52.3706, "lng": 4.9071 },
     "photo": "svitlana.jpg"
@@ -253,11 +248,6 @@
     "name": "Thomas Maurice",
     "location": { "lat": 50.6302, "lng": 3.0583 },
     "photo": "thomas.jpg"
-  },
-  {
-    "name": "Tony Le",
-    "location": { "lat": 47.6072, "lng": -122.3321 },
-    "photo": "tony.jpg"
   },
   {
     "name": "Victoria Slocum",
