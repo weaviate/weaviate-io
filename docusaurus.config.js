@@ -374,8 +374,8 @@ const config = {
         ({
             image: 'og/default.jpg',
              announcementBar: {
-               id: 'announcement-bar-oct-2025',
-                content:`<a href="/blog/weaviate-cloud-pricing-update">Introducing a new pricing model for Weaviate Cloud - Read the Announcement</a>`,
+               id: 'announcement-bar-october-2025',
+                content:`<a href="/ebooks/the-context-engineering-guide">New Context Engineering Guide – Download Here </a>`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
