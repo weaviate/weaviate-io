@@ -1,5 +1,13 @@
 [
   {
+    "title": "REFRAG with Xiaoqiang Lin - Weaviate Podcast #130",
+    "description": "Welcome to the 130th episode of the Weaviate Podcast featuring Xiaoqiang Lin, a leading expert in REFRAG!",
+    "youtube": "yi7v-UXMg0U",
+    "date": "25-11-03",
+    "cover_image": "/img/podcasts/podcast-130.jpg",
+    "is_use_case": false
+  },
+  {
     "title": "Saurabh Mishra and Bob van Luijt on Weaviate and SAS - Weaviate Podcast #129",
     "description": "Welcome to the 129th episode of the Weaviate Podcast featuring Saurabh Mishra and Bob van Luijt, where they discuss Weaviate and SAS!",
     "youtube": "INKV21AaYjE",
