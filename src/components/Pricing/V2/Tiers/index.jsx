@@ -67,7 +67,7 @@ export default function PricingTiers() {
             }
             blurb="Zero-commitment entry point to experiment and ship quickly. Ideal for prototypes, pilots, and small use cases."
             ctaLabel="Get started"
-            ctaHref="https://console.weaviate.cloud/"
+            ctaHref="/go/console"
             features={[
               <>
                 {' '}
@@ -109,7 +109,7 @@ export default function PricingTiers() {
             }
             blurb="For teams scaling AI in production who need predictable pricing, enterprise security, and enhanced reliability."
             ctaLabel="Get started"
-            ctaHref="https://console.weaviate.cloud/"
+            ctaHref="/go/console"
             features={[
               <>
                 <strong>Prepaid contract</strong> with predictable spend.
@@ -203,7 +203,7 @@ export default function PricingTiers() {
             Contact Sales
           </Link>
         </div>
-        
+
         <PriceCalculator />
       </div>
     </section>

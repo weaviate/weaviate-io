@@ -65,7 +65,7 @@ export default function PricingTiers() {
             blurb="Fully managed Vector Database in shared cloud. The easiest way to get started with Weaviate."
             ctaLabel="Try Free"
             ctaVariant="trial"
-            ctaHref="https://console.weaviate.cloud/"
+            ctaHref="/go/console"
             features={[
               <>
                 <strong>Free 14-day trial</strong>, then{' '}
@@ -104,7 +104,7 @@ export default function PricingTiers() {
             }
             blurb="Zero-commitment entry point to experiment and ship quickly. Ideal for prototypes, pilots, and small use cases."
             ctaLabel="Get started"
-            ctaHref="https://console.weaviate.cloud/"
+            ctaHref="/go/console"
             ctaVariant="flex"
             features={[
               <>

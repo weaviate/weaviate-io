@@ -48,7 +48,7 @@ export default function QueryPage() {
                         </button>
                       </Link>
                     ) : (
-                      <Link to="https://console.weaviate.cloud/">
+                      <Link to="/go/console">
                         <button className={styles.installButton}>
                           Open in Weaviate Cloud
                         </button>
