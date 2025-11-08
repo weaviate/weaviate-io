@@ -16,8 +16,6 @@ import SecurityCompliance from '../components/Pricing/V2/SOC2/soc2';
 import CustomScriptLoader from '../components/scriptSwitch/index.jsx';
 import { PriceCalculator } from '../components/Pricing/PriceCalculator/PriceCalculator';
 
-
-
 export default function ProductPage() {
   const [selectedType, setSelectedType] = useState('serverless');
   const divStyle = {
@@ -44,9 +42,9 @@ export default function ProductPage() {
           // Render Serverless content
           <>
             <PricingTiers />
-            <div className="container" id="calculator">
+            {/*   <div className="container" id="calculator">
               <PriceCalculator />
-            </div>
+            </div>  */}
 
             <CompareTable />
             <Availability />
