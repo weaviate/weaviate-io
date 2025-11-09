@@ -1,7 +1,5 @@
 .selectContentWrapper {
   z-index: 1999;
-  width: 100%;
-  max-width: 260px;
 
   ul, li {
     padding: 0;
@@ -27,8 +25,8 @@
 }
 
 .selectContent {
-  background: $selectBg;
-  border: 1px solid $buttonBorder;
+  background: $white;
+  border: 1px solid $deselectedButtonBorder;
   border-radius: 5px;
   box-shadow: $boxShadow; 
   overflow: hidden;
@@ -37,7 +35,7 @@
 .selectTarget {
   display: flex;
   padding: 0 $space;
-  border: 1px solid $borderColor;
+  border: 1px solid $mainColor;
   border-radius: 5px;
   align-self: center;
   min-width: 200px;
@@ -53,10 +51,69 @@
   }
 }
 
+.selectInputTarget {
+  display: flex;
+  flex-direction: row !important;
+  align-items: stretch;
+  width: 100%;
+  min-width: 200px;
+  height: 44px;
+  border: 1px solid $deselectedButtonBorder;
+  border-radius: calc($space / 2);
+  background: $white;
+  overflow: hidden;
+  flex-shrink: 0;
+
+  .selectInput {
+    flex: 1 1 auto;
+    padding: 0 $space;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: $mainColor;
+    font-size: 0.9em;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-family: inherit;
+    min-width: 0;
+
+    &::placeholder {
+      color: $deselectedButtonText;
+    }
+  }
+
+  .selectChevronButton {
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    min-width: 44px;
+    max-width: 44px;
+    flex-shrink: 0;
+    border: none;
+    border-left: 1px solid $deselectedButtonBorder;
+    background: $white;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: lighten($buttonBgDropdown, 2%);
+    }
+
+    .chevronIcon {
+      width: 12px;
+      height: 12px;
+      pointer-events: none;
+    }
+  }
+}
+
 ul.selectList {
   button { 
     cursor: pointer;
-    min-height: 22px;
+    min-height: 36px;
     width: 100%;
     text-align: left;
     padding: 0 10px;

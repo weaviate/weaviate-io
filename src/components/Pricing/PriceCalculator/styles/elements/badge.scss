@@ -1,0 +1,62 @@
+@import '../../styles/variables.scss';
+
+.badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  overflow: hidden;
+  margin-left: 8px;
+
+  .badge-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    z-index: 0;
+
+    &-green {
+      background: $greenGradient;
+    }
+
+    &-blue {
+      background: $blueGradient;
+    }
+
+    &-pink {
+      background: $pinkGradient;
+    }
+  }
+
+  .badge-text {
+    position: relative;
+    z-index: 1;
+    color: $mainColor;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 11px;
+    padding: 3px 10px;
+    margin-left: 6px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 10px;
+    padding: 2px 8px;
+    margin-left: 4px;
+  }
+}
+
+.badge-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 8px;
+  align-items: center;
+}

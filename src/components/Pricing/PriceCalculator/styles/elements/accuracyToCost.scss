@@ -1,0 +1,54 @@
+.accuracyToCost {
+  width: 100%;
+  flex-direction: column;
+  gap: $space;
+  padding: 0 32px;
+
+  @media (max-width: 550px) {
+    padding: 0 16px;
+  }
+
+  &__slider {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding-top: 12px;
+    
+    @media (max-width: 550px) {
+      gap: 8px;
+      font-size: 0.9em;
+    }
+  }
+
+  &__info-label {
+    font-size: 0.85em;
+    font-weight: 500;
+    color: $secondaryColor;
+  }
+
+  &__info-value {
+    font-size: 0.9em;
+    font-weight: 600;
+    color: $mainColor;
+    padding: 4px 12px;
+    background: $toggleBg;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+
+  &__info-separator {
+    font-size: 0.85em;
+    color: $grey;
+    margin: 0 4px;
+  }
+}
+
