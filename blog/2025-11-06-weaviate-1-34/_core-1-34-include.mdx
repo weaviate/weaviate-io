@@ -17,16 +17,33 @@ Here are the release ⭐️*highlights*⭐️!
 - [Upcoming C# and Java v6 clients](#upcoming-c-and-java-v6-clients)
 - [ACORN filter strategy by default](#acorn-filter-strategy-by-default)
 - [Support for `Contextual AI` model integrations](#support-for-contextual-ai-model-integrations)
+- [Multiple performance improvements and fixes](#multiple-performance-improvements-and-fixes)
 - [Community contributions](#community-contributions)
 
 ## Flat index RQ quantization support
 
-Weaviate `v1.34` introduces **flat index support with rotational quantization (RQ)** as a preview, combining flat indexing with efficiency of RQ compression.
+Weaviate `v1.34` introduces **flat index support with rotational quantization (RQ)**, combining the simplicity of flat indexing with memory-efficient compression. This is ideal for **multi-tenancy scenarios** with many small tenants, where brute-force search with quantization is fast enough without the memory overhead of HNSW graphs.
 
 A vector search on a flat index with RQ iterates through the compressed vectors, making it:
 
 - **Simple and predictable** - No graph building or index tuning required
 - **Faster with RQ** - 8-bit or 1-bit RQ reduces size by up to 4x-32x, speeding up disk reads
+- **Flexible** - Use with dynamic indexing to auto-upgrade tenants to HNSW when they grow
+
+### Quantization options
+
+Weaviate `v1.34` expands flat index support to include **RQ 1-bit** and **RQ 8-bit** alongside binary quantization (BQ):
+
+| Quantization | Recall with [rescore limit](https://docs.weaviate.io/weaviate/concepts/vector-quantization#over-fetching--re-scoring) 100 | Approx. QPS (_Queries Per Second_) |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| **RQ 8-bit** | ~100%                                                                                                                     | ~400                               |
+| **RQ 1-bit** | ~100%                                                                                                                     | ~800                               |
+| **BQ**       | ~98%                                                                                                                      | ~1,900                             |
+
+_Benchmark: DBpedia 100k with OpenAI Ada-002 embeddings_
+
+![Flat Index RQ - Recall performance](./img/recall-graph.png)
+![Flat Index RQ - QPS performance](./img/qps-graph.png)
 
 **Configuring flat index with RQ:**
 
@@ -134,6 +151,8 @@ Here are two sneak peeks into the new APIs:
 
 ### Java v6 - Example
 
+Check out the complete example and installation instruction in our [documentation](https://docs.weaviate.io/weaviate/client-libraries/java/java-v6).
+
 ```java
 WeaviateClient client = WeaviateClient.connectToWeaviateCloud(
     weaviateUrl,
@@ -171,6 +190,8 @@ client.close();
 
 ### C# - Example
 
+Check out the complete example and installation instruction in our [documentation](https://docs.weaviate.io/weaviate/client-libraries/csharp).
+
 ```csharp
 var dataObjects = new List<Dictionary<string, string>>
 {
@@ -204,16 +225,6 @@ You can find the pre-release versions here:
 - [C# client](https://github.com/weaviate/csharp-client/)
 
 If you have any feedback or comments about the upcoming clients, feel free to open an issue in their GitHub repositories ([Java](https://github.com/weaviate/java-client/issues) & [C#](https://github.com/weaviate/csharp-client/issues)).
-
-:::info Related resources
-
-- [Java v6 client documentation](https://client-libraries-beta--docs-weaviate-io.netlify.app/weaviate/client-libraries/java/java-v6)
-- [Java v6 client GitHub Repository](https://github.com/weaviate/java-client/tree/v6)
-
-- [C# client documentation](https://client-libraries-beta--docs-weaviate-io.netlify.app/weaviate/client-libraries/csharp)
-- [C# client GitHub Repository](https://github.com/weaviate/csharp-client/)
-
-:::
 
 ## ACORN filter strategy by default
 
@@ -259,11 +270,37 @@ The default `Contextual AI` models are the `v2` generative AI models for RAG que
 
 :::
 
+## Multiple performance improvements and fixes
+
+In these blogs, we tend to talk about the visible new features and improvements - for good reason. But there is a lot of work that you don't necessarily see, all of which adds up to huge improvements in performance over time.
+
+Just as an example, here is a selection of some of the performance improvements and fixes that were made in `v1.34`.
+
+import PerformanceImprovements from './img/improvements.png';
+
+<figure>
+  <img
+    alt="Example screenshot of performance improvements"
+    src={PerformanceImprovements}
+  />
+</figure>
+
+Ultimately, these all add up to a much faster, safer and more efficient Weaviate instance over time. Which is why we always recommend you run the latest version of Weaviate, if possible 😉.
+
+So here's a shout-out to our amazing engineering team for all the hard work they put in to make this release (and every other release) possible. 🚀🚀🚀
+
+:::info Related resources
+
+- [Weaviate 1.34: GitHub release notes](https://github.com/weaviate/weaviate/releases/tag/v1.34.0)
+
+:::
+
 ## Community contributions
 
-Weaviate is an open-source project, and we're always thrilled to see contributions from our amazing community.
+Weaviate is an open-source project, and we're always thrilled to see contributions from our amazing community. For this release, we are super excited to shout-out the following contributor for their contributions to Weaviate:
 
-For this release, we want to thank all the contributors who helped make Weaviate `v1.34` better through bug reports, feature requests, documentation improvements, and code contributions. 🎉🎉🎉
+- [@hzy12138](https://github.com/hzy12138) contributed [#9342](https://github.com/weaviate/weaviate/pull/9342)
+- [@waveywaves](https://github.com/waveywaves) contributed [#8978](https://github.com/weaviate/weaviate/pull/8978)
 
 If you're interested in contributing to Weaviate, please check out our [contribution guide](https://docs.weaviate.io/contributor-guide/), and browse the open issues on [GitHub](https://github.com/weaviate/weaviate/issues). Look for the `good-first-issue` label to find great starting points!
 
