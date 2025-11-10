@@ -34,13 +34,13 @@
   font-size: 0.95rem;
 }
 
-tbody {
+.table tbody {
   text-align: left;
   border: 2px solid #718eb9;
 }
 
 /* HEADER */
-thead th {
+.table thead th {
   background: #0f0032;
   color: #fff;
   text-align: left;
@@ -93,7 +93,7 @@ thead th {
   font-weight: 600;
 }
 
-tbody td {
+.table tbody td {
   padding: 12px 14px;
   border-left: 1px solid #e6e8f0;
   color: #130c49;
@@ -101,13 +101,13 @@ tbody td {
   font-size: 0.875rem;
   font-weight: 500;
 }
-tbody tr td:last-child,
-tbody tr th:last-child {
+.table tbody tr td:last-child,
+.table tbody tr th:last-child {
   border-right: 1px solid #e6e8f0;
 }
 
-tbody tr td,
-tbody tr th {
+.table tbody tr td,
+.table tbody tr th {
   border-bottom: 1px solid #e6e8f0;
 }
 
