@@ -15,10 +15,7 @@ export default function Resources() {
             The AI-native database for a new generation of software
           </h2>
           <div className={styles.buttons}>
-            <Link
-              className={styles.buttonGradient}
-              to="https://console.weaviate.cloud"
-            >
+            <Link className={styles.buttonGradient} to="/go/console">
               Start Free
             </Link>
             <Link className={styles.buttonOutline} to="/platform">

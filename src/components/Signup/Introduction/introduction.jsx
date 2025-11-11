@@ -92,7 +92,7 @@ export default function introduction() {
           <div className={styles.signUp}>
             <h2>The AI-native database for a new generation of software</h2>
             <p>Get started for free</p>
-            <Link to="https://console.weaviate.cloud" className={styles.button}>
+            <Link to="/go/console" className={styles.button}>
               Try Now
             </Link>
             <span>

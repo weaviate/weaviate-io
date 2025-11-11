@@ -69,10 +69,7 @@ export default function Details() {
             for builders of all levels. We're with you on your AI journey.
           </p>
           <div className={styles.buttons}>
-            <Link
-              className={styles.buttonGradient}
-              to="https://console.weaviate.cloud"
-            >
+            <Link className={styles.buttonGradient} to="/go/console">
               Sign up
             </Link>
             <Link className={styles.buttonOutline} to="/services">
