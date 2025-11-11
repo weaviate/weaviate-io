@@ -29,10 +29,7 @@
     "@mdx-js/react": "^2.3.0",
     "@radix-ui/react-tabs": "^1.0.1",
     "@react-google-maps/api": "^2.19.3",
-    "@types/adm-zip": "^0.5.7",
     "@types/gtag.js": "^0.0.18",
-    "adm-zip": "^0.5.16",
-    "ag-grid-react": "^32.3.3",
     "clipboard": "^2.0.11",
     "clsx": "^1.2.1",
     "csv-parser": "^3.0.0",
@@ -67,21 +64,8 @@
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^3.9.2",
-    "@typescript-eslint/eslint-plugin": "^5.59.6",
-    "@typescript-eslint/parser": "^5.59.6",
-    "autoprefixer": "^10.4.13",
-    "eslint": "^8.40.0",
     "linkinator": "4.1.2",
-    "netlify-cli": "12.10.0",
-    "postcss": "^8.4.21",
-    "postcss-prefix-selector": "^1.16.0",
-    "tailwindcss": "^3.2.7",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.1.6",
-    "weaviate-agents": "^0.1.1",
-    "weaviate-client": "^3.6.2",
-    "weaviate-ts-client": "^2.2.0",
-    "weaviate-ts-embedded": "^1.2.0"
+    "netlify-cli": "12.10.0"
   },
   "browserslist": {
     "production": [
