@@ -1,6 +1,6 @@
-@import 'variables.scss';
-@import 'priceCalculator.scss';
-@import 'elements/index.scss';
+@use 'variables.scss' as *;
+@use 'priceCalculator.scss' as *;
+@use 'elements/index.scss' as *;
 
 // Just temporarily here, will extract.
 div.deploymentType {

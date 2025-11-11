@@ -2,8 +2,8 @@
 // Note: type annotations allow type checking and IDEs autocompletion
 
 require('dotenv').config();
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const {themes} = require('prism-react-renderer');
+
 // SUBDOMAIN_MIGRATION - to do: delete site.redirects.js
 const siteRedirects = require('./site.redirects');
 const path = require('path');
@@ -591,7 +591,7 @@ const config = {
 
                             {
                                 label: 'RAG',
-                                to: '/RAG',
+                                to: '/rag',
                             },
                             {
                                 label: 'Hybrid Search',
@@ -805,8 +805,8 @@ const config = {
                 respectPrefersColorScheme: false,
             },
             prism: {
-                theme: lightCodeTheme,
-                darkTheme: darkCodeTheme,
+                theme: themes.github,
+                darkTheme: themes.dracula,
                 additionalLanguages: ['java', 'scala', 'csharp'],
             },
 

@@ -1,3 +1,6 @@
+@use '../../variables' as *;
+@use 'sass:color';
+
 .range {
   flex-direction: row;
   width: 100%;
@@ -87,7 +90,7 @@
 
       &:hover {
         scale: 1.2;
-        background-color: darken($green, 10%);
+        background-color: color.adjust($green, $lightness: -10%);
       }
     }
 
@@ -110,12 +113,12 @@
     input[type="range"] {
       &::-moz-range-thumb {
         scale: 1.2;
-        background-color: darken($green, 10%);
+        background-color: color.adjust($green, $lightness: -10%);
        }
 
       &::-webkit-slider-thumb {
         scale: 1.2;
-        background-color: darken($green, 10%);
+        background-color: color.adjust($green, $lightness: -10%);
        }
     }
   }
