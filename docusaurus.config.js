@@ -4,7 +4,6 @@
 require('dotenv').config();
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
-const remarkReplace = require('./src/remark/remark-replace');
 // SUBDOMAIN_MIGRATION - to do: delete site.redirects.js
 const siteRedirects = require('./site.redirects');
 const path = require('path');
