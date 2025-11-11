@@ -19,25 +19,31 @@
   },
   "dependencies": {
     "@docusaurus/core": "^3.9.2",
+    "@docusaurus/module-type-aliases": "^3.9.2",
     "@docusaurus/plugin-client-redirects": "^3.9.2",
+    "@docusaurus/plugin-content-docs": "^3.9.2",
     "@docusaurus/plugin-google-gtag": "^3.9.2",
     "@docusaurus/plugin-google-tag-manager": "^3.9.2",
     "@docusaurus/preset-classic": "^3.9.2",
     "@docusaurus/theme-mermaid": "^3.9.2",
     "@floating-ui/react": "^0.24.8",
     "@giscus/react": "^2.2.8",
-    "@mdx-js/react": "^3.0.0",
+    "@mdx-js/react": "^3.1.0",
     "@radix-ui/react-tabs": "^1.0.1",
     "@react-google-maps/api": "^2.19.3",
     "@types/gtag.js": "^0.0.18",
+    "@types/react": "^18.0.0",
     "clipboard": "^2.0.11",
-    "clsx": "^1.2.1",
+    "clsx": "^2.1.1",
+    "core-js": "^3.39.0",
     "csv-parser": "^3.0.0",
     "docusaurus-plugin-sass": "^0.2.3",
     "dotenv": "^16.4.5",
-    "framer-motion": "^6.5.1",
-    "hast-util-is-element": "1.1.0",
+    "framer-motion": "^11.15.0",
+    "hast-util-is-element": "^3.0.0",
+    "jquery": "^3.7.1",
     "lodash": "^4.17.21",
+    "mobx": "^6.13.5",
     "prism-react-renderer": "^2.0.0",
     "raw-loader": "^4.0.2",
     "rc-slider": "^10.1.1",
@@ -48,7 +54,6 @@
     "react-js-switch": "^1.1.6",
     "react-player": "^2.11.0",
     "react-radio-group": "^3.0.3",
-    "react-rangeslider": "^2.2.0",
     "react-slick": "^0.29.0",
     "react-syntax-highlighter": "^15.5.0",
     "react-twitter-embed": "^4.0.4",
@@ -58,12 +63,15 @@
     "remark-math": "3",
     "rxjs": "^7.8.0",
     "sass": "^1.56.1",
+    "search-insights": "^2.17.2",
     "slick-carousel": "^1.8.1",
     "stream-json": "^1.8.0",
-    "styled-components": "^6.0.5"
+    "styled-components": "^6.0.5",
+    "webpack": "^5.97.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.9.2",
+    "@opentelemetry/api": "~1.8.0",
+    "@types/node": "^22.10.2",
     "linkinator": "4.1.2",
     "netlify-cli": "12.10.0"
   },
@@ -81,5 +89,11 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "resolutions": {
+    "@docusaurus/plugin-content-docs": "^3.9.2",
+    "@docusaurus/theme-common": "^3.9.2",
+    "@docusaurus/utils": "^3.9.2",
+    "@algolia/client-search": "^5.18.0"
   }
 }
