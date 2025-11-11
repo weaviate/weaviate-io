@@ -29,7 +29,7 @@ BM25 builds on the keyword scoring method [TF-IDF](https://en.wikipedia.org/wiki
 The formula below presents the scoring calculation of BM25:
 
 $$
-score(D, Q) = \sum_{i=1}^{n} IDF(q_i) \frac{f(q_i, D) \cdot (k_1 + 1)}{f(q_i, D) + k_1 \cdot (1 - b + b \cdot \frac{|D|}{avgd_1})}
+score(D, Q) = \sum_\{i=1\}^\{n\} IDF(q_\{i\}) \frac\{f(q_\{i\}, D) \cdot (k_\{1\} + 1)\}\{f(q_\{i\}, D) + k_\{1\} \cdot (1 - b + b \cdot \frac\{|D|\}\{avgd_\{1\}\})\}
 $$
 
 
@@ -62,7 +62,7 @@ RRF ensures that relevant results from both search types are fairly represented,
 The RRF score is calculated by taking the sum of the reciprocal rankings that is given from each list. By putting the rank of the document in the denominator, it penalizes the documents that are ranked lower in the list.
 
 $$
-\sum_{d \in D} \frac{1}{k + r(d)}
+\sum_\{d \in D\} \frac\{1\}\{k + r(d)\}
 $$
 
 <center>
