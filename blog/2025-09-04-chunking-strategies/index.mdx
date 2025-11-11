@@ -382,6 +382,8 @@ When setting up a data ingestion pipeline for your RAG application, you often fa
     - **Best for:** modular workflows where chunking is just one piece of the puzzle.
 - **LlamaIndex:** Designed specifically for RAG pipelines. Its sophisticated [`NodeParsers`](https://docs.llamaindex.ai/en/stable/module_guides/loading/node_parsers/modules/) produce “Nodes,” optimized for ingestion and retrieval.
     - **Best for:** high-performance, data-centric retrieval systems.
+- **chonkie:** A lightweight, dedicated chunking library that focuses solely on splitting text. It offers a variety of chunking strategies such as [`SemanticChunker`](https://docs.chonkie.ai/python-sdk/chunkers/semantic-chunker) and is easy to integrate with other RAG libraries.
+    - **Best for:** projects where you want a simple, focused solution without the overhead of a larger framework.
 
 ### Manual Implementation
 
