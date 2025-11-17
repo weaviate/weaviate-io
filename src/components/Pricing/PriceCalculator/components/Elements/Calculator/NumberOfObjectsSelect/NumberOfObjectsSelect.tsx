@@ -1,57 +1,85 @@
-import React, { useState } from "react"
-import { Label } from "../../Form/Label/Label"
-import { Select } from "../../Form/Select/Select"
-import { SelectTarget } from "../../Form/Select/SelectTarget/SelectTarget"
-import { addCommas } from "../../../../helpers"
-import type { IData } from "../../../../types"
+import { useState, useEffect } from 'react';
+import { Select } from '../../Form/Select/Select';
+import { SelectInputTarget } from '../../Form/Select/SelectInputTarget/SelectInputTarget';
+import { addCommas } from '../../../../helpers';
+import type { IData } from '../../../../types';
+import { numOfObjects } from '../../../../types/priceValues';
 
 interface INumberOfObjectsSelectProps {
-  data: IData
-  updateValue: (name: string, value: string) => void
+  data: IData;
+  updateValue: (name: string, value: string) => void;
 }
 
 export const NumberOfObjectsSelect = (props: INumberOfObjectsSelectProps) => {
-  const [ open, updateOpen ] = useState<boolean>(false)
-  const target = (
-    <SelectTarget popoverProps={null!} ref={null!}>
-      {addCommas(props.data.numOfObjects)}
-    </SelectTarget>
-  )
+  const [open, updateOpen] = useState<boolean>(false);
+  const [inputValue, setInputValue] = useState<string>(
+    addCommas(props.data.numOfObjects)
+  );
 
-  const levels: IData['numOfObjects'][] = [
-    '1000', '10000', '100000', '1000000', '10000000', '50000000'
-  ]
-  
-  const items = levels.map(
-    level => {
-      const onClick = () => {
-        updateOpen(false)
-        props.updateValue('numOfObjects', level)
-      }
-      const active = level === props.data.numOfObjects
+  // Sync input value when data changes from outside
+  useEffect(() => {
+    setInputValue(addCommas(props.data.numOfObjects));
+  }, [props.data.numOfObjects]);
 
-      return (
-        <li key={level}>
-          <button className={active ? 'active' : ''} onClick={onClick}>
-            {addCommas(level)}
-          </button>
-        </li>
-      )
+  const handleInputChange = (value: string) => {
+    setInputValue(value);
+    // Remove commas and validate if it's a valid number
+    const cleanValue = value.replace(/,/g, '');
+    if (cleanValue && /^\d+$/.test(cleanValue)) {
+      props.updateValue('numOfObjects', cleanValue);
     }
-  )
+  };
+
+  const levels: IData['numOfObjects'][] = numOfObjects;
+  
+  // Calculate max value from the list
+  const maxValue = Math.max(...levels.map(v => parseInt(v, 10)));
+
+  const target = (
+    <SelectInputTarget
+      popoverProps={null!}
+      ref={null!}
+      value={inputValue}
+      onChange={handleInputChange}
+      placeholder="Enter number"
+      max={maxValue}
+    />
+  );
+
+  const items = levels.map((level) => {
+    const onClick = () => {
+      updateOpen(false);
+      setInputValue(addCommas(level));
+      props.updateValue('numOfObjects', level);
+    };
+    const active = level === props.data.numOfObjects;
+
+    return (
+      <li key={level}>
+        <button className={active ? 'active' : ''} onClick={onClick}>
+          {addCommas(level)}
+        </button>
+      </li>
+    );
+  });
 
   const content = (
     <div>
-      <ul className="selectList">
-        {items}
-      </ul>
+      <ul className="selectList">{items}</ul>
     </div>
-  )
-  
+  );
+
   return (
     <div className="row single">
-      <Label>Number of Objects</Label>
-      <Select open={open} onOpenChange={updateOpen} content={content} target={target} />
+      <div className="label">Number of Objects</div>
+      <Select
+        open={open}
+        onOpenChange={updateOpen}
+        content={content}
+        target={target}
+        inputValue={inputValue}
+        onInputChange={handleInputChange}
+      />
     </div>
-  )
-}
+  );
+};

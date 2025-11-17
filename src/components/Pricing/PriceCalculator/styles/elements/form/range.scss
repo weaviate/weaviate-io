@@ -39,7 +39,7 @@
       left: 0;
       height: 7px;
       width: var(--track-fill, 0%);
-      background: $green;
+      background: $greenGradient;
       border-radius: 99px;
       pointer-events: none;
     }
@@ -60,12 +60,13 @@
       -webkit-appearance: none;
       width: 36px;
       height: 36px;
-      background: $green;
+      background: transparent;
       cursor: pointer;
       border-radius: 99px;
-      background-image: url('/img/pricing/range.svg');
-      background-repeat: no-repeat;
-      background-position: center;
+      background-image: $greenGradient, url('/img/pricing/range.svg');
+      background-repeat: no-repeat, no-repeat;
+      background-position: center, center;
+      background-size: cover, auto;
       transition: $transition;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
       position: relative;
@@ -75,19 +76,19 @@
     &::-moz-range-thumb {
       width: 36px;
       height: 36px;
-      background: $green;
+      background: transparent;
       cursor: pointer;
       border: none;
       border-radius: 99px;
-      background-image: url('/img/pricing/range.svg');
-      background-repeat: no-repeat;
-      background-position: center;
+      background-image: $greenGradient, url('/img/pricing/range.svg');
+      background-repeat: no-repeat, no-repeat;
+      background-position: center, center;
+      background-size: cover, auto;
       transition: $transition;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 
       &:hover {
         scale: 1.2;
-        background-color: darken($green, 10%);
       }
     }
 
@@ -100,7 +101,7 @@
     
     &::-moz-range-progress {
       height: 7px;
-      background: $green;
+      background: $greenGradient;
       border: none;
       border-radius: 99px;
     }
@@ -110,13 +111,46 @@
     input[type="range"] {
       &::-moz-range-thumb {
         scale: 1.2;
-        background-color: darken($green, 10%);
        }
 
       &::-webkit-slider-thumb {
         scale: 1.2;
-        background-color: darken($green, 10%);
        }
+    }
+  }
+
+  // Plan-specific gradients
+  &.plan-plus {
+    input[type="range"] {
+      &::before {
+        background: $blueGradient;
+      }
+      &::-webkit-slider-thumb {
+        background-image: $blueGradient, url('/img/pricing/range.svg');
+      }
+      &::-moz-range-thumb {
+        background-image: $blueGradient, url('/img/pricing/range.svg');
+      }
+      &::-moz-range-progress {
+        background: $blueGradient;
+      }
+    }
+  }
+
+  &.plan-premium {
+    input[type="range"] {
+      &::before {
+        background: $pinkGradient;
+      }
+      &::-webkit-slider-thumb {
+        background-image: $pinkGradient, url('/img/pricing/range.svg');
+      }
+      &::-moz-range-thumb {
+        background-image: $pinkGradient, url('/img/pricing/range.svg');
+      }
+      &::-moz-range-progress {
+        background: $pinkGradient;
+      }
     }
   }
 }

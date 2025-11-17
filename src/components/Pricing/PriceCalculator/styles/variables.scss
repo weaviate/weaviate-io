@@ -1,18 +1,19 @@
 $uiMinHeight: 40px;
 
 $mainColor: #120D5E;
-$space: 10px;
+$secondaryColor: rgb(145, 145, 145);
+$space: 12px;
 $transition: all 0.25s ease-in-out;
 $yellow: #EDCB59;
-$green: #62D384;
-$bg: #EDF4F8;
+$green: #8bfcad;
+$bg: #FFFFFF;
 $grey: #D7DDE8;
 
 $borderColor: rgba(0, 0, 0, 0.1);
 $boxShadow: 0 5px 10px rgba(0, 0, 0, 0.05);
 
 // Button and form colors
-$buttonBg: #F7F9FD;
+$buttonBg: #FFFFFF;
 $buttonBgHover: #EBF4F9;
 $buttonBgDropdown: #ECF4F8;
 $buttonBorder: #A3AFF1;
@@ -23,3 +24,14 @@ $white: #fff;
 $textGrey: #6A678E;
 $textDark: #42424B;
 $darkBorder: #130C49;
+
+// Deselected Buttons
+$deselectedButtonBg: #FFFFFF;
+$deselectedButtonText: #b0b0b0;
+$deselectedButtonBorder: #adadad;
+
+// Gradients
+$blueGradient: linear-gradient(150.47deg, #92ebff 0%, #51c5ef 100%);
+$greenGradient: linear-gradient(150.47deg, #75fbae 0%, #b6f874 100%);
+$pinkGradient: linear-gradient(150.47deg, #ffe196 0%, #fb80d2 100%);
+
