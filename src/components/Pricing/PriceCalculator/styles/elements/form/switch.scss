@@ -1,0 +1,54 @@
+.switch-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+}
+
+.switch-label {
+  color: $deselectedButtonText;
+}
+
+.switch {
+  display: flex;
+  flex-direction: row;
+  gap: $space;
+  padding: 4px 0px;
+  width: fit-content;
+
+  &-option {
+    position: relative;
+    padding: 8px 20px;
+    border: none;
+    color: $deselectedButtonText;
+    background: $deselectedButtonBg;
+    font-size: 0.9em;
+    font-weight: 700;
+    min-width: 80px;
+    height: 44px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: $deselectedButtonBorder;
+    border-radius: calc($space / 2);
+    cursor: pointer;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+    overflow: hidden;
+
+    &:hover {
+      color: $mainColor;
+    }
+
+    &.active {
+      color: $white;
+      border: 1px solid $mainColor;
+      background: $mainColor;
+    }
+  }
+
+  &-text {
+    position: relative;
+    z-index: 1;
+  }
+}
+
