@@ -22,6 +22,9 @@ export default function Resources() {
             <Link to="#code-examples">Code examples</Link>
           </ul>
           <ul>
+            <Link to="#ebooks">Ebooks</Link>
+          </ul>
+          <ul>
             <Link to="#go-further">Go further</Link>
           </ul>
         </div>

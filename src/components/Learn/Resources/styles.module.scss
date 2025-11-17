@@ -38,8 +38,9 @@
   }
   ul {
     color: #ffffff;
-    max-width: 210px;
+    max-width: 170px;
     width: 100%;
+    text-align: center;
     margin: 0;
 
     @media screen and (max-width: 1400px) {
@@ -48,6 +49,7 @@
 
     @media screen and (max-width: 800px) {
       width: 100%;
+      text-align: left;
     }
 
     @media screen and (max-width: 500px) {
