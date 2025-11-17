@@ -134,12 +134,6 @@
     "team": "weaviate-labs"
   },
   {
-    "name": "Luke McCurry",
-    "title": "Commercial Account Executive",
-    "photo": "Christopher-McCurry.jpg",
-    "team": "sales"
-  },
-  {
     "name": "Connor Shorten",
     "title": "Research Scientist",
     "photo": "connor.jpg",
@@ -167,15 +161,6 @@
     "photo": "Dan-Jones.jpg",
     "linkedin": "daniel-jones-9a8a3b185",
     "team": "weaviate-labs"
-  },
-  {
-    "name": "Daniel Phiri",
-    "title": "Developer Experience and Education Engineer",
-    "photo": "daniel.jpg",
-    "team": "developer-relations",
-    "linkedin": "malgamves",
-    "twitter": "malgamves",
-    "github": "malgamves"
   },
   {
     "name": "Daniel Williams",
@@ -374,13 +359,6 @@
     "team": "applied-research"
   },
   {
-    "name": "Jolanta Marczewska",
-    "title": "Product Designer",
-    "photo": "Jolanta-Marczewska.jpg",
-    "linkedin": "jolanta-marczewska",
-    "team": "wcd"
-  },
-  {
     "name": "Jose Luis Franco",
     "title": "QA Engineer",
     "photo": "Jose-Luis-Franco.jpg",
@@ -421,13 +399,6 @@
     "twitter": "antas_marcin",
     "github": "antas-marcin",
     "team": "database"
-  },
-  {
-    "name": "Marion Nehring",
-    "title": "Developer Experience Program Manager",
-    "photo": "marion.jpg",
-    "linkedin": "marionnehring",
-    "team": "developer-relations"
   },
   {
     "name": "Mariska Tunc",
@@ -532,19 +503,6 @@
     "team": "sales"
   },
   {
-    "name": "Ryan Colbert",
-    "title": "Enterprise Account Executive",
-    "photo": "ryan.jpg",
-    "linkedin": "ryantcolbert",
-    "team": "sales"
-  },
-  {
-    "name": "Sebastian Neira Farriol",
-    "title": "Client-Focused SRE",
-    "photo": "Sebastian-Farriol.jpg",
-    "team": "delivery"
-  },
-  {
     "name": "Sean Forde",
     "title": "Business Development Representative",
     "photo": "Sean-Forde.jpg",
@@ -557,12 +515,6 @@
     "photo": "shan.jpg",
     "linkedin": "shan-blackwood-79251876",
     "team": "developer-growth"
-  },
-  {
-    "name": "Shukri Hasan",
-    "title": "Integration Solution Engineer",
-    "photo": "shukri.jpg",
-    "team": "partnerships"
   },
   {
     "name": "Spiros Andreou",

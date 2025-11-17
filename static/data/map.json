@@ -220,11 +220,6 @@
     "photo": "scott-alexander.jpg"
   },
   {
-    "name": "Sebastian Neira Farriol",
-    "location": { "lat": 39.4709, "lng": -0.3773 },
-    "photo": "Sebastian-Farriol.jpg"
-  },
-  {
     "name": "Shan Blackwood",
     "location": { "lat": 51.5104, "lng": -0.1308 },
     "photo": "shan.jpg"

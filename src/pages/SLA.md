@@ -30,14 +30,14 @@ For subscriptions beginning October 27, 2025 or later, the details are as follow
 
 | Parameter | Flex | Plus | Premium |
 |-----------|----------|--------------|-------------------|
-| Availability per Quarter | 99.5% | 99.9% | 99.5% |
+| Availability per Quarter | 99.5% | 99.9% | 99.95% |
 
 For subscriptions beginning prior to October 27, 2025, the details are as follows per **support tier**:
 <br></br>
 
 | Parameter | Standard | Professional | Business Critical |
 |-----------|----------|--------------|-------------------|
-| Availability per Quarter | 99.5% | 99.9% | 99.9% |
+| Availability per Quarter | 99.5% | 99.9% | 99.95% |
 
 Exclusions from the calculation of Availability include planned maintenance windows, maintenance requested by the Customer, and all downtime resulting from interruptions by third parties or other factors beyond Weaviate's control.
 <br></br>
