@@ -30,6 +30,11 @@ export const NumberOfObjectsSelect = (props: INumberOfObjectsSelectProps) => {
     }
   };
 
+  const levels: IData['numOfObjects'][] = numOfObjects;
+  
+  // Calculate max value from the list
+  const maxValue = Math.max(...levels.map(v => parseInt(v, 10)));
+
   const target = (
     <SelectInputTarget
       popoverProps={null!}
@@ -37,10 +42,9 @@ export const NumberOfObjectsSelect = (props: INumberOfObjectsSelectProps) => {
       value={inputValue}
       onChange={handleInputChange}
       placeholder="Enter number"
+      max={maxValue}
     />
   );
-
-  const levels: IData['numOfObjects'][] = numOfObjects;
 
   const items = levels.map((level) => {
     const onClick = () => {

@@ -1,45 +1,37 @@
 import { motion } from 'framer-motion';
-import type { TPlan } from '../../../types';
 
 interface IBadgeProps {
-  plan: TPlan;
   text: string;
 }
 
-const gradientVariants = {
-  initial: { opacity: 0 },
-  exit: { opacity: 0 },
-  transition: { duration: 0.3, ease: 'easeOut' },
+const badgeVariants = {
+  initial: {
+    opacity: 0,
+    scale: 0.8,
+    y: -10,
+  },
+  animate: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.16, 1, 0.3, 1], // Custom easing for smooth feel
+    },
+  },
 };
 
 export const Badge = (props: IBadgeProps) => {
-  const { plan, text } = props;
+  const { text } = props;
 
   return (
-    <div className="badge">
-      <motion.div
-        className="badge-gradient badge-gradient-green"
-        initial={gradientVariants.initial}
-        animate={{ opacity: plan === 'flex' ? 1 : 0 }}
-        exit={gradientVariants.exit}
-        transition={gradientVariants.transition}
-      />
-      <motion.div
-        className="badge-gradient badge-gradient-blue"
-        initial={gradientVariants.initial}
-        animate={{ opacity: plan === 'plus' ? 1 : 0 }}
-        exit={gradientVariants.exit}
-        transition={gradientVariants.transition}
-      />
-      <motion.div
-        className="badge-gradient badge-gradient-pink"
-        initial={gradientVariants.initial}
-        animate={{ opacity: plan === 'premium' ? 1 : 0 }}
-        exit={gradientVariants.exit}
-        transition={gradientVariants.transition}
-      />
+    <motion.div
+      className="badge"
+      variants={badgeVariants}
+      initial="initial"
+      animate="animate"
+    >
       <span className="badge-text">{text}</span>
-    </div>
+    </motion.div>
   );
 };
-

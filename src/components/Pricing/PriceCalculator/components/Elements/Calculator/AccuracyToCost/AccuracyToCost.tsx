@@ -17,12 +17,9 @@ export const AccuracyToCost = (props: IAccuracyToCostProps) => {
   return (
     <div className="accuracyToCost">
       <div className="badge-container">
-        <Badge plan={props.data.plan} text={currentConfig.info} />
+        <Badge text={currentConfig.info} />
         {currentConfig.memoryCompression && (
-          <Badge
-            plan={props.data.plan}
-            text={currentConfig.memoryCompression}
-          />
+          <Badge text={currentConfig.memoryCompression} />
         )}
       </div>
 
@@ -35,7 +32,7 @@ export const AccuracyToCost = (props: IAccuracyToCostProps) => {
           plan={props.data.plan}
           startExtra="Accuracy"
           endExtra="Cost"
-          range={['1', '5']}
+          range={['1', '7']}
           step="1"
         />
       </div>
@@ -49,17 +46,7 @@ export const AccuracyToCost = (props: IAccuracyToCostProps) => {
           stiffness: 300,
           damping: 25,
         }}
-      >
-        <span className="accuracyToCost__info-label">Compression:</span>
-        <span className="accuracyToCost__info-value">
-          {currentConfig.compression}
-        </span>
-        <span className="accuracyToCost__info-separator">|</span>
-        <span className="accuracyToCost__info-label">Index:</span>
-        <span className="accuracyToCost__info-value">
-          {currentConfig.index}
-        </span>
-      </motion.div>
+      ></motion.div>
     </div>
   );
 };

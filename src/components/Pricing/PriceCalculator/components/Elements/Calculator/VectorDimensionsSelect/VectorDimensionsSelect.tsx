@@ -30,6 +30,11 @@ export const VectorDimensionsSelect = (props: IVectorDimensionsSelectProps) => {
     }
   };
 
+  const levels: IData['vectorDimensions'][] = vectorDimensions;
+
+  // Calculate max value from the list
+  const maxValue = Math.max(...levels.map((v) => parseInt(v, 10)));
+
   const target = (
     <SelectInputTarget
       popoverProps={null!}
@@ -37,10 +42,9 @@ export const VectorDimensionsSelect = (props: IVectorDimensionsSelectProps) => {
       value={inputValue}
       onChange={handleInputChange}
       placeholder="Enter dimensions"
+      max={maxValue}
     />
   );
-
-  const levels: IData['vectorDimensions'][] = vectorDimensions;
 
   const items = levels.map((level) => {
     const onClick = () => {

@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import type { MotionProps } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { calculatePrice } from '../../../helpers/priceHelper';
+import { calculateCosts } from '../../../types/priceCalculation';
 import type { IData } from '../../../types';
 
 interface IPriceProps {
@@ -23,10 +24,10 @@ export const Price = (props: IPriceProps) => {
     transition: { duration: 0.33 },
   };
 
-  const [price, setPrice] = useState<string>(() => calculatePrice(props.data));
+  const [price, setPrice] = useState<string>(() => calculateCosts(props.data));
 
   useEffect(() => {
-    setPrice(calculatePrice(props.data));
+    setPrice(calculateCosts(props.data));
   }, [props.data]);
 
   const wrapperMotionProps: MotionProps = {

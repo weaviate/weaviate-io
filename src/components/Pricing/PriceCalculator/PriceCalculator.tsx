@@ -10,11 +10,46 @@ import { ObjectSizeSelect } from './components/Elements/Calculator';
 import { IData, TDeploymentType, starterState } from './types';
 import { AccuracyToCost } from './components/Elements/Calculator/AccuracyToCost/AccuracyToCost';
 import { Switch } from './components/Elements/Form/Switch/Switch';
+import {
+  vectorDimensions,
+  numOfObjects,
+  objectSize,
+} from './types/priceValues';
 
 export const PriceCalculator = () => {
   const [data, updateData] = useState<IData>(starterState);
 
   const updateValue = (n: string, v: string) => {
+    // Clamp value to maximum available in the corresponding array
+    const clampValue = (fieldName: string, value: string): string => {
+      let maxValues: string[] = [];
+
+      switch (fieldName) {
+        case 'vectorDimensions':
+          maxValues = vectorDimensions;
+          break;
+        case 'numOfObjects':
+          maxValues = numOfObjects;
+          break;
+        case 'objectSize':
+          maxValues = objectSize;
+          break;
+        default:
+          return value;
+      }
+
+      const numericValue = parseFloat(value);
+      const maxValue = Math.max(...maxValues.map((v) => parseFloat(v)));
+
+      if (numericValue > maxValue) {
+        return maxValue.toString();
+      }
+
+      return value;
+    };
+
+    const clampedValue = clampValue(n, v);
+
     const deploymentType = (n: string, v: string): TDeploymentType => {
       // Will clean this up, just here for testing.
       if (n === 'plan' && v === 'flex') return 'shared';
@@ -25,7 +60,11 @@ export const PriceCalculator = () => {
       return data.deploymentType;
     };
 
-    updateData({ ...data, [n]: v, deploymentType: deploymentType(n, v) });
+    updateData({
+      ...data,
+      [n]: clampedValue,
+      deploymentType: deploymentType(n, clampedValue),
+    });
   };
 
   const updateDeploymentType = (deploymentType: TDeploymentType) => {
@@ -48,7 +87,6 @@ export const PriceCalculator = () => {
               ? 'Shared cost-efficient infrastructure'
               : 'Dedicated high-performance infrastructure'
           }
-          plan={data.plan}
         />
 
         <div className="rowWrapper">

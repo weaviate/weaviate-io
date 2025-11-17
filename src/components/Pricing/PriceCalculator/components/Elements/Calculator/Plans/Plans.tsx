@@ -22,10 +22,7 @@ export const Plans = (props: IPlansProps) => {
     <div className="column">
       <div className="label-with-badge">
         <div className="label">Plans</div>
-        <Badge
-          plan={props.data.plan}
-          text={planDescriptions[props.data.plan]}
-        />
+        <Badge text={planDescriptions[props.data.plan]} />
       </div>
       <ButtonGroup
         items={items}

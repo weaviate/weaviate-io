@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import type { TDeploymentType, TPlan } from '../../../../types';
+import type { TDeploymentType } from '../../../../types';
 import { Badge } from '../../Badge/Badge';
 
 interface ISwitchProps {
@@ -8,7 +8,6 @@ interface ISwitchProps {
   updateValue: (value: TDeploymentType) => void;
   label: string;
   badge_text: string;
-  plan: TPlan;
 }
 
 export const Switch = ({
@@ -17,7 +16,6 @@ export const Switch = ({
   updateValue,
   label,
   badge_text,
-  plan,
 }: ISwitchProps) => {
   const capitalize = (str: string) =>
     str.charAt(0).toUpperCase() + str.slice(1);
@@ -30,9 +28,8 @@ export const Switch = ({
     <div className="switch-container">
       <div className="label-with-badge">
         <div className="label">{label}</div>
-        <Badge plan={plan} text={badge_text} />
+        <Badge text={badge_text} />
       </div>
-      <div className="label">{label}</div>
       <div className="switch">
         {values.map((value) => (
           <motion.button

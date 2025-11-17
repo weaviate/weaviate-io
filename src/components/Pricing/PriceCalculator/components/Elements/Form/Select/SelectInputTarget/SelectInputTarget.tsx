@@ -6,11 +6,23 @@ interface ISelectInputTargetProps {
   onChange: (value: string) => void;
   onBlur?: () => void;
   placeholder?: string;
+  max?: number;
+  maxLength?: number;
+  min?: number;
 }
 
 export const SelectInputTarget = forwardRef(
   (props: ISelectInputTargetProps, ref: Ref<any>) => {
-    const { popoverProps, value, onChange, onBlur, placeholder } = props;
+    const {
+      popoverProps,
+      value,
+      onChange,
+      onBlur,
+      placeholder,
+      max,
+      maxLength,
+      min,
+    } = props;
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       onChange(e.target.value);
@@ -24,6 +36,9 @@ export const SelectInputTarget = forwardRef(
           onChange={handleInputChange}
           onBlur={onBlur}
           placeholder={placeholder}
+          max={max}
+          maxLength={maxLength}
+          min={min}
           className="selectInput"
         />
         <button className="selectChevronButton" {...popoverProps}>

@@ -8,48 +8,31 @@
   border-radius: 20px;
   font-size: 13px;
   font-weight: 500;
-  overflow: hidden;
   margin-left: 8px;
-
-  .badge-gradient {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-    z-index: 0;
-
-    &-green {
-      background: $greenGradient;
-    }
-
-    &-blue {
-      background: $blueGradient;
-    }
-
-    &-pink {
-      background: $pinkGradient;
-    }
-  }
+  
+  // Liquidglass effect
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  
+  // Subtle border for definition
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  
+  // Soft shadow for depth
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 
   .badge-text {
     position: relative;
     z-index: 1;
     color: $mainColor;
     white-space: nowrap;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   }
 
   @media (max-width: 768px) {
-    font-size: 11px;
-    padding: 3px 10px;
-    margin-left: 6px;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 10px;
-    padding: 2px 8px;
-    margin-left: 4px;
+    display: none;
   }
 }
 
@@ -59,4 +42,5 @@
   justify-content: center;
   gap: 8px;
   align-items: center;
+
 }

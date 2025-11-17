@@ -67,6 +67,11 @@ export const ObjectSizeSelect = (props: IObjectSizeSelectSelect) => {
     }
   };
 
+  const levels: IData['objectSize'][] = objectSize;
+  
+  // Calculate max value from the list
+  const maxValue = Math.max(...levels.map(v => parseInt(v, 10)));
+
   const target = (
     <SelectInputTarget
       popoverProps={null!}
@@ -75,9 +80,9 @@ export const ObjectSizeSelect = (props: IObjectSizeSelectSelect) => {
       onChange={handleInputChange}
       onBlur={handleInputBlur}
       placeholder="Enter size"
+      max={maxValue}
     />
   );
-  const levels: IData['objectSize'][] = objectSize;
   const items = levels.map((level) => {
     const onClick = () => {
       updateOpen(false);
