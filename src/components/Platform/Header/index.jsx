@@ -16,13 +16,13 @@ export default function PlatformHeader() {
             </p>
           </div>
           <div className={styles.buttons}>
-            <Link
-              className={styles.buttonGradient}
-              to="https://console.weaviate.cloud/"
-            >
+            <Link className={styles.buttonGradient} to="/go/console">
               Start Free
             </Link>
-            <Link className={styles.buttonOutline} to="https://docs.weaviate.io/weaviate">
+            <Link
+              className={styles.buttonOutline}
+              to="https://docs.weaviate.io/weaviate"
+            >
               Documentation
             </Link>
           </div>

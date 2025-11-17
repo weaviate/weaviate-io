@@ -33,7 +33,7 @@ export const PriceReview = (props: IPriceReviewProps) => {
       <h1>Your estimated cost:</h1>
       <Price data={props.data} />
       <motion.button {...motionProps}>
-        <a className="linkCTA" href="https://console.weaviate.cloud/">Get started</a>
+        <a className="linkCTA" href="/go/console">Get started</a>
       </motion.button>
       <a href="/pricing#contact-sales">Contact Sales Team for more information</a>
     </div>

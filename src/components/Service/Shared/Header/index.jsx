@@ -19,10 +19,7 @@ export default function ServiceHeader() {
             </p>
           </div>
           <div className={styles.buttons}>
-            <Link
-              className={styles.buttonGradient}
-              to="https://console.weaviate.cloud/"
-            >
+            <Link className={styles.buttonGradient} to="/go/console">
               Try Free
             </Link>
           </div>

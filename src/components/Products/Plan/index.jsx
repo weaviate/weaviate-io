@@ -27,16 +27,10 @@ export default function PricingPlan() {
           <PricingSandBox />
         </div>
         <div className={styles.buttons}>
-          <Link
-            className={styles.buttonGradient}
-            to="https://console.weaviate.cloud"
-          >
+          <Link className={styles.buttonGradient} to="/go/console">
             Weaviate Cloud console
           </Link>
-          <Link
-            className={styles.buttonOutline}
-            to="https://console.weaviate.cloud"
-          >
+          <Link className={styles.buttonOutline} to="/go/console">
             Create a Free Sandbox
           </Link>
         </div>

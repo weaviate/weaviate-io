@@ -97,10 +97,7 @@ export default function Integrations() {
                 Constantine Kokkinos,<br></br> Stack Overflow
               </p>
               <div className={styles.buttons}>
-                <Link
-                  className={styles.buttonGradient}
-                  to="https://console.weaviate.cloud/"
-                >
+                <Link className={styles.buttonGradient} to="/go/console">
                   Start Building with Weaviate
                 </Link>
               </div>

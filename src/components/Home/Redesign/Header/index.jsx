@@ -47,10 +47,7 @@ export default function HomepageHeader() {
               </div>
 
               <div className={styles.buttons}>
-                <Link
-                  className={styles.buttonGradient}
-                  to="https://console.weaviate.cloud"
-                >
+                <Link className={styles.buttonGradient} to="/go/console">
                   Start Free
                 </Link>
                 <Link className={styles.buttonOutline} to="/platform">
@@ -116,10 +113,7 @@ export default function HomepageHeader() {
               <span>With flexible, reliable, open source foundations.</span>
 
               <div className={`${styles.buttons} ${styles.vertical}`}>
-                <Link
-                  className={styles.buttonGradient}
-                  to="https://console.weaviate.cloud"
-                >
+                <Link className={styles.buttonGradient} to="/go/console">
                   Get Started
                 </Link>
                 <Link className={styles.buttonDark} to="/product">

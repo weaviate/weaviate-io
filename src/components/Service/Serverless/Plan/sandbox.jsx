@@ -22,10 +22,7 @@ export default function PricingSandBox() {
       </div>
       <div className={styles.features}>
         <div className={styles.buttonsSales}>
-          <Link
-            className={styles.buttonOutlineSales}
-            to="https://console.weaviate.cloud/"
-          >
+          <Link className={styles.buttonOutlineSales} to="/go/console">
             Start Free
           </Link>
         </div>
