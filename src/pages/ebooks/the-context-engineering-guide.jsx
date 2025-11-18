@@ -14,12 +14,12 @@ export default function signUpPage() {
         <title>The Context Engineering Guide</title>
         <meta
           name="description"
-          content="The AI Leader’s Guide to Operationalizing AI."
+          content="The guide to engineering reliable, context-aware AI systems."
         />
         <meta property="og:title" content="The Context Engineering Guide" />
         <meta
           property="og:description"
-          content="The AI Leader’s Guide to Operationalizing AI."
+          content="The guide to engineering reliable, context-aware AI systems."
         />
         <meta name="robots" content="index, follow" />
       </Head>
