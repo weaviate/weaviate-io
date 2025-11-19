@@ -1,0 +1,440 @@
+---
+title: 'Announcing the new Weaviate Java Client v6'
+slug: weaviate-java-client-v6
+authors: [ivan]
+date: 2025-11-25
+tags: ['release', 'java']
+image: ./img/hero.png
+description: 'The Weaviate Java client v6 is now generally available! This release brings a completely redesigned API that embraces modern Java patterns, simplifies common operations, and makes working with vector databases more intuitive than ever.'
+---
+
+![Weaviate Java Client v6](./img/hero.png)
+
+We're thrilled to announce the general availability of **Weaviate Java client v6** – a ground-up redesign that transforms how Java developers interact with Weaviate. After months of beta testing and feedback from our community, we're confident this is the most powerful and developer-friendly Java client we've ever shipped.
+
+## Why we built the Java client v6?
+
+The previous Java client served us well, but as Weaviate evolved and added features like multiple vectors per collection, multi-tenancy, and advanced querying capabilities, multi-vector (ColBERT) the API grew complex. We heard from developers that:
+
+- **Configuration was verbose** – Simple operations required too much boilerplate
+- **Type safety was inconsistent** – Working with results required excessive casting
+- **Modern Java features were underutilized** – Lambda expressions and generics could make the API more elegant
+- **The learning curve was steep** – Common tasks weren't obvious
+
+Java client v6 addresses all of these concerns while maintaining the flexibility and performance you need for production applications.
+
+## What's new?
+
+#### 1. Fluent Lambda-based configuration
+
+The new client embraces Java's functional programming capabilities. Configuration is now passed through lambda expressions, making your code more concise and readable.
+
+**Before (v5):**
+
+```java
+// Creating a collection required multiple builder steps
+PropertySchema title = PropertySchema.builder()
+    .name("title")
+    .dataType(Arrays.asList("text"))
+    .build();
+
+PropertySchema description = PropertySchema.builder()
+    .name("description")
+    .dataType(Arrays.asList("text"))
+    .build();
+
+WeaviateClass movieClass = WeaviateClass.builder()
+    .className("Movie")
+    .properties(Arrays.asList(title, description))
+    .vectorizer("text2vec-weaviate")
+    .build();
+
+client.schema().classCreator()
+    .withClass(movieClass)
+    .run();
+```
+
+**After (v6):**
+
+```java
+// Clean, declarative syntax with lambda configuration
+client.collections.create("Movie",
+    col -> col.vectorConfig(VectorConfig.text2vecWeaviate())
+        .properties(
+            Property.text("title"),
+            Property.text("description")
+        )
+);
+```
+
+The reduction in boilerplate is dramatic. What took 15+ lines now takes just 5, and the intent is crystal clear.
+
+#### 2. Collection-centric API
+
+The new client organizes everything around **collections** (the new term for classes/schemas). This mental model aligns better with how you actually use Weaviate.
+
+**Before (v5):**
+
+```java
+// Operations were scattered across different namespaces
+Result<GraphQLResponse> result = client.graphQL()
+    .get()
+    .withClassName("Movie")
+    .withNearText(NearTextArgument.builder()
+        .concepts(new String[]{"sci-fi"})
+        .build())
+    .withFields(Field.builder().name("title").build())
+    .withLimit(2)
+    .run();
+```
+
+**After (v6):**
+
+```java
+// Everything goes through the collection handle
+CollectionHandle<Map<String, Object>> movies =
+    client.collections.use("Movie");
+
+var response = movies.query.nearText("sci-fi",
+    q -> q.limit(2).returnProperties("title", "description")
+);
+```
+
+#### 3. Improved type safety
+
+Working with query results is now straightforward. No more navigating nested Maps or casting values.
+
+**Before (v5):**
+
+```java
+// Extracting data required navigating nested structures
+GraphQLResponse response = result.getData();
+Map<String, Object> getMap = (Map<String, Object>) response.getData().get("Get");
+List<Map<String, Object>> movies = (List<Map<String, Object>>) getMap.get("Movie");
+
+for (Map<String, Object> movie : movies) {
+    String title = (String) movie.get("title");
+    System.out.println(title);
+}
+```
+
+**After (v6):**
+
+```java
+// Direct access to typed results
+for (var obj : response.objects()) {
+    System.out.println(obj.properties().get("title"));
+    System.out.println(obj.uuid());
+    System.out.println(obj.metadata().distance());
+}
+```
+
+#### 4. Simplified filtering
+
+Building complex filters is now intuitive with a chainable API.
+
+**Before (v5):**
+
+```java
+// Filter syntax was verbose and error-prone
+WhereFilter filter = WhereFilter.builder()
+    .operator(Operator.And)
+    .operands(new WhereFilter[]{
+        WhereFilter.builder()
+            .path(new String[]{"round"})
+            .operator(Operator.Equal)
+            .valueText("Double Jeopardy!")
+            .build(),
+        WhereFilter.builder()
+            .path(new String[]{"points"})
+            .operator(Operator.LessThan)
+            .valueInt(600)
+            .build()
+    })
+    .build();
+```
+
+**After (v6):**
+
+```java
+// Natural, readable filter syntax
+var response = jeopardy.query.fetchObjects(q -> q
+    .filters(Filter.and(
+        Filter.property("round").eq("Double Jeopardy!"),
+        Filter.property("points").lt(600)
+    ))
+    .limit(3)
+);
+```
+
+The new `Filter` builder makes filters read like natural language, and IDE autocomplete guides you through available operators.
+
+#### 5. Enhanced multi-target vector search
+
+Multi-target vector search is critical for advanced use cases, and v6 makes it effortless.
+
+**After (v6):**
+
+```java
+// Search across multiple named vectors
+var response = collection.query.nearText(
+    Target.average("a wild animal",
+        "jeopardy_questions_vector",
+        "jeopardy_answers_vector"
+    ),
+    q -> q.limit(2).returnMetadata(Metadata.DISTANCE)
+);
+```
+
+You can easily combine vectors with different strategies:
+
+```java
+// Manual weights for fine-grained control
+var response = collection.query.nearText(
+    Target.manualWeights("a wild animal",
+        Target.weight("jeopardy_questions_vector", 10f),
+        Target.weight("jeopardy_answers_vector", 50f)
+    ),
+    q -> q.limit(2)
+);
+```
+
+#### 6. Integrated and flexible RAG (Retrieval-Augmented Generation)
+
+Generate AI-powered responses directly from your search results with minimal code.
+
+**After (v6):**
+
+```java
+var response = movies.generate.nearText("sci-fi",
+    // Query configuration
+    q -> q.limit(1).returnProperties("title", "description"),
+    // Generative configuration
+    g -> g.groupedTask("Write a tweet with emojis about this movie.",
+        c -> c.dynamicProvider(
+            DynamicProvider.anthropic(
+                o -> o.model("claude-3-5-haiku-latest")
+            )
+        )
+    )
+);
+
+// Access the generated content
+System.out.println(response.generated().text());
+```
+
+#### 7. Easier batch operations
+
+Inserting multiple objects is now cleaner and provides better error handling.
+
+**Before (v5):**
+
+```java
+// Manual batching with BatchReference objects
+List<WeaviateObject> objects = new ArrayList<>();
+// ... populate objects
+
+for (WeaviateObject obj : objects) {
+    client.data().creator()
+        .withClassName("Movie")
+        .withProperties(obj.getProperties())
+        .run();
+}
+```
+
+**After (v6):**
+
+```java
+// Efficient bulk insertion with error handling
+CollectionHandle<Map<String, Object>> movies =
+    client.collections.use("Movie");
+
+InsertManyResponse response =
+    movies.data.insertMany(dataObjects.toArray(new Map[0]));
+
+if (!response.errors().isEmpty()) {
+    System.err.println("Errors: " + response.errors());
+}
+```
+
+#### 8. Connection management
+
+Client instantiation is more flexible with various connection options and helper methods for both Cloud and local deployments.
+
+**After (v6):**
+
+```java
+// Connect to Weaviate Cloud
+WeaviateClient client = WeaviateClient.connectToWeaviateCloud(
+    weaviateUrl,
+    weaviateApiKey,
+    config -> config.setHeaders(
+        Map.of("X-OpenAI-Api-Key", openaiApiKey)
+    )
+);
+
+// Or connect to local instance
+WeaviateClient localClient = WeaviateClient.connectToLocal();
+
+// Or use custom configuration
+WeaviateClient customClient = WeaviateClient.connectToWeaviateCloud(
+    weaviateUrl,
+    weaviateApiKey,
+    config -> config
+        .setHeaders(customHeaders)
+        .setRequestTimeout(Duration.ofSeconds(60))
+);
+```
+
+## Migration guide
+
+Migrating from v5 to v6 involves some conceptual shifts, but the benefits are worth it. Here are the key changes:
+
+#### Conceptual changes
+
+| Concept        | v5                               | v6                             |
+| -------------- | -------------------------------- | ------------------------------ |
+| **Collection** | `client.schema().classCreator()` | `client.collections.create()`  |
+| **Query**      | `client.graphQL().get()`         | `collection.query`             |
+| **Insert**     | `client.data().creator()`        | `collection.data.insert()`     |
+| **Batch**      | `client.batch()`                 | `collection.data.insertMany()` |
+
+#### Common operation mappings
+
+**Creating a Collection:**
+
+```java
+// v5
+WeaviateClass movieClass = WeaviateClass.builder()
+    .className("Movie")
+    .vectorizer("text2vec-openai")
+    .properties(Arrays.asList(
+        PropertySchema.builder().name("title").dataType(Arrays.asList("text")).build()
+    ))
+    .build();
+client.schema().classCreator().withClass(movieClass).run();
+
+// v6
+client.collections.create("Movie",
+    col -> col.vectorConfig(VectorConfig.text2vecOpenAi())
+        .properties(Property.text("title"))
+);
+```
+
+**Semantic Search:**
+
+```java
+// v5
+Result<GraphQLResponse> result = client.graphQL().get()
+    .withClassName("Movie")
+    .withNearText(NearTextArgument.builder()
+        .concepts(new String[]{"sci-fi"})
+        .build())
+    .withLimit(2)
+    .run();
+
+// v6
+var movies = client.collections.use("Movie");
+var response = movies.query.nearText("sci-fi", q -> q.limit(2));
+```
+
+**Filtering:**
+
+```java
+// v5
+WhereFilter filter = WhereFilter.builder()
+    .path(new String[]{"round"})
+    .operator(Operator.Equal)
+    .valueText("Double Jeopardy!")
+    .build();
+
+// v6
+.filters(Filter.property("round").eq("Double Jeopardy!"))
+```
+
+## Getting started
+
+#### Installation
+
+Add the Java client v6 to your project:
+
+**Maven:**
+
+```xml
+<dependency>
+    <groupId>io.weaviate</groupId>
+    <artifactId>client6</artifactId>
+    <version>6.0.0</version>
+</dependency>
+```
+
+#### Quickstart example
+
+```java
+import io.weaviate.client6.v1.api.WeaviateClient;
+import java.util.List;
+import java.util.Map;
+
+public class QuickStart {
+    public static void main(String[] args) throws Exception {
+        // Connect to Weaviate
+        WeaviateClient client = WeaviateClient.connectToWeaviateCloud(
+            System.getenv("WEAVIATE_URL"),
+            System.getenv("WEAVIATE_API_KEY")
+        );
+
+        // Create a collection
+        client.collections.create("Movie",
+            col -> col.vectorConfig(VectorConfig.text2vecWeaviate())
+                .properties(
+                    Property.text("title"),
+                    Property.text("description")
+                )
+        );
+
+        // Insert data
+        var movies = client.collections.use("Movie");
+        movies.data.insertMany(
+            Map.of("title", "The Matrix", "description", "A hacker discovers reality is a simulation"),
+            Map.of("title", "Inception", "description", "Dreams within dreams")
+        );
+
+        // Query with semantic search
+        var response = movies.query.nearText("mind-bending movie",
+            q -> q.limit(1)
+        );
+
+        // Print results
+        for (var obj : response.objects()) {
+            System.out.println(obj.properties().get("title"));
+        }
+
+        client.close();
+    }
+}
+```
+
+## Resources
+
+- **Documentation:** [weaviate.io/developers/weaviate/client-libraries/java](https://docs.weaviate.io/weaviate/client-libraries/java/java6)
+- **GitHub:** [github.com/weaviate/java-client](https://github.com/weaviate/java-client)
+  <!--- **Migration guide:** [Detailed migration documentation](https://weaviate.io/developers/weaviate/client-libraries/java/migration-guide)-->
+  <!--- **Examples:** [Code examples repository](https://github.com/weaviate/weaviate-examples/tree/main/java-v6) -->
+
+## Community feedback
+
+During the beta period, we received invaluable feedback from the community. Special thanks to everyone who tested early versions, reported issues, and suggested improvements. Your input directly shaped this release and made it possible 💛.
+
+We'd love to hear about your experience with Java client v6 as well:
+
+- **Slack:** Join the [Weaviate Slack](https://weaviate.io/slack) community and leave feedback
+- **GitHub Issues:** [Report bugs or request new features](https://github.com/weaviate/java-client)
+- **Forum:** Share your observations and use cases on our [community forum](https://forum.weaviate.io)
+
+## Conclusion
+
+Java client v6 represents our commitment to providing world-class developer tools for working with vector databases. The redesigned API removes friction, embraces modern Java idioms, and makes building AI-powered applications more enjoyable.
+
+We can't wait to see what you build with it!
+
+Happy coding! 🚀
