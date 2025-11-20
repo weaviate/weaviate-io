@@ -1,3 +1,6 @@
+@use '../../variables' as *;
+@use 'sass:color';
+
 .selectContentWrapper {
   z-index: 1999;
   width: 100%;
@@ -67,7 +70,7 @@ ul.selectList {
     background-position: 10px center;
     background-repeat: no-repeat;
 
-    &:hover, &:focus { background-color: lighten($selectItemHover, 5%);}
+    &:hover, &:focus { background-color: color.adjust($selectItemHover, $lightness: 5%);}
 
     &.active { 
       color: $mainColor; 

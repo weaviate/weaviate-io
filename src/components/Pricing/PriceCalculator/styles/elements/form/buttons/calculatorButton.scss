@@ -1,3 +1,6 @@
+@use '../../../variables' as *;
+@use 'sass:color';
+
 .calculatorButton {
   display: flex;
   width: 100%;
@@ -41,10 +44,10 @@
   
   &:hover, &:focus {
     > div {
-      background-color: darken($buttonBgHover, 10%);
-      border: 1px solid darken($buttonBorder, 10%);
+      background-color: color.adjust($buttonBgHover, $lightness: -10%);
+      border: 1px solid color.adjust($buttonBorder, $lightness: -10%);
     }
 
-    &.active > div { background-color: darken($green, 10%); }
+    &.active > div { background-color: color.adjust($green, $lightness: -10%); }
   }
 }
