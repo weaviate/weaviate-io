@@ -13,9 +13,9 @@ export default function enterpriseSupport() {
             End-to-end vector search and<br></br> generative AI apps, faster
           </h2>
           <p>
-            Weaviate is an open source vector database that's purpose-built for
-            AI. Weaviate cloud service is natively built on Google Cloud and
-            scales using Google Kubernetes Engine. Integrations with Google AI
+            Weaviate is an open source database that's purpose-built for AI.
+            Weaviate cloud service is natively built on Google Cloud and scales
+            using Google Kubernetes Engine. Integrations with Google AI
             Workbench and Vertex AI, including the latest Foundation Models like
             Gemini Pro and Ultra LLMs, help developers build and deploy
             production-ready generative AI applications with less hassle.
@@ -24,7 +24,7 @@ export default function enterpriseSupport() {
         <div className={styles.features}>
           <div className={styles.box}>
             <div className={styles.icon1}></div>
-            <h4 className={styles.title}>AI-native architecture</h4>
+            <h4 className={styles.title}>AI architecture</h4>
 
             <p className={styles.subTitle}>
               Sub-second semantic search performance and ability to scale to

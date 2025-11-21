@@ -6,12 +6,12 @@ import styles from './styles.module.scss';
 
 const categoryDescriptions = {
   All: 'Browse all available apps.',
-  'Vector Database': (
+  'AI Database': (
     <>
       Weaviate’s{' '}
       <u>
         <strong>
-          <a href="/platform">open source vector database</a>
+          <a href="/platform">open source AI database</a>
         </strong>
       </u>{' '}
       can be self-hosted or run as a managed service in Weaviate Cloud to reduce
@@ -21,7 +21,7 @@ const categoryDescriptions = {
   'Weaviate Agents':
     'Pre-built agentic workflows that dynamically interact with your data in Weaviate to perform sync, async, and multi-step tasks.',
   'Embeddings and Integrations':
-    'Services and integrations to simplify end-to-end AI-native application development.',
+    'Services and integrations to simplify end-to-end AI application development.',
   'Cloud Console Tools':
     'Tools that improve developer experience and accessibility within Weaviate Cloud console.',
 };
