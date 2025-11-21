@@ -364,7 +364,13 @@ var response = movies.generate.nearText("sci-fi",
 System.out.println(response.generated().text());
 ```
 
-#### 9. Easier batch operations
+#### 9. Easier data insert operations
+
+:::info Batching import - coming soon
+
+[Batch import support](https://docs.weaviate.io/weaviate/concepts/data-import) for the Java client v6 will be added in the near future. This will be the recommended way of importing large amounts of data into Weaviate. Until then, use the `insertMany()` method. 
+
+:::
 
 Inserting multiple objects provides better error handling and performance.
 
