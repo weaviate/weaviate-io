@@ -61,9 +61,9 @@ const calculateVectorSize = (
   } else if (indexType === 'hnsw' && quant === null) {
     result = dimSizeBytesUncompressed;
   } else if (indexType === 'flat' && quant !== null) {
-    result = dimSizeBytesUncompressed * flatIndexOverhead;
+    result = dimSizeBytesCompressed * flatIndexOverhead;
   } else if (indexType === 'flat' && quant === null) {
-    result = dimSizeBytesUncompressed;
+    result = dimSizeBytesUncompressed * flatIndexOverhead;
   }
 
   return result;
@@ -138,16 +138,30 @@ export const calculateCosts = (data: IData) => {
   const backupCost = backupStorageGiB * backupUnitPrice * HAFactor;
   const dimensionCost = (totalDimensions / 10 ** 6) * costPer1MDimensions;
 
+  console.log('storageGibs', collectionStorageGiB);
+  console.log('backupGibs', backupStorageGiB);
+  console.log('totalDimensions', totalDimensions);
+
+  console.log('backupCost', microcentsToDollars(backupCost));
+  console.log('dimensionCost', microcentsToDollars(dimensionCost));
+
+  // Debugging
+  console.log('storageCost', microcentsToDollars(storageCost));
+  console.log('backupCost', microcentsToDollars(backupCost));
+  console.log('dimensionCost', microcentsToDollars(dimensionCost));
+
   // Final Calculation
   const totalCostBeforeMin = storageCost + backupCost + dimensionCost;
   const finalCostMicrocents = Math.max(minimalSpend, totalCostBeforeMin);
 
   const result = microcentsToDollars(finalCostMicrocents);
 
-  return result;
+  console.log('finalCost', result);
+
+  return Math.round(result).toLocaleString();
 };
 
 const microcentsToDollars = (microcents: number) => {
-  const result = Math.round(microcents / 10 ** 6).toLocaleString();
+  const result = microcents / 10 ** 6;
   return result;
 };
