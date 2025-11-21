@@ -181,7 +181,7 @@ const siteRedirects = {
             from: '/services/enterprise-cloud',
         },
         {
-            to: '/deployment/byoc',
+            to: '/deployment/dedicated',
             from: '/services/byoc',
         },
         {
