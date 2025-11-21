@@ -220,34 +220,6 @@ export default function PricingTiers() {
             ]}
           />
         </div>
-
-        {/* BYOC */}
-        <div className={styles.byoc}>
-          <div className={styles.byocCopy}>
-            <h4>Bring Your Own Cloud</h4>
-            <p>
-              Choose a fully-managed solution or 24/7 support within your VPC
-              (BYOC Vector Database).
-            </p>
-          </div>
-
-          <ul className={styles.byocFeatures}>
-            <li>
-              <strong>Customer-managed VPC</strong>
-            </li>
-            <li>
-              <strong>Weaviate-managed</strong> control plane
-            </li>
-            <li>
-              <strong>Weaviate agent</strong> for monitoring, support, and
-              troubleshooting
-            </li>
-          </ul>
-
-          <Link className={styles.byocBtn} to="#contact-sales">
-            Contact Sales
-          </Link>
-        </div>
       </div>
     </section>
   );

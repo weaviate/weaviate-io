@@ -98,7 +98,7 @@ export default function StudyHeaderTwoLine() {
                   className={styles.buttonDark}
                 >
                   How we empower
-                  <br /> AI-native builders →
+                  <br /> AI builders →
                 </Link>
               </div>
             </div>

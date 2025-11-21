@@ -16,7 +16,7 @@ export default function Details() {
             this shift will see significant benefits by automating
             labor-intensive processes, enhancing operational efficiency, and
             driving ROI from their AI initiatives. As use cases move from static
-            insights to semi or fully-autonomous agentic workflows, AI-native
+            insights to semi or fully-autonomous agentic workflows, AI
             infrastructure like Weaviate becomes more critical than ever in
             handling their complexity.
           </p>

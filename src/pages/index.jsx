@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <div className="custom-page noBG">
       <Layout
-        title="The AI-native database developers love"
+        title="The AI database developers love"
         description="Bring AI-native applications to life with less hallucination, data leakage, and vendor lock-in"
       >
         <MetaSEO img="og/website/home.jpg" />

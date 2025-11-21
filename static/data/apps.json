@@ -196,22 +196,5 @@
     "languages": ["English", "Spanish", "French", "German"],
     "url": "/deployment/enterprise-cloud",
     "released": "yes"
-  },
-  {
-    "id": "12",
-    "name": "Bring Your Own Cloud",
-    "category": "Vector Database",
-    "description": "AI-native vector database, managed by us in your cloud environment.",
-    "image": "products-weaviate-byoc-icon.svg",
-    "overviewImage1": "transformation-agent-screenshot.png",
-    "longDescription": "Weaviate’s Personalization Agent learns user behavior and can personalize any experience.",
-    "rating": 4.5,
-    "price": "Free",
-    "version": "7.3.0",
-    "updated": "Febuary 25, 2025",
-    "size": "2.09MB",
-    "languages": ["English", "Spanish", "French", "German"],
-    "url": "/deployment/byoc",
-    "released": "yes"
   }
 ]

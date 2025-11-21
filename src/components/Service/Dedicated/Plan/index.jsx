@@ -10,7 +10,7 @@ export default function ServicePlan() {
         <div className={styles.diagramBox}>
           <div className={styles.header}>
             <h2>
-              The benefits of a professionally managed vector database service,
+              The benefits of a professionally managed AI database service,
               without the noisy neighbors.
             </h2>
           </div>
