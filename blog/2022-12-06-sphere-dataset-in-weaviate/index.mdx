@@ -53,6 +53,9 @@ There are two ways to import the Sphere dataset into a Weaviate [vector database
 The setup is quite straightforward, all you need is the [Weaviate Client](https://docs.weaviate.io/weaviate/client-libraries). We provide an example that uses the Python Client and the `dpr-question_encoder-single-nq-base` model (i.e., the module that is used to vectorize objects in Sphere).
 
 We have prepared files ranging from 100K data points all the way up to the entire Sphere dataset, which consists of 899 million lines. You can download them from here:
+
+_NOTE: because of the high volume of downloads, please request access via hello@weaviate.io_
+
 * [100k lines](https://storage.googleapis.com/sphere-demo/sphere.100k.jsonl.tar.gz)
 * [1M lines](https://storage.googleapis.com/sphere-demo/sphere.1M.jsonl.tar.gz)
 * [10M lines](https://storage.googleapis.com/sphere-demo/sphere.10M.jsonl.tar.gz)
@@ -150,6 +153,8 @@ To process Sphere with Spark, you can use [PySpark](https://spark.apache.org/doc
 You can see the step-by-step instructions detailed in this [tutorial](https://docs.weaviate.io/weaviate/tutorials/spark-connector). The tutorial demonstrates how to get Sphere into a Spark dataframe, import it into Weaviate, and conduct queries. Once you have Sphere imported into your Spark instance you can leverage Spark functionality to start training powerful models. In this particular example we are using the [Weaviate Spark connector](https://github.com/weaviate/weaviate-spark-connector) making it easy to load data from Spark to Weaviate.
 
 We have also prepared two Parquet files one with 1M data points and another with the entire Sphere dataset, which consists of 899 million lines. You can download them into a dataframe as follows:
+
+_NOTE: because of the high volume of downloads, please request access via hello@weaviate.io_
 
 ```python
 df = spark.read.parquet("gs://sphere-demo/parquet/sphere.1M.parquet")
