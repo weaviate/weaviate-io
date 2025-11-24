@@ -12,8 +12,8 @@ export default function EducationandSupportPage() {
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Vector Database Training & Enablement"
-        description="Get vector database tutorials, training courses, resources, and support for builders of all levels. We’re with you on your AI journey"
+        title="AI Database Training & Enablement"
+        description="Get AI database tutorials, training courses, resources, and support for builders of all levels. We’re with you on your AI journey"
       >
         <ServiceHeader />
         <ServicePlan />

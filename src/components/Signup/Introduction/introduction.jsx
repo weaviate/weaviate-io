@@ -90,7 +90,7 @@ export default function introduction() {
         </div>
         <div className={styles.investorLogos}>
           <div className={styles.signUp}>
-            <h2>The AI-native database for a new generation of software</h2>
+            <h2>The AI database for a new generation of software</h2>
             <p>Get started for free</p>
             <Link to="/go/console" className={styles.button}>
               Try Now
