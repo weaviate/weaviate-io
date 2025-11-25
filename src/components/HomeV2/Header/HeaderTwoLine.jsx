@@ -6,7 +6,7 @@ const hpLogos = [
   'answear_logo.svg',
   'akamai-logo.svg',
   'alexi-logo.svg',
-  'asksage-logo.svg',
+  'asksage-logo.png',
   'avara-logo.svg',
   'build_logo_Kapa_AI.svg',
   'build_logo_point72.svg',
