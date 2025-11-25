@@ -3,3 +3,5 @@ User-agent: *
 Allow: /
 Disallow: /*?*
 Disallow: /expert-sessions
+Disallow: /blog/rss.xml
+Disallow: /blog/atom.xml
