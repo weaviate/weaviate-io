@@ -260,6 +260,10 @@ const siteRedirects = {
             to: '/rohan',
             from: '/aaron',
         },
+        {
+            to: '/rohan',
+            from: '/willem',
+        },
           // BYOC redirects
 
         {
