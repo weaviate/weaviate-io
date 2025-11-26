@@ -19,10 +19,7 @@ export default function HomepageHeader() {
               accurate, contextual search with less complexity.
             </p>
             <div className={styles.buttons}>
-              <Link
-                className={styles.buttonGradient}
-                to="https://console.weaviate.cloud"
-              >
+              <Link className={styles.buttonGradient} to="/go/console">
                 Start Free
               </Link>
               <Link className={styles.buttonOutline} to="/platform">

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Layout from '@theme/Layout';
 import StudyHeader from '/src/components/CaseStudies/Header';
 import Main from '/src/components/CaseStudies/Main';
+import MainSection from '/src/components/CaseStudies/MainSection';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 
 export default function CaseStudyPage() {
@@ -12,7 +13,7 @@ export default function CaseStudyPage() {
         description="Read how companies are using Weaviate to build AI-powered applications."
       >
         <StudyHeader />
-        <Main />
+        <MainSection />
       </Layout>
       <ThemeSwitch />
     </div>

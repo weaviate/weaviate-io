@@ -9,7 +9,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 ### **WEAVIATE CLOUD AGREEMENT**
 
-**Last Updated: April 2025**
+**Last Updated: September 2025**
 
 Thank you for using the Weaviate Offering (as defined below). To be eligible to register for a Weaviate account and use the Weaviate Offering, you must review and accept the terms of this Weaviate Terms of Service (this “**_Agreement_**” or these “**_Terms_**”) by clicking the terms of service checkbox or other mechanism provided within the registration process. PLEASE REVIEW THESE TERMS CAREFULLY. BY ACCEPTING THESE TERMS OR USING THE WEAVIATE OFFERING, YOU AGREE TO THESE TERMS AND CONDITIONS WITH WEAVIATE LLC IF YOU HAVE SELECTED THE UNITED STATES OF AMERICA IN THE REGISTRATION PROCESS OR WITH WEAVIATE B.V. (“**_Weaviate_**”) IF YOU HAVE SELECTED NON-US OR OTHER MECHANISMS PROVIDED WITHIN THE REGISTRATION PROCESS. IF YOU DO NOT AGREE TO BE BOUND BY THESE TERMS, YOU SHOULD NOT USE THE WEAVIATE OFFERING.
 
@@ -22,9 +22,9 @@ Weaviate may revise these Terms from time to time. If Weaviate does revise these
 
 1.1 **Provision of Weaviate Offering**. Subject to the terms and conditions of this Agreement, Weaviate will make the Weaviate Offering available to Customer pursuant to this Agreement and any applicable Exhibits to this Agreement.
 
-1.2 **Customer Responsibilities**. Customer will (i) be responsible for all use of the Weaviate Offering under its account, (ii) use commercially reasonable efforts to prevent unauthorized access to or use of the Weaviate Offering and notify Weaviate promptly of any such unauthorized access or use or any other known or suspected breach of security or misuse of the Weaviate Offering, (iii) be responsible for obtaining and maintaining any equipment, software and ancillary services needed to connect to, access or otherwise use the Weaviate Offering, including as set forth in the Documentation, (iv) maintain Weaviate Offering on versions that are currently supported and not designated EOL, and (v), upgrade to latest general release version within reasonable timeframe, not exceeding 90 days from release date. Customer will be solely responsible for its failure to maintain such equipment, software and services, and Weaviate will have no liability for such failure (including under any service level agreement).
+1.2 **Customer Responsibilities**. Customer will (i) be responsible for all use of the Weaviate Offering under its account, (ii) use commercially reasonable efforts to prevent unauthorized access to or use of the Weaviate Offering and notify Weaviate promptly of any such unauthorized access or use or any other known or suspected breach of security or misuse of the Weaviate Offering, (iii) be responsible for obtaining and maintaining any equipment, software and ancillary services needed to connect to, access or otherwise use the Weaviate Offering, including as set forth in the Documentation, (iv) maintain Weaviate Offering on versions that are currently supported and not designated EOL, and (v), upgrade to latest general release version within reasonable timeframe, not exceeding 90 days from release date, except where such upgrades are managed by Weaviate for Shared Services. Customer will be solely responsible for its failure to maintain such equipment, software and services, and Weaviate will have no liability for such failure (including under any SLA).
 
-1.3 **Weaviate Updates**. Weaviate reserves the right to update EOL clusters to newer versions to address security vulnerabilities, ensure platform operability, and comply with regulatory requirements.
+1.3 **Weaviate Updates**. Weaviate reserves the right to update EOL software to newer versions to address security vulnerabilities, ensure platform operability, and comply with regulatory requirements. For Shared Services, Weaviate reserves the right for infrastructure upgrade and software update at any time, when in accordance with SLAs. 
 
 1.4 **Open-source Software**. The Weaviate Offering may include individual open-source software components, each of which has its own copyright and its own applicable license conditions. These open-source software components are licensed under the terms of the applicable open-source license conditions and/or copyright notices.
 
@@ -103,7 +103,7 @@ UNDER NO LEGAL THEORY, WHETHER IN TORT, CONTRACT, OR OTHERWISE, WILL EITHER PART
 
 9.6 **Amendment; Waiver**. No amendment or modification to this Agreement, nor any waiver of any rights hereunder, will be effective unless assented to in writing by Weaviate.  Any such waiver will be only to the specific provision and under the specific circumstances for which it was given, and will not apply with respect to any repeated or continued violation of the same provision or any other provision. Failure or delay by either party to enforce any provision of this Agreement will not be deemed a waiver of future enforcement of that or any other provision.
 
-9.7 **Change Notification**. Weaviate reserves the right to modify the terms of this Agreement and the services provided hereunder at any time. Any such modifications will be effective immediately upon being posted on the Company's official website. The Customer is responsible for regularly reviewing the Company's website to stay informed of any changes. Continued use of the services after any such modifications shall constitute the Customer's acceptance of the modified terms.
+9.7 **Change Notification**. Weaviate reserves the right to modify the terms of this Agreement and the services provided hereunder at any time. Any such modifications will be effective immediately upon being posted on the Company's official website or via the Weaviate Cloud Console. The Customer is responsible for regularly reviewing the Company's website or Weaviate Cloud Console  to stay informed of any changes. Continued use of the services after any such modifications shall constitute the Customer's acceptance of the modified terms.
 
 9.8 **Relationship**. Nothing contained in this Agreement will in any way constitute any association, partnership, agency, employment, or joint venture between the parties or be construed to evidence the intention of the parties to establish any such relationship. Neither party will have the authority to obligate or bind the other in any manner, and nothing contained in this Agreement will give rise or is intended to give rise to any rights of any kind to any third parties.
 
@@ -135,6 +135,8 @@ The following terms, when used in this Agreement, will have the following meanin
 
 “**_Customer Data_**” means personal data made available by Customer to Weaviate and insights produced specifically for Customer via the use of the Weaviate Offering by Customer.
 
+“**_Dedicated Service_**” means a Weaviate Cloud resource that provides customers with flexibility in infrastructure configuration and database version selection, as appropriate for their business needs, while Weaviate remains responsible for performing all operational management.
+
 “**_Documentation_**” means the on-line help files, electronic technical documentation, and other electronic user manuals made available by Weaviate as part of the Weaviate Offering.
 
 “**_EoL_**” means the End of Life Policy of Weaviate as defined at [www.weaviate.io/weaviate-eol-policy](https://weaviate.io/weaviate-eol-policy)
@@ -146,6 +148,8 @@ The following terms, when used in this Agreement, will have the following meanin
 “**_Non-Weaviate Product_**” means a third party or Customer web-based, mobile, offline or other software application that integrates with the Weaviate Offering (other than third-party data hosting services used by Weaviate). For clarity, the Weaviate Offering excludes Non-Weaviate Products.
 
 “**_Order Form_**” means an order form or other similar document which defines the specific Weaviate Offering, the permitted number of users, pricing, and the subscription term.
+
+“**_Shared Service_**”: a Weaviate Cloud resource operated and maintained by Weaviate, where Weaviate manages all provisioning and upgrades of the infrastructure, including the underlying Weaviate Database version.
 
 “**_SLAs_**” mean the service levels offered by Weaviate as defined at [www.weaviate.io/sla](https://weaviate.io/sla)
 

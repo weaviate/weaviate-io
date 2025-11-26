@@ -6,7 +6,7 @@ const hpLogos = [
   'answear_logo.svg',
   'akamai-logo.svg',
   'alexi-logo.svg',
-  'asksage-logo.svg',
+  'asksage-logo.png',
   'avara-logo.svg',
   'build_logo_Kapa_AI.svg',
   'build_logo_point72.svg',
@@ -90,10 +90,7 @@ export default function StudyHeaderTwoLine() {
             </p>
             <div className={styles.headerBox}>
               <div className={styles.buttons}>
-                <Link
-                  to="https://console.weaviate.cloud/"
-                  className={styles.buttonLight}
-                >
+                <Link to="/go/console" className={styles.buttonLight}>
                   Get Started
                 </Link>
                 <Link
@@ -101,7 +98,7 @@ export default function StudyHeaderTwoLine() {
                   className={styles.buttonDark}
                 >
                   How we empower
-                  <br /> AI-native builders →
+                  <br /> AI builders →
                 </Link>
               </div>
             </div>

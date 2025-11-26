@@ -1,0 +1,48 @@
+:root {
+  --grey-white: #f7f9fd;
+}
+
+.header {
+  --header-bg: url('/img/site/weaviate-graffiti-top-header.png');
+  background-image: var(--header-bg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+  padding: clamp(3rem, 6vw, 6rem) 0 clamp(2rem, 4vw, 3rem);
+  position: relative;
+
+  @media (max-width: 768px) {
+    background-position: 55% top; /* nudges hero art on mobile */
+  }
+}
+
+.box {
+  display: grid;
+  gap: 1rem;
+  max-width: 64rem;
+  margin: 0 auto;
+  justify-content: center;
+
+  h1 {
+    color: var(--grey-white);
+    text-align: center;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 3.125rem;
+    margin: 0;
+  }
+}
+
+.subtitle {
+  color: var(--grey-white, #f7f9fd);
+  text-align: center;
+  font-family: Inter;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; /* 1.75rem */
+  max-width: 46rem;
+  margin: 0.5rem 0 0;
+}

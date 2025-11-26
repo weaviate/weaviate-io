@@ -1,0 +1,329 @@
+Weaviate `v1.34` is now available open-source and on [Weaviate Cloud](https://console.weaviate.cloud).
+
+This release brings a set of exciting preview features like **flat index support with RQ quantization**, **server-side batching** and a sneak peek into upcoming **C# and Java v6 client libraries**.
+
+It also brings ready-to-use improvements for production. They include **ACORN filter strategy by default** for faster filtered searches, **new observability metrics** for better monitoring, and **support for Contextual AI model integrations**.
+
+These improvements help make Weaviate more performant, observable, and easier to operate at scale.
+
+Here are the release ⭐️*highlights*⭐️!
+
+![Weaviate 1.34 is released](./img/hero.png)
+
+- [Flat index RQ quantization support](#flat-index-rq-quantization-support)
+- [Server-side batching](#server-side-batching)
+- [Bugfixes and performance improvements](#bugfixes-and-performance-improvements)
+- [Observability improvements](#observability-improvements)
+- [Upcoming C# and Java v6 clients](#upcoming-c-and-java-v6-clients)
+- [ACORN filter strategy by default](#acorn-filter-strategy-by-default)
+- [Support for `Contextual AI` model integrations](#support-for-contextual-ai-model-integrations)
+- [Multiple performance improvements and fixes](#multiple-performance-improvements-and-fixes)
+- [Community contributions](#community-contributions)
+
+## Flat index RQ quantization support
+
+Weaviate `v1.34` introduces **flat index support with rotational quantization (RQ)**, combining the simplicity of flat indexing with memory-efficient compression. This is ideal for **multi-tenancy scenarios** with many small tenants, where brute-force search with quantization is fast enough without the memory overhead of HNSW graphs.
+
+A vector search on a flat index with RQ iterates through the compressed vectors, making it:
+
+- **Simple and predictable** - No graph building or index tuning required
+- **Faster with RQ** - 8-bit or 1-bit RQ reduces size by up to 4x-32x, speeding up disk reads
+- **Flexible** - Use with dynamic indexing to auto-upgrade tenants to HNSW when they grow
+
+### Quantization options
+
+Weaviate `v1.34` expands flat index support to include **RQ 1-bit** and **RQ 8-bit** alongside binary quantization (BQ):
+
+| Quantization | Recall with [rescore limit](https://docs.weaviate.io/weaviate/concepts/vector-quantization#over-fetching--re-scoring) 100 | Approx. QPS (_Queries Per Second_) |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| **RQ 8-bit** | ~100%                                                                                                                     | ~400                               |
+| **RQ 1-bit** | ~100%                                                                                                                     | ~800                               |
+| **BQ**       | ~98%                                                                                                                      | ~1,900                             |
+
+_Benchmark: DBpedia 100k with OpenAI Ada-002 embeddings_
+
+![Flat Index RQ - Recall performance](./img/recall-graph.png)
+![Flat Index RQ - QPS performance](./img/qps-graph.png)
+
+**Configuring flat index with RQ:**
+
+```python
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    name="MyCollection",
+    vector_config=Configure.Vectors.text2vec_openai(),
+    # Configure vector index as flat with RQ quantization
+    vector_index_config=Configure.VectorIndex.flat(),
+    quantizer=Configure.VectorIndex.Quantizer.rq()
+)
+```
+
+This can speed up searches on disk-based flat indexes, making it perfect for smaller collections or use cases where you need exact nearest neighbor search.
+
+Additionally, RQ reduces the size of cached vectors, reducing the memory footprint of vectors that have been accessed recently.
+
+:::caution Preview Feature
+
+This is currently a **preview** feature. This means it's still under development and may change in future releases. We don't recommend using it in production environments at this time.
+
+:::
+
+:::info Related resources
+
+- [How-to: Configure RQ compression](https://docs.weaviate.io/weaviate/configuration/compression/rq-compression)
+- [Concepts: Vector quantization](https://docs.weaviate.io/weaviate/concepts/vector-quantization)
+
+:::
+
+## Server-side batching
+
+Building on the server-side batch import preview in `v1.33`, this version improves backpressure mechanisms and performance optimizations for data ingestion.
+
+Benefits of server-side batching include:
+
+- **Enhanced backpressure algorithm** - More responsive adjustment to server load
+- **Better handling of vectorization latency** - Improved throughput when using external vectorizers
+- **Optimized for large-scale imports** - Better performance with millions of objects
+
+Try server-side batching through the `experimental` method in the Python client:
+
+```python
+with client.batch.experimental() as batch:
+    for data_object in data_objects:
+        batch.add_object(
+            collection="MyCollection",
+            properties=data_object,
+        )
+```
+
+Server-side batching should provide good import performance through closed-loop feedback, whether you're importing thousands or millions of objects.
+
+:::caution Preview Feature
+
+This is currently a **preview** feature. This means it's still under development and may change in future releases. We don't recommend using it in production environments at this time.
+
+:::
+
+:::info Related resources
+
+- [How-to: Import with server-side batching](https://docs.weaviate.io/weaviate/manage-objects/import#server-side-batching)
+- [Concepts: Server-side batching](https://docs.weaviate.io/weaviate/concepts/data-import#server-side-batching)
+
+:::
+
+## Bugfixes and performance improvements
+
+As always, Weaviate `v1.34` includes numerous bugfixes and performance improvements across the codebase, enhancing stability and reliability.
+
+<!-- TODO - review release notes for actual 1.34 release for notable bugfixes & improvements to highlight. -->
+
+As always, we recommend you:
+- Upgrade to the latest version of Weaviate to benefit from those improvements.
+- Review the [full changelog](https://github.com/weaviate/weaviate/releases/tag/v1.34.0) for detailed information on all fixes and improvements.
+
+## Observability improvements
+
+Weaviate `v1.34` dramatically improves observability with **30+ new monitoring metrics**, giving you deeper insights into your vector database's performance, resource utilization, and operational health. The new metrics cover areas such as LSM bucket read/write operations, cursor management, bucket lifecycle events (initialization, shutdown, segments), WAL recovery, memtable flushing and async replication processes.
+
+These metrics integrate seamlessly with popular monitoring tools like Prometheus and Grafana, making it easier to:
+
+- **Identify performance bottlenecks** before they impact users
+- **Optimize resource allocation** across collections and tenants
+- **Debug issues** with detailed operational visibility
+- **Plan capacity** based on actual usage patterns
+
+With these enhanced metrics, you can maintain production-grade observability and ensure your Weaviate deployment runs smoothly at scale.
+
+:::info Related resources
+
+- [Configuration: Monitoring](https://docs.weaviate.io/deploy/configuration/monitoring)
+
+:::
+
+## Upcoming C# and Java v6 clients
+
+Soon you'll be able to use the new **C# client** and **Java v6 client**, both designed with modern language features and improved developer experience.
+
+The new C# client is Weaviate's first official client library for the C# programming language. On the other hand, the Java v6 client is a complete rewrite of the existing Java client, designed provide a more idiomatic and user-friendly API.
+
+Here are two sneak peeks into the new APIs:
+
+### Java v6 - Example
+
+Check out the complete example and installation instruction in our [documentation](https://docs.weaviate.io/weaviate/client-libraries/java/java-v6).
+
+```java
+WeaviateClient client = WeaviateClient.connectToWeaviateCloud(
+    weaviateUrl,
+    weaviateApiKey
+);
+
+client.collections.create(
+    "Movie",
+    col -> col
+        .vectorConfig(VectorConfig.text2VecWeaviate())
+        .properties(
+            Property.text("title"),
+            Property.text("description"),
+            Property.text("genre")
+        )
+);
+
+List<Map<String, Object>> dataObjects = List.of(
+    Map.of("title", "The Matrix", "description", "A computer hacker learns about the true nature of reality and his role in the war against its controllers.", "genre", "Science Fiction"),
+    Map.of("title", "Spirited Away", "description", "A young girl becomes trapped in a mysterious world of spirits and must find a way to save her parents and return home.", "genre", "Animation"),
+    Map.of("title", "The Lord of the Rings: The Fellowship of the Ring", "description", "A meek Hobbit and his companions set out on a perilous journey to destroy a powerful ring and save Middle-earth.", "genre", "Fantasy")
+);
+
+CollectionHandle<Map<String, Object>> movies = client.collections.use("Movie");
+movies.data.insertMany(dataObjects.toArray(new Map[0]));
+
+var response = movies.query.nearText("sci-fi", q -> q.limit(2));
+
+for (var obj : response.objects()) {
+    System.out.println(obj.properties());
+}
+
+client.close();
+```
+
+### C# - Example
+
+Check out the complete example and installation instruction in our [documentation](https://docs.weaviate.io/weaviate/client-libraries/csharp).
+
+```csharp
+var dataObjects = new List<Dictionary<string, string>>
+{
+    new() { { "title", "The Matrix" }, { "description", "A computer hacker learns about the true nature of reality and his role in the war against its controllers." }, { "genre", "Science Fiction" } },
+    new() { { "title", "Spirited Away" }, { "description", "A young girl becomes trapped in a mysterious world of spirits and must find a way to save her parents and return home." }, { "genre", "Animation" } },
+    new() { { "title", "The Lord of the Rings: The Fellowship of the Ring" }, { "description", "A meek Hobbit and his companions set out on a perilous journey to destroy a powerful ring and save Middle-earth." }, { "genre", "Fantasy" } },
+};
+
+var movies = client.Collections.Use(CollectionName);
+
+var weaviateObjects = dataObjects.Select(obj => new WeaviateObject { Properties = obj.ToDictionary(kvp => kvp.Key, kvp => (object)kvp.Value) }).ToList();
+var result = await movies.Data.InsertMany(weaviateObjects);
+
+Assert.False(result.HasErrors, $"Batch insertion failed: {result.Errors.FirstOrDefault()?.Message}");
+
+var response = await movies.Query.NearText(
+    query: "sci-fi",
+    limit: 2
+);
+
+foreach (var obj in response.Objects)
+{
+    Console.WriteLine(JsonSerializer.Serialize(obj.Properties, new JsonSerializerOptions { WriteIndented = true }));
+}
+```
+
+The new C# client and Java v6 client are still under development. We're still gathering feedback before official releases, but we would love for you to try them out early.
+
+You can find the pre-release versions here:
+- [Java v6 client](https://github.com/weaviate/java-client/tree/v6)
+- [C# client](https://github.com/weaviate/csharp-client/)
+
+If you have any feedback or comments about the upcoming clients, feel free to open an issue in their GitHub repositories ([Java](https://github.com/weaviate/java-client/issues) & [C#](https://github.com/weaviate/csharp-client/issues)).
+
+## ACORN filter strategy by default
+
+**ACORN (Automatic Constraint Optimization for Retrieval Networks)** was added to Weaviate as an alternate filter strategy to `SWEEPING` in `v1.27`.
+
+Weaviate `v1.34` makes ACORN the default filter strategy for new collections.
+
+This allows Weaviate to deliver faster filtered vector searches out of the box in more scenarios. ACORN intelligently optimizes how filters are applied during HNSW powered vector search, automatically choosing the most efficient exploration path based on your query patterns.
+
+Here is an example of using filtered queries:
+
+```python
+# ACORN automatically optimizes this filtered search,
+# where the filter may be quite restrictive, or even negatively correlated with the search query
+results = collection.query.near_text(
+    query="sustainable fashion brands",
+    where=Filter.by_property("price").less_than(100) &
+          Filter.by_property("inStock").equal(True),
+    limit=10
+)
+```
+
+ACORN works seamlessly with all existing filter operators and vector search methods, providing performance improvements without any code changes. When you create a new collection in Weaviate 1.34 or later, the default filter strategy will be `ACORN` instead of `SWEEPING`.
+
+:::info Related resources
+
+- [Concepts: Filtering - ACORN](https://docs.weaviate.io/weaviate/concepts/filtering#acorn)
+- [How-to: Set vector index parameters](https://docs.weaviate.io/weaviate/manage-collections/vector-config#set-vector-index-parameters)
+
+:::
+
+## Support for `Contextual AI` model integrations
+
+Weaviate `v1.34` adds model integrations for `Contextual AI`'s generative and reranker AI models.
+
+This allows you to perform integrated retrieval augmented generation (RAG) queries, or reranker queries using Contextual AI models directly within Weaviate.
+
+The default `Contextual AI` models are the `v2` generative AI models for RAG queries and `ctxl-rerank-v2-instruct-multilingual` for reranking.
+
+:::info Related resources
+
+- [Model integrations - Contextual AI](https://docs.weaviate.io/weaviate/model-providers/contextualai)
+
+:::
+
+## Multiple performance improvements and fixes
+
+In these blogs, we tend to talk about the visible new features and improvements - for good reason. But there is a lot of work that you don't necessarily see, all of which adds up to huge improvements in performance over time.
+
+Just as an example, here is a selection of some of the performance improvements and fixes that were made in `v1.34`.
+
+import PerformanceImprovements from './img/improvements.png';
+
+<figure>
+  <img
+    alt="Example screenshot of performance improvements"
+    src={PerformanceImprovements}
+  />
+</figure>
+
+Ultimately, these all add up to a much faster, safer and more efficient Weaviate instance over time. Which is why we always recommend you run the latest version of Weaviate, if possible 😉.
+
+So here's a shout-out to our amazing engineering team for all the hard work they put in to make this release (and every other release) possible. 🚀🚀🚀
+
+:::info Related resources
+
+- [Weaviate 1.34: GitHub release notes](https://github.com/weaviate/weaviate/releases/tag/v1.34.0)
+
+:::
+
+## Community contributions
+
+Weaviate is an open-source project, and we're always thrilled to see contributions from our amazing community. For this release, we are super excited to shout-out the following contributor for their contributions to Weaviate:
+
+- [@hzy12138](https://github.com/hzy12138) contributed [#9342](https://github.com/weaviate/weaviate/pull/9342)
+- [@waveywaves](https://github.com/waveywaves) contributed [#8978](https://github.com/weaviate/weaviate/pull/8978)
+
+If you're interested in contributing to Weaviate, please check out our [contribution guide](https://docs.weaviate.io/contributor-guide/), and browse the open issues on [GitHub](https://github.com/weaviate/weaviate/issues). Look for the `good-first-issue` label to find great starting points!
+
+:::info Related resources
+
+- [Contributor guide](https://docs.weaviate.io/contributor-guide)
+
+:::
+
+## Summary
+
+Weaviate `v1.34` simultaneously looks forward with exciting preview features, while keeping grounded with the usual production-relevant improvements.
+
+Looking forward, **flat index RQ quantization** and **server-side batch imports** previews pave the way for performance improvements, while the **new C# and Java clients** significantly enhance the developer experience.
+
+On the production readiness front, **setting ACORN filter strategy as default** indicates its maturity, while the **new observability metrics** and various bugfixes and improvements enhance operational excellence.
+
+**Ready to get started?**
+
+The release is available open-source as always [on GitHub](https://github.com/weaviate/weaviate/releases/tag/v1.34.0), and is already available for new Sandboxes on [Weaviate Cloud](https://console.weaviate.cloud/).
+
+For those upgrading a self-hosted version, please check the [migration guide](https://docs.weaviate.io/deploy/migration#general-upgrade-instructions) for version-specific notes.
+
+It will be available for Serverless clusters on Weaviate Cloud soon as well.
+
+Thanks for reading, and happy vector searching! 👋

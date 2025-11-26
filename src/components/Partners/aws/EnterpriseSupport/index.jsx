@@ -11,8 +11,8 @@ export default function enterpriseSupport() {
         <div className={styles.header}>
           <h2>End-to-end vector search and generative AI apps, faster</h2>
           <p>
-            Weaviate is an open source vector database that's purpose-built for
-            AI.<br></br> Tight integrations with AWS infrastructure and services
+            Weaviate is an open source database that's purpose-built for AI.
+            <br></br> Tight integrations with AWS infrastructure and services
             like SageMaker<br></br> and Bedrock help developers build and deploy
             production-ready<br></br> generative AI applications with less
             hassle.
@@ -21,7 +21,7 @@ export default function enterpriseSupport() {
         <div className={styles.features}>
           <div className={styles.box}>
             <div className={styles.icon1}></div>
-            <h4 className={styles.title}>AI-native architecture</h4>
+            <h4 className={styles.title}>AI architecture</h4>
 
             <p className={styles.subTitle}>
               Sub-second semantic search performance and ability to scale to

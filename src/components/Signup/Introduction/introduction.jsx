@@ -90,12 +90,9 @@ export default function introduction() {
         </div>
         <div className={styles.investorLogos}>
           <div className={styles.signUp}>
-            <h2>The AI-native database for a new generation of software</h2>
+            <h2>The AI database for a new generation of software</h2>
             <p>Get started for free</p>
-            <Link
-              to="https://auth.wcs.api.weaviate.io/auth/realms/SeMI/protocol/openid-connect/registrations?client_id=wcs-frontend&scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fconsole.weaviate.cloud%2Fapi%2Fauth%2Fcallback%2Fkeycloak"
-              className={styles.button}
-            >
+            <Link to="/go/console" className={styles.button}>
               Try Now
             </Link>
             <span>

@@ -30,8 +30,8 @@ export default function ServicePlan() {
               </p>
               <span>Free on-demand learning</span>
               <p>
-                Keep your AI-native development skills fresh with self-paced
-                courses offered through Weaviate Academy and DeepLearning.AI.
+                Keep your AI development skills fresh with self-paced courses
+                offered through Weaviate Academy and DeepLearning.AI.
               </p>
               <span>Live training</span>
               <p>

@@ -64,6 +64,7 @@ spark = (
 
 Following this you need to import the Sphere dataset into a Spark dataframe, by loading the Parquet files that we have made available:
 
+_NOTE: because of the high volume of downloads, please request access via hello@weaviate.io_
 
 ```
 df = spark.read.parquet("gs://sphere-demo/parquet/sphere.899M.parquet")
