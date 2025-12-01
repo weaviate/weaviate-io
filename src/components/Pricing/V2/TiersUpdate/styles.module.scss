@@ -17,6 +17,10 @@
   margin-top: -7rem;
 }
 
+.cols3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 /* Single outer border on desktop */
 .grouped {
   border-radius: 0.9375rem;

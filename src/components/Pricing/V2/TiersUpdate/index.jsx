@@ -55,7 +55,7 @@ export default function PricingTiers() {
   return (
     <section className={styles.section}>
       <div className="container">
-        <div className={`${styles.grid} ${styles.grouped}`}>
+        <div className={`${styles.grid} ${styles.grouped} ${styles.cols3}`}>
           {/* Free Trial */}
           <TierCard
             variant="free"
@@ -133,58 +133,13 @@ export default function PricingTiers() {
             ]}
           />
 
-          {/* Plus */}
-          <TierCard
-            variant="plus"
-            iconClass={styles.iconPlus}
-            title="Plus"
-            priceLine={
-              <>
-                <span>Starts at</span> <strong>$280</strong> <span>/mo</span>
-              </>
-            }
-            blurb="For teams scaling AI in production who need predictable pricing, enterprise security, and enhanced reliability."
-            ctaLabel="Contact Sales"
-            ctaVariant="plus"
-            ctaHref="#contact-sales"
-            features={[
-              <>
-                <strong>Prepaid contract</strong> with predictable spend.
-              </>,
-              <>
-                <strong>Choice of shared or dedicated deployment</strong> for
-                high performance &amp; compliance.
-              </>,
-              <>
-                <strong>Enhanced security:</strong> SSO/SAML (bring-your-own IdP
-                is available), HIPAA compliant.
-              </>,
-              <>
-                <strong>Trusted reliability</strong> - 99.9% uptime.
-              </>,
-              <>
-                <strong>Various compression techniques.</strong>
-              </>,
-              <>
-                <strong>Metrics endpoint</strong> for external monitoring.
-              </>,
-              <>
-                <strong>Global coverage</strong> on AWS &amp; GCP (plus Azure
-                for dedicated deployments).
-              </>,
-              <>
-                <strong>Enterprise support:</strong> 4-hour Severity 1 response.
-              </>,
-            ]}
-          />
-
           {/* Premium */}
           <TierCard
             variant="premium"
             iconClass={styles.iconPremium}
             title="Premium"
             priceLine={null}
-            blurb="For teams running mission-critical workloads that require dedicated infra, advanced compliance, and white-glove support."
+            blurb="For teams scaling AI in production who need predictable pricing and enhanced reliability."
             ctaLabel="Contact Sales"
             ctaVariant="premium"
             ctaHref="#contact-sales"
@@ -193,15 +148,11 @@ export default function PricingTiers() {
                 <strong>Prepaid contract</strong> with predictable spend.
               </>,
               <>
-                <strong>Fully dedicated infrastructure</strong> for
-                mission-critical workloads and strict compliance needs.
+                <strong>Choice of shared or dedicated deployment</strong> for
+                high performance & compliance.
               </>,
               <>
-                <strong>Premium security:</strong> RBAC, SSO/SAML, PrivateLink
-                (AWS), Bring Your Own Key, bring-your-own IdP, HIPAA compliant.
-              </>,
-              <>
-                <strong>Highest reliability</strong> – 99.95% uptime.
+                <strong>Trusted reliability</strong> - up to 99.95% uptime.
               </>,
               <>
                 <strong>Various compression techniques.</strong>
@@ -210,10 +161,11 @@ export default function PricingTiers() {
                 <strong>Metrics endpoint</strong> for external monitoring.
               </>,
               <>
-                <strong>Any region</strong> on AWS, GCP or Azure.
+                <strong>Global coverage</strong> for dedicated deployment on
+                AWS, GCP & Azure.
               </>,
               <>
-                <strong>White-glove support:</strong> 1-hour Severity 1
+                <strong>Enterprise support:</strong> as low as 1-hour Severity 1
                 response, Technical Account Team, and access to training and
                 experts.
               </>,
