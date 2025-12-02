@@ -2,13 +2,13 @@
 title: 'Announcing the new Weaviate Java Client v6'
 slug: weaviate-java-client-v6
 authors: [dyma, ivan]
-date: 2025-11-25
+date: 2025-12-02
 tags: ['release', 'java']
-image: ./img/hero.png
+image: ./img/hero.jpg
 description: 'The Weaviate Java client v6 is now generally available! This release brings a completely redesigned API that embraces modern Java patterns, simplifies common operations, and makes working with vector databases more intuitive than ever.'
 ---
 
-![Weaviate Java Client v6](./img/hero.png)
+![Weaviate Java Client v6](./img/hero.jpg)
 
 We're thrilled to announce the general availability of **Weaviate Java client v6** – a ground-up redesign that transforms how Java developers interact with Weaviate. After months of beta testing and feedback from our community, we're confident this is the most powerful and developer-friendly Java client we've ever shipped.
 
@@ -438,6 +438,8 @@ Java client v6 introduces a redesigned API that simplifies common operations and
 
 ## Getting started
 
+### Quickstart example
+
 #### Installation
 
 Add Java client v6 to your project:
@@ -458,7 +460,9 @@ Add Java client v6 to your project:
 implementation("io.weaviate:client6:6.0.0")
 ```
 
-#### Quickstart example
+#### Quickstart code
+
+The following script will connect to a Weaviate Cloud instance, create a `Movie` collection, populate it and perform a semantic search:
 
 ```java
 import io.weaviate.client6.v1.api.WeaviateClient;
@@ -507,11 +511,23 @@ public class QuickStart {
 }
 ```
 
+### Demo application with Spring Boot
+
+To help you hit the ground running, we've created a simple demo application, **VectorStore**, to use Java Client v6 and [Spring Boot](https://spring.io/projects/spring-boot). This e-commerce sample application demonstrates how to integrate Weaviate into a modern Java web architecture, handling everything from data ingestion to semantic search and RAG.
+
+![Demo application](./img/demo.png)
+
+The application showcases how the new **Collection-centric API** and **Tucked Builder pattern** naturally fit into a service-oriented architecture.
+
+You can clone the repository and run the demo locally:
+
+  * **Repository:** [github.com/weaviate-tutorials/VectorStore](https://github.com/weaviate-tutorials/VectorStore)
+
 ## Resources
 
-- **Documentation:** [weaviate.io/developers/weaviate/client-libraries/java](https://docs.weaviate.io/weaviate/client-libraries/java/java-v6)
-- **GitHub:** [github.com/weaviate/java-client](https://github.com/weaviate/java-client)
-- **Demo app**: Check out our [e-commerce demo application](https://github.com/weaviate-tutorials/vector-store) showcasing the new Java client v6 syntax in action with Spring Boot.
+- **Documentation:** [docs.weaviate.io/weaviate/client-libraries/java](https://docs.weaviate.io/weaviate/client-libraries/java)
+- **GitHub:** [github.com/weaviate/java-client](https://github.com/weaviate/java-client/tree/v6)
+- **Demo app**: Check out our [e-commerce demo application](https://github.com/weaviate-tutorials/VectorStore) showcasing the new Java client v6 syntax in action with Spring Boot.
 
 ## Community feedback
 
