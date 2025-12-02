@@ -95,7 +95,7 @@ Dive into how AI enables better eCommerce experiences with a focus on one critic
 
 Learn how traditional CRUD-based applications are giving way to agentic workflows with vector databases at their core. 
 
-- [The Future Speaks in Vectors - Why AI-native infrastructure is critical for agentic AI](/blog/ai-native-infrastructure-agentic-AI): Learn how traditional CRUD-based applications are giving way to agentic workflows with vector databases at their core. 
+- [The Future Speaks in Vectors - Why AI infrastructure is critical for agentic AI](/blog/ai-native-infrastructure-agentic-AI): Learn how traditional CRUD-based applications are giving way to agentic workflows with vector databases at their core. 
 
 ### ann-algorithms-hnsw-pq
 
@@ -1573,7 +1573,7 @@ Explore our Snowflake partner page to learn more about our partnership and how w
 
 Simplify the development of AI applications and enable developers of all levels to build, iterate, and scale AI capabilities faster.
 
-- [The AI-Native, Open Source Vector Database](/platform): Simplify the development of AI applications and enable developers of all levels to build, iterate, and scale AI capabilities faster.
+- [The AI Open Source Vector Database](/platform): Simplify the development of AI applications and enable developers of all levels to build, iterate, and scale AI capabilities faster.
 
 ## podcast
 
@@ -1585,19 +1585,19 @@ Welcome to Weaviate Podcasts
 
 Compare pricing options for our different levels of vector database services and solutions.
 
-- [All the power of the AI-native vector database, without the overhead](/pricing): Compare pricing options for our different levels of vector database services and solutions.
+- [All the power of the AI database, without the overhead](/pricing): Compare pricing options for our different levels of vector database services and solutions.
 
 ### enterprise
 
 Enterprise Pricing models
 
-- [All the power of the AI-native vector database, without the overhead](/pricing/enterprise): Enterprise Pricing models
+- [All the power of the AI database, without the overhead](/pricing/enterprise): Enterprise Pricing models
 
 ### serverless
 
 Serverless Pricing models
 
-- [All the power of the AI-native vector database, without the overhead](/pricing/serverless): Serverless Pricing models
+- [All the power of the AI database, without the overhead](/pricing/serverless): Serverless Pricing models
 
 ## privacy
 

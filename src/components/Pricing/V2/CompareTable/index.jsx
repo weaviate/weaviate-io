@@ -289,9 +289,9 @@ export default function CompareTable() {
       ],
     },
 
-    // AI-Native Services
+    // AI Services
     {
-      heading: 'AI-Native Services',
+      heading: 'AI Services',
       layout: 'rowspan',
       rows: [
         {

@@ -6,7 +6,7 @@ const hpLogos = [
   'answear_logo.svg',
   'akamai-logo.svg',
   'alexi-logo.svg',
-  'asksage-logo.svg',
+  'asksage-logo.png',
   'avara-logo.svg',
   'build_logo_Kapa_AI.svg',
   'build_logo_point72.svg',
@@ -98,7 +98,7 @@ export default function StudyHeaderTwoLine() {
                   className={styles.buttonDark}
                 >
                   How we empower
-                  <br /> AI-native builders →
+                  <br /> AI builders →
                 </Link>
               </div>
             </div>

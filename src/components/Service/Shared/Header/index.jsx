@@ -10,12 +10,12 @@ export default function ServiceHeader() {
         <div className={styles.box}>
           <p className={styles.headText}>Shared Cloud</p>
           <div className={styles.headerBox}>
-            <h1>Fully-managed Vector Database on our shared cloud.</h1>
+            <h1>Fully-managed AI Database on our shared cloud.</h1>
             <p>
               The easiest way to get started with Weaviate. Get the full power
-              of our <Link to="/platform">AI-native vector database</Link>{' '}
-              without worrying about infrastructure and operations. Experiment
-              quickly with POCs and launch full production use cases.
+              of our <Link to="/platform">AI database</Link> without worrying
+              about infrastructure and operations. Experiment quickly with POCs
+              and launch full production use cases.
             </p>
           </div>
           <div className={styles.buttons}>
