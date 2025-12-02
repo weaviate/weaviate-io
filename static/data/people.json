@@ -134,6 +134,13 @@
     "team": "weaviate-labs"
   },
   {
+    "name": "Colton Robak",
+    "title": "Product Support Engineer",
+    "photo": "colton.jpg",
+    "linkedin": "colton-robak-353b12b4/",
+    "team": "support-engineering"
+  },
+  {
     "name": "Connor Shorten",
     "title": "Research Scientist",
     "photo": "connor.jpg",
@@ -234,13 +241,6 @@
     "photo": "Emma-Dikmessalim.jpg",
     "linkedin": "emmadikmessalim",
     "team": "people-and-culture"
-  },
-  {
-    "name": "Emma O'Keefe",
-    "title": "Director of Business Data Strategy & Enablement",
-    "photo": "emma.jpg",
-    "linkedin": "emma-o-keefe-03777b80",
-    "team": "finance"
   },
   {
     "name": "Eoin O'Reilly",
