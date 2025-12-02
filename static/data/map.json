@@ -90,11 +90,6 @@
     "photo": "edward.jpg"
   },
   {
-    "name": "Emma O'Keefe",
-    "location": { "lat": 53.3518, "lng": -6.2623 },
-    "photo": "emma.jpg"
-  },
-  {
     "name": "Eric Caleb Macharia",
     "location": { "lat": 52.3686, "lng": 4.9051 },
     "photo": "eric.jpg"
