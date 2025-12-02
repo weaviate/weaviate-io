@@ -374,8 +374,6 @@ System.out.println(response.generated().text());
 
 Inserting multiple objects provides better error handling and performance.
 
-**After (v6):**
-
 ```java
 InsertManyResponse response = songs.data.insertMany(
     Map.of("title", "High-Speed Dirt", "artist", "Megadeth"),
