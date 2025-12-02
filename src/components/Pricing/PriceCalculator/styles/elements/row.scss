@@ -1,3 +1,5 @@
+@use '../variables' as *;
+
 .rowWrapper {
   flex-direction: row;
   gap: $space;
