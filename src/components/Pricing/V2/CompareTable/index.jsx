@@ -227,7 +227,7 @@ export default function CompareTable() {
           values: {
             free: 'Shared',
             flex: 'Shared',
-            plus: 'Shared or dedicated',
+            plus: 'Shared',
             premium: 'Dedicated',
           },
         },
@@ -358,12 +358,12 @@ export default function CompareTable() {
       layout: 'rowspan',
       rows: [
         {
-          label: 'Agents (shared service)',
+          label: 'Query Agent monthly max requests',
           values: {
-            free: { value: true, mint: true },
-            flex: { value: true, mint: true },
-            plus: { value: true, mint: true },
-            premium: { text: '', badge: 'Coming soon' },
+            free: '250',
+            flex: '30000',
+            plus: 'Unlimited',
+            premium: 'Unlimited',
           },
         },
         {
@@ -518,21 +518,21 @@ export default function CompareTable() {
             <>
               <small>from</small>
               <br />
-              $0.000745 / 1M
+              $0.000764 / 1M
             </>
           ),
           plus: (
             <>
               <small>from</small>
               <br />
-              $0.000327 / 1M
+              $0.000764 / 1M
             </>
           ),
           premium: (
             <>
               <small>from</small>
               <br />
-              $0.000327 / 1M
+              $0.000270 / 1M
             </>
           ),
         },
@@ -545,7 +545,7 @@ export default function CompareTable() {
             <>
               <small>from</small>
               <br />
-              $0.255 / GiB
+              $0.2125 / GiB
             </>
           ),
           plus: (
@@ -572,7 +572,7 @@ export default function CompareTable() {
             <>
               <small>from</small>
               <br />
-              $0.0264 / GiB
+              $0.022 / GiB
             </>
           ),
           plus: (

@@ -11,7 +11,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 **Introduction**
 
-This Service Level Agreement ("**SLA**") delineates the service levels for Weaviate's vector database services, including the Standard and Enterprise tiers valid during the term of the Agreement. The infrastructure of the services is designed for Normal Use, and the Availability is applicable solely for Normal Use of the services. Any usage beyond Normal Use may lead to a degradation of service quality and availability. Issues accessing the service due to application errors (like misuse, misconfiguration, etc.) are excluded from Availability calculations and are not considered downtime as these are the responsibility of the Customer.
+This Service Level Agreement ("**SLA**") delineates the service levels for Weaviate's vector database services. The infrastructure of the services is designed for Normal Use, and the Availability is applicable solely for Normal Use of the services. Any usage beyond Normal Use may lead to a degradation of service quality and availability. Issues accessing the service due to application errors (like misuse, misconfiguration, etc.) are excluded from Availability calculations and are not considered downtime as these are the responsibility of the Customer.
 <br></br>
 
 ### **Normal Use**
@@ -28,7 +28,7 @@ Availability signifies that the services are functional and accessible to the Cu
 For subscriptions beginning October 27, 2025 or later, the details are as follows per **subscription plan**:
 <br></br>
 
-| Parameter | Flex | Plus | Premium |
+| Parameter | Flex | Premium <br/> (Shared Deployment) | Premium |
 |-----------|----------|--------------|-------------------|
 | Availability per Quarter | 99.5% | 99.9% | 99.95% |
 
@@ -77,8 +77,8 @@ For subscriptions beginning October 27, 2025 or later, Weaviate employs the foll
 <br></br>
 
 - **Flex:** Daily full backup, stored in the same region for 7 days.
-- **Plus:** Daily full backup, stored in the same region for 30 days.
-- **Premium:** Daily full backup, stored in the same region for 45 days.
+- **Premium (Shared Deployment):** Daily full backup, stored in the same region for 30 days.
+- **Premium (Dedicated Deployment):** Daily full backup, stored in the same region for 45 days.
 
 For subscriptions beginning before October 27, 2025, Weaviate employs the following backup policies for each **support tier**:
 <br></br>
@@ -89,12 +89,23 @@ For subscriptions beginning before October 27, 2025, Weaviate employs the follow
   
 <br></br>
 
+### **Monitoring**
+
+Weaviate offers different monitoring solutions for each tier:
+<br></br>
+
+- **Flex / Standard Tier:** Public Status Page
+- **Premium / Business Critical Tier:** Dedicated Status Page
+
+
+<br></br>
+
 ### **Service Credits**
 
 In the event that the availability of the services as described herein is not met, Customer shall have the right to claim service credits according to the table below:
 <br></br>
 
-| Service Level Targets | Flex Plan / Standard Tier | Plus Plan / Professional Tier | Premium Plan / Business Critical Tier |
+| Service Level Targets | Flex Plan / Standard Tier | Premium Plan (Shared Deployment) / Professional Tier | Premium Plan (Dedicated Deployment) / Business Critical Tier |
 |-----------------------|---------------|-------------------|------------------------|
 | 99.9% or more | No service credits | No service credits | No service credits |
 | Less than 99.9% but more than 99.5% | No service credits | 5% service credit | 5% service credit |

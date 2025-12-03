@@ -7,7 +7,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 <MetaSEO img="og/service/_title.jpg" />
 
-### **WEAVIATE CLOUD AGREEMENT**
+### **SELF-SERVE TERMS OF SERVICE**
 
 **Last Updated: September 2025**
 
@@ -70,9 +70,21 @@ Weaviate may revise these Terms from time to time. If Weaviate does revise these
 ---
 ### 6. **Indemnification**
 
-6.1 **Indemnity by Weaviate**. Weaviate will defend Customer against any Claim made or brought against Customer by a third party alleging that the use of the Weaviate Offering as permitted hereunder infringes or misappropriates a patent, copyright, or trade secret, and will indemnify Customer for any damages finally awarded against Customer (or any settlement approved by Weaviate) in connection with any such Claim; provided that (a) Customer will promptly notify Weaviate of such Claim, (b) Weaviate will have the sole and exclusive authority to defend and/or settle any such Claim, and (c) Customer reasonably cooperates with Weaviate in connection therewith. Customer may, at its option and expense, assist Weaviate in the defense of the Claim. If the use of the Weaviate Offering by Customer has become or in Weaviate’s opinion is likely to become the subject of any claim of infringement, Weaviate may, at its option and expense, (i) procure for Customer the right to continue using and receiving the Weaviate Offering as set forth under this Agreement; (ii) replace or modify the Weaviate Offering to make it non-infringing (with comparable functionality); or (iii) if the options in clauses (i) or (ii) are not reasonably practicable, terminate the applicable Order Form and provide a pro rata refund of any prepaid unused fees corresponding to the terminated portion of the applicable Weaviate Offering. Weaviate will have no liability or obligation with respect to any Claim if such Claim is caused in whole or in part by (A) compliance with designs, guidelines, plans, or specifications provided by Customer; (B) use of the Weaviate Offering by Customer not in accordance with this Agreement; (C) modification of the Weaviate Offering by or on behalf of Customer; (D) Customer’s collection, treatment, or providing of Customer Confidential Information in a manner that violates applicable law or otherwise infringes third-party rights; (E) open source software; or (F) the combination, operation, or use of the Weaviate Offering with other products or services where the Weaviate Offering would not by itself be infringing (clauses (A) through (F) “Excluded Claims”). This Section states Weaviate’s sole and exclusive liability and obligation and Customer’s exclusive remedy for any claim of any nature related to infringement or misappropriation of intellectual property.
+6.1 **Indemnification Procedure.** Each indemnifying Party’s obligation under Section 6.1 or Section 6.2,
+respectively, are conditioned upon the following provided: (i) the indemnified party first provides
+written notice of the Claim to the indemnifying party within thirty (30) days after becoming aware
+of or reasonably should have been aware of the Claim, provided, however, the failure to provide
+such notice will only relieve the indemnifying party of its obligations under this Section 5 to the
+extent the indemnifying party is prejudiced thereby; (ii) the indemnified party must tender sole and
+exclusive control of the Claim to the indemnifying party, (iii) the indemnified party must provide
+reasonable assistance, cooperation, and required information with respect to the defense and/or
+settlement of the Claim. The indemnified party may participate in the Claim, at its sole cost and
+expense, except that the indemnifying party will retain sole control of the defense and/or
+settlement. The indemnifying party shall not agree to any settlement of the Claim, that includes an
+injunction against the indemnified party, or admission of liability of the indemnified party without
+the indemnified party’s prior written consent, whose consent shall not be unreasonably withheld.
 
-6.2 **Indemnification by Customer**. Customer will defend Weaviate against any Claim made or brought against Weaviate by a third party arising out of the Excluded Claims and Customer will indemnify Weaviate for any damages finally awarded against Weaviate (or any settlement approved by Customer) in connection with any such Claim; provided that (a) Weaviate will promptly notify Customer of such Claim, (b) Customer will have the sole and exclusive authority to defend and/or settle any such Claim, and (c) Weaviate reasonably cooperates with Customer in connection with such Claim.
+6.2 **Indemnification by Customer**. Customer will defend Weaviate against any Claim made or brought against Weaviate by a third party arising out of the Excluded Claims and Customer will indemnify Weaviate for any damages finally awarded against Weaviate (or any settlement approved by Customer) in connection with any such Claim.
 
 ---
 ### 7. **Limitation of Liability**
@@ -155,7 +167,7 @@ The following terms, when used in this Agreement, will have the following meanin
 
 “**_Support Services_**” means the maintenance and support services offered by Weaviate as defined at [www.weaviate.io/weaviate-support-terms](https://weaviate.io/weaviate-support-terms)
 
-“**_System Data_**” means data collected by Weaviate regarding the Weaviate Offering that may be used to generate logs, statistics, or reports regarding the performance, availability, usage, integrity, or security of the Weaviate Product.
+“**_System Data_**” means data collected by Weaviate, except Customer Data, regarding the Weaviate Offering that may be used to generate logs, statistics, or reports regarding the performance, availability, usage, integrity, or security of the Weaviate Product.
 
 “**_Weaviate Offering_**” means the Weaviate Product and/or the Weaviate Services.
 

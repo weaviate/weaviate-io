@@ -9,13 +9,27 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 ### **UPDATES TO TERMS & POLICIES**
 
-**Last Updated: October, 2025**
+**Last Updated: November, 2025**
 <br></br>
 
-1. **_October 2025_ - Document: Weaviate Customer Agreement US & Non-US**
+
+1. **_November 2025_ - Document: Weaviate - Terms of Service**
+   1. Self-Serve Terms of Service (before: "Cloud Agreement")
+      1. Section 6.1. Removed the indemnification procedure" "provided that (a) Customer will promptly notify Weaviate of such Claim, (b) Weaviate will have the sole and exclusive authority to defend and/or settle any such Claim, and (c) Customer reasonably cooperates with Weaviate in connection therewith.  Customer, may at its option and expense, assist Weaviate in the defense of the Claim."
+      2. Section 6.2. Removed the indemnification procedure: "provided that (a) Weaviate will promptly notify Customer of such Claim, (b) Customer will have the sole and exclusive authority to defend and/or settle any such Claim, and (c) Weaviate reasonably cooperates with Customer in connection with such Claim."
+      3. Section 6.3. New: All party Indemnification Procedure
+   2. DPA
+      1. Update to Clause 1: Definitions:
+         1. New: "Company Personal Data", "Services", "Subprocessor"
+      2. New Clause 3: Data Processor Personnel
+      3. New Clause 11: Customer Obligations
+
+
+2. **_October 2025_ - Document: Weaviate Customer Agreement US & Non-US**
    1. Updated Section 6. Indemnification Procedure clarified
 
-2. **_October 2025_ - Document: Weaviate List of Subprocessors**
+
+3. **_October 2025_ - Document: Weaviate List of Subprocessors**
    1. Added two new subprocessors - Omni and VoyageAI
    2. Re-worked the page to make it clear where customer Business Data is stored
    3. Split into different sections with explanitory statements for each
@@ -26,6 +40,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
    2. Updated Section 1.3. Weaviate Updates updated
    3. Updated Section 9.7. Change Notification updated
    4. Updated Definitions 10. New definitions added.
+
 
 4. **_September 2025_ - Document: Weaviate Data Processing Addendum**
    1. Update. Customer Obligations clause added
