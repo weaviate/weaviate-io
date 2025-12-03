@@ -18,11 +18,21 @@ import { MetaSEO } from '/src/theme/MetaSEO';
       1. Section 6.1. Removed the indemnification procedure" "provided that (a) Customer will promptly notify Weaviate of such Claim, (b) Weaviate will have the sole and exclusive authority to defend and/or settle any such Claim, and (c) Customer reasonably cooperates with Weaviate in connection therewith.  Customer, may at its option and expense, assist Weaviate in the defense of the Claim."
       2. Section 6.2. Removed the indemnification procedure: "provided that (a) Weaviate will promptly notify Customer of such Claim, (b) Customer will have the sole and exclusive authority to defend and/or settle any such Claim, and (c) Weaviate reasonably cooperates with Customer in connection with such Claim."
       3. Section 6.3. New: All party Indemnification Procedure
-   2. DPA
-      1. Update to Clause 1: Definitions:
-         1. New: "Company Personal Data", "Services", "Subprocessor"
-      2. New Clause 3: Data Processor Personnel
-      3. New Clause 11: Customer Obligations
+
+
+2. **_November 2025_ - Document: Weaviate - DPA**
+    1. Update to Clause 1: Definitions:
+       1. New: "Company Personal Data", "Services", "Subprocessor"
+    2. New Clause 3: Data Processor Personnel
+       1. New Clause 11: Customer Obligations
+
+
+3. **_November 2025_ - Document: Weaviate - Terms of Service**
+      1. All Commercial Terms of Service (before "Enterprise Agreement US / Non-US"):
+         1. Changed Enterprise Cloud into Dedicated Cloud
+         2. Clause 8.1: removed "on a month-to-month basis at the same price, or at Weaviate's then current list price"
+         3. Updated naming of "Enterprise Cloud" into "Dedicated Cloud"
+      2. Section 5.3: "DISCLAIMS ANY AND ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, TITLE, NON-INFRINGEMENT, AND FITNESS FOR A PARTICULAR PURPOSE." replaced with "EACH PARTY EXPRESSLY EXCLUDES ANY AND ALL FURTHER DUTIES OF CONFORMITY,  GUARANTEES, REPRESENTATIONS, OR WARRANTIES OF ANY KIND, WHETHER IMPLIED, STATUTORY OR OTHERWISE."
 
 
 2. **_October 2025_ - Document: Weaviate Customer Agreement US & Non-US**

@@ -1,6 +1,6 @@
 ---
-title: Weaviate Enterprise Agreement
-description: Weaviate Enterprise Agreement (Non-US)
+title: COMMERCIAL TERMS OF SERVICE
+description: Commercial Terms of Service (Non-US)
 # image: og/service/_title.jpg
 ---
 
@@ -8,9 +8,9 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 <MetaSEO img="og/service/_title.jpg" />
 
-### **CUSTOMER AGREEMENT**
+### **COMMERCIAL TERMS OF SERVICE**
 
-**Last Updated: August, 2024**
+**Last Updated: November, 2025**
 
 ---
 
@@ -32,9 +32,12 @@ Subject to the terms and conditions of this Agreement, Weaviate will make the We
    The Weaviate Offering may include individual open-source software components, each of which has its own copyright and its own applicable license conditions. These open-source software components are licensed under the terms of the applicable open-source license conditions and/or copyright notices.
 <br></br>
 
-4. **Weaviate Enterprise Cloud.**  
-   When Weaviate Offering entails Weaviate Enterprise Cloud, Offering is
-charged through Weaviate AIUs; details are described in Exhibit A.
+4. **Weaviate Cloud.**  
+   When Weaviate Offering entails Weaviate Cloud. Details are described in Exhibit A.
+   <br></br>
+
+5. **Weaviate AIUs.**  
+   When Weaviate Offering is charged through Weaviate AI Units,, details are described in Exhibit A.
    <br></br>
 
 ---
@@ -69,13 +72,14 @@ charged through Weaviate AIUs; details are described in Exhibit A.
 
 ### 5. **Warranties and Disclaimers**
 
-1. **Weaviate**. Weaviate warrants that it will, consistent with prevailing industry standards, provide the Weaviate Offering in a professional and workmanlike manner and the Weaviate Offering will conform in all material respects with the Documentation. For breach of the foregoing express warranty, Customer’s exclusive remedy shall be the re-performance of the deficient Weaviate Offering or, if Weaviate cannot re-perform such deficient Weaviate Offering as warranted within thirty (30) days after receipt of written notice of the warranty breach, Customer shall be entitled to terminate the applicable Order Form and recover a pro-rata portion of the prepaid unused fees corresponding to the terminated portion of the applicable Weaviate Offering.
+1. **Weaviate Warranty**. Weaviate warrants that it will, consistent with prevailing industry standards, provide the Weaviate Offering in a professional and workmanlike manner and the Weaviate Offering will conform in all material respects with the Documentation. For breach of the foregoing express warranty, Customer’s exclusive remedy shall be the re-performance of the deficient Weaviate Offering or, if Weaviate cannot re-perform such deficient Weaviate Offering as warranted within thirty (30) days after receipt of written notice of the warranty breach, Customer shall be entitled to terminate the applicable Order Form and recover a pro-rata portion of the prepaid unused fees corresponding to the terminated portion of the applicable Weaviate Offering.
 
-2. **Customer**. Customer warrants that it has all necessary rights and consents to provide any information, data (including personal data) and other materials that it provides hereunder and to permit Weaviate to use the same as contemplated under this Agreement.
+2. **Customer Warranty**. Customer warrants that it has all necessary rights and consents to provide any information, data (including personal data) and other materials that it provides hereunder and to permit Weaviate to use the same as contemplated under this Agreement.
 
-3. **DISCLAIMERS**. EXCEPT AS EXPRESSLY SET FORTH IN THIS AGREEMENT, EACH PARTY DISCLAIMS ANY AND ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, TITLE, NON-INFRINGEMENT, AND FITNESS FOR A PARTICULAR PURPOSE. CUSTOMER ACKNOWLEDGES THAT THE WEAVIATE OFFERING IS INTENDED TO AUGMENT THE EFFICIENCY OF, BUT NOT REPLACE, CUSTOMER’S TRANSCRIPTION SYSTEMS AND PROCESSES. WEAVIATE DOES NOT REPRESENT OR WARRANT THAT THE WEAVIATE OFFERING WILL BE ERROR-FREE. WEAVIATE IS NOT RESPONSIBLE OR LIABLE FOR ANY NON- WEAVIATE OFFERINGS, DOES NOT GUARANTEE THE CONTINUED AVAILABILITY THEREOF OR ANY INTEGRATION THEREWITH, AND MAY CEASE MAKING ANY SUCH INTEGRATION AVAILABLE IN ITS DISCRETION.
+3. **DISCLAIMERS**. EXCEPT AS EXPRESSLY SET FORTH IN THIS CLAUSE 5.1 AND 5.2, EACH PARTY EACH PARTY EXPRESSLY EXCLUDES ANY AND ALL FURTHER DUTIES OF CONFORMITY, GUARANTEES, REPRESENTATIONS, OR WARRANTIES OF ANY KIND, WHETHER IMPLIED,
+STATUTORY OR OTHERWISE. CUSTOMER ACKNOWLEDGES THAT THE WEAVIATE OFFERING IS INTENDED TO AUGMENT THE EFFICIENCY OF, BUT NOT REPLACE, CUSTOMER’S TRANSCRIPTION SYSTEMS AND PROCESSES. WEAVIATE DOES NOT REPRESENT OR WARRANT THAT THE WEAVIATE OFFERING WILL BE ERROR-FREE. WEAVIATE IS NOT RESPONSIBLE OR LIABLE FOR ANY NON- WEAVIATE OFFERINGS, DOES NOT GUARANTEE THE CONTINUED AVAILABILITY THEREOF OR ANY INTEGRATION THEREWITH, AND MAY CEASE MAKING ANY SUCH INTEGRATION AVAILABLE IN ITS DISCRETION.
 
-4. **BETA PRODUCTS**. FROM TIME TO TIME, CUSTOMER MAY HAVE THE OPTION TO PARTICIPATE IN A PROGRAM WITH WEAVIATE WHERE CUSTOMER GETS TO USE ALPHA OR BETA PRODUCTS, FEATURES OR DOCUMENTATION (COLLECTIVELY “BETA PRODUCTS”) OFFERED BY WEAVIATE. THE BETA PRODUCTS ARE NOT GENERALLY AVAILABLE AND ARE PROVIDED “AS IS”. WEAVIATE DOES NOT PROVIDE ANY INDEMNITIES, SERVICE LEVEL COMMITMENTS OR WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, TITLE, NON-INFRINGEMENT, AND FITNESS FOR A PARTICULAR PURPOSE IN RELATION THERETO. CUSTOMER OR WEAVIATE MAY TERMINATE CUSTOMER’S ACCESS TO THE BETA PRODUCTS AT ANY TIME.
+1. **BETA PRODUCTS**. FROM TIME TO TIME, CUSTOMER MAY HAVE THE OPTION TO PARTICIPATE IN A PROGRAM WITH WEAVIATE WHERE CUSTOMER GETS TO USE ALPHA OR BETA PRODUCTS, FEATURES OR DOCUMENTATION (COLLECTIVELY “BETA PRODUCTS”) OFFERED BY WEAVIATE. THE BETA PRODUCTS ARE NOT GENERALLY AVAILABLE AND ARE PROVIDED “AS IS”. WEAVIATE DOES NOT PROVIDE ANY INDEMNITIES, SERVICE LEVEL COMMITMENTS OR WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, TITLE, NON-INFRINGEMENT, AND FITNESS FOR A PARTICULAR PURPOSE IN RELATION THERETO. CUSTOMER OR WEAVIATE MAY TERMINATE CUSTOMER’S ACCESS TO THE BETA PRODUCTS AT ANY TIME.
 
 ---
 
@@ -100,7 +104,7 @@ UNDER NO LEGAL THEORY, WHETHER IN TORT, CONTRACT, OR OTHERWISE, WILL EITHER PART
 
 ### 8. **Termination**
 
-1. **Term**. The term of this Agreement will commence on the Effective Date and continue until terminated as set forth below.  The initial term will begin on the Effective Date of the Order Form and will continue for the subscription term set forth in the Order Form. Except as set forth in such Order Form, the term of such Order Form will automatically renew for successive renewal terms on a month-to-month basis at the same price, or at Weaviate’s then-current list prices, unless either party provides the other party with written notice of non-renewal at least thirty (30) days prior to the end of the then-current term."
+1. **Term**. The term of this Agreement will commence on the Effective Date and continue until terminated as set forth below.  The initial term will begin on the Effective Date of the Order Form and will continue for the subscription term set forth in the Order Form. Except as set forth in such Order Form, the term of such Order Form will automatically renew for successive renewal terms unless either party provides the other party with written notice of non-renewal at least thirty (30) days prior to the end of the then-current term."
 
 2. **Termination**. Each party may terminate this Agreement upon written notice to the other party if there are no Order Forms then in effect. Each party may also terminate this Agreement or the applicable Order Form upon written notice in the event (a) the other party commits any material breach of this Agreement or the applicable Order Form and fails to remedy such breach within thirty (30) days after written notice of such breach or (b) subject to applicable law, upon the other party’s liquidation, commencement of dissolution proceedings or assignment of substantially all its assets for the benefit of creditors, or if the other party become the subject of bankruptcy or similar proceeding that is not dismissed within sixty (60) days.
 
@@ -163,7 +167,7 @@ UNDER NO LEGAL THEORY, WHETHER IN TORT, CONTRACT, OR OTHERWISE, WILL EITHER PART
 
    “**_Support Services_**” means the maintenance and support services offered by Weaviate as defined at [www.weaviate.io/weaviate-support-terms](http://www.weaviate.io/weaviate-support-terms).
 
-   “**_System Data_**” means data collected by Weaviate regarding the Weaviate Offering that may be used to generate logs, statistics, or reports regarding the performance, availability, usage, integrity, or security of the Weaviate Product.
+   “**_System Data_**” means data collected by Weaviate, Except Customer Data, regarding the Weaviate Offering that may be used to generate logs, statistics, or reports regarding the performance, availability, usage, integrity, or security of the Weaviate Product.
 
 
 “**_Technical Services_**”  means consulting, configuration, technical training or other professional services provided
