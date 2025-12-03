@@ -1,5 +1,5 @@
 ---
-title: Weaviate Cloud Agreement
+title: SELF-SERVE TERMS OF SERVICE
 # image: og/service/_title.jpg
 ---
 
