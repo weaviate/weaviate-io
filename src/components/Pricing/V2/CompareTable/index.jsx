@@ -511,6 +511,15 @@ export default function CompareTable() {
     layout: 'rowspan',
     rows: [
       {
+        label: 'Minimum',
+        values: {
+          free: 'Free',
+          flex: '$45 / month',
+          plus: '$400 / month',
+          premium: 'Contact sales for more information',
+        },
+      },
+      {
         label: 'Vector Dimensions',
         values: {
           free: 'Free',
