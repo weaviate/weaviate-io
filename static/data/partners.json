@@ -599,7 +599,7 @@
     "link": "https://docs.weaviate.io/integrations/data-platforms/contextual-ai",
     "description": "Document processing platform, powering your data workflows with their custom AI model.",
     "tags": ["Data Platforms"],
-    "maintainedBy": "External",
+    "maintainedBy": "Internal",
     "programmingLanguage": "",
     "weaviateFeatures": "",
     "featured": false
@@ -610,6 +610,39 @@
     "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/mem0",
     "description": "Document processing platform, powering your data workflows with their custom AI model.",
     "tags": ["LLM and Agent Frameworks"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
+  },
+  {
+    "name": "Modaic",
+    "image": "/img/site/modaic-logo.png",
+    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/modaic",
+    "description": "Modaic is a hub to share and manage DSPy programs.",
+    "tags": ["LLM and Agent Frameworks"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
+  },
+  {
+    "name": "Parallel",
+    "image": "/img/site/parallel-logo.png",
+    "link": "https://docs.weaviate.io/integrations/data-platforms/parallel",
+    "description": "Web API purpose-built for AI Agents.",
+    "tags": ["Data Platforms"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
+  },
+  {
+    "name": "Chonkie",
+    "image": "/img/site/chonkie-logo.png",
+    "link": "https://docs.weaviate.io/integrations/data-platforms/chonkie",
+    "description": "Clean, Chunk, Embed, and Query your data.",
+    "tags": ["Data Platforms"],
     "maintainedBy": "External",
     "programmingLanguage": "",
     "weaviateFeatures": "",
