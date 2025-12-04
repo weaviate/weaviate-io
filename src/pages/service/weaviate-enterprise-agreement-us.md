@@ -22,8 +22,8 @@ import { MetaSEO } from '/src/theme/MetaSEO';
    <br></br>
 
 2. **Customer Responsibilities.**  
-   - 2.1 Customer acknowledges that Weaviate’s provision of the Weaviate Offering is dependent on Customer providing all reasonably required cooperation (including the prompt provision of access to Customer’s systems, personnel, cooperation, and materials as reasonably required and any other access as may be specified in the applicable Order Form), and Customer will provide all such cooperation in a diligent and timely manner.
-   - 2.2 Customer will (i) be responsible for all use of the Weaviate Offering under its account, (ii) use commercially reasonable efforts to prevent unauthorized access to or use of the Weaviate Offering, and notify Weaviate promptly of any such unauthorized access or use or any other known or suspected breach of security or misuse of the Weaviate Offering, and (iii) be responsible for obtaining and maintaining any equipment, software, and ancillary services needed to connect to, access, or otherwise use the Weaviate Offering, including as set forth in the Documentation. Customer will be solely responsible for its failure to maintain such equipment, software, and services, and Weaviate will have no liability for such failure (including under any service level agreement).
+2.1 Customer acknowledges that Weaviate’s provision of the Weaviate Offering is dependent on Customer providing all reasonably required cooperation (including the prompt provision of access to Customer’s systems, personnel, cooperation, and materials as reasonably required and any other access as may be specified in the applicable Order Form), and Customer will provide all such cooperation in a diligent and timely manner. <br></br>
+2.2 Customer will (i) be responsible for all use of the Weaviate Offering under its account, (ii) use commercially reasonable efforts to prevent unauthorized access to or use of the Weaviate Offering, and notify Weaviate promptly of any such unauthorized access or use or any other known or suspected breach of security or misuse of the Weaviate Offering, and (iii) be responsible for obtaining and maintaining any equipment, software, and ancillary services needed to connect to, access, or otherwise use the Weaviate Offering, including as set forth in the Documentation. Customer will be solely responsible for its failure to maintain such equipment, software, and services, and Weaviate will have no liability for such failure (including under any service level agreement).
   <br></br>
 
 
@@ -36,7 +36,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
    <br></br>
 
 5. **Weaviate AIUs.**  
-   When Weaviate Offering is charged through Weaviate AI Units,, details are described in Exhibit A.
+   When Weaviate Offering is charged through Weaviate AI Units, details are described in Exhibit A.
    <br></br>
 
 ---
@@ -227,10 +227,10 @@ by Weaviate to Customer.
 ---
 ### **Exhibit A**
 
-1. **Weaviate Enterprise Cloud Consumption**
-   1. Generally. The Weaviate Enterprise Cloud service is provided to Customers as a service which consumes resources for distinct functions as set forth herein and is available in several different SLAs and hosted in different geographical regions by certain third-party cloud providers, as described more fully in your Order Form and the Documentation. Customer Data is uploaded into Customer’s cluster and may be stored in different storage tiers).
-   2. Burst Handling and Peak Consumption Management. In the Weaviate Enterprise Cloud, Customer may experience fluctuations in compute resource usage. To manage these fluctuations, Customer is permitted to increase their peak consumption by up to 50% over the baseline capacity without prior notice. This ensures flexibility in handling temporary spikes in demand. For any anticipated increases in peak consumption that exceed 50%, Customer must notify Weaviate and obtain approval at least one week in advance. This lead time is necessary to ensure that the required infrastructure can be provisioned to support the increased load without impacting service quality. Failure to provide adequate notice may result in the inability to accommodate the additional demand, or may incur additional charges.
-   3. Infrastructure Overhead Charge. Operating the Weaviate Enterprise Cloud offering requires the setup and maintenance of dedicated compute resources, referred to as “Infrastructure Overhead.” This overhead is essential for managing and operating Customer clusters within a single-tenant architecture, ensuring that the cluster is always available, secure, and performing optimally. Due to the inherent costs associated with maintaining a single-tenant infrastructure, a minimum charge per hour will apply, irrespective of actual usage. This charge reflects the baseline compute resources required to keep Customer Weaviate cluster operational, even during periods of low activity.
+1. **Weaviate Cloud Consumption**
+   1. Generally. The Weaviate Cloud service is provided to Customers as a service which consumes resources for distinct functions as set forth herein and is available in several different SLAs and hosted in different geographical regions by certain third-party cloud providers, as described more fully in your Order Form and the Documentation. Customer Data is uploaded into Customer’s cluster and may be stored in different storage tiers).
+   2. Burst Handling and Peak Consumption Management. In the Weaviate Dedicated Cloud, Customer may experience fluctuations in compute resource usage. To manage these fluctuations, Customer is permitted to increase their peak consumption by up to 50% over the baseline capacity without prior notice. This ensures flexibility in handling temporary spikes in demand. For any anticipated increases in peak consumption that exceed 50%, Customer must notify Weaviate and obtain approval at least one week in advance. This lead time is necessary to ensure that the required infrastructure can be provisioned to support the increased load without impacting service quality. Failure to provide adequate notice may result in the inability to accommodate the additional demand, or may incur additional charges.
+   3. Infrastructure Overhead Charge. Operating the Weaviate Dedicated Cloud offering requires the setup and maintenance of dedicated compute resources, referred to as “Infrastructure Overhead.” This overhead is essential for managing and operating Customer clusters within a single-tenant architecture, ensuring that the cluster is always available, secure, and performing optimally. Due to the inherent costs associated with maintaining a single-tenant infrastructure, a minimum charge per hour will apply, irrespective of actual usage. This charge reflects the baseline compute resources required to keep Customer Weaviate cluster operational, even during periods of low activity.
 
 
 2. **Weaviate AI Units**

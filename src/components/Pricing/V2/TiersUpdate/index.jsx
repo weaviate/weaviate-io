@@ -138,7 +138,11 @@ export default function PricingTiers() {
             variant="premium"
             iconClass={styles.iconPremium}
             title="Premium"
-            priceLine={null}
+            priceLine={
+              <>
+                <span>Starts at</span> <strong>$400</strong> <span>/mo</span>
+              </>
+            }
             blurb="For teams scaling AI in production who need predictable pricing and enhanced reliability."
             ctaLabel="Contact Sales"
             ctaVariant="premium"
