@@ -32,11 +32,11 @@ import { MetaSEO } from '/src/theme/MetaSEO';
    <br></br>
 
 4. **Weaviate Cloud.**  
-   When Weaviate Offering entails Weaviate Cloud. Details are described in Exhibit A.
+   When Weaviate Offering entails Weaviate Cloud. Details are described in Exhibit A.1
    <br></br>
 
 5. **Weaviate AIUs.**  
-   When Weaviate Offering is charged through Weaviate AI Units, details are described in Exhibit A.
+   When Weaviate Offering is charged through Weaviate AI Units, details are described in Exhibit A.2
    <br></br>
 
 ---
@@ -234,11 +234,8 @@ by Weaviate to Customer.
 
 
 2. **Weaviate AI Units**
-   1. Storage and Compute. Weaviate bills for storage and compute using purchasable AI Units, as described herein (“Weaviate AIUs”). Virtual CPUs (“vCPU”) and different types of storage tiers (Hot, warm, and cold storage) use Weaviate AIUs at certain rates based on the effective size of the Customer cluster while in operation, as set forth in the Order Form. Unless otherwise noted, when a Customer cluster is started or resumed, a minimum of one hour worth of Weaivate AIUs will be consumed. In the event Weaviate uses storage and compute resources that are equivalently larger or smaller than the initial estimation, the AIU consumption rate will be adjusted accordingly. For example, if a Customer cluster uses storage and compute resources that go over estimated usage for 30 minutes, such use is measured as one storage- or compute-Hour. Storage and compute-Hours are calculated on a per hour basis, rounded up to the nearest whole hour. Weaviate-managed storage and compute is billed at the rate of the number of Weaviate AIUs per category as listed in the Order Form, multiplied by the applicable Customer AIU price. Storage and compute appears in the usage statement as a single line item per category.
+   1. Storage and Compute. When Weaviate bills for storage and compute using purchasable AI Units, as described herein (“Weaviate AIUs”). Virtual CPUs (“vCPU”) and different types of storage tiers (Hot, warm, and cold storage) use Weaviate AIUs at certain rates based on the effective size of the Customer cluster while in operation, as set forth in the Order Form. Unless otherwise noted, when a Customer cluster is started or resumed, a minimum of one hour worth of Weaivate AIUs will be consumed. In the event Weaviate uses storage and compute resources that are equivalently larger or smaller than the initial estimation, the AIU consumption rate will be adjusted accordingly. For example, if a Customer cluster uses storage and compute resources that go over estimated usage for 30 minutes, such use is measured as one storage- or compute-Hour. Storage and compute-Hours are calculated on a per hour basis, rounded up to the nearest whole hour. Weaviate-managed storage and compute is billed at the rate of the number of Weaviate AIUs per category as listed in the Order Form, multiplied by the applicable Customer AIU price. Storage and compute appears in the usage statement as a single line item per category.
    2. Additional Options. Weaviate offers a number of additional options (e.g., SSO and Private Link) as described in the Documentation. Additional options operate on the Customer cluster and are reflected in the Customer AIU price.
    3. Tools and Apps. Weaviate additionally offers tools and apps that run on Weaviate-managed compute resources (“Weaviate Tools and Apps”). Weaviate Tools and Apps are billed at the rates set forth in the Customer Order Form.
    4. AIU Pricing. The Weaviate Offering may be subscribed to on an On Demand basis, where usage is invoiced in arrears every month, or on a Fixed Term basis, where a set dollar amount of usage is purchased up front. Pricing depends on whether you are in On Demand or Capacity.
-
-
-3. **Changes to Weaviate AIU pricing**
-   1. The Weaviate AIUs required for storage and compute may be updated from time to time. Weaviate will use reasonable efforts to provide advance notice via email or through the Weaviate Service of material changes, but the changes shall be effective on the date that Weaviate announces they are effective. If any change to the Weaviate AIU storage and compute materially increases the Weaviate AIUs required to use the Weaviate Service, you may terminate the applicable Order Form upon written notice to Weaviate and receive a refund of any prepaid and unused AIUs that you have purchased.
+   5. Changes to Weaviate AIU pricing. The Weaviate AIUs required for storage and compute may be updated from time to time. Weaviate will use reasonable efforts to provide advance notice via email or through the Weaviate Service of material changes, but the changes shall be effective on the date that Weaviate announces they are effective. If any change to the Weaviate AIU storage and compute materially increases the Weaviate AIUs required to use the Weaviate Service, you may terminate the applicable Order Form upon written notice to Weaviate and receive a refund of any prepaid and unused AIUs that you have purchased.

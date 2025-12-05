@@ -7,14 +7,19 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 <MetaSEO img="og/service/_title.jpg" />
 
+<div className="dpa-page">
+
+
 ### **DATA PROCESSING AGREEMENT**
 
 **Last Updated: November 2025**
 
+---
+
 This Data Processing Agreement ("**Agreement**") forms part of the Contract for Services ("**Principal Agreement**").
 <br></br>
 
-#### **WHEREAS**
+**WHEREAS**
 
 - The Customer acts as a Data Controller.
 - The Customer wishes to use Weaviate's services which involve the processing of Company Personal Data.
@@ -22,14 +27,14 @@ This Data Processing Agreement ("**Agreement**") forms part of the Contract for 
 - The Parties set out their rights and obligations.
 <br></br>
 
-#### **IT IS AGREED AS FOLLOWS:**
-
+**IT IS AGREED AS FOLLOWS:**
+<br></br>
 
 
 ### 1. **Definitions**
 
 1. The following terms, when used in this Agreement will have the following meanings:
-<br></br>
+
 
   - **Agreement** means this Data Processing Agreement and all Schedules.
   - **Data Controller Personal Data** means any Personal Data Processed by a Contracted Processor on behalf of the Data Controller pursuant to or in connection with the Principal Agreement;
@@ -47,23 +52,26 @@ This Data Processing Agreement ("**Agreement**") forms part of the Contract for 
   - **GDPR** means EU General Data Protection Regulation 2016/679;
   - **Services** means the Weaviate Cloud Services that Weaviate provides to the Customer.
   - **Subprocessor** means any person appointed by or on behalf of the Data Processor to process Personal Data on behalf of the Customer in connection with the Agreement.
-<br></br>
+
 
 2. The terms “Controller”, “Data Subject”, “Member State”, “Personal Data”, “Personal Data Breach” and “Processing” shall have the same meaning as in the GDPR, and their cognate terms shall be construed accordingly.
+
 <br></br>
 
 ### 2. **Processing of Company Personal Data**
 
 1. The Data Processor shall:
-  1. comply with all applicable Data Protection Laws in the Processing of Company Personal Data;
-    and
-  2. not process Company Personal Data other than on the relevant Customer’s documented instructions.
-  3. the Customer instructs Data Processor to process Company Personal Data.
+   1. comply with all applicable Data Protection Laws in the Processing of Company Personal Data; and
+   2. not process Company Personal Data other than on the relevant Customer’s documented instructions.
+   3. the Customer instructs Data Processor to process Company Personal Data.
+
 <br></br>
 
 
 ### 3. **Data Processor Personnel**
+
 1. Data Processor shall take reasonable steps to ensure the reliability of any employee, agent or contractor of any Contracted Processor who may have access to the Company Personal Data, ensuring in each case that access is strictly limited to those individuals who need to know / access the relevant Company Personal Data, as strictly necessary for the purposes of the Principal Agreement, and to comply with Applicable Laws in the context of that individual’s duties to the Contracted Processor, ensuring that all such individuals are subject to confidentiality undertakings or professional or statutory obligations of confidentiality.
+
 <br></br>
 
 ### 4. **Security**
@@ -79,10 +87,12 @@ risks that are presented by Processing, in particular from a Personal Data Breac
 
 ### 5. **Subprocessing**
 
+
 1. The Data Processor shall not engage, appoint, or disclose any Personal Data of the Customer to any
 Subprocessor without the express written consent of the Customer. Notwithstanding the foregoing, the
 Subprocessors listed at www.weaviate.io/subprocessors are hereby pre-approved by the Customer upon
 the execution of this Agreement.
+
 <br></br>
 
 ### 6. **Data Subject Rights**
@@ -92,9 +102,8 @@ implementing appropriate technical and organizational measures, insofar as this 
 fulfillment of the Customer obligations, as reasonably understood by Customer, to respond to requests
 to exercise Data Subject rights under the Data Protection Laws.
 2. Data Processor shall:
-  1. promptly notify Customer if it receives a request from a Data Subject under any Data Protection Law in respect of Company Personal Data; and
-  2. ensure that it does not respond to that request except on the documented instructions of
-Customer or as required by Applicable Laws to which the Data Processor is subject, in which
+   1. promptly notify Customer if it receives a request from a Data Subject under any Data Protection Law in respect of Company Personal Data; and
+   2. ensure that it does not respond to that request except on the documented instructions of Customer or as required by Applicable Laws to which the Data Processor is subject, in which
 case Data Processor shall to the extent permitted by Applicable Laws inform Customer of that
 legal requirement before the Contracted Processor responds to the request.
 <br></br>
@@ -150,3 +159,4 @@ will be submitted to the exclusive jurisdiction of the courts of Amsterdam, The 
 
 ---
 
+</div>
