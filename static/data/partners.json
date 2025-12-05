@@ -2012,7 +2012,7 @@
     "image": "/img/site/mem0.png",
     "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/mem0",
     "description": "Mem0 is an open-source tool for adding a memory layer to agentic AI applications. It is designed to remember user preferences, context, and history across sessions.",
-    "tags": ["LLM and Agent Frameworks", "Integration", "Popular"],
+    "tags": ["LLM and Agent Frameworks", "Integration"],
     "company": "Mem0",
     "howItWorks": "<a href=\"https://docs.mem0.ai/components/vectordbs/dbs/weaviate\">Use Weaviate to store and retrieve</a> Mem0 memory sessions. Each memory object can be stored as an embedding, enabling semantic search, filtering, and context retrieval for personalized AI interactions.",
     "resourcesGroups": [
