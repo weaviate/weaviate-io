@@ -160,11 +160,6 @@
     "photo": "marcin.jpg"
   },
   {
-    "name": "Marion Nehring",
-    "location": { "lat": 52.521, "lng": 13.406 },
-    "photo": "marion.jpg"
-  },
-  {
     "name": "Mariska Tunc",
     "location": { "lat": 38.4247, "lng": 27.1438 },
     "photo": "mariska.jpg"
