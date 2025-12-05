@@ -213,6 +213,18 @@
             "description": "Learn how to use Contextual AI's Parser with Weaviate to build powerful RAG applications over PDF documents.",
             "type": "Notebook",
             "url": "https://github.com/weaviate/recipes/blob/main/integrations/data-platforms/contextual-ai/rag_over_pdfs_contextual_weaviate.ipynb"
+          },
+          {
+            "topic": "Generative Search with Contextual AI",
+            "description": "This notebook demos how to use ContextualAI's generative model (v2) with Weaviate for RAG, combining hybrid search (sparse + dense) with generative search to answer questions based on retrieved Jeopardy data.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/weaviate-features/model-providers/contextual/rag_contextual_v2.ipynb"
+          },
+          {
+            "topic": "Reranking with Contextual AI ",
+            "description": "This notebook demonstrates how to use Contextual AI's reranking model (ctxl-rerank-v2-instruct-multilingual) with Weaviate to improve search result quality.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/weaviate-features/reranking/contextual-reranking/rerank_contextual.ipynb"
           }
         ]
       }
@@ -1166,8 +1178,8 @@
     ],
     "cta": [
       {
-        "label": "Visit CrewAI",
-        "url": "https://www.crewai.com/"
+        "label": "Visit DSPy",
+        "url": "https://dspy.ai/"
       }
     ]
   },
@@ -1807,10 +1819,30 @@
     "link": "https://docs.weaviate.io/integrations/operations/trulens",
     "description": "TruLens is an open source project for evaluating and tracking LLM applications",
     "tags": ["Operations", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "TruLens",
+    "setup": [
+      "TruLens is an open source project for evaluating and tracking LLM applications, allowing you to systematically evaluate, inspect and improve the app."
+    ],
+    "howItWorks": "TruLens can be used to evaluate and trace applications that leverage Weaviate. This includes support for tracing calls to the Weaviate Query Agent.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Query Agent Evaluation with TruLens",
+            "description": "Learn how to trace and evaluate the Query Agent using TruLens",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/trulens/query-agent-evaluation-with-trulens.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Explore TruLens",
+        "url": "https://www.trulens.org/"
+      }
+    ]
   },
   {
     "name": "AIMon",
@@ -1818,10 +1850,30 @@
     "link": "https://docs.weaviate.io/integrations/operations/aimon",
     "description": "AIMon offers monitoring and reranking tools to evaluate, optimize, and improve LLM applications",
     "tags": ["Operations", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "AIMon",
+    "setup": [
+      "AIMon offers monitoring and reranking tools to evaluate, optimize, and improve LLM applications."
+    ],
+    "howItWorks": "AIMon integrates with Weaviate by enhancing vector search results using its low-latency, domain-adaptable reranker. Users can compute a composite quality score across retrieved results—combining hallucination, instruction adherence, and retrieval relevance metrics.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Improve the Quality of your LLM Application with AIMon",
+            "description": "In this tutorial, we'll help you build a retrieval-augmented generation (RAG) chatbot and show you how to improve the relevance.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/aimon/reranking_and_evaluation.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Explore AIMon",
+        "url": "https://www.aimon.ai/"
+      }
+    ]
   },
   {
     "name": "Cleanlab",
@@ -1829,10 +1881,30 @@
     "link": "https://docs.weaviate.io/integrations/operations/cleanlab",
     "description": "Cleanlab provides software to detect and remediate inaccurate responses from Enterprise AI applications",
     "tags": ["Operations", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Cleanlab",
+    "setup": [
+      "Cleanlab provides software to detect and remediate inaccurate responses from Enterprise AI applications. It ensures your Agents, RAG, and Chatbots are safe and helpful."
+    ],
+    "howItWorks": "For any RAG solution built using Weaviate technology (knowledge base, embeddings, etc) and any LLM model, Cleanlab will automatically score the trustworthiness of each RAG response. This enables you to automatically flag inaccurate/hallucinated responses and avoid losing your users’ trust.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Deploy Trustworthy RAG with Weaviate and Cleanlab",
+            "description": "Build trustworthy RAG applications using Weaviate and Cleanlab to mitigate hallucinated/incorrect responses.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/cleanlab/rag_with_weaviate_and_cleanlab.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Explore Cleanlab",
+        "url": "https://cleanlab.ai/"
+      }
+    ]
   },
   {
     "name": "Patronus AI",
@@ -1840,10 +1912,30 @@
     "link": "https://docs.weaviate.io/integrations/operations/patronus",
     "description": "Patronus AI offers many tools and solutions for observability and evaluations",
     "tags": ["Operations", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Patronus AI",
+    "setup": [
+      "Patronus AI offers many tools and solutions for observability and evaluations. Access evaluation models designed to score RAG hallucinations, image relevance, context quality, and more across a variety of use cases."
+    ],
+    "howItWorks": "Patronus enables you to use trace-based observability when developing RAG systems with Weaviate. Further, Patronus has developed the Lynx model family, custom models for Hallucination Detection, a particularly important issue for RAG systems.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Patronus Lynx Hallucination Detection",
+            "description": "Learn how to evaluate if the Weaviate Query Agent is hallucinating by connecting the returned sources to Lynx",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/patronus/lynx-query-agent.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Explore Patronus AI",
+        "url": "https://www.patronus.ai/"
+      }
+    ]
   },
   {
     "name": "Comet",
@@ -1851,10 +1943,30 @@
     "link": "https://docs.weaviate.io/integrations/operations/comet",
     "description": "Comet allows you to track, evaluate, and monitor both traditional and LLM models end-to-end.",
     "tags": ["Operations", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Patronus AI",
+    "setup": [
+      "Comet is a centralized platform that allows you to track, evaluate, and monitor both traditional and LLM models end-to-end."
+    ],
+    "howItWorks": "For teams working on training and fine-tuning LLMs, Comet’s Experiment Tracking solution can first be used to track any LLM fine-tuning runs in a reproducible way, and easily share with the team. Once you have a model that you want to move forward with, whether that is a fine tuned OS model or a proprietary model, you will need to evaluate how that model performs with different datasets, RAGs, prompt templates, and other input tweaks before moving your application to production.",
+    "resourcesGroups": [  
+    {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "RAG with Opik Tracing and Evals",
+            "description": "Learn how to use Opik, Weaviate, and OpenAI to build a RAG system",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/comet/Opik-Tracing-and-Evals.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Explore Comet",
+        "url": "https://www.comet.com/site/"
+      }
+    ]
   },
   {
     "name": "N8n",
@@ -1953,6 +2065,96 @@
       {
         "label": "Explore Replicated",
         "url": "https://replicated.com/"
+      }
+    ]
+  },
+  {
+    "name": "Modaic",
+    "image": "/img/site/modaic.png",
+    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/modaic",
+    "description": "Modaic is a hub to share and manage DSPy programs.",
+    "tags": ["LLM and Agent Frameworks"],
+    "company": "Modaic",
+    "howItWorks": "Weaviate search can be used as a tool with agents published on Modaic Hub. Learn about the <a href=\"https://docs.modaic.dev/\">Modaic SDK</a> and check out the programs on the hub <a href=\"https://www.modaic.dev/programs\">here. </a>",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Modaic and Weaviate",
+            "description": "Learn how to load the CrossEncoderRanker program from the Modaic Hub, as well as PromptToSignature",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/modaic/modaic-weaviate.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Explore Modaic",
+        "url": "https://www.modaic.dev/"
+      }
+    ]
+  },
+  {
+    "name": "Chonkie",
+    "image": "/img/site/chonkie.png",
+    "link": "https://docs.weaviate.io/integrations/data-platforms-chonkie",
+    "description": "Chonkie is a data platform that allows you to clean, chunk, embed, and query your data.",
+    "tags": ["Data Platforms"],
+    "company": "Chonkie",
+    "howItWorks": "Chonkie offers three techniques for parsing your documents: TableChef, TextChef, and MarkdownChef. Once the data is preprocessed, you can ingest it into Weaviate using the WeaviateHandshake.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Weaviate Handshake Example",
+            "description": "Learn how to use Chonkie's WeaviateHandshake to process markdown documents, extract chunks (text and tables), and ingest them into Weaviate to search and natural language querying.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/data-platforms/chonkie/weaviate-handshake-example.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Explore Chonkie",
+        "url": "https://docs.chonkie.ai/common/welcome"
+      }
+    ]
+  },
+  {
+    "name": "Parallel",
+    "image": "/img/site/parallel.png",
+    "link": "https://docs.weaviate.io/integrations/data-platforms-parallel",
+    "description": "Parallel is a web API purpose-built for AI.",
+    "tags": ["Data Platforms"],
+    "company": "Parallel",
+    "howItWorks": "Connect Weaviate to the web using Parallel's API. You can build systems that search the web or scrape data from the web and ingest it into Weaviate.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Parallel and Weaviate",
+            "description": "Learn how to create an AI system with DSPy that uses Parallel's Chat with the Web API and Weaviate's Query Agent.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/data-platforms/web-search/parallel/parallel-weaviate.ipynb"
+          },
+          {
+            "topic": "Parallel Deep Research and Weaviate:",
+            "description": "Populate Weaviate with Data from Parallel’s Deep Research with the Web API ",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/data-platforms/web-search/parallel/parallel-generate-web-dataset-to-weaviate.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Explore Parallel",
+        "url": "https://parallel.ai/"
       }
     ]
   }
