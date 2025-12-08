@@ -47,7 +47,6 @@
     "stars": 17,
     "title": "Wealingo",
     "description": "A personalized language-learning app",
-    "demoLink": "http://wealingo.weaviate.io/",
     "details": "A language-learning app built using Weaviate’s vector database and Confluent Cloud, a fully managed streaming data service based on Apache Kafka. See how real-time data and vector embeddings enable personalized learning by continuously adapting to user performance.",
     "blogLink": "https://weaviate.io/blog/wealingo-demo",
     "githubLink": "https://github.com/weaviate/wealingo-demo"
