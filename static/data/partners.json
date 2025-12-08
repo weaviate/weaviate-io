@@ -1948,8 +1948,8 @@
       "Comet is a centralized platform that allows you to track, evaluate, and monitor both traditional and LLM models end-to-end."
     ],
     "howItWorks": "For teams working on training and fine-tuning LLMs, Comet’s Experiment Tracking solution can first be used to track any LLM fine-tuning runs in a reproducible way, and easily share with the team. Once you have a model that you want to move forward with, whether that is a fine tuned OS model or a proprietary model, you will need to evaluate how that model performs with different datasets, RAGs, prompt templates, and other input tweaks before moving your application to production.",
-    "resourcesGroups": [  
-    {
+    "resourcesGroups": [
+      {
         "title": "Hands-on Learning",
         "items": [
           {
