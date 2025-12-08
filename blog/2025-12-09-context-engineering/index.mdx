@@ -61,7 +61,7 @@ Agents are quickly becoming the foundation for building AI applications. They ar
 
 **What Defines an Agent**
 
-An [**AI agent**](https://weaviate.io/blog/ai-agents) is a system that uses a large language model (LLM) as its “brain” to do decision-making and solve complex tasks. The user supplies a goal, and the agent figures out the steps to achieve it, using available tools in its environment. 
+An [**AI agent**](/blog/ai-agents) is a system that uses a large language model (LLM) as its “brain” to do decision-making and solve complex tasks. The user supplies a goal, and the agent figures out the steps to achieve it, using available tools in its environment. 
 
 These four components often make up an agent:
 
@@ -111,7 +111,7 @@ To help you find the best chunking strategy for your use case, we’ve created a
 The cheat sheet is a great starting point. But if you move from a basic PoC to a production-ready system, the questions usually get harder. Should you pre-chunk everything upfront, or do you need a more dynamic post-chunking architecture? How do you find your optimal chunk size?
 
 :::info
-We cover these questions, complete with code examples, in this deep-dive blog post: [Chunking Strategies to Improve Your RAG Performance](https://weaviate.io/blog/chunking-strategies-for-rag#pre-chunking-vs-post-chunking)
+We cover these questions, complete with code examples, in this deep-dive blog post: [Chunking Strategies to Improve Your RAG Performance](/blog/chunking-strategies-for-rag#pre-chunking-vs-post-chunking)
 :::
 
 ### Prompting Techniques
@@ -130,7 +130,7 @@ Without clear instructions, the model will ignore your beautifully retrieved con
 
 ![prompting techniques overview](./img/prompting-techniques.png)
 
-There's a whole toolkit of prompting techniques you can choose from. But to go from theory to production, you need to know not just *what* these frameworks are, but *how* and *when* to implement them. In our [Context Engineering eBook](https://weaviate.io/ebooks/the-context-engineering-guide?utm_source=blogs&utm_campaign=context-engineering&utm_content=comment), you’ll learn how to implement simple techniques like Chain-of-Thought (CoT) and more advanced ones like the ReAct framework to build systems that can tackle complex, multi-step tasks with reliability.
+There's a whole toolkit of prompting techniques you can choose from. But to go from theory to production, you need to know not just *what* these frameworks are, but *how* and *when* to implement them. In our [Context Engineering eBook](https://weaviate.io/ebooks/the-context-engineering-guide), you’ll learn how to implement simple techniques like Chain-of-Thought (CoT) and more advanced ones like the ReAct framework to build systems that can tackle complex, multi-step tasks with reliability.
 
 ### Memory
 
@@ -142,7 +142,7 @@ Memory in an AI agent is all about retaining information to navigate changing ta
 
 **Short‑term memory** is the live context window: recent turns/reasoning, tool outputs, and retrieved documents that the model needs to reason about the current step. This space is brutally finite, so it should stay lean, just enough conversation history to keep the thread coherent and decisions grounded. 
 
-Long-term memory, by contrast, lives outside the model, usually in vector databases for quick retrieval ([RAG](https://weaviate.io/blog/introduction-to-rag)). These stores keep information permanently, and can hold:
+Long-term memory, by contrast, lives outside the model, usually in vector databases for quick retrieval ([RAG](/blog/introduction-to-rag)). These stores keep information permanently, and can hold:
 
 - Episodic Data: past events, user interactions, preferences
 - Semantic Data: general and domain knowledge
@@ -181,7 +181,7 @@ Handing an agent a list of available tools is straightforward. Getting it to use
 - **Argument Formulation:** After choosing a tool, the agent must determine the correct arguments to pass. For example, if the tool is `get_weather(city, date)`, it must infer details, such as “San Francisco” and “2025-11-25” from the user’s query and format them properly for the call.
 - **Reflection:** After a tool is executed, the output is returned to the agent. The agent reviews it to decide what to do next: whether the tool worked correctly, whether more iterations are needed, or whether an error means it should try a different approach entirely.
 
-As you can see, orchestration happens through this powerful feedback loop, often called the Thought-Action-Observation cycle. The agent constantly observes the outcome of its action and uses that new information to fuel its next "thought". This Thought-Action-Observation cycle forms the fundamental reasoning loop in modern agentic frameworks like our own [Elysia](https://weaviate.io/blog/elysia-agentic-rag). 
+As you can see, orchestration happens through this powerful feedback loop, often called the Thought-Action-Observation cycle. The agent constantly observes the outcome of its action and uses that new information to fuel its next "thought". This Thought-Action-Observation cycle forms the fundamental reasoning loop in modern agentic frameworks like our own [Elysia](/blog/elysia-agentic-rag). 
 
 **The Shift Toward Standardization with MCP**
 
