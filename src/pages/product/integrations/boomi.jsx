@@ -107,10 +107,10 @@ export default function GcpIntegrationPage() {
                 <h3>On this page</h3>
                 <ul>
                   <li>
-                    <a href="#how-it-works">{company} and Weaviate</a>
+                    <a href="#overview">Overview</a>
                   </li>
                   <li>
-                    <a href="#setup">Setup</a>
+                    <a href="#how-it-works">{company} and Weaviate</a>
                   </li>
                   <li>
                     <a href="#resources">Resources</a>
@@ -119,20 +119,18 @@ export default function GcpIntegrationPage() {
               </nav>
 
               <main className={hub.mainContent}>
+                {/* Overview  */}
+                {description && (
+                  <section id="overview" className={css.section}>
+                    <h2>Overview</h2>
+                    <p>{description}</p>
+                  </section>
+                )}
+
                 {/* Company + Weaviate  */}
                 <section id="how-it-works" className={css.section}>
                   <h2>{company} and Weaviate</h2>
                   <p dangerouslySetInnerHTML={{ __html: howItWorks }} />
-                </section>
-
-                {/* Setup */}
-                <section id="setup" className={css.section}>
-                  <h2>Setup</h2>
-                  <ol className={css.steps}>
-                    {setup.map((step, i) => (
-                      <li key={i} dangerouslySetInnerHTML={{ __html: step }} />
-                    ))}
-                  </ol>
                 </section>
 
                 {/* Resources */}

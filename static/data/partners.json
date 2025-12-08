@@ -1943,7 +1943,7 @@
     "link": "https://docs.weaviate.io/integrations/operations/comet",
     "description": "Comet allows you to track, evaluate, and monitor both traditional and LLM models end-to-end.",
     "tags": ["Operations", "Integration"],
-    "company": "Patronus AI",
+    "company": "Comet",
     "setup": [
       "Comet is a centralized platform that allows you to track, evaluate, and monitor both traditional and LLM models end-to-end."
     ],

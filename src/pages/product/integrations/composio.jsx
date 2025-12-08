@@ -109,10 +109,10 @@ export default function ComposioIntegrationPage() {
                 <h3>On this page</h3>
                 <ul>
                   <li>
-                    <a href="#how-it-works">{company} and Weaviate</a>
+                    <a href="#overview">Overview</a>
                   </li>
                   <li>
-                    <a href="#setup">Setup</a>
+                    <a href="#how-it-works">{company} and Weaviate</a>
                   </li>
                   <li>
                     <a href="#resources">Resources</a>
@@ -121,48 +121,19 @@ export default function ComposioIntegrationPage() {
               </nav>
 
               <main className={hub.mainContent}>
+                {/* Overview  */}
+                {description && (
+                  <section id="overview" className={css.section}>
+                    <h2>Overview</h2>
+                    <p>{description}</p>
+                  </section>
+                )}
+
                 {/* Company + Weaviate  */}
                 <section id="how-it-works" className={css.section}>
                   <h2>{company} and Weaviate</h2>
                   <p dangerouslySetInnerHTML={{ __html: list }} />
                   <p dangerouslySetInnerHTML={{ __html: howItWorks }} />
-                </section>
-
-                {/* Setup */}
-
-                <section id="setup" className={css.section}>
-                  <h2>Setup</h2>
-
-                  {setup.map((block, i) => {
-                    if (typeof block === 'string') {
-                      return (
-                        <p
-                          key={i}
-                          dangerouslySetInnerHTML={{ __html: block }}
-                        />
-                      );
-                    }
-
-                    if (block?.type === 'code') {
-                      return (
-                        <div key={i} style={{ margin: '0.75rem 0' }}>
-                          {block.title && (
-                            <p>
-                              <strong>{block.title}</strong>
-                            </p>
-                          )}
-                          <CodeBlock
-                            language={block.lang || 'text'}
-                            showLineNumbers={!!block.lines}
-                          >
-                            {block.code}
-                          </CodeBlock>
-                        </div>
-                      );
-                    }
-
-                    return null;
-                  })}
                 </section>
 
                 {/* Resources */}

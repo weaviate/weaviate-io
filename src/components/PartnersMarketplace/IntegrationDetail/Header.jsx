@@ -27,8 +27,6 @@ export default function IntegrationHeader({
           </div>
 
           <div className={headerCss.headerBox}>
-            <p>{description}</p>
-
             <div className={css.tagRow}>
               {tags.map((t) => (
                 <span key={t} className={css.cardTag}>
@@ -38,11 +36,6 @@ export default function IntegrationHeader({
             </div>
 
             <div className={headerCss.buttonsContainer}>
-              {docsUrl && (
-                <Link to={docsUrl} className={headerCss.buttonOutline}>
-                  Docs
-                </Link>
-              )}
               {ctas.map((c) => (
                 <Link
                   key={c.url}
