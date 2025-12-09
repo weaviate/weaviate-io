@@ -5,10 +5,11 @@ authors: [femke, prajjwal, victoria]
 date: 2025-12-09
 tags: ['concepts']
 image: ./img/hero.png
-description: 'Context engineering is the act of selecting, organizing, and managing the information fed into a large language model during inference (i.e. the “context” tokens) to optimize its performance and behavior.'
+description: 'Context engineering is the act of selecting, organizing, and managing the information fed into a large language model during inference to optimize its performance and behavior.'
 ---
 
 import elysia from './img/elysia-demo.mp4';
+import QueryAgent from './img/query-agent.png';
 
 ![hero image](./img/hero.png)
 
@@ -30,7 +31,7 @@ Prompt engineering focuses on how you phrase and structure instructions for the 
 
 Context engineering, on the other hand, is the discipline of designing the architecture that feeds an LLM the right information at the right time. It's about building the bridges that connect a disconnected model to the outside world, retrieving external data, using tools, and giving it a memory to ground its responses in facts, not just training data.
 
-![prompt versus context engineering](./img/prompt-vs-context-engineering.png)
+![prompt versus context engineering](./img/prompt-versus.png)
 
 In simple words, prompt engineering is how you ask the question, while context engineering is making sure the model has access to the right textbook, calculator, and even notes/memories from your previous conversation before it starts thinking. The quality and effectiveness of LLMs are heavily influenced by the prompts they receive, but the way you phrase a prompt can only go so far without a well-engineered context. Prompting techniques like Chain-of-Thought, Few-shot learning, and ReAct are most effective when combined with retrieved documents, user history, or domain-specific data.
 
@@ -45,7 +46,7 @@ Here are the critical failure modes that emerge as context grows:
 - **Context Confusion**: Irrelevant tools or documents crowd the context, distracting the model and causing it to use the wrong tool or instructions.
 - **Context Clash**: Contradictory information within the context misleads the agent, leaving it stuck between conflicting assumptions.
 
-![common failure modes](./img/common-failure-modes.png)
+![common failure modes](./img/failure-modes.png)
 
 These aren't just technical limitations, these are core design challenges of any modern AI app. You can't fix this fundamental limitation by simply writing better prompts or increasing the maximum size of the context window. You have to build a system around the model. 
 
@@ -78,7 +79,8 @@ In a **single-agent system**, one agent handles the full pipeline, deciding when
 
 Agents can have many different tasks and functions, from defining different retrieval or querying strategies to validating the quality or completeness of a response to dynamically selecting tools from available options. Agents provide the orchestration between all the different parts of the system to make dynamic, context-appropriate decisions about information management.
 
-![where agents fit in context engineering](./img/agents-in-context-eng.png)
+
+![where agents fit in context engineering](./img/agents.png)
 
 ### Query Augmentation
 
@@ -91,7 +93,13 @@ There are two main things to think about:
 
 The [Weaviate Query Agent](https://docs.weaviate.io/agents/query) is a great example of how query augmentation can easily be built into any AI app. It works by taking a user’s prompt in natural language and deciding the best way to structure the query for the database based on it’s knowledge of the cluster’s data structure and Weaviate itself. 
 
-![how the query agent works](./img/query-agent.png)
+<figure>
+  <img
+    alt="how the query agent works"
+    src={QueryAgent}
+    width="600"
+  />
+</figure>
 
 ### Retrieval
 
@@ -106,7 +114,7 @@ Finding that sweet spot between precision and context is the key to high-perform
 
 To help you find the best chunking strategy for your use case, we’ve created a cheat sheet that maps out the landscape of the most common chunking strategies from simple to advanced:
 
-![guide to choosing a chunking strategy](./img/chunking-guide.png)
+![guide to choosing a chunking strategy](./img/chunking.png)
 
 The cheat sheet is a great starting point. But if you move from a basic PoC to a production-ready system, the questions usually get harder. Should you pre-chunk everything upfront, or do you need a more dynamic post-chunking architecture? How do you find your optimal chunk size?
 
@@ -128,7 +136,7 @@ In a retrieval system, your prompt is the control layer. It's the set of instruc
 
 Without clear instructions, the model will ignore your beautifully retrieved context and hallucinate an answer. Your prompt is the final safeguard that makes the model respect the facts you've given it.
 
-![prompting techniques overview](./img/prompting-techniques.png)
+![prompting techniques overview](./img/prompting.png)
 
 There's a whole toolkit of prompting techniques you can choose from. But to go from theory to production, you need to know not just *what* these frameworks are, but *how* and *when* to implement them. In our [Context Engineering eBook](https://weaviate.io/ebooks/the-context-engineering-guide), you’ll learn how to implement simple techniques like Chain-of-Thought (CoT) and more advanced ones like the ReAct framework to build systems that can tackle complex, multi-step tasks with reliability.
 
@@ -136,7 +144,7 @@ There's a whole toolkit of prompting techniques you can choose from. But to go f
 
 A stateless LLM can answer a single question well, but it has no idea what happened five minutes ago or why that matters for the next decision. Memory transforms the model into something that feels more dynamic and, dare we say, more ‘human’, that’s capable of holding onto context, learning from the past, and adapting on the fly. For context engineering, the core challenge is not “how much can we store?” but “what deserves a spot in front of the model right now, and what can safely live elsewhere?
 
-### The Architecture of Agent Memory
+**The Architecture of Agent Memory**
 
 Memory in an AI agent is all about retaining information to navigate changing tasks, remember what worked (or didn't), and think ahead. To build robust agents, we need to think in layers, often blending different types of memory for the best results.
 
@@ -152,7 +160,7 @@ Because it’s external, this memory can grow, update, and persist beyond the mo
 
 Most modern systems usually implement a hybrid memory setup, i.e., blending short-term memory with long-term for depth. Some architectures also add a *working memory*: a temporary space for information needed during a multi-step task. For example, while booking a trip, an agent might keep the destination, dates, and budget in working memory until the task is done, without storing it permanently.
 
-![memory types in agentic systems](./img/memory-types-agentic-systems.png)
+![memory types in agentic systems](./img/memory-types.png)
 
 **Designing Memory That Doesn’t Pollute Context**
 
