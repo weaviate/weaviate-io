@@ -296,7 +296,7 @@ export default function CompareTable() {
           values: {
             free: false,
             flex: { value: false, mint: false },
-            plus: { value: true, mint: true },
+            plus: { value: false, mint: false },
             premium: { value: true, mint: true },
           },
         },
@@ -305,7 +305,7 @@ export default function CompareTable() {
           values: {
             free: false,
             flex: { value: false, mint: false },
-            plus: { value: '✓ (dedicated)', mint: true },
+            plus: { value: false, mint: false },
             premium: { value: true, mint: true },
           },
         },
@@ -402,7 +402,7 @@ export default function CompareTable() {
           values: {
             free: false,
             flex: false,
-            plus: 'Available*',
+            plus: { value: true, mint: true },
             premium: { value: true, mint: true },
           },
         },
@@ -479,11 +479,14 @@ export default function CompareTable() {
           label: 'Cloud Service Provider (CSP)',
           values: {
             free: 'GCP',
-            flex: 'GCP, AWS (coming soon)',
+            flex: (
+              <>
+                GCP, AWS <br></br>(coming soon)
+              </>
+            ),
             plus: (
               <>
-                GCP, AWS, Azure<br></br>
-                <small>(dedicated)</small>
+                GCP, AWS <br></br>(coming soon)
               </>
             ),
             premium: 'GCP, AWS, Azure',
@@ -494,11 +497,7 @@ export default function CompareTable() {
           values: {
             free: 'Limited',
             flex: 'Limited',
-            plus: (
-              <>
-                Limited (shared)<br></br> All regions (dedicated)
-              </>
-            ),
+            plus: 'Limited',
             premium: 'All regions',
           },
         },
