@@ -57,6 +57,24 @@
             "description": "Learn how to embed your data, run a semantic search, make a generative call to the Gemini API and store the output back in your database.",
             "type": "Notebook",
             "url": "https://github.com/google-gemini/cookbook/blob/main/examples/weaviate/personalized_description_with_weaviate_and_gemini_api.ipynb"
+          },
+          {
+            "topic": "Similarity search with Gemma Embeddings and Weaviate",
+            "description": "This tutorial shows you, how to use the gemma-3-300m-embedding in Weaviate.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/weaviate-features/model-providers/google/similarity_search_gemma_embeddings_transformers.ipynb"
+          },
+          {
+            "topic": "Local RAG with Gemma 3 270M and Weaviate",
+            "description": "This notebook walks you through building a local RAG pipeline using Gemma 3 270M with Ollama and Weaviate.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/weaviate-features/model-providers/google/rag_gemma_3_270M_ollama.ipynb"
+          },
+          {
+            "topic": "Weaviate ADK Agent",
+            "description": "This agent provides natural language interaction with Weaviate, enabling full CRUD operations, vector search, collection management, and more through an intelligent conversational interface.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/tree/main/integrations/cloud-hyperscalers/google/weaviate_adk_agent"
           }
         ]
       },
@@ -101,6 +119,35 @@
             "description": "The example use case generates targeted advertisements for vacation stay listings based on a target audience.",
             "type": "Notebook",
             "url": "https://github.com/weaviate/recipes/blob/main/integrations/cloud-hyperscalers/aws/RAG_Cohere_Weaviate_v4_client.ipynb"
+          },
+          {
+            "topic": "RAG with AWS Nova Lite on Bedrock and Weaviate",
+            "description": "This notebook will show you how to use the dynamic RAG API to define the model provider at query time.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/weaviate-features/model-providers/aws/rag_nova_lite_bedrock.ipynb"
+          },
+          {
+            "topic": "Multimodal Search with Nova Embeddings",
+            "description": "This notebook demonstrates how to build a multimodal search system using AWS Nova embeddings in Weaviate, enabling image search, hybrid search, and the Weaviate Query Agent.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/weaviate-features/model-providers/aws/multi-modal-search-nova-embeddings.ipynb"
+          },
+          {
+            "topic": "Nova Customization",
+            "description": "This notebook will illustrate how to use the open-source Nova Prompt Optimizer to optimize a RAG system.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/cloud-hyperscalers/aws/nova-prompt-optimizer.ipynb"
+          }
+        ]
+      },
+      {
+        "title": "Read & Listen",
+        "items": [
+          {
+            "title": "Legacy data to RAG : Modernise Your Apps with Amazon Sagemaker Unified Studio",
+            "desc": "A guide to seamlessly transform data sitting in lakes and warehouses for GenAI capable applications",
+            "type": "Blog",
+            "url": "https://weaviate.io/blog/sagemaker-studio-rag"
           }
         ]
       }
@@ -886,6 +933,12 @@
             "description": "Use the Query Agent as a tool with the LlamaIndex <code>AgentWorkflow</code>",
             "type": "Notebook",
             "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/llamaindex/agents/agent-workflow-with-weaviate-query-agent-.ipynb"
+          },
+          {
+            "topic": "Memory with LlamaIndex, Weaviate, and Gemini",
+            "description": "This notebook shows you how you can give your AI agent long-term memory with LlamaIndex, Weaviate, and Gemini.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/llamaindex/agent-memory/Memory_with_LlamaIndex_Weaviate_and_Gemini.ipynb"
           }
         ]
       },
