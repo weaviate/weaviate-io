@@ -12,7 +12,7 @@ import elysia from './img/elysia-demo.mp4';
 
 ![hero image](./img/hero.png)
 
-Most LLM demos start out feeling magical. They can draft emails, rewrite code, or even book a vacation, and for a few minutes, it seems as though the model truly "understands" everything thrown at it. But the illusion shatters the moment the task becomes messy and real, like when it depends on yesterday's incident report, your team's internal documentation, or a long troubleshooting thread from Slack. Suddenly, the model stumbles. It can't remember what was said ten messages ago, has no access to your private data, and starts guessing instead of reasoning.
+Most LLM demos start out feeling magical. They can draft emails, rewrite code, or even book a vacation, and for a few minutes, it seems like the model truly "understands" everything thrown at it. But the illusion shatters when tasks get messy and real. When success depends on yesterday's incident report, your team's internal documentation, or a long troubleshooting Slack thread, the model suddenly stumbles. It can't remember what was said ten messages ago, has no access to your private data, and it just starts guessing instead of reasoning.
 
 The difference between a flashy demo and a dependable production system isn't about switching to a "smarter" model. It's about how information is selected, structured, and delivered to the model at each step of a task. In other words, the difference is **context**.
 
@@ -22,7 +22,8 @@ All LLMs are constrained by finite **context windows** that force hard trade‑
 
 ## But What Is a Context Window?
 
-The context window is the model's active workspace, where it holds instructions and information for a current task. Every word, number, and piece of punctuation consumes space in this window. Just like a whiteboard, once it's full, older information gets erased to make room for new instructions, and important details can be lost. In serious terms, a context window refers to the maximum amount of text data a language model can consider at one time when generating responses, measured in [tokens](https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them). This window includes all your inputs, model's outputs, tool calls, and retrieved documents, acting as the short-term memory. Every token placed in the context window directly influences what the model can "see" and how it responds.
+The context window is the model's active workspace, where it holds instructions and information for a current task. Every word, number, and piece of punctuation consumes space in this window. Think of it like a whiteboard: once it fills up, older information must be erased to make room for the new, causing important past details to be lost.
+In more technical terms, a context window refers to the maximum amount of input data a language model can consider at one time when generating responses, measured in [tokens](https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them). This window includes all your inputs, model's outputs, tool calls, and retrieved documents, acting as the short-term memory. Every token placed in the context window directly influences what the model can "see" and how it responds.
 
 ## Context Engineering vs. Prompt Engineering
 
@@ -36,7 +37,7 @@ In simple words, prompt engineering is how you ask the question, while context e
 
 ## The Context Window Challenge
 
-The LLM context window can only hold so much information at once. This fundamental constraint shapes what agents and agentic systems are currently capable of. Every time an agent processes information, it must decide what remains active, what can be summarized/ compressed/deleted, what should be stored externally, and how much space to reserve for reasoning. It's tempting to assume that shoving everything into bigger context windows solves this problem, but this is generally not the case. 
+The LLM context window can only hold so much information at once. This fundamental constraint shapes what agents and agentic systems are currently capable of. Every time an agent processes information, it must decide what remains active, what can be summarized/compressed/deleted, what should be stored externally, and how much space to reserve for reasoning. It's tempting to assume that shoving everything into bigger context windows solves this problem, but this is generally not the case. 
 
 Here are the critical failure modes that emerge as context grows:
 
@@ -143,7 +144,7 @@ Memory in an AI agent is all about retaining information to navigate changing ta
 
 **Short‑term memory** is the live context window: recent turns/reasoning, tool outputs, and retrieved documents that the model needs to reason about the current step. This space is brutally finite, so it should stay lean, just enough conversation history to keep the thread coherent and decisions grounded. 
 
-Long-term memory, by contrast, lives outside the model, usually in vector databases for quick retrieval ([RAG](/blog/introduction-to-rag)). These stores keep information permanently, and can hold:
+**Long-term memory**, by contrast, lives outside the model, usually in vector databases for quick retrieval ([RAG](/blog/introduction-to-rag)). These stores keep information permanently, and can hold:
 
 - Episodic Data: past events, user interactions, preferences
 - Semantic Data: general and domain knowledge
