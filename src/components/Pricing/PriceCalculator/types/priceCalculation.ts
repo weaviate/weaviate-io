@@ -10,6 +10,7 @@ import {
   minimumPrices,
 } from './priceValues';
 import { IData } from './dataTypes';
+import { TierFactors } from './priceValues';
 
 const calculateOptimalSegments = (dims: number) => {
   let result = dims;
@@ -118,15 +119,12 @@ export const calculateCosts = (data: IData) => {
     collectionStorageGiB,
     retentionDays
   );
+
   const totalDimensions =
     Number(data.vectorDimensions) * Number(data.numOfObjects);
+
   // Construct the pricing key based on plan and deployment type
-  const pricingKey =
-    data.plan === 'flex'
-      ? 'flex'
-      : data.plan === 'plus'
-      ? (`plus_${data.deploymentType}` as 'plus_shared' | 'plus_dedicated')
-      : (`plus_${data.deploymentType}` as 'plus_shared' | 'plus_dedicated'); // handling premium as plus since its not relevant for the public pricing
+  const pricingKey = data.plan === 'flex' ? 'flex' : 'premium';
 
   const storageUnitPrice = storageUnitPricePerGib[pricingKey];
   const backupUnitPrice = backupUnitPricePerGib[pricingKey];
@@ -136,26 +134,22 @@ export const calculateCosts = (data: IData) => {
 
   const storageCost = collectionStorageGiB * storageUnitPrice * HAFactor;
   const backupCost = backupStorageGiB * backupUnitPrice * HAFactor;
-  const dimensionCost = (totalDimensions / 10 ** 6) * costPer1MDimensions;
-
-  console.log('storageGibs', collectionStorageGiB);
-  console.log('backupGibs', backupStorageGiB);
-  console.log('totalDimensions', totalDimensions);
-
-  console.log('backupCost', microcentsToDollars(backupCost));
-  console.log('dimensionCost', microcentsToDollars(dimensionCost));
-
-  // Debugging
-  console.log('storageCost', microcentsToDollars(storageCost));
-  console.log('backupCost', microcentsToDollars(backupCost));
-  console.log('dimensionCost', microcentsToDollars(dimensionCost));
+  const dimensionCost =
+    (totalDimensions / 10 ** 6) * costPer1MDimensions * HAFactor;
 
   // Final Calculation
-  const totalCostBeforeMin = storageCost + backupCost + dimensionCost;
+  // Question: Is the total cost the sum of these three costs?
+  const totalCostBeforeMin =
+    (storageCost + backupCost + dimensionCost) * TierFactors[pricingKey];
   const finalCostMicrocents = Math.max(minimalSpend, totalCostBeforeMin);
 
   const result = microcentsToDollars(finalCostMicrocents);
 
+  // Debugging
+  console.log('totalDimensions', totalDimensions);
+  console.log('storageCost', microcentsToDollars(storageCost));
+  console.log('backupCost', microcentsToDollars(backupCost));
+  console.log('dimensionCost', microcentsToDollars(dimensionCost));
   console.log('finalCost', result);
 
   return Math.round(result).toLocaleString();
@@ -165,3 +159,8 @@ const microcentsToDollars = (microcents: number) => {
   const result = microcents / 10 ** 6;
   return result;
 };
+
+// TODO: Pricebook 30th Octorber 2025
+// TODO : Flex Shared Low , Premium Shared High, Premium Dedicated Low (Contact Sales)
+// Create a script for extracting the pricebook values that we need
+// Double check again with the calulator

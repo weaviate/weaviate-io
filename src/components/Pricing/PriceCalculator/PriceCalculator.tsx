@@ -77,17 +77,19 @@ export const PriceCalculator = () => {
         <h1>Estimate costs with Pricing Calculator</h1>
         <Plans data={data} updateValue={updateValue} />
 
-        <Switch
-          values={data.plan != 'flex' ? ['shared', 'dedicated'] : ['shared']}
-          selectedValue={data.deploymentType}
-          updateValue={updateDeploymentType}
-          label="Deployment Type"
-          badge_text={
-            data.deploymentType === 'shared'
-              ? 'Shared cost-efficient infrastructure'
-              : 'Dedicated high-performance infrastructure'
-          }
-        />
+        {data.plan === 'premium' && (
+          <Switch
+            values={['shared', 'dedicated']}
+            selectedValue={data.deploymentType}
+            updateValue={updateDeploymentType}
+            label="Deployment Type"
+            badge_text={
+              data.deploymentType === 'shared'
+                ? 'Shared cost-efficient infrastructure'
+                : 'Dedicated high-performance infrastructure'
+            }
+          />
+        )}
 
         <div className="rowWrapper">
           <VectorDimensionsSelect data={data} updateValue={updateValue} />

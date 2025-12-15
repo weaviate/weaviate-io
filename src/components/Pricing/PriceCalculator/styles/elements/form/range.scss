@@ -120,7 +120,7 @@
   }
 
   // Plan-specific gradients
-  &.plan-plus {
+  &.plan-premium {
     input[type="range"] {
       &::before {
         background: $blueGradient;
@@ -137,7 +137,7 @@
     }
   }
 
-  &.plan-premium {
+  &.plan-enterprise {
     input[type="range"] {
       &::before {
         background: $pinkGradient;

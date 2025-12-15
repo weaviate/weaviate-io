@@ -22,7 +22,7 @@ export const PriceReview = (props: IPriceReviewProps) => {
     transition: { duration: 0.1 },
   };
 
-  const { plan } = props.data;
+  const { plan, deploymentType } = props.data;
 
   const gradientContent = (
     <>
@@ -36,27 +36,29 @@ export const PriceReview = (props: IPriceReviewProps) => {
       <motion.div
         className="priceReview-background priceReview-background-blue"
         initial={backgroundVariants.initial}
-        animate={{ opacity: plan === 'plus' ? 1 : 0 }}
+        animate={{ opacity: plan === 'premium' ? 1 : 0 }}
         exit={backgroundVariants.exit}
         transition={backgroundVariants.transition}
       />
       <motion.div
         className="priceReview-background priceReview-background-pink"
         initial={backgroundVariants.initial}
-        animate={{ opacity: plan === 'premium' ? 1 : 0 }}
+        animate={{
+          opacity: plan === 'premium' && deploymentType === 'dedicated' ? 1 : 0,
+        }}
         exit={backgroundVariants.exit}
         transition={backgroundVariants.transition}
       />
     </>
   );
 
-  if (plan === 'premium') {
+  if (plan === 'premium' && deploymentType === 'dedicated') {
     return (
       <div className="priceReview premium">
         {gradientContent}
         <div className="priceReview-content">
           <h1>
-            For premium plans, please get in touch for a personalised rate.
+            For enterprise plans, please get in touch for a personalised rate.
           </h1>
           <motion.button {...motionProps}>
             <a className="linkCTA" href="/pricing#contact-sales">
