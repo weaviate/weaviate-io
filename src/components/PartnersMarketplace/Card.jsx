@@ -4,6 +4,13 @@ import styles from './styles.module.scss';
 import partners from '/data/partners.json';
 
 function Card({ name, image, link, description, tags }) {
+  const hasLink = typeof link === 'string' && link.trim() !== '';
+  const to = hasLink
+    ? link.startsWith('/')
+      ? link
+      : `/product/integrations/${link}`
+    : null;
+
   return (
     <div className={styles.card}>
       <div className={styles.cardContent}>
@@ -20,14 +27,16 @@ function Card({ name, image, link, description, tags }) {
             </span>
           ))}
         </div>
-        <Link
-          to={`/product/integrations/${name
-            .toLowerCase()
-            .replace(/\s+/g, '-')}`}
-          className={styles.cardLink}
-        >
-          Learn More
-        </Link>
+
+        {to ? (
+          <Link to={to} className={styles.cardLink}>
+            Learn More
+          </Link>
+        ) : (
+          <span className={`${styles.cardLink} ${styles.placeholder}`}>
+            Learn More
+          </span>
+        )}
       </div>
     </div>
   );
