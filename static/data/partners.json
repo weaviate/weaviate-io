@@ -162,7 +162,7 @@
   {
     "name": "Microsoft Azure",
     "image": "/img/site/azure-logo-partners.svg",
-    "link": "",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/openai-azure",
     "description": "Deploy Weaviate on the Azure Marketplace and access models from OpenAI via the Microsoft Azure API.",
     "tags": ["Cloud Hyperscalers", "Model Providers", "Module"],
     "maintainedBy": "Internal",
@@ -243,7 +243,7 @@
     "link": "contextual-ai",
     "description": "Contextual AI offers a document Parser built for retrieval-augmented generation (RAG) systems. It enables agents to understand and navigate complex document structures.",
     "list": "<ol><li>Quickly extract data from multiple data sources (databases, cloud storage, and local files)</li><li>Embed using major models (including OpenAI, Cohere, and Google Gemini)</li><li>Write to vector databases</li></ol>",
-    "tags": ["Data Platforms", "Integration"],
+    "tags": ["Data Platforms", "Integration", "Model Providers", "Module"],
     "company": "Contextual AI",
     "howItWorks": "<a href=\"https://docs.contextual.ai/api-reference/parse/parse-file\">Parsed outputs</a> can be stored in Weaviate for vector and hybrid search, metadata filtering, and RAG.",
     "setup": [
@@ -1239,7 +1239,7 @@
   {
     "name": "KubeAI",
     "image": "/img/site/kubeai_logo.png",
-    "link": "",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/kubeai",
     "description": "Run Open AI embedding and generative models on kubernetes.",
     "tags": ["Model Providers", "Module"],
     "maintainedBy": "Internal",
@@ -1858,7 +1858,7 @@
   {
     "name": "Snowflake",
     "image": "/img/site/snowflake.png",
-    "link": "",
+    "link": "https://weaviate.io/partners/snowflake",
     "description": "Leverage generative AI capabilities within the boundaries of your Snowflake data environment",
     "tags": ["Cloud Hyperscalers"],
     "maintainedBy": "External",
