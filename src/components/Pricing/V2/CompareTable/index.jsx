@@ -8,6 +8,42 @@ const COLS = [
   { key: 'premium', label: 'Premium' },
 ];
 
+const SHOW_PLUS = false;
+const VISIBLE_COLS = SHOW_PLUS ? COLS : COLS.filter((c) => c.key !== 'plus');
+const MERGE_PREMIUM_HEADERS = true;
+
+function getDisplayRawValue(rowValues, colKey) {
+  if (!SHOW_PLUS && colKey === 'premium') {
+    const plusRaw = rowValues.plus;
+    const premRaw = rowValues.premium;
+    return plusRaw ?? premRaw;
+  }
+  return rowValues[colKey];
+}
+
+function hasValue(raw) {
+  if (raw === undefined || raw === null) return false;
+  if (typeof raw === 'string') return raw.trim().length > 0;
+  if (typeof raw === 'boolean') return true;
+  if (typeof raw === 'object') {
+    if ('badge' in raw) return true;
+    if ('value' in raw)
+      return (
+        raw.value !== undefined && raw.value !== null && `${raw.value}` !== ''
+      );
+    return Object.keys(raw).length > 0;
+  }
+  return true;
+}
+
+function getDisplayCell(rowValues, colKey) {
+  if (!SHOW_PLUS && colKey === 'premium') {
+    const usePremium = hasValue(rowValues.premium);
+    return normalizeCell(usePremium ? rowValues.premium : rowValues.plus);
+  }
+  return normalizeCell(rowValues[colKey]);
+}
+
 function Cell({ value }) {
   if (value === true) return <span className={styles.yes}>✓</span>;
   if (value === false) return <span className={styles.no}>✕</span>;
@@ -31,7 +67,6 @@ function normalizeCell(raw) {
   return { content: raw, mint: false };
 }
 
-/** Section renderer */
 function RenderSection({ section }) {
   const { heading, rows, layout = 'rowspan' } = section;
 
@@ -51,15 +86,40 @@ function RenderSection({ section }) {
               {heading}
             </th>
           )}
-          {COLS.map((col) => {
-            const { content, mint } = normalizeCell(row.values[col.key]);
-            const isMint = mint || rowMint.has(col.key);
-            return (
-              <td key={col.key} className={isMint ? styles.mint : undefined}>
-                <Cell value={content} />
+
+          {SHOW_PLUS ? (
+            COLS.map()
+          ) : heading === 'Contract' ? (
+            <>
+              {/* Free */}
+              <td className={rowMint.has('free') ? styles.mint : undefined}>
+                <Cell value={normalizeCell(row.values.free).content} />
               </td>
-            );
-          })}
+              {/* Flex */}
+              <td className={rowMint.has('flex') ? styles.mint : undefined}>
+                <Cell value={normalizeCell(row.values.flex).content} />
+              </td>
+              {/* Premium spanning Plus + Premium */}
+              <td
+                colSpan={2}
+                className={rowMint.has('premium') ? styles.mint : undefined}
+              >
+                <Cell value={getDisplayCell(row.values, 'premium').content} />
+              </td>
+            </>
+          ) : (
+            // flat -> else branch (e.g., Upgrades)
+            COLS.map((col) => {
+              const raw = row.values[col.key];
+              const { content, mint } = normalizeCell(raw);
+              const isMint = mint || rowMint.has(col.key);
+              return (
+                <td key={col.key} className={isMint ? styles.mint : undefined}>
+                  <Cell value={content} />
+                </td>
+              );
+            })
+          )}
         </tr>
       );
     });
@@ -88,7 +148,10 @@ function RenderSection({ section }) {
           <th scope="row" className={styles.rowHeader}>
             {row.label}
           </th>
-          <td colSpan={COLS.length} className={styles.pricingCell}>
+          <td
+            colSpan={2 + (SHOW_PLUS ? COLS.length : VISIBLE_COLS.length)}
+            className={styles.pricingCell}
+          >
             <Cell value={row.all} />
           </td>
         </tr>
@@ -164,7 +227,7 @@ export default function CompareTable() {
           values: {
             free: 'Shared',
             flex: 'Shared',
-            plus: 'Shared or dedicated',
+            plus: 'Shared',
             premium: 'Dedicated',
           },
         },
@@ -233,7 +296,7 @@ export default function CompareTable() {
           values: {
             free: false,
             flex: { value: false, mint: false },
-            plus: { value: true, mint: true },
+            plus: { value: false, mint: false },
             premium: { value: true, mint: true },
           },
         },
@@ -242,7 +305,7 @@ export default function CompareTable() {
           values: {
             free: false,
             flex: { value: false, mint: false },
-            plus: { value: '✓ (dedicated)', mint: true },
+            plus: { value: false, mint: false },
             premium: { value: true, mint: true },
           },
         },
@@ -295,12 +358,12 @@ export default function CompareTable() {
       layout: 'rowspan',
       rows: [
         {
-          label: 'Agents (shared service)',
+          label: 'Query Agent monthly max requests',
           values: {
-            free: { value: true, mint: true },
-            flex: { value: true, mint: true },
-            plus: { value: true, mint: true },
-            premium: { text: '', badge: 'Coming soon' },
+            free: '250',
+            flex: '30000',
+            plus: 'Unlimited',
+            premium: 'Unlimited',
           },
         },
         {
@@ -339,7 +402,7 @@ export default function CompareTable() {
           values: {
             free: false,
             flex: false,
-            plus: 'Available*',
+            plus: { value: true, mint: true },
             premium: { value: true, mint: true },
           },
         },
@@ -400,17 +463,7 @@ export default function CompareTable() {
           values: {
             free: false,
             flex: 'Weaviate-managed',
-            plus: (
-              <>
-                Weaviate-managed
-                <br />
-                <small>(shared)</small>
-                <br />
-                Customer-directed
-                <br />
-                <small>(dedicated)</small>
-              </>
-            ),
+            plus: 'Weaviate-managed',
             premium: 'Customer-directed',
           },
         },
@@ -426,11 +479,14 @@ export default function CompareTable() {
           label: 'Cloud Service Provider (CSP)',
           values: {
             free: 'GCP',
-            flex: 'GCP, AWS (coming soon)',
+            flex: (
+              <>
+                GCP, AWS <br></br>(coming soon)
+              </>
+            ),
             plus: (
               <>
-                GCP, AWS, Azure<br></br>
-                <small>(dedicated)</small>
+                GCP, AWS <br></br>(coming soon)
               </>
             ),
             premium: 'GCP, AWS, Azure',
@@ -441,11 +497,7 @@ export default function CompareTable() {
           values: {
             free: 'Limited',
             flex: 'Limited',
-            plus: (
-              <>
-                Limited (shared)<br></br> All regions (dedicated)
-              </>
-            ),
+            plus: 'Limited',
             premium: 'All regions',
           },
         },
@@ -458,6 +510,15 @@ export default function CompareTable() {
     layout: 'rowspan',
     rows: [
       {
+        label: 'Minimum',
+        values: {
+          free: 'Free',
+          flex: '$45 / month',
+          plus: '$400 / month',
+          premium: 'Contact sales for more information',
+        },
+      },
+      {
         label: 'Vector Dimensions',
         values: {
           free: 'Free',
@@ -465,21 +526,21 @@ export default function CompareTable() {
             <>
               <small>from</small>
               <br />
-              $0.000745 / 1M
+              $0.01668 / 1M
             </>
           ),
           plus: (
             <>
               <small>from</small>
               <br />
-              $0.000327 / 1M
+              $0.0139 / 1M
             </>
           ),
           premium: (
             <>
               <small>from</small>
               <br />
-              $0.000327 / 1M
+              $0.00975 / 1M
             </>
           ),
         },
@@ -506,7 +567,7 @@ export default function CompareTable() {
             <>
               <small>from</small>
               <br />
-              $0.2125 / GiB
+              $0.31875 / GiB
             </>
           ),
         },
@@ -533,7 +594,7 @@ export default function CompareTable() {
             <>
               <small>from</small>
               <br />
-              $0.022 / GiB
+              $0.033 / GiB
             </>
           ),
         },
@@ -565,8 +626,10 @@ export default function CompareTable() {
           >
             <table className={styles.table}>
               <caption className="sr-only">
-                Feature comparison across Free, Flex, Plus, and Premium plans
+                Feature comparison across Free, Flex{SHOW_PLUS ? ', Plus' : ''},
+                and Premium plans
               </caption>
+
               <colgroup>
                 <col className={styles.colSection} />
                 <col className={styles.colRow} />
@@ -579,13 +642,42 @@ export default function CompareTable() {
                   <th colSpan={2} scope="col" className={styles.planHead}>
                     Plan
                   </th>
-                  {COLS.map((c) => (
-                    <th scope="col" key={c.key} className={styles.planCol}>
-                      {c.label}
-                    </th>
-                  ))}
+
+                  {COLS.map((c) => {
+                    // Skip the Plus header completely when we’re merging into Premium
+                    if (
+                      MERGE_PREMIUM_HEADERS &&
+                      !SHOW_PLUS &&
+                      c.key === 'plus'
+                    ) {
+                      return null;
+                    }
+                    // Make Premium span Plus + Premium
+                    if (
+                      MERGE_PREMIUM_HEADERS &&
+                      !SHOW_PLUS &&
+                      c.key === 'premium'
+                    ) {
+                      return (
+                        <th
+                          scope="col"
+                          key="premium"
+                          className={styles.planCol}
+                          colSpan={2}
+                        >
+                          {c.label}
+                        </th>
+                      );
+                    }
+                    return (
+                      <th scope="col" key={c.key} className={styles.planCol}>
+                        {c.label}
+                      </th>
+                    );
+                  })}
                 </tr>
               </thead>
+
               <tbody>
                 <BannerRow>FEATURES</BannerRow>
                 {SECTIONS.map((sec) => (
