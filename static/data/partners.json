@@ -1402,7 +1402,7 @@
     "link": "ragas",
     "description": "Ragas is a framework to help you evaluate your retrieval augmented generation (RAG) applications.",
     "tags": ["Operations", "Integration"],
-    "company": "Nomic",
+    "company": "ragas",
     "howItWorks": "The Ragas metrics are:<br></br><ol><li><code>faithfulness</code></li><li><code>answer_relevancy</code></li><li><code>context_precision</code></li><li><code>context_recall</code></li></ol>To use Ragas, you'll need to store the <code>question</code>, <code>answer</code>, <code>ground_truths</code>, and <code>contexts</code> in a json object to send to Ragas.",
     "resourcesGroups": [
       {
