@@ -1250,7 +1250,7 @@
   {
     "name": "Anyscale",
     "image": "/img/site/anyscale_logo.jpg",
-    "link": "",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/anyscale",
     "description": "Seamlessly connect to models on Anyscale directly from Weaviate.",
     "tags": ["Model Providers", "Module"],
     "maintainedBy": "Internal",
@@ -1261,7 +1261,7 @@
   {
     "name": "FriendliAI",
     "image": "/img/site/friendliai_logo.svg",
-    "link": "",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/friendliai",
     "description": "Access models on FriendliAI directly from Weaviate.",
     "tags": ["Model Providers", "Module"],
     "maintainedBy": "Internal",
@@ -1272,7 +1272,7 @@
   {
     "name": "Mistral",
     "image": "/img/site/mistralai_logo.png",
-    "link": "",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/mistral",
     "description": "Access embedding and generative models from Mistral.",
     "tags": ["Model Providers", "Module"],
     "maintainedBy": "Internal",
@@ -1283,7 +1283,7 @@
   {
     "name": "Jina AI",
     "image": "/img/site/jina_logo.svg",
-    "link": "",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/jinaai",
     "description": "Access embedding models from Jina AI.",
     "tags": ["Model Providers", "Module"],
     "maintainedBy": "Internal",
@@ -1294,7 +1294,7 @@
   {
     "name": "Hugging Face",
     "image": "/img/site/huggingface_logo.svg",
-    "link": "",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/huggingface",
     "description": "Weaviate integrates with Hugging Face\u2019s API and Transformers library.",
     "tags": ["Model Providers", "Module"],
     "maintainedBy": "Internal",
@@ -1305,7 +1305,7 @@
   {
     "name": "Ollama",
     "image": "/img/site/ollama_logo.png",
-    "link": "",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/ollama",
     "description": "Easily run a range of embedding and generative models locally.",
     "tags": ["Model Providers", "Module"],
     "maintainedBy": "Internal",
@@ -1316,7 +1316,7 @@
   {
     "name": "OctoAI",
     "image": "/img/site/octoai_logo.png",
-    "link": "",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/octoai",
     "description": "Access models on OctoAI directly from Weaviate.",
     "tags": ["Model Providers", "Module"],
     "maintainedBy": "Internal",
@@ -1327,7 +1327,7 @@
   {
     "name": "VoyageAI",
     "image": "/img/site/voyageai_logo.svg",
-    "link": "",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/voyageai",
     "description": "Access Voyage AI\u2019s models (embedding and reranker) directly from Weaviate.",
     "tags": ["Model Providers", "Module"],
     "maintainedBy": "Internal",
@@ -1338,7 +1338,7 @@
   {
     "name": "Anthropic",
     "image": "/img/site/anthropic_logo.svg",
-    "link": "",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/anthropic",
     "description": "Access a variety of generative models from Anthropic.",
     "tags": ["Model Providers", "Module", "Popular"],
     "maintainedBy": "Internal",
@@ -1349,7 +1349,7 @@
   {
     "name": "Cohere",
     "image": "/img/site/cohere_logo.svg",
-    "link": "",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/cohere",
     "description": "Use a variety of embedding, reranker, and language models from Cohere.",
     "tags": ["Model Providers", "Module", "Popular"],
     "maintainedBy": "Internal",
@@ -1360,7 +1360,7 @@
   {
     "name": "OpenAI",
     "image": "/img/site/openai_logo.svg",
-    "link": "",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/openai",
     "description": "Use a variety of embedding and language models from OpenAI",
     "tags": ["Model Providers", "Module", "Popular"],
     "maintainedBy": "Internal",
@@ -1402,7 +1402,7 @@
     "link": "ragas",
     "description": "Ragas is a framework to help you evaluate your retrieval augmented generation (RAG) applications.",
     "tags": ["Operations", "Integration"],
-    "company": "ragas",
+    "company": "Ragas",
     "howItWorks": "The Ragas metrics are:<br></br><ol><li><code>faithfulness</code></li><li><code>answer_relevancy</code></li><li><code>context_precision</code></li><li><code>context_recall</code></li></ol>To use Ragas, you'll need to store the <code>question</code>, <code>answer</code>, <code>ground_truths</code>, and <code>contexts</code> in a json object to send to Ragas.",
     "resourcesGroups": [
       {
@@ -1651,7 +1651,7 @@
   {
     "name": "NVIDIA",
     "image": "/img/site/nvidia.png",
-    "link": "",
+    "link": "https://docs.weaviate.io/weaviate/model-providers/nvidia",
     "description": "Connect to a variety of models on NVIDIA NIM",
     "tags": ["Model Providers", "Module"],
     "maintainedBy": "External",
