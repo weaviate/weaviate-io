@@ -526,21 +526,21 @@ export default function CompareTable() {
             <>
               <small>from</small>
               <br />
-              $0.000764 / 1M
+              $0.01668 / 1M
             </>
           ),
           plus: (
             <>
               <small>from</small>
               <br />
-              $0.000764 / 1M
+              $0.0139 / 1M
             </>
           ),
           premium: (
             <>
               <small>from</small>
               <br />
-              $0.000270 / 1M
+              $0.00975 / 1M
             </>
           ),
         },
@@ -553,7 +553,7 @@ export default function CompareTable() {
             <>
               <small>from</small>
               <br />
-              $0.2125 / GiB
+              $0.255 / GiB
             </>
           ),
           plus: (
@@ -567,7 +567,7 @@ export default function CompareTable() {
             <>
               <small>from</small>
               <br />
-              $0.2125 / GiB
+              $0.31875 / GiB
             </>
           ),
         },
@@ -580,7 +580,7 @@ export default function CompareTable() {
             <>
               <small>from</small>
               <br />
-              $0.022 / GiB
+              $0.0264 / GiB
             </>
           ),
           plus: (
@@ -594,7 +594,7 @@ export default function CompareTable() {
             <>
               <small>from</small>
               <br />
-              $0.022 / GiB
+              $0.033 / GiB
             </>
           ),
         },
