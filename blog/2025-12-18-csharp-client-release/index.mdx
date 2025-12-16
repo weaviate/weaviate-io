@@ -72,9 +72,9 @@ WeaviateClient customClient = await WeaviateClientBuilder.Custom(
 
 The client handles connection pooling and resource management automatically, and we recommend using a single client instance throughout your application's lifecycle.
 
-#### 3. Strongly-typed collection management
+#### 3. Type-safe collection management
 
-Defining and managing collection schemas is now a strongly-typed, discoverable process. The `Configure` and `Property` classes guide you with IDE autocompletion, preventing common schema definition errors.
+Defining and managing collection schemas is a strongly-typed process. The `Configure` and `Property` classes guide you with IDE autocompletion, preventing common schema definition errors.
 
 **Creating a new collection:**
 
@@ -111,7 +111,40 @@ await client.Collections.Create(new CollectionCreateParams
 });
 ```
 
-#### 4. Chainable filtering
+#### 4. Type-safe insert and search operations
+
+For the ultimate type-safe experience, you can wrap your collection client in a generic type. This gives you compile-time safety and full IntelliSense for your data objects.
+
+Define your C# class:
+
+```csharp
+public class Movie
+{
+    public string Title { get; set; }
+    public string Genre { get; set; }
+}
+```
+
+Then, use the generic `Use<T>` method to get a typed client:
+
+```csharp
+// Get a typed handle to your collection
+var movies = client.Collections.Use<Movie>("Movie");
+
+// Insert a strongly-typed object
+await movies.Data.Insert(new Movie { Title = "Inception", Genre = "Sci-Fi" });
+
+// Query results are strongly-typed
+var response = await movies.Query.NearText("dream", limit: 5);
+
+// No casting needed!
+foreach (var movieObject in response.Objects)
+{
+    Console.WriteLine(movieObject.Properties.Title);
+}
+```
+
+#### 5. Chainable filtering
 
 Building complex filters is very intuitive. The static `Filter` class provides a fluent, chainable API that feels a lot like writing a LINQ query.
 
@@ -128,7 +161,7 @@ var response = await jeopardy.Query.FetchObjects(
 
 The API supports a wide range of operators (`IsEqual`, `IsGreaterThan`, `IsLike`, `ContainsAny`, etc.) and logical combinations (`AllOf`, `AnyOf`, `Not`), making it very simple to construct even the most complex queries.
 
-#### 5. Integrated vector search and generative AI (RAG)
+#### 6. Integrated vector search and generative AI (RAG)
 
 Performing vector searches and building Retrieval-Augmented Generation (RAG) pipelines is seamless.
 
@@ -158,7 +191,83 @@ var ragResponse = await questions.Generate.NearText(
 Console.WriteLine(ragResponse.Generative?.Values.First());
 ```
 
-#### 6. Simplified data management
+#### 7. Dependency injection
+
+The client integrates seamlessly with modern .NET applications using dependency injection. Register the `WeaviateClient` in your `Program.cs`:
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+// Register Weaviate from appsettings.json
+builder.Services.AddWeaviate(builder.Configuration.GetSection("Weaviate"));
+
+// Or configure it directly
+// builder.Services.AddWeaviate(options =>
+// {
+//     options.RestEndpoint = "localhost:8080";
+//     options.GrpcEndpoint = "localhost:50051";
+// });
+
+var app = builder.Build();
+```
+
+The client is initialized during startup, so you can inject a ready-to-use client anywhere in your application.
+
+```csharp
+public class MyService(WeaviateClient client)
+{
+    public async Task<WeaviateObject<Movie>?> GetMovie()
+    {
+        var movies = client.Collections.Use<Movie>("Movie");
+        var result = await movies.Query.FetchObjectByID("...");
+        return result;
+    }
+}
+```
+
+#### 8. Backup and restore
+
+For production workloads, the client provides easy-to-use backup and restore commands.
+
+```csharp
+// Create a backup to the local filesystem
+var createOperation = await client.Backups.Create(new BackupCreateRequest(
+    id: "my-first-backup",
+    backend: BackupBackend.Filesystem(path: "/var/weaviate/backups")
+));
+
+await createOperation.WaitForCompletion();
+
+// Restore from the backup
+var restoreOperation = await client.Backups.Restore(new BackupRestoreRequest(
+    id: "my-first-backup",
+    backend: BackupBackend.Filesystem(path: "/var/weaviate/backups")
+));
+
+await restoreOperation.WaitForCompletion();
+```
+
+#### 9. Robust error handling
+
+The client features a clear exception hierarchy to help you build robust applications. You can catch specific errors or handle them more generally.
+
+- `WeaviateClientException`: For client-side issues like configuration or network problems.
+- `WeaviateServerException`: For errors returned by the Weaviate server.
+  - `WeaviateNotFoundException`: When a resource (collection, object) doesn't exist.
+  - `WeaviateConflictException`: When creating a resource that already exists.
+
+```csharp
+try
+{
+    await client.Collections.Delete("NonExistentCollection");
+}
+catch (WeaviateNotFoundException)
+{
+    Console.WriteLine("Collection was not found, which is fine.");
+}
+```
+
+#### 10. Simplified data management
 
 The client provides straightforward methods for data insertion, updates, and deletion. Importing multiple objects is simple with `InsertMany`.
 
@@ -181,7 +290,7 @@ if (insertResponse.HasErrors)
 
 ### Installation
 
-Add the Weaviate C# client to your project using the NuGet package manager:
+Add the Weaviate C# client to your project using the [NuGet package manager](https://www.nuget.org/packages/Weaviate.Client/0.0.1-beta.4):
 
 ```bash
 dotnet add package Weaviate.Client
