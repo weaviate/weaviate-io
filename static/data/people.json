@@ -177,13 +177,6 @@
     "team": "developer-growth"
   },
   {
-    "name": "David Street",
-    "title": "Full Stack Engineer",
-    "photo": "david.jpg",
-    "linkedin": "david-street-552b7563",
-    "team": "wcd"
-  },
-  {
     "name": "Darwin Corn (they/them)",
     "title": "Client-Focused SRE",
     "photo": "darwin.jpg",
@@ -371,13 +364,6 @@
     "photo": "laura.jpg",
     "linkedin": "laurastoye",
     "team": "ceo-team"
-  },
-  {
-    "name": "Leonie Monigatti",
-    "title": "Machine Learning Engineer",
-    "photo": "leonie.jpg",
-    "linkedin": "804250ab",
-    "team": "developer-growth"
   },
   {
     "name": "Marcin Antas",

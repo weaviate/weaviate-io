@@ -70,11 +70,6 @@
     "photo": "daniel.jpg"
   },
   {
-    "name": "David Earl Street",
-    "location": { "lat": 32.0819, "lng": -81.0922 },
-    "photo": "david.jpg"
-  },
-  {
     "name": "Dirk Kulawiak",
     "location": { "lat": 48.1361, "lng": 11.583 },
     "photo": "dirk.jpg"
@@ -148,11 +143,6 @@
     "name": "Laura Ann Webster Stoye",
     "location": { "lat": 39.9536, "lng": -75.1662 },
     "photo": "laura.jpg"
-  },
-  {
-    "name": "Leonie Monigatti",
-    "location": { "lat": 50.1119, "lng": 8.6831 },
-    "photo": "leonie.jpg"
   },
   {
     "name": "Marcin Antas",
