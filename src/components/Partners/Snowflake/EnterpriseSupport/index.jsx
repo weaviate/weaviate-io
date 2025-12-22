@@ -11,11 +11,11 @@ export default function enterpriseSupport() {
         <div className={styles.header}>
           <h2>Build intuitive AI applications with less risk</h2>
           <p>
-            Weaviate is an open source vector database that's used to power
-            modern AI use cases like semantic and multimodal search and
-            retrieval augmented generation (RAG). Integration with Snowflake’s
-            platform helps enterprises leverage the power of GenAI while
-            ensuring data privacy.
+            Weaviate is an open source AI database that's used to power modern
+            AI use cases like semantic and multimodal search and retrieval
+            augmented generation (RAG). Integration with Snowflake’s platform
+            helps enterprises leverage the power of GenAI while ensuring data
+            privacy.
           </p>
         </div>
         <div className={styles.features}>

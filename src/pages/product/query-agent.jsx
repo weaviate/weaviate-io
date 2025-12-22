@@ -76,7 +76,7 @@ export default function QueryPage() {
                   <p>{app.description}</p>
                   <div className={styles.installButtons}>
                     {app.released === 'yes' ? (
-                      <Link to="https://console.weaviate.cloud/">
+                      <Link to="/go/console">
                         <button className={styles.installButton}>
                           Try Free
                         </button>
@@ -147,7 +147,9 @@ export default function QueryPage() {
                     <div className={styles.agentPricingContainer}>
                       <div className={styles.agentPricingPlan}>
                         <h4>Free Plan</h4>
-                        <p className={styles.agentPlanLabel}>Per organization</p>
+                        <p className={styles.agentPlanLabel}>
+                          Per organization
+                        </p>
                         <p className={styles.agentPlanPrice}>
                           <strong>1000</strong> requests<sup>1</sup> / month
                         </p>
@@ -157,12 +159,16 @@ export default function QueryPage() {
                         className={`${styles.agentPricingPlan} ${styles.agentPaidPlan}`}
                       >
                         <h4>Paid Plan</h4>
-                        <p className={styles.agentPlanLabel}>Per organization</p>
+                        <p className={styles.agentPlanLabel}>
+                          Per organization
+                        </p>
                         <p className={styles.agentPlanPrice}>
                           <strong>$30</strong> / month
                         </p>
                         <ul>
-                          <li>4000 requests<sup>1</sup> included / month</li>
+                          <li>
+                            4000 requests<sup>1</sup> included / month
+                          </li>
                           <li>
                             Additional requests: $0.0001 per model unit
                             <sup>2</sup>

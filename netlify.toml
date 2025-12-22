@@ -30,3 +30,11 @@ status = 301
   from = "/collections-count-limit"
   to = "https://docs.weaviate.io/weaviate/starter-guides/managing-collections/collections-scaling-limits"
   status = 301
+
+[[edge_functions]]
+function = "block-feed-bot"
+path = "/blog/rss.xml"
+
+[[edge_functions]]
+function = "block-feed-bot"
+path = "/blog/atom.xml"

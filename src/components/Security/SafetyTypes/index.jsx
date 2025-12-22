@@ -106,10 +106,7 @@ export default function SafetyTypes() {
               </h3>
               <p>Vamsidhar Reddy, Cedience</p>
               <div className={styles.buttons}>
-                <Link
-                  className={styles.buttonGradient}
-                  to="https://console.weaviate.cloud/"
-                >
+                <Link className={styles.buttonGradient} to="/go/console">
                   Start Free
                 </Link>
               </div>

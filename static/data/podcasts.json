@@ -1,5 +1,21 @@
 [
   {
+    "title": "Pyversity with Thomas van Dongen - Weaviate Podcast #132",
+    "description": "Welcome to the 132th episode of the Weaviate Podcast featuring Thomas van Dongen, the creator of Pyversity!",
+    "youtube": "L2N1qvfP7tg",
+    "date": "25-12-08",
+    "cover_image": "/img/podcasts/podcast-132.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Semantic Query Engines with Matthew Russo - Weaviate Podcast #131",
+    "description": "Welcome to the 131th episode of the Weaviate Podcast featuring Matthew Russo, researching the intersection of AI and Database Systems!",
+    "youtube": "koPBr9W4qU0",
+    "date": "25-11-18",
+    "cover_image": "/img/podcasts/podcast-131.jpg",
+    "is_use_case": false
+  },
+  {
     "title": "REFRAG with Xiaoqiang Lin - Weaviate Podcast #130",
     "description": "Welcome to the 130th episode of the Weaviate Podcast featuring Xiaoqiang Lin, a leading expert in REFRAG!",
     "youtube": "yi7v-UXMg0U",

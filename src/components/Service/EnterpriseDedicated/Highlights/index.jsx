@@ -7,7 +7,7 @@ export default function SafetyTypes() {
     <div className="container">
       <div className={styles.title}>
         <h2>Benefits of our Enterprise Vector Database</h2>
-        <p>All the features of the AI-native vector database, with enhanced:</p>
+        <p>All the features of the AI database, with enhanced:</p>
       </div>
       <div className={styles.box}>
         <div className={styles.card}>

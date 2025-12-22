@@ -18,8 +18,8 @@ export default function Integrations() {
             <h3>Start building today</h3>
             <p>
               Our developer-approved resources will help you get started quickly
-              with Weaviate Serverless Cloud. And our team and community are here for
-              support as you need us.
+              with Weaviate Serverless Cloud. And our team and community are
+              here for support as you need us.
             </p>
             <div className={styles.iconsContainer}>
               <div className={`${styles.iconText} ${styles.community}`}>
@@ -28,12 +28,12 @@ export default function Integrations() {
                 </Link>
               </div>
               <div className={`${styles.iconText} ${styles.docs}`}>
-                <Link href="https://docs.weaviate.io/weaviate">Read the Docs</Link>
+                <Link href="https://docs.weaviate.io/weaviate">
+                  Read the Docs
+                </Link>
               </div>
               <div className={`${styles.iconText} ${styles.console}`}>
-                <Link href="https://console.weaviate.cloud/">
-                  Explore WCD Console
-                </Link>
+                <Link href="/go/console">Explore WCD Console</Link>
               </div>
             </div>
           </div>

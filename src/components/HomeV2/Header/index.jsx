@@ -83,10 +83,7 @@ export default function StudyHeader() {
             </p>
             <div className={styles.headerBox}>
               <div className={styles.buttons}>
-                <Link
-                  to="https://console.weaviate.cloud/"
-                  className={styles.buttonLight}
-                >
+                <Link to="/go/console" className={styles.buttonLight}>
                   Get Started
                 </Link>
                 <Link

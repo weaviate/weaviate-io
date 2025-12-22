@@ -52,7 +52,7 @@ function CardsFilter() {
   }, [searchQuery, selectedFilters]);
 
   return (
-    <div className={styles.cardsFilterContainer}>
+    <div className={styles.cardsFilterContainerHome}>
       <SideFilter
         selectedFilters={selectedFilters}
         onFilterChange={handleFilterChange}

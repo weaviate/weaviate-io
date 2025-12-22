@@ -16,7 +16,7 @@ export default function PlatformHeader() {
 
           <div className={styles.headerBox}>
             <p className="text-center">
-              We are an open-source purpose-built vector database for secure,
+              We are an open-source purpose-built AI database for secure,
               stateful, explainable generative AI applications.
             </p>
           </div>

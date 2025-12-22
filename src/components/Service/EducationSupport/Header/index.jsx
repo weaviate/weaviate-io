@@ -8,10 +8,10 @@ export default function ServiceHeader() {
     <header className={styles.headerSecurity}>
       <div className="container">
         <div className={styles.box}>
-          <h1>Vector Database Training & Enablement</h1>
+          <h1>AI Database Training & Enablement</h1>
           <div className={styles.headerBox}>
             <p>
-              Get vector database tutorials, training, courses, resources, and
+              Get AI database tutorials, training, courses, resources, and
               support for builders of all levels. We’re with you on your AI
               journey.
             </p>

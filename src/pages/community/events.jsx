@@ -8,6 +8,7 @@ import ContactForm from '/src/components/Events/ContactForm/contactForm';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 import LearnMore from '/src/components/Events/LearnMore';
 import OnDemand from '/src/components/Events/OnDemand';
+import Ebooks from '/src/components/Community/Ebooks';
 
 export default function EventsPage() {
   return (
@@ -21,6 +22,7 @@ export default function EventsPage() {
         <WorkshopSection />
         <CalendarSection />
         <OnDemand />
+        <Ebooks />
         <LearnMore />
         <ContactForm />
       </Layout>

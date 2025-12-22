@@ -16,7 +16,7 @@ export default function WhyUse() {
               <h5>AI-first features under one roof</h5>
               <p>
                 Avoid separate systems and complex data pipelines. Write less
-                custom code and build AI-native apps faster.
+                custom code and build AI apps faster.
               </p>
             </div>
           </div>

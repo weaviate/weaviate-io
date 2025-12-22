@@ -24,7 +24,7 @@ export default function introduction() {
               Peer review sites like G2 allow you to share what you love about
               Weaviate with people who are looking for a better vector database.
               With your support we can make Weaviate the best it can be, and
-              give more developers the AI-native database they deserve.
+              give more developers the AI database they deserve.
             </p>
           </div>
           <div className={styles.investorLogos}>

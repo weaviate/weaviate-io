@@ -1,6 +1,23 @@
 .cardsFilterContainer {
   display: flex;
   gap: 2rem;
+  margin-top: -50px;
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    gap: 0rem;
+    margin-top: 0px;
+  }
+
+  @media (min-width: 1600px) {
+    max-width: 1515px;
+    margin: auto;
+  }
+}
+
+.cardsFilterContainerHome {
+  display: flex;
+  gap: 2rem;
 
   @media screen and (max-width: 900px) {
     flex-direction: column;
@@ -28,6 +45,19 @@
 
     padding: 2rem 2rem 0rem 2rem;
   }
+}
+
+.sideNavLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+  color: #130c49;
+  text-decoration: none;
+}
+
+.sideNavLink:hover {
+  text-decoration: underline;
 }
 
 .filterResults {
@@ -120,6 +150,10 @@
   }
 }
 
+.placeholder {
+  visibility: hidden;
+}
+
 .cardTags {
   margin-top: 0.5rem;
 }
@@ -127,6 +161,7 @@
 .cardTag {
   display: inline-block;
   background-color: #f0f0f0;
+
   padding: 0.25rem 0.5rem;
   margin: 0.25rem 0.25rem 0.25rem 0rem;
   border-radius: 4px;

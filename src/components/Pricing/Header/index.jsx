@@ -10,7 +10,7 @@ export default function PricingHeader() {
         <div className={styles.box}>
           <p className={styles.topText}>Vector Database Pricing</p>
           <h1>
-            All the power of the AI-native vector<br></br> database, without the
+            All the power of the AI vector<br></br> database, without the
             overhead
           </h1>
           <div className={styles.headerBox}>
@@ -20,10 +20,7 @@ export default function PricingHeader() {
             </p>
           </div>
           <div className={styles.buttons}>
-            <Link
-              className={styles.buttonGradient}
-              to="https://console.weaviate.cloud/"
-            >
+            <Link className={styles.buttonGradient} to="/go/console">
               Try Free
             </Link>
           </div>

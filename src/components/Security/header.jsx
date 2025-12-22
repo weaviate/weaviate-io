@@ -15,17 +15,14 @@ export default function AboutUsHeader() {
           </h1>
           <div className={styles.headerBox}>
             <p className="text-center">
-              Weaviate Cloud was built to help developers scale AI
-              applications with ease and confidence.
+              Weaviate Cloud was built to help developers scale AI applications
+              with ease and confidence.
             </p>
           </div>
         </div>
 
         <div className={styles.buttons}>
-          <Link
-            className={styles.buttonGradient}
-            to="https://console.weaviate.cloud/"
-          >
+          <Link className={styles.buttonGradient} to="/go/console">
             Start Free
           </Link>
           <Link className={styles.buttonOutline} to="/pricing#contact-sales">

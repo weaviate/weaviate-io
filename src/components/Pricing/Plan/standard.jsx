@@ -73,10 +73,7 @@ export default function PricingStandard() {
             <span>Starting at $25 /mo</span>
             <p>$0.095 per 1M vector dimensions stored/month</p>
           </div>
-          <Link
-            className={styles.buttonTryOutline}
-            to="https://console.weaviate.cloud"
-          >
+          <Link className={styles.buttonTryOutline} to="/go/console">
             Get Started
           </Link>
         </div>

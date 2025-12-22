@@ -62,7 +62,7 @@ Product plans are applicable to Weaviate Cloud subscriptions beginning on or aft
 
 <br></br>
 
-| Severity Level | Criteria | Product Plan - Flex | Product Plan - Plus | Product Plan - Premium |
+| Severity Level | Criteria | Product Plan - Flex | Product Plan - Premium (Shared Deployment) | Product Plan - Premium (Dedicated Deployment) |
 |----------------|----------|------------------|----------------------|---------------------------|
 | Severity 1 (Critical) | Issues that are critical and require immediate attention, causing widespread disruption or outages. | 1 Business day | 4 hours (24/7) | 1 hour (24/7) |
 | Severity 2 (High) | High-priority problems that can impact service functionality or performance for a subset of users. | 2 Business days | 8 hours (24/7) | 4 hours (24/7) |
@@ -92,7 +92,7 @@ Product plans are applicable to Weaviate Cloud subscriptions beginning on or aft
 
 <br></br>
 
-| Channel | Product Plan - Flex | Product Plan - Plus | Product Plan - Premium | 
+| Channel | Product Plan - Flex | Product Plan - Premium (Shared Deployment) | Product Plan - Premium (Dedicated Deployment) |
 |----------------|----------|------------------|----------------------|
 | Email | During business hours | During business hours | During business hours |
 | Phone | N/A | 24/7 hotline for escalations | 24/7 hotline for escalations |

@@ -20,7 +20,7 @@ export default function Integrations() {
             <div className={styles.educationImage}></div>
 
             <div className={styles.right}>
-              <h3>Introduction to AI-Native Vector Databases</h3>
+              <h3>Introduction to AI Vector Databases</h3>
               <p>LinkedIn Learning</p>
               <p>
                 Zain Hasan's course offers an in-depth look at vector databases,

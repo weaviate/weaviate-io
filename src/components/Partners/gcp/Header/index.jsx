@@ -13,8 +13,7 @@ export default function PartnersHeader() {
             <div className={styles.leftGrid}>
               <p className={styles.title}>Weaviate on Google Cloud</p>
               <p className={styles.text}>
-                Powerful AI-native vector database. Simple, secure deployment on
-                GCP.
+                Powerful AI vector database. Simple, secure deployment on GCP.
               </p>
               <div className={styles.buttons}>
                 <Link

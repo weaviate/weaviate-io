@@ -169,10 +169,7 @@ export default function Main() {
                 </div>
               </div>
               <div className={styles.buttonContainer}>
-                <Link
-                  to="https://console.weaviate.cloud"
-                  className={styles.buttonSmall}
-                >
+                <Link to="/go/console" className={styles.buttonSmall}>
                   {'Get in touch >'}
                 </Link>
               </div>
