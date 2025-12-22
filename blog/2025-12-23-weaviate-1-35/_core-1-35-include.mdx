@@ -17,7 +17,6 @@ Here are the release ⭐️*highlights*⭐️!
 - [Database Operational Modes](#database-operational-modes)
 - [Weaviate Embeddings - Multimodal Support](#weaviate-embeddings---multimodal-support)
 - [Runtime Configurable OIDC Certificates](#runtime-configurable-oidc-certificates)
-- [Default Compression for New Collections](#default-compression-for-new-collections)
 - [Multiple performance improvements and fixes](#multiple-performance-improvements-and-fixes)
 - [Community contributions](#community-contributions)
 
@@ -221,6 +220,21 @@ client.collections.create(
 | **1-bit RQ** | 32x              | ~100%                      | Maximum compression, good accuracy |
 
 Flat index RQ quantization works seamlessly with dynamic indexing, allowing tenants to automatically upgrade to HNSW as they grow.
+
+#### Default Compression for New Collections
+
+Weaviate `v1.35` continues to optimize default settings for new collections. While RQ compression has been the default for HNSW indexes since `v1.33`, **Flat and dynamic indexes** now also support default quantization settings.
+
+### Setting Default Quantization
+
+```bash
+# Set 8-bit RQ as default for all new collections
+DEFAULT_QUANTIZATION=rq8
+
+# Options: none, rq8, rq1, bq, pq, sq
+```
+
+This ensures consistent compression across your collections while still allowing per-collection overrides when needed.
 
 :::info Related resources
 
@@ -483,43 +497,17 @@ This feature is part of Weaviate's broader runtime configuration management syst
 
 :::
 
-## Default Compression for New Collections
-
-Weaviate `v1.35` continues to optimize default settings for new collections. While RQ compression has been the default for HNSW indexes since `v1.33`, the documentation now clarifies that:
-
-- **Default quantization** can be set for new collections using the `DEFAULT_QUANTIZATION` environment variable
-- **Flat and dynamic indexes** also respect default quantization settings
-- **Index type compatibility** is automatically checked - quantization won't be applied if unsupported
-
-### Setting Default Quantization
-
-```bash
-# Set 8-bit RQ as default for all new collections
-DEFAULT_QUANTIZATION=rq8
-
-# Options: none, rq8, rq1, bq, pq, sq
-```
-
-This ensures consistent compression across your collections while still allowing per-collection overrides when needed.
-
-:::info Related resources
-
-- [Configuration: Vector Index](https://docs.weaviate.io/weaviate/config-refs/indexing/vector-index)
-- [Configuration: Environment Variables](https://docs.weaviate.io/deploy/configuration/env-vars)
-
-:::
-
 ## Multiple Performance Improvements and Fixes
 
 As always, Weaviate `v1.35` includes numerous performance improvements and bugfixes across the codebase. Here are some highlights:
 
-- **Improved LSM tree operations** - Better performance for disk-based operations
-- **Enhanced cursor management** - More efficient query result pagination
-- **Optimized WAL recovery** - Faster startup times after crashes
-- **Better async replication** - Improved replication performance
-- **Memory optimizations** - Reduced memory footprint for various operations
+* **Modules & Integrations:** Enhanced support for vectorizer and reranker modules including VoyageAI v3.5, Cohere dimensions and BaseURL settings, Google batch API and batch processing for text2vec/multi2vec modules.
+* **Replication & Scaling:** Replication scaling features with configurable file chunk sizes, improved retry logic, better error handling, and enhanced synchronization capabilities for distributed deployments.
+* **Internal gRPC:** Internal gRPC server implementation as REST cluster API equivalent, with connection management, maintenance mode interceptor, gzip compression, and improved file copy methods.
+* **Performance & Optimization:** Performance improvements including reduced lock contention, optimized segment handling, improved memory management, increased concurrency for batch workers, and better queue worker utilization.
+* **Bug fixes:** Various bug fixes addressing mutex behavior, race conditions, panic prevention, tenant loading issues, cache problems, and compatibility issues with replication snapshots.
 
-These improvements add up to a faster, more stable, and more efficient Weaviate instance.
+These improvements add up to a faster, more stable, and more efficient Weaviate instance. 
 
 We always recommend running the latest version of Weaviate to benefit from these ongoing improvements. 🚀
 
