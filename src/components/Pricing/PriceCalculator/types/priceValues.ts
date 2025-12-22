@@ -1,14 +1,3 @@
-// ----- NOTES -----
-
-// Flex -> Shared LOW (GCP BASE)
-// Plus -> Shared HIGH (GCP BASE) || Dedicated LOW (AWS BASE)
-// ALWAYS HA (HIGH AVAILABILITY)
-// Flex 7 Days Retention
-// Plus 30 Days Retention
-
-// HAFactor == ReplicationFactor === 3
-// HybridFactorStorage == 2
-
 import { pricebook } from './pricebook_20251213';
 
 export const vectorDimensions = [
@@ -53,6 +42,10 @@ type AccuracyToCostOption = {
   };
 };
 
+// Agreed on this list of combinations with Alvin:
+// HNSW/None, HNSW/PQ, HNSW/RQ-8, HNSW/RQ-1
+// Flat/None, Flat/RQ-8, Flat/RQ-1
+
 export const accuracyToCost: Record<number, AccuracyToCostOption> = {
   1: {
     compression: null,
@@ -85,16 +78,6 @@ export const accuracyToCost: Record<number, AccuracyToCostOption> = {
     },
   },
   4: {
-    compression: 'bq',
-    index: 'hnsw',
-    info: 'HNSW graph index with binary quantization (BQ)',
-    memoryCompression: '32x memory reduction',
-    price_per_1m_dimension: {
-      flex: pricebook.GCP.shared.Base.Low['Price per 1M Dims'].hnsw.bq, // GCP BASE LOW
-      premium: pricebook.GCP.shared.Base.High['Price per 1M Dims'].hnsw.bq, // GCP BASE HIGH
-    },
-  },
-  5: {
     compression: 'rq-1',
     index: 'hnsw',
     info: 'Rotational quantization (RQ-1) and using HNSW graph index',
@@ -104,9 +87,9 @@ export const accuracyToCost: Record<number, AccuracyToCostOption> = {
       premium: pricebook.GCP.shared.Base.High['Price per 1M Dims'].hnsw['rq-1'], // GCP BASE HIGH
     },
   },
-  6: {
+  5: {
     compression: null,
-    index: 'FLAT',
+    index: 'flat',
     info: 'FLAT index with no compression',
     memoryCompression: '',
     price_per_1m_dimension: {
@@ -115,14 +98,24 @@ export const accuracyToCost: Record<number, AccuracyToCostOption> = {
     },
   },
 
-  7: {
-    compression: 'bq',
+  6: {
+    compression: 'rq-8',
     index: 'flat',
-    info: 'FLAT index with binary quantization (BQ)',
+    info: 'FLAT index with rotational quantization (RQ-8)',
+    memoryCompression: '4x memory reduction',
+    price_per_1m_dimension: {
+      flex: pricebook.GCP.shared.Base.Low['Price per 1M Dims'].flat['rq-8'], // GCP BASE LOW
+      premium: pricebook.GCP.shared.Base.High['Price per 1M Dims'].flat['rq-8'], // GCP BASE HIGH
+    },
+  },
+  7: {
+    compression: 'rq-1',
+    index: 'flat',
+    info: 'FLAT index with rotational quantization (RQ-1)',
     memoryCompression: '32x memory reduction',
     price_per_1m_dimension: {
-      flex: pricebook.GCP.shared.Base.Low['Price per 1M Dims'].flat.bq, // GCP BASE LOW
-      premium: pricebook.GCP.shared.Base.High['Price per 1M Dims'].flat.bq, // GCP BASE HIGH
+      flex: pricebook.GCP.shared.Base.Low['Price per 1M Dims'].flat['rq-1'], // GCP BASE LOW
+      premium: pricebook.GCP.shared.Base.High['Price per 1M Dims'].flat['rq-1'], // GCP BASE HIGH
     },
   },
 };
@@ -153,11 +146,7 @@ export const backupUnitPricePerGib = {
   premium: pricebook.GCP.shared.Base.High['Price per 1GiB Backup'].object_store,
 };
 
-export const replicationFactor = 3;
 export const hybridFactorStorage = 2.15; // Increased from 2 to 2.15 (15. December 2025)
-export const HAFactor = 3;
+export const HAFactor = 3; // Replication Factor
 export const backupCompressionReduction = 0.25;
 export const flatIndexOverhead = 1.1;
-
-export const nodes = 3;
-export const hoursInMonth = 730;

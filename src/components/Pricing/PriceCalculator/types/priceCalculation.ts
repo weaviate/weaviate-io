@@ -8,9 +8,9 @@ import {
   backupUnitPricePerGib,
   accuracyToCost,
   minimumPrices,
+  TierFactors,
 } from './priceValues';
 import { IData } from './dataTypes';
-import { TierFactors } from './priceValues';
 
 const calculateOptimalSegments = (dims: number) => {
   let result = dims;
@@ -138,19 +138,11 @@ export const calculateCosts = (data: IData) => {
     (totalDimensions / 10 ** 6) * costPer1MDimensions * HAFactor;
 
   // Final Calculation
-  // Question: Is the total cost the sum of these three costs?
   const totalCostBeforeMin =
     (storageCost + backupCost + dimensionCost) * TierFactors[pricingKey];
   const finalCostMicrocents = Math.max(minimalSpend, totalCostBeforeMin);
 
   const result = microcentsToDollars(finalCostMicrocents);
-
-  // Debugging
-  console.log('totalDimensions', totalDimensions);
-  console.log('storageCost', microcentsToDollars(storageCost));
-  console.log('backupCost', microcentsToDollars(backupCost));
-  console.log('dimensionCost', microcentsToDollars(dimensionCost));
-  console.log('finalCost', result);
 
   return Math.round(result).toLocaleString();
 };
@@ -159,8 +151,3 @@ const microcentsToDollars = (microcents: number) => {
   const result = microcents / 10 ** 6;
   return result;
 };
-
-// TODO: Pricebook 30th Octorber 2025
-// TODO : Flex Shared Low , Premium Shared High, Premium Dedicated Low (Contact Sales)
-// Create a script for extracting the pricebook values that we need
-// Double check again with the calulator

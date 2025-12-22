@@ -1,3 +1,4 @@
+// https://github.com/weaviate/product_team/blob/main/pricing/data/pricebook-20251213_102959.json
 export const pricebook = {
   Minimums: {
     shared: {

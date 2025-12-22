@@ -35,6 +35,12 @@ export const RangeInput = (props: IRangeInputProps) => {
     const percentage = ((value - min) / (max - min)) * 100;
 
     inputRef.current.style.setProperty('--track-fill', `${percentage}%`);
+    // Also set it on the parent for the indicator
+    const parent = inputRef.current.parentElement;
+    if (parent) {
+      parent.style.setProperty('--track-fill', `${percentage}%`);
+      parent.style.setProperty('--thumb-position', `${percentage}`);
+    }
   };
 
   useEffect(() => {
@@ -77,6 +83,7 @@ export const RangeInput = (props: IRangeInputProps) => {
             aria-valuemax={props.range ? parseFloat(props.range[1]) : 100}
             aria-valuenow={props.value ? parseFloat(props.value) : 0}
           />
+          <span className="range-value-indicator">{props.value}</span>
         </div>
         <RangeMark rangeMark={props.endExtra} />
       </div>
