@@ -72,12 +72,19 @@ export const PriceReview = (props: IPriceReviewProps) => {
 
   return (
     <div className="priceReview">
-      <h1>Your estimated cost:</h1>
-      <Price data={props.data} />
-      <motion.button {...motionProps}>
-        <a className="linkCTA" href="/go/console">Get started</a>
-      </motion.button>
-      <a href="/pricing#contact-sales">Contact Sales Team for more information</a>
+      {gradientContent}
+      <div className="priceReview-content">
+        <h1>Your estimated cost:</h1>
+        <Price data={props.data} />
+        <motion.button {...motionProps}>
+          <a className="linkCTA" href="/go/console">
+            Get started
+          </a>
+        </motion.button>
+        <a href="/pricing#contact-sales">
+          Contact Sales Team for more information
+        </a>
+      </div>
     </div>
   );
 };
