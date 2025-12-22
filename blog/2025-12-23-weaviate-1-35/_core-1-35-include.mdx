@@ -1,8 +1,8 @@
 Weaviate `v1.35` is now available open-source and on [Weaviate Cloud](https://console.weaviate.cloud).
 
-This release introduces powerful new lifecycle management capabilities with **Object Time-to-Live (TTL)**, enhanced operational flexibility with **database operational modes**, and improved backup performance with **zstd compression support**. We're also excited to announce that **flat index RQ quantization moves to general availability** and the **Java v6 client is officially released**!
+This release introduces powerful new lifecycle management capabilities with **Object Time-to-Live (TTL)**, and improved backup performance with **zstd compression support**. We're also excited to announce that **flat index RQ quantization moves to general availability** and the **Java v6 client is officially released**!
 
-Additionally, `v1.35` brings **multimodal embeddings with Weaviate Embeddings**, making it easier than ever to build document retrieval applications, along with **runtime configurable OIDC certificates** for enhanced security flexibility.
+Additionally, `v1.35` brings **multimodal embeddings with Weaviate Embeddings**, making it easier than ever to build document retrieval applications, along with **runtime configurable OIDC certificates** for enhanced security flexibility and **database operational modes**.
 
 These improvements help make Weaviate more flexible, performant, and easier to operate at scale.
 
@@ -14,9 +14,9 @@ Here are the release ⭐️*highlights*⭐️!
 - [Java v6 Client - General Availability](#java-v6-client---general-availability)
 - [Flat Index RQ Quantization - General Availability](#flat-index-rq-quantization---general-availability)
 - [Enhanced Backup Compression](#enhanced-backup-compression)
-- [Database Operational Modes](#database-operational-modes)
 - [Weaviate Embeddings - Multimodal Support](#weaviate-embeddings---multimodal-support)
 - [Runtime Configurable OIDC Certificates](#runtime-configurable-oidc-certificates)
+- [Database Operational Modes](#database-operational-modes)
 - [Multiple performance improvements and fixes](#multiple-performance-improvements-and-fixes)
 - [Community contributions](#community-contributions)
 
@@ -112,6 +112,7 @@ We're thrilled to announce that the **Java v6 client is now generally available*
 The Java v6 client brings:
 
 - **Fluent, builder-style API** - More readable and maintainable code
+- **Full gRPC support** - More performant
 - **Better type safety** - Catch errors at compile time
 - **Improved collection management** - Easier configuration and operations
 - **Enhanced query builders** - More intuitive search operations
@@ -179,7 +180,7 @@ client.close();
 
 This powerful combination delivers:
 
-- **Predictable performance** - No graph building or index tuning required
+- **Faster querying** - Smaller vector sizes lead to better query performance
 - **Memory efficiency** - Up to 4x-32x compression with 8-bit or 1-bit RQ
 - **Perfect for multi-tenancy** - Ideal for many small tenants where brute-force search is fast enough
 - **Production-ready** - Thoroughly tested and optimized for real-world workloads
@@ -227,7 +228,7 @@ Weaviate `v1.35` continues to optimize default settings for new collections. Whi
 
 ```bash
 # Set 8-bit RQ as default for all new collections
-DEFAULT_QUANTIZATION=rq8
+DEFAULT_QUANTIZATION: 'rq8'
 
 # Options: none, rq8, rq1, bq, pq, sq
 ```
@@ -252,10 +253,16 @@ Weaviate `v1.35` introduces **zstd compression support** for backups, offering s
 - **Faster decompression** - Quicker restore operations
 - **Tunable compression levels** - Balance between speed and compression
 
+:::info
+
+`zstd` compression was added to these Weaviate versions: `v1.35.0`, `v1.34.1`, `v1.33.6` and `v1.32.18`.
+
+:::
+
 ### Available Compression Options
 
 ```python
-# Using zstd compression (requires Weaviate v1.35+)
+# Using zstd compression
 client.backup.create(
     backup_id="my-backup",
     backend="s3",
@@ -323,10 +330,7 @@ Set the operational mode using the `OPERATIONAL_MODE` environment variable:
 
 ```bash
 # Set node to read-only mode
-OPERATIONAL_MODE=ReadOnly
-
-# Or use runtime configuration
-operational_mode: ReadOnly
+OPERATIONAL_MODE: 'ReadOnly'
 ```
 
 You can also change the operational mode at runtime using the [runtime configuration](https://docs.weaviate.io/deploy/configuration/env-vars/runtime-config) feature:
@@ -429,7 +433,7 @@ This model is specifically designed for document retrieval scenarios, providing 
 **Key Benefits:**
 
 - **Seamless integration** - Works with your existing Weaviate Cloud credentials
-- **No external API calls** - Embeddings generated directly by Weaviate
+- **No external services needed** - Embeddings generated directly by Weaviate
 - **Optimized for documents** - Purpose-built model for document retrieval
 - **Multimodal search** - Text queries on image data
 
