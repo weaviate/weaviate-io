@@ -112,7 +112,7 @@ We're thrilled to announce that the **Java v6 client is now generally available*
 The Java v6 client brings:
 
 - **Fluent, builder-style API** - More readable and maintainable code
-- **Full gRPC support** - More performant
+- **Full gRPC support** - More performant data operations
 - **Better type safety** - Catch errors at compile time
 - **Improved collection management** - Easier configuration and operations
 - **Enhanced query builders** - More intuitive search operations
@@ -396,7 +396,7 @@ def url_to_base64(url):
 
 collection = client.collections.use("DocumentPages")
 
-with collection.batch.fixed_size(batch_size=200) as batch:
+with collection.batch.fixed_size(batch_size=10) as batch:
     for src_obj in source_objects:
         page_b64 = url_to_base64(src_obj["page_img_path"])
         batch.add_object(
