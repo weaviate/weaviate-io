@@ -165,11 +165,6 @@
     "photo": "mohamed.jpg"
   },
   {
-    "name": "Nathan Wilkinson",
-    "location": { "lat": 40.515, "lng": -111.9712 },
-    "photo": "nate-wilkinson.jpg"
-  },
-  {
     "name": "Parker Duckworth",
     "location": { "lat": 35.4878, "lng": -80.8611 },
     "photo": "parker.jpg"

@@ -177,20 +177,6 @@
     "team": "developer-growth"
   },
   {
-    "name": "Darwin Corn (they/them)",
-    "title": "Client-Focused SRE",
-    "photo": "darwin.jpg",
-    "linkedin": "darwincorn",
-    "twitter": "ndc@pnw.zone",
-    "team": "delivery"
-  },
-  {
-    "name": "Dhruv Gorasiya",
-    "title": "Partnerships Intern",
-    "photo": "Dhruv_Gorasiya.jpeg",
-    "team": "partnerships"
-  },
-  {
     "name": "Dirk Kulawiak",
     "title": "UX Engineering Tech Lead",
     "photo": "dirk.jpg",
@@ -411,10 +397,10 @@
     "team": "support-engineering"
   },
   {
-    "name": "Nathan Wilkinson",
-    "title": "Distributed Systems Engineer",
-    "photo": "nate-wilkinson.jpg",
-    "team": "database"
+    "name": "Nick Wong",
+    "title": "Solution Engineer",
+    "photo": "Nick-Wong.jpg",
+    "team": "delivery"
   },
   {
     "name": "Parker Duckworth",
