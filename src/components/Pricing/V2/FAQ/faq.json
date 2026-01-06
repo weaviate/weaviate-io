@@ -1,5 +1,9 @@
 [
   {
+    "question": "What pricing dimensions are affected by the minimum amount?",
+    "answer": "The minimum monthly amount covers the baseline cluster cost and includes charges for both <b>Vector Dimensions</b> and <b>Storage</b>. These are the primary usage dimensions that count toward your minimum spend. <b>Backups</b> are charged on top of the minimum amount based on data volume and retention."
+  },
+  {
     "question": "Can I move tenants to different storage tiers?",
     "answer": "Currently, the ability to move tenants between hot, warm, and cold storage is only available if you are using Weaviate Dedicated Cloud or self-hosting Weaviate."
   },
