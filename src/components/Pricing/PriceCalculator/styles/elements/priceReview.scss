@@ -1,4 +1,4 @@
-@use '../variables' as *;
+@use "../variables" as *;
 
 .priceReview {
   position: relative;
@@ -71,7 +71,7 @@
   button {
     font-size: 1.1em;
     font-weight: 700;
-    background: $white;
+    background: #ffffff;
     width: 100%;
     border-radius: calc($space / 2);
     min-height: 56px;

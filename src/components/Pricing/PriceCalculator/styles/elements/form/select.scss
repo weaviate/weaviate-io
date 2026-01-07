@@ -1,10 +1,11 @@
-@use '../../variables' as *;
-@use 'sass:color';
+@use "../../variables" as *;
+@use "sass:color";
 
 .selectContentWrapper {
   z-index: 1999;
 
-  ul, li {
+  ul,
+  li {
     padding: 0;
     margin: 0;
     list-style: none;
@@ -12,7 +13,9 @@
     font-weight: inherit;
   }
 
-  button, input, textarea {
+  button,
+  input,
+  textarea {
     font-family: inherit;
     font-weight: inherit;
     font-size: inherit;
@@ -24,14 +27,16 @@
     background: none;
   }
 
-  button { cursor: pointer; }
+  button {
+    cursor: pointer;
+  }
 }
 
 .selectContent {
-  background: $white;
+  background: #ffffff;
   border: 1px solid $deselectedButtonBorder;
   border-radius: 5px;
-  box-shadow: $boxShadow; 
+  box-shadow: $boxShadow;
   overflow: hidden;
 }
 
@@ -49,8 +54,9 @@
   color: inherit;
   transition: $transition;
 
-  &:focus, &:hover { 
-    background: $white; 
+  &:focus,
+  &:hover {
+    background: #ffffff;
   }
 }
 
@@ -63,7 +69,7 @@
   height: 44px;
   border: 1px solid $deselectedButtonBorder;
   border-radius: calc($space / 2);
-  background: $white;
+  background: #ffffff;
   overflow: hidden;
   flex-shrink: 0;
 
@@ -96,7 +102,7 @@
     flex-shrink: 0;
     border: none;
     border-left: 1px solid $deselectedButtonBorder;
-    background: $white;
+    background: #ffffff;
     cursor: pointer;
     padding: 0;
     transition: background-color 0.2s ease;
@@ -114,7 +120,7 @@
 }
 
 ul.selectList {
-  button { 
+  button {
     cursor: pointer;
     min-height: 36px;
     width: 100%;
@@ -127,12 +133,15 @@ ul.selectList {
     background-position: 10px center;
     background-repeat: no-repeat;
 
-    &:hover, &:focus { background-color: color.adjust($selectItemHover, $lightness: 5%);}
+    &:hover,
+    &:focus {
+      background-color: color.adjust($selectItemHover, $lightness: 5%);
+    }
 
-    &.active { 
-      color: $mainColor; 
+    &.active {
+      color: $mainColor;
       background-color: $selectItemHover;
-      background-image: url('/img/pricing/check.svg');
+      background-image: url("/img/pricing/check.svg");
       background-position: 10px center;
       background-repeat: no-repeat;
     }

@@ -40,7 +40,7 @@
     }
 
     &.active {
-      color: $white;
+      color: #ffffff;
       border: 1px solid $mainColor;
       background: $mainColor;
     }
@@ -51,4 +51,3 @@
     z-index: 1;
   }
 }
-

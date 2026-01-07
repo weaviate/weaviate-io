@@ -11,11 +11,11 @@
 
   &.dropdown {
     font-size: 0.9em;
-    
-    > div { 
-      background-color: $white;
-      align-items: flex-start; 
-      background-image: url('/img/pricing/chevronDown.svg');
+
+    > div {
+      background-color: #ffffff;
+      align-items: flex-start;
+      background-image: url("/img/pricing/chevronDown.svg");
       background-repeat: no-repeat;
       background-position: calc(100% - 20px) center;
       color: $mainColor;
@@ -39,17 +39,25 @@
   }
 
   &.active {
-    > div { background: $mainColor; color: $white; border-color: $mainColor; }
-  }
-  
-  &:hover, &:focus {
     > div {
-      background-color: lighten($white, 3%) ;
+      background: $mainColor;
+      color: #ffffff;
+      border-color: $mainColor;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    > div {
+      background-color: lighten(#ffffff, 3%);
       color: $mainColor;
     }
 
     &.active {
-      > div { background: $mainColor; color: $white; }
+      > div {
+        background: $mainColor;
+        color: #ffffff;
+      }
     }
 
     &.dropdown {

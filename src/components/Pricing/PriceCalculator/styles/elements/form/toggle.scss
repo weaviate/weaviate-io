@@ -1,5 +1,5 @@
-@use '../../variables' as *;
-@use 'sass:color';
+@use "../../variables" as *;
+@use "sass:color";
 
 .toggle {
   flex-direction: row;
@@ -32,9 +32,14 @@
     background: $green;
   }
 
-  &:focus, &:hover {
-    .toggler { border: 1px solid color.adjust($buttonBorder, $lightness: -20%); }
-    &.active .toggler { border: 1px solid color.adjust($green, $lightness: -20%); }
+  &:focus,
+  &:hover {
+    .toggler {
+      border: 1px solid color.adjust($buttonBorder, $lightness: -20%);
+    }
+    &.active .toggler {
+      border: 1px solid color.adjust($green, $lightness: -20%);
+    }
   }
 
   .disk {
@@ -43,7 +48,7 @@
     left: 0;
     height: 100%;
     aspect-ratio: 1 / 1;
-    background: $white;
+    background: #ffffff;
     border-radius: 99px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   }
@@ -65,6 +70,6 @@
       left: 0px;
       top: 2px;
       width: auto;
-    }    
+    }
   }
 }
