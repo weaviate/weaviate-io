@@ -129,7 +129,7 @@ export default function Guides() {
                       className={styles.external}
                       to="https://www.linkedin.com/learning/introduction-to-ai-native-vector-databases"
                     >
-                      Introduction to AI-Native Vector Databases
+                      Introduction to AI Vector Databases
                     </Link>
                   </li>
                 </ul>

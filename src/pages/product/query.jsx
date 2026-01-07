@@ -44,7 +44,7 @@ export default function QueryPage() {
                     {app.released === 'no' ? (
                       <div className={styles.comingSoon}>Coming Soon</div>
                     ) : (
-                      <Link to="https://console.weaviate.cloud/">
+                      <Link to="/go/console">
                         <button className={styles.installButton}>
                           Open in Weaviate Cloud
                         </button>

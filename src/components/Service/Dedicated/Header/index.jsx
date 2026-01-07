@@ -11,12 +11,12 @@ export default function ServiceHeader() {
           <p className={styles.headText}>Dedicated Cloud</p>
 
           <div className={styles.headerBox}>
-            <h1>Professionally-managed Vector Database on dedicated cloud.</h1>
+            <h1>Professionally-managed AI Database on dedicated cloud.</h1>
 
             <p>
               Tailored for businesses seeking high performance, Weaviate’s
-              Dedicated Cloud provides a fully managed vector database that
-              ensures consistent, high-speed results without the complexities of
+              Dedicated Cloud provides a fully managed AI database that ensures
+              consistent, high-speed results without the complexities of
               infrastructure and software management.
             </p>
           </div>

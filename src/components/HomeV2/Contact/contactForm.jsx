@@ -54,10 +54,7 @@ export default function ContactForm() {
               Try Weaviate Cloud today, or get in touch with our team to discuss
               your needs. We can’t wait to meet you.
             </p>
-            <Link
-              className={styles.tryButton}
-              to="https://console.weaviate.cloud"
-            >
+            <Link className={styles.tryButton} to="/go/console">
               Try Weaviate Cloud
             </Link>
             <ul className={styles.linkList}>

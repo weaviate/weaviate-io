@@ -9,7 +9,6 @@
   width: 100%;
   gap: 20px;
   color: $mainColor;
-  margin-top: 24px;
   font-family: Plus Jakarta Sans;
 
   div {
@@ -50,12 +49,13 @@
     background: $buttonBg;
     box-shadow: 0px 10px 20px 10px rgba(0, 0, 0, 0.05);
     border-radius: $space;
-    padding: 20px;
-    gap: 20px;
+    padding: 30px;
+    gap: 15px;
    
     > h1 {
       font-size: 1.7em;
       font-weight: 700;
+      color: $mainColor;
     }
   }
 

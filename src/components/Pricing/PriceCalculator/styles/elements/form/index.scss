@@ -1,7 +1,10 @@
-@use 'range.scss' as *;
-@use 'rangeMark.scss' as *;
-@use 'toggle.scss' as *;
-@use 'select.scss' as *;
-@use 'label.scss' as *;
-@use 'buttonGroup.scss' as *;
-@use 'buttons/index.scss' as *;
+@import '../../variables.scss';
+
+@import 'range.scss';
+@import 'rangeMark.scss';
+@import 'toggle.scss';
+@import 'switch.scss';
+@import 'select.scss';
+@import 'label.scss';
+@import 'buttonGroup.scss';
+@import 'buttons/index.scss';

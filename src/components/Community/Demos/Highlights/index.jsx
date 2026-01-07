@@ -355,12 +355,6 @@ export default function Highlights() {
               </span>
               <h3>Wealingo</h3>
               <span>A personalized language-learning app</span>
-              <Link
-                to="http://wealingo.weaviate.io/"
-                className={`${styles.top} ${styles.cardButton} `}
-              >
-                <span className={styles.play}></span> Start Demo
-              </Link>
             </div>
             <div className={styles.contentDiv}>
               <div className={`${styles.textCardContent} ${styles.bigText}`}>

@@ -134,10 +134,11 @@
     "team": "weaviate-labs"
   },
   {
-    "name": "Luke McCurry",
-    "title": "Commercial Account Executive",
-    "photo": "Christopher-McCurry.jpg",
-    "team": "sales"
+    "name": "Colton Robak",
+    "title": "Product Support Engineer",
+    "photo": "colton.jpg",
+    "linkedin": "colton-robak-353b12b4/",
+    "team": "support-engineering"
   },
   {
     "name": "Connor Shorten",
@@ -169,41 +170,11 @@
     "team": "weaviate-labs"
   },
   {
-    "name": "Daniel Phiri",
-    "title": "Developer Experience and Education Engineer",
-    "photo": "daniel.jpg",
-    "team": "developer-relations",
-    "linkedin": "malgamves",
-    "twitter": "malgamves",
-    "github": "malgamves"
-  },
-  {
     "name": "Daniel Williams",
     "title": "Machine Learning Engineer",
     "photo": "daniel-williams.jpg",
     "linkedin": "dannyjameswilliams",
     "team": "developer-growth"
-  },
-  {
-    "name": "David Street",
-    "title": "Full Stack Engineer",
-    "photo": "david.jpg",
-    "linkedin": "david-street-552b7563",
-    "team": "wcd"
-  },
-  {
-    "name": "Darwin Corn (they/them)",
-    "title": "Client-Focused SRE",
-    "photo": "darwin.jpg",
-    "linkedin": "darwincorn",
-    "twitter": "ndc@pnw.zone",
-    "team": "delivery"
-  },
-  {
-    "name": "Dhruv Gorasiya",
-    "title": "Partnerships Intern",
-    "photo": "Dhruv_Gorasiya.jpeg",
-    "team": "partnerships"
   },
   {
     "name": "Dirk Kulawiak",
@@ -249,13 +220,6 @@
     "photo": "Emma-Dikmessalim.jpg",
     "linkedin": "emmadikmessalim",
     "team": "people-and-culture"
-  },
-  {
-    "name": "Emma O'Keefe",
-    "title": "Director of Business Data Strategy & Enablement",
-    "photo": "emma.jpg",
-    "linkedin": "emma-o-keefe-03777b80",
-    "team": "finance"
   },
   {
     "name": "Eoin O'Reilly",
@@ -305,12 +269,6 @@
     "team": "wcd"
   },
   {
-    "name": "Hamdi Hmimy",
-    "title": "Enterprise Solution Engineer",
-    "photo": "Hamdi-Hmimy.jpg",
-    "team": "solution-engineering"
-  },
-  {
     "name": "Ian Gregson",
     "title": "Full Stack Engineer",
     "photo": "ian.jpg",
@@ -332,12 +290,6 @@
     "twitter": "_jphwang",
     "github": "databyjp",
     "team": "developer-relations"
-  },
-  {
-    "name": "Jenny Morris",
-    "title": "Customer Solution Engineer",
-    "photo": "Jenny-Morris.jpg",
-    "team": "solution-engineering"
   },
   {
     "name": "Jerónimo Irazábal",
@@ -374,13 +326,6 @@
     "team": "applied-research"
   },
   {
-    "name": "Jolanta Marczewska",
-    "title": "Product Designer",
-    "photo": "Jolanta-Marczewska.jpg",
-    "linkedin": "jolanta-marczewska",
-    "team": "wcd"
-  },
-  {
     "name": "Jose Luis Franco",
     "title": "QA Engineer",
     "photo": "Jose-Luis-Franco.jpg",
@@ -407,13 +352,6 @@
     "team": "ceo-team"
   },
   {
-    "name": "Leonie Monigatti",
-    "title": "Machine Learning Engineer",
-    "photo": "leonie.jpg",
-    "linkedin": "804250ab",
-    "team": "developer-growth"
-  },
-  {
     "name": "Marcin Antas",
     "title": "Core Engineer",
     "photo": "marcin.jpg",
@@ -421,13 +359,6 @@
     "twitter": "antas_marcin",
     "github": "antas-marcin",
     "team": "database"
-  },
-  {
-    "name": "Marion Nehring",
-    "title": "Developer Experience Program Manager",
-    "photo": "marion.jpg",
-    "linkedin": "marionnehring",
-    "team": "developer-relations"
   },
   {
     "name": "Mariska Tunc",
@@ -466,10 +397,10 @@
     "team": "support-engineering"
   },
   {
-    "name": "Nathan Wilkinson",
-    "title": "Distributed Systems Engineer",
-    "photo": "nate-wilkinson.jpg",
-    "team": "database"
+    "name": "Nick Wong",
+    "title": "Solution Engineer",
+    "photo": "Nick-Wong.jpg",
+    "team": "delivery"
   },
   {
     "name": "Parker Duckworth",
@@ -532,13 +463,6 @@
     "team": "sales"
   },
   {
-    "name": "Ryan Colbert",
-    "title": "Enterprise Account Executive",
-    "photo": "ryan.jpg",
-    "linkedin": "ryantcolbert",
-    "team": "sales"
-  },
-  {
     "name": "Sean Forde",
     "title": "Business Development Representative",
     "photo": "Sean-Forde.jpg",
@@ -551,12 +475,6 @@
     "photo": "shan.jpg",
     "linkedin": "shan-blackwood-79251876",
     "team": "developer-growth"
-  },
-  {
-    "name": "Shukri Hasan",
-    "title": "Integration Solution Engineer",
-    "photo": "shukri.jpg",
-    "team": "partnerships"
   },
   {
     "name": "Spiros Andreou",

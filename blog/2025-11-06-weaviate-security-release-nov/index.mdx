@@ -1,5 +1,5 @@
 ---
-title: 'Weaviate security release - Medium and High severity fixes for CVEs'
+title: 'Weaviate security release - Medium and High severity fixes for CVE-2025-67818 and CVE-2025-67819'
 slug: weaviate-security-release-november-2025
 authors: [spiros]
 date: 2025-11-07
@@ -10,18 +10,18 @@ description: "Weaviate announces two CVEs that are fixed in updated versions of 
 ![Weaviate-security-release-November-2025](./img/hero.png)
 
 ## Intro
-This week we have released security patches for Weaviate 1.30.x, 1.31.x, 1.32.x and 1.33.x. These patches contain a fix for two pending CVEs (we will update this blog once we have had CVEs reserved), a high severity path traversal vulnerability in our backup modules, and a medium severity path traversal vulnerability in our shard movement module.
+This week we have released security patches for Weaviate 1.30.x, 1.31.x, 1.32.x and 1.33.x. These patches contain a fix for CVE-2025-67818 and CVE-2025-67819, a high severity path traversal vulnerability in our backup modules, and a medium severity path traversal vulnerability in our shard movement module.
 
 As per our security policy, Weaviate customers running in Weaviate Cloud, and Marketplace customers on AWS, Azure and GCP have been patched seamlessly. Our Weaviate Enterprise Support customers have received early notification under embargo. 
 
-## Path Traversal via Backup ZipSlip (CVE Pending)
+## Path Traversal via Backup ZipSlip (CVE-2025-67818)
 An attacker with access to create objects in Weaviate can use symbolic links, absolute paths or ".." segments to escape the intended restore root for backups, and create or overwrite files at arbitrary paths within Weaviate's privilege scope.
 
 The CVSS score for this vulnerability is [High (7.2)](https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H/CR:X/IR:X/AR:X)
 
 Impacted versions of Weaviate are \<= Weaviate 1.30.19, \<= Weaviate 1.31.18, \<= Weaviate 1.32.15 and \<= Weaviate 1.33.3. We recommend that impacted customers update their Weaviate installations to fully address the vulnerability. The Backup modules can also be disabled by removing any backup* entries from the `"enabled_modules"` flag. 
 
-## Path Traversal via Shard Movement API (CVE Pending)
+## Path Traversal via Shard Movement API (CVE-2025-67819)
 An attacker with access to call the GetFile method can supply a malicious fileName parameter which allows parent-directory traversal sequences (../../..) or absolute paths to escape the intended shard root directory. As a result, the attacker can read arbitrary files within Weaviate's privilege scope. 
 
 The Shard Movement API is disabled by default, and this vulnerability requires that shards are in "Pause file activity" state. 
@@ -31,7 +31,7 @@ The CVSS score for this vulnerability is [Medium (4.9)](https://nvd.nist.gov/vul
 This vulnerability was introduced in Weaviate 1.30. Impacted versions of the product are >= Weaviate 1.30.0 \<= Weaviate 1.30.19, \<= Weaviate 1.31.18, \<= Weaviate 1.32.15 and \<= Weaviate 1.33.3. We recommend that impacted customers update their Weaviate installations to fully address the vulnerability. The Shard movement API can also be explicitly disabled by setting the `"REPLICA_MOVEMENT_ENABLED"` flag to false. 
 
 ## Acknowledgements
-This vulnerability was discovered by [soohyun](https://hackerone.com/soohyun), who notified us through our [Vulnerability Disclosure Program](https://weaviate.io/security-report). 
+These vulnerabilities were discovered by [soohyun](https://hackerone.com/soohyun), who notified us through our [Vulnerability Disclosure Program](https://weaviate.io/security-report). 
 
 ## Reporting Security Issues
 If you think you have found a security vulnerability, please go to our Security Report page to learn how to send us a report. Weaviate will contact you to acknowledge your report, and advise on next steps. We ask that researchers do not disclose vulnerabilities publicly until they have been fixed and announced, unless you have received a response from the Weaviate security team that you can do so.  

@@ -1,8 +1,8 @@
 @use '../variables' as *;
 
 .priceReview {
+  position: relative;
   align-items: flex-end;
-  background: linear-gradient(150.47deg, #75fbae 0%, #b6f874 100%);
   border-radius: $space;
   padding: calc($space * 2) calc($space * 2);
   align-items: center;
@@ -10,12 +10,45 @@
   gap: calc($space * 3);
   flex-grow: 1;
   flex-shrink: 0;
-  max-width: 340px;
+  max-width: 380px;
   width: 100%;
   text-align: center;
+  overflow: hidden;
 
   @media (max-width: 920px) {
     max-width: initial;
+  }
+
+  &-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+
+    &-green {
+      background: $greenGradient;
+    }
+
+    &-blue {
+      background: $blueGradient;
+    }
+
+    &-pink {
+      background: $pinkGradient;
+    }
+  }
+
+  &-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: calc($space * 3);
+    width: 100%;
   }
 
   h1 {
@@ -42,7 +75,7 @@
     width: 100%;
     border-radius: calc($space / 2);
     min-height: 56px;
-    border: 2px solid $mainColor;
+    border: 1px solid $mainColor;
     margin-top: 50px;
   }
 

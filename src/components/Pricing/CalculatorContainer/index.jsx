@@ -246,10 +246,7 @@ export default function CalculatorContainer() {
         </div>
 
         <div className={styles.buttons}>
-          <Link
-            className={styles.buttonGradient}
-            to="https://console.weaviate.cloud/"
-          >
+          <Link className={styles.buttonGradient} to="/go/console">
             Get started with Serverless
           </Link>
           <Link className={styles.buttonOutline} to="/deployment/serverless">

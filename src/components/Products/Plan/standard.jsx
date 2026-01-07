@@ -54,7 +54,7 @@ export default function PricingStandard() {
       <br />
       <br />
       <div className={styles.buttonBox}>
-        <Link className={styles.buttonTry} to="https://console.weaviate.cloud/">
+        <Link className={styles.buttonTry} to="/go/console/">
           Try Now
         </Link>
       </div>

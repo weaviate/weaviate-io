@@ -13,8 +13,7 @@ export default function Main() {
           </h2>
           <p>
             With over 20M monthly downloads, our open source vector database is
-            a core piece of the AI-native stack for developers and enterprises
-            alike.
+            a core piece of the AI stack for developers and enterprises alike.
           </p>
         </div>
         <div className={styles.bentoBar}>

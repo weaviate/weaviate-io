@@ -1,15 +1,13 @@
-// ✅ All @use statements must be at the TOP of the file, not nested
-@use "form/index" as *;
-@use "price" as *;
-@use "priceReview" as *;
-@use "row" as *;
-@use "highAvailability" as *;
-@use "form/select" as *;
-
-// Now your CSS rules
 .priceCalculator {
-  // Your styles here - the @use imports above make everything available
+  @import 'form/index.scss';
+  @import 'price.scss';
+  @import 'priceReview.scss';
+  @import 'row.scss';
+  @import 'highAvailability.scss';
+  @import 'accuracyToCost.scss';
+  @import 'badge.scss';
 }
 
-// Note: The select dropdowns are outside the normal dom element tree so won't
-// inherit styles from .priceCalculator
+// Note: The select dropdowns are outside the normal dom element tree so won't 
+// inherit styles from .priceCalculator, so we keep them here.
+@import 'form/select.scss';

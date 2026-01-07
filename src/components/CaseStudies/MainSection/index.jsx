@@ -303,10 +303,7 @@ export default function MainSection() {
                 </div>
               </div>
               <div className={styles.buttonContainer}>
-                <Link
-                  to="https://console.weaviate.cloud"
-                  className={styles.buttonDark}
-                >
+                <Link to="/go/console" className={styles.buttonDark}>
                   Get Started
                 </Link>
                 <Link to="/contact" className={styles.buttonLight}>

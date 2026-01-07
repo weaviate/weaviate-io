@@ -2,24 +2,162 @@
   {
     "name": "Google Cloud Platform",
     "image": "/img/site/gcp-icon-partners.svg",
-    "link": "https://docs.weaviate.io/integrations/cloud-hyperscalers/google",
-    "description": "Deploy Weaviate on the GCP Marketplace and seamlessly access models on AI Studio and Vertex AI.",
+    "link": "google-cloud-platform",
+    "description": "Launch a Weaviate cluster from the Google Cloud Platform (GCP) marketplace. Weaviate integrates with Google Gemini API and Google Vertex AI.",
     "tags": ["Cloud Hyperscalers", "Model Providers", "Module", "Popular"],
-    "maintainedBy": "Internal",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": true
+    "company": "GCP",
+    "howItWorks": "Weaviate integrates with GCP infrastructure and services like <a href=\"https://ai.google.dev/aistudio\">Gemini API</a> and <a href=\"https://cloud.google.com/vertex-ai\">Vertex AI</a>.",
+    "setup": [
+      "Deploy Weaviate via GCP Marketplace.",
+      "Configure networking & credentials.",
+      "Connect to Vertex AI / AI Studio and test."
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Build a multimodal application using Gemini Flash",
+            "description": "This notebook shows you how to use Weaviate and Gemini Flash to build a multimodal application.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/cloud-hyperscalers/google/gemini/multimodal-and-gemini-flash/NY-Roadshow-Gemini.ipynb"
+          },
+          {
+            "topic": "BigQuery and Weaviate",
+            "description": "Sync data between BigQuery and Weaviate using DSPy.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/cloud-hyperscalers/google/bigquery/BigQuery-Weaviate-DSPy-RAG.ipynb"
+          },
+          {
+            "topic": "Semantic Search with Gemini Ultra",
+            "description": "This notebook shows you how to use Weaviate and Gemini Ultra.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/cloud-hyperscalers/google/gemini/gemini-ultra/gemini-ultra-weaviate.ipynb"
+          },
+          {
+            "topic": "Weaviate Query Agent with Gemini API",
+            "description": "Use the Query Agent as a tool with the Gemini API.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/cloud-hyperscalers/google/agents/gemini-api-query-agent.ipynb"
+          },
+          {
+            "topic": "Weaviate Query Agent with Vertex AI",
+            "description": "Use the Query Agent as a tool with Vertex AI.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/cloud-hyperscalers/google/agents/vertex-ai-query-agent.ipynb"
+          },
+          {
+            "topic": "Deploy a Weaviate vector database on GKE",
+            "description": "This tutorial shows you how to deploy a Weaviate vector database cluster on Google Kubernetes Engine (GKE).",
+            "type": "Guide",
+            "url": "https://cloud.google.com/kubernetes-engine/docs/tutorials/deploy-weaviate"
+          },
+          {
+            "topic": "Personalized Product Descriptions with Weaviate and the Gemini API",
+            "description": "Learn how to embed your data, run a semantic search, make a generative call to the Gemini API and store the output back in your database.",
+            "type": "Notebook",
+            "url": "https://github.com/google-gemini/cookbook/blob/main/examples/weaviate/personalized_description_with_weaviate_and_gemini_api.ipynb"
+          },
+          {
+            "topic": "Similarity search with Gemma Embeddings and Weaviate",
+            "description": "This tutorial shows you, how to use the gemma-3-300m-embedding in Weaviate.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/weaviate-features/model-providers/google/similarity_search_gemma_embeddings_transformers.ipynb"
+          },
+          {
+            "topic": "Local RAG with Gemma 3 270M and Weaviate",
+            "description": "This notebook walks you through building a local RAG pipeline using Gemma 3 270M with Ollama and Weaviate.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/weaviate-features/model-providers/google/rag_gemma_3_270M_ollama.ipynb"
+          },
+          {
+            "topic": "Weaviate ADK Agent",
+            "description": "This agent provides natural language interaction with Weaviate, enabling full CRUD operations, vector search, collection management, and more through an intelligent conversational interface.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/tree/main/integrations/cloud-hyperscalers/google/weaviate_adk_agent"
+          }
+        ]
+      },
+      {
+        "title": "Read & Listen",
+        "items": [
+          {
+            "title": "Weaviate on Vertex AI RAG Engine: Building RAG Applications on Google Cloud",
+            "desc": "Learn how to build RAG Applications on Google Cloud using the new RAG Engine on Vertex AI.",
+            "type": "Blog",
+            "url": "https://weaviate.io/blog/google-rag-api"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Launch on GCP",
+        "url": "https://console.cloud.google.com/marketplace"
+      }
+    ]
   },
   {
     "name": "Amazon Web Services",
     "image": "/img/site/awsLogo.svg",
-    "link": "https://docs.weaviate.io/integrations/cloud-hyperscalers/aws",
-    "description": "Deploy Weaviate on the AWS Marketplace and use the SageMaker and Bedrock API to access a variety of models.",
+    "link": "amazon-web-services",
+    "description": "Launch a Weaviate cluster from the Amazon Web Services (AWS) marketplace. AWS supports model provider integrations through SageMaker and Bedrock.",
     "tags": ["Cloud Hyperscalers", "Model Providers", "Module", "Popular"],
-    "maintainedBy": "Internal",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": true
+    "company": "AWS",
+    "howItWorks": "Weaviate integrates with AWS infrastructure and services like <a href=\"https://aws.amazon.com/sagemaker/\">Amazon SageMaker</a> and <a href=\"https://aws.amazon.com/bedrock/\">Amazon Bedrock</a>.",
+    "setup": [
+      "Deploy Weaviate via AWS Marketplace.",
+      "Configure networking, IAM roles & credentials.",
+      "Connect to Bedrock and/or SageMaker and test."
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "RAG with Cohere models on Amazon Bedrock and Weaviate",
+            "description": "The example use case generates targeted advertisements for vacation stay listings based on a target audience.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/cloud-hyperscalers/aws/RAG_Cohere_Weaviate_v4_client.ipynb"
+          },
+          {
+            "topic": "RAG with AWS Nova Lite on Bedrock and Weaviate",
+            "description": "This notebook will show you how to use the dynamic RAG API to define the model provider at query time.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/weaviate-features/model-providers/aws/rag_nova_lite_bedrock.ipynb"
+          },
+          {
+            "topic": "Multimodal Search with Nova Embeddings",
+            "description": "This notebook demonstrates how to build a multimodal search system using AWS Nova embeddings in Weaviate, enabling image search, hybrid search, and the Weaviate Query Agent.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/weaviate-features/model-providers/aws/multi-modal-search-nova-embeddings.ipynb"
+          },
+          {
+            "topic": "Nova Customization",
+            "description": "This notebook will illustrate how to use the open-source Nova Prompt Optimizer to optimize a RAG system.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/cloud-hyperscalers/aws/nova-prompt-optimizer.ipynb"
+          }
+        ]
+      },
+      {
+        "title": "Read & Listen",
+        "items": [
+          {
+            "title": "Legacy data to RAG : Modernise Your Apps with Amazon Sagemaker Unified Studio",
+            "desc": "A guide to seamlessly transform data sitting in lakes and warehouses for GenAI capable applications",
+            "type": "Blog",
+            "url": "https://weaviate.io/blog/sagemaker-studio-rag"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Launch on AWS",
+        "url": "https://aws.amazon.com/marketplace"
+      }
+    ]
   },
   {
     "name": "Microsoft Azure",
@@ -35,178 +173,1068 @@
   {
     "name": "Firecrawl",
     "image": "/img/site/firecrawl_logo.svg",
-    "link": "https://docs.weaviate.io/integrations/data-platforms/firecrawl",
-    "description": "AI-first web scraping tool.",
+    "link": "firecrawl",
+    "description": "Firecrawl is an AI-first web scraping tool. It allows you to easily crawl and extract clean, structured data from websites. It is an API service that converts a URL into clean markdown or structured data.",
     "tags": ["Data Platforms", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "Python",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Firecrawl",
+    "howItWorks": "Firecrawl handles the complexities of web scraping like proxies, caching, rate limits, and dynamic content. It produces markdown or JSON formatted output that is ready to be ingested into vector databases like Weaviate.",
+    "setup": [
+      "Create a Firecrawl account and upload your documents.",
+      "Set up a Weaviate instance with the Firecrawl integration.",
+      "Configure the Weaviate Firecrawl Connector to stream data from Firecrawl to Weaviate."
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Firecrawl to Weaviate",
+            "description": "This notebook shows you how to scrape webpages with Firecrawl and load their contents into Weaviate.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/data-platforms/web-search/firecrawl/firecrawl-to-weaviate.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Firecrawl",
+        "url": "https://www.firecrawl.com/"
+      }
+    ]
   },
   {
     "name": "Context Data",
     "image": "/img/site/contextdata_logo.png",
-    "link": "https://docs.weaviate.io/integrations/data-platforms/context-data",
-    "description": "VectorETL enables you to ingest data into Weaviate by using the target connection.",
+    "link": "context-data",
+    "description": "VectorETL by Context Data is a modular no-code Python framework that is designed to help AI and Data Engineers work with data",
+    "list": "<ol><li>Quickly extract data from multiple data sources (databases, cloud storage, and local files)</li><li>Embed using major models (including OpenAI, Cohere, and Google Gemini)</li><li>Write to vector databases</li></ol>",
     "tags": ["Data Platforms", "Integration"],
-    "maintainedBy": "",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Context Data",
+    "howItWorks": "Weaviate is a <a href=\"https://context-data.gitbook.io/context-data-1/adding-target-connections#add-a-weaviate-target-connection\">target connection</a> in Context Data. To connect to Context Data, open the console and input your Weaviate instance's URL and authentication credentials when prompted.",
+    "setup": [
+      "Create a Context Data account and upload your documents.",
+      "Set up a Weaviate instance with the Context Data integration.",
+      "Configure the Weaviate Context Data Connector to stream data from Context Data to Weaviate."
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "VectorETL into Weaviate",
+            "description": "Three examples showing you how to ingest data from Google Cloud Storage, Postgres, and S3 into Weaviate.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/tree/main/integrations/data-platforms/context-data"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Context Data",
+        "url": "https://contextdata.ai/"
+      }
+    ]
+  },
+  {
+    "name": "Contextual AI",
+    "image": "/img/site/contextual-ai.png",
+    "link": "contextual-ai",
+    "description": "Contextual AI offers a document Parser built for retrieval-augmented generation (RAG) systems. It enables agents to understand and navigate complex document structures.",
+    "list": "<ol><li>Quickly extract data from multiple data sources (databases, cloud storage, and local files)</li><li>Embed using major models (including OpenAI, Cohere, and Google Gemini)</li><li>Write to vector databases</li></ol>",
+    "tags": ["Data Platforms", "Integration", "Model Providers", "Module"],
+    "company": "Contextual AI",
+    "howItWorks": "<a href=\"https://docs.contextual.ai/api-reference/parse/parse-file\">Parsed outputs</a> can be stored in Weaviate for vector and hybrid search, metadata filtering, and RAG.",
+    "setup": [
+      "Create a Contextual AI account and upload your documents.",
+      "Set up a Weaviate instance with the Contextual AI integration.",
+      "Configure the Weaviate Contextual AI Connector to stream data from Contextual AI to Weaviate."
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Contextual AI Parser + Weaviate",
+            "description": "Learn how to use Contextual AI's Parser with Weaviate to build powerful RAG applications over PDF documents.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/data-platforms/contextual-ai/rag_over_pdfs_contextual_weaviate.ipynb"
+          },
+          {
+            "topic": "Generative Search with Contextual AI",
+            "description": "This notebook demos how to use ContextualAI's generative model (v2) with Weaviate for RAG, combining hybrid search (sparse + dense) with generative search to answer questions based on retrieved Jeopardy data.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/weaviate-features/model-providers/contextual/rag_contextual_v2.ipynb"
+          },
+          {
+            "topic": "Reranking with Contextual AI ",
+            "description": "This notebook demonstrates how to use Contextual AI's reranking model (ctxl-rerank-v2-instruct-multilingual) with Weaviate to improve search result quality.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/weaviate-features/reranking/contextual-reranking/rerank_contextual.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Contextual AI",
+        "url": "https://contextual.ai/"
+      }
+    ]
   },
   {
     "name": "Aryn",
     "image": "/img/site/aryn_logo.svg",
-    "link": "https://docs.weaviate.io/integrations/data-platforms/aryn",
-    "description": "AI powered ETL system for language model applications.",
+    "link": "aryn",
+    "description": "Aryn is an AI powered ETL system for language model applications and vector databases.",
+    "list": "Aryn offers two components:<ol><li>Aryn Partitioning Service</li><li>Sycamore</li></ol>",
     "tags": ["Data Platforms", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "Python",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Aryn",
+    "howItWorks": "Weaviate is a supported <a href=\"https://airbyte.com/connectors/weaviate\">destination connector</a> in Airbyte. You can set up a source connector to extract data and import it into Weaviate using Airbyte.",
+    "setup": [
+      "Weaviate is a supported connector in Aryn. You can:",
+      "Write to Weaviate with <code>write.weaviate()</code>",
+      "Read from Weaviate with <code>read.weaviate()</code>"
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Using Aryn to ingest data into Weaviate",
+            "description": "Demo on how to prepare and load data into Weaviate using Sycamore.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/data-platforms/aryn/weaviate_blog_post.ipynb"
+          }
+        ]
+      },
+      {
+        "title": "Read and Listen",
+        "items": [
+          {
+            "topic": "Enriching and Ingesting Data into Weaviate with Aryn",
+            "description": "Demo on how to ingest PDFs into Weaviate using Aryn.",
+            "type": "Blog",
+            "url": "https://weaviate.io/blog/sycamore-and-weaviate"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Explore Aryn",
+        "url": "https://aryn.com/"
+      }
+    ]
   },
   {
     "name": "Airbyte",
     "image": "/img/site/airbyte_logo.svg",
-    "link": "https://docs.weaviate.io/integrations/data-platforms/airbyte",
-    "description": "An open-source data integration engine.",
+    "link": "airbyte",
+    "description": "Airbyte is an open-source data integration engine that helps you consolidate your data in your data warehouses, lakes and databases. You can use Airbyte to ingest data into Weaviate.",
     "tags": ["Data Platforms", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "Python",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Airbyte",
+    "howItWorks": "Weaviate is a supported <a href=\"https://airbyte.com/connectors/weaviate\">destination connector</a> in Airbyte. You can set up a source connector to extract data and import it into Weaviate using Airbyte.",
+    "admonitions": [
+      {
+        "type": "caution",
+        "title": "CAUTION",
+        "html": "The Weaviate integration on Airbyte uses the <strong>v3</strong> Python client and is only compatible with Weaviate Database versions <strong>&lt;1.24</strong>. To help track requests to update the integration, please open a <a href=\"https://github.com/airbytehq/airbyte/issues?q=is%3Aissue%20state%3Aopens\" target=\"_blank\" rel=\"noopener\">GitHub issue on Airbyte's repository</a>."
+      }
+    ],
+    "setup": [
+      "Set up a Python environment.",
+      "Deploy a serverless, read-only Weaviate client with Airbyte.",
+      "Integrate Airbyte with Weaviate in your application."
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Unleash to Weaviate",
+            "description": "Load data from Unleash into Weaviate",
+            "type": "Tutorial",
+            "url": "https://airbyte.com/how-to-sync/unleash-to-weaviate"
+          },
+          {
+            "topic": "Airtable to Weaviate",
+            "description": "Sync data from Airtable into Weaviate",
+            "type": "Tutorial",
+            "url": "https://airbyte.com/how-to-sync/airtable-to-weaviate"
+          },
+          {
+            "topic": "Monday to Weaviate",
+            "description": "Load your data in Monday into Weaviate within minutes.",
+            "type": "Tutorial",
+            "url": "https://airbyte.com/how-to-sync/monday-to-weaviate"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Explore Airbyte",
+        "url": "https://airbyte.com/"
+      }
+    ]
+  },
+  {
+    "name": "Cardinal",
+    "image": "/img/site/cardinal.png",
+    "link": "cardinal",
+    "description": "Cardinal is a modern document processing platform, powering your data workflows with their custom AI model.",
+    "tags": ["Data Platforms", "Integration"],
+    "company": "Cardinal",
+    "howItWorks": "The Cardinal and Weaviate integration lets users automatically process documents through Cardinal, enrich them with bounding boxes and metadata, and insert them into a Weaviate collection for retrieval and generative search.",
+    "setup": [
+      "Create a Cardinal account and upload your documents.",
+      "Set up a Weaviate instance with the Cardinal integration.",
+      "Configure the Cardinal connector in Weaviate to access your Cardinal files.",
+      "Ingest and index your Cardinal documents into Weaviate for semantic search and RAG capabilities."
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Cardinal ↔ Weaviate RAG Demo",
+            "description": "Grab documents from S3, process each file using Cardinal, and run retrieval and generative queries.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/data-platforms/cardinal/Cardinal____Weaviate.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Explore Cardinal",
+        "url": "https://trycardinal.ai/"
+      }
+    ]
   },
   {
     "name": "Confluent",
     "image": "/img/site/confluent_logo.svg",
-    "link": "https://docs.weaviate.io/integrations/data-platforms/confluent",
-    "description": "Fully managed Apache Kafka service for real-time streaming. ",
+    "link": "confluent",
+    "description": "Confluent is a fully managed Apache Kafka service that offers real-time data streaming, seamless integration across major cloud providers, high performance, and robust security features.",
     "tags": ["Data Platforms", "Integration"],
-    "maintainedBy": "Internal",
-    "programmingLanguage": "Python",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Confluent",
+    "howItWorks": "Stream data from Confluent Cloud to Weaviate with the <a href=\"https://github.com/weaviate/confluent-connector\">Weaviate Confluent Connector</a>. For setup and usage details, see the <a href=\"https://github.com/weaviate/confluent-connector/blob/main/README.md\">connector README</a>.",
+    "setup": [
+      "Create a Confluent account and upload your documents.",
+      "Set up a Weaviate instance with the Confluent integration.",
+      "Configure the Weaviate Confluent Connector to stream data from Confluent to Weaviate."
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "PySpark Notebook",
+            "description": "Learn how to use PySpark",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/confluent-connector/blob/main/notebooks/01_demo_pyspark.ipynb"
+          },
+          {
+            "topic": "Confluent-Weaviate Connector with Embedded",
+            "description": "This notebook shows you how to use the confluent-weaviate connector with Weaviate Embedded.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/confluent-connector/blob/main/notebooks/02_demo_confluent_weaviate.ipynb"
+          },
+          {
+            "topic": "Confluent-Weaviate Connector with Weaviate Cloud",
+            "description": "This notebook shows you how to use the confluent-weaviate connector with Weaviate Cloud.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/confluent-connector/blob/main/notebooks/03_demo_confluent_wcs.ipynb"
+          },
+          {
+            "topic": "Confluent-Weaviate Connector with Weaviate Cloud and Databricks",
+            "description": "Learn how to integrate the confluent-weaviate connector with Weaviate Cloud and Databricks.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/confluent-connector/blob/main/notebooks/04_demo_confluent_databricks.ipynb"
+          }
+        ]
+      },
+      {
+        "title": "Read & Listen",
+        "items": [
+          {
+            "topic": "Make Real-Time AI a Reality with Weaviate + Confluent",
+            "description": "Learn how to build an application using Weaviate and Confluent.",
+            "type": "Blog",
+            "url": "https://weaviate.io/blog/confluent-and-weaviate"
+          },
+          {
+            "topic": "Introducing the New Weaviate Confluent Apache Kafka® Connector: Real-Time Vector Data Pipelines Made Easy",
+            "description": "Learn about the new certified Weaviate Confluent Apache Kafka Connector!",
+            "type": "Blog",
+            "url": "https://weaviate.io/blog/weaviate-apache-kafka-connector"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Confluent Cloud",
+        "url": "https://www.confluent.io/confluent-cloud/"
+      }
+    ]
   },
   {
     "name": "Astronomer",
     "image": "/img/site/astronomer_logo.svg",
-    "link": "https://docs.weaviate.io/integrations/data-platforms/astronomer",
-    "description": "Managed Apache Airflow for data ingestion into Weaviate.",
+    "link": "astronomer",
+    "description": "Astronomer’s Astro is a fully managed platform built on top of Apache Airflow. It simplifies the management of Airflow at scale and data ingestion into Weaviate.",
     "tags": ["Data Platforms", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "Python",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Astronomer",
+    "howItWorks": "The <a href=\"https://www.astronomer.io/docs/learn/airflow-weaviate\">Weaviate Airflow provider</a> offers modules to easily integrate Weaviate with Airflow.",
+    "setup": [
+      " Create and run a DAG to ingest data into Weaviate.",
+      " Use the WeaviateOperator to interact with your Weaviate instance directly from Airflow."
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Orchestrate Weaviate operations with Apache Airflow",
+            "description": "Use Airflow to ingest movie descriptions into Weaviate and query the collection.",
+            "type": "Tutorial",
+            "url": "https://www.astronomer.io/docs/learn/airflow-weaviate"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Explore Astronomer",
+        "url": "https://www.astronomer.io/"
+      }
+    ]
   },
   {
     "name": "Databricks",
     "image": "/img/site/databricks_logo.svg",
-    "link": "https://docs.weaviate.io/integrations/data-platforms/databricks",
-    "description": "Use models hosted on the Databricks platform and ingest Spark data structured from Databricks into Weaviate.",
+    "link": "databricks",
+    "description": "Databricks is a data intelligence platform that unifies data, AI and governance on the lakehouse.",
     "tags": ["Data Platforms", "Model Providers", "Module", "Popular"],
-    "maintainedBy": "Internal",
-    "programmingLanguage": "All languages",
-    "weaviateFeatures": "",
-    "featured": true
+    "company": "Databricks",
+    "howItWorks": "Databricks' Foundation Model APIs can be called directly from Weaviate, allowing you to use models hosted on the Databricks platform through the <code>text2vec-databricks</code> and <code>generative-databricks</code> modules.",
+    "howitWorksAdditional": "<a href=\"https://spark.apache.org/docs/latest/api/python/index.html\">Apache Spark</a> (or the Python API, <a href=\"https://spark.apache.org/docs/latest/api/python/index.html#:~:text=PySpark%20is%20the%20Python%20API,for%20interactively%20analyzing%20your%20data.\">PySpark</a>) is an open-source data processing framework used for real-time, large-scale data processing. You can ingest Spark data structures from Databricks into Weaviate using the Weaviate Spark connector. Learn more about the connector in the <a href=\"https://github.com/weaviate/spark-connector\">Weaviate Spark connector repository.</a>",
+    "setup": [
+      "Create a Databricks account and upload your documents.",
+      "Set up a Weaviate instance with the Databricks integration.",
+      "Configure the Weaviate Databricks Connector to stream data from Databricks to Weaviate."
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Weaviate Tutorial",
+            "description": "Learn how to ingest data into Weaviate with Spark.",
+            "type": "Tutorial",
+            "url": "https://docs.weaviate.io/weaviate/tutorials/spark-connector"
+          },
+          {
+            "topic": "Using the Spark Connector for Weaviate",
+            "description": "Learn how to take data from a Spark dataframe and feed it into Weaviate.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/data-platforms/spark/spark-connector.ipynb"
+          },
+          {
+            "topic": "Ingest data from Spark into Weaviate",
+            "description": "Learn how to ingest data from a Spark dataframe to Weaviate and use the <code>text2vec-databricks</code> and <code>generative-databricks</code> module.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/data-platforms/databricks/databricks-spark-connector.ipynb"
+          }
+        ]
+      },
+      {
+        "title": "Read & Listen",
+        "items": [
+          {
+            "topic": "The Sphere Dataset in Weaviate",
+            "description": "Learn how to import and query the Sphere dataset in Weaviate.",
+            "type": "Blog",
+            "url": "https://weaviate.io/blog/sphere-dataset-in-weaviate"
+          },
+          {
+            "topic": "The Details Behind the Sphere Dataset in Weaviate",
+            "description": "The details on how we ingested ~1 billion article snippets into Weaviate.",
+            "type": "Blog",
+            "url": "https://weaviate.io/blog/details-behind-the-sphere-dataset-in-weaviate"
+          },
+          {
+            "topic": "Build Scalable Gen AI Data Pipelines with Weaviate and Databricks",
+            "description": "Learn how to build generative AI data pipelines at scale with Weaviate and Databricks",
+            "type": "Blog",
+            "url": "https://weaviate.io/blog/genai-apps-with-weaviate-and-databricks"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Databricks",
+        "url": "https://www.databricks.com/"
+      }
+    ]
   },
   {
     "name": "Unstructured",
     "image": "/img/site/unstructuredio_logo.png",
-    "link": "https://docs.weaviate.io/integrations/data-platforms/unstructured",
-    "description": "Platform and tools to work with unstructured data for RAG applications.",
+    "link": "unstructured",
+    "description": "Unstructured offers a platform and tools to work with unstructured data. Ingest and process unstructured data to use in retrieval augmented generation (RAG) applications.",
+    "list": "<ol><li>Unstructured has two offerings:</li><li><a href=\"https://unstructured.io/platform\">Unstructured Platform</a>: No-code user interface</li><li><a href=\"https://docs.unstructured.io/api-reference/api-services/overview\">Serverless API</a>: Run scripts or code to call the Unstructured Ingest CLI</li></ol>",
     "tags": ["Data Platforms", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "Python",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Unstructured",
+    "howItWorks": "You can ingest and process data from a variety of sources into your Weaviate cluster. Weaviate is a destination connector in the <a href=\"https://docs.unstructured.io/platform/platform-destination-connectors/weaviate\">Platform</a> and <a href=\"https://docs.unstructured.io/api-reference/ingest/destination-connector/weaviate\">API</a>.",
+    "setup": [
+      "Create an Unstructured account.",
+      "Set up a Weaviate instance.",
+      "Follow the instructions in the <a href=\"https://docs.weaviate.io/integrations/data-platforms/unstructured\">Weaviate documentation</a> to connect Unstructured to Weaviate."
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Ingest Data from S3 into Weaviate",
+            "description": "Learn how to use Unstructured's API to grab data from an S3 bucket and load it into Weaviate.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/data-platforms/unstructured/unstructured_weaviate.ipynb"
+          }
+        ]
+      },
+      {
+        "title": "Read & Listen",
+        "items": [
+          {
+            "topic": "Ingesting PDFs into Weaviate",
+            "description": "Learn how to load and transform PDF documents into Weaviate.",
+            "type": "Blog",
+            "url": "https://weaviate.io/blog/ingesting-pdfs-into-weaviate"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Unstructured",
+        "url": "https://www.unstructured.io"
+      }
+    ]
   },
   {
     "name": "Replicate",
     "image": "/img/site/replicate_logo.jpeg",
-    "link": "https://docs.weaviate.io/integrations/compute-infrastructure/replicate",
-    "description": "Run machine learning models through a cloud API.",
+    "link": "replicate",
+    "description": "Replicate is a platform that allows users to run machine learning models through a cloud API. They host many open-source models, including embedding and language models. Users can run or fine-tune the models to meet their application needs.",
     "tags": ["Compute Infrastructure", "Integration"],
-    "maintainedBy": "",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Replicate",
+    "howItWorks": "To use models on Replicate, you need to use <a href=\"https://docs.llamaindex.ai/en/stable/api_reference/llms/replicate/\">LlamaIndex</a> or <a href=\"https://python.langchain.com/v0.2/docs/integrations/llms/replicate/\">LangChain</a> and connect it to your Weaviate vector store.",
+    "setup": [
+      "Set up a Python environment.",
+      "Deploy a serverless, read-only Weaviate client with Replicate.",
+      "Integrate Replicate with Weaviate in your application."
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Run Llama 2 on Replicate",
+            "description": "Build a LlamaIndex query engine using Replicate, Weaviate, and Llama 2 as the generative model.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/compute-infrastructure/replicate-llama2/notebook.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Explore Replicate",
+        "url": "https://replicate.com/"
+      }
+    ]
   },
   {
     "name": "Modal",
     "image": "/img/site/modal_logo.svg",
-    "link": "https://docs.weaviate.io/integrations/compute-infrastructure/modal",
-    "description": "Serverless platform for on-demand access to GPUs.",
+    "link": "modal",
+    "description": "Modal provides a serverless platform that has on-demand access to GPUs and a custom high-performance container runtime. Use Modal to easily deploy and automatically scale high-performance applications.",
     "tags": ["Compute Infrastructure", "Integration"],
-    "maintainedBy": "",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Modal",
+    "howItWorks": "Weaviate leverages Modal's serverless infrastructure for fast embedding generation and generative model calls. To dynamically scale your application based on workload demands, <a href=\"https://modal.com/docs/examples/vector-analogies-wikipedia#deploy-a-serverless-read-only-weaviate-client-with-modal\">host the Weaviate client</a> on Modal.",
+    "setup": [
+      "Set up a Python environment.",
+      "Deploy a serverless, read-only Weaviate client with Modal.",
+      "Integrate Modal with Weaviate in your application."
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Embed and Search Text at Scale with Modal and Weaviate",
+            "description": "Build a full application that discovers analogies between Wikipedia articles. Combine serverless infrastructure from Modal with the search and storage capabilities of Weaviate.",
+            "type": "Blog",
+            "url": "https://weaviate.io/blog/modal-and-weaviate#modal-serverless-infrastructure-for-gpus-and-more"
+          },
+          {
+            "topic": "Embed and Search Text at Scale with Modal and Weaviate",
+            "description": "Build a full application that discovers analogies between Wikipedia articles. Combine serverless infrastructure from Modal with the search and storage capabilities of Weaviate.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/tree/main/integrations/compute-infrastructure/modal"
+          },
+          {
+            "topic": "Embed and Search Text at Scale with Modal and Weaviate",
+            "description": "Build a full application that discovers analogies between Wikipedia articles. Combine serverless infrastructure from Modal with the search and storage capabilities of Weaviate.",
+            "type": "Modal Guide",
+            "url": "https://modal.com/docs/examples/vector-analogies-wikipedia#deploy-a-serverless-read-only-weaviate-client-with-modal"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Launch on AWS",
+        "url": "https://aws.amazon.com/marketplace"
+      }
+    ]
   },
   {
     "name": "Composio",
     "image": "/img/site/composio_logo.png",
-    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/composio",
-    "description": "Manage and integrate tools with language models and AI agents. ",
+    "link": "composio",
+    "description": "Composio uses function calling to manage and integrate tools with language models and AI agents.",
     "tags": ["LLM and Agent Frameworks", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "Python",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Composio",
+    "howItWorks": "With Weaviate's retrieval, you can personalize the agent(s) and make them more context aware. The integration is supported through our LangChain vector store.",
+    "setup": [
+      "To configure the integration, create the vector store and connect to your Weaviate instance:",
+      {
+        "type": "code",
+        "lang": "python",
+        "code": "WeaviateVectorStore.from_documents( )"
+      },
+      "Learn how to create a <a href=\"https://python.langchain.com/v0.2/docs/integrations/vectorstores/weaviate/#step-1-data-import\">vector store."
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Gmail Agent",
+            "description": "Integrate Composio's Gmail tool with Weaviate to create an agent that will respond to new messages.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/function-calling/composio/agent.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Composio",
+        "url": "https://docs.composio.dev/introduction/intro/overview"
+      }
+    ]
   },
   {
     "name": "Semantic Kernel",
     "image": "/img/site/sk_logo.png",
-    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/semantic-kernel",
-    "description": "Framework by Microsoft for building large language model (LLM) applications.",
+    "link": "semantic-kernel",
+    "description": "Semantic Kernel is an LLM framework developed by Microsoft. Semantic Kernel facilitates building LLM applications with abstractions such as plugins, memory, planners, and more!",
     "tags": ["LLM and Agent Frameworks", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "C#, Python",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Semantic Kernel",
+    "howItWorks": "Weaviate is a supported vector store in Semantic Kernel.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "RAG Chatbot with Semantic Kernel",
+            "description": "Implements a simple workflow of retrieve-then-generate. Use a semantic kernel for prompt engineering, orchestrating OpenAI API calls, and integrating Weaviate. Use Weavate as a knowledge base to retrieve semantically relevant context.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/semantic-kernel/dotnet/Chatbot_RAG_Weaviate.ipynb"
+          },
+          {
+            "topic": "Retrieval Augmented Generation using Weaviate and SK",
+            "description": "Implements a simple workflow of retrieve-then-generate.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/semantic-kernel/RetrievalAugmentedGeneration_Weaviate.ipynb"
+          },
+          {
+            "topic": "Weaviate Persistent Memory",
+            "description": "This notebook shows how to replace <code>VolatileMemoryStore</code> memory storage with a <code>WeaviateMemoryStore</code> persistent memory.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/semantic-kernel/weaviate-persistent-memory.ipynb"
+          }
+        ]
+      },
+      {
+        "title": "Read & Listen",
+        "items": [
+          {
+            "topic": "Weaviate Podcast",
+            "description": "Humans and AI with John Maeda and Bob van Luijt",
+            "type": "Podcast",
+            "url": "https://youtu.be/c9t0VViIP9c?feature=shared"
+          },
+          {
+            "topic": "Weaviate at NeurIPS 2023",
+            "description": "A discussion with Alex Chao from Semantic Kernel",
+            "type": "Podcast",
+            "url": "https://www.youtube.com/watch?v=xrZxk0H2cmY"
+          },
+          {
+            "topic": "Semantic Kernel and Weaviate: Orchestrating interactions around LLMs with long-term memory",
+            "description": "Learn how to use Semantic Kernel as the orchestration framework and Weaviate as the external knowledge source.",
+            "type": "Blog",
+            "url": "https://devblogs.microsoft.com/semantic-kernel/guest-post-semantic-kernel-and-weaviate-orchestrating-interactions-around-llms-with-long-term-memory/"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Semantic Kernel Docs",
+        "url": "https://learn.microsoft.com/en-us/semantic-kernel/"
+      }
+    ]
   },
   {
-    "name": "Deepset",
+    "name": "Haystack",
     "image": "/img/site/deepset_logo.svg",
-    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/haystack",
-    "description": "Build with Haystack for a simple way to build LLM applications.",
+    "link": "haystack",
+    "description": "Haystack is a framework for building large language model applications.",
     "tags": ["LLM and Agent Frameworks", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "Python",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Haystack",
+    "howItWorks": "Weaviate is a <a href=\"https://haystack.deepset.ai/integrations/weaviate-document-store\">supported document store</a> in Haystack. You need a running Weaviate cluster to build the document store.",
+    "setup": [
+      "To configure the integration, create the vector store and connect to your Weaviate instance:",
+      {
+        "type": "code",
+        "lang": "python",
+        "code": "auth_client_secret = AuthApiKey(Secret.from_token(\"MY_WEAVIATE_API_KEY\")) \ndocument_store = WeaviateDocumentStore(auth_client_secret=auth_client_secret)"
+      }
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Advanced RAG: Query Expansion",
+            "description": "Learn how to implement query expansion for RAG.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/haystack/query_expansion_haystack_weaviate.ipynb"
+          },
+          {
+            "topic": "Haystack and Weaviate Query Agent",
+            "description": "Use the Query Agent as a tool with Haystack.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/haystack/haystack-query-agent-tool.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Visit Haystack",
+        "url": "https://haystack.deepset.ai/"
+      }
+    ]
   },
   {
     "name": "LlamaIndex",
     "image": "/img/site/llamaindex_logo.svg",
-    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/llamaindex",
-    "description": "Framework for building large language model (LLM) applications and ingesting data.",
+    "link": "llamaindex",
+    "description": "LlamaIndex is a framework for building large language model (LLM) applications.",
     "tags": ["LLM and Agent Frameworks", "Integration", "Popular"],
-    "maintainedBy": "External",
-    "programmingLanguage": "Python, TS/JS",
-    "weaviateFeatures": "Filters, Hybrid Search",
-    "featured": true
+    "company": "LlamaIndex",
+    "howItWorks": "Weaviate is a <a href=\"https://docs.llamaindex.ai/en/stable/api_reference/storage/vector_store/weaviate/\">supported vector store</a> in LlamaIndex.",
+    "setup": [
+      "Create a vector store:",
+      {
+        "type": "code",
+        "lang": "python",
+        "code": "vector_store = WeaviateVectorStore(weaviate_client=client, index_name=\"LlamaIndex\")"
+      }
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Data Loaders in LlamaIndex",
+            "description": "Learn how to load data into Weaviate using LlamaIndex, and how to connect LlamaIndex to an existing Weaviate cluster.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/llamaindex/data-loaders-episode1/episode1.ipynb"
+          },
+          {
+            "topic": "Indexes in LlamaIndex",
+            "description": "Learn about the various indexes you can build in LlamaIndex.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/llamaindex/indexes-episode2/indexes-in-llamaindex.ipynb"
+          },
+          {
+            "topic": "Recursive Query Engine",
+            "description": "Learn how to build a recursive query engine.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/llamaindex/recursive-query-engine/recursive-retrieval.ipynb"
+          },
+          {
+            "topic": "Self Correcting Query Engine",
+            "description": "Setup your vector store and build a self-correcting query engine.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/llamaindex/self-correcting-query-engine/self-correcting.ipynb"
+          },
+          {
+            "topic": "Simple Query Engine",
+            "description": "Build a simple query engine",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/tree/main/integrations/llm-agent-frameworks/llamaindex/simple-query-engine"
+          },
+          {
+            "topic": "SQL Router Query Engine",
+            "description": "Build a SQL Query Engine to search through your vector and SQL database.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/llamaindex/sql-router-query-engine/sql-query-router.ipynb"
+          },
+          {
+            "topic": "Sub-Question Query Engine",
+            "description": "Build a query engine that will break down a complex question into multiple parts.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/llamaindex/sub-question-query-engine/sub_question_query_engine.ipynb"
+          },
+          {
+            "topic": "Advanced RAG",
+            "description": "This notebook walks you through an advanced Retrieval-Augmented Generation (RAG) pipeline using LlamaIndex and Weaviate.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/llamaindex/retrieval-augmented-generation/advanced_rag.ipynb"
+          },
+          {
+            "topic": "Naive RAG",
+            "description": "This notebook walks you through a naive Retrieval-Augmented Generation (RAG) pipeline using LlamaIndex and Weaviate.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/llamaindex/retrieval-augmented-generation/naive_rag.ipynb"
+          },
+          {
+            "topic": "Agent vs No Agent",
+            "description": "Learn the difference between naive RAG, and an agent that has RAG tools.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/llamaindex/agents/llama-index-weaviate-assistant-agent.ipynb"
+          },
+          {
+            "topic": "LlamaIndex and Weaviate Query Agent",
+            "description": "Use the Query Agent as a tool with the LlamaIndex <code>AgentWorkflow</code>",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/llamaindex/agents/agent-workflow-with-weaviate-query-agent-.ipynb"
+          },
+          {
+            "topic": "Memory with LlamaIndex, Weaviate, and Gemini",
+            "description": "This notebook shows you how you can give your AI agent long-term memory with LlamaIndex, Weaviate, and Gemini.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/llamaindex/agent-memory/Memory_with_LlamaIndex_Weaviate_and_Gemini.ipynb"
+          }
+        ]
+      },
+      {
+        "title": "Read & Listen",
+        "items": [
+          {
+            "topic": "Episode 1: Data Loading",
+            "description": "This episode shows you how to connect your data to LlamaIndex and Weaviate.",
+            "type": "Video",
+            "url": "https://youtu.be/Bu9skgCrJY8?feature=shared"
+          },
+          {
+            "topic": "Episode 2: Indexes in LlamaIndex",
+            "description": "The video covers the three LlamaIndex indexes (Vector Store Index, List Index, and Tree Index) and walks through the architecture design. The video ends with a demo using the Vector Store Index and List Index.",
+            "type": "Video",
+            "url": "https://youtu.be/6pLgOJrFL38?feature=shared"
+          },
+          {
+            "topic": "Episode 3: RAG Techniques in LlamaIndex",
+            "description": "Learn about four query engines implemented in LlamaIndex.",
+            "type": "Video",
+            "url": "https://youtu.be/Su-ROQMaiaw?feature=shared"
+          },
+          {
+            "topic": "LlamaIndex and Weaviate Blog",
+            "description": "An introduction on LlamaIndex and an overview of the integration.",
+            "type": "Blog",
+            "url": "https://weaviate.io/blog/llamaindex-and-weaviate"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Visit LangChain",
+        "url": "https://www.llamaindex.ai/"
+      }
+    ]
   },
   {
     "name": "LangChain",
     "image": "/img/site/langchain_logo.png",
-    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/langchain",
-    "description": "Framework for building large language models (LLM) applications.",
+    "link": "langchain",
+    "description": "LangChain is a framework for building applications that use large language models (LLMs).",
     "tags": ["LLM and Agent Frameworks", "Integration", "Popular"],
-    "maintainedBy": "Internal",
-    "programmingLanguage": "Python, TS/JS",
-    "weaviateFeatures": "Filters, Hybrid Search, Multi-tenancy",
-    "featured": true
+    "company": "LangChain",
+    "howItWorks": "Weaviate is a supported <a href=\"https://python.langchain.com/v0.2/docs/integrations/vectorstores/weaviate/#step-1-data-import\">vector store</a> in LangChain. You will need a running Weaviate cluster to use the integration.",
+    "setup": [
+      "Connect LangChain to your Weaviate cluster:",
+      {
+        "type": "code",
+        "lang": "python",
+        "code": "weaviate_client = weaviate.connect_to_local() \ndb = WeaviateVectorStore.from_documents(docs, embeddings, client=weaviate_client)"
+      }
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "LangChain LCEL",
+            "description": "A notebook that defines a language program with LangChain LCEL, compiles it with DSPy, and converts it back to LangChain LCEL.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/langchain/LCEL/RAG-with-LangChain-LCEL-and-DSPy.ipynb"
+          },
+          {
+            "topic": "LangChain and Multi-Tenancy",
+            "description": "Build a multi-language RAG by multiple PDFs per tenant with Langchain, OpenAI, and Weaviate.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/langchain/loading-data/langchain-simple-pdf-multitenant.ipynb"
+          },
+          {
+            "topic": "Multi-Language RAG",
+            "description": "Simple notebook showing you how to build a RAG application using LangChain and Weaviate.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/langchain/loading-data/langchain-simple-pdf.ipynb"
+          },
+          {
+            "topic": "LangChain and Weaviate Query Agent",
+            "description": "Use the Weaviate Query Agent as a tool with LangChain.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/langchain/agents/langchain-weaviate-query-agent.ipynb"
+          }
+        ]
+      },
+      {
+        "title": "Read & Listen",
+        "items": [
+          {
+            "topic": "Combining LangChain and Weaviate",
+            "description": "Learn about how Weaviate is integrated in LangChain and the different CombineDocuments techniques.",
+            "type": "Blog",
+            "url": "https://weaviate.io/blog/combining-langchain-and-weaviate"
+          },
+          {
+            "topic": "Weaviate Podcast #36",
+            "description": "LangChain and Weaviate with Harrison Chase and Bob van Luijt",
+            "type": "Podcast",
+            "url": "https://www.youtube.com/watch?v=lhby7Ql7hbk"
+          },
+          {
+            "topic": "Weaviate + LangChain for LLM apps",
+            "description": "An overview of how LangChain and Weaviate work together.",
+            "type": "Video",
+            "url": "https://youtu.be/7AGj4Td5Lgw?feature=shared"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Visit LangChain",
+        "url": "https://python.langchain.com/v0.2/docs/introduction/"
+      }
+    ]
   },
   {
     "name": "DSPy",
     "image": "/img/site/dspy_logo.png",
-    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/dspy",
-    "description": "Framework for programming language model applications. ",
+    "link": "dspy",
+    "description": "DSPy from Stanford NLP is a framework for programming language models. ",
+    "list": "<ol><li>DSPy introduces two key concepts, the programming model and optimizers.</li><li>Programing model: The programming model lets you define a series of components that make a language model request. Components include input fields, output fields, task descriptions, and calls to a vector database like Weaviate.</li><li>Optimizers: Optimizers compile your DSPy program to tune the language model prompt and/or the weights.</li></ol>",
     "tags": ["LLM and Agent Frameworks", "Integration", "Popular"],
-    "maintainedBy": "Internal",
-    "programmingLanguage": "Python",
-    "weaviateFeatures": "Hybrid Search",
-    "featured": true
+    "company": "DSPy",
+    "howItWorks": "Weaviate is integrated with DSPy through the retriever model!",
+    "setup": [
+      "Connect your Weaviate cluster (WCD or local instance) to DSPy, use the <a href=\"https://github.com/stanfordnlp/dspy/blob/6270e951b1f20b2cb02a3fdc769156e7e16dbd26/dspy/retrieve/weaviate_rm.py#L17\">retriever module</a> and pass in your collection:",
+      {
+        "type": "code",
+        "lang": "python",
+        "code": "weaviate_client = weaviate.Client(\"http://localhost:8080\") # or pass in your WCD cluster url \n retriever_module = WeaviateRM(\"WeaviateBlogChunk\", # collection name weaviate_client=weaviate_client)"
+      }
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Getting Started with RAG in DSPy",
+            "description": "Learn about DSPy and how to build a program: Installation, settings, datasets, LLM metrics, DSPy programming model, and optimization.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/dspy/1.Getting-Started-with-RAG-in-DSPy.ipynb"
+          },
+          {
+            "topic": "Getting Started with RAG in DSPy",
+            "description": "Learn about DSPy and how to build a program: Installation, settings, datasets, LLM metrics, DSPy programming model, and optimization.",
+            "type": "Video",
+            "url": "https://youtu.be/CEuUG4Umfxs?si=4Gp8gR9glmoMJNaU"
+          },
+          {
+            "topic": "DSPy + Weaviate for the Next Generation of LLM Apps",
+            "description": "Build a 4-layer DSPy program for generating blog posts from queries.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/dspy/2.Writing-Blog-Posts-with-DSPy.ipynb"
+          },
+          {
+            "topic": "DSPy + Weaviate for the Next Generation of LLM Apps",
+            "description": "Build a 4-layer DSPy program for generating blog posts from queries.",
+            "type": "Video",
+            "url": "https://youtu.be/ickqCzFxWj0?si=AxCbD9tq2cbAH6bB"
+          },
+          {
+            "topic": "RAG with Persona",
+            "description": "Build a compound AI system with DSPy, Cohere, and Weaviate, where you'll add a persona to the language model.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/dspy/fullstack-recipes/RAGwithPersona/4.RAG-with-Persona.ipynb"
+          },
+          {
+            "topic": "RAG with Persona",
+            "description": "Build a compound AI system with DSPy, Cohere, and Weaviate, where you'll add a persona to the language model.",
+            "type": "Post",
+            "url": "https://twitter.com/ecardenas300/status/1765444492348243976"
+          },
+          {
+            "topic": "Adding Depth to RAG Programs",
+            "description": "Enhancing DSPy programs by integrating unique input-output examples and multiple LLMs.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/dspy/3.Adding-Depth-to-RAG-Programs.ipynb"
+          },
+          {
+            "topic": "Adding Depth to RAG Programs",
+            "description": "Enhancing DSPy programs by integrating unique input-output examples and multiple LLMs.",
+            "type": "Video",
+            "url": "https://youtu.be/0c7Ksd6BG88?si=YUF2wm1ncUTkSuPQ"
+          },
+          {
+            "topic": "Hurricane: Writing Blog Posts with Generative Feedback Loops",
+            "description": "Introduction to Hurricane, a web app for demonstrating generative feedback loops with blog posts.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate-tutorials/Hurricane"
+          },
+          {
+            "topic": "Hurricane: Writing Blog Posts with Generative Feedback Loops",
+            "description": "Introduction to Hurricane, a web app for demonstrating generative feedback loops with blog posts.",
+            "type": "Blog",
+            "url": "https://weaviate.io/blog/hurricane-generative-feedback-loops"
+          },
+          {
+            "topic": "Structured Outputs with DSPy",
+            "description": "The three methods for structuring outputs in DSPy programs.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/dspy/4.Structured-Outputs-with-DSPy.ipynb"
+          },
+          {
+            "topic": "Structured Outputs with DSPy",
+            "description": "The three methods for structuring outputs in DSPy programs.",
+            "type": "Video",
+            "url": "https://youtu.be/tVw3CwrN5-8?si=P7fWeXzQ7p-2SFYF"
+          },
+          {
+            "topic": "Building RAG with Command R+ from Cohere, DSPy, and Weaviate",
+            "description": "Overview of Command R+ with a quick RAG demo in DSPy.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/dspy/llms/Command-R-Plus.ipynb"
+          },
+          {
+            "topic": "Building RAG with Command R+ from Cohere, DSPy, and Weaviate",
+            "description": "Overview of Command R+ with a quick RAG demo in DSPy.",
+            "type": "Video",
+            "url": "https://youtu.be/6dgXALb_5Ag?si=nSX2AnmpbUau_2JF"
+          },
+          {
+            "topic": "Advanced Optimizers in DSPy",
+            "description": "Dive into optimizing DSPy programs with various techniques.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/dspy/5.Advanced-Optimizers.ipynb"
+          },
+          {
+            "topic": "Llama 3 RAG Demo with DSPy Optimization, Ollama, and Weaviate",
+            "description": "Integrating Llama3 with DSPy and optimizing prompts with MIPRO.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/dspy/llms/Llama3.ipynb"
+          },
+          {
+            "topic": "BigQuery and Weaviate orchestrated with DSPy",
+            "description": "Build an end-to-end RAG pipeline that uses BigQuery and Weaviate using DSPy.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/cloud-hyperscalers/google/bigquery/BigQuery-Weaviate-DSPy-RAG.ipynb"
+          },
+          {
+            "topic": "DSPy and Weaviate Query Agent",
+            "description": "Use the Query Agent as a Tool with DSPy",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/dspy/Query-Agent-as-a-Tool.ipynb"
+          }
+        ]
+      },
+      {
+        "title": "Read & Listen",
+        "items": [
+          {
+            "topic": "DSPy and ColBERT with Omar Khattab! - Weaviate Podcast #85",
+            "description": "Omar Khattab joins the Weaviate podcast to discuss DSPy and ColBERT.",
+            "type": "Video",
+            "url": "https://www.youtube.com/watch?v=CDung1LnLbY"
+          },
+          {
+            "topic": "DSPy Explained",
+            "description": "Learn about the core concepts of DSPy. Walk through the introduction notebooks to compile a simple retrieve-then-read RAG program and Multi-Hop RAG Program.",
+            "type": "Video",
+            "url": "https://youtu.be/41EfOY0Ldkc?si=sFieUeHc9rXRn6uk"
+          },
+          {
+            "topic": "XMC.dspy with Karel D'Oosterlinck - Weaviate Podcast #87",
+            "description": "Karel D'Oosterlinck joins the Weaviate podcast to discuss IReRa (Infer-Retrieve-Rank).",
+            "type": "Video",
+            "url": "https://youtu.be/_ye26_8XPcs?si=ZBodgHbOcaq2Kwky"
+          },
+          {
+            "topic": "Intro to DSPy: Goodbye Prompting, Hello Programming",
+            "description": "Overview of DSPy and how it solves the fragility problem in LLM-based applications.",
+            "type": "Blog",
+            "url": "https://towardsdatascience.com/intro-to-dspy-goodbye-prompting-hello-programming-4ca1c6ce3eb9"
+          },
+          {
+            "topic": "Fine-Tuning Cohere’s Reranker",
+            "description": "Generate synthetic data with DSPy to fine-tune Cohere’s reranker model.",
+            "type": "Blog",
+            "url": "https://weaviate.io/blog/fine-tuning-coheres-reranker"
+          },
+          {
+            "topic": "Your Language Model Deserves Better Prompting",
+            "description": "Overview of the DSPy optimizers for prompt tuning.",
+            "type": "Blog",
+            "url": "https://weaviate.io/blog/dspy-optimizers"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Visit DSPy",
+        "url": "https://dspy.ai/"
+      }
+    ]
   },
   {
     "name": "KubeAI",
@@ -343,101 +1371,282 @@
   {
     "name": "Weights and Biases",
     "image": "/img/site/wandb_logo2.png",
-    "link": "https://docs.weaviate.io/integrations/operations/wandb",
-    "description": "Weave by W&B offers data analysis APIs for monitoring applications.",
+    "link": "weights-and-biases",
+    "description": "Weights & Biases (W&B) is an AI developer platform with products such as Models and Weave.",
     "tags": ["Operations", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Weights & Biases ",
+    "howItWorks": "<code>Weave</code> has a user interface and data analysis APIs for monitoring applications that use LLM, RAG, Agents, and Vector Databases.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "W&B Logging with DSPy and Cohere RAG app",
+            "description": "An example of using wandb logging to monitor optimizing a RAG system with DSPy, Weaviate, and Cohere.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/weights_and_biases/wandb_logging_RAG_dspy_cohere.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Weights & Biases",
+        "url": "https://wandb.ai/site"
+      }
+    ]
   },
   {
     "name": "Ragas",
     "image": "/img/site/ragas_logo.png",
-    "link": "https://docs.weaviate.io/integrations/operations/ragas",
-    "description": "Evaluate your retrieval augmented generation (RAG) applications. ",
+    "link": "ragas",
+    "description": "Ragas is a framework to help you evaluate your retrieval augmented generation (RAG) applications.",
     "tags": ["Operations", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "Python",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Ragas",
+    "howItWorks": "The Ragas metrics are:<br></br><ol><li><code>faithfulness</code></li><li><code>answer_relevancy</code></li><li><code>context_precision</code></li><li><code>context_recall</code></li></ol>To use Ragas, you'll need to store the <code>question</code>, <code>answer</code>, <code>ground_truths</code>, and <code>contexts</code> in a json object to send to Ragas.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Introduction Ragas Demo",
+            "description": "Learn how to use Weaviate and Ragas",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/ragas/ragas-demo.ipynb"
+          },
+          {
+            "topic": "Ragas and LangChain",
+            "description": "Learn how to connect Ragas and LangChain.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/ragas/RAGAs-RAG-langchain.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Visit Ragas",
+        "url": "https://docs.ragas.io/en/stable/"
+      }
+    ]
   },
   {
     "name": "Nomic",
     "image": "/img/site/nomic_logo.svg",
-    "link": "https://docs.weaviate.io/integrations/operations/nomic",
-    "description": "Run GPT4All models and use Atlas to visualize vector embeddings.",
+    "link": "nomic",
+    "description": "Nomic AI's Atlas uses algorithms such as t-SNE, UMAP, or PCA to reduce high-dimensional vectors into 2 or 3 dimensions. The lower dimensional vectors are useful for visualizing vector embeddings.",
     "tags": ["Model Providers", "Operations", "Integration", "Module"],
-    "maintainedBy": "External",
-    "programmingLanguage": "Python",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Nomic",
+    "howItWorks": "Connect Nomic to your Weaviate cluster to visualize the embeddings in your collection.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Vector Space Visual",
+            "description": "Visualize the embeddings in your Weaviate cluster.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/nomic/vector_space_visual.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Nomic",
+        "url": "https://www.nomic.ai/"
+      }
+    ]
   },
   {
     "name": "LangWatch",
     "image": "/img/site/langwatch_logo.png",
-    "link": "https://docs.weaviate.io/integrations/operations/langwatch",
-    "description": "Connect LangWatch to your Weaviate instance to log operational traces.",
+    "link": "langwatch",
+    "description": "LangWatch is an LLM operations platform that offers tools to control the quality of your AI application.",
     "tags": ["Operations", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "Python",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "LangWatch",
+    "howItWorks": "Connect LangWatch to your Weaviate instance to log operational traces. LangWatch also connects to DSPy to track the performance of each prompt paraphrasing.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "DSPy with Weaviate + LangWatch DSPy Visualizer",
+            "description": "This notebook shows an example of DSPy RAG program using Weaviate as the vector database and LangWatch for visualization of the DSPy optimization process.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/langwatch/weaviate_dspy_visualization.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "LangWatch",
+        "url": "https://langwatch.ai/"
+      }
+    ]
   },
   {
     "name": "Langtrace",
     "image": "/img/site/langtrace_logo.png",
-    "link": "https://docs.weaviate.io/integrations/operations/langtrace",
-    "description": "View vector search queries and generative calls that are made to your Weaviate cluster",
+    "link": "langtrace",
+    "description": "Langtrace is an open-source project that uses OpenTelemetry for observability.",
     "tags": ["Operations", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "Python",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Langtrace",
+    "howItWorks": "This integration allows you to view vector search queries and generative calls that are made to your Weaviate cluster.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Weaviate and Langtrace Observability",
+            "description": "View the vector and generative calls made to your application.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/langtrace/weaviate_observability.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Langtrace",
+        "url": "https://langtrace.ai/"
+      }
+    ]
   },
   {
-    "name": "Arize AI",
+    "name": "Arize",
     "image": "/img/site/arize_logo.svg",
-    "link": "https://docs.weaviate.io/integrations/operations/arize",
-    "description": "Log search queries sent to Weaviate and requests sent to LLM providers in Phoenix",
+    "link": "arize",
+    "description": "Arize AI created Phoenix, an open-source tool for tracing and evaluation.",
     "tags": ["Operations", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "Python",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Arize AI",
+    "howItWorks": "You can use <a href=\"https://opentelemetry.io//\">OpenTelemetry</a> to log search queries sent to Weaviate and requests sent to LLM providers in Phoenix. Phoenix provides a data visualization UI and additional APIs for accessing logged data.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "DSPy Instrumentor",
+            "description": "Log calls sent to DSPy using Phoenix",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/arize/DSPy-Instrumentor.py"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Arize AI",
+        "url": "https://arize.com/"
+      }
+    ]
   },
   {
     "name": "IBM",
     "image": "/img/site/IBM_logo.svg.png",
-    "link": "https://docs.weaviate.io/integrations/data-platforms/ibm",
-    "description": "IBM offers a variety of solutions for building generative AI applications",
+    "link": "ibm",
+    "description": "IBM offers a variety of solutions for building generative AI applications and other use cases.",
     "tags": ["Data Platforms", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "IBM",
+    "howItWorks": "<a href=\"https://github.com/DS4SD/docling\">Docling</a> is an open-source project built by the IBM Deep Search team. It enables developers to parse and export documents and ingest it into a Weaviate collection.",
+    "setup": [
+      "Create a Docling account and upload your documents.",
+      "Set up a Weaviate instance with the Docling integration.",
+      "Configure the Weaviate Docling Connector to stream data from Docling to Weaviate."
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Performing RAG over PDFs with Weaviate and Docling",
+            "description": "This notebook shows you how to perform RAG over PDF documents parsed by Docling",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/data-platforms/ibm/docling/rag_over_pdfs_docling_weaviate.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "IBM",
+        "url": "https://www.ibm.com/us-en"
+      }
+    ]
   },
   {
     "name": "DeepEval",
     "image": "/img/site/deepeval-logo.png",
-    "link": "https://docs.weaviate.io/integrations/operations/deepeval",
-    "description": "Evaluate your generative AI applications with DeepEval's open-source LLM framework",
+    "link": "deepeval",
+    "description": "DeepEval is an open-source LLM evaluation framework, built for engineers to unit-test LLM applications and AI Agents. It provides out-of-the-box LLM-powered metrics, including RAG, conversational, red-teaming, agentic, multimodal, and custom metrics.",
     "tags": ["Operations", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "DeepEval",
+    "howItWorks": "You can use DeepEval to optimize search, retrieval, and RAG with Weaviate by leveraging DeepEval's custom and RAG metrics to select the best hyperparameters like <code>embedding model</code> and <code>top-K</code> for your Weaviate collection.",
+    "setup": [
+      "Custom Metrics:",
+      "1. <a href=\"https://www.deepeval.com/docs/metrics-llm-evals\">G-Eval</a>",
+      "2. <a href=\"https://www.deepeval.com/docs/metrics-dag\">DAG</a>",
+      "RAG Metrics:",
+      "1. <a href=\"https://www.deepeval.com/docs/metrics-answer-relevancy\">Answer Relevancy</a>",
+      "2. <a href=\"https://www.deepeval.com/docs/metrics-faithfulness\">Faithfulness</a>",
+      "3. <a href=\"https://www.deepeval.com/docs/metrics-contextual-precision\">Contextual Precision</a>",
+      "4. <a href=\"https://www.deepeval.com/docs/metrics-contextual-recall\">Contextual Recall</a>",
+      "5. <a href=\"https://www.deepeval.com/docs/metrics-contextual-relevancy\">Contextual Relevancy</a>"
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Optimizing RAG with DeepEval",
+            "description": "This notebook shows how to build a RAG pipeline using Weaviate and how to optimize its performance with DeepEval.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/deepeval/rag_evaluation_deepeval.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "DeepEval",
+        "url": "https://www.deepeval.com/"
+      }
+    ]
   },
   {
     "name": "Box",
     "image": "/img/site/box-logo.png",
-    "link": "https://docs.weaviate.io/integrations/data-platforms/box",
-    "description": "Connect data in Box to Weaviate for advanced search and generative AI applications",
+    "link": "box",
+    "description": "Box is a cloud-based content management platform that enables organizations to securely store, share, and collaborate on files.",
     "tags": ["Data Platforms", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": true
+    "company": "Box",
+    "howItWorks": "By connecting Box with Weaviate, you can transform your stored files into a powerful semantic search system or enable Retrieval Augmented Generation (RAG). This setup allows for advanced retrieval and AI-driven content generation based on your Box documents.",
+    "setup": [
+      "Create a Box account and upload your documents.",
+      "Set up a Weaviate instance with the Box integration.",
+      "Configure the Box connector in Weaviate to access your Box files.",
+      "Ingest and index your Box documents into Weaviate for semantic search and RAG capabilities."
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Weaviate + Box RAG Demo",
+            "description": "Learn how to embed the content stored in Box into Weaviate and then use the Query Agent to search through the documents.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/data-platforms/box/weaviate_box.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Explore Box",
+        "url": "https://www.box.com/"
+      }
+    ]
   },
   {
     "name": "NVIDIA",
@@ -453,51 +1662,203 @@
   {
     "name": "Dynamiq",
     "image": "/img/site/dynamiq.png",
-    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/dynamiq",
-    "description": "Operating platform for agentic AI applications",
+    "link": "dynamiq",
+    "description": "Dynamiq is an operating platform for building agentic AI applications.",
     "tags": ["LLM and Agent Frameworks", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Dynamiq",
+    "howItWorks": "Weaviate is integrated with Dynamiq through the retriever model!",
+    "setup": [
+      "Weaviate is a <a href=\"https://docs.getdynamiq.ai/low-code-builder/rag-nodes/inference-rag-workflow/document-retrievers#weaviate-retriever\">supported document retriever</a> in Dynamiq. The integration allows you to read and write to your Weaviate cluster to build robust RAG applications."
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Dynamiq Getting Started",
+            "description": "A guide to integrating the Weaviate vector database with Dynamiq.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/dynamiq/dynamiq-getting-started.ipynb"
+          },
+          {
+            "topic": "Dynamiq Research Flow",
+            "description": "Combine Dynamiq and Weaviate to streamline the research process, automate data storage, and generate research reports.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/dynamiq/dynamiq-research-workflow.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Visit Dynamiq",
+        "url": "https://www.getdynamiq.ai/"
+      }
+    ]
   },
   {
     "name": "CrewAI",
     "image": "/img/site/crewai.png",
-    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/crewai",
-    "description": "LLM and Agent Framework for building multi-agent applications",
+    "link": "crewai",
+    "description": "CrewAI is a framework for building multi-agent applications.",
     "tags": ["LLM and Agent Frameworks", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "CrewAI",
+    "howItWorks": "Weaviate is a supported vector search tool in CrewAI. It enables you to run semantic search queries over your documents stored in your Weaviate cluster.",
+    "setup": [
+      "You can initialize the tool with:",
+      {
+        "type": "code",
+        "lang": "python",
+        "code": "from crewai_tools import WeaviateVectorSearchTool \n\n # Initialize the tool \ntool = WeaviateVectorSearchTool( collection_name='example_collections',\nlimit=3,\n weaviate_cluster_url=\"https://your-weaviate-cluster-url.com\",\n weaviate_api_key=\"your-weaviate-api-key\",\n)"
+      }
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Weaviate Query Agent with Crew AI",
+            "description": "This notebook will show you how to define the Weaviate Query Agent as a tool through the Crew AI.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/crewai/crewai-query-agent-as-tool.ipynb"
+          },
+          {
+            "topic": "CrewAI and Weaviate Getting Started",
+            "description": "Build industry-specific agents that use web search and Weaviate blogs to track trends and uncover AI use cases.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/crewai/simple-getting-started.ipynb"
+          }
+        ]
+      },
+      {
+        "title": "Read & Listen",
+        "items": [
+          {
+            "topic": "Practical Multi Agent RAG using CrewAI, Weaviate, Groq and ExaTool",
+            "description": "Learn how to build RAG powered CrewAI agents that enables code_interpretation, rag, memory, and building a custom tool.",
+            "type": "Blog",
+            "url": "https://lorenzejay.dev/articles/practical-agentic-rag"
+          },
+          {
+            "topic": "Rag Techniques Tutorial for Agentic Rag",
+            "description": "A video on RAG techniques for beginners.",
+            "type": "Video",
+            "url": "https://youtu.be/zXBlvpaFNxE?si=KkE14m1KngPZvu_W"
+          },
+          {
+            "topic": "How to Build an Agentic RAG Recommendation Engine",
+            "description": "Learn how you can leverage Knowledge to give your crew of agents access to relevant context and information.",
+            "type": "Video",
+            "url": "https://youtu.be/2Fu_GgS-Q4s?si=ZnDeucXrGnG7UaQY"
+          },
+          {
+            "topic": "Building Multi-Agent Systems with Crew AI and Weaviate",
+            "description": "Learn about how you can build multi-agent systems with CrewAI and Weaviate",
+            "type": "Blog",
+            "url": "https://weaviate.io/blog/building-multi-agent-systems"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Visit CrewAI",
+        "url": "https://www.crewai.com/"
+      }
+    ]
   },
   {
     "name": "Agno",
     "image": "/img/site/agno.png",
-    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/agno",
-    "description": "A lightweight library for building Multimodal Agents ",
+    "link": "agno",
+    "description": "Agno is a lightweight library for building Multimodal Agents. It exposes LLMs as a unified API and gives them superpowers like memory, knowledge, tools and reasoning.",
     "tags": ["LLM and Agent Frameworks", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Agno",
+    "howItWorks": "Weaviate is a <a href=\"https://docs.agno.com/vectordb/weaviate\">supported vector database</a> in Agno.",
+    "setup": [
+      "You first create the vector store with:",
+      {
+        "type": "code",
+        "lang": "python",
+        "code": "from agno.agent import Agent\nfrom agno.knowledge.pdf_url import PDFUrlKnowledgeBase\nfrom agno.vectordb.search import SearchType\nfrom agno.vectordb.weaviate import Distance, VectorIndex, Weaviate\n\nvector_db = Weaviate(\n    collection=\"recipes\",\n    search_type=SearchType.hybrid,\n    vector_index=VectorIndex.HNSW,\n    distance=Distance.COSINE,\n    local=True,  # Set to False if using Weaviate Cloud and True if using local instance\n)\n"
+      },
+      "Then you'll create the knowledge base for your agents with:",
+      {
+        "type": "code",
+        "lang": "python",
+        "code": "knowledge_base = PDFUrlKnowledgeBase(\n    urls=[\"https://agno-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf\"],\n    vector_db=vector_db,\n)\n"
+      }
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Weaviate Query Agent with Agno",
+            "description": "This notebook will show you how to define the Weaviate Query Agent as a tool through Agno.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/agno/agno-weaviate-query-agent.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Agno",
+        "url": "https://www.agno.com"
+      }
+    ]
   },
   {
     "name": "Boomi",
     "image": "/img/site/boomi.png",
-    "link": "https://docs.weaviate.io/integrations/data-platforms/boomi",
-    "description": "Perform operations such as data ingestion and retrieval directly from Boomi's low-code environment",
+    "link": "boomi",
+    "description": "Boomi is an integration platform as a service, API management, master data management and data preparation solution.",
     "tags": ["Data Platforms", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Boomi",
+    "setup": [
+      "Set up a Boomi account.",
+      "Create a new Boomi integration process.",
+      "Use the REST Client Connector to connect to your Weaviate instance.",
+      "Configure the connector to perform operations such as data ingestion and retrieval."
+    ],
+    "howItWorks": "Weaviate is integrated into Boomi's platform through Boomi's REST Client Connector. This integration allows users to perform operations such as data ingestion and retrieval within Weaviate directly from Boomi's low-code environment.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Start Connecting with Weaviate",
+            "description": "A replication of Weaviate's Quickstart tutorial on the Boomi platform using the REST Client connector.",
+            "type": "Article",
+            "url": "https://community.boomi.com/s/article/Start-Connecting-with-Weaviate"
+          },
+          {
+            "topic": "Start Connecting with Weaviate",
+            "description": "A replication of Weaviate's Quickstart tutorial on the Boomi platform using the REST Client connector.",
+            "type": "Tutorial",
+            "url": "https://discover.boomi.com/solutions/start-connecting-with-weaviate"
+          },
+          {
+            "topic": "AI Agent: Weaviate Quickstart Q&A Agent",
+            "description": "Learn how to use the Boomi Agent Designer and Weaviate as the vector store for RAG based agents.",
+            "type": "Tutorial",
+            "url": "https://discover.boomi.com/solutions/ai-agent-weaviate-quickstart-qa-agent"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Explore Boomi",
+        "url": "https://www.boomi.com/"
+      }
+    ]
   },
   {
     "name": "Snowflake",
     "image": "/img/site/snowflake.png",
-    "link": "https://docs.weaviate.io/weaviate/installation/spcs-integration",
+    "link": "https://weaviate.io/partners/snowflake",
     "description": "Leverage generative AI capabilities within the boundaries of your Snowflake data environment",
     "tags": ["Cloud Hyperscalers"],
     "maintainedBy": "External",
@@ -508,111 +1869,346 @@
   {
     "name": "TruLens",
     "image": "/img/site/trulens-logo.png",
-    "link": "https://docs.weaviate.io/integrations/operations/trulens",
+    "link": "trulens",
     "description": "TruLens is an open source project for evaluating and tracking LLM applications",
     "tags": ["Operations", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "TruLens",
+    "setup": [
+      "TruLens is an open source project for evaluating and tracking LLM applications, allowing you to systematically evaluate, inspect and improve the app."
+    ],
+    "howItWorks": "TruLens can be used to evaluate and trace applications that leverage Weaviate. This includes support for tracing calls to the Weaviate Query Agent.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Query Agent Evaluation with TruLens",
+            "description": "Learn how to trace and evaluate the Query Agent using TruLens",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/trulens/query-agent-evaluation-with-trulens.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Explore TruLens",
+        "url": "https://www.trulens.org/"
+      }
+    ]
   },
   {
     "name": "AIMon",
     "image": "/img/site/aimon.png",
-    "link": "https://docs.weaviate.io/integrations/operations/aimon",
+    "link": "aimon",
     "description": "AIMon offers monitoring and reranking tools to evaluate, optimize, and improve LLM applications",
     "tags": ["Operations", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "AIMon",
+    "setup": [
+      "AIMon offers monitoring and reranking tools to evaluate, optimize, and improve LLM applications."
+    ],
+    "howItWorks": "AIMon integrates with Weaviate by enhancing vector search results using its low-latency, domain-adaptable reranker. Users can compute a composite quality score across retrieved results—combining hallucination, instruction adherence, and retrieval relevance metrics.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Improve the Quality of your LLM Application with AIMon",
+            "description": "In this tutorial, we'll help you build a retrieval-augmented generation (RAG) chatbot and show you how to improve the relevance.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/aimon/reranking_and_evaluation.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Explore AIMon",
+        "url": "https://www.aimon.ai/"
+      }
+    ]
   },
   {
     "name": "Cleanlab",
     "image": "/img/site/cleanlab-logo.png",
-    "link": "https://docs.weaviate.io/integrations/operations/cleanlab",
+    "link": "cleanlab",
     "description": "Cleanlab provides software to detect and remediate inaccurate responses from Enterprise AI applications",
     "tags": ["Operations", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Cleanlab",
+    "setup": [
+      "Cleanlab provides software to detect and remediate inaccurate responses from Enterprise AI applications. It ensures your Agents, RAG, and Chatbots are safe and helpful."
+    ],
+    "howItWorks": "For any RAG solution built using Weaviate technology (knowledge base, embeddings, etc) and any LLM model, Cleanlab will automatically score the trustworthiness of each RAG response. This enables you to automatically flag inaccurate/hallucinated responses and avoid losing your users’ trust.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Deploy Trustworthy RAG with Weaviate and Cleanlab",
+            "description": "Build trustworthy RAG applications using Weaviate and Cleanlab to mitigate hallucinated/incorrect responses.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/cleanlab/rag_with_weaviate_and_cleanlab.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Explore Cleanlab",
+        "url": "https://cleanlab.ai/"
+      }
+    ]
   },
   {
     "name": "Patronus AI",
     "image": "/img/site/patronus-logo.png",
-    "link": "https://docs.weaviate.io/integrations/operations/patronus",
+    "link": "patronus-ai",
     "description": "Patronus AI offers many tools and solutions for observability and evaluations",
     "tags": ["Operations", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Patronus AI",
+    "setup": [
+      "Patronus AI offers many tools and solutions for observability and evaluations. Access evaluation models designed to score RAG hallucinations, image relevance, context quality, and more across a variety of use cases."
+    ],
+    "howItWorks": "Patronus enables you to use trace-based observability when developing RAG systems with Weaviate. Further, Patronus has developed the Lynx model family, custom models for Hallucination Detection, a particularly important issue for RAG systems.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Patronus Lynx Hallucination Detection",
+            "description": "Learn how to evaluate if the Weaviate Query Agent is hallucinating by connecting the returned sources to Lynx",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/patronus/lynx-query-agent.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Explore Patronus AI",
+        "url": "https://www.patronus.ai/"
+      }
+    ]
   },
   {
     "name": "Comet",
     "image": "/img/site/comet-logo.png",
-    "link": "https://docs.weaviate.io/integrations/operations/comet",
+    "link": "comet",
     "description": "Comet allows you to track, evaluate, and monitor both traditional and LLM models end-to-end.",
     "tags": ["Operations", "Integration"],
-    "maintainedBy": "External",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Comet",
+    "setup": [
+      "Comet is a centralized platform that allows you to track, evaluate, and monitor both traditional and LLM models end-to-end."
+    ],
+    "howItWorks": "For teams working on training and fine-tuning LLMs, Comet’s Experiment Tracking solution can first be used to track any LLM fine-tuning runs in a reproducible way, and easily share with the team. Once you have a model that you want to move forward with, whether that is a fine tuned OS model or a proprietary model, you will need to evaluate how that model performs with different datasets, RAGs, prompt templates, and other input tweaks before moving your application to production.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "RAG with Opik Tracing and Evals",
+            "description": "Learn how to use Opik, Weaviate, and OpenAI to build a RAG system",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/comet/Opik-Tracing-and-Evals.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Explore Comet",
+        "url": "https://www.comet.com/site/"
+      }
+    ]
   },
   {
     "name": "N8n",
     "image": "/img/site/n8n-logo.png",
-    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/n8n",
-    "description": "N8n is a low‑code workflow automation platform that lets users build generative AI applications.",
+    "link": "n8n",
+    "description": "N8n is a low‑code workflow automation platform that lets both technical and non‑technical users build generative AI applications.",
     "tags": ["LLM and Agent Frameworks", "Integration"],
-    "maintainedBy": "Internal",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "N8n",
+    "howItWorks": "You can use n8n’s <a href=\"https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreweaviate/\">Weaviate Vector Store</a> node to:<ol><li>Inserts documents into a Weaviate collection.</li><li>Returns ranked documents based on queries from a Weaviate collection.</li><li>Performs RAG by acting as a tool for AI nodes.</li><li>Performs agentic RAG by acting as a tool for AI agent nodes.</li></ol>",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Weaviate N8n template",
+            "description": "Build a Weekly AI Trend Alerter with arXiv and Weaviate",
+            "type": "Template",
+            "url": "https://n8n.io/workflows/5817-build-a-weekly-ai-trend-alerter-with-arxiv-and-weaviate/"
+          }
+        ]
+      },
+      {
+        "title": "Read & Listen",
+        "items": [
+          {
+            "topic": "Weaviate N8n Community Node",
+            "description": "You can now use Weaviate with n8n for no-code agentic workflows. This article teaches you how.",
+            "type": "Blog",
+            "url": "https://weaviate.io/blog/agent-workflow-automation-n8n-weaviate"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Visit N8n",
+        "url": "https://n8n.io/"
+      }
+    ]
+  },
+  {
+    "name": "Mem0",
+    "image": "/img/site/mem0.png",
+    "link": "mem0",
+    "description": "Mem0 is an open-source tool for adding a memory layer to agentic AI applications. It is designed to remember user preferences, context, and history across sessions.",
+    "tags": ["LLM and Agent Frameworks", "Integration"],
+    "company": "Mem0",
+    "howItWorks": "<a href=\"https://docs.mem0.ai/components/vectordbs/dbs/weaviate\">Use Weaviate to store and retrieve</a> Mem0 memory sessions. Each memory object can be stored as an embedding, enabling semantic search, filtering, and context retrieval for personalized AI interactions.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Integrate Long-Term Memory for AI Agents",
+            "description": "This tutorial shows you how you can add long-term memory to your AI agents using Mem0 and Weaviate.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/mem0/quickstart_mem0_with_weaviate.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Visit Mem0",
+        "url": "https://mem0.ai/"
+      }
+    ]
   },
   {
     "name": "Replicated",
     "image": "/img/site/replicated-logo.png",
-    "link": "https://docs.weaviate.io/integrations/compute-infrastructure/replicated",
-    "description": "Replicated enables vendors to deliver and manage Kubernetes apps in secure environments.",
+    "link": "replicated",
+    "description": "Replicated is a platform that helps software vendors package, deliver, and manage Kubernetes applications in secure, customer-controlled environments.",
     "tags": ["Compute Infrastructure"],
-    "maintainedBy": "External",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Replicated",
+    "howItWorks": "<a href=\"https://securebuild.com/\">SecureBuild, by Replicated, offers a <a href=\"https://securebuild.com/images/weaviate\">Weaviate container image</a> for developers who want to run production‑ready Weaviate securely in local environments.",
+    "setup": [
+      "Set up a Python environment.",
+      "Deploy a serverless, read-only Weaviate client with Replicated.",
+      "Integrate Replicated with Weaviate in your application."
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Read & Listen",
+        "items": [
+          {
+            "topic": "Introducing SecureBuild",
+            "description": "Learn what SecureBuild is and why Weaviate joined as a launch partner.",
+            "type": "Blog",
+            "url": "https://securebuild.com/blog/introducing-securebuild"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Explore Replicated",
+        "url": "https://replicated.com/"
+      }
+    ]
   },
   {
-    "name": "Cardinal",
-    "image": "/img/site/cardinal-logo.png",
-    "link": "https://docs.weaviate.io/integrations/data-platforms/cardinal",
-    "description": "Document processing platform, powering your data workflows with their custom AI model.",
-    "tags": ["Data Platforms"],
-    "maintainedBy": "External",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
-  },
-  {
-    "name": "Contextual AI",
-    "image": "/img/site/contextual-ai.png",
-    "link": "https://docs.weaviate.io/integrations/data-platforms/contextual-ai",
-    "description": "Document processing platform, powering your data workflows with their custom AI model.",
-    "tags": ["Data Platforms"],
-    "maintainedBy": "External",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
-  },
-  {
-    "name": "Mem0",
-    "image": "/img/site/mem0-logo.png",
-    "link": "https://docs.weaviate.io/integrations/llm-agent-frameworks/mem0",
-    "description": "Document processing platform, powering your data workflows with their custom AI model.",
+    "name": "Modaic",
+    "image": "/img/site/modaic.png",
+    "link": "modaic",
+    "description": "Modaic is a hub to share and manage DSPy programs.",
     "tags": ["LLM and Agent Frameworks"],
-    "maintainedBy": "External",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": false
+    "company": "Modaic",
+    "howItWorks": "Weaviate search can be used as a tool with agents published on Modaic Hub. Learn about the <a href=\"https://docs.modaic.dev/\">Modaic SDK</a> and check out the programs on the hub <a href=\"https://www.modaic.dev/programs\">here. </a>",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Modaic and Weaviate",
+            "description": "Learn how to load the CrossEncoderRanker program from the Modaic Hub, as well as PromptToSignature",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/modaic/modaic-weaviate.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Explore Modaic",
+        "url": "https://www.modaic.dev/"
+      }
+    ]
+  },
+  {
+    "name": "Chonkie",
+    "image": "/img/site/chonkie.png",
+    "link": "chonkie",
+    "description": "Chonkie is a data platform that allows you to clean, chunk, embed, and query your data.",
+    "tags": ["Data Platforms"],
+    "company": "Chonkie",
+    "howItWorks": "Chonkie offers three techniques for parsing your documents: TableChef, TextChef, and MarkdownChef. Once the data is preprocessed, you can ingest it into Weaviate using the WeaviateHandshake.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Weaviate Handshake Example",
+            "description": "Learn how to use Chonkie's WeaviateHandshake to process markdown documents, extract chunks (text and tables), and ingest them into Weaviate to search and natural language querying.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/data-platforms/chonkie/weaviate-handshake-example.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Explore Chonkie",
+        "url": "https://docs.chonkie.ai/common/welcome"
+      }
+    ]
+  },
+  {
+    "name": "Parallel",
+    "image": "/img/site/parallel.png",
+    "link": "parallel",
+    "description": "Parallel is a web API purpose-built for AI.",
+    "tags": ["Data Platforms"],
+    "company": "Parallel",
+    "howItWorks": "Connect Weaviate to the web using Parallel's API. You can build systems that search the web or scrape data from the web and ingest it into Weaviate.",
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Parallel and Weaviate",
+            "description": "Learn how to create an AI system with DSPy that uses Parallel's Chat with the Web API and Weaviate's Query Agent.",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/data-platforms/web-search/parallel/parallel-weaviate.ipynb"
+          },
+          {
+            "topic": "Parallel Deep Research and Weaviate:",
+            "description": "Populate Weaviate with Data from Parallel’s Deep Research with the Web API ",
+            "type": "Notebook",
+            "url": "https://github.com/weaviate/recipes/blob/main/integrations/data-platforms/web-search/parallel/parallel-generate-web-dataset-to-weaviate.ipynb"
+          }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Explore Parallel",
+        "url": "https://parallel.ai/"
+      }
+    ]
   }
 ]

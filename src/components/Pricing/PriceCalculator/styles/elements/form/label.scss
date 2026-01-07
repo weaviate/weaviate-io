@@ -7,9 +7,32 @@ label {
   align-items: center;
   height: 40px;
   font-size: 0.9em;
-  font-weight: 700;
+  font-weight: 550;
+  color: $deselectedButtonText;
 }
 
 label + button {
   margin-top: $space;
 }
+
+.label {
+  color: $secondaryColor;
+  font-size: 16px;
+  font-weight: 550;
+  flex-shrink: 0;
+  padding-bottom: 8px;
+}
+
+.label-with-badge {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 6px;
+  flex-direction: row;
+  justify-content: start;
+  padding-bottom: 8px;
+  .label {
+    padding-bottom: 0;
+  }
+}
+

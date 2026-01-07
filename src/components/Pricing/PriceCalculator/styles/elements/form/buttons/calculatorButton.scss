@@ -1,6 +1,3 @@
-@use '../../../variables' as *;
-@use 'sass:color';
-
 .calculatorButton {
   display: flex;
   width: 100%;
@@ -16,21 +13,25 @@
     font-size: 0.9em;
     
     > div { 
-      background-color: $buttonBgDropdown;
+      background-color: $white;
       align-items: flex-start; 
       background-image: url('/img/pricing/chevronDown.svg');
       background-repeat: no-repeat;
       background-position: calc(100% - 20px) center;
+      color: $mainColor;
+      border-color: $deselectedButtonBorder;
     }
   }
 
   > div {
     height: 100%;
     padding: 0 $space;
-    border: 1px solid $buttonBorder;
+    border: 1px solid $deselectedButtonBorder;
     border-radius: calc($space / 2);
-    background-color: $buttonBg;
+    background-color: $deselectedButtonBg;
+    color: $deselectedButtonText;
     display: flex;
+    font-weight: 600;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -38,16 +39,24 @@
   }
 
   &.active {
-    font-weight: 600;
-    > div { background: $green; }
+    > div { background: $mainColor; color: $white; border-color: $mainColor; }
   }
   
   &:hover, &:focus {
     > div {
-      background-color: color.adjust($buttonBgHover, $lightness: -10%);
-      border: 1px solid color.adjust($buttonBorder, $lightness: -10%);
+      background-color: lighten($white, 3%) ;
+      color: $mainColor;
     }
 
-    &.active > div { background-color: color.adjust($green, $lightness: -10%); }
+    &.active {
+      > div { background: $mainColor; color: $white; }
+    }
+
+    &.dropdown {
+      > div {
+        border-color: $deselectedButtonBorder;
+        color: $mainColor;
+      }
+    }
   }
 }

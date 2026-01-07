@@ -19,10 +19,7 @@ export default function Header() {
               decisions and adapt on the fly.
             </p>
             <div className={styles.buttons}>
-              <Link
-                className={styles.buttonGradient}
-                to="https://console.weaviate.cloud"
-              >
+              <Link className={styles.buttonGradient} to="/go/console">
                 Start for Free
               </Link>
               <Link className={styles.buttonOutline} to="/contact">
