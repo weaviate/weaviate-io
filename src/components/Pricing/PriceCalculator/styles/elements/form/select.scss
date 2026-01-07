@@ -1,4 +1,4 @@
-@use "../../variables" as *;
+@use "../../variables.scss" as v;
 @use "sass:color";
 
 .selectContentWrapper {
@@ -33,17 +33,17 @@
 }
 
 .selectContent {
-  background: #ffffff;
-  border: 1px solid $deselectedButtonBorder;
+  background: v.$white;
+  border: 1px solid v.$deselectedButtonBorder;
   border-radius: 5px;
-  box-shadow: $boxShadow;
+  box-shadow: v.$boxShadow;
   overflow: hidden;
 }
 
 .selectTarget {
   display: flex;
-  padding: 0 $space;
-  border: 1px solid $mainColor;
+  padding: 0 v.$space;
+  border: 1px solid v.$mainColor;
   border-radius: 5px;
   align-self: center;
   min-width: 200px;
@@ -52,11 +52,11 @@
   justify-content: flex-start;
   text-transform: capitalize;
   color: inherit;
-  transition: $transition;
+  transition: v.$transition;
 
   &:focus,
   &:hover {
-    background: #ffffff;
+    background: v.$white;
   }
 }
 
@@ -67,19 +67,19 @@
   width: 100%;
   min-width: 200px;
   height: 44px;
-  border: 1px solid $deselectedButtonBorder;
-  border-radius: calc($space / 2);
-  background: #ffffff;
+  border: 1px solid v.$deselectedButtonBorder;
+  border-radius: calc(v.$space / 2);
+  background: v.$white;
   overflow: hidden;
   flex-shrink: 0;
 
   .selectInput {
     flex: 1 1 auto;
-    padding: 0 $space;
+    padding: 0 v.$space;
     border: none;
     outline: none;
     background: transparent;
-    color: $mainColor;
+    color: v.$mainColor;
     font-size: 0.9em;
     font-weight: 600;
     text-transform: capitalize;
@@ -87,7 +87,7 @@
     min-width: 0;
 
     &::placeholder {
-      color: $deselectedButtonText;
+      color: v.$deselectedButtonText;
     }
   }
 
@@ -101,14 +101,14 @@
     max-width: 44px;
     flex-shrink: 0;
     border: none;
-    border-left: 1px solid $deselectedButtonBorder;
-    background: #ffffff;
+    border-left: 1px solid v.$deselectedButtonBorder;
+    background: v.$white;
     cursor: pointer;
     padding: 0;
     transition: background-color 0.2s ease;
 
     &:hover {
-      background: lighten($buttonBgDropdown, 2%);
+      background: color.scale(v.$buttonBgDropdown, $lightness: 2%);
     }
 
     .chevronIcon {
@@ -126,21 +126,21 @@ ul.selectList {
     width: 100%;
     text-align: left;
     padding: 0 10px;
-    color: $textGrey;
+    color: v.$textGrey;
     font-size: 0.9em;
-    transition: $transition;
+    transition: v.$transition;
     padding-left: 30px;
     background-position: 10px center;
     background-repeat: no-repeat;
 
     &:hover,
     &:focus {
-      background-color: color.adjust($selectItemHover, $lightness: 5%);
+      background-color: color.adjust(v.$selectItemHover, $lightness: 5%);
     }
 
     &.active {
-      color: $mainColor;
-      background-color: $selectItemHover;
+      color: v.$mainColor;
+      background-color: v.$selectItemHover;
       background-image: url("/img/pricing/check.svg");
       background-position: 10px center;
       background-repeat: no-repeat;

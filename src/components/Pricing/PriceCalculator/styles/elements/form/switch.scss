@@ -1,3 +1,5 @@
+@use "../../variables.scss" as v;
+
 .switch-container {
   display: flex;
   flex-direction: column;
@@ -6,13 +8,13 @@
 }
 
 .switch-label {
-  color: $deselectedButtonText;
+  color: v.$deselectedButtonText;
 }
 
 .switch {
   display: flex;
   flex-direction: row;
-  gap: $space;
+  gap: v.$space;
   padding: 4px 0px;
   width: fit-content;
 
@@ -20,29 +22,29 @@
     position: relative;
     padding: 8px 20px;
     border: none;
-    color: $deselectedButtonText;
-    background: $deselectedButtonBg;
+    color: v.$deselectedButtonText;
+    background: v.$deselectedButtonBg;
     font-size: 0.9em;
     font-weight: 700;
     min-width: 80px;
     height: 44px;
     border-width: 1px;
     border-style: solid;
-    border-color: $deselectedButtonBorder;
-    border-radius: calc($space / 2);
+    border-color: v.$deselectedButtonBorder;
+    border-radius: calc(v.$space / 2);
     cursor: pointer;
     transition: color 0.2s ease;
     white-space: nowrap;
     overflow: hidden;
 
     &:hover {
-      color: $mainColor;
+      color: v.$mainColor;
     }
 
     &.active {
-      color: #ffffff;
-      border: 1px solid $mainColor;
-      background: $mainColor;
+      color: v.$white;
+      border: 1px solid v.$mainColor;
+      background: v.$mainColor;
     }
   }
 

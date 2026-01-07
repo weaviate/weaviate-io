@@ -1,17 +1,17 @@
-@use '../../variables' as *;
+@use "../../variables.scss" as v;
 
 .buttonGroup {
   flex-grow: 1;
-  
+
   ul {
     display: flex;
     flex-direction: row;
-    gap: $space;
+    gap: v.$space;
     width: 100%;
 
-    li { 
+    li {
       width: 100%;
-      flex-grow: 1; 
+      flex-grow: 1;
     }
-  }  
+  }
 }

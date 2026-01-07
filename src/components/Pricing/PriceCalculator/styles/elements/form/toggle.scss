@@ -1,4 +1,4 @@
-@use "../../variables" as *;
+@use "../../variables.scss" as v;
 @use "sass:color";
 
 .toggle {
@@ -18,27 +18,27 @@
     position: relative;
     width: 55px;
     height: 22px;
-    border: 1px solid $buttonBorder;
-    background: $toggleBg;
+    border: 1px solid v.$buttonBorder;
+    background: v.$toggleBg;
     border-radius: 99px;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    transition: $transition;
+    transition: v.$transition;
   }
 
   &.active .toggler {
-    border: 1px solid $green;
-    background: $green;
+    border: 1px solid v.$green;
+    background: v.$green;
   }
 
   &:focus,
   &:hover {
     .toggler {
-      border: 1px solid color.adjust($buttonBorder, $lightness: -20%);
+      border: 1px solid color.adjust(v.$buttonBorder, $lightness: -20%);
     }
     &.active .toggler {
-      border: 1px solid color.adjust($green, $lightness: -20%);
+      border: 1px solid color.adjust(v.$green, $lightness: -20%);
     }
   }
 
@@ -48,7 +48,7 @@
     left: 0;
     height: 100%;
     aspect-ratio: 1 / 1;
-    background: #ffffff;
+    background: v.$white;
     border-radius: 99px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   }

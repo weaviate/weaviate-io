@@ -1,4 +1,4 @@
-@use '../../variables' as *;
+@use "../../variables.scss" as v;
 
 label {
   display: flex;
@@ -8,15 +8,15 @@ label {
   height: 40px;
   font-size: 0.9em;
   font-weight: 550;
-  color: $deselectedButtonText;
+  color: v.$deselectedButtonText;
 }
 
 label + button {
-  margin-top: $space;
+  margin-top: v.$space;
 }
 
 .label {
-  color: $secondaryColor;
+  color: v.$secondaryColor;
   font-size: 16px;
   font-weight: 550;
   flex-shrink: 0;
@@ -35,4 +35,3 @@ label + button {
     padding-bottom: 0;
   }
 }
-
