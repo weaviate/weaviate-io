@@ -1,12 +1,13 @@
 ---
-title: 'Why, When and How to Fine-Tune a Custom Embedding Model'
-slug: 'fine-tune-embedding-model'
+title: "Why, When and How to Fine-Tune a Custom Embedding Model"
+slug: "fine-tune-embedding-model"
 authors: [leonie]
 date: 2025-08-05
-tags: ['concepts']
+tags: ["concepts"]
 image: ./img/hero.png
 description: "Key consideration for customizing an embedding model through fine-tuning it on company- or domain-specific data to improve the downstream retrieval performance in RAG applications."
 ---
+
 ![Fine-tuning an embedding model](./img/hero.png)
 
 Embedding models are at the core of many natural language processing (NLP) tasks, including retrieval-intensive generative AI systems. However, off-the-shelf embedding models are often limited to general knowledge and not company- or domain-specific knowledge. Customizing an embedding model through fine-tuning can improve the retrieval performance and thus the end-to-end performance of your [Retrieval-Augmented Generation (RAG)](/blog/introduction-to-rag) system.
@@ -35,8 +36,8 @@ Should you always fine-tune an embedding model when your retrieval performance i
 Vector search can lead to bad performance for many different reasons. Here are some questions to help you debug why your retrieval pipeline might not be meeting your performance requirements:
 
 - Do you have many queries requiring exact keyword matches? Then, you might want to explore [keyword](https://docs.weaviate.io/weaviate/concepts/search/keyword-search) or [hybrid search](https://docs.weaviate.io/weaviate/concepts/search/hybrid-search) techniques before spending time and computing resources fine-tuning an embedding model.
-- Are you using the right chunking technique? Maybe the chunking technique you’re currently using is either resulting in chunks with too little context, oddly split chunks, or too large chunks. Look at a few chunks and evaluate if you might need to experiment with another chunking technique, such as [late chunking](/blog/2024-09-05-late-chunking/).
-- Is your embedding model capturing enough contextual nuances? If it does not understand semantic relationships in general and domain knowledge, try a model with more dimensions or a [late-intreaction model](/blog/2025-04-09-late-interaction-overview/) first.
+- Are you using the right chunking technique? Maybe the chunking technique you’re currently using is either resulting in chunks with too little context, oddly split chunks, or too large chunks. Look at a few chunks and evaluate if you might need to experiment with another chunking technique, such as [late chunking](/blog/late-chunking/).
+- Is your embedding model capturing enough contextual nuances? If it does not understand semantic relationships in general and domain knowledge, try a model with more dimensions or a [late-intreaction model](/blog/late-interaction-overview/) first.
 - Is your embedding model only failing to capture domain- or company-specific semantic relationships? Then fine-tuning might be the right choice.
 
 As you can see, before blindly fine-tuning an embedding model, it is important to evaluate whether your use case can benefit from domain-specific fine-tuning.
@@ -112,17 +113,11 @@ The loss function plays a critical role in the fine-tuning process because it me
 Let's explore a few approaches to give you a better intuition:
 
 - **Multiple Negatives Ranking Loss:** Requires simple text pairs of related sentences (`query`, `context`). It doesn’t require you to explicitly provide negative samples because it treats all other examples in the batch as negatives, which makes it a popular technique. Many modern embedding models use variants of this loss for tasks like semantic search.
-    
-    ![multiple negatives ranking loss](img/multiple-negatives.gif)
-    
+  ![multiple negatives ranking loss](img/multiple-negatives.gif)
 - **Triplet Loss:** Requires text triplets consisting of (`anchor`, `positive`, `negative`) with careful data preparation to find meaningful triplets. This is great for cases when you need precise control over what is similar or dissimilar, but it can be difficult to curate a good dataset because you need to find meaningful hard negatives to avoid trivial triplets. Hard negatives are examples that are similar to the anchor but should be ranked lower than the positive example.
-    
-    ![triplet loss](img/triplet-loss.gif)
-    
+  ![triplet loss](img/triplet-loss.gif)
 - **Cosine Embedding Loss:** Requires sentence pairs with a similarity score indicating how related they are (`sentence_A`, `sentence_B`, `score`). This is ideal for cases where you have different grades of similarity rather than binary relevant/irrelevant judgments.
-    
-    ![cosine embedding loss](img/cosine-embeddings.gif)
-    
+  ![cosine embedding loss](img/cosine-embeddings.gif)
 
 During training, the optimization process adjusts the model's parameters to pull positive pairs closer together in the embedding space while pushing negative pairs further apart. This creates a representation space where semantically similar content naturally groups together, enabling effective retrieval and similarity search.
 
@@ -246,6 +241,6 @@ You can find the recipe notebooks for how to use the Hugging Face and Amazon Sag
 - [Hugging Face notebook](https://github.com/weaviate/recipes/blob/main/weaviate-features/similarity-search/similarity_search_huggingface.ipynb)
 - [AWS SageMaker notebok](https://github.com/weaviate/recipes/blob/main/weaviate-features/similarity-search/similarity_search_aws_sagemaker.ipynb)
 
-import WhatsNext from '/_includes/what-next.mdx'
+import WhatsNext from "/_includes/what-next.mdx";
 
 <WhatsNext />

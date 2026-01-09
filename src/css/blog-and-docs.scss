@@ -1,5 +1,5 @@
-@import 'variables.scss';
-@import 'blog-custom-layout.scss';
+@use 'variables.scss' as *;
+@use 'blog-custom-layout.scss' as *;
 
 // For redocusaurus anchor - "smooth" breaks scrolling
 html {
