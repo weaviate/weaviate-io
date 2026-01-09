@@ -22,7 +22,7 @@ For more information related to one of the documents below, please reach out to 
   - [Weaviate Self-Serve Terms of Service](/service/weaviate-cloud-agreement)
   - [Weaviate Commercial Terms of Service US](/service/weaviate-enterprise-agreement-us)
   - [Weaviate Commercial Terms of Service non-US](/service/weaviate-enterprise-agreement-nonus)
-  - [Weaviate Service Level Agreement](/sla)
+  - [Weaviate Service Level Agreement](/SLA)
   - [Weaviate Data Processing Agreement](/dpa)
   - [Weaviate Data Subprocessors](/subprocessors)
   - [Weaviate Support Terms](/weaviate-support-terms)

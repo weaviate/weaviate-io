@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './styles.module.scss';
-import Link from '@docusaurus/Link';
+import React from "react";
+import styles from "./styles.module.scss";
+import Link from "@docusaurus/Link";
 
 export default function BuildWith() {
   return (
@@ -14,11 +14,8 @@ export default function BuildWith() {
           <div className={styles.largeBox}>
             <div className={styles.boxTop}>
               <div className={styles.boxLogo}></div>
-              <Link
-                to="blog/unbody-weaviate"
-                className={styles.boxButton}
-              >
-                {'See the showcase >'}
+              <Link to="blog/unbody-weaviate" className={styles.boxButton}>
+                {"See the showcase >"}
               </Link>
             </div>
             <h3>
@@ -39,7 +36,7 @@ export default function BuildWith() {
                 to="/community/build-with-weaviate"
                 className={styles.boxButton}
               >
-                {'See the showcase >'}
+                {"See the showcase >"}
               </Link>
             </div>
             <div className={`${styles.smallBox} ${styles.dark}`}>
@@ -53,15 +50,10 @@ export default function BuildWith() {
                 to="/community/build-with-weaviate"
                 className={styles.boxButton}
               >
-                {'See the showcase >'}
+                {"See the showcase >"}
               </Link>
             </div>
           </div>
-        </div>
-        <div className={styles.buttonContainer}>
-          <Link to="/community/build-with-weaviate" className={styles.button}>
-            See all Showcases
-          </Link>
         </div>
       </div>
     </div>

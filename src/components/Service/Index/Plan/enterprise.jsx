@@ -1,13 +1,13 @@
-import React from 'react';
-import styles from './styles.module.scss';
-import Link from '@docusaurus/Link';
+import React from "react";
+import styles from "./styles.module.scss";
+import Link from "@docusaurus/Link";
 
 export default function PricingEnterprise() {
   return (
     <div className={styles.boxContainer}>
-      <Link className={styles.box} to="deployment/enterprise-cloud">
+      <Link className={styles.box} to="deployment/dedicated">
         <div className={styles.title}>
-          <h3>Enterprise Cloud</h3>
+          <h3>Dedicated Cloud</h3>
         </div>
         <div className={styles.price}>
           <p>
@@ -43,7 +43,7 @@ export default function PricingEnterprise() {
             Deploying large-scale production use cases without the complexities
             of self-management.
           </p>
-          <Link className={styles.boxLink} to="deployment/enterprise-cloud">
+          <Link className={styles.boxLink} to="/deployment/dedicated">
             Learn More
           </Link>
         </div>
