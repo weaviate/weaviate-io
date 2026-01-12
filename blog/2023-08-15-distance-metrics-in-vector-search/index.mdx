@@ -4,9 +4,8 @@ slug: distance-metrics-in-vector-search
 authors: [erika]
 date: 2023-08-15
 image: ./img/hero.png
-tags: ['concepts']
+tags: ["concepts"]
 description: "Learn about why you need distance metrics in vector search and the metrics implemented in Weaviate (Cosine, Dot Product, L2-Squared, Manhattan, and Hamming)."
-
 ---
 
 ![Distance Metrics in Vector Search](img/hero.png)
@@ -17,7 +16,7 @@ description: "Learn about why you need distance metrics in vector search and the
 
 In a nutshell, a vector embedding is an array of numbers, that is used to describe an object. For example, strawberries could have a vector `[3, 0, 1]` – more likely the array would be a lot longer than that.
 
-*Note*, the meaning of each value in the array, depends on what machine learning model we use to generate them.
+_Note_, the meaning of each value in the array, depends on what machine learning model we use to generate them.
 
 To judge how similar two objects are, we can compare their vector values, by using various **distance metrics**.
 
@@ -35,14 +34,13 @@ If you already have a working knowledge of vector search, then you can skip stra
 
 Vector databases keep the semantic meaning of your data by representing each object as a vector embedding. Each embedding is a point in a high-dimensional space. For example, the vector for bananas (both the text and the image) is located near apples and not cats.
 
-
 <img
-  src={require('./img/vectors-example.png').default}
+  src={require("./img/vectors-example.png").default}
   alt="Vectors Example"
   style={{ maxWidth: "90%" }}
 />
 
-*The above image is a visual representation of a vector space. To perform a search, your search query is converted to a vector - similar to your data vectors. The vector database then computes the similarity between the search query and the collection of data points in the vector space.*
+_The above image is a visual representation of a vector space. To perform a search, your search query is converted to a vector - similar to your data vectors. The vector database then computes the similarity between the search query and the collection of data points in the vector space._
 
 ### Vector Databases are Fast
 
@@ -65,7 +63,7 @@ For that reason, we have different distance metrics that balance the speed and a
 - [Cosine Similarity](#cosine-similarity)
 - [Dot Product](#dot-product)
 - [Squared Euclidean](#squared-euclidean-l2-squared)
-- [Manhattan](##manhattan-l1-norm-or-taxicab-distance)
+- [Manhattan](#manhattan-l1-norm-or-taxicab-distance)
 - [Hamming](#hamming)
 
 ### Cosine Similarity
@@ -76,7 +74,6 @@ This is advantageous because if two documents are far apart by the euclidean dis
 
 The cosine similarity and cosine distance have an inverse relationship. As the distance between two vectors increases, the similarity will decrease. Likewise, if the distance decreases, then the similarity between the two vectors increases.
 
-
 The cosine similarity is calculated as:
 
 ![Cosine Similarity](img/cosine.png)
@@ -85,7 +82,7 @@ The cosine similarity is calculated as:
 
 **||A|| and ||B||** is the length of the two vectors
 
-**||A|| * ||B||** is the cross product of the two vectors
+**||A|| \* ||B||** is the cross product of the two vectors
 
 The **cosine distance** formula is then: 1 - Cosine Similarity
 
@@ -104,7 +101,7 @@ A distance of 0 indicates that the vectors are identical, whereas a distance of 
 The dot product takes two or more vectors and multiplies them together. It is also known as the scalar product since the output is a single (scalar) value. The dot product shows the alignment of two vectors. The dot product is negative if the vectors are oriented in different directions and positive if the vectors are oriented in the same direction.
 
 <img
-  src={require('./img/direction.png').default}
+  src={require("./img/direction.png").default}
   alt="Dot Product direction"
   style={{ maxWidth: "80%" }}
 />
@@ -112,7 +109,7 @@ The dot product takes two or more vectors and multiplies them together. It is al
 The dot product formula is:
 
 <img
-  src={require('./img/dot-product.png').default}
+  src={require("./img/dot-product.png").default}
   alt="Dot Product"
   style={{ maxWidth: "80%" }}
 />
@@ -134,7 +131,7 @@ The Squared Euclidean (L2-Squared) calculates the distance between two vectors b
 The squared euclidean distance formula is:
 
 <img
-  src={require('./img/l2-formula.png').default}
+  src={require("./img/l2-formula.png").default}
   alt="L2 Formula"
   style={{ maxWidth: "80%" }}
 />
@@ -148,7 +145,7 @@ The squared euclidean distance of strawberries `[4, 0, 1]` and blueberries `[
 Manhattan distance, also known as "L1 norm" and "Taxicab Distance", calculates the distance between a pair of vectors. The metric is calculated by summing the absolute distance between the components of the two vectors.
 
 <img
-  src={require('./img/manhattan.png').default}
+  src={require("./img/manhattan.png").default}
   alt="Manhattan"
   style={{ maxWidth: "80%" }}
 />
@@ -156,7 +153,7 @@ Manhattan distance, also known as "L1 norm" and "Taxicab Distance", calculates t
 The name comes from the grid layout resembling the streets of Manhattan. The city is designed with buildings on every corner and one-way streets. If you're trying to go from point A to point B, the shortest path isn't straight through because you cannot drive through buildings. The fastest route is one with fewer twists and turns.
 
 <img
-  src={require('./img/manhattan-example.png').default}
+  src={require("./img/manhattan-example.png").default}
   alt="Manhattan example"
   style={{ maxWidth: "80%" }}
 />
@@ -175,9 +172,9 @@ Weaviate has implemented the first method, comparing numeric vectors. In the nex
 Let's use an example to calculate the Hamming distance. Imagine we have a dataset containing a variety of fruit and vegetables. Your first query is to see which item pairs best with your banana pancakes. To achieve that we need to compare the banana pancakes' vector with the other vectors. Like this:
 
 | Banana Pancakes | [5,6,8] | Hamming Distance |
-| --- | --- | --- |
-| Blueberries | [5,6,9] | 1 |
-| Broccoli | [8,2,9] | 3 |
+| --------------- | ------- | ---------------- |
+| Blueberries     | [5,6,9] | 1                |
+| Broccoli        | [8,2,9] | 3                |
 
 As seen above, blueberries are a better pairing than broccoli. This was done by comparing the position of the numbers in the vector representations of foods.
 
@@ -188,7 +185,7 @@ Binary Passage Retrieval (BPR) translates vectors into a binary sequence. For ex
 To compute the Hamming distance between two strings, you compare the position of each bit in the sequence. This is done with an XOR bit operation. XOR stands for "exclusive or", meaning if the bits in the sequence do not match, then the output is 1. Keep in mind that the strings need to be of equal length to perform the comparison. Below is an example of comparing two binary sequences.
 
 <img
-  src={require('./img/hamming-and-bpr.png').default}
+  src={require("./img/hamming-and-bpr.png").default}
   alt="Hamming and BPR"
   style={{ maxWidth: "80%" }}
 />
@@ -226,8 +223,9 @@ Even with ANN-indexes, which reduce the number of distance calculations necessar
 The distance metrics in Weaviate have been optimized to be highly efficient using "Single Instruction, Multiple Data" ("SIMD") instruction sets. Using these instructions, a CPU can do multiple calculations in a single CPU cycle. To achieve this, we had to write some of our distance metrics in [pure Assembly code](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/dot_amd64.s). [Here is an overview](https://docs.weaviate.io/weaviate/config-refs/distances#distance-implementations-and-optimizations) of the current state of optimizations; including which distance metrics have SIMD optimizations for which architecture.
 
 ### Open-source Contributions
+
 Weaviate is open-source and values feedback and input from the community. A community member contributed to the Weaviate project by adding two new metrics to the 1.15 release. How cool is that! If this is something you're interested in, [here](https://github.com/weaviate/weaviate/tree/master/adapters/repos/db/vector/hnsw/distancer) is the repository with the implementation of the current metrics.
 
-import WhatNext from  '/_includes/what-next.mdx'
+import WhatNext from "/_includes/what-next.mdx";
 
 <WhatNext />
