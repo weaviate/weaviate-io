@@ -15,6 +15,6 @@ export const starterState: IData = {
   numOfObjects: '100000',
   objectSize: '1024',
   vectorDimensions: '512',
-  accuracyToCost: '2',
+  accuracyToCost: '3',
   deploymentType: 'shared',
 };
