@@ -2,7 +2,7 @@
 title: 'Announcing the Weaviate C# Client'
 slug: weaviate-csharp-client-release
 authors: [michelangelo, ivan]
-date: 2025-12-18
+date: 2026-01-15
 tags: ['Release', 'C#', '.NET']
 image: ./img/hero.jpg
 description: 'The Weaviate C# client is now generally available! This release brings a modern and intuitive API for .NET developers, making it easier than ever to build AI-powered applications.'
@@ -18,13 +18,76 @@ As Weaviate's feature set grew, we recognized the need for a C# client that was 
 
 The new C# client tackles these challenges head-on, providing a fluent, intuitive, and strongly-typed API for all Weaviate operations.
 
+## Getting started
+
+### Installation
+
+Add the Weaviate C# client to your project using the [NuGet package manager](https://www.nuget.org/packages/Weaviate.Client/1.0.0):
+
+```bash
+dotnet add package Weaviate.Client --version 1.0.0
+```
+
+### Quickstart example
+
+This example connects to Weaviate, creates a `Movie` collection, imports data, and performs a generative search.
+
+```csharp
+using Weaviate.Client;
+using Weaviate.Client.Models;
+using Weaviate.Client.Models.Generative;
+using System;
+using System.Collections.Generic;
+using System.Text.Json;
+
+// Best practice: store your credentials in environment variables
+string weaviateUrl = Environment.GetEnvironmentVariable("WEAVIATE_URL");
+string weaviateApiKey = Environment.GetEnvironmentVariable("WEAVIATE_API_KEY");
+
+// 1. Connect to Weaviate Cloud
+var client = await Connect.Cloud(weaviateUrl, weaviateApiKey);
+
+// 2. Prepare data
+var dataObjects = new List<object>
+{
+    new {title = "The Matrix", description = "A computer hacker learns about the true nature of reality and his role in the war against its controllers.", genre = "Science Fiction"},
+    new {title = "Spirited Away", description = "A young girl becomes trapped in a mysterious world of spirits and must find a way to save her parents and return home.", genre = "Animation"},
+    new {title = "The Lord of the Rings: The Fellowship of the Ring", description = "A meek Hobbit and his companions set out on a perilous journey to destroy a powerful ring and save Middle-earth.", genre = "Fantasy"}
+};
+
+var CollectionName = "Movie";
+
+await client.Collections.Delete(CollectionName);
+// 3. Create the collection
+var movies = await client.Collections.Create(new CollectionCreateParams
+{
+    Name = CollectionName,
+    VectorConfig = Configure.Vector("default", v => v.Text2VecWeaviate()),
+});
+
+// 4. Import the data
+var result = await movies.Data.InsertMany(dataObjects);
+
+// 5. Run the query
+var response = await movies.Query.NearText(
+    "sci-fi",
+    limit: 2
+);
+
+// 6. Inspect the results
+foreach (var obj in response.Objects)
+{
+    Console.WriteLine(JsonSerializer.Serialize(obj.Properties));
+}
+```
+
 ## Highlights of the new API
 
 The new C# client is built around a few core principles: **discoverability**, **type safety**, and a **streamlined developer workflow**.
 
 #### 1. Collection-centric API
 
-Operations are now logically grouped and centered around collection handles. This aligns with how you think about your data and makes the API incredibly intuitive.
+Operations are logically grouped and centered around collection handles. This aligns with how you think about your data and makes the API incredibly intuitive.
 
 Once you have a `WeaviateClient` instance, you get a handle to a specific collection and perform all data, query, and configuration operations through it.
 
@@ -283,69 +346,6 @@ var insertResponse = await questions.Data.InsertMany(questionsToInsert.ToArray()
 if (insertResponse.HasErrors)
 {
     Console.WriteLine($"First failed object error: {insertResponse.Errors.First()}");
-}
-```
-
-## Getting Started
-
-### Installation
-
-Add the Weaviate C# client to your project using the [NuGet package manager](https://www.nuget.org/packages/Weaviate.Client/0.0.1-beta.4):
-
-```bash
-dotnet add package Weaviate.Client
-```
-
-### Quickstart Example
-
-This example connects to Weaviate, creates a `Movie` collection, imports data, and performs a generative search.
-
-```csharp
-using Weaviate.Client;
-using Weaviate.Client.Models;
-using Weaviate.Client.Models.Generative;
-using System;
-using System.Collections.Generic;
-using System.Text.Json;
-
-// Best practice: store your credentials in environment variables
-string weaviateUrl = Environment.GetEnvironmentVariable("WEAVIATE_URL");
-string weaviateApiKey = Environment.GetEnvironmentVariable("WEAVIATE_API_KEY");
-
-// 1. Connect to Weaviate Cloud
-var client = await Connect.Cloud(weaviateUrl, weaviateApiKey);
-
-// 2. Prepare data
-var dataObjects = new List<object>
-{
-    new {title = "The Matrix", description = "A computer hacker learns about the true nature of reality and his role in the war against its controllers.", genre = "Science Fiction"},
-    new {title = "Spirited Away", description = "A young girl becomes trapped in a mysterious world of spirits and must find a way to save her parents and return home.", genre = "Animation"},
-    new {title = "The Lord of the Rings: The Fellowship of the Ring", description = "A meek Hobbit and his companions set out on a perilous journey to destroy a powerful ring and save Middle-earth.", genre = "Fantasy"}
-};
-
-var CollectionName = "Movie";
-
-await client.Collections.Delete(CollectionName);
-// 3. Create the collection
-var movies = await client.Collections.Create(new CollectionCreateParams
-{
-    Name = CollectionName,
-    VectorConfig = Configure.Vector("default", v => v.Text2VecWeaviate()),
-});
-
-// 4. Import the data
-var result = await movies.Data.InsertMany(dataObjects);
-
-// 5. Run the query
-var response = await movies.Query.NearText(
-    "sci-fi",
-    limit: 2
-);
-
-// 6. Inspect the results
-foreach (var obj in response.Objects)
-{
-    Console.WriteLine(JsonSerializer.Serialize(obj.Properties));
 }
 ```
 
