@@ -70,11 +70,6 @@
     "photo": "daniel.jpg"
   },
   {
-    "name": "David Earl Street",
-    "location": { "lat": 32.0819, "lng": -81.0922 },
-    "photo": "david.jpg"
-  },
-  {
     "name": "Dirk Kulawiak",
     "location": { "lat": 48.1361, "lng": 11.583 },
     "photo": "dirk.jpg"
@@ -150,11 +145,6 @@
     "photo": "laura.jpg"
   },
   {
-    "name": "Leonie Monigatti",
-    "location": { "lat": 50.1119, "lng": 8.6831 },
-    "photo": "leonie.jpg"
-  },
-  {
     "name": "Marcin Antas",
     "location": { "lat": 51.1089, "lng": 17.0395 },
     "photo": "marcin.jpg"
@@ -173,11 +163,6 @@
     "name": "Mohamed Shahin",
     "location": { "lat": 53.0355, "lng": -7.3005 },
     "photo": "mohamed.jpg"
-  },
-  {
-    "name": "Nathan Wilkinson",
-    "location": { "lat": 40.515, "lng": -111.9712 },
-    "photo": "nate-wilkinson.jpg"
   },
   {
     "name": "Parker Duckworth",

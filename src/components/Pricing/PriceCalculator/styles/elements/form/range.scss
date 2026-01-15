@@ -20,6 +20,26 @@
     height: 40px;
     width: 100%;
     justify-content: center;
+    position: relative;
+  }
+
+  .range-value-indicator {
+    position: absolute;
+    left: calc(18px + (100% - 36px) * var(--thumb-position, 0) / 100);
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    z-index: 2;
+    transition: left 0.1s ease-out;
   }
 
   input[type="range"] {
@@ -39,7 +59,7 @@
       left: 0;
       height: 7px;
       width: var(--track-fill, 0%);
-      background: $green;
+      background: $greenGradient;
       border-radius: 99px;
       pointer-events: none;
     }
@@ -60,12 +80,9 @@
       -webkit-appearance: none;
       width: 36px;
       height: 36px;
-      background: $green;
+      background: $greenGradient;
       cursor: pointer;
       border-radius: 99px;
-      background-image: url('/img/pricing/range.svg');
-      background-repeat: no-repeat;
-      background-position: center;
       transition: $transition;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
       position: relative;
@@ -75,19 +92,15 @@
     &::-moz-range-thumb {
       width: 36px;
       height: 36px;
-      background: $green;
+      background: $greenGradient;
       cursor: pointer;
       border: none;
       border-radius: 99px;
-      background-image: url('/img/pricing/range.svg');
-      background-repeat: no-repeat;
-      background-position: center;
       transition: $transition;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 
       &:hover {
         scale: 1.2;
-        background-color: darken($green, 10%);
       }
     }
 
@@ -100,7 +113,7 @@
     
     &::-moz-range-progress {
       height: 7px;
-      background: $green;
+      background: $greenGradient;
       border: none;
       border-radius: 99px;
     }
@@ -110,13 +123,46 @@
     input[type="range"] {
       &::-moz-range-thumb {
         scale: 1.2;
-        background-color: darken($green, 10%);
        }
 
       &::-webkit-slider-thumb {
         scale: 1.2;
-        background-color: darken($green, 10%);
        }
+    }
+  }
+
+  // Plan-specific gradients
+  &.plan-premium {
+    input[type="range"] {
+      &::before {
+        background: $blueGradient;
+      }
+      &::-webkit-slider-thumb {
+        background: $blueGradient;
+      }
+      &::-moz-range-thumb {
+        background: $blueGradient;
+      }
+      &::-moz-range-progress {
+        background: $blueGradient;
+      }
+    }
+  }
+
+  &.plan-enterprise {
+    input[type="range"] {
+      &::before {
+        background: $pinkGradient;
+      }
+      &::-webkit-slider-thumb {
+        background: $pinkGradient;
+      }
+      &::-moz-range-thumb {
+        background: $pinkGradient;
+      }
+      &::-moz-range-progress {
+        background: $pinkGradient;
+      }
     }
   }
 }
