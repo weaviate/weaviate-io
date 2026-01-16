@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import styles from './styles.module.scss';
-import Link from '@docusaurus/Link';
+import React, { useEffect } from "react";
+import styles from "./styles.module.scss";
+import Link from "@docusaurus/Link";
 
 export default function ContactForm() {
   return (
-    <div className={styles.contactBackground} id="contact-form">
+    <div className={styles.contactBackground}>
       <div className="container">
         <div className={styles.contactContainer}>
           <div className={styles.contactSection}>

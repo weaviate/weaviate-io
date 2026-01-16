@@ -119,7 +119,7 @@ Hard negative mining involves framing the retrieval with documents that are simi
 The improved storage efficiency of ColBERTv2 comes from **residual compression.** Residual compression is a technique which stores ‘centroids’ in high precision (more accurate vectors with high storage cost), and ‘residual’ vectors in low precision (less accurate vectors with lower storage cost). Each token embedding is a combination of a centroid and its own, unique, residual vector. These vector centroids take up more space but there are fewer of them; according to the ColBERTv2 paper, they recommend using
 
 $$
-\lfloor16 \times \sqrt{n_{docs} \times d_{embedding}}\rfloor
+\lfloor16 \times \sqrt\{n_\{\text\{docs\}\} \times d_\{\text\{embedding\}\}\}\rfloor
 $$
 
 many vectors, which is a value proportional to the number of overall embeddings in the dataset.

@@ -90,7 +90,7 @@ Multi-vector embeddings introduce additional complexities to this. Multiple vect
 Given a document embedding D and a query embedding Q, a `maxSim` operator is typically used to compute the similarity:
 
 $$
-sim(D,Q)=\sum_{q \in Q} \max_{d \in D} q \cdot d
+sim(D,Q)=\sum_\{q \in Q\} \max_\{d \in D\} q \cdot d
 $$
 
 This is a non-linear operation which loops over each query token and compute the similarity between that query token and all the document token choosing the most similar one. In other words, the MaxSim searches the "best-match" for a query term among all the document ones.
@@ -107,25 +107,25 @@ But how does MUVERA do this while minimizing losses in recall?
 
 ### The key idea
 
-MUVERA takes as input a multi-vector embedding ($D$) and transforms it into a single-vector embedding ($d_{single}$):
+MUVERA takes as input a multi-vector embedding ($D$) and transforms it into a single-vector embedding ($d_\{single\}$):
 
 $$
-encode(x_{multi})\implies x_{single} \quad \quad x \in \{D, Q\}
+encode(x_\{multi\})\implies x_\{single\} \quad \quad x \in \\\{D, Q\\\}
 $$
 
 In order to say if this function is "good enough" we want to maximize the similarity of the two key measures:
 
-- similarity of the encoded embeddings $x_{single}$ (aka single-vector embedding), and
-- similarity of the multi-vector embeddings $x_{multi}$
+- similarity of the encoded embeddings $x_\{single\}$ (aka single-vector embedding), and
+- similarity of the multi-vector embeddings $x_\{multi\}$
 
-The more similar these two are, the better that $x_{single}$ is as an approximation of $x_{multi}$. Ideally, we want:
-
-$$
-maxSim(D,Q)\approx d_{single} \cdot q_{single}
-$$
+The more similar these two are, the better that $x_\{single\}$ is as an approximation of $x_\{multi\}$. Ideally, we want:
 
 $$
-where \quad d_{single} = encode(D)\quad \land q_{single}=encode(Q)
+maxSim(D,Q)\approx d_\{single\} \cdot q_\{single\}
+$$
+
+$$
+where \quad d_\{single\} = encode(D)\quad \land q_\{single\}=encode(Q)
 $$
 
 This transform simplifies the approximate nearest neighbor search problem for multi-vector embeddings to that involving only single vector embeddings.
@@ -147,7 +147,7 @@ So how does MUVERA achieve this goal?
 
 ### How MUVERA works
 
-Recall that the main goal here is to build an FDE $d_{single}$ which approximates the semantics of the multi-vector embedding $D$.
+Recall that the main goal here is to build an FDE $d_\{single\}$ which approximates the semantics of the multi-vector embedding $D$.
 
 MUVERA does this in four steps:
 
@@ -187,7 +187,7 @@ As shown in the figure, each vector is assigned to one of the clusters. Two furt
 
 :::info Which function to use for space partitioning?
 
-As we said, a function is needed to map from $\mathbb{R}^{dim}$ into $[B]$.
+As we said, a function is needed to map from $\mathbb\{R\}^\{dim\}$ into $[B]$.
 
 The first approach could be to use a clustering algorithm like *K-Means* that clusters data by assigning points to the nearest centroid. This algorithm is widely adopted, but it has two drawbacks:
 
@@ -198,13 +198,13 @@ To make the partition function data oblivious we may prefer the family of Locali
 
 The SimHash algorithm relies on few simple steps:
 
-1. Sample $k_{sim}$  (parameter chosen by the user) Gaussian vectors $g_1,\dots,g_{k_{sim}} \in \mathbb{R}^{dim}$
-2. When computing the closest bucket to a vector $x$, we will be computing the dot-product between $x$ and  $k_{sim}$ vectors. From the $k_{sim}$ distances, we will set the i-th bit $i=1,\dots,k_{sim}$ to 1 only if the corresponding distance is greater than 0, 0 otherwise.
+1. Sample $k_\{sim\}$  (parameter chosen by the user) Gaussian vectors $g_1,\dots,g_\{k_\{sim\}\} \in \mathbb\{R\}^\{dim\}$
+2. When computing the closest bucket to a vector $x$, we will be computing the dot-product between $x$ and  $k_\{sim\}$ vectors. From the $k_\{sim\}$ distances, we will set the i-th bit $i=1,\dots,k_\{sim\}$ to 1 only if the corresponding distance is greater than 0, 0 otherwise.
 
     Mathematically speaking, we have:
 
     $$
-    \varphi(x)=\left(1(g_1 \cdot x), \dots,1(g_{k_{sim}}\cdot x)\right)
+    \varphi(x)=\left(1(g_1 \cdot x), \dots,1(g_\{k_\{sim\}\}\cdot x)\right)
     $$
 
     $$
@@ -212,7 +212,7 @@ The SimHash algorithm relies on few simple steps:
     \quad 1(g_i \cdot x) = 0 \quad otherwise
     $$
 
-    The value $\varphi(x)$ will be a number composed of $k_{sim}$ bits. The total number of buckets we can have is $B=2^{k_{sim}}$.
+    The value $\varphi(x)$ will be a number composed of $k_\{sim\}$ bits. The total number of buckets we can have is $B=2^\{k_\{sim\}\}$.
 
 
 From this point on, in the description of MUVERA algorithm we will be considering as partitioning function the SimHash.
@@ -221,7 +221,7 @@ From this point on, in the description of MUVERA algorithm we will be considerin
 Now that the partitioning function is ready, we can create a sub-vector $d_k$ for each bucket $k=1,\dots,B$ as follows:
 
 $$
-d_k = \frac{1}{|D \cap \varphi^{-1}(k)|} \sum_{d \in D, \varphi(d)=k}d
+d_k = \frac\{1\}\{|D \cap \varphi^\{-1\}(k)|\} \sum_\{d \in D, \varphi(d)=k\}d
 $$
 
 The vector $d_k$ contains the sum of all the token embeddings $d \in D$ that belong to cluster $\varphi(d)=k$. In addition, we have a normalization factor which counts how many token embeddings from $D$ have been mapped to cluster $k$.
@@ -229,16 +229,16 @@ The vector $d_k$ contains the sum of all the token embeddings $d \in D$ that bel
 The space partitioning step is the same for the query encoding except for the multiplication term.
 
 $$
-q_k = \sum_{q \in Q, \varphi(q)=k}q
+q_k = \sum_\{q \in Q, \varphi(q)=k\}q
 $$
 
-We create one sub-vector $d_k$ for each bucket, at the end we will end up with $B$ sub-vectors $d_1,\dots,d_B$. To get one single vector $d_{single}$ we will be concatenating all $d_k$ sub-vectors:
+We create one sub-vector $d_k$ for each bucket, at the end we will end up with $B$ sub-vectors $d_1,\dots,d_B$. To get one single vector $d_\{single\}$ we will be concatenating all $d_k$ sub-vectors:
 
 $$
-d_{single} = (d_1,d_2,\dots,d_B)
+d_\{single\} = (d_1,d_2,\dots,d_B)
 $$
 
-Let's now make some consideration on the dimensionality of the outcome. Assuming the dimensionality of the original token embeddings is $dim$  then the length of $d_{single}$ will be $B* dim$.
+Let's now make some consideration on the dimensionality of the outcome. Assuming the dimensionality of the original token embeddings is $dim$  then the length of $d_\{single\}$ will be $B* dim$.
 
 Where no vectors end up on a particular cluster, a nearest vector is assigned to it to calculate the sub-vector, so that no clusters end up being empty.
 
@@ -246,23 +246,23 @@ Where no vectors end up on a particular cluster, a nearest vector is assigned to
 
 To reduce the dependency from the dimensionality of the token embeddings the next step is to reduce the dimensionality. This helps to manage the length of the final encoded vector by applying a random linear projection to make the resulting sub-vectors $d_k$ smaller.
 
-Given the parameter $d_{proj}$ we create a random matrix $S^{d_{proj} \times dim}$ with $\pm1$ which is used to reduce the dimensionality of each sub-vector.
+Given the parameter $d_\{proj\}$ we create a random matrix $S^\{d_\{proj\} \times dim\}$ with $\pm1$ which is used to reduce the dimensionality of each sub-vector.
 
 For each $d_k$ we compute a matrix-vector multiplication:
 
 $$
-\psi(d_k)=\frac{1}{\sqrt{d_{proj}}} \cdot S \cdot d_k
+\psi(d_k)=\frac\{1\}\{\sqrt\{d_\{proj\}\}\} \cdot S \cdot d_k
 $$
 
-The resulting sub-vector will have length $d_{proj}$.
+The resulting sub-vector will have length $d_\{proj\}$.
 
 Now the FDE vector will become:
 
 $$
-d_{single}=(\psi(d_1), \psi(d_2),\dots,\psi(d_B))
+d_\{single\}=(\psi(d_1), \psi(d_2),\dots,\psi(d_B))
 $$
 
-Notice the dimensionality will no longer be $B*dim$, but $B *d_{proj}$ where $d_{proj} << dim$.
+Notice the dimensionality will no longer be $B*dim$, but $B *d_\{proj\}$ where $d_\{proj\} \<\< dim$.
 
 import MuveraSteps3 from './img/muvera_steps_3.png';
 
@@ -281,20 +281,20 @@ Applying a random projection may seem... random! However, this is part of the se
 
 To increase the accuracy coming from the approximation steps, we can repeat the processes above (space partitioning + dimensionality reduction) multiple times concatenating all vectors together.
 
-Suppose we repeat the partition and dim reduction steps $R_{reps}$ times obtaining different single-vector we can concatenate them obtaining only one single-vector.
+Suppose we repeat the partition and dim reduction steps $R_\{reps\}$ times obtaining different single-vector we can concatenate them obtaining only one single-vector.
 
 $$
- d_{single}=(d_{single_1}, d_{single_2}, \dots, d_{single_{R_{reps}}} )
+ d_\{single\}=(d_\{single_1\}, d_\{single_2\}, \dots, d_\{single_\{R_\{reps\}\}\} )
 $$
 
-The resulting vector will have dimensionality $R_{reps}*B*d_{proj}$ .
+The resulting vector will have dimensionality $R_\{reps\}*B*d_\{proj\}$ .
 
 ### Final Projection
 
-The vector obtained concatenating all the single vectors could lead to quite long vectors. In order to reduce its dimensionality we can apply a final random projection the same described in step 2 to the overall vector. Using the random matrix $S^{d_{final} \times dim}$ where $d_{final}$ is a parameter
+The vector obtained concatenating all the single vectors could lead to quite long vectors. In order to reduce its dimensionality we can apply a final random projection the same described in step 2 to the overall vector. Using the random matrix $S^\{d_\{final\} \times dim\}$ where $d_\{final\}$ is a parameter
 
 $$
-FDE(D)=\psi_{final}(d_{single})
+FDE(D)=\psi_\{final\}(d_\{single\})
 $$
 
 This will reduce the final FDE dimensionality yet again.
@@ -303,10 +303,10 @@ This will reduce the final FDE dimensionality yet again.
 
 During the description of the algorithm we have seen four parameters:
 
-- $k_{sim}$: number of Gaussian vectors sampled, the number of buckets we will have is $B=2^{k_{sim}}$
-- $d_{proj}$: dimensionality of the sub-vectors representing a bucket in the space
-- $R_{reps}$: number of times the partition step and dimensionality step are executed
-- $d_{final}$: final dimensionality of the FDE vector  -  $FDE(D)\in\mathbb{R}^{d_{final}}$
+- $k_\{sim\}$: number of Gaussian vectors sampled, the number of buckets we will have is $B=2^\{k_\{sim\}\}$
+- $d_\{proj\}$: dimensionality of the sub-vectors representing a bucket in the space
+- $R_\{reps\}$: number of times the partition step and dimensionality step are executed
+- $d_\{final\}$: final dimensionality of the FDE vector  -  $FDE(D)\in\mathbb\{R\}^\{d_\{final\}\}$
 
 At the end of the day, these are the key tunable parameters from the user perspective. In terms of the Weaviate implementation - we've chosen what we see as sensible defaults for the majority of use cases.
 
@@ -326,9 +326,9 @@ This would produce `15M` vectors of dimensionality `128`. This means the total n
 
 On the other hand, if we enable MUVERA with the following parameters:
 
-- $k_{sim}=4$
-- $d_{proj}=16$
-- $R_{reps}=10$
+- $k_\{sim\}=4$
+- $d_\{proj\}=16$
+- $R_\{reps\}=10$
 
 We would encode each document using one vector of dimensionality  `2560 = 2^4*16*10` , ending up with `304M`  floating points stored. An instant saving of almost `80%` in memory footprint.
 
