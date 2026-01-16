@@ -1,13 +1,13 @@
-import React from 'react';
-import Layout from '@theme/Layout';
-import ServiceHeader from '../../components/Service/Dedicated/Header';
-import ServicePlan from '../../components/Service/Dedicated/Plan';
-import ContactUsForm from '../../components/Contact/contactForm';
-import Highlights from '../../components/Service/Dedicated/Highlights';
-import ThemeSwitch from '/src/components/ThemeSwitch';
-import QuoteBox from '../../components/Service/Dedicated/QuoteBox/quoteBox.jsx';
-import Integrations from '../../components/Service/Dedicated/Integrations/index.jsx';
-import Availability from '../../components/Service/Dedicated/Availability/index.jsx';
+import React from "react";
+import Layout from "@theme/Layout";
+import ServiceHeader from "../../components/Service/Dedicated/Header";
+import ServicePlan from "../../components/Service/Dedicated/Plan";
+import ContactUsForm from "../../components/Contact/contactForm";
+import Highlights from "../../components/Service/Dedicated/Highlights";
+import ThemeSwitch from "/src/components/ThemeSwitch";
+import QuoteBox from "../../components/Service/Dedicated/QuoteBox/quoteBox.jsx";
+import Integrations from "../../components/Service/Dedicated/Integrations/index.jsx";
+import Availability from "../../components/Service/Dedicated/Availability/index.jsx";
 
 export default function EDPage() {
   return (
@@ -22,6 +22,7 @@ export default function EDPage() {
         <Integrations />
         <Highlights />
         <Availability />
+        <div id="contact-sales" />
         <ContactUsForm theme="dark" />
       </Layout>
       <ThemeSwitch />

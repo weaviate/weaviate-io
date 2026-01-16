@@ -1,10 +1,10 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
-import styles from './styles.module.scss';
+import Link from "@docusaurus/Link";
+import React from "react";
+import styles from "./styles.module.scss";
 
 export default function InterviewProcess() {
   return (
-    <div id="interview-process" className="container">
+    <div className="container">
       <div className={styles.title}>
         <h2>What to expect from our interview process</h2>
       </div>
