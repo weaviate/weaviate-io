@@ -1,10 +1,10 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
-import PricingBusinessCritical from './businessCritical';
-import PricingEnterprise from './enterprise';
-import PricingSandBox from './sandbox';
-import PricingStandard from './standard';
-import styles from './styles.module.scss';
+import Link from "@docusaurus/Link";
+import React from "react";
+import PricingBusinessCritical from "./businessCritical";
+import PricingEnterprise from "./enterprise";
+import PricingSandBox from "./sandbox";
+import PricingStandard from "./standard";
+import styles from "./styles.module.scss";
 
 export default function PricingPlan() {
   return (
@@ -23,7 +23,6 @@ export default function PricingPlan() {
           <div className={styles.plan}>
             <PricingStandard />
             <PricingEnterprise />
-            <PricingBusinessCritical />
           </div>
           <PricingSandBox />
         </div>

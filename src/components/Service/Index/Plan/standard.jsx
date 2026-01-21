@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import styles from './styles.module.scss';
-import Link from '@docusaurus/Link';
+import React, { useState, useEffect } from "react";
+import styles from "./styles.module.scss";
+import Link from "@docusaurus/Link";
 
 export default function PricingStandard() {
   return (
     <div className={styles.boxContainer}>
-      <Link className={styles.box} to="deployment/serverless">
+      <Link className={styles.box} to="/deployment/shared">
         <div className={styles.title}>
           <h3>Serverless Cloud</h3>
         </div>
@@ -40,7 +40,7 @@ export default function PricingStandard() {
             Building and prototyping with seamless scaling and flexible
             pay-as-you-go pricing.
           </p>
-          <Link className={styles.boxLink} to="deployment/serverless">
+          <Link className={styles.boxLink} to="/deployment/shared">
             Learn More
           </Link>
         </div>

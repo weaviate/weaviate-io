@@ -52,7 +52,7 @@ In this analysis below we sampled 10k random vectors from the dataset above and 
 This graphs shows the smoothed standard deviation per dimension across 10k random samples from DBpedia embedded with the new `text-emb3-large` model and the old `ada-002` model.
 
 
-We can see the standard deviation is a multi-step function of the dimension index - earlier dimensions capture more information and those later on capture less. The graph also tells us that the OpenAI embedding model was trained with 4 aggregated loss functions at dimensions = {512d, 1024d, 1536d, 3072d} in the MRL style detailed above.
+We can see the standard deviation is a multi-step function of the dimension index - earlier dimensions capture more information and those later on capture less. The graph also tells us that the OpenAI embedding model was trained with 4 aggregated loss functions at dimensions = `{512d, 1024d, 1536d, 3072d}` in the MRL style detailed above.
 
 What's more interesting is that the information within the steps(512d, 1024d, 1536d, 3072d) diffuses more or less evenly amongst the dimensions. This also explains the magical finding in the MRL paper that shows you can actually take dimensions between these pre-specified chunks (eg. 750d) and still get incremental benefits.
 
