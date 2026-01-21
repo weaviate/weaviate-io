@@ -17,15 +17,8 @@ export default function ProductPreviewsHeader() {
           </div>
 
           <div className={styles.buttons}>
-            <Link className={styles.buttonGradient} to="/product">
-              Explore products
-            </Link>
-
-            <Link
-              className={styles.buttonOutline}
-              to="https://docs.weaviate.io"
-            >
-              Documentation
+            <Link className={styles.buttonOutline} to="/blog">
+              Read our Blog
             </Link>
           </div>
         </div>

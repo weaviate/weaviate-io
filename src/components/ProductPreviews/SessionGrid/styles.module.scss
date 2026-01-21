@@ -311,43 +311,54 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  margin-top: 10px;
+  margin-top: 14px;
 }
 
 .requestButton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 36px;
-  padding: 0 16px;
+  min-height: 44px;
+  padding: 0 20px;
   border-radius: 999px;
-  background: rgba(47, 208, 143, 0.15);
-  color: #1a8f63;
+  background: var(--darkColor);
+  color: #ffffff;
   font-family: Inter;
-  font-size: 0.875rem;
-  font-weight: 600;
-  line-height: 1;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.1px;
   text-decoration: none;
   width: fit-content;
+  box-shadow: 0 10px 22px rgba(19, 12, 73, 0.18);
   transition:
-    background 0.15s ease,
-    transform 0.1s ease;
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    filter 0.12s ease;
 
   &:hover {
-    background: rgba(47, 208, 143, 0.25);
     transform: translateY(-1px);
+    box-shadow: 0 14px 26px rgba(19, 12, 73, 0.22);
+    filter: brightness(1.05);
     text-decoration: none;
   }
 
   &:active {
     transform: translateY(0);
+    box-shadow: 0 10px 22px rgba(19, 12, 73, 0.18);
+    filter: brightness(0.98);
+    color: #ffffff;
+  }
+
+  &:focus-visible {
+    outline: 3px solid rgba(116, 134, 236, 0.55);
+    outline-offset: 3px;
   }
 }
 
 .learnMore {
   font-family: Inter;
   font-size: 0.8125rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--darkColor);
   text-decoration: underline;
   opacity: 0.75;
