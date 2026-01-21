@@ -1,0 +1,460 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: #0c0e10;
+  padding: 48px 0;
+
+  @media screen and (max-width: 900px) {
+    padding: 28px 0;
+  }
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background-image:
+    radial-gradient(
+      900px 520px at 70% 40%,
+      rgba(110, 255, 200, 0.12),
+      transparent 60%
+    ),
+    radial-gradient(
+      700px 420px at 20% 20%,
+      rgba(140, 160, 255, 0.1),
+      transparent 55%
+    ),
+    url('/img/site/ebook-background-01.png');
+
+  background-size: contain;
+  background-position: right;
+  background-repeat: no-repeat;
+
+  &:after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.65)
+    );
+  }
+
+  @media screen and (max-width: 900px) {
+    background-size: cover;
+    opacity: 0.4;
+  }
+}
+
+.heroInner {
+  position: relative;
+  z-index: 1;
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  @media screen and (max-width: 700px) {
+    padding: 0 1.25rem;
+  }
+}
+
+.logoRow {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 22px;
+
+  @media screen and (max-width: 900px) {
+    justify-content: center;
+  }
+}
+
+.logoStackAI,
+.logoWeaviate {
+  height: 28px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left center;
+  opacity: 0.95;
+}
+
+.logoStackAI {
+  width: 120px;
+  background-image: url('/img/site/stack-ai-white-logo.svg');
+}
+
+.logoWeaviate {
+  width: 160px;
+  background-image: url('/img/site/weaviate-white-logo.svg');
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 40px;
+  align-items: center;
+
+  @media screen and (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.coverWrap {
+  display: flex;
+  justify-content: center;
+
+  @media screen and (max-width: 900px) {
+    order: 2;
+  }
+}
+
+.reportImage {
+  background: url('/img/site/StackAI-ebook-cover.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  width: 360px;
+  height: 460px;
+
+  @media screen and (max-width: 900px) {
+    width: 320px;
+    height: 420px;
+  }
+
+  @media screen and (max-width: 700px) {
+    width: 300px;
+    height: 470px;
+  }
+}
+
+.formSide {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.92);
+
+  @media screen and (max-width: 900px) {
+    order: 1;
+  }
+
+  h1 {
+    margin: 0 0 14px;
+    color: #ffffff;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2.35rem;
+    font-weight: 700;
+    line-height: 1.12;
+
+    @media screen and (max-width: 900px) {
+      font-size: 2rem;
+    }
+  }
+}
+
+.kicker {
+  color: #ecf4f8;
+  font-family: Inter;
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: 10px;
+}
+
+.headerTag {
+  margin: 0 0 14px;
+  color: #ffffff;
+  font-family: 'Plus Jakarta Sans';
+  font-size: 2.35rem;
+  font-weight: 700;
+  line-height: 1.12;
+
+  @media screen and (max-width: 900px) {
+    font-size: 2rem;
+  }
+}
+
+.subTitle {
+  margin: 0 0 18px;
+  color: rgba(236, 244, 248, 0.82);
+  font-family: 'Plus Jakarta Sans';
+  text-transform: none;
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.45;
+  max-width: 560px;
+}
+
+.signUpBox {
+  width: 100%;
+  max-width: 28rem;
+  padding: 18px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+
+  @media screen and (max-width: 800px) {
+    max-width: 100%;
+  }
+}
+
+.formWrapper {
+  max-height: 670px;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.hsIframe {
+  width: 100%;
+  min-height: 420px;
+  border: 0;
+  border-radius: 12px;
+}
+
+.fallbackNote {
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.72);
+
+  a {
+    color: #61bd73;
+    text-decoration: underline;
+  }
+}
+
+.smallPrint {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: rgba(236, 244, 248, 0.7);
+
+  a {
+    color: #61bd73;
+  }
+}
+
+.ebookForm {
+  color: #b5d2dc;
+  background: transparent;
+  padding: 10px 0px;
+
+  input[type='text'],
+  input[type='email'] {
+    display: flex;
+    color: #b5d2dc;
+    width: 100% !important;
+    height: 2.93694rem;
+    align-items: center;
+    margin: 0px 0px 20px 0px;
+    background: rgb(11 15 15);
+    border-radius: 0.5rem;
+    border-style: none;
+    padding: 0 12px;
+  }
+
+  input[type='textarea'] {
+    background: #272361;
+    height: 40px;
+    max-height: 200px !important;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+  }
+
+  input[type='submit'] {
+    display: flex;
+    width: 100%;
+    padding: 0.75rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.3125rem;
+
+    background: #61bd73;
+    box-shadow:
+      0px 1px 3px 0px rgba(0, 0, 0, 0.08),
+      0px 0px 1px 0px rgba(0, 0, 0, 0.25);
+    color: #130c49;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  ::marker {
+    display: none;
+  }
+
+  ul {
+    padding-left: 0;
+  }
+
+  li,
+  span,
+  label {
+    list-style: none;
+    color: #b5d2dc;
+    text-align: left;
+    font-style: normal;
+    text-transform: capitalize;
+    font-family: Inter;
+
+    p {
+      margin-left: 24px;
+      font-style: normal;
+      color: #6e84a3;
+      font-family: Inter;
+      font-size: 0.75rem;
+      font-weight: 400;
+      line-height: 157.33%;
+    }
+  }
+
+  fieldset {
+    @media screen and (max-width: 895px) {
+      max-width: 100%;
+    }
+  }
+}
+
+.ebookForm [class*='submitted-message'] span {
+  font-size: 21px !important;
+  line-height: 1.3;
+  color: #fff;
+}
+
+.contentBottom {
+  background: #ffffff;
+}
+
+.bottomInner {
+  max-width: 1060px;
+  margin: 30px auto;
+  padding: 2rem;
+
+  h3 {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2.25rem;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  p {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 160%;
+    margin-bottom: 20px;
+  }
+
+  ul,
+  li {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 160%;
+  }
+
+  .listHeader {
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+}
+
+.lead {
+  font-size: 1.35rem;
+  line-height: 1.55;
+  margin-top: 6px;
+}
+
+.subhead {
+  margin-top: 26px;
+  margin-bottom: 12px;
+  font-family: 'Plus Jakarta Sans';
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #130c49;
+}
+
+.rule {
+  margin: 28px 0;
+  border: 0;
+  height: 1px;
+  background: rgba(19, 12, 73, 0.15);
+}
+
+.bullets {
+  margin-top: 0;
+  padding-left: 22px;
+
+  li {
+    margin-bottom: 10px;
+  }
+}
+
+.callout {
+  margin-top: 26px;
+  padding: 22px 22px;
+  border-radius: 16px;
+  background: #f7f9fd;
+  border: 1px solid rgba(19, 12, 73, 0.1);
+  box-shadow: 0 12px 30px rgba(19, 12, 73, 0.08);
+}
+
+.calloutKicker {
+  margin: 0 0 8px;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(19, 12, 73, 0.65);
+  font-family: Inter;
+}
+
+.calloutTitle {
+  margin: 0 0 14px;
+  font-family: 'Plus Jakarta Sans';
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: #130c49;
+}
+
+.calloutBullets {
+  margin: 14px 0 0;
+  padding-left: 22px;
+
+  li {
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+}
+
+.calloutFooter {
+  margin-top: 14px;
+  margin-bottom: 0;
+  color: rgba(19, 12, 73, 0.85);
+}
+
+@media screen and (max-width: 900px) {
+  .lead {
+    font-size: 1.15rem;
+  }
+
+  .callout {
+    padding: 18px;
+  }
+}
