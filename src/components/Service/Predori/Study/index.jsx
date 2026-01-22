@@ -27,7 +27,7 @@ export default function Study() {
               <strong>Migrating from a Costly and Inefficient System</strong>
             </p>
             <p>
-              Predori was founded in 2020 with a clear mission: make patent
+              predori was founded in 2020 with a clear mission: make patent
               research simple and accessible. From the start, they knew semantic
               context and vector retrieval were the future. However, in the
               early days before vector databases became mainstream (late 2022),
@@ -50,7 +50,7 @@ export default function Study() {
               the mathematical problem of approximate nearest neighbor search."
             </p>
             <p>
-              <strong>- Konstantin Schmitz, Co-founder of Predori</strong>
+              <strong>- Konstantin Schmitz, Co-founder of predori</strong>
             </p>
             <div className={styles.founderImage}></div>
 
@@ -94,9 +94,36 @@ export default function Study() {
                 client.
               </li>
             </ul>
+            <h2>Results</h2>
+            <p>
+              <strong>Cost Reduction, Faster Innovation</strong>
+            </p>
+            <ul className={styles.whyWeaviate}>
+              <li>
+                <strong>80%+ Cost Reduction:</strong> By moving away from the
+                Lucene-based AWS setup, predori immediately cut their
+                operational costs by a factor of 10.{' '}
+              </li>
+              <li>
+                <strong>Redirected Engineering Focus:</strong> With a dedicated
+                vector database partner, the engineering team was able to
+                “iterate on the product side and develop new features in the RAG
+                space”, without the distraction of building their own solution,
+                a process that would have "greatly delayed our time to market."
+                - Konstantin Schmitz, Co-founder of predori.
+              </li>
+              <li>
+                <strong>Expansion into Agentic RAG:</strong> Weaviate’s scalable
+                foundation has supported predori to move beyond basic search to
+                develop advanced agentic RAG systems. They could now focus on
+                building new, high-value features instead of constantly battling
+                their infrastructure.
+              </li>
+            </ul>
+
             <h2>What's Next?</h2>
             <p>
-              The partnership is now focused on optimization. Predori is
+              The partnership is now focused on optimization. predori is
               currently implementing Weaviate’s multi-tenancy and vector
               compression features to further optimize their service in light of
               its growing user base and the continued expansion of its
@@ -108,33 +135,31 @@ export default function Study() {
         </div>
         <div className={styles.rightContainer}>
           <div className={styles.topSection}>
-            <h2>Cost Reduction, Faster Innovation</h2>
+            <h2>Results: A 10x Cost Reduction and the Freedom to Innovate</h2>
             <h3>80%+ Cost Reduction</h3>
             <p>
-              By moving away from the Lucene-based AWS setup, Predori
-              immediately cut their operational costs by a factor of 10.
+              By moving away from the Apache Lucene-based AWS setup, predori
+              immediately cut their operational costs by a factor of 10, giving
+              them more runway to invest back into their product.
             </p>
-            <h3>Redirected Engineering Focus</h3>
+            <h3>Accelerated Time to Market</h3>
             <p>
-              With a dedicated vector database partner, the engineering team was
-              able to “iterate on the product side and develop new features in
-              the RAG space”, without the distraction of building their own
-              solution, a process that would have "greatly delayed our time to
-              market." - Konstantin Schmitz, Co-founder of Predori.
+              With Weaviate as their dedicated vector database partner, the
+              engineering team was free to iterate on the product side and
+              develop new, advanced features in the RAG space.
             </p>
             <h3>Expansion into Agentic RAG</h3>
             <p>
-              Weaviate’s scalable foundation has supported predori to move
-              beyond basic search to develop advanced agentic RAG systems. They
-              could now focus on building new, high-value features instead of
-              constantly battling their infrastructure.
+              Weaviate’s scalable foundation has supported predori's evolution
+              from a simple search tool to a strategic platform for building
+              advanced agentic RAG systems.
             </p>
           </div>
           <div className={styles.bottomSection}>
             <div className={styles.logo}></div>
 
             <p>
-              <Link to="https://predori.com/en/">Predori</Link>, short for
+              <Link to="https://predori.com/en/">predori</Link>, short for
               "patent research done right," was founded in 2020 to make patent
               search easier and more accessible to a broader audience and user
               group. Their platform has since expanded to cover strategic patent

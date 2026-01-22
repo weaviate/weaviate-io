@@ -11,7 +11,7 @@ export default function StudyHeader() {
           <div className={styles.logo}></div>
           <span>Case Study</span>
           <h1>
-            How Predori cut operational costs over 80% with an AI-Powered Patent
+            How predori cut operational costs over 80% with an AI-Powered Patent
             Intelligence Platform
           </h1>
           <div className={styles.headerBox}></div>
