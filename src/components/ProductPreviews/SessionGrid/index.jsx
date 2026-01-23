@@ -8,7 +8,7 @@ const PREVIEWS = [
     label: 'PREVIEW',
     title: 'Engram – Memory for Agents',
     description:
-      'Persist and reuse agent context and knowledge across sessions.',
+      'A fully managed API for building agents that remember, learn, and continually improve over time.',
     graphic: '/img/site/book-rag-graphic.svg',
     learnMoreHref: '',
   },
@@ -17,7 +17,7 @@ const PREVIEWS = [
     label: 'PREVIEW',
     title: 'Model Evaluation Tool',
     description:
-      'Evaluate and compare embedding models using your own data and queries.',
+      'Evaluate and compare embedding models using your own data and queries in Weaviate Cloud.',
     graphic: '/img/site/book-scale-graphic.svg',
     learnMoreHref: '',
   },
@@ -26,9 +26,9 @@ const PREVIEWS = [
     label: 'PREVIEW',
     title: 'HFresh Index',
     description:
-      'Improve recall–performance tradeoffs in vector search workloads.',
+      'Deliver high-recall retrieval with dramatically lower memory requirements with innovative indexing algorithm.',
     graphic: '/img/site/book-agentic-graphic.svg',
-    learnMoreHref: '/product',
+    learnMoreHref: '',
   },
 ];
 
@@ -53,7 +53,29 @@ export default function SessionsGrid() {
               <p className={styles.blurb}>{p.description}</p>
 
               <div className={styles.actions}>
-                <Link className={styles.requestButton} to="#register-interest">
+                <Link
+                  className={styles.requestButton}
+                  to="#register-interest"
+                  onClick={(e) => {
+                    e.preventDefault();
+
+                    const url = new URL(window.location.href);
+                    url.searchParams.set('preview', p.id);
+                    url.hash = 'register-interest';
+                    window.history.pushState({}, '', url.toString());
+
+                    requestAnimationFrame(() => {
+                      document
+                        .getElementById('register-interest')
+                        ?.scrollIntoView({
+                          behavior: 'smooth',
+                          block: 'start',
+                        });
+                    });
+
+                    window.dispatchEvent(new Event('previewchange'));
+                  }}
+                >
                   Request early access
                 </Link>
 
@@ -72,8 +94,6 @@ export default function SessionsGrid() {
             </article>
           ))}
         </div>
-
-        {/* About panel */}
         <div className={styles.aboutPanel} aria-label="About product previews">
           <h3 className={styles.aboutTitle}>About product previews</h3>
           <ul className={styles.aboutList}>
