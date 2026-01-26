@@ -1,0 +1,232 @@
+---
+title: 'Weaviate Security: Authentication & Authorization '
+slug: weaviate-security-authn-authz
+authors: [dirk, ivan]
+date: 2026-01-29
+tags: ['security', 'authentication', 'authorization']
+image: ./img/hero.jpg
+description: 'A complete guide on which authentication and authorization methods are available in Weaviate.'
+---
+
+![Authentication & Authorization](./img/hero.jpg)
+
+We've all heard the database horror stories. A data scientist runs a bulk update without a `WHERE` clause. An intern accidentally exposes a customer's personally identifying information (PII) through a search API. Or maybe an agentic application deletes an entire database in production. What starts as a simple oversight can quickly become a security incident, a compliance violation, or worse—a headline, or even a viral meme.
+
+Much of this can be prevented by having the right security setup. This means knowing who is accessing the database (authentication), and only giving appropriate, predefined access to that user (authorization).
+
+As vector databases move from prototype to production, often containing embeddings of sensitive customer data, proprietary documents, or regulated information, getting security right isn't optional. Whether you're a solo developer building your first AI application or a growing team preparing for production, understanding Weaviate's authentication and authorization options is essential.
+
+In this guide, we'll explore what authentication and authorization mean in practice, what options Weaviate provides, and how to implement them for your use case.
+
+## Why Access Control Matters
+
+Just like traditional databases, access control is a critical part of the guardrails that protect a vector database. A collection containing product information should be treated differently from one containing customer service conversations, and anything containing PII must meet security and compliance requirements.
+
+This is where the _principle of least privilege_ becomes essential. This axiom means users and applications should only have the exact access level required for them to do their job. A search API should be able to read product information (but not write), and a data scientist may access development data (but not production).
+
+Two complementary mechanisms are essential to meet this goal:
+
+- **Authentication** verifies the user's identity
+- **Authorization** specifies what that user can do, based on their identity
+
+## Authentication in Weaviate: Verifying Identity
+
+Weaviate offers several authentication options to suit different security requirements. Let's explore each one and when you might use them.
+
+### API Key Authentication
+
+API key authentication provides a straightforward way to verify that requests come from legitimate sources. Each API key is associated with a user identity in Weaviate, allowing you to track who's making requests and apply appropriate permissions.
+
+**When to use it:**
+
+- You're getting started with Weaviate and need simple, effective security
+- You're building applications that need programmatic access
+- You want to create service accounts for different applications or services
+- You're using Weaviate Shared Cloud (where API key auth is pre-configured)
+
+API keys work well for many production scenarios, especially when combined with role-based access control (which we'll cover in the authorization section).
+
+### Identity Provider (IdP) Integration
+
+For teams with existing identity infrastructure, Weaviate integrates with third-party identity providers through OpenID Connect (OIDC). This includes popular providers like Okta, Auth0, Azure AD, and Google Workspace, as well as self-hosted solutions like Keycloak or Authentik.
+
+IdP integration offers several advantages:
+
+**For administrators:**
+
+- Centralized user management in one tool
+- Leverage specialized, highly secure identity platforms
+- Reduced attack surface—fewer systems to secure
+- Existing access policies and multi-factor authentication carry over
+
+**For users:**
+
+- One fewer set of credentials to manage
+- Familiar login experience
+- Single sign-on (SSO) across your organization's tools
+
+**Security benefits:**
+A key feature of IdP integration is that user credentials are never sent to Weaviate. Instead, the user authenticates against the IdP, which generates a JSON Web Token (JWT) for use with Weaviate. This token has far more limited use than the original credentials, reducing risk for everyone involved.
+
+_Note: For enterprise-scale IdP integration, OIDC groups, and advanced SSO features, check out our companion post on [enterprise security with Weaviate](#)._
+
+### Anonymous Access
+
+Weaviate also supports anonymous access, where no authentication is required to access the database.
+
+**⚠️ Use with extreme caution:** Anonymous access should only be used in local development environments or for public, non-sensitive data. Never use anonymous access in production or with any data that requires protection.
+
+## Authorization in Weaviate: Controlling Access
+
+Once a user is authenticated, authorization determines what they can do. Weaviate provides flexible authorization options ranging from simple to sophisticated.
+
+### Admin list
+
+Admin list authorization can be configured using environment variables. Take a look at the following configuration file example (`docker-compose.yml`):
+
+```yaml
+services:
+  weaviate:
+    ...
+    environment:
+      ...
+      # Example authentication configuration using API keys
+      # OIDC access can also be used with RBAC
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
+      AUTHENTICATION_APIKEY_ENABLED: 'true'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-a-key,user-b-key,user-c-key'
+      AUTHENTICATION_APIKEY_USERS: 'user-a,user-b,user-c'
+
+      # Authorization configuration
+      # Enable admin list
+      AUTHORIZATION_ADMINLIST_ENABLED: 'true'
+
+      # Provide pre-configured roles to users
+      # This assumes that the relevant user has been authenticated and identified
+      #
+      # You MUST define at least one admin user
+      AUTHORIZATION_ADMINLIST_USERS: 'user-a'
+      AUTHORIZATION_ADMINLIST_READONLY_USERS: 'user-b'
+```
+
+This configuration enables Admin list authorization, configures `user-a` as a user with built-in admin permissions and `user-b` with built-in viewer permissions.
+
+However, most production use cases benefit from more granular control.
+
+### Role-Based Access Control (RBAC)
+
+RBAC lets you define precisely what each user or application can do. It works by assigning roles to users, where each role defines specific permissions for specific resources.
+
+**How RBAC Works:**
+
+1. **Roles** are containers for permissions (e.g., `Administrator`, `DataScientist`, `SearchApplication`)
+2. **Permissions** specify allowed actions on specific resources
+3. **Resources** include collections, tenants, roles, and other Weaviate objects
+4. **Actions** include create, read, update, delete, and other operations
+
+When a request comes in, Weaviate checks the user's role(s), evaluates their permissions for the requested operation, and either allows or denies access accordingly.
+
+**Built-in Roles:**
+
+Weaviate includes several built-in roles to get you started:
+
+- `root`: Full access to everything—the database administrator
+- `viewer`: Read-only access to everything—useful for analysts or auditors
+
+**Custom Roles:**
+
+For most real-world scenarios, you'll want to create custom roles tailored to your specific needs. Custom roles let you implement the principle of least privilege by granting exactly the permissions each user requires—nothing more, nothing less.
+
+For example, you might create a `SearchApplication` role that can only read from your product catalog, or a `DataEngineer` role that can create and modify collections in development but only read from production.
+
+## Practical Example: E-commerce Product Search
+
+Let's see how authentication and authorization work together in a real-world scenario. Imagine you're running an e-commerce company using Weaviate to power product search, recommendations, and analytics.
+
+You have three Weaviate collections:
+
+- **`Products`**: Product descriptions and metadata
+- **`CustomerBehavior`**: Purchase history, browsing patterns, interaction data (includes PII)
+- **`InternalAnalytics`**: Business metrics, operational data
+
+You define three custom roles with these permissions:
+
+| Role                  | `Products`  | `CustomerBehavior` | `InternalAnalytics` | Collections for development |
+| --------------------- | ----------- | ------------------ | ------------------- | --------------------------- |
+| **Administrator**     | Full access | Full access        | Full access         | Full access                 |
+| **DataScientist**     | Read only   | Read only          | Read only           | Full access                 |
+| **SearchApplication** | Read only   | No access          | No access           | No access                   |
+
+Below are some real-world scenarios that demonstrate how our security setup works:
+
+**1. Product Searches**
+
+When a customer searches for "wireless headphones" on your website, the search service authenticates with its API key as `searchapp`, which has the `SearchApplication` role. This role can query the `Products` collection but has no access to customer behavior or analytics data. The search works perfectly, and sensitive data remains protected.
+
+**2. Data Science Workflow**
+
+Charlie, your data scientist, needs to build a new recommendation model. Charlie authenticates using their API key (associated with the `DataScientist` role) and can:
+
+- Read production data from all collections to understand patterns
+- Create new collections in the development environment to experiment
+- Iterate and refine the model with full control in dev
+- But cannot accidentally delete or modify production data
+
+**3. Protection Against Compromised Credentials**
+
+A malicious actor compromises the search application's API key. They attempt to extract customer data from the `CustomerBehavior` collection. But the `SearchApplication` role has no access to that collection—Weaviate denies the request. The attack is discovered through audit logs, the compromised key is revoked, and a new one is issued. Customer data remained protected throughout.
+
+This example shows how authentication (verifying it's really the search application, Charlie, or an attacker) combines with authorization (determining what each identity can do) to create robust, layered security.
+
+## Getting Started with Weaviate Security
+
+Ready to implement authentication and authorization in your Weaviate instance? Here's how to get started based on your deployment type.
+
+### Weaviate Open Source
+
+Open source Weaviate users have access to all the same authentication and authorization features, with the flexibility to configure everything exactly as needed.
+
+1. **Choose your authentication method**: Configure authentication in your Weaviate configuration file or environment variables. Start with API keys for simplicity, move to IdP integration as you grow
+2. **Define your roles**: Think about the different types of access you need (read-only, read-write, admin)
+3. **Set permissions**: For each role, specify exactly which collections and actions are allowed
+4. **Assign roles**: Give each user or application the least privileged role that lets them do their job
+5. **Test access**: Verify that each role can do what it should—and can't do what it shouldn't
+6. **Monitor and refine**: Review access logs and adjust permissions as your needs evolve
+
+### Weaviate Cloud
+
+Shared Cloud instances come with API key authentication and customizable RBAC pre-configured. This means you get enterprise-grade security without operational overhead.
+
+**What you can do:**
+
+- Create custom roles with granular permissions
+- Define exactly what each role can access
+- Manage users and API keys through the console UI
+- Assign roles to users programmatically via the API
+- Perfect for teams getting started or running smaller production workloads
+
+## Conclusion
+
+Authentication and authorization might seem like just another checkbox on the path to production, but they're fundamental to building secure, trustworthy applications. By verifying who's accessing your Weaviate instance (authentication) and controlling what they can do (authorization), you prevent the horror stories we started with.
+
+Start with the security model that fits your current needs:
+
+- **Getting started?** Use Shared Cloud with API keys and basic RBAC
+- **Growing team?** Add custom roles with granular permissions
+- **Need flexibility?** Deploy open source with your preferred configuration
+- **Enterprise requirements?** Check out our companion post on [enterprise security with Weaviate](#) for SSO, OIDC groups, and advanced features
+
+The key is to implement security from the start and scale it as you grow. Weaviate gives you the tools to do exactly that.
+
+## Learn More
+
+- [Weaviate Authentication Documentation](https://docs.weaviate.io/deploy/configuration/authentication)
+- [Weaviate Authorization Documentation](https://docs.weaviate.io/deploy/configuration/authorization)
+- [Role-Based Access Control Guide](https://docs.weaviate.io/weaviate/configuration/rbac)
+- [Weaviate Cloud](https://docs.weaviate.io/weaviate/configuration/rbac/manage-roles)
+
+Ready to secure your vector database? Start with Weaviate's flexible authentication and authorization options, and build with confidence knowing your data is protected.
+
+import WhatsNext from '/_includes/what-next.mdx';
+
+<WhatsNext />
