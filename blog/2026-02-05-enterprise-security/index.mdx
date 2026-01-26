@@ -1,0 +1,130 @@
+---
+title: Enterprise Security with Weaviate
+slug: weaviate-security-enterprise
+authors: [dirk, ivan]
+date: 2026-02-05
+tags: ['security', 'authentication', 'authorization']
+image: ./img/hero.png
+description: A complete guide on how to secure Weaviate enterprise deployments.
+---
+
+![Enterprise Security with Weaviate](./img/hero.png)
+
+A data scientist runs a bulk update without a `WHERE` clause. An intern accidentally exposes customer PII through a search API. An agentic application deletes a production database. For enterprises, these aren't just embarrassing mistakes—they're potential regulatory violations, breach disclosures, and multi-million dollar incidents.
+
+As vector databases become critical infrastructure powering AI applications, enterprise security requirements become non-negotiable. Organizations need centralized identity management, audit trails, compliance-ready logging, and seamless integration with existing security infrastructure.
+
+Weaviate meets these requirements with Single Sign-On, OIDC integration, group-based role management, and comprehensive audit logging. Whether you're in financial services, healthcare, government, or any regulated industry, Weaviate provides the security controls you need.
+
+:::tip
+
+_Note: This post builds on fundamental authentication and authorization concepts covered in our [complete guide to authentication and authorization in Weaviate](#). We recommend reading that first if you're new to Weaviate's security model._
+
+:::
+
+## Why Enterprise Security Is Different
+
+Enterprise security isn't just about stronger passwords—it's about meeting regulatory requirements like GDPR, HIPAA, SOC 2, PCI DSS, and FedRAMP. These aren't suggestions but legal requirements with significant penalties for non-compliance.
+
+Enterprises also face operational challenges that small teams don't. With hundreds or thousands of employees, contractors, and service accounts, managing identities across dozens of systems creates overhead and security risks. Credential sprawl increases attack surface, manual provisioning is error-prone, and audit trails become fragmented.
+
+Most enterprises have already invested in identity infrastructure like Active Directory, Okta, Azure AD, or Auth0. Security must integrate with what already exists rather than requiring yet another credential store.
+
+## Single Sign-On and Identity Provider Integration
+
+SSO through OIDC integration is the foundation of enterprise security with Weaviate. Instead of creating another username and password, users authenticate with your existing identity provider. When an employee joins, they're provisioned once. When they leave, they're deprovisioned once. Role changes flow automatically to all connected systems including Weaviate.
+
+This centralized approach reduces password reuse, forgotten credentials, and phishing risk. Identity providers are purpose-built for security with multi-factor authentication, adaptive authentication, session management, and compromised credential detection. By integrating with your IdP, Weaviate inherits these protections without reimplementing them. Each system that stores credentials is a potential breach point—by never storing user credentials, Weaviate reduces your attack surface.
+
+Here's how it works: users authenticate with your IdP, which generates a short-lived JSON Web Token (JWT) for accessing Weaviate. These tokens are time-limited, scope-limited, cryptographically signed, and can be revoked if compromised. Even a complete compromise of Weaviate wouldn't expose user credentials—attackers would only find short-lived tokens with limited scope.
+
+Weaviate supports any OIDC-compliant identity provider including Okta, Auth0, Azure AD, Google Workspace, Keycloak, and Authentik. This gives you complete flexibility to use your preferred identity infrastructure.
+
+## OIDC Groups: Scaling Role Management
+
+Managing individual user permissions doesn't scale when you have 500 developers, 200 data scientists, and dozens of service accounts. If each user requires individual role assignment, onboarding requires manual work, transfers risk missed updates, and auditing becomes checking hundreds of individual assignments.
+
+OIDC groups solve this by mapping your existing organizational structure directly to Weaviate roles. Your identity provider already has groups like `developers`, `data-scientists`, and `analytics-team`. You create matching Weaviate roles and map groups to roles. When a user's group membership changes in your IdP, Weaviate automatically reflects this on their next authentication.
+
+For example, a financial services company using Azure AD might map `Engineering-Backend` to a `Maintainer` role, `Engineering-ML` to `DataScientist`, and `Contractors-Engineering` to `DevelopmentOnly`. When a contractor joins the engineering team, they're added to the Azure AD group and immediately gain the appropriate Weaviate access. When their contract ends, removing them from the group automatically revokes access.
+
+| Azure AD Group          | Weaviate Role   | Access Level              |
+| ----------------------- | --------------- | ------------------------- |
+| Engineering-Backend     | Maintainer      | Read-write prod, full dev |
+| Engineering-ML          | DataScientist   | Read-only prod, full dev  |
+| Contractors-Engineering | DevelopmentOnly | Dev access only           |
+
+This provides operational efficiency (onboarding in seconds, single place to manage all access), better security (immediate revocation, impossible to forget), and simplified compliance (single source of truth, clear audit trail). You onboard once, offboard once, and access updates automatically.
+
+## Enterprise RBAC at Scale
+
+Beyond basic roles, enterprises need sophisticated permission models reflecting complex organizational structures. Developers need full access in development, limited access to staging, and read-only access to production. Support teams need access to specific customer tenants for troubleshooting. Healthcare data requires additional authorization, and geographic restrictions may apply.
+
+Let's look at a complete enterprise example. AcmeCo, an e-commerce company, uses Weaviate for product search, personalization, and analytics. They have collections for Products, CustomerBehavior (with PII), and InternalAnalytics, plus development collections for experimentation. They define four roles: 
+
+| Role              | Products      | CustomerBehavior | InternalAnalytics | Dev Collections |
+| ----------------- | ------------- | ---------------- | ----------------- | --------------- |
+| Administrator     | Full CRUD     | Full CRUD        | Full CRUD         | Full CRUD       |
+| Maintainer        | Read & Update | Read & Update    | Read & Update     | Full CRUD       |
+| DataScientist     | Read only     | Read only        | Read only         | Full CRUD       |
+| SearchApplication | Read only     | No access        | No access         | No access       |
+
+When a customer searches for "wireless headphones," the search service authenticates as `searchapp` with the SearchApplication role. It can query Products but attempting to access CustomerBehavior fails—the role has no permissions. If an attacker compromises this API key, they still can't access customer data. The attack is discovered through audit logs, the key is revoked, and sensitive data stays protected.
+
+When Charlie the machine learning engineer builds a recommendation model, they authenticate via Okta and get the DataScientist role based on their `ml-engineers` group membership. Charlie can read production data and create collections in dev for experimentation. When Charlie accidentally runs a DELETE query on production, Weaviate denies it—the role doesn't have delete permissions. When Charlie leaves the company or changes teams, their Okta group membership updates and access changes automatically.
+
+When Jim the backend engineer updates product descriptions, he authenticates via Okta with the Maintainer role. He can update Products but when he accidentally runs a script designed to wipe dev collections against production, Weaviate denies it—Maintainer doesn't have delete permissions on production. Crisis averted, no data lost.
+
+## Audit Logging and Compliance
+
+Regulatory compliance requires comprehensive audit trails. GDPR Article 30 requires records of processing activities. HIPAA requires audit trails for all PHI access. SOC 2 requires logging sensitive data access. PCI DSS requires tracking cardholder data access.
+
+Weaviate logs all RBAC permission checks (successful and denied), role modifications, authentication events, failed attempts, and administrative actions. Each log entry includes timestamp, user identity, action attempted, resource targeted, result, source IP, and request context. These logs integrate with SIEM systems like Splunk and QRadar, log aggregation platforms like Elasticsearch and Datadog, and compliance reporting tools.
+
+This provides the audit trail necessary for compliance, security operations, and incident response. When someone asks "who accessed customer PII and when" or "were there unauthorized access attempts," you have the answer.
+
+## Weaviate Managed Cloud: Enterprise-Ready Infrastructure
+
+While Weaviate Shared Cloud provides excellent security, Managed Cloud offers enterprise-specific features for organizations with advanced requirements.
+
+Managed Cloud includes:
+- Full IdP integration with any OIDC-compliant provider
+- OIDC groups support for automatic role assignment
+- Enhanced audit logging with longer retention and SIEM export
+- Dedicated infrastructure without noisy neighbors
+- SLA guarantees with financial backing
+- Compliance support (SOC 2 Type II, HIPAA-eligible deployments)
+
+Consider Managed Cloud if you need integration with your enterprise IdP, require OIDC group-based role management, have regulatory compliance requirements, need dedicated infrastructure, want SLA guarantees, require longer audit log retention, need priority support, or have complex multi-region or data residency requirements.
+
+## Implementation Approach
+
+Rolling out enterprise security with Weaviate follows a structured approach. Start by assessing your current identity infrastructure, identifying all users and applications needing Weaviate access, mapping data sensitivity and regulatory requirements, and defining who needs what level of access.
+
+Then plan your IdP integration design, define Weaviate roles and permissions, map OIDC groups to roles, and finalize your architecture. During implementation, configure IdP integration, create roles in Weaviate, set up group mappings, onboard users, and thoroughly test access scenarios.
+
+Finally, establish ongoing operations by monitoring audit logs, conducting regular access reviews, refining permissions based on experience, and maintaining incident response procedures. A typical timeline runs 6-8 weeks for small organizations, 8-12 weeks for medium-sized companies, and 12-16 weeks for large enterprises.
+
+## Conclusion
+
+Enterprise security is about integration, not isolation. Weaviate meets enterprises where they are—integrating with existing identity providers, respecting organizational structures through OIDC groups, and providing compliance-ready audit trails.
+
+:::info Key Enterprise Security Features
+
+- **Single Sign-On**: Leverage existing IdP, users authenticate once
+- **OIDC Groups**: Map org structure to access control with automatic updates
+- **Granular RBAC**: Implement least privilege with custom roles
+- **Audit Logging**: Meet compliance requirements with detailed logs
+- **Managed Cloud**: Enterprise features without operational overhead
+
+:::
+
+The key differentiators are Single Sign-On leveraging your existing IdP with users authenticating once and Weaviate never seeing credentials, OIDC groups mapping organizational structure directly to access control with automatic updates, granular RBAC implementing least privilege with custom roles and environment-specific permissions, comprehensive audit logging meeting regulatory requirements with detailed logs and SIEM integration, and Managed Cloud providing enterprise features without operational overhead.
+
+Whether you're in financial services, healthcare, government, or any regulated industry, Weaviate provides the security controls you need. And you don't need to change databases as you scale from startup to enterprise—start with Shared Cloud and basic RBAC, grow into IdP integration and OIDC groups, add audit logging and compliance features, all on the same platform with the same APIs.
+
+Ready to explore Managed Cloud? [Schedule a consultation](https://console.weaviate.cloud/contact-sales) with Weaviate's enterprise team to discuss your specific IdP integration requirements and plan your implementation. For more details, see the [OIDC authentication documentation](https://weaviate.io/developers/weaviate/configuration/authentication#oidc), [RBAC authorization guide](https://weaviate.io/developers/weaviate/configuration/authorization), and [Weaviate Cloud security overview](https://weaviate.io/security).
+
+import WhatsNext from '/_includes/what-next.mdx';
+
+<WhatsNext />
