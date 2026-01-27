@@ -43,8 +43,9 @@ Key advances included:
 
 * Stronger search primitives, with [BlockMax WAND](/blog/blockmax-wand) reaching GA, BM25 improvements, [multiple-target vectors](https://docs.weaviate.io/weaviate/search/multi-vector), [multi-vector search](https://docs.weaviate.io/weaviate/tutorials/multi-vector-embeddings), and [MUVERA](/blog/muvera) encoding  
 * Better efficiency through default [rotational quantization](/blog/8-bit-rotational-quantization) (RQ)  
-* Improved lifecycle management via [collection aliases](https://docs.weaviate.io/weaviate/manage-collections/collection-aliases), [replica movement](https://docs.weaviate.io/deploy/configuration/replica-movement) GA, and [TTL](https://docs.weaviate.io/weaviate/manage-collections/time-to-live) support  
-* Expanded security and access controls, including [cluster RBAC](https://docs.weaviate.io/weaviate/configuration/rbac), OIDC [group management](/blog/weaviate-1-33-release#oidc-group-management) and [runtime configurable certificates](https://weaviate.io/blog/weaviate-1-35-release?utm_source=chatgpt.com#runtime-configurable-oidc-certificates)  
+* Dynamic scalability under real workloads with [replica movement](https://docs.weaviate.io/deploy/configuration/replica-movement) GA and [async replication](https://docs.weaviate.io/deploy/configuration/async-rep) GA
+* Improved lifecycle management via [collection aliases](https://docs.weaviate.io/weaviate/manage-collections/collection-aliases) and [TTL](https://docs.weaviate.io/weaviate/manage-collections/time-to-live) support  
+* Expanded security and access controls, including [cluster RBAC](https://docs.weaviate.io/weaviate/configuration/rbac), OIDC [group management](/blog/weaviate-1-33-release#oidc-group-management) and [runtime configurable certificates](/blog/weaviate-1-35-release#runtime-configurable-oidc-certificates)  
 * Continued investment in developer experience, with updated and preview clients plus richer observability  
 * More flexible generative and RAG workflows through runtime model configuration and new integrations
 
@@ -67,7 +68,7 @@ By the end of 2025, the foundation has firmly been set in place with faster, mor
 
 To support mature agentic behavior at this next stage, we believe that agents must evolve. They need to reliably retrieve context, independently reason over it, operate across expanded data types, and be optimized with the most appropriate embedding models for the data they work with. Critically, they must also be able to learn and improve over time rather than resetting with each iteration. This progression isn’t driven by a single feature but by a deliberate maturation of the system as a whole. 
 
-Many of these capabilities are already taking shape. We’re extending agentic retrieval into richer reasoning workflows, expanding multimodal support to give agents deeper context, introducing tools to measure and compare model performance \[link to preview signup\], and building shared memory \[link to preview signup\] to enable agents that evolve as they are used. 
+Many of these capabilities are already taking shape. We’re extending agentic retrieval into richer reasoning workflows, expanding [multimodal support](https://docs.weaviate.io/cloud/embeddings/models#multimodal-embedding-models) to give agents deeper context, introducing tools to measure and compare [model performance](https://weaviate.io/product-previews#preview-model-eval), and building [shared memory](https://weaviate.io/product-previews#preview-engram) to enable agents that evolve as they are used. 
 
 2025 wasn’t about a single breakthrough feature, but about making everything to come, possible. 
 
