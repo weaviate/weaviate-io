@@ -30,7 +30,7 @@ Availability signifies that the services are functional and accessible to the Cu
 For subscriptions beginning October 27, 2025 or later, the details are as follows per **subscription plan**:
 <br></br>
 
-| Parameter | Flex | Premium <br/> <small>(Shared Deployment)</small> | Premium <br/> <small>(Shared Deployment)</small>  |
+| Parameter | Flex | Premium <br/> <small>(Shared Deployment)</small> | Premium <br/> <small>(Dedicated Deployment)</small>  |
 |-----------|----------|--------------|-------------------|
 | Availability per Quarter | 99.5% | 99.9% | 99.95% |
 
