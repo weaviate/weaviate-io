@@ -4,11 +4,11 @@ slug: not-your-grandparents-database
 authors: [alvin]
 date: 2026-01-27
 tags: []
-image: ./img/hero.png
+image: ./img/hero.jpg
 description: 'Why vector databases are here to stay.'
 ---
 
-![Hero image](./img/hero.png)
+![Hero image](./img/hero.jpg)
 
 Now hear me out. Relational and NoSQL databases are great – I know, I’ve had a hand in building many of [them](https://www.linkedin.com/in/alvinrichards/). They’re battle-proven at scale and solve real problems developers care deeply about. They give us atomicity, consistency, reliability, and many other fundamental properties that let us bank, receive healthcare, and binge on entertainment without thinking too hard about how those feats are pulled off under the hood.
 
@@ -28,6 +28,7 @@ With systems like Oracle and PostgreSQL, [scaling](#vertical-scaling) first mean
 
 
 <a name="vertical-scaling"></a>
+<br/>
 
 > **Just five computers?**  
 > IBM famously believed in the 1940s that there might be “a world market for maybe five computers”. Software architecture followed that mantra for decades: build one big box, and if you run out of capacity, get a bigger box. Vertical scaling worked remarkably well through to the 1990s until it just got too complex, expensive, and impractical. What was the alternative to a single big box? Lots and lots of smaller and cheaper boxes. Horizontal scaling, or distributing systems across many smaller machines, worked beautifully for web servers. Databases, however, had a harder time with this, as querying across many nodes was inefficient and slow. The database industry has spent the next years solving the scaling problem in entirely new ways that the original relational databases were not originally architected for.
@@ -42,6 +43,7 @@ So why not just store JSON? That was the gem of an idea behind the likes of Mong
 
 
 <a name="distributed-coordination"></a>
+<br/>
 
 > **The Two Phase Commit (2PC)**  
 >Imagine that you are inviting three friends out to birthday drinks, classily via registered mail. You want to make sure that all three have received the invitations before making a reservation, and therefore wait for the signature upon receipt for each registered letter. But what happens if you only get two signatures back? How long do you wait for the third before making dinner reservations? What if the third signature never comes?  This type of uncertainty is what two-phase commit protocols manage: determining how long you will wait for a signature (timeouts) and how many signatures you need before moving ahead (quorums). Organizing a birthday party may have low stakes, but a lot more is riding on a distributed databases with non deterministic transactions.
@@ -56,20 +58,33 @@ In a relational model, these live in separate tables and are updated together in
 
 In a NoSQL model, both the header and line items can be stored together in a single JSON object. There’s no need to coordinate updates across different entities/tables. 
 
-*\[illustration of below\]*
+<br/>
+
+```
+InvoiceHeader
+-------------
+invoice_num
+customer_id
+
+InvoiceLine
+-----------
+invoice_num 
+line_num
+```
+*[Figure 1: Relational Tables]*  
 
 ```json
-Relational Tables
-Invoice_Header ----------< Invoice_line
-# Invoice_num			# Invoice_num
-- Customer_id			# Line_num
-- etc				- etc
-JSON Object
-{ Invoice_num: "ORD-1234",
-  Customer_id: "ABC",
-  Invoice_lines: [ { Line_num: 1, ... }, {...} ]
-} 
+{ 
+  invoice_num: "ORD-1234",
+  customer_id: "ABC",
+  invoice_lines: [ 
+     { line_num: 1, ... }, 
+     {...} 
+  ]
+}
 ```
+*[Figure 2: JSON Object]*  
+<br/>
 
 Both approaches work well here because the relationships are known ahead of time. You decide what’s related, how it’s structured, and how it should be stored. Many real world applications need this kind of well-defined data modelling, which then allows for high levels of complexity in data and usage of the data.
 
