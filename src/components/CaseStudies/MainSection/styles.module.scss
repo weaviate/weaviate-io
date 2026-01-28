@@ -604,6 +604,48 @@
     }
   }
 
+  .bentoSmall.BS14 {
+    border-radius: 0.625rem;
+    background: #130c49;
+    box-shadow: 0 3px 5px 0 rgba(79, 150, 172, 0.1);
+    width: 97%;
+    height: 17.5rem;
+    flex-shrink: 0;
+
+    .bentoText h3 {
+      color: #ecf4f8;
+
+      @media screen and (max-width: 1440px) and (min-width: 900px) {
+        width: 80%;
+        font-size: 1.2rem;
+        height: 8rem;
+      }
+    }
+
+    .bentoLogo {
+      background: url('/img/site/predori-logo.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 9rem;
+      height: 2.84925rem;
+      flex-shrink: 0;
+    }
+
+    @media screen and (max-width: 1440px) {
+      width: 100%;
+      max-width: 66rem;
+    }
+
+    @media screen and (max-width: 1140px) {
+      width: 100%;
+      max-width: 56rem;
+    }
+
+    @media screen and (max-width: 600px) {
+      width: 100%;
+    }
+  }
+
   .bento04 {
     width: 23.75rem;
     height: 13.75rem;
@@ -848,11 +890,8 @@
     height: 20.9375rem;
     flex-shrink: 0;
 
-    background-image: linear-gradient(
-        218deg,
-        rgba(247, 249, 253, 0) 5.67%,
-        #2f288bc7 48.39%
-      ),
+    background-image:
+      linear-gradient(218deg, rgba(247, 249, 253, 0) 5.67%, #2f288bc7 48.39%),
       url('/img/site/lets-build-together.jpg');
     background-size: cover;
     background-position: center;
@@ -1009,7 +1048,8 @@
   width: 37.1875rem;
   height: 24.875rem;
   border-radius: 1.25rem;
-  background: linear-gradient(
+  background:
+    linear-gradient(
       180deg,
       rgba(255, 255, 255, 0) 0%,
       rgba(47, 47, 169, 0.8) 100%
@@ -1075,7 +1115,8 @@
 
   border-radius: 1.25rem;
   background: #f7f9fd;
-  background: linear-gradient(
+  background:
+    linear-gradient(
       180deg,
       rgba(255, 255, 255, 1) 0%,
       rgba(47, 47, 169, 0.1) 100%
@@ -1128,7 +1169,8 @@
   height: 22.6875rem;
   border-radius: 1.25rem;
 
-  background: linear-gradient(
+  background:
+    linear-gradient(
       180deg,
       rgba(247, 249, 253, 0.6) 0%,
       rgba(46, 40, 139, 0.8) 100%
@@ -1640,7 +1682,8 @@
   }
 
   .bento02 {
-    background: linear-gradient(
+    background:
+      linear-gradient(
         180deg,
         rgba(255, 255, 255, 0) 0%,
         rgba(47, 47, 169, 0.1) 100%

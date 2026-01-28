@@ -268,6 +268,28 @@ export default function MainSection() {
                 </div>
               </div>
             </Link>
+            <Link
+              to="/case-studies/predori"
+              className={`${styles.bentoSmall} ${styles.BS14}`}
+            >
+              <div className={styles.bentoText}>
+                <div className={styles.innerText}>
+                  <div className={styles.bentoLogo}></div>
+                  <h3>
+                    How predori cut operational costs over 80% with an
+                    AI-Powered Patent Intelligence Platform
+                  </h3>
+                </div>
+                <div className={styles.buttons}>
+                  <Link
+                    className={`${styles.csLink} ${styles.csLight}`}
+                    to="/case-studies/predori"
+                  >
+                    Read Case Study {'->'}
+                  </Link>
+                </div>
+              </div>
+            </Link>
           </div>
 
           {/* Row 4 – Four quote tiles */}
