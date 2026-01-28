@@ -82,11 +82,10 @@ export default function StudyHeaderTwoLine() {
             <h1>
               FOR AI ENGINEERS
               <br />
-              <span>WHO THINK BIG</span>
+              <span>turning ideas into products</span>
             </h1>
             <p>
-              Start fast, scale to billions with a feature-rich vector database
-              trusted by AI innovators{' '}
+              Design, build, and ship complete AI experiences with Weaviate{' '}
             </p>
             <div className={styles.headerBox}>
               <div className={styles.buttons}>
