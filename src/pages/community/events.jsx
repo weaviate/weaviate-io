@@ -20,7 +20,6 @@ export default function EventsPage() {
         <MetaSEO img="og/company/Community.jpg" />
         <WorkshopsHeader />
         <WorkshopSection />
-        <CalendarSection />
         <OnDemand />
         <Ebooks />
         <LearnMore />
