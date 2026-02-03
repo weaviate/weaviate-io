@@ -7,35 +7,35 @@ const CASE_STUDIES = [
     id: 'instabase',
     title: 'Turning over 450 data types into customer insights',
     href: '/case-studies/instabase',
-    tags: ['enterprise', 'analytics', 'rag'],
+    tags: ['enterprise', 'rag'],
     styleClass: styles.BS01,
   },
   {
     id: 'kapa',
     title: 'Production-ready AI assistant built in 7 days',
     href: '/case-studies/kapa',
-    tags: ['assistant', 'support', 'agentic'],
+    tags: ['enterprise', 'agentic'],
     styleClass: styles.BS02,
   },
   {
     id: 'neople',
     title: 'Customer service agents with 90% faster search',
     href: '/case-studies/neople',
-    tags: ['support', 'search', 'rag'],
+    tags: ['enterprise', 'rag'],
     styleClass: styles.BS03,
   },
   {
     id: 'finster',
     title: 'Successful management of 42M vectors in production',
     href: '/case-studies/finster',
-    tags: ['scale', 'vectors', 'production'],
+    tags: ['enterprise', 'vectors', 'production'],
     styleClass: styles.BS04,
   },
   {
     id: 'marvelx',
     title: 'How MarvelX is Scaling Insurance Processing at the Speed of AI',
     href: '/case-studies/marvelx',
-    tags: ['enterprise', 'insurance', 'automation'],
+    tags: ['enterprise', 'security'],
     styleClass: styles.BS05,
   },
   {
@@ -43,7 +43,7 @@ const CASE_STUDIES = [
     title:
       'How Loti AI fights likeness infringement and digital impersonation with Weaviate',
     href: '/case-studies/loti',
-    tags: ['security', 'media', 'search'],
+    tags: ['security', 'enterprise', 'search'],
     styleClass: styles.BS06,
   },
   {
@@ -51,7 +51,7 @@ const CASE_STUDIES = [
     title:
       'How Morningstar built a trustworthy, AI-driven financial data platform',
     href: '/case-studies/morningstar',
-    tags: ['finance', 'enterprise', 'trust'],
+    tags: ['finance', 'enterprise', 'security'],
     styleClass: styles.BS07,
   },
   {
@@ -65,7 +65,7 @@ const CASE_STUDIES = [
     id: 'moonsift',
     title: 'Building an AI-Powered Shopping Copilot',
     href: '/blog/moonsift-story',
-    tags: ['ecommerce', 'assistant', 'search'],
+    tags: ['ecommerce', 'enterprise', 'search'],
     styleClass: styles.BS09,
   },
   {
@@ -73,28 +73,28 @@ const CASE_STUDIES = [
     title:
       'How a Leading Financial Data Company Commercialized AI in Under a Year',
     href: '/case-studies/finance',
-    tags: ['finance', 'enterprise', 'go-to-market'],
+    tags: ['finance', 'enterprise', 'security'],
     styleClass: styles.BS10,
   },
   {
     id: 'astronomer',
     title: 'Ask Astro: An open source LLM Application',
     href: 'https://www.astronomer.io/blog/ask-astro-open-source-llm-application-apache-airflow/',
-    tags: ['llm', 'open-source', 'devtools'],
+    tags: ['llm', 'open-source'],
     styleClass: styles.BS11,
   },
   {
     id: 'preverity',
     title: 'Transforming Risk Management with Generative AI',
     href: 'https://innovativesol.com/success-stories/preverity/',
-    tags: ['risk', 'enterprise', 'genai'],
+    tags: ['security', 'enterprise'],
     styleClass: styles.BS12,
   },
   {
     id: 'unbody',
     title: 'Building Foundations for AI-First App Development',
     href: '/blog/unbody-weaviate',
-    tags: ['developer', 'platform', 'search'],
+    tags: ['platform', 'enterprise'],
     styleClass: styles.BS13,
   },
   {
@@ -102,7 +102,7 @@ const CASE_STUDIES = [
     title:
       'How predori cut operational costs over 80% with an AI-Powered Patent Intelligence Platform',
     href: '/case-studies/predori',
-    tags: ['patents', 'enterprise', 'cost-savings'],
+    tags: ['rag', 'enterprise', 'platform'],
     styleClass: styles.BS14,
   },
 ];
@@ -211,7 +211,7 @@ export default function MainSection() {
               className={styles.searchInput}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search case studies (e.g. support, scale, RAG)…"
+              placeholder="Search case studies (e.g. agentic, enterprise, RAG)…"
               aria-label="Search case studies"
             />
 
