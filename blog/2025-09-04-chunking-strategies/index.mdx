@@ -1,21 +1,31 @@
 ---
-title: 'Chunking Strategies to Improve Your RAG Performance'
+title: 'Chunking Strategies to Improve LLM RAG Pipeline Performance'
 slug: chunking-strategies-for-rag
 authors: [femke, victoria]
 date: 2025-09-04
 tags: ['concepts']
 image: ./img/hero.png
-description: "Learn how chunking strategies can help improve your RAG performance and explore different chunking methods."
+description: "Learn how chunking strategies improve LLM RAG pipelines, retrieval quality, and agent memory performance across production AI systems."
 ---
 
 
 ![Chunking Strategies to Improve Your RAG Performance](./img/hero.png)
 
-If you’re building AI applications with Large Language Models (LLMs), grounding generated text responses with your specific data is key to accurate answers. [Retrieval-Augmented Generation (RAG)](/blog/introduction-to-rag) connects a large language model to an outside knowledge source, like a [vector database](/blog/what-is-a-vector-database). This lets it find relevant facts before creating a response. The quality of your retrieval process is one of the biggest factors influencing your application's performance. Many developers focus on picking the right vector database or embedding model. But the most important step is often **how you prepare the data itself.**
+If you’re building AI applications with Large Language Models (LLMs), grounding generated text responses with your specific data is key to accurate answers. [Retrieval-Augmented Generation (RAG)](/blog/introduction-to-rag), often referred to as LLM RAG, connects a large language model to an outside knowledge source as part of a broader RAG pipeline.
+
+In agent-based systems, this retrieval step also acts as a memory layer, allowing AI agents to recall relevant information across tasks and interactions.
+
+
+
+This lets it find relevant facts before creating a response. The quality of your retrieval process is one of the biggest factors influencing your application's performance. Many developers focus on picking the right vector database or embedding model. But the most important step is often **how you prepare the data itself.**
 
 This is where **chunking** comes in.
 
+In modern LLM RAG pipelines and agent memory systems, chunking directly determines how effectively an agent can retrieve, reason over, and reuse information.
+
 In this post, we’ll review some essential chunking strategies, from fundamentals to advanced techniques, their trade-offs, and tips for choosing the right approach for your RAG application.
+
+
 
 ## What is Chunking?
 
@@ -40,6 +50,7 @@ The first step is making sure your system can *find* the right information in yo
 
 - Here's the problem with **chunks that are too large**: they often mix multiple ideas together, and subtopics can get lost or muddled. Think of it like trying to describe a book by averaging all its chapters. This creates a noisy, “averaged” embedding that doesn’t clearly represent any single topic, making it hard for the vector retrieval step to find all the relevant context.
 - **Chunks that are small and focused**  capture one clear idea. This results in a precise embedding that can encode all the nuanced parts of the content. This makes it much easier for your system to find the right information.
+- For AI agents, this retrieval step effectively becomes a form of long-term memory, where well-formed chunks determine what the agent can recall later.
 
 ### 2. Preserving Context for Generation
 
@@ -67,7 +78,7 @@ If you’re looking for a hands-on Python tutorial, check out this unit in the W
 
 ## Pre-Chunking vs Post-Chunking
 
-Now that we covered the fundamental dilemma of chunking, we can explore *when* to perform the chunking step in our RAG pipeline. This decision leads to two primary strategies: the standard **pre-chunking** and a more advanced alternative, **post-chunking**.
+Now that we covered the fundamental dilemma of chunking, we can explore *when* to perform the chunking step in an LLM RAG pipeline. This decision leads to two primary strategies: the standard **pre-chunking** and a more advanced alternative, **post-chunking**.
 
 **Pre-chunking** is the most common method. It processes documents asynchronously by breaking them into smaller pieces before embedding and storing them in the vector database. This approach requires upfront decisions about chunk size and boundaries, but enables fast retrieval at query time since all chunks are pre-computed and indexed.
 
@@ -293,6 +304,8 @@ Agentic chunking takes the concept of LLM-based chunking one step further. Inste
 
 These 'LLM-powered methods' can create very clear and context-rich chunks. However, they use a lot of computing power and cost more. They often need many calls to a strong model for each document.
 
+In practice, agentic chunking is often used as part of a broader agent memory architecture, where the agent actively manages how information is stored and recalled.
+
 :::info
 **When to use:** High-stakes RAG systems where you need the best possible chunks and cost isn't a dealbreaker. Perfect when you need custom chunking strategies tailored to each document's unique characteristics.
 :::
@@ -400,6 +413,9 @@ Optimizing chunk size in a production setting takes many tests and reviews. Here
 - Test how well your retrieval works by running typical queries and checking metrics like hit rate, precision, and recall to see which strategy delivers.
 - Involve humans to review both the retrieved chunks and LLM-generated responses - their feedback will catch things metrics might miss.
 - Continuously monitor the performance of your RAG system in production and be prepared to iterate on your chunking strategy as needed.
+- In production LLM RAG pipelines, chunking is not just a preprocessing step — it defines the quality of retrieval and the effectiveness of agent memory.
+- As AI systems evolve from simple RAG setups to long-running agents, chunking becomes a foundational decision for memory, reasoning, and cost efficiency.
+
 
 :::info
 Dive deeper into Advanced RAG Techniques with our **free** eBook: [https://weaviate.io/ebooks/advanced-rag-techniques](https://weaviate.io/ebooks/advanced-rag-techniques)
