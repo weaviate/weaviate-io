@@ -138,6 +138,10 @@
   color: var(--darkColor);
   margin: 0;
   height: 45px;
+
+  @media (max-width: 800px) {
+    height: auto;
+  }
 }
 
 .blurb {
