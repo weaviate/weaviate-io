@@ -15,11 +15,6 @@
     "photo": "adam.jpg"
   },
   {
-    "name": "André Duis",
-    "location": { "lat": 51.1657, "lng": 7.0846 },
-    "photo": "andre.jpg"
-  },
-  {
     "name": "André Mourão",
     "location": { "lat": 38.7177, "lng": -9.14 },
     "photo": "andre-m.jpg"
@@ -108,11 +103,6 @@
     "name": "Jerónimo Irazábal",
     "location": { "lat": -34.6047, "lng": -58.3826 },
     "photo": "Jeronimo.jpg"
-  },
-  {
-    "name": "Jessie de Groot",
-    "location": { "lat": 52.3686, "lng": 4.9051 },
-    "photo": "jessie.jpg"
   },
   {
     "name": "Jobi George",
