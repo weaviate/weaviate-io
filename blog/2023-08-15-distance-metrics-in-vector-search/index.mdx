@@ -23,6 +23,8 @@ To judge how similar two objects are, we can compare their vector values, by usi
 
 In the *context of vector search*, **similarity measures** are a function that takes two vectors as input and calculates a distance value between them. The distance can take many shapes, it can be the geometric distance between two points, it could be an angle between the vectors, it could be a count of vector component differences, etc. Ultimately, we use the calculated distance to judge how close or far apart two vector embeddings are. These metrics are used in machine learning for classification and clustering tasks, especially in semantic search.
 
+In practice, distance metrics are what make semantic search and similarity search possible. When users perform a semantic search—such as asking a question in natural language or searching by intent rather than exact keywords—the system compares the vector embedding of the query against stored embeddings and ranks results based on their vector distance. Although terms like vector search, similarity search, and semantic search are often used interchangeably, the distinction is useful: semantic search describes the user experience, while distance metrics define the mathematical mechanism that determines which results are most similar and therefore most relevant.
+
 > Distance Metrics convey how similar or dissimilar two vector embeddings are.
 
 In this article, we explore the variety of distance metrics, the idea behind each, how they are calculated, and how they compare to each other.
