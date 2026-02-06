@@ -13,7 +13,7 @@ description: "Learn how chunking strategies improve LLM RAG pipelines, retrieval
 
 If you’re building AI applications with Large Language Models (LLMs), grounding generated text responses with your specific data is key to accurate answers. [Retrieval-Augmented Generation (RAG)](/blog/introduction-to-rag), often referred to as LLM RAG, connects a large language model to an outside knowledge source as part of a broader RAG pipeline.
 
-In agent-based systems, this retrieval step also acts as a memory layer, allowing AI agents to recall relevant information across tasks and interactions.
+In agent-based systems, this retrieval step also acts as a context layer, allowing AI agents to recall relevant information across tasks and interactions.
 
 
 
@@ -40,7 +40,7 @@ The **size, content, and semantic boundaries** of each chunk influence retrieval
 
 ## Why is Chunking so Important for RAG?
 
-Chunking is arguably the **most important factor for RAG performance**. How you split your documents affects your system’s ability to find relevant information and give accurate answers. When a RAG system performs poorly, the issue is often not the retriever—it’s the **chunks**. Even a perfect retrieval system fails if it searches over poorly prepared data.
+Getting chunking right is one of the **most important decisions in building your RAG pipeline**. How you split your documents affects your system’s ability to find relevant information and give accurate answers. When a RAG system performs poorly, the issue is often not the retriever—it’s the **chunks**. Even a perfect retrieval system fails if it searches over poorly prepared data.
 
 This creates a fundamental challenge: your chunks need to be easy for vector search to find, while also **giving the LLM enough context** to create useful answers.
 
