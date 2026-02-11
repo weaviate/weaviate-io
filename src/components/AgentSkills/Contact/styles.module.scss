@@ -1,0 +1,241 @@
+.contactBackground {
+  background: #ecf4f8;
+  padding: 60px 0;
+
+  :global(.container) {
+    padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
+  }
+}
+
+.newsletterBar {
+  background: #f7f9fd;
+  border-radius: 1.25rem;
+  padding: 40px;
+  margin-bottom: 60px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-direction: row;
+
+  h3 {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 130%; /* 1.95rem */
+    margin: 0;
+  }
+
+  iframe {
+    width: 100%;
+    max-width: 600px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    padding: 20px;
+    h3 {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.contactSplit {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  background: #ddebf2;
+  border-radius: 1.25rem;
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  @media screen and (max-width: 600px) {
+    padding: 0;
+    margin-top: 3rem;
+  }
+}
+
+.leftContent {
+  flex: 1;
+  min-width: 300px;
+
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  padding: 40px;
+  color: #130c49;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  background-image:
+    linear-gradient(218deg, rgba(247, 249, 253, 0) 5.67%, #c4ff58 48.39%),
+    url('/img/site/weaviate-graffiti-bg-1.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply;
+  border-radius: 1.25rem 0 0 1.25rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: -70px;
+    bottom: -20px;
+    width: 450px;
+    height: 450px;
+    background: url('/img/site/weaviate-graffiti-w.png') no-repeat center;
+    background-size: contain;
+    opacity: 1;
+    z-index: 0;
+    pointer-events: none;
+
+    @media screen and (max-width: 900px) {
+      right: -50px;
+      bottom: -10px;
+      width: 350px;
+      height: 350px;
+      opacity: 0.5;
+    }
+  }
+
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  h2 {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%; /* 2.8rem */
+  }
+
+  p {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%; /* 1.575rem */
+  }
+
+  .tryButton {
+    display: inline-block;
+    margin: 20px 0;
+    padding: 10px 20px;
+    font-weight: 600;
+    border: 2px solid #130c49;
+    background: #fff;
+    border-radius: 8px;
+    color: #130c49;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.3s ease;
+    width: 13.875rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .linkList {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+
+    li {
+      margin-bottom: 10px;
+
+      a {
+        color: #130c49;
+        font-weight: 600;
+        text-decoration: underline;
+      }
+    }
+
+    li::before {
+      content: '';
+      display: inline-block;
+      width: 0.8125rem;
+      height: 0.8125rem;
+      margin-right: 8px;
+      background: url('/img/site/build-contact-icon.svg') no-repeat center;
+      background-size: contain;
+      vertical-align: middle;
+    }
+  }
+}
+
+.rightForm {
+  flex: 1;
+  min-width: 300px;
+  background: #fff;
+  padding: 40px;
+  border-radius: 0rem 1.25rem 1.25rem 0rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+
+  @media screen and (max-width: 900px) {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .contactSplit {
+    flex-direction: column;
+    border-radius: 1.25rem;
+    overflow: hidden;
+  }
+
+  .leftContent {
+    border-radius: 1.25rem 1.25rem 0 0;
+    padding: 30px 20px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .rightForm {
+    border-radius: 0 0 1.25rem 1.25rem;
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .newsletterBar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 0;
+
+    h3 {
+      font-size: 1rem;
+    }
+
+    iframe {
+      max-width: 100%;
+    }
+  }
+
+  .leftContent h2 {
+    font-size: 1.5rem;
+  }
+
+  .leftContent p,
+  .leftContent .linkList a {
+    font-size: 1rem;
+  }
+
+  .rightForm {
+    padding: 20px 15px;
+  }
+}

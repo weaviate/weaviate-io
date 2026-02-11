@@ -1,0 +1,166 @@
+:root {
+  --darkColor: #130c49;
+}
+
+.wrap {
+  background: #e7f0f6;
+  padding: 10px 0 0;
+}
+
+.panel {
+  background: #fff;
+  border: 1px solid rgba(19, 12, 73, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(19, 12, 73, 0.06);
+  padding: clamp(18px, 2vw, 26px);
+  display: grid;
+  gap: 18px;
+}
+
+.copy {
+  h2 {
+    margin: 0 0 10px;
+    color: var(--darkColor);
+    font-family: 'Plus Jakarta Sans';
+    font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  p {
+    margin: 0;
+    color: var(--darkColor);
+    font-family: Inter;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.65;
+    max-width: 72ch;
+  }
+}
+
+.ctas {
+  margin-top: 14px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.buttonGradient {
+  border-radius: 0.3125rem;
+  background: #130c49;
+  color: #fff;
+  font-family: Inter;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 10px 16px;
+  text-decoration: none;
+}
+
+.buttonOutline {
+  border-radius: 0.3125rem;
+  background: #fff;
+  color: #130c49;
+  border: 1px solid rgba(19, 12, 73, 0.18);
+  font-family: Inter;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 10px 16px;
+  text-decoration: none;
+}
+
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.highlightCard {
+  background: #f1f6fa;
+  border: 1px solid rgba(19, 12, 73, 0.08);
+  border-radius: 14px;
+  padding: 14px;
+
+  h3 {
+    margin: 0 0 6px;
+    color: var(--darkColor);
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1rem;
+    font-weight: 800;
+  }
+
+  p {
+    margin: 0;
+    color: var(--darkColor);
+    font-family: Inter;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.55;
+    opacity: 0.9;
+  }
+}
+
+.examples {
+  border-top: 1px solid rgba(19, 12, 73, 0.08);
+  padding-top: 14px;
+}
+
+.examplesTitle {
+  color: var(--darkColor);
+  font-family: 'Plus Jakarta Sans';
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  background: #ddebf2;
+  border: 1px solid rgba(19, 12, 73, 0.08);
+  padding: 8px 12px;
+  color: var(--darkColor);
+  font-family: Inter;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.topGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: clamp(20px, 3vw, 36px);
+  align-items: center;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.graphicWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+
+  img {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    opacity: 0.9;
+    filter: saturate(0.95);
+  }
+
+  @media (max-width: 900px) {
+    display: none;
+  }
+}

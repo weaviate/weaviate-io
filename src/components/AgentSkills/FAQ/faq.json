@@ -1,0 +1,34 @@
+[
+  {
+    "question": "Does this only work in Cursor?",
+    "answer": "No. The Weaviate Agent Skill follows the <strong>Agent Skills</strong> format, so it can be used with Claude Code, Cursor, Cloud Code, or any compatible agent runtime.",
+    "links": [
+      {
+        "label": "Agent Skills format",
+        "href": "https://agentskills.io/home#adoption"
+      }
+    ]
+  },
+  {
+    "question": "Do I need MCP to use this?",
+    "answer": "Not necessarily. MCP can be useful, but we’re also exploring lighter workflows like the Weaviate CLI and improving docs navigation so agents can reference code patterns more easily."
+  },
+  {
+    "question": "Do cookbooks include a frontend?",
+    "answer": "Cookbooks focus on the core Weaviate implementation (e.g. ingest, chunk, embed, query). Frontends are intentionally kept separate so prompts stay concise and easy to customize."
+  },
+  {
+    "question": "Where do prompts live?",
+    "answer": "Prompts are centralized in <strong>weaviate-prompts</strong> so they can be reused across docs, cloud console, agent skills, and cookbooks.",
+    "links": [
+      {
+        "label": "weaviate-prompts",
+        "href": "https://github.com/weaviate/weaviate-prompts"
+      }
+    ]
+  },
+  {
+    "question": "Can an agent delete my data?",
+    "answer": "Destructive operations (delete/wipe) are intentionally not exposed by default. Some advanced actions may require explicit human approval depending on the workflow."
+  }
+]

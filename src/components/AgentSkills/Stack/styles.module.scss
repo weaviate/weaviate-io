@@ -1,0 +1,212 @@
+:root {
+  --darkColor: #130c49;
+  --green: #61bd73;
+}
+
+.bgColor {
+  background: #130c49;
+  padding: 3.5rem 0;
+}
+
+.diagramBox {
+  border-radius: 1.25rem;
+}
+
+.header {
+  text-align: left;
+  color: #ffffff;
+  width: 85%;
+  margin: 0 0 32px 0;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
+
+  h2 {
+    color: #ffffff;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 120%;
+    margin: 0 0 10px 0;
+  }
+
+  p {
+    color: #ffffff;
+    opacity: 0.9;
+    font-family: Inter;
+    font-size: 1rem;
+    line-height: 160%;
+    margin: 0;
+    max-width: 72ch;
+  }
+}
+
+.kicker {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: Inter;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: stretch;
+  gap: 24px;
+
+  @media screen and (max-width: 860px) {
+    flex-direction: column;
+    gap: 28px;
+  }
+}
+
+.leftContent {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  flex: 1;
+  min-width: 320px;
+}
+
+.item {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 16px 16px 14px 16px;
+
+  span {
+    color: #61bd73;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 140%;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  p {
+    color: #ffffff;
+    opacity: 0.92;
+    font-family: Inter;
+    font-size: 0.95rem;
+    line-height: 155%;
+    margin: 0 0 10px 0;
+  }
+}
+
+.inlineLink {
+  color: #ffffff;
+  text-decoration: underline;
+  font-family: Inter;
+  font-weight: 600;
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+
+.miniCode {
+  margin: 8px 0 10px;
+  code {
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    padding: 8px 10px;
+    border-radius: 10px;
+    color: #ffffff;
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+      'Courier New', monospace;
+    font-size: 0.9rem;
+  }
+}
+
+.rightContent {
+  flex: 1;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.diagram {
+  background-image: url('/img/site/enterprise-dedicated-diagram.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 42rem;
+  height: 27rem;
+
+  @media screen and (max-width: 1200px) {
+    width: 34rem;
+  }
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    height: 18rem;
+  }
+}
+
+.diagramCaption {
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: Inter;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.bottomContent {
+  margin-top: 30px;
+  width: 100%;
+
+  .getStarted {
+    color: #ffffff;
+    font-size: 1.6rem;
+    font-family: 'Plus Jakarta Sans';
+    font-weight: 700;
+    margin: 0 0 12px 0;
+  }
+}
+
+.buttons {
+  margin-top: 14px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.buttonGradient {
+  border-radius: 0.3125rem;
+  background: #ffffff;
+  color: #130c49;
+  font-family: Inter;
+  font-size: 1rem;
+  font-weight: 800;
+  padding: 10px 16px;
+  text-decoration: none;
+}
+
+.buttonOutline {
+  border-radius: 0.3125rem;
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  font-family: Inter;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 10px 16px;
+  text-decoration: none;
+}
+
+.subtext {
+  margin-top: 12px;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: Inter;
+  font-size: 0.95rem;
+  line-height: 150%;
+}
