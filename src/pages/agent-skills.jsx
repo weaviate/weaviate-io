@@ -37,8 +37,9 @@ export default function AgentSkillsPage() {
         <Header />
         <AgentSkillsIntro />
         <SkillsGrid />
-        <AgentSkillsStack />
         <AgentSkillsGetBuilding />
+        <AgentSkillsStack />
+
         <AgentSkillsFAQ />
       </Layout>
 
