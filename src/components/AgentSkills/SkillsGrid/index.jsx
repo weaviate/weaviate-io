@@ -41,22 +41,20 @@ const CARDS = [
     description:
       'Grounded context for agents—Curated prompt + docs references for agent and code patterns',
     bullets: [
-      'MCP access (one-time verification)',
-      'Docs prompt index references',
-      'Works with compatible agents',
+      'Structured documentation access',
+      'Prompt index references',
+      'Works with compatible agent runtimes',
     ],
     ctaText: 'How it works',
     ctaHref: '#agent-stack',
     graphic: '/img/site/book-scale-graphic.svg',
   },
 ];
-
 const ABOUT_ITEMS = [
   'Agent Skills are designed for safe, production-friendly workflows.',
   'Destructive operations (delete/wipe) are intentionally not exposed by default.',
   'Some advanced actions may require explicit human approval.',
 ];
-
 export default function SkillsGrid() {
   return (
     <section className={styles.wrap}>
