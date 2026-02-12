@@ -47,26 +47,24 @@ export default function AgentSkillsGetBuilding() {
               </div>
 
               <p>
-                Use the CLI to add skills quickly during development. Great for
+                Use npm to add skills quickly during development. Great for
                 testing, demos, and repeatable local setup.
               </p>
 
               <div className={styles.codeChip}>
-                <code>npx add skills</code>
+                <code>npx add skills weaviate/agent-skills</code>
               </div>
 
+              <p className={styles.miniNote}>
+                Then select the Weaviate skill + follow the prompts.
+              </p>
+
               <div className={styles.actions}>
-                <Link
-                  className={styles.buttonOutline}
-                  to="https://github.com/weaviate/weaviate-cli"
-                >
-                  View Weaviate CLI
-                </Link>
                 <Link
                   className={styles.link}
                   to="https://github.com/weaviate/agent-skills"
                 >
-                  View Agent Skills repo
+                  View full install instructions
                 </Link>
               </div>
             </div>
@@ -96,6 +94,11 @@ export default function AgentSkillsGetBuilding() {
               </div>
             </div>
           </div>
+
+          <p className={styles.compatNote}>
+            Works with Cursor, Claude Code, Gemini CLI, and other Agent
+            Skills-compatible runtimes.
+          </p>
 
           <div className={styles.footerRow}>
             <div className={styles.footerCopy}>

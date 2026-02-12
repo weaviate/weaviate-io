@@ -39,7 +39,7 @@ const CARDS = [
     label: 'CONTEXT',
     title: 'Weaviate Docs Skill',
     description:
-      'Grounded context for agents—MCP access + curated prompt references for docs and code patterns.',
+      'Grounded context for agents—Curated prompt + docs references for agent and code patterns',
     bullets: [
       'MCP access (one-time verification)',
       'Docs prompt index references',

@@ -11,7 +11,7 @@
   },
   {
     "question": "Do I need MCP to use this?",
-    "answer": "Not necessarily. MCP can be useful, but we’re also exploring lighter workflows like the Weaviate CLI and improving docs navigation so agents can reference code patterns more easily."
+    "answer": "No, agent skills can be installed on any compatible coding agent platform and doesn't need MCP."
   },
   {
     "question": "Do cookbooks include a frontend?",

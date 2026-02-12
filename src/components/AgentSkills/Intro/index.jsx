@@ -19,8 +19,8 @@ export default function AgentSkillsIntro() {
               </p>
 
               <div className={styles.ctas}>
-                <Link className={styles.buttonGradient} to="#cookbook">
-                  Try a recipe
+                <Link className={styles.buttonGradient} to="#get-building">
+                  Install Skills
                 </Link>
                 <Link
                   className={styles.buttonOutline}
@@ -46,11 +46,11 @@ export default function AgentSkillsIntro() {
             </div>
             <div className={styles.highlightCard}>
               <h3>Stay grounded in context</h3>
-              <p>Use curated docs + MCP context to reduce guesswork.</p>
+              <p>Use curated context to reduce agent guesswork.</p>
             </div>
             <div className={styles.highlightCard}>
               <h3>Start from recipes</h3>
-              <p>Copy end-to-end patterns for ingestion, retrieval, and RAG.</p>
+              <p>Copy end-to-end prompts for ingestion, retrieval, and RAG.</p>
             </div>
           </div>
 
@@ -63,6 +63,9 @@ export default function AgentSkillsIntro() {
               <span className={styles.pill}>Multi-vector retrieval</span>
               <span className={styles.pill}>Embedding model evaluation</span>
               <span className={styles.pill}>Agentic RAG workflows</span>
+              <span className={styles.pill}>
+                Add advanced agent capabilities
+              </span>
             </div>
           </div>
         </div>

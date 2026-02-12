@@ -198,3 +198,16 @@
   gap: 12px;
   flex-wrap: wrap;
 }
+
+.miniNote {
+  margin: -4px 0 0;
+  font-size: 0.9rem;
+  opacity: 0.78;
+}
+
+.compatNote {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  opacity: 0.8;
+  font-weight: 600;
+}

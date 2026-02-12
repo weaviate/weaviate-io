@@ -16,9 +16,9 @@ export default function AgentSkillsHeader() {
 
             <div className={styles.headerBox}>
               <p>
-                Build production-ready agent workflows with Weaviate. Reusable
-                skills for querying, retrieval, and guided setup — plus an
-                end-to-end cookbook.
+                Build production-ready agent workflows with Weaviate with a
+                single prompt. Reusable skills for querying, retrieval, and
+                guided setup — Plus end-to-end project cookbooks.
               </p>
             </div>
 

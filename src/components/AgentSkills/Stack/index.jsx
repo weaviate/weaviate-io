@@ -46,20 +46,11 @@ export default function AgentSkillsStack() {
               </div>
 
               <div className={styles.item}>
-                <span>Skills + CLI</span>
-                <p>
-                  Install and run skills quickly during development. Great for
-                  demos, testing, and repeatable setups.
-                </p>
+                <span>Skills</span>
+                <p>Install and run skills quickly during development.</p>
                 <div className={styles.miniCode}>
                   <code>npx add skills</code>
                 </div>
-                <Link
-                  className={styles.inlineLink}
-                  to="https://github.com/weaviate/weaviate-cli"
-                >
-                  View weaviate-cli →
-                </Link>
               </div>
 
               <div className={styles.item}>
@@ -87,8 +78,8 @@ export default function AgentSkillsStack() {
               </h3>
 
               <div className={styles.buttons}>
-                <Link className={styles.buttonGradient} to="#cookbook">
-                  Explore cookbooks
+                <Link className={styles.buttonGradient} to="#get-building">
+                  Install Skills
                 </Link>
                 <Link
                   className={styles.buttonOutline}
@@ -96,11 +87,8 @@ export default function AgentSkillsStack() {
                 >
                   Prompt library
                 </Link>
-                <Link
-                  className={styles.buttonOutline}
-                  to="https://github.com/weaviate/weaviate-cli"
-                >
-                  Weaviate CLI
+                <Link className={styles.buttonOutline} to="#cookbook">
+                  Explore cookbooks
                 </Link>
               </div>
 
