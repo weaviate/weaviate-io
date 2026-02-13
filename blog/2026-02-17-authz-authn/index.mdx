@@ -2,7 +2,7 @@
 title: 'Weaviate Authentication & Authorization: A Complete Security Guide'
 slug: weaviate-security-authn-authz
 authors: [dirk, ivan]
-date: 2026-02-10
+date: 2026-02-17
 tags: ['security', 'authentication', 'authorization']
 image: ./img/hero.png
 description: 'Learn how to secure your Weaviate vector database with API keys, OIDC, and role-based access control (RBAC). Includes practical examples and setup steps.'
@@ -33,7 +33,7 @@ Two complementary mechanisms are essential to meet this goal:
 
 Put simply: authentication answers *"who are you?"* while authorization answers *"what are you allowed to do?"*. You need both—authentication without authorization means everyone who logs in gets full access, and authorization without authentication means you can't reliably enforce any rules. The rest of this guide covers how Weaviate implements each.
 
-## Authentication in Weaviate: Verifying Identity
+## Authentication in Weaviate
 
 Weaviate offers several authentication options for different security requirements. Let's explore each one and when you might use them.
 
@@ -49,29 +49,38 @@ Anonymous access should only be used in local development environments. Never us
 
 :::
 
-### API Key Authentication
+### User Management - API Keys
 
-API key authentication provides a straightforward way to verify that requests come from legitimate sources. Each API key is associated with a user identity in Weaviate, allowing you to track who's making requests and apply appropriate permissions. Here's an example of API key authentication through a Docker Compose configuration:
+**API key authentication** provides a straightforward way to verify that requests come from legitimate sources. Each **API key** is associated with a **user** in Weaviate, allowing you to track who's making requests and apply appropriate permissions.
 
-```yaml
-services:
-  weaviate:
-    ...
-    environment:
-      ...
-      # Example authentication configuration using API keys
-      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
-      AUTHENTICATION_APIKEY_ENABLED: 'true'
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-a-key,user-b-key'
-      AUTHENTICATION_APIKEY_USERS: 'user-a,user-b'
+With Weaviate's [**user management**](https://docs.weaviate.io/weaviate/configuration/rbac/manage-users) (v1.30+), you can create, delete, and manage users at runtime — no restart required. Here's an example using the Python client:
+
+```python
+# Create a new user (returns an API key)
+user_api_key = client.users.db.create(user_id="search-service")
+
+# Assign a role to the user
+client.users.db.assign_roles(
+    user_id="search-service",
+    role_names=["SearchApplication"]
+)
+
+# Rotate an API key if compromised
+new_api_key = client.users.db.rotate_key(user_id="search-service")
 ```
+
+:::info Static API keys
+
+You can also define API keys as environment variables (e.g. `AUTHENTICATION_APIKEY_ALLOWED_KEYS`) for simple setups, but programmatic user management is recommended for production as it doesn't require restarting Weaviate. See the [authentication configuration docs](https://docs.weaviate.io/deploy/configuration/authentication) for details.
+
+:::
 
 **When to use it:**
 
 - You're getting started with Weaviate and need simple, effective security
 - You're building applications that need programmatic access
 - You want to create service accounts for different applications or services
-- You're using Weaviate Shared Cloud (where API key auth is pre-configured)
+- You're using Weaviate Cloud (where API key auth is pre-configured)
 
 API keys work well for many production scenarios, especially when combined with [role-based access control](#role-based-access-control-rbac).
 
@@ -87,6 +96,7 @@ IdP integration offers several advantages:
 - Leverage specialized, highly secure identity platforms
 - Reduced attack surface—fewer systems to secure
 - Existing access policies and multi-factor authentication carry over
+- Manage RBAC permissions through your IdP by using OIDC groups — assign roles to groups in Weaviate and manage group membership in your IdP
 
 **For users:**
 
@@ -96,12 +106,15 @@ IdP integration offers several advantages:
 
 A key feature of IdP integration is that user credentials are never sent to Weaviate. Instead, the user authenticates against the IdP, which generates a JSON Web Token (JWT) for use with Weaviate. This token has far more limited scope than the original credentials, reducing risk for everyone involved.
 
+OIDC also works with [RBAC](#role-based-access-control-rbac), and supports **OIDC groups** — allowing you to manage role assignments at the group level in your identity provider rather than per-user in Weaviate. We'll explore OIDC groups in detail in an upcoming blog post.
+
 **When to use it:**
 
 - Your organization already uses an identity provider (Okta, Auth0, Azure AD, etc.)
 - You need single sign-on (SSO) across your tooling
 - You're operating in a regulated environment that requires centralized identity management
 - You want multi-factor authentication (MFA) without building it yourself
+- You want to manage Weaviate RBAC permissions centrally through your IdP using OIDC groups
 
 :::tip
 
@@ -109,54 +122,9 @@ For enterprise-scale IdP integration, OIDC groups, and advanced SSO features, ch
 
 :::
 
-## Authorization in Weaviate: Controlling Access
+## Authorization in Weaviate: RBAC
 
-Once a user is authenticated, authorization determines what they can do. Weaviate provides flexible authorization options ranging from simple to sophisticated.
-
-![Authorization methods in Weaviate](./img/weaviate-authorization-methods.png)
-
-### Admin List
-
-Admin list is the simplest authorization model — it assigns users as either admins (full access) or read-only viewers. It can be configured using environment variables, as shown in the following Docker Compose example:
-
-**When to use it:**
-
-- You have a small team with simple access needs
-- You're getting started and want quick, basic authorization
-- You only need two levels of access: full admin or read-only
-
-```yaml
-services:
-  weaviate:
-    ...
-    environment:
-      ...
-      # Example authentication configuration using API keys
-      # (OIDC authentication can also be used with admin list or RBAC)
-      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
-      AUTHENTICATION_APIKEY_ENABLED: 'true'
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-a-key,user-b-key'
-      AUTHENTICATION_APIKEY_USERS: 'user-a,user-b'
-
-      # Authorization configuration
-      # Enable admin list
-      AUTHORIZATION_ADMINLIST_ENABLED: 'true'
-
-      # Provide pre-configured roles to users
-      # This assumes that the relevant user has been authenticated and identified
-      #
-      # You MUST define at least one admin user
-      AUTHORIZATION_ADMINLIST_USERS: 'user-a'
-      AUTHORIZATION_ADMINLIST_READONLY_USERS: 'user-b'
-```
-
-This configuration enables admin list authorization, giving `user-a` full admin permissions and `user-b` read-only viewer permissions.
-
-However, most production use cases benefit from more granular control.
-
-### Role-Based Access Control (RBAC)
-
-RBAC lets you define precisely what each user or application can do. It works by assigning roles to users, where each role defines specific permissions for specific resources.
+Once a user is authenticated, authorization determines what they can do. RBAC (Role-Based Access Control) lets you define precisely what each user or application can do. It works by assigning roles to users, where each role defines specific permissions for specific resources.
 
 **When to use it:**
 
@@ -167,13 +135,14 @@ RBAC lets you define precisely what each user or application can do. It works by
 
 **How RBAC Works:**
 
-- **Users** are assigned specific roles.
-- **Roles** are containers for permissions (e.g., `Administrator`, `DataScientist`, `SearchApplication`)
-- **Permissions** specify allowed actions on specific resources:
-  - **Resources** include collections, tenants, roles, and other Weaviate objects
-  - **Actions** include create, read, update, delete, and other operations
+- **Users** are assigned one or more roles
+- **Roles** are containers for permissions (e.g., `admin`, `DataScientist`, `SearchApplication`)
+- **Permissions** define what resources (collections, tenants, roles, etc.) a role can access and how
 
-When a request comes in, Weaviate checks the user's role(s), evaluates their permissions for the requested operation, and either allows or denies access accordingly.
+Additionally: 
+- **OIDC groups** can also be assigned roles, so that all users in a group automatically inherit the corresponding permissions
+
+When a request comes in, Weaviate checks the user's role(s), evaluates their permissions for the requested operation, and either allows or denies access accordingly. All access decisions are recorded in [audit logs](https://docs.weaviate.io/deploy/configuration/logging), giving you full visibility into who accessed what and when.
 
 ![RBAC diagram](./img/weaviate-rbac.png)
 
@@ -181,10 +150,16 @@ When a request comes in, Weaviate checks the user's role(s), evaluates their per
 
 **Built-in Roles:**
 
-Weaviate includes several built-in roles to get you started:
+Weaviate includes built-in roles to get you started:
 
-- `root`: Full access to everything—the database administrator
+- `admin`: Full access to everything—useful for team leads or operators who need complete control
 - `viewer`: Read-only access to everything—useful for analysts or auditors
+
+:::note
+
+Weaviate also has a `root` role, which is assigned to the database administrator via environment variables. The `root` user is configured at deployment time and is used for initial setup, such as creating other users and roles.
+
+:::
 
 **Custom Roles:**
 
@@ -249,7 +224,7 @@ Open source Weaviate users have access to all the same authentication and author
 
 ### Weaviate Cloud
 
-Shared Cloud instances come with API key authentication and customizable RBAC pre-configured. This means you get enterprise-grade security without operational overhead.
+Weaviate Cloud instances come with API key authentication and customizable RBAC pre-configured. This means you get production-ready security without operational overhead.
 
 **What you can do:**
 
@@ -258,7 +233,9 @@ Shared Cloud instances come with API key authentication and customizable RBAC pr
 - Manage users and API keys through the console UI
 - Assign roles to users programmatically via the API
 
-This is optimal for teams getting started or running smaller production workloads.
+This is optimal for teams getting started or running production workloads.
+
+For organizations with enterprise security requirements, Weaviate Cloud's **Premium plan** offers dedicated infrastructure with SSO/SAML support, custom identity provider integration, PrivateLink, and compliance certifications (SOC II, HIPAA). This lets your team authenticate to Weaviate through your existing identity provider — contact us at [weaviate.io/pricing](https://weaviate.io/pricing) for details.
 
 :::info Weaviate Cloud Security
 
@@ -272,10 +249,10 @@ Authentication and authorization might seem like just another checkbox on the pa
 
 Start with the security model that fits your current needs:
 
-- **Getting started?** Use [Weaviate Cloud](https://docs.weaviate.io/cloud) with API keys and basic RBAC
-- **Growing team?** Add custom roles with granular permissions
-- **Need flexibility?** Deploy open source with your preferred configuration
-- **Enterprise requirements?** Check out the [Weaviate OIDC authentication documentation](https://docs.weaviate.io/deploy/configuration/authentication#oidc-authentication) for SSO, OIDC groups, and advanced features
+- **Getting started?** Use [Weaviate Cloud](https://docs.weaviate.io/cloud) with API keys and RBAC
+- **Growing team?** Add custom roles with granular permissions and user management
+- **Need flexibility?** Deploy open source with OIDC and your preferred configuration
+- **Enterprise requirements?** Use Weaviate Cloud's [Premium plan](https://weaviate.io/pricing) for dedicated infrastructure with SSO/SAML, or deploy open source with [OIDC integration](https://docs.weaviate.io/deploy/configuration/authentication#oidc-authentication)
 
 The key is to implement security from the start and scale it as you grow. Weaviate gives you the tools to do exactly that.
 
