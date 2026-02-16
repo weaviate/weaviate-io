@@ -5,3 +5,22 @@ Disallow: /*?*
 Disallow: /expert-sessions
 Disallow: /blog/rss.xml
 Disallow: /blog/atom.xml
+# AI Search Engine Bots
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
