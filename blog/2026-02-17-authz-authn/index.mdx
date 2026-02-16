@@ -62,7 +62,7 @@ user_api_key = client.users.db.create(user_id="search-service")
 # Assign a role to the user
 client.users.db.assign_roles(
     user_id="search-service",
-    role_names=["SearchApplication"]
+    role_names=["searchApplication"]
 )
 
 # Rotate an API key if compromised
@@ -128,21 +128,20 @@ Once a user is authenticated, authorization determines what they can do. RBAC (R
 
 **When to use it:**
 
-- You need more than just "admin" and "read-only" access levels
 - Different users or services need access to different collections
 - You want to enforce the principle of least privilege
 - You're preparing for production or operating in a regulated environment
 
 **How RBAC Works:**
 
-- **Users** are assigned one or more roles
-- **Roles** are containers for permissions (e.g., `admin`, `DataScientist`, `SearchApplication`)
 - **Permissions** define what resources (collections, tenants, roles, etc.) a role can access and how
+- **Roles** are containers for permissions (e.g., `admin`, `dataScientist`, `searchApplication`)
+- **Users** are assigned one or more roles
 
 Additionally: 
 - **OIDC groups** can also be assigned roles, so that all users in a group automatically inherit the corresponding permissions
 
-When a request comes in, Weaviate checks the user's role(s), evaluates their permissions for the requested operation, and either allows or denies access accordingly. All access decisions are recorded in [audit logs](https://docs.weaviate.io/deploy/configuration/logging), giving you full visibility into who accessed what and when.
+When a request comes in, Weaviate checks the user's role(s), evaluates their permissions for the requested operation, and either allows or denies access accordingly. All access decisions are recorded in [audit logs](#audit-logging), giving you full visibility into who accessed what and when.
 
 ![RBAC diagram](./img/weaviate-rbac.png)
 
@@ -165,7 +164,19 @@ Weaviate also has a `root` role, which is assigned to the database administrator
 
 For most real-world scenarios, you'll want to create custom roles tailored to your specific needs. Custom roles let you implement the principle of least privilege by granting exactly the permissions each user requires—nothing more, nothing less.
 
-For example, you might create a `SearchApplication` role that can only read from your product catalog, or a `DataEngineer` role that can create and modify collections in development but only read from production.
+For example, you might create a `searchApplication` role that can only read from your product catalog, or a `DataEngineer` role that can create and modify collections in development but only read from production.
+
+### Audit Logging
+
+Weaviate records all authorization decisions in audit logs, giving you a detailed trail of who accessed what, when, and whether the request was allowed or denied.
+
+This is valuable for:
+
+- **Security monitoring**: Detect unauthorized access attempts or unusual patterns, such as a user repeatedly trying to access collections they don't have permissions for
+- **Incident response**: When a security event occurs (like a compromised API key), audit logs let you determine exactly what was accessed and what was blocked
+- **Compliance**: Many regulations (GDPR, HIPAA, SOC II) require demonstrable access controls and audit trails — Weaviate's logs provide the evidence
+
+For configuration details, see the [Weaviate logging documentation](https://docs.weaviate.io/deploy/configuration/logging).
 
 ## Practical Example: E-commerce Product Search
 
@@ -181,19 +192,19 @@ You define three custom roles with these permissions:
 
 | Role                  | `Products`  | `CustomerBehavior` | `InternalAnalytics` | Collections for development |
 | --------------------- | ----------- | ------------------ | ------------------- | --------------------------- |
-| **Administrator**     | Full access | Full access        | Full access         | Full access                 |
-| **DataScientist**     | Read only   | Read only          | Read only           | Full access                 |
-| **SearchApplication** | Read only   | No access          | No access           | No access                   |
+| **admin**     | Full access | Full access        | Full access         | Full access                 |
+| **dataScientist**     | Read only   | Read only          | Read only           | Full access                 |
+| **searchApplication** | Read only   | No access          | No access           | No access                   |
 
 Below are some real-world scenarios that demonstrate how our security setup works:
 
 **1. Product Searches**
 
-When a customer searches for "wireless headphones" on your website, the search service authenticates with its API key as `searchapp`, which has the `SearchApplication` role. This role can query the `Products` collection but has no access to customer behavior or analytics data. The search works perfectly, and sensitive data remains protected.
+When a customer searches for "wireless headphones" on your website, the search service authenticates with its API key as `searchapp`, which has the `searchApplication` role. This role can query the `Products` collection but has no access to customer behavior or analytics data. The search works perfectly, and sensitive data remains protected.
 
 **2. Data Science Workflow**
 
-Your data scientist needs to build a new recommendation model. They authenticate using their API key (associated with the `DataScientist` role) and can:
+Your data scientist needs to build a new recommendation model. They authenticate using their API key (associated with the `dataScientist` role) and can:
 
 - Read production data from all collections to understand patterns
 - Create new collections in the development environment to experiment
@@ -203,7 +214,7 @@ But they cannot accidentally delete or modify production data — there is no ne
 
 **3. Protection Against Compromised Credentials**
 
-A malicious actor compromises the search application's API key. They attempt to extract customer data from the `CustomerBehavior` collection. But the `SearchApplication` role has no access to that collection—Weaviate denies the request. The attack is discovered through audit logs, the compromised key is revoked, and a new one is issued. Customer data remained protected throughout.
+A malicious actor compromises the search application's API key. They attempt to extract customer data from the `CustomerBehavior` collection. But the `searchApplication` role has no access to that collection—Weaviate denies the request. The attack is discovered through audit logs, the compromised key is revoked, and a new one is issued. Customer data remained protected throughout.
 
 This example shows how authentication (verifying it's really the search application, the data scientist, or an attacker) combines with authorization (determining what each identity can do) to create robust, layered security.
 
