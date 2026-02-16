@@ -6,6 +6,17 @@ date: 2024-10-15
 tags: ['concepts']
 image: ./img/hero.png
 description: 'Learn what LLM RAG (Retrieval Augmented Generation) is, how RAG pipelines work, key use cases, implementation approaches, and evaluation methods.'
+faq:
+  - question: "What is Retrieval-Augmented Generation (RAG)?"
+    answer: "Retrieval-Augmented Generation (RAG) is a framework that augments the general knowledge of a generative LLM by providing it with additional data relevant to the task at hand retrieved from an external data source."
+  - question: "How does RAG work?"
+    answer: "RAG works in two stages: ingestion and inference. During inference, the system retrieves relevant data, augments the user prompt, and generates a response."
+  - question: "How do you implement RAG?"
+    answer: "RAG can be implemented using frameworks like LangChain, LlamaIndex, and DSPy, which provide tools and integrations for building RAG pipelines and connecting to services like vector databases."
+  - question: "How do you evaluate RAG?"
+    answer: "RAG evaluation can be done at the component level (retriever and generator) and end-to-end. This helps ensure both component reliability and overall answer quality."
+  - question: "What is the difference between RAG and fine-tuning?"
+    answer: "Fine-tuning trains a model on domain data to specialize behavior, while RAG retrieves external data at inference time to improve accuracy and reduce hallucinations without retraining."
 ---
 ![Introduction to Retrieval Augmented Generation (RAG)](./img/hero.png)
 
