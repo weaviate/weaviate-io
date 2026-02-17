@@ -9,7 +9,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 ### **UPDATES TO TERMS & POLICIES**
 
-**Last Updated: November, 2025**
+**Last Updated: February 2026**
 <br></br>
 
 1. **_February 2026_ - Document: Weaviate - DPA**
