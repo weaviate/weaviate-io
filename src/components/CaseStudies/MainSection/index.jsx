@@ -290,6 +290,25 @@ export default function MainSection() {
                 </div>
               </div>
             </Link>
+            <Link
+              to="/case-studies/docsbot"
+              className={`${styles.bentoSmall} ${styles.BS15}`}
+            >
+              <div className={styles.bentoText}>
+                <div className={styles.innerText}>
+                  <div className={styles.bentoLogo}></div>
+                  <h3>
+                    How DocsBot Answers Millions of Customer Questions with
+                    Weaviate
+                  </h3>
+                </div>
+                <div className={styles.buttons}>
+                  <Link className={styles.csLink} to="/case-studies/docsbot">
+                    Read Case Study {'->'}
+                  </Link>
+                </div>
+              </div>
+            </Link>
           </div>
 
           {/* Row 4 – Four quote tiles */}

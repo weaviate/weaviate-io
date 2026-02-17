@@ -608,7 +608,7 @@
     border-radius: 0.625rem;
     background: #130c49;
     box-shadow: 0 3px 5px 0 rgba(79, 150, 172, 0.1);
-    width: 97%;
+    width: 45%;
     height: 17.5rem;
     flex-shrink: 0;
 
@@ -624,6 +624,52 @@
 
     .bentoLogo {
       background: url('/img/site/predori-logo.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 9rem;
+      height: 2.84925rem;
+      flex-shrink: 0;
+    }
+
+    @media screen and (max-width: 1440px) {
+      width: 100%;
+      max-width: 66rem;
+    }
+
+    @media screen and (max-width: 1140px) {
+      width: 100%;
+      max-width: 56rem;
+    }
+
+    @media screen and (max-width: 600px) {
+      width: 100%;
+    }
+  }
+
+  .bentoSmall.BS15 {
+    border-radius: 0.625rem;
+    background: linear-gradient(
+      142deg,
+      rgba(200, 168, 231, 0.5019607843) 8.29%,
+      rgba(116, 135, 236, 0.5019607843) 96.29%
+    );
+    box-shadow: 0 3px 5px 0 rgba(79, 150, 172, 0.1);
+    width: 50%;
+    height: 17.5rem;
+    flex-shrink: 0;
+
+    .bentoText h3 {
+      color: #130c49;
+
+      @media screen and (max-width: 1440px) and (min-width: 900px) {
+        width: 80%;
+        font-size: 1.2rem;
+        height: 8rem;
+      }
+    }
+
+    .bentoLogo {
+      background: url('/img/site/docsbot-logo.svg');
       background-size: contain;
       background-repeat: no-repeat;
       width: 9rem;
