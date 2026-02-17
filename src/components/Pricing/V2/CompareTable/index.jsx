@@ -77,8 +77,8 @@ function RenderSection({ section }) {
         row.mint === true
           ? new Set(COLS.map((c) => c.key))
           : Array.isArray(row.mint)
-          ? new Set(row.mint)
-          : new Set();
+            ? new Set(row.mint)
+            : new Set();
 
       return (
         <tr key={`${heading}-${i}`}>
@@ -131,8 +131,8 @@ function RenderSection({ section }) {
       row.mint === true
         ? new Set(COLS.map((c) => c.key))
         : Array.isArray(row.mint)
-        ? new Set(row.mint)
-        : new Set();
+          ? new Set(row.mint)
+          : new Set();
 
     if (row.wide) {
       return (
@@ -346,7 +346,7 @@ export default function CompareTable() {
           values: {
             free: false,
             flex: false,
-            plus: { value: true, mint: true },
+            plus: 'Coming soon',
             premium: { value: true, mint: true },
           },
         },

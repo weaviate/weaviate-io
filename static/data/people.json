@@ -43,13 +43,6 @@
     "team": "product"
   },
   {
-    "name": "André Duis",
-    "title": "VP of Platform Operations",
-    "photo": "andre.jpg",
-    "linkedin": "andre-duis",
-    "team": "delivery"
-  },
-  {
     "name": "André Mourão",
     "title": "Software Engineer",
     "photo": "andre-m.jpg",
@@ -283,15 +276,6 @@
     "twitter": "ivan_g_despot"
   },
   {
-    "name": "JP Hwang",
-    "title": "Technical Curriculum Developer",
-    "photo": "jp.jpg",
-    "linkedin": "jphwang",
-    "twitter": "_jphwang",
-    "github": "databyjp",
-    "team": "developer-relations"
-  },
-  {
     "name": "Jerónimo Irazábal",
     "title": "Software Engineer",
     "photo": "Jeronimo.jpg",
@@ -299,14 +283,6 @@
     "twitter": "jeroiraz",
     "github": "jeroiraz",
     "team": "database"
-  },
-  {
-    "name": "Jessie de Groot",
-    "title": "VP of People & Culture",
-    "photo": "jessie.jpg",
-    "linkedin": "jessiedegroot/",
-    "twitter": "jessie_groot",
-    "team": "people-and-culture"
   },
   {
     "name": "Jobi George",
