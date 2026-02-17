@@ -131,13 +131,14 @@ Once a user is authenticated, authorization determines what they can do. RBAC (R
 **When to use it:**
 
 - Different users or services need access to different collections
+- Multiple teams share a single Weaviate instance and should not interfere with each other (e.g., `core_products`, `marketing_campaigns`)
 - You want to enforce the principle of least privilege
 - You're preparing for production or operating in a regulated environment
 
 **How RBAC Works:**
 
 - **Permissions** define what resources (collections, tenants, roles, etc.) a role can access and how
-- **Roles** are containers for permissions (e.g., `admin`, `dataScientist`, `searchApplication`)
+- **Roles** are containers for one or more permissions (e.g., `admin`, `dataScientist`, `searchApplication`)
 - **Users** are assigned one or more roles
 
 Additionally: 
