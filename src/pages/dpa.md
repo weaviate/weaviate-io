@@ -162,8 +162,6 @@ Customer shall not include, and shall ensure that its users do not include, any 
 | Title: | Title: |
 | Address for notice: &lt;Customer address&gt; | Address for notice: Weaviate, B.V. Attn: Legal, legal@weaviate.io |
 
-<br></br>
-
 ---
 
 ## **Annex A - Description of Processing**
@@ -322,5 +320,4 @@ Weaviate shall implement appropriate technical and organisational measures to pr
 - Management reviews evaluate ISMS performance, incidents, and audit findings.
 
 ---
-
 </div>
