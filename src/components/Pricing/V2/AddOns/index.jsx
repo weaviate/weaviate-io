@@ -78,6 +78,11 @@ export default function AddOnsSection() {
                 price: '$0.040',
                 unit: '/ 1M tokens',
               },
+              {
+                label: 'MODERNVBERT COLMODERNVBERT',
+                price: '$0.065',
+                unit: '/ 1M tokens',
+              },
             ]}
             cta={{ href: '/product', label: 'Learn more' }}
           />

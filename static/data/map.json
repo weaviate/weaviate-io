@@ -15,11 +15,6 @@
     "photo": "adam.jpg"
   },
   {
-    "name": "André Duis",
-    "location": { "lat": 51.1657, "lng": 7.0846 },
-    "photo": "andre.jpg"
-  },
-  {
     "name": "André Mourão",
     "location": { "lat": 38.7177, "lng": -9.14 },
     "photo": "andre-m.jpg"
@@ -110,11 +105,6 @@
     "photo": "Jeronimo.jpg"
   },
   {
-    "name": "Jessie de Groot",
-    "location": { "lat": 52.3686, "lng": 4.9051 },
-    "photo": "jessie.jpg"
-  },
-  {
     "name": "Jobi George",
     "location": { "lat": 37.3392, "lng": -121.8873 },
     "photo": "jobi.jpg"
@@ -133,11 +123,6 @@
     "name": "Joseph Stephen Green",
     "location": { "lat": 33.4162, "lng": -111.8325 },
     "photo": "joseph-green.jpg"
-  },
-  {
-    "name": "JP Hwang",
-    "location": { "lat": 55.9543, "lng": -3.1893 },
-    "photo": "jp.jpg"
   },
   {
     "name": "Laura Ann Webster Stoye",

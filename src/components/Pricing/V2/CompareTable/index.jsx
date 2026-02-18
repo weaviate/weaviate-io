@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './styles.module.scss';
+import Link from '@docusaurus/Link';
 
 const COLS = [
   { key: 'free', label: 'Free\u00A0Trial' }, // \u00A0 = non-breaking space
@@ -76,8 +77,8 @@ function RenderSection({ section }) {
         row.mint === true
           ? new Set(COLS.map((c) => c.key))
           : Array.isArray(row.mint)
-          ? new Set(row.mint)
-          : new Set();
+            ? new Set(row.mint)
+            : new Set();
 
       return (
         <tr key={`${heading}-${i}`}>
@@ -130,8 +131,8 @@ function RenderSection({ section }) {
       row.mint === true
         ? new Set(COLS.map((c) => c.key))
         : Array.isArray(row.mint)
-        ? new Set(row.mint)
-        : new Set();
+          ? new Set(row.mint)
+          : new Set();
 
     if (row.wide) {
       return (
@@ -345,7 +346,7 @@ export default function CompareTable() {
           values: {
             free: false,
             flex: false,
-            plus: { value: true, mint: true },
+            plus: 'Coming soon',
             premium: { value: true, mint: true },
           },
         },
@@ -526,21 +527,21 @@ export default function CompareTable() {
             <>
               <small>from</small>
               <br />
-              $0.01668 / 1M
+              $0.01668 / 1M<sup>1</sup>
             </>
           ),
           plus: (
             <>
               <small>from</small>
               <br />
-              $0.0139 / 1M
+              $0.0139 / 1M<sup>1</sup>
             </>
           ),
           premium: (
             <>
               <small>from</small>
               <br />
-              $0.00975 / 1M
+              $0.00975 / 1M<sup>1</sup>
             </>
           ),
         },
@@ -605,7 +606,7 @@ export default function CompareTable() {
         wide: true,
         all: (
           <>
-            Free for promotional period<sup>1</sup>
+            Free for promotional period<sup>2</sup>
           </>
         ),
       },
@@ -689,12 +690,26 @@ export default function CompareTable() {
             </table>
 
             <div className={styles.footnote}>
-              <sup>1</sup> Data transfers, including public internet egress,
-              cross-region transfers, and VPC-related network traffic, currently
-              incur no additional costs to customers for a limited promotional
-              period. Weaviate reserves the right to introduce data transfer
-              charges in the future, with any changes communicated in advance
-              and applied only after notice to customers.
+              <p>
+                <sup>1</sup> Vector dimensions pricing varies by index type, and
+                compression method in addition to regions. For rates specific to
+                your data stored in Weaviate Cloud, refer to the Running Costs
+                module in Weaviate Cloud Console. To inquire about rates
+                specific to a region / index type / compression method, contact{' '}
+                <Link href="mailto:support@weaviate.io">
+                  support@weaviate.io
+                </Link>
+                .
+              </p>
+              <p>
+                <sup>2</sup> Data transfers, including public internet egress,
+                cross-region transfers, and VPC-related network traffic,
+                currently incur no additional costs to customers for a limited
+                promotional period. Weaviate reserves the right to introduce
+                data transfer charges in the future, with any changes
+                communicated in advance and applied only after notice to
+                customers.
+              </p>
             </div>
           </div>
         </div>

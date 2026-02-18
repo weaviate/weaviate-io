@@ -35,6 +35,13 @@ export default function Embeddings() {
                     <strong>$0.040 / 1M tokens</strong>
                   </p>
                 </div>
+                <div className={styles.tokenLine}>
+                  <p>ModernVBERT colmodernvbert</p>
+                  {'  '}
+                  <p>
+                    <strong>$0.065 / 1M tokens</strong>
+                  </p>
+                </div>
               </div>
             </div>
             <Link className={styles.buttonGradient} to="/product/embeddings">

@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { IData, accuracyToCost } from '../../../../types';
 import { RangeInput } from '../../Form/RangeInput/RangeInput';
-//import { Badge } from '../../Badge/Badge';
+import { Badge } from '../../Badge/Badge';
 import { useState } from 'react';
 
 interface IAccuracyToCostProps {
@@ -13,19 +13,19 @@ export const AccuracyToCost = (props: IAccuracyToCostProps) => {
   const currentLevel = parseInt(
     props.data.accuracyToCost || '1'
   ) as keyof typeof accuracyToCost;
-  // const currentConfig = accuracyToCost[currentLevel];
+  const currentConfig = accuracyToCost[currentLevel];
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div className="accuracyToCost">
-      {/* { 
-      // <div className="badge-container">
-      //   <Badge text={currentConfig.info} />
-      //   {currentConfig.memoryCompression && (
-      //     <Badge text={currentConfig.memoryCompression} />
-      //   )}
-      // </div>
-      } */}
+      { 
+       <div className="badge-container">
+         <Badge text={currentConfig.info} />
+        {currentConfig.memoryCompression && (
+          <Badge text={currentConfig.memoryCompression} />
+         )}
+      </div>
+      }
 
       <div className="accuracyToCost__slider">
         <RangeInput

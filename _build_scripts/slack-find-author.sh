@@ -17,7 +17,6 @@ git_slack_map=(
     ["g-despot"]="<@U0872JK65FU>"
     ["Igor Lamas"]="<@U04MGB80F45>"
     ["John Trengrove"]="<@U03KPAE8Y7K>"
-    ["JP Hwang"]="<@U0441J6PYGN>"
     ["Marcin Antas"]="<@U01E5BJ3UV7>"
     ["Mohamed Shahin"]="<@U05V4HPJ3M0>"
     ["Parker Duckworth"]="<@U034QPLGSCU>"

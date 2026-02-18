@@ -12,7 +12,7 @@ export default function Main() {
       <div className="container">
         <div className={styles.box}>
           <h2>
-            Your stack’s missing piece for RAG, agents, and everything coming
+            One foundation for search, RAG, agents, and everything that comes
             next
           </h2>
         </div>

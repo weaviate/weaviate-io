@@ -81,7 +81,7 @@ export const accuracyToCost: Record<number, AccuracyToCostOption> = {
     compression: 'rq-1',
     index: 'hnsw',
     info: 'Rotational quantization (RQ-1) and using HNSW graph index',
-    memoryCompression: '32x memory reduction',
+    memoryCompression: '',
     price_per_1m_dimension: {
       flex: pricebook.GCP.shared.Base.Low['Price per 1M Dims'].hnsw['rq-1'], // GCP BASE LOW
       premium: pricebook.GCP.shared.Base.High['Price per 1M Dims'].hnsw['rq-1'], // GCP BASE HIGH
@@ -112,7 +112,7 @@ export const accuracyToCost: Record<number, AccuracyToCostOption> = {
     compression: 'rq-1',
     index: 'flat',
     info: 'FLAT index with rotational quantization (RQ-1)',
-    memoryCompression: '32x memory reduction',
+    memoryCompression: '',
     price_per_1m_dimension: {
       flex: pricebook.GCP.shared.Base.Low['Price per 1M Dims'].flat['rq-1'], // GCP BASE LOW
       premium: pricebook.GCP.shared.Base.High['Price per 1M Dims'].flat['rq-1'], // GCP BASE HIGH
