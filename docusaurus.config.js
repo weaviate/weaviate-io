@@ -23,7 +23,7 @@ const config = {
     baseUrl: '/',
     trailingSlash: false,
     onBrokenLinks: 'warn',
-    onBrokenMarkdownLinks: 'warn',
+    onBrokenAnchors: 'ignore',
     favicon: 'img/favicon.ico',
     clientModules: [require.resolve('./src/components/UTM/capture.js')],
 
@@ -115,6 +115,7 @@ const config = {
                 path: 'playbook',
                 authorsMapPath: '../authors.yml',
                 showReadingTime: true,
+                onUntruncatedBlogPosts: 'ignore',
             },
         ],
         // Paper Reviews configuration
@@ -133,6 +134,7 @@ const config = {
                 path: 'papers',
                 authorsMapPath: '../authors.yml',
                 showReadingTime: true,
+                onUntruncatedBlogPosts: 'ignore',
             },
         ],
          // iOS Apps and Vector Databases configuration
@@ -151,6 +153,7 @@ const config = {
                 path: 'apple-and-weaviate',
                 authorsMapPath: '../authors.yml',
                 showReadingTime: true,
+                onUntruncatedBlogPosts: 'ignore',
             },
         ],
 
@@ -355,6 +358,7 @@ const config = {
                     blogSidebarTitle: 'Weaviate Blog',
                     remarkPlugins: [math],
                     rehypePlugins: [katex],
+                    onUntruncatedBlogPosts: 'ignore',
                 },
                 theme: {
                     customCss: [
@@ -813,6 +817,9 @@ const config = {
 
     markdown: {
         mermaid: true,
+         hooks: {
+    onBrokenMarkdownLinks: 'warn',
+  },
     },
     themes: ['@docusaurus/theme-mermaid'],
 
