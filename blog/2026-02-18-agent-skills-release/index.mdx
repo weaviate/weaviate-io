@@ -33,8 +33,8 @@ The Weaviate Agent Skill repository is organized to support the entire developme
 
 The repo is structured into two main tiers:
 
-- **Skills (/skills/weaviate):** These are focused, Weaviate-specific scripts. They handle things like schema inspection, data ingestion, and precision search. These are the tools your agent reaches for when it's writing your backend code.
-- **Cookbooks (/cookbooks):** These are full end-to-end project blueprints. They provide agents with a comprehensive guideline of a complete application (e.g., FastAPI, Next.js, and Vector Database). These are for the vibe coding phase, where you want to describe an entire system and have the agent architect it at once.
+- **Weaviate Skill (/skills/weaviate):** Contains focused, Weaviate-specific scripts to handle things like schema inspection, data ingestion, and precision search. These are the tools your agent reaches for when it needs to manage and operate on your Weaviate cluster.
+- **Cookbooks Skill (/skills/weaviate-cookbooks/):** Provides end-to-end project blueprints that guide agents in building complete applications with Weaviate and modern frameworks like FastAPI and Next.js. Ideal for "vibe coding" fully functioning systems at once.
 
 On a high level, these skills empower your agent to handle the most important parts of the Weaviate ecosystem:
 
@@ -43,7 +43,7 @@ On a high level, these skills empower your agent to handle the most important pa
 - **Agentic Search:** Direct integration with the Query Agent for natural language "Ask" and "Search" modes.
 - **Advanced Retrieval:** Direct support for hybrid, semantic, and keyword search with fine-tuned parameters.
 
-## Weaviate skills
+## Weaviate Skill
 
 The `/skills/weaviate` section has scripts for any Weaviate-related functions, including search operations, natural language queries using [the Query Agent](https://docs.weaviate.io/agents/query), schema inspection, collection creation, and data imports from CSV, JSON, and JSONL files. These are automatically discovered by agents, and you can simply describe in natural language what you want the agent to do:
 
@@ -79,7 +79,7 @@ This prompt builds a full-stack Query Agent chatbot using a FastAPI backend and 
 /weaviate-cookbooks build a query agent chatbot with a frontend
 ```
 
-### PDF retrieval with Multivector Embeddings
+### PDF Retrieval with Multivector Embeddings
 
 This prompt implements a multimodal retrieval-augmented generation (RAG) system over PDF document collections using Weaviate Embeddings (ModernVBERT/colmodernvbert) and Ollama with Qwen3-VL for generation. It includes instructions for both PDF ingestion, querying, and answer generation.
 
@@ -138,7 +138,7 @@ We’ve included six different [commands](https://github.com/weaviate/agent-skil
 /weaviate:search query "best laptops" collection "Products" type "hybrid" alpha "0.7"
 ```
 
-## Get started
+## Get Started
 
 You can access [the GitHub repo here](https://github.com/weaviate/agent-skills).
 
