@@ -1,11 +1,13 @@
+@use "../variables.scss" as v;
+
 .priceReview {
   position: relative;
   align-items: flex-end;
-  border-radius: $space;
-  padding: calc($space * 2) calc($space * 2);
+  border-radius: v.$space;
+  padding: calc(v.$space * 2) calc(v.$space * 2);
   align-items: center;
   justify-content: center;
-  gap: calc($space * 3);
+  gap: calc(v.$space * 3);
   flex-grow: 1;
   flex-shrink: 0;
   max-width: 380px;
@@ -26,15 +28,15 @@
     z-index: 0;
 
     &-green {
-      background: $greenGradient;
+      background: v.$greenGradient;
     }
 
     &-blue {
-      background: $blueGradient;
+      background: v.$blueGradient;
     }
 
     &-pink {
-      background: $pinkGradient;
+      background: v.$pinkGradient;
     }
   }
 
@@ -45,7 +47,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: calc($space * 3);
+    gap: calc(v.$space * 3);
     width: 100%;
   }
 
@@ -69,11 +71,11 @@
   button {
     font-size: 1.1em;
     font-weight: 700;
-    background: $white;
+    background: v.$white;
     width: 100%;
-    border-radius: calc($space / 2);
+    border-radius: calc(v.$space / 2);
     min-height: 56px;
-    border: 1px solid $mainColor;
+    border: 1px solid v.$mainColor;
     margin-top: 50px;
   }
 

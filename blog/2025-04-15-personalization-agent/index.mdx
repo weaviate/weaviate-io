@@ -1,21 +1,22 @@
 ---
-title: 'Introducing the Weaviate Personalization Agent'
+title: "Introducing the Weaviate Personalization Agent"
 slug: personalization-agent
 authors: [charles-pierse, tuana, alvin]
 date: 2025-04-15
-tags: ['concepts', 'agents', 'release']
+tags: ["concepts", "agents", "release"]
 image: ./img/hero.png
 description: "Learn about how you can use our new agentic personalization service to provide user-catered recommendations from Weaviate collections."
 ---
+
 ![Introducing the Weaviate Personalization Agent](./img/hero.png)
 
 Over the past few weeks, we’ve brought to you the [`QueryAgent`](/blog/query-agent), the [`TransformationAgent`](/blog/transformation-agent), and today, we’re back with our latest addition to the Weaviate Agents: the `PersonalizationAgent`.
 
-This new service that we’re releasing for all [Weaviate Serverless Cloud](/deployment/serverless) and Sandbox users to preview today is only the beginning of our agentic services geared to retrieve personalized objects from Weaviate collections based on custom instructions, user profiles and their past interactions with your products.
+This new service that we’re releasing for all [Weaviate Serverless Cloud](/deployment/shared) and Sandbox users to preview today is only the beginning of our agentic services geared to retrieve personalized objects from Weaviate collections based on custom instructions, user profiles and their past interactions with your products.
 
 In this blog, we’ll walk through this preview release of the `PersonalizationAgent`, how you can get started by creating your own, as well as what our vision is for the future of this service
 
-:::note 
+:::note
 This blog comes with two accompanying recipes to help you get started, one of which we will look into in detail here: the ['food recommender' agent recipe](https://colab.research.google.com/github/weaviate/recipes/blob/main/weaviate-services/agents/personalization-agent-get-started-recipes.ipynb) and the [‘movie recommender’ agent recipe](https://colab.research.google.com/github/weaviate/recipes/blob/main/weaviate-services/agents/personalization-agent-get-started-movies.ipynb). In this blog, we’ll focus on the food recommender.
 :::
 
@@ -95,7 +96,7 @@ While today’s release is ready for all Weaviate Serverless Cloud and Sandbox u
 
 ## Creating Personalization Agents
 
-:::note 
+:::note
 👩‍🍳 For this announcement, we’ve also released an accompanying ‘food recommender’ agent [recipe](https://colab.research.google.com/github/weaviate/recipes/blob/main/weaviate-services/agents/personalization-agent-get-started-recipes.ipynb) to help you get started. For questions or feedback, you can [join the ‘Agents’ topic in the Weaviate Forum](https://forum.weaviate.io/c/agents/10).
 :::
 
@@ -111,8 +112,8 @@ Let’s take a look at the food recommender service here. To get started, we nee
 
 A `PersonalizationAgent` is initialized with the following:
 
--   The name of the `reference_collection` which the agent will return personalized recommendations for.
--   (Optionally) `user_properties` which lists the names and datatypes of properties we might want to know about each user.
+- The name of the `reference_collection` which the agent will return personalized recommendations for.
+- (Optionally) `user_properties` which lists the names and datatypes of properties we might want to know about each user.
 
 In this case, we initialize the following agent:
 
@@ -232,9 +233,9 @@ For example, for our food recommender service, we may want to create a service t
 
 ```python
 response = agent.get_objects(persona_id,
-                             limit=50, 
+                             limit=50,
                              use_agent_ranking=True,
-                             instruction="""Your task is to recommend a diverse set of dishes to the user 
+                             instruction="""Your task is to recommend a diverse set of dishes to the user
                              taking into account their likes and dislikes. It's especially important to avoid their dislikes.""",
 )
 
@@ -253,9 +254,9 @@ for i, obj in enumerate(response.objects[:10]):
 ```
 
 ```
-We've curated a diverse selection of dishes that avoids your dislikes 
-and highlights your favorite cuisines like Italian and Thai. 
-Look forward to enjoying delicious Italian classics and unique dishes that 
+We've curated a diverse selection of dishes that avoids your dislikes
+and highlights your favorite cuisines like Italian and Thai.
+Look forward to enjoying delicious Italian classics and unique dishes that
 resonate with your love for pasta and veggies.
 
 *****0*****
@@ -278,6 +279,6 @@ Italian
 
 The `PersonalizationAgent` is Weaviate’s newest agentic service that delivers personalized recommendations by combining user profiles, past interactions, and LLM-powered ranking. It introduces personas, interaction tracking, and an agentic pipeline for serving tailored results from any collection. Available now for all Serverless Cloud and Sandbox users—get started with the provided recipe and start building intelligent, user-aware applications today.
 
-import WhatsNext from '/_includes/what-next.mdx'
+import WhatsNext from "/_includes/what-next.mdx";
 
 <WhatsNext />

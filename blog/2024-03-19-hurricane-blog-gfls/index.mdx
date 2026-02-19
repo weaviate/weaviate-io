@@ -1,25 +1,26 @@
 ---
-title: 'Hurricane: Writing Blog Posts with Generative Feedback Loops'
+title: "Hurricane: Writing Blog Posts with Generative Feedback Loops"
 slug: hurricane-generative-feedback-loops
 authors: [connor]
 date: 2024-03-19
 image: ./img/hero.png
-tags: ['how-to', 'concepts']
-description: 'Hurricane is a web application to demonstrate Generative Feedback Loops with blog posts.'
+tags: ["how-to", "concepts"]
+description: "Hurricane is a web application to demonstrate Generative Feedback Loops with blog posts."
 ---
 
 ![HERO image](./img/hero.png)
 
-import demo from './img/Hurricane-Demo.mp4';
-import phoenix from './img/Phoenix-Demo.mp4';
+import demo from "./img/Hurricane-Demo.mp4";
+import phoenix from "./img/Phoenix-Demo.mp4";
 
-Back in May 2023, we published an initial vision for [Generative Feedback Loops](/blog/generative-feedback-loops-with-llms), which we have defined to describe saving the outputs of generative AI systems back into databases for future use. We have since extended our experiments from AirBnB listings to [Amazon products](https://medium.com/@iamleonie/recreating-amazons-new-generative-ai-feature-product-review-summaries-50640e40872a), even running every component of a Generative Feedback Loop within [Snowpark Container Services](/blog/generative-feedback-loop-with-weaviate-and-spcs#implementing-a-generative-feedback-loop-with-weaviate). Both of these applications illustrate the ability of generative AI to enhance our data. With the emergence of DSPy, we are now entering a new era of control with generative AI systems and are able to create even more compelling examples of Generative Feedback Loops.
+Back in May 2023, we published an initial vision for [Generative Feedback Loops](/blog/generative-feedback-loops-with-LLMs), which we have defined to describe saving the outputs of generative AI systems back into databases for future use. We have since extended our experiments from AirBnB listings to [Amazon products](https://medium.com/@iamleonie/recreating-amazons-new-generative-ai-feature-product-review-summaries-50640e40872a), even running every component of a Generative Feedback Loop within [Snowpark Container Services](/blog/generative-feedback-loop-with-weaviate-and-spcs#implementing-a-generative-feedback-loop-with-weaviate). Both of these applications illustrate the ability of generative AI to enhance our data. With the emergence of DSPy, we are now entering a new era of control with generative AI systems and are able to create even more compelling examples of Generative Feedback Loops.
 
 When we initially published our predictions for Generative Feedback Loops, we presented Ben Thompson’s [Aggregation Theory](https://stratechery.com/2015/aggregation-theory/) to describe some of the impacts of this technology. Aggregation Theory describes how “companies that win the user experience can generate a virtuous cycle where their ownership of consumers/users attracts suppliers which improves the user experience”. We concluded that “LLMs present the opportunity to expedite the virtuous cycle Aggregation Theory describes by commoditizing the human effort traditionally required to deliver great user experiences”.
 
 At Weaviate, we are committed to delivering a great user experience to our developers. One of our main efforts to support this has been to author blog posts that clarify key concepts and help developers build with Weaviate. This article will walk you through a new addition to our [`weaviate-tutorials`](https://github.com/weaviate-tutorials) collection, [`Hurricane`](https://github.com/weaviate-tutorials/Hurricane). Inspired by Stanford’s [STORM](https://arxiv.org/abs/2402.14207), Hurricane leverages technologies from Arize, DSPy, OpenAI, Weaviate, and You to author new Weaviate blog posts and feed these generated blogs back into Weaviate. Hurricane lightens the human effort required to deliver a great user experience for blog reading, tailored to a Weaviate developer’s particular interests and questions.
 
 This article contains two key sections:
+
 1. [Hurricane Code Explained](#part-1-hurricane-code-explained)
 2. [Optimizing Hurricane](#part-2-hurricane-optimization)
 
@@ -46,7 +47,7 @@ We will now switch gears into the backend of Hurricane and how we orchestrated p
 ```python
 class Question2BlogOutline(dspy.Signature):
     """Your task is to write a Weaviate blog post that will help answer the given question.\nPlease use the contexts from a web search and published Weaviate blog posts to evaluate the structure of the blog post."""
-    
+
     question = dspy.InputField()
     blog_context = dspy.InputField()
     web_context = dspy.InputField()
@@ -57,7 +58,7 @@ class Question2BlogOutline(dspy.Signature):
 ```python
 class Topic2Paragraph(dspy.Signature):
     """Please write a paragraph that explains a topic based on contexts from a web search and blog posts from an authoritative source. You are also given the original question that inspired research into this topic, please try to connect your review of the topic to the original question."""
-    
+
     topic = dspy.InputField(desc="A topic to write a paragraph about based on the information in the contexts.")
     original_question = dspy.InputField(desc="The original question that inspired research into this topic.")
     web_contexts = dspy.InputField(desc="contains relevant information about the topic from a web search.")
@@ -68,7 +69,7 @@ class Topic2Paragraph(dspy.Signature):
 ```python
 class BoldPrediction(dspy.Signature):
     """Please review this blog post and propose a bold prediction about it's content."""
-    
+
     blog = dspy.InputField()
     bold_prediction = dspy.OutputField(desc="A bold prediction about it's content.")
 ```
@@ -85,17 +86,17 @@ class WeaviateRelevance(dspy.Signature):
 ```python
 class TitleAndTakeaways(dspy.Signature):
     """Write a title and key takeaways for a blog post given the blog post and the original question it sought to answer as input and a bold prediction the author discovered after conducting initial research on the topic."""
-    
+
     blog = dspy.InputField()
     original_question = dspy.InputField()
     title = dspy.OutputField()
     key_takeaways = dspy.OutputField(desc="Key takeaways from the article. IMPORTANT!! This must follow a comma separated list of values!")
 ```
 
-We can then connect how these Signatures process inputs by defining the DSPy program, `Hurricane`.  Similar to previous waves of automation, the latest advances in Artificial Intelligence allow humans to abstract our thinking into the high-level structure of what we are trying to achieve and leave the painstaking details to automated systems. Rather than focus on particular details of the content of a blog post, we instead think about how the structure of a blog post writing task should be. In Hurricane, we decompose the blog writing task into (1) researching and writing an outline, (2) researching and writing further about each topic in the outline, (3) forming a bold prediction about the future based on the writing so far, (4) writing about why this topic is relevant to Weaviate, and finally, (5) writing a title and key takeaways from the blog post. The following image visualizes how the components connect together and which parts of the computation can be parallelized.
+We can then connect how these Signatures process inputs by defining the DSPy program, `Hurricane`. Similar to previous waves of automation, the latest advances in Artificial Intelligence allow humans to abstract our thinking into the high-level structure of what we are trying to achieve and leave the painstaking details to automated systems. Rather than focus on particular details of the content of a blog post, we instead think about how the structure of a blog post writing task should be. In Hurricane, we decompose the blog writing task into (1) researching and writing an outline, (2) researching and writing further about each topic in the outline, (3) forming a bold prediction about the future based on the writing so far, (4) writing about why this topic is relevant to Weaviate, and finally, (5) writing a title and key takeaways from the blog post. The following image visualizes how the components connect together and which parts of the computation can be parallelized.
 
 <img
-  src={require('./img/Hurricane-DAG.png').default}
+  src={require("./img/Hurricane-DAG.png").default}
   alt="Hurricane Program DAG"
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
@@ -113,7 +114,7 @@ class Hurricane(dspy.Module):
         # 5 LLM Layers (Question2BlogOutline, Topic2Paragraph, BoldPrediction, WeaviateRelevance, TitleAndTakeaways)
         # 2 Retrieval Engines (Weaviate and You)
         # Weaviate is configured with dspy.settings.configure(rm=weaviate_rm)
-        
+
         self.question_to_blog_outline = dspy.ChainOfThought(Question2BlogOutline)
         self.topic_to_paragraph = dspy.ChainOfThought(Topic2Paragraph)
         self.bold_prediction = dspy.ChainOfThought(BoldPrediction)
@@ -143,7 +144,7 @@ class Hurricane(dspy.Module):
         title_and_takeaways = self.title_and_key_takeaways(blog=blog, original_question=question)
         blog_container.title = title_and_takeaways.title
         blog_container.takeaways = title_and_takeaways.key_takeaways
-        
+
         final_blog = format_blog_post(blog_container)
         return dspy.Prediction(blog=final_blog)
 ```
@@ -162,11 +163,10 @@ title_and_key_takeaways = compiled_hurricane.title_and_key_takeaways
 
 Before transitioning back into the web application code, we would like to highlight [Self-Discover](https://arxiv.org/pdf/2402.03620.pdf) for LLM program design. It remains an open question of how much **human** program design will be needed. For example, prompting Claude 3 with the following prompt results in a very similar program architecture to what we have shown above. In a similar spirit to [Gorilla LLMs](https://weaviate.io/blog/weaviate-gorilla-part-1), we can also give the LLM background information about DSPy python syntax, and it will generate an executable program.
 
-
-> Can you please help me break a task into subtasks? 
-> The task is to take a question and write a blog post that answers it, provides more background information about the 
-> topic, looks for nuances about the topic such as unanswered questions or bold predictions, and connects the relevance 
-> of the topic to the Weaviate Vector Database. Please format each sub-task as a `Signature` that contains a task 
+> Can you please help me break a task into subtasks?
+> The task is to take a question and write a blog post that answers it, provides more background information about the
+> topic, looks for nuances about the topic such as unanswered questions or bold predictions, and connects the relevance
+> of the topic to the Weaviate Vector Database. Please format each sub-task as a `Signature` that contains a task
 > description and input and output fields. Please describe how each sub-task processes outputs from the previous sub-task
 > and where sub-tasks can be parallelized in the `Module`.
 
@@ -174,7 +174,7 @@ Before transitioning back into the web application code, we would like to highli
 
 Returning to our web application, one of the most interesting questions surrounding DSPy and LLM programming is: How to serve DSPy programs in Production? As widespread adoption of Retrieval-Augmented Generation was beginning, Weaviate Co-Founder Bob van Luijt explained Weaviate’s mission to help developers build **Stateful AI** [[1](https://twitter.com/bobvanluijt/status/1695078287046005082), [2](https://www.youtube.com/watch?v=TXMUXeml9JY)]. In client-server software design, state management involves maintaining and synchronizing the application’s data across the server and clients. The server typically handles central state, such as application or session data, as well as resources that are shared among multiple clients, such as caches, message queues, or file storage. Clients interact with the central state by sending requests to the server, which then processes the requests, updates the central state if necessary, and sends responses back to the clients.
 
-To facilitate state management in LLM applications, Weaviate has developed [`generative-search`](https://docs.weaviate.io/weaviate/search/generative) featuring integrations with Cohere, Google, Mistral, OpenAI, Bedrock, and Anyscale. Generative Search couples retrieval and inference management into a single API orchestrated on the server. We are currently researching further ways to improve this product and help developers manage state in their LLM applications. Hurricane currently uses a Generative Feedback Loop consisting of a sequence of client-server calls, persisting state by inserting data into Weaviate and accessing it with a session id. A single LLM call, where we send a prompt and receive text is **stateless**, but when we extend the LLM call with data from retrieval or a previous call to an LLM, such as the handoff from `Question2BlogOutline` to `Topic2Paragraph`, the call is now **stateful**. 
+To facilitate state management in LLM applications, Weaviate has developed [`generative-search`](https://docs.weaviate.io/weaviate/search/generative) featuring integrations with Cohere, Google, Mistral, OpenAI, Bedrock, and Anyscale. Generative Search couples retrieval and inference management into a single API orchestrated on the server. We are currently researching further ways to improve this product and help developers manage state in their LLM applications. Hurricane currently uses a Generative Feedback Loop consisting of a sequence of client-server calls, persisting state by inserting data into Weaviate and accessing it with a session id. A single LLM call, where we send a prompt and receive text is **stateless**, but when we extend the LLM call with data from retrieval or a previous call to an LLM, such as the handoff from `Question2BlogOutline` to `Topic2Paragraph`, the call is now **stateful**.
 
 Stateful processing is orchestrated in Hurricane as follows:
 
@@ -185,7 +185,7 @@ Const handleClick = async () => {
 	Try {
 		setThoughts(prevThoughts => ["Received question: " + String(inputValue)]);
 		const createSessionResponse = await axios.post('http://localhost:8000/create-session');
-        const sessionId = String(createSessionResponse.data.session_id); 
+        const sessionId = String(createSessionResponse.data.session_id);
 	} catch (error) {
 		console.error(‘Error’:, error);
 	}
@@ -242,7 +242,7 @@ class BlogPost(BaseModel):
 
 ```javascript
 // BlogPost.js
-import React from 'react';
+import React from "react";
 
 const BlogPost = ({ blogPost }) => {
   if (!blogPost) {
@@ -250,16 +250,19 @@ const BlogPost = ({ blogPost }) => {
   }
 
   return (
-    <div class = "blogstyling">
+    <div class="blogstyling">
       {blogPost.title && <h1>{blogPost.title}</h1>}
-      {blogPost.introduction_paragraph && <p>{blogPost.introduction_paragraph}</p>}
-      {blogPost.evidence_paragraphs && blogPost.evidence_paragraphs.length > 0 && (
-        <div>
-          {blogPost.evidence_paragraphs.map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
-          ))}
-        </div>
+      {blogPost.introduction_paragraph && (
+        <p>{blogPost.introduction_paragraph}</p>
       )}
+      {blogPost.evidence_paragraphs &&
+        blogPost.evidence_paragraphs.length > 0 && (
+          <div>
+            {blogPost.evidence_paragraphs.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+          </div>
+        )}
       {blogPost.bold_prediction && (
         <div>
           <h3>Bold Prediction</h3>
@@ -292,13 +295,12 @@ export default BlogPost;
 We believe there are many more opportunities to microservice architecture design with DSPy programs. For example, as a next step we can parallelize the 5 calls to `Topic2Paragraph` because they do not depend on each other. We would then wait to synchronize the evidence paragraphs into a blog draft, and then move on to parallelizing `BoldPrediction` and `WeaviateRelevance`. There are many interesting works in this domain, we highly recommend interested readers to check out [ALTO](https://arxiv.org/pdf/2403.04311.pdf), from Santhanam et al. Shown below, ALTO further pushes the cutting edge of LLM program design by integrating streamed structured output parsing to further speed up parallel processing. This topic was also heavily discussed in our [Weaviate podcast with Jason Liu](https://www.youtube.com/watch?v=higlHgYDc5E).
 
 <img
-  src={require('./img/ALTO.png').default}
+  src={require("./img/ALTO.png").default}
   alt="An example from ALTO, image taken from Santhanam et al. 2024."
   style={{ maxWidth: "70%", margin: "0 auto", display: "block" }}
 />
 
 An example from [`ALTO`](https://arxiv.org/pdf/2403.04311.pdf), image taken from Santhanam et al. 2024.
-
 
 There are many other cases where we may want to split up the components of a DSPy program into multiple APIs. For example, during optimization, we could have an 8-layer program we wish to optimize packaged in one container, and then a 3-layer metric program or 7-layer MIPRO optimizer in other containers. This improves throughput and resource allocation at scale. As we have shown with Weaviate’s Generative Feedback Loops, this also helps tremendously with saving intermediate state for future use, or in case the program crashes and needs to pick up where it left off. Imagining very complex systems, we may also reuse parts of the program with conditional routing. Further, we may imagine a future of systems that consist jointly of LLMs behind closed APIs, and self-hosted models. This could facilitate processing parts of the program containing sensitive information on-prem, as well as cost efficiency when serving smaller fine-tuned models for a particular task. We encourage interested readers to check out the Weaviate module system to gain a better sense of what to expect in the upcoming few months from the Weaviate development team. We are super excited about [new decoupling improvements to our `generative-search` APIs](https://github.com/weaviate/weaviate/issues/3364) that will in the meantime facilitate easy model switching, but in the long run make Weaviate more modular for all sorts of LLM processing from RAG to Generative Feedback Loops and [Compound AI Systems](https://bair.berkeley.edu/blog/2024/02/18/compound-ai-systems/).
 
@@ -312,14 +314,13 @@ COPRO is a super fascinating optimizer for task instructions, reminiscent of [Go
 
 COPRO then evaluates the performance of each of these rewritten descriptions and uses a fascinating crossover step common to evolutionary optimization algorithms to write new candidates. COPRO takes as input the `breadth` hyperparameter of descriptions and their respective performances and uses this information to propose further re-written descriptions. This continues for the `depth` hyperparameter number of iterations. Applying COPRO to Hurricane results in the following transformations of the initial to optimized prompts.
 
-| Signature          | Initial Prompt                                                                                                                                                                                                                                                    | COPRO Optimized Prompt |
-|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Blog2Outline       | Your task is to write a Weaviate blog post that will help answer the given question. Please use the contexts from a web search and published Weaviate blog posts to evaluate the structure of the blog post. | Start by conducting thorough research on the question provided to gather relevant information from reputable sources. Analyze the structure and language used in previous Weaviate blog posts to maintain consistency. Consider including visuals like images or graphs to enhance the content. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| Topic2Paragraph    | Please write a paragraph that explains a topic based on contexts from a web search and blog posts from an authoritative source. You are also given the original question that inspired research into this topic, please try to connect your review of the topic to the original question. | Research, merge insights, analyze various case studies, and summarize information to elucidate the specific context surrounding the subject matter of interest. Make sure to reference reputable sources for your conclusions and attempt to related your comprehensive analysis back to the initial inquiry that sparked your investigation. |
-| BoldPrediction     | Please review this blog post and propose a bold prediction about its content. | Analyzing the article, make relevant connections to current trends and propose an innovative forecast about its subject matter. |                                                                               |
-| WeaviateRelevance  | Please review this blog post and describe why it’s content and the claims it’s making are relevant for the development of the Weaviate Vector Database. You are given additional contexts describing what Weaviate is and some aspects of its technology.    | Please review this blog post and describe why it’s content and the claims it’s making are relevant for the development of the Weaviate Vector Database. You are given additional contexts describing what Weaviate is and some aspects of its technology. |
-| TitleAndTakeaways  | Write a title and key takeaways for a blog post given the blog post and the original question it sought to answer as input and a bold prediction the author discovered after conducting initial research on the topic.               | Provide a concise summary of the blog post based on the original question and main findings, followed by highlighting a bold prediction based on initial research. |
-
+| Signature         | Initial Prompt                                                                                                                                                                                                                                                                            | COPRO Optimized Prompt                                                                                                                                                                                                                                                                                                                        |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| Blog2Outline      | Your task is to write a Weaviate blog post that will help answer the given question. Please use the contexts from a web search and published Weaviate blog posts to evaluate the structure of the blog post.                                                                              | Start by conducting thorough research on the question provided to gather relevant information from reputable sources. Analyze the structure and language used in previous Weaviate blog posts to maintain consistency. Consider including visuals like images or graphs to enhance the content.                                               |     |
+| Topic2Paragraph   | Please write a paragraph that explains a topic based on contexts from a web search and blog posts from an authoritative source. You are also given the original question that inspired research into this topic, please try to connect your review of the topic to the original question. | Research, merge insights, analyze various case studies, and summarize information to elucidate the specific context surrounding the subject matter of interest. Make sure to reference reputable sources for your conclusions and attempt to related your comprehensive analysis back to the initial inquiry that sparked your investigation. |
+| BoldPrediction    | Please review this blog post and propose a bold prediction about its content.                                                                                                                                                                                                             | Analyzing the article, make relevant connections to current trends and propose an innovative forecast about its subject matter.                                                                                                                                                                                                               |     |
+| WeaviateRelevance | Please review this blog post and describe why it’s content and the claims it’s making are relevant for the development of the Weaviate Vector Database. You are given additional contexts describing what Weaviate is and some aspects of its technology.                                 | Please review this blog post and describe why it’s content and the claims it’s making are relevant for the development of the Weaviate Vector Database. You are given additional contexts describing what Weaviate is and some aspects of its technology.                                                                                     |
+| TitleAndTakeaways | Write a title and key takeaways for a blog post given the blog post and the original question it sought to answer as input and a bold prediction the author discovered after conducting initial research on the topic.                                                                    | Provide a concise summary of the blog post based on the original question and main findings, followed by highlighting a bold prediction based on initial research.                                                                                                                                                                            |
 
 We then stack these new signatures with the `BootstrapFewShot` compiler that runs traces through the program with the new signatures, providing input-output examples to better control the system. In our experiments, we bootstrap 2 examples for each of the 5 components of Hurricane.
 
@@ -367,6 +368,6 @@ However, Hurricane is not quite ready to realize this potential. The cost of gen
 
 Hurricane is just the beginning. As we continue to develop and refine these techniques, we envision a future where Generative Feedback Loops can autonomously create vast amounts of helpful content, adapted to the specific needs and interests of each person. By feeding this generated content back into the system, we can create an ever-growing knowledge base that is continuously updated and refined. Realizing this vision will require ongoing research and development in areas like prompt engineering, model optimization, and user experience design. It will also require careful consideration of cost efficiency, data quality, and ethical content generation.
 
-import WhatsNext from '/_includes/what-next.mdx';
+import WhatsNext from "/_includes/what-next.mdx";
 
 <WhatsNext />

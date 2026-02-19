@@ -1,18 +1,10 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
-import styles from './styles.module.scss';
-
-import useBaseUrl from '@docusaurus/useBaseUrl';
-import ValueKind from '/static/img/company/values/values-be-kind.svg';
-import ValueExcellence from '/static/img/company/values/values-excellence.svg';
-import ValueTransparency from '/static/img/company/values/values-transparency.svg';
-import ValueTrust from '/static/img/company/values/values-trust.svg';
-import ValueWorkTogether from '/static/img/company/values/values-work-together.svg';
+import Link from "@docusaurus/Link";
+import styles from "./styles.module.scss";
 
 export default function Steps() {
   return (
     <div className={styles.valuesBG}>
-      <div className="container" id="steps">
+      <div className="container">
         <div className={styles.title}>
           <h2>Build with Weaviate Framework</h2>
           <p>
@@ -38,7 +30,9 @@ export default function Steps() {
               applications and to make the process as smooth and transparent as
               possible.
             </p>
-            <Link to="https://docs.weaviate.io/weaviate">Get started with Weaviate</Link>
+            <Link to="https://docs.weaviate.io/weaviate">
+              Get started with Weaviate
+            </Link>
           </div>
 
           <div className={styles.valuesBox}>
@@ -57,9 +51,7 @@ export default function Steps() {
               stand out on social media, our program provides the tools and
               support you need to succeed.
             </p>
-            <Link to="/community/share-the-weaviate-love/#contact-form">
-              Submit your project
-            </Link>
+            <Link to="#contact-form">Submit your project</Link>
           </div>
 
           <div className={styles.valuesBox}>

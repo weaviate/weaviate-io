@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
-import styles from './styles.module.scss';
-import Link from '@docusaurus/Link';
+import React, { useEffect } from "react";
+import styles from "./styles.module.scss";
+import Link from "@docusaurus/Link";
 
 export default function Jobs() {
   useEffect(() => {
-    const scriptId = 'ashby-embed-script';
+    const scriptId = "ashby-embed-script";
     if (!document.getElementById(scriptId)) {
-      const script = document.createElement('script');
+      const script = document.createElement("script");
       script.src =
-        'https://jobs.ashbyhq.com/weaviate/embed?css=https://weaviate.io/css/ashby-custom.css';
+        "https://jobs.ashbyhq.com/weaviate/embed?css=https://weaviate.io/css/ashby-custom.css";
 
       script.async = true;
       script.id = scriptId;
@@ -18,7 +18,7 @@ export default function Jobs() {
 
   return (
     <div className={styles.jobBoard}>
-      <div className="container" id="jobs">
+      <div className="container">
         <div className={styles.title}>
           <h2>Let’s work together</h2>
           <p>

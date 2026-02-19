@@ -4,9 +4,8 @@ slug: llms-and-search
 authors: [connor, erika]
 date: 2023-06-13
 image: ./img/hero.png
-tags: ['search', 'concepts']
+tags: ["search", "concepts"]
 description: "Learn about the intersection between LLMs and Search"
-
 ---
 
 ![LLMs and Search](./img/hero.png)
@@ -15,15 +14,16 @@ description: "Learn about the intersection between LLMs and Search"
 
 The recent breakthroughs in Large Language Model (LLM) technology are positioned to transition many areas of software. Search and Database technologies particularly have an interesting entanglement with LLMs. There are cases where Search improves the capabilities of LLMs as well as where inversely, LLMs improve the capabilities of Search. In this blog post, we will break down 5 key components of the intersection between LLMs and Search.
 
-* Retrieval-Augmented Generation
-* Query Understanding
-* Index Construction
-* LLMs in Re-Ranking
-* Search Result Compression
+- Retrieval-Augmented Generation
+- Query Understanding
+- Index Construction
+- LLMs in Re-Ranking
+- Search Result Compression
 
-*We will also conclude with some thoughts on how Generative Feedback Loops fit into this picture.*
+_We will also conclude with some thoughts on how Generative Feedback Loops fit into this picture._
 
 ## Retrieval-Augmented Generation
+
 Since the inception of large language models (LLMs), developers and researchers have tested the capabilities of combining information retrieval and text generation. By augmenting the LLM with a search engine, we no longer need to fine-tune the LLM to reason about our particular data.This method is known as [Retrieval-augmented Generation](https://arxiv.org/abs/2005.11401) (RAG).
 
 Without RAG, an LLM is only as smart as the data it was trained on. Meaning, LLMs can only generate text based purely on what its “seen”, rather than pull in new information after the training cut-off. [Sam Altman](https://abcnews.go.com/Technology/openai-ceo-sam-altman-ai-reshape-society-acknowledges/story?id=97897122) stated “the right way to think of the models that we create is a reasoning engine, not a fact database.” Essentially, we should only use the language model for its reasoning ability, not for the knowledge it has.
@@ -62,22 +62,26 @@ In addition to the Text-to-SQL topic, there are also knobs to turn with vector s
 In the following illustration, the LLM adds the filter, where “animal” = “dog” to facilitate searching for information about Goldendoodles. This is done by prompting the LLM with information about the data schema and the syntax for formatting structured vector searches in Weaviate.
 
 <img
-    src={require('./img/self-query.gif').default}
-    alt="alt"
-    style={{ width: "100%" }}
+  src={require("./img/self-query.gif").default}
+  alt="alt"
+  style={{ width: "100%" }}
 />
 
 ## Index Construction
+
 Large Language Models can also completely change the way we index data for search engines, resulting in better search quality down the line. There are 4 key areas to consider here:
+
 1. Summarization indexes
 2. Extracting structured data
 3. Text chunking
 4. Managing document updates.
 
 ### Summarization Indexes
+
 Vector embedding models are typically limited to 512 tokens at a time. This limits the application of vector embeddings to represent long documents such as an entire chapter of a book, or the book itself. An emerging solution is to apply summarization chains such as the create-and-refine example animated at the end of this article to summarize long documents. We then take the summary, vectorize it, and build an index to apply semantic search to the comparison of long documents such as books or podcast transcripts.
 
 ### Extracting Structured Data
+
 The next application of LLMs in Search Index Construction is in extracting structured data from unstructured text chunks. Suppose we have the following text chunk extracted from the Wikipedia page of Jimmy Butler from the Miami Heat:
 
 ![Wikipedia example](./img/wiki-example.png)
@@ -92,26 +96,42 @@ Please identify any potential symbolic data contained in the passage. Please for
 For this example, `text-davinci-003` with temperature = 0 produces the following output:
 
 ```json
-{ "Draft Pick": 30, "Most Improved Player": true, "Teams": ["Chicago Bulls", "Minnesota Timberwolves", "Philadelphia 76ers", "Miami Heat"], "NBA Finals": 2, "Lead League in Steals": true }
+{
+  "Draft Pick": 30,
+  "Most Improved Player": true,
+  "Teams": [
+    "Chicago Bulls",
+    "Minnesota Timberwolves",
+    "Philadelphia 76ers",
+    "Miami Heat"
+  ],
+  "NBA Finals": 2,
+  "Lead League in Steals": true
+}
 ```
 
 We can apply this prompt to each chunk of text in the Wikipedia article and then aggregate the symbolic properties discovered. We can then answer symbolic questions about our data such as, `How many NBA players have played for more than 3 distinct NBA teams?`. We can also use these filters for vector search as described above with respect to the Llama Index `Query Engine`.
 
 ### Symbolic Data to Text
-Prior to the emergence of LLMs, most of the world’s data has been organized in tabular datasets. Tabular datasets described the combination of `numeric`, `boolean`, and `categorical` variables. For example, “age” = 26 (`numeric`), “smoker” = True (`boolean`), or “favorite_sport” = “basketball” (`categorical`). An exciting emerging technique is to prompt a large language model to translate tabular data into text. We can then vectorize this text description using off-the-shelf models from OpenAI, Cohere, HuggingFace, and others to unlock semantic search. We recently presented an example of this idea for [AirBnB listings](https://weaviate.io/blog/generative-feedback-loops-with-llms), translating tabular data about each property’s price, neighborhood, and more into a text description. Huge thanks to Svitlana Smolianova for creating the following animation of the concept.
+
+Prior to the emergence of LLMs, most of the world’s data has been organized in tabular datasets. Tabular datasets described the combination of `numeric`, `boolean`, and `categorical` variables. For example, “age” = 26 (`numeric`), “smoker” = True (`boolean`), or “favorite_sport” = “basketball” (`categorical`). An exciting emerging technique is to prompt a large language model to translate tabular data into text. We can then vectorize this text description using off-the-shelf models from OpenAI, Cohere, HuggingFace, and others to unlock semantic search. We recently presented an example of this idea for [AirBnB listings](https://weaviate.io/blog/generative-feedback-loops-with-LLMs), translating tabular data about each property’s price, neighborhood, and more into a text description. Huge thanks to Svitlana Smolianova for creating the following animation of the concept.
 
 <img
-    src={require('./img/gen-example.gif').default}
-    alt="alt"
-    style={{ width: "100%" }}
+  src={require("./img/gen-example.gif").default}
+  alt="alt"
+  style={{ width: "100%" }}
 />
 
 ### Text Chunking
+
 Similarly related to the 512 token length for vectorizing text chunks, we may consider using the Large Language Model to identify good places to cut up text chunks. For example, if we have a list of items, it might not be best practice to separate the list into 2 chunks because the first half fell into the tail end of a chunk[:512] loop. This is also similar to prompts to automatically identify the key topics in a long sequence of text such as a podcast, youtube video, or article.
+
 ### Managing Document Updates
+
 Another emerging problem LLMs are solving in this space is the continual maintenance of a search index. Perhaps the best example of this is code repositories. Oftentimes a pull request may completely change a block of code that has been vectorized and added to the search index. We can prompt LLMs by asking, is this change enough to trigger a re-vectorization? Should we update the symbolic properties associated with this chunk? Should we reconsider the chunking around the context because of this update? Further, if we are adding a summarization of the larger context into the representation of this chunk, is this a significant enough update to re-trigger summarizing the entire file?
 
 ## LLMs in Re-Ranking
+
 Search typically operates in pipelines, a common term to describe directed acyclic graph (DAG) computation. As discussed previously, `Query Understanding` is the first step in this pipeline, typically followed by retrieval and re-ranking.
 
 As described in our [previous article](https://weaviate.io/blog/ranking-models-for-better-search), re-ranking models are new to the scene of zero-shot generalization. The story of re-rankers has mostly been tabular user features combined with tabular product or item features, fed to XGBoost models. This required a significant amount of user data to achieve, which zero-shot generalization may stand to disrupt.
@@ -161,12 +181,13 @@ Please answer the following question: {query} based on the following information
 Maybe we can imagine applying the “reduce” half of the “map reduce” prompt to information extracted from extractive classifiers on each passage. This may be a cheaper approach to the “map” step, but it is unlikely to work as well and doesn’t offer the same flexibility in changing what the “map” prompt extracts from each passage.
 
 <img
-    src={require('./img/map-reduce.gif').default}
-    alt="alt"
-    style={{ width: "100%" }}
+  src={require("./img/map-reduce.gif").default}
+  alt="alt"
+  style={{ width: "100%" }}
 />
 
 ### Summarization
+
 Similar to Question Answering with LLMs, when we consider multiple passages longer than 512 tokens compared to a single passage, Summarization with LLMs offers a significant new ability for AI systems.
 
 ```
@@ -180,35 +201,37 @@ Next Search Result: {search_result}
 ```
 
 <img
-    src={require('./img/refine.gif').default}
-    alt="alt"
-    style={{ width: "100%" }}
+  src={require("./img/refine.gif").default}
+  alt="alt"
+  style={{ width: "100%" }}
 />
 
 ## Recap of Key Ideas
+
 Here is a quick recap of the key concepts we have presented at the intersection of Large Language Models and Search:
 
-* **Retrieval-Augmented Generation:** Augmenting inputs to LLMs by retrieving extra information from a search engine. There is growing nuance in how exactly this retriever is triggered, such as Self-Ask prompting or FLARE decoding.
-* **Query Understanding:** LLMs can reliably translate natural language questions into SQL for symbolic aggregations. This technique can also be used to navigate Weaviate by choosing, which `Class` to search as well as which `filters` to add to the search.
-* **Index Construction:** LLMs can transform information to facilitate building search indexes. This can range from summarizing long content to extracting structured data, identifying text chunks, managing document updates, or transformation structured data to text for vectorization.
-* **LLMs in Re-Ranking:** Ranking models, distinctly from Retrieval, explicitly takes the query and/or a user description, as well as each candidate document as input to the neural network to output a fine-grained score of relevance. LLMs can now do this off-the-shelf without any extra training. Quite interestingly, we can prompt the LLMs to rank with symbolic preferences such as “price” or “recency”, in addition to the unstructured text content.
-* **Search Result Compression:** LLMs are delivering new search experiences for human users. Rather than needing to browse through search results, LLMs can apply map reduce or summarization chains to parse 100s of search results and show humans, or other LLMs, a much denser end result.
+- **Retrieval-Augmented Generation:** Augmenting inputs to LLMs by retrieving extra information from a search engine. There is growing nuance in how exactly this retriever is triggered, such as Self-Ask prompting or FLARE decoding.
+- **Query Understanding:** LLMs can reliably translate natural language questions into SQL for symbolic aggregations. This technique can also be used to navigate Weaviate by choosing, which `Class` to search as well as which `filters` to add to the search.
+- **Index Construction:** LLMs can transform information to facilitate building search indexes. This can range from summarizing long content to extracting structured data, identifying text chunks, managing document updates, or transformation structured data to text for vectorization.
+- **LLMs in Re-Ranking:** Ranking models, distinctly from Retrieval, explicitly takes the query and/or a user description, as well as each candidate document as input to the neural network to output a fine-grained score of relevance. LLMs can now do this off-the-shelf without any extra training. Quite interestingly, we can prompt the LLMs to rank with symbolic preferences such as “price” or “recency”, in addition to the unstructured text content.
+- **Search Result Compression:** LLMs are delivering new search experiences for human users. Rather than needing to browse through search results, LLMs can apply map reduce or summarization chains to parse 100s of search results and show humans, or other LLMs, a much denser end result.
 
 ## Generative Feedback Loops
+
 In [our first blog post on Generative Feedback Loops](https://weaviate.io/blog/generative-feedback-loops-with-llms), we shared an example on how to generate personalized ads for AirBnB listings. It takes the users preferences and finds relevant listings that would be of interest to them. The language model then generates an ad for the listings and links it back to the database with a cross-reference. This is interesting because we are using outputs from the language model and indexing the results to retrieve later.
 
 Generative Feedback Loops is a term we are developing to broadly reference cases where the output of an LLM inference is saved back into the database for future use. This blog post has touched on a few cases of this such as writing a summary of a podcast and saving the result back to the database, as well as extracting structured data from unstructured data to save back in the database.
 
 <img
-    src={require('./img/gfl.gif').default}
-    alt="alt"
-    style={{ width: "100%" }}
+  src={require("./img/gfl.gif").default}
+  alt="alt"
+  style={{ width: "100%" }}
 />
 
 ## Commentary on LLM Frameworks
+
 LLM Frameworks, such as [LlamaIndex](https://gpt-index.readthedocs.io/en/latest/) and [LangChain](https://python.langchain.com/en/latest/), serve to control the chaos of emerging LLM applications with common abstractions across projects. We want to conclude the article with a huge thank you to the builders of these frameworks which have greatly helped our understanding of the space. Another major thank you to Greg Kamradt and Colin Harmon for the discussion of these topics on [Weaviate Podcast #51](https://www.youtube.com/watch?v=iB4ki6gdAdc).
 
-
-import WhatNext from '/_includes/what-next.mdx'
+import WhatNext from "/_includes/what-next.mdx";
 
 <WhatNext />

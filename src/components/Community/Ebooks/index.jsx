@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { ButtonContainer } from '../../../theme/Buttons';
-import styles from './styles.module.scss';
-import { LinkButton } from '/src/theme/Buttons';
-import Link from '@docusaurus/Link';
+import React, { useState } from "react";
+import { ButtonContainer } from "../../../theme/Buttons";
+import styles from "./styles.module.scss";
+import { LinkButton } from "/src/theme/Buttons";
+import Link from "@docusaurus/Link";
 
 export default function Ebooks() {
   return (
@@ -62,7 +62,7 @@ export default function Ebooks() {
                 </div>
               </div>
             </Link>
-            <Link to="/ebooks/choosing-the-right-database-for-ai">
+            <Link to="/ebooks/choosing-the-right-database-for-AI">
               <div className={styles.typeBox}>
                 <div className={styles.typeIcon}>
                   <div className={`${styles.homeIcon} ${styles.papers}`}></div>

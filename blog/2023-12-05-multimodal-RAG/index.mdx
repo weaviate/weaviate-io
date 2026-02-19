@@ -129,7 +129,7 @@ However, the issue with text-only RAG systems is that they only leverage retriev
 Recently, a group of large generative models, both closed and open source, has emerged that understand both text and images. As a result, we can now support multimodal RAG, where we can retrieve images from our vector database and pass those into the large multimodal model (LMM) to generate with. This simple two-step process, illustrated below, is the main idea behind multimodal RAG.
 
 ![mmRAG_Dark](./img/mmRAG_D.png#gh-dark-mode-only)
-![mmRAG_Light](./img/mmRAG_D.png#gh-light-mode-only)
+![mmRAG_Light](./img/mm_RAG_L.png#gh-light-mode-only)
 *Shows the two-step process of MM-RAG, involving retrieval from a multimodal knowledge base and then generation using a large multimodal model by grounding in the retrieved context.*
 
 MM-RAG was [presented earlier this year](https://arxiv.org/abs/2211.12561) by a group at Stanford. They showed a workflow of multimodal models, one that could retrieve and another that could generate both text and images.
@@ -137,7 +137,7 @@ MM-RAG was [presented earlier this year](https://arxiv.org/abs/2211.12561) by a 
 They also discussed the advantages of multimodal RAG:
 
 - It significantly outperforms baseline multimodal models such as DALL-E and CM3 on both image and caption generation tasks.
-- It requires much less compute while achieving better performance (<30% of DALLE)
+- It requires much less compute while achieving better performance (\<30% of DALLE)
 - MM-RAG capable models also generate images much more faithful to the retrieved context. This means the quality of the generated images is better and grounded in the retrieved context image.
 - Multimodal models are capable of multimodal in-context learning (e.g., image generation from demonstrations). This means that we can feed any demonstration images and text so that the model generates an image that follows the visual characteristics of these in-context examples.
 
