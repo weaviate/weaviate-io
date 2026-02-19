@@ -1,4 +1,6 @@
+/* styles/elements/form/buttons/calculatorButton.scss */
 @use "../../../variables.scss" as v;
+@use "sass:color";
 
 .calculatorButton {
   display: flex;
@@ -15,7 +17,7 @@
     font-size: 0.9em;
 
     > div {
-      background-color: v.$white;
+      background-color: color.adjust(#fff, $lightness: 3%);
       align-items: flex-start;
       background-image: url("/img/pricing/chevronDown.svg");
       background-repeat: no-repeat;
@@ -51,7 +53,7 @@
   &:hover,
   &:focus {
     > div {
-      background-color: lighten(#fff, 3%);
+      background-color: color.adjust(#fff, $lightness: 3%);
       color: v.$mainColor;
     }
 
