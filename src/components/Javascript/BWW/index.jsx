@@ -14,7 +14,7 @@ export default function BuildWith() {
           <div className={styles.largeBox}>
             <div className={styles.boxTop}>
               <div className={styles.boxLogo}></div>
-              <Link to="blog/unbody-weaviate" className={styles.boxButton}>
+              <Link to="/blog/unbody-weaviate" className={styles.boxButton}>
                 {"See the showcase >"}
               </Link>
             </div>

@@ -5,7 +5,7 @@ import Link from "@docusaurus/Link";
 export default function PricingEnterprise() {
   return (
     <div className={styles.boxContainer}>
-      <Link className={styles.box} to="deployment/dedicated">
+      <Link className={styles.box} to="/deployment/dedicated">
         <div className={styles.title}>
           <h3>Dedicated Cloud</h3>
         </div>

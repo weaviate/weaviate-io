@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { ButtonContainer } from '../../../theme/Buttons';
-import styles from './styles.module.scss';
-import { LinkButton } from '/src/theme/Buttons';
-import Link from '@docusaurus/Link';
+import React, { useState } from "react";
+import { ButtonContainer } from "../../../theme/Buttons";
+import styles from "./styles.module.scss";
+import { LinkButton } from "/src/theme/Buttons";
+import Link from "@docusaurus/Link";
 
 export default function Guides() {
   return (
@@ -115,7 +115,7 @@ export default function Guides() {
                 <strong>Featured</strong>
                 <ul>
                   <li>
-                    <strong>DeepLearning.AI:</strong>{' '}
+                    <strong>DeepLearning.AI:</strong>{" "}
                     <Link
                       className={styles.external}
                       to="https://www.deeplearning.ai/short-courses/vector-databases-embeddings-applications/"
@@ -124,7 +124,7 @@ export default function Guides() {
                     </Link>
                   </li>
                   <li>
-                    <strong>Linkedin Learning:</strong>{' '}
+                    <strong>Linkedin Learning:</strong>{" "}
                     <Link
                       className={styles.external}
                       to="https://www.linkedin.com/learning/introduction-to-ai-native-vector-databases"
@@ -151,7 +151,7 @@ export default function Guides() {
                       to="https://events.weaviate.io/hybrid-search-webinar"
                     >
                       Intro to Hybrid Search:
-                    </Link>{' '}
+                    </Link>{" "}
                     Combining the power of keyword and vector search
                   </li>
                   <li>
@@ -160,7 +160,7 @@ export default function Guides() {
                       to="https://events.weaviate.io/js-june-24"
                     >
                       Build AI apps with Weaviate's TypeScript client:
-                    </Link>{' '}
+                    </Link>{" "}
                     Vue.js, React.js and Angular.js
                   </li>
                 </ul>
@@ -183,7 +183,7 @@ export default function Guides() {
               demo app and an end-to-end Jupyter notebook example.
             </p>
             <Link
-              to="community/events#on-demand-webinars"
+              to="/community/events#on-demand-webinars"
               className={styles.button}
             >
               Register for Free
