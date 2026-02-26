@@ -1,0 +1,61 @@
+.card {
+  border-radius: 0.9375rem;
+  background: #ffffff;
+  border: 1px solid rgba(19, 12, 73, 0.15);
+  padding: 28px;
+
+  h3 {
+    color: #130c49;
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin: 0 0 16px;
+  }
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #61bd73;
+  margin-top: 6px;
+}
+
+.title {
+  color: #130c49;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.body {
+  color: rgba(19, 12, 73, 0.75);
+  font-size: 0.98rem;
+  line-height: 1.4;
+}
+
+.note {
+  margin-top: 18px;
+  padding: 14px 14px;
+  border-radius: 0.75rem;
+  background: rgba(97, 189, 115, 0.15);
+  color: #130c49;
+  font-size: 0.95rem;
+
+  strong {
+    font-weight: 800;
+  }
+}
