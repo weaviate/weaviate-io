@@ -73,7 +73,7 @@ You may provide us with personal data relating to another individual than yourse
 
 <br></br>
 
-a. If you **download or use our open-source database**, or if you **use our Weaviate vector database via GCP or AWS marketplace**, we do not process your personal data.
+a. If you **download or use our open-source database**, or if you **use our Weaviate vector database via GCP or AWS marketplace**, we do not process your personal data. Weaviate OSS includes an optional [telemetry module](https://docs.weaviate.io/deploy/configuration/telemetry) that collects basic system and cloud metadata, however this does not include personal data of any kind. 
 
 <br></br>
 
