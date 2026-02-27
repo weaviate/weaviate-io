@@ -377,8 +377,8 @@ const config = {
         ({
             image: 'og/default.jpg',
              announcementBar: {
-               id: 'announcement-bar-october-2025',
-                content:`<a href="/ebooks/the-context-engineering-guide">New Context Engineering Guide – Download Here </a>`,
+               id: 'announcement-bar-feb-2026',
+                content:`<a href="/blog/weaviate-agent-skills">Introducing Weaviate Agent Skills – Read our Blog </a>`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
