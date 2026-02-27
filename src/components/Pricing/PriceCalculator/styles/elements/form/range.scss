@@ -1,21 +1,23 @@
+@use "../../variables.scss" as v;
+
 .range {
   flex-direction: row;
   width: 100%;
   align-items: flex-end;
 
-  @media (max-width: 920px) { 
+  @media (max-width: 920px) {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  > .content { 
+  > .content {
     position: relative;
-    width: 100%; 
+    width: 100%;
     flex-direction: row;
     align-items: center;
-    gap: $space;
+    gap: v.$space;
   }
-  
+
   .input {
     height: 40px;
     width: 100%;
@@ -51,52 +53,52 @@
     outline: none;
     border-radius: 2px;
     position: relative;
-    
+
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       top: -1px;
       left: 0;
       height: 7px;
       width: var(--track-fill, 0%);
-      background: $greenGradient;
+      background: v.$greenGradient;
       border-radius: 99px;
       pointer-events: none;
     }
-    
+
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: var(--track-fill, 0%);
       height: 5px;
       width: calc(100% - var(--track-fill, 0%));
-      background: $grey;
+      background: v.$grey;
       border-radius: 2px;
       pointer-events: none;
     }
-    
+
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
       width: 36px;
       height: 36px;
-      background: $greenGradient;
+      background: v.$greenGradient;
       cursor: pointer;
       border-radius: 99px;
-      transition: $transition;
+      transition: v.$transition;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
       position: relative;
       z-index: 1;
     }
-    
+
     &::-moz-range-thumb {
       width: 36px;
       height: 36px;
-      background: $greenGradient;
+      background: v.$greenGradient;
       cursor: pointer;
       border: none;
       border-radius: 99px;
-      transition: $transition;
+      transition: v.$transition;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 
       &:hover {
@@ -106,28 +108,28 @@
 
     &::-moz-range-track {
       height: 5px;
-      background: $grey;
+      background: v.$grey;
       border: none;
       border-radius: 2px;
     }
-    
+
     &::-moz-range-progress {
       height: 7px;
-      background: $greenGradient;
+      background: v.$greenGradient;
       border: none;
       border-radius: 99px;
     }
   }
-  
+
   &.changing {
     input[type="range"] {
       &::-moz-range-thumb {
         scale: 1.2;
-       }
+      }
 
       &::-webkit-slider-thumb {
         scale: 1.2;
-       }
+      }
     }
   }
 
@@ -135,16 +137,16 @@
   &.plan-premium {
     input[type="range"] {
       &::before {
-        background: $blueGradient;
+        background: v.$blueGradient;
       }
       &::-webkit-slider-thumb {
-        background: $blueGradient;
+        background: v.$blueGradient;
       }
       &::-moz-range-thumb {
-        background: $blueGradient;
+        background: v.$blueGradient;
       }
       &::-moz-range-progress {
-        background: $blueGradient;
+        background: v.$blueGradient;
       }
     }
   }
@@ -152,16 +154,16 @@
   &.plan-enterprise {
     input[type="range"] {
       &::before {
-        background: $pinkGradient;
+        background: v.$pinkGradient;
       }
       &::-webkit-slider-thumb {
-        background: $pinkGradient;
+        background: v.$pinkGradient;
       }
       &::-moz-range-thumb {
-        background: $pinkGradient;
+        background: v.$pinkGradient;
       }
       &::-moz-range-progress {
-        background: $pinkGradient;
+        background: v.$pinkGradient;
       }
     }
   }

@@ -14,7 +14,7 @@ Vector quantization is a common set of techniques for [compressing the vectors i
 
 One of the most time-consuming operations when performing [vector search](https://weaviate.io/blog/vector-search-explained) is computing distances (or distance estimates) between the query vector and vectors in the database/dataset. These operations are highly optimized to use as few CPU cycles per byte of the vector as possible. By compressing the vector using a quantization scheme that offers e.g. 4x compression while supporting equally fast distance estimation on the quantized codes in terms of throughput as measured in bytes, we would in theory be able to perform 4x as many distance calculations using the same amount of time. In practice [we do see speedups of this magnitude](https://github.com/ashvardanian/SimSIMD?tab=readme-ov-file#benchmarks) when comparing the speed of SIMD-optimized distance estimation on vectors of 8-bit integers (corresponding to 4x compression) against vectors of 32-bit floats.  
 
-When performing approximate nearest neighbor search using a vector index such as [Weaviate’s HNSW index](https://docs.weaviate.io/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) we can choose to trade an increase in search speed for a reduction in the quality of search results. Simplifying things a bit the primary mechanism behind this speed-quality tradeoff involves the index intelligently restricting the search to consider a smaller or larger fraction of the vectors in the dataset for distance estimation. By considering e.g. 2% of the dataset for distance estimation rather than 1% we can typically boost recall (search quality) substantially. Viewed in isolation the use of vector quantization reduces recall compared to uncompressed vectors, but with a sufficiently fast and precise vector quantization scheme we can more than make up for this drop in recall by searching a larger fraction of the dataset with the net result still being an overall speedup in search times due to faster distance estimation.
+When performing approximate nearest neighbor search using a vector index such as [Weaviate's HNSW index](https://docs.weaviate.io/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) we can choose to trade an increase in search speed for a reduction in the quality of search results. Simplifying things a bit the primary mechanism behind this speed-quality tradeoff involves the index intelligently restricting the search to consider a smaller or larger fraction of the vectors in the dataset for distance estimation. By considering e.g. 2% of the dataset for distance estimation rather than 1% we can typically boost recall (search quality) substantially. Viewed in isolation the use of vector quantization reduces recall compared to uncompressed vectors, but with a sufficiently fast and precise vector quantization scheme we can more than make up for this drop in recall by searching a larger fraction of the dataset with the net result still being an overall speedup in search times due to faster distance estimation.
 
 :::info 🚀🚀🚀
 Combining a vector index with a fast and precise vector quantization scheme can simultaneously reduce memory usage, speed up vector search, and improve the quality of search results!
@@ -27,7 +27,7 @@ Memory (RAM) typically becomes the bottleneck for fast approximate nearest neigh
 An important motivation for applying vector quantization is to reduce costs in a cloud setting where memory is an expensive resource. Fitting a simple linear regression across [AWS EC2 on-demand instance types](https://aws.amazon.com/ec2/instance-types/) indicates the following relationship between the instance price and its resource characteristics:
 
 $$
-\text{instance price 0.01\$/hour} \approx 5.1 \cdot \text{vCPUs} + 0.48 \cdot \text{GB RAM} + 0.0043 \cdot \text{GB NVMe SSD}
+\text\{instance price 0.01\$/hour\} \approx 5.1 \cdot \text\{vCPUs\} + 0.48 \cdot \text\{GB RAM\} + 0.0043 \cdot \text\{GB NVMe SSD\}
 $$
 
 Considering the relative cost of compute, memory, and disk the regression indicates that 1 vCPU is equivalent in terms of cost to 10 gigabytes of RAM which again is equivalent to 1000 gigabytes of NVMe SSD. Therefore, memory usage will tend to dominate cost when storing tens of millions of uncompressed vectors in memory consuming hundreds of gigabytes of RAM. Another interesting observation is that the cost per gigabyte of memory is approximately two orders of magnitude greater than the cost per gigabyte of NVMe SSD storage. This is also a primary motivation behind an orthogonal line of research into how to better utilize SSD storage for vector search — something we are also working on at Weaviate in order to further reduce costs. In the end, no matter whether our vector index keeps vectors in memory or on disk, or some combination thereof, we will benefit from having a quantization scheme that compresses vectors and speeds up distance computations, reducing resource usage.
@@ -71,26 +71,26 @@ We will begin with a brief description of 8-bit Rotational Quantization before p
 
 ![Rotational Quantization at a glance](img/rq-at-a-glance.png)
 
-As shown in the above figure rotational quantization takes an input vector  $x \in\mathbb{R}^{d}$ and
+As shown in the above figure rotational quantization takes an input vector  $x \in\mathbb\{R\}^\{d\}$ and
 
-1. applies a random rotation matrix  $r(x) = Rx$ where $R \in \mathbb{R}^{d\times d}$,
-2. scalar quantizes $r(x)$ into a $d$-dimensional vector of 8-bit integers $c(x) \in \{0, 1, \dots, 255\}^d$.
+1. applies a random rotation matrix  $r(x) = Rx$ where $R \in \mathbb\{R\}^\{d\times d\}$,
+2. scalar quantizes $r(x)$ into a $d$-dimensional vector of 8-bit integers $c(x) \in \\\{0, 1, \dots, 255\\\}^d$.
 
 We quantize the rotated vector by taking the interval between the min and the max entry in $r(x)$ and dividing it into 256 evenly spaced points (including the endpoints). Each entry is then quantized to its nearest point on this interval. In mathematical notation:
 
 $$
-c(x)_i = \left\lfloor \frac{r(x)_i - l_x}{\Delta_x} + 0.5 \right \rfloor \text{where} \\
+c(x)_i = \left\lfloor \frac\{r(x)_i - l_x\}\{\Delta_x\} + 0.5 \right \rfloor \text\{where\} \\
 l_x = \min_i r(x)_i, \quad
-\Delta_x = \frac{\max_i r(x)_i - \min_i r(x)_i}{255}.
+\Delta_x = \frac\{\max_i r(x)_i - \min_i r(x)_i\}\{255\}.
 $$
 
 The value $l_x$ is the lower endpoint of the quantization interval and $\Delta_x$ is the step size between the values represented by $c(x)_i.$ The $i$th entry of the quantized vector represents the value
 
 $$
-\bar{x}_i = l_x + \Delta_x c(x)_i
+\bar\{x\}_i = l_x + \Delta_x c(x)_i
 $$
 
-in the rotated space. To summarize: The quantized representation of a vector consists of the 8-bit vector $c(x)$ and the two scalars $l_x, \Delta_x$ that we store as 32-bit floating point values. In addition we also store the squared Euclidean norm $\lVert x \rVert_{2}^{2}$ as a 32-bit float in order to support distance computations in Euclidean space. 
+in the rotated space. To summarize: The quantized representation of a vector consists of the 8-bit vector $c(x)$ and the two scalars $l_x, \Delta_x$ that we store as 32-bit floating point values. In addition we also store the squared Euclidean norm $\lVert x \rVert_\{2\}^\{2\}$ as a 32-bit float in order to support distance computations in Euclidean space. 
 
 Compared to the RaBitQ encoding we do not center our vectors around cluster centers prior to quantizing them. Centering is a very efficient way to increase the accuracy the quantized distance estimates on most datasets, especially those that are naturally clustered. Instead of quantizing the full vector we can quantize the difference between a vector and its nearest cluster center, reducing quantization error. Our internal testing shows that centering data points around just a few k-means cluster centers can often increase recall by as much as adding 1-2 bits to the length of the quantization codes. Unfortunately centering complicates the quantization algorithm as the centers have to be learned and can can suffer from data drift.
 
@@ -101,19 +101,18 @@ As shown in our experiments below we are able to get very high recall values whe
 For the [distance measures](https://weaviate.io/blog/distance-metrics-in-vector-search) most commonly used in the context of [vector search](https://weaviate.io/blog/vector-search-explained) estimating the distance between vectors $q, x$ boils down to estimating their inner product $\left< q, x \right>$. A nice property of (random) rotations is that they preserve the length and inner product of vectors, so we have that
 
 $$
-\left<q, x\right> = \left<r(q), r(x)\right> 
+\left\<q, x\right> = \left\<r(q), r(x)\right> 
 $$
 
 and we can focus on working with the rotated and quantized vectors. In order to support fast SIMD-optimized single-vector distance estimation we use symmetric 8-bit quantization of both the query vector and data vector and estimate $\left< q, x \right>$ by taking the inner product of the rotated and quantized vectors:
 
 $$
-\begin{align*}
-\hat{\left<q, x\right>} = \left<\bar{q}, \bar{x}\right> &= \sum_i (l_q + \Delta_q c(q)_i)(l_x + \Delta_x c(x)_i) \\ &= d l_q l_x + l_q \Delta_x \sum_i c(x)_i + l_x \Delta_q \sum_i c(q)_i + \Delta_q \Delta_x\sum_i c(q)_i c(x)_i  .
-\end{align*}
+\begin\{align*\}
+\hat\{\left\<q, x\right>\} = \left\<\bar\{q\}, \bar\{x\}\right> &= \sum_i (l_q + \Delta_q c(q)_i)(l_x + \Delta_x c(x)_i) \\ &= d l_q l_x + l_q \Delta_x \sum_i c(x)_i + l_x \Delta_q \sum_i c(q)_i + \Delta_q \Delta_x\sum_i c(q)_i c(x)_i  .
+\end\{align*\}
 $$
 
 The first three terms in the inner product estimator can be evaluated using just a few floating point operations since the sums $\sum_i c(x)_i$ and  $\sum_i c(q)_i$ can be precomputed and stored with the quantized vectors. Computing the inner product of the d-dimensional vectors of unsigned 8-bit integers $\left< c(q), c(x) \right> = \sum_i c(q)_i c(x)_i$ in the fourth term above is the most time-consuming operation when estimating the distance. By utilizing an SIMD-optimized implementation of the inner product of bytes we are able to perform tens to hundreds of millions of distance estimations per second. 
-
 ```
 goos: darwin
 goarch: arm64
@@ -131,10 +130,9 @@ d3072-Uncompressed   145.90  ns/op	      6.9  m.ops/sec
 d3072-8BitRQ          60.55  ns/op	     16.5  m.ops/sec
 ```
 
-The benchmark results show that we achieve a ~2.3x speedup using 8-bit rotational quantization for distance estimation compared to computing distances using uncompressed vectors of float32 values. By significantly speeding up distance estimates we can afford to perform more of them while still spending less time, paving the way for an overall improvement in both the quality and speed of vector search, as long as we don’t lose too much recall from the quantization.  
+The benchmark results show that we achieve a ~2.3x speedup using 8-bit rotational quantization for distance estimation compared to computing distances using uncompressed vectors of float32 values. By significantly speeding up distance estimates we can afford to perform more of them while still spending less time, paving the way for an overall improvement in both the quality and speed of vector search, as long as we don't lose too much recall from the quantization.  
 
 The above benchmark was run on an M4 MacBook with ARM Neon SIMD support. Weaviate has SIMD support for Intel and AMD architectures and will use newer SVE SIMD instructions where supported on ARM platforms like Graviton. To see what kind of performance you get on your own setup you can clone the [Weaviate repository from Github](https://github.com/weaviate/weaviate/tree/main) and run the following command from the root directory: 
-
 ```
  go test -bench=BenchmarkRQDistancer -run=^$ ./adapters/repos/db/vector/compressionhelpers
 ```
@@ -156,11 +154,11 @@ A vector quantization algorithm is ultimately only as good as the level of recal
 
 Results indicate that Rotational Quantization offers good recall10@10 and perfect recall10@20, outperforming scalar quantization on all datasets except SIFT and offering the type of consistency across datasets that binary quantization lacks. The high recall values (>99%) that we see on high-dimensional vector embedding datasets such as MSMARCO (SNOWFLAKE ARCTIC-M-1.5) and DBPEDIA (OPENAI ADA-002) are particularly reflective of typical use cases.
 
-Looking at recall in isolation provides a good indicator of the viability of a quantization method, but even perfect recall is useless without speed! In order to evaluate the speed-quality tradeoff of 8-bit Rotational Quantization when used with Weaviate’s HNSW index we plot recall against throughput as measured in Queries Per Second (QPS) in the style of an [ANN-Benchmarks](https://ann-benchmarks.com/index.html) plot.   
+Looking at recall in isolation provides a good indicator of the viability of a quantization method, but even perfect recall is useless without speed! In order to evaluate the speed-quality tradeoff of 8-bit Rotational Quantization when used with Weaviate's HNSW index we plot recall against throughput as measured in Queries Per Second (QPS) in the style of an [ANN-Benchmarks](https://ann-benchmarks.com/index.html) plot.   
 
-![>Recall versus throughput for a kNN search with k=10 using Weaviate’s HNSW index on 1 million 1536-dimensional OpenAI embeddings (DBPEDIA (OPENAI ADA-002)). Recall numbers for uncompressed and 8-bit RQ w/o rescoring is recall10@10 while 8-bit RQ w/ rescoring is recall10@20 (the top 20 candidates are rescored).](img/recall-vs-qps.png)
+![>Recall versus throughput for a kNN search with k=10 using Weaviate's HNSW index on 1 million 1536-dimensional OpenAI embeddings (DBPEDIA (OPENAI ADA-002)). Recall numbers for uncompressed and 8-bit RQ w/o rescoring is recall10@10 while 8-bit RQ w/ rescoring is recall10@20 (the top 20 candidates are rescored).](img/recall-vs-qps.png)
 
-*Figure: Recall versus throughput for a kNN search with k=10 using Weaviate’s HNSW index on 1 million 1536-dimensional OpenAI embeddings (DBPEDIA (OPENAI ADA-002)). Recall numbers for uncompressed and 8-bit RQ w/o rescoring is recall10@10 while 8-bit RQ w/ rescoring is recall10@20 (the top 20 candidates are rescored).*
+*Figure: Recall versus throughput for a kNN search with k=10 using Weaviate's HNSW index on 1 million 1536-dimensional OpenAI embeddings (DBPEDIA (OPENAI ADA-002)). Recall numbers for uncompressed and 8-bit RQ w/o rescoring is recall10@10 while 8-bit RQ w/ rescoring is recall10@20 (the top 20 candidates are rescored).*
 
 
 We compare the performance of using uncompressed vectors against 8-bit Rotational Quantization with and without rescoring on a dataset of 1 million 1536-dimensional OpenAI embeddings under cosine similarity. The measurements are taken for different values of the [EF parameter](https://docs.weaviate.io/weaviate/concepts/vector-index#managing-search-quality-vs-speed-tradeoffs) which is used to balance search quality and speed.
@@ -178,22 +176,22 @@ Applying a random rotation to the vector prior to scalar quantization tends to r
 A uniform random point on the $D$-dimensional unit sphere is distributed according to a vector of i.i.d standard normal random variables normalized to unit length: 
 
 $$
-x = \frac{1}{\lVert z \rVert_2 }(z_1, z_2, \dots, z_D), z_i \sim \mathcal{N}(0,1).
+x = \frac\{1\}\{\lVert z \rVert_2 \}(z_1, z_2, \dots, z_D), z_i \sim \mathcal\{N\}(0,1).
 $$
 
 After applying a random rotation to a (unit) vector it will follow the exact the distribution above since it will be rotated to a uniform random location on the sphere. Note that this applies to every input vector, regardless of how the mass is distributed across its entries. 
 
-If we take a closer look at how the entries of the rotated vectors are distributed we note that the normalization term $\lVert z \rVert_{2}$ will be tightly concentrated around $\sqrt{D}$ as $D$ grows. So for $D \geq 64$ we can essentially treat the entries of the rotated vector as being distributed according to $z_i/\sqrt{D}$ where $z_i \sim \mathcal{N}(0,1)$. The [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution#Quantile_function) is tightly distributed with exponentially decaying tails. With probability at least 0.999 we have that $z_i \in [-3.3, 3.3]$. If for example we consider a 1024-dimensional unit vector it could take the form $x = (1, 0, \dots, 0)$ prior to being rotated, but after applying a random rotation it is very unlikely that an entry would have an absolute value larger than approximately 0.15. Also, if we look at the Manhattan (L1) norm of a rotated unit vector (the sum of absolute values of entries) it is guaranteed to be concentrated around $\sqrt{D}$ so in our 1024-dimensional example we have that $\lVert r(x) \rVert_1 \approx 32$ compared to the unrotated vector that has $\lVert x \rVert_1 = 1$. This gives us a lot more mass to scalar quantize which helps improve the accuracy of the quantization. 
+If we take a closer look at how the entries of the rotated vectors are distributed we note that the normalization term $\lVert z \rVert_\{2\}$ will be tightly concentrated around $\sqrt\{D\}$ as $D$ grows. So for $D \geq 64$ we can essentially treat the entries of the rotated vector as being distributed according to $z_i/\sqrt\{D\}$ where $z_i \sim \mathcal\{N\}(0,1)$. The [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution#Quantile_function) is tightly distributed with exponentially decaying tails. With probability at least 0.999 we have that $z_i \in [-3.3, 3.3]$. If for example we consider a 1024-dimensional unit vector it could take the form $x = (1, 0, \dots, 0)$ prior to being rotated, but after applying a random rotation it is very unlikely that an entry would have an absolute value larger than approximately 0.15. Also, if we look at the Manhattan (L1) norm of a rotated unit vector (the sum of absolute values of entries) it is guaranteed to be concentrated around $\sqrt\{D\}$ so in our 1024-dimensional example we have that $\lVert r(x) \rVert_1 \approx 32$ compared to the unrotated vector that has $\lVert x \rVert_1 = 1$. This gives us a lot more mass to scalar quantize which helps improve the accuracy of the quantization. 
 
 To visualize the effects of applying a random rotation to a pair of 64-dimensional unit vectors $x, y$ consider the figure:
 
-![Scatter plot of entries 64-dimensional unit vectors $x, y$ with correlation $\left<x, y\right> = 0.71$.](img/before-after-rotation-scatter.png)
+![Scatter plot of entries 64-dimensional unit vectors $x, y$ with correlation $\left\<x, y\right> = 0.71$.](img/before-after-rotation-scatter.png)
 
-*Figure: Scatter plot of entries 64-dimensional unit vectors $x, y$ with correlation $\left<x, y\right> = 0.71$.*
+*Figure: Scatter plot of entries 64-dimensional unit vectors $x, y$ with correlation $\left\<x, y\right> = 0.71$.*
 
 The vectors $x$ and $y$ have two large correlated entries (the pairs of entries in the upper right and lower left diagonal of the left plot) while their remaining entries are random noise. In both the left and right figure the grid lines represent the scalar quantized values when using 3-bit quantization (8 different values). 
 
-Notice that after applying the rotation the length of the quantization interval is almost halved and the entries are distributed across the entire length of the interval (although not uniformly). The Manhattan norm of both vectors has also increased, making the information about their correlation easier to capture using scalar quantization. Another important property, especially if quantizing using only few bits, such as taking the sign of each entry, is that now most of the entries “tell the same story” of the vectors being highly correlated whereas prior to the rotation this information was only found in two of the entries.
+Notice that after applying the rotation the length of the quantization interval is almost halved and the entries are distributed across the entire length of the interval (although not uniformly). The Manhattan norm of both vectors has also increased, making the information about their correlation easier to capture using scalar quantization. Another important property, especially if quantizing using only few bits, such as taking the sign of each entry, is that now most of the entries "tell the same story" of the vectors being highly correlated whereas prior to the rotation this information was only found in two of the entries.
 
 Applying a random rotation lends a universal robustness to scalar quantization. After randomly rotating a vector it will be well-suited for scalar quantization with extremely high probability. This holds universally, for every vector, independently of where the vector is positioned or any structure in the dataset that it belongs to.
 
@@ -235,7 +233,7 @@ A random rotation corresponds to multiplying the vector by a rotation matrix. Th
 
 By developing custom fast pseudorandom rotations based on the [fast Walsh-Hadamard transform](https://en.wikipedia.org/wiki/Fast_Walsh–Hadamard_transform) (described in more detail in the section below) we were able to reduce the time to rotate a 1536-dimensional vector to just 7 microseconds (a 200x speedup!) without losing any recall in our benchmarks.
 
-An even bigger challenge was the complexity of the extended RaBitQ encoding as it scales exponentially in the number of bits of the encoding. Encoding a rotated vector into a $B$-bit representation using the RaBitQ algorithm involves $2^{B}D/2$ insertions into a priority queue. Even highly optimized priority queue implementations use at least ~20ns per insertion, so in the 8-bit case this aspect of the encoding algorithm alone would take at least 4000 µs for a 1536-dimensional vector, rendering the approach unviable. 
+An even bigger challenge was the complexity of the extended RaBitQ encoding as it scales exponentially in the number of bits of the encoding. Encoding a rotated vector into a $B$-bit representation using the RaBitQ algorithm involves $2^\{B\}D/2$ insertions into a priority queue. Even highly optimized priority queue implementations use at least ~20ns per insertion, so in the 8-bit case this aspect of the encoding algorithm alone would take at least 4000 µs for a 1536-dimensional vector, rendering the approach unviable. 
 
 Given this limitation on the RaBitQ encoding algorithm we opted to instead use simple scalar quantization as described above. The scalar quantization can be performed in just a few passes over the rotated vector and takes ~2 microseconds. 
 
@@ -244,12 +242,12 @@ Given this limitation on the RaBitQ encoding algorithm we opted to instead use s
 The $O(D^2)$ complexity of performing a truly random rotation using matrix-vector multiplication scales too poorly to be viable for high-dimensional embedding vectors. Fortunately there exists faster pseudorandom rotations based on the [Fast Walsh-Hadamard Transform](https://en.wikipedia.org/wiki/Fast_Walsh–Hadamard_transform) (FWHT) with a complexity of $O(D \log D)$ that are fast in practice and work just as well as truly random rotations in our use case. The recursive definition of the Walsh-Hadamard transform is given by
 
 $$
-H_D = \frac{1}{\sqrt{2}} \begin{bmatrix}   H_{D/2} & H_{D/2} \\ H_{D/2} & -H_{D/2} \end{bmatrix} \text{ where } H_1 = \begin{bmatrix} 1\end{bmatrix}.
+H_D = \frac\{1\}\{\sqrt\{2\}\} \begin\{bmatrix\}   H_\{D/2\} & H_\{D/2\} \\ H_\{D/2\} & -H_\{D/2\} \end\{bmatrix\} \text\{ where \} H_1 = \begin\{bmatrix\} 1\end\{bmatrix\}.
 $$
 
-Let $S_D$ be a diagonal $D\times D$ sign matrix with random entries drawn uniformly from $\{-1, +1\}$. In the seminal paper introducing the [Fast Johnson Lindenstrauss Transform](https://dl.acm.org/doi/10.1145/1132516.1132597) it was shown how applying the distance-preserving transform $H_D S_D$ to a D-dimensional vector has the same “smoothening” properties as a random rotation. To see why this is the case note that each row in the transform takes the form $(H_D S_D)_i,. = (\pm/\sqrt{D}, \pm/\sqrt{D}, \dots, \pm/\sqrt{D})$  so each entry in in the transformed vector is a sum of $D$ random values no greater than $\pm \lVert x \rVert_2 / \sqrt{D}$ and is concentrated around zero. 
+Let $S_D$ be a diagonal $D\times D$ sign matrix with random entries drawn uniformly from $\\\{-1, +1\\\}$. In the seminal paper introducing the [Fast Johnson Lindenstrauss Transform](https://dl.acm.org/doi/10.1145/1132516.1132597) it was shown how applying the distance-preserving transform $H_D S_D$ to a D-dimensional vector has the same "smoothening" properties as a random rotation. To see why this is the case note that each row in the transform takes the form $(H_D S_D)_i,. = (\pm/\sqrt\{D\}, \pm/\sqrt\{D\}, \dots, \pm/\sqrt\{D\})$  so each entry in in the transformed vector is a sum of $D$ random values no greater than $\pm \lVert x \rVert_2 / \sqrt\{D\}$ and is concentrated around zero. 
 
-By applying multiple such transforms e.g $H_D S^{(1)}_D H_D S^{(2)}_D H_D S^{(3)}_Dx$ to a vector, using new random signs with each successive application, the output begins to resemble a randomly rotated vector. This can also be understood through the lens of the [Central Limit Theorem](https://en.wikipedia.org/wiki/Central_limit_theorem): After one application of the transform the vector will be smoothened and with subsequent transforms the entries are random sums of bounded variables and thus begin to resemble the normal distribution. This technique was applied in order to get fast pseudorandom projections for locality-sensitive hashing in the [FALCONN library](https://github.com/FALCONN-LIB/FALCONN).
+By applying multiple such transforms e.g $H_D S^\{(1)\}_D H_D S^\{(2)\}_D H_D S^\{(3)\}_Dx$ to a vector, using new random signs with each successive application, the output begins to resemble a randomly rotated vector. This can also be understood through the lens of the [Central Limit Theorem](https://en.wikipedia.org/wiki/Central_limit_theorem): After one application of the transform the vector will be smoothened and with subsequent transforms the entries are random sums of bounded variables and thus begin to resemble the normal distribution. This technique was applied in order to get fast pseudorandom projections for locality-sensitive hashing in the [FALCONN library](https://github.com/FALCONN-LIB/FALCONN).
 
 One major drawback of the fast Walsh-Hadamard transform is that it is only supported in dimensions that are a power of two, i.e.  $D = 2^k$ for some positive integer k. We could circumvent this limitation by padding the input vector to the nearest power of two, but this would almost double the dimension on certain input lengths, which would run counter to our objective of quantizing vectors in order to save memory. 
 
@@ -277,7 +275,6 @@ To get a feel for how the entries of a rotated unit vector looks at successive r
 *Figure: Entries of a 1536-dimensional unit vector after 1-4 rounds of pseudorandom rotations.*
 
 Benchmarking the fast pseudorandom rotations reveals that it is fast enough to not be a bottleneck in ANN queries using the HNSW index. We use 3 rotational rounds with 8-bit Rotational Quantization so rotating a 1536-dimensional vector takes ~7 µs as can be seen from the benchmark. 
-
 ```
 goos: darwin
 goarch: arm64
@@ -299,9 +296,9 @@ dim1536-rounds5   	     11628 ns/op
 
 ## Conclusion
 
-We have presented 8-bit Rotational Quantization: our new fast 8-bit scalar quantization method that uses the power of random rotations. The algorithm is inspired by the recent RaBitQ and Extended RaBitQ quantization methods, but differs in that it untrained and optimized for Weaviate’s HNSW index. In order to make the algorithm fast enough for our use case we had to choose our scalar quantization algorithm carefully and develop a fast pseudorandom rotation.
+We have presented 8-bit Rotational Quantization: our new fast 8-bit scalar quantization method that uses the power of random rotations. The algorithm is inspired by the recent RaBitQ and Extended RaBitQ quantization methods, but differs in that it untrained and optimized for Weaviate's HNSW index. In order to make the algorithm fast enough for our use case we had to choose our scalar quantization algorithm carefully and develop a fast pseudorandom rotation.
 
-Using 8-bit Rotational Quantization together with Weaviate’s HNSW index we have seen simultaneous improvements in memory usage, search speed, and search quality indicating that Rotational Quantization is a better default choice compared to using uncompressed vectors.
+Using 8-bit Rotational Quantization together with Weaviate's HNSW index we have seen simultaneous improvements in memory usage, search speed, and search quality indicating that Rotational Quantization is a better default choice compared to using uncompressed vectors.
 
 ### Future Work
 

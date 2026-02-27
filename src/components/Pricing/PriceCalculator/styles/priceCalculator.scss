@@ -1,3 +1,5 @@
+@import "variables.scss";
+
 .priceCalculator {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -20,7 +22,14 @@
     text-decoration-thickness: 1px;
   }
 
-  ul, li, h1, h2, h3, h4, h5, p {
+  ul,
+  li,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  p {
     padding: 0;
     margin: 0;
     list-style: none;
@@ -28,7 +37,9 @@
     font-weight: inherit;
   }
 
-  button, input, textarea {
+  button,
+  input,
+  textarea {
     font-family: inherit;
     font-weight: inherit;
     font-size: inherit;
@@ -40,7 +51,9 @@
     background: none;
   }
 
-  button { cursor: pointer; }
+  button {
+    cursor: pointer;
+  }
 
   > .content {
     width: 100%;
@@ -49,7 +62,7 @@
     border-radius: $space;
     padding: 30px;
     gap: 15px;
-   
+
     > h1 {
       font-size: 1.7em;
       font-weight: 700;

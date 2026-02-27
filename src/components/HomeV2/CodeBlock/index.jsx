@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Highlight, { defaultProps } from 'prism-react-renderer';
-import theme from 'prism-react-renderer/themes/nightOwl';
+import { Highlight, themes } from 'prism-react-renderer';
 import styles from './styles.module.scss';
 
 let searchExample = `# Select collection
@@ -155,8 +154,7 @@ export default function CodeTabs() {
       </div>
 
       <Highlight
-        {...defaultProps}
-        theme={theme}
+        theme={themes.nightOwl}
         code={codeExamples[active]}
         language="python"
       >
@@ -171,9 +169,9 @@ export default function CodeTabs() {
             }}
           >
             {tokens.map((line, i) => (
-              <div key={i} {...getLineProps({ line, key: i })}>
+              <div key={i} {...getLineProps({ line })}>
                 {line.map((token, key) => (
-                  <span key={key} {...getTokenProps({ token, key })} />
+                  <span key={key} {...getTokenProps({ token })} />
                 ))}
               </div>
             ))}

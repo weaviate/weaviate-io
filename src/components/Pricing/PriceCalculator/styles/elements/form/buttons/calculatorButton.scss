@@ -1,3 +1,7 @@
+/* styles/elements/form/buttons/calculatorButton.scss */
+@use "../../../variables.scss" as v;
+@use "sass:color";
+
 .calculatorButton {
   display: flex;
   width: 100%;
@@ -11,51 +15,59 @@
 
   &.dropdown {
     font-size: 0.9em;
-    
-    > div { 
-      background-color: $white;
-      align-items: flex-start; 
-      background-image: url('/img/pricing/chevronDown.svg');
+
+    > div {
+      background-color: color.adjust(#fff, $lightness: 3%);
+      align-items: flex-start;
+      background-image: url("/img/pricing/chevronDown.svg");
       background-repeat: no-repeat;
       background-position: calc(100% - 20px) center;
-      color: $mainColor;
-      border-color: $deselectedButtonBorder;
+      color: v.$mainColor;
+      border-color: v.$deselectedButtonBorder;
     }
   }
 
   > div {
     height: 100%;
-    padding: 0 $space;
-    border: 1px solid $deselectedButtonBorder;
-    border-radius: calc($space / 2);
-    background-color: $deselectedButtonBg;
-    color: $deselectedButtonText;
+    padding: 0 v.$space;
+    border: 1px solid v.$deselectedButtonBorder;
+    border-radius: calc(v.$space / 2);
+    background-color: v.$deselectedButtonBg;
+    color: v.$deselectedButtonText;
     display: flex;
     font-weight: 600;
     align-items: center;
     justify-content: center;
     width: 100%;
-    transition: $transition;
+    transition: v.$transition;
   }
 
   &.active {
-    > div { background: $mainColor; color: $white; border-color: $mainColor; }
-  }
-  
-  &:hover, &:focus {
     > div {
-      background-color: lighten($white, 3%) ;
-      color: $mainColor;
+      background: v.$mainColor;
+      color: v.$white;
+      border-color: v.$mainColor;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    > div {
+      background-color: color.adjust(#fff, $lightness: 3%);
+      color: v.$mainColor;
     }
 
     &.active {
-      > div { background: $mainColor; color: $white; }
+      > div {
+        background: v.$mainColor;
+        color: v.$white;
+      }
     }
 
     &.dropdown {
       > div {
-        border-color: $deselectedButtonBorder;
-        color: $mainColor;
+        border-color: v.$deselectedButtonBorder;
+        color: v.$mainColor;
       }
     }
   }

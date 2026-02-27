@@ -1,13 +1,15 @@
+/* styles/elements/index.scss */
+
 .priceCalculator {
-  @import 'form/index.scss';
-  @import 'price.scss';
-  @import 'priceReview.scss';
-  @import 'row.scss';
-  @import 'highAvailability.scss';
-  @import 'accuracyToCost.scss';
-  @import 'badge.scss';
+  @import "form/index.scss";
+  @import "price.scss";
+  @import "priceReview.scss";
+  @import "row.scss";
+  @import "highAvailability.scss";
+  @import "accuracyToCost.scss";
+  @import "badge.scss";
 }
 
-// Note: The select dropdowns are outside the normal dom element tree so won't 
+// Note: select dropdowns are outside the normal dom element tree so won't
 // inherit styles from .priceCalculator, so we keep them here.
-@import 'form/select.scss';
+@import "form/select.scss";
