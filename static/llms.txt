@@ -190,19 +190,34 @@ const res = await col.query.bm25('food', { limit: 3, returnMetadata: ['score'] }
 
 ### Filtering
 
-Range operators (`less_than`, `greater_than`) work without extra config, but setting `index_range_filters=True` on the property makes them far more efficient (see Best Practices above).
+With auto-schema, a collection with no property definitions already supports filtering — sensible defaults handle most cases:
 
 ```python
-from weaviate.classes.config import Configure, Property, DataType
+# Minimal: auto-schema sets filterable + searchable defaults on every property
+client.collections.create(
+    "Restaurant",
+    vector_config=Configure.Vectors.text2vec_weaviate(),
+)
+```
 
-# Enable range index on properties used with <, >, range filters
+Property index defaults: `index_filterable=True` (roaring-bitmap for equality/set filters), `index_searchable=True` (BM25 map for keyword/hybrid search), `index_range_filters=False` (opt-in for `<`/`>` queries), `tokenization="word"` (alphanumeric, lowercased). Override these when you need exact-match filtering (`tokenization=FIELD`), range queries (`index_range_filters=True`), or want to skip unnecessary indexes. Docs: [schema & property config](https://docs.weaviate.io/weaviate/config-refs/schema) | [filters how-to](https://docs.weaviate.io/weaviate/search/filters)
+
+```python
+from weaviate.classes.config import Configure, Property, DataType, Tokenization
+
+# Full control: every knob set explicitly
 client.collections.create(
     "Restaurant",
     vector_config=Configure.Vectors.text2vec_weaviate(),
     properties=[
-        Property(name="name", data_type=DataType.TEXT),
-        Property(name="cuisine", data_type=DataType.TEXT),
-        Property(name="price", data_type=DataType.NUMBER, index_range_filters=True),
+        Property(name="name", data_type=DataType.TEXT, tokenization=Tokenization.WORD,
+                 index_filterable=True, index_searchable=True),
+        Property(name="cuisine", data_type=DataType.TEXT, tokenization=Tokenization.FIELD,
+                 index_filterable=True, index_searchable=True),
+        Property(name="url", data_type=DataType.TEXT, tokenization=Tokenization.FIELD,
+                 skip_vectorization=True, index_searchable=False),
+        Property(name="price", data_type=DataType.NUMBER,
+                 index_range_filters=True),
     ],
 )
 ```
@@ -212,8 +227,12 @@ await client.collections.create({
   name: 'Restaurant',
   vectorizers: weaviate.configure.vectorizer.text2VecWeaviate(),
   properties: [
-    { name: 'name', dataType: 'text' },
-    { name: 'cuisine', dataType: 'text' },
+    { name: 'name', dataType: 'text', tokenization: 'word',
+      indexFilterable: true, indexSearchable: true },
+    { name: 'cuisine', dataType: 'text', tokenization: 'field',
+      indexFilterable: true, indexSearchable: true },
+    { name: 'url', dataType: 'text', tokenization: 'field',
+      skipVectorization: true, indexSearchable: false },
     { name: 'price', dataType: 'number', indexRangeFilters: true },
   ],
 });
