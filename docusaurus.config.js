@@ -668,6 +668,11 @@ const config = {
                                 label: 'GitHub',
                                 to: 'https://github.com/weaviate/weaviate',
                             },
+                            {
+
+                                label: 'LLM / Agent guides',
+                                to: '/llms.txt',
+                            },
 
                             {
                                 label: 'Engage',
