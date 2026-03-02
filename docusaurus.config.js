@@ -671,7 +671,7 @@ const config = {
                             {
 
                                 label: 'LLM / Agent guides',
-                                to: '/llms.txt',
+                                to: 'https://weaviate.io/llms.txt',
                             },
 
                             {
