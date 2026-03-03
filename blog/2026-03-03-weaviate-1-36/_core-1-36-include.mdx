@@ -19,23 +19,24 @@ Here are the release highlights!
 
 ## HFresh (Preview)
 
-Weaviate `v1.36` introduces **HFresh**, a new cluster-based vector index inspired by the [SPFresh algorithm](https://arxiv.org/abs/2410.06981) ("SPFresh: Incremental In-Place Update for Billion-Scale Vector Search"). HFresh is now available as a **technical preview**.
+HNSW is fast and accurate, but as datasets grow from millions to billions of vectors, it reveals a fundamental constraint: everything needs to stay in memory. Updates become more expensive as the index grows, and deleting nodes requires re-computing neighborhoods. If your application can tolerate response times in the hundreds of milliseconds rather than tens, disk-based indexes open up new options for cost and scale.
 
-Unlike HNSW, which builds an in-memory graph that can be expensive to maintain at scale, HFresh takes a fundamentally different approach. It organizes vectors into **posting lists** (clusters), each represented by a centroid vector. Search works in three steps:
+Weaviate `v1.36` introduces **HFresh**, a new disk-based vector index inspired by the [SPFresh algorithm](https://arxiv.org/abs/2410.06981) ("SPFresh: Incremental In-Place Update for Billion-Scale Vector Search"). HFresh is now available as a **technical preview**.
 
-1. **Partitioning** — Vectors are grouped into clusters, each with a centroid
-2. **Centroid indexing** — An HNSW index over the centroids enables fast cluster lookup
-3. **Cluster search** — Only the most relevant posting lists are scanned for a given query
+Instead of connecting every vector to neighbors in a global graph (like HNSW), HFresh divides vectors into many small regions called **postings** — groups of vectors that are close to each other in vector space, stored on disk in an LSM store. Search works in two stages:
 
-This architecture means HFresh only needs the centroid index and metadata in memory — the full vectors live on disk. The result is **significantly lower memory usage** compared to HNSW, while maintaining competitive search performance.
+1. **Centroid lookup** — A compact in-memory HNSW index over the centroids identifies which regions of the vector space are relevant to a query
+2. **Posting search** — Only the corresponding postings are fetched from disk and searched in detail
+
+This architecture means HFresh only needs the centroid index and metadata in memory — the full vectors live on disk. The result is **significantly lower memory usage** compared to HNSW, with I/O bounded and latency predictable even as the dataset grows into the billions.
 
 ### Key Capabilities
 
-- **Low memory footprint** — Only centroids are held in memory, making HFresh particularly effective for large-scale datasets and high-dimensional embeddings where HNSW's memory requirements become prohibitive
-- **Balanced K-Means splitting** — Clusters are organized using balanced K-Means, improving search quality by keeping cluster sizes uniform
-- **RQ compression** — Built-in Rotational Quantization compresses vectors aggressively while maintaining high recall through rescoring
-- **Filtered search** — Native support for filtered vector search, combining metadata filters with approximate nearest neighbor queries
-- **Cost-efficient scaling** — Reduced memory requirements enable cost-sensitive deployments with lower infrastructure overhead
+- **Freshness without rebuilds** — Most updates only affect a small region of the vector space. Instead of periodic full rebuilds, HFresh maintains index quality through incremental rebalancing — splitting oversized postings, merging undersized ones, and reassigning vectors when boundaries shift.
+
+- **HNSW as centroid index** — HFresh uses an HNSW index over the centroids — orders of magnitude smaller than the full dataset — to quickly identify which postings likely contain the nearest neighbors for a given query.
+
+- **Rotational Quantization (RQ)** — HFresh applies RQ at two levels. **RQ-8** compresses the centroid index (4x savings) while preserving the precision needed for accurate partition selection. **RQ-1** compresses the on-disk postings (32x savings), enabling more vectors per disk read. RQ-1 scores are used only for candidate selection — final ranking rescores against uncompressed vectors for accuracy.
 
 ### Tuning Search Quality
 
