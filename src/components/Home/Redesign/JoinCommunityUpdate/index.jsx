@@ -49,15 +49,7 @@ export default function HomepageJoinCommunity() {
               <p className={styles.text}>GitHub</p>
             </Link>
           </div>
-          <div className={styles.socialBox}>
-            <Link
-              to="https://weaviate.io/slack"
-              className={styles.mobileSocialBox}
-            >
-              <div className={styles.slack} />
-              <p className={styles.text}>Slack</p>
-            </Link>
-          </div>
+
           <div className={styles.socialBox}>
             <Link
               to="https://forum.weaviate.io/"

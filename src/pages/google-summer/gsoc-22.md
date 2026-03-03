@@ -19,7 +19,7 @@ We value initiative, creativity, and motivation. To show your initiative, creati
 
 Don't hesitate to contact us for questions about the challenge and the Open Source project Weaviate.
 
-If you’re interested, you can apply through [our form](https://forms.gle/H6WDByjYbs8ReEuk9) (or via our [Slack](https://weaviate.io/slack) in the #gsoc channel), and don't forget to apply on the [GSoC website.](https://summerofcode.withgoogle.com/). So you'll need to apply on both websites!
+If you’re interested, you can apply through [our form](https://forms.gle/H6WDByjYbs8ReEuk9)and don't forget to apply on the [GSoC website.](https://summerofcode.withgoogle.com/). So you'll need to apply on both websites!
 
 ## How to create a project application/proposal?**
 
@@ -43,7 +43,7 @@ You can pick any project idea from the list below.
 
 If you have other ideas that are not in this list, contact the team first to make sure it is relevant to our organization.
 
-If you have questions or new ideas, don't hesitate to contact us through our [Slack channel](https://weaviate.io/slack)
+
 
 ## Prerequisites
 
@@ -245,4 +245,4 @@ You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you ca
 **Documentation:**
 * [Developers · Weaviate Documentation](https://docs.weaviate.io/weaviate/)
 
-If you have questions or new ideas, don't hesitate to contact us through our [Slack channel](https://weaviate.io/slack)
+

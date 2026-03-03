@@ -118,6 +118,4 @@ Nice to have:
 
 Technical writers interested in working on this project should send an email to careers AT weaviate.io, **before May 1st, 2023**. Please include links to your technical writing work or portfolio/résumé/CV.
 
-## Additional information
 
-Join our community [slack](https://weaviate.io/slack) to say hello, get to know the community or ask questions.
