@@ -1,18 +1,18 @@
 ---
-title: Enterprise Security with Weaviate
+title: Securing Enterprise AI with Weaviate
 slug: weaviate-security-enterprise
 authors: [dirk, ivan]
-date: 2026-03-03
+date: 2026-03-12
 tags: ['security', 'authentication', 'authorization']
 image: ./img/hero.png
-description: A complete guide on how to secure Weaviate enterprise deployments with SSO, OIDC, and RBAC.
+description: A complete guide on how to secure Weaviate enterprise deployments with OIDC, RBAC, and multi-tenant isolation.
 ---
 
-![Enterprise Security with Weaviate](./img/hero.png)
+![Securing Enterprise AI with Weaviate](./img/hero.png)
 
 Our [introductory guide to Weaviate security](https://weaviate.io/blog/weaviate-security-authn-authz) covered the fundamentals of authentication and authorization—API keys, OIDC basics, and role-based access control. Those building blocks get you far, but enterprise environments bring a different set of challenges: hundreds of users across multiple teams, regulatory compliance requirements, and the expectation that your vector database integrates seamlessly with identity infrastructure you've already invested in.
 
-This post picks up where the introduction left off. We'll walk through OIDC integration with real configuration, single sign-on in Weaviate Cloud, group-based role management that scales, multi-tenant security, credential lifecycle management, and audit logging that satisfies compliance auditors.
+This post picks up where the introduction left off. We'll walk through how OIDC integration eliminates credential sprawl, how group-based role management scales access control, how RBAC enforces least privilege at every level, and how multi-tenancy isolates sensitive data—all backed by audit logging that satisfies compliance auditors.
 
 Whether you are in financial services, healthcare, government, or any regulated industry, Weaviate provides the security controls necessary to move AI into production safely.
 
@@ -40,7 +40,14 @@ This architecture drastically reduces your attack surface. Even in the unlikely 
 
 Weaviate supports any OIDC-compliant identity provider, including [Okta](https://www.okta.com), [Microsoft Entra ID](https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-id) (Azure AD), [Auth0](https://auth0.com), [Google Workspace](https://workspace.google.com), [Keycloak](https://www.keycloak.org), and more.
 
-### Setting Up OIDC: A Practical Walkthrough {#oidc-setup}
+:::tip More info
+
+Read more about OIDC integration in the [official Weaviate documentation](https://docs.weaviate.io/deploy/configuration/authentication#oidc-authentication).
+
+:::
+
+<details>
+<summary>Setting Up OIDC: A Practical Walkthrough</summary>
 
 Let's walk through connecting Weaviate to Microsoft Entra ID (Azure AD). The same principles apply to Okta, Auth0, Keycloak, or any OIDC-compliant provider.
 
@@ -84,11 +91,7 @@ client = weaviate.connect_to_local(
 
 For Okta or Auth0, the only differences are the issuer URL and tenant configuration on the IdP side. The Weaviate configuration pattern remains the same.
 
-:::tip More info
-
-Read more about OIDC integration in the [official Weaviate documentation](https://docs.weaviate.io/deploy/configuration/authentication#oidc-authentication).
-
-:::
+</details>
 
 :::info Weaviate Assurance for self-hosted deployments
 
@@ -96,55 +99,46 @@ If you're running a local open-source installation and need help setting up IdP 
 
 :::
 
-## Single Sign-On in Weaviate Cloud {#sso}
-
-[Weaviate Cloud](https://console.weaviate.cloud) takes OIDC integration further with native **Single Sign-On (SSO)** support, implementing a true "Bring Your Own Identity" approach.
-
-When an employee joins your organization, they're provisioned once in your IdP and automatically gain appropriate access to Weaviate Cloud. When they leave, deprovisioning them in your IdP instantly revokes their Weaviate Cloud console access.
-
-This eliminates the operational overhead of managing separate credentials for Weaviate Cloud while ensuring that access control remains synchronized with your organization's source of truth. Users authenticate once with their corporate identity and seamlessly access Weaviate resources without additional login prompts.
-
 ## OIDC Groups: Scaling Role Management {#oidc-groups-scaling-role-management}
 
 Try managing individual permissions for 500 developers and 200 data scientists. You'll quickly realize it's not sustainable. It's tedious, error-prone, and someone will inevitably end up with the wrong access level.
 
-**OIDC Groups** solve this by mapping your existing organizational structure directly to Weaviate roles. Your identity provider already knows who belongs to `developers`, `data-scientists`, and `analytics-team`. You can configure Weaviate to trust these group claims. When a user's group membership changes in your IdP (maybe they get promoted or switch teams), Weaviate automatically reflects this permission change on their next login.
+**OIDC Groups** solve this by mapping your existing organizational structure directly to Weaviate roles. Your identity provider already knows who belongs to which teams. You can configure Weaviate to trust these group claims. When a user's group membership changes in your IdP (maybe they get promoted or switch teams), Weaviate automatically reflects this permission change on their next login.
 
-Take a financial services company using Microsoft Entra ID. They can map their AD groups to Weaviate roles like this:
+Consider a healthcare organization using Microsoft Entra ID. They can map their AD groups to Weaviate roles like this:
 
-| Microsoft Entra ID Group | Weaviate Role   | Access Level              |
-| ------------------------ | --------------- | ------------------------- |
-| `Engineering-Backend`    | `Maintainer`    | Read-write prod, full dev |
-| `Engineering-ML`         | `DataScientist` | Read-only prod, full dev  |
-| `Contractors-Eng`        | `DevOnly`       | Dev access only           |
+| Microsoft Entra ID Group | Weaviate Role         | Access Level                             |
+| ------------------------ | --------------------- | ---------------------------------------- |
+| `Clinical-Staff`         | `Clinician`           | Read articles, read & update patient records |
+| `Research-Team`          | `Researcher`          | Read articles, full dev access           |
+| `IT-Admins`              | `Administrator`       | Full access across all collections       |
+| `External-Contractors`   | `DevOnly`             | Dev access only                          |
 
-Such a setup offers zero-touch onboarding (a new contractor is added to the AD group and immediately gains the correct Weaviate access), instant revocation (removing a user from the AD group instantly revokes their specific privileges), and audit simplicity (auditors only need to check the IdP group membership).
+Such a setup offers zero-touch onboarding (a new clinician is added to the `Clinical-Staff` AD group and immediately gains the correct Weaviate access), instant revocation (removing a user from the AD group instantly revokes their specific privileges), and audit simplicity (auditors only need to check the IdP group membership).
 
 ### Assigning Roles to OIDC Groups
 
-Once Weaviate is configured with a `GROUPS_CLAIM` (as shown in the [OIDC setup](#oidc-setup) above), you can assign roles to groups programmatically:
+Once Weaviate is configured with a `GROUPS_CLAIM` (as shown in the [OIDC setup](#oidc-integration) above), you can assign roles to groups programmatically:
 
 ```python
 # Create a custom role
 client.roles.create(
-    role_name="DataScientist",
+    role_name="Clinician",
     permissions=[
-        weaviate.classes.rbac.permissions.Collections.read(collection="Products"),
-        weaviate.classes.rbac.permissions.Collections.read(collection="CustomerBehavior"),
-        weaviate.classes.rbac.permissions.Collections.read(collection="InternalAnalytics"),
-        # Full access to dev collections
-        weaviate.classes.rbac.permissions.Collections(collection="dev_*", actions=["manage"]),
+        weaviate.classes.rbac.permissions.Collections.read(collection="MedicalArticles"),
+        weaviate.classes.rbac.permissions.Collections.read(collection="PatientRecords"),
+        weaviate.classes.rbac.permissions.Collections.update(collection="PatientRecords"),
     ],
 )
 
 # Assign the role to an OIDC group (not individual users)
 client.users.oidc.assign_roles(
-    user_or_group="Engineering-ML",
-    role_names=["DataScientist"],
+    user_or_group="Clinical-Staff",
+    role_names=["Clinician"],
 )
 ```
 
-Now every member of the `Engineering-ML` group in Entra ID automatically inherits the `DataScientist` role in Weaviate—no per-user provisioning required.
+Now every member of the `Clinical-Staff` group in Entra ID automatically inherits the `Clinician` role in Weaviate—no per-user provisioning required.
 
 :::tip More info
 
@@ -156,9 +150,7 @@ Read more about OIDC group management in the [official Weaviate documentation](h
 
 Beyond basic role assignment, enterprises need authorization policies that handle real-world complexity: multiple teams sharing infrastructure, strict data isolation requirements, and the principle of least privilege applied consistently.
 
-### A Healthcare Scenario
-
-Consider a healthcare organization using Weaviate for clinical search and research. They manage three collections with very different sensitivity levels:
+Continuing with our healthcare example, the organization manages three collections with very different sensitivity levels:
 
 1. **`MedicalArticles`** — Publicly available medical literature
 2. **`PatientRecords`** — Protected Health Information (PHI), subject to HIPAA
@@ -206,51 +198,6 @@ Read more about managing RBAC permissions in the [official Weaviate documentatio
 
 :::
 
-## Credential Lifecycle Management {#credential-lifecycle}
-
-Enterprise security doesn't end at provisioning. Credentials have a lifecycle: they're created, they may be compromised, and they must be rotated or revoked. Weaviate supports this full lifecycle.
-
-### API Key Rotation
-
-For service accounts that authenticate with API keys, Weaviate supports zero-downtime key rotation:
-
-```python
-# Rotate an API key (invalidates the old key, returns a new one)
-new_api_key = client.users.db.rotate_key(user_id="search-service")
-
-# The old key is immediately invalid
-# Update your application configuration with the new key
-```
-
-For production deployments, you should establish a regular rotation schedule—many compliance frameworks require rotation every 90 days. Integrate key rotation into your secrets management workflow (e.g., [HashiCorp Vault](https://www.vaultproject.io), [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/)) to automate this process.
-
-:::tip More info
-
-Read more about API key authentication in the [official Weaviate documentation](https://docs.weaviate.io/deploy/configuration/authentication#api-key-authentication).
-
-:::
-
-### Token Expiry and Refresh
-
-OIDC tokens are short-lived by design, typically expiring after 5–60 minutes depending on your IdP configuration. Weaviate's client libraries support automatic token refresh when a refresh token is provided:
-
-```python
-# Automatic token refresh keeps sessions alive without re-authentication
-client = weaviate.connect_to_local(
-    auth_credentials=weaviate.auth.AuthBearerToken(
-        access_token="<JWT>",
-        refresh_token="<REFRESH_TOKEN>",
-        expires_in=300,
-    )
-)
-```
-
-If a token is revoked at the IdP (e.g., during an incident response), the next Weaviate request with that token fails, and the refresh attempt also fails. Access is cut off without requiring any action on the Weaviate side.
-
-### Incident Response: Compromised Credentials
-
-When credentials are compromised, speed matters. Weaviate supports several rapid-response actions: immediate API key revocation and rotation via `rotate_key()`, token revocation at the IdP level (which propagates to Weaviate on the next request), the ability to revoke role assignments to cut off access while investigating, and audit logs that let you determine exactly what was accessed with the compromised credentials.
-
 ## Audit Logging and Compliance {#audit-logging}
 
 In regulated industries, if it wasn't logged, it didn't happen. **[GDPR](https://gdpr.eu)** requires records of processing activities, **[HIPAA](https://www.hhs.gov/hipaa/index.html)** requires audit trails for all PHI access, and **[SOC 2](https://weaviate.io/security)** demands evidence of sensitive data access monitoring.
@@ -281,6 +228,12 @@ Read more about audit logging in the [official Weaviate documentation](https://d
 
 :::
 
+## Network Security {#network-security}
+
+Authentication and authorization protect against unauthorized _logical_ access, but enterprise deployments also need to secure _network-level_ access. Weaviate Cloud Dedicated deployments support **[PrivateLink](https://aws.amazon.com/privatelink/)** (AWS) to ensure that traffic between your applications and Weaviate never traverses the public internet.
+
+For self-hosted deployments, standard network security best practices apply: deploy Weaviate behind a reverse proxy or load balancer with TLS termination, restrict network access using firewall rules or [Kubernetes network policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/), and use [Weaviate's TLS configuration](https://docs.weaviate.io/weaviate/tutorials/tls-ssl) to encrypt traffic in transit.
+
 ## Weaviate Cloud: Shared vs. Dedicated {#cloud-comparison}
 
 Weaviate Cloud offers two deployment tiers with different security capabilities:
@@ -298,7 +251,7 @@ Weaviate Cloud offers two deployment tiers with different security capabilities:
 | Network Isolation         | Shared infrastructure                    | Dedicated infrastructure          |
 | SLA Availability          | [99.5% - 99.9%](https://weaviate.io/sla) | [99.95%](https://weaviate.io/sla) |
 
-For teams getting started or running non-regulated workloads, Shared deployments provide strong baseline security with API keys, RBAC, and OIDC. For organizations with enterprise compliance requirements, network isolation needs, or large-scale IdP integration, Dedicated deployments provide the full security stack.
+For teams getting started or running non-regulated workloads, Shared deployments provide strong baseline security with API keys, RBAC, and OIDC. For organizations with enterprise compliance requirements, network isolation needs, or large-scale IdP integration, Dedicated deployments provide the full security stack—including SSO, which lets your team authenticate to the Weaviate Cloud console with their corporate identity, eliminating separate credentials and ensuring access is synchronized with your IdP.
 
 :::tip More info
 
@@ -306,11 +259,11 @@ Read more about the different Weaviate Cloud deployments on our [pricing page](h
 
 :::
 
-## Network Security {#network-security}
+:::info Weaviate Assurance for self-hosted deployments
 
-Authentication and authorization protect against unauthorized _logical_ access, but enterprise deployments also need to secure _network-level_ access. Weaviate Cloud Dedicated deployments support **[PrivateLink](https://aws.amazon.com/privatelink/)** (AWS) to ensure that traffic between your applications and Weaviate never traverses the public internet.
+If you're running a self-hosted Weaviate deployment and need help with IdP integration, security hardening, or compliance configuration, Weaviate offers [Assurance](https://weaviate.io/contact) — a paid support package that includes hands-on guidance for configuring OIDC, SSO, and other enterprise security features.
 
-For self-hosted deployments, standard network security best practices apply: deploy Weaviate behind a reverse proxy or load balancer with TLS termination, restrict network access using firewall rules or [Kubernetes network policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/), and use [Weaviate's TLS configuration](https://docs.weaviate.io/weaviate/tutorials/tls-ssl) to encrypt traffic in transit.
+:::
 
 ## Implementation Roadmap
 
@@ -320,9 +273,9 @@ Rolling out enterprise security follows a predictable lifecycle. Here's a practi
 
 **2. Architecture** — Define your custom roles in Weaviate, following the principle of least privilege. Use the [RBAC documentation](https://docs.weaviate.io/weaviate/configuration/rbac) to create roles with granular, collection-level permissions. If you're using multi-tenancy, include tenant-level scoping. Document the mapping between IdP groups and Weaviate roles.
 
-**3. Integration** — Configure OIDC in your IdP. For Entra ID, this means creating an App Registration and setting the appropriate redirect URIs. For Okta, create a new OIDC application. Update your Weaviate configuration with the issuer URL, client ID, and claims mapping as shown in the [OIDC setup section](#oidc-setup). Test the token flow end-to-end in a staging environment before touching production.
+**3. Integration** — Configure OIDC in your IdP. For Entra ID, this means creating an App Registration and setting the appropriate redirect URIs. For Okta, create a new OIDC application. Update your Weaviate configuration with the issuer URL, client ID, and claims mapping as shown in the [OIDC setup section](#oidc-integration). Test the token flow end-to-end in a staging environment before touching production.
 
-**4. Testing** — Verify that adding a user to an IdP group grants the correct Weaviate permissions and that removing them revokes access. Test edge cases: what happens when a user belongs to multiple groups? When a token expires mid-session? When an API key is rotated? Automate these tests so they run on every configuration change.
+**4. Testing** — Verify that adding a user to an IdP group grants the correct Weaviate permissions and that removing them revokes access. Test edge cases: what happens when a user belongs to multiple groups? When a token expires mid-session? Automate these tests so they run on every configuration change.
 
 **5. Operations** — Configure log shipping to your [SIEM](https://www.ibm.com/topics/siem) and set up alerts for "Access Denied" spikes, administrative role changes, and unusual access patterns (e.g., a service account suddenly querying a new collection). Establish a key rotation schedule and integrate it with your secrets management tooling.
 
@@ -332,24 +285,17 @@ Enterprise security is about integration, not isolation. Weaviate meets enterpri
 
 The key enterprise security features covered in this guide:
 
-- **OIDC Integration** with practical configuration for connecting your IdP
-- **Single Sign-On** for seamless authentication in Weaviate Cloud
+- **OIDC Integration** that delegates authentication to your existing IdP
 - **OIDC Groups** that map your org structure to access control with automatic provisioning and revocation
 - **Granular RBAC** with collection-level and tenant-level permissions
-- **Credential Lifecycle Management** including key rotation, token refresh, and incident response
 - **Multi-Tenant Security** for data isolation within shared collections
 - **Audit Logging** for compliance (SOC 2, HIPAA, GDPR)
 - **Network Security** with PrivateLink, VPC Peering, and TLS encryption
+- **Cloud Deployment Options** from shared to dedicated, with SSO for enterprise teams
 
 You don't need to switch databases as you scale from a startup prototype to a Fortune 500 deployment. Start with basic RBAC, grow into IdP integration, and mature into full audit logging—all on the same platform.
 
 Ready to secure your AI infrastructure? [Schedule a consultation](https://weaviate.io/contact) with Weaviate's enterprise team to discuss your specific IdP integration requirements.
-
-:::info Weaviate Assurance for self-hosted deployments
-
-If you're running a local open-source installation and need help setting up IdP integration, Weaviate offers [Assurance](https://weaviate.io/contact) — a paid support package that includes hands-on guidance for configuring OIDC, SSO, and other enterprise security features in self-hosted environments.
-
-:::
 
 :::info Further Reading:
 
