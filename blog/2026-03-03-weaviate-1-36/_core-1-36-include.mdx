@@ -41,17 +41,15 @@ This architecture means HFresh only needs the centroid index and metadata in mem
 
 HFresh exposes three key parameters for tuning performance and resource usage:
 
-| Parameter              | Default | Mutable | Description                                                                                                                                                                                                                                                                      |
-| ---------------------- | ------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`searchProbe`**      | `64`    | Yes     | Number of posting lists to search per query. Higher values improve recall at the cost of latency.                                                                                                                                                                                |
-| **`replicas`**         | `4`     | No      | Number of posting lists each vector is added to (min: `1`, max: `10`). Higher values improve recall by increasing the chances of finding relevant vectors during search.                                                                                                         |
-| **`maxPostingSizeKB`** | `48`    | Yes     | Maximum size in KB for a posting list (min: `8`, max: `1024`). Weaviate uses this value along with the vector dimensions to calculate the maximum number of vectors per posting. Larger values allow bigger clusters, which can improve recall but increase per-query scan time. |
-
-Since `replicas` is immutable after collection creation, choose this value carefully based on your recall requirements. `searchProbe` and `maxPostingSizeKB` can be adjusted at runtime to fine-tune the recall/latency trade-off as your dataset grows.
+| Parameter              | Description                                                                                                                                                                                                                                                                      |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`searchProbe`**      | Number of posting lists to search per query. Higher values improve recall at the cost of latency.                                                                                                                                                                                |
+| **`replicas`**         | Number of posting lists each vector is added to. Higher values improve recall by increasing the chances of finding relevant vectors during search.                                                                                                                         |
+| **`maxPostingSizeKB`** | Maximum size in KB for a posting list. Weaviate uses this value along with the vector dimensions to calculate the maximum number of vectors per posting. Larger values allow bigger clusters, which can improve recall but increase per-query scan time. |
 
 ### Limitations
 
-- Only supports `cosine` and `l2-squared` distance metrics (`dot` is not supported)
+- Only supports `cosine` and `l2-squared` distance metrics
 - Preview feature — the API and behavior may change in future releases
 
 ### When to Consider HFresh
@@ -224,7 +222,7 @@ This operation is destructive — once an index is dropped, the data is removed 
 
 :::info Related resources
 
-- [How-to: Manage Collections](https://docs.weaviate.io/weaviate/manage-data/collections)
+- [How-to: Manage collections - Inverted index](https://docs.weaviate.io/weaviate/manage-collections/inverted-index#drop-an-inverted-index)
 
 :::
 
@@ -285,7 +283,7 @@ We always recommend running the latest version of Weaviate to benefit from these
 
 ## Community Contributions
 
-Weaviate is an open-source project, and we're always thrilled to see contributions from our amazing community. For this release, we are super excited to shout-out the following contributor for their contributions to Weaviate:
+Weaviate is an open-source project, and we're always thrilled to see contributions from our amazing community. For this release, we are super excited to shout-out the following contributors for their contributions to Weaviate:
 
 - [@DEVMANISHOFFL](https://github.com/DEVMANISHOFFL) contributed [#10134](https://github.com/weaviate/weaviate/pull/10134)
 - [@jackchuka](https://github.com/jackchuka) contributed [#9919](https://github.com/weaviate/weaviate/pull/9919)
@@ -305,10 +303,10 @@ Weaviate `v1.36` introduces a new vector index architecture and matures several 
 
 **Key highlights:**
 
-- **HFresh (Preview)** — A new segment-based vector index designed for high write throughput and memory efficiency
-- **Server-side Batching GA** — Production-ready server-managed batching with flow control and automatic retries
-- **Object TTL GA** — Automatic object expiration with batch deletions, throttling, and observability
-- **Async Replication GA** — Improved reliability with automatic shard recovery and better error handling
+- **HFresh (Preview)** — A new cluster-based vector index designed for high write throughput and memory efficiency
+- **Server-side Batching GA** — Production-ready server-managed batching with flow control
+- **Object TTL GA** — Automatic object expiration with flexible expiration strategies
+- **Async Replication GA** — Improved reliability and customizability
 - **Drop Inverted Indices GA** — Reclaim disk space by removing unused indices from existing properties
 - **Backup Restoration Cancellation GA** — Cancel in-progress restore operations
 
