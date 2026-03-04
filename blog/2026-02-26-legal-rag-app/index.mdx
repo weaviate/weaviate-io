@@ -38,7 +38,7 @@ The ability to reason about the search strategy, rather than just executing a li
 
 ## Architecture Overview
 
-First, the legal PDFs are embedded and ingested into Weaviate using a multivector model, ColQwen, together with Muvera compression. Instead of running OCR and chunking text, ColQwen encodes each PDF page directly as visual tokens (image patches), producing a rich multivector representation that preserves layout and tables. Muvera then compresses these multivectors, reducing memory and latency while keeping retrieval quality high.
+First, the legal PDFs are embedded and ingested into Weaviate using a multivector model together with [Muvera compression](/blog/muvera). Instead of running OCR and chunking text, the multivector model encodes each PDF page directly as visual tokens (image patches), producing a rich multivector representation that preserves layout and tables. Muvera then compresses these multivectors, reducing memory and latency while keeping retrieval quality high.
 
 Rather than placing all contracts in a single collection, we split them into three: **Commercial Agreements**, **Corporate & IP Agreements**, and **Operational Agreements**. This schema gives the system explicit structure. It narrows the search space and allows the Query Agent to then route each question to the most relevant collection (or collections) of documents.
 
