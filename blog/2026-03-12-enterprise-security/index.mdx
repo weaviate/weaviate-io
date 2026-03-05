@@ -24,7 +24,7 @@ What follows is how _MedVector_ went from startup security to enterprise-grade �
 "How do your users authenticate, and what happens to credentials if your database is compromised?"
 :::
 
-_MedVector's_ first move was to connect Weaviate to their existing Microsoft Entra ID instance. No more shared API keys passed around in Slack. When their auditors eventually asked about credential storage, the answer was simple: **"We don't store credentials. Authentication is delegated to our IdP."**
+_MedVector's_ first move was to connect Weaviate to their existing identity provider. No more shared API keys passed around in Slack. When their auditors eventually asked about credential storage, the answer was simple: **"We don't store credentials. Authentication is delegated to our IdP."**
 
 [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/) is the foundation of enterprise authentication in Weaviate. By adopting OIDC, Weaviate eliminates the need to create isolated credential stores and instead integrates with your existing Identity Provider (IdP).
 
@@ -95,7 +95,7 @@ For Okta or Auth0, the only differences are the issuer URL and tenant configurat
 
 :::info Weaviate Assurance for self-hosted deployments
 
-If you're running a local open-source installation and need help setting up IdP integration, Weaviate offers [Assurance](https://weaviate.io/contact) — a paid support package that includes hands-on guidance for configuring OIDC, SSO, and other enterprise security features in self-hosted environments.
+If you're running a local open-source installation and need help setting up IdP integration, Weaviate offers [Assurance](#weaviate-assurance-for-self-hosted-deployments) — a paid support package that includes hands-on guidance for configuring OIDC, SSO, and other enterprise security features in self-hosted environments.
 
 :::
 
@@ -107,7 +107,7 @@ If you're running a local open-source installation and need help setting up IdP 
 
 At 80 employees, _MedVector_ had been manually assigning Weaviate roles — and it was falling behind. When Dr. Chen moved from the clinical team to research, her old permissions lingered for two weeks before anyone noticed. They needed access that stayed in sync with reality.
 
-**OIDC Groups** solve this by mapping your existing organizational structure directly to Weaviate roles. Your identity provider already knows who belongs to which teams. You can configure Weaviate to trust these group claims. When a user's group membership changes in your IdP (maybe they get promoted or switch teams), Weaviate automatically reflects this permission change on their next login.
+**OIDC Groups** solve this by mapping your existing organizational structure directly to Weaviate roles. Your identity provider already knows who belongs to which teams. You can configure Weaviate to trust these group claims. When a user's group membership changes in your IdP (maybe they get promoted or switch teams), Weaviate automatically reflects this permission change on their next connection.
 
 After _MedVector_ mapped their Entra ID groups to Weaviate roles, the Dr. Chen problem disappeared. Moving her from `Clinical-Staff` to `Research-Team` in Entra ID automatically updated her Weaviate permissions on next login — zero manual intervention. Here's what their mapping looks like:
 
@@ -136,9 +136,9 @@ client.roles.create(
 )
 
 # Assign the role to an OIDC group (not individual users)
-client.users.oidc.assign_roles(
-    user_or_group="Clinical-Staff",
-    role_names=["Clinician"],
+client.groups.oidc.assign_roles(
+    group_id="Clinical-Staff", 
+    role_names=["Clinician"]
 )
 ```
 
@@ -170,12 +170,12 @@ _MedVector_ manages three collections with very different sensitivity levels:
 
 Their strict least-privilege model looks like this:
 
-| Role                  | `MedicalArticles` | `PatientRecords` | Dev Collections |
-| --------------------- | ----------------- | ---------------- | --------------- |
-| **Administrator**     | Full CRUD         | Full CRUD        | Full CRUD       |
-| **Clinician**         | Read only         | Read & Update    | No Access       |
-| **Researcher**        | Read only         | No Access        | Full CRUD       |
-| **ClinicalSearchApp** | Read only         | **No Access**    | **No Access**   |
+| Role                  | `MedicalArticles` | `PatientRecords` | Dev Collections | Manage RBAC Roles |
+| --------------------- | ----------------- | ---------------- | --------------- | ------------ |
+| **Administrator**     | Full CRUD         | Full CRUD        | Full CRUD       | ✅           |
+| **Clinician**         | Read only         | Read & Update    | No Access       | ❌           |
+| **Researcher**        | Read only         | No Access        | Full CRUD       | ❌           |
+| **ClinicalSearchApp** | Read only         | **No Access**    | **No Access**   | ❌           |
 
 In this setup, the patient-facing search application (`ClinicalSearchApp`) can only query medical articles—it has zero access to patient records. A researcher can read published literature for their models, but cannot touch patient records. Even if credentials are compromised, the blast radius is contained to the permissions of that specific role.
 
@@ -207,6 +207,8 @@ client.roles.create(
 ```
 
 Requests from a user with this role that attempt to access `hospital_b` tenant data are denied. This provides data isolation without requiring separate Weaviate clusters for each customer.
+
+Permissions also support wildcards for flexible scoping. For example, `tenant="hospital_*"` grants access to all tenants matching that prefix — so an internal analyst role could query across `hospital_a`, `hospital_b`, and any future hospital tenants without updating the role every time a new client is onboarded.
 
 :::tip More info
 
@@ -273,9 +275,7 @@ Weaviate Cloud offers two deployment tiers with different security capabilities:
 | API Key Authentication    | ✅                                       | ✅                                |
 | Custom RBAC Roles         | ✅                                       | ✅                                |
 | User Management           | ✅                                       | ✅                                |
-| OIDC Integration          | ✅                                       | ✅                                |
 | SSO / SAML for Console    | ❌                                       | ✅                                |
-| OIDC Groups               | ❌                                       | ✅                                |
 | PrivateLink / VPC Peering | ❌                                       | ✅                                |
 | Compliance (HIPAA)        | ❌                                       | ✅                                |
 | Network Isolation         | Shared infrastructure                    | Dedicated infrastructure          |
@@ -287,11 +287,18 @@ Read more about the different Weaviate Cloud deployments on our [pricing page](h
 
 :::
 
-:::info Weaviate Assurance for self-hosted deployments
+## Weaviate Assurance for Self-Hosted Deployments
 
-If you're running a self-hosted Weaviate deployment and need help with IdP integration, security hardening, or compliance configuration, Weaviate offers [Assurance](https://weaviate.io/contact) — a paid support package that includes hands-on guidance for configuring OIDC, SSO, and other enterprise security features.
+Not every enterprise wants a managed cloud — some need to run Weaviate in their own infrastructure for regulatory, data residency, or architectural reasons. [Weaviate Assurance](https://weaviate.io/downloads/Weaviate-Assurance-Package-1-1.pdf) is a premium subscription that bridges the gap between self-hosted flexibility and managed-service reliability. It's built on four pillars:
 
-:::
+- **Enterprise Incident Response** — 24x7 global coverage with P1 (critical) response in 1 hour, direct escalation to Weaviate core engineering, and root cause analysis for any failures.
+- **Proactive Expert Guidance** — Bi-weekly office hours with Weaviate engineers for configuration guidance (vector index selection, query tuning, schema design, replication strategies) and architecture reviews as your data grows.
+- **Managed Lifecycle Support** — Upgrade advisory for every Weaviate release (~9 per year), compatibility assessments for your specific environment, and end-of-life migration guidance for zero-downtime transitions.
+- **Dedicated Account Management** — Private Slack channel, assigned account executive, and periodic business reviews to align Weaviate's roadmap with your project milestones.
+
+For self-hosted teams implementing the security features covered in this post — OIDC integration, RBAC configuration, audit logging — Assurance provides the expert guidance to get it right the first time.
+
+[Contact us](https://weaviate.io/contact) for a tailored quote based on your cluster footprint.
 
 ## Implementation Roadmap
 
