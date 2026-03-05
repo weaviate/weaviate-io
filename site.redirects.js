@@ -256,7 +256,7 @@ const siteRedirects = {
             to: '/contact',
             from: '/griffin',
         },
-          {
+        {
             to: '/contact',
             from: '/aaron',
         },
@@ -280,7 +280,7 @@ const siteRedirects = {
 
             to: '/contact',
             from: '/nathaniel',
-        }
+        },
           // BYOC redirects
 
         {
