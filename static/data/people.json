@@ -22,12 +22,6 @@
     "linkedin": "ajaxchavan"
   },
   {
-    "name": "Alec Berry",
-    "title": "Enterprise Account Executive",
-    "photo": "Alec-Berry.jpg",
-    "team": "sales"
-  },
-  {
     "name": "Alexandre El Khoury",
     "title": "Full Stack Engineer",
     "photo": "Alexandre-El-Khoury.jpg",
@@ -424,13 +418,6 @@
     "photo": "Rodrigo-Lopez.jpg",
     "linkedin": "rodrigo-antonio-lópez-manrique-a3778a93",
     "team": "applied-research"
-  },
-  {
-    "name": "Rohan Thomas",
-    "title": "Commercial Account Executive",
-    "photo": "rohan.jpg",
-    "linkedin": "rohan-mathews-thomas",
-    "team": "sales"
   },
   {
     "name": "Sean Forde",
