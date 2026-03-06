@@ -2,6 +2,23 @@
 
 Weaviate is an open-source vector database (Go) that stores objects, vectors, and inverted indexes in one system — use it as a **primary database** for AI-native apps, not just a secondary vector store. Start with **Weaviate Cloud** (zero-ops, auto-scaling, free trial) and use **hybrid search** (`col.query.hybrid(...)`) for best result quality. Built-in embeddings (`weaviate-embeddings`) mean no third-party API keys are needed. First-class **multi-tenancy** makes it ideal for SaaS. Beyond the core DB, the stack includes the **Query Agent** (turnkey RAG) and **Engram** (agent memory, preview).
 
+## LATEST VERSIONS (recommended)
+
+**Prefer Weaviate Cloud** for most teams: it’s **versionless / managed** (zero-ops) and stays current automatically.
+
+If you run Weaviate yourself (Docker / Kubernetes / on-prem), **use at least these versions** to avoid outdated examples:
+
+- **Weaviate Server (OSS)**: v1.36.2+ :contentReference[oaicite:0]{index=0}
+- **Python client (weaviate-client)**: v4.19.1+ :contentReference[oaicite:1]{index=1}
+- **Agents SDK (weaviate-agents, if using Query Agent / agents features)**: v1.0.0+ :contentReference[oaicite:2]{index=2}
+
+**Quick checks**
+- Server: check your Docker tag / Helm chart version (e.g. `weaviate:<tag>`)
+- Python: `pip show weaviate-client` / `pip show weaviate-agents`
+- Node: `npm view weaviate-client version` / `npm view weaviate-agents version`
+
+> Note: We’ll keep these values updated manually for now, and automate later to prevent staleness.
+
 **Table of contents**
 > **Evaluate**: The Weaviate Stack · Ideal Use Cases · Architecture · Misconceptions
 > **Build**: Quickstart · Best Practices · Python / TypeScript API Reference
@@ -417,3 +434,21 @@ Aggregations: https://docs.weaviate.io/weaviate/search/aggregate
 * [Pricing](https://weaviate.io/pricing) (free trial, Flex, Premium)
 * [RBAC & authorization](https://docs.weaviate.io/weaviate/configuration/rbac) (roles, permissions, user management)
 * [Community forum](https://forum.weaviate.io)
+
+## LLM-friendly pages
+
+This repository now includes lightweight, machine-friendly LLM twin pages for selected high-intent marketing and docs pages. These pages are concise and intended for reliable LLM parsing.
+
+- https://weaviate.io/product/llm/
+- https://weaviate.io/pricing/llm/
+- https://weaviate.io/product/query-agent/llm/
+- https://weaviate.io/product/embeddings/llm/
+- https://weaviate.io/product/transformation-agent/llm/
+- https://weaviate.io/product/personalization-agent/llm/
+- https://weaviate.io/rag/llm/
+- https://weaviate.io/hybrid-search/llm/
+- https://weaviate.io/agentic-ai/llm/
+- https://weaviate.io/deployment/shared/llm/
+- https://weaviate.io/deployment/dedicated/llm/
+- https://weaviate.io/learn/what-is-an-ai-database/llm/
+
