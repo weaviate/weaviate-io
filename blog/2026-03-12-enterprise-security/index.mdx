@@ -111,12 +111,12 @@ At 80 employees, _MedVector_ had been manually assigning Weaviate roles — and 
 
 After _MedVector_ mapped their Entra ID groups to Weaviate roles, the Dr. Chen problem disappeared. Moving her from `Clinical-Staff` to `Research-Team` in Entra ID automatically updated her Weaviate permissions on next login — zero manual intervention. Here's what their mapping looks like:
 
-| Microsoft Entra ID Group | Weaviate Role   | Access Level                                 |
-| ------------------------ | --------------- | -------------------------------------------- |
-| `Clinical-Staff`         | `Clinician`     | Read articles, read & update patient records |
-| `Research-Team`          | `Researcher`    | Read articles, full dev access               |
-| `IT-Admins`              | `Administrator` | Full access across all collections           |
-| `External-Contractors`   | `DevOnly`       | Dev access only                              |
+| Microsoft Entra ID Group | Weaviate Role   | Access Level                                  |
+| ------------------------ | --------------- | --------------------------------------------- |
+| `Clinical-Staff`         | `Clinician`     | Read articles, full access to patient records |
+| `Research-Team`          | `Researcher`    | Read articles, full dev access                |
+| `IT-Admins`              | `Administrator` | Full access across all collections            |
+| `External-Contractors`   | `DevOnly`       | Dev access only                               |
 
 This setup gave _MedVector_ zero-touch onboarding (a new clinician is added to the `Clinical-Staff` group and immediately gains the correct Weaviate access), instant revocation (removing a user from the group instantly revokes their specific privileges), and audit simplicity (auditors only need to check the IdP group membership).
 
@@ -131,11 +131,9 @@ from weaviate.classes.rbac import Permissions
 client.roles.create(
     role_name="Clinician",
     permissions=[
-        # Read access to MedicalArticles (config + data)
-        Permissions.collections(collection="MedicalArticles", read_config=True),
+        # Read access to MedicalArticles
         Permissions.data(collection="MedicalArticles", read=True),
         # Full data access to PatientRecords
-        Permissions.collections(collection="PatientRecords", read_config=True),
         Permissions.data(collection="PatientRecords", create=True, read=True, update=True, delete=True),
     ],
 )
@@ -205,7 +203,6 @@ from weaviate.classes.rbac import Permissions
 client.roles.create(
     role_name="HospitalA_Clinician",
     permissions=[
-        Permissions.collections(collection="PatientRecords", read_config=True),
         Permissions.data(collection="PatientRecords", tenant="hospital_a", read=True),
     ],
 )
@@ -243,17 +240,19 @@ Each audit log entry captures the full context of a security decision. Here is a
 
 ```json
 {
-  "timestamp": "2026-02-19T14:32:05.123Z",
-  "level": "info",
   "action": "authorize",
-  "event": "collection.read",
-  "user": "dr.chen@hospital.org",
+  "component": "RBAC",
+  "level": "info",
+  "permissions": [
+    {
+      "resource": "[Domain: data, Collection: PatientRecords, Tenant: hospital_a]",
+      "results": "success"
+    }
+  ],
+  "request_action": "R",
   "source_ip": "10.0.42.15",
-  "collection": "PatientRecords",
-  "tenant": "hospital_a",
-  "result": "allowed",
-  "roles": ["Clinician"],
-  "request_id": "req-abc123"
+  "time": "2026-02-19T14:32:05.123Z",
+  "user": "dr.chen@hospital.org"
 }
 ```
 
