@@ -14,9 +14,9 @@ description: A complete guide on how to secure Weaviate enterprise deployments w
 
 Our [introductory guide to Weaviate security](https://weaviate.io/blog/weaviate-security-authn-authz) covered the fundamentals — API keys, OIDC basics, and role-based access control. Those building blocks get you far, but enterprise environments bring a different set of challenges: hundreds of users across multiple teams, regulatory compliance ([GDPR](https://gdpr.eu), [HIPAA](https://www.hhs.gov/hipaa/index.html), [SOC 2](https://weaviate.io/security), [PCI DSS](https://www.pcisecuritystandards.org), [FedRAMP](https://www.fedramp.gov)), and the expectation that your vector database integrates with the identity infrastructure you've already invested in.
 
-To make this concrete, we'll follow _**MedVector Health**_ — a fictional health-tech company that built an AI-powered clinical search tool on Weaviate. Early on, five engineers shared two API keys. It worked fine. Then they onboarded their first hospital client, hired 40 more people, and got a call from their compliance team: a HIPAA audit was six months out. Their two original API keys had quietly become twelve, spread across Slack messages and `.env` files. When a contractor's engagement ended, nobody was sure which keys they'd had access to.
+To make this concrete, we'll follow _**MedVector Health**_ — a fictional health-tech company that built an **AI-powered clinical search tool** on Weaviate. Early on, five engineers shared two API keys. It worked fine. Then they onboarded their first hospital client, hired 40 more people, and got a call from their compliance team: a HIPAA audit was six months out. Their two original API keys had quietly become twelve, spread across Slack messages and `.env` files. When a contractor's engagement ended, nobody was sure which keys they'd had access to.
 
-What follows is how _MedVector_ went from startup security to enterprise-grade — and how each layer they added answered a specific question their security auditors would eventually ask.
+What follows is how _MedVector_ went **from startup security to enterprise-grade** — and how each layer they added answered a specific question their security auditors would eventually ask.
 
 ## 1. OIDC Integration for Enterprise Authentication {#oidc-integration}
 
@@ -45,53 +45,6 @@ Weaviate supports any OIDC-compliant identity provider, including [Okta](https:/
 Read more about OIDC integration in the [official Weaviate documentation](https://docs.weaviate.io/deploy/configuration/authentication#oidc-authentication).
 
 :::
-
-<details>
-<summary>Setting Up OIDC: A Practical Walkthrough</summary>
-
-Let's walk through connecting Weaviate to Microsoft Entra ID (Azure AD). The same principles apply to Okta, Auth0, Keycloak, or any OIDC-compliant provider.
-
-**Step 1: Create an App Registration in Entra ID**
-
-In the [Azure Portal](https://portal.azure.com), navigate to **Entra ID → App Registrations → New Registration**. Set the redirect URI to your application's callback URL and note the **Application (client) ID** and **Directory (tenant) ID**.
-
-**Step 2: Configure Weaviate**
-
-In your Weaviate configuration (Docker Compose, [Helm values](https://docs.weaviate.io/deploy/installation-guides/k8s-installation), or environment variables), set the OIDC parameters to point to your IdP:
-
-```yaml
-# docker-compose.yml (excerpt)
-services:
-  weaviate:
-    environment:
-      AUTHENTICATION_OIDC_ENABLED: 'true'
-      AUTHENTICATION_OIDC_ISSUER: 'https://login.microsoftonline.com/<TENANT_ID>/v2.0'
-      AUTHENTICATION_OIDC_CLIENT_ID: '<APPLICATION_CLIENT_ID>'
-      AUTHENTICATION_OIDC_USERNAME_CLAIM: 'email'
-      AUTHENTICATION_OIDC_GROUPS_CLAIM: 'groups'
-```
-
-The `OIDC_ISSUER` URL tells Weaviate where to find the IdP's discovery document (the `.well-known/openid-configuration` endpoint). Weaviate uses this to fetch the public keys it needs to validate JWTs. The `USERNAME_CLAIM` specifies which JWT claim identifies the user, and `GROUPS_CLAIM` enables [group-based role management](#oidc-groups-scaling-role-management), which we'll cover shortly.
-
-**Step 3: Authenticate and Connect**
-
-With OIDC configured, users authenticate against Entra ID and receive a JWT. Client libraries handle this flow:
-
-```python
-import weaviate
-
-client = weaviate.connect_to_local(
-    auth_credentials=weaviate.auth.AuthBearerToken(
-        access_token="<JWT_FROM_ENTRA_ID>",
-        refresh_token="<REFRESH_TOKEN>",  # optional, enables automatic token refresh
-        expires_in=300,
-    )
-)
-```
-
-For Okta or Auth0, the only differences are the issuer URL and tenant configuration on the IdP side. The Weaviate configuration pattern remains the same.
-
-</details>
 
 :::info Weaviate Assurance for self-hosted deployments
 
@@ -175,12 +128,14 @@ Their strict least-privilege model looks like this:
 
 | Role                  | `MedicalArticles` | `PatientRecords` | Dev Collections | Manage RBAC Roles |
 | --------------------- | ----------------- | ---------------- | --------------- | ----------------- |
-| **RoleManager**       | No Access         | No Access        | No Access       | ✅                |
-| **Clinician**         | Read only         | Full CRUD        | No Access       | ❌                |
-| **Researcher**        | Read only         | No Access        | Full CRUD       | ❌                |
-| **ClinicalSearchApp** | Read only         | **No Access**    | **No Access**   | ❌                |
+| `RoleManager`         | No Access         | No Access        | No Access       | ✅                |
+| `Clinician`           | Read only         | Full CRUD        | No Access       | ❌                |
+| `Researcher`          | Read only         | No Access        | Full CRUD       | ❌                |
+| `ClinicalSearchApp`   | Read only         | **No Access**    | **No Access**   | ❌                |
 
-In this setup, the patient-facing search application (`ClinicalSearchApp`) can only query medical articles—it has zero access to patient records. A researcher can read published literature for their models, but cannot touch patient records. Even if credentials are compromised, the blast radius is contained to the permissions of that specific role.
+In this setup, the patient-facing search application (`ClinicalSearchApp`) can only query medical articles — it has zero access to patient records. A researcher can read published literature for their models, but cannot touch patient records. Even if credentials are compromised, the blast radius is contained to the permissions of that specific role.
+
+Notice that the `RoleManager` can create and assign roles but has zero access to any data — separating role administration from data access. 
 
 For _MedVector_, this meant their auditors could see directly in the configuration that the `ClinicalSearchApp` role had zero access to `PatientRecords`. No ambiguity, no "we think it's locked down" — the policy itself was the proof.
 
@@ -318,7 +273,7 @@ _MedVector's_ journey from shared API keys to a passed HIPAA audit followed a pr
 
 **2. Architecture** — Define your custom roles in Weaviate, following the principle of least privilege. Use the [RBAC documentation](https://docs.weaviate.io/weaviate/configuration/rbac) to create roles with granular, collection-level permissions. If you're using multi-tenancy, include tenant-level scoping. Document the mapping between IdP groups and Weaviate roles.
 
-**3. Integration** — Configure OIDC in your IdP. For Entra ID, this means creating an App Registration and setting the appropriate redirect URIs. For Okta, create a new OIDC application. Update your Weaviate configuration with the issuer URL, client ID, and claims mapping as shown in the [OIDC setup section](#oidc-integration). Test the token flow end-to-end in a staging environment before touching production.
+**3. Integration** — Configure OIDC in your IdP. For Entra ID, this means creating an App Registration and setting the appropriate redirect URIs. For Okta, create a new OIDC application. Update your Weaviate configuration with the issuer URL, client ID, and claims mapping as shown in the [OIDC documentation](https://docs.weaviate.io/deploy/configuration/authentication#oidc-authentication). Test the token flow end-to-end in a staging environment before touching production.
 
 **4. Testing** — Verify that adding a user to an IdP group grants the correct Weaviate permissions and that removing them revokes access. Test edge cases: what happens when a user belongs to multiple groups? When a token expires mid-session? Automate these tests so they run on every configuration change.
 
