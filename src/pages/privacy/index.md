@@ -53,7 +53,7 @@ The subsequent sections address general matters. More specifically, **Section** 
 
 <br></br>
 
-This privacy policy was most recently amended in **September 2025** and this version replaces earlier versions. We may need to amend this privacy policy from time to time. The most recent version of this privacy policy is available on our [website](/service). In case of important changes, we will actively inform you on these changes. 
+This privacy policy was most recently amended in **March 2026** and this version replaces earlier versions. We may need to amend this privacy policy from time to time. The most recent version of this privacy policy is available on our [website](/service). In case of important changes, we will actively inform you on these changes. 
 
 <br></br>
 
@@ -73,7 +73,7 @@ You may provide us with personal data relating to another individual than yourse
 
 <br></br>
 
-a. If you **download or use our open-source database**, or if you **use our Weaviate vector database via GCP or AWS marketplace**, we do not process your personal data. Weaviate OSS includes an optional [telemetry module](https://docs.weaviate.io/deploy/configuration/telemetry) that collects basic system and cloud metadata, however this does not include personal data of any kind. 
+a. If you **download or use our open-source database**, or if you **use our Weaviate vector database via GCP or AWS marketplace**, we generally do not process your personal data. Weaviate OSS includes an optional [telemetry module](https://docs.weaviate.io/deploy/configuration/telemetry) that collects basic system and cloud metadata. This telemetry data includes basic cluster statistics (such as the number of objects) and, where applicable, cloud metadata such as your cloud provider ID. If such cloud metadata can be linked to an identifiable person, it qualifies as personal data. We may share cloud metadata with your cloud provider for the purpose of enabling them to contact you regarding Weaviate support, maintenance, or hosting services. For this processing, we rely on our legitimate interest in promoting and making available our products and services. You can disable the telemetry module at any time by following the instructions in the [telemetry documentation](https://docs.weaviate.io/deploy/configuration/telemetry).
 
 <br></br>
 
@@ -446,6 +446,8 @@ We may disclose your personal data or make your personal data available to third
 - Google, for email, document storage, and data warehousing;
 
 - Zapier, for workflow automation.
+
+- Cloud providers (such as AWS and GCP), for sharing cloud metadata collected via our optional telemetry module, to enable them to contact you regarding Weaviate support, maintenance, or hosting services.
 
 - Condens, for securely storing and analyzing UX research sessions, managing participant information, and organizing research findings.
 
