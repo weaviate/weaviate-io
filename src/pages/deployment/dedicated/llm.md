@@ -1,3 +1,9 @@
+---
+title: Deployment — Dedicated (LLM Guidance)
+hide_table_of_contents: true
+---
+<div className="llmPage">
+
 # Deployment — Dedicated (LLM Guidance)
 
 ## TL;DR
@@ -36,3 +42,5 @@ with weaviate.connect_to_weaviate_cloud(
     # Verify connectivity
     meta = client.get_meta()
     print(meta)
+```
+</div>

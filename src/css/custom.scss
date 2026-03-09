@@ -80,7 +80,9 @@
     cursor: default !important;
   }
   .__ConfigurationOption .__accordion .__accordionSummary .__displayName {
-    font-family: Alegreya Sans, sans-serif;
+    font-family:
+      Alegreya Sans,
+      sans-serif;
     text-transform: capitalize;
     font-size: 18px;
     font-weight: 600;
@@ -89,7 +91,9 @@
     text-align: left;
   }
   .__ConfigurationOption .__accordion .__accordionSummary .__userInput {
-    font-family: Alegreya Sans, sans-serif;
+    font-family:
+      Alegreya Sans,
+      sans-serif;
     font-size: 18px;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -103,7 +107,9 @@
     flex-direction: column;
   }
   .__ConfigurationOption .__accordion .__accordionDetails .__description {
-    font-family: Alegreya Sans, sans-serif;
+    font-family:
+      Alegreya Sans,
+      sans-serif;
     text-align: start;
     margin-bottom: 25px;
   }
@@ -118,14 +124,20 @@
   }
   .__multilineContainer .__multilineSelect {
     width: 98%;
-    transition: background 0.256s ease-out, border-color 0.256s ease-out,
-      border-radius 0.256s ease-out, color 0.256s ease-out,
-      opacity 0.256s ease-out, outline 0.256s ease-out,
+    transition:
+      background 0.256s ease-out,
+      border-color 0.256s ease-out,
+      border-radius 0.256s ease-out,
+      color 0.256s ease-out,
+      opacity 0.256s ease-out,
+      outline 0.256s ease-out,
       transform 0.256s ease-out;
     border: 3px solid transparent;
     border-top-left-radius: 1.5em;
     border-top-right-radius: 1.5em;
-    font-family: Alegreya Sans, sans-serif;
+    font-family:
+      Alegreya Sans,
+      sans-serif;
     padding: 0.3em;
     cursor: pointer;
     text-align: left;
@@ -137,9 +149,13 @@
     font-size: 18px;
   }
   .__multilineContainer .__opened {
-    transition: background 0.128s ease-out, border-color 0.128s ease-out,
-      border-radius 0.128s ease-out, color 0.128s ease-out,
-      opacity 0.128s ease-out, outline 0.128s ease-out,
+    transition:
+      background 0.128s ease-out,
+      border-color 0.128s ease-out,
+      border-radius 0.128s ease-out,
+      color 0.128s ease-out,
+      opacity 0.128s ease-out,
+      outline 0.128s ease-out,
       transform 0.128s ease-out;
     border-radius: 1.5em;
     border-bottom-left-radius: 0;
@@ -179,43 +195,63 @@
   }
   .__simpleTextInput {
     width: 98%;
-    transition: background 0.256s ease-out, border-color 0.256s ease-out,
-      border-radius 0.256s ease-out, color 0.256s ease-out,
-      opacity 0.256s ease-out, outline 0.256s ease-out,
+    transition:
+      background 0.256s ease-out,
+      border-color 0.256s ease-out,
+      border-radius 0.256s ease-out,
+      color 0.256s ease-out,
+      opacity 0.256s ease-out,
+      outline 0.256s ease-out,
       transform 0.256s ease-out;
     border: 3px solid transparent;
     border-top-left-radius: 1.5em;
     border-top-right-radius: 1.5em;
-    font-family: Alegreya Sans, sans-serif;
+    font-family:
+      Alegreya Sans,
+      sans-serif;
     padding: 0.5em;
     margin-bottom: 25px;
   }
   .__simpleTextInput:active,
   .__simpleTextInput:focus {
-    transition: background 0.128s ease-out, border-color 0.128s ease-out,
-      border-radius 0.128s ease-out, color 0.128s ease-out,
-      opacity 0.128s ease-out, outline 0.128s ease-out,
+    transition:
+      background 0.128s ease-out,
+      border-color 0.128s ease-out,
+      border-radius 0.128s ease-out,
+      color 0.128s ease-out,
+      opacity 0.128s ease-out,
+      outline 0.128s ease-out,
       transform 0.128s ease-out;
     border-radius: 1.5em;
     border-bottom-left-radius: 0;
     outline: none;
   }
   .__simpleButton {
-    transition: background 0.256s ease-out, border-color 0.256s ease-out,
-      border-radius 0.256s ease-out, color 0.256s ease-out,
-      opacity 0.256s ease-out, outline 0.256s ease-out,
+    transition:
+      background 0.256s ease-out,
+      border-color 0.256s ease-out,
+      border-radius 0.256s ease-out,
+      color 0.256s ease-out,
+      opacity 0.256s ease-out,
+      outline 0.256s ease-out,
       transform 0.256s ease-out;
     border: 0 !important;
     border-radius: 0.5em 0.5em 0.5em 0;
-    font-family: Alegreya Sans, sans-serif;
+    font-family:
+      Alegreya Sans,
+      sans-serif;
     font-size: 1.2rem;
     text-align: center;
     cursor: pointer;
   }
   .__simpleButton:hover {
-    transition: background 0.128s ease-out, border-color 0.128s ease-out,
-      border-radius 0.128s ease-out, color 0.128s ease-out,
-      opacity 0.128s ease-out, outline 0.128s ease-out,
+    transition:
+      background 0.128s ease-out,
+      border-color 0.128s ease-out,
+      border-radius 0.128s ease-out,
+      color 0.128s ease-out,
+      opacity 0.128s ease-out,
+      outline 0.128s ease-out,
       transform 0.128s ease-out;
     border-radius: 0.5em 0 0.5em 0.5em;
     outline-width: 0;
@@ -1499,4 +1535,29 @@ a.navbar__item.navbar__link:hover {
 .dpa-page li {
   font-size: 1.2rem !important;
   line-height: 1.7;
+}
+
+.llmPage article {
+  max-width: 860px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.llmPage p {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.llmPage h1 {
+  margin-bottom: 0.75rem;
+}
+.llmPage h2 {
+  margin-top: 1.5rem;
+}
+
+.llmPage .tableOfContents_bqdL {
+  display: none;
+}
+.llmPage pre {
+  font-size: 0.9rem;
 }

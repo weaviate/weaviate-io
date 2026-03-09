@@ -1,3 +1,9 @@
+---
+title: Embeddings — LLM Guidance
+hide_table_of_contents: true
+---
+<div className="llmPage">
+
 # Embeddings — LLM Guidance
 
 ## TL;DR
@@ -47,3 +53,7 @@ with weaviate.connect_to_weaviate_cloud(
     res = col.query.hybrid(query="embedding generation without external API keys", limit=3)
     for o in res.objects:
         print(o.properties)
+       
+       
+```  
+</div>

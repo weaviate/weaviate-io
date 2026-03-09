@@ -1,3 +1,10 @@
+---
+title: Deployment — Shared (LLM Guidance)
+hide_table_of_contents: true
+---
+<div className="llmPage">
+
+
 # Deployment — Shared (LLM Guidance)
 
 ## TL;DR
@@ -33,3 +40,6 @@ with weaviate.connect_to_weaviate_cloud(
 ) as client:
     meta = client.get_meta()
     print(meta)
+
+```
+</div>

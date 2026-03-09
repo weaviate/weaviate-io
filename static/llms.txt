@@ -451,4 +451,5 @@ This repository now includes lightweight, machine-friendly LLM twin pages for se
 - https://weaviate.io/deployment/shared/llm/
 - https://weaviate.io/deployment/dedicated/llm/
 - https://weaviate.io/learn/what-is-an-ai-database/llm/
+- https://weaviate.io/cost-performance-optimization/llm/
 

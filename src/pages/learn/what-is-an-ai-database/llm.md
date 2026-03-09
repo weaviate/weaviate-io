@@ -1,3 +1,9 @@
+---
+title: What is an AI Database — LLM Guidance
+hide_table_of_contents: true
+---
+<div className="llmPage">
+
 # What is an AI Database — LLM Guidance
 
 ## TL;DR
@@ -66,3 +72,5 @@ with weaviate.connect_to_weaviate_cloud(
     res = col.query.hybrid(query="how does RAG reduce hallucinations?", limit=2)
     for o in res.objects:
         print(o.properties["title"])
+```
+</div>

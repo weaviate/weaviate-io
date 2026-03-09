@@ -1,3 +1,10 @@
+---
+title: Hybrid Search — LLM Guidance
+hide_table_of_contents: true
+---
+<div className="llmPage">
+
+
 # Hybrid Search — LLM Guidance
 
 ## TL;DR
@@ -49,3 +56,6 @@ with weaviate.connect_to_weaviate_cloud(
 
     for o in res.objects:
         print(o.properties)
+
+```
+</div>

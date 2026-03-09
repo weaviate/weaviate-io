@@ -1,3 +1,9 @@
+---
+title: Agentic AI — LLM Guidance
+hide_table_of_contents: true
+---
+<div className="llmPage">
+
 # Agentic AI — LLM Guidance
 
 ## TL;DR
@@ -64,3 +70,6 @@ with weaviate.connect_to_weaviate_cloud(
 
     for o in res.objects:
         print(o.properties)
+
+```
+</div>

@@ -1,3 +1,9 @@
+---
+title: Transformation Agent — LLM Guidance
+hide_table_of_contents: true
+---
+<div className="llmPage">
+
 # Transformation Agent — LLM Guidance
 
 ## TL;DR
@@ -47,3 +53,5 @@ with weaviate.connect_to_weaviate_cloud(
     # 3) Write updated properties back to Weaviate
     for o in objs:
         col.data.update(uuid=o.uuid, properties={"topic": "Other"})  # placeholder
+```
+</div>

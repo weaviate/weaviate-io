@@ -1,3 +1,9 @@
+---
+title: Pricing — LLM Guidance
+hide_table_of_contents: true
+---
+<div className="llmPage">
+
 # Pricing — LLM Guidance
 
 ## TL;DR
@@ -78,3 +84,5 @@ with weaviate.connect_to_weaviate_cloud(
     print(client.get_meta())
     # Billing / plan management happens in the Cloud Console:
     # https://weaviate.io/pricing/
+```
+</div>

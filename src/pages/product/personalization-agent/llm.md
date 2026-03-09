@@ -1,3 +1,10 @@
+---
+title: Personalization Agent — LLM Guidance
+hide_table_of_contents: true
+---
+<div className="llmPage">
+
+
 # Personalization Agent — LLM Guidance
 
 ## TL;DR
@@ -35,3 +42,5 @@ with weaviate.connect_to_weaviate_cloud(
     # Personalization flows depend on your schema + the user interaction signals you send.
     # Start here:
     print("Docs: https://docs.weaviate.io/agents/personalization/usage")
+```
+ </div>

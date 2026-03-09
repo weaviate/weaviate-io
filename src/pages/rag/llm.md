@@ -1,3 +1,9 @@
+---
+title: RAG — LLM Guidance
+hide_table_of_contents: true
+---
+<div className="llmPage">
+
 # RAG — LLM Guidance
 
 ## TL;DR
@@ -29,3 +35,6 @@ with weaviate.connect_to_weaviate_cloud(
     qa = QueryAgent(client=client, collections=["Docs"])
     resp = qa.ask("Summarize our onboarding process and list key steps.")
     print(resp.final_answer)
+
+```
+</div>

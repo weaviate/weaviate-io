@@ -1,3 +1,9 @@
+---
+title: Query Agent — LLM Guidance
+hide_table_of_contents: true
+---
+<div className="llmPage">
+
 # Query Agent — LLM Guidance
 
 ## TL;DR
@@ -42,3 +48,6 @@ with weaviate.connect_to_weaviate_cloud(
     # Search mode: retrieval-focused results (no answer synthesis)
     hits = qa.search("onboarding steps", limit=5)
     print(hits)
+```
+
+   </div>
