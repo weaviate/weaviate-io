@@ -439,17 +439,17 @@ Aggregations: https://docs.weaviate.io/weaviate/search/aggregate
 
 This repository now includes lightweight, machine-friendly LLM twin pages for selected high-intent marketing and docs pages. These pages are concise and intended for reliable LLM parsing.
 
-- https://weaviate.io/product/llm/
-- https://weaviate.io/pricing/llm/
-- https://weaviate.io/product/query-agent/llm/
-- https://weaviate.io/product/embeddings/llm/
-- https://weaviate.io/product/transformation-agent/llm/
-- https://weaviate.io/product/personalization-agent/llm/
-- https://weaviate.io/rag/llm/
-- https://weaviate.io/hybrid-search/llm/
-- https://weaviate.io/agentic-ai/llm/
-- https://weaviate.io/deployment/shared/llm/
-- https://weaviate.io/deployment/dedicated/llm/
-- https://weaviate.io/learn/what-is-an-ai-database/llm/
-- https://weaviate.io/cost-performance-optimization/llm/
+- https://weaviate.io/product.md
+- https://weaviate.io/pricing.md
+- https://weaviate.io/product/query-agent.md
+- https://weaviate.io/product/embeddings.md
+- https://weaviate.io/product/transformation-agent.md
+- https://weaviate.io/product/personalization-agent.md
+- https://weaviate.io/rag.md
+- https://weaviate.io/hybrid-search.md
+- https://weaviate.io/agentic-ai.md
+- https://weaviate.io/deployment/shared.md
+- https://weaviate.io/deployment/dedicated.md
+- https://weaviate.io/learn/what-is-an-ai-database.md
+- https://weaviate.io/cost-performance-optimization.md
 
