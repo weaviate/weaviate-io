@@ -298,7 +298,7 @@ For the processing of this personal data, we rely on our legitimate interest in 
 
 <br></br>
 
-d. If you** contact us via social media (such as the Weaviate Slack Community)**, we process the following personal data, for the following purposes and on the following legal basis:
+d. If you** contact us via social media (such as the Weaviate Forum)**, we process the following personal data, for the following purposes and on the following legal basis:
 
 <br></br>
 
