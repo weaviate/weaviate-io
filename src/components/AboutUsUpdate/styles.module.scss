@@ -220,15 +220,18 @@ p {
     display: flex;
     gap: 35px;
     margin: 10px 0px 10px;
-    justify-content: flex-start;
     align-items: center;
     overflow-x: scroll;
     flex-direction: row;
     scroll-snap-type: x mandatory;
     white-space: nowrap;
+    flex-wrap: wrap;
+    justify-content: center;
 
     @media screen and (max-width: 1440px) {
       width: 100%;
+      justify-content: flex-start;
+      flex-wrap: nowrap;
     }
 
     a {
