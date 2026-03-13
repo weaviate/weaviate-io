@@ -1,36 +1,35 @@
-@use "../../variables.scss" as v;
+@use "../../variables" as v;
 
-.switch-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: start;
-}
+@mixin switch() {
+  .switch-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+  }
 
-.switch-label {
-  color: v.$deselectedButtonText;
+  .switch-label {
+    color: v.$deselectedButtonText;
+  }
 }
 
 .switch {
-  display: flex;
-  flex-direction: row;
+  display: flex !important;
+  flex-direction: row !important;
   gap: v.$space;
   padding: 4px 0px;
   width: fit-content;
 
-  &-option {
+  button.switch-option {
     position: relative;
     padding: 8px 20px;
-    border: none;
     color: v.$deselectedButtonText;
     background: v.$deselectedButtonBg;
     font-size: 0.9em;
     font-weight: 700;
     min-width: 80px;
     height: 44px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: v.$deselectedButtonBorder;
+    border: 1px solid v.$deselectedButtonBorder;
     border-radius: calc(v.$space / 2);
     cursor: pointer;
     transition: color 0.2s ease;
@@ -48,7 +47,7 @@
     }
   }
 
-  &-text {
+  .switch-text {
     position: relative;
     z-index: 1;
   }

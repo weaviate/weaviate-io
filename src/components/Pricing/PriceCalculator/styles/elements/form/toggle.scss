@@ -1,75 +1,77 @@
-@use "../../variables.scss" as v;
+@use "../../variables" as v;
 @use "sass:color";
 
-.toggle {
-  flex-direction: row;
-  align-items: center;
-  outline: none;
-  height: 44px;
-
-  .togglerWrapper {
+@mixin toggle() {
+  .toggle {
+    flex-direction: row;
+    align-items: center;
+    outline: none;
     height: 44px;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  }
 
-  .toggler {
-    position: relative;
-    width: 55px;
-    height: 22px;
-    border: 1px solid v.$buttonBorder;
-    background: v.$toggleBg;
-    border-radius: 99px;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    transition: v.$transition;
-  }
+    .togglerWrapper {
+      height: 44px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
 
-  &.active .toggler {
-    border: 1px solid v.$green;
-    background: v.$green;
-  }
-
-  &:focus,
-  &:hover {
     .toggler {
-      border: 1px solid color.adjust(v.$buttonBorder, $lightness: -20%);
+      position: relative;
+      width: 55px;
+      height: 22px;
+      border: 1px solid v.$buttonBorder;
+      background: v.$toggleBg;
+      border-radius: 99px;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: v.$transition;
     }
+
     &.active .toggler {
-      border: 1px solid color.adjust(v.$green, $lightness: -20%);
+      border: 1px solid v.$green;
+      background: v.$green;
     }
-  }
 
-  .disk {
-    z-index: 200;
-    position: absolute;
-    left: 0;
-    height: 100%;
-    aspect-ratio: 1 / 1;
-    background: v.$white;
-    border-radius: 99px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  }
+    &:focus,
+    &:hover {
+      .toggler {
+        border: 1px solid color.adjust(v.$buttonBorder, $lightness: -20%);
+      }
+      &.active .toggler {
+        border: 1px solid color.adjust(v.$green, $lightness: -20%);
+      }
+    }
 
-  .text {
-    z-index: 199;
-    font-size: 0.8em;
-    font-weight: 700;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0px;
-    left: 0px;
-    align-items: flex-start;
-    cursor: pointer;
-
-    > span {
+    .disk {
+      z-index: 200;
       position: absolute;
+      left: 0;
+      height: 100%;
+      aspect-ratio: 1 / 1;
+      background: v.$white;
+      border-radius: 99px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .text {
+      z-index: 199;
+      font-size: 0.8em;
+      font-weight: 700;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0px;
       left: 0px;
-      top: 2px;
-      width: auto;
+      align-items: flex-start;
+      cursor: pointer;
+
+      > span {
+        position: absolute;
+        left: 0px;
+        top: 2px;
+        width: auto;
+      }
     }
   }
 }

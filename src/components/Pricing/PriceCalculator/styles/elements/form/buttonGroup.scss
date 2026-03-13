@@ -1,17 +1,19 @@
-@use "../../variables.scss" as v;
+@use "../../variables" as v;
 
-.buttonGroup {
-  flex-grow: 1;
+@mixin buttonGroup() {
+  .buttonGroup {
+    flex-grow: 1;
 
-  ul {
-    display: flex;
-    flex-direction: row;
-    gap: v.$space;
-    width: 100%;
-
-    li {
+    ul {
+      display: flex;
+      flex-direction: row;
+      gap: v.$space;
       width: 100%;
-      flex-grow: 1;
+
+      li {
+        width: 100%;
+        flex-grow: 1;
+      }
     }
   }
 }

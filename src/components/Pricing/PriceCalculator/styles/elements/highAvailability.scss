@@ -1,14 +1,16 @@
-@use "../variables.scss" as v;
+@use "../variables" as v;
 
-.highAvailability {
-  flex-direction: row;
-  width: 100%;
-  gap: v.$space;
-  padding: 10px 0px;
-  align-items: center;
-  color: v.$deselectedButtonText;
+@mixin highAvailability() {
+  .highAvailability {
+    flex-direction: row;
+    width: 100%;
+    gap: v.$space;
+    padding: 10px 0px;
+    align-items: center;
+    color: v.$deselectedButtonText;
 
-  > div:first-of-type {
-    flex: 1;
+    > div:first-of-type {
+      flex: 1;
+    }
   }
 }

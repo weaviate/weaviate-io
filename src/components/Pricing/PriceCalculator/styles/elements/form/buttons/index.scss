@@ -1,1 +1,5 @@
-@use 'calculatorButton.scss' as *;
+@use "calculatorButton" as calc;
+
+@mixin buttons() {
+  @include calc.calculatorButton();
+}
