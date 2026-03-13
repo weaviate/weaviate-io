@@ -9,7 +9,7 @@ Here are the release ⭐️*highlights*⭐️!
 - [**Anthropic integration**](#anthropic-integration)
 - [**Bulk enable API-based modules**](#bulk-enable-modules)
 - [**Multi target vector search**](#multi-target-vector-search)
-- [**Tenant statuses changed**](#tenant-statuses-changed)
+- [**Tenant states changed**](#tenant-states-changed)
 - [**Tenant offload to cloud storage**](#tenant-offload-to-cloud-storage)
 - [**Async Python client**](#async-python-client)
 - [**Scalar Quantization**](#scalar-quantization)
@@ -19,9 +19,11 @@ Here are the release ⭐️*highlights*⭐️!
 
 ## Improved Range Queries
 
-import RangeGraphic from '/blog/2024-07-31-weaviate-1-26-release/img/Range.jpg';
+import RangeGraphic from "/blog/2024-07-31-weaviate-1-26-release/img/Range.jpg";
 
-<p align="center"><img src={RangeGraphic} width="75%" alt="Range query section graphic"/></p>
+<p align="center">
+  <img src={RangeGraphic} width="75%" alt="Range query section graphic" />
+</p>
 
 The rangeable index is a powerful new tool for quantitative comparisons.
 
@@ -120,9 +122,11 @@ For code examples, see [async usage examples](https://docs.weaviate.io/weaviate/
 
 ## Scalar Quantization
 
-import SQGraphic from '/blog/2024-07-31-weaviate-1-26-release/img/SQ.jpg';
+import SQGraphic from "/blog/2024-07-31-weaviate-1-26-release/img/SQ.jpg";
 
-<p align="center"><img src={SQGraphic} width="75%" alt="SQ section graphic"/></p>
+<p align="center">
+  <img src={SQGraphic} width="75%" alt="SQ section graphic" />
+</p>
 
 This release introduces a new vector compression technique called scalar quantization (SQ). SQ is a powerful technique that reduces the storage space required for each dimension of a vector. In Weaviate, vector dimensions are typically stored using 32 bit floating point numbers. With scalar quantization, each dimension is converted into an 8 bit integer. This transformation effectively cuts the size of vectors by 75% since 8 bit representations only need a quarter of the original 32 bits.
 
@@ -134,9 +138,11 @@ Scalar quantization offers a compelling trade-off between storage efficiency and
 
 ## Dashboards for async indexes
 
-import ChartsGraphic from '/blog/2024-07-31-weaviate-1-26-release/img/Charts.jpg';
+import ChartsGraphic from "/blog/2024-07-31-weaviate-1-26-release/img/Charts.jpg";
 
-<p align="center"><img src={ChartsGraphic} width="75%" alt="Charts section graphic"/></p>
+<p align="center">
+  <img src={ChartsGraphic} width="75%" alt="Charts section graphic" />
+</p>
 
 Weaviate can gather metrics that are compatible with the open-source [Prometheus](https://prometheus.io/docs/introduction/overview/) monitoring and alerting system. The v1.26 Weaviate release adds [new metrics](https://docs.weaviate.io/weaviate/configuration/monitoring) that monitor aysnc indexing queues.
 

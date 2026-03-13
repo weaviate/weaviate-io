@@ -1,21 +1,20 @@
 ---
-title: 'Introducing the Weaviate Transformation Agent'
+title: "Introducing the Weaviate Transformation Agent"
 slug: transformation-agent
 authors: [charles-pierse, tuana, alvin]
 date: 2025-03-11
-tags: ['concepts', 'agents', 'release']
+tags: ["concepts", "agents", "release"]
 image: ./img/hero.png
 description: "Learn how the new Transformation Agent will change the way we manage data. Say goodbye to the tedious tasks of database management!"
 ---
+
 ![Introducing the Weaviate Transformation Agent](./img/hero.png)
 
-
-Following our introduction of the [**`QueryAgent`**](/blog/query-agent) last week, we’re back with yet another one: The **`TransformationAgent`** is now ready in public preview for all [Weaviate Serverless Cloud](/deployment/serverless) users (including free Sandbox users)!
-
+Following our introduction of the [**`QueryAgent`**](/blog/query-agent) last week, we’re back with yet another one: The **`TransformationAgent`** is now ready in public preview for all [Weaviate Serverless Cloud](/deployment/shared) users (including free Sandbox users)!
 
 When we talk about AI agents, we often discuss them in the context of advanced information retrieval, assistants in our research if you will. But, agentic AI has so much more to offer. What if we could create agents that not only do research for us, but also take actions or complete tasks for us? The Transformation Agent is an example of one of these agentic workflows. Simply put, it’s an agentic database management application which uses natural language instructions and LLMs to transform data in Weaviate collections.
 
-:::note 
+:::note
 This blog comes with an accompanying [recipe](https://colab.research.google.com/github/weaviate/recipes/blob/main/weaviate-services/agents/transformation-agent-get-started.ipynb#scrollTo=Uiu5C8n7v-Xp) that you can use to get started.
 
 ⚠️ Since this service is currently in preview, please do not demo it on production collections.
@@ -34,7 +33,7 @@ For example, think of a scenario where you may have quarterly reports from teams
 
 Not only that, the agent will do this for all objects in our collection. While these may seem like simple steps, it completely removes the burden of creating the right API calls to add the new property from the maintainer of the database, not to mention the step for generating the summaries in the first place.
 
-:::note 
+:::note
 ❗️ For our first preview release of this agent, each Weaviate organization is limited to 10000 object transformations per day. This limit will be incremented over time.
 :::
 
@@ -46,15 +45,15 @@ We know the stakes are higher with such inherent access over your collections. S
 
 For the first preview version of the `TransformationAgent`, we support two transformations:
 
--   **Append Property:** Which allows you to add a new property to all of the objects within your collection. This transformation expects:
-    -   An instruction: Describing what the LLM should do to create this new property
-    -   The property name: The name of the new property to create
-    -   The properties to view: The name(s) of the existing properties in the object that the LLM may use as context when generating the new property
-    -   The data type: Which is the data type that the new property will be written to Weaviate as. (e.g. text, text array, integer..)
--   **Update Property:** Which allows you to update the contents of a property for all objects within your collection. This transformation expects
-    -   The property name: The name of the (existing) property we want to update
-    -   An instruction: Describing what the LLM should do to update the property
-    -   The properties to view: The name(s) of the existing properties in the object that the LLM may use as context when updating property
+- **Append Property:** Which allows you to add a new property to all of the objects within your collection. This transformation expects:
+  - An instruction: Describing what the LLM should do to create this new property
+  - The property name: The name of the new property to create
+  - The properties to view: The name(s) of the existing properties in the object that the LLM may use as context when generating the new property
+  - The data type: Which is the data type that the new property will be written to Weaviate as. (e.g. text, text array, integer..)
+- **Update Property:** Which allows you to update the contents of a property for all objects within your collection. This transformation expects
+  - The property name: The name of the (existing) property we want to update
+  - An instruction: Describing what the LLM should do to update the property
+  - The properties to view: The name(s) of the existing properties in the object that the LLM may use as context when updating property
 
 ![Operation Workflows](img/workflows.png)
 
@@ -68,10 +67,10 @@ Let’s have a look at an example.
 
 As we iterate on and improve the `TransformationAgent`, our vision is to provide a service that will allow you to do so much more than currently possible:
 
--   Prepare data cleaning processes with simple natural language.
--   Deduplicate your data.
--   Add new objects to your collection.
--   Extract metadata, images, dates and other key information out into their own properties.
+- Prepare data cleaning processes with simple natural language.
+- Deduplicate your data.
+- Add new objects to your collection.
+- Extract metadata, images, dates and other key information out into their own properties.
 
 In short, we are aiming to significantly simplify the process of maintaining your database and its contents with a simple natural language interface.
 
@@ -81,8 +80,8 @@ In short, we are aiming to significantly simplify the process of maintaining you
 
 As an example scenario, think of a collection called “ArxivPapers” which has objects with just two properties:
 
--   title: A title of a research paper
--   abstract: The abstract of a research paper
+- title: A title of a research paper
+- abstract: The abstract of a research paper
 
 In the accompanying recipe, you can get access to this dataset and write it to a collection in Weaviate Cloud. Using the Explorer tool in the console, you can take a look at the contents. For example, an object in this collection looks like this:
 
@@ -93,7 +92,7 @@ We can use the `TransformationAgent` to add more properties to this collection s
 To get started, we need to install the Weaviate Python client. The `TransformationAgent` (as well as the `QueryAgent`) is now ready to preview via the Weaviate Python client, for all Serverless Weaviate Cloud users (including free Sandboxes).
 
 ```bash
-pip install weaviate-client[agents]  
+pip install weaviate-client[agents]
 
 ```
 
@@ -157,7 +156,6 @@ Once we’ve updated all the objects using our new `agent` the same object we sa
 
 The Transformation Agent represents a significant leap forward in database management, offering a natural language interface for Weaviate Cloud users to modify and enhance their collections. By combining LLM capabilities with structured database operations, it simplifies complex tasks like property creation or updates. This preview release, featuring append and update operations, marks our first step toward a future where database transformations become more intuitive and accessible, reducing the technical barriers traditionally associated with database management.
 
-
-import WhatsNext from '/_includes/what-next.mdx'
+import WhatsNext from "/_includes/what-next.mdx";
 
 <WhatsNext />
