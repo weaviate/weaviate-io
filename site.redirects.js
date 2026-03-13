@@ -253,16 +253,33 @@ const siteRedirects = {
         // Calendar redirects
 
         {
-            to: '/rohan',
+            to: '/contact',
             from: '/griffin',
         },
-          {
-            to: '/rohan',
+        {
+            to: '/contact',
             from: '/aaron',
         },
         {
-            to: '/rohan',
+            to: '/contact',
             from: '/willem',
+        },
+        {
+            to: '/contact',
+            from: '/rohan',
+        },
+        {  
+            to: '/contact',
+            from: '/alec',
+        },
+        {
+            to: '/contact',
+            from: '/luke',
+        },
+        {
+
+            to: '/contact',
+            from: '/nathaniel',
         },
           // BYOC redirects
 

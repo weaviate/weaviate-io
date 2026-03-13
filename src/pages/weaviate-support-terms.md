@@ -45,10 +45,6 @@ Customer will work with Weaviate support personnel during the investigation of S
 
 <br></br>
 
-### **Slack Community**
-
-Our Slack community is available for everyone to discuss and share insights, although it is not an official channel for support.
-<br></br>
 
 ### **Documentation Library**
 
