@@ -87,7 +87,7 @@ export default function PricingTiers() {
                 <strong>Compression by default.</strong>
               </>,
               <>
-                <strong>Support</strong> via Community Slack and Weaviate Forum.
+                <strong>Support</strong> via Weaviate Forum.
               </>,
             ]}
           />

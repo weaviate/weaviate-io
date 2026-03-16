@@ -3,7 +3,7 @@ import Layout from '@theme/Layout';
 import { MetaSEO } from '/src/theme/MetaSEO';
 
 import PodcastHeader from '/src/components/Podcast/Header';
-import PodcastCard from '/src/components/Podcast/Card';
+import PodcastLibrary from '/src/components/Podcast/Library';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 
 export default function PodcastPage() {
@@ -15,7 +15,7 @@ export default function PodcastPage() {
       >
         <MetaSEO img="og/content/podcast.jpg" />
         <PodcastHeader />
-        <PodcastCard />
+        <PodcastLibrary />
       </Layout>
       <ThemeSwitch />
     </div>

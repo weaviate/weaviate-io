@@ -1,5 +1,13 @@
 [
   {
+    "title": "Doug Turnbull and Trey Grainger on AI-Powered Search - Weaviate Podcast #133",
+    "description": "Welcome to the 133th episode of the Weaviate Podcast featuring Doug Turnbull and Trey Grainger, discussing AI-Powered Search!",
+    "youtube": "ZnQv_wBzUa4",
+    "date": "26-03-02",
+    "cover_image": "/img/podcasts/podcast-133.jpg",
+    "is_use_case": false
+  },
+  {
     "title": "Pyversity with Thomas van Dongen - Weaviate Podcast #132",
     "description": "Welcome to the 132th episode of the Weaviate Podcast featuring Thomas van Dongen, the creator of Pyversity!",
     "youtube": "L2N1qvfP7tg",
