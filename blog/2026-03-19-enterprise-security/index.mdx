@@ -72,16 +72,16 @@ _MedVector_ manages three collections with very different sensitivity levels:
 
 Their strict least-privilege model looks like this:
 
-| Role                  | `MedicalArticles` | `PatientRecords` | Dev Collections | Manage RBAC Roles |
-| --------------------- | ----------------- | ---------------- | --------------- | ----------------- |
-| `RoleManager`         | No Access         | No Access        | No Access       | ✅                |
-| `Clinician`           | Read only         | Full CRUD        | No Access       | ❌                |
-| `Researcher`          | Read only         | No Access        | Full CRUD       | ❌                |
-| `ClinicalSearchApp`   | Read only         | **No Access**    | **No Access**   | ❌                |
+| Role                | `MedicalArticles` | `PatientRecords` | Dev Collections | Manage RBAC Roles |
+| ------------------- | ----------------- | ---------------- | --------------- | ----------------- |
+| `RoleManager`       | No Access         | No Access        | No Access       | ✅                |
+| `Clinician`         | Read only         | Full CRUD        | No Access       | ❌                |
+| `Researcher`        | Read only         | No Access        | Full CRUD       | ❌                |
+| `ClinicalSearchApp` | Read only         | **No Access**    | **No Access**   | ❌                |
 
 In this setup, the patient-facing search application (`ClinicalSearchApp`) can only query medical articles — it has zero access to patient records. A researcher can read published literature for their models, but cannot touch patient records. Even if credentials are compromised, the blast radius is contained to the permissions of that specific role.
 
-Notice that the `RoleManager` can create and assign roles but has zero access to any data — separating role administration from data access. 
+Notice that the `RoleManager` can create and assign roles but has zero access to any data — separating role administration from data access.
 
 For _MedVector_, this meant their auditors could see directly in the configuration that the `ClinicalSearchApp` role had zero access to `PatientRecords`. No ambiguity, no "we think it's locked down" — the policy itself was the proof.
 
@@ -97,12 +97,12 @@ At 80 employees, _MedVector_ had been manually assigning Weaviate roles — and 
 
 After _MedVector_ mapped their IdP groups to Weaviate roles, the Dr. Chen problem disappeared. Moving her from `Clinical-Staff` to `Research-Team` in the IdP automatically updated her Weaviate permissions on next connection — zero manual intervention. Here's what their mapping looks like:
 
-| IdP Group              | Weaviate Role   | Access Level                                  |
-| ---------------------- | --------------- | --------------------------------------------- |
-| `Clinical-Staff`       | `Clinician`     | Read articles, full access to patient records |
-| `Research-Team`        | `Researcher`    | Read articles, full dev access                |
-| `IT-Admins`            | `Administrator` | Full access across all collections            |
-| `External-Contractors` | `DevOnly`       | Dev access only                               |
+| IdP Group              | Weaviate Role | Access Level                                  |
+| ---------------------- | ------------- | --------------------------------------------- |
+| `Clinical-Staff`       | `Clinician`   | Read articles, full access to patient records |
+| `Research-Team`        | `Researcher`  | Read articles, full dev access                |
+| `Access-Manager-Admin` | `RoleManager` | Manage RBAC roles, no data access             |
+| `External-Contractors` | `DevOnly`     | Dev access only                               |
 
 This setup gave _MedVector_ zero-touch onboarding (a new clinician is added to the `Clinical-Staff` group and immediately gains the correct Weaviate access), instant revocation (removing a user from the group instantly revokes their specific privileges), and audit simplicity (auditors only need to check the IdP group membership).
 
