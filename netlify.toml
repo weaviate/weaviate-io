@@ -31,6 +31,11 @@ status = 301
   to = "https://docs.weaviate.io/weaviate/starter-guides/managing-collections/collections-scaling-limits"
   status = 301
 
+  [[redirects]]
+  from = "/slack"
+  to = "https://forum.weaviate.io"
+  status = 301
+
 [[edge_functions]]
 function = "block-feed-bot"
 path = "/blog/rss.xml"

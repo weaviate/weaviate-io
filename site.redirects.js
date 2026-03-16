@@ -288,11 +288,7 @@ const siteRedirects = {
             from: '/deployment/byoc',
         },
 
-        //Slack to forum redirects
-        {
-            to: '/slack',
-            from: 'forum.weaviate.io',
-        },
+       
 
     ],
 };
