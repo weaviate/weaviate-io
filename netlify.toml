@@ -33,7 +33,7 @@ status = 301
 
   [[redirects]]
   from = "/slack"
-  to = "https://forum.weaviate.io"
+  to = "https://forum.weaviate.io/t/saying-goodbye-to-our-public-slack/22266"
   status = 301
 
 [[edge_functions]]
