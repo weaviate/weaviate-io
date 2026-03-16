@@ -52,61 +52,7 @@ If you're running a local open-source installation and need help setting up IdP 
 
 :::
 
-## 2. OIDC Groups: Scaling Role Management {#oidc-groups-scaling-role-management}
-
-:::note Auditor question:
-"When employees change roles inside the company, how quickly are their access rights updated?"
-:::
-
-At 80 employees, _MedVector_ had been manually assigning Weaviate roles — and it was falling behind. When Dr. Chen moved from the clinical team to research, her old permissions lingered for two weeks before anyone noticed. They needed access that stayed in sync with reality.
-
-**OIDC Groups** solve this by mapping your existing organizational structure directly to Weaviate roles. Your identity provider already knows who belongs to which teams. You can configure Weaviate to trust these group claims. When a user's group membership changes in your IdP (maybe they get promoted or switch teams), Weaviate automatically reflects this permission change on their next connection.
-
-After _MedVector_ mapped their Entra ID groups to Weaviate roles, the Dr. Chen problem disappeared. Moving her from `Clinical-Staff` to `Research-Team` in Entra ID automatically updated her Weaviate permissions on next login — zero manual intervention. Here's what their mapping looks like:
-
-| Microsoft Entra ID Group | Weaviate Role   | Access Level                                  |
-| ------------------------ | --------------- | --------------------------------------------- |
-| `Clinical-Staff`         | `Clinician`     | Read articles, full access to patient records |
-| `Research-Team`          | `Researcher`    | Read articles, full dev access                |
-| `IT-Admins`              | `Administrator` | Full access across all collections            |
-| `External-Contractors`   | `DevOnly`       | Dev access only                               |
-
-This setup gave _MedVector_ zero-touch onboarding (a new clinician is added to the `Clinical-Staff` group and immediately gains the correct Weaviate access), instant revocation (removing a user from the group instantly revokes their specific privileges), and audit simplicity (auditors only need to check the IdP group membership).
-
-### Assigning Roles to OIDC Groups
-
-Once Weaviate is configured with a `GROUPS_CLAIM` (as shown in the [OIDC setup](#oidc-integration) above), you can assign roles to groups programmatically:
-
-```python
-from weaviate.classes.rbac import Permissions
-
-# Create a custom role
-client.roles.create(
-    role_name="Clinician",
-    permissions=[
-        # Read access to MedicalArticles
-        Permissions.data(collection="MedicalArticles", read=True),
-        # Full data access to PatientRecords
-        Permissions.data(collection="PatientRecords", create=True, read=True, update=True, delete=True),
-    ],
-)
-
-# Assign the role to an OIDC group (not individual users)
-client.groups.oidc.assign_roles(
-    group_id="Clinical-Staff",
-    role_names=["Clinician"],
-)
-```
-
-Now every member of the `Clinical-Staff` group in Entra ID automatically inherits the `Clinician` role in Weaviate—no per-user provisioning required.
-
-:::tip More info
-
-Read more about OIDC group management in the [official Weaviate documentation](https://docs.weaviate.io/weaviate/configuration/rbac/manage-groups).
-
-:::
-
-## 3. Enterprise RBAC at Scale
+## 2. Enterprise RBAC at Scale
 
 :::note Auditor question:
 "Who can access patient records, and can you prove least privilege?"
@@ -138,6 +84,60 @@ In this setup, the patient-facing search application (`ClinicalSearchApp`) can o
 Notice that the `RoleManager` can create and assign roles but has zero access to any data — separating role administration from data access. 
 
 For _MedVector_, this meant their auditors could see directly in the configuration that the `ClinicalSearchApp` role had zero access to `PatientRecords`. No ambiguity, no "we think it's locked down" — the policy itself was the proof.
+
+## 3. OIDC Groups: Scaling Role Management {#oidc-groups-scaling-role-management}
+
+:::note Auditor question:
+"When employees change roles inside the company, how quickly are their access rights updated?"
+:::
+
+At 80 employees, _MedVector_ had been manually assigning Weaviate roles — and it was falling behind. When Dr. Chen moved from the clinical team to research, her old permissions lingered for two weeks before anyone noticed. They needed access that stayed in sync with reality.
+
+**OIDC Groups** solve this by mapping your existing organizational structure directly to Weaviate roles. Your identity provider already knows who belongs to which teams. You can configure Weaviate to trust these group claims. When a user's group membership changes in your IdP (maybe they get promoted or switch teams), Weaviate automatically reflects this permission change on their next connection.
+
+After _MedVector_ mapped their IdP groups to Weaviate roles, the Dr. Chen problem disappeared. Moving her from `Clinical-Staff` to `Research-Team` in the IdP automatically updated her Weaviate permissions on next connection — zero manual intervention. Here's what their mapping looks like:
+
+| IdP Group              | Weaviate Role   | Access Level                                  |
+| ---------------------- | --------------- | --------------------------------------------- |
+| `Clinical-Staff`       | `Clinician`     | Read articles, full access to patient records |
+| `Research-Team`        | `Researcher`    | Read articles, full dev access                |
+| `IT-Admins`            | `Administrator` | Full access across all collections            |
+| `External-Contractors` | `DevOnly`       | Dev access only                               |
+
+This setup gave _MedVector_ zero-touch onboarding (a new clinician is added to the `Clinical-Staff` group and immediately gains the correct Weaviate access), instant revocation (removing a user from the group instantly revokes their specific privileges), and audit simplicity (auditors only need to check the IdP group membership).
+
+:::tip More info
+
+Read more about OIDC group management in the [official Weaviate documentation](https://docs.weaviate.io/weaviate/configuration/rbac/manage-groups).
+
+:::
+
+#### Assigning RBAC Roles to OIDC Groups
+
+Once Weaviate is configured with a `GROUPS_CLAIM` (as shown in the [OIDC setup](#oidc-integration) above), you can create roles and assign them to IdP groups programmatically:
+
+```python
+from weaviate.classes.rbac import Permissions
+
+# Create a custom role
+client.roles.create(
+    role_name="Clinician",
+    permissions=[
+        # Read access to MedicalArticles
+        Permissions.data(collection="MedicalArticles", read=True),
+        # Full data access to PatientRecords
+        Permissions.data(collection="PatientRecords", create=True, read=True, update=True, delete=True),
+    ],
+)
+
+# Assign the role to an OIDC group (not individual users)
+client.groups.oidc.assign_roles(
+    group_id="Clinical-Staff",
+    role_names=["Clinician"],
+)
+```
+
+Now every member of the `Clinical-Staff` group in the IdP automatically inherits the `Clinician` role in Weaviate — no per-user provisioning required.
 
 ## 4. Multi-Tenant Security {#multi-tenant-security}
 
