@@ -23,7 +23,7 @@ const config = {
     baseUrl: '/',
     trailingSlash: false,
     onBrokenLinks: 'warn',
-    onBrokenAnchors: 'ignore',
+    onBrokenAnchors: 'warn',
     favicon: 'img/favicon.ico',
     clientModules: [require.resolve('./src/components/UTM/capture.js')],
 
@@ -815,9 +815,6 @@ const config = {
 
     markdown: {
         mermaid: true,
-         hooks: {
-    onBrokenMarkdownLinks: 'warn',
-  },
     },
     themes: ['@docusaurus/theme-mermaid'],
 
