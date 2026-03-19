@@ -8,14 +8,12 @@ const {themes} = require('prism-react-renderer');
 const siteRedirects = require('./site.redirects');
 const path = require('path');
 
+module.exports = async function createConfigAsync() {
+  const math = (await import('remark-math')).default;
+  const katex = (await import('rehype-katex')).default;
 
-// Math equation plugins
-const math = require('remark-math');
-const katex = require('rehype-katex');
-
-
-/** @type {import('@docusaurus/types').Config} */
-const config = {
+  /** @type {import('@docusaurus/types').Config} */
+  const config = {
     title: 'Weaviate',
     tagline:
         'Weaviate empowers developers to deliver, scalable vector search-powered apps painlessly',
@@ -321,14 +319,12 @@ const config = {
         '/fonts/font-awesome/regular.css',
         '/fonts/font-awesome/brands.css',
 
-        {
-            // styles for math equations
-            href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
-            type: 'text/css',
-            integrity:
-                'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
-            crossorigin: 'anonymous',
-        },
+     {
+  // styles for math equations
+  href: 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css',
+  type: 'text/css',
+  crossorigin: 'anonymous',
+},
     ],
 
     // Even if you don't use internalization, you can use this field to set useful
@@ -820,4 +816,5 @@ const config = {
 
 };
 
-module.exports = config;
+  return config;
+};
