@@ -1,16 +1,16 @@
 ---
-title: 'Introducing Glowe: Agent-Powered Korean Skincare Routines'
+title: "Introducing Glowe: Agent-Powered Korean Skincare Routines"
 slug: glowe-app
 authors: [victoria, prajjwal]
 date: 2025-07-09
-tags: ['how-to', 'agents', 'search']
+tags: ["how-to", "agents", "search"]
 image: ./img/glowe-hero.png
 description: "Glowe is a Korean beauty recommendation app that uses domain knowledge agents, custom embedding strategies, and vector search to create personalized skincare routines. Try now: https://www.glowe.app/"
 ---
 
 ![hero image](./img/glowe-hero.png)
 
-Skincare is deeply personal, and finding the right products to build an effective routine can feel overwhelming and impossible. The skincare industry generates thousands of products with millions of reviews annually, yet most recommendation systems fail to capture the nuanced relationships between ingredients, user experiences, and skincare outcomes based on *actual user data*. That's why we built **Glowe**, a Korean beauty recommendation app that demonstrates how domain knowledge agents, custom embedding strategies, and [vector search](/blog/vector-search-explained) can create genuinely intelligent product recommendations.
+Skincare is deeply personal, and finding the right products to build an effective routine can feel overwhelming and impossible. The skincare industry generates thousands of products with millions of reviews annually, yet most recommendation systems fail to capture the nuanced relationships between ingredients, user experiences, and skincare outcomes based on _actual user data_. That's why we built **Glowe**, a Korean beauty recommendation app that demonstrates how domain knowledge agents, custom embedding strategies, and [vector search](/blog/vector-search-explained) can create genuinely intelligent product recommendations.
 
 Whether you're aiming for intense hydration, a radiant glow, or targeting specific concerns like acne or redness, Glowe leverages [Agentic AI](/blog/ai-agents) to recommend effective and safe product combinations based on your skin profile. It considers positive and negative effects, ingredient compatibility, and your own personal skin goals to create your very own skincare stack. Glowe also features an agentic chat interface, allowing you to engage naturally with its domain-specific knowledge and receive personalized skincare guidance in real time.
 
@@ -19,17 +19,17 @@ Whether you're aiming for intense hydration, a radiant glow, or targeting specif
 Glowe is available to use here: [glowe.app](https://www.glowe.app/)
 :::
 
-import gloweVideo from './img/glowe-app-demo.mp4';
+import gloweVideo from "./img/glowe-app-demo.mp4";
 
 <video width="100%" autoplay loop controls>
   <source src={gloweVideo} type="video/mp4" />
-Your browser does not support the video tag.
+  Your browser does not support the video tag.
 </video>
 
 ## Why Domain Knowledge Agents Matter in Skincare
 
-At the heart of Glowe's personalized experience is a **skincare domain agent**. 
-Unlike general-purpose AI that tries to cover everything, a domain agent is deeply focused on one specific area. Glowe doesn't just generate routines, it understands the science behind them. 
+At the heart of Glowe's personalized experience is a **skincare domain agent**.
+Unlike general-purpose AI that tries to cover everything, a domain agent is deeply focused on one specific area. Glowe doesn't just generate routines, it understands the science behind them.
 
 Backed by [Weaviate Agents](/blog/weaviate-agents) integrated through Elysia (which we'll discuss shortly), it combines smart retrieval, tailored prompts, and expert-level reasoning to offer advice that's genuinely useful and not generic.
 
@@ -53,10 +53,11 @@ It's like having your own skincare expert, available 24/7.
 
 Most skincare apps just throw products at you without really understanding what works together. We wanted to do something different with Glowe, so we built a system that actually knows how skincare routines work in the real world.
 
-For this, we started with a healthy dataset of around 1,440 curated Korean skincare products and over 94,500 user reviews. But unlike most recommendation systems that treat products and reviews as separate, isolated pieces, we looked at the bigger picture of how products would work together in real user routines. Because let's be honest: your morning routine can't also be your evening routine, and some ingredients just don't get along. 
+For this, we started with a healthy dataset of around 1,440 curated Korean skincare products and over 94,500 user reviews. But unlike most recommendation systems that treat products and reviews as separate, isolated pieces, we looked at the bigger picture of how products would work together in real user routines. Because let's be honest: your morning routine can't also be your evening routine, and some ingredients just don't get along.
 
-So, we ran every review through an LLM (Gemma 3 12B) to pull out the real effects, good and bad, that people experienced based on the review's text. 
+So, we ran every review through an LLM (Gemma 3 12B) to pull out the real effects, good and bad, that people experienced based on the review's text.
 The result? Enhanced reviews that show what works (and what doesn't):
+
 ```json
 {
   "text": "Helped calm my redness and hydrate my skin, though I broke out a little at first.",
@@ -71,25 +72,24 @@ This way, we're not just guessing or using marketing-tailored descriptions; we a
 
 ### The Embedding Challenge
 
-A common approach in product recommendation is to embed the entire product object (name, brand, description, ingredients) into a single vector. However, for skincare, this can be problematic. Generic fields might dominate the vector space, diluting the importance of specific skincare effects like "hydration," "glowing skin," or "acne reduction." As a result, important effects could get buried, and we'd lose the ability to prioritize products based on how *strongly* they're associated with specific outcomes, which is the basis for building effective skincare routines.
+A common approach in product recommendation is to embed the entire product object (name, brand, description, ingredients) into a single vector. However, for skincare, this can be problematic. Generic fields might dominate the vector space, diluting the importance of specific skincare effects like "hydration," "glowing skin," or "acne reduction." As a result, important effects could get buried, and we'd lose the ability to prioritize products based on how _strongly_ they're associated with specific outcomes, which is the basis for building effective skincare routines.
 
 ### Solution: A Dual Embedding Strategy
 
 We separate the concept of a product into two distinct embeddings, using [named vectors in Weaviate](https://docs.weaviate.io/weaviate/config-refs/schema/multi-vector) so that each vector is independently searchable:
 
 1. **Product Embedding:**
-    - Captures descriptive metadata: name, brand, category, ingredients, etc.
-    - **Use Case:** Primarily for general browsing and product search, where users might look for a specific brand or product type.
+   - Captures descriptive metadata: name, brand, category, ingredients, etc.
+   - **Use Case:** Primarily for general browsing and product search, where users might look for a specific brand or product type.
 2. **Effect Embedding (Positive and Negative):**
-    - Captures the *skincare benefits* of a product, primarily extracted and weighted from actual user reviews.
-    - **Use Case:** Matching products to user skin profiles and building personalized skincare stacks (which helps in effective routine generation).
-
+   - Captures the _skincare benefits_ of a product, primarily extracted and weighted from actual user reviews.
+   - **Use Case:** Matching products to user skin profiles and building personalized skincare stacks (which helps in effective routine generation).
 
 ![Glowe Product Embedding Strategy](./img/embedding-strategy.png)
 
 ### Effect Embedding
 
-This is where it gets interesting. When building a user's curated skincare stack, we need to understand *how strongly* a product is linked to certain effects. To reflect that, we use a **TF-IDF-weighted embedding** based on review mentions. 
+This is where it gets interesting. When building a user's curated skincare stack, we need to understand _how strongly_ a product is linked to certain effects. To reflect that, we use a **TF-IDF-weighted embedding** based on review mentions.
 
 As discussed already, we've analyzed each review and extracted the reported skin effects in the LLM processing step. We then clustered them to 250 total effects to merge aliases and semantically similar wording ("hydrated skin", "skin hydration", "hydration" → "hydration" )
 
@@ -111,13 +111,12 @@ Now, let's explore the effect embedding process step by step:
 Each skincare effect (like `hydration`, `soothing`, `redness`) has a static vector:
 
 $$
-\begin\{aligned\}
-V_\{\text\{hydration\}\} &= (0.2, 0.1, 0.7) \\
-V_\{\text\{soothing\}\} &= (0.9, 0.5, 0.3) \\
-V_\{\text\{redness\}\} &= (0.3, 0.9, 0.8)
-\end\{aligned\}
+\begin{aligned}
+V_{\text{hydration}} &= (0.2, 0.1, 0.7) \\
+V_{\text{soothing}} &= (0.9, 0.5, 0.3) \\
+V_{\text{redness}} &= (0.3, 0.9, 0.8)
+\end{aligned}
 $$
-
 
 ---
 
@@ -125,24 +124,24 @@ $$
 
 Rarer effects carry more weight.
 
-- Hydration: Appears in 600 of 1000 products → IDF ≈ 0.51  (here $df_\{hydration\}=600,N=1000$)
+- Hydration: Appears in 600 of 1000 products → IDF ≈ 0.51 (here $df_{hydration}=600,N=1000$)
 - Similarly, Soothing: 300 → IDF ≈ 1.20 and Redness: 75 → IDF ≈ 2.60.
 
 $$
-IDF_i = log(\frac \{N\} \{df_i\})
+IDF_i = \log\left(\frac{N}{df_i}\right)
 $$
 
 ---
 
 #### **Step 3: Calculate TF (Term Frequency)**
 
-Count how often each effect appears in *this* product's reviews:
+Count how often each effect appears in _this_ product's reviews:
 
-- Hydration (12 mentions): TF ≈ 2.56  ( $c_\{hydration\}=12$)
+- Hydration (12 mentions): TF ≈ 2.56 ( $c_{hydration}=12$)
 - Similarly, Soothing (5): TF ≈ 1.79 and Redness (9): TF ≈ 2.30
 
 $$
-TF_i = \{log(\{c_i\}+1)\}
+TF_i = \log(c_i + 1)
 $$
 
 ---
@@ -152,15 +151,17 @@ $$
 We give more weight to rare but strongly mentioned effects:
 
 $$
-w_i = \frac \{TF_i \cdot IDF_i\} \{\sum_\{j\}[TF_j \cdot IDF_j]\}
+w_i = \frac{TF_i \cdot IDF_i}{\sum_{j} (TF_j \cdot IDF_j)}
 $$
 
 $$
-w_\{hydration\} ≈0.14 ; w_\{soothing\} ≈0.23 ; w_\{redness\}≈0.63
+w_{\text{hydration}} \approx 0.14,\quad
+w_{\text{soothing}} \approx 0.23,\quad
+w_{\text{redness}} \approx 0.63
 $$
 
 $$
-w_\{hydration\} + w_\{soothing\} + w_\{redness\} = 1
+w_{\text{hydration}} + w_{\text{soothing}} + w_{\text{redness}} = 1
 $$
 
 ---
@@ -170,7 +171,10 @@ $$
 We blend the static vectors using those weights:
 
 $$
-v_\{effect\} = v_\{hydration\} \cdot w_\{hydration\} + v_\{soothing\} \cdot w_\{soothing\} + v_\{redness\} \cdot w_\{redness\}
+v_{\text{effect}} =
+v_{\text{hydration}} \cdot w_{\text{hydration}} +
+v_{\text{soothing}} \cdot w_{\text{soothing}} +
+v_{\text{redness}} \cdot w_{\text{redness}}
 $$
 
 ---
@@ -180,7 +184,7 @@ $$
 To avoid duplicates, we lightly mix in the product's description vector:
 
 $$
-vector = v_\{effect\} + γD
+\text{vector} = v_{\text{effect}} + \gamma D
 $$
 
 Where $D$ is the description embedding and $γD$ is a small tuning weight.
@@ -189,16 +193,17 @@ Where $D$ is the description embedding and $γD$ is a small tuning weight.
 
 ### The Payoff
 
-The dual embedding strategy allows us to rank products by the *strength* of their relevant effects. This ensures rare but meaningful effects aren't drowned out by common ones. And, we get a rich, weighted `effect_vector` that reflects **how a product actually performs, not just what it says on the label.** Perfect for building effective, personalized skincare routines!
+The dual embedding strategy allows us to rank products by the _strength_ of their relevant effects. This ensures rare but meaningful effects aren't drowned out by common ones. And, we get a rich, weighted `effect_vector` that reflects **how a product actually performs, not just what it says on the label.** Perfect for building effective, personalized skincare routines!
 
 ## Weaviate & Gemini: Powering Beauty Routine Generation
 
-In this part, we'll go through how we turn a few questions about your skin into fully personalized skincare routines. Short answer? It all comes down to two powerful tools working behind the scenes: Weaviate and Gemini 2.5 Flash language model. 
+In this part, we'll go through how we turn a few questions about your skin into fully personalized skincare routines. Short answer? It all comes down to two powerful tools working behind the scenes: Weaviate and Gemini 2.5 Flash language model.
 Now, let's look at the process step by step in detail:
 
 ### Collecting User Information
 
 The journey begins with a short, targeted questionnaire designed to understand your skin's current condition, goals, age, and any sensitivities. From this, we build a structured `user_information` dictionary like:
+
 ```python
 user_information = {
     "goals": {
@@ -228,14 +233,14 @@ This data is the foundation for everything that follows.
 
 ### Product Category Selection
 
-Every routine starts with a cleanser and moisturizer as a base. If it's a morning routine, we also add sunscreen. 
+Every routine starts with a cleanser and moisturizer as a base. If it's a morning routine, we also add sunscreen.
 Then, based on your specific skin conditions and goals, we layer in other categories like toners, serums, exfoliators, or face masks. For example, if you're dealing with pigmentation and redness, we will include a face mask and a toner in your routine.
 
 ### Product Retrieval with Weaviate
 
 Once we know which types of products you need, it's time to find the actual products.
 
-That's where **Weaviate** comes in! If you recall from the previous section on **Effect Embedding**, each product in our collection has an `effect_vector`, which basically is a fingerprint of what it's good at (hydrating, soothing, exfoliating, etc.). 
+That's where **Weaviate** comes in! If you recall from the previous section on **Effect Embedding**, each product in our collection has an `effect_vector`, which basically is a fingerprint of what it's good at (hydrating, soothing, exfoliating, etc.).
 Weaviate uses these vectors to run a [similarity search](/blog/vector-search-explained#how-does-vector-search-work) against your skin needs and goals. This is done concurrently across all selected categories, resulting in a shortlist of top-matching products for each step in your routine.
 
 ### Assembling Your Routine with Gemini 2.5 Flash
@@ -245,10 +250,8 @@ Once we have the best product options, it's time to assemble your actual skincar
 Gemini reviews your full profile and selects the single best product from each category, making sure they work well together, respect any sensitivities (like avoiding retinol), and avoid ingredient conflicts (e.g., layering multiple strong acids or harsh exfoliants).
 
 > **This is where smart prompting makes all the difference ✨**
-> 
-> 
+>
 > Just like many top AI apps use detailed system instructions to get great responses from LLMs, we use rich, skincare-specific (domain knowledge) to guide Gemini's decisions.
-> 
 
 Gemini also generates metadata like ingredient notes, suggestions, and potential improvements, so that you get to know your routine better and why it's right for you.
 
@@ -264,7 +267,7 @@ That's why we built an awesome agentic chat assistant right into Glowe, powered 
 
 ### **What is Elysia?**
 
-Elysia is an open-source agentic platform (soon to be released) from Weaviate for calling custom tools via a decision agent LLM. It has inbuilt functionality for searching and retrieving data in Weaviate. 
+Elysia is an open-source agentic platform (soon to be released) from Weaviate for calling custom tools via a decision agent LLM. It has inbuilt functionality for searching and retrieving data in Weaviate.
 
 Think of it as the brain behind Glowe's agentic chat. Unlike other agent-based packages, Elysia is pre-configured to run a wide range of tools and has a lot of capabilities straight away and is specially designed for complex, context-aware interactions. Key features include:
 
@@ -277,20 +280,19 @@ We are excited to announce that Elysia will soon be **released as an open-source
 
 :::info
 
-You can try out the public preview of the Elysia app here: [elysia.weaviate.io](https://elysia.weaviate.io) 
+You can try out the public preview of the Elysia app here: [elysia.weaviate.io](https://elysia.weaviate.io)
 :::
-
 
 ![Glowe Agentic Chat](./img/agentic-chat.png)
 
 ### Weaviate Query Agent: A Specialized Tool within Elysia
 
-One of Elysia's most useful tools is the **Weaviate Query Agent**. This agent is activated when Glowe needs to find specific products from our extensive Weaviate Products collection. 
+One of Elysia's most useful tools is the **Weaviate Query Agent**. This agent is activated when Glowe needs to find specific products from our extensive Weaviate Products collection.
 
 :::info
 
 The Weaviate Query Agent is a pre-built agentic service designed to answer natural language queries based on the data stored in Weaviate Cloud. The user simply provides a prompt/question in natural language, and the Query Agent takes care of all intervening steps to provide an answer. [Learn more](https://docs.weaviate.io/agents/query).
-::: 
+:::
 
 For example, if you ask something like, "Find me a hydrating serum for sensitive skin," the Agent Manager hands your request to Elysia, which then will decide to call on the Weaviate Query Agent. Here's how it works:
 
@@ -298,7 +300,7 @@ For example, if you ask something like, "Find me a hydrating serum for sensitive
 - **Agentic Retrieval:** The query agent generates and executes the appropriate search or aggregation queries on the selected Weaviate collections. This uses Weaviate's vector search, filtering, and aggregation capabilities to retrieve the most relevant data objects.
 - **Synthesize and Return the Answer:** The query agent collects the results, synthesizes a final answer, and returns a detailed response. This includes the answer itself, information about which collections and filters were used, and the sources of the data, making the process transparent and interpretable.
 
-The final products are then displayed to the user through the Glowe chat interface. 
+The final products are then displayed to the user through the Glowe chat interface.
 To put simply, think of Elysia as the conductor or the main tree, and the Weaviate Query Agent as a specialized musician or a leaf node, handling specific data retrieval tasks with high precision.
 
 ![Glowe Chat Interface](./img/glowe-chat-screen.png)
@@ -315,6 +317,6 @@ This project highlights several key trends we believe will shape the future of A
 
 Glowe is just one example of what's possible when these technologies converge. We envision a future where highly specialized, agentic systems can provide expert-level assistance in countless domains, from personal finance and legal advice to complex scientific research and, of course, helping you achieve that perfect skincare glow.
 
-import WhatsNext from '/_includes/what-next.mdx'
+import WhatsNext from "/_includes/what-next.mdx";
 
 <WhatsNext />
