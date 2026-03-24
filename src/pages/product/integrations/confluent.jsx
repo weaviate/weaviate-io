@@ -1,17 +1,38 @@
-// src/pages/product/integrations/airbyte.jsx
-import React from 'react';
-import Link from '@docusaurus/Link';
-import Layout from '@theme/Layout';
-import partners from '/data/partners.json';
-import hub from '/src/components/PartnersMarketplace/styles.module.scss';
-import css from '/src/components/PartnersMarketplace/IntegrationDetail/styles.module.scss';
-import IntegrationHeader from '/src/components/PartnersMarketplace/IntegrationDetail/Header';
-import Admonition from '@theme/Admonition';
+// src/pages/product/integrations/confluent.jsx
+import React from "react";
+import Link from "@docusaurus/Link";
+import Layout from "@theme/Layout";
+import partners from "/data/partners.json";
+import hub from "/src/components/PartnersMarketplace/styles.module.scss";
+import css from "/src/components/PartnersMarketplace/IntegrationDetail/styles.module.scss";
+import IntegrationHeader from "/src/components/PartnersMarketplace/IntegrationDetail/Header";
+import Admonition from "@theme/Admonition";
 
-const slug = 'confluent';
-const slugify = (s) => s.toLowerCase().replace(/\s+/g, '-');
+const slug = "confluent";
+const slugify = (s) => s.toLowerCase().replace(/\s+/g, "-");
 
-export default function BoxIntegrationPage() {
+const getGroupId = (title = "") => {
+  const normalized = title.toLowerCase().trim();
+
+  if (
+    normalized === "hands on learning" ||
+    normalized === "hands-on-learning"
+  ) {
+    return "hands-on-learning";
+  }
+
+  if (
+    normalized === "read and listen" ||
+    normalized === "read-and-listen" ||
+    normalized === "read & listen"
+  ) {
+    return "read-and-listen";
+  }
+
+  return slugify(title);
+};
+
+export default function ConfluentIntegrationPage() {
   const item = partners.find((p) => (p.slug || slugify(p.name)) === slug);
   if (!item) {
     return (
@@ -31,8 +52,8 @@ export default function BoxIntegrationPage() {
     link,
     cta: ctasFromOldField,
     ctas,
-    company = 'Vendor',
-    howItWorks = '',
+    company = "Vendor",
+    howItWorks = "",
     setup = [],
     resourcesGroups = [],
     admonitions = [],
@@ -41,25 +62,25 @@ export default function BoxIntegrationPage() {
   const finalCtas = ctas || ctasFromOldField || [];
 
   const pillClass = (t) =>
-    t === 'Notebook'
+    t === "Notebook"
       ? css.pillNotebook
-      : t === 'Guide'
-      ? css.pillGuide
-      : t === 'Blog'
-      ? css.pillBlog
-      : undefined;
+      : t === "Guide"
+        ? css.pillGuide
+        : t === "Blog"
+          ? css.pillBlog
+          : undefined;
 
   const renderGroups = () =>
     (resourcesGroups || []).map((group) => (
       <div key={group.title}>
-        <h3 className={css.groupLabel} id={slugify(group.title)}>
+        <h3 className={css.groupLabel} id={getGroupId(group.title)}>
           {group.title}
         </h3>
         <div className={css.resGrid}>
           {(group.items || []).map((r, i) => {
-            const title = r.topic || r.title || 'Untitled';
+            const title = r.topic || r.title || "Untitled";
             const desc = r.description || r.desc;
-            const type = r.type || 'Open';
+            const type = r.type || "Open";
             return (
               <a
                 key={`${slugify(title)}-${i}`}
@@ -70,7 +91,7 @@ export default function BoxIntegrationPage() {
                   <span
                     className={[css.pill, pillClass(type)]
                       .filter(Boolean)
-                      .join(' ')}
+                      .join(" ")}
                   >
                     {type}
                   </span>
@@ -78,7 +99,7 @@ export default function BoxIntegrationPage() {
                 <h4 className={css.resTitle}>{title}</h4>
                 {desc && <p className={css.resDesc}>{desc}</p>}
                 <span className={css.resCta}>
-                  {type === 'Blog' ? 'Read →' : 'Open →'}
+                  {type === "Blog" ? "Read →" : "Open →"}
                 </span>
               </a>
             );
@@ -133,11 +154,11 @@ export default function BoxIntegrationPage() {
                   <h2>{company} and Weaviate</h2>
 
                   {!!admonitions.length && (
-                    <div style={{ margin: '0 0 1rem' }}>
+                    <div style={{ margin: "0 0 1rem" }}>
                       {admonitions.map((a, i) => (
                         <Admonition
                           key={i}
-                          type={a.type || 'note'}
+                          type={a.type || "note"}
                           title={a.title}
                         >
                           <div dangerouslySetInnerHTML={{ __html: a.html }} />
@@ -155,14 +176,13 @@ export default function BoxIntegrationPage() {
                     <p>The resources are broken into categories:</p>
                     <ol>
                       <li>
-                        <Link to="#hands-on-learning">Hands on Learning:</Link>{' '}
+                        <a href="#hands-on-learning">Hands on Learning:</a>{" "}
                         Build your technical understanding with end-to-end
                         tutorials.
                       </li>
                       <li>
-                        <Link to="#read-and-listen">Read and Listen:</Link>{' '}
-                        Develop your conceptual understanding of these
-                        technologies.
+                        <a href="#read-and-listen">Read and Listen:</a> Develop
+                        your conceptual understanding of these technologies.
                       </li>
                     </ol>
                   </div>

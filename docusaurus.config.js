@@ -21,7 +21,7 @@ module.exports = async function createConfigAsync() {
     baseUrl: '/',
     trailingSlash: false,
     onBrokenLinks: 'warn',
-    onBrokenAnchors: 'ignore',
+    onBrokenAnchors: 'warn',
     favicon: 'img/favicon.ico',
     clientModules: [require.resolve('./src/components/UTM/capture.js')],
 
