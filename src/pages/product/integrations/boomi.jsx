@@ -1,4 +1,4 @@
-// src/pages/product/integrations/google-cloud-platform.jsx
+// src/pages/product/integrations/boomi.jsx
 import React from "react";
 import Link from "@docusaurus/Link";
 import Layout from "@theme/Layout";

@@ -14,10 +14,12 @@ export default function SharePage() {
       <Layout>
         <MetaSEO img="og/company/Community.jpg" />
         <Opensource />
-        <div id="contact-form" />
-        <ContactForm />
-        <div id="steps" />
-        <Values />
+        <section id="contact-form">
+          <ContactForm />
+        </section>
+        <section id="steps">
+          <Values />
+        </section>
       </Layout>
       <ThemeSwitch />
     </div>

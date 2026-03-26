@@ -1,6 +1,6 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
-import styles from './styles.module.scss';
+import Link from "@docusaurus/Link";
+import React from "react";
+import styles from "./styles.module.scss";
 
 export default function Opensource() {
   return (
@@ -18,9 +18,9 @@ export default function Opensource() {
             </p>
 
             <div className={styles.buttons}>
-              <Link className={styles.buttonLine} to="#steps">
+              <a className={styles.buttonLine} href="#steps">
                 Questions?
-              </Link>
+              </a>
             </div>
           </div>
           <div className={styles.box}>

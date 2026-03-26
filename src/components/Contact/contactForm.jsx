@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import styles from './styles.module.scss';
+import React, { useEffect, useState } from "react";
+import styles from "./styles.module.scss";
 
 export default function ContactForm() {
-  const [title, setTitle] = useState('Get in touch with us');
+  const [title, setTitle] = useState("Get in touch with us");
 
   useEffect(() => {
-    if (window.location.pathname === '/deployment/dedicated') {
-      setTitle('Get Started with Dedicated Cloud');
+    if (window.location.pathname === "/deployment/dedicated") {
+      setTitle("Get Started with Dedicated Cloud");
     } else {
-      setTitle('Get in touch with us');
+      setTitle("Get in touch with us");
     }
 
-    const script = document.createElement('script');
-    script.src = '//js.hsforms.net/forms/embed/v2.js';
-    script.setAttribute('data-cookieconsent', 'ignore');
+    const script = document.createElement("script");
+    script.src = "//js.hsforms.net/forms/embed/v2.js";
+    script.setAttribute("data-cookieconsent", "ignore");
     document.body.appendChild(script);
 
-    script.addEventListener('load', () => {
+    script.addEventListener("load", () => {
       if (window.hbspt) {
         window.hbspt.forms.create({
-          portalId: '8738733',
-          formId: 'c722587c-7ef8-414b-a64e-e33a71bcf02c',
-          target: '#hubspotForm',
+          portalId: "8738733",
+          formId: "c722587c-7ef8-414b-a64e-e33a71bcf02c",
+          target: "#hubspotForm",
         });
       }
     });
@@ -32,7 +32,7 @@ export default function ContactForm() {
   }, []);
 
   return (
-    <div className={styles.contactBackground} id="contact-sales">
+    <section className={styles.contactBackground} id="contact-sales">
       <div className="container">
         <div className={styles.contactContainer}>
           <div className={styles.contactSection}>
@@ -44,6 +44,6 @@ export default function ContactForm() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

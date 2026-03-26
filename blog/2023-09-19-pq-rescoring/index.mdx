@@ -12,7 +12,7 @@ description: "The details behind how you can compress vectors using PQ with litt
 
 :::info Highlights
 
-- [Product Quantization](#product-quantizationpq) - how PQ reduces the memory requirements of running Weaviate
+- [Product Quantization](#what-is-product-quantization-pq) - how PQ reduces the memory requirements of running Weaviate
 - [Improving PQ with Rescoring](#the-problem-with-pq) - why compressing vectors decreases recall and how the rescoring trick can help reduce this
 - [Experimental results](#experiment-results) - QPS vs. recall, indexing times, and memory savings
 - [Benchmarking PQ](#benchmarking-pq-with-your-own-data) - scripts for benchmarking PQ with your own data
@@ -20,9 +20,7 @@ description: "The details behind how you can compress vectors using PQ with litt
 
 ---
 
-<a id="product-quantizationpq"></a>
-
-## 📚What is Product Quantization(PQ)?
+## What is Product Quantization (PQ)?
 
 Product Quantization is a way to compress vectors, allowing users to save on memory requirements. To understand how product quantization (PQ) compression works, imagine every vector you want to store is a unique house address. This address allows you to precisely locate where someone lives including country, state, city, street number, and even down to the house number. The price you pay for this pin-point accuracy is that each address takes up more memory to store. Now, imagine instead of storing a unique address for each house we store just the city the house is located in. With this new representation, you can no longer precisely differentiate between houses that are all in the same city. The advantage however is that you require less memory to store the data in this new format. This is why PQ is a lossy algorithm; we lose information as a result of the compression - or in other words, you trade accuracy/recall for memory savings.
 

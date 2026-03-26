@@ -14,7 +14,7 @@ description: "In-depth technical breakdown of how binary quantization works and 
 
 - [What is Binary Quantization?](#what-is-binary-quantization) - How BQ reduces the memory requirements of running Weaviate.
 - [Details of Working with Binarized Vectors](#details-of-working-with-binarized-vectors) - What to consider when using binary quantization.
-- [Weaviate Performance Improvements with BQ](#-performance-improvements-with-bq) - QPS vs. recall, indexing times, and memory savings.
+- [Weaviate Performance Improvements with BQ](#performance-improvements-with-bq) - QPS vs. recall, indexing times, and memory savings.
 - [Comparing Product and Binary Quantization](#comparing-product-and-binary-quantization) - Experiments comparing PQ and BQ.
 - [Benchmarking BQ](#benchmarking-bq-with-your-own-data) - Scripts for benchmarking BQ with your own data.
   :::
@@ -136,7 +136,7 @@ However, the upside lies in the exponential growth of regions with additional di
 
 **Fig**: _Displays the exponentially decreasing probability for collisions in vector representations. In essence, this means that the higher the dimensionality of your data, the more effectively you can expect binary quantization to perform._
 
-## 🚀 Performance Improvements with BQ
+## Performance Improvements with BQ
 
 Let's revisit the advantages of binary quantization. Typically, we employ quantization to conserve memory, encoding each dimension as a single bit. In Weaviate, floating-point vectors are represented as `float32` arrays, yielding a compression rate of 1:32, which is already commendable.
 
@@ -242,7 +242,7 @@ Now, let's scale the numbers up further. What should we anticipate with a larger
 
 **Fig**: _QPS vs Recall for 1000k DBPedia vectors comparing various indexes._
 
-## ⚖️Comparing Product and Binary Quantization
+## Comparing Product and Binary Quantization
 
 Now that you have multiple quantization techniques available in Weaviate the question arises which one is better and where to use PQ vs. BQ. This decision will come down to your specific data and will require you to run your own benchmarks. We make code and instructions on how to do this available in the next section. The memory and performance experiments below are meant to make the PQ vs. BQ choice a little easier for you.
 
