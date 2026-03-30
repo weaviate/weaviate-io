@@ -150,11 +150,6 @@
     "photo": "mohamed.jpg"
   },
   {
-    "name": "Parker Duckworth",
-    "location": { "lat": 35.4878, "lng": -80.8611 },
-    "photo": "parker.jpg"
-  },
-  {
     "name": "Patrick Das",
     "location": { "lat": 52.0715, "lng": 4.3017 },
     "photo": "patrick.jpg"
