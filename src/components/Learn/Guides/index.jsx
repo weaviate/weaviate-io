@@ -182,12 +182,12 @@ export default function Guides() {
               Weaviate, and how to use<br></br> it with real data, including a
               demo app and an end-to-end Jupyter notebook example.
             </p>
-            <Link
-              to="/community/events#on-demand-webinars"
+            <a
+              href="/community/events#on-demand-webinars"
               className={styles.button}
             >
               Register for Free
-            </Link>
+            </a>
           </div>
         </div>
       </div>

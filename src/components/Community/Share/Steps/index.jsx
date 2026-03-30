@@ -51,7 +51,7 @@ export default function Steps() {
               stand out on social media, our program provides the tools and
               support you need to succeed.
             </p>
-            <Link to="#contact-form">Submit your project</Link>
+            <a href="#contact-form">Submit your project</a>
           </div>
 
           <div className={styles.valuesBox}>
@@ -70,7 +70,7 @@ export default function Steps() {
               to make an impact on social media, our program equips you with the
               tools and support necessary for success.
             </p>
-            <Link to="mailto:grow@weaviate.io">Grow with Weaviate</Link>
+            <a href="mailto:grow@weaviate.io">Grow with Weaviate</a>
           </div>
 
           <div className={styles.valuesBox}>
@@ -89,9 +89,7 @@ export default function Steps() {
               collaboration, based on your specific project. Weaviate's favorite
               projects are highlighted on our website.
             </p>
-            <Link to="/community/share-the-weaviate-love/#contact-form">
-              Contact us
-            </Link>
+            <a href="#contact-form">Contact us</a>
           </div>
         </div>
       </div>

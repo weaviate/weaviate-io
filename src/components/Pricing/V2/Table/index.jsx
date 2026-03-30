@@ -1,7 +1,7 @@
-import Link from '@docusaurus/Link';
-import React, { useState, useEffect } from 'react';
-import styles from './styles.module.scss';
-import SlaPlan from '../SLAS';
+import Link from "@docusaurus/Link";
+import React, { useState, useEffect } from "react";
+import styles from "./styles.module.scss";
+import SlaPlan from "../SLAS";
 
 export default function PricingTable() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,15 +16,15 @@ export default function PricingTable() {
 
   useEffect(() => {
     const handleEscapeKey = (e) => {
-      if (e.key === 'Escape' && isModalOpen) {
+      if (e.key === "Escape" && isModalOpen) {
         closeModal();
       }
     };
 
-    document.addEventListener('keydown', handleEscapeKey);
+    document.addEventListener("keydown", handleEscapeKey);
 
     return () => {
-      document.removeEventListener('keydown', handleEscapeKey);
+      document.removeEventListener("keydown", handleEscapeKey);
     };
   }, [isModalOpen]);
   return (
@@ -127,9 +127,9 @@ export default function PricingTable() {
                   </div>
                   <div
                     className={`${styles.modals} ${
-                      isModalOpen ? styles.open : ''
+                      isModalOpen ? styles.open : ""
                     }`}
-                    style={{ display: isModalOpen ? 'flex' : 'none' }}
+                    style={{ display: isModalOpen ? "flex" : "none" }}
                   >
                     <div className={styles.modalContents}>
                       <span className={styles.close} onClick={closeModal}>
@@ -185,12 +185,12 @@ export default function PricingTable() {
                         usage patterns
                       </span>
                       <div className={styles.buttons}>
-                        <Link
-                          to="#contact-sales"
+                        <a
+                          href="#contact-sales"
                           className={styles.buttonGradient}
                         >
                           Contact us
-                        </Link>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -234,12 +234,12 @@ export default function PricingTable() {
                         Annual contract based upon CPU + RAM utilization
                       </span>
                       <div className={styles.buttons}>
-                        <Link
-                          to="#contact-sales"
+                        <a
+                          href="#contact-sales"
                           className={styles.buttonGradient}
                         >
                           Contact us
-                        </Link>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -283,12 +283,12 @@ export default function PricingTable() {
                     <div className={`${styles.longCell} ${styles.pricing}`}>
                       <span className={styles.cellSpan}></span>
                       <div className={styles.buttons}>
-                        <Link
-                          to="#contact-sales"
+                        <a
+                          href="#contact-sales"
                           className={styles.buttonGradient}
                         >
                           Contact us
-                        </Link>
+                        </a>
                       </div>
                     </div>
                   </div>

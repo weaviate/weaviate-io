@@ -1,6 +1,6 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
-import styles from './styles.module.scss';
+import Link from "@docusaurus/Link";
+import React from "react";
+import styles from "./styles.module.scss";
 
 export default function Header() {
   return (
@@ -15,12 +15,12 @@ export default function Header() {
         </p>
       </div>
       <div className={styles.buttons}>
-        <Link className={styles.buttonGradient} to="#jobs">
+        <a className={styles.buttonGradient} href="#jobs">
           View Openings
-        </Link>
-        <Link className={styles.buttonOutline} to="#interview-process">
+        </a>
+        <a className={styles.buttonOutline} href="#interview-process">
           Check our Hiring Process
-        </Link>
+        </a>
       </div>
     </div>
   );

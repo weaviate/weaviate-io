@@ -1,7 +1,7 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
-import styles from './styles.module.scss';
-import { LinkButton, ButtonContainer } from '/src/theme/Buttons';
+import Link from "@docusaurus/Link";
+import React from "react";
+import styles from "./styles.module.scss";
+import { LinkButton, ButtonContainer } from "/src/theme/Buttons";
 
 export default function ServiceHeader() {
   return (
@@ -21,9 +21,9 @@ export default function ServiceHeader() {
             <Link className={styles.buttonGradient} to="/go/console">
               Try Free
             </Link>
-            <Link className={styles.buttonOutline} to="#contact-sales">
+            <a href="#contact-sales" className={styles.buttonOutline}>
               Contact Sales
-            </Link>
+            </a>
           </div>
         </div>
       </div>

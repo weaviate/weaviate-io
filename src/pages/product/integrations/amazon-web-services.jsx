@@ -160,14 +160,13 @@ export default function AwsIntegrationPage() {
                     <p>The resources are broken into categories:</p>
                     <ol>
                       <li>
-                        <Link to="#hands-on-learning">Hands on Learning:</Link>{" "}
+                        <a href="#hands-on-learning">Hands on Learning:</a>{" "}
                         Build your technical understanding with end-to-end
                         tutorials.
                       </li>
                       <li>
-                        <Link to="#read-and-listen">Read and Listen:</Link>{" "}
-                        Develop your conceptual understanding of these
-                        technologies.
+                        <a href="#read-and-listen">Read and Listen:</a> Develop
+                        your conceptual understanding of these technologies.
                       </li>
                     </ol>
                   </div>
