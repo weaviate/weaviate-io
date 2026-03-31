@@ -5,22 +5,32 @@ authors: [michelangelo, ivan]
 date: 2026-03-31
 tags: ['Release', 'C#', '.NET']
 image: ./img/hero.png
-description: Build semantic search, RAG, and multi-tenant analytics in C# with the Weaviate Managed .NET client — attribute-driven schema, type-safe queries, and safe migrations, all in idiomatic .NET.
+description: Use semantic search and RAG in C# with the Weaviate Managed .NET client — attribute-driven schema, type-safe queries, and safe migrations, all in idiomatic .NET.
 ---
 
 ![Weaviate Managed C# Client](./img/hero.png)
 
 If you've ever built a robust .NET application, you know the pain of maintaining database schemas with magic strings and separate configuration files. Rename a property, forget to update your config, and you've got a runtime error.
 
-Enter the [**Weaviate Managed .NET Client**](https://github.com/weaviate/csharp-client-managed). As a newly released experimental alternative to traditional client libraries, it brings an Entity Framework Core-inspired experience directly to Weaviate. You can now define collections with C# attributes, query with type-safe LINQ expressions, and let the client handle schema creation, migrations, and object mapping—all in idiomatic .NET.
+Enter the [**Weaviate Managed .NET Client**](https://github.com/weaviate/csharp-client-managed). As a newly released alternative to traditional client libraries, it brings an Entity Framework Core-inspired experience directly to Weaviate. You can now define collections with C# attributes, query with type-safe [LINQ](https://learn.microsoft.com/en-us/dotnet/csharp/linq/) expressions, and let the client handle schema creation, migrations, and object mapping—all in idiomatic .NET.
 
 To show what this looks like in practice, we'll build a semantic document search engine. Along the way, you'll see how attributes replace separate schema config objects, how LINQ-style expressions compile into [vector search](https://weaviate.io/blog/what-is-a-vector-database) filters, and how a single codebase can grow from personal tool to multi-tenant platform.
+
+:::caution Under Development
+
+The Weaviate Managed .NET Client is still under development. While it is ready for you to try out, please be aware that breaking changes may occur before a stable release.<br /><br />
+We are looking forward to your feedback:
+
+- 🐛 **[GitHub Issues](https://github.com/weaviate/csharp-client-managed/issues)** for bugs and technical feature requests.
+- 💬 **[Weaviate Community Forum](https://forum.weaviate.io/)** for architecture discussions and general feedback.
+
+:::
 
 ## Your code is your schema
 
 The Weaviate Managed C# Client is inspired by [Entity Framework Core](https://learn.microsoft.com/en-us/ef/core/). Instead of building `CollectionCreateParams` objects with string-based property names, you define your [Weaviate](https://weaviate.io/) collection schema directly on your model class with [attributes](https://github.com/weaviate/csharp-client-managed/blob/main/docs/ATTRIBUTES.md).
 
-Our app stores documents with a title, body content, source tag, and freeform tags. Each document gets two [vector embeddings](https://weaviate.io/blog/what-is-a-vector-database) — one on the title for quick headline matching and one on the full content for deep semantic search — both generated automatically by [Weaviate Embeddings](https://weaviate.io/product/embeddings). Here's how that translates to a single C# class:
+Our app stores documents with a title, body content, source tag, and freeform tags. Each document gets two vector embeddings — one on the title for quick headline matching and one on the full content for deep semantic search — both generated automatically by [Weaviate Embeddings](https://weaviate.io/product/embeddings). Here's how that translates to a single C# class:
 
 ```csharp
 [WeaviateCollection("Document")]
@@ -63,7 +73,7 @@ public class Document
 }
 ```
 
-Two [named vectors](https://github.com/weaviate/csharp-client-managed/blob/main/docs/ADVANCED.md#multiple-named-vectors) — one on the title for precise matches, one on the content for deep [semantic search](https://weaviate.io/blog/what-is-a-vector-database). C# types map to Weaviate data types automatically: `string` → Text, `string[]` → TextArray, `decimal` → Number, `DateTime` → Date. The `[Index]` attribute controls what’s filterable, searchable, or range-queryable.
+Two [named vectors](https://github.com/weaviate/csharp-client-managed/blob/main/docs/ADVANCED.md#multiple-named-vectors) — one on the title for precise matches, one on the content for deep semantic search. C# types map to Weaviate data types automatically: `string` → Text, `string[]` → TextArray, `decimal` → Number, `DateTime` → Date. The `[Index]` attribute controls what’s filterable, searchable, or range-queryable.
 
 One call creates the collection:
 
@@ -98,7 +108,7 @@ var config = new CollectionCreateParams
 await client.Collections.Create(config);
 ```
 
-Both are valid. But the property names here are strings — rename `"title"` to `"heading"` in the config and forget your model class, and you get a runtime error. With the managed client, a rename is a refactor that your IDE can handle.
+Both are valid. But the property names here are strings — rename `"title"` to `"heading"` in the config and forget to update your model class, and you get a runtime error. With the managed client, a rename is a refactor that your IDE can handle.
 
 If you're already in the [Microsoft.Extensions.VectorData](https://learn.microsoft.com/en-us/dotnet/ai/ai-extensions) ecosystem, Weaviate has a provider for it too. That abstraction is a good fit if you need to stay portable across vector stores. The trade-off is that it exposes only the common API surface — multi-tenancy, aggregations, named vectors, RAG, migrations, and cross-references aren't available through it. The managed client gives you all of Weaviate's capabilities with the same .NET-native ergonomics.
 
@@ -155,7 +165,7 @@ One awaitable call, two collections, one cross-reference — the batch figures o
 
 ## Searching by meaning
 
-Here’s where a [vector database](https://weaviate.io/blog/what-is-a-vector-database) earns its keep. Semantic search in C# with Weaviate uses familiar LINQ-style syntax with type-safe expressions — the Weaviate .NET client compiles your lambdas into vector filters at runtime:
+Here’s where a vector database earns its keep. Semantic search in C# with Weaviate uses familiar LINQ-style syntax with type-safe expressions — the Weaviate .NET client compiles your lambdas into vector filters at runtime:
 
 ```csharp
 var results = await context.Documents
@@ -239,7 +249,7 @@ foreach (var result in response)
 Console.WriteLine($"Recommendation: {response.Generative?[0]}");
 ```
 
-`singlePrompt` generates a response per document. `groupedTask` sends all results to the LLM and receives a single synthesized answer. Use either or both.
+`singlePrompt` generates a response per document. `groupedTask` sends all results to the LLM and receives a single synthesized answer. You can use one or both of them at the same time.
 
 ## Projections and analytics
 
@@ -293,7 +303,7 @@ var teamBeta  = context.ForTenant("team-beta");
 await teamAlpha.Insert(alphaDoc);
 ```
 
-`ForTenant()` returns an immutable clone — the original stays unscoped. For [ASP.NET](http://ASP.NET) Core, wire it up once via the [DI container](https://github.com/weaviate/csharp-client-managed/blob/main/docs/ADVANCED.md#di-path):
+`ForTenant()` returns an immutable clone — the original stays unscoped. For [ASP.NET](https://dotnet.microsoft.com/en-us/apps/aspnet) Core, wire it up once via the [DI container](https://github.com/weaviate/csharp-client-managed/blob/main/docs/ADVANCED.md#di-path):
 
 ```csharp
 builder.Services.AddWeaviateContext<RecallContext>(options =>
@@ -304,7 +314,11 @@ builder.Services.AddWeaviateContext<RecallContext>(options =>
 
 `AutoMigrate` applies safe migrations on startup, so the schema stays in sync without manual `Migrate()` calls.
 
-> **⚠️ A note on AutoMigrate in production:** > While `options.AutoMigrate = true;` is good for rapid development and local testing, it's generally best avoided in production environments.
+:::caution `AutoMigrate` in production
+
+While `options.AutoMigrate = true;` is good for rapid development and local testing, it's generally best avoided in production environments.
+
+:::
 
 ## Escape hatches
 
@@ -325,7 +339,7 @@ The client builds the config from attributes first, then passes it to your metho
 
 ## Summary
 
-The Weaviate Managed C# Client lets you build search and AI features the way .NET developers already think. Your models carry the schema, the context groups everything together, and migrations keep your data safe as requirements evolve. You get all the power of Weaviate—semantic search, RAG, and multi-tenancy—without the boilerplate.
+The Weaviate Managed C# Client lets you build search and AI features using patterns .NET developers already know. Your models carry the schema, the context groups everything together, and migrations keep your data safe as requirements evolve. You get all the power of Weaviate—semantic search, RAG, and multi-tenancy—without the boilerplate.
 
 The Managed C# Client is [available on NuGet](https://www.nuget.org/packages/Weaviate.Client.Managed) and [open source on GitHub](https://github.com/weaviate/csharp-client-managed). For a deeper dive, see the [user guide](https://github.com/weaviate/csharp-client-managed/blob/main/docs/GUIDE.md), the [attributes reference](https://github.com/weaviate/csharp-client-managed/blob/main/docs/ATTRIBUTES.md), and the [advanced patterns](https://github.com/weaviate/csharp-client-managed/blob/main/docs/ADVANCED.md) docs.
 
