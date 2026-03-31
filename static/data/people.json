@@ -235,14 +235,6 @@
     "team": "cto"
   },
   {
-    "name": "Femke Plantinga",
-    "title": "Team Lead",
-    "photo": "femke.jpg",
-    "linkedin": "femke-plantinga-a60b9a172",
-    "twitter": "femke_plantinga",
-    "team": "developer-growth"
-  },
-  {
     "name": "Giorgos Kampitakis",
     "title": "Tech Lead",
     "photo": "Giorgos.jpg",
@@ -389,14 +381,6 @@
     "photo": "prajjwal.jpg",
     "linkedin": "prajjwal-yadav",
     "team": "developer-growth"
-  },
-  {
-    "name": "Roberto Esposito",
-    "title": "Research Engineer",
-    "photo": "roberto-esposito.jpg",
-    "linkedin": "robbespo00",
-    "twitter": "robbespo00",
-    "team": "applied-research"
   },
   {
     "name": "Rodrigo López",
