@@ -265,6 +265,13 @@
     "team": "database"
   },
   {
+    "name": "Jenson Cheng",
+    "title": "Technical Sales Specialist",
+    "photo": "Jenson.jpg",
+    "linkedin": "jenson-cheng-111343232l",
+    "team": "partnerships"
+  },
+  {
     "name": "Jobi George",
     "title": "VP of Sales & Business Development",
     "photo": "jobi.jpg",
@@ -337,6 +344,13 @@
     "linkedin": "mpartipilo",
     "twitter": "mpartipilom",
     "team": "database"
+  },
+  {
+    "name": "Mila Vernazza",
+    "title": "Customer Solution Engineer",
+    "photo": "Mila.jpg",
+    "linkedin": "fsmv",
+    "team": "solution-engineering"
   },
   {
     "name": "Mohamed Badawi",
