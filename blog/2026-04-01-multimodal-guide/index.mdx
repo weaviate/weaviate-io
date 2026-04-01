@@ -18,9 +18,11 @@ Think about the last time someone tried to describe a piece of music to you in w
 That moment where words give up and point you to the actual thing (music in this case) isn’t a failure of language. It’s a reminder of what language really is: a compressed representation of experience. And like any form of compression, it throws things away, like tone, texture, spatial layout, or the general vibe of something.
 
 For most of AI’s recent history, we’ve treated this compression as a requirement. Search and retrieval have mostly worked on the principle that if it wasn’t written down in text, it didn’t count.
+
 You have a podcast? Transcribe it.
 A scanned PDF report? OCR it.
 A photograph of a whiteboard from a strategy meeting? Good luck.
+
 Every conversion came with its own tax - a little distortion, loss, a bit less of the original thing.
 
 But what if, instead of forcing everything into text, we could work with data in its native form and still search, compare, and reason across it?
@@ -101,6 +103,7 @@ Weaviate recently added support for [Gemini Embedding 2](https://docs.weaviate.i
     </iframe>
 </div>
 
+
 ```python
 client.collections.create(
     name=COLLECTION_NAME,
@@ -131,7 +134,7 @@ The stack we will use for building our multimodal example systems includes
 - Gemini 3 Flash multimodal LLM for the generation step.
 
 :::info
-These patterns generalise to any equivalent model, so you can plug and play models as per your preference.
+These patterns apply across equivalent models, giving you the flexibility to swap models in and out based on your needs. For more details, see our [model integrations page](https://docs.weaviate.io/weaviate/model-providers).
 :::
 
 ![Multimodal System](./img/multimodal-system.png)
@@ -160,9 +163,9 @@ results = collection.query.near_media(
 )
 ```
 
-The retrieved audio bytes go directly to Gemini 3 Flash for the generation step. The model listens and answers based on what it hears. This is a meaningfully different experience than answering based on a text transcript, because the poem isn't just the words, it's the breath between lines, the weight Frost puts on certain syllables, the silences, etc.
+The retrieved audio bytes go directly to Gemini 3 Flash for the generation step. The model listens and answers based on what it hears. This is a meaningfully different experience than answering based on a text transcript, because in our example the poem isn't just the words, it's the breath between lines, the weight Frost puts on certain syllables, the silences, etc.
 
-[**Explore the Audio RAG notebook →**](https://github.com/weaviate/recipes/blob/main/weaviate-features/model-providers/google/audio_rag_gemini.ipynb)
+[**🔗 Explore the full Audio RAG notebook →**](https://github.com/weaviate/recipes/blob/main/weaviate-features/model-providers/google/audio_rag_gemini.ipynb)
 
 ### 2) Reading PDFs as Complex Visual Documents
 
@@ -190,11 +193,11 @@ collection = client.collections.create(
 )
 ```
 
-[Multimodal PDF RAG System](./img/multimodal-pdf-rag.png)
+![Multimodal PDF RAG System](./img/multimodal-pdf-rag.png)
 
 A text query retrieves the most relevant pages by visual similarity. Those pages go to the LLM as images, and it reads them the way any human would. This also makes the preprocessing pipeline a lot simpler. 
 
-[**Explore the Multimodal PDF RAG notebook →**](https://github.com/weaviate/recipes/blob/main/weaviate-features/model-providers/google/multimodal_pdf_rag_gemini.ipynb)
+[**🔗 Explore the Multimodal PDF RAG notebook →**](https://github.com/weaviate/recipes/blob/main/weaviate-features/model-providers/google/multimodal_pdf_rag_gemini.ipynb)
 
 ### 3) Finding the Right Moment in a Video
 
@@ -213,7 +216,7 @@ results = collection.query.near_media(
 )
 ```
 
-[**Explore the Video RAG notebook →**](https://github.com/weaviate/recipes/blob/main/weaviate-features/model-providers/google/video_rag_gemini.ipynb)
+[**🔗 Explore the full Video RAG notebook →**](https://github.com/weaviate/recipes/blob/main/weaviate-features/model-providers/google/video_rag_gemini.ipynb)
 
 ## When to Use Multimodal Embeddings (And When Not To)
 
@@ -235,9 +238,8 @@ So, in short, if your corpus is 10 million articles with no visual or audio comp
 The three examples discussed in this blog post share a common structure: work with the data in the form it actually arrived in. No transcription step that loses tone. No OCR that breaks layouts. No caption generation that flattens visual scenes into single sentences. 
 
 That’s what “multimodal” actually means in practice. Not just that you can query across formats, but the representation itself is grounded in the full signal rather than in whatever fits through a text-shaped hole.
-The engineering to build this is more accessible than it's ever been. The patterns shared in the linked notebooks above are real starting points. 
+The engineering to build this is more accessible than it's ever been. The patterns shared in the linked notebooks above are real starting points.  Pick the one closest to your data (or even combine a few), and just start building!
 
-Pick the one closest to your data (or even combine a few), and just start building!
 For any questions, ideas, or to just chat, feel free to join the conversation on [our community forum](https://forum.weaviate.io/).
 
 
