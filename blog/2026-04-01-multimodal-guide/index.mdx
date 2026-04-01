@@ -32,10 +32,7 @@ They map text, images, audio, and video into the same embedding space, so a quer
 In this blog post, we’ll look at how that works, why the latest generation of models makes it even more practical, and walk through three real systems you can build today using multimodal embeddings and language models.
 
 :::info
-If you’d rather skip the theory and jump straight into building, head to [this](
-
-
-) section.
+If you’d rather skip the theory and jump straight into building, head to [this](#building-multimodal-systems-3-examples) section.
 :::
 
 ## Embeddings, Briefly
@@ -68,11 +65,11 @@ The technique that makes this possible is contrastive learning, in which we asse
 
 **[CLIP](https://openai.com/index/clip/) (OpenAI, 2021)** was the first to prove this at scale for image-text. Trained on 400M pairs, it matched images to captions with zero-shot accuracy competitive with task-specific supervised models.
 
+![Contrastive Pre-training](./img/contrastive-pretraining.png)
+
 **[ImageBind](https://ai.meta.com/blog/imagebind-six-modalities-binding-ai/) (Meta, 2023)** extended this to six modalities: images/video, text, audio, depth, thermal, and IMU. It doesn't even need paired data for every combination, because everything is aligned to images, and relationships between other modalities (say, audio ↔ text) emerge transitively.
 
-![Architecture]()
-
-But there's a persistent problem with this setup, as documented in [**"Mind the Gap"](https://arxiv.org/abs/2203.02053) (NeurIPS 2022).** Each encoder's representations naturally cluster in a narrow cone in high-dimensional space, and the two cones don't fully overlap. Contrastive training doesn't close this distance, as the gap is actually where the loss is most satisfied, so the model has no incentive to bridge it. The separation quietly degrades accuracy and encodes bias into downstream tasks.
+But there's a persistent problem with this setup, as documented in **["Mind the Gap"](https://arxiv.org/abs/2203.02053) (NeurIPS 2022).** Each encoder's representations naturally cluster in a narrow cone in high-dimensional space, and the two cones don't fully overlap. Contrastive training doesn't close this distance, as contrastive loss only cares about relative distances within pairs and it doesn't account the gap between modality cones, so the model has no incentive to bridge it. The separation unpredictably affects accuracy and encodes bias into downstream tasks.
 
 These findings pointed exactly at what the next generation of models needed to fix: train all modalities jointly from scratch, in a single unified architecture. Modern natively multimodal embedding models do exactly that, and that shift is what makes all the examples we’ll discuss below practical rather than theoretical.
 
