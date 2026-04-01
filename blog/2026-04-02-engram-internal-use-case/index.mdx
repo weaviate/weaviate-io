@@ -5,7 +5,7 @@ authors: [yaru, charles-pierse]
 date: 2026-04-02
 tags: ['concepts']
 image: ./img/hero.png
-description: "Two weeks of using Engram — Weaviate's memory product — in daily Claude Code sessions surfaced exactly where AI memory adds value, and the specific mechanics that prevent it from working."
+description: "Two weeks of dogfooding Engram, Weaviate's memory product, in daily Claude Code sessions. This surfaced where a dedicated memory product adds value, and the specific mechanics that prevent integration with coding assistants from working well."
 faq:
   - question: "What is Engram?"
     answer: "Engram is Weaviate's memory product built on vector search technology, designed to give AI coding assistants like Claude Code persistent, cross-session context and reasoning history."
@@ -52,7 +52,7 @@ I needed to answer a more basic question: what is Engram actually for, if `MEMOR
 All that context is why we need Engram.
 
 ![How Engram grounds memory](./img/memory-layers.png)
-*Illustration 1: How Engram Grounds Memory*
+*How Engram fits alongside `MEMORY.md`*
 
 Engram structures memory around *topics*: semantic categories that let recall filter to exactly what's relevant rather than searching a flat pile of everything. I went through my typical work and identified four categories that would actually be meaningful for my workflow:
 
@@ -71,7 +71,7 @@ With those categories in place defining *what* to store, the next question emerg
 Since every recall costs a round-trip and context window space, I opted to have mid-session recall only fire on specific triggers: cross-project references, decision archaeology, and resumed work after a gap.
 
 ![How Engram grounds sessions](./img/session-cycle.png)
-*Illustration 2: How Engram Grounds Sessions*
+*The session lifecycle: when Engram saves and recalls*
 
 One practical constraint shaped the approach: large saves were timing out, which pushed us toward shorter, single-topic saves of 2–4 sentences. It turned out to be better for retrieval anyway — a focused memory is easier to find than a paragraph you have to parse.
 
@@ -135,7 +135,7 @@ Memory that works well for an individual gets complicated fast in a team context
 
 The current pipeline is designed for incremental capture, where memories are extracted as conversations happen. But this leaves gaps where we need to start with a body of existing content rather than building up from scratch. For my integration, that's bootstrapping from existing session history rather than waiting weeks to accumulate a useful memory bank. For another internal support agent use case, that's importing a large corpus of product documentation as the knowledge foundation. The pipeline handles neither cleanly yet, and what we're now building toward.
 
----
+## So, was it worth it?
 
 I started this expecting to prove that Engram is valuable, and instead found something much more useful: the specific conditions where Engram works well, and the specific mechanics that prevent it from working well. Uncovering them early and iterating quickly gives our preview more leverage as we move toward GA.
 
