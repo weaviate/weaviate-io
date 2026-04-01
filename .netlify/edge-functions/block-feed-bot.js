@@ -2,11 +2,12 @@ export default async (request, context) => {
   const url = new URL(request.url);
   const ua = request.headers.get("user-agent") || "";
   const country = (context.geo && context.geo.country) || "";
+  const pathname = url.pathname.toLowerCase();
 
   const isFeedPath =
-    url.pathname.endsWith("/blog/rss.xml") ||
-    url.pathname.endsWith("/blog/atom.xml") ||
-    url.pathname.includes("/blog/feed");
+    pathname.includes("/feed") ||
+    pathname.includes("/rss") ||
+    pathname.includes("/atom");
 
   const isSuspiciousCountry = country === "CN";
 
@@ -15,7 +16,7 @@ export default async (request, context) => {
     ua.includes("Windows NT 10.0");
 
   if (isFeedPath && (isSuspiciousCountry || isSuspiciousUA)) {
-    return new Response("Forbidden", { status: 403 });
+    return new Response(null, { status: 204 });
   }
 
   return context.next();
