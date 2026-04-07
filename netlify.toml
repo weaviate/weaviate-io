@@ -60,4 +60,16 @@ force = true
 
 [[edge_functions]]
 function = "block-feed-bot"
-path = "/*"
+path = "/blog/rss.xml"
+
+[[edge_functions]]
+function = "block-feed-bot"
+path = "/blog/atom.xml"
+
+[[edge_functions]]
+function = "block-feed-bot"
+path = "/blog/feed"
+
+[[edge_functions]]
+function = "block-feed-bot"
+path = "/blog/feed.xml"
