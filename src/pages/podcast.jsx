@@ -8,7 +8,7 @@ import ThemeSwitch from '/src/components/ThemeSwitch';
 
 export default function PodcastPage() {
   return (
-    <div className="podcast-page">
+    <div className="custom-page noBG">
       <Layout
         title="Weaviate Podcasts"
         description="Welcome to Weaviate Podcasts"
