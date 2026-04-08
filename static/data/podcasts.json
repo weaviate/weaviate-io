@@ -1,5 +1,13 @@
 [
   {
+    "title": "Data Agents with Shreya Shankar - Weaviate Podcast #135",
+    "description": "Welcome to the 135th episode of the Weaviate Podcast featuring Shreya Shankar, discussing Data Agents, the Data Agent Benchmark, and DocETL.",
+    "youtube": "C-fNVPYZrVg",
+    "date": "26-04-07",
+    "cover_image": "/img/podcasts/podcast-135.jpg",
+    "is_use_case": false
+  },
+  {
     "title": "Multi-Vector Search with Amélie Chatelain and Antoine Chaffin - Weaviate Podcast #134",
     "description": "Welcome to the 134th episode of the Weaviate Podcast featuring Amélie Chatelain and Antoine Chaffin, discussing Multi-Vector Search!",
     "youtube": "44GC3E-WbHU",
