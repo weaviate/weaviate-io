@@ -359,6 +359,7 @@ const config = {
                 },
                 theme: {
                     customCss: [
+                        require.resolve('./src/css/tailwind.css'),
                         require.resolve('./src/css/custom.scss'),
                         require.resolve('./src/css/blog-and-docs.scss'),
                     ],
