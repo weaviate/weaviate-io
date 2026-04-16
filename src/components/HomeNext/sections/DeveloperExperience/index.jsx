@@ -1,5 +1,6 @@
 import Link from '@docusaurus/Link';
 import React, { useMemo, useState } from 'react';
+import CodeTabs from '../CodeBlock';
 
 const navItems = [
   {
@@ -52,171 +53,26 @@ const navItems = [
   },
 ];
 
-const codeTabs = [
-  {
-    id: 'search',
-    label: 'SEARCH',
-    code: `# Select collection
-collection = client.collections.get("SupportTickets")
-
-# Pure vector search
-response = collection.query.near_vector(
-    near_vector=[0.1, 0.1, 0.1],
-    limit=5
-)
-
-# Semantic search
-response = collection.query.near_text(
-    query="login issues after OS upgrade",
-    limit=5
-)
-
-# Hybrid search (vector + keyword)
-response = collection.query.hybrid(
-    query="login issues after OS upgrade",
-    alpha=0.75,
-    limit=5
-)`,
-  },
-  {
-    id: 'vectorize',
-    label: 'VECTORIZER',
-    code: `collection = client.collections.create(
-    name="SupportTickets",
-    vectorizer_config=Configure.Vectorizer.text2vec_openai(
-        model="text-embedding-3-large"
-    )
-)
-
-collection.data.insert_many([
-    {"title": "Login issue", "body": "MFA fails on iOS"},
-    {"title": "Billing question", "body": "Invoice mismatch in March"}
-])`,
-  },
-  {
-    id: 'rag',
-    label: 'RAG',
-    code: `result = collection.generate.near_text(
-    query="Summarize unresolved support issues",
-    grouped_task="Create a concise digest for support leadership",
-    limit=6
-)
-
-print(result.generated)`,
-  },
-  {
-    id: 'tenants',
-    label: 'TENANTS',
-    code: `collection.tenants.create([
-    Tenant(name="acme"),
-    Tenant(name="globex")
-])
-
-acme = client.collections.use("SupportTickets", tenant="acme")
-globex = client.collections.use("SupportTickets", tenant="globex")`,
-  },
-  {
-    id: 'index',
-    label: 'INDEX',
-    code: `collection = client.collections.create(
-    name="SupportTickets",
-    vector_index_config=Configure.VectorIndex.hnsw(
-        ef_construction=256,
-        max_connections=64
-    ),
-    inverted_index_config=Configure.InvertedIndex(
-        bm25_k1=1.2,
-        bm25_b=0.75
-    )
-)`,
-  },
-  {
-    id: 'agents',
-    label: 'AGENTS',
-    code: `assistant = client.agents.create(
-    name="SupportTriage",
-    skills=["query", "summarize", "route"],
-    memory=MemoryConfig(window="30d")
-)
-
-assistant.run("Route urgent OAuth incidents to engineering")`,
-  },
-];
-
 function QuickstartPanel() {
-  const [activeCodeTab, setActiveCodeTab] = useState(codeTabs[0].id);
-
-  const selectedTab = useMemo(
-    () => codeTabs.find((tab) => tab.id === activeCodeTab) || codeTabs[0],
-    [activeCodeTab],
-  );
-
   return (
-    <div className="tw-space-y-4">
+    <div className="tw-space-y-5">
       <div
-        className="tw-relative tw-overflow-hidden tw-rounded-[24px] tw-border tw-border-[#2a2f3f]"
+        className="tw-relative tw-overflow-hidden tw-rounded-[28px] tw-border tw-border-[#2a2f3f] tw-p-6 md:tw-p-8"
         style={{
           backgroundImage:
-            "linear-gradient(180deg, rgba(10,14,22,0.22) 0%, rgba(10,14,22,0.18) 100%), url('/img/site/2026/quickstart-bg.png')",
+            "linear-gradient(48deg, rgb(0 254 107 / 30%) 13.81%, rgb(0 183 226 / 30%) 92.18%), url('/img/site/2026/quickstart-bg.png')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
+          minHeight: '630px',
         }}
       >
-        <div className="tw-p-4 md:tw-p-6 lg:tw-p-7">
-          <div className="tw-ml-0 md:tw-ml-8 lg:tw-ml-10 tw-max-w-[640px] tw-overflow-hidden tw-rounded-[22px] tw-border tw-border-[#241f31] tw-bg-[#130d1d]/96 tw-shadow-[0_24px_80px_rgba(0,0,0,0.45)]">
-            <div className="tw-flex tw-flex-wrap tw-gap-2 tw-border-b tw-border-[#2b2437] tw-px-4 tw-py-3 md:tw-gap-3 md:tw-px-5">
-              {codeTabs.map((tab) => {
-                const isActive = tab.id === selectedTab.id;
+        <div className="tw-absolute tw-inset-0 tw-bg-[linear-gradient(180deg,rgba(0,0,0,0.03)_0%,rgba(0,0,0,0.08)_100%)]" />
 
-                return (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    onClick={() => setActiveCodeTab(tab.id)}
-                    className={`tw-rounded-md tw-border tw-px-3 tw-py-1.5 tw-text-[11px] tw-font-semibold tw-tracking-[0.06em] tw-transition md:tw-text-xs ${
-                      isActive
-                        ? 'tw-border-[#2ecf95]/35 tw-bg-[#11151d] tw-text-[#7cf09f]'
-                        : 'tw-border-[#d9dde4]/20 tw-bg-[#f3f5f8] tw-text-[#7f8ca6] hover:tw-text-[#59657e]'
-                    }`}
-                    style={{ fontFamily: 'Inter, sans-serif' }}
-                  >
-                    {tab.label}
-                  </button>
-                );
-              })}
-            </div>
-
-            <pre className="tw-m-0 tw-overflow-x-auto tw-bg-transparent tw-px-5 tw-py-5 md:tw-px-6 md:tw-py-6">
-              <code
-                className="tw-text-[14px] tw-leading-8 tw-text-[#d6dff0]"
-                style={{
-                  fontFamily:
-                    'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace',
-                }}
-              >
-                {selectedTab.code}
-              </code>
-            </pre>
+        <div className="tw-relative tw-flex tw-h-full tw-items-center tw-justify-center">
+          <div className="tw-w-full tw-max-w-[720px] tw-rounded-[24px] tw-border tw-border-[#241d31] tw-bg-[#130d1d]/95 tw-shadow-[0_24px_80px_rgba(0,0,0,0.42)]">
+            <CodeTabs />
           </div>
         </div>
-      </div>
-
-      <div className="tw-flex tw-flex-wrap tw-gap-3">
-        <Link
-          to="/go/console"
-          className="tw-inline-flex tw-items-center tw-justify-center tw-rounded-lg tw-bg-[#63e689] tw-px-6 tw-py-3 tw-text-sm tw-font-semibold tw-text-[#0a1512] tw-no-underline tw-transition hover:tw-bg-[#7df09d]"
-          style={{ fontFamily: 'Inter, sans-serif' }}
-        >
-          Try Weaviate Cloud
-        </Link>
-
-        <Link
-          to="https://docs.weaviate.io/weaviate/quickstart"
-          className="tw-inline-flex tw-items-center tw-justify-center tw-rounded-lg tw-border tw-border-[#39425b] tw-bg-transparent tw-px-6 tw-py-3 tw-text-sm tw-font-semibold tw-text-[#d6ddef] tw-no-underline tw-transition hover:tw-border-[#4a5574] hover:tw-text-white"
-          style={{ fontFamily: 'Inter, sans-serif' }}
-        >
-          Weaviate Quickstart
-        </Link>
       </div>
     </div>
   );
@@ -224,10 +80,13 @@ function QuickstartPanel() {
 
 function AgentSkillsPanel() {
   return (
-    <div className="tw-rounded-[24px] tw-border tw-border-[#2a2f3f] tw-bg-[#111622] tw-p-6 md:tw-p-8">
+    <div className="tw-rounded-[24px] tw-border tw-border-[#2a2f3f] tw-bg-[#1A1A1A] tw-p-6 md:tw-p-8">
       <h3
-        className="tw-m-0 tw-text-2xl tw-font-semibold tw-leading-tight tw-text-[#e7effa]"
-        style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}
+        className="tw-m-0 tw-text-2xl tw-font-semibold tw-leading-tight tw-text-[#DDEBF2]"
+        style={{
+          fontFamily: '"Plus Jakarta Sans", sans-serif',
+          color: '#DDEBF2',
+        }}
       >
         Agent Skills for production workflows
       </h3>
@@ -264,10 +123,13 @@ function AgentSkillsPanel() {
 
 function PlaceholderPanel({ title }) {
   return (
-    <div className="tw-rounded-[24px] tw-border tw-border-[#2a2f3f] tw-bg-[#111622] tw-p-6 md:tw-p-8">
+    <div className="tw-rounded-[24px] tw-border tw-border-[#2a2f3f] tw-bg-[#1A1A1A] tw-p-6 md:tw-p-8">
       <h3
-        className="tw-m-0 tw-text-2xl tw-font-semibold tw-leading-tight tw-text-[#e7effa]"
-        style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}
+        className="tw-m-0 tw-text-2xl tw-font-semibold tw-leading-tight tw-text-[#DDEBF2]"
+        style={{
+          fontFamily: '"Plus Jakarta Sans", sans-serif',
+          color: '#DDEBF2',
+        }}
       >
         {title}
       </h3>
@@ -276,8 +138,7 @@ function PlaceholderPanel({ title }) {
         className="tw-mt-4 tw-max-w-2xl tw-text-base tw-leading-8 tw-text-[#b7c2da]"
         style={{ fontFamily: 'Inter, sans-serif' }}
       >
-        Content for this panel is coming in the next pass. Start with Quickstart
-        or Agent Skills to preview the new interaction model.
+        Content.
       </p>
     </div>
   );
@@ -335,8 +196,8 @@ export default function DeveloperExperience() {
                   onClick={() => setActiveNav(item.id)}
                   className={`tw-w-full tw-rounded-2xl tw-border tw-text-left tw-transition ${
                     isActive
-                      ? 'tw-border-[#2ecf95] tw-bg-[linear-gradient(180deg,#171a1f_0%,#131720_100%)] tw-px-5 tw-py-5'
-                      : 'tw-border-[#2a2f3f] tw-bg-[#15171b] tw-px-4 tw-py-4 hover:tw-border-[#3c445a]'
+                      ? 'tw-border-[#68FFA8] tw-border-solid tw-border-[0.5px] tw-bg-[linear-gradient(180deg,#171a1f_0%,#131720_100%)] tw-px-5 tw-py-5'
+                      : 'tw-bg-[#1A1A1A] tw-px-4 tw-py-4 tw-border-none hover:tw-border-[#3c445a]'
                   }`}
                 >
                   {isActive ? (
