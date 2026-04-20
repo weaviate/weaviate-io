@@ -29,14 +29,6 @@
     "team": "wcd"
   },
   {
-    "name": "Alvin Richards",
-    "title": "VP of Product",
-    "photo": "Alvin.jpg",
-    "linkedin": "alvinrichards",
-    "twitter": "jonnyeight",
-    "team": "product"
-  },
-  {
     "name": "André Mourão",
     "title": "Software Engineer",
     "photo": "andre-m.jpg",
@@ -81,6 +73,12 @@
     "twitter": "bobvanluijt",
     "github": "bobvanluijt",
     "team": "cto"
+  },
+  {
+    "name": "Brandon Holwerda",
+    "title": "Product Marketing Manager",
+    "photo": "Brandon-Holwerda.jpg",
+    "team": "product"
   },
   {
     "name": "Brave Okafor",
