@@ -21,11 +21,11 @@ const navItems = [
   },
   {
     id: 'cloud-tools',
-    title: 'Cloud Tools',
+    title: 'Cloud Console & Tools',
     icon: '/img/site/2026/vector-database-icon.svg',
     iconActive: '/img/site/2026/vector-database-icon.svg',
     description:
-      'Manage clusters, observability, and access from a unified workspace.',
+      'Manage your data directly in Cloud Console. Simplify development and confidently deploy enterprise-ready AI applications.',
   },
   {
     id: 'deployment',
@@ -50,6 +50,14 @@ const navItems = [
     iconActive: '/img/site/2026/query-agent-icon.svg',
     description:
       'Docs, tutorials, examples, and learning tracks for every team stage.',
+  },
+  {
+    id: 'demos',
+    title: 'Explore Demos',
+    icon: '/img/site/2026/Developer-Resources-icon.svg',
+    iconActive: '/img/site/2026/Developer-Resources-icon.svg',
+    description:
+      "Check out our favorite Weaviate projects! We've hand picked the best to showcase AI innovation and creativity.",
   },
 ];
 
@@ -80,42 +88,447 @@ function QuickstartPanel() {
 
 function AgentSkillsPanel() {
   return (
-    <div className="tw-rounded-[24px] tw-border tw-border-[#2a2f3f] tw-bg-[#1A1A1A] tw-p-6 md:tw-p-8">
-      <h3
-        className="tw-m-0 tw-text-2xl tw-font-semibold tw-leading-tight tw-text-[#DDEBF2]"
+    <div className="tw-space-y-5">
+      <div
+        className="tw-relative tw-overflow-hidden tw-rounded-[28px] tw-border tw-border-[#2a2f3f] tw-p-6 md:tw-p-8"
         style={{
-          fontFamily: '"Plus Jakarta Sans", sans-serif',
-          color: '#DDEBF2',
+          backgroundImage:
+            "linear-gradient(123deg, rgba(38,214,255,0.22) 12.44%, rgba(215,122,255,0.22) 109.26%), url('/img/site/2026/agents-devex-panel.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          minHeight: '630px',
         }}
       >
-        Agent Skills for production workflows
-      </h3>
+        <div className="tw-absolute tw-inset-0 tw-bg-[linear-gradient(180deg,rgba(0,0,0,0.03)_0%,rgba(0,0,0,0.08)_100%)]" />
 
-      <p
-        className="tw-mt-4 tw-max-w-3xl tw-text-base tw-leading-8 tw-text-[#b7c2da]"
-        style={{ fontFamily: 'Inter, sans-serif' }}
+        <div className="tw-relative tw-flex tw-h-full tw-items-center tw-justify-center">
+          <div className="tw-w-full tw-max-w-[760px]">
+            <div className="tw-overflow-hidden tw-rounded-[20px] tw-border tw-border-[#1f2532] tw-bg-[#141414] tw-shadow-[0_24px_80px_rgba(0,0,0,0.38)]">
+              <div className="tw-relative tw-aspect-[16/10] tw-w-full tw-bg-[#111]">
+                <video
+                  className="tw-h-full tw-w-full tw-object-cover"
+                  controls
+                  preload="metadata"
+                  poster="/img/site/2026/agent-skills-demo.png"
+                >
+                  <source
+                    src="/img/site/2026/agent-skills-demo.mp4"
+                    type="video/mp4"
+                  />
+                  Your browser does not support the video tag.
+                </video>
+
+                {/* Optional fallback overlay if video not added yet */}
+                <div className="tw-pointer-events-none tw-absolute tw-inset-0 tw-bg-[linear-gradient(180deg,rgba(0,0,0,0.05)_0%,rgba(0,0,0,0.12)_100%)]" />
+              </div>
+            </div>
+
+            <div className="tw-mt-6 tw-flex tw-flex-wrap tw-justify-center tw-gap-4">
+              <Link
+                to="/blog/weaviate-agent-skills"
+                className="tw-inline-flex tw-items-center tw-justify-center tw-rounded-[10px] tw-bg-[#DDEBF2] tw-px-8 tw-py-3 tw-text-[16px] tw-font-medium tw-text-[#111111] tw-no-underline tw-transition hover:tw-opacity-90"
+                style={{ fontFamily: 'Inter, sans-serif' }}
+              >
+                Explore Skills
+              </Link>
+
+              <Link
+                to="https://docs.weaviate.io/agents"
+                className="tw-inline-flex tw-items-center tw-justify-center tw-rounded-[10px] tw-bg-[#111111] tw-px-8 tw-py-3 tw-text-[16px] tw-font-medium tw-text-[#DDEBF2] tw-no-underline tw-transition hover:tw-bg-[#1b1b1b]"
+                style={{ fontFamily: 'Inter, sans-serif' }}
+              >
+                Prompt library
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function GuideflowEmbed({ iframeId = 'dr973w8bnp' }) {
+  React.useEffect(() => {
+    const existing = document.querySelector(
+      'script[src="https://app.guideflow.com/assets/opt.js"]',
+    );
+
+    if (!existing) {
+      const s = document.createElement('script');
+      s.src = 'https://app.guideflow.com/assets/opt.js';
+      s.async = true;
+      s.setAttribute('data-cookieconsent', 'ignore');
+      s.setAttribute('data-iframe-id', iframeId);
+      document.body.appendChild(s);
+    } else {
+      existing.setAttribute('data-iframe-id', iframeId);
+      window.dispatchEvent(new Event('guideflow:check'));
+    }
+  }, [iframeId]);
+
+  return (
+    <div className="tw-relative tw-w-full tw-overflow-hidden tw-rounded-[18px] tw-border tw-border-white/10 tw-bg-[#0E1420] tw-shadow-[0_18px_48px_rgba(0,0,0,0.28)]">
+      <div className="tw-aspect-[16/9] tw-w-full">
+        <iframe
+          id={iframeId}
+          src={`https://app.guideflow.com/embed/${iframeId}`}
+          title="Guideflow walkthrough"
+          allow="clipboard-read; clipboard-write"
+          allowFullScreen
+          className="tw-h-full tw-w-full tw-border-0"
+        />
+      </div>
+    </div>
+  );
+}
+
+function CloudToolsPanel() {
+  return (
+    <div className="tw-space-y-5">
+      <div
+        className="tw-relative tw-overflow-hidden tw-rounded-[28px] tw-border tw-border-[#2a2f3f] tw-p-6 md:tw-p-8"
+        style={{
+          backgroundImage:
+            "linear-gradient(48deg, rgb(0 254 107 / 22%) 13.81%, rgb(0 183 226 / 22%) 92.18%), url('/img/site/2026/cloud-devex-panel.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          minHeight: '630px',
+        }}
       >
-        Build robust AI systems with reusable skill primitives for retrieval,
-        personalization, and orchestration. Start with proven patterns, then
-        tailor behavior to your data and stack.
-      </p>
+        <div className="tw-absolute tw-inset-0 tw-bg-[linear-gradient(180deg,rgba(0,0,0,0.03)_0%,rgba(0,0,0,0.08)_100%)]" />
 
-      <div className="tw-mt-8 tw-flex tw-flex-wrap tw-gap-3">
-        <Link
-          to="/blog/weaviate-agent-skills"
-          className="tw-inline-flex tw-items-center tw-justify-center tw-rounded-lg tw-bg-[#63e689] tw-px-6 tw-py-3 tw-text-sm tw-font-semibold tw-text-[#0a1512] tw-no-underline tw-transition hover:tw-bg-[#7df09d]"
-          style={{ fontFamily: 'Inter, sans-serif' }}
-        >
-          Explore Agent Skills
-        </Link>
+        <div className="tw-relative tw-flex tw-h-full tw-items-center tw-justify-center">
+          <div className="tw-w-full tw-max-w-[880px]">
+            <GuideflowEmbed iframeId="dr973w8bnp" />
 
-        <Link
-          to="https://docs.weaviate.io/agents"
-          className="tw-inline-flex tw-items-center tw-justify-center tw-rounded-lg tw-border tw-border-[#39425b] tw-bg-transparent tw-px-6 tw-py-3 tw-text-sm tw-font-semibold tw-text-[#d6ddef] tw-no-underline tw-transition hover:tw-border-[#4a5574] hover:tw-text-white"
-          style={{ fontFamily: 'Inter, sans-serif' }}
-        >
-          Read Agent Docs
-        </Link>
+            <div className="tw-mt-6 tw-flex tw-flex-wrap tw-justify-center tw-gap-4">
+              <Link
+                to="/go/console"
+                className="tw-inline-flex tw-items-center tw-justify-center tw-rounded-[10px] tw-bg-[#DDEBF2] tw-px-8 tw-py-3 tw-text-[16px] tw-font-medium tw-text-[#111111] tw-no-underline tw-transition hover:tw-opacity-90"
+                style={{ fontFamily: 'Inter, sans-serif' }}
+              >
+                Try Cloud Console
+              </Link>
+
+              <Link
+                to="https://docs.weaviate.io/cloud"
+                className="tw-inline-flex tw-items-center tw-justify-center tw-rounded-[10px] tw-bg-[#111111] tw-px-8 tw-py-3 tw-text-[16px] tw-font-medium tw-text-[#DDEBF2] tw-no-underline tw-transition hover:tw-bg-[#1b1b1b]"
+                style={{ fontFamily: 'Inter, sans-serif' }}
+              >
+                Cloud Docs
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DeploymentPanel() {
+  const sharedCloud = [
+    'Fully-managed SaaS on shared infrastructure',
+    'Automatic scalability based on vector memory',
+    'Simple one-click cluster management',
+    'Consumption-based pricing (vector dimensions, storage, backups)',
+    'Available across five cloud regions',
+    '99.5% - 99.9% uptime SLA',
+  ];
+
+  const dedicatedCloud = [
+    'Dedicated instance with isolated infrastructure',
+    'Enhanced security and compliance (SOC II, HIPAA)',
+    'Predictable performance with dedicated resources',
+    '99.9% - 99.95% uptime SLA',
+    'Dedicated Success Manager included',
+    '24/7 professional support',
+  ];
+
+  return (
+    <div className="tw-space-y-5">
+      <div
+        className="tw-relative tw-overflow-hidden tw-rounded-[28px] tw-border tw-border-[#2a2f3f] tw-p-6 md:tw-p-8"
+        style={{
+          backgroundImage:
+            "linear-gradient(135deg, rgba(124,123,255,0.25) 0%, rgba(168,85,247,0.25) 100%), url('/img/site/2026/deployment-devex-panel.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          minHeight: '630px',
+        }}
+      >
+        <div className="tw-absolute tw-inset-0 tw-bg-[linear-gradient(180deg,rgba(0,0,0,0.05)_0%,rgba(0,0,0,0.12)_100%)]" />
+
+        <div className="tw-relative tw-flex tw-h-full tw-items-center tw-justify-center">
+          <div className="tw-grid tw-w-full tw-max-w-[900px] tw-items-stretch tw-gap-6 md:tw-grid-cols-2">
+            {/* Shared Cloud */}
+            <div className="tw-flex tw-h-full tw-flex-col tw-rounded-[24px] tw-border tw-border-white/15 tw-bg-[#141414] tw-p-6 tw-shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
+              <div className="tw-rounded-[16px] tw-bg-[linear-gradient(48deg,#00FE6B_13.81%,#00B7E2_92.18%)] tw-p-4">
+                <h3
+                  className="tw-m-0 tw-text-[20px] tw-font-semibold tw-text-[#111]"
+                  style={{ fontWeight: 700, lineHeight: '130%', color: '#111' }}
+                >
+                  Shared Cloud
+                </h3>
+              </div>
+
+              <div className="tw-mt-6 tw-flex-1 tw-space-y-4">
+                {sharedCloud.map((item) => (
+                  <div key={item} className="tw-flex tw-items-start tw-gap-3">
+                    <span className="tw-mt-1 tw-inline-flex tw-h-5 tw-w-5 tw-shrink-0 tw-items-center tw-justify-center tw-rounded-[4px] tw-text-[#081012]">
+                      <img
+                        src="/img/site/2026/byoc-tick.svg"
+                        alt=""
+                        aria-hidden="true"
+                        className="tw-h-4 tw-w-4"
+                      />
+                    </span>
+                    <p className="tw-m-0 tw-text-[14px] tw-leading-6 tw-text-[#DDEBF2]">
+                      {item}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <Link
+                to="/go/console"
+                className="tw-mt-6 tw-block tw-w-full tw-rounded-[10px] tw-bg-[linear-gradient(48deg,#00FE6B_13.81%,#00B7E2_92.18%)] tw-py-3 tw-text-center tw-text-[15px] tw-font-semibold tw-text-[#081012] tw-no-underline hover:tw-opacity-95"
+              >
+                Start building for free
+              </Link>
+            </div>
+
+            {/* Dedicated Cloud */}
+            <div className="tw-flex tw-h-full tw-flex-col tw-rounded-[24px] tw-border tw-border-white/15 tw-bg-[#141414] tw-p-6 tw-shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
+              <div className="tw-rounded-[16px] tw-bg-[linear-gradient(123deg,#26D6FF_12.44%,#D77AFF_109.26%)] tw-p-4">
+                <h3
+                  className="tw-m-0 tw-text-[20px] tw-font-semibold tw-text-[#111]"
+                  style={{ fontWeight: 700, lineHeight: '130%', color: '#111' }}
+                >
+                  Dedicated Cloud
+                </h3>
+              </div>
+
+              <div className="tw-mt-6 tw-flex-1 tw-space-y-4">
+                {dedicatedCloud.map((item) => (
+                  <div key={item} className="tw-flex tw-items-start tw-gap-3">
+                    <span className="tw-mt-1 tw-inline-flex tw-h-5 tw-w-5 tw-shrink-0 tw-items-center tw-justify-center tw-rounded-[4px] tw-text-[#081012]">
+                      <img
+                        src="/img/site/2026/cloud-tick.svg"
+                        alt=""
+                        aria-hidden="true"
+                        className="tw-h-4 tw-w-4"
+                      />
+                    </span>
+                    <p className="tw-m-0 tw-text-[14px] tw-leading-6 tw-text-[#DDEBF2]">
+                      {item}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <Link
+                to="/pricing"
+                className="tw-mt-6 tw-block tw-w-full tw-rounded-[10px] tw-bg-[linear-gradient(123deg,#26D6FF_12.44%,#D77AFF_109.26%)] tw-py-3 tw-text-center tw-text-[15px] tw-font-semibold tw-text-[#081012] tw-no-underline hover:tw-opacity-95"
+              >
+                See pricing
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function IntegrationsPanel() {
+  return (
+    <div className="tw-space-y-5">
+      <div
+        className="tw-relative tw-overflow-hidden tw-rounded-[28px] tw-border tw-border-[#2a2f3f] tw-p-6 md:tw-p-8"
+        style={{
+          backgroundImage:
+            "linear-gradient(48deg, rgb(0 254 107 / 20%) 13.81%, rgb(0 183 226 / 20%) 92.18%), url('/img/site/2026/integrations-devrex-panel.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          minHeight: '630px',
+        }}
+      >
+        <div className="tw-absolute tw-inset-0 tw-bg-[linear-gradient(180deg,rgba(0,0,0,0.03)_0%,rgba(0,0,0,0.08)_100%)]" />
+
+        <div className="tw-relative tw-flex tw-h-full tw-items-center tw-justify-center">
+          <div className="tw-w-full tw-max-w-[920px]">
+            <div className="tw-flex tw-justify-center">
+              <img
+                src="/img/site/2026/integrations-devrex-diagram.png"
+                alt="Weaviate integrations ecosystem diagram"
+                className="tw-h-auto tw-w-full tw-max-w-[880px] tw-object-contain"
+              />
+            </div>
+
+            <div className="tw-mt-6 tw-flex tw-flex-wrap tw-justify-center tw-gap-4">
+              <Link
+                to="/integrations"
+                className="tw-inline-flex tw-items-center tw-justify-center tw-rounded-[10px] tw-bg-[#DDEBF2] tw-px-8 tw-py-3 tw-text-[16px] tw-font-medium tw-text-[#111111] tw-no-underline tw-transition hover:tw-opacity-90"
+                style={{ fontFamily: 'Inter, sans-serif' }}
+              >
+                Explore Integrations
+              </Link>
+
+              <Link
+                to="https://docs.weaviate.io/weaviate/model-providers"
+                className="tw-inline-flex tw-items-center tw-justify-center tw-rounded-[10px] tw-bg-[#111111] tw-px-8 tw-py-3 tw-text-[16px] tw-font-medium tw-text-[#DDEBF2] tw-no-underline tw-transition hover:tw-bg-[#1b1b1b]"
+                style={{ fontFamily: 'Inter, sans-serif' }}
+              >
+                Model Providers
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DeveloperResourcesPanel() {
+  const resources = [
+    {
+      title: 'Docs',
+      desc: 'Find the right documentation and resources.',
+      link: 'https://docs.weaviate.io',
+    },
+    {
+      title: 'Academy',
+      desc: 'Explore our comprehensive course library.',
+      link: '/academy',
+    },
+    {
+      title: 'Blog',
+      desc: 'Read latest news and insights from our experts.',
+      link: '/blog',
+    },
+    {
+      title: 'Learn',
+      desc: 'A learning resources hub for builders of all levels.',
+      link: '/learn',
+    },
+    {
+      title: 'Demos',
+      desc: 'Example projects and demo apps built with Weaviate.',
+      link: '/developers/weaviate/demos',
+    },
+    {
+      title: 'Ebooks',
+      desc: 'In-depth resources to help you deepen your knowledge.',
+      link: '/ebooks',
+    },
+    {
+      title: 'Podcast',
+      desc: 'Interviews with industry leaders and experts.',
+      link: '/podcast',
+    },
+    {
+      title: 'Forum',
+      desc: 'Share your experience and get help from community.',
+      link: 'https://forum.weaviate.io',
+    },
+  ];
+
+  return (
+    <div className="tw-space-y-5">
+      <div
+        className="tw-relative tw-overflow-hidden tw-rounded-[28px] tw-border tw-border-[#2a2f3f] tw-p-6 md:tw-p-8"
+        style={{
+          backgroundImage:
+            "linear-gradient(123deg, rgba(124,123,255,0.25) 0%, rgba(38,214,255,0.18) 100%), url('/img/site/2026/Developer-Resources-devrex-panel.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          minHeight: '630px',
+        }}
+      >
+        <div className="tw-absolute tw-inset-0 tw-bg-[linear-gradient(180deg,rgba(0,0,0,0.05)_0%,rgba(0,0,0,0.12)_100%)]" />
+
+        <div className="tw-relative tw-flex tw-h-full tw-items-center tw-justify-center">
+          <div className="tw-grid tw-w-full tw-max-w-[920px] tw-gap-6 sm:tw-grid-cols-2 lg:tw-grid-cols-4">
+            {resources.map((item) => (
+              <Link
+                key={item.title}
+                to={item.link}
+                className="tw-group tw-relative tw-flex tw-h-full tw-flex-col tw-justify-between tw-rounded-[20px] tw-p-[1px] tw-shadow-[inset_0_1px_0_rgba(255,255,255,0.25)] tw-bg-[linear-gradient(140deg,rgba(255,255,255,0.25),rgba(255,255,255,0.05))] tw-transition tw-no-underline hover:tw-bg-[linear-gradient(140deg,rgba(255,255,255,0.35),rgba(255,255,255,0.08))]"
+              >
+                <div className="tw-rounded-[19px] tw-bg-[rgba(255,255,255,0.08)] tw-backdrop-blur-md tw-p-5 tw-h-full transition hover:tw-bg-[rgba(255,255,255,0.12)]">
+                  <div>
+                    {/* Icon */}
+                    <div className="tw-mb-4 tw-inline-flex tw-h-10 tw-w-10 tw-items-center tw-justify-center tw-rounded-lg">
+                      <img
+                        src="/img/site/2026/Developer-Resources-icon.svg"
+                        alt=""
+                        className="tw-h-8 tw-w-8"
+                      />
+                    </div>
+
+                    {/* Title */}
+                    <h3
+                      className="tw-m-0 tw-text-[20px] tw-font-semibold tw-text-white"
+                      style={{
+                        color: '#ffffff',
+                        fontWeight: 600,
+                        lineHeight: '130%',
+                      }}
+                    >
+                      {item.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="tw-mt-2 tw-text-[14px] tw-leading-6 tw-text-[#d6def2]">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DemosPanel() {
+  return (
+    <div className="tw-space-y-5">
+      <div
+        className="tw-relative tw-overflow-hidden tw-rounded-[28px] tw-border tw-border-[#2a2f3f] tw-p-6 md:tw-p-8"
+        style={{
+          backgroundImage:
+            "linear-gradient(123deg, rgba(38,214,255,0.20) 0%, rgba(124,123,255,0.22) 100%), url('/img/site/2026/demos-devrex-panel.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          minHeight: '630px',
+        }}
+      >
+        <div className="tw-absolute tw-inset-0 tw-bg-[linear-gradient(180deg,rgba(0,0,0,0.04)_0%,rgba(0,0,0,0.10)_100%)]" />
+
+        <div className="tw-relative tw-flex tw-h-full tw-items-center tw-justify-center">
+          <div className="tw-w-full tw-max-w-[920px]">
+            <div className="tw-flex tw-justify-center">
+              <img
+                src="/img/site/2026/demos-screenshot.png"
+                alt="Weaviate Playground demos overview"
+                className="tw-h-auto tw-w-full tw-max-w-[600px] tw-object-contain"
+              />
+            </div>
+
+            <div className="tw-mt-6 tw-flex tw-flex-wrap tw-justify-center tw-gap-4">
+              <Link
+                to="/developers/weaviate/demos"
+                className="tw-inline-flex tw-items-center tw-justify-center tw-rounded-[10px] tw-bg-[#111111] tw-px-8 tw-py-3 tw-text-[16px] tw-font-medium tw-text-[#DDEBF2] tw-no-underline tw-transition hover:tw-bg-[#1b1b1b]"
+                style={{ fontFamily: 'Inter, sans-serif' }}
+              >
+                Visit Weaviate Playground to view all the demos
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -255,8 +668,20 @@ export default function DeveloperExperience() {
           <div>
             {activeItem.id === 'quickstart' ? <QuickstartPanel /> : null}
             {activeItem.id === 'agent-skills' ? <AgentSkillsPanel /> : null}
+            {activeItem.id === 'cloud-tools' ? <CloudToolsPanel /> : null}
+            {activeItem.id === 'deployment' ? <DeploymentPanel /> : null}
+            {activeItem.id === 'integrations' ? <IntegrationsPanel /> : null}
+            {activeItem.id === 'demos' ? <DemosPanel /> : null}
+            {activeItem.id === 'developer-resources' ? (
+              <DeveloperResourcesPanel />
+            ) : null}
             {activeItem.id !== 'quickstart' &&
-            activeItem.id !== 'agent-skills' ? (
+            activeItem.id !== 'agent-skills' &&
+            activeItem.id !== 'cloud-tools' &&
+            activeItem.id !== 'deployment' &&
+            activeItem.id !== 'integrations' &&
+            activeItem.id !== 'demos' &&
+            activeItem.id !== 'developer-resources' ? (
               <PlaceholderPanel title={activeItem.title} />
             ) : null}
           </div>

@@ -1536,3 +1536,35 @@ a.navbar__item.navbar__link:hover {
   font-size: 1.2rem !important;
   line-height: 1.7;
 }
+
+// Marquee styling
+.tw-marquee-wrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.tw-marquee-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: usecases-marquee 60s linear infinite;
+  will-change: transform;
+}
+
+.tw-marquee-wrapper:hover .tw-marquee-track {
+  animation-play-state: paused;
+}
+
+.tw-marquee-item {
+  flex: 0 0 auto;
+}
+
+@keyframes usecases-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 12px));
+  }
+}

@@ -4,6 +4,7 @@ import TrustedBy from './sections/TrustedBy';
 import Capabilities from './sections/Capabilities';
 import DeveloperExperience from './sections/DeveloperExperience';
 import UseCases from './sections/UseCases';
+import UseCasesV2 from './sections/UseCasesV2';
 import Examples from './sections/Examples';
 import WhyWeaviate from './sections/WhyWeaviate';
 import GetStarted from './sections/GetStarted';
@@ -14,9 +15,9 @@ export default function HomeNext() {
       <Hero />
       <TrustedBy />
       <Capabilities />
+      <UseCasesV2 />
       <DeveloperExperience />
-      <UseCases />
-      <Examples />
+
       <WhyWeaviate />
       <GetStarted />
     </>
