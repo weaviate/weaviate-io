@@ -1,0 +1,377 @@
+Weaviate `v1.37` is now available open-source and on [Weaviate Cloud](https://console.weaviate.cloud).
+
+This release is all about extending what Weaviate can do at the edges of the search stack — from how it talks to AI agents, to how it analyzes text, to how it handles large-scale operations. Four new preview features join the release: a **built-in MCP Server** that lets LLMs and IDEs speak to your database natively, **Extensible Tokenizers** with accent folding and custom stopword presets, **Diversity Search (MMR)** for rerun-friendly vector results, and **Query Profiling** for per-shard timing breakdowns. Alongside them, **Incremental Backups** make backing up massive collections practical, **Gemini audio** joins the `multi2vec-google` module, and the new **BlobHash** property type stores only a hash instead of the full blob.
+
+Here are the release highlights!
+
+![Weaviate 1.37 is released](./img/hero.png)
+
+- [MCP Server (Preview)](#mcp-server-preview)
+- [Extensible Tokenizers (Preview)](#extensible-tokenizers-preview)
+- [Diversity Search with MMR (Preview)](#diversity-search-with-mmr-preview)
+- [Query Profiling (Preview)](#query-profiling-preview)
+- [Incremental Backups](#incremental-backups)
+- [Gemini Audio Support](#gemini-audio-support)
+- [BlobHash Property Type](#blobhash-property-type)
+- [Multiple performance improvements and fixes](#multiple-performance-improvements-and-fixes)
+- [Community contributions](#community-contributions)
+
+## MCP Server (Preview)
+
+Weaviate `v1.37` introduces a **built-in [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server**, now available as a preview. MCP is an open standard that lets Large Language Models and AI agents interact securely with external systems. By implementing it directly in Weaviate, you can plug your database into compatible clients — [Claude Code](https://code.claude.com/docs/en/mcp), [Claude Desktop](https://claude.ai/download), [Cursor](https://docs.cursor.com/context/model-context-protocol), [VS Code](https://code.visualstudio.com/docs/copilot/chat/mcp-servers), and any other MCP-aware tool — without writing any glue code.
+
+This shifts Weaviate from a passive retrieval engine to an active **long-term memory** for agentic workflows: the LLM can inspect collection schemas, run hybrid searches, and write data back into your instance, all governed by Weaviate's standard authentication and authorization.
+
+### How it works
+
+The server is implemented as a Streamable HTTP endpoint at `/v1/mcp` on the same port as the REST API. It's **disabled by default**; enable it with a single environment variable:
+
+```yaml
+MCP_SERVER_ENABLED: 'true'
+# Optional — enable write tools
+MCP_SERVER_WRITE_ACCESS_ENABLED: 'true'
+```
+
+Once enabled, the server exposes four tools:
+
+| Tool                              | Description                                                |
+| --------------------------------- | ---------------------------------------------------------- |
+| `weaviate-collections-get-config` | Inspect collection schemas                                 |
+| `weaviate-tenants-list`           | List tenants for multi-tenant collections                  |
+| `weaviate-query-hybrid`           | Run hybrid (vector + keyword) search                       |
+| `weaviate-objects-upsert`         | Insert or update objects (only if write access is enabled) |
+
+#### Granular permissions
+
+If you're using RBAC, MCP access is governed by three new permissions — `read_mcp`, `create_mcp`, and `update_mcp` — so you can grant agents exactly the capabilities they need and nothing more.
+
+#### Custom tool descriptions
+
+You can tailor the tool descriptions the LLM sees by mounting a YAML or JSON config file at `MCP_SERVER_CONFIG_PATH`. This is useful for steering agents toward the shape of your specific data without retraining or prompting tricks.
+
+```yaml
+# mcp-config.yaml
+tools:
+  weaviate-query-hybrid:
+    description: 'Search our product catalog by name or description.'
+    arguments:
+      query: "The shopper's natural-language query."
+      alpha: '0.0 = keyword only, 1.0 = vector only, 0.5 = balanced.'
+```
+
+:::caution Preview
+MCP Server is currently a **preview** feature. The API and behavior may change in future releases.
+:::
+
+:::info Related resources
+
+- [Docs: Weaviate MCP server](https://docs.weaviate.io/weaviate/mcp/mcp-server)
+- [Model Context Protocol](https://modelcontextprotocol.io/)
+
+:::
+
+## Extensible Tokenizers (Preview)
+
+Keyword search quality starts long before [BM25](https://en.wikipedia.org/wiki/Okapi_BM25) runs its calculation — it's decided by the analyzer that turns text into tokens. Weaviate `v1.37` evolves tokenization from an English-centric capability into a **self-serve, observable foundation for multilingual workloads**. Three additions ship as a preview.
+
+### Accent folding
+
+The new `textAnalyzer.asciiFold` flag normalizes accented Latin characters (and other diacritics) to their ASCII equivalents, during both indexing and querying. A document containing "Café Crème" becomes searchable as "cafe creme" — and vice versa.
+
+```json
+{
+  "name": "description",
+  "dataType": ["text"],
+  "tokenization": "word",
+  "textAnalyzer": { "asciiFold": true }
+}
+```
+
+Under the hood, Weaviate uses [Unicode NFD decomposition](https://unicode.org/reports/tr15/) plus an explicit replacement table for single-codepoint letters (`ł`, `æ`, `ø`, `ð`, `þ`, `đ`, `ß`, and more). Together that covers 20+ Latin-script languages out of the box. If you need to preserve specific characters — for example, an `é` that distinguishes two product names — use the `asciiFoldIgnore` array to exempt them.
+
+### Custom and per-property stopwords
+
+Weaviate previously shipped with `en` and `none` as the only stopword options. As of `v1.37` you can declare named stopword presets on the collection and assign different presets to individual properties — perfect for multilingual collections where, say, a `name_fr` property needs French stopwords (`le`, `la`, `et`) while a `name_en` property uses English.
+
+```json
+{
+  "invertedIndexConfig": {
+    "stopwordPresets": {
+      "fr": ["le", "la", "les", "un", "une", "des", "du", "de", "et"]
+    }
+  }
+}
+```
+
+Stopwords are still written to the [inverted index](https://docs.weaviate.io/weaviate/concepts/indexing/inverted-index) — they're only filtered out at query time — which means you can change the configuration without reindexing your data.
+
+### The tokenize endpoint
+
+The hardest part of tuning a text analyzer is knowing what it actually produced. Two new REST endpoints make the tokenization process transparent:
+
+- `POST /v1/tokenize` — Tokenize arbitrary text with any tokenizer and analyzer config. Perfect for experimenting before committing to a schema.
+- `POST /v1/schema/{className}/properties/{propertyName}/tokenize` — Tokenize text using an existing property's exact configuration.
+
+Both return a structured response that separates `indexed` tokens (what goes into the inverted index) from `query` tokens (what BM25 actually scores after stopword filtering):
+
+```json
+{
+  "tokenization": "word",
+  "indexed": ["the", "organic", "cafe", "creme", "blend"],
+  "query": ["organic", "cafe", "creme", "blend"]
+}
+```
+
+:::caution Preview
+Extensible tokenizers are currently a **preview** feature. The API and behavior may change in future releases.
+:::
+
+:::info Related resources
+
+- [Concepts: Inverted index - Accent folding](https://docs.weaviate.io/weaviate/concepts/indexing/inverted-index#accent-folding)
+- [Tutorial: Tokenization](https://docs.weaviate.io/weaviate/tutorials/tokenization)
+
+:::
+
+## Diversity Search with MMR (Preview)
+
+Standard vector search has a known side-effect: it clusters near-duplicates. A query like "Italian food" returns five pizza images; a RAG pipeline retrieves five chunks that all say roughly the same thing. Relevance alone isn't enough — you also need **diversity**.
+
+Weaviate `v1.37` introduces **[Maximum Marginal Relevance (MMR)](https://dl.acm.org/doi/10.1145/290941.291025)** as a new query-time reranking step, available as a preview. MMR iteratively picks the most relevant item first, then penalizes candidates that are too similar to what has already been selected — so each new result has to earn its place by adding something new.
+
+### How to use it
+
+Add a `selection` parameter to any `near_*` query in the Python client:
+
+```python
+from weaviate.classes.query import Diversity
+
+response = collection.query.near_vector(
+    near_vector=query_vector,
+    limit=20,
+    selection=Diversity.MMR(
+        limit=5,
+        balance=0.5,
+    ),
+)
+```
+
+The top-level `limit` controls the size of the candidate set; `Diversity.MMR(limit)` controls how many results are returned after reranking. The `balance` parameter (λ) controls the trade-off between relevance and diversity:
+
+- **`0.0`** — Pure diversity; maximize difference between results
+- **`0.5`** — Balanced; each result must be both relevant and distinct
+- **`1.0`** — Pure relevance; equivalent to standard vector search
+
+MMR is applied at query time, on top of an existing vector index — no reindexing or schema changes are required. It works with `near_text`, `near_vector`, `near_object`, `near_image`, and `near_media`.
+
+:::caution Preview
+MMR diversity selection is currently a **preview** feature. The API and behavior may change in future releases.
+:::
+
+:::info Related resources
+
+- [How-to: Diversity selection (MMR)](https://docs.weaviate.io/weaviate/search/similarity#diversity-selection-mmr)
+- [Concepts: Vector search - MMR](https://docs.weaviate.io/weaviate/concepts/search/vector-search#diversity-selection-mmr)
+
+:::
+
+## Query Profiling (Preview)
+
+When a query is slow, the first question is always "where did the time go?" Weaviate `v1.37` makes that question easy to answer with **query profiling**, available as a preview — per-shard timing breakdowns attached to any search request.
+
+Request profile data by setting `query_profile=True` in `MetadataQuery`:
+
+```python
+from weaviate.classes.query import MetadataQuery
+
+response = collection.query.near_vector(
+    near_vector=[0.1, 0.2, 0.3],
+    limit=10,
+    return_metadata=MetadataQuery(query_profile=True),
+)
+
+for shard in response.query_profile.shards:
+    print(f"Shard: {shard.name} (node: {shard.node})")
+    for search_type, profile in shard.searches.items():
+        print(f"  [{search_type}]")
+        for key, value in profile.details.items():
+            print(f"    {key}: {value}")
+```
+
+The profile is structured per shard and per search type (`vector`, `keyword`, `object`), with metrics like `vector_search_took`, `filters_ids_matched`, `knn_search_layer_N_took`, `kwd_method`, and `total_took`. For hybrid search, you get both vector and keyword sections per shard. For multi-node clusters, the coordinator aggregates timings from every shard — each entry includes the node that executed it, making performance imbalances easy to spot.
+
+Profiling uses the same instrumentation as slow query logging, so overhead is minimal when enabled and zero when disabled.
+
+:::caution Preview
+Query profiling is currently a **preview** feature. The API and behavior may change in future releases.
+:::
+
+:::info Related resources
+
+- [How-to: Query profiling](https://docs.weaviate.io/weaviate/search/query-profile)
+
+:::
+
+## Incremental Backups
+
+Backing up a 100GB collection every night is expensive when only a few percent of the data changed since yesterday. Weaviate `v1.37` introduces **incremental backups**: files unchanged since the last backup are stored as references rather than copied again. The result is dramatically smaller backups and much faster backup times.
+
+### How it works
+
+When a backup runs, Weaviate splits large files into chunks. During an incremental backup, each chunk is compared against the base backup — and if it's unchanged, a pointer is stored instead of the file. On restore, Weaviate automatically walks the chain and pulls the referenced files from the earlier backup.
+
+#### Creating incremental backups
+
+Start with a regular (full) backup, then reference it as the base for future incrementals:
+
+```python
+# Step 1: Create a full backup to act as the base
+result = client.backup.create(
+    backup_id="base-backup",
+    backend="filesystem",
+    include_collections=["Article", "Publication"],
+    wait_for_completion=True,
+)
+
+# Step 2: Create an incremental backup against the base
+result = client.backup.create(
+    backup_id="incremental-backup-1",
+    backend="filesystem",
+    include_collections=["Article", "Publication"],
+    wait_for_completion=True,
+    incremental_base_backup_id="base-backup",
+)
+```
+
+You can also **chain** incremental backups — each one referencing the previous — to build a longer history cheaply:
+
+```python
+result = client.backup.create(
+    backup_id="incremental-backup-2",
+    backend="filesystem",
+    include_collections=["Article", "Publication"],
+    wait_for_completion=True,
+    incremental_base_backup_id="incremental-backup-1",
+)
+```
+
+#### Restoring
+
+Restoring an incremental backup works exactly like restoring a full backup — Weaviate resolves the chain and fetches files from earlier backups as needed:
+
+```python
+result = client.backup.restore(
+    backup_id="incremental-backup-2",
+    backend="filesystem",
+    wait_for_completion=True,
+)
+```
+
+:::caution Keep base backups available
+The base backup (and any intermediate incremental backups in a chain) must remain available for as long as you need to restore from any incremental backup that depends on them.
+:::
+
+Also worth highlighting alongside this: in `v1.37`, **INACTIVE (COLD) tenants are now included in backups**, read directly from disk without activation. Previously, only active tenants were backed up.
+
+:::info Related resources
+
+- [Configuration: Backups — Incremental backups](https://docs.weaviate.io/deploy/configuration/backups#incremental-backups)
+
+:::
+
+## Gemini Audio Support
+
+The [`multi2vec-google`](https://docs.weaviate.io/weaviate/model-providers/google/embeddings-multimodal) module now supports **audio as a fourth modality**, alongside text, images, and videos. Configure audio properties via the new `audioFields` setting, the same way you would `imageFields` or `videoFields`.
+
+Audio support is only available through the **[Gemini API](https://ai.google.dev/gemini-api/docs)** ([Google AI Studio](https://aistudio.google.com/)) — [Vertex AI](https://cloud.google.com/vertex-ai) doesn't currently support audio embeddings. That makes the Gemini API path attractive for any multimodal use case that needs to unify text, visual, and audio content in a single vector space.
+
+:::info Related resources
+
+- [Model providers: Google multimodal embeddings](https://docs.weaviate.io/weaviate/model-providers/google/embeddings-multimodal)
+
+:::
+
+## BlobHash Property Type
+
+If you use a module like `multi2vec-google` to vectorize media, the vectorizer only needs the raw bytes during import — after that, the blob just sits in storage taking up space. The new **`blobHash`** data type in `v1.37` addresses this directly: it accepts base64-encoded input (like `blob`) but persists only a **[SHA-256](https://en.wikipedia.org/wiki/SHA-2) hash** on disk.
+
+```json
+{
+  "properties": [
+    {
+      "name": "image",
+      "dataType": ["blobHash"]
+    }
+  ]
+}
+```
+
+The raw base64 data still flows through the vectorization pipeline, so modules can embed the actual media content. Only after vectorization does Weaviate replace the payload with its hash. On subsequent updates, incoming data is hashed and compared against the stored hash to decide whether re-vectorization is needed.
+
+This is a great fit for workflows where you want the vector in Weaviate but the canonical media lives in object storage (e.g., [S3](https://aws.amazon.com/s3/)) — the hash lets you correlate back to the original without paying the disk cost of duplicating it.
+
+:::info Related resources
+
+- [Config references: Data types - blobHash](https://docs.weaviate.io/weaviate/config-refs/datatypes#blobhash)
+
+:::
+
+## Multiple Performance Improvements and Fixes
+
+Weaviate `v1.37` also ships many smaller features and improvements. Here are some highlights:
+
+- **Collection Export (Preview):** A new `/v1/export` API lets you export collections to S3, GCS, Azure, or the local filesystem as [Apache Parquet](https://parquet.apache.org/) — useful for offline analytics, migrations, and data pipelines. See the [Collection export docs](https://docs.weaviate.io/deploy/configuration/export) for details.
+- **HFresh improvements:** Numerous optimizations to [HFresh](/blog/weaviate-1-36-release#hfresh-preview) (the disk-based vector index introduced in `v1.36`), including reduced memory usage, fewer disk writes, and better dequeuing during backups.
+- **`DEFAULT_SHARDING_COUNT` env var:** Override the default `desiredCount` for new single-tenant collections instead of using the cluster node count. Runtime-configurable and user-specified `desiredCount` still takes precedence.
+- **S3 assume role for backups:** The `backup-s3` module now supports AWS assume role authentication, making it easier to integrate with IAM-based deployments.
+- **Google AI Studio in `multi2vec-google`:** Google AI Studio API keys now work with the multi2vec-google module, in addition to Vertex AI.
+- **IPv6 clustering:** Weaviate now supports IPv6 addresses for internal cluster communication.
+- **Internal cluster gRPC:** Replica communication migrated from REST to gRPC, with improved connection management and binary encoding for digest responses.
+- **Reranker-cohere v2:** The Cohere reranker module upgraded from the v1 to the v2 rerank endpoint.
+- **OIDC insecure TLS skip:** New `AUTHENTICATION_OIDC_INSECURE_SKIP_TLS_VERIFY` env var for OIDC issuers with self-signed or untrusted certificates in dev/test environments.
+- **Performance:** HNSW sparse visited lists, pre-computed average property length, delayed quantization until cache prefill, non-blocking compaction during backup, better bitmap handling for segment searches, and more.
+- **Bug fixes:** Eventual consistency improvements, RBAC restore race conditions, vector index error handling, IPv6 address parsing, filter edge cases, and many others.
+
+We always recommend running the latest version of Weaviate to benefit from these ongoing improvements.
+
+:::info Related resources
+
+- [Weaviate 1.37: GitHub Release Notes](https://github.com/weaviate/weaviate/releases/tag/v1.37.0)
+
+:::
+
+## Community Contributions
+
+Weaviate is an open-source project, and we're always thrilled to see contributions from our amazing community. For this release, we are super excited to shout-out the following first-time contributors:
+
+- [@junjieqi](https://github.com/junjieqi) contributed [#10722](https://github.com/weaviate/weaviate/pull/10722) — IPv6 support for clustering
+
+If you're interested in contributing to Weaviate, please check out our [contribution guide](https://docs.weaviate.io/contributor-guide/), and browse the open issues on [GitHub](https://github.com/weaviate/weaviate/issues). Look for the `good-first-issue` label to find great starting points!
+
+:::info Related resources
+
+- [Contributor Guide](https://docs.weaviate.io/contributor-guide)
+
+:::
+
+## Summary
+
+Weaviate `v1.37` broadens how your data integrates with the rest of your stack — from AI agents and IDEs to analytics pipelines and multilingual workloads.
+
+**Key highlights:**
+
+- **MCP Server (Preview)** — Native integration with AI agents and IDEs via the Model Context Protocol
+- **Extensible Tokenizers (Preview)** — Accent folding, custom stopword presets, and a tokenize endpoint for observability
+- **Diversity Search with MMR (Preview)** — Query-time reranking that balances relevance and diversity
+- **Query Profiling (Preview)** — Per-shard timing breakdowns for any search request
+- **Incremental Backups** — Smaller, faster backups that reference unchanged files from a base backup
+- **Gemini Audio Support** — Audio as a fourth modality in `multi2vec-google` (Gemini API only)
+- **BlobHash Property Type** — Vectorize media at import, persist only a SHA-256 hash
+
+**Ready to get started?**
+
+The release is available open-source on [GitHub](https://github.com/weaviate/weaviate/releases/tag/v1.37.0) and is already available for new Sandboxes on [Weaviate Cloud](https://console.weaviate.cloud/).
+
+For those upgrading a self-hosted version, please check the [migration guide](https://docs.weaviate.io/deploy/migration#general-upgrade-instructions) for version-specific notes.
+
+Thanks for reading, and happy vector searching!
