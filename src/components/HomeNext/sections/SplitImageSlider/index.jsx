@@ -100,7 +100,7 @@ export default function SplitImageSlider() {
 
       <div className={styles.imageWrapperBase}>
         <img
-          src="/img/site/code-before-block.png"
+          src="/img/site/code-before-block-2026.png"
           className={styles.image}
           alt="Before Weaviate"
         />
@@ -115,7 +115,7 @@ export default function SplitImageSlider() {
       >
         <div className={styles.imageWrapperOverlay}>
           <img
-            src="/img/site/code-after-block.png"
+            src="/img/site/code-after-block-2026.png"
             className={styles.image}
             alt="With Weaviate"
           />

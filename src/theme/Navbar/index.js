@@ -42,17 +42,6 @@ const navGroups = {
       ],
     },
     {
-      title: 'By Industry',
-      items: [
-        { label: '💰 Financial Services', to: '/case-studies' },
-        { label: '🏥 Healthcare', to: '/case-studies' },
-        { label: '🛒 E-commerce', to: '/case-studies' },
-        { label: '💻 Technology', to: '/case-studies' },
-        { label: '🎓 Education', to: '/case-studies' },
-        { label: '⚖️ Legal', to: '/case-studies' },
-      ],
-    },
-    {
       title: 'Examples',
       items: [
         { label: 'Case Studies', to: '/case-studies' },
@@ -129,59 +118,95 @@ const actionLinks = [
   { label: 'Log in', to: '/go/console' },
 ];
 
-function MegaMenu({ sections }) {
+function MegaMenu({ sections, menuLabel }) {
+  const positionClass =
+    menuLabel === 'Product'|| menuLabel === 'Solutions'
+      ? 'tw-left-0 tw-translate-x-[8px]'
+      : 'tw-left-1/2 tw--translate-x-1/2';
+
   return (
-    <div className="tw-absolute tw-left-1/2 tw-top-full tw-z-50 tw-w-[920px] tw-max-w-[calc(100vw-48px)] tw--translate-x-1/2 tw-rounded-2xl tw-border tw-border-white/10 tw-bg-[#111317] tw-p-6 tw-shadow-[0_24px_80px_rgba(0,0,0,0.45)]">
-      <div className="tw-grid tw-gap-8 md:tw-grid-cols-2 xl:tw-grid-cols-3">
-        {sections.map((section) => (
-          <div key={section.title}>
-            <p
-              className="tw-mb-4 tw-text-[13px] tw-font-semibold tw-uppercase tw-tracking-[0.12em]"
-              style={{
-                fontFamily: '"Plus Jakarta Sans", sans-serif',
-                background: 'linear-gradient(223deg, #43E2C5 -4.42%, #70EE62 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-              }}
-            >
-              {section.title}
-            </p>
+    <div
+      className={`tw-absolute tw-top-full tw-z-50 tw-w-[920px] tw-max-w-[calc(100vw-48px)] tw-pt-4 ${positionClass}`}
+    >
+      <div
+        className="
+          tw-relative tw-overflow-hidden tw-rounded-[24px]
+          tw-border tw-border-white/8
+          tw-bg-[rgba(8,10,16,0.88)]
+          tw-shadow-[0_24px_80px_rgba(0,0,0,0.42)]
+          tw-backdrop-blur-[16px]
+          tw-supports-[backdrop-filter]:tw-bg-[rgba(8,10,16,0.82)]
+          tw-p-7
+          tw-animate-[menuFadeIn_160ms_ease-out]
+          tw-origin-top
+        "
+      >
+        <div className="tw-pointer-events-none tw-absolute tw-inset-0 tw-rounded-[24px] tw-shadow-[inset_0_1px_0_rgba(255,255,255,0.07)]" />
+        <div className="tw-pointer-events-none tw-absolute tw-left-0 tw-right-0 tw-top-0 tw-h-20 tw-bg-[radial-gradient(circle_at_top,rgba(67,226,197,0.05),transparent_68%)]" />
 
-            <ul className="tw-m-0 tw-list-none tw-space-y-3 tw-p-0">
-              {section.items.map((item) => {
-                const isExternal = item.to.startsWith('http');
+        <div className="tw-relative tw-grid tw-gap-8 md:tw-grid-cols-2 xl:tw-grid-cols-3">
+          {sections.map((section) => (
+            <div key={section.title}>
+              <p
+                className="tw-mb-4 tw-text-[12px] tw-font-semibold tw-uppercase tw-tracking-[0.14em]"
+                style={{
+                  fontFamily: '"Plus Jakarta Sans", sans-serif',
+                  background:
+                    'linear-gradient(223deg, #43E2C5 -4.42%, #70EE62 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                }}
+              >
+                {section.title}
+              </p>
 
-                if (isExternal) {
+              <ul className="tw-m-0 tw-list-none tw-space-y-1.5 tw-p-0">
+                {section.items.map((item) => {
+                  const isExternal = item.to.startsWith('http');
+                  const itemClasses =
+                    'tw-group tw-flex tw-items-center tw-justify-between tw-rounded-xl tw-px-3 tw-py-2.5 tw-text-[15px] tw-leading-6 tw-text-[#D5DEEE] tw-no-underline tw-transition-all tw-duration-150 hover:tw-bg-white/4 hover:tw-text-white';
+
+                  const content = (
+                    <>
+                      <span>{item.label}</span>
+                      <span className="tw-translate-x-[-4px] tw-opacity-0 tw-transition-all tw-duration-150 group-hover:tw-translate-x-0 group-hover:tw-opacity-100 tw-text-[#7BE7C7]">
+                        →
+                      </span>
+                    </>
+                  );
+
+                  if (isExternal) {
+                    return (
+                      <li key={item.label} className="tw-m-0 tw-list-none tw-p-0">
+                        <a
+                          href={item.to}
+                          target="_blank"
+                          rel="noreferrer"
+                          className={itemClasses}
+                          style={{ fontFamily: 'Inter, sans-serif' }}
+                        >
+                          {content}
+                        </a>
+                      </li>
+                    );
+                  }
+
                   return (
                     <li key={item.label} className="tw-m-0 tw-list-none tw-p-0">
-                      <a
-                        href={item.to}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="tw-text-[15px] tw-leading-6 tw-text-[#D5DEEE] tw-no-underline tw-transition hover:tw-text-white"
+                      <Link
+                        to={item.to}
+                        className={itemClasses}
                         style={{ fontFamily: 'Inter, sans-serif' }}
                       >
-                        {item.label}
-                      </a>
+                        {content}
+                      </Link>
                     </li>
                   );
-                }
-
-                return (
-                  <li key={item.label} className="tw-m-0 tw-list-none tw-p-0">
-                    <Link
-                      to={item.to}
-                      className="tw-text-[15px] tw-leading-6 tw-text-[#D5DEEE] tw-no-underline tw-transition hover:tw-text-white"
-                      style={{ fontFamily: 'Inter, sans-serif' }}
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        ))}
+                })}
+              </ul>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -203,38 +228,56 @@ export default function Navbar() {
         </Link>
 
         <nav className="tw-ml-auto tw-hidden tw-flex-1 tw-justify-center lg:tw-flex">
-          <ul className="tw-m-0 tw-flex tw-list-none tw-items-center tw-gap-10 tw-p-0">
-            {mainLinks.map((link) => {
-              const hasMenu = !!navGroups[link.label];
+  <ul className="tw-m-0 tw-flex tw-list-none tw-items-center tw-gap-3 tw-p-0">
+    {mainLinks.map((link) => {
+      const hasMenu = !!navGroups[link.label];
+      const isOpen = openMenu === link.label;
 
-              return (
-              <li
-  key={link.label}
-  className="tw-relative tw-m-0 tw-list-none tw-p-0 tw-pb-4"
-  onMouseEnter={() => hasMenu && setOpenMenu(link.label)}
-  onMouseLeave={() => hasMenu && setOpenMenu(null)}
->
-                  <Link
-                    to={link.to}
-                    className="tw-inline-flex tw-items-center tw-gap-1 tw-text-[14px] tw-font-normal tw-text-[#B9C8DE] tw-no-underline tw-transition hover:tw-text-white"
-                    style={{ fontFamily: 'Inter, sans-serif', lineHeight: '163.8%' }}
-                  >
-                    {link.label}
-                    {link.showCaret ? (
-                      <span className="tw-text-[10px] tw-text-[#8b95ad]" aria-hidden="true">
-                        ▼
-                      </span>
-                    ) : null}
-                  </Link>
+      return (
+        <li
+          key={link.label}
+          className="tw-relative tw-m-0 tw-list-none tw-p-0"
+          onMouseEnter={() => hasMenu && setOpenMenu(link.label)}
+          onMouseLeave={() => hasMenu && setOpenMenu(null)}
+        >
+          <Link
+            to={link.to}
+            className={`
+              tw-inline-flex tw-items-center tw-gap-1.5 tw-rounded-full
+              tw-px-4 tw-py-2.5
+              tw-text-[14px] tw-font-normal tw-no-underline tw-transition-all tw-duration-150
+              ${
+                isOpen
+                  ? 'tw-bg-white/6 tw-text-white'
+                  : 'tw-text-[#B9C8DE] hover:tw-bg-white/4 hover:tw-text-white'
+              }
+            `}
+            style={{
+              fontFamily: 'Inter, sans-serif',
+              lineHeight: '163.8%',
+            }}
+          >
+            {link.label}
+            {link.showCaret ? (
+              <span
+                className={`tw-text-[10px] tw-transition-transform tw-duration-150 ${
+                  isOpen ? 'tw-rotate-180 tw-text-white' : 'tw-text-[#8b95ad]'
+                }`}
+                aria-hidden="true"
+              >
+                ▼
+              </span>
+            ) : null}
+          </Link>
 
-                  {hasMenu && openMenu === link.label ? (
-                    <MegaMenu sections={navGroups[link.label]} />
-                  ) : null}
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
+         {hasMenu && isOpen ? (
+  <MegaMenu sections={navGroups[link.label]} menuLabel={link.label} />
+) : null}
+        </li>
+      );
+    })}
+  </ul>
+</nav>
 
         <div className="tw-ml-auto tw-hidden tw-items-center tw-gap-8 lg:tw-ml-0 lg:tw-flex">
           <Link

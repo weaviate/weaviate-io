@@ -1548,7 +1548,7 @@ a.navbar__item.navbar__link:hover {
   display: flex;
   gap: 24px;
   width: max-content;
-  animation: usecases-marquee 60s linear infinite;
+  animation: usecases-marquee 120s linear infinite;
   will-change: transform;
 }
 
@@ -1567,4 +1567,54 @@ a.navbar__item.navbar__link:hover {
   to {
     transform: translateX(calc(-50% - 12px));
   }
+}
+
+@keyframes menuFadeIn {
+  from {
+    opacity: 0;
+    margin-top: -4px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0;
+  }
+}
+
+@keyframes trustedLogosMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 0.5rem));
+  }
+}
+
+.trusted-logos-track {
+  animation: trustedLogosMarquee 300s linear infinite;
+  will-change: transform;
+}
+
+.trusted-logos-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trusted-logos-track {
+    animation: none;
+  }
+}
+
+@keyframes panelFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.panel-fade-in {
+  animation: panelFadeIn 220ms ease-out;
 }
