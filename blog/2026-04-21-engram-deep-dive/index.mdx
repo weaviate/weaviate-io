@@ -86,7 +86,7 @@ Each topic has a "scope" that controls which raw data is allowed to influence ea
 
 * **Project-wide** memories are shared between all users in your project, letting you share information quickly between a team or have your agent continually learn from all of its experiences.  
 * **User-scoped** memories belong to one specific user and can never be influenced by data added for another user. Hard isolation between user data is strictly enforced by Weaviate's multi-tenancy feature.  
-* **Property-scoped** memories have additional key-value data attached. These give additional soft isolation, meaning that while Engram always enforces this separation when creating and updating memories from new data, you have the option of querying these memories either filtered by these properties or not. For example, this could be used to attach a `conversation_id` and have memories relating to a single conversation only, while still being able to search over memories across all a user's conversations if needed.
+* **Property-scoped** memories have additional key-value data attached. These give soft isolation, meaning that while Engram always enforces this separation when creating and updating memories from new data, you have the option of querying these memories either filtered by these properties or not. For example, this could be used to attach a `conversation_id` and have memories relating to a single conversation only, while still being able to search over memories across all a user's conversations if needed.
 
 Scopes are enforced by Engram both when adding data and querying memories, meaning you can never forget to pass a `user_id` and accidentally leak data between your users.
 
