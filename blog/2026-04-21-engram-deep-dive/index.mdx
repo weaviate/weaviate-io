@@ -31,7 +31,7 @@ As agentic applications have gone from experimental features to production use c
 
 ## What is memory?
 
-It can be a major annoyance when a chatbot forgets your preferences. However, as we discussed in [The Limit in the Loop](https://weaviate.io/blog/limit-in-the-loop"), the problem is potentially far worse for agents carrying out long-running and complex tasks. Without the continuity of memory, agents are unable to learn from past experience, becoming stuck in a constant cycle of solving the same intermediate problems repeatedly before losing those insights, wasting both time and tokens in the process.
+It can be a major annoyance when a chatbot forgets your preferences. However, as we discussed in [The Limit in the Loop](https://weaviate.io/blog/limit-in-the-loop), the problem is potentially far worse for agents carrying out long-running and complex tasks. Without the continuity of memory, agents are unable to learn from past experience, becoming stuck in a constant cycle of solving the same intermediate problems repeatedly before losing those insights, wasting both time and tokens in the process.
 
 While the long context windows of frontier models might seem like a solution to this problem, cramming them full is rarely the best approach. It is well known that LLMs get [Lost in the Middle](https://arxiv.org/abs/2307.03172) and that effective context lengths are still far below 100% (e.g., [here](https://arxiv.org/abs/2601.02872) and [here](https://arxiv.org/abs/2502.05167)). Not only does overly-long context degrade accuracy, it also increases answer latency and inflates the cost of requests. These costs must be paid for every new message, as the entire conversation history is passed back to the LLM.
 
