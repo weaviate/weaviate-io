@@ -1,6 +1,6 @@
 Weaviate `v1.37` is now available open-source and on [Weaviate Cloud](https://console.weaviate.cloud).
 
-This release is all about extending what Weaviate can do at the edges of the search stack — from how it talks to AI agents, to how it analyzes text, to how it handles large-scale operations. Four new preview features join the release: a **built-in MCP Server** that lets LLMs and IDEs speak to your database natively, **Extensible Tokenizers** with accent folding and custom stopword presets, **Diversity Search (MMR)** for rerun-friendly vector results, and **Query Profiling** for per-shard timing breakdowns. Alongside them, **Incremental Backups** make backing up massive collections practical, **Gemini audio** joins the `multi2vec-google` module, and the new **BlobHash** property type stores only a hash instead of the full blob.
+This release is all about extending what Weaviate can do — from how it talks to AI agents, to how it analyzes text, to how it handles large-scale operations. Four new preview features join the release: a **built-in MCP Server** that lets LLMs and IDEs speak to your database natively, **Extensible Tokenizers** with accent folding and custom stopword presets, **Diversity Search (MMR)** for less redundant vector results, and **Query Profiling** for per-shard timing breakdowns. Alongside them, **Incremental Backups** make backing up massive collections practical, **Gemini audio** joins the `multi2vec-google` module, and the new **BlobHash** property type stores only a hash instead of the full blob.
 
 Here are the release highlights!
 
@@ -20,7 +20,7 @@ Here are the release highlights!
 
 Weaviate `v1.37` introduces a **built-in [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server**, now available as a preview. MCP is an open standard that lets Large Language Models and AI agents interact securely with external systems. By implementing it directly in Weaviate, you can plug your database into compatible clients — [Claude Code](https://code.claude.com/docs/en/mcp), [Claude Desktop](https://claude.ai/download), [Cursor](https://docs.cursor.com/context/model-context-protocol), [VS Code](https://code.visualstudio.com/docs/copilot/chat/mcp-servers), and any other MCP-aware tool — without writing any glue code.
 
-This shifts Weaviate from a passive retrieval engine to an active **long-term memory** for agentic workflows: the LLM can inspect collection schemas, run hybrid searches, and write data back into your instance, all governed by Weaviate's standard authentication and authorization.
+This shifts Weaviate from a passive retrieval engine to an active **long-term memory** for agentic workflows: the LLM can inspect collection schemas, run hybrid searches, and write data back into your instance, all enforced by Weaviate's standard authentication and authorization.
 
 ### How it works
 
@@ -72,7 +72,7 @@ MCP Server is currently a **preview** feature. The API and behavior may change i
 
 ## Extensible Tokenizers (Preview)
 
-Keyword search quality starts long before [BM25](https://en.wikipedia.org/wiki/Okapi_BM25) runs its calculation — it's decided by the analyzer that turns text into tokens. Weaviate `v1.37` evolves tokenization from an English-centric capability into a **self-serve, observable foundation for multilingual workloads**. Three additions ship as a preview.
+Keyword search quality starts long before [BM25](https://en.wikipedia.org/wiki/Okapi_BM25) runs its calculation — it's decided by the analyzer that turns text into tokens. Three additions ship as a preview:
 
 ### Accent folding
 
