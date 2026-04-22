@@ -1569,6 +1569,24 @@ a.navbar__item.navbar__link:hover {
   }
 }
 
+@media (max-width: 767px) {
+  .tw-marquee-track {
+    animation-duration: 90s;
+  }
+}
+
+@media (max-width: 767px) {
+  .tw-marquee-wrapper {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .tw-marquee-track {
+    gap: 16px;
+    animation-duration: 90s;
+  }
+}
+
 @keyframes menuFadeIn {
   from {
     opacity: 0;
@@ -1589,6 +1607,15 @@ a.navbar__item.navbar__link:hover {
   }
 }
 
+@keyframes trustedLogosMarqueeMobile {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 0.375rem));
+  }
+}
+
 .trusted-logos-track {
   animation: trustedLogosMarquee 300s linear infinite;
   will-change: transform;
@@ -1598,10 +1625,9 @@ a.navbar__item.navbar__link:hover {
   animation-play-state: paused;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .trusted-logos-track {
-    animation: none;
-  }
+.trusted-logos-track-mobile {
+  animation: trustedLogosMarqueeMobile 320s linear infinite;
+  will-change: transform;
 }
 
 @keyframes panelFadeIn {

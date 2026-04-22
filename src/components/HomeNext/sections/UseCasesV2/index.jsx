@@ -101,18 +101,18 @@ const useCaseCards = [
 
 function UseCaseCard({ card }) {
   return (
-    <article className="tw-h-full tw-min-h-[362px] tw-rounded-[28px] tw-border tw-border-white/20 tw-bg-[#151515] tw-p-7 md:tw-p-8">
+    <article className="tw-h-full tw-min-h-[420px] tw-rounded-[28px] tw-border tw-border-white/20 tw-bg-[#151515] tw-p-6 md:tw-p-7 lg:tw-min-h-[362px] lg:tw-p-8">
       <div className="tw-grid tw-h-full tw-gap-8 lg:tw-grid-cols-[minmax(0,1fr)_220px]">
         <div className="tw-flex tw-h-full tw-flex-col">
           <div className="tw-flex tw-min-h-[42px] tw-flex-wrap tw-items-center tw-justify-between tw-gap-4">
             <img
               src={card.companyLogo}
               alt={card.company}
-              className="tw-h-9 tw-max-w-[180px] tw-w-auto tw-object-contain"
+              className="tw-h-8 tw-w-auto tw-max-w-[170px] tw-object-contain md:tw-h-9 md:tw-max-w-[180px]"
             />
 
             <div
-              className="tw-inline-flex tw-min-h-[38px] tw-items-center tw-justify-center tw-rounded-full tw-border tw-px-5 tw-text-[14px] tw-font-medium tw-uppercase tw-tracking-[0.04em] tw-text-[#DDEBF2]"
+              className="tw-inline-flex tw-min-h-[34px] tw-items-center tw-justify-center tw-rounded-full tw-border tw-px-4 tw-text-[12px] tw-font-medium tw-uppercase tw-tracking-[0.04em] tw-text-[#DDEBF2] md:tw-min-h-[38px] md:tw-px-5 md:tw-text-[14px]"
               style={{
                 fontFamily: 'Inter, sans-serif',
                 borderColor: `${card.tagColor}80`,
@@ -122,9 +122,9 @@ function UseCaseCard({ card }) {
             </div>
           </div>
 
-          <div className="tw-mt-8 tw-min-h-[142px]">
+          <div className="tw-mt-6 md:tw-mt-8">
             <p
-              className="tw-m-0 tw-text-[18px] tw-leading-[1.55] tw-text-[#DDEBF2]"
+              className="tw-m-0 tw-text-[17px] tw-leading-[1.55] tw-text-[#DDEBF2] md:tw-text-[18px]"
               style={{ fontFamily: 'Inter, sans-serif' }}
             >
               “{card.quote}”
@@ -132,7 +132,7 @@ function UseCaseCard({ card }) {
           </div>
 
           <div className="tw-mt-auto tw-pt-8">
-            <div className="tw-flex tw-flex-wrap tw-items-end tw-justify-between tw-gap-6">
+            <div className="tw-flex tw-flex-col tw-gap-6 md:tw-gap-7 lg:tw-flex-row lg:tw-items-end lg:tw-justify-between">
               <div className="tw-flex tw-items-center tw-gap-4">
                 <img
                   src={card.avatar}
@@ -166,7 +166,7 @@ function UseCaseCard({ card }) {
           </div>
         </div>
 
-        <div className="tw-flex tw-h-full tw-flex-col tw-border-t tw-border-white/15 tw-pt-6 lg:tw-border-l lg:tw-border-t-0 lg:tw-pl-8 lg:tw-pt-0">
+        <div className="tw-hidden lg:tw-flex lg:tw-h-full lg:tw-flex-col lg:tw-border-l lg:tw-border-white/15 lg:tw-pl-8">
           <div className="tw-flex tw-h-full tw-flex-col tw-justify-between tw-gap-8">
             {card.stats.map((stat) => (
               <div
@@ -204,11 +204,11 @@ export default function UseCasesV2() {
   const scrollingCards = [...useCaseCards, ...useCaseCards];
 
   return (
-    <section className="tw-overflow-hidden tw-bg-[#111111] tw-py-16 md:tw-py-20 lg:tw-py-24">
+    <section className="tw-overflow-hidden tw-bg-[#111111] tw-py-12 md:tw-py-20 lg:tw-py-24">
       <div className="tw-mx-auto tw-max-w-[1320px] tw-px-6">
         <div className="tw-max-w-4xl">
           <p
-            className="tw-m-0 tw-mb-6 tw-text-[1rem] tw-font-semibold tw-uppercase tw-tracking-[0.12em]"
+            className="tw-m-0 tw-mb-4 tw-text-[0.9rem] tw-font-semibold tw-uppercase tw-tracking-[0.12em] md:tw-mb-6 md:tw-text-[1rem]"
             style={{
               fontFamily: '"Plus Jakarta Sans", sans-serif',
               color: '#43E2C5',
@@ -218,7 +218,7 @@ export default function UseCasesV2() {
           </p>
 
           <h2
-            className="tw-m-0 tw-text-[2.5rem] tw-font-semibold tw-leading-[1.08] md:tw-text-[2.75rem] lg:tw-text-[3rem]"
+            className="tw-m-0 tw-text-[2rem] tw-font-semibold tw-leading-[1.08] md:tw-text-[2.75rem] lg:tw-text-[3rem]"
             style={{
               fontFamily: '"Plus Jakarta Sans", sans-serif',
               color: '#DDEBF2',
@@ -228,7 +228,7 @@ export default function UseCasesV2() {
           </h2>
 
           <p
-            className="tw-m-0 tw-mt-6 tw-max-w-4xl tw-text-[18px] tw-leading-8 tw-text-[#B9C8DE]"
+            className="tw-m-0 tw-mt-5 tw-max-w-4xl tw-text-[16px] tw-leading-8 tw-text-[#B9C8DE] md:tw-mt-6 md:tw-text-[18px]"
             style={{ fontFamily: 'Inter, sans-serif' }}
           >
             With over 20M open source downloads and thousands of customers,
@@ -238,12 +238,12 @@ export default function UseCasesV2() {
         </div>
       </div>
 
-      <div className="tw-marquee-wrapper tw-mt-12">
+      <div className="tw-marquee-wrapper tw-mt-10 md:tw-mt-12">
         <div className="tw-marquee-track">
           {scrollingCards.map((card, index) => (
             <div
               key={`${card.id}-${index}`}
-              className="tw-marquee-item tw-w-[640px] tw-shrink-0 md:tw-w-[720px] lg:tw-w-[820px]"
+              className="tw-marquee-item tw-w-[calc(100vw-48px)] tw-shrink-0 md:tw-w-[720px] lg:tw-w-[820px]"
             >
               <UseCaseCard card={card} />
             </div>

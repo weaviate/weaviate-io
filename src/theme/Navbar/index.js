@@ -120,7 +120,7 @@ const actionLinks = [
 
 function MegaMenu({ sections, menuLabel }) {
   const positionClass =
-    menuLabel === 'Product'|| menuLabel === 'Solutions'
+    menuLabel === 'Product' || menuLabel === 'Solutions'
       ? 'tw-left-0 tw-translate-x-[8px]'
       : 'tw-left-1/2 tw--translate-x-1/2';
 
@@ -215,6 +215,26 @@ function MegaMenu({ sections, menuLabel }) {
 export default function Navbar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState(null);
+  const [openMobileMenu, setOpenMobileMenu] = useState(null);
+  const [hoveredMobileItem, setHoveredMobileItem] = useState(null);
+
+  const getMobileItemStyles = (label, isActive = false) => ({
+    fontFamily: 'Inter, sans-serif',
+    display: 'block',
+    width: '100%',
+    color: isActive || hoveredMobileItem === label ? '#00FE6B' : '#d7ddeb',
+    background: isActive || hoveredMobileItem === label ? '#11141d' : 'transparent',
+  });
+
+  const getMobileArrowStyles = (label, isActive = false) => ({
+    color: isActive || hoveredMobileItem === label ? '#00FE6B' : '#8b95ad',
+  });
+
+  const resetMobileMenus = () => {
+    setIsMobileOpen(false);
+    setOpenMobileMenu(null);
+    setHoveredMobileItem(null);
+  };
 
   return (
     <header className="tw-sticky tw-top-0 tw-z-50 tw-border-b tw-border-[#1f2128] tw-bg-[#090b10]/95 tw-backdrop-blur">
@@ -228,56 +248,56 @@ export default function Navbar() {
         </Link>
 
         <nav className="tw-ml-auto tw-hidden tw-flex-1 tw-justify-center lg:tw-flex">
-  <ul className="tw-m-0 tw-flex tw-list-none tw-items-center tw-gap-3 tw-p-0">
-    {mainLinks.map((link) => {
-      const hasMenu = !!navGroups[link.label];
-      const isOpen = openMenu === link.label;
+          <ul className="tw-m-0 tw-flex tw-list-none tw-items-center tw-gap-3 tw-p-0">
+            {mainLinks.map((link) => {
+              const hasMenu = !!navGroups[link.label];
+              const isOpen = openMenu === link.label;
 
-      return (
-        <li
-          key={link.label}
-          className="tw-relative tw-m-0 tw-list-none tw-p-0"
-          onMouseEnter={() => hasMenu && setOpenMenu(link.label)}
-          onMouseLeave={() => hasMenu && setOpenMenu(null)}
-        >
-          <Link
-            to={link.to}
-            className={`
-              tw-inline-flex tw-items-center tw-gap-1.5 tw-rounded-full
-              tw-px-4 tw-py-2.5
-              tw-text-[14px] tw-font-normal tw-no-underline tw-transition-all tw-duration-150
-              ${
-                isOpen
-                  ? 'tw-bg-white/6 tw-text-white'
-                  : 'tw-text-[#B9C8DE] hover:tw-bg-white/4 hover:tw-text-white'
-              }
-            `}
-            style={{
-              fontFamily: 'Inter, sans-serif',
-              lineHeight: '163.8%',
-            }}
-          >
-            {link.label}
-            {link.showCaret ? (
-              <span
-                className={`tw-text-[10px] tw-transition-transform tw-duration-150 ${
-                  isOpen ? 'tw-rotate-180 tw-text-white' : 'tw-text-[#8b95ad]'
-                }`}
-                aria-hidden="true"
-              >
-                ▼
-              </span>
-            ) : null}
-          </Link>
+              return (
+                <li
+                  key={link.label}
+                  className="tw-relative tw-m-0 tw-list-none tw-p-0"
+                  onMouseEnter={() => hasMenu && setOpenMenu(link.label)}
+                  onMouseLeave={() => hasMenu && setOpenMenu(null)}
+                >
+                  <Link
+                    to={link.to}
+                    className={`
+                      tw-inline-flex tw-items-center tw-gap-1.5 tw-rounded-full
+                      tw-px-4 tw-py-2.5
+                      tw-text-[14px] tw-font-normal tw-no-underline tw-transition-all tw-duration-150
+                      ${
+                        isOpen
+                          ? 'tw-bg-white/6 tw-text-white'
+                          : 'tw-text-[#B9C8DE] hover:tw-bg-white/4 hover:tw-text-white'
+                      }
+                    `}
+                    style={{
+                      fontFamily: 'Inter, sans-serif',
+                      lineHeight: '163.8%',
+                    }}
+                  >
+                    {link.label}
+                    {link.showCaret ? (
+                      <span
+                        className={`tw-text-[10px] tw-transition-transform tw-duration-150 ${
+                          isOpen ? 'tw-rotate-180 tw-text-white' : 'tw-text-[#8b95ad]'
+                        }`}
+                        aria-hidden="true"
+                      >
+                        ▼
+                      </span>
+                    ) : null}
+                  </Link>
 
-         {hasMenu && isOpen ? (
-  <MegaMenu sections={navGroups[link.label]} menuLabel={link.label} />
-) : null}
-        </li>
-      );
-    })}
-  </ul>
-</nav>
+                  {hasMenu && isOpen ? (
+                    <MegaMenu sections={navGroups[link.label]} menuLabel={link.label} />
+                  ) : null}
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
 
         <div className="tw-ml-auto tw-hidden tw-items-center tw-gap-8 lg:tw-ml-0 lg:tw-flex">
           <Link
@@ -310,54 +330,191 @@ export default function Navbar() {
 
         <button
           type="button"
-          onClick={() => setIsMobileOpen((v) => !v)}
-          className="tw-ml-auto tw-inline-flex tw-h-11 tw-w-11 tw-items-center tw-justify-center tw-rounded-md tw-border tw-border-[#2b3040] tw-text-[#c8d0df] lg:tw-hidden"
+          onClick={() => {
+            setIsMobileOpen((v) => {
+              const next = !v;
+              if (!next) {
+                setOpenMobileMenu(null);
+                setHoveredMobileItem(null);
+              }
+              return next;
+            });
+          }}
+          className="
+            tw-ml-auto tw-inline-flex tw-h-11 tw-w-11 tw-items-center tw-justify-center
+            tw-rounded-[12px] tw-border tw-border-white/10
+            tw-bg-[#12161f]
+            tw-text-[#B9C8DE]
+            tw-shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]
+            tw-transition
+            hover:tw-border-white/15 hover:tw-text-white
+            lg:tw-hidden
+          "
           aria-label="Toggle menu"
           aria-expanded={isMobileOpen}
         >
-          <span className="tw-text-xl">{isMobileOpen ? '×' : '☰'}</span>
+          <span
+            className={`tw-text-[22px] tw-leading-none tw-transition-colors ${
+              isMobileOpen ? 'tw-text-[#DDEBF2]' : 'tw-text-[#B9C8DE]'
+            }`}
+          >
+            {isMobileOpen ? '×' : '☰'}
+          </span>
         </button>
       </div>
 
       {isMobileOpen ? (
         <div className="tw-border-t tw-border-[#1f2128] tw-bg-[#090b10] lg:tw-hidden">
           <div className="tw-mx-auto tw-max-w-[1320px] tw-space-y-2 tw-px-6 tw-py-5">
-            {mainLinks.map((link) => (
-              <Link
-                key={link.label}
-                to={link.to}
-                className="tw-block tw-rounded-md tw-px-2 tw-py-2 tw-text-base tw-font-medium tw-text-[#d7ddeb] tw-no-underline hover:tw-bg-[#11141d]"
-                onClick={() => setIsMobileOpen(false)}
-                style={{ fontFamily: 'Inter, sans-serif' }}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {mainLinks.map((link) => {
+              const hasMenu = !!navGroups[link.label];
+              const isExpanded = openMobileMenu === link.label;
+
+              if (!hasMenu) {
+                return (
+                  <Link
+                    key={link.label}
+                    to={link.to}
+                    className="tw-block tw-rounded-[14px] tw-px-4 tw-py-3 tw-text-[16px] tw-font-medium tw-no-underline tw-transition"
+                    onMouseEnter={() => setHoveredMobileItem(link.label)}
+                    onMouseLeave={() => setHoveredMobileItem(null)}
+                    onFocus={() => setHoveredMobileItem(link.label)}
+                    onBlur={() => setHoveredMobileItem(null)}
+                    onClick={resetMobileMenus}
+                    style={getMobileItemStyles(link.label)}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              }
+
+              return (
+                <div key={link.label}>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setOpenMobileMenu((prev) =>
+                        prev === link.label ? null : link.label
+                      )
+                    }
+                    onMouseEnter={() => setHoveredMobileItem(link.label)}
+                    onMouseLeave={() => setHoveredMobileItem(null)}
+                    onFocus={() => setHoveredMobileItem(link.label)}
+                    onBlur={() => setHoveredMobileItem(null)}
+                    className="tw-flex tw-w-full tw-items-center tw-justify-between tw-rounded-[14px] tw-px-4 tw-py-3 tw-text-left tw-transition"
+                    style={{
+                      ...getMobileItemStyles(link.label, isExpanded),
+                      border: 'none',
+                    }}
+                    aria-expanded={isExpanded}
+                  >
+                    <span className="tw-text-[16px] tw-font-medium">{link.label}</span>
+                    <span
+                      className={`tw-text-[12px] tw-transition-transform tw-duration-200 ${
+                        isExpanded ? 'tw-rotate-180' : ''
+                      }`}
+                      style={getMobileArrowStyles(link.label, isExpanded)}
+                      aria-hidden="true"
+                    >
+                      ▼
+                    </span>
+                  </button>
+
+                  {isExpanded ? (
+                    <div className="mobile-accordion-panel tw-mt-2 tw-space-y-4 tw-rounded-[14px] tw-bg-[#0d1119] tw-px-4 tw-py-4">
+                      {navGroups[link.label].map((section) => (
+                        <div key={section.title}>
+                          <p
+                            className="tw-m-0 tw-mb-2 tw-text-[11px] tw-font-semibold tw-uppercase tw-tracking-[0.14em]"
+                            style={{
+                              fontFamily: '"Plus Jakarta Sans", sans-serif',
+                              background:
+                                'linear-gradient(223deg, #43E2C5 -4.42%, #70EE62 100%)',
+                              WebkitBackgroundClip: 'text',
+                              WebkitTextFillColor: 'transparent',
+                            }}
+                          >
+                            {section.title}
+                          </p>
+
+                          <div className="tw-space-y-1">
+                            {section.items.map((item) => {
+                              const isExternal = item.to.startsWith('http');
+
+                              if (isExternal) {
+                                return (
+                                  <a
+                                    key={item.label}
+                                    href={item.to}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="tw-flex tw-items-center tw-justify-between tw-rounded-[10px] tw-px-3 tw-py-2.5 tw-text-[14px] tw-text-[#C8D3E6] tw-no-underline tw-transition hover:tw-bg-white/4 hover:tw-text-white"
+                                    style={{ fontFamily: 'Inter, sans-serif' }}
+                                  >
+                                    <span>{item.label}</span>
+                                    <span className="tw-text-[#7BE7C7]">↗</span>
+                                  </a>
+                                );
+                              }
+
+                              return (
+                                <Link
+                                  key={item.label}
+                                  to={item.to}
+                                  className="tw-flex tw-items-center tw-justify-between tw-rounded-[10px] tw-px-3 tw-py-2.5 tw-text-[14px] tw-text-[#C8D3E6] tw-no-underline tw-transition hover:tw-bg-white/4 hover:tw-text-white"
+                                  onClick={resetMobileMenus}
+                                  style={{ fontFamily: 'Inter, sans-serif' }}
+                                >
+                                  <span>{item.label}</span>
+                                  <span className="tw-text-[#7BE7C7]">→</span>
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+              );
+            })}
 
             <div className="tw-mt-3 tw-border-t tw-border-[#1f2128] tw-pt-3">
               <Link
                 to="https://github.com/weaviate/weaviate"
-                className="tw-block tw-rounded-md tw-px-2 tw-py-2 tw-text-base tw-font-medium tw-text-[#d7ddeb] tw-no-underline hover:tw-bg-[#11141d]"
-                onClick={() => setIsMobileOpen(false)}
-                style={{ fontFamily: 'Inter, sans-serif' }}
+                className="tw-block tw-rounded-[14px] tw-px-4 tw-py-3 tw-text-[16px] tw-font-medium tw-no-underline tw-transition"
+                onMouseEnter={() => setHoveredMobileItem('GitHub')}
+                onMouseLeave={() => setHoveredMobileItem(null)}
+                onFocus={() => setHoveredMobileItem('GitHub')}
+                onBlur={() => setHoveredMobileItem(null)}
+                onClick={resetMobileMenus}
+                style={getMobileItemStyles('GitHub')}
               >
                 GitHub
               </Link>
 
               <Link
                 to="/contact"
-                className="tw-block tw-rounded-md tw-px-2 tw-py-2 tw-text-base tw-font-medium tw-text-[#d7ddeb] tw-no-underline hover:tw-bg-[#11141d]"
-                onClick={() => setIsMobileOpen(false)}
-                style={{ fontFamily: 'Inter, sans-serif' }}
+                className="tw-block tw-rounded-[14px] tw-px-4 tw-py-3 tw-text-[16px] tw-font-medium tw-no-underline tw-transition"
+                onMouseEnter={() => setHoveredMobileItem('Contact')}
+                onMouseLeave={() => setHoveredMobileItem(null)}
+                onFocus={() => setHoveredMobileItem('Contact')}
+                onBlur={() => setHoveredMobileItem(null)}
+                onClick={resetMobileMenus}
+                style={getMobileItemStyles('Contact')}
               >
                 Contact
               </Link>
 
               <Link
                 to="/go/console"
-                className="tw-block tw-rounded-md tw-px-2 tw-py-2 tw-text-base tw-font-medium tw-text-[#d7ddeb] tw-no-underline hover:tw-bg-[#11141d]"
-                onClick={() => setIsMobileOpen(false)}
-                style={{ fontFamily: 'Inter, sans-serif' }}
+                className="tw-block tw-rounded-[14px] tw-px-4 tw-py-3 tw-text-[16px] tw-font-medium tw-no-underline tw-transition"
+                onMouseEnter={() => setHoveredMobileItem('Log in')}
+                onMouseLeave={() => setHoveredMobileItem(null)}
+                onFocus={() => setHoveredMobileItem('Log in')}
+                onBlur={() => setHoveredMobileItem(null)}
+                onClick={resetMobileMenus}
+                style={getMobileItemStyles('Log in')}
               >
                 Log in
               </Link>
@@ -365,7 +522,7 @@ export default function Navbar() {
               <Link
                 to="/go/console"
                 className="tw-mt-2 tw-inline-flex tw-w-full tw-items-center tw-justify-center tw-rounded-lg tw-bg-[#6BE38C] tw-px-5 tw-py-3 tw-text-base tw-font-semibold tw-text-[#081012] tw-no-underline"
-                onClick={() => setIsMobileOpen(false)}
+                onClick={resetMobileMenus}
                 style={{ fontFamily: 'Inter, sans-serif' }}
               >
                 Try now
@@ -376,4 +533,4 @@ export default function Navbar() {
       ) : null}
     </header>
   );
-} 
+}

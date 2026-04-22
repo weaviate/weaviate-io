@@ -37,7 +37,7 @@ export default function Hero() {
                 </span>
 
                 <span
-                  className="tw-text-[13px] tw-font-medium tw-tracking-[0.01em] tw-text-white/90 md:tw-text-[15px]"
+                  className="tw-text-[10px] tw-font-bold tw-tracking-[0.01em] tw-text-white/90 md:tw-text-[15px]"
                   style={{ fontFamily: 'Inter, sans-serif' }}
                 >
                   Weaviate Engram - Personalized AI experiences
@@ -52,7 +52,7 @@ export default function Hero() {
               </div>
 
               <h1
-                className="tw-mx-auto tw-mt-7 tw-max-w-[860px] tw-text-[2.7rem] tw-font-semibold tw-leading-[0.98] md:tw-text-[3.9rem] lg:tw-text-[4.25rem]"
+                className="tw-mx-auto tw-mt-7 tw-max-w-[860px] tw-text-[2.5rem] tw-font-semibold tw-leading-[0.98] md:tw-text-[3.9rem] lg:tw-text-[4.25rem]"
                 style={{
                   color: '#F5F7FA',
                   fontFamily: '"Fields Display", "Times New Roman", serif',
@@ -74,10 +74,10 @@ export default function Hero() {
                 platform.
               </p>
 
-              <div className="tw-mt-9 tw-flex tw-flex-wrap tw-items-center tw-justify-center tw-gap-4">
+              <div className="tw-mt-9 tw-flex tw-flex-col tw-items-center tw-justify-center tw-gap-3 sm:tw-flex-row sm:tw-flex-wrap sm:tw-gap-4">
                 <a
                   href="/go/console"
-                  className="tw-inline-flex tw-min-w-[224px] tw-items-center tw-justify-center tw-rounded-[10px] tw-bg-[#F1F5F9] tw-px-8 tw-py-4 tw-text-[16px] tw-font-semibold tw-text-slate-900 tw-no-underline tw-transition hover:tw-bg-white"
+                  className="tw-inline-flex tw-w-full tw-max-w-[300px] tw-items-center tw-justify-center tw-rounded-[10px] tw-bg-[#F1F5F9] tw-px-6 tw-py-3.5 tw-text-[14px] tw-font-semibold tw-text-slate-900 tw-no-underline tw-transition hover:tw-bg-white sm:tw-min-w-[224px] sm:tw-px-8 sm:tw-py-4 sm:tw-text-[16px]"
                   style={{ fontFamily: 'Inter, sans-serif' }}
                 >
                   Start building
@@ -85,7 +85,7 @@ export default function Hero() {
 
                 <a
                   href="/docs"
-                  className="tw-inline-flex tw-min-w-[224px] tw-items-center tw-justify-center tw-rounded-[10px] tw-border tw-border-white/10 tw-bg-[rgba(10,12,18,0.78)] tw-px-8 tw-py-4 tw-text-[16px] tw-font-semibold tw-text-white tw-no-underline tw-transition hover:tw-bg-[rgba(10,12,18,0.92)]"
+                  className="tw-inline-flex tw-w-full tw-max-w-[300px] tw-items-center tw-justify-center tw-rounded-[10px] tw-border tw-border-white/10 tw-bg-[rgba(10,12,18,0.78)] tw-px-6 tw-py-3.5 tw-text-[14px] tw-font-semibold tw-text-white tw-no-underline tw-transition hover:tw-bg-[rgba(10,12,18,0.92)] sm:tw-min-w-[224px] sm:tw-px-8 sm:tw-py-4 sm:tw-text-[16px]"
                   style={{ fontFamily: 'Inter, sans-serif' }}
                 >
                   Documentation
