@@ -211,6 +211,8 @@ By splitting up the task in this way, Engram can extract memories that are atomi
 
 Importantly, changes to memories as a result of these transform steps are only persisted to Weaviate in explicit `commit` steps, meaning that pipelines can incrementally build memories without risking intermediate values being retrieved before they're ready.
 
+![Continual Learning](./img/continual_learning.png)
+
 By searching for memories when starting a new task, an agent could now continually learn from its experience, and allow you to shape its behaviour with natural language feedback. When using an agent within trusted teams, this experience could be shared between all users by configuring the `experience` topic to have a project-wide scope. This allows the agent to collate feedback from everyone and get better at its tasks for all. In other deployments when we want to preserve user privacy, or to prevent untrusted users from being able to influence agent behaviour for others, this `experience` topic can instead be user-scoped, meaning it's never retrieved for other users. In this way, Engram lets each user have their own personalised agents, which have learned from their specific history and particular use cases.
 
 ### Background tasks with buffers
