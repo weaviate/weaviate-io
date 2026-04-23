@@ -166,6 +166,10 @@ MMR is applied at query time, on top of an existing vector index — no reindexi
 
 :::caution Preview
 MMR diversity selection is currently a **preview** feature. The API and behavior may change in future releases.
+
+- **Python client**: Support is not yet in a released `weaviate-client`. Coming in the next release (tracked in [PR #1997](https://github.com/weaviate/weaviate-python-client/pull/1997)).
+- **Multi-node clusters**: MMR reranking may produce suboptimal results for collections whose shards are distributed across multiple nodes, since each shard returns its own candidate set before the coordinator reranks them. We are actively working on improving this.
+
 :::
 
 :::info Related resources
