@@ -3,24 +3,6 @@ import React from 'react';
 
 const cards = [
   {
-    id: 'cloud',
-    title: 'Start with Cloud',
-    description: [
-      'Free tier',
-      'Usage based pricing',
-      'Enterprise options',
-      'Support',
-    ],
-    image: '/img/site/2026/get-started-cloud-bg.png',
-    tickIcon: '/img/site/2026/cloud-tick.svg',
-    ctaLabel: 'See pricing',
-    ctaTo: '/pricing',
-    imageGradient:
-      'linear-gradient(135deg, rgba(71, 201, 255, 0.55) 0%, rgba(207, 135, 255, 0.45) 100%)',
-    buttonGradient: 'linear-gradient(123deg, #26D6FF 12.44%, #D77AFF 109.26%)',
-    borderColor: '#26D6FF',
-  },
-  {
     id: 'byoc',
     title: 'Build on your own',
     description: [
@@ -36,90 +18,105 @@ const cards = [
     imageGradient:
       'linear-gradient(135deg, rgba(0, 254, 107, 0.45) 0%, rgba(0, 183, 226, 0.35) 100%)',
     buttonGradient: 'linear-gradient(48deg, #00FE6B 13.81%, #00B7E2 92.18%)',
-    borderColor: '#00FE6B',
+    borderGradient: 'linear-gradient(48deg, #00FE6B 13.81%, #00B7E2 92.18%)',
+  },
+  {
+    id: 'cloud',
+    title: 'Start with Cloud',
+    description: [
+      'Free tier',
+      'Usage based pricing',
+      'Enterprise options',
+      'Support',
+    ],
+    image: '/img/site/2026/get-started-cloud-bg.png',
+    tickIcon: '/img/site/2026/cloud-tick.svg',
+    ctaLabel: 'See pricing',
+    ctaTo: '/pricing',
+    imageGradient:
+      'linear-gradient(135deg, rgba(71, 201, 255, 0.55) 0%, rgba(207, 135, 255, 0.45) 100%)',
+    buttonGradient: 'linear-gradient(123deg, #26D6FF 12.44%, #D77AFF 109.26%)',
+    borderGradient: 'linear-gradient(123deg, #26D6FF 12.44%, #D77AFF 109.26%)',
   },
 ];
 
 function GetStartedCard({ card }) {
   return (
     <div
-      className="tw-overflow-hidden tw-rounded-[28px] tw-border tw-bg-[#141414] tw-shadow-[0_10px_40px_rgba(0,0,0,0.22)]"
-      style={{
-        borderColor: `${card.borderColor}80`,
-      }}
+      className="tw-rounded-[28px] tw-p-[1px] tw-shadow-[0_10px_40px_rgba(0,0,0,0.22)]"
+      style={{ background: card.borderGradient }}
     >
-      <div className="tw-grid md:tw-grid-cols-[250px_minmax(0,1fr)]">
-        <div className="tw-relative tw-min-h-[220px] tw-overflow-hidden md:tw-min-h-[260px]">
-          <img
-            src={card.image}
-            alt=""
-            aria-hidden="true"
-            className="tw-absolute tw-inset-0 tw-h-full tw-w-full tw-object-cover tw-scale-[1.04]"
-            style={{
-              filter: 'contrast(1.12) saturate(1.18) brightness(0.96)',
-            }}
-          />
-
-          <div
-            className="tw-absolute tw-inset-0"
-            style={{
-              background: card.imageGradient,
-              mixBlendMode: 'color',
-              opacity: 0.72,
-            }}
-          />
-
-          <div className="tw-absolute tw-inset-0 tw-bg-[linear-gradient(90deg,rgba(8,12,18,0.05)_0%,rgba(8,12,18,0.34)_100%)] md:tw-bg-[linear-gradient(90deg,rgba(8,12,18,0.02)_0%,rgba(8,12,18,0.42)_100%)]" />
-
-          <div className="tw-absolute tw-inset-0 tw-bg-[radial-gradient(circle_at_35%_35%,rgba(255,255,255,0.16)_0%,rgba(255,255,255,0)_46%)]" />
-
-          <div className="tw-pointer-events-none tw-absolute tw-inset-0 tw-ring-1 tw-ring-white/15" />
-        </div>
-
-        <div className="tw-flex tw-flex-col tw-justify-between tw-p-7 md:tw-p-10">
-          <div>
-            <h3
-              className="tw-m-0 tw-text-[2rem] tw-font-semibold tw-leading-[1.1] tw-text-[#DDEBF2]"
+      <div className="tw-overflow-hidden tw-rounded-[27px] tw-bg-[#141414]">
+        <div className="tw-grid md:tw-grid-cols-[250px_minmax(0,1fr)]">
+          <div className="tw-relative tw-min-h-[220px] tw-overflow-hidden md:tw-min-h-[260px]">
+            <img
+              src={card.image}
+              alt=""
+              aria-hidden="true"
+              className="tw-absolute tw-inset-0 tw-h-full tw-w-full tw-scale-[1.04] tw-object-cover"
               style={{
-                fontFamily: '"Plus Jakarta Sans", sans-serif',
-                color: '#DDEBF2',
+                filter: 'contrast(1.12) saturate(1.18) brightness(0.96)',
               }}
-            >
-              {card.title}
-            </h3>
+            />
 
-            <div className="tw-mt-10 tw-space-y-4">
-              {card.description.map((item) => (
-                <div key={item} className="tw-flex tw-items-start tw-gap-4">
-                  <img
-                    src={card.tickIcon}
-                    alt=""
-                    aria-hidden="true"
-                    className="tw-mt-1 tw-h-6 tw-w-6 tw-shrink-0 tw-object-contain"
-                  />
+            <div
+              className="tw-absolute tw-inset-0"
+              style={{
+                background: card.imageGradient,
+                mixBlendMode: 'color',
+                opacity: 0.72,
+              }}
+            />
 
-                  <span
-                    className="tw-text-[1rem] tw-leading-8 tw-text-[#DDEBF2]"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
-                  >
-                    {item}
-                  </span>
-                </div>
-              ))}
-            </div>
+            <div className="tw-absolute tw-inset-0 tw-bg-[linear-gradient(90deg,rgba(8,12,18,0.05)_0%,rgba(8,12,18,0.34)_100%)] md:tw-bg-[linear-gradient(90deg,rgba(8,12,18,0.02)_0%,rgba(8,12,18,0.42)_100%)]" />
+            <div className="tw-absolute tw-inset-0 tw-bg-[radial-gradient(circle_at_35%_35%,rgba(255,255,255,0.16)_0%,rgba(255,255,255,0)_46%)]" />
           </div>
 
-          <div className="tw-mt-10">
-            <Link
-              to={card.ctaTo}
-              className="tw-inline-flex tw-w-full tw-items-center tw-justify-center tw-rounded-[10px] tw-px-6 tw-py-4 tw-text-[1rem] tw-font-semibold tw-text-[#081012] tw-no-underline tw-transition hover:tw-opacity-95"
-              style={{
-                fontFamily: 'Inter, sans-serif',
-                background: card.buttonGradient,
-              }}
-            >
-              {card.ctaLabel}
-            </Link>
+          <div className="tw-flex tw-flex-col tw-justify-between tw-p-7 md:tw-p-10">
+            <div>
+              <h3
+                className="tw-m-0 tw-text-[2rem] tw-font-semibold tw-leading-[1.1]"
+                style={{
+                  fontFamily: '"Plus Jakarta Sans", sans-serif',
+                  color: '#DDEBF2',
+                }}
+              >
+                {card.title}
+              </h3>
+
+              <div className="tw-mt-10 tw-space-y-4">
+                {card.description.map((item) => (
+                  <div key={item} className="tw-flex tw-items-start tw-gap-4">
+                    <img
+                      src={card.tickIcon}
+                      alt=""
+                      aria-hidden="true"
+                      className="tw-mt-1 tw-h-6 tw-w-6 tw-shrink-0 tw-object-contain"
+                    />
+
+                    <span
+                      className="tw-text-[1rem] tw-leading-8 tw-text-[#DDEBF2]"
+                      style={{ fontFamily: 'Inter, sans-serif' }}
+                    >
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="tw-mt-10">
+              <Link
+                to={card.ctaTo}
+                className="tw-inline-flex tw-w-full tw-items-center tw-justify-center tw-rounded-[10px] tw-px-6 tw-py-4 tw-text-[1rem] tw-font-semibold tw-text-[#081012] tw-no-underline tw-transition hover:tw-opacity-95"
+                style={{
+                  fontFamily: 'Inter, sans-serif',
+                  background: card.buttonGradient,
+                }}
+              >
+                {card.ctaLabel}
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -143,7 +140,7 @@ export default function GetStarted() {
           </p>
 
           <h2
-            className="tw-m-0 tw-text-[2.5rem] tw-font-semibold tw-leading-[1.08] tw-text-white md:tw-text-[2.75rem] lg:tw-text-[3rem]"
+            className="tw-m-0 tw-text-[2.5rem] tw-font-semibold tw-leading-[1.08] md:tw-text-[2.75rem] lg:tw-text-[3rem]"
             style={{
               fontFamily: '"Plus Jakarta Sans", sans-serif',
               color: '#DDEBF2',
