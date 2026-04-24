@@ -181,7 +181,7 @@ function GuideflowEmbed({ iframeId = 'dr973w8bnp' }) {
   }, [iframeId]);
 
   return (
-    <div className="tw-relative tw-w-full tw-overflow-hidden tw-rounded-[18px] tw-border tw-border-white/10 tw-bg-[#0E1420] tw-shadow-[0_18px_48px_rgba(0,0,0,0.28)]">
+    <div className="tw-relative tw-w-full tw-overflow-hidden tw-rounded-[16px] tw-border tw-border-white/10 tw-bg-[#0E1420] tw-shadow-[0_18px_48px_rgba(0,0,0,0.28)]">
       <div className="tw-aspect-[16/9] tw-w-full tw-bg-[#0E1420]">
         <iframe
           id={iframeId}
@@ -502,7 +502,7 @@ function DemosPanel() {
             <Link
               to="/developers/weaviate/demos"
               className="tw-inline-flex tw-items-center tw-justify-center tw-rounded-[10px] tw-bg-[#111111] tw-px-8 tw-py-3 tw-text-[16px] tw-font-medium tw-text-[#DDEBF2] tw-no-underline tw-transition hover:tw-bg-[#1b1b1b]"
-              style={{ fontFamily: 'Inter, sans-serif' }}
+              style={{ fontFamily: 'Inter, sans-serif', textAlign: 'center' }}
             >
               Visit Weaviate Playground to view all the demos
             </Link>

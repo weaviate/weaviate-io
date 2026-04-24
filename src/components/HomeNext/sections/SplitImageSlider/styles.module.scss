@@ -167,3 +167,30 @@
   background: rgba(13, 17, 23, 0.72);
   color: #ddebf2;
 }
+
+@media screen and (max-width: 500px) {
+  .beforeLabel,
+  .afterLabel {
+    font-size: 0.75rem;
+    padding: 0.75rem 1.25rem;
+  }
+
+  .sliderHandle {
+    width: 2.5rem;
+    height: 2.5rem;
+
+    &::before,
+    &::after {
+      width: 0.45rem;
+      height: 0.45rem;
+    }
+
+    &::before {
+      left: 0.55rem;
+    }
+
+    &::after {
+      right: 0.55rem;
+    }
+  }
+}

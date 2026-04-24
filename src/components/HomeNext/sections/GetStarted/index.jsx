@@ -3,24 +3,6 @@ import React from 'react';
 
 const cards = [
   {
-    id: 'byoc',
-    title: 'Build on your own',
-    description: [
-      'Sign up for cloud',
-      'Create your first dataset',
-      'Connect an LLM',
-      'Build your AI app',
-    ],
-    image: '/img/site/2026/get-started-byoc-bg.png',
-    tickIcon: '/img/site/2026/byoc-tick.svg',
-    ctaLabel: 'Start building',
-    ctaTo: 'https://docs.weaviate.io/weaviate/quickstart',
-    imageGradient:
-      'linear-gradient(135deg, rgba(0, 254, 107, 0.45) 0%, rgba(0, 183, 226, 0.35) 100%)',
-    buttonGradient: 'linear-gradient(48deg, #00FE6B 13.81%, #00B7E2 92.18%)',
-    borderGradient: 'linear-gradient(48deg, #00FE6B 13.81%, #00B7E2 92.18%)',
-  },
-  {
     id: 'cloud',
     title: 'Start with Cloud',
     description: [
@@ -34,9 +16,26 @@ const cards = [
     ctaLabel: 'See pricing',
     ctaTo: '/pricing',
     imageGradient:
-      'linear-gradient(135deg, rgba(71, 201, 255, 0.55) 0%, rgba(207, 135, 255, 0.45) 100%)',
+      'linear-gradient(123deg, #26d6ff7d 12.44%, #d77aff8c 109.26%)',
     buttonGradient: 'linear-gradient(123deg, #26D6FF 12.44%, #D77AFF 109.26%)',
     borderGradient: 'linear-gradient(123deg, #26D6FF 12.44%, #D77AFF 109.26%)',
+  },
+  {
+    id: 'byoc',
+    title: 'Build on your own',
+    description: [
+      'Sign up for cloud',
+      'Create your first dataset',
+      'Connect an LLM',
+      'Build your AI app',
+    ],
+    image: '/img/site/2026/get-started-byoc-bg.png',
+    tickIcon: '/img/site/2026/byoc-tick.svg',
+    ctaLabel: 'Start building',
+    ctaTo: 'https://docs.weaviate.io/weaviate/quickstart',
+    imageGradient: 'linear-gradient(48deg, #00fe6b80 13.81%, #00b7e275 92.18%)',
+    buttonGradient: 'linear-gradient(48deg, #00FE6B 13.81%, #00B7E2 92.18%)',
+    borderGradient: 'linear-gradient(48deg, #00FE6B 13.81%, #00B7E2 92.18%)',
   },
 ];
 
@@ -44,7 +43,7 @@ function GetStartedCard({ card }) {
   return (
     <div
       className="tw-rounded-[28px] tw-p-[1px] tw-shadow-[0_10px_40px_rgba(0,0,0,0.22)]"
-      style={{ background: card.borderGradient }}
+      style={{ backgroundImage: card.borderGradient }}
     >
       <div className="tw-overflow-hidden tw-rounded-[27px] tw-bg-[#141414]">
         <div className="tw-grid md:tw-grid-cols-[250px_minmax(0,1fr)]">
@@ -63,8 +62,6 @@ function GetStartedCard({ card }) {
               className="tw-absolute tw-inset-0"
               style={{
                 background: card.imageGradient,
-                mixBlendMode: 'color',
-                opacity: 0.72,
               }}
             />
 
