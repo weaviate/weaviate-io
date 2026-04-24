@@ -83,6 +83,9 @@ export default function SplitImageSlider() {
     };
   }, [autoAnimating, isDragging]);
 
+  const beforeActive = sliderPos < 50;
+  const afterActive = sliderPos >= 50;
+
   return (
     <div
       className={styles.sliderContainer}
@@ -95,8 +98,21 @@ export default function SplitImageSlider() {
       onTouchEnd={handleEnd}
       onTouchMove={handleMove}
     >
-      <div className={styles.beforeLabel}>BEFORE WEAVIATE</div>
-      <div className={styles.afterLabel}>WITH WEAVIATE</div>
+      <div
+        className={`${styles.beforeLabel} ${
+          beforeActive ? styles.labelActive : styles.labelInactive
+        }`}
+      >
+        BEFORE WEAVIATE
+      </div>
+
+      <div
+        className={`${styles.afterLabel} ${
+          afterActive ? styles.labelActive : styles.labelInactive
+        }`}
+      >
+        WITH WEAVIATE
+      </div>
 
       <div className={styles.imageWrapperBase}>
         <img

@@ -77,3 +77,37 @@
   // Edge, IE (fallback)
   -ms-overflow-style: none;
 }
+
+.codeTabs {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.tabHeader {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.codeBlock {
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+@media (max-width: 767px) {
+  .codeBlock {
+    font-size: 0.75rem;
+    padding: 1rem;
+  }
+
+  .tabHeader {
+    padding: 0.75rem 1rem;
+
+    button {
+      margin-right: 1.25rem;
+      font-size: 0.75rem;
+      flex: 0 0 auto;
+    }
+  }
+}

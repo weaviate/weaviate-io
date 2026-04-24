@@ -127,3 +127,43 @@
     box-shadow: 0 0 0 4px rgba(97, 211, 132, 0.28);
   }
 }
+
+.beforeLabel,
+.afterLabel {
+  position: absolute;
+  top: 1.5rem;
+  z-index: 10;
+  padding: 0.9rem 1.35rem;
+  border-radius: 0.6rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    color 180ms ease,
+    background 180ms ease;
+}
+
+.beforeLabel {
+  left: 1.5rem;
+}
+
+.afterLabel {
+  right: 1.5rem;
+}
+
+.labelActive {
+  opacity: 1;
+  transform: translateY(0);
+  background: #0d1117;
+  color: #61d384;
+}
+
+.labelInactive {
+  opacity: 0.45;
+  transform: translateY(2px);
+  background: rgba(13, 17, 23, 0.72);
+  color: #ddebf2;
+}

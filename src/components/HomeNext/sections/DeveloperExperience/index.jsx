@@ -72,10 +72,7 @@ const navItems = [
 
 function PanelShell({ children }) {
   return (
-    <div
-      className="tw-relative tw-overflow-hidden tw-rounded-[28px] tw-border tw-border-[#2a2f3f] tw-bg-[#14161c] tw-shadow-[0_24px_80px_rgba(0,0,0,0.34)]"
-      style={{ minHeight: `${PANEL_MIN_HEIGHT}px` }}
-    >
+    <div className="tw-relative tw-min-h-[420px] tw-overflow-hidden tw-rounded-[28px] tw-border tw-border-[#2a2f3f] tw-bg-[#14161c] tw-shadow-[0_24px_80px_rgba(0,0,0,0.34)] lg:tw-min-h-[630px]">
       <div className="panel-fade-in tw-h-full tw-bg-[#14161c]">{children}</div>
     </div>
   );
@@ -94,7 +91,7 @@ function panelBaseStyle(backgroundImage) {
 function QuickstartPanel() {
   return (
     <div
-      className="tw-relative tw-flex tw-min-h-[630px] tw-h-full tw-overflow-hidden tw-p-6 md:tw-p-8"
+      className="tw-relative tw-flex tw-min-h-[420px] lg:tw-min-h-[630px] tw-h-full tw-overflow-hidden tw-p-6 md:tw-p-8"
       style={panelBaseStyle(
         "linear-gradient(48deg, rgb(0 254 107 / 30%) 13.81%, rgb(0 183 226 / 30%) 92.18%), url('/img/site/2026/quickstart-bg.png')",
       )}
@@ -113,7 +110,7 @@ function QuickstartPanel() {
 function AgentSkillsPanel() {
   return (
     <div
-      className="tw-relative tw-flex tw-min-h-[630px] tw-h-full tw-overflow-hidden tw-p-6 md:tw-p-8"
+      className="tw-relative tw-flex tw-min-h-[420px] lg:tw-min-h-[630px] tw-h-full tw-overflow-hidden tw-p-6 md:tw-p-8"
       style={panelBaseStyle(
         "linear-gradient(123deg, rgba(38,214,255,0.22) 12.44%, rgba(215,122,255,0.22) 109.26%), url('/img/site/2026/agents-devex-panel.png')",
       )}
@@ -202,7 +199,7 @@ function GuideflowEmbed({ iframeId = 'dr973w8bnp' }) {
 function CloudToolsPanel() {
   return (
     <div
-      className="tw-relative tw-flex tw-min-h-[630px] tw-h-full tw-overflow-hidden tw-p-6 md:tw-p-8"
+      className="tw-relative tw-flex tw-min-h-[420px] lg:tw-min-h-[630px] tw-h-full tw-overflow-hidden tw-p-6 md:tw-p-8"
       style={panelBaseStyle(
         "linear-gradient(48deg, rgb(0 254 107 / 22%) 13.81%, rgb(0 183 226 / 22%) 92.18%), url('/img/site/2026/cloud-devex-panel.png')",
       )}
@@ -346,7 +343,7 @@ function DeploymentPanel() {
 function IntegrationsPanel() {
   return (
     <div
-      className="tw-relative tw-flex tw-min-h-[630px] tw-h-full tw-overflow-hidden tw-p-6 md:tw-p-8"
+      className="tw-relative tw-flex tw-min-h-[420px] lg:tw-min-h-[630px] tw-h-full tw-overflow-hidden tw-p-6 md:tw-p-8"
       style={panelBaseStyle(
         "linear-gradient(48deg, rgb(0 254 107 / 20%) 13.81%, rgb(0 183 226 / 20%) 92.18%), url('/img/site/2026/integrations-devrex-panel.png')",
       )}
@@ -484,7 +481,7 @@ function DeveloperResourcesPanel() {
 function DemosPanel() {
   return (
     <div
-      className="tw-relative tw-flex tw-min-h-[630px] tw-h-full tw-overflow-hidden tw-p-6 md:tw-p-8"
+      className="tw-relative tw-flex tw-min-h-[420px] lg:tw-min-h-[630px] tw-h-full tw-overflow-hidden tw-p-6 md:tw-p-8"
       style={panelBaseStyle(
         "linear-gradient(123deg, rgba(38,214,255,0.20) 0%, rgba(124,123,255,0.22) 100%), url('/img/site/2026/demos-devrex-panel.png')",
       )}
@@ -539,6 +536,8 @@ function PlaceholderPanel({ title }) {
   );
 }
 
+// Main layout changes only — keep your existing panel functions above this unchanged
+
 export default function DeveloperExperience() {
   const [activeNav, setActiveNav] = useState(navItems[0].id);
   const [pressedNav, setPressedNav] = useState(null);
@@ -562,7 +561,7 @@ export default function DeveloperExperience() {
         </p>
 
         <h2
-          className="tw-mt-4 tw-text-[2.5rem] tw-font-semibold tw-leading-[1.08] tw-text-white md:tw-text-[2.5rem]"
+          className="tw-mt-4 tw-text-[2.5rem] tw-font-semibold tw-leading-[1.08] md:tw-text-[2.5rem]"
           style={{
             fontFamily: '"Plus Jakarta Sans", sans-serif',
             color: '#DDEBF2',
@@ -580,8 +579,39 @@ export default function DeveloperExperience() {
           features, not infrastructure.
         </p>
 
-        <div className="tw-mt-10 tw-grid tw-items-start tw-gap-6 lg:tw-grid-cols-[300px_minmax(0,1fr)] xl:tw-grid-cols-[312px_minmax(0,1fr)]">
-          <div className="tw-space-y-3">
+        {/* Mobile pill nav */}
+        <div className="tw-mt-8 tw-flex tw-gap-3 tw-overflow-x-auto tw-pb-3 lg:tw-hidden">
+          {navItems.map((item) => {
+            const isActive = item.id === activeItem.id;
+
+            return (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setActiveNav(item.id)}
+                className="tw-flex tw-shrink-0 tw-items-center tw-gap-2 tw-rounded-full tw-border tw-px-4 tw-py-3 tw-text-sm tw-transition"
+                style={{
+                  fontFamily: 'Inter, sans-serif',
+                  borderColor: isActive ? '#68FFA8' : 'rgba(255,255,255,0.1)',
+                  background: isActive ? '#11141d' : '#1A1A1A',
+                  color: isActive ? '#68FFA8' : '#d0d8ea',
+                }}
+              >
+                <img
+                  src={isActive ? item.iconActive : item.icon}
+                  alt=""
+                  aria-hidden="true"
+                  className="tw-h-5 tw-w-5"
+                />
+                {item.title}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="tw-mt-6 lg:tw-mt-10 lg:tw-grid lg:tw-items-start lg:tw-gap-6 lg:tw-grid-cols-[300px_minmax(0,1fr)] xl:tw-grid-cols-[312px_minmax(0,1fr)]">
+          {/* Desktop side nav */}
+          <div className="tw-hidden tw-space-y-3 lg:tw-block">
             {navItems.map((item) => {
               const isActive = item.id === activeItem.id;
               const isPressed = pressedNav === item.id;
@@ -618,7 +648,7 @@ export default function DeveloperExperience() {
                       </div>
 
                       <p
-                        className="tw-m-0 tw-mt-4 tw-text-[18px] tw-font-semibold tw-leading-tight tw-text-[#edf4ff]"
+                        className="tw-m-0 tw-mt-4 tw-text-[18px] tw-font-semibold tw-leading-tight"
                         style={{
                           fontFamily: '"Plus Jakarta Sans", sans-serif',
                           color: '#DDEBF2',
@@ -658,7 +688,7 @@ export default function DeveloperExperience() {
             })}
           </div>
 
-          <div className="tw-self-stretch">
+          <div className="tw-self-start lg:tw-sticky lg:tw-top-28">
             <PanelShell>
               {activeItem.id === 'quickstart' ? <QuickstartPanel /> : null}
               {activeItem.id === 'agent-skills' ? <AgentSkillsPanel /> : null}
@@ -668,15 +698,6 @@ export default function DeveloperExperience() {
               {activeItem.id === 'demos' ? <DemosPanel /> : null}
               {activeItem.id === 'developer-resources' ? (
                 <DeveloperResourcesPanel />
-              ) : null}
-              {activeItem.id !== 'quickstart' &&
-              activeItem.id !== 'agent-skills' &&
-              activeItem.id !== 'cloud-tools' &&
-              activeItem.id !== 'deployment' &&
-              activeItem.id !== 'integrations' &&
-              activeItem.id !== 'demos' &&
-              activeItem.id !== 'developer-resources' ? (
-                <PlaceholderPanel title={activeItem.title} />
               ) : null}
             </PanelShell>
           </div>

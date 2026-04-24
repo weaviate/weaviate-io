@@ -43,37 +43,40 @@ const cards = [
 function GetStartedCard({ card }) {
   return (
     <div
-      className="tw-overflow-hidden tw-rounded-[28px] tw-border tw-bg-[#141414] tw-shadow-[0_10px_40px_rgba(0,0,0,0.18)]"
-      style={{ borderColor: card.borderColor }}
+      className="tw-overflow-hidden tw-rounded-[28px] tw-border tw-bg-[#141414] tw-shadow-[0_10px_40px_rgba(0,0,0,0.22)]"
+      style={{
+        borderColor: `${card.borderColor}80`,
+      }}
     >
       <div className="tw-grid md:tw-grid-cols-[250px_minmax(0,1fr)]">
-        <div className="tw-relative tw-min-h-[260px] tw-overflow-hidden">
-          {/* Base image */}
+        <div className="tw-relative tw-min-h-[220px] tw-overflow-hidden md:tw-min-h-[260px]">
           <img
             src={card.image}
             alt=""
             aria-hidden="true"
-            className="tw-absolute tw-inset-0 tw-h-full tw-w-full tw-object-cover"
+            className="tw-absolute tw-inset-0 tw-h-full tw-w-full tw-object-cover tw-scale-[1.04]"
+            style={{
+              filter: 'contrast(1.12) saturate(1.18) brightness(0.96)',
+            }}
           />
 
-          {/* Main gradient (colour wash) */}
           <div
             className="tw-absolute tw-inset-0"
             style={{
               background: card.imageGradient,
-              mixBlendMode: 'overlay',
-              opacity: 0.9,
+              mixBlendMode: 'color',
+              opacity: 0.72,
             }}
           />
 
-          {/* Depth / dark fade (matches design) */}
-          <div className="tw-absolute tw-inset-0 tw-bg-[linear-gradient(180deg,rgba(8,12,18,0.2)_0%,rgba(8,12,18,0.6)_100%)]" />
+          <div className="tw-absolute tw-inset-0 tw-bg-[linear-gradient(90deg,rgba(8,12,18,0.05)_0%,rgba(8,12,18,0.34)_100%)] md:tw-bg-[linear-gradient(90deg,rgba(8,12,18,0.02)_0%,rgba(8,12,18,0.42)_100%)]" />
 
-          {/* Subtle edge glow (nice polish) */}
-          <div className="tw-pointer-events-none tw-absolute tw-inset-0 tw-ring-1 tw-ring-white/10" />
+          <div className="tw-absolute tw-inset-0 tw-bg-[radial-gradient(circle_at_35%_35%,rgba(255,255,255,0.16)_0%,rgba(255,255,255,0)_46%)]" />
+
+          <div className="tw-pointer-events-none tw-absolute tw-inset-0 tw-ring-1 tw-ring-white/15" />
         </div>
 
-        <div className="tw-flex tw-flex-col tw-justify-between tw-p-8 md:tw-p-10">
+        <div className="tw-flex tw-flex-col tw-justify-between tw-p-7 md:tw-p-10">
           <div>
             <h3
               className="tw-m-0 tw-text-[2rem] tw-font-semibold tw-leading-[1.1] tw-text-[#DDEBF2]"
