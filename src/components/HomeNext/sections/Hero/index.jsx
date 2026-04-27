@@ -6,26 +6,30 @@ export default function Hero() {
       <div className="tw-mx-auto tw-max-w-7xl">
         <div
           className="
-            tw-relative tw-overflow-hidden tw-rounded-[34px]
-            tw-border tw-border-white/10
-            tw-bg-[#111111] tw-bg-cover tw-bg-center
-            tw-px-6 tw-py-8
-            md:tw-px-10 md:tw-py-10
-            lg:tw-px-16 lg:tw-py-12
-            tw-min-h-[400px] md:tw-min-h-[450px] lg:tw-min-h-[450px]
-            tw-shadow-[0_20px_80px_rgba(0,0,0,0.32)]
-          "
-          style={{
-            backgroundImage: "url('/img/site/2026/weaviate-bg-2026.jpg')",
-          }}
+    tw-relative tw-overflow-hidden tw-rounded-[34px]
+    tw-border tw-border-white/10
+    tw-bg-[#111111]
+    tw-px-6 tw-py-8
+    md:tw-px-10 md:tw-py-10
+    lg:tw-px-16 lg:tw-py-12
+    tw-min-h-[400px] md:tw-min-h-[450px] lg:tw-min-h-[450px]
+    tw-shadow-[0_20px_80px_rgba(0,0,0,0.32)]
+  "
         >
-          <div
-            className="tw-absolute tw-inset-0 tw-bg-[linear-gradient(180deg,rgba(0,0,0,0.14)_0%,rgba(0,0,0,0.1)_38%,rgba(0,0,0,0.2)_100%)]"
+          <img
+            src="/img/site/2026/weaviate-bg-2026.jpg"
+            alt=""
             aria-hidden="true"
+            width="1280"
+            height="720"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            className="tw-absolute tw-inset-0 tw-h-full tw-w-full tw-object-cover"
           />
 
           <div
-            className="tw-pointer-events-none tw-absolute tw-inset-0 tw-rounded-[34px] tw-shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+            className="tw-absolute tw-inset-0 tw-bg-[linear-gradient(180deg,rgba(0,0,0,0.14)_0%,rgba(0,0,0,0.1)_38%,rgba(0,0,0,0.2)_100%)]"
             aria-hidden="true"
           />
 
@@ -47,6 +51,8 @@ export default function Hero() {
                   src="/img/site/2026/weaviate-arrow-2026.svg"
                   alt=""
                   aria-hidden="true"
+                  width="16"
+                  height="16"
                   className="tw-h-4 tw-w-4 tw-shrink-0"
                 />
               </div>

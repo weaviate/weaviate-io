@@ -30,7 +30,7 @@ const useCaseCards = [
       'Weaviate stood out as it’s clearly built for production use, not just testing. It was the only solution with an efficient tenant system that scaled to our workload of tens of thousands of segmented indexes.',
     person: 'Aaron Edwards',
     role: 'Founder',
-    avatar: '/img/site/2026/docbots-founder-hp.png',
+    avatar: '/img/site/2026/docbots-founder-hp.jpg',
     ctaLabel: 'Read Case Study',
     ctaTo: '/case-studies/docbots',
     stats: [

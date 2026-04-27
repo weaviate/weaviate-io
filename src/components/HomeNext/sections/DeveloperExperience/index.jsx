@@ -80,7 +80,6 @@ function PanelShell({ children }) {
 
 function panelBaseStyle(backgroundImage) {
   return {
-    minHeight: `${PANEL_MIN_HEIGHT}px`,
     backgroundColor: '#14161c',
     backgroundImage,
     backgroundSize: 'cover',
@@ -93,7 +92,7 @@ function QuickstartPanel() {
     <div
       className="tw-relative tw-flex tw-min-h-[420px] lg:tw-min-h-[630px] tw-h-full tw-overflow-hidden tw-p-6 md:tw-p-8"
       style={panelBaseStyle(
-        "linear-gradient(48deg, rgb(0 254 107 / 30%) 13.81%, rgb(0 183 226 / 30%) 92.18%), url('/img/site/2026/quickstart-bg.png')",
+        "linear-gradient(48deg, rgb(0 254 107 / 30%) 13.81%, rgb(0 183 226 / 30%) 92.18%), url('/img/site/2026/quickstart-bg.jpg')",
       )}
     >
       <div className="tw-absolute tw-inset-0 tw-bg-[linear-gradient(180deg,rgba(0,0,0,0.03)_0%,rgba(0,0,0,0.08)_100%)]" />
@@ -112,7 +111,7 @@ function AgentSkillsPanel() {
     <div
       className="tw-relative tw-flex tw-min-h-[420px] lg:tw-min-h-[630px] tw-h-full tw-overflow-hidden tw-p-6 md:tw-p-8"
       style={panelBaseStyle(
-        "linear-gradient(123deg, rgba(38,214,255,0.22) 12.44%, rgba(215,122,255,0.22) 109.26%), url('/img/site/2026/agents-devex-panel.png')",
+        "linear-gradient(123deg, rgba(38,214,255,0.22) 12.44%, rgba(215,122,255,0.22) 109.26%), url('/img/site/2026/agents-devex-panel.jpg')",
       )}
     >
       <div className="tw-absolute tw-inset-0 tw-bg-[linear-gradient(180deg,rgba(0,0,0,0.03)_0%,rgba(0,0,0,0.08)_100%)]" />
@@ -124,7 +123,7 @@ function AgentSkillsPanel() {
               <video
                 className="tw-h-full tw-w-full tw-object-cover tw-bg-[#111]"
                 controls
-                preload="metadata"
+                preload="none"
                 poster="/img/site/2026/agent-skills-demo.png"
               >
                 <source
@@ -201,7 +200,7 @@ function CloudToolsPanel() {
     <div
       className="tw-relative tw-flex tw-min-h-[420px] lg:tw-min-h-[630px] tw-h-full tw-overflow-hidden tw-p-6 md:tw-p-8"
       style={panelBaseStyle(
-        "linear-gradient(48deg, rgb(0 254 107 / 22%) 13.81%, rgb(0 183 226 / 22%) 92.18%), url('/img/site/2026/cloud-devex-panel.png')",
+        "linear-gradient(48deg, rgb(0 254 107 / 22%) 13.81%, rgb(0 183 226 / 22%) 92.18%), url('/img/site/2026/cloud-devex-panel.jpg')",
       )}
     >
       <div className="tw-absolute tw-inset-0 tw-bg-[linear-gradient(180deg,rgba(0,0,0,0.03)_0%,rgba(0,0,0,0.08)_100%)]" />
@@ -256,7 +255,7 @@ function DeploymentPanel() {
     <div
       className="tw-relative tw-flex tw-min-h-[630px] tw-h-full tw-overflow-hidden tw-p-6 md:tw-p-8"
       style={panelBaseStyle(
-        "linear-gradient(135deg, rgba(124,123,255,0.25) 0%, rgba(168,85,247,0.25) 100%), url('/img/site/2026/deployment-devex-panel.png')",
+        "linear-gradient(135deg, rgba(124,123,255,0.25) 0%, rgba(168,85,247,0.25) 100%), url('/img/site/2026/deployment-devex-panel.jpg')",
       )}
     >
       <div className="tw-absolute tw-inset-0 tw-bg-[linear-gradient(180deg,rgba(0,0,0,0.05)_0%,rgba(0,0,0,0.12)_100%)]" />
@@ -279,6 +278,10 @@ function DeploymentPanel() {
                   <span className="tw-mt-1 tw-inline-flex tw-h-5 tw-w-5 tw-shrink-0 tw-items-center tw-justify-center tw-rounded-[4px] tw-text-[#081012]">
                     <img
                       src="/img/site/2026/byoc-tick.svg"
+                      width="16"
+                      height="16"
+                      loading="lazy"
+                      decoding="async"
                       alt=""
                       aria-hidden="true"
                       className="tw-h-4 tw-w-4"
@@ -345,7 +348,7 @@ function IntegrationsPanel() {
     <div
       className="tw-relative tw-flex tw-min-h-[420px] lg:tw-min-h-[630px] tw-h-full tw-overflow-hidden tw-p-6 md:tw-p-8"
       style={panelBaseStyle(
-        "linear-gradient(48deg, rgb(0 254 107 / 20%) 13.81%, rgb(0 183 226 / 20%) 92.18%), url('/img/site/2026/integrations-devrex-panel.png')",
+        "linear-gradient(48deg, rgb(0 254 107 / 20%) 13.81%, rgb(0 183 226 / 20%) 92.18%), url('/img/site/2026/integrations-devrex-panel.jpg')",
       )}
     >
       <div className="tw-absolute tw-inset-0 tw-bg-[linear-gradient(180deg,rgba(0,0,0,0.03)_0%,rgba(0,0,0,0.08)_100%)]" />
@@ -356,6 +359,10 @@ function IntegrationsPanel() {
             <img
               src="/img/site/2026/integrations-devrex-diagram.png"
               alt="Weaviate integrations ecosystem diagram"
+              width="880"
+              height="500"
+              loading="lazy"
+              decoding="async"
               className="tw-h-auto tw-w-full tw-max-w-[880px] tw-object-contain"
             />
           </div>
@@ -431,7 +438,7 @@ function DeveloperResourcesPanel() {
     <div
       className="tw-relative tw-flex tw-min-h-[630px] tw-h-full tw-overflow-hidden tw-p-6 md:tw-p-8"
       style={panelBaseStyle(
-        "linear-gradient(123deg, rgba(124,123,255,0.25) 0%, rgba(38,214,255,0.18) 100%), url('/img/site/2026/Developer-Resources-devrex-panel.png')",
+        "linear-gradient(123deg, rgba(124,123,255,0.25) 0%, rgba(38,214,255,0.18) 100%), url('/img/site/2026/Developer-Resources-devrex-panel.jpg')",
       )}
     >
       <div className="tw-absolute tw-inset-0 tw-bg-[linear-gradient(180deg,rgba(0,0,0,0.05)_0%,rgba(0,0,0,0.12)_100%)]" />
@@ -483,7 +490,7 @@ function DemosPanel() {
     <div
       className="tw-relative tw-flex tw-min-h-[420px] lg:tw-min-h-[630px] tw-h-full tw-overflow-hidden tw-p-6 md:tw-p-8"
       style={panelBaseStyle(
-        "linear-gradient(123deg, rgba(38,214,255,0.20) 0%, rgba(124,123,255,0.22) 100%), url('/img/site/2026/demos-devrex-panel.png')",
+        "linear-gradient(123deg, rgba(38,214,255,0.20) 0%, rgba(124,123,255,0.22) 100%), url('/img/site/2026/demos-devrex-panel.jpg')",
       )}
     >
       <div className="tw-absolute tw-inset-0 tw-bg-[linear-gradient(180deg,rgba(0,0,0,0.04)_0%,rgba(0,0,0,0.10)_100%)]" />
@@ -494,6 +501,10 @@ function DemosPanel() {
             <img
               src="/img/site/2026/demos-screenshot.png"
               alt="Weaviate Playground demos overview"
+              width="880"
+              height="500"
+              loading="lazy"
+              decoding="async"
               className="tw-h-auto tw-w-full tw-max-w-[600px] tw-object-contain"
             />
           </div>
