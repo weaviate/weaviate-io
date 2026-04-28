@@ -97,6 +97,6 @@
     "@docusaurus/theme-common": "^3.9.2",
     "@docusaurus/utils": "^3.9.2",
     "@algolia/client-search": "^5.18.0",
-    "fast-xml-parser": "^5.3.8"
+    "fast-xml-parser": "5.5.6"
   }
 }
