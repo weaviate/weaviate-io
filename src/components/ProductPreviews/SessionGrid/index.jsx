@@ -1,41 +1,41 @@
-import React from 'react';
-import Link from '@docusaurus/Link';
-import styles from './styles.module.scss';
+import React from "react";
+import Link from "@docusaurus/Link";
+import styles from "./styles.module.scss";
 
 const PREVIEWS = [
   {
-    id: 'engram',
-    label: 'PREVIEW',
-    title: 'Engram - Memory and Context Management for Agents',
+    id: "engram",
+    label: "PREVIEW",
+    title: "Engram - Memory and Context Management for Agents",
     description:
-      'A fully managed API for building agents that remember, learn, and continually improve over time.',
-    graphic: '/img/site/book-rag-graphic.svg',
-    learnMoreHref: '',
+      "A fully managed API for building agents that remember, learn, and continually improve over time.",
+    graphic: "/img/site/book-rag-graphic.svg",
+    learnMoreHref: "",
   },
   {
-    id: 'model-eval',
-    label: 'PREVIEW',
-    title: 'Model Evaluation Tool',
+    id: "model-eval",
+    label: "PREVIEW",
+    title: "Model Evaluation Tool",
     description:
-      'Evaluate and compare embedding models using your own data and queries in Weaviate Cloud.',
-    graphic: '/img/site/book-scale-graphic.svg',
-    learnMoreHref: '',
+      "Evaluate and compare embedding models using your own data and queries in Weaviate Cloud.",
+    graphic: "/img/site/book-scale-graphic.svg",
+    learnMoreHref: "",
   },
   {
-    id: 'hfresh',
-    label: 'PREVIEW',
-    title: 'HFresh Vector Index',
+    id: "hfresh",
+    label: "PREVIEW",
+    title: "HFresh Vector Index",
     description:
-      'Deliver high-recall retrieval and dramatically lower memory requirements with innovative indexing algorithm.',
-    graphic: '/img/site/book-agentic-graphic.svg',
-    learnMoreHref: '',
+      "Deliver high-recall retrieval and dramatically lower memory requirements with innovative indexing algorithm.",
+    graphic: "/img/site/book-agentic-graphic.svg",
+    learnMoreHref: "",
   },
 ];
 
 const ABOUT_ITEMS = [
-  'Previews are early-access features and may change based on feedback.',
-  'Previews do not include SLAs and may have limited support while we iterate.',
-  'We may contact preview users for feedback or short check-ins.',
+  "Previews are early-access features and may change based on feedback.",
+  "Previews do not include SLAs and may have limited support while we iterate.",
+  "We may contact preview users for feedback or short check-ins.",
 ];
 
 export default function SessionsGrid() {
@@ -53,36 +53,36 @@ export default function SessionsGrid() {
               <p className={styles.blurb}>{p.description}</p>
 
               <div className={styles.actions}>
-                <Link
+                <a
                   className={styles.requestButton}
-                  to="#register-interest"
+                  href="#register-interest"
                   onClick={(e) => {
                     e.preventDefault();
 
                     const url = new URL(window.location.href);
-                    url.searchParams.set('preview', p.id);
-                    url.hash = 'register-interest';
-                    window.history.pushState({}, '', url.toString());
+                    url.searchParams.set("preview", p.id);
+                    url.hash = "register-interest";
+                    window.history.pushState({}, "", url.toString());
 
                     requestAnimationFrame(() => {
                       document
-                        .getElementById('register-interest')
+                        .getElementById("register-interest")
                         ?.scrollIntoView({
-                          behavior: 'smooth',
-                          block: 'start',
+                          behavior: "smooth",
+                          block: "start",
                         });
                     });
 
-                    window.dispatchEvent(new Event('previewchange'));
+                    window.dispatchEvent(new Event("previewchange"));
                   }}
                 >
                   Request early access
-                </Link>
+                </a>
 
                 {p.learnMoreHref ? (
-                  <Link className={styles.learnMore} to={p.learnMoreHref}>
+                  <a className={styles.learnMore} href={p.learnMoreHref}>
                     Learn more
-                  </Link>
+                  </a>
                 ) : null}
               </div>
 

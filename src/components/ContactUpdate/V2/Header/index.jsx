@@ -1,7 +1,7 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
-import styles from './styles.module.scss';
-import { LinkButton, ButtonContainer } from '/src/theme/Buttons';
+import Link from "@docusaurus/Link";
+import React from "react";
+import styles from "./styles.module.scss";
+import { LinkButton, ButtonContainer } from "/src/theme/Buttons";
 
 export default function StudyHeader() {
   return (
@@ -18,9 +18,9 @@ export default function StudyHeader() {
             </p>
             <div className={styles.headerBox}>
               <div className={styles.buttons}>
-                <Link to="#contact" className={styles.buttonLight}>
+                <a href="#contact" className={styles.buttonLight}>
                   Talk to an expert
-                </Link>
+                </a>
               </div>
             </div>
           </div>

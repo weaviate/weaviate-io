@@ -1,7 +1,7 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
-import styles from './styles.module.scss';
-import { LinkButton, ButtonContainer } from '/src/theme/Buttons';
+import Link from "@docusaurus/Link";
+import React from "react";
+import styles from "./styles.module.scss";
+import { LinkButton, ButtonContainer } from "/src/theme/Buttons";
 
 export default function AboutUsHeader() {
   return (
@@ -25,9 +25,9 @@ export default function AboutUsHeader() {
           <Link className={styles.buttonGradient} to="/go/console">
             Start Free
           </Link>
-          <Link className={styles.buttonOutline} to="/pricing#contact-sales">
+          <a className={styles.buttonOutline} href="/pricing#contact-sales">
             Contact Sales
-          </Link>
+          </a>
         </div>
       </div>
     </header>

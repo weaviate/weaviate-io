@@ -1,7 +1,7 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
-import styles from './styles.module.scss';
-import { LinkButton, ButtonContainer } from '/src/theme/Buttons';
+import Link from "@docusaurus/Link";
+import React from "react";
+import styles from "./styles.module.scss";
+import { LinkButton, ButtonContainer } from "/src/theme/Buttons";
 
 export default function AboutUsHeader() {
   return (
@@ -25,12 +25,12 @@ export default function AboutUsHeader() {
         </div>
 
         <div className={styles.buttons}>
-          <Link className={styles.buttonGradient} to="#meet_the_team">
+          <a className={styles.buttonGradient} href="#meet_the_team">
             Meet the team
-          </Link>
-          <Link className={styles.buttonOutline} to="#our_company_values">
+          </a>
+          <a className={styles.buttonOutline} href="#our_company_values">
             How we work
-          </Link>
+          </a>
         </div>
       </div>
       <div className={styles.bottomBar}>

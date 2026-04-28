@@ -1,15 +1,19 @@
-.buttonGroup {
-  flex-grow: 1;
-  
-  ul {
-    display: flex;
-    flex-direction: row;
-    gap: $space;
-    width: 100%;
+@use "../../variables" as v;
 
-    li { 
+@mixin buttonGroup() {
+  .buttonGroup {
+    flex-grow: 1;
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      gap: v.$space;
       width: 100%;
-      flex-grow: 1; 
+
+      li {
+        width: 100%;
+        flex-grow: 1;
+      }
     }
-  }  
+  }
 }

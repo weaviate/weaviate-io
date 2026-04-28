@@ -1,25 +1,33 @@
-.rowWrapper {
-  flex-direction: row;
-  gap: $space;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  @media (max-width: 550px) { flex-direction: column; }
-}
+@use "../variables" as v;
 
-.row {
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: $space;
-  flex-wrap: wrap;
-  margin: initial; // Reset an inherited margin.
+@mixin row() {
+  .rowWrapper {
+    flex-direction: row;
+    gap: v.$space;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    @media (max-width: 550px) {
+      flex-direction: column;
+    }
+  }
 
-  &.single {
-    flex-direction: column;
-    align-items: flex-start;
-    flex: 1;
-    gap: 0;
-    label { margin-bottom: -10px}
+  .row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: v.$space;
+    flex-wrap: wrap;
+    margin: initial; // Reset an inherited margin.
+
+    &.single {
+      flex-direction: column;
+      align-items: flex-start;
+      flex: 1;
+      gap: 0;
+      label {
+        margin-bottom: -10px;
+      }
+    }
   }
 }
 

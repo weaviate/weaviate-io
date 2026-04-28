@@ -1,13 +1,23 @@
-.priceCalculator {
-  @import 'form/index.scss';
-  @import 'price.scss';
-  @import 'priceReview.scss';
-  @import 'row.scss';
-  @import 'highAvailability.scss';
-  @import 'accuracyToCost.scss';
-  @import 'badge.scss';
-}
+/* styles/elements/index.scss */
 
-// Note: The select dropdowns are outside the normal dom element tree so won't 
-// inherit styles from .priceCalculator, so we keep them here.
-@import 'form/select.scss';
+@use "form/index" as form;
+@use "price" as price;
+@use "priceReview" as priceReview;
+@use "row" as row;
+@use "highAvailability" as highAvailability;
+@use "accuracyToCost" as accuracyToCost;
+@use "badge" as badge;
+
+// Note: select dropdowns are outside the normal dom element tree so won't
+// inherit styles from .priceCalculator, so we keep them globally loaded.
+@use "form/select" as *;
+
+.priceCalculator {
+  @include form.form();
+  @include price.price();
+  @include priceReview.priceReview();
+  @include row.row();
+  @include highAvailability.highAvailability();
+  @include accuracyToCost.accuracyToCost();
+  @include badge.badge();
+}

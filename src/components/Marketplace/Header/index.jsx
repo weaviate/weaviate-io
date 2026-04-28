@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { ButtonContainer } from '../../../theme/Buttons';
-import styles from './styles.module.scss';
-import { LinkButton } from '/src/theme/Buttons';
-import Link from '@docusaurus/Link';
+import React, { useState } from "react";
+import { ButtonContainer } from "../../../theme/Buttons";
+import styles from "./styles.module.scss";
+import { LinkButton } from "/src/theme/Buttons";
+import Link from "@docusaurus/Link";
 
 export default function HomepageHeader() {
   return (
@@ -16,9 +16,9 @@ export default function HomepageHeader() {
               AI builders
             </p>
             <div className={styles.buttons}>
-              <Link className={styles.buttonGradient} to="#contact-sales">
+              <a className={styles.buttonGradient} href="#contact-sales">
                 Contact Sales
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -28,9 +28,9 @@ export default function HomepageHeader() {
             <h3>Introducing Weaviate Agents</h3>
             <p>Query, improve, and augment your data with agentic workflows</p>
           </div>
-          <Link to="#weaviate-agents" className={styles.buttonGradient}>
+          <a href="#weaviate-agents" className={styles.buttonGradient}>
             Explore Agents
-          </Link>
+          </a>
         </div>
       </div>
     </header>
