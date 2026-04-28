@@ -1,0 +1,276 @@
+---
+title: 'Text Analysis for Hybrid Search: Tokenization, Stopwords, and Accent Folding in Weaviate'
+slug: tokenization-text-analysis-weaviate
+authors: [andre, ivan]
+date: 2026-05-05
+tags: ['concepts', 'engineering', 'search']
+image: ./img/hero.png
+description: "Tokenization is what makes or breaks hybrid search. See how Weaviate's per-property tokenization, accent folding, custom stopwords, and /v1/tokenize endpoint handle multilingual retrieval."
+faq:
+  - question: 'Does Weaviate support custom tokenizers?'
+    answer: 'Yes — built-in methods (word, lowercase, whitespace, field) plus opt-in language-specific tokenizers (gse, gse_ch, kagome_ja, kagome_kr, trigram). Custom user-defined tokenizers are not currently exposed; the focus is a small set of well-tuned options plus a flexible textAnalyzer config layer (accent folding, stopword presets).'
+  - question: 'How do I configure stopwords per language in a vector database?'
+    answer: 'Define named presets in invertedIndexConfig.stopwordPresets (a flat word list, or additions/removals on top of a built-in). Reference them per text property via textAnalyzer.stopwordPreset. The same collection can hold properties with different language presets.'
+  - question: "What's the difference between word and whitespace tokenization?"
+    answer: 'word lower-cases tokens and strips most punctuation — the right default for prose. whitespace only splits on whitespace, preserving case and punctuation — the right choice for case-sensitive entity names or symbol-bearing identifiers.'
+  - question: 'Can I change tokenization without reindexing?'
+    answer: "Stopword changes apply immediately because stopwords are filtered at query time, not at index time. Tokenizer-level changes (e.g., switching from word to whitespace) and asciiFoldIgnore changes affect what's written to disk and so require reindexing."
+  - question: 'How do I debug tokenization in Weaviate?'
+    answer: "Call POST /v1/tokenize with your text and analyzer config, or POST /v1/schema/{className}/properties/{propertyName}/tokenize to apply a real property's config. The response separates indexed and query tokens so you can see exactly what BM25 will score."
+---
+
+![Hero](./img/hero.png)
+
+<br />
+
+[Hybrid search](https://docs.weaviate.io/weaviate/concepts/search/hybrid-search) has two halves: dense vectors for meaning, BM25 for exact tokens. The dense half gets all the attention. The [BM25](https://en.wikipedia.org/wiki/Okapi_BM25) half quietly fails when the analyzer feeding it is wrong, and no amount of embedding tuning will save you. Drop the wrong character, split a word that shouldn't be split, and BM25 has nothing useful to match. The keyword side becomes noise and drags the fusion down with it.
+
+That sounds like an edge case until you ship a multilingual catalog. Suddenly `"café crème"` returns nothing for a French e-commerce store, the Polish team can't find `"Łódź"`, and your support agent's RAG pipeline misses every query that uses an accented word. The tokenizer was right there the whole time. Nobody could see what it was doing.
+
+Weaviate `v1.37` made the tokenizer an **observable, multilingual** part of the database. This post is a working tour:
+
+- [How tokenization shapes recall in hybrid search](#hybrid-search-101)
+- [Picking the right tokenizer for your data](#tokenization-methods)
+- [Handling multilingual text with accent folding](#accent-folding)
+- [Per-language stopwords without reindexing](#per-property-stopwords)
+- [Verifying the result with a single API call](#the-tokenize-endpoint)
+
+## Hybrid search 101
+
+Hybrid search combines two signals: dense **vector similarity** (semantic, meaning-based) and **[BM25 keyword scoring](https://docs.weaviate.io/weaviate/search/bm25)** (exact-match, lexical). The two are fused at query time, so a query like `"product launch April 2026"` recovers both relevant news articles (vector) and exact date mentions (keyword).
+
+BM25 doesn't operate on text. It operates on **tokens**, the discrete units the analyzer produced when each document was indexed. If your tokenizer dropped the punctuation in `"v1.37"`, lower-cased `"USA"` to `"usa"`, or treated `naïve` and `naive` as different tokens, BM25 can't recover. The keyword half of your hybrid score becomes noise, and your fusion is fighting itself.
+
+This is why a great embedding model on top of a careless tokenizer often loses to pure-vector search. The tokenizer is the entry point to the [inverted index](https://docs.weaviate.io/weaviate/concepts/indexing/inverted-index), and it sets the ceiling for keyword recall.
+
+If you're new to hybrid retrieval mechanics, our earlier post on [hybrid search fusion](/blog/hybrid-search-fusion) walks through the scoring math. This post focuses on the analyzer that feeds it.
+
+## Tokenization methods
+
+Weaviate exposes four core tokenization methods that cover the vast majority of production use cases. Pick by data type, not by personal preference:
+
+| Method       | Pick this when…                                   | Example token output for `"User_42 - café"` |
+| ------------ | ------------------------------------------------- | ------------------------------------------- |
+| `word`       | Articles, descriptions, names, FAQs (the default) | `user`, `42`, `café`                        |
+| `lowercase`  | Code identifiers, email addresses, hash IDs       | `user_42`, `-`, `café`                      |
+| `whitespace` | Acronyms, case-sensitive entity names             | `User_42`, `-`, `café`                      |
+| `field`      | Exact-match identifiers (URLs, UUIDs)             | `User_42 - café` _(one token)_              |
+
+The `word` tokenizer is forgiving. It lower-cases, strips most punctuation, and usually does the right thing for prose. The other three preserve more of the original string, which matters when meaningful symbols (`_`, `-`, `:`) carry information.
+
+An opinion that the table won't tell you: default to `word` and don't think about it. The other three look more flexible on paper, but the only honest reason to reach for them is that you ran a real query and saw a wrong result. Picking `lowercase` or `whitespace` upfront because they "preserve more" tends to lock in tokens you didn't actually want, and you find out months later when a query goes sideways.
+
+You set the method **per property**, not per collection. That's important: real apps mix prose, identifiers, and code in a single collection.
+
+```python
+import weaviate
+from weaviate.classes.config import Property, DataType, Tokenization, Configure
+
+client = weaviate.connect_to_local()
+
+tkn_options = [
+    Tokenization.WORD,
+    Tokenization.LOWERCASE,
+    Tokenization.WHITESPACE,
+    Tokenization.FIELD,
+]
+
+properties = [
+    Property(
+        name=f"text_{tokenization.replace('.', '_')}",
+        data_type=DataType.TEXT,
+        tokenization=tokenization,
+    )
+    for tokenization in tkn_options
+]
+
+client.collections.create(
+    name="TokenizationDemo",
+    properties=properties,
+    vector_config=Configure.Vectors.self_provided(),
+)
+```
+
+For non-whitespace-delimited languages, Weaviate also ships **[language-specific tokenizers](https://docs.weaviate.io/weaviate/config-refs/collections#language-specific-tokenization)** that are opt-in via environment variables: `gse` (Japanese), `gse_ch` (Chinese), `kagome_ja` (Japanese morphological), `kagome_kr` (Korean), and `trigram` (CJK fallback). Enable them at server start with the corresponding [`ENABLE_TOKENIZER_*`](https://docs.weaviate.io/deploy/configuration/env-vars) flag.
+
+## Accent folding
+
+The single most painful tokenization bug in production is accent mismatch. Users type `cafe`. Documents store `café`. BM25 sees two different tokens, returns nothing, and your hybrid score collapses to whatever the dense vector dredged up.
+
+The fix is one line of schema:
+
+```python
+import weaviate
+from weaviate.classes.config import Property, DataType, Tokenization, Configure
+
+client = weaviate.connect_to_local()
+
+client.collections.create(
+    name="AccentFoldingDemo",
+    properties=[
+        Property(
+            name="text_default",
+            data_type=DataType.TEXT,
+            tokenization=Tokenization.WORD,
+        ),
+        Property(
+            name="text_folded",
+            data_type=DataType.TEXT,
+            tokenization=Tokenization.WORD,
+            text_analyzer=Configure.text_analyzer(ascii_fold=True),
+        ),
+        Property(
+            name="text_folded_keep_e",
+            data_type=DataType.TEXT,
+            tokenization=Tokenization.WORD,
+            text_analyzer=Configure.text_analyzer(
+                ascii_fold=True, ascii_fold_ignore=["é"]
+            ),
+        ),
+    ],
+    vector_config=Configure.Vectors.self_provided(),
+)
+```
+
+Under the hood, [`textAnalyzer.asciiFold`](https://docs.weaviate.io/weaviate/config-refs/indexing/inverted-index#textanalyzer) uses [Unicode NFD decomposition](https://unicode.org/reports/tr15/) plus an explicit replacement table for single-codepoint letters that don't decompose (`ł`, `æ`, `ø`, `ð`, `þ`, `đ`, `ß`, and more). That covers 20+ Latin-script languages by default, including French, German, Spanish, Polish, Czech, Turkish, Vietnamese, and Scandinavian languages.
+
+Folding runs at _both_ index and query time, so `"Café Crème"` → `cafe creme` in the inverted index, and a user query of `cafe creme` (or `café creme`, or `Cafe Crème`) all hit the same row.
+
+![Accent folding before/after](./img/accent-folding.png)
+
+If you need to **preserve** specific accents (for example, a brand name where the accent distinguishes two SKUs), use the [`asciiFoldIgnore`](https://docs.weaviate.io/weaviate/config-refs/indexing/inverted-index#textanalyzer) array to exempt individual characters. The exemption is immutable after the property is created (changing it would change which tokens are written to disk), so plan it once.
+
+## Per-property stopwords — fixing the "the North Face" problem {#per-property-stopwords}
+
+[Stopwords](https://docs.weaviate.io/weaviate/concepts/indexing/inverted-index#stop-words) are short, high-frequency words (`the`, `a`, `and`) that BM25 typically drops to make scoring more robust. Most search stacks ship one stopword list per language and apply it to every text field. That works until you have a brand called _"The North Face"_, and dropping `the` quietly destroys recall on the brand.
+
+Weaviate solves this two ways. First, you can declare **named stopword presets** at the collection level, as flat lists or as extensions of a built-in:
+
+```python
+import weaviate
+from weaviate.classes.config import Property, DataType, Tokenization, Configure
+
+client = weaviate.connect_to_local()
+
+client.collections.create(
+    name="StopwordsDemo",
+    inverted_index_config=Configure.inverted_index(
+        stopword_presets={
+            "fr": ["le", "la", "les", "un", "une", "des", "du", "de", "et"],
+        },
+    ),
+    properties=[
+        Property(
+            name="name_en",
+            data_type=DataType.TEXT,
+            tokenization=Tokenization.WORD,
+            text_analyzer=Configure.text_analyzer(stopword_preset="en"),
+        ),
+        Property(
+            name="name_fr",
+            data_type=DataType.TEXT,
+            tokenization=Tokenization.WORD,
+            text_analyzer=Configure.text_analyzer(stopword_preset="fr"),
+        ),
+    ],
+    vector_config=Configure.Vectors.self_provided(),
+)
+```
+
+Second, you can override the stopword behavior **per property** via `textAnalyzer.stopwordPreset`. So in a single collection, `description_en` can use English stopwords, `description_fr` can use a French preset, and `brand_name` can use `none`, all sharing the same hybrid query path.
+
+**Stopwords are still indexed.** They're only filtered at _query_ time. That means changing a stopword preset takes effect immediately on the next query, with no reindex. This is a meaningful difference from [Lucene-based stacks](https://en.wikipedia.org/wiki/Apache_Lucene) where re-analysis means rebuilding the index.
+
+**Stopwords still affect ranking.** They're just removed from the BM25 score. The token is still in the inverted index, so an exact-phrase filter still matches.
+
+For a tutorial-style walkthrough with searches and filters, see the [tokenization tutorial](https://docs.weaviate.io/weaviate/tutorials/tokenization).
+
+## The tokenize endpoint
+
+The hardest part of tuning a text analyzer used to be _seeing what it actually did_. Most search stacks force you to delete the index, reconfigure, reingest, run queries, and squint at log output. By the time you have a feedback loop, you've forgotten what hypothesis you were testing.
+
+Weaviate `v1.37` exposes two REST endpoints that turn the analyzer into a sandboxed, callable function:
+
+- [`POST /v1/tokenize`](https://docs.weaviate.io/weaviate/config-refs/indexing/inverted-index#tokenize-endpoint): run any tokenizer + analyzer config against arbitrary text. No schema mutation, no reingest.
+- `POST /v1/schema/{className}/properties/{propertyName}/tokenize`: apply an _existing_ property's exact configuration.
+
+Both return a structured response that separates `indexed` tokens (what goes into the inverted index) from `query` tokens (what BM25 actually scores after stopword filtering):
+
+```python
+import weaviate
+from weaviate.classes.config import Tokenization, Configure
+
+client = weaviate.connect_to_local()
+
+result = client.tokenization.text(
+    text="The organic café crème blend",
+    tokenization=Tokenization.WORD,
+    analyzer_config=Configure.text_analyzer(
+        ascii_fold=True,
+        stopword_preset="en",
+    ),
+)
+
+print(f"indexed: {result.indexed}")
+print(f"query:   {result.query}")
+```
+
+```text
+indexed: ['the', 'organic', 'cafe', 'creme', 'blend']
+query:   ['organic', 'cafe', 'creme', 'blend']
+```
+
+The `indexed` / `query` distinction shows you exactly where the stopword preset kicked in. If `the` shows up in `query`, you forgot to apply the preset. If `cafe` is missing, accent folding isn't on.
+
+The property-scoped variant takes the property's full config (tokenizer, accent folding, stopword preset, ignore list), so you can verify a real production property without copying its config into the request.
+
+Treat it like a linter for your search analyzer.
+
+![Tokenize endpoint flow](./img/tokenize-endpoint.png)
+
+## Use cases
+
+### Multilingual e-commerce catalog
+
+A catalog with French descriptions, English SKUs, and product names containing accents. Configure the collection so each property gets the right analyzer:
+
+```python
+properties=[
+    Property(name="title_fr", data_type=DataType.TEXT,
+             tokenization=Tokenization.WORD,
+             text_analyzer=Configure.text_analyzer(
+                 ascii_fold=True,
+                 stopword_preset="fr")),
+    Property(name="sku", data_type=DataType.TEXT,
+             tokenization=Tokenization.FIELD),
+    Property(name="brand", data_type=DataType.TEXT,
+             tokenization=Tokenization.WHITESPACE,
+             text_analyzer=Configure.text_analyzer(stopword_preset="none")),
+]
+```
+
+Three different analyzers in one collection, all sharing the same hybrid query path. The `brand` property keeps `the` in `"The North Face"`. The SKU property treats every code as one exact-match token. The French title property folds accents and filters French stopwords.
+
+### Technical documentation RAG
+
+Code identifiers like `weaviate.connect_to_local` shouldn't be split by underscores. Use `lowercase` tokenization on a `code_snippet` property and `word` on the surrounding prose. The [Query Agent](https://docs.weaviate.io/agents/query) (or any RAG pipeline) gets clean tokens for exact-symbol matching alongside semantic recall over the explanation.
+
+### Multi-tenant SaaS with mixed locales
+
+Each tenant lives in its own multi-tenant shard, but the schema is shared. Define multiple stopword presets at the collection level (`en`, `fr`, `de`, `ja`) and override per-property at the tenant onboarding step based on the tenant's primary language. No schema migration, no reindex when a new language onboards.
+
+## Summary
+
+Tokenization is the entry point to the keyword half of hybrid search, and the keyword half is what makes hybrid retrieval robust on multilingual text and case-sensitive identifiers. Weaviate `v1.37` makes the analyzer observable and per-property granular.
+
+Pick between `word` and `whitespace` tokenization per field. `word` lower-cases and strips punctuation for prose. `whitespace` preserves case and symbols for code-like identifiers. Configure stopwords per language at the collection level via [`invertedIndexConfig.stopwordPresets`](https://docs.weaviate.io/weaviate/config-refs/indexing/inverted-index#stopwordpresets), then override per property through `textAnalyzer.stopwordPreset`. Stopword presets can change without reindexing because they're filtered at query time, not index time. For non-Latin scripts, the language-specific tokenizers ([`gse`, `gse_ch`, `kagome_ja`, `kagome_kr`, `trigram`](https://docs.weaviate.io/weaviate/config-refs/collections#language-specific-tokenization)) cover the cases where whitespace splitting falls apart. And when something looks wrong, call `POST /v1/tokenize` and read what the analyzer actually produced.
+
+To go deeper:
+
+- The [tokenization tutorial](https://docs.weaviate.io/weaviate/tutorials/tokenization)
+- The [accent folding concepts page](https://docs.weaviate.io/weaviate/concepts/indexing/inverted-index#accent-folding)
+- The [`/v1/tokenize` reference](https://docs.weaviate.io/weaviate/config-refs/indexing/inverted-index)
+
+import WhatsNext from '/_includes/what-next.mdx';
+
+<WhatsNext />
