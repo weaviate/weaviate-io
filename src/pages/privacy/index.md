@@ -228,7 +228,6 @@ Kindly note that our websites may contain links to websites of third parties. Th
 
 - [YouTube](https://www.youtube.com/t/terms);
 - [GitHub](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement);
-- [Slack](https://slack.com/trust/privacy/privacy-policy);
 - [Discourse](https://www.discourse.org/privacy);
 - [AWS](https://aws.amazon.com/privacy/);
 - [Google Cloud](https://cloud.google.com/terms/cloud-privacy-notice).
@@ -244,7 +243,7 @@ b. If you **complete forms on (one of) our websites**, we process the following 
 |                                                                                                                                                                                                                                                                                |                                                                                                                                                                   |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Type of data**                                                                                                                                                                                                                                                               | **Purposes**                                                                                                                                                      |
-| We collect personal data that you provide when you complete forms on our websites. We may process such information, for example when you register for an event or webinar) or if you register to receive a newsletter (please also refer to Section 5 of this Privacy Policy). | To contact you based on your request, to provide you with the service you requested, to contact you with relevant offers or services, and for marketing purposes. |
+| We collect personal data that you provide when you complete forms on our websites. We may process such information, for example when you register for an event or webinar, submit a contact or support request, request access to a startup or partner program, or register to receive a newsletter (please also refer to Section 5 of this Privacy Policy). | To contact you based on your request, to provide you with the service you requested, to contact you with relevant offers or services, and for marketing purposes. |
 | We also collect personal data that you voluntarily provide in response to requests and inquiries we may make at various places and through various mechanisms on Weaviate websites.                                                                                            | To improve our products and services, to improve our customer support, and or marketing purposes.                                                                 |
 
 For the processing of this personal data, we rely on your consent or on our legitimate interest to make our websites and services available to you.
@@ -284,7 +283,7 @@ For the processing of this personal data, we rely on the performance of our cont
 
 <br></br>
 
-c. If you **contact us** **via our forum (https\://forum.weaviate.io/)**, we process the following personal data, for the following purposes and on the following legal basis:
+c. If you **contact us** **via our forum (https://forum.weaviate.io/)**, we process the following personal data, for the following purposes and on the following legal basis:
 
 <br></br>
 
@@ -298,7 +297,7 @@ For the processing of this personal data, we rely on our legitimate interest in 
 
 <br></br>
 
-d. If you** contact us via social media (such as the Weaviate Forum)**, we process the following personal data, for the following purposes and on the following legal basis:
+d. If you** contact us via social media**, we process the following personal data, for the following purposes and on the following legal basis:
 
 <br></br>
 

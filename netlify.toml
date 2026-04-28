@@ -8,28 +8,55 @@ from = "/developers/weaviate/release-notes/release_1_*"
 to = "https://weaviate.io/blog/weaviate-1-:splat-release"
 status = 301
 
-# Redirect all remaining /developers & /docs requests to docs subdomain
 [[redirects]]
-  from = "/developers/*"
-  to = "https://docs.weaviate.io/:splat"
-  status = 301
-  force = true
+from = "/developers/*"
+to = "https://docs.weaviate.io/:splat"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/docs/*"
-  to = "https://docs.weaviate.io/:splat"
-  status = 301
-  force = true
+from = "/docs/*"
+to = "https://docs.weaviate.io/:splat"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/blog/chatgpt-for-generative-search"
-  to = "https://docs.weaviate.io/weaviate/model-providers/openai/generative"
-  status = 301
+from = "/blog/chatgpt-for-generative-search"
+to = "https://docs.weaviate.io/weaviate/model-providers/openai/generative"
+status = 301
 
 [[redirects]]
-  from = "/collections-count-limit"
-  to = "https://docs.weaviate.io/weaviate/starter-guides/managing-collections/collections-scaling-limits"
-  status = 301
+from = "/collections-count-limit"
+to = "https://docs.weaviate.io/weaviate/starter-guides/managing-collections/collections-scaling-limits"
+status = 301
+
+[[redirects]]
+from = "/slack"
+to = "https://forum.weaviate.io/t/saying-goodbye-to-our-public-slack/22266"
+status = 301
+
+[[redirects]]
+from = "/apple-touch-icon.png"
+to = "/favicon.ico"
+status = 200
+
+[[redirects]]
+from = "/feed*"
+to = "/404"
+status = 404
+force = true
+
+[[redirects]]
+from = "/rss*"
+to = "/404"
+status = 404
+force = true
+
+[[redirects]]
+from = "/atom*"
+to = "/404"
+status = 404
+force = true
 
   [[redirects]]
   from = "/slack"
@@ -43,3 +70,11 @@ path = "/blog/rss.xml"
 [[edge_functions]]
 function = "block-feed-bot"
 path = "/blog/atom.xml"
+
+[[edge_functions]]
+function = "block-feed-bot"
+path = "/blog/feed"
+
+[[edge_functions]]
+function = "block-feed-bot"
+path = "/blog/feed.xml"

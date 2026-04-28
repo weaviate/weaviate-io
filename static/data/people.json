@@ -29,14 +29,6 @@
     "team": "wcd"
   },
   {
-    "name": "Alvin Richards",
-    "title": "VP of Product",
-    "photo": "Alvin.jpg",
-    "linkedin": "alvinrichards",
-    "twitter": "jonnyeight",
-    "team": "product"
-  },
-  {
     "name": "André Mourão",
     "title": "Software Engineer",
     "photo": "andre-m.jpg",
@@ -81,6 +73,12 @@
     "twitter": "bobvanluijt",
     "github": "bobvanluijt",
     "team": "cto"
+  },
+  {
+    "name": "Brandon Holwerda",
+    "title": "Product Marketing Manager",
+    "photo": "Brandon-Holwerda.jpg",
+    "team": "product"
   },
   {
     "name": "Brave Okafor",
@@ -235,14 +233,6 @@
     "team": "cto"
   },
   {
-    "name": "Femke Plantinga",
-    "title": "Team Lead",
-    "photo": "femke.jpg",
-    "linkedin": "femke-plantinga-a60b9a172",
-    "twitter": "femke_plantinga",
-    "team": "developer-growth"
-  },
-  {
     "name": "Giorgos Kampitakis",
     "title": "Tech Lead",
     "photo": "Giorgos.jpg",
@@ -271,6 +261,13 @@
     "twitter": "jeroiraz",
     "github": "jeroiraz",
     "team": "database"
+  },
+  {
+    "name": "Jenson Cheng",
+    "title": "Technical Sales Specialist",
+    "photo": "Jenson.jpg",
+    "linkedin": "jenson-cheng-111343232l",
+    "team": "partnerships"
   },
   {
     "name": "Jobi George",
@@ -347,6 +344,13 @@
     "team": "database"
   },
   {
+    "name": "Mila Vernazza",
+    "title": "Customer Solution Engineer",
+    "photo": "Mila.jpg",
+    "linkedin": "fsmv",
+    "team": "solution-engineering"
+  },
+  {
     "name": "Mohamed Badawi",
     "title": "Staff Engineer - Reliability",
     "photo": "Mohamed-Badawi.jpg",
@@ -384,19 +388,18 @@
     "team": "developer-growth"
   },
   {
+    "name": "Pierre Demagny",
+    "title": "Cloud Platform Engineer",
+    "photo": "Pierre-Demagny.jpg",
+    "linkedin": "pdemagny",
+    "team": "delivery"
+  },
+  {
     "name": "Prajjwal Yadav",
     "title": "Developer Growth Intern",
     "photo": "prajjwal.jpg",
     "linkedin": "prajjwal-yadav",
     "team": "developer-growth"
-  },
-  {
-    "name": "Roberto Esposito",
-    "title": "Research Engineer",
-    "photo": "roberto-esposito.jpg",
-    "linkedin": "robbespo00",
-    "twitter": "robbespo00",
-    "team": "applied-research"
   },
   {
     "name": "Rodrigo López",

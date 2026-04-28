@@ -1,0 +1,30 @@
+.wrap {
+  background: #130c49;
+  padding: 0 0 28px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 22px;
+  align-items: start;
+
+  @media screen and (max-width: 996px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.left :global(section) {
+  padding: 0;
+}
+
+.right {
+  position: sticky;
+  top: 110px;
+  align-self: start;
+
+  @media screen and (max-width: 996px) {
+    position: static;
+    top: auto;
+  }
+}

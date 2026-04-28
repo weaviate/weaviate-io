@@ -281,7 +281,13 @@ const siteRedirects = {
             to: '/contact',
             from: '/nathaniel',
         },
-          // BYOC redirects
+        {
+
+            to: '/contact',
+            from: '/elisa',
+        },
+          
+        // BYOC redirects
 
         {
             to: '/deployment/dedicated',
