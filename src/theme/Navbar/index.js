@@ -119,14 +119,24 @@ const actionLinks = [
 ];
 
 function MegaMenu({ sections, menuLabel }) {
+  const isThreeColumn = sections.length >= 3;
+
+  const widthClass = isThreeColumn
+  ? 'tw-w-[min(920px,calc(100vw-64px))]'
+  : 'tw-w-[min(640px,calc(100vw-64px))]';
+
+  const gridClass = isThreeColumn
+    ? 'md:tw-grid-cols-2 xl:tw-grid-cols-3'
+    : 'md:tw-grid-cols-2';
+
   const positionClass =
-    menuLabel === 'Product' || menuLabel === 'Solutions'
+    menuLabel === 'Product'
       ? 'tw-left-0 tw-translate-x-[8px]'
       : 'tw-left-1/2 tw--translate-x-1/2';
 
   return (
     <div
-      className={`tw-absolute tw-top-full tw-z-50 tw-w-[920px] tw-max-w-[calc(100vw-48px)] tw-pt-4 ${positionClass}`}
+      className={`tw-absolute tw-top-full tw-z-50 ${widthClass} tw-pt-4 ${positionClass}`}
     >
       <div
         className="
@@ -137,14 +147,16 @@ function MegaMenu({ sections, menuLabel }) {
           tw-backdrop-blur-[16px]
           tw-supports-[backdrop-filter]:tw-bg-[rgba(8,10,16,0.82)]
           tw-p-7
-          tw-animate-[menuFadeIn_160ms_ease-out]
           tw-origin-top
         "
+        style={{
+          animation: 'menuFadeIn 180ms cubic-bezier(0.16, 1, 0.3, 1) both',
+        }}
       >
         <div className="tw-pointer-events-none tw-absolute tw-inset-0 tw-rounded-[24px] tw-shadow-[inset_0_1px_0_rgba(255,255,255,0.07)]" />
         <div className="tw-pointer-events-none tw-absolute tw-left-0 tw-right-0 tw-top-0 tw-h-20 tw-bg-[radial-gradient(circle_at_top,rgba(67,226,197,0.05),transparent_68%)]" />
 
-        <div className="tw-relative tw-grid tw-gap-8 md:tw-grid-cols-2 xl:tw-grid-cols-3">
+        <div className={`tw-relative tw-grid tw-gap-8 ${gridClass}`}>
           {sections.map((section) => (
             <div key={section.title}>
               <p
@@ -175,9 +187,9 @@ function MegaMenu({ sections, menuLabel }) {
                     </>
                   );
 
-                  if (isExternal) {
-                    return (
-                      <li key={item.label} className="tw-m-0 tw-list-none tw-p-0">
+                  return (
+                    <li key={item.label} className="tw-m-0 tw-list-none tw-p-0">
+                      {isExternal ? (
                         <a
                           href={item.to}
                           target="_blank"
@@ -187,19 +199,15 @@ function MegaMenu({ sections, menuLabel }) {
                         >
                           {content}
                         </a>
-                      </li>
-                    );
-                  }
-
-                  return (
-                    <li key={item.label} className="tw-m-0 tw-list-none tw-p-0">
-                      <Link
-                        to={item.to}
-                        className={itemClasses}
-                        style={{ fontFamily: 'Inter, sans-serif' }}
-                      >
-                        {content}
-                      </Link>
+                      ) : (
+                        <Link
+                          to={item.to}
+                          className={itemClasses}
+                          style={{ fontFamily: 'Inter, sans-serif' }}
+                        >
+                          {content}
+                        </Link>
+                      )}
                     </li>
                   );
                 })}
@@ -247,8 +255,8 @@ export default function Navbar() {
           />
         </Link>
 
-        <nav className="tw-ml-auto tw-hidden tw-flex-1 tw-justify-center lg:tw-flex">
-          <ul className="tw-m-0 tw-flex tw-list-none tw-items-center tw-gap-3 tw-p-0">
+        <nav className="tw-ml-auto tw-hidden tw-flex-1 tw-justify-center xl:tw-flex">
+          <ul className="tw-m-0 tw-flex tw-list-none tw-items-center tw-gap-2 tw-p-0">
             {mainLinks.map((link) => {
               const hasMenu = !!navGroups[link.label];
               const isOpen = openMenu === link.label;
@@ -299,7 +307,7 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        <div className="tw-ml-auto tw-hidden tw-items-center tw-gap-8 lg:tw-ml-0 lg:tw-flex">
+        <div className="tw-ml-auto tw-hidden tw-items-center tw-gap-8 lg:tw-ml-0 xl:tw-flex">
           <Link
             to="https://github.com/weaviate/weaviate"
             className="tw-inline-flex tw-h-5 tw-w-5 tw-items-center tw-justify-center tw-text-[#B9C8DE] tw-transition hover:tw-text-white"
@@ -348,7 +356,7 @@ export default function Navbar() {
             tw-shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]
             tw-transition
             hover:tw-border-white/15 hover:tw-text-white
-            lg:tw-hidden
+            xl:tw-hidden
           "
           aria-label="Toggle menu"
           aria-expanded={isMobileOpen}
@@ -364,8 +372,12 @@ export default function Navbar() {
       </div>
 
       {isMobileOpen ? (
-        <div className="tw-border-t tw-border-[#1f2128] tw-bg-[#090b10] lg:tw-hidden">
-          <div className="tw-mx-auto tw-max-w-[1320px] tw-space-y-2 tw-px-6 tw-py-5">
+       <div
+  className="tw-relative tw-max-h-[calc(100vh-80px)] tw-overflow-y-auto tw-overscroll-contain tw-border-t tw-border-[#1f2128] tw-bg-[#090b10] xl:tw-hidden"
+  style={{ WebkitOverflowScrolling: 'touch' }}
+>
+  <div className="tw-mx-auto tw-max-w-[1320px] tw-space-y-2 tw-px-6 tw-py-5 tw-pb-10">
+
             {mainLinks.map((link) => {
               const hasMenu = !!navGroups[link.label];
               const isExpanded = openMobileMenu === link.label;
@@ -410,7 +422,7 @@ export default function Navbar() {
                   >
                     <span className="tw-text-[16px] tw-font-medium">{link.label}</span>
                     <span
-                      className={`tw-text-[12px] tw-transition-transform tw-duration-200 ${
+                      className={`tw-text-[12px] tw-ml-2 tw-transition-transform tw-duration-200 ${
                         isExpanded ? 'tw-rotate-180' : ''
                       }`}
                       style={getMobileArrowStyles(link.label, isExpanded)}
@@ -521,7 +533,7 @@ export default function Navbar() {
 
               <Link
                 to="/go/console"
-                className="tw-mt-2 tw-inline-flex tw-w-full tw-items-center tw-justify-center tw-rounded-lg tw-bg-[#6BE38C] tw-px-5 tw-py-3 tw-text-base tw-font-semibold tw-text-[#081012] tw-no-underline"
+                className="tw-mx-auto tw-mt-4 tw-flex tw-w-[86%] tw-items-center tw-justify-center tw-rounded-lg tw-bg-[#6BE38C] tw-px-5 tw-py-3 tw-text-base tw-font-semibold tw-text-[#081012] tw-no-underline"
                 onClick={resetMobileMenus}
                 style={{ fontFamily: 'Inter, sans-serif' }}
               >
@@ -529,6 +541,7 @@ export default function Navbar() {
               </Link>
             </div>
           </div>
+          <div className="tw-pointer-events-none tw-sticky tw-bottom-0 tw-h-8 tw-bg-[linear-gradient(180deg,rgba(9,11,16,0)_0%,#090b10_100%)]" />
         </div>
       ) : null}
     </header>

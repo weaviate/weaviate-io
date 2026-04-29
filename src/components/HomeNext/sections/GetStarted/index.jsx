@@ -47,25 +47,24 @@ function GetStartedCard({ card }) {
     >
       <div className="tw-overflow-hidden tw-rounded-[27px] tw-bg-[#141414]">
         <div className="tw-grid md:tw-grid-cols-[250px_minmax(0,1fr)]">
-          <div className="tw-relative tw-min-h-[220px] tw-overflow-hidden md:tw-min-h-[260px]">
+          <div className="tw-relative tw-min-h-[220px] tw-overflow-hidden tw-bg-[#111111] md:tw-min-h-[260px]">
             <img
               src={card.image}
               alt=""
               aria-hidden="true"
-              className="tw-absolute tw-inset-0 tw-h-full tw-w-full tw-scale-[1.04] tw-object-cover"
+              className="tw-absolute tw-inset-0 tw-h-full tw-w-full tw-object-cover md:tw-scale-[1.04]"
               style={{
+                objectPosition: card.id === 'cloud' ? '50% 45%' : '50% 45%',
                 filter: 'contrast(1.12) saturate(1.18) brightness(0.96)',
               }}
             />
 
             <div
               className="tw-absolute tw-inset-0"
-              style={{
-                background: card.imageGradient,
-              }}
+              style={{ background: card.imageGradient }}
             />
 
-            <div className="tw-absolute tw-inset-0 tw-bg-[linear-gradient(90deg,rgba(8,12,18,0.05)_0%,rgba(8,12,18,0.34)_100%)] md:tw-bg-[linear-gradient(90deg,rgba(8,12,18,0.02)_0%,rgba(8,12,18,0.42)_100%)]" />
+            <div className="tw-absolute tw-inset-0 tw-bg-[linear-gradient(180deg,rgba(8,12,18,0.02)_0%,rgba(8,12,18,0.24)_100%)] md:tw-bg-[linear-gradient(90deg,rgba(8,12,18,0.02)_0%,rgba(8,12,18,0.42)_100%)]" />
             <div className="tw-absolute tw-inset-0 tw-bg-[radial-gradient(circle_at_35%_35%,rgba(255,255,255,0.16)_0%,rgba(255,255,255,0)_46%)]" />
           </div>
 
