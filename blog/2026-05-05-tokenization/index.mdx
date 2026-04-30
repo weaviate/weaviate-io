@@ -151,7 +151,7 @@ If you need to **preserve** specific accents (for example, a brand name where th
 
 ## Per-property stopwords
 
-[Stopwords](https://docs.weaviate.io/weaviate/concepts/indexing/inverted-index#stop-words) are short, high-frequency words (`the`, `a`, `and`) that BM25 typically drops to make scoring more robust. Most search stacks ship one stopword list per language and apply it to every text field. That works until you have a brand called _"The North Face"_, and dropping `the` quietly destroys recall on the brand.
+[Stopwords](https://docs.weaviate.io/weaviate/concepts/indexing/inverted-index#stop-words) are short, high-frequency words (`the`, `a`, `and`) that BM25 typically drops to make scoring more robust. Many search stacks default to one stopword list per language and apply it to every text field. That works until you have a brand called _"The North Face"_, and dropping `the` quietly destroys recall on the brand.
 
 Weaviate solves this two ways. First, you can declare **named stopword presets** at the collection level. Each preset is either a flat word list, or an extension of a built-in via `additions` (extra words to drop) and `removals` (words to keep that the built-in would have dropped):
 
