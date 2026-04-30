@@ -105,7 +105,8 @@ Property(
 
 The single most painful tokenization bug in production is accent mismatch. Users type `cafe`. Documents store `café`. BM25 sees two different tokens, returns nothing, and your hybrid score collapses to whatever the vector search came up with.
 
-To match accented characters in search, enable accent folding on the property. The fix is one line of schema:
+To match accented characters in search, enable accent folding on the property. The fix is one line of schema.
+The example below sets up three properties side-by-side: `text_default` as the unfolded baseline, `text_folded` with full ASCII folding, and `text_folded_keep_e` showing how to exempt a specific character (`é`) from folding:
 
 ```python
 import weaviate
@@ -184,6 +185,8 @@ client.collections.create(
     vector_config=Configure.Vectors.self_provided(),
 )
 ```
+
+In this example, `en` is a built-in preset that ships with Weaviate, while `fr` is a user-defined preset registered via `stopword_presets`. Built-in presets can be referenced from `text_analyzer.stopword_preset` without registering them at the collection level.
 
 Search the `name_fr` property for `"la tasse bleue et le bol"` and the analyzer keeps `tasse`, `bleue`, `bol` and drops `la`, `et`, `le` — exactly the noise reduction BM25 needs. The same words against `name_en` aren't filtered, because they aren't English stopwords.
 
