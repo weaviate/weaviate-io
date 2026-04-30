@@ -189,9 +189,9 @@ Search the `name_fr` property for `"la tasse bleue et le bol"` and the analyzer 
 
 Second, you can override the stopword behavior **per property** via `textAnalyzer.stopwordPreset`. So in a single collection, `description_en` can use English stopwords, `description_fr` can use a French preset, and `brand_name` can use `none`, all sharing the same hybrid query path.
 
-**Stopwords are still indexed.** They're only filtered at _query_ time. That means changing a stopword preset takes effect immediately on the next query, with no reindex. Unlike other [Lucene-based stacks](https://en.wikipedia.org/wiki/Apache_Lucene), Weaviate doesn't require reindexing when you change a stopword preset.
+**Stopwords are still indexed.** They're only filtered at _query_ time. That means changing a stopword preset takes effect immediately on the next query, with no reindex.
 
-**Stopwords still affect ranking.** They're just removed from the BM25 score. The token is still in the inverted index, so an exact-phrase filter still matches.
+**Stopwords don't affect ranking.** They're removed from the BM25 score. The token is still in the inverted index, so an exact-phrase filter still matches.
 
 For a tutorial-style walkthrough with searches and filters, see the [tokenization tutorial](https://docs.weaviate.io/weaviate/tutorials/tokenization).
 
