@@ -325,7 +325,7 @@
 }
 
 .bgColor {
-  background: #f5f5f5;
+  background: #111111;
 }
 
 .container {
@@ -349,8 +349,9 @@
   height: 25.4rem;
   border-radius: 0.625rem;
   border-radius: 0.84894rem;
-  background: #fff;
-  box-shadow: 0px 21.733px 57.954px 0px rgba(22, 27, 45, 0.08);
+  background: #f3f7fa;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.28);
   display: flex;
   padding: 2rem;
   flex-direction: row;

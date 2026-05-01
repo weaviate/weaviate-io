@@ -91,7 +91,23 @@
 }
 
 .faqBG {
-  background: #ecf4f8;
+  background: #111111;
+
+  h2,
+  h3,
+  h4,
+  .title {
+    color: #ddebf2;
+  }
+
+  p,
+  li {
+    color: #b9c8de;
+  }
+
+  .question {
+    color: #b9c8de;
+  }
 }
 
 .question {
@@ -129,13 +145,25 @@
   overflow: hidden;
   opacity: 0;
   transform: translateY(-4px);
-  transition: opacity 300ms ease, transform 300ms ease;
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease;
   will-change: opacity, transform;
+}
+
+/* soft panel for open answer content */
+.answerInner {
+  background: rgba(243, 247, 250, 0.65);
+  border-radius: 8px;
+  padding: 18px;
+  color: #0b1020;
 }
 
 .priceHr {
   height: 1px;
-  transition: height 180ms ease, opacity 180ms ease;
+  transition:
+    height 180ms ease,
+    opacity 180ms ease;
 }
 .box[data-open='true'] .priceHr {
   height: 2px;

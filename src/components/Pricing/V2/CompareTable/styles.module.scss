@@ -1,122 +1,123 @@
 .wrap {
-  background: #ecf4f8;
-  padding: clamp(16px, 3vw, 28px) 0;
+  background: #111111;
+  padding: clamp(24px, 4vw, 44px) 0;
 }
 
 .card {
-  background: #fff;
-  border-radius: 0.9375rem;
-  box-shadow: 0 24px 64px rgba(22, 27, 45, 0.08);
-  border: 1px solid rgba(19, 12, 73, 0.08);
-  padding: 2rem;
+  background: linear-gradient(
+    180deg,
+    rgba(236, 244, 248, 0.98) 0%,
+    rgba(226, 239, 246, 0.98) 100%
+  );
+  border-radius: 18px;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.42);
+  border: 1px solid rgba(67, 226, 197, 0.22);
+  padding: clamp(1rem, 2.5vw, 2rem);
 }
 
 .title {
-  margin: 4px 8px 12px;
+  margin: 4px 8px 18px;
   color: #130c49;
   font-family: 'Plus Jakarta Sans';
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.35rem;
+  font-weight: 800;
 }
 
 .scroll {
   position: relative;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  border-radius: 12px;
+  border: 1px solid rgba(19, 12, 73, 0.1);
+  background: #f7fbfd;
 }
 
 .table {
   width: 100%;
   min-width: 900px;
+  table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0;
   color: #130c49;
   font-size: 0.95rem;
 }
 
-.table tbody {
-  text-align: left;
-  border: 2px solid #718eb9;
-}
-
-/* HEADER */
 .table thead th {
-  background: #0f0032;
-  color: #fff;
+  background: #130c49;
+  color: #ecf4f8;
   text-align: left;
   font-weight: 700;
-  padding: 12px 14px;
+  padding: 14px 16px;
 }
+
 .planHead {
   position: sticky;
   left: 0;
-  z-index: 3;
-  border-right: 1px solid rgba(255, 255, 255, 0.15);
-  background: #ecf4f8;
-  color: #130c49;
+  z-index: 4;
+  background: #130c49 !important;
+  color: #ecf4f8 !important;
   font-family: 'Plus Jakarta Sans';
   font-size: 0.875rem;
-  font-weight: 700;
-}
-.planCol {
-  background: #130c49;
-  color: #61d384;
-  font-family: 'Plus Jakarta Sans';
-  font-size: 1rem;
-  font-weight: 700;
+  font-weight: 800;
 }
 
-/* SECTION / BODY */
+.planCol {
+  background: #130c49;
+  color: #61d384 !important;
+  font-family: 'Plus Jakarta Sans';
+  font-size: 1rem;
+  font-weight: 800;
+}
+
 .sectionCol {
-  background: #ecf4f8;
-  color: #130c49;
-  font-weight: 700;
-  padding: 12px 14px;
-  vertical-align: top;
-  border-left: 1px solid #e6e8f0;
   position: sticky;
   left: 0;
-  z-index: 2;
+  z-index: 3;
+  background: #e8f1f6;
+  color: #130c49;
   font-family: 'Plus Jakarta Sans';
   font-size: 0.875rem;
-  font-style: normal;
-  line-height: normal;
+  font-weight: 800;
+  vertical-align: top;
+  padding: 13px 16px;
+  border-left: 1px solid #d9e3eb;
 }
 
 .rowHeader {
   text-align: left;
-  padding: 12px 14px;
-  border-left: 1px solid #e6e8f0;
+  padding: 13px 16px;
+  background: #f7fbfd;
+  border-left: 1px solid #d9e3eb;
   color: #130c49;
   font-family: Inter;
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .table tbody td {
-  padding: 12px 14px;
-  border-left: 1px solid #e6e8f0;
+  padding: 13px 16px;
+  background: #fbfdff;
+  border-left: 1px solid #d9e3eb;
   color: #130c49;
   font-family: Inter;
   font-size: 0.875rem;
   font-weight: 500;
 }
-.table tbody tr td:last-child,
-.table tbody tr th:last-child {
-  border-right: 1px solid #e6e8f0;
-}
 
 .table tbody tr td,
 .table tbody tr th {
-  border-bottom: 1px solid #e6e8f0;
+  border-bottom: 1px solid #d9e3eb;
 }
 
-/* ✅ Mint highlight for cells */
+.table tbody tr td:last-child,
+.table tbody tr th:last-child {
+  border-right: 1px solid #d9e3eb;
+}
+
 .mint {
-  background: #c2efdc; /* mint light */
+  background: linear-gradient(180deg, #c2efdc 0%, #b6ead4 100%) !important;
 }
 
-/* Chips */
 .yes,
 .no {
   display: inline-flex;
@@ -125,37 +126,22 @@
   width: 24px;
   height: 24px;
   border-radius: 999px;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 0.9rem;
-}
-.yes,
-.no {
   color: #130c49;
 }
 
-/* Inline badge */
 .cellWithBadge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
 }
+
 .badge {
   color: #130c49;
   font-family: Inter;
   font-size: 0.875rem;
-  font-weight: 500;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .table {
-    font-size: 0.9rem;
-    min-width: 820px;
-  }
-}
-
-.table {
-  table-layout: fixed;
+  font-weight: 600;
 }
 
 .colSection {
@@ -170,37 +156,64 @@
   width: 15.5rem;
 }
 
-.colPlan:first-of-type {
-  width: 15.5rem;
-}
-
 .bannerRow td {
   padding: 18px 0;
-  background: #ffffff;
-  border-left: 1px solid #e6e8f0;
-  border-bottom: 1px solid #e6e8f0;
-  border-right: 1px solid #e6e8f0;
+  background: linear-gradient(
+    90deg,
+    rgba(38, 214, 255, 0.08),
+    rgba(97, 211, 132, 0.14),
+    rgba(215, 122, 255, 0.08)
+  );
+  border-left: 1px solid #d9e3eb;
+  border-bottom: 1px solid #d9e3eb;
+  border-right: 1px solid #d9e3eb;
 }
 
 .bannerInner {
   text-align: center;
   color: #130c49;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 800;
-  font-size: 1rem;
-  letter-spacing: 0.04em;
+  font-weight: 900;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .pricingCell {
   text-align: center;
-  font-weight: 600;
+  font-weight: 700;
+}
+
+.footnote {
+  padding: 4px 18px 32px;
 }
 
 .footnote p {
   margin-top: 12px;
-
   font-size: 0.75rem;
-  color: #555770;
-  max-width: 900px;
+  line-height: 1.5;
+  color: #4e5570;
+  max-width: 980px;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 1rem;
+    border-radius: 16px;
+  }
+
+  .title {
+    margin: 2px 4px 14px;
+  }
+
+  .table {
+    min-width: 820px;
+    font-size: 0.9rem;
+  }
+
+  .sectionCol,
+  .rowHeader,
+  .table tbody td {
+    padding: 11px 12px;
+  }
 }

@@ -72,6 +72,8 @@ export const PriceCalculator = () => {
   };
 
   return (
+    <section className="wrap">
+    <div className="container"> 
     <div className="priceCalculator">
       <div className="content">
         <h1>Estimate costs with Pricing Calculator</h1>
@@ -100,5 +102,7 @@ export const PriceCalculator = () => {
       </div>
       <PriceReview data={data} />
     </div>
+     </div>
+     </section>
   );
 };

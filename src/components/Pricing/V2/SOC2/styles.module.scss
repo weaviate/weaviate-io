@@ -1,13 +1,107 @@
 .section {
-  background: #ecf4f8;
-  padding: clamp(28px, 6vw, 56px) 0;
+  background: #111111;
+  padding: clamp(32px, 6vw, 64px) 0;
 }
 
-/* Two grouped cards side-by-side (stack on small) */
 .groups {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(18px, 2.4vw, 28px);
+}
+
+.group {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(320px, 1.1fr) minmax(260px, 0.9fr);
+  border-radius: 18px;
+  background: #eef4f7;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.3);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.18),
+      transparent 42%
+    );
+  }
+}
+
+.copy {
+  position: relative;
+  z-index: 1;
+  padding: clamp(24px, 3vw, 34px);
+  background: linear-gradient(180deg, #f7fbfd 0%, #eef4f7 100%);
+
+  h2 {
+    margin: 0 0 18px;
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(1.6rem, 2.2vw, 2rem);
+    font-weight: 800;
+    line-height: 1.15;
+  }
+
+  p {
+    margin: 0;
+    color: #130c49;
+    font-family: Inter, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
+.mediaPane {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: clamp(16px, 2vw, 24px);
+  min-height: 260px;
+  padding: clamp(24px, 3vw, 34px);
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(255, 255, 255, 0.34),
+      transparent 34%
+    ),
+    linear-gradient(135deg, #d8e6eb 0%, #c7d7de 100%);
+
+  img {
+    display: block;
+    height: auto;
+    transform: translate(var(--nudge-x, 0), var(--nudge-y, 0));
+  }
+}
+
+.mediaSoc .logoSoc {
+  --nudge-y: -4px;
+}
+
+.mediaSoc .logoDrata {
+  --nudge-y: 4px;
+}
+
+.mediaHipaa .logoHipaa {
+  --nudge-y: -2px;
+}
+
+.logoSoc {
+  width: 7.2rem;
+}
+
+.logoDrata {
+  width: 10.5rem;
+}
+
+.logoHipaa {
+  width: 12.25rem;
 }
 
 @media (max-width: 1200px) {
@@ -16,112 +110,19 @@
   }
 }
 
-/* One group = white copy panel + tinted media panel, one shared border */
-.group {
-  display: grid;
-  grid-template-columns: minmax(340px, 1.1fr) minmax(300px, 0.9fr);
-  align-items: stretch;
-  border-radius: 18px;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 24px 64px rgba(22, 27, 45, 0.08);
-}
-
 @media (max-width: 720px) {
   .group {
     grid-template-columns: 1fr;
   }
-}
 
-/* Left side (text) */
-.copy {
-  padding: clamp(18px, 3vw, 28px);
-  background: #fff;
-
-  h2 {
-    margin: 0 0 10px;
-    color: #130c49;
-    font-family: 'Plus Jakarta Sans';
-    font-size: 1.75rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 157.33%;
-  }
-
-  p {
-    margin: 0;
-    color: #130c49;
-    font-family: Inter;
-    font-size: 0.875rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 160%;
-  }
-}
-
-/* Shared pane */
-.mediaPane {
-  background: #cedbe1;
-  padding: clamp(18px, 3vw, 28px);
-  display: grid;
-  place-content: center;
-  justify-items: center;
-  gap: clamp(12px, 2vw, 22px);
-  min-height: 260px;
-
-  img {
-    display: block;
-    transform: translate(var(--nudge-x, 0), var(--nudge-y, 0));
-  }
-}
-
-.mediaSoc .logoSoc {
-  --nudge-y: -6px;
-  --nudge-x: -15px;
-}
-.mediaSoc .logoDrata {
-  --nudge-y: 6px;
-  --nudge-x: -15px;
-}
-
-.mediaHipaa .logoHipaa {
-  --nudge-y: -4px;
-  --nudge-x: -15px;
-}
-
-.logoSoc {
-  width: 7.13831rem;
-  height: 7.24225rem;
-  flex-shrink: 0;
-}
-.logoDrata {
-  width: 10.5rem;
-  height: 1.84419rem;
-  flex-shrink: 0;
-}
-.logoHipaa {
-  width: 12.125rem;
-  height: 5.375rem;
-  flex-shrink: 0;
-}
-
-@media (max-width: 720px) {
   .mediaPane {
-    justify-items: center;
-    gap: 20px;
+    min-height: 210px;
   }
 
-  .mediaSoc .logoSoc {
-    --nudge-y: 0px;
-    --nudge-x: 0px;
-  }
-  .mediaSoc .logoDrata {
-    --nudge-y: 0px;
-    --nudge-x: 0px;
-  }
-
+  .mediaSoc .logoSoc,
+  .mediaSoc .logoDrata,
   .mediaHipaa .logoHipaa {
-    --nudge-y: 0px;
-    --nudge-x: 0px;
+    --nudge-x: 0;
+    --nudge-y: 0;
   }
 }

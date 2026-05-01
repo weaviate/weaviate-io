@@ -1,6 +1,6 @@
 /* Section background + lift under cards */
 .section {
-  background: #ecf4f8;
+  background: #111111;
   position: relative;
   padding: 0 0 clamp(2rem, 5vw, 3rem);
 }
@@ -34,10 +34,12 @@
   gap: 16px;
   padding: 28px;
   border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 24px 64px rgba(22, 27, 45, 0.08);
-  border: 1px solid transparent;
-  transition: transform 0.25s ease, box-shadow 0.25s ease,
+  background: #f3f7fa; /* softer panel */
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
     border-color 0.25s ease;
 }
 
@@ -142,7 +144,9 @@
   color: #130c49;
   background-color: #61d384;
   text-decoration: none;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 .primaryBtn:hover {
   background-color: #130c49;
@@ -295,7 +299,9 @@
   background-color: #ddebf2;
   text-decoration: none;
   white-space: nowrap;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 .byocBtn:hover {
   background: #130c49;

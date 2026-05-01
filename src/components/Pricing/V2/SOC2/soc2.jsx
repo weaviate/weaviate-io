@@ -14,7 +14,9 @@ export default function SecurityCompliance({ theme = 'dark' }) {
           {/* SOC 2 + Drata */}
           <div className={styles.group}>
             <article className={styles.copy}>
-              <h2 id="soc2-hipaa-heading">SOC 2 Report</h2>
+              <h2 id="soc2-hipaa-heading">
+                SOC 2<br></br>Report
+              </h2>
               <p>
                 We work with an independent auditor to maintain a SOC 2 report,
                 which objectively certifies our controls to ensure the
