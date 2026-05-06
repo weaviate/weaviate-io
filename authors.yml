@@ -93,7 +93,7 @@ jp:
   url: https://github.com/databyjp
   image_url: /img/people/icon/jp.jpg
 jola:
-  name: Jolanta Marczewska 
+  name: Jolanta Marczewska
   title: Product Designer
   url: https://www.linkedin.com/in/jolanta-marczewska/
   image_url: /img/people/icon/jola.jpeg
@@ -371,3 +371,8 @@ devika:
   title: PhD Candidate at University of Arkansas at Little Rock
   url: https://www.linkedin.com/in/divikaambekar/
   image_url: /img/people/icon/devika.jpg
+shan:
+  name: Shan Blackwood
+  title: Web Developer
+  url: https://www.linkedin.com/in/shanblackwood/
+  image_url: /img/people/icon/shan.jpg
