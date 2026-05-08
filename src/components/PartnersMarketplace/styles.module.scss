@@ -2,6 +2,7 @@
   display: flex;
   gap: 2rem;
   margin-top: -50px;
+  background-color: #111111;
 
   @media screen and (max-width: 900px) {
     flex-direction: column;
@@ -18,6 +19,7 @@
 .cardsFilterContainerHome {
   display: flex;
   gap: 2rem;
+  background-color: #111111;
 
   @media screen and (max-width: 900px) {
     flex-direction: column;
@@ -33,9 +35,9 @@
 .sideFilter {
   width: 300px;
   min-width: 300px;
-  border-right: 1px solid #e0e0e0;
-  color: #130c49;
-
+  border-right: 1px solid #2a2f3f;
+  color: #d0d8ea;
+  background-color: #111111;
   padding: 3rem;
 
   @media screen and (max-width: 900px) {
@@ -45,6 +47,11 @@
 
     padding: 2rem 2rem 0rem 2rem;
   }
+
+  h3,
+  h4 {
+    color: #edf4ff;
+  }
 }
 
 .sideNavLink {
@@ -52,7 +59,7 @@
   align-items: center;
   gap: 8px;
   margin-bottom: 1.5rem;
-  color: #130c49;
+  color: #63e689;
   text-decoration: none;
 }
 
@@ -80,40 +87,37 @@
 .mainContent {
   flex-grow: 1;
   padding: 2rem 2rem 0rem 0rem;
+  background-color: #111111;
 
   @media screen and (max-width: 900px) {
     padding: 0rem 1rem;
+    border-left: none;
   }
 }
 .cardsContainer {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
-  justify-content: flex-start;
+  background-color: #111111;
+
+  @media screen and (max-width: 1500px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .card {
-  border: 1px solid #e0e0e0;
+  border: 1px solid #2a2f3f;
   border-radius: 8px;
   padding: 1rem;
-  background-color: #ffffff;
-  flex-grow: 1;
-  max-width: 372px;
-  min-width: 282px;
+  background-color: #121722;
+  max-width: none;
+  min-width: 0;
   transition: all 0.3s ease;
   width: 100%;
-
-  @media screen and (max-width: 1500px) {
-    max-width: 320px;
-  }
-
-  @media screen and (max-width: 1400px) {
-    max-width: 300px;
-  }
-
-  @media screen and (max-width: 1300px) {
-    max-width: 100%;
-  }
 
   @media screen and (max-width: 768px) {
     width: 100%;
@@ -148,6 +152,10 @@
   @media screen and (max-width: 1300px) {
     height: auto;
   }
+
+  h3 {
+    color: #edf4ff;
+  }
 }
 
 .placeholder {
@@ -160,8 +168,8 @@
 
 .cardTag {
   display: inline-block;
-  background-color: #f0f0f0;
-
+  background-color: #1a2439;
+  color: #63e689;
   padding: 0.25rem 0.5rem;
   margin: 0.25rem 0.25rem 0.25rem 0rem;
   border-radius: 4px;
@@ -172,13 +180,18 @@
   width: 100%;
   margin: 1rem 0rem;
   padding: 0.5rem;
-
-  border: 1px solid #e0e0e0;
+  color: #d0d8ea;
+  background-color: #0f1520;
+  border: 1px solid #2a2f3f;
   border-radius: 8px;
 }
 
+.searchInput::placeholder {
+  color: #8f9ab3;
+}
+
 .cardLink {
-  color: rgb(97, 189, 115);
+  color: #63e689;
   text-align: center;
   font-family: Inter;
   font-size: 0.875rem;
@@ -189,7 +202,7 @@
   margin: 10px 0px;
 
   &:hover {
-    color: rgb(97, 189, 115);
+    color: #7df09d;
     text-decoration-line: underline;
   }
 }
@@ -202,8 +215,8 @@
 }
 
 .filterLabel {
-  background-color: #f0f0f0;
-  color: #333;
+  background-color: #1a2439;
+  color: #63e689;
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
   cursor: pointer;
@@ -214,5 +227,6 @@
 }
 
 .filterLabel:hover {
-  background-color: #e0e0e0;
+  background-color: #22304a;
+  color: #7df09d;
 }

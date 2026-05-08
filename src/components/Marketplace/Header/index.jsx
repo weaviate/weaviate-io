@@ -12,8 +12,8 @@ export default function HomepageHeader() {
           <div className={styles.box}>
             <h1>Products</h1>
             <p>
-              Our AI database ecosystem was designed to simplify development for
-              AI builders
+              Discover production-ready agents, integrations, and tools to build
+              faster with Weaviate.
             </p>
             <div className={styles.buttons}>
               <Link className={styles.buttonGradient} to="#contact-sales">

@@ -80,8 +80,9 @@ export default function AppFilter() {
   };
 
   return (
-    <div className="container">
-      <div className={styles.appContainer}>
+    <section className={styles.marketplaceSection}>
+      <div className="container">
+        <div className={styles.appContainer}>
         <div className={styles.sidebar}>
           {location.pathname === '/workbench' ? (
             <>
@@ -125,7 +126,7 @@ export default function AppFilter() {
             </Link>
           )}
         </div>
-        <div className={styles.mainContent}>
+          <div className={styles.mainContent}>
           {selectedCategory === 'All' ? (
             <>
               {Object.keys(categoryDescriptions).map(
@@ -154,8 +155,9 @@ export default function AppFilter() {
               </div>
             </>
           )}
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

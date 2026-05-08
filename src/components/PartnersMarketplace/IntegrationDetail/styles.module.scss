@@ -2,6 +2,7 @@
   background-position: center;
   background-size: cover;
   padding: 2.5rem 0 1rem;
+  background-color: #111111;
 }
 
 .logoRow {
@@ -18,35 +19,11 @@
 }
 
 .heroTitle {
-  color: #130c49;
+  color: #edf4ff;
   font-family: Plus Jakarta Sans;
   font-size: 2rem;
   font-weight: 700;
   margin: 0;
-}
-
-.tagRow {
-  margin: 0.75rem 0 0;
-}
-
-.sideNav {
-  padding-top: 2rem;
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  li {
-    margin: 0.5rem 0;
-  }
-  a {
-    color: #130c49;
-    text-decoration: none;
-    font-size: 0.95rem;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
 }
 
 .bigCard {
@@ -61,17 +38,19 @@
 
 .section {
   padding: 1rem 0;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #2a2f3f;
+  background-color: #111111;
   &:first-child {
     border-top: 0;
   }
   h2 {
     margin: 0 0 0.5rem;
-    color: #130c49;
+    color: #edf4ff;
   }
   p,
   li {
     font-size: 1rem;
+    color: #d0d8ea;
   }
 }
 
@@ -84,7 +63,7 @@
 }
 
 .pageBg {
-  background: #fafbfe; /* subtle content background */
+  background: #111111; /* dark content background */
   padding: 2rem 0;
 }
 
@@ -93,7 +72,7 @@
   width: auto;
 }
 .heroTitle {
-  color: #130c49;
+  color: #edf4ff;
   font-family: Plus Jakarta Sans;
   font-size: 2rem;
   font-weight: 700;
@@ -104,7 +83,8 @@
 }
 
 .cardTag {
-  background-color: #f0f0f0;
+  background-color: #1a2439;
+  color: #63e689;
   border-radius: 4px;
   display: inline-block;
   font-size: 13px;
@@ -123,12 +103,13 @@
     margin: 0.5rem 0;
   }
   a {
-    color: #130c49;
+    color: #63e689;
     text-decoration: none;
     font-size: 0.95rem;
   }
   a:hover {
     text-decoration: underline;
+    color: #7df09d;
   }
 }
 
@@ -164,7 +145,8 @@
 }
 .section {
   padding: 1.25rem 0;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #2a2f3f;
+  background-color: #111111;
 }
 .section:first-child {
   border-top: 0;
@@ -187,8 +169,8 @@
 }
 
 .panel {
-  background: #fff;
-  border: 1px solid #e0e0e0;
+  background: #121722;
+  border: 1px solid #2a2f3f;
   border-radius: 8px;
   padding: 1.25rem 1.5rem;
   max-width: none;
@@ -196,6 +178,7 @@
 
   ol {
     margin: 10px 0px;
+    color: #d0d8ea;
   }
 }
 
@@ -205,7 +188,7 @@
 
 .panelTitle {
   margin: 0 0 0.75rem;
-  color: #130c49;
+  color: #edf4ff;
 }
 
 .resList {
@@ -367,7 +350,9 @@
   padding: 16px 18px;
   min-height: 150px;
 
-  transition: transform 120ms ease, box-shadow 120ms ease,
+  transition:
+    transform 120ms ease,
+    box-shadow 120ms ease,
     border-color 120ms ease;
 
   &:hover {
@@ -423,7 +408,13 @@
 
 .resDesc {
   margin: 0;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial;
   font-size: 0.9rem;
   line-height: 1.35;
   color: #d8def0;

@@ -30,13 +30,26 @@
 }
 
 .headerHome {
-  background: url('/img/site/workbench-header-bg.jpg') #dce8ee;
+  background:
+    linear-gradient(
+      107deg,
+      rgba(11, 17, 30, 0.94) 0%,
+      rgba(18, 23, 34, 0.9) 60%,
+      rgba(10, 21, 32, 0.88) 100%
+    ),
+    url('/img/site/2026/weaviate-bg-2026.jpg') #111111;
   background-size: cover;
   background-position-x: right;
   background-repeat: no-repeat;
 
   @media screen and (max-width: 600px) {
-    background: url('/img/site/workbench-header-bg.jpg') #dce8ee;
+    background:
+      linear-gradient(
+        135deg,
+        rgba(11, 17, 30, 0.96) 0%,
+        rgba(18, 23, 34, 0.93) 100%
+      ),
+      url('/img/site/2026/weaviate-bg-2026.jpg') #111111;
     background-size: cover;
     background-position-x: right;
     background-repeat: no-repeat;
@@ -296,8 +309,9 @@
 
   .buttonGradient {
     border-radius: 0.375rem;
-    background: #130c49;
-    color: #fff;
+    outline: 1px solid #63e689;
+    background: #63e689;
+    color: #0a1512;
     text-align: center;
     font-family: Inter;
     font-size: 1rem;
@@ -309,8 +323,9 @@
 
   .buttonGradient:hover {
     border-radius: 0.375rem;
-    background: #130c49;
-    color: #fff;
+    outline: 1px solid #7df09d;
+    background: #7df09d;
+    color: #0a1512;
   }
 
   .buttonOutline {
@@ -773,7 +788,7 @@
   gap: 20px;
 
   h1 {
-    color: #130c49;
+    color: #edf4ff;
 
     font-size: 2.5rem;
     font-style: normal;
@@ -792,7 +807,7 @@
   }
 
   span {
-    color: #130c49;
+    color: #d0d8ea;
     font-family: 'Plus Jakarta Sans';
     font-size: 1rem;
     font-style: normal;
@@ -802,7 +817,7 @@
   }
 
   p {
-    color: #130c49;
+    color: #d0d8ea;
 
     font-size: 1.5rem;
     font-style: normal;
@@ -1045,11 +1060,14 @@
 .agentsContainer {
   width: 53.75rem;
   height: 7.0625rem;
+  z-index: 1000;
+  position: relative;
   display: flex;
   flex-shrink: 0;
   border-radius: 0.625rem;
-  background: #130c49;
-  box-shadow: 0px 3px 5px 0px rgba(79, 150, 172, 0.1);
+  background: #121722;
+  border: 1px solid #2a2f3f;
+  box-shadow: 0px 24px 64px 0px rgba(0, 0, 0, 0.4);
   align-items: center;
   justify-content: space-around;
   margin: 30px 0px -100px 0px;
@@ -1062,8 +1080,9 @@
     display: flex;
     flex-shrink: 0;
     border-radius: 0.625rem;
-    background: #130c49;
-    box-shadow: 0px 3px 5px 0px rgba(79, 150, 172, 0.1);
+    background: #121722;
+    border: 1px solid #2a2f3f;
+    box-shadow: 0px 24px 64px 0px rgba(0, 0, 0, 0.4);
     align-items: center;
     justify-content: space-around;
     margin-bottom: -80px;
@@ -1078,14 +1097,14 @@
 
   .buttonGradient {
     border-radius: 0.3125rem;
-    border: 1px solid #130c49;
-    background: #61bd73;
+    border: 1px solid #63e689;
+    background: #63e689;
     text-align: center;
     align-items: center;
     font-family: Inter;
     font-size: 1rem;
     font-style: normal;
-    color: #130c49;
+    color: #0a1512;
     line-height: 163.8%;
     width: 10.5625rem;
     height: 2.75rem;
@@ -1105,7 +1124,7 @@
 
 .agentText {
   h3 {
-    color: #61bd73;
+    color: #63e689;
     font-family: 'Plus Jakarta Sans';
     font-size: 1.5rem;
     font-style: normal;
@@ -1114,7 +1133,7 @@
   }
 
   p {
-    color: #f7f9fd;
+    color: #d0d8ea;
     font-family: Inter;
     font-size: 1rem;
     font-style: normal;
