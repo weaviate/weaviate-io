@@ -56,7 +56,7 @@ So really there are two distinct advantages here:
 1. Because it's a **visual model** you keep the layout, the charts, the tables, etc. *and*
 2. By using MaxSim over a set of vectors, you **eliminate the need for chunking**.
 
-Weaviate ships a hosted version of such a model, called `multi2vec-weaviate`. It runs on Weaviate Cloud, and you don't have to host or manage it. From your perspective it's just another vectorizer.
+Weaviate ships `multi2multivec-weaviate`, a vectorizer module that runs a hosted late-interaction multi-vector model on Weaviate Cloud. You don't have to host or manage it. From your perspective it's just another vectorizer.
 
 ## Ingesting PDFs by drag-and-drop
 
@@ -79,11 +79,11 @@ That is the entire ingestion step. Behind the scenes, Weaviate is doing three th
 
 * Rendering each PDF page to a high-resolution image.
 * Storing that image as a `BLOB` property on a new collection.
-* Vectorizing it with `multi2vec-weaviate`, producing many vectors per page.
+* Vectorizing it with the `multi2multivec-weaviate` module, producing many vectors per page.
 
 A few things worth noting:
 
-* **One row equals one page.** The unit of retrieval is the page, which is also the unit a human navigates a document by.
+* **One object equals one page.** The unit of retrieval is the page, which is also the unit a human navigates a document by.
 * **No OCR.** The model never sees the text as text. It sees the page as an image. That's why a chart with no caption is just as searchable as a paragraph.
 * **The vectors are compressed.** Late-interaction models can produce hundreds of vectors per page, which would be expensive to store naively. Weaviate uses a [multi-vector encoding](https://docs.weaviate.io/weaviate/configuration/compression/multi-vectors) scheme that keeps the index compact. (More on that also in the trade-offs section below.)
 
@@ -160,7 +160,7 @@ First, the dependencies:
 pip install "weaviate-client>=4.21" PyMuPDF
 ```
 
-Then, render each PDF page to a 2000-pixel PNG and store it as a BLOB in a collection vectorized with `multi2vec-weaviate`:
+Then, render each PDF page to a 2000-pixel PNG and store it as a BLOB in a collection vectorized with `multi2multivec-weaviate`:
 
 ```python
 import os
@@ -211,7 +211,7 @@ client.close()
 
 A few notes on the above:
 
-* **The vectorizer is `multi2vec_weaviate(image_field="page_image")`.** That's the same model the drag-and-drop UI uses. You can mix and match: ingest from a notebook today, query from the Console tomorrow.
+* **The Python call `MultiVectors.multi2vec_weaviate(image_field="page_image")` configures the `multi2multivec-weaviate` module.** Same vectorizer the drag-and-drop UI uses. You can mix and match: ingest from a notebook today, query from the Console tomorrow.
 * **`PyMuPDF` does the rasterization.** The `2000` long-edge target is a sensible default; smaller saves time, larger gives the model more detail. We haven't found a strong case for going below 1500 or above 2500.
 * **`batch_size=2` is intentional.** Each object carries a multi-megabyte image, so small batches keep the gRPC payload sane.
 
@@ -270,7 +270,7 @@ Let's wrap up with the key takeaways:
 * **Charts and tables are not a problem to be solved by better OCR.** They are *primary information* that gets destroyed in extraction. If your pipeline only indexes text, the chart was already gone before you started embedding.
 * **Late-interaction multi-vector models let you skip extraction entirely.** Render the page, embed the image, query in natural language. The model retrieves pages by what they look like: charts, tables, layout, and all.
 * **On Weaviate Cloud, ingestion is drag-and-drop.** Point the Query Agent at the resulting collection, ask a question, get an answer with the slide as a citation.
-* **In code, it's the same primitive.** `multi2vec_weaviate(image_field="page_image")` is the entire vectorizer config. The rest is rasterising pages with PyMuPDF and a small `batch.add_object` loop.
+* **In code, it's the same primitive.** `MultiVectors.multi2vec_weaviate(image_field="page_image")` is the entire vectorizer config. The rest is rasterising pages with PyMuPDF and a small `batch.add_object` loop.
 
 If you have been working around chart-heavy PDFs because the indexing pipeline made them too painful to deal with, this is worth a try. The kind of slide deck you used to skip, because it was *"mostly charts"*, is exactly what this approach is built for.
 
