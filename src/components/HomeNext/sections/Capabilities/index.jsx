@@ -37,7 +37,7 @@ const capabilityCards = [
     description:
       'Create personalized AI experiences that learn and adapt to each user over time.',
     icon: '/img/site/2026/engram-icon.svg',
-    to: '/product',
+    to: '/product/engram',
     gradient:
       'linear-gradient(48deg, rgba(104,255,168,0.3) -4.58%, rgba(0,183,226,0.3) 86.47%)',
     hoverGlow: 'rgba(80, 230, 190, 0.14)',
