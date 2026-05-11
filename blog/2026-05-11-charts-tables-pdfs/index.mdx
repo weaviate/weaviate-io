@@ -131,7 +131,7 @@ Notice how the second-best match isn't simply *"another page about data center"*
 
 Vector search returns pages. Sometimes you want an answer.
 
-The [Weaviate Query Agent](https://docs.weaviate.io/agents/query) is a managed agent that wraps vector retrieval with multi-step reasoning, source citations, and inline page images. It is available out of the box on any Weaviate Cloud cluster. Point it at the collection you just created and ask.
+The [Weaviate Query Agent](https://docs.weaviate.io/agents/query) is a managed agent that wraps vector retrieval with multi-step reasoning, source citations, and inline page images. It is available out of the box on any Weaviate Cloud cluster. Point it at the collection you just created and ask. We'll also show how to call it from Python further down.
 
 ![Weaviate Query Agent answering an automotive revenue question with a synthesised, multi-quarter response](./img/query-agent-response.png)
 
@@ -231,6 +231,25 @@ for o in res.objects:
 ```
 
 On the NVIDIA corpus, this returns the Q2 FY26 *Automotive* page as result #1: the same five-quarter bar chart you saw above, retrieved by an end-to-end pipeline that contains zero OCR.
+
+The same Query Agent you saw in the Console is also available from Python. Pass it the collections to reason over, then `ask()`:
+
+```python
+from weaviate.agents.query import QueryAgent
+from weaviate_agents.classes import QueryAgentCollectionConfig
+
+agent = QueryAgent(
+    client=client,
+    collections=[
+        QueryAgentCollectionConfig(name="PDF"),
+    ],
+)
+
+response = agent.ask("How did automotive revenue change across FY26 quarters? What's driving it?")
+response.display()
+```
+
+`response.display()` renders the same synthesised answer plus page-image citations you saw in the Console.
 
 ## So is this the silver bullet for PDFs?
 
