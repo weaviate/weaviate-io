@@ -1,0 +1,359 @@
+---
+title: 'Import & Vectorize Data with Weaviate at Scale'
+slug: data-import-best-practices
+authors: [ivan]
+date: 2026-05-13
+image: ./img/hero.png
+tags: ['how-to', 'engineering', 'concepts']
+description: 'Server-side batching, retries, the blobHash data type, and multimodal ingestion — what to use when, with code.'
+faq:
+  - question: 'What is the recommended way to batch import into Weaviate?'
+    answer: 'Use server-side batching via `collection.batch.stream()` in the Python client. The server applies backpressure and sets the optimal rate, so there is no need to tune batch size or concurrency by hand.'
+  - question: 'How do I retry failed imports without duplicating work?'
+    answer: 'Generate deterministic UUIDs with `generate_uuid5` from a stable source key. Inspect `collection.batch.failed_objects` after each batch, write failures to a file, and re-import them. Deterministic UUIDs mean retries overwrite the same object instead of creating duplicates.'
+  - question: 'Can Weaviate vectorize PDFs?'
+    answer: "Yes. The easiest path is a Weaviate Cloud instance with Weaviate Embeddings, which embeds PDF page images directly with no OCR or preprocessing. Google's `gemini-embedding-2-preview` also accepts PDFs natively and is enabled by default on Weaviate Cloud."
+  - question: 'What is the difference between blob and blobHash?'
+    answer: '`blob` stores the full base64-encoded payload on disk. `blobHash` (added in v1.37) sends the raw bytes through the vectorizer at import but only persists a SHA-256 hash. Use `blobHash` when you do not need to retrieve the original media bytes from Weaviate.'
+  - question: 'Does Weaviate support video embeddings?'
+    answer: 'Yes. `multi2vec-google` and `multi2vec-voyageai` support video, and the self-hosted `multi2vec-bind` (ImageBind) module covers video alongside audio, depth, thermal, and IMU.'
+---
+
+<!-- IMAGE PROMPT — hero.png
+
+Create image: A 16:9 editorial hero image for a developer blog post.
+
+TITLE TEXT (must render clearly in the image):
+- Render the words "Import & Vectorize Data with Weaviate at Scale" in a clean, modern, geometric sans-serif (Inter / GT Walsheim / Söhne style), bold weight, white (#FFFFFF), set across the upper-left quadrant. Title takes up roughly the top third of the canvas, wrapped onto two or three lines so each line stays inside the left two-thirds of the frame. Letter spacing slightly relaxed. No subtitle, no decorative text, no floating glyphs.
+
+LAYOUT (must be CALM and STRUCTURED — NOT exploded or chaotic):
+
+Below the title, a single left-to-right data-flow diagram:
+
+1. Far left: a stacked "data source" element — a short vertical column of four uniform rectangular tiles. Each tile carries one small icon in its center to suggest a different modality. Top to bottom: a tiny text-line icon, a tiny picture-frame icon, a tiny audio-waveform icon, a tiny play-triangle icon. Thin navy plates with mint-green outlines. One stack only.
+
+2. Center: a smooth horizontal "stream" of roughly eight identical small mint-green tiles flowing from the data source toward the right. The tiles are evenly spaced and deliberate — paced, not crowded. The stream is uniform width along its length, not a firehose narrowing into a funnel.
+
+3. Center-right: a stylized "Weaviate" receiver — a clean isometric cube or layered cylinder with a soft ambient glow, mint-green outline, faint white internal lattice detail. One element only. The receiver looks calm and in control.
+
+4. A thin dashed mint-green feedback line arcs back from the receiver above the main stream to the data source, with a small arrowhead pointing left. This is the key visual hook — it must read clearly at thumbnail size to convey "the database is regulating the rate".
+
+STYLE & PALETTE:
+- Editorial, minimalist, flat-with-slight-depth (subtle isometric lean OK).
+- Background: deep navy #130C49 with a very subtle radial gradient.
+- Accent color: mint/sage green #61BB73 for the stream tiles, receiver outline, feedback line, and small geometric accents.
+- Typography: white #FFFFFF.
+- Soft, controlled ambient glow on the receiver; no particle effects, no scattered letters, no swirling debris.
+
+EXPLICITLY AVOID:
+- Firehose imagery, exploding data streams, overflowing buckets, narrowing funnels.
+- Glowing-node "data pipeline" stock-illustration look with swirls of particles.
+- People, hands, mascots, laptops, browser chrome, code editor mockups.
+- Photorealistic objects or food imagery.
+- Any text other than the title.
+
+The overall feel: data enters on the left, the receiver paces the flow, everything stays orderly. Calm, deliberate, IDE-clean. -->
+
+![hero](./img/hero.png)
+
+Most vector database pilots fail at ingest, not at search. You build a clever retrieval pipeline, you watch it work on a thousand documents, and then someone hands you fifty million rows. The next two weeks disappear into rate limits, partial failures, and three rewrites of your batch logic.
+
+This post is the guide I wish I had the first time I imported a real dataset into Weaviate. It covers server-side batching, error handling, the data type decisions that cost you the most if you get them wrong, and how to ingest media and PDFs without standing up an OCR pipeline.
+
+:::info Try this as you read
+The fastest way to follow along is a [free Weaviate Cloud trial](https://console.weaviate.cloud/) paired with [Weaviate Embeddings](https://docs.weaviate.io/weaviate/model-providers). No infrastructure to manage, no embedding API keys, free vectorization on the trial. Every code snippet below runs against that setup without modification.
+:::
+
+## The ingest problem nobody warns you about
+
+A working prototype tells you nothing about what happens at scale. The problems that bite production teams almost never show up in tutorials.
+
+Four bite hardest:
+
+- **Rate limits from your embedding provider:** Most teams hit them within an hour of a real import, then write retry code, then write retry code for the retry code.
+- **HTTP 200 lying to you:** A successful batch response does not mean every object made it in. Individual objects can fail silently behind a green status code.
+- **Duplicate work on retry:** If you generate fresh IDs each time you re-run, you re-vectorize the same documents and pay for it twice.
+- **Memory blowups on media:** Loading a million product photos into a Python list ends your script before your batch logic ever runs.
+
+The rest of this post is what to do about each of them.
+
+## Server-side batching
+
+Server-side batching is a streaming import mode where the Weaviate server tells the client how much data to send next based on its own current workload. Instead of you guessing a batch size and a concurrency level, the server measures its queue depth and applies backpressure across a persistent connection.
+
+This matters because the right batch size is not a constant. It depends on how many properties you have, the size of your text fields, whether you are vectorizing on the fly, what the vectorizer is doing under the hood, and what else the cluster is busy with. Hand-tuning it is brittle. The server has all of that information already.
+
+Here is the pattern in the Python client:
+
+```python
+import weaviate
+from weaviate.classes.init import Auth
+
+client = weaviate.connect_to_weaviate_cloud(
+    cluster_url=WCD_URL,
+    auth_credentials=Auth.api_key(WCD_API_KEY),
+)
+
+collection = client.collections.get("Products")
+
+with collection.batch.stream() as batch:
+    for row in iter_rows():
+        batch.add_object(properties=row)
+        if batch.number_errors > 10:
+            print("Too many errors, stopping.")
+            break
+
+if collection.batch.failed_objects:
+    print(f"{len(collection.batch.failed_objects)} objects failed.")
+```
+
+That is the whole pattern. No `batch_size`, no `concurrent_requests`, no tuning. The `stream()` context manager opens the persistent connection, the server sets the rate, errors stream back asynchronously without interrupting the flow.
+
+One caveat. Server-side batching shipped in the Python client first. TypeScript, Go, Java, and C# clients still use the existing client-side batch API. If you are on Python, use `stream()`. If you are not, the [client-library import reference](https://docs.weaviate.io/weaviate/manage-objects/import) has the current pattern for every client, and your migration path is one method call when your client catches up.
+
+## Error handling and retries
+
+The most common bug in production import scripts is treating a 200 response as proof of success. It is not. A 200 means your request reached the server and was accepted. It does not mean every object was written. Vectorizer errors, schema mismatches, and rate-limit responses from upstream embedding APIs all show up as per-object failures inside an otherwise-happy batch response.
+
+The Python client surfaces three things on every batch:
+
+- `batch.failed_objects` — every object that failed, with the error attached
+- `batch.failed_references` — every cross-reference that failed
+- `batch.number_errors` — running count inside the context manager
+
+Treat `failed_objects` as a queue. Write it to a file, retry it, and if it fails again on the same error, move it to a dead-letter location so the rest of your import does not stall behind one broken row.
+
+Here is a retry-with-checkpoint pattern that holds up in production:
+
+```python
+import json
+from weaviate.util import generate_uuid5
+
+with collection.batch.stream() as batch:
+    for row in iter_rows():
+        batch.add_object(
+            properties=row,
+            uuid=generate_uuid5(row["source_id"]),
+        )
+
+with open("failed.jsonl", "a") as f:
+    for obj in collection.batch.failed_objects:
+        f.write(json.dumps({
+            "properties": obj.object_.properties,
+            "error": obj.message,
+        }) + "\n")
+```
+
+Two things make this safe to re-run. First, `generate_uuid5` produces the same UUID for the same `source_id` every time, so a retry overwrites instead of duplicating. Second, errors land in a file you can re-import after fixing the underlying issue. No silent loss, no double-billing on embeddings.
+
+<!-- IMAGE PROMPT — retry-checkpoint-flow.png
+
+Create image: A 16:9 in-line technical diagram for a developer blog post. NOT a hero image — no title text on the image itself.
+
+VISIBLE LABELS (must render clearly, clean modern geometric sans-serif, white #FFFFFF; use monospace for code-style labels):
+- "Source data" (under the leftmost element)
+- "collection.batch.stream()" (monospace, centered on the batch element)
+- "successful writes" (small label above the rightward happy-path arrow)
+- "Weaviate" (on the database receiver)
+- "batch.failed_objects" (monospace, along the downward failure arrow)
+- "failed.jsonl" (monospace, on the file element)
+- "retry — same UUIDv5" (along the loop-back arrow)
+- "Dead-letter" (on the rightmost terminal box)
+- "(after repeated failure)" (small subtitle under the Dead-letter box)
+- "HTTP 200 ≠ all objects succeeded" (small callout near the batch element)
+
+LAYOUT (must be CALM and STRUCTURED — NOT chaotic):
+
+A single left-to-right flow diagram occupying the full canvas, with one branching point.
+
+1. Far left: a short cylinder icon labeled "Source data". Mint-green outline on a thin navy plate.
+
+2. A solid right-pointing arrow into a central rounded rectangle labeled "collection.batch.stream()". The batch rectangle is the visual anchor — give it slightly more presence than the surrounding elements.
+
+3. From the batch rectangle, TWO arrows diverge:
+   - A solid mint-green arrow continuing right into a stylized database receiver labeled "Weaviate". The small "successful writes" label sits above this arrow.
+   - A solid amber arrow branching DOWN and to the right, labeled "batch.failed_objects" along its length, terminating in a small file-document icon labeled "failed.jsonl".
+
+4. From the "failed.jsonl" file, a curved DASHED mint-green arrow loops back UP and LEFT to the input of the batch rectangle, labeled "retry — same UUIDv5".
+
+5. From the "failed.jsonl" file, a second solid arrow extends to the right to a smaller, dimmer rounded rectangle labeled "Dead-letter", with "(after repeated failure)" as a small subtitle.
+
+6. A small callout box near the batch rectangle, with a thin amber outline and a faint tinted fill, reads: "HTTP 200 ≠ all objects succeeded".
+
+STYLE & PALETTE:
+- Editorial, minimalist, flat-with-slight-depth (subtle isometric lean OK).
+- Background: deep navy #130C49 with a very subtle radial gradient.
+- Primary accent: mint/sage green #61BB73 for the happy path, source element, batch rectangle, and the retry loop.
+- Secondary accent: warm amber (#E0A24A) for the failure branch and the callout outline only.
+- Neutral grey for the Dead-letter terminal element to signal "end of line".
+- Typography: white #FFFFFF. Use monospace consistently for all code-style labels (function names, file names).
+
+EXPLICITLY AVOID:
+- People, hands, mascots, laptops, browser chrome, code editor mockups.
+- Photorealistic icons or heavy skeuomorphic depth.
+- Particle effects, glowing nodes, swirling debris, scattered letters.
+- Any text other than the listed labels.
+- Red as a color — use the specified amber for the failure branch.
+
+The overall feel: a clear, controlled retry pattern. Happy path goes through. Failures are captured, looped back idempotently, and finally dead-lettered. Calm, deliberate, IDE-clean. -->
+
+![Retry-with-checkpoint flow showing successful writes to Weaviate alongside a failure branch that captures failed_objects to a JSONL file, retries with deterministic UUIDs, and dead-letters repeat failures.](./img/retry-checkpoint-flow.png)
+
+Common failure modes and what to do about them:
+
+| Symptom                         | Likely cause                                       | Fix                                               |
+| ------------------------------- | -------------------------------------------------- | ------------------------------------------------- |
+| HTTP 200, objects missing       | Vectorizer rate-limited the request                | Inspect `failed_objects`, retry the failed subset |
+| Memory blow-up on the client    | Loading the entire dataset before streaming        | Stream from disk or a DB cursor, do not pre-load  |
+| Duplicate objects after a retry | Fresh random UUIDs on each run                     | Use `generate_uuid5` from a stable source key     |
+| Empty vectors after import      | Vectorizer module not configured on the collection | Check the collection config before re-running     |
+
+## Choosing data types before you import
+
+Schema decisions cost ten times more to fix after the import has run. Get them right the first time.
+
+The ones that matter most at import time:
+
+- **`text` with the right tokenization.** Tokenization decides which BM25 queries match which records. The default is fine for English prose. For product codes, URLs, or anything where the literal string matters, switch to `field` tokenization. The [tokenization tutorial](https://docs.weaviate.io/weaviate/tutorials/tokenization) walks through the trade-offs.
+- **`uuid` for foreign keys.** Indexed for fast filtering, validated at insert time, and rendered as a real UUID in your client rather than a string.
+- **`int` vs `number`.** Use `int` for counts and IDs. Use `number` for prices and ratios. Mixing them up forces casts in every query.
+- **Reference types** for relationships you actually filter on. Do not flatten everything into one big nested object if you query the related fields independently.
+
+The full list is in the [data types reference](https://docs.weaviate.io/weaviate/config-refs/datatypes).
+
+### `blobHash`: store the embedding, skip the bytes
+
+If you are importing media — images, audio, video, PDFs — this is the data type to know.
+
+A regular `blob` stores the full base64 payload on disk. A `blobHash` does not. It sends the raw bytes through the vectorizer at import time so the model sees the actual media, then drops everything but a SHA-256 hash. The vector index keeps the embedding. The blob storage keeps a 32-byte fingerprint.
+
+```json
+{
+  "properties": [
+    {
+      "name": "product_image",
+      "dataType": ["blobHash"]
+    }
+  ]
+}
+```
+
+The practical impact: a 10 TB image corpus shrinks to a few gigabytes of hashes plus the vector index. Similarity search behaves exactly the same way it would with a `blob`. You just do not pay to store the original bytes inside Weaviate. Keep those in object storage where they belong.
+
+<!-- IMAGE PROMPT — blobhash-vs-blob.png
+
+Create image: A 4:3 in-line comparison diagram for a developer blog post. NOT a hero image — no title text on the image itself.
+
+VISIBLE LABELS (must render clearly, clean modern geometric sans-serif, white #FFFFFF; use monospace for code-style labels):
+
+LEFT column (top to bottom):
+- "blob" (monospace, column header)
+- "base64 image data" with subtitle "~2 MB per image"
+- "Vectorizer"
+- "vector embedding" with subtitle "~3 KB"
+- "full base64 payload" with subtitle "~2 MB"
+- Bottom callout pill: "10 TB corpus → 10 TB stored in Weaviate"
+
+RIGHT column (top to bottom, mirroring left):
+- "blobHash" (monospace, column header)
+- "base64 image data" with subtitle "~2 MB per image"
+- "Vectorizer"
+- "vector embedding" with subtitle "~3 KB"
+- "SHA-256 hash" with subtitle "32 bytes"
+- Bottom callout pill: "10 TB corpus → ~few GB stored in Weaviate"
+
+Optional centred annotation at the Vectorizer level, between the two columns: "Same vectorization. Different storage outcome."
+
+LAYOUT (must be CALM and STRUCTURED — NOT chaotic):
+
+Two parallel vertical flows separated by a faint vertical divider running top-to-bottom through the centre of the canvas. Each column occupies roughly the same width.
+
+For each column, top to bottom:
+1. Column header.
+2. An "input" rounded rectangle containing a small generic image-frame icon and the "base64 image data / ~2 MB" label.
+3. A short downward arrow into a "Vectorizer" rounded rectangle. The Vectorizer element MUST look identical on both sides — same size, same outline color, same internal styling — to communicate that the vectorization step is unchanged.
+4. A downward arrow into a "Storage" group box (a thin rounded container holding the two storage rectangles below).
+
+Inside each Storage group box:
+- A small rectangle labeled "vector embedding (~3 KB)" — the SAME size on both sides.
+- A second rectangle below it:
+   - LEFT side: a visibly LARGE rectangle labeled "full base64 payload (~2 MB)" — must be obviously bigger than its companion vector-embedding box.
+   - RIGHT side: a visibly TINY rectangle labeled "SHA-256 hash (32 bytes)" — must be obviously smaller than its companion vector-embedding box.
+
+The relative size difference between these two "storage" rectangles is the entire visual point of the diagram. Make it unambiguous at a glance.
+
+Below each Storage group, the bottom callout text sits inside a thin pill-shaped plate.
+
+STYLE & PALETTE:
+- Editorial, minimalist, flat-with-slight-depth.
+- Background: deep navy #130C49 with a very subtle radial gradient.
+- LEFT column accents: neutral mid-grey for outlines, labels, and the bottom callout pill — signals "default path".
+- RIGHT column accents: mint/sage green #61BB73 for outlines, labels, and the bottom callout pill — signals "recommended path".
+- Vectorizer block on BOTH sides uses a neutral white/grey outline (identical on both sides, to emphasize the step is the same).
+- Typography: white #FFFFFF. Monospace for "blob", "blobHash", and "SHA-256".
+
+EXPLICITLY AVOID:
+- People, hands, mascots, laptops, browser chrome, code editor mockups.
+- Photorealistic objects or food imagery.
+- Particle effects, glowing nodes, swirling debris, scattered letters.
+- Any text other than the listed labels.
+- Visually equating the two storage outcomes — the size disparity must read at thumbnail size.
+
+The overall feel: same input, same vectorizer, dramatically different storage footprint. Calm, deliberate, IDE-clean. The right column should look lighter and cleaner than the left. -->
+
+![Side-by-side diagram comparing blob and blobHash. Both data types send raw bytes through the same vectorizer, but blob persists the full base64 payload while blobHash retains only a 32-byte SHA-256 hash — shrinking a 10 TB image corpus to a few gigabytes stored inside Weaviate.](./img/blobhash-vs-blob.png)
+
+There is one more nice property. When you update an object, the new base64 is hashed and compared to the stored hash before anything else happens. If the hash matches, Weaviate skips re-vectorization entirely. That alone pays for itself the first time someone re-runs an import pipeline by mistake.
+
+## PDF vectorization without the OCR pipeline
+
+For most readers, the practical question is "how do I ingest a folder of PDFs without writing an OCR pipeline." The shortest answer is to spin up a Weaviate Cloud trial and use Weaviate Embeddings.
+
+Weaviate Embeddings has a multimodal model designed for image-based document retrieval. You hand it a page image, it produces a vector. No OCR step. No layout detection. No text extraction. Tables, charts, scanned forms, mixed-language documents all go in the same way. This is cloud-only, but it is the lowest-friction path for trying PDF retrieval on a real dataset and works well for collections up to a few hundred thousand pages without any architectural decisions on your part.
+
+The other ready-made option is Google's `gemini-embedding-2-preview`, which accepts PDFs directly at 3072 dimensions and is enabled by default on Weaviate Cloud.
+
+If you are self-hosting at scale and document layout matters, look at the [multi-vector ColPali recipe](https://docs.weaviate.io/weaviate/recipes/multi-vector-colipali-rag). It uses a vision-language model to produce multiple vectors per page and skips chunking entirely. More moving parts, but it is the state of the art for retrieval over visually rich documents.
+
+All three paths live in the same place — the [model providers reference](https://docs.weaviate.io/weaviate/model-providers).
+
+## Multimodal ingestion: text, image, audio, video
+
+Multimodal in Weaviate is not a separate product. It is a vectorizer module on the collection. You declare which model the collection uses, you import objects with media properties (ideally as `blobHash`), and you query across modalities with the same client you already have.
+
+Coverage by provider:
+
+| Provider                | Module               | Text | Image | Audio | Video | PDF             |
+| ----------------------- | -------------------- | ---- | ----- | ----- | ----- | --------------- |
+| Weaviate Embeddings     | native (WCD)         | ✓    | ✓     |       |       | ✓ (page images) |
+| Google                  | `multi2vec-google`   | ✓    | ✓     | ✓     | ✓     | ✓               |
+| VoyageAI                | `multi2vec-voyageai` | ✓    | ✓     |       | ✓     |                 |
+| Jina AI                 | `multi2vec-jinaai`   | ✓    | ✓     |       |       |                 |
+| Cohere                  | `multi2vec-cohere`   | ✓    | ✓     |       |       |                 |
+| NVIDIA                  | `multi2vec-nvidia`   | ✓    | ✓     |       |       |                 |
+| CLIP (self-hosted)      | `multi2vec-clip`     | ✓    | ✓     |       |       |                 |
+| ImageBind (self-hosted) | `multi2vec-bind`     | ✓    | ✓     | ✓     | ✓     |                 |
+
+A concrete scenario. You are building search for an e-commerce catalog. Every product has a name, a description, three photos, and a fifteen-second demo video. You want one query — "compact wireless earbuds with active noise cancellation" — to find the right product whether the relevant signal is in the text, the photo, or the video.
+
+You declare a single collection with `multi2vec-google` as the vectorizer. Text properties stay as `text`. The photos and video go in as `blobHash` so the vectorizer sees them at import but you do not store the bytes a second time inside Weaviate. One collection, one query, three modalities.
+
+Full setup details for every provider are in the [model providers reference](https://docs.weaviate.io/weaviate/model-providers).
+
+## A checklist before you press go
+
+1. Pick data types deliberately. `blobHash` for any media you do not need to retrieve raw. `field` tokenization for any text where the literal string matters.
+2. Pick the vectorizer at the collection level, not in your import script. Weaviate Embeddings is the easiest default on Weaviate Cloud.
+3. Use deterministic UUIDs (`generate_uuid5` from a stable source key) so retries are idempotent.
+4. Use server-side batching via `collection.batch.stream()` if you are on the Python client.
+5. Log `failed_objects` to a dead-letter file. Do not just print them.
+6. Checkpoint progress for large jobs so a crash does not cost you the whole run.
+7. If you are importing media at scale, keep the source bytes in object storage and let Weaviate keep the hash, not the file.
+
+Do these seven things and you will not be the team rewriting their import script for the third time next quarter.
+
+The fastest way to try any of this is a [free Weaviate Cloud trial](https://console.weaviate.cloud/) paired with Weaviate Embeddings. No infrastructure to manage, no API keys for the embedding model, and every snippet in this post runs against it without modification. The [import tutorial](https://docs.weaviate.io/weaviate/tutorials/import) is a good next stop once you have a cluster up.
+
+import WhatsNext from '/_includes/what-next.mdx';
+
+<WhatsNext />
