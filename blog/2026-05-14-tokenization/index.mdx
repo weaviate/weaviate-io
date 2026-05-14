@@ -10,7 +10,7 @@ faq:
   - question: 'Does Weaviate support custom tokenizers?'
     answer: 'Yes - built-in methods (word, lowercase, whitespace, field, trigram) plus opt-in language-specific tokenizers (gse, gse_ch, kagome_ja, kagome_kr) enabled via environment variables. Custom user-defined tokenizers are not currently exposed; the focus is a small set of well-tuned options plus a flexible textAnalyzer config layer (accent folding, stopword presets).'
   - question: 'How do I configure stopwords per language in a vector database?'
-    answer: 'Define named presets in invertedIndexConfig.stopwordPresets (a flat word list, or additions/removals on top of a built-in). Reference them per text property via textAnalyzer.stopwordPreset. The same collection can hold properties with different language presets.'
+    answer: 'Define named presets in invertedIndexConfig.stopwordPresets — each preset is a flat list of words. Reference them per property via textAnalyzer.stopwordPreset (only supported on properties with `word` tokenization). For additions/removals on top of a built-in, use the legacy invertedIndexConfig.stopwords field instead — stopwordPresets only accepts flat word lists.'
   - question: "What's the difference between word and whitespace tokenization?"
     answer: 'word lower-cases tokens and strips most punctuation — the right default for prose. whitespace only splits on whitespace, preserving case and punctuation — the right choice for case-sensitive entity names or symbol-bearing identifiers.'
   - question: 'Can I change tokenization without reindexing?'
@@ -47,7 +47,7 @@ Whether you're building hybrid search for RAG, classic keyword search, or a mult
 
 ## Tokenization methods
 
-Weaviate exposes four general-purpose tokenization methods that cover the vast majority of production use cases (a fifth, `trigram`, is also built-in and is covered separately below for fuzzy matching):
+Weaviate exposes four general-purpose tokenization methods that cover the vast majority of production use cases:
 
 | Method       | Pick this when…                                   | Example token output for `"User_42 - café"` |
 | ------------ | ------------------------------------------------- | ------------------------------------------- |
@@ -153,7 +153,7 @@ If you need to **preserve** specific accents (for example, a brand name where th
 
 [Stopwords](https://docs.weaviate.io/weaviate/concepts/indexing/inverted-index#stop-words) are short, high-frequency words (`the`, `a`, `and`) that BM25 typically drops to make scoring more robust. Many search stacks default to one stopword list per language and apply it to every text field. That works until you have a brand called _"The North Face"_, and dropping `the` quietly destroys recall on the brand.
 
-Weaviate solves this two ways. First, you can declare **named stopword presets** at the collection level. Each preset is either a flat word list, or an extension of a built-in via `additions` (extra words to drop) and `removals` (words to keep that the built-in would have dropped):
+Weaviate solves this two ways. First, you can declare **named stopword presets** at the collection level. Each preset is a flat list of words to drop. A preset name that matches a built-in (`en`, `none`) replaces the built-in for this collection. If you want to extend a built-in with `additions`/`removals` rather than replace it, use the legacy [`invertedIndexConfig.stopwords`](https://docs.weaviate.io/weaviate/config-refs/indexing/inverted-index#stopwords) field — `stopwordPresets` only accepts flat word lists.
 
 ```python
 import weaviate
@@ -192,9 +192,11 @@ Search the `name_fr` property for `"la tasse bleue et le bol"` and the analyzer 
 
 Second, you can override the stopword behavior **per property** via `textAnalyzer.stopwordPreset`. So in a single collection, `description_en` can use English stopwords, `description_fr` can use a French preset, and `brand_name` can use `none`, all sharing the same hybrid query path.
 
+One constraint to know about: `textAnalyzer.stopwordPreset` is only honoured on properties with `word` tokenization. 
+
 **Stopwords are still indexed.** They're only filtered at _query_ time. That means changing a stopword preset takes effect immediately on the next query, with no reindex.
 
-**Stopwords don't affect ranking.** They're removed from the BM25 score. The token is still in the inverted index, so an exact-phrase filter still matches.
+**Stopwords are removed from the query side, not from the index.** They don't contribute query-term weight to the BM25 score, but because they remain in the inverted index, document length and term-frequency stats can still shift the ranking of two otherwise similar documents. The token is still in the index, so an exact-phrase filter on it still matches.
 
 For a tutorial-style walkthrough with searches and filters, see the [tokenization tutorial](https://docs.weaviate.io/weaviate/tutorials/tokenization).
 
