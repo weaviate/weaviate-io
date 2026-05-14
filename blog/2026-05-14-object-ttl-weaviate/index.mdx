@@ -1,0 +1,292 @@
+---
+title: 'Auto-Expire Your Vectors: A Practical Guide to Object TTL in Weaviate'
+slug: object-ttl-weaviate
+authors: [ivan]
+date: 2026-05-14
+image: ./img/hero.png
+tags: ['how-to', 'engineering', 'concepts']
+description: 'Object TTL in Weaviate auto-expires embeddings without app-side cron jobs. Learn the three TTL modes, real-world patterns for agent memory and RAG caches, and the gotchas to avoid.'
+faq:
+  - question: 'What is TTL in a vector database?'
+    answer: 'TTL (time to live) is a per-collection expiration policy that lets the database delete objects automatically after a defined duration. In Weaviate, TTL can fire relative to object creation, last update, or a specific DATE property — and runs as a background sweep on a cron schedule you configure.'
+  - question: 'How do I enable TTL on a Weaviate Cloud cluster?'
+    answer: 'Weaviate Cloud sets the OBJECTS_TTL_DELETE_SCHEDULE environment variable for you. Configure the per-collection TTL when you create the collection using `Configure.ObjectTTL.delete_by_creation_time`, `delete_by_update_time`, or `delete_by_date_property` in the Python client.'
+  - question: 'What is the minimum TTL value in Weaviate?'
+    answer: '60 seconds. Lower values are rejected at collection-creation time.'
+  - question: 'Can expired objects still appear in query results?'
+    answer: 'Yes, between expiration and the next sweep. Set `filter_expired_objects=True` on the TTL config so expired-but-not-yet-deleted objects are filtered out of query results automatically.'
+  - question: 'Does Weaviate TTL work with multi-tenancy?'
+    answer: 'Yes, but deletions only fire for active tenants. Inactive or offloaded tenants accumulate expired objects until they become active again, at which point the sweep cleans them up.'
+---
+
+<!-- Create image: A 16:9 editorial hero image for a developer blog post.
+
+TITLE TEXT (must render clearly in the image):
+- Render the words "Object TTL in Weaviate" in a clean, modern, geometric sans-serif (Inter / GT Walsheim / Söhne style), bold weight, white (#FFFFFF), set across the upper-left quadrant. Title takes up roughly the top third of the canvas, on a single line that stays inside the left two-thirds of the frame. Letter spacing slightly relaxed. No subtitle, no decorative text, no floating glyphs.
+
+LAYOUT (must be CALM and STRUCTURED — NOT exploded or chaotic):
+
+Below the title, a single left-to-right composition.
+
+1. Left half: a horizontal lane containing a row of about twelve small uniform circular nodes (representing vectors). The leftmost three or four nodes are bright mint-green and visually "alive" — solid fill, crisp outline. Moving right along the row, the nodes progressively fade to a desaturated grey, then to a faint dashed outline only, and the rightmost two nodes have disappeared entirely, leaving small dotted placeholder marks. The lane reads top-to-bottom as "vectors aging out over time".
+
+2. Centred over the lane, a thin horizontal time axis with a small label "t" on the right end. No tick marks beyond a couple of subtle dashes.
+
+3. Right of the lane: a stylized "sweep" element — a clean broom/brush abstraction OR a clean clock-hand sweeping arc, in mint-green outline, positioned so it visually "passes over" the faded nodes. Soft ambient glow. One element only. Use whichever metaphor reads more clearly at thumbnail size — prefer the clock-hand arc if both fit.
+
+4. Far right: a stylized Weaviate-style receiver — a clean isometric cube or layered cylinder with mint-green outline and faint white internal lattice — calmly absorbing the surviving nodes from the left of the lane. This is the destination of the "alive" data.
+
+STYLE & PALETTE:
+- Editorial, minimalist, flat-with-slight-depth (subtle isometric lean OK).
+- Background: deep navy #130C49 with a very subtle radial gradient.
+- Primary accent: mint/sage green #61BB73 for alive nodes, the sweep element, and the receiver outline.
+- Desaturated grey for ageing nodes; faint dashed outlines for expired nodes.
+- Typography: white #FFFFFF.
+- Soft, controlled ambient glow on the sweep element and the receiver; no particle effects, no scattered letters, no swirling debris.
+
+EXPLICITLY AVOID:
+- Skull, gravestone, or "death" imagery for the expired nodes. Use fading, not destruction.
+- Exploding or shattering animations.
+- Glowing-node "data pipeline" stock-illustration look with swirls of particles.
+- People, hands, mascots, laptops, browser chrome, code editor mockups.
+- Any text other than the title and the small "t" axis label.
+- Red as a colour anywhere.
+
+The overall feel: data lives, ages, and quietly leaves on a predictable schedule. Calm, deliberate, IDE-clean. -->
+
+![hero](./img/hero.png)
+
+The cluster had 400 million agent-memory objects. We had been live six months, the storage line on the bill was up four times, retrieval latency was creeping in a way that did not feel random, and when I finally pulled the numbers, 380 million of those objects were stale. Old sessions. Tool-call traces from agent runs that had long since wrapped. Cache entries for prompts nobody had asked a second time.
+
+Every vector database has this problem. Most teams solve it the same way — an app-side cron, a delete-by-metadata query, a Slack alert when one of them fails. It works until it does not, and the day it does not is the day you find out the delete job has been silently skipping a shard for six weeks.
+
+There is a better answer. Weaviate has native object TTL. You declare how long objects should live, the database deletes them on its own schedule, your application never has to know.
+
+This post covers what TTL is, three patterns worth copying into your codebase, and the gotchas that bite people who skim the docs.
+
+## What is Object TTL?
+
+Time-to-live (TTL) is a per-collection expiration policy. You configure how long objects should live — relative to creation, last update, or a stored `DATE` property — and Weaviate deletes expired objects in the background on a cron schedule you control. TTL shipped in `v1.36`. Minimum value is 60 seconds. Deletion is a sweep, not instant. Configure it on the collection, set one environment variable, done. Full reference: [Time to live](https://docs.weaviate.io/weaviate/manage-collections/time-to-live).
+
+## Why this matters more for vector data than for rows in Postgres
+
+Three reasons most teams underestimate.
+
+**Storage cost.** A vector is a heavy row. A 1536-dimensional float embedding is roughly 6 KB before you add the source text, the metadata, and the HNSW graph entry. A million stale vectors is real money on the storage line. A hundred million is real money on the monthly bill.
+
+**Retrieval latency.** HNSW graphs degrade as stale neighbours accumulate. The graph still steps through expired-but-not-yet-swept nodes during search. Tombstones from your own delete jobs take another pass to clean up. Stale data is not just sitting there — it is in the search path.
+
+**Compliance.** An embedding of a piece of PII is still PII. If your retention policy says user data goes away after 30 days, "the embedding stays in the vector store" is not a defensible position. Treat the embedding the same as the text it came from.
+
+Without native TTL you end up writing an app-side cron, delete-by-metadata queries, replication-aware coordination, and tombstone management. With TTL it is one line of config on the collection. The rest is the database's problem.
+
+## The three TTL modes
+
+The three modes map onto three different ways your data goes stale.
+
+### "Delete N days after I wrote it" — creation-time TTL
+
+Use this for data that is born with a known shelf life. Logs, telemetry, raw ingest of news or social. Whatever happens between creation and deletion, the lifetime is the same.
+
+```python
+from weaviate.classes.config import Configure, Property, DataType
+import datetime
+
+client.collections.create(
+    name="Logs",
+    properties=[
+        Property(name="message", data_type=DataType.TEXT),
+    ],
+    object_ttl_config=Configure.ObjectTTL.delete_by_creation_time(
+        time_to_live=datetime.timedelta(days=7),
+        filter_expired_objects=True,
+    ),
+)
+```
+
+`filter_expired_objects=True` is the parameter most people miss on the first read. It keeps expired-but-not-yet-deleted objects out of query results, which matters because the sweep is not instant.
+
+### "Keep it alive while it's being touched" — update-time TTL
+
+Use this for anything actively used. Session data. Hot RAG caches. Agent working memory. Every write that touches the object resets its clock.
+
+```python
+client.collections.create(
+    name="SessionCache",
+    properties=[
+        Property(name="prompt", data_type=DataType.TEXT),
+        Property(name="response", data_type=DataType.TEXT),
+    ],
+    object_ttl_config=Configure.ObjectTTL.delete_by_update_time(
+        time_to_live=datetime.timedelta(hours=24),
+        filter_expired_objects=True,
+    ),
+)
+```
+
+This is the killer mode for active workloads. The data that gets used stays. The data that gets ignored ages out on its own. You do not have to count or rank or score anything to decide what to keep.
+
+### "Delete on a specific business date" — DATE-property TTL
+
+Use this when expiration is a business event, not a duration. Contract embeddings that expire when the contract does. Scheduled content takedowns. Promotion windows where the embeddings should vanish the day the campaign ends.
+
+```python
+client.collections.create(
+    name="Contracts",
+    properties=[
+        Property(name="expires_at", data_type=DataType.DATE),
+    ],
+    object_ttl_config=Configure.ObjectTTL.delete_by_date_property(
+        property_name="expires_at",
+        ttl_offset=datetime.timedelta(days=0),
+    ),
+)
+```
+
+The negative-offset trick is the one worth remembering. `ttl_offset` accepts negative durations, which means you can expire objects *before* the date stored on them. Set the offset to `-datetime.timedelta(days=7)` on a `notify_at` property and you get a reminder window that cleans itself up after the alert fires.
+
+Other clients have the same modes. The [TTL docs](https://docs.weaviate.io/weaviate/manage-collections/time-to-live) carry the TypeScript and Java equivalents alongside the Python snippets above.
+
+## Three real patterns to copy
+
+These are the three setups I keep coming back to.
+
+### Pattern 1: Tiered agent memory
+
+Agents do not have one kind of memory. They have a few hours of working context, a few days of short-term recall, and a longer episodic memory that survives across sessions. Splitting that into three collections with three TTL policies is cleaner than one collection with timestamp-based ranking on every query.
+
+<!-- IMAGE PROMPT — tiered-memory.png
+
+Create image: A 16:9 in-line technical diagram for a developer blog post. NOT a hero image — no title text on the image itself.
+
+VISIBLE LABELS (must render clearly, clean modern geometric sans-serif, white #FFFFFF; use monospace for code-style labels):
+
+Three column headers (left to right), each in monospace:
+- "agent_short_term"  with subtitle "update-time TTL — 1 hour"
+- "agent_working"     with subtitle "update-time TTL — 7 days"
+- "agent_episodic"    with subtitle "creation-time TTL — 90 days"
+
+Below the three columns, a single horizontal element labelled "fused query + reranker" with a small chevron-style icon. Above the columns, a small label "agent reads/writes" with a downward arrow.
+
+LAYOUT (must be CALM and STRUCTURED — NOT chaotic):
+
+1. Top: a horizontal label "agent reads/writes" with three short downward arrows fanning out, one into each column.
+
+2. Three vertical columns of equal width, separated by faint vertical dividers. Each column contains:
+   - Its monospace header at the top.
+   - The subtitle directly under the header.
+   - A stack of 5–8 small rounded-rectangle "memory item" tiles inside a thin rounded container. The leftmost column should have the fewest tiles (it ages out fastest) — say 4 tiles. The middle column has more — say 6 tiles. The rightmost has the most — say 8 tiles. Tile sizes are uniform across all three columns.
+   - In the leftmost column, the bottom two tiles are faintly dashed to suggest "about to expire".
+   - In the middle column, the bottom tile is faintly dashed.
+   - In the rightmost column, all tiles are solid.
+
+3. Bottom: a single horizontal rounded rectangle spanning the width of the three columns, labelled "fused query + reranker". Three short upward arrows connect the bottoms of the three columns into this single rectangle.
+
+4. Below the reranker rectangle, a single downward arrow into a small icon labelled "agent response".
+
+STYLE & PALETTE:
+- Editorial, minimalist, flat-with-slight-depth (subtle isometric lean OK).
+- Background: deep navy #130C49 with a very subtle radial gradient.
+- Primary accent: mint/sage green #61BB73 for the column borders, tile outlines, reranker block, and arrows.
+- Use a slightly desaturated mint for the leftmost column (shorter retention) and a brighter mint for the rightmost column (longer retention) so the three tiers read as a gradient of permanence.
+- Typography: white #FFFFFF. Monospace for the column headers.
+- Soft, controlled ambient glow on the reranker block. No particle effects.
+
+EXPLICITLY AVOID:
+- Brain or head silhouettes, neuron imagery, or any biological motif.
+- People, hands, mascots, laptops, browser chrome, code editor mockups.
+- Particle effects, glowing nodes, swirling debris, scattered letters.
+- Any text other than the listed labels.
+- Red as a colour anywhere.
+
+The overall feel: three predictable memory tiers, each with its own lifetime, feeding one reranked result. Calm, deliberate, IDE-clean. -->
+
+![Three side-by-side memory tiers — short-term (1h update-time TTL), working (7d update-time TTL), episodic (90d creation-time TTL) — feeding a single fused query and reranker.](./img/tiered-memory.png)
+
+- `agent_short_term` — update-time TTL, 1 hour. Tool-call traces, intermediate plans.
+- `agent_working` — update-time TTL, 7 days. Active task context.
+- `agent_episodic` — creation-time TTL, 90 days. Conversation summaries.
+
+Query the three as a fused union with a reranker on top. Each collection ages out on its own. There is no pruning policy to write, no scoring function to maintain.
+
+### Pattern 2: Semantic RAG cache
+
+A cache that does fuzzy matching on prompts. Embed the prompt, check the cache collection, return the cached LLM response on a near-hit, call the model on a miss.
+
+```python
+client.collections.create(
+    name="PromptCache",
+    properties=[
+        Property(name="prompt", data_type=DataType.TEXT),
+        Property(name="response", data_type=DataType.TEXT),
+    ],
+    object_ttl_config=Configure.ObjectTTL.delete_by_creation_time(
+        time_to_live=datetime.timedelta(hours=1),
+        filter_expired_objects=True,
+    ),
+)
+```
+
+The cost math is straightforward. Cache hit rate multiplied by the LLM cost saved, minus the vector storage cost. At any reasonable hit rate (say 20 percent on a popular surface) and any reasonable model price, the cache pays for itself in days. TTL keeps you from also paying to retain a year of stale prompts that nobody will ever look at again.
+
+### Pattern 3: Multi-tenant retention tiers
+
+Different paying customers get different retention. Free plan keeps embeddings for 7 days, Pro for 90, Enterprise indefinitely. With Weaviate's [multi-tenancy](https://docs.weaviate.io/weaviate/manage-collections/multi-tenancy) you set the TTL per collection per tier, route each tenant to the right one, and your billing tier becomes a config value rather than a feature flag in three services.
+
+One thing to know about this pattern: TTL deletions only fire for active tenants. Inactive or offloaded tenants hold their expired objects until they wake up. That is convenient for archival workloads, surprising if you assumed the sweep runs everywhere.
+
+## Gotchas
+
+The bullets the docs do not put in fourteen-point type.
+
+- **`OBJECTS_TTL_DELETE_SCHEDULE` must be set.** If the environment variable is empty (the self-hosted default), TTL silently does nothing. Weaviate Cloud sets this for you. Everywhere else, set it explicitly. Standard cron format — `0 */6 * * *` runs the sweep every six hours.
+
+- **60-second minimum.** Your integration tests will want to set TTL to 5 seconds and watch deletion happen. They cannot. Either bump the test TTL to 60 seconds or stub out the time check.
+
+- **Property names are case-folded.** A property declared as `ReferenceDate` becomes `referenceDate` server-side. When you wire it into `delete_by_date_property(property_name=...)`, use the server-side casing or the config will not validate.
+
+- **`filter_expired_objects` is opt-in.** Leave it off and queries can return objects that have technically expired but not yet been swept. For anything user-facing, set it to `True`.
+
+- **Changing TTL on an existing collection applies to all objects, not just new ones.** Tightening the policy on a live collection will mark a chunk of your existing data for deletion on the next sweep. Loosen first, observe, then tighten.
+
+- **The sweep is cheap to schedule, not free to run.** Large sweeps drop work into HNSW tombstone cleanup, which has its own background process. If you see I/O spikes during the sweep window, stagger heavy collections across different schedules and tune `OBJECTS_TTL_PAUSE_DURATION` and `OBJECTS_TTL_PAUSE_EVERY_NO_BATCHES`.
+
+- **Multi-tenant collections only sweep active tenants.** Inactive or offloaded tenants do not run deletion. Cleanup runs the moment the tenant wakes up, which can be a surprise spike if you have not seen the tenant for a while.
+
+- **Replication consistency at the sweep boundary.** During a sweep the leader deletes first and followers catch up. There is a small window where a read against a follower can still see an object that has been deleted on the leader. Plan queries that depend on freshly-deleted state against the leader.
+
+## How Weaviate compares
+
+| Vector DB | Native TTL                       | Approach                                |
+| --------- | -------------------------------- | --------------------------------------- |
+| Weaviate  | Yes (creation / update / DATE)   | One line of collection config           |
+| Pinecone  | No                               | App-side cron + delete by metadata      |
+| Qdrant    | No                               | App-side cron + delete by filter        |
+| Milvus    | No                               | App-side cron                           |
+| pgvector  | Indirect                         | Postgres trigger or `pg_cron`           |
+
+TTL is not exotic infrastructure. It is the kind of feature that, once you have it, you stop writing a recurring background job for every workload that needs expiration. If your stack is one of the bottom four, the workaround works, but the operational tax compounds. The cron has to know about every collection. The delete queries have to stay in sync with schema changes. Someone has to be on call when the job silently fails.
+
+## Operational and cost impact
+
+The win is two-shaped. Less storage, less drift.
+
+Storage stops growing on workloads that should have plateaued. A semantic cache with a one-hour TTL sits at whatever the active prompt distribution generates. An agent memory tier with a seven-day update-TTL settles around the working set rather than the total history. You stop paying to retain data that you will never query and that is actively making your HNSW graph slower.
+
+Drift goes away too. The cron that nobody owned, the delete query that referenced a column that got renamed, the alert that fires once a quarter when the job times out — they all leave the codebase. The retention policy lives in the schema. The schema lives in version control. The policy follows the collection.
+
+TTL is configured in one line on a Weaviate Cloud cluster. Spin up a [free trial](https://console.weaviate.cloud/) and try it on your dataset before you write another delete job.
+
+## What's next
+
+Per-object TTL and finer per-tenant overrides are on the radar. Both extend the same primitive — let the database know when data should leave, so your application does not have to.
+
+If you are building agent memory, the next post in this series wires TTL into a tiered memory layout with the [Weaviate Agents](https://docs.weaviate.io/agents) framework.
+
+## Resources
+
+- [Time to live (TTL)](https://docs.weaviate.io/weaviate/manage-collections/time-to-live) — full configuration reference with TypeScript and Java code
+- [Concepts: Data — Time to live](https://docs.weaviate.io/weaviate/concepts/data#time-to-live-ttl) — the sweep model and multi-tenancy behaviour
+- [Environment variables](https://docs.weaviate.io/deploy/configuration/env-vars) — `OBJECTS_TTL_DELETE_SCHEDULE` and related tuning knobs
+- [Multi-tenancy](https://docs.weaviate.io/weaviate/manage-collections/multi-tenancy) — the foundation for the retention-tier pattern
+- [Weaviate Cloud free trial](https://console.weaviate.cloud/) — fastest way to try TTL against a real cluster
