@@ -1,8 +1,8 @@
-import React from 'react';
-import { ButtonContainer } from '../../../../theme/Buttons';
-import styles from './styles.module.scss';
-import { LinkButton } from '/src/theme/Buttons';
-import Link from '@docusaurus/Link';
+import React from "react";
+import { ButtonContainer } from "../../../../theme/Buttons";
+import styles from "./styles.module.scss";
+import { LinkButton } from "/src/theme/Buttons";
+import Link from "@docusaurus/Link";
 
 export default function Integrations() {
   return (
@@ -14,9 +14,9 @@ export default function Integrations() {
             your AI journey.
           </h3>
           <div className={styles.buttons}>
-            <Link className={styles.buttonGradient} to="#contact-sales">
+            <a className={styles.buttonGradient} href="#contact-sales">
               Get in Touch
-            </Link>
+            </a>
             <Link className={styles.buttonOutline} to="/services">
               Check our Services
             </Link>

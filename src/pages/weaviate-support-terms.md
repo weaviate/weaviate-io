@@ -17,7 +17,6 @@ Weaviate shall provide the following Support to Customer for the licensed produc
 
 - [Shared Cloud](/deployment/shared)
 - [Dedicated Cloud](/deployment/dedicated)
-- [Bring Your Own Cloud](/deployment/byoc)
 - [Embeddings](/product/embeddings)
 - [Query Agent](/product/query-agent)
 

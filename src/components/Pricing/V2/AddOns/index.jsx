@@ -1,9 +1,9 @@
-import React from 'react';
-import Link from '@docusaurus/Link';
-import styles from './styles.module.scss';
+import React from "react";
+import Link from "@docusaurus/Link";
+import styles from "./styles.module.scss";
 
 function AddonCard({
-  variant = 'green',
+  variant = "green",
   title,
   blurb,
   bulletItems,
@@ -24,7 +24,7 @@ function AddonCard({
               <li key={i}>
                 <div className={styles.priceLabel}>{it.label}</div>
                 <div className={styles.priceValue}>
-                  <strong>{it.price}</strong>{' '}
+                  <strong>{it.price}</strong>{" "}
                   <span className={styles.unit}>{it.unit}</span>
                 </div>
               </li>
@@ -42,9 +42,9 @@ function AddonCard({
 
         {cta?.href && (
           <div className={styles.ctaRow}>
-            <Link className={styles.cta} to={cta.href}>
-              {cta.label ?? 'Learn more'}
-            </Link>
+            <a className={styles.cta} href={cta.href}>
+              {cta.label ?? "Learn more"}
+            </a>
           </div>
         )}
       </div>
@@ -58,7 +58,7 @@ export default function AddOnsSection() {
       <div className="container">
         <div className={styles.sectionHeader}>
           <h2 id="addons-heading" className={styles.title}>
-            Explore Add{'\u2011'}ons
+            Explore Add{"\u2011"}ons
           </h2>
         </div>
 
@@ -69,22 +69,22 @@ export default function AddOnsSection() {
             blurb="Access various embedding models hosted in Weaviate Cloud."
             priceItems={[
               {
-                label: 'SNOWFLAKE ARCTIC-EMBED-M-V1.5',
-                price: '$0.025',
-                unit: '/ 1M tokens',
+                label: "SNOWFLAKE ARCTIC-EMBED-M-V1.5",
+                price: "$0.025",
+                unit: "/ 1M tokens",
               },
               {
-                label: 'SNOWFLAKE ARCTIC-EMBED-M-V2.0',
-                price: '$0.040',
-                unit: '/ 1M tokens',
+                label: "SNOWFLAKE ARCTIC-EMBED-M-V2.0",
+                price: "$0.040",
+                unit: "/ 1M tokens",
               },
               {
-                label: 'MODERNVBERT COLMODERNVBERT',
-                price: '$0.065',
-                unit: '/ 1M tokens',
+                label: "MODERNVBERT COLMODERNVBERT",
+                price: "$0.065",
+                unit: "/ 1M tokens",
               },
             ]}
-            cta={{ href: '/product', label: 'Learn more' }}
+            cta={{ href: "/product", label: "Learn more" }}
           />
 
           <AddonCard
@@ -107,7 +107,7 @@ export default function AddOnsSection() {
                 pricing
               </>,
             ]}
-            cta={{ href: '/product#weaviate-agents', label: 'Learn more' }}
+            cta={{ href: "/product#weaviate-agents", label: "Learn more" }}
           />
 
           <AddonCard
@@ -115,12 +115,12 @@ export default function AddOnsSection() {
             title="Training & Enablement"
             blurb="Get courses, resources, and support for builders of all levels."
             bulletItems={[
-              'Onboarding packages',
-              'Enterprise support',
-              'Free on-demand learning',
-              'Live training',
+              "Onboarding packages",
+              "Enterprise support",
+              "Free on-demand learning",
+              "Live training",
             ]}
-            cta={{ href: '/learn', label: 'Learn more' }}
+            cta={{ href: "/learn", label: "Learn more" }}
           />
         </div>
       </div>

@@ -1,10 +1,18 @@
-@import '../../variables.scss';
+@use "../../variables" as *;
+@use "range" as range;
+@use "rangeMark" as rangeMark;
+@use "toggle" as toggle;
+@use "switch" as swtch;
+@use "label" as label;
+@use "buttonGroup" as buttonGroup;
+@use "buttons/index" as buttons;
 
-@import 'range.scss';
-@import 'rangeMark.scss';
-@import 'toggle.scss';
-@import 'switch.scss';
-@import 'select.scss';
-@import 'label.scss';
-@import 'buttonGroup.scss';
-@import 'buttons/index.scss';
+@mixin form() {
+  @include range.range();
+  @include rangeMark.rangeMark();
+  @include toggle.toggle();
+  @include swtch.switch();
+  @include label.label();
+  @include buttonGroup.buttonGroup();
+  @include buttons.buttons();
+}

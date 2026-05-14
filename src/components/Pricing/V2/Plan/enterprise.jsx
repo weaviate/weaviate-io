@@ -1,23 +1,23 @@
-import React, { useState, useEffect, useRef } from 'react';
-import styles from './styles.module.scss';
-import Link from '@docusaurus/Link';
-import EnterpriseContainer from '../EnterpriseContainer';
+import React, { useState, useEffect, useRef } from "react";
+import styles from "./styles.module.scss";
+import Link from "@docusaurus/Link";
+import EnterpriseContainer from "../EnterpriseContainer";
 
 export default function PricingEnterprise() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const modalRef = useRef(null); // Ref for the modal content
 
   const openModal = () => {
-    if (window.location.pathname === '/pricing') {
-      window.history.pushState(null, null, '/pricing/enterprise');
+    if (window.location.pathname === "/pricing") {
+      window.history.pushState(null, null, "/pricing/enterprise");
     }
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-    if (window.location.pathname === '/pricing/enterprise') {
-      window.history.replaceState(null, null, '/pricing');
+    if (window.location.pathname === "/pricing/enterprise") {
+      window.history.replaceState(null, null, "/pricing");
     }
   };
 
@@ -29,31 +29,31 @@ export default function PricingEnterprise() {
 
   useEffect(() => {
     if (isModalOpen) {
-      document.addEventListener('mousedown', handleOutsideClick);
+      document.addEventListener("mousedown", handleOutsideClick);
     } else {
-      document.removeEventListener('mousedown', handleOutsideClick);
+      document.removeEventListener("mousedown", handleOutsideClick);
     }
     return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
+      document.removeEventListener("mousedown", handleOutsideClick);
     };
   }, [isModalOpen]);
 
   useEffect(() => {
-    if (window.location.pathname === '/pricing/enterprise') {
+    if (window.location.pathname === "/pricing/enterprise") {
       setIsModalOpen(true);
     }
   }, []);
 
   useEffect(() => {
     const handleEscapeKey = (e) => {
-      if (e.key === 'Escape' && isModalOpen) {
+      if (e.key === "Escape" && isModalOpen) {
         closeModal();
       }
     };
 
-    document.addEventListener('keydown', handleEscapeKey);
+    document.addEventListener("keydown", handleEscapeKey);
     return () => {
-      document.removeEventListener('keydown', handleEscapeKey);
+      document.removeEventListener("keydown", handleEscapeKey);
     };
   }, [isModalOpen]);
 
@@ -73,9 +73,9 @@ export default function PricingEnterprise() {
             <span>from $2.64 / AIU</span>
             <p>AIU = AI Unit</p>
           </div>
-          <Link className={styles.buttonTryOutline} to="#contact-sales">
+          <a className={styles.buttonTryOutline} href="#contact-sales">
             Contact Sales
-          </Link>
+          </a>
         </div>
 
         <hr></hr>
@@ -95,8 +95,8 @@ export default function PricingEnterprise() {
         </div>
       </div>
       <div
-        className={`${styles.modals} ${isModalOpen ? styles.open : ''}`}
-        style={{ display: isModalOpen ? 'flex' : 'none' }}
+        className={`${styles.modals} ${isModalOpen ? styles.open : ""}`}
+        style={{ display: isModalOpen ? "flex" : "none" }}
         onClick={handleOutsideClick}
       >
         <div className={styles.modalContents} ref={modalRef}>

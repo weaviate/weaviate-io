@@ -1,8 +1,8 @@
 import React from 'react';
 import Giscus from "@giscus/react";
 import { useColorMode } from '@docusaurus/theme-common';
-import { useDoc } from '@docusaurus/theme-common/internal';
-import { useBlogPost } from '@docusaurus/theme-common/internal';
+import { useDoc } from '@docusaurus/plugin-content-docs/client';
+import { useBlogPost } from '@docusaurus/plugin-content-blog/client';
 import { useLocation } from 'react-router-dom';
 
 const GiscusParams = {

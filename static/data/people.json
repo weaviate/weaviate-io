@@ -29,12 +29,11 @@
     "team": "wcd"
   },
   {
-    "name": "Alvin Richards",
-    "title": "VP of Product",
-    "photo": "Alvin.jpg",
-    "linkedin": "alvinrichards",
-    "twitter": "jonnyeight",
-    "team": "product"
+    "name": "Alisa Riley",
+    "title": "Enterprise Account Executive",
+    "photo": "alisa-riley.jpg",
+    "linkedin": "alisa-riley-39642b84/",
+    "team": "partnerships"
   },
   {
     "name": "André Mourão",
@@ -81,6 +80,12 @@
     "twitter": "bobvanluijt",
     "github": "bobvanluijt",
     "team": "cto"
+  },
+  {
+    "name": "Brandon Holwerda",
+    "title": "Product Marketing Manager",
+    "photo": "Brandon-Holwerda.jpg",
+    "team": "product"
   },
   {
     "name": "Brave Okafor",
@@ -137,13 +142,6 @@
     "team": "weaviate-labs"
   },
   {
-    "name": "Damien Gasparina",
-    "title": "Enterprise Solution Engineer",
-    "photo": "Damien.jpg",
-    "linkedin": "gasparinadamien",
-    "team": "solution-engineering"
-  },
-  {
     "name": "Daniel Janicek",
     "title": "QA Engineer",
     "photo": "Daniel-Janicek.jpg",
@@ -181,7 +179,7 @@
   },
   {
     "name": "Duda Nogueira",
-    "title": "Community Technical Support",
+    "title": "Senior Support Engineer",
     "photo": "duda.jpg",
     "linkedin": "dudanogueira",
     "team": "support-engineering"
@@ -249,7 +247,7 @@
   },
   {
     "name": "Ivan Despot",
-    "title": "Senior DX & Docs Engineer",
+    "title": "Senior DX & Docs Lead",
     "photo": "Ivan.jpg",
     "team": "database",
     "linkedin": "ivan-g-despot",
@@ -360,7 +358,7 @@
   },
   {
     "name": "Mohamed Shahin",
-    "title": "Product Support Engineer",
+    "title": "Support Tech Lead",
     "photo": "mohamed.jpg",
     "linkedin": "shahinmohamed",
     "twitter": "shah91n",

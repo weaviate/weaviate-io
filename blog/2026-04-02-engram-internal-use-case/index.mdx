@@ -25,7 +25,7 @@ That was Engram's first real product review.
 
 ---
 
-Claude and I are fast friends. Claude Code is an integral part of my workflow as a product manager: research and analysis, design and prototyping, project and requirement planning. But the longer I use it, the more I notice the quiet friction of sessions starting cold and needing to restate what we decided last week or how we reframed an old problem. This is exactly the memory problem we made the case for in [The Limit in the Loop](https://weaviate.io/blog/limit-in-the-loop) that needs first-class infrastructure, and it's why we built **Engram**, our memory product now in private preview, on Weaviate's core vector search technology.
+Claude and I are fast friends. Claude Code is an integral part of my workflow as a product manager: research and analysis, design and prototyping, project and requirement planning. But the longer I use it, the more I notice the quiet friction of sessions starting cold and needing to restate what we decided last week or how we reframed an old problem. This is exactly the memory problem we made the case for in <a href="https://weaviate.io/blog/limit-in-the-loop" target="_blank" rel="noopener noreferrer">The Limit in the Loop</a> that needs first-class infrastructure, and it's why we built **Engram**, our memory product now in private preview, on Weaviate's core vector search technology.
 
 Building a product is one thing, but proving its value is another. So I decided to find out whether Engram can close some gaps in my daily work and win me over as a user.
 
@@ -73,7 +73,7 @@ Since every recall costs a round-trip and context window space, I opted to have 
 
 One practical constraint shaped the approach: large saves were timing out, which pushed us toward shorter, single-topic saves of 2–4 sentences. It turned out to be better for retrieval anyway — a focused memory is easier to find than a paragraph you have to parse.
 
-> **Interested in trying Engram in your own coding assistant workflow? [Sign up for the Engram Preview](https://weaviate.io/product-previews#preview-engram)**
+> **Interested in trying Engram in your own coding assistant workflow? <a href="https://weaviate.io/product-previews#preview-engram" target="_blank" rel="noopener noreferrer">Sign up for the Engram Preview</a>**
 
 ## The live recording
 
@@ -105,7 +105,7 @@ This confirmed something we'd suspected: on planning tasks, Claude interprets "H
 
 Writing to Engram added noticeable overhead to sessions. An early test recorded 19 seconds of startup cost on one run, and sessions with Engram ran about 10% slower overall. This isn't inherent to the approach, but it's a real friction point in daily use: if saving a memory visibly pauses the session, users will notice.
 
-> **Interested in trying Engram in your own coding assistant workflow? [Sign up for the Engram Preview](https://weaviate.io/product-previews#preview-engram)**
+> **Interested in trying Engram in your own coding assistant workflow? <a href="https://weaviate.io/product-previews#preview-engram" target="_blank" rel="noopener noreferrer">Sign up for the Engram Preview</a>**
 
 ## Back in the studio
 
@@ -123,7 +123,7 @@ The "save every five prompts" pattern gets replaced by something more robust: ev
 
 The more significant change is moving away from the "Claude decides when to retrieve memories" model entirely and creating deterministic, infrastructure-level triggers that fire at specific points in the session lifecycle regardless of what Claude decides to do. A session start hook can inject relevant memories before Claude sees the first message. A hook before each user prompt can do the same on a per-turn basis, paired with relevancy filtering so only memories with a strong match to the current context get injected. Claude never has to decide to recall; the context is already there.
 
-It's worth noting that Anthropic is converging on the same instinct. A [quietly rolling-out Claude Code feature](https://claudescorner.substack.com/p/a-hidden-dream-command-and-the-tools) called `/dream` runs a background agent that consolidates session memories by doing a reflective pass over your memory files, synthesizing learnings into organized entries, and enforcing line limits. At the time of writing, the feature is undocumented and behind a feature flag, but the direction is clear. What `/dream` operates on is also telling: Claude's built-in file-based memory. It handles the `MEMORY.md` layer well — stable facts, consolidation, keeping things tidy. What it can't do is capture reasoning chains, rejected alternatives, or the story of how a decision evolved across sessions.
+It's worth noting that Anthropic is converging on the same instinct. A <a href="https://claudescorner.substack.com/p/a-hidden-dream-command-and-the-tools" target="_blank" rel="noopener noreferrer">quietly rolling-out Claude Code feature</a> called `/dream` runs a background agent that consolidates session memories by doing a reflective pass over your memory files, synthesizing learnings into organized entries, and enforcing line limits. At the time of writing, the feature is undocumented and behind a feature flag, but the direction is clear. What `/dream` operates on is also telling: Claude's built-in file-based memory. It handles the `MEMORY.md` layer well — stable facts, consolidation, keeping things tidy. What it can't do is capture reasoning chains, rejected alternatives, or the story of how a decision evolved across sessions.
 
 ### Collaboration scope
 
