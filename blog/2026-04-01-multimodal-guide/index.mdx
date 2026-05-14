@@ -121,7 +121,7 @@ client.collections.create(
             audio_fields=["audio_clip"],
             video_fields=["video_clip"],
             text_fields=["text"],
-            model="gemini-embedding-2-preview",
+            model="gemini-embedding-2",
             vector_index_config=Configure.VectorIndex.flat(),
         )
     ],
@@ -186,7 +186,7 @@ collection = client.collections.create(
         Configure.Vectors.multi2vec_google_gemini(
             name="doc_vector",
             image_fields=["doc_page"],
-            model="gemini-embedding-2-preview",
+            model="gemini-embedding-2",
             vector_index_config=Configure.VectorIndex.flat(),
         )
     ],
