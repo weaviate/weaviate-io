@@ -1,16 +1,37 @@
-// src/pages/product/integrations/google-cloud-platform.jsx
-import React from 'react';
-import Link from '@docusaurus/Link';
-import Layout from '@theme/Layout';
-import partners from '/data/partners.json';
-import hub from '/src/components/PartnersMarketplace/styles.module.scss';
-import css from '/src/components/PartnersMarketplace/IntegrationDetail/styles.module.scss';
-import IntegrationHeader from '/src/components/PartnersMarketplace/IntegrationDetail/Header';
+// src/pages/product/integrations/astronomerjsx
+import React from "react";
+import Link from "@docusaurus/Link";
+import Layout from "@theme/Layout";
+import partners from "/data/partners.json";
+import hub from "/src/components/PartnersMarketplace/styles.module.scss";
+import css from "/src/components/PartnersMarketplace/IntegrationDetail/styles.module.scss";
+import IntegrationHeader from "/src/components/PartnersMarketplace/IntegrationDetail/Header";
 
-const slug = 'astronomer';
-const slugify = (s) => s.toLowerCase().replace(/\s+/g, '-');
+const slug = "astronomer";
+const slugify = (s) => s.toLowerCase().replace(/\s+/g, "-");
 
-export default function GcpIntegrationPage() {
+const getGroupId = (title = "") => {
+  const normalized = title.toLowerCase().trim();
+
+  if (
+    normalized === "hands on learning" ||
+    normalized === "hands-on-learning"
+  ) {
+    return "hands-on-learning";
+  }
+
+  if (
+    normalized === "read and listen" ||
+    normalized === "read-and-listen" ||
+    normalized === "read & listen"
+  ) {
+    return "read-and-listen";
+  }
+
+  return slugify(title);
+};
+
+export default function AstronomerIntegrationPage() {
   const item = partners.find((p) => (p.slug || slugify(p.name)) === slug);
   if (!item) {
     return (
@@ -30,8 +51,8 @@ export default function GcpIntegrationPage() {
     link,
     cta: ctasFromOldField,
     ctas,
-    company = 'Vendor',
-    howItWorks = '',
+    company = "Vendor",
+    howItWorks = "",
     setup = [],
     resourcesGroups = [],
   } = item;
@@ -39,25 +60,25 @@ export default function GcpIntegrationPage() {
   const finalCtas = ctas || ctasFromOldField || [];
 
   const pillClass = (t) =>
-    t === 'Notebook'
+    t === "Notebook"
       ? css.pillNotebook
-      : t === 'Guide'
-      ? css.pillGuide
-      : t === 'Blog'
-      ? css.pillBlog
-      : undefined;
+      : t === "Guide"
+        ? css.pillGuide
+        : t === "Blog"
+          ? css.pillBlog
+          : undefined;
 
   const renderGroups = () =>
     (resourcesGroups || []).map((group) => (
       <div key={group.title}>
-        <h3 className={css.groupLabel} id={slugify(group.title)}>
+        <h3 className={css.groupLabel} id={getGroupId(group.title)}>
           {group.title}
         </h3>
         <div className={css.resGrid}>
           {(group.items || []).map((r, i) => {
-            const title = r.topic || r.title || 'Untitled';
+            const title = r.topic || r.title || "Untitled";
             const desc = r.description || r.desc;
-            const type = r.type || 'Open';
+            const type = r.type || "Open";
             return (
               <a
                 key={`${slugify(title)}-${i}`}
@@ -68,7 +89,7 @@ export default function GcpIntegrationPage() {
                   <span
                     className={[css.pill, pillClass(type)]
                       .filter(Boolean)
-                      .join(' ')}
+                      .join(" ")}
                   >
                     {type}
                   </span>
@@ -76,7 +97,7 @@ export default function GcpIntegrationPage() {
                 <h4 className={css.resTitle}>{title}</h4>
                 {desc && <p className={css.resDesc}>{desc}</p>}
                 <span className={css.resCta}>
-                  {type === 'Blog' ? 'Read →' : 'Open →'}
+                  {type === "Blog" ? "Read →" : "Open →"}
                 </span>
               </a>
             );
@@ -140,14 +161,13 @@ export default function GcpIntegrationPage() {
                     <p>The resources are broken into categories:</p>
                     <ol>
                       <li>
-                        <Link to="#hands-on-learning">Hands on Learning:</Link>{' '}
+                        <a href="#hands-on-learning">Hands on Learning:</a>{" "}
                         Build your technical understanding with end-to-end
                         tutorials.
                       </li>
                       <li>
-                        <Link to="#read-and-listen">Read and Listen:</Link>{' '}
-                        Develop your conceptual understanding of these
-                        technologies.
+                        <a href="#read-and-listen">Read and Listen:</a> Develop
+                        your conceptual understanding of these technologies.
                       </li>
                     </ol>
                   </div>

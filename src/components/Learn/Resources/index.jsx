@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { ButtonContainer } from '../../../theme/Buttons';
-import styles from './styles.module.scss';
-import { LinkButton } from '/src/theme/Buttons';
-import Link from '@docusaurus/Link';
+import React, { useState } from "react";
+import { ButtonContainer } from "../../../theme/Buttons";
+import styles from "./styles.module.scss";
+import { LinkButton } from "/src/theme/Buttons";
+import Link from "@docusaurus/Link";
 
 export default function Resources() {
   return (
@@ -10,22 +10,22 @@ export default function Resources() {
       <div className={styles.container}>
         <div className={styles.boxContainer}>
           <ul>
-            <Link to="#get-started">Get started</Link>
+            <a href="#get-started">Get started</a>
           </ul>
           <ul>
-            <Link to="#guided-courses">Guided courses</Link>
+            <a href="#guided-courses">Guided courses</a>
           </ul>
           <ul>
-            <Link to="#documentation">Documentation</Link>
+            <a href="#documentation">Documentation</a>
           </ul>
           <ul>
-            <Link to="#code-examples">Code examples</Link>
+            <a href="#code-examples">Code examples</a>
           </ul>
           <ul>
-            <Link to="#ebooks">Ebooks</Link>
+            <a href="#ebooks">Ebooks</a>
           </ul>
           <ul>
-            <Link to="#go-further">Go further</Link>
+            <a href="#go-further">Go further</a>
           </ul>
         </div>
       </div>

@@ -1,8 +1,8 @@
-import React from 'react';
-import { ButtonContainer } from '../../../../theme/Buttons';
-import styles from './styles.module.scss';
-import { LinkButton } from '/src/theme/Buttons';
-import Link from '@docusaurus/Link';
+import React from "react";
+import { ButtonContainer } from "../../../../theme/Buttons";
+import styles from "./styles.module.scss";
+import { LinkButton } from "/src/theme/Buttons";
+import Link from "@docusaurus/Link";
 
 export default function Integrations() {
   return (
@@ -25,10 +25,10 @@ export default function Integrations() {
             </p>
             <div className={styles.iconsContainer}>
               <div className={`${styles.iconText} ${styles.contact}`}>
-                <Link href="#contact-sales">Get in touch</Link>
+                <a href="#contact-sales">Get in touch</a>
               </div>
               <div className={`${styles.iconText} ${styles.services}`}>
-                <Link href="/pricing">Check our Pricing</Link>
+                <a href="/pricing">Check our Pricing</a>
               </div>
             </div>
           </div>

@@ -32,7 +32,7 @@ The chosen rank of the update matrix controls the expressivity of the finetuning
 
 - A d x d matrix can represent any linear transformation in a d-dimensional vector space.
 - By first transforming the input to a lower-dimensional space and then back to the original space, we can restrict the kind of linear transformations that can be represented.
-- This reduces the number of parameters that need to be stored from (dxd) to (dxr + dxr) where r << d.
+- This reduces the number of parameters that need to be stored from (dxd) to (dxr + dxr) where r \<\< d.
 - A point near the origin often performs as well as full fine-tuning. - because often Neural Networks are over-parametrized and thus the weight matrices are full of linearly dependent 
 - This suggests that we can start with a low-rank configuration and gradually increase the rank if needed.
 

@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './styles.module.scss';
-import Link from '@docusaurus/Link';
+import React from "react";
+import styles from "./styles.module.scss";
+import Link from "@docusaurus/Link";
 
 export default function HybridBusinessCritical() {
   return (
@@ -18,7 +18,7 @@ export default function HybridBusinessCritical() {
             </div>
             <p>Google Cloud Platform</p>
             <Link to="https://console.cloud.google.com/marketplace/product/weaviate-gcp-mktplace/weaviate?hl=en&project=clean-pen-427907-c5&invt=AbnfrQ&utm_source=website&utm_medium=button&utm_campaign=GCPMarketplace">
-              {'Go to Marketplace >'}
+              {"Go to Marketplace >"}
             </Link>
           </div>
           <div className={styles.awsBox}>
@@ -27,7 +27,7 @@ export default function HybridBusinessCritical() {
             </div>
             <p>Amazon Web Services</p>
             <Link to="https://aws.amazon.com/marketplace/pp/prodview-cicacyv63r43i">
-              {'Go to Marketplace >'}
+              {"Go to Marketplace >"}
             </Link>
           </div>
           <div className={styles.marketBox}>
@@ -35,7 +35,7 @@ export default function HybridBusinessCritical() {
               <span className={styles.azure} />
             </div>
             <p>Microsoft Azure</p>
-            <Link to="#contact-sales">{'Contact us for more info >'}</Link>
+            <a href="#contact-sales">{"Contact us for more info >"}</a>
           </div>
         </div>
       </div>

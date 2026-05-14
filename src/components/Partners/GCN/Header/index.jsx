@@ -1,7 +1,7 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
-import styles from './styles.module.scss';
-import { LinkButton, ButtonContainer } from '/src/theme/Buttons';
+import Link from "@docusaurus/Link";
+import React from "react";
+import styles from "./styles.module.scss";
+import { LinkButton, ButtonContainer } from "/src/theme/Buttons";
 
 export default function Header() {
   return (
@@ -20,9 +20,9 @@ export default function Header() {
           </div>
 
           <div className={styles.buttons}>
-            <Link className={styles.buttonGradient} to="#meetingForm">
+            <a className={styles.buttonGradient} href="#meetingForm">
               Book a meeting
-            </Link>
+            </a>
           </div>
         </div>
       </div>
