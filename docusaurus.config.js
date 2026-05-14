@@ -2,21 +2,18 @@
 // Note: type annotations allow type checking and IDEs autocompletion
 
 require('dotenv').config();
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
-const remarkReplace = require('./src/remark/remark-replace');
+const {themes} = require('prism-react-renderer');
+
 // SUBDOMAIN_MIGRATION - to do: delete site.redirects.js
 const siteRedirects = require('./site.redirects');
 const path = require('path');
 
+module.exports = async function createConfigAsync() {
+  const math = (await import('remark-math')).default;
+  const katex = (await import('rehype-katex')).default;
 
-// Math equation plugins
-const math = require('remark-math');
-const katex = require('rehype-katex');
-
-
-/** @type {import('@docusaurus/types').Config} */
-const config = {
+  /** @type {import('@docusaurus/types').Config} */
+  const config = {
     title: 'Weaviate',
     tagline:
         'Weaviate empowers developers to deliver, scalable vector search-powered apps painlessly',
@@ -24,7 +21,7 @@ const config = {
     baseUrl: '/',
     trailingSlash: false,
     onBrokenLinks: 'warn',
-    onBrokenMarkdownLinks: 'warn',
+    onBrokenAnchors: 'warn',
     favicon: 'img/favicon.ico',
     clientModules: [require.resolve('./src/components/UTM/capture.js')],
 
@@ -116,6 +113,7 @@ const config = {
                 path: 'playbook',
                 authorsMapPath: '../authors.yml',
                 showReadingTime: true,
+                onUntruncatedBlogPosts: 'ignore',
             },
         ],
         // Paper Reviews configuration
@@ -134,6 +132,7 @@ const config = {
                 path: 'papers',
                 authorsMapPath: '../authors.yml',
                 showReadingTime: true,
+                onUntruncatedBlogPosts: 'ignore',
             },
         ],
          // iOS Apps and Vector Databases configuration
@@ -152,6 +151,7 @@ const config = {
                 path: 'apple-and-weaviate',
                 authorsMapPath: '../authors.yml',
                 showReadingTime: true,
+                onUntruncatedBlogPosts: 'ignore',
             },
         ],
 
@@ -319,14 +319,12 @@ const config = {
         '/fonts/font-awesome/regular.css',
         '/fonts/font-awesome/brands.css',
 
-        {
-            // styles for math equations
-            href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
-            type: 'text/css',
-            integrity:
-                'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
-            crossorigin: 'anonymous',
-        },
+     {
+  // styles for math equations
+  href: 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css',
+  type: 'text/css',
+  crossorigin: 'anonymous',
+},
     ],
 
     // Even if you don't use internalization, you can use this field to set useful
@@ -356,6 +354,7 @@ const config = {
                     blogSidebarTitle: 'Weaviate Blog',
                     remarkPlugins: [math],
                     rehypePlugins: [katex],
+                    onUntruncatedBlogPosts: 'ignore',
                 },
                 theme: {
                     customCss: [
@@ -588,7 +587,7 @@ const config = {
 
                             {
                                 label: 'RAG',
-                                to: '/RAG',
+                                to: '/rag',
                             },
                             {
                                 label: 'Hybrid Search',
@@ -796,8 +795,8 @@ const config = {
                 respectPrefersColorScheme: false,
             },
             prism: {
-                theme: lightCodeTheme,
-                darkTheme: darkCodeTheme,
+                theme: themes.github,
+                darkTheme: themes.dracula,
                 additionalLanguages: ['java', 'scala', 'csharp'],
             },
 
@@ -812,9 +811,13 @@ const config = {
 
     markdown: {
         mermaid: true,
+         hooks: {
+    onBrokenMarkdownLinks: 'warn',
+  },
     },
     themes: ['@docusaurus/theme-mermaid'],
 
 };
 
-module.exports = config;
+  return config;
+};

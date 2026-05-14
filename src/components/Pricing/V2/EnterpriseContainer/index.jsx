@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import styles from './styles.module.scss';
-import Link from '@docusaurus/Link';
+import React, { useState } from "react";
+import styles from "./styles.module.scss";
+import Link from "@docusaurus/Link";
 
 export default function EnterpriseContainer({ closeModal }) {
-  const [activeTab, setActiveTab] = useState('aws');
+  const [activeTab, setActiveTab] = useState("aws");
 
   const renderContent = () => {
     switch (activeTab) {
-      case 'aws':
+      case "aws":
         return (
           <>
             <Link className={styles.faqLink} to="#faq" onClick={closeModal}>
@@ -62,7 +62,7 @@ export default function EnterpriseContainer({ closeModal }) {
             </div>
           </>
         );
-      case 'google':
+      case "google":
         return (
           <>
             <Link className={styles.faqLink} to="#faq" onClick={closeModal}>
@@ -116,19 +116,19 @@ export default function EnterpriseContainer({ closeModal }) {
             </div>
           </>
         );
-      case 'azure':
+      case "azure":
         return (
           <div className={styles.azureContainer}>
             <p>
               Contact our Sales team for more information about Azure pricing.
             </p>
-            <Link
+            <a
               className={styles.contactUsButton}
-              to="#contact-sales"
+              href="#contact-sales"
               onClick={closeModal}
             >
               Contact us
-            </Link>
+            </a>
           </div>
         );
       default:
@@ -156,27 +156,27 @@ export default function EnterpriseContainer({ closeModal }) {
           <div className={styles.tabs}>
             <div
               className={`${styles.tab} ${
-                activeTab === 'aws' ? styles.activeTab : ''
+                activeTab === "aws" ? styles.activeTab : ""
               }`}
-              onClick={() => setActiveTab('aws')}
+              onClick={() => setActiveTab("aws")}
             >
               <div className={`${styles.cellIcon} ${styles.awsIcon}`} /> Amazon
               Web Services
             </div>
             <div
               className={`${styles.tab} ${
-                activeTab === 'google' ? styles.activeTab : ''
+                activeTab === "google" ? styles.activeTab : ""
               }`}
-              onClick={() => setActiveTab('google')}
+              onClick={() => setActiveTab("google")}
             >
-              <div className={`${styles.cellIcon} ${styles.googleIcon}`} />{' '}
+              <div className={`${styles.cellIcon} ${styles.googleIcon}`} />{" "}
               Google
             </div>
             <div
               className={`${styles.tab} ${
-                activeTab === 'azure' ? styles.activeTab : ''
+                activeTab === "azure" ? styles.activeTab : ""
               }`}
-              onClick={() => setActiveTab('azure')}
+              onClick={() => setActiveTab("azure")}
             >
               <div className={`${styles.cellIcon} ${styles.azureIcon}`} /> Azure
             </div>
@@ -184,11 +184,11 @@ export default function EnterpriseContainer({ closeModal }) {
           <div className={styles.tabContent}>
             <div className={styles.tabHeader}>
               <h3>
-                {activeTab === 'azure'
-                  ? 'Questions about pricing?'
-                  : 'Configure consumption for your use case'}
+                {activeTab === "azure"
+                  ? "Questions about pricing?"
+                  : "Configure consumption for your use case"}
               </h3>
-              {activeTab !== 'azure' && (
+              {activeTab !== "azure" && (
                 <p>
                   Optimize the cost of running multi-tenant AI workloads at
                   scale. Move between hot, warm, and cold storage tiers based on

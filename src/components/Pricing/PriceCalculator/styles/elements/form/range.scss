@@ -1,167 +1,171 @@
-.range {
-  flex-direction: row;
-  width: 100%;
-  align-items: flex-end;
+@use "../../variables" as v;
 
-  @media (max-width: 920px) { 
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  > .content { 
-    position: relative;
-    width: 100%; 
+@mixin range() {
+  .range {
     flex-direction: row;
-    align-items: center;
-    gap: $space;
-  }
-  
-  .input {
-    height: 40px;
     width: 100%;
-    justify-content: center;
-    position: relative;
-  }
+    align-items: flex-end;
 
-  .range-value-indicator {
-    position: absolute;
-    left: calc(18px + (100% - 36px) * var(--thumb-position, 0) / 100);
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: 700;
-    color: #ffffff;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    pointer-events: none;
-    z-index: 2;
-    transition: left 0.1s ease-out;
-  }
+    @media (max-width: 920px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
 
-  input[type="range"] {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: 5px;
-    background: transparent;
-    outline: none;
-    border-radius: 2px;
-    position: relative;
-    
-    &::before {
-      content: '';
-      position: absolute;
-      top: -1px;
-      left: 0;
-      height: 7px;
-      width: var(--track-fill, 0%);
-      background: $greenGradient;
-      border-radius: 99px;
-      pointer-events: none;
-    }
-    
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: var(--track-fill, 0%);
-      height: 5px;
-      width: calc(100% - var(--track-fill, 0%));
-      background: $grey;
-      border-radius: 2px;
-      pointer-events: none;
-    }
-    
-    &::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 36px;
-      height: 36px;
-      background: $greenGradient;
-      cursor: pointer;
-      border-radius: 99px;
-      transition: $transition;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    > .content {
       position: relative;
-      z-index: 1;
+      width: 100%;
+      flex-direction: row;
+      align-items: center;
+      gap: v.$space;
     }
-    
-    &::-moz-range-thumb {
+
+    .input {
+      height: 40px;
+      width: 100%;
+      justify-content: center;
+      position: relative;
+    }
+
+    .range-value-indicator {
+      position: absolute;
+      left: calc(18px + (100% - 36px) * var(--thumb-position, 0) / 100);
+      top: 50%;
+      transform: translate(-50%, -50%);
       width: 36px;
       height: 36px;
-      background: $greenGradient;
-      cursor: pointer;
-      border: none;
-      border-radius: 99px;
-      transition: $transition;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-
-      &:hover {
-        scale: 1.2;
-      }
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      pointer-events: none;
+      z-index: 2;
+      transition: left 0.1s ease-out;
     }
 
-    &::-moz-range-track {
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
       height: 5px;
-      background: $grey;
-      border: none;
+      background: transparent;
+      outline: none;
       border-radius: 2px;
-    }
-    
-    &::-moz-range-progress {
-      height: 7px;
-      background: $greenGradient;
-      border: none;
-      border-radius: 99px;
-    }
-  }
-  
-  &.changing {
-    input[type="range"] {
-      &::-moz-range-thumb {
-        scale: 1.2;
-       }
+      position: relative;
 
-      &::-webkit-slider-thumb {
-        scale: 1.2;
-       }
-    }
-  }
-
-  // Plan-specific gradients
-  &.plan-premium {
-    input[type="range"] {
       &::before {
-        background: $blueGradient;
+        content: "";
+        position: absolute;
+        top: -1px;
+        left: 0;
+        height: 7px;
+        width: var(--track-fill, 0%);
+        background: v.$greenGradient;
+        border-radius: 99px;
+        pointer-events: none;
       }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: var(--track-fill, 0%);
+        height: 5px;
+        width: calc(100% - var(--track-fill, 0%));
+        background: v.$grey;
+        border-radius: 2px;
+        pointer-events: none;
+      }
+
       &::-webkit-slider-thumb {
-        background: $blueGradient;
+        -webkit-appearance: none;
+        width: 36px;
+        height: 36px;
+        background: v.$greenGradient;
+        cursor: pointer;
+        border-radius: 99px;
+        transition: v.$transition;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 1;
       }
+
       &::-moz-range-thumb {
-        background: $blueGradient;
+        width: 36px;
+        height: 36px;
+        background: v.$greenGradient;
+        cursor: pointer;
+        border: none;
+        border-radius: 99px;
+        transition: v.$transition;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+        &:hover {
+          scale: 1.2;
+        }
       }
+
+      &::-moz-range-track {
+        height: 5px;
+        background: v.$grey;
+        border: none;
+        border-radius: 2px;
+      }
+
       &::-moz-range-progress {
-        background: $blueGradient;
+        height: 7px;
+        background: v.$greenGradient;
+        border: none;
+        border-radius: 99px;
       }
     }
-  }
 
-  &.plan-enterprise {
-    input[type="range"] {
-      &::before {
-        background: $pinkGradient;
+    &.changing {
+      input[type="range"] {
+        &::-moz-range-thumb {
+          scale: 1.2;
+        }
+
+        &::-webkit-slider-thumb {
+          scale: 1.2;
+        }
       }
-      &::-webkit-slider-thumb {
-        background: $pinkGradient;
+    }
+
+    // Plan-specific gradients
+    &.plan-premium {
+      input[type="range"] {
+        &::before {
+          background: v.$blueGradient;
+        }
+        &::-webkit-slider-thumb {
+          background: v.$blueGradient;
+        }
+        &::-moz-range-thumb {
+          background: v.$blueGradient;
+        }
+        &::-moz-range-progress {
+          background: v.$blueGradient;
+        }
       }
-      &::-moz-range-thumb {
-        background: $pinkGradient;
-      }
-      &::-moz-range-progress {
-        background: $pinkGradient;
+    }
+
+    &.plan-enterprise {
+      input[type="range"] {
+        &::before {
+          background: v.$pinkGradient;
+        }
+        &::-webkit-slider-thumb {
+          background: v.$pinkGradient;
+        }
+        &::-moz-range-thumb {
+          background: v.$pinkGradient;
+        }
+        &::-moz-range-progress {
+          background: v.$pinkGradient;
+        }
       }
     }
   }

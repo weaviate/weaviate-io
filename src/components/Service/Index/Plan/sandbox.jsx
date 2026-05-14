@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './styles.module.scss';
-import Link from '@docusaurus/Link';
+import React from "react";
+import styles from "./styles.module.scss";
+import Link from "@docusaurus/Link";
 
 export default function PricingSandBox() {
   return (
@@ -42,7 +42,7 @@ export default function PricingSandBox() {
         <li>
           <span>Weekly office hours</span>
         </li>
-        <Link className={styles.supportLink} to="deployment/enablement">
+        <Link className={styles.supportLink} to="/deployment/enablement">
           Learn More
         </Link>
       </div>

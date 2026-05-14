@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import styles from './styles.module.scss';
+import React, { useEffect, useState } from "react";
+import styles from "./styles.module.scss";
 
 export default function ContactForm() {
-  const [title, setTitle] = useState('Get in touch with us');
+  const [title, setTitle] = useState("Get in touch with us");
 
   useEffect(() => {
-    if (window.location.pathname === '/deployment/enterprise-cloud') {
-      setTitle('Get Started with our Enterprise Cloud Vector Database');
+    if (window.location.pathname === "/deployment/enterprise-cloud") {
+      setTitle("Get Started with our Enterprise Cloud Vector Database");
     } else {
-      setTitle('Get in touch with us');
+      setTitle("Get in touch with us");
     }
 
-    const script = document.createElement('script');
-    script.src = '//js.hsforms.net/forms/embed/v2.js';
-    script.setAttribute('data-cookieconsent', 'ignore'); // Prevents Cookiebot from blocking
+    const script = document.createElement("script");
+    script.src = "//js.hsforms.net/forms/embed/v2.js";
+    script.setAttribute("data-cookieconsent", "ignore"); // Prevents Cookiebot from blocking
     document.body.appendChild(script);
 
-    script.addEventListener('load', () => {
+    script.addEventListener("load", () => {
       if (window.hbspt) {
         window.hbspt.forms.create({
-          portalId: '8738733',
-          formId: '228989b7-50f5-446c-90a6-5ed524210df9',
-          target: '#hubspotForm',
+          portalId: "8738733",
+          formId: "228989b7-50f5-446c-90a6-5ed524210df9",
+          target: "#hubspotForm",
         });
       }
     });
@@ -32,7 +32,7 @@ export default function ContactForm() {
   }, []);
 
   return (
-    <div className={styles.contactBackground} id="contact">
+    <div className={styles.contactBackground}>
       <div className="container">
         <div className={styles.contactContainer}>
           <div className={styles.contactSection}>

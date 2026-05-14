@@ -1,15 +1,36 @@
-// src/pages/product/integrations/modal.jsx
-import React from 'react';
-import CodeBlock from '@theme/CodeBlock';
-import Link from '@docusaurus/Link';
-import Layout from '@theme/Layout';
-import partners from '/data/partners.json';
-import hub from '/src/components/PartnersMarketplace/styles.module.scss';
-import css from '/src/components/PartnersMarketplace/IntegrationDetail/styles.module.scss';
-import IntegrationHeader from '/src/components/PartnersMarketplace/IntegrationDetail/Header';
+// src/pages/product/integrations/semantic-kernel.jsx
+import React from "react";
+import CodeBlock from "@theme/CodeBlock";
+import Link from "@docusaurus/Link";
+import Layout from "@theme/Layout";
+import partners from "/data/partners.json";
+import hub from "/src/components/PartnersMarketplace/styles.module.scss";
+import css from "/src/components/PartnersMarketplace/IntegrationDetail/styles.module.scss";
+import IntegrationHeader from "/src/components/PartnersMarketplace/IntegrationDetail/Header";
 
-const slug = 'semantic-kernel';
-const slugify = (s) => s.toLowerCase().replace(/\s+/g, '-');
+const slug = "semantic-kernel";
+const slugify = (s) => s.toLowerCase().replace(/\s+/g, "-");
+
+const getGroupId = (title = "") => {
+  const normalized = title.toLowerCase().trim();
+
+  if (
+    normalized === "hands on learning" ||
+    normalized === "hands-on-learning"
+  ) {
+    return "hands-on-learning";
+  }
+
+  if (
+    normalized === "read and listen" ||
+    normalized === "read-and-listen" ||
+    normalized === "read & listen"
+  ) {
+    return "read-and-listen";
+  }
+
+  return slugify(title);
+};
 
 export default function SemanticKernelIntegrationPage() {
   const item = partners.find((p) => (p.slug || slugify(p.name)) === slug);
@@ -32,8 +53,8 @@ export default function SemanticKernelIntegrationPage() {
     list,
     cta: ctasFromOldField,
     ctas,
-    company = 'Vendor',
-    howItWorks = '',
+    company = "Vendor",
+    howItWorks = "",
     setup = [],
     resourcesGroups = [],
   } = item;
@@ -41,25 +62,25 @@ export default function SemanticKernelIntegrationPage() {
   const finalCtas = ctas || ctasFromOldField || [];
 
   const pillClass = (t) =>
-    t === 'Notebook'
+    t === "Notebook"
       ? css.pillNotebook
-      : t === 'Guide'
-      ? css.pillGuide
-      : t === 'Blog'
-      ? css.pillBlog
-      : undefined;
+      : t === "Guide"
+        ? css.pillGuide
+        : t === "Blog"
+          ? css.pillBlog
+          : undefined;
 
   const renderGroups = () =>
     (resourcesGroups || []).map((group) => (
       <div key={group.title}>
-        <h3 className={css.groupLabel} id={slugify(group.title)}>
+        <h3 className={css.groupLabel} id={getGroupId(group.title)}>
           {group.title}
         </h3>
         <div className={css.resGrid}>
           {(group.items || []).map((r, i) => {
-            const title = r.topic || r.title || 'Untitled';
+            const title = r.topic || r.title || "Untitled";
             const desc = r.description || r.desc;
-            const type = r.type || 'Open';
+            const type = r.type || "Open";
             return (
               <a
                 key={`${slugify(title)}-${i}`}
@@ -70,7 +91,7 @@ export default function SemanticKernelIntegrationPage() {
                   <span
                     className={[css.pill, pillClass(type)]
                       .filter(Boolean)
-                      .join(' ')}
+                      .join(" ")}
                   >
                     {type}
                   </span>
@@ -83,7 +104,7 @@ export default function SemanticKernelIntegrationPage() {
                   />
                 )}
                 <span className={css.resCta}>
-                  {type === 'Blog' ? 'Read →' : 'Open →'}
+                  {type === "Blog" ? "Read →" : "Open →"}
                 </span>
               </a>
             );
@@ -148,14 +169,13 @@ export default function SemanticKernelIntegrationPage() {
                     <p>The resources are broken into categories:</p>
                     <ol>
                       <li>
-                        <Link to="#hands-on-learning">Hands on Learning:</Link>{' '}
+                        <a href="#hands-on-learning">Hands on Learning:</a>{" "}
                         Build your technical understanding with end-to-end
                         tutorials.
                       </li>
                       <li>
-                        <Link to="#read-and-listen">Read and Listen:</Link>{' '}
-                        Develop your conceptual understanding of these
-                        technologies.
+                        <a href="#read-and-listen">Read and Listen:</a> Develop
+                        your conceptual understanding of these technologies.
                       </li>
                     </ol>
                   </div>

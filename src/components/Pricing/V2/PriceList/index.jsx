@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './styles.module.scss';
-import Link from '@docusaurus/Link';
+import React from "react";
+import styles from "./styles.module.scss";
+import Link from "@docusaurus/Link";
 
 export default function PriceList() {
   return (
@@ -12,10 +12,10 @@ export default function PriceList() {
               <h3>Get the full pricing list</h3>
             </div>
             <p>
-              Questions about pricing? Download the full Pricing list or{' '}
-              <Link className={styles.underline} to="#contact-sales">
+              Questions about pricing? Download the full Pricing list or{" "}
+              <a className={styles.underline} href="#contact-sales">
                 contact our team
-              </Link>{' '}
+              </a>{" "}
               for more info.
             </p>
           </div>

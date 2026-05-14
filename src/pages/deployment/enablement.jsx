@@ -1,12 +1,12 @@
-import React from 'react';
-import Layout from '@theme/Layout';
-import ServiceHeader from '/src/components/Service/EducationSupport/Header/index.jsx';
-import ServicePlan from '/src/components/Service/EducationSupport/Plan/index.jsx';
-import ContactUsForm from '/src/components/Contact/contactForm.jsx';
-import Highlights from '/src/components/Service/EducationSupport/Highlights/index.jsx';
-import ThemeSwitch from '/src/components/ThemeSwitch';
-import QuoteBox from '/src/components/Service/EducationSupport/QuoteBox/quoteBox.jsx';
-import Integrations from '/src/components/Service/EducationSupport/Integrations/index.jsx';
+import React from "react";
+import Layout from "@theme/Layout";
+import ServiceHeader from "/src/components/Service/EducationSupport/Header/index.jsx";
+import ServicePlan from "/src/components/Service/EducationSupport/Plan/index.jsx";
+import ContactUsForm from "/src/components/Contact/contactForm.jsx";
+import Highlights from "/src/components/Service/EducationSupport/Highlights/index.jsx";
+import ThemeSwitch from "/src/components/ThemeSwitch";
+import QuoteBox from "/src/components/Service/EducationSupport/QuoteBox/quoteBox.jsx";
+import Integrations from "/src/components/Service/EducationSupport/Integrations/index.jsx";
 
 export default function EducationandSupportPage() {
   return (
@@ -20,6 +20,7 @@ export default function EducationandSupportPage() {
         <QuoteBox />
         <Integrations />
         <Highlights />
+        <div id="contact-sales" />
         <ContactUsForm theme="dark" />
       </Layout>
       <ThemeSwitch />

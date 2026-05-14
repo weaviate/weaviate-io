@@ -1,10 +1,10 @@
 ---
 title: Evaluation Metrics for Search and Recommendation Systems
 slug: retrieval-evaluation-metrics
-description: 'A comprehensive overview of common information retrieval metrics, such as precision, recall, MRR, MAP, and NDCG.'
+description: "A comprehensive overview of common information retrieval metrics, such as precision, recall, MRR, MAP, and NDCG."
 authors: [leonie]
 date: 2024-05-28
-tags: ['concepts']
+tags: ["concepts"]
 image: ./img/hero.png
 ---
 
@@ -22,8 +22,7 @@ To explain how each of the following metrics is calculated, this article uses a 
 
 We will use the [`pytrec_eval` Python package](https://github.com/cvangysel/pytrec_eval) to showcase how you can evaluate your retrieval or recommendation pipelines in your code. Check out the code in the [related GitHub repository](https://github.com/weaviate/recipes/blob/main/weaviate-features/evaluation/evaluation_metrics_information_retrieval.ipynb).
 
-> `pytrec_eval` is a Python interface to TREC's evaluation tool, [trec_eval](https://github.com/usnistgov/trec_eval). It is an attempt to stop the cultivation of custom implementations of Information Retrieval evaluation measures for the Python programming language.
-> 
+> `pytrec_eval` is a Python interface to TREC's evaluation tool, [trec_eval](https://github.com/usnistgov/trec_eval). It is an attempt to stop the cultivation of custom implementations of Information Retrieval evaluation measures for the Python programming language.
 
 To use the `pytrec_eval` package, you can simply pip install it.
 
@@ -35,19 +34,19 @@ pip install pytrec_eval
 
 This section covers the most popular offline metrics for evaluating information retrieval systems, such as search and recommendation systems. It explores [precision@K](#precision), [recall@K](#recall), [MAP@K](#mean-average-precision-map), [MRR@K](#mean-reciprocal-rank-mrr), and [NDCG@K](#normalized-discounted-cumulative-gain-ndcg).
 
-As you might have noticed, all of these metrics end with “@K” (pronounced: “at K”). This simply means we are only evaluating the top K results. 
+As you might have noticed, all of these metrics end with "@K" (pronounced: "at K"). This simply means we are only evaluating the top K results.
 
-All of the following metrics can take values between 0 and 1, where higher values mean better performance. 
+All of the following metrics can take values between 0 and 1, where higher values mean better performance.
 
-Additionally, the following evaluation metrics can be categorized into not rank-aware vs. rank-aware metrics. While not rank-aware metrics, such as precision and recall, only reflect the **number** of relevant items in the top K results, rank-aware metrics, such as MAP, MRR, and NDCG, consider the **number** of relevant items and their **position** in the list of results.
+Additionally, the following evaluation metrics can be categorized into not rank-aware vs. rank-aware metrics. While not rank-aware metrics, such as precision and recall, only reflect the **number** of relevant items in the top K results, rank-aware metrics, such as MAP, MRR, and NDCG, consider the **number** of relevant items and their **position** in the list of results.
 
 ### Precision
 
-The **precision@K** metric measures how many of the retrieved items are relevant. This metric is not rank-aware and thus only considers the number of relevant results but not their order. You can calculate precision@K by dividing the number of relevant items within the top K results by K. 
+The **precision@K** metric measures how many of the retrieved items are relevant. This metric is not rank-aware and thus only considers the number of relevant results but not their order. You can calculate precision@K by dividing the number of relevant items within the top K results by K.
 
 $$
-\text{Precision@K} = \frac{TP}{TP+FP}= \frac{TP}{K}
-=\frac{\text{Number of relevant items in K}}{\text{Total number of items in K}}
+\text{Precision@K} = \frac{TP}{TP+FP} = \frac{TP}{K}
+= \frac{\text{Number of relevant items in K}}{\text{Total number of items in K}}
 $$
 
 ![precision.jpg](./img/precision.jpg)
@@ -61,7 +60,7 @@ qrel = {
     'sweet pastry' : {
         'donut' : 1,
         'muffin' : 1,
-        'scone' : 1, 
+        'scone' : 1,
     },
 }
 
@@ -69,8 +68,8 @@ run = {
     'sweet pastry' : {
         'donut' : 0.95,
         'bagel' : 0.9,
-        'muffin' : 0.8, 
-        'croissant' : 0.7, 
+        'muffin' : 0.8,
+        'croissant' : 0.7,
     },
 }
 
@@ -80,19 +79,19 @@ results = evaluator.evaluate(run)
 
 ```json
 {
- "sweet pastry": {
-  "P_4": 0.5,
- },
+  "sweet pastry": {
+    "P_4": 0.5
+  }
 }
 ```
 
 ### Recall
 
-The **recall@K** metric measures how many relevant items were successfully retrieved from the entire dataset. This metric is not rank-aware and thus only considers the number of relevant results but not their order. You can calculate the recall@K by dividing the number of relevant items within the top K results by the total number of relevant items in the entire dataset. 
+The **recall@K** metric measures how many relevant items were successfully retrieved from the entire dataset. This metric is not rank-aware and thus only considers the number of relevant results but not their order. You can calculate the recall@K by dividing the number of relevant items within the top K results by the total number of relevant items in the entire dataset.
 
 $$
 \text{Recall@K} = \frac{TP}{TP+FN}
-=\frac{\text{Number of relevant items in K}}{\text{Total number of relevant items}}
+= \frac{\text{Number of relevant items in K}}{\text{Total number of relevant items}}
 $$
 
 ![recall](./img/recall.jpg)
@@ -106,9 +105,9 @@ results = evaluator.evaluate(run)
 
 ```json
 {
- "sweet pastry": {
-  "recall_4": 0.6666666666666666
- },
+  "sweet pastry": {
+    "recall_4": 0.6666666666666666
+  }
 }
 ```
 
@@ -135,20 +134,20 @@ Note that the MRR metric is not available in the `pytrec_eval` package as of thi
 The **Mean Average Precision@K (MAP@K)** metric measures the system's ability to return relevant items in the top K results while placing more relevant items at the top. You can calculate the MAP@K metric by averaging the average precision at K across multiple queries (in case of information retrieval) or users (in case of recommendations) `U` in the evaluated dataset.
 
 $$
-\text{MAP@K} = \frac{1}{U}\sum_{u=1}^{U}AP@K_u
+\text{MAP@K} = \frac{1}{U}\sum_{u=1}^{U} \text{AP@K}_u
 $$
 
 The average precision@K (AP@K) metric measures the precision values at all the relevant positions within K and averages them.
 
 $$
-\text{AP@K} = \frac{1}{N}\sum_{k=1}^{K}\text{Precision(k)}\times \text{rel(k)}
+\text{AP@K} = \frac{1}{N}\sum_{k=1}^{K} \text{Precision}(k) \times \text{rel}(k)
 $$
 
 ![map](./img/map.jpg)
 
 This is also the default metric used in the [Massive Text Embedding Benchmark (MTEB) Leaderboard](https://huggingface.co/spaces/mteb/leaderboard) for the **Reranking** category.
 
-With `pytrec_eval` you can evaluate your search results as follows. 
+With `pytrec_eval` you can evaluate your search results as follows.
 
 ```python
 qrel = {
@@ -162,8 +161,8 @@ run = {
     'sweet pastry' : {
         'donut' : 0.95,
         'bagel' : 0.9,
-        'muffin' : 0.8, 
-        'croissant' : 0.7, 
+        'muffin' : 0.8,
+        'croissant' : 0.7,
     },
 }
 
@@ -173,13 +172,13 @@ results = evaluator.evaluate(run)
 
 ```json
 {
-    "sweet pastry": {
-        "map_cut_4": 0.8333333333333333
-    }
+  "sweet pastry": {
+    "map_cut_4": 0.8333333333333333
+  }
 }
 ```
 
-Note that the `pytrec_eval` package doesn’t take average across multiple queries. 
+Note that the `pytrec_eval` package doesn't take average across multiple queries.
 
 ### Normalized Discounted Cumulative Gain (NDCG)
 
@@ -194,7 +193,7 @@ $$
 The DCG is calculated as follows:
 
 $$
-\text{DCG@K} = \sum_{k=1}^K\frac{\text{rel}_i}{\log_2(i+1)}
+\text{DCG@K} = \sum_{i=1}^{K}\frac{\text{rel}_i}{\log_2(i+1)}
 $$
 
 ![ndcg](./img/ndcg.jpg)
@@ -219,8 +218,8 @@ run = {
     'goes well with jam' : {
         'pretzel' : 0.9,
         'bagel' : 0.85,
-        'muffin' : 0.7, 
-        'donut' : 0.6, 
+        'muffin' : 0.7,
+        'donut' : 0.6,
     },
 }
 
@@ -230,9 +229,9 @@ results = evaluator.evaluate(run)
 
 ```json
 {
-    "goes well with jam": {
-        "ndcg_cut_4": 0.4672390440360399
-    }
+  "goes well with jam": {
+    "ndcg_cut_4": 0.4672390440360399
+  }
 }
 ```
 
@@ -241,6 +240,6 @@ results = evaluator.evaluate(run)
 This article gave a brief overview of the most popular evaluation metrics used in search and recommendation systems: Precision@K, recall@K, MRR@K, MAP@K, and NDCG@K. We have also discussed that MAP@K is most popular for evaluating recommendation systems, while NDCG@K is highly popular for evaluating retrieval systems.
 Additionally, you have learned how to calculate each of these metrics and how to implement their calculation in Python with the `pytrec_eval` library. You can review the implementation details by checking out the code in the [related GitHub repository](https://github.com/weaviate/recipes/blob/main/weaviate-features/evaluation/evaluation_metrics_information_retrieval.ipynb).
 
-import WhatNext from '/_includes/what-next.mdx';
+import WhatNext from "/_includes/what-next.mdx";
 
 <WhatNext />

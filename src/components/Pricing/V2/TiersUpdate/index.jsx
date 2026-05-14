@@ -1,6 +1,6 @@
-import React from 'react';
-import Link from '@docusaurus/Link';
-import styles from './styles.module.scss';
+import React from "react";
+import Link from "@docusaurus/Link";
+import styles from "./styles.module.scss";
 
 function TierCard({
   iconClass,
@@ -8,7 +8,7 @@ function TierCard({
   priceLine,
   blurb,
   ctaLabel,
-  ctaVariant = 'default', // 'default' | 'premium' | 'trial'
+  ctaVariant = "default", // 'default' | 'premium' | 'trial'
   ctaHref,
   features = [],
   variant, // 'free' | 'flex' | 'plus' | 'premium'
@@ -18,13 +18,13 @@ function TierCard({
     ctaVariant && styles[`btn_${ctaVariant}`],
   ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   return (
     <article
       className={[styles.card, variant && styles[`v_${variant}`]]
         .filter(Boolean)
-        .join(' ')}
+        .join(" ")}
     >
       <header className={styles.cardHeader}>
         {/* <span className={[styles.icon, iconClass].filter(Boolean).join(' ')} aria-hidden="true" /> */}
@@ -35,9 +35,9 @@ function TierCard({
       <div className={styles.cardBody}>
         {blurb && <p className={styles.blurb}>{blurb}</p>}
 
-        <Link className={btnClass} to={ctaHref}>
+        <a className={btnClass} href={ctaHref}>
           {ctaLabel}
-        </Link>
+        </a>
       </div>
 
       <hr className={styles.divider} />
@@ -68,9 +68,9 @@ export default function PricingTiers() {
             ctaHref="/go/console"
             features={[
               <>
-                <strong>Free 14-day trial</strong>, then{' '}
-                {'pay\u2011as\u2011you\u2011go'}, monthly instant,{' '}
-                {'no\u2011commit'} entry point.
+                <strong>Free 14-day trial</strong>, then{" "}
+                {"pay\u2011as\u2011you\u2011go"}, monthly instant,{" "}
+                {"no\u2011commit"} entry point.
               </>,
               <>
                 <strong>Sandbox cluster</strong> that delivers Weaviate’s full
@@ -108,8 +108,8 @@ export default function PricingTiers() {
             ctaVariant="flex"
             features={[
               <>
-                <strong>{'Pay\u2011as\u2011you\u2011go'}</strong>, monthly
-                instant, {'no\u2011commit'} entry point.
+                <strong>{"Pay\u2011as\u2011you\u2011go"}</strong>, monthly
+                instant, {"no\u2011commit"} entry point.
               </>,
               <>
                 <strong>Shared cloud cluster</strong> that delivers Weaviate’s

@@ -1,6 +1,6 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
-import styles from './styles.module.scss';
+import Link from "@docusaurus/Link";
+import React from "react";
+import styles from "./styles.module.scss";
 
 export default function RewardProcess() {
   return (
@@ -24,7 +24,7 @@ export default function RewardProcess() {
             <p className={styles.textCardContent}>
               Visit G2 by clicking the button below and leave a review on our
               profile. Please be thorough – your experience is invaluable to
-              folks looking to learn about Weaviate!{' '}
+              folks looking to learn about Weaviate!{" "}
               <strong>Make sure to take a screenshot of your review.</strong>
             </p>
           </div>
@@ -51,9 +51,9 @@ export default function RewardProcess() {
             </p>
           </div>
           <div className={styles.buttons}>
-            <Link className={styles.buttonGradient} to="#Form">
+            <a className={styles.buttonGradient} href="#Form">
               Complete Form
-            </Link>
+            </a>
           </div>
         </div>
       </div>
