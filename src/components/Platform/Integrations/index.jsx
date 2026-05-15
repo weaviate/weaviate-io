@@ -1,111 +1,78 @@
-import React from 'react';
-import { ButtonContainer } from '../../../theme/Buttons';
-import styles from './styles.module.scss';
-import { LinkButton } from '/src/theme/Buttons';
-import Link from '@docusaurus/Link';
+import Link from "@docusaurus/Link";
+import React from "react";
+import styles from "./styles.module.scss";
+
+const logos = [
+  {
+    className: "logoGoogle",
+    to: "https://docs.weaviate.io/weaviate/model-providers/google",
+  },
+  {
+    className: "logoCo",
+    to: "https://docs.weaviate.io/weaviate/model-providers/cohere/embeddings",
+  },
+  {
+    className: "logoAI",
+    to: "https://docs.weaviate.io/weaviate/model-providers/openai/embeddings",
+  },
+  {
+    className: "logoH",
+    to: "https://docs.weaviate.io/weaviate/model-providers",
+  },
+  {
+    className: "logoHaystack",
+    to: "https://haystack.deepset.ai/integrations/weaviate-document-store",
+  },
+  {
+    className: "logoStreamlit",
+    to: "https://github.com/weaviate/st-weaviate-connection",
+  },
+];
+
+const loopedLogos = [...logos, ...logos];
 
 export default function Integrations() {
   return (
-    <div className={styles.integrationsSection}>
+    <section className={styles.integrationsSection}>
       <div className="container">
-        <div className={styles.box}>
-          <div className={styles.right}>
-            <h2>20+ Ecosystem Integrations</h2>
-            <p>Move faster with direct integration into the ML ecosystem.</p>
-          </div>
+        <div className={styles.heading}>
+          <h2>20+ Ecosystem Integrations</h2>
+          <p>Move faster with direct integration into the ML ecosystem.</p>
         </div>
       </div>
 
-      <div className={styles.integrationsLogos} id={'interLogos'}>
-        <div className={styles.inside}>
-          <Link to="https://docs.weaviate.io/weaviate/model-providers/openai/embeddings">
-            <div className={styles.logoBg}>
-              <span className={styles.logoGoogle} />
-            </div>
-          </Link>
-          <Link to="https://docs.weaviate.io/weaviate/model-providers/cohere/embeddings">
-            <div className={styles.logoBg}>
-              <span className={styles.logoCo} />
-            </div>
-          </Link>
-          <Link to="https://docs.weaviate.io/weaviate/model-providers/openai/embeddings">
-            <div className={styles.logoBg}>
-              <span className={styles.logoAI} />
-            </div>
-          </Link>
-          <Link to="https://docs.weaviate.io/weaviate/model-providers/cohere/embeddings">
-            <div className={styles.logoBg}>
-              <span className={styles.logoH} />
-            </div>
-          </Link>
-          <Link to="https://haystack.deepset.ai/integrations/weaviate-document-store">
-            <div className={styles.logoBg}>
-              <span className={styles.logoHaystack} />
-            </div>
-          </Link>
-          <Link to="https://github.com/weaviate/st-weaviate-connection">
-            <div className={styles.logoBg}>
-              <span className={styles.logoStreamlit} />
-            </div>
-          </Link>
-        </div>
+      <div className={styles.integrationsLogos}>
+        <div className={styles.fadeLeft} />
+        <div className={styles.fadeRight} />
 
-        <div className={styles.inside}>
-          <Link to="https://docs.weaviate.io/weaviate/model-providers/openai/embeddings">
-            <div className={styles.logoBg}>
-              <span className={styles.logoGoogle} />
-            </div>
-          </Link>
-          <Link to="https://docs.weaviate.io/weaviate/model-providers/cohere/embeddings">
-            <div className={styles.logoBg}>
-              <span className={styles.logoCo} />
-            </div>
-          </Link>
-          <Link to="https://docs.weaviate.io/weaviate/model-providers/openai/embeddings">
-            <div className={styles.logoBg}>
-              <span className={styles.logoAI} />
-            </div>
-          </Link>
-          <Link to="https://docs.weaviate.io/weaviate/model-providers/cohere/embeddings">
-            <div className={styles.logoBg}>
-              <span className={styles.logoH} />
-            </div>
-          </Link>
-          <Link to="https://haystack.deepset.ai/integrations/weaviate-document-store">
-            <div className={styles.logoBg}>
-              <span className={styles.logoHaystack} />
-            </div>
-          </Link>
-          <Link to="https://github.com/weaviate/st-weaviate-connection">
-            <div className={styles.logoBg}>
-              <span className={styles.logoStreamlit} />
-            </div>
-          </Link>
-        </div>
-      </div>
-
-      <div className="container">
-        <div className={styles.boxes}>
-          <div className={`${styles.card} ${styles.longCard}`}>
-            <div className={styles.contentDiv}>
-              <h3 className={styles.cTextColor}>
-                “Weaviate's batteries-included approach, incorporating both
-                model serving and multi-tenancy, has helped us quickly prototype
-                and build our vector search at Stack.”
-              </h3>
-              <p>
-                Constantine Kokkinos,<br></br> Stack Overflow
-              </p>
-              <div className={styles.buttons}>
-                <Link className={styles.buttonGradient} to="/go/console">
-                  Start Building with Weaviate
-                </Link>
+        <div className={styles.logoTrack}>
+          {loopedLogos.map((logo, index) => (
+            <Link key={`${logo.className}-${index}`} to={logo.to}>
+              <div className={styles.logoBg}>
+                <span className={styles[logo.className]} />
               </div>
-            </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      <div className="container">
+        <div className={styles.quoteCard}>
+          <div className={styles.quoteInner}>
+            <h3>
+              “Weaviate&apos;s batteries-included approach, incorporating both
+              model serving and multi-tenancy, has helped us quickly prototype
+              and build our vector search at Stack.”
+            </h3>
+
+            <p>Constantine Kokkinos, Stack Overflow</p>
+
+            <Link className={styles.buttonGradient} to="/go/console">
+              Start Building with Weaviate
+            </Link>
           </div>
         </div>
       </div>
-      <div className={styles.safetyTypeBottom} />
-    </div>
+    </section>
   );
 }

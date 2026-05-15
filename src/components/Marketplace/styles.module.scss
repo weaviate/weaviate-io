@@ -191,7 +191,7 @@
 
 .knowledgeHeader {
   background: #111111;
-  background-image: url('/img/site/home-page-bg-pattern.svg') !important;
+  background-image: url("/img/site/home-page-bg-pattern.svg") !important;
   background-size: cover;
 }
 
@@ -334,7 +334,7 @@
     margin: 4px;
     color: #111111;
     text-align: center;
-    font-family: 'Plus Jakarta Sans';
+    font-family: "Plus Jakarta Sans";
     font-size: 0.625rem;
     font-style: normal;
     font-weight: 600;
@@ -660,7 +660,7 @@
     margin: 4px;
     color: #fff;
     text-align: center;
-    font-family: 'Plus Jakarta Sans';
+    font-family: "Plus Jakarta Sans";
     font-size: 0.625rem;
     font-style: normal;
     font-weight: 600;
@@ -770,14 +770,14 @@
 
     .relatedTitle {
       color: #d0d8ea;
-      font-family: 'Plus Jakarta Sans';
+      font-family: "Plus Jakarta Sans";
       font-size: 0.8rem;
       font-weight: 300;
     }
 
     .relatedSubtitle {
       color: #b7c2da;
-      font-family: 'Plus Jakarta Sans';
+      font-family: "Plus Jakarta Sans";
       font-size: 0.6rem;
       font-weight: 600;
 
@@ -804,7 +804,7 @@
   }
 
   .relatedImage {
-    background-image: url('/img/site/related-posts-image.png');
+    background-image: url("/img/site/related-posts-image.png");
     background-size: contain;
     background-repeat: no-repeat;
     width: 9rem;
@@ -1098,7 +1098,7 @@
   width: 36.875rem;
   height: 20rem;
   flex-shrink: 0;
-  background: url('/img/site/workbench-overview-bg.png') no-repeat center center;
+  background: url("/img/site/workbench-overview-bg.png") no-repeat center center;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1366,7 +1366,7 @@
 }
 
 .appCard {
-  background: #121722;
+  background: #1a1a1a;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   border: 1px solid #2a2f3f;
@@ -1392,7 +1392,7 @@
 .appCard h3 {
   margin: 15px 0;
   color: #edf4ff;
-  font-family: 'Plus Jakarta Sans';
+  font-family: "Plus Jakarta Sans";
   font-size: 1rem;
   font-style: normal;
   font-weight: 700;
@@ -1472,7 +1472,7 @@
 }
 
 .heart {
-  background-image: url('/img/site/apps-heart-icon.svg');
+  background-image: url("/img/site/apps-heart-icon.svg");
   background-size: contain;
   width: 0.625rem;
   height: 0.5625rem;
@@ -1610,7 +1610,7 @@
 }
 
 .home {
-  background-image: url('/img/site/apps-home-icon.svg');
+  background-image: url("/img/site/apps-home-icon.svg");
   background-size: contain;
   width: 0.84375rem;
   height: 0.9375rem;
@@ -1618,7 +1618,7 @@
 }
 
 .arrow {
-  background-image: url('/img/site/apps-polygon-icon.svg');
+  background-image: url("/img/site/apps-polygon-icon.svg");
   background-size: contain;
   width: 0.5625rem;
   height: 0.5625rem;

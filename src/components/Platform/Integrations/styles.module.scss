@@ -1,458 +1,215 @@
-[data-theme='light'] {
-  .box {
-    .left {
-      .inside {
-        .logoAI {
-          background-image: url('/img/site/openai-logo.png');
-        }
-        .logoH {
-          background-image: url('/img/site/higgingface-logo.png');
-        }
-        .logoJ {
-          background-image: url('/img/site/jina-logo.png');
-        }
-        .logoD {
-          background-image: url('/img/site/deepset-logo.png');
-        }
-        .logoCo {
-          background-image: url('/img/site/cohere-logo.png');
-        }
-        .logoW {
-          background-image: url('/img/site/wp-solar-logo.png');
-        }
-        .logoG {
-          background-image: url('/img/site/googleAI.png');
-        }
-        .logoL {
-          background-image: url('/img/site/langchain-logo.png');
-        }
-        .logoLa {
-          background-image: url('/img/site/lama-logo.png');
-        }
-      }
-    }
-  }
+.integrationsSection {
+  background: #111111;
+  overflow: hidden;
+  padding: clamp(56px, 7vw, 96px) 0;
 }
 
-.integrationsSection {
-  background: #ededed;
+.heading {
+  max-width: 820px;
+  margin-bottom: 42px;
+
+  h2 {
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans" !important;
+    font-size: clamp(2rem, 4vw, 3rem) !important;
+    font-weight: 600 !important;
+    line-height: 120% !important;
+    letter-spacing: -0.035em;
+    margin: 0 0 1rem;
+  }
+
+  p {
+    color: #b9c8de !important;
+    font-family: Inter !important;
+    font-size: 1.125rem !important;
+    line-height: 160% !important;
+    margin: 0;
+  }
 }
 
 .integrationsLogos {
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-  justify-content: space-around;
+  position: relative;
   overflow: hidden;
-
-  @media screen and (max-width: 500px) {
-    padding: 9px;
-    height: 140px;
-    overflow: hidden;
-  }
-
-  .logoBg {
-    border-radius: 0.9375rem;
-    border: 1px solid #130c49;
-    width: 14.375rem;
-    display: flex;
-    height: 5.9375rem;
-    flex-shrink: 0;
-    background: #fff;
-    box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
-    align-items: center;
-    scroll-snap-align: center;
-    margin: 0 10px;
-  }
-
-  .inside {
-    display: flex;
-    padding-bottom: 4rem;
-
-    animation: scrollSide 40s linear infinite;
-
-    @keyframes scrollSide {
-      0% {
-        transform: translateX(50%);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-
-    .integrationsLogos:hover {
-      animation-play-state: paused;
-    }
-
-    .logoAI {
-      width: 100%;
-      height: 2rem;
-      background-image: url('/img/site/openai-logo-light.png');
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-    }
-    .logoH {
-      width: 100%;
-      height: 2rem;
-      background-image: url('/img/site/higgingface-logo-light.png');
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-    }
-    .logoJ {
-      width: 100%;
-      height: 2rem;
-      background-image: url('/img/site/jina-logo-light.png');
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-    }
-    .logoD {
-      width: 100%;
-      height: 2rem;
-      background-image: url('/img/site/deepset-logo-light.png');
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-    }
-    .logoCo {
-      width: 100%;
-      height: 2rem;
-      background-image: url('/img/site/cohere-logo-light.png');
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-    }
-    .logoW {
-      width: 100%;
-      height: 2rem;
-      background-image: url('/img/site/wp-solar-logo-light.png');
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-    }
-
-    .logoG {
-      width: 100%;
-      height: 2rem;
-      background-image: url('/img/site/googleAI.png');
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-    }
-    .logoL {
-      width: 100%;
-      height: 2rem;
-      background-image: url('/img/site/langchain-logo.png');
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-    }
-    .logoLa {
-      width: 100%;
-      height: 2rem;
-      background-image: url('/img/site/lama-logo.png');
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-    }
-    .logoGoogle {
-      width: 100%;
-      height: 2rem;
-      background-image: url('/img/site/google-logo.svg');
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-    }
-
-    .logoHaystack {
-      width: 100%;
-      height: 2rem;
-      background-image: url('/img/site/haystack-logo.svg');
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-    }
-
-    .logoStreamlit {
-      width: 100%;
-      height: 2rem;
-      background-image: url('/img/site/streamlit-logo.svg');
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-    }
-  }
+  margin: 0 0 clamp(56px, 7vw, 96px);
 }
 
-.integrationsLogos:hover {
-  .inside {
+.fadeLeft,
+.fadeRight {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 120px;
+  pointer-events: none;
+}
+
+.fadeLeft {
+  left: 0;
+  background: linear-gradient(90deg, #111111 0%, rgba(17, 17, 17, 0) 100%);
+}
+
+.fadeRight {
+  right: 0;
+  background: linear-gradient(270deg, #111111 0%, rgba(17, 17, 17, 0) 100%);
+}
+
+.logoTrack {
+  display: flex;
+  width: max-content;
+  gap: 18px;
+  animation: scrollSide 42s linear infinite;
+
+  &:hover {
     animation-play-state: paused;
   }
 }
-.mobileIntegrations {
-  display: none !important;
 
-  @media screen and (max-width: 500px) {
-    display: flex !important;
-  }
-}
-
-.box {
+.logoBg {
+  width: 196px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #151515;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding-top: 4rem;
-
-  @media screen and (max-width: 580px) {
-    flex-direction: column-reverse;
-  }
-  .left {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    gap: 30px;
-    justify-content: center;
-
-    .inside {
-      display: flex;
-
-      @media screen and (max-width: 500px) {
-        flex-direction: row;
-        gap: 20px;
-        display: flex;
-      }
-
-      .logoAI {
-        width: 100%;
-        height: 2rem;
-        background-image: url('/img/site/openai-logo.png');
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
-      }
-      .logoH {
-        width: 100%;
-        height: 2rem;
-        background-image: url('/img/site/higgingface-logo.png');
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
-      }
-      .logoJ {
-        width: 100%;
-        height: 2rem;
-        background-image: url('/img/site/jina-logo.png');
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
-      }
-      .logoD {
-        width: 100%;
-        height: 2rem;
-        background-image: url('/img/site/deepset-logo.png');
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
-      }
-      .logoCo {
-        width: 100%;
-        height: 2rem;
-        background-image: url('/img/site/cohere-logo.png');
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
-      }
-      .logoW {
-        width: 100%;
-        height: 2rem;
-        background-image: url('/img/site/wp-solar-logo.png');
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
-      }
-      .logoG {
-        width: 100%;
-        height: 2rem;
-        background-image: url('/img/site/googleAI.png');
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
-      }
-      .logoL {
-        width: 100%;
-        height: 2rem;
-        background-image: url('/img/site/langchain-logo.png');
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
-      }
-      .logoLa {
-        width: 100%;
-        height: 2rem;
-        background-image: url('/img/site/lama-logo.png');
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
-      }
-    }
-  }
-  .right {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 60%;
-
-    @media screen and (max-width: 768px) {
-      width: 100%;
-    }
-  }
-}
-
-.boxes {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
+  justify-content: center;
+  padding: 0 22px;
+  transition: all 0.25s ease;
 
-.card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.22);
+    background: #191919;
+  }
 
-  width: 14.3125rem;
-  height: 19.75rem;
-
-  background-color: #141f39;
-  margin: 1rem;
-  padding: 2rem;
-
-  border-radius: 0.4375rem;
-  border-radius: 0.4375rem;
-  background: #fff;
-  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
-
-  @media screen and (max-width: 600px) {
-    height: auto;
+  span {
     width: 100%;
+    height: 28px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    display: block;
+    filter: grayscale(1) brightness(1.6);
+    opacity: 0.9;
   }
 }
 
-.longCard {
-  width: 92%;
-  display: flex;
-  flex-direction: column;
+.logoAI {
+  background-image: url("/img/site/openai-logo-light.png");
+}
+
+.logoH {
+  background-image: url("/img/site/higgingface-logo-light.png");
+}
+
+.logoCo {
+  background-image: url("/img/site/cohere-logo-light.png");
+}
+
+.logoGoogle {
+  background-image: url("/img/site/google-logo.svg");
+}
+
+.logoHaystack {
+  background-image: url("/img/site/haystack-logo.svg");
+}
+
+.logoStreamlit {
+  background-image: url("/img/site/streamlit-logo.svg");
+}
+
+.quoteCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2rem;
+  padding: clamp(48px, 7vw, 88px);
+  background:
+    radial-gradient(
+      circle at 8% 90%,
+      rgba(0, 254, 107, 0.28) 0%,
+      rgba(0, 254, 107, 0) 34%
+    ),
+    radial-gradient(
+      circle at 92% 20%,
+      rgba(0, 183, 226, 0.24) 0%,
+      rgba(0, 183, 226, 0) 38%
+    ),
+    linear-gradient(
+      48deg,
+      rgba(0, 254, 107, 0.2) 13.81%,
+      rgba(0, 183, 226, 0.22) 92.18%
+    );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.3);
+}
+
+.quoteInner {
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+
+  h3 {
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans" !important;
+    font-size: clamp(1.5rem, 3vw, 2.25rem) !important;
+    font-weight: 500 !important;
+    line-height: 145% !important;
+    margin: 0;
+  }
+
+  p {
+    color: #b9c8de !important;
+    font-family: Inter !important;
+    font-size: 1.05rem !important;
+    line-height: 160% !important;
+    margin: 24px 0 0;
+  }
+}
+
+.buttonGradient {
+  margin-top: 32px;
+  min-height: 54px;
+  min-width: 260px;
+  display: inline-flex;
   align-items: center;
-  height: 400px;
-  gap: 20px;
-  z-index: 1;
-  flex-wrap: nowrap;
-  background: #ffffff !important;
   justify-content: center;
-  background-image: url('/img/site/home-page-bg-pattern.svg') !important;
-  background-size: cover !important;
+  border-radius: 0.75rem;
+  background: #6be38c;
+  color: #111111 !important;
+  font-family: Inter;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none !important;
+  transition: all 0.25s ease;
 
-  .cTextColor {
-    color: #130c49;
-    text-align: center;
-    font-family: Plus Jakarta Sans;
-    font-size: 1.5rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 150%; /* 2.25rem */
-  }
-  @media screen and (max-width: 1000px) {
-    height: auto;
-    min-height: 205px;
-    width: 100%;
-  }
-
-  @media screen and (max-width: 500px) {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .contentDiv {
-    height: 100%;
-    width: 50%;
-    margin: 50px;
-    text-align: center;
-
-    br {
-      display: none;
-    }
-
-    @media screen and (max-width: 500px) {
-      width: 100%;
-      br {
-        display: inherit;
-      }
-    }
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 44px rgba(0, 254, 107, 0.18);
   }
 }
 
-.safetyTypeBottom {
-  width: 100%;
-  height: 186px;
-  background: #130c49;
-  margin-top: -200px;
+@keyframes scrollSide {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
-.longHead {
-  grid-template-columns: 1fr;
-}
-
-.buttons {
-  margin-top: 30px;
-  gap: 20px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-
-  a {
-    height: 45px;
-    width: 278px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    text-decoration: none;
+@media screen and (max-width: 600px) {
+  .fadeLeft,
+  .fadeRight {
+    width: 48px;
   }
 
-  .buttonGradient {
-    border-radius: 0.3125rem;
-    outline: 1px solid #130c49;
-    background: #61bd73;
-    transition: all 1s ease-out;
-    color: #130c49;
+  .logoBg {
+    width: 168px;
+    height: 56px;
   }
 
-  .buttonGradient:hover {
-    border-radius: 0.3125rem;
-    outline: 1px solid #ffffff;
-    background: rgb(15, 0, 50);
-    color: #fff;
-  }
-
-  .buttonOutline {
-    outline: 1px solid #ffffff;
-    color: #fff;
-    transition: all 1s ease-out;
-    background-color: #130c49;
-  }
-
-  .buttonOutline:hover {
-    border-radius: 0.3125rem;
-    outline: 1px solid #130c49;
-    background: rgb(97 189 115);
-    color: #130c49;
-    outline: 1px solid #130c49;
+  .quoteCard {
+    padding: 32px 24px;
   }
 }

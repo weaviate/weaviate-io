@@ -311,7 +311,7 @@
 
 :root {
   --darkColor: #130c49;
-  --ink: #130c49;
+  --ink: #dedcef;
   --inkSub: #8396b1;
   --paper: #f7f9fd;
   --accent: #61bd73;
@@ -319,8 +319,8 @@
 
 .groupLabel {
   margin: 0.75rem 0 0.75rem;
-  color: var(--ink);
-  font-family: 'Plus Jakarta Sans';
+  color: var(--ink) !important;
+  font-family: "Plus Jakarta Sans";
   font-weight: 700;
   font-size: 1.1rem;
 }
@@ -343,9 +343,9 @@
   gap: 0.5rem;
   text-decoration: none;
 
-  background: var(--darkColor);
+  background: #1a1a1a;
   color: #f7f9fd;
-  border: 1px solid rgba(19, 12, 73, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 12px;
   padding: 16px 18px;
   min-height: 150px;
@@ -357,8 +357,8 @@
 
   &:hover {
     transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(19, 12, 73, 0.15);
-    border-color: rgba(19, 12, 73, 0.4);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.4);
   }
 }
 
@@ -399,7 +399,7 @@
 
 .resTitle {
   margin: 0;
-  font-family: 'Plus Jakarta Sans';
+  font-family: "Plus Jakarta Sans";
   font-weight: 700;
   line-height: 1.25;
   font-size: 1rem;
@@ -429,16 +429,6 @@
 
 .sectionDesc {
   margin: 1rem 0rem;
-}
-
-.cardTag {
-  display: inline-block;
-  background-color: #f0f0f0;
-  border: 1px solid #c0bdbd;
-  padding: 0.25rem 0.5rem;
-  margin: 0.25rem 0.25rem 0.25rem 0rem;
-  border-radius: 4px;
-  font-size: 13px;
 }
 
 .lede {
