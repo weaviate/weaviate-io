@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './styles.module.scss';
-import Link from '@docusaurus/Link';
+import React from "react";
+import styles from "./styles.module.scss";
+import Link from "@docusaurus/Link";
 
 export default function PricingSandBox() {
   return (
@@ -15,7 +15,7 @@ export default function PricingSandBox() {
           support and vector database training options to accelerate adoption
           and success.
         </p>
-        <Link className={styles.supportURL} to="deployment/enablement">
+        <Link className={styles.supportURL} to="/deployment/enablement">
           Learn More
         </Link>
       </div>

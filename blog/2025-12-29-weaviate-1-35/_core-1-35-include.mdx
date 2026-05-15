@@ -1,0 +1,554 @@
+Weaviate `v1.35` is now available open-source and on [Weaviate Cloud](https://console.weaviate.cloud).
+
+This release introduces powerful new lifecycle management capabilities with **Object Time-to-Live (TTL)**, and improved backup performance with **zstd compression support**. We're also excited to announce that **flat index RQ quantization moves to general availability** and the **Java v6 client is officially released**!
+
+Additionally, `v1.35` brings **multimodal embeddings with Weaviate Embeddings**, making it easier than ever to build document retrieval applications, along with **runtime configurable OIDC certificates** for enhanced security flexibility and **database operational modes**.
+
+These improvements help make Weaviate more flexible, performant, and easier to operate at scale.
+
+Here are the release ⭐️*highlights*⭐️!
+
+![Weaviate 1.35 is released](./img/hero.png)
+
+- [Object Time-to-Live (TTL)](#object-time-to-live-ttl)
+- [Java v6 Client - General Availability](#java-v6-client---general-availability)
+- [Flat Index RQ Quantization - General Availability](#flat-index-rq-quantization---general-availability)
+- [Enhanced Backup Compression](#enhanced-backup-compression)
+- [Weaviate Embeddings - Multimodal Support](#weaviate-embeddings---multimodal-support)
+- [Runtime Configurable OIDC Certificates](#runtime-configurable-oidc-certificates)
+- [Database Operational Modes](#database-operational-modes)
+- [Multiple performance improvements and fixes](#multiple-performance-improvements-and-fixes)
+- [Community contributions](#community-contributions)
+
+## Object Time-to-Live (TTL)
+
+Weaviate `v1.35` introduces **Object Time-to-Live (TTL)** as a technical preview, enabling automatic deletion of objects after a specified time period. This powerful lifecycle management feature helps you maintain clean data stores, comply with retention policies, and reduce storage costs.
+
+TTL can be configured at the collection level in three ways:
+
+### Relative to Creation Time
+
+Set objects to expire after a fixed duration from when they were created:
+
+```python
+import datetime
+from weaviate.classes.config import Configure, Property, DataType
+
+client.collections.create(
+    name="SessionLogs",
+    properties=[
+        Property(name="data", data_type=DataType.TEXT),
+    ],
+    object_ttl_config=Configure.ObjectTTL.delete_by_creation_time(
+        time_to_live=datetime.timedelta(hours=24),  # Expire after 24 hours
+        filter_expired_objects=True,  # Exclude expired objects from queries
+    ),
+)
+```
+
+### Relative to Last Update Time
+
+Set objects to expire based on when they were last modified:
+
+```python
+client.collections.create(
+    name="CacheData",
+    properties=[
+        Property(name="data", data_type=DataType.TEXT),
+    ],
+    object_ttl_config=Configure.ObjectTTL.delete_by_update_time(
+        time_to_live=datetime.timedelta(days=7),  # Expire 7 days after last update
+        filter_expired_objects=True,
+    ),
+)
+```
+
+### Relative to a DATE Property
+
+Set objects to expire relative to a specific date field in your data:
+
+```python
+client.collections.create(
+    name="Events",
+    properties=[
+        Property(name="event_date", data_type=DataType.DATE),
+        Property(name="title", data_type=DataType.TEXT),
+    ],
+    object_ttl_config=Configure.ObjectTTL.delete_by_date_property(
+        property_name="event_date",
+        ttl_offset=datetime.timedelta(days=30)  # Expire 30 days after event_date
+    ),
+)
+```
+
+**Key Features:**
+
+- **Flexible expiration strategies** - Choose the approach that fits your use case
+- **Optional query filtering** - Exclude expired objects from results before deletion runs
+- **Configurable deletion schedule** - Control when background cleanup occurs
+- **Multi-tenant aware** - Respects tenant activity states
+
+:::caution Technical Preview
+
+Object TTL is currently a **technical preview** feature for self-hosted Weaviate instances. It is not yet available in Weaviate Cloud instances.
+
+:::
+
+:::info Use Cases
+
+- **Session management** - Auto-delete expired user sessions
+- **Cache invalidation** - Remove stale cached data automatically
+- **Compliance** - Enforce data retention policies
+- **Event archival** - Remove old event data after a retention period
+
+:::
+
+## Java v6 Client - General Availability
+
+We're thrilled to announce that the **Java v6 client is now generally available**! This complete rewrite of the Java client provides a modern, idiomatic API that makes working with Weaviate more intuitive and enjoyable for Java developers.
+
+### What's New in Java v6
+
+The Java v6 client brings:
+
+- **Fluent, builder-style API** - More readable and maintainable code
+- **Full gRPC support** - More performant data operations
+- **Better type safety** - Catch errors at compile time
+- **Improved collection management** - Easier configuration and operations
+- **Enhanced query builders** - More intuitive search operations
+- **Better error handling** - Clear, actionable error messages
+
+### Example Usage
+
+Here's how easy it is to get started with Java v6:
+
+```java
+WeaviateClient client = WeaviateClient.connectToWeaviateCloud(
+    weaviateUrl,
+    weaviateApiKey
+);
+
+// Create a collection with vector configuration
+client.collections.create(
+    "Movie",
+    col -> col
+        .vectorConfig(VectorConfig.text2VecWeaviate())
+        .properties(
+            Property.text("title"),
+            Property.text("description"),
+            Property.text("genre")
+        )
+);
+
+// Insert data
+List<Map<String, Object>> dataObjects = List.of(
+    Map.of(
+        "title", "The Matrix",
+        "description", "A computer hacker learns about the true nature of reality.",
+        "genre", "Science Fiction"
+    ),
+    Map.of(
+        "title", "Spirited Away",
+        "description", "A young girl becomes trapped in a mysterious world of spirits.",
+        "genre", "Animation"
+    )
+);
+
+CollectionHandle<Map<String, Object>> movies = client.collections.use("Movie");
+movies.data.insertMany(dataObjects.toArray(new Map[0]));
+
+// Perform a vector search
+var response = movies.query.nearText("sci-fi", q -> q.limit(2));
+
+for (var obj : response.objects()) {
+    System.out.println(obj.properties());
+}
+
+client.close();
+```
+
+:::info Related resources
+
+- [Java v6 Client Documentation](https://docs.weaviate.io/weaviate/client-libraries/java)
+- [Java v6 GitHub Repository](https://github.com/weaviate/java-client)
+
+:::
+
+## Flat Index RQ Quantization - General Availability
+
+**Flat index with RQ quantization**, introduced as a preview in `v1.34`, is now **generally available** in Weaviate `v1.35`!
+
+This powerful combination delivers:
+
+- **Faster querying** - Smaller vector sizes lead to better query performance
+- **Memory efficiency** - Up to 4x-32x compression with 8-bit or 1-bit RQ
+- **Perfect for multi-tenancy** - Ideal for many small tenants where brute-force search is fast enough
+- **Production-ready** - Thoroughly tested and optimized for real-world workloads
+
+### Quantization Options
+
+Both **8-bit RQ** and **1-bit RQ** are now GA for flat indexes:
+
+```python
+from weaviate.classes.config import Configure
+
+# 8-bit RQ for high recall
+client.collections.create(
+    name="ProductCatalog",
+    vector_config=Configure.Vectors.text2vec_openai(),
+    vector_index_config=Configure.VectorIndex.flat(),
+    quantizer=Configure.VectorIndex.Quantizer.rq(
+        compression_level=8  # 8-bit quantization
+    )
+)
+
+# 1-bit RQ for maximum compression
+client.collections.create(
+    name="LogEmbeddings",
+    vector_config=Configure.Vectors.text2vec_openai(),
+    vector_index_config=Configure.VectorIndex.flat(),
+    quantizer=Configure.VectorIndex.Quantizer.rq(
+        compression_level=1  # 1-bit quantization
+    )
+)
+```
+
+| Quantization | Memory Reduction | Recall (rescore limit 100) | Use Case                           |
+| ------------ | ---------------- | -------------------------- | ---------------------------------- |
+| **8-bit RQ** | 4x               | ~100%                      | High accuracy requirements         |
+| **1-bit RQ** | 32x              | ~100%                      | Maximum compression, good accuracy |
+
+Flat index RQ quantization works seamlessly with dynamic indexing, allowing tenants to automatically upgrade to HNSW as they grow.
+
+#### Default Compression for New Collections
+
+Weaviate `v1.35` continues to optimize default settings for new collections. While RQ compression has been available for HNSW indexes since `v1.33`, **Flat and dynamic indexes** now also support default quantization settings.
+
+### Setting Default Quantization
+
+```bash
+# Set 8-bit RQ as default for all new collections
+DEFAULT_QUANTIZATION: 'rq8'
+
+# Options: none, rq8, rq1, bq, pq, sq
+```
+
+This ensures consistent compression across your collections while still allowing per-collection overrides when needed.
+
+:::info Related resources
+
+- [Concepts: Vector Quantization](https://docs.weaviate.io/weaviate/concepts/vector-quantization)
+- [How-to: Configure RQ Compression](https://docs.weaviate.io/weaviate/configuration/compression/rq-compression)
+
+:::
+
+## Enhanced Backup Compression
+
+Weaviate `v1.35` introduces **zstd compression support** for backups, offering significantly better compression performance compared to the default gzip compression.
+
+[Zstandard (zstd)](https://facebook.github.io/zstd/) is a modern compression algorithm that provides:
+
+- **Better compression ratios** - Smaller backup files
+- **Faster compression speed** - Reduced backup time
+- **Faster decompression** - Quicker restore operations
+- **Tunable compression levels** - Balance between speed and compression
+
+:::info
+
+`zstd` compression was added to these Weaviate versions: `v1.35.0`, `v1.34.1`, `v1.33.6` and `v1.32.18`.
+
+:::
+
+### Available Compression Options
+
+```python
+# Using zstd compression
+client.backup.create(
+    backup_id="my-backup",
+    backend="s3",
+    include_collections=["MyCollection"],
+    compression_level="ZstdDefaultCompression"  # or ZstdBestSpeed, ZstdBestCompression
+)
+
+# Traditional gzip compression (still available)
+client.backup.create(
+    backup_id="my-backup",
+    backend="s3",
+    include_collections=["MyCollection"],
+    compression_level="DefaultCompression"  # or BestSpeed, BestCompression
+)
+
+# Disable compression
+client.backup.create(
+    backup_id="my-backup",
+    backend="s3",
+    include_collections=["MyCollection"],
+    compression_level="NoCompression"
+)
+```
+
+### Compression Level Options
+
+**For zstd (Weaviate v1.35+):**
+
+- `ZstdDefaultCompression` - Balanced speed and compression
+- `ZstdBestSpeed` - Fastest compression
+- `ZstdBestCompression` - Maximum compression ratio
+
+**Note:** `zstd` compression is available in Weaviate `v1.35.0`, `v1.34.1`, `v1.33.6`, and `v1.32.18` or higher.
+
+:::info Related resources
+
+- [Configuration: Backups](https://docs.weaviate.io/deploy/configuration/backups)
+- [Zstandard Homepage](https://facebook.github.io/zstd/)
+
+:::
+
+## Database Operational Modes
+
+Weaviate `v1.35` introduces **operational modes** that allow you to control what types of operations each node can handle. This is particularly useful for:
+
+- **Load balancing** - Separate read and write traffic
+- **Maintenance operations** - Take nodes offline for writes while serving reads
+- **Scaling scenarios** - Add read-only replicas for query workloads
+- **Backup creation** - Create backups without impacting write performance
+
+### Available Modes
+
+Each Weaviate node can be set to one of four operational modes:
+
+| Mode          | Description   | Operations Allowed                            |
+| ------------- | ------------- | --------------------------------------------- |
+| **ReadWrite** | Default mode  | All read and write operations                 |
+| **WriteOnly** | Write-focused | Only write operations                         |
+| **ReadOnly**  | Read-focused  | Read operations + backup creation             |
+| **ScaleOut**  | Scaling mode  | Same as ReadOnly + replication CUD operations |
+
+### Configuration
+
+Set the operational mode using the `OPERATIONAL_MODE` environment variable:
+
+```bash
+# Set node to read-only mode
+OPERATIONAL_MODE: 'ReadOnly'
+```
+
+You can also change the operational mode at runtime using the [runtime configuration](https://docs.weaviate.io/deploy/configuration/env-vars/runtime-config) feature:
+
+```yaml
+# overrides.yaml
+operational_mode: ReadOnly
+```
+
+This feature provides fine-grained control over node behavior, enabling more sophisticated deployment architectures.
+
+:::info Related resources
+
+- [Configuration: Status and Operational Modes](https://docs.weaviate.io/deploy/configuration/status#operational-modes)
+- [Configuration: Runtime Configuration](https://docs.weaviate.io/deploy/configuration/env-vars/runtime-config)
+
+:::
+
+## Weaviate Embeddings - Multimodal Support
+
+Weaviate `v1.35` expands **Weaviate Embeddings** to support **multimodal document embeddings**, making it easier to build powerful document retrieval applications.
+
+The new `multi2multivec-weaviate` module enables you to:
+
+- **Embed document images** - Convert pages of documents into searchable vectors
+- **Search with text queries** - Find relevant document pages using natural language
+- **Build RAG applications** - Retrieve specific pages for question-answering systems
+- **Simplify document processing** - No need for external embedding services
+
+### Primary Use Case: Document Retrieval
+
+This integration is optimized for **image-based document retrieval**. Embed images of document pages, then retrieve relevant pages using text queries:
+
+```python
+from weaviate.classes.config import Configure, Property, DataType
+
+# Create collection for document pages
+client.collections.create(
+    "DocumentPages",
+    properties=[
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="doc_page", data_type=DataType.BLOB),  # Store page images
+    ],
+    vector_config=[
+        Configure.MultiVectors.multi2vec_weaviate(
+            name="document",
+            image_field="doc_page",  # Specify which property contains images
+            model="ModernVBERT/colmodernvbert"  # Document retrieval model
+        )
+    ],
+)
+```
+
+### Import Document Pages
+
+```python
+import base64
+
+# Convert image to base64
+def url_to_base64(url):
+    image_response = requests.get(url)
+    return base64.b64encode(image_response.content).decode("utf-8")
+
+collection = client.collections.use("DocumentPages")
+
+with collection.batch.fixed_size(batch_size=10) as batch:
+    for src_obj in source_objects:
+        page_b64 = url_to_base64(src_obj["page_img_path"])
+        batch.add_object(
+            properties={
+                "title": src_obj["title"],
+                "doc_page": page_b64  # Add page image in base64
+            }
+        )
+```
+
+### Search Documents with Text
+
+```python
+# Find relevant document pages using text queries
+collection = client.collections.use("DocumentPages")
+
+response = collection.query.near_text(
+    query="financial statements Q3 2024",
+    limit=5
+)
+
+for obj in response.objects:
+    print(f"Found: {obj.properties['title']}")
+```
+
+### Available Model
+
+Currently, one model is available:
+
+- **ModernVBERT/colmodernvbert** - A late-interaction model fine-tuned for visual document retrieval tasks
+
+This model is specifically designed for document retrieval scenarios, providing excellent performance for finding relevant pages based on text queries.
+
+**Key Benefits:**
+
+- **Seamless integration** - Works with your existing Weaviate Cloud credentials
+- **No external services needed** - Embeddings generated directly by Weaviate
+- **Optimized for documents** - Purpose-built model for document retrieval
+- **Multimodal search** - Text queries on image data
+
+:::info Cloud Only
+
+Weaviate Embeddings (including multimodal support) is only available on Weaviate Cloud instances. It is not available for self-hosted deployments.
+
+:::
+
+:::info Related resources
+
+- [Weaviate Embeddings - Multimodal Documentation](https://docs.weaviate.io/weaviate/model-providers/weaviate/embeddings-multimodal)
+- [Weaviate Embeddings Overview](https://docs.weaviate.io/cloud/embeddings)
+
+:::
+
+## Runtime Configurable OIDC Certificates
+
+Weaviate `v1.35` enhances security flexibility by making **OIDC authentication settings runtime-configurable**. This means you can now update OIDC certificates and authentication parameters without restarting your Weaviate instance.
+
+### Configurable OIDC Parameters
+
+The following OIDC settings can now be updated at runtime:
+
+- `authentication_oidc_certificate` - Update OIDC certificates
+- `authentication_oidc_client_id` - Change client ID
+- `authentication_oidc_groups_claim` - Modify groups claim
+- `authentication_oidc_issuer` - Update issuer URL
+- `authentication_oidc_jwks_url` - Change JWKS endpoint
+- `authentication_oidc_scopes` - Modify scopes
+- `authentication_oidc_skip_client_id_check` - Toggle client ID check
+- `authentication_oidc_username_claim` - Update username claim
+
+### How It Works
+
+Update OIDC settings using runtime configuration without restarting:
+
+```yaml
+# overrides.yaml
+authentication_oidc_certificate: |
+  -----BEGIN CERTIFICATE-----
+  MIIDXTCCAkWgAwIBAgIJAKL0UG+mRKmzMA0GCSqGSIb3DQEBCwUA...
+  -----END CERTIFICATE-----
+authentication_oidc_issuer: 'https://auth.example.com'
+authentication_oidc_client_id: 'weaviate-client'
+```
+
+Weaviate will automatically reload these settings based on your configured `RUNTIME_OVERRIDES_LOAD_INTERVAL` (default: 2 minutes).
+
+### Benefits
+
+- **Zero-downtime updates** - Update authentication without service interruption
+- **Certificate rotation** - Seamlessly rotate OIDC certificates
+- **Dynamic configuration** - Adjust OIDC settings based on operational needs
+- **Faster troubleshooting** - Test different OIDC configurations quickly
+
+This feature is part of Weaviate's broader runtime configuration management system, which allows various settings to be updated on the fly.
+
+:::info Related resources
+
+- [Configuration: Runtime Configuration](https://docs.weaviate.io/deploy/configuration/env-vars/runtime-config)
+- [Configuration: Authentication](https://docs.weaviate.io/deploy/configuration/authentication)
+
+:::
+
+## Multiple Performance Improvements and Fixes
+
+As always, Weaviate `v1.35` includes numerous performance improvements and bugfixes across the codebase. Here are some highlights:
+
+* **Modules & Integrations:** Enhanced support for vectorizer and reranker modules including VoyageAI v3.5, Cohere dimensions and BaseURL settings, Google batch API and batch processing for text2vec/multi2vec modules.
+* **Replication & Scaling:** Replication scaling features with configurable file chunk sizes, improved retry logic, better error handling, and enhanced synchronization capabilities for distributed deployments.
+* **Internal gRPC:** Internal gRPC server implementation as REST cluster API equivalent, with connection management, maintenance mode interceptor, gzip compression, and improved file copy methods.
+* **Performance & Optimization:** Performance improvements including reduced lock contention, optimized segment handling, improved memory management, increased concurrency for batch workers, and better queue worker utilization.
+* **Bug fixes:** Various bug fixes addressing mutex behavior, race conditions, panic prevention, tenant loading issues, cache problems, and compatibility issues with replication snapshots.
+
+These improvements add up to a faster, more stable, and more efficient Weaviate instance. 
+
+We always recommend running the latest version of Weaviate to benefit from these ongoing improvements. 🚀
+
+:::info Related resources
+
+- [Weaviate 1.35: GitHub Release Notes](https://github.com/weaviate/weaviate/releases/tag/v1.35.0)
+
+:::
+
+## Community Contributions
+
+Weaviate is an open-source project, and we're always thrilled to see contributions from our amazing community. Thank you to everyone who contributed to this release!
+
+If you're interested in contributing to Weaviate, please check out our [contribution guide](https://docs.weaviate.io/contributor-guide/), and browse the open issues on [GitHub](https://github.com/weaviate/weaviate/issues). Look for the `good-first-issue` label to find great starting points!
+
+:::info Related resources
+
+- [Contributor Guide](https://docs.weaviate.io/contributor-guide)
+
+:::
+
+## Summary
+
+Weaviate `v1.35` brings powerful new capabilities for lifecycle management, operational flexibility, and document retrieval, while moving key features from preview to general availability.
+
+**Key highlights:**
+
+- **Object TTL** - Automatic object expiration and deletion
+- **Java v6 Client GA** - Modern, idiomatic Java client
+- **Flat Index RQ GA** - Production-ready flat index quantization
+- **Enhanced Backups** - zstd compression for faster, smaller backups
+- **Operational Modes** - Fine-grained control over node behavior
+- **Multimodal Embeddings** - Document retrieval with Weaviate Embeddings
+- **Runtime OIDC** - Dynamic authentication configuration
+
+**Ready to get started?**
+
+The release is available open-source on [GitHub](https://github.com/weaviate/weaviate/releases/tag/v1.35.0) and is already available for new Sandboxes on [Weaviate Cloud](https://console.weaviate.cloud/).
+
+For those upgrading a self-hosted version, please check the [migration guide](https://docs.weaviate.io/deploy/migration#general-upgrade-instructions) for version-specific notes.
+
+Thanks for reading, and happy vector searching! 👋

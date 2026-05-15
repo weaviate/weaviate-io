@@ -42,7 +42,7 @@ Free sandbox clusters for experimentation and prototyping.
 **Support channels:**
 
 - [Community forum](https://forum.weaviate.io)
-- [Slack](https://weaviate.io/slack)
+
 
 Sandboxes are not eligible for paid support.
 <br></br>

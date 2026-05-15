@@ -1,16 +1,27 @@
 ---
-title: What is Agentic RAG
+title: What Is Agentic RAG? From LLM RAG to AI Agents
 slug: what-is-agentic-rag
 authors: [erika, leonie]
 date: 2024-11-05
 tags: ['concepts', 'agents']
 image: ./img/hero.png
-description: 'Learn about Agentic Retrieval Augmented Generation (RAG), including architecture, implementation, and and difference to vanilla RAG.'
+description: 'Learn what Agentic RAG is and how AI agents improve LLM RAG pipelines with tool use, multi-step retrieval, validation, and memory.'
+faq:
+  - question: "What is Agentic RAG?"
+    answer: "Agentic RAG describes an AI agent-based implementation of RAG. It incorporates AI agents into the RAG pipeline to orchestrate its components and perform additional actions beyond simple information retrieval and generation."
+  - question: "How does Agentic RAG work?"
+    answer: "Agentic RAG most commonly refers to using agents in the retrieval component. The agent can retrieve, evaluate, re-retrieve, and validate context before generating the final answer."
+  - question: "What is the difference between Agentic RAG and vanilla RAG?"
+    answer: "Vanilla RAG is typically one-shot retrieval with limited tool access, while Agentic RAG generalizes retrieval with tool use, multi-step retrieval, and validation of retrieved information."
+  - question: "How do you implement Agentic RAG?"
+    answer: "You can build Agentic RAG using language models with function calling or agent frameworks. Both approaches connect an LLM to tools and add routing/looping logic to support retrieval and validation."
+  - question: "Why are enterprises adopting Agentic RAG?"
+    answer: "Enterprises are moving from vanilla RAG to agentic systems to produce more accurate responses, perform tasks autonomously, and better collaborate with humans through tool use and validation."
 ---
 ![Agentic Retrieval Augmented Generation (RAG)](./img/hero.png)
 
 
-While Retrieval-Augmented Generation (RAG) dominated 2023, [agentic workflows are driving massive progress in 2024](https://x.com/AndrewYNg/status/1770897666702233815?lang=en). The usage of AI agents opens up new possibilities for building more powerful, robust, and versatile Large Language Model(LLM)-powered applications. One possibility is enhancing RAG pipelines with AI agents in agentic RAG pipelines.
+While Retrieval-Augmented Generation (RAG), often referred to as LLM RAG, dominated 2023, [agentic workflows are driving massive progress in 2024](https://x.com/AndrewYNg/status/1770897666702233815?lang=en). The usage of AI agents opens up new possibilities for building more powerful, robust, and versatile Large Language Model(LLM)-powered applications. One possibility is enhancing LLM RAG pipelines with AI agents in agentic RAG pipelines. Agentic RAG is a way to make the RAG pipeline more reliable by adding planning, tool use, and validation loops.
 
 This article introduces you to the concept of agentic RAG, its implementation, and its benefits and limitations.
 
@@ -22,7 +33,9 @@ Agentic RAG describes an AI agent-based implementation of RAG. Before we go any 
 
 [Retrieval-Augmented Generation (RAG)](https://weaviate.io/blog/introduction-to-rag) is a technique for building LLM-powered applications. It leverages an external knowledge source to provide the LLM with relevant context and reduce hallucinations.
 
-A naive RAG pipeline consists of a retrieval component (typically composed of an embedding model and a vector database) and a generative component (an LLM). At inference time, the user query is used to run a similarity search over the indexed documents to retrieve the most similar documents to the query and provide the LLM with additional context.
+Many teams also call this LLM RAG or retrieval augmented generation for LLMs, since retrieval supplies the model with external context at inference time.
+
+A naive LLM RAG pipeline consists of a retrieval component (typically composed of an embedding model and a vector database) and a generative component (an LLM). At inference time, the user query is used to run a similarity search over the indexed documents to retrieve the most similar documents to the query and provide the LLM with additional context.
 
 ![Vanilla RAG](./img/Vanilla_RAG.png)
 
@@ -33,7 +46,7 @@ Typical RAG applications have two considerable limitations:
 
 ### What are Agents in AI Systems
 
-With the popularity of LLMs, new paradigms of AI agents and multi-agent systems have emerged. AI agents are LLMs with a role and task that have access to memory and external tools. The reasoning capabilities of LLMs help the agent plan the required steps and take action to complete the task at hand.
+With the popularity of LLMs, new paradigms of AI agents and multi-agent systems have emerged. AI agents are LLM-based systems with a role and task that use tools and agent memory (short-term and long-term) to plan, act, and adapt. The reasoning capabilities of LLMs help the agent plan the required steps and take action to complete the task at hand.
 
 Thus, the core components of an AI agent are:
 
@@ -63,11 +76,15 @@ The process involves the following steps:
 
 Agentic RAG describes an AI agent-based implementation of RAG. Specifically, it incorporates AI agents into the RAG pipeline to orchestrate its components and perform additional actions beyond simple information retrieval and generation to overcome the limitations of the non-agentic pipeline.
 
+In other words, agentic RAG turns retrieval into an iterative process: the agent can retrieve, evaluate, re-retrieve, and validate context before generating the final answer.
+
+This makes agentic RAG more robust than one-shot retrieval in production systems.
+
 > Agentic RAG describes an AI agent-based implementation of RAG.
 
 ### How does Agentic RAG work?
 
-Although agents can be incorporated in different stages of the RAG pipeline, agentic RAG most commonly refers to the use of agents in the retrieval component. 
+Although agents can be incorporated in different stages of the LLM RAG pipeline, agentic RAG most commonly refers to the use of agents in the retrieval component. 
 
 Specifically, the retrieval component becomes agentic through the use of retrieval agents with access to different retriever tools, such as:
 
@@ -76,6 +93,8 @@ Specifically, the retrieval component becomes agentic through the use of retriev
 - Calculator
 - Any API to access software programmatically, such as email or chat programs
 - and many more.
+
+In many systems, retrieved results also act as a form of long-term memory, allowing agents to recall relevant information across steps.
 
 The RAG agent can then reason and act over the following example retrieval scenarios:
 
@@ -112,12 +131,14 @@ While the fundamental concept of RAG (sending a query, retrieving information, a
 
 Think of it this way: Common (vanilla) RAG is like being at the library (before smartphones existed) to answer a specific question. Agentic RAG, on the other hand, is like having a smartphone in your hand with a web browser, a calculator, your emails, etc.
 
-|  | Vanilla RAG | Agentic RAG |
+|  | Vanilla LLM RAG | Agentic RAG |
 | --- | --- | --- |
 | Access to external tools | No | Yes |
 | Query pre-processing | No | Yes |
 | Multi-step retrieval | No | Yes |
 | Validation of retrieved information | No | Yes |
+
+Here, we use “RAG” and “LLM RAG” interchangeably—both refer to retrieval augmented generation for large language models.
 
 ## Implementing Agentic RAG
 
@@ -240,7 +261,7 @@ However, there are always two sides to every coin. Using an AI agent a for subta
 
 ## Summary
 
-This blog discussed the concept of agentic RAG, which involves incorporating agents into the RAG pipeline. Although agents can be used for many different purposes in a RAG pipeline, agentic RAG most often involves using retrieval agents with access to tools to generalize retrieval. 
+This blog discussed the concept of agentic RAG, which involves incorporating agents into the RAG pipeline. Although agents can be used for many different purposes in a RAG pipeline, agentic RAG most often involves using retrieval agents with access to tools to generalize retrieval. Agentic RAG is increasingly used to make LLM RAG pipelines more reliable by adding tool use, multi-step retrieval, and validation.
 
 This article discussed agentic RAG architectures using single-agent and multi-agent systems and their differences from vanilla RAG pipelines. 
 

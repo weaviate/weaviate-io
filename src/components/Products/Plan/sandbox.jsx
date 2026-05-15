@@ -18,10 +18,6 @@ export default function PricingSandBox() {
       <div className={styles.features}>
         <li>
           <div className={styles.checkIcon}></div>
-          <a href="https://weaviate.io/slack"> Public Slack</a>
-        </li>
-        <li>
-          <div className={styles.checkIcon}></div>
           <span>Community support</span>
         </li>
       </div>

@@ -25,11 +25,6 @@ export default function Analytics() {
             <p className={styles.metricsText}>Monthly impressions</p>
           </div>
           <div className={styles.dataBox}>
-            <span>Slack</span>
-            <p className={styles.metrics}>5700+</p>
-            <p className={styles.metricsText}>Community members</p>
-          </div>
-          <div className={styles.dataBox}>
             <span>Website</span>
             <p className={styles.metrics}>100,000+</p>
             <p className={styles.metricsText}>Monthly visitors</p>

@@ -1,19 +1,30 @@
 ---
-title: Introduction to Retrieval Augmented Generation (RAG)
+title: Introduction to LLM RAG - Retrieval Augmented Generation Explained
 slug: introduction-to-rag
 authors: [mary]
 date: 2024-10-15
 tags: ['concepts']
 image: ./img/hero.png
-description: 'Learn about Retrieval Augmented Generation (RAG), including architecture, use cases, implementation, and evaluation.'
+description: 'Learn what LLM RAG (Retrieval Augmented Generation) is, how RAG pipelines work, key use cases, implementation approaches, and evaluation methods.'
+faq:
+  - question: "What is Retrieval-Augmented Generation (RAG)?"
+    answer: "Retrieval-Augmented Generation (RAG) is a framework that augments the general knowledge of a generative LLM by providing it with additional data relevant to the task at hand retrieved from an external data source."
+  - question: "How does RAG work?"
+    answer: "RAG works in two stages: ingestion and inference. During inference, the system retrieves relevant data, augments the user prompt, and generates a response."
+  - question: "How do you implement RAG?"
+    answer: "RAG can be implemented using frameworks like LangChain, LlamaIndex, and DSPy, which provide tools and integrations for building RAG pipelines and connecting to services like vector databases."
+  - question: "How do you evaluate RAG?"
+    answer: "RAG evaluation can be done at the component level (retriever and generator) and end-to-end. This helps ensure both component reliability and overall answer quality."
+  - question: "What is the difference between RAG and fine-tuning?"
+    answer: "Fine-tuning trains a model on domain data to specialize behavior, while RAG retrieves external data at inference time to improve accuracy and reduce hallucinations without retraining."
 ---
 ![Introduction to Retrieval Augmented Generation (RAG)](./img/hero.png)
 
 import Verba from './img/verba_nocompress.mp4';
 
-Despite the steady release of increasingly larger and smarter models, state-of-the-art generative large language models (LLMs) still have a big problem: they struggle with tasks that require specialized knowledge. This lack of specialized knowledge can lead to issues like hallucinations, where the model generates inaccurate or fabricated information. **Retrieval-Augmented Generation (RAG)** helps mitigate this by allowing the model to pull in real-time, niche data from external sources, enhancing its ability to provide accurate and detailed responses.
+Despite the steady release of increasingly larger and smarter models, state-of-the-art generative large language models (LLMs) still have a big problem: they struggle with tasks that require specialized knowledge. This lack of specialized knowledge can lead to issues like hallucinations, where the model generates inaccurate or fabricated information. **Retrieval-Augmented Generation (RAG)**—often called LLM RAG—helps mitigate this by allowing the model to pull in real-time, niche data from external sources, enhancing its ability to provide accurate and detailed responses.
 
-Despite these limitations, generative models are impactful tools that automate mundane processes, assist us in our everyday work, and enable us to interact with data in new ways. So how can we leverage their broad knowledge while also making them work for our specific use cases? The answer lies in providing generative models with task-specific data.
+Despite these limitations, generative models are impactful tools that automate mundane processes, assist us in our everyday work, and enable us to interact with data in new ways. So how can we leverage their broad knowledge while also making them work for our specific use cases? The answer lies in providing generative models with task-specific data. In short, RAG lets an LLM retrieve relevant external context at inference time instead of relying only on training data.
 
 In this article, we take a deep dive into Retrieval Augmented Generation (RAG), a framework that enhances the capabilities of generative models by allowing them to reference external data. We’ll explore the limitations of generative models that led to the creation of RAG, explain how RAG works, and break down the architecture behind RAG pipelines. We’ll also get practical and outline some real-world RAG use cases, suggest concrete ways to implement RAG, introduce you to a few advanced RAG techniques, and discuss RAG evaluation methods.
 
@@ -35,13 +46,15 @@ The key to enhancing performance on specialized tasks and reducing hallucination
 
 [**Retrieval-Augmented Generation (RAG)**](https://arxiv.org/abs/2005.11401) is a framework that *augments* the general knowledge of a generative LLM by providing it with additional data relevant to the task at hand *retrieved* from an external data source.
 
+You’ll also see this written as retrieval augmented generation (without the hyphen), and many teams refer to it as LLM RAG because it’s most often used to augment large language models at inference time.
+
 External data sources can include internal databases, files, and repositories, as well as publicly available data such as news articles, websites, or other online content. Access to this data empowers the model to respond more factually, cite its sources in its responses, and avoid “guessing” when prompted about information not found in the model’s original training dataset.
 
 Common use cases for RAG include retrieving up-to-date information, accessing specialized domain knowledge, and answering complex, data-driven queries.
 
 ## RAG architecture
 
-The basic parts of a RAG pipeline can be broken down into **three components**: an external knowledge source, a prompt template, and a generative model. Together, these components enable LLM-powered applications to generate more accurate responses by leveraging valuable task-specific data.
+The basic parts of a LLM RAG pipeline can be broken down into **three components**: an external knowledge source, a prompt template, and a generative model. Together, these components enable LLM-powered applications to generate more accurate responses by leveraging valuable task-specific data. A RAG pipeline is essentially retrieval + prompt augmentation + generation.
 
 ![RAG Base](./img/rag-base.png "RAG Base Diagram")
 
@@ -49,7 +62,7 @@ The basic parts of a RAG pipeline can be broken down into **three components**: 
 
 Without access to external knowledge, a generative model is limited to generating responses based only on its **parametric knowledge**, which is learned during the model training phase. With RAG, we have the opportunity to incorporate **external knowledge sources**, also referred to as **non-parametric knowledge**, in our pipeline.
 
-External data sources are often task-specific and likely beyond the scope of the model’s original training data, or its parametric knowledge. Furthermore, they are often stored in vector databases and can vary widely in topic and format.
+External data sources are often task-specific and likely beyond the scope of the model’s original training data, or its parametric knowledge. Furthermore, they are often stored in vector databases and can vary widely in topic and format. In agentic systems, this external knowledge base is often treated as a form of long-term memory that the agent can retrieve from as needed.
 
 Popular sources of external data include internal company databases, legal codes and documents, medical and scientific literature, and scraped webpages. Private data sources can be used in RAG as well. Personal AI assistants, like Microsoft’s Copilot, leverage multiple sources of personal data including, emails, documents, and instant messages to provide tailored responses and automate tasks more efficiently.
 
@@ -82,7 +95,7 @@ RAG is a multi-step framework that works in two stages. First, the external know
 
 ### Stage 1: Ingestion
 
-First, the external knowledge source needs to be prepared. Essentially, the external data needs to be cleaned and transformed into a format that the model can understand. This is called the **ingestion stage**. During ingestion, text or image data is transformed from its raw format into **embeddings** through a process called **vectorization**. Once embeddings are generated, they need to be stored in a manner that allows them to be retrieved at a later time. Most commonly, these embeddings are stored in a vector database, which allows for quick, efficient retrieval of the information for downstream tasks.
+First, the external knowledge source needs to be prepared. Essentially, the external data needs to be cleaned and transformed into a format that the model can understand. This is called the **ingestion stage**. During ingestion, text or image data is transformed from its raw format into **embeddings** through a process called **vectorization**. Once embeddings are generated, they need to be stored in a manner that allows them to be retrieved at a later time. Most commonly, these embeddings are stored in a vector database, which allows for quick, efficient retrieval of the information for downstream tasks. This external store often becomes a reusable knowledge base that retrieval pulls from at inference time.
 
 ![RAG Stages](./img/rag-stages.png "RAG Stages")
 
@@ -97,6 +110,8 @@ After external data is encoded and stored, it’s ready to be retrieved during *
 The inference stage starts with retrieval, in which data is retrieved from an external knowledge source in relation to a user query. Retrieval methods vary in format and complexity, however in the naive RAG schema, in which external knowledge is embedded and stored in a vector database, similarity search is the simplest form of retrieval.
 
 To perform similarity search, the user query must be first embedded in the same multi-dimensional space as the external data, which allows for direct comparison between the query and embedded external data. During [**similarity search**](https://docs.weaviate.io/weaviate/search/similarity), the distance between the query and external data points is calculated, returning those with the shortest distance and completing the retrieval process.
+
+In production RAG pipelines, retrieval quality is heavily influenced by [**chunking strategy**](/blog/chunking-strategies-for-rag) and how you index content for search and filtering.
 
 #### Augmentation
 
@@ -166,7 +181,7 @@ For a more in-depth exploration of this topic, check out our blog post on [advan
 
 ### Agentic RAG
 
-**AI agents** are autonomous systems that can interpret information, formulate plans, and make decisions. When added to a RAG pipeline, agents can reformulate user queries and re-retrieve more relevant information if initial results are inaccurate or irrelevant. Agentic RAG can also handle more complex queries that require multi-step reasoning, like comparing information across multiple documents, asking follow-up questions, and iteratively adjusting retrieval and generation strategies.
+**AI agents** are autonomous systems that can interpret information, formulate plans, and make decisions. When added to a RAG pipeline, agents can reformulate user queries and re-retrieve more relevant information if initial results are inaccurate or irrelevant. [**Agentic RAG**](/blog/what-is-agentic-rag/) can also handle more complex queries that require multi-step reasoning, like comparing information across multiple documents, asking follow-up questions, and iteratively adjusting retrieval and generation strategies. Agentic RAG extends the LLM RAG pipeline by adding agents that can plan, re-retrieve, validate context, and use tools.
 
 To take a closer look at a RAG pipeline that incorporates agents, check out this [blog on Agentic RAG](/blog/what-is-agentic-rag/).
 
@@ -210,7 +225,7 @@ The beauty of RAG lies in the fact that the weights of the underlying generative
 
 ## Summary
 
-In this article, we introduced you to RAG, a framework that leverages task-specific external knowledge to improve the performance of applications powered by generative models. We learned about the different components of RAG pipelines, including external knowledge sources, prompt templates, and generative models as well as how they work together in retrieval, augmentation, and generation. We also discussed popular RAG use cases and frameworks for implementation, such as LangChain, LlamaIndex, and DSPy. Finally, we touched on some specialized RAG techniques, including advanced RAG methods, agentic RAG, and graph RAG as well as methods for evaluating RAG pipelines.
+In this article, we introduced you to RAG, a framework that leverages task-specific external knowledge to improve the performance of applications powered by generative models. We learned about the different components of RAG pipelines, including external knowledge sources, prompt templates, and generative models as well as how they work together in retrieval, augmentation, and generation. LLM RAG (retrieval augmented generation) is one of the most practical ways to reduce hallucinations and ground LLM outputs with external knowledge. We also discussed popular RAG use cases and frameworks for implementation, such as LangChain, LlamaIndex, and DSPy. Finally, we touched on some specialized RAG techniques, including advanced RAG methods, agentic RAG, and graph RAG as well as methods for evaluating RAG pipelines.
 
 At a minimum, each section in this post deserves its own individual blog post, if not an entire chapter in a book. As a result, we’ve put together a resource guide with academic papers, blog posts, YouTube videos, tutorials, notebooks, and recipes to help you learn more about the topics, frameworks, and methods presented in this article.
 

@@ -1,5 +1,45 @@
 [
   {
+    "title": "Search Agents with Nandan Thakur - Weaviate Podcast #137!",
+    "description": "Welcome to the 137th episode of the Weaviate Podcast featuring Nandan Thakur, discussing Search Agents and his new work on Orbit, a synthetic training data pipeline for search agents.",
+    "youtube": "B71WF6EtgK8",
+    "date": "26-05-07",
+    "cover_image": "/img/podcasts/podcast-137.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "AgentIR with Zijian Chen and Xueguang Ma - Weaviate Podcast #136",
+    "description": "Welcome to the 136th episode of the Weaviate Podcast featuring Zijian Chen and Xueguang Ma, discussing AgentIR and why retrieval systems need to be redesigned for AI agents.",
+    "youtube": "y9YUcr0cVtk",
+    "date": "26-04-28",
+    "cover_image": "/img/podcasts/podcast-136.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Data Agents with Shreya Shankar - Weaviate Podcast #135",
+    "description": "Welcome to the 135th episode of the Weaviate Podcast featuring Shreya Shankar, discussing Data Agents, the Data Agent Benchmark, and DocETL.",
+    "youtube": "C-fNVPYZrVg",
+    "date": "26-04-07",
+    "cover_image": "/img/podcasts/podcast-135.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Multi-Vector Search with Amélie Chatelain and Antoine Chaffin - Weaviate Podcast #134",
+    "description": "Welcome to the 134th episode of the Weaviate Podcast featuring Amélie Chatelain and Antoine Chaffin, discussing Multi-Vector Search!",
+    "youtube": "44GC3E-WbHU",
+    "date": "26-03-23",
+    "cover_image": "/img/podcasts/podcast-134.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Doug Turnbull and Trey Grainger on AI-Powered Search - Weaviate Podcast #133",
+    "description": "Welcome to the 133th episode of the Weaviate Podcast featuring Doug Turnbull and Trey Grainger, discussing AI-Powered Search!",
+    "youtube": "ZnQv_wBzUa4",
+    "date": "26-03-02",
+    "cover_image": "/img/podcasts/podcast-133.jpg",
+    "is_use_case": false
+  },
+  {
     "title": "Pyversity with Thomas van Dongen - Weaviate Podcast #132",
     "description": "Welcome to the 132th episode of the Weaviate Podcast featuring Thomas van Dongen, the creator of Pyversity!",
     "youtube": "L2N1qvfP7tg",
@@ -73,7 +113,7 @@
   },
   {
     "title": "MUVERA with Rajesh Jayaram and Roberto Esposito - Weaviate Podcast #123",
-    "description": "Welcome to the 123nd episode of the Weaviate Podcast featuring Rajesh Jayaram, the first author of the groundbreaking MUVERA algorithm from Google and Roberto Esposito from Weaviate!",
+    "description": "Welcome to the 123rd episode of the Weaviate Podcast featuring Rajesh Jayaram, the first author of the groundbreaking MUVERA algorithm from Google and Roberto Esposito from Weaviate!",
     "youtube": "nSW5g1H4zoU",
     "date": "25-05-28",
     "cover_image": "/img/podcasts/podcast-123.jpg",

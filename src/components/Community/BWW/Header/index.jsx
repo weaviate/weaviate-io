@@ -26,47 +26,6 @@ export default function PlatformHeader() {
           </div>
         </div>
       </div>
-      {/*  <div className={styles.bottomBar}>
-        <div className={styles.innerBar}>
-          <Link
-            to="https://weaviate.io/slack"
-            className={styles.mobileSocialBox}
-          >
-            <div className={styles.socialBox}>
-              <div className={styles.slack} />
-              <p className={styles.text}>Slack</p>
-            </div>
-          </Link>
-
-          <Link
-            to="https://github.com/weaviate/weaviate"
-            className={styles.mobileSocialBox}
-          >
-            <div className={styles.socialBox}>
-              <div className={styles.github} />
-              <p className={styles.text}>GitHub</p>
-            </div>
-          </Link>
-          <Link
-            to="https://twitter.com/weaviate_io"
-            className={styles.mobileSocialBox}
-          >
-            <div className={styles.socialBox}>
-              <div className={styles.twitter} />
-              <p className={styles.text}>Twitter</p>
-            </div>
-          </Link>
-          <Link
-            to="https://forum.weaviate.io/"
-            className={styles.mobileSocialBox}
-          >
-            <div className={styles.socialBox}>
-              <div className={styles.forum} />
-              <p className={styles.text}>Community Forum</p>
-            </div>
-          </Link>
-        </div>
-      </div> */}
     </header>
   );
 }

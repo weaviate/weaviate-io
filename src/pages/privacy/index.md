@@ -53,7 +53,7 @@ The subsequent sections address general matters. More specifically, **Section** 
 
 <br></br>
 
-This privacy policy was most recently amended in **September 2025** and this version replaces earlier versions. We may need to amend this privacy policy from time to time. The most recent version of this privacy policy is available on our [website](/service). In case of important changes, we will actively inform you on these changes. 
+This privacy policy was most recently amended in **March 2026** and this version replaces earlier versions. We may need to amend this privacy policy from time to time. The most recent version of this privacy policy is available on our [website](/service). In case of important changes, we will actively inform you on these changes. 
 
 <br></br>
 
@@ -73,7 +73,7 @@ You may provide us with personal data relating to another individual than yourse
 
 <br></br>
 
-a. If you **download or use our open-source database**, or if you **use our Weaviate vector database via GCP or AWS marketplace**, we do not process your personal data.
+a. If you **download or use our open-source database**, or if you **use our Weaviate vector database via GCP or AWS marketplace**, we generally do not process your personal data. Weaviate OSS includes an optional [telemetry module](https://docs.weaviate.io/deploy/configuration/telemetry) that collects basic system and cloud metadata. This telemetry data includes basic cluster statistics (such as the number of objects) and, where applicable, cloud metadata such as your cloud provider ID. If such cloud metadata can be linked to an identifiable person, it qualifies as personal data. We may share cloud metadata with your cloud provider for the purpose of enabling them to contact you regarding Weaviate support, maintenance, or hosting services. For this processing, we rely on our legitimate interest in promoting and making available our products and services. You can disable the telemetry module at any time by following the instructions in the [telemetry documentation](https://docs.weaviate.io/deploy/configuration/telemetry).
 
 <br></br>
 
@@ -228,7 +228,6 @@ Kindly note that our websites may contain links to websites of third parties. Th
 
 - [YouTube](https://www.youtube.com/t/terms);
 - [GitHub](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement);
-- [Slack](https://slack.com/trust/privacy/privacy-policy);
 - [Discourse](https://www.discourse.org/privacy);
 - [AWS](https://aws.amazon.com/privacy/);
 - [Google Cloud](https://cloud.google.com/terms/cloud-privacy-notice).
@@ -244,7 +243,7 @@ b. If you **complete forms on (one of) our websites**, we process the following 
 |                                                                                                                                                                                                                                                                                |                                                                                                                                                                   |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Type of data**                                                                                                                                                                                                                                                               | **Purposes**                                                                                                                                                      |
-| We collect personal data that you provide when you complete forms on our websites. We may process such information, for example when you register for an event or webinar) or if you register to receive a newsletter (please also refer to Section 5 of this Privacy Policy). | To contact you based on your request, to provide you with the service you requested, to contact you with relevant offers or services, and for marketing purposes. |
+| We collect personal data that you provide when you complete forms on our websites. We may process such information, for example when you register for an event or webinar, submit a contact or support request, request access to a startup or partner program, or register to receive a newsletter (please also refer to Section 5 of this Privacy Policy). | To contact you based on your request, to provide you with the service you requested, to contact you with relevant offers or services, and for marketing purposes. |
 | We also collect personal data that you voluntarily provide in response to requests and inquiries we may make at various places and through various mechanisms on Weaviate websites.                                                                                            | To improve our products and services, to improve our customer support, and or marketing purposes.                                                                 |
 
 For the processing of this personal data, we rely on your consent or on our legitimate interest to make our websites and services available to you.
@@ -284,7 +283,7 @@ For the processing of this personal data, we rely on the performance of our cont
 
 <br></br>
 
-c. If you **contact us** **via our forum (https\://forum.weaviate.io/)**, we process the following personal data, for the following purposes and on the following legal basis:
+c. If you **contact us** **via our forum (https://forum.weaviate.io/)**, we process the following personal data, for the following purposes and on the following legal basis:
 
 <br></br>
 
@@ -298,7 +297,7 @@ For the processing of this personal data, we rely on our legitimate interest in 
 
 <br></br>
 
-d. If you** contact us via social media (such as the Weaviate Slack Community)**, we process the following personal data, for the following purposes and on the following legal basis:
+d. If you** contact us via social media**, we process the following personal data, for the following purposes and on the following legal basis:
 
 <br></br>
 
@@ -446,6 +445,8 @@ We may disclose your personal data or make your personal data available to third
 - Google, for email, document storage, and data warehousing;
 
 - Zapier, for workflow automation.
+
+- Cloud providers (such as AWS and GCP), for sharing cloud metadata collected via our optional telemetry module, to enable them to contact you regarding Weaviate support, maintenance, or hosting services.
 
 - Condens, for securely storing and analyzing UX research sessions, managing participant information, and organizing research findings.
 

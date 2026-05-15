@@ -22,7 +22,6 @@ export default function AboutUsPage() {
         <Details />
         <Map />
         <Join />
-        <Quote />
         <Playbook />
       </Layout>
       <ThemeSwitch />

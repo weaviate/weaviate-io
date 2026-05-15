@@ -43,7 +43,7 @@ export default function MeetTheTeam() {
               }
               onClick={() => handleTeamFilter('applied-research')}
             >
-              #Applied Research
+              #Applied Research (Engineering)
             </Link>
 
             <Link
@@ -52,36 +52,28 @@ export default function MeetTheTeam() {
               }
               onClick={() => handleTeamFilter('board-advisors')}
             >
-              #Board&Advisors
+              #Board & Advisors
             </Link>
             <Link
               className={selectedTeam === 'ceo-team' ? styles.linkActive : ''}
               onClick={() => handleTeamFilter('ceo-team')}
             >
-              #CEO team
+              #CEO
             </Link>
             <Link
               className={selectedTeam === 'cto' ? styles.linkActive : ''}
               onClick={() => handleTeamFilter('cto')}
             >
-              #CTO team
+              #CxO Leadership
             </Link>
 
             <Link
               className={selectedTeam === 'database' ? styles.linkActive : ''}
               onClick={() => handleTeamFilter('database')}
             >
-              #Database
+              #Database (Engineering)
             </Link>
 
-            <Link
-              className={
-                selectedTeam === 'developer-relations' ? styles.linkActive : ''
-              }
-              onClick={() => handleTeamFilter('developer-relations')}
-            >
-              #Education & Developer Experience
-            </Link>
             <Link
               className={
                 selectedTeam === 'developer-growth' ? styles.linkActive : ''
@@ -96,35 +88,7 @@ export default function MeetTheTeam() {
               }
               onClick={() => handleTeamFilter('weaviate-labs')}
             >
-              #Innovation Labs
-            </Link>
-            <Link
-              className={selectedTeam === 'finance' ? styles.linkActive : ''}
-              onClick={() => handleTeamFilter('finance')}
-            >
-              #Legal & Finance
-            </Link>
-          </div>
-          <div className={styles.teamFilter}>
-            <Link
-              className={
-                selectedTeam === 'partnerships' ? styles.linkActive : ''
-              }
-              onClick={() => handleTeamFilter('partnerships')}
-            >
-              #Partnerships
-            </Link>
-            <Link
-              className={selectedTeam === 'delivery' ? styles.linkActive : ''}
-              onClick={() => handleTeamFilter('delivery')}
-            >
-              #Platform Operations
-            </Link>
-            <Link
-              className={selectedTeam === 'product' ? styles.linkActive : ''}
-              onClick={() => handleTeamFilter('product')}
-            >
-              #Product
+              #Innovation Labs (Engineering)
             </Link>
             <Link
               className={
@@ -135,24 +99,35 @@ export default function MeetTheTeam() {
               #People & Culture
             </Link>
             <Link
-              className={selectedTeam === 'rev-ops' ? styles.linkActive : ''}
-              onClick={() => handleTeamFilter('rev-ops')}
+              className={selectedTeam === 'delivery' ? styles.linkActive : ''}
+              onClick={() => handleTeamFilter('delivery')}
             >
-              #Revenue Operations & BDR
+              #Platform & SRE (Platform Operations & Security)
+            </Link>
+          </div>
+          <div className={styles.teamFilter}>
+            <Link
+              className={selectedTeam === 'product' ? styles.linkActive : ''}
+              onClick={() => handleTeamFilter('product')}
+            >
+              #Product
             </Link>
             <Link
-              className={selectedTeam === 'sales' ? styles.linkActive : ''}
-              onClick={() => handleTeamFilter('sales')}
+              className={
+                selectedTeam === 'partnerships' ? styles.linkActive : ''
+              }
+              onClick={() => handleTeamFilter('partnerships')}
             >
-              #Sales
+              #Sales & Business Development
             </Link>
+
             <Link
               className={
                 selectedTeam === 'solution-engineering' ? styles.linkActive : ''
               }
               onClick={() => handleTeamFilter('solution-engineering')}
             >
-              #Solution Engineering
+              #Solution Engineering (Platform Operations)
             </Link>
             <Link
               className={
@@ -160,14 +135,14 @@ export default function MeetTheTeam() {
               }
               onClick={() => handleTeamFilter('support-engineering')}
             >
-              #Support Engineering
+              #Support Engineering (Platform Operations & Security)
             </Link>
 
             <Link
               className={selectedTeam === 'wcd' ? styles.linkActive : ''}
               onClick={() => handleTeamFilter('wcd')}
             >
-              #Weaviate Cloud Console
+              #Weaviate Cloud Console (Engineering)
             </Link>
           </div>
           <hr></hr>

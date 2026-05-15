@@ -1,0 +1,64 @@
+.headerSecurity {
+  background: #f5f5f5;
+  background-image: url('/img/site/3d-pricing-banner.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.headText {
+  color: #130c49;
+  font-family: 'Plus Jakarta Sans';
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.headerBox {
+  width: 50%;
+  margin: 20px 0;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
+
+  h1 {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 130%;
+    margin-bottom: 20px;
+
+    @media screen and (max-width: 900px) {
+      font-size: 2rem;
+    }
+  }
+
+  p {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 1.1rem;
+    line-height: 157%;
+    max-width: 90%;
+  }
+}
+
+.highlight {
+  color: #130c49;
+}
+
+.buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}

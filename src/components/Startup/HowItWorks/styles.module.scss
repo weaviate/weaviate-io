@@ -1,0 +1,106 @@
+.wrap {
+  background: #130c49;
+  padding: 64px 0 20px;
+}
+
+.panel {
+  border-radius: 0.9375rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 32px;
+}
+
+.header {
+  text-align: left;
+  margin-bottom: 18px;
+
+  h2 {
+    color: #fff;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+    font-size: 1.05rem;
+  }
+}
+
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.index {
+  width: 42px;
+  height: 42px;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #130c49;
+  background: #61bd73;
+}
+
+.content {
+  h3 {
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0 0 6px;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0 0 8px;
+    font-size: 0.98rem;
+  }
+}
+
+.link {
+  color: #a7e8ff;
+  text-decoration: none;
+  font-weight: 600;
+}
+.link:hover {
+  text-decoration: underline;
+}
+
+.clickable {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.clickable:hover {
+  transform: translateY(-2px);
+}
+
+.scrollButton {
+  margin-top: 6px;
+  background: none;
+  border: none;
+  color: #a7e8ff;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+.scrollButton:hover {
+  text-decoration: underline;
+}

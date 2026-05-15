@@ -44,7 +44,7 @@ Weaviate’s version code is made of three numbers separated by dots: the leftmo
 Our Offerings are released periodically, triggering the following EOL schedule:
 
 - **Major releases** will be supported for up to 12 months after a new major version is released. For example, when major version 2 is released, version 1 will remain supported for up to 12 months from the release date of version 2.
-- **Minor releases** will be supported up to 3 minor versions back from the current minor version. For instance, if 1.27 is the current version, prior versions up to 1.24 are also supported, while versions prior to 1.24 are not in scope for support.
+- **Minor releases** will be supported for the 3 most recent minor versions. For instance, if 1.27 is the current minor version, only versions 1.27, 1.26, and 1.25 are supported. Versions prior to 1.25 (such as 1.24) are considered EOL and are not in scope for support.
 
 ---
 

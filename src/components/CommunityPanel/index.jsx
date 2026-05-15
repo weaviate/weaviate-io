@@ -26,15 +26,7 @@ export default function CommunityPanel() {
                 <p className={styles.text}>Forum</p>
               </Link>
             </div>
-            <div className={styles.socialBox}>
-              <Link
-                to="https://weaviate.io/slack"
-                className={styles.mobileSocialBox}
-              >
-                <div className={styles.slack} />
-                <p className={styles.text}>Slack</p>
-              </Link>
-            </div>
+
             <div className={styles.socialBox}>
               <Link
                 to="https://twitter.com/weaviate_io"

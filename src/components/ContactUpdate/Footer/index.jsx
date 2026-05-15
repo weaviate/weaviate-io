@@ -15,14 +15,6 @@ export default function Footer() {
             <i className="fa-brands fa-github"></i>
           </a>
           <a
-            href="https://weaviate.io/slack"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Slack"
-          >
-            <i className="fa-brands fa-slack"></i>
-          </a>
-          <a
             href="https://x.com/weaviate_io"
             target="_blank"
             rel="noopener noreferrer"

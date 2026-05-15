@@ -174,10 +174,7 @@ export default function BottomMain() {
                     to="https://github.com/weaviate/weaviate"
                     className={styles.socialLink}
                   ></Link>
-                  <Link
-                    to="https://weaviate.io/slack"
-                    className={`${styles.socialLink} ${styles.slack}`}
-                  ></Link>
+
                   <Link
                     to="https://weaviate.io"
                     className={`${styles.socialLink} ${styles.weaviate}`}

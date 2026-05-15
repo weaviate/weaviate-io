@@ -10,16 +10,6 @@
     "photo": "abdel.jpg"
   },
   {
-    "name": "Adam Jeremy Chan",
-    "location": { "lat": 37.7749, "lng": -122.4194 },
-    "photo": "adam.jpg"
-  },
-  {
-    "name": "André Duis",
-    "location": { "lat": 51.1657, "lng": 7.0846 },
-    "photo": "andre.jpg"
-  },
-  {
     "name": "André Mourão",
     "location": { "lat": 38.7177, "lng": -9.14 },
     "photo": "andre-m.jpg"
@@ -65,11 +55,6 @@
     "photo": "connor.jpg"
   },
   {
-    "name": "Daniel Madalitso Phiri",
-    "location": { "lat": 48.8576, "lng": 2.3532 },
-    "photo": "daniel.jpg"
-  },
-  {
     "name": "Dirk Kulawiak",
     "location": { "lat": 48.1361, "lng": 11.583 },
     "photo": "dirk.jpg"
@@ -100,19 +85,9 @@
     "photo": "etienne.jpg"
   },
   {
-    "name": "Femke Plantinga",
-    "location": { "lat": 41.3861, "lng": 2.1744 },
-    "photo": "femke.jpg"
-  },
-  {
     "name": "Jerónimo Irazábal",
     "location": { "lat": -34.6047, "lng": -58.3826 },
     "photo": "Jeronimo.jpg"
-  },
-  {
-    "name": "Jessie de Groot",
-    "location": { "lat": 52.3686, "lng": 4.9051 },
-    "photo": "jessie.jpg"
   },
   {
     "name": "Jobi George",
@@ -133,11 +108,6 @@
     "name": "Joseph Stephen Green",
     "location": { "lat": 33.4162, "lng": -111.8325 },
     "photo": "joseph-green.jpg"
-  },
-  {
-    "name": "JP Hwang",
-    "location": { "lat": 55.9543, "lng": -3.1893 },
-    "photo": "jp.jpg"
   },
   {
     "name": "Laura Ann Webster Stoye",
@@ -165,16 +135,6 @@
     "photo": "mohamed.jpg"
   },
   {
-    "name": "Nathan Wilkinson",
-    "location": { "lat": 40.515, "lng": -111.9712 },
-    "photo": "nate-wilkinson.jpg"
-  },
-  {
-    "name": "Parker Duckworth",
-    "location": { "lat": 35.4878, "lng": -80.8611 },
-    "photo": "parker.jpg"
-  },
-  {
     "name": "Patrick Das",
     "location": { "lat": 52.0715, "lng": 4.3017 },
     "photo": "patrick.jpg"
@@ -188,16 +148,6 @@
     "name": "Philip Vollet",
     "location": { "lat": 52.521, "lng": 13.406 },
     "photo": "philip.jpg"
-  },
-  {
-    "name": "Roberto Esposito",
-    "location": { "lat": 40.7602, "lng": 14.525 },
-    "photo": "roberto-esposito.jpg"
-  },
-  {
-    "name": "Scott Alexander",
-    "location": { "lat": 54.67, "lng": -5.9612 },
-    "photo": "scott-alexander.jpg"
   },
   {
     "name": "Shan Blackwood",

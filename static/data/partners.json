@@ -2210,5 +2210,44 @@
         "url": "https://parallel.ai/"
       }
     ]
+  },
+  {
+    "name": "Superlinked",
+    "image": "/img/site/superlinked_logo.png",
+    "link": "superlinked",
+    "description": "Superlinked is a self-hosted inference engine serving 85+ embedding, reranking, and extraction models from a single endpoint.",
+    "tags": ["Model Providers", "Integration"],
+    "company": "Superlinked",
+    "howItWorks": "The <a href=\"https://pypi.org/project/sie-weaviate/\">sie-weaviate</a> package provides <code>SIEVectorizer</code>, <code>SIENamedVectorizer</code>, and <code>SIEDocumentEnricher</code> components. Use them with Weaviate's <code>self_provided()</code> vector config to embed documents with any of Superlinked's 85+ supported models (Stella, Nomic, E5, BGE-M3, ColBERT, and more) through a single SIE endpoint. <code>SIEDocumentEnricher</code> combines embedding with entity extraction and classification for Query Agent filtering.",
+    "setup": [
+      "Run SIE: docker run -p 8080:8080 ghcr.io/superlinked/sie-server:default",
+      "Install the package: pip install sie-weaviate",
+      "Create a Weaviate collection with Configure.Vectors.self_provided() and pass vectors via SIEVectorizer(base_url, model) on insert and query"
+    ],
+    "resourcesGroups": [
+      {
+        "title": "Hands-on Learning",
+        "items": [
+          {
+            "topic": "Superlinked Weaviate integration guide",
+            "description": "Full usage guide covering SIEVectorizer, named vectors, and SIEDocumentEnricher with examples.",
+            "type": "Guide",
+            "url": "https://superlinked.com/docs/integrations/weaviate/"
+          },
+          {
+            "topic": "Superlinked docs",
+            "description": "Product documentation and model catalog.",
+            "type": "Guide",
+            "url": "https://superlinked.com/docs"
+          },
+          {
+            "topic": "Superlinked on GitHub",
+            "description": "Source code and issue tracker for Superlinked (SIE).",
+            "type": "Open",
+            "url": "https://github.com/superlinked/sie"
+          }
+        ]
+      }
+    ]
   }
 ]

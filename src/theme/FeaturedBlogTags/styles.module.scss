@@ -1,4 +1,4 @@
-@import '/src/css/blog-custom-layout.scss';
+@use '/src/css/blog-custom-layout.scss' as *;
 
 .featuredTags {
     padding-bottom: 20px;

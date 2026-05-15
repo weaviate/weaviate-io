@@ -193,7 +193,7 @@ This limitation mainly affects [Weaviate’s keyword-based search functionality 
 
 This limitation also affects [Weaviate’s hybrid search functionality](https://docs.weaviate.io/weaviate/search/hybrid). While you can conduct hybrid search queries without getting an error, all hybrid search queries with an `alpha != 0` will return the same results as pure semantic search. Hybrid search with an `alpha = 0` (pure keyword-based search) will return an empty result list.
 
-As you can see, Weaviate currently doesn’t cover full support for non-English languages. However, we would love to support other languages in the future. Currently, we are experimenting with implementing [tokenisers for Japanese and Chinese](https://github.com/weaviate/weaviate/pull/4028/files/b7b60b32662209e9ce58dd4d32e29ed919f5590b#). Please contact us on [Slack](https://weaviate.io/slack) if you are interested in contributing to adding non-English language support.
+As you can see, Weaviate currently doesn’t cover full support for non-English languages. However, we would love to support other languages in the future. Currently, we are experimenting with implementing [tokenisers for Japanese and Chinese](https://github.com/weaviate/weaviate/pull/4028/files/b7b60b32662209e9ce58dd4d32e29ed919f5590b#). 
 
 ## Summary
 
@@ -204,7 +204,6 @@ This blog showcased that you can use Weaviate for semantic and generative search
 
 You can jump in and explore different queries with the related [Jupyter Notebook on GitHub](https://github.com/weaviate/recipes/blob/main/weaviate-features/search-with-vectors-or-multi-lingual/vector_search_japanese.ipynb).
 
-Please contact us on [Slack](https://weaviate.io/slack) if you are interested in contributing to adding non-English language support.
 
 import WhatNext from '/_includes/what-next.mdx'
 

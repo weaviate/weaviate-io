@@ -4,8 +4,7 @@
     "title": "Senior Engineer",
     "image": "/img/people/heroes/ron-parker.jpg",
     "socialLinks": {
-      "linkedin": "https://www.linkedin.com/in/ron-parker-scbbs/",
-      "slack": "https://weaviate.slack.com/team/U04TUKD2RK7"
+      "linkedin": "https://www.linkedin.com/in/ron-parker-scbbs/"
     }
   },
   {
@@ -13,8 +12,7 @@
     "title": "Technologist & Product Leader",
     "image": "/img/people/heroes/travis-rehl.jpg",
     "socialLinks": {
-      "linkedin": "https://linkedin.com/in/travis-rehl-tech",
-      "slack": "https://weaviate.slack.com/team/U059QN8UMJR"
+      "linkedin": "https://linkedin.com/in/travis-rehl-tech"
     }
   },
   {
@@ -22,8 +20,7 @@
     "title": "Lead Developer",
     "image": "/img/people/heroes/patrice-bourgougnon.jpg",
     "socialLinks": {
-      "linkedin": "https://www.linkedin.com/in/patrice-bourgougnon-46a2b71b3/",
-      "slack": "https://weaviate.slack.com/team/U02CQ2T48BC"
+      "linkedin": "https://www.linkedin.com/in/patrice-bourgougnon-46a2b71b3/"
     }
   },
   {
@@ -31,8 +28,7 @@
     "title": "Principal Specialist Solution Architect",
     "image": "/img/people/heroes/bob-kozdemba.jpg",
     "socialLinks": {
-      "linkedin": "https://www.linkedin.com/in/bob-kozdemba-230743/",
-      "slack": "https://weaviate.slack.com/team/U05P0RU1BN2"
+      "linkedin": "https://www.linkedin.com/in/bob-kozdemba-230743/"
     }
   },
   {
@@ -40,8 +36,7 @@
     "title": "Principal Product Architect",
     "image": "/img/people/heroes/eda-johnson.jpg",
     "socialLinks": {
-      "linkedin": "https://www.linkedin.com/in/eda-johnson-0a2783/",
-      "slack": "https://weaviate.slack.com/team/U05R1P491L4"
+      "linkedin": "https://www.linkedin.com/in/eda-johnson-0a2783/"
     }
   },
   {
@@ -49,8 +44,7 @@
     "title": "CTO",
     "image": "/img/people/heroes/michael-pont.jpg",
     "socialLinks": {
-      "linkedin": "https://www.linkedin.com/in/michael-t-pont/",
-      "slack": "https://weaviate.slack.com/team/U06HWGP43LN"
+      "linkedin": "https://www.linkedin.com/in/michael-t-pont/"
     }
   }
 ]

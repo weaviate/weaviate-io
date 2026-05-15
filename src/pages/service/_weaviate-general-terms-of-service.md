@@ -61,7 +61,7 @@ Weaviate may revise these Terms from time to time. If Weaviate does revise these
 
 2.4.2 **Support Tickets**: Customers can report issues through the user interface as documented on our website. The tickets should, where applicable, include a description of the issue, error message, and relevant screenshots or log files. Weaviate assures that no personally identifiable information is required during this process.
 
-2.4.3 **Slack Community**: Our Slack community is a platform where everyone can discuss and share insights, although it is not an official channel for support.
+2.4.3 **Forum Community**: Our Forum community is a platform where everyone can discuss and share insights, although it is not an official channel for support.
 
 2.4.4 **Documentation Library**: Customers have access to Weaviate's online documentation, which includes a wide range of resources such as technical and user documentation, API references, troubleshooting techniques, and more.
 

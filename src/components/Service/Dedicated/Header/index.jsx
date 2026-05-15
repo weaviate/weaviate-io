@@ -1,7 +1,7 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
-import styles from './styles.module.scss';
-import { LinkButton, ButtonContainer } from '/src/theme/Buttons';
+import Link from "@docusaurus/Link";
+import React from "react";
+import styles from "./styles.module.scss";
+import { LinkButton, ButtonContainer } from "/src/theme/Buttons";
 
 export default function ServiceHeader() {
   return (
@@ -21,9 +21,9 @@ export default function ServiceHeader() {
             </p>
           </div>
           <div className={styles.buttons}>
-            <Link className={styles.buttonGradient} to="#contact-sales">
+            <a className={styles.buttonGradient} href="#contact-sales">
               Contact Sales
-            </Link>
+            </a>
           </div>
         </div>
       </div>

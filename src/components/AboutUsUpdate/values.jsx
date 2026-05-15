@@ -1,18 +1,18 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
-import styles from './styles.module.scss';
+import Link from "@docusaurus/Link";
+import React from "react";
+import styles from "./styles.module.scss";
 
-import useBaseUrl from '@docusaurus/useBaseUrl';
-import ValueKind from '/static/img/company/values/values-be-kind.svg';
-import ValueExcellence from '/static/img/company/values/values-excellence.svg';
-import ValueTransparency from '/static/img/company/values/values-transparency.svg';
-import ValueTrust from '/static/img/company/values/values-trust.svg';
-import ValueWorkTogether from '/static/img/company/values/values-work-together.svg';
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import ValueKind from "/static/img/company/values/values-be-kind.svg";
+import ValueExcellence from "/static/img/company/values/values-excellence.svg";
+import ValueTransparency from "/static/img/company/values/values-transparency.svg";
+import ValueTrust from "/static/img/company/values/values-trust.svg";
+import ValueWorkTogether from "/static/img/company/values/values-work-together.svg";
 
 export default function CompanyValues() {
   return (
     <div className={styles.valuesBG}>
-      <div className="container" id="our_company_values">
+      <div className="container">
         <div className={styles.valuesSection}>
           <div className={`${styles.valuesBox} ${styles.clearBox}`}>
             <h3>

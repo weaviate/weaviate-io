@@ -1,11 +1,11 @@
 ---
-title: Context Engineering for AI Agents
+title: Context Engineering -  LLM Memory and Retrieval for AI Agents
 slug: context-engineering
 authors: [femke, prajjwal, victoria]
 date: 2025-12-09
 tags: ['concepts']
 image: ./img/hero.png
-description: 'Context engineering is the act of selecting, organizing, and managing the information fed into a large language model during inference to optimize its performance and behavior.'
+description: 'Context engineering is how AI agents manage LLM memory—selecting, retrieving, and organizing context from short-term and long-term memory to improve reliability in production.'
 ---
 
 import elysia from './img/elysia-demo.mp4';
@@ -13,6 +13,10 @@ import elysia from './img/elysia-demo.mp4';
 ![hero image](./img/hero.png)
 
 Most LLM demos start out feeling magical. They can draft emails, rewrite code, or even book a vacation, and for a few minutes, it seems like the model truly "understands" everything thrown at it. But the illusion shatters when tasks get messy and real. When success depends on yesterday's incident report, your team's internal documentation, or a long troubleshooting Slack thread, the model suddenly stumbles. It can't remember what was said ten messages ago, has no access to your private data, and it just starts guessing instead of reasoning.
+
+What looks like “forgetting” is really a memory limitation. By default, an LLM only has short-term memory—the current context window.
+
+To build reliable agents, you need a system that combines the context window with long-term memory (retrieval from external stores like vector databases) and selectively decides what to include at each step.
 
 The difference between a flashy demo and a dependable production system isn't about switching to a "smarter" model. It's about how information is selected, structured, and delivered to the model at each step of a task. In other words, the difference is **context**.
 
@@ -23,7 +27,7 @@ All LLMs are constrained by finite **context windows** that force hard trade‑
 ## But What Is a Context Window?
 
 The context window is the model's active workspace, where it holds instructions and information for a current task. Every word, number, and piece of punctuation consumes space in this window. Think of it like a whiteboard: once it fills up, older information must be erased to make room for the new, causing important past details to be lost.
-In more technical terms, a context window refers to the maximum amount of input data a language model can consider at one time when generating responses, measured in [tokens](https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them). This window includes all your inputs, model's outputs, tool calls, and retrieved documents, acting as the short-term memory. Every token placed in the context window directly influences what the model can "see" and how it responds.
+In more technical terms, a context window refers to the maximum amount of input data a language model can consider at one time when generating responses, measured in [tokens](https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them). This window includes all your inputs, model's outputs, tool calls, and retrieved documents, acting as the model’s short-term memory. Every token placed in the context window directly influences what the model can "see" and how it responds.
 
 ## Context Engineering vs. Prompt Engineering
 
@@ -35,9 +39,11 @@ Context engineering, on the other hand, is the discipline of designing the archi
 
 In simple words, prompt engineering is how you ask the question, while context engineering is making sure the model has access to the right textbook, calculator, and even notes/memories from your previous conversation before it starts thinking. The quality and effectiveness of LLMs are heavily influenced by the prompts they receive, but the way you phrase a prompt can only go so far without a well-engineered context. Prompting techniques like Chain-of-Thought, Few-shot learning, and ReAct are most effective when combined with retrieved documents, user history, or domain-specific data.
 
+In practice, context engineering is how you build LLM memory: deciding what stays in the context window, what gets stored as long-term memory, and what gets retrieved later.
+
 ## The Context Window Challenge
 
-The LLM context window can only hold so much information at once. This fundamental constraint shapes what agents and agentic systems are currently capable of. Every time an agent processes information, it must decide what remains active, what can be summarized/compressed/deleted, what should be stored externally, and how much space to reserve for reasoning. It's tempting to assume that shoving everything into bigger context windows solves this problem, but this is generally not the case. 
+The LLM context window can only hold so much information at once. This fundamental constraint shapes what agents and agentic systems are currently capable of. Every time an agent processes information, it must decide what remains active, what can be summarized/compressed/deleted, what should be stored externally, and how much space to reserve for reasoning. It's tempting to assume that shoving everything into bigger context windows solves this problem, but this is generally not the case. This is why production agents need deliberate memory architecture—not just bigger windows.
 
 Here are the critical failure modes that emerge as context grows:
 
@@ -62,7 +68,7 @@ Agents are quickly becoming the foundation for building AI applications. They ar
 
 **What Defines an Agent**
 
-An [**AI agent**](/blog/ai-agents) is a system that uses a large language model (LLM) as its “brain” to do decision-making and solve complex tasks. The user supplies a goal, and the agent figures out the steps to achieve it, using available tools in its environment. 
+An [**AI agent**](/blog/ai-agents) is a system that uses a large language model (LLM) as its “brain” to do decision-making and solve complex tasks. The user supplies a goal, and the agent figures out the steps to achieve it, using available tools in its environment. Most real agents depend on a memory layer—short-term memory in the context window and long-term memory retrieved on demand.
 
 These four components often make up an agent:
 
@@ -97,7 +103,7 @@ The [Weaviate Query Agent](https://docs.weaviate.io/agents/query) is a great exa
 
 ### Retrieval
 
-A common saying when building with AI: **garbage in, garbage out**. Your Retrieval Augmented Generation (RAG) system is only as good as the information it retrieves. A well-written prompt and a robust model are useless if they're working with irrelevant context. This is why the first, and most important step, is optimizing your **retrieval**.
+A common saying when building with AI: **garbage in, garbage out**. Your Retrieval Augmented Generation (RAG) system-often described as an LLM RAG pipeline-is only as good as the information it retrieves. A well-written prompt and a robust model are useless if they're working with irrelevant context. This is why the first, and most important step, is optimizing your **retrieval**.
 
 The most important decision you'll make here is your **chunking strategy**. It’s a classic engineering trade-off:
 
@@ -136,6 +142,9 @@ There's a whole toolkit of prompting techniques you can choose from. But to go f
 
 ### Memory
 
+
+This is what most people mean when they search for LLM memory or agent memory: a system that combines the context window with retrieval and long-term storage so the agent can stay consistent over time.
+
 A stateless LLM can answer a single question well, but it has no idea what happened five minutes ago or why that matters for the next decision. Memory transforms the model into something that feels more dynamic and, dare we say, more ‘human’, that’s capable of holding onto context, learning from the past, and adapting on the fly. For context engineering, the core challenge is not “how much can we store?” but “what deserves a spot in front of the model right now, and what can safely live elsewhere?
 
 **The Architecture of Agent Memory**
@@ -152,7 +161,7 @@ Memory in an AI agent is all about retaining information to navigate changing ta
 
 Because it’s external, this memory can grow, update, and persist beyond the model’s context window. 
 
-Most modern systems usually implement a hybrid memory setup, i.e., blending short-term memory with long-term for depth. Some architectures also add a *working memory*: a temporary space for information needed during a multi-step task. For example, while booking a trip, an agent might keep the destination, dates, and budget in working memory until the task is done, without storing it permanently.
+Most modern systems usually implement a hybrid memory setup, i.e., blending short-term memory with long-term for depth. Some architectures also add a *working memory*: a temporary space for information needed during a multi-step task. For example, while booking a trip, an agent might keep the destination, dates, and budget in working memory until the task is done, without storing it permanently. This is often called persistent memory or agent long-term memory.
 
 ![memory types in agentic systems](./img/memory-types.png)
 
@@ -165,6 +174,11 @@ Once in storage, memories need maintenance. Periodic pruning, merging duplicates
 Our eBook’s memory section goes deeper into more of these memory management strategies, including mastering the art of retrieval, being selective about what you store, and pruning and refining memories. It also highlights the key principle: always tailor the memory architecture to the task because there’s no one-size-fits-all solution (at least not yet).
 
 ![key principles for effective memory management](./img/memory-management.png)
+
+:::info Terminology
+If you're searching for **LLM memory** or **agent memory**, you're usually looking for the systems behind context engineering: **retrieval**, **long-term memory storage**, and **rules for what enters the context window** at each step.
+:::
+
 
 ### Tools
 
@@ -320,7 +334,7 @@ It all comes back to that gap between a flashy demo and a dependable production 
 
 A powerful Agent is useless without clean data from Retrieval. Great Retrieval is wasted if a poor Prompt misguides the model. And even the best Prompt can't function without the history provided by Memory or the real-world access given by Tools.
 
-Context engineering is about shifting our role from being prompters who talk *at* a model to architects who build the world the model lives *in*.
+Context engineering is about shifting our role from being prompters who talk *at* a model to architects who build the world the model lives *in*. It’s also how you build robust LLM memory—combining retrieval and long-term storage with a context window that stays clean and high-signal.
 
 As builders, we know that larger models do not necessarily create the best AI systems, but rather better engineering does. 
 

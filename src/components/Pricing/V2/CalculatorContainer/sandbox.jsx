@@ -14,7 +14,7 @@ export default function Sandbox() {
       <div className={styles.features}>
         <li>14 days lifetime</li>
         <li>Monitoring</li>
-        <li>Public Slack</li>
+        <li>Public Forum</li>
       </div>
       <div className={styles.features}>
         <li>Community support</li>

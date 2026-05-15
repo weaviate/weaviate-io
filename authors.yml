@@ -333,7 +333,7 @@ damien:
   image_url: /img/people/icon/damien.png
 ivan:
   name: Ivan Despot
-  title: Technical Documentation Writer
+  title: Developer Experience Engineer
   url: https://www.linkedin.com/in/ivan-g-despot/
   image_url: /img/people/icon/ivan.jpeg
 yaru:
@@ -361,3 +361,18 @@ dhruv:
   title: Ecosystem Integration Intern
   url: https://www.linkedin.com/in/dhruvgorasiya/
   image_url: /img/people/icon/dhruv.png
+michelangelo:
+  name: Michelangelo Partipilo
+  title: Software Engineer - Client Libraries
+  url: https://www.linkedin.com/in/mpartipilo/
+  image_url: /img/people/icon/michelangelo.png
+andre:
+  name: André Mourão
+  title: Software Engineer - Search
+  url: https://www.linkedin.com/in/andre-mourao/
+  image_url: /img/people/team/andre-m.jpg
+devika:
+  name: Devika Ambekar
+  title: PhD Candidate at University of Arkansas at Little Rock
+  url: https://www.linkedin.com/in/divikaambekar/
+  image_url: /img/people/icon/devika.jpg

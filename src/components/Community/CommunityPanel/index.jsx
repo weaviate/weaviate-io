@@ -23,7 +23,7 @@ export default function CommunityPanel() {
               </p>
 
               <ul>
-                <li>Slack & Discourse Community</li>
+                <li>Discourse Community</li>
                 <li>GitHub </li>
                 <li>In Person Events</li>
                 <li>Livestreams & Podcasts</li>

@@ -1,1 +1,2 @@
-export * from './dataTypes'
+export * from './dataTypes';
+export * from './priceValues';

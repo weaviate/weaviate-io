@@ -253,23 +253,48 @@ const siteRedirects = {
         // Calendar redirects
 
         {
-            to: '/rohan',
+            to: '/contact',
             from: '/griffin',
         },
-          {
-            to: '/rohan',
+        {
+            to: '/contact',
             from: '/aaron',
         },
         {
-            to: '/rohan',
+            to: '/contact',
             from: '/willem',
         },
-          // BYOC redirects
+        {
+            to: '/contact',
+            from: '/rohan',
+        },
+        {  
+            to: '/contact',
+            from: '/alec',
+        },
+        {
+            to: '/contact',
+            from: '/luke',
+        },
+        {
+
+            to: '/contact',
+            from: '/nathaniel',
+        },
+        {
+
+            to: '/contact',
+            from: '/elisa',
+        },
+          
+        // BYOC redirects
 
         {
             to: '/deployment/dedicated',
             from: '/deployment/byoc',
         },
+
+       
 
     ],
 };

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '@theme/Layout';
 import StudyHeader from '/src/components/Service/Finance/Header';
-import ContactUsForm from '/src/components/ContactUsForm';
+import ContactForm from '/src/components/Contact/contactForm.jsx';
 import Study from '/src/components/Service/Finance/Study';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 
@@ -17,7 +17,7 @@ export default function CaseStudyPage() {
         <StudyHeader />
         <Study />
         <Integrations />
-        <ContactUsForm />
+        <ContactForm />
       </Layout>
       <ThemeSwitch />
     </div>
