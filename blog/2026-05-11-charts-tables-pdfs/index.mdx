@@ -14,7 +14,7 @@ description: "PDFs full of charts and tables are notoriously hard to put through
 
 ## Intro
 
-If you have ever tried to put a stack of investor decks, scientific papers, or annual reports through a RAG pipeline, then you know the drill:  set up an Optical Character Recognition (OCR) or text-extraction step, pick a chunking strategy, embed text, and finally retrieve information. After going through all this, someone may ask a question about revenue in `Q2 FY25`, and your retrieval would return three pages of unrelated bullet points because the actual answer is in a bar chart that was invisible to your index.
+If you have ever tried to put a stack of investor decks, scientific papers, or annual reports through a RAG pipeline, then you know the drill: set up an Optical Character Recognition (OCR) or text-extraction step, pick a chunking strategy, embed text, and finally retrieve information. After going through all this, someone may ask a question about revenue in `Q2 FY25`, and your retrieval would return three pages of unrelated bullet points because the actual answer is in a bar chart that was invisible to your index.
 
 This used to be what people had to do — just leave out the interesting parts of a PDF from RAG such as bar charts with trends, comparison tables, architectural diagrams, and things in general that make PDFs so much more valuable than mere text.
 
@@ -38,7 +38,7 @@ Let's first look at what most people do today when it comes to building a RAG pi
 3. Embed the chunks with a text embedding model.
 4. Retrieve, (maybe) rerank, generate.
 
-There's nothing inherently bad about this workflow, but there's a naive underlying assumption that *the page can be reduced to a sequence of text tokens without losing the richness of the content*. For a press release or a Wikipedia article, this is mostly fine, but for a slide deck full of charts, a 10-K with comparison tables, or an academic paper with illustrative figures, it’s simply not enough.
+There's nothing inherently bad about this workflow, but there's a naive underlying assumption that *the page can be reduced to a sequence of text tokens without losing the richness of the content*. For a press release or a Wikipedia article, this is mostly fine, but for a slide deck full of charts, a 10-K with comparison tables, or an academic paper with illustrative figures, it's simply not enough.
 
 You could build a complex ETL pipeline to extract charts and vectorize them separately, but that means another model in the pipeline and introduces more complexity into the stack as well as merging problems at query time.
 
@@ -46,7 +46,7 @@ With a late-interaction multi-vector model, you don't need any of those: You emb
 
 ## Late-interaction multi-vector retrieval, in two paragraphs
 
-Before we get to the demo, let’s take a quick detour on what makes this work. If you already know your way around ColPali / ColBERT, feel free to skip or skim.
+Before we get to the demo, let's take a quick detour on what makes this work. If you already know your way around ColPali / ColBERT, feel free to skip or skim.
 
 Traditional dense embedding models compress an entire document (or chunk) into a single vector. Late-interaction multi-vector models do something different: they encode the document as a *set* of vectors, typically one per token (or for a vision model like the one we're about to use, one per image patch). At query time, your query is also encoded as a set, and the relevance score is the sum of best matches between query tokens and document tokens (a quantity called MaxSim).
 
@@ -56,7 +56,7 @@ So really, there are two distinct advantages here:
 1. Because it's a **visual model** you keep the layout, the charts, the tables, etc. *and*
 2. By using MaxSim over a set of vectors, you **eliminate the need for chunking**.
 
-Weaviate offers such a model called `multi2vec-weaviate`; it is natively available on Weaviate Cloud and you don't have to host or manage a model in order to generate multi-vectors from your PDFs.
+Weaviate offers `multi2multivec-weaviate`, a vectorizer module that runs a hosted late-interaction multi-vector model on Weaviate Cloud, so you don't have to host or manage a model in order to generate multi-vectors from your PDFs.
 
 ## Ingesting PDFs by Drag-and-Drop
 
@@ -79,7 +79,7 @@ The fastest way to try this is the drag-and-drop importer in [Weaviate Cloud](ht
   </div>
 </div>
 
-And that’s the entire ingestion process. Behind the scenes, Weaviate is doing three things:
+And that's the entire ingestion process. Behind the scenes, Weaviate is doing three things:
 
 1. Rendering each PDF page to a high-resolution image.
 2. Storing that image as a `BLOB` property on a new collection.
@@ -91,7 +91,7 @@ A few things are worth noting:
 * **No OCR.** The model never sees the text as text. It sees the page as an image. That's why a chart with no caption is just as searchable as a paragraph.
 * **The vectors are compressed.** Late-interaction models can produce hundreds of vectors per page, which would be expensive to store naively. Weaviate uses a [multi-vector encoding](https://docs.weaviate.io/weaviate/configuration/compression/multi-vectors) scheme that keeps the index compact. (More on that also in the trade-offs section below.)
 
-For this demo, we’ve imported NVIDIA's four FY2026 quarterly investor presentations (Q1 through Q4). They cover the financial year ending in January 2026, contain wall-to-wall charts and tables, and total 92 pages. The whole import took about a minute and a half.
+For this demo, we've imported NVIDIA's four FY2026 quarterly investor presentations (Q1 through Q4). They cover the financial year ending in January 2026, contain wall-to-wall charts and tables, and total 92 pages. The whole import took about a minute and a half.
 
 ## Interrogating NVIDIA's Quarterly Earnings
 
@@ -264,7 +264,7 @@ Of course not. As always in Engineering, there are trade-offs:
 
 So when does this approach with late-interaction multi-vector models win? Mostly in PDF-heavy domains that contain assets such as quarterly slide decks, due-diligence packets, scientific figures, and technical drawings, etc. For text-dominated corpora, a text pipeline is most likely cheaper and sufficiently performant. 
 
-For further optimization, you might consider using a hybrid approach, where you identify pages with charts to implement as as multi-vectors and the remaining corpus as text, and then use an RRF-style approach to merge results at query time.
+For further optimization, you might consider using a hybrid approach, where you identify pages with charts to implement as multi-vectors and the remaining corpus as text, and then use an RRF-style approach to merge results at query time.
 
 ## Conclusion
 
@@ -273,7 +273,7 @@ Let's wrap up with the key takeaways:
 * **Charts and tables are not problems to be solved by better OCR.** They are *primary information* that gets destroyed in extraction. If your pipeline only indexes text, valuable information from charts is already lost before you started embedding.
 * **Late-interaction multi-vector models let you skip extraction entirely.** Render the page, embed the image, and ask questions about what the image means. The model retrieves pages by what they look like --- charts, tables, layout, and all.
 * **On Weaviate Cloud, ingestion is drag-and-drop.** Point the Query Agent at the resulting collection, ask a question, and get an answer with proper images as citation.
-* **Turn the same primitive into deployable code.** `multi2vec_weaviate(image_field="page_image")` is the entire vectorizer config. The rest is rasterising pages with PyMuPDF and a small `batch.add_object` loop.
+* **Turn the same primitive into deployable code.** `MultiVectors.multi2vec_weaviate(image_field="page_image")` is the entire vectorizer config. The rest is rasterising pages with PyMuPDF and a small `batch.add_object` loop.
 
 If you have been working around chart-heavy PDFs because the indexing pipeline made them too painful to deal with, this is worth a try. The kind of files you used to skip, because they were *"mostly charts"*, are exactly what this approach is built for.
 
