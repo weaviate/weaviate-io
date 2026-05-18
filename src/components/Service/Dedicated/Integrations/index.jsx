@@ -1,8 +1,5 @@
 import React from "react";
-import { ButtonContainer } from "../../../../theme/Buttons";
 import styles from "./styles.module.scss";
-import { LinkButton } from "/src/theme/Buttons";
-import Link from "@docusaurus/Link";
 
 export default function Integrations() {
   return (
@@ -15,6 +12,7 @@ export default function Integrations() {
             <div className={styles.imageGrid3}> </div>
           </div>
           <div className={styles.right}>
+            <span className={styles.eyebrow}>Dedicated cloud</span>
             <h2>
               Our team of experts will manage everything for you in a dedicated
               instance in Weaviate Cloud.

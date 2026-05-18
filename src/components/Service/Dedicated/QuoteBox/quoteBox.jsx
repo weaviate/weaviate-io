@@ -1,25 +1,27 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
-import styles from './styles.module.scss';
+import Link from "@docusaurus/Link";
+import React from "react";
+import styles from "./styles.module.scss";
 
-const socLight = 'dark';
-
-export default function quoteBox(props) {
-  const { socLight } = props;
+export default function quoteBox() {
   return (
-    <div className={styles[socLight]}>
-      <div className={styles.soc2Container}>
-        <div className={`${styles.card} ${styles.longCard}`}>
-          <div className={styles.contentDiv}>
-            <h3 className={styles.cTextColor}>
+    <section className={styles.quoteSection}>
+      <div className="container">
+        <div className={styles.quoteCard}>
+          <div className={styles.quoteInner}>
+            <h3>
               “Weaviate’s Dedicated Cloud offering lets our team leverage
               innovative and open source technology with less management
               overhead, and in a way that satisfies our business needs.”
             </h3>
+
             <p>Director of Engineering in Legal Tech </p>
+
+            <Link className={styles.buttonGradient} to="#contact-sales">
+              Talk to Sales
+            </Link>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -1,14 +1,15 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
+import Link from "@docusaurus/Link";
+import React from "react";
 
-import styles from './styles.module.scss';
+import styles from "./styles.module.scss";
 
 export default function availability() {
   return (
-    <div className={styles.bgColor}>
+    <section className={styles.bgColor}>
       <div className="container">
         <div className={styles.header}>
           <h2>Available on</h2>
+          <p>Deploy Dedicated Cloud across the leading hyperscalers.</p>
         </div>
         <div className={styles.techContainer}>
           <div className={styles.techList}>
@@ -30,6 +31,6 @@ export default function availability() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

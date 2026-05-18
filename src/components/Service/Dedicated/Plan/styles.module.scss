@@ -1,93 +1,157 @@
+.bgColor {
+  position: relative;
+  overflow: hidden;
+  background: #111111;
+  padding: clamp(64px, 8vw, 120px) 0;
+}
+
+.diagramBox {
+  position: relative;
+  z-index: 1;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.02) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 32px;
+  padding: clamp(40px, 5vw, 72px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.32);
+  overflow: hidden;
+}
+
 .header {
-  text-align: left;
-  color: #ffffff;
-  width: 85%;
-  margin: 0px 0px 40px 0px;
+  width: min(900px, 100%);
+  margin-bottom: clamp(48px, 5vw, 72px);
 
   h2 {
-    color: #ffffff;
+    margin: 0;
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-size: clamp(2rem, 5vw, 2rem) !important;
+    font-weight: 600 !important;
+    line-height: 112% !important;
+    letter-spacing: -0.04em;
   }
 }
 
 .content {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: center;
+  gap: 72px;
   align-items: center;
 
-  @media screen and (max-width: 860px) {
+  @media screen and (max-width: 1024px) {
     flex-direction: column;
-    gap: 55px;
+    gap: 56px;
   }
-  span {
-    color: #61bd73;
-    font-family: 'Plus Jakarta Sans';
-    font-size: 1.25rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 157.33%; /* 1.96663rem */
-
-    a {
-      color: #61bd73;
-    }
-  }
-
-  p {
-    color: #fff;
-    width: 90%;
-    font-size: 1rem;
-  }
-  a {
-    color: #fff;
-    text-decoration: underline;
-  }
-}
-
-.bottomContent {
-  margin: 50px 0px;
-
-  .getStarted {
-    color: #ffffff;
-    font-size: 2rem;
-    font-family: 'Plus Jakarta Sans';
-
-    a {
-      color: #fff;
-      text-decoration: underline;
-    }
-  }
-}
-
-.bgColor {
-  background: #130c49;
 }
 
 .leftContent {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 42px;
-  flex: 1;
+  gap: 32px;
+}
+
+.featureItem {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  span {
+    color: #43e2c5;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    margin: 0;
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 1rem !important;
+    line-height: 170% !important;
+    width: min(90%, 640px);
+
+    @media screen and (max-width: 1024px) {
+      width: 100%;
+    }
+  }
 }
 
 .rightContent {
   flex: 1;
+  display: flex;
+  justify-content: center;
 
   .diagram {
-    background-image: url('/img/site/enterprise-dedicated-diagram.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position-x: center;
-    width: 42rem;
+    width: 100%;
+    max-width: 42rem;
     height: 27rem;
+    border-radius: 24px;
+    background-color: #151515;
+    background-image: url("/img/site/enterprise-dedicated-diagram.svg");
+    background-size: 90% 90%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+    transition:
+      transform 0.28s ease,
+      border-color 0.28s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      border-color: rgba(67, 226, 197, 0.22);
+    }
 
     @media screen and (max-width: 1024px) {
-      width: 34rem;
+      max-width: 34rem;
     }
 
     @media screen and (max-width: 560px) {
-      width: 300px;
-      height: 15rem;
+      height: 16rem;
+    }
+  }
+}
+
+.bottomContent {
+  width: 100%;
+  margin-top: clamp(72px, 8vw, 96px);
+  padding-top: 48px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+
+  .getStarted {
+    margin: 0 0 1rem;
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-size: clamp(2rem, 4vw, 2rem) !important;
+    font-weight: 600 !important;
+    line-height: 115% !important;
+    letter-spacing: -0.04em;
+
+    a {
+      color: #43e2c5 !important;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+  }
+
+  p {
+    margin: 0;
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 1rem !important;
+    line-height: 170% !important;
+
+    a {
+      color: #43e2c5 !important;
+      text-decoration: underline;
+      text-underline-offset: 4px;
     }
   }
 }

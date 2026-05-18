@@ -1,26 +1,28 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
-import styles from './styles.module.scss';
+import Link from "@docusaurus/Link";
+import React from "react";
+import styles from "./styles.module.scss";
 
-const socLight = 'dark';
-
-export default function quoteBox(props) {
-  const { socLight } = props;
+export default function quoteBox() {
   return (
-    <div className={styles[socLight]}>
-      <div className={styles.soc2Container}>
-        <div className={`${styles.card} ${styles.longCard}`}>
-          <div className={styles.contentDiv}>
-            <h3 className={styles.cTextColor}>
+    <section className={styles.quoteSection}>
+      <div className="container">
+        <div className={styles.quoteCard}>
+          <div className={styles.quoteInner}>
+            <h3>
               "I've never encountered a course that could pack so much
               information into such a concise format while still distinctly
               highlighting each critical point. The instructor is undoubtedly
               one of the best I've had the privilege of learning from"
             </h3>
+
             <p>Attendee, DeepLearning.AI course</p>
+
+            <Link className={styles.buttonGradient} to="#contact-sales">
+              Contact Sales
+            </Link>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

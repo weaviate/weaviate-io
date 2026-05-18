@@ -1,167 +1,71 @@
-.buttons {
-  margin-top: 30px;
-  gap: 20px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-
-  a {
-    height: 45px;
-    width: 220px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    text-decoration: none;
-  }
-
-  .buttonGradient {
-    border-radius: 0.3125rem;
-    background: #130c49;
-    color: #fff;
-    text-align: center;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 157.33%;
-  }
-
-  .buttonOutline {
-    border-radius: 0.3125rem;
-    background: #fff;
-    color: #130c49;
-    text-align: center;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 157.33%;
-  }
-}
-
-p {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
+.headerSecurity {
+  background: #111111;
+  background-image:
+    linear-gradient(rgba(17, 17, 17, 0.2), rgba(17, 17, 17, 0.72)),
+    url("/img/site/3d-pricing-banner.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: clamp(72px, 8vw, 120px) 0 clamp(56px, 7vw, 96px);
 }
 
 .box {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  text-align: left;
-  margin-bottom: 40px;
+  align-items: center;
+  text-align: center;
 
-  h1,
-  .headText {
-    color: #130c49;
-
-    font-size: 2.25rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 140%;
-    margin-bottom: 1rem;
-    width: 40%;
-
-    @media screen and (max-width: 900px) {
-      width: 100%;
-    }
+  h1 {
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans" !important;
+    font-size: clamp(2.5rem, 5vw, 2.5rem) !important;
+    font-weight: 600 !important;
+    line-height: 120% !important;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.25rem;
   }
 
   .headerBox {
-    width: 47%;
-    margin: 20px 0px;
-    @media screen and (max-width: 900px) {
-      width: 100%;
-    }
-
-    h1 {
-      color: #130c49;
-      font-family: Inter;
-      font-size: 1.2rem;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 157.33%;
-      margin: 0;
-      width: 100%;
-    }
+    width: min(920px, 100%);
 
     p {
-      color: #130c49;
-    }
-
-    a {
-      color: #130c49;
-      text-decoration: underline;
-    }
-  }
-
-  hr {
-    background: #130c49;
-    width: 65rem;
-    height: 0.0625rem;
-
-    @media screen and (max-width: 900px) {
-      width: 100%;
+      color: #b9c8de !important;
+      font-family: Inter !important;
+      font-size: 1.125rem !important;
+      line-height: 160% !important;
+      margin: 0;
     }
   }
 }
 
-.buttonOutline {
-  border-radius: 0.3125rem;
-  border: 1px solid #130c49;
-  background: #f4f4f4;
-  padding: 9px;
-  color: #130c49;
-  text-align: center;
-  font-family: Inter;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 157.33%;
-  transition: all 1s ease-out;
-}
-.buttonOutline:hover {
-  border-radius: 0.3125rem;
-  outline: 1px solid #130c49;
-  background: rgb(15, 0, 50);
-  color: #fff;
-  font-weight: 400;
-}
-
-.buttonsContainer {
+.buttons {
+  margin-top: 32px;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  gap: 30px;
-  padding: 20px 0px 10px;
-}
 
-.headerSecurity {
-  background: #f5f5f5;
-  background-image: url('/img/site/3d-pricing-banner.png');
-  background-size: cover;
-
-  @media screen and (max-width: 500px) {
-    background-image: url('/img/site/3d-pricing-banner.png');
-    background-size: cover;
-    background-position-y: bottom;
-    background-repeat: no-repeat;
+  a {
+    min-height: 52px;
+    min-width: 220px;
+    border-radius: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none !important;
+    transition: all 0.25s ease;
   }
-}
 
-.topText {
-  color: #130c49;
-  text-align: center;
-  font-family: Plus Jakarta Sans;
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 120%; /* 1.5rem */
-  text-transform: uppercase;
-  margin: 10px 0px;
+  .buttonGradient {
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff !important;
+    font-family: Inter;
+    font-size: 1rem;
+    font-weight: 600;
+
+    &:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff !important;
+    }
+  }
 }
