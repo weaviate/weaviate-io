@@ -1,32 +1,32 @@
-import React from 'react';
+import React from "react";
 
 const benefitCards = [
   {
-    title: 'Reduce Costs',
-    description: 'Avoid resending massive context windows with every request.',
-    icon: '/img/site/2026/engram-icon-01.svg',
-    glow: 'rgba(0, 254, 107, 0.16)',
+    title: "Build personalization and continuity",
+    description: "Remember preferences and decisions across sessions.",
+    icon: "/img/site/2026/engram-icon-01.svg",
+    glow: "rgba(0, 254, 107, 0.16)",
   },
   {
-    title: 'Improve Accuracy',
+    title: "Extract facts and resolve inconsistencies",
     description:
-      'Retrieve clean, relevant memories instead of noisy conversation history.',
-    icon: '/img/site/2026/engram-icon-02.svg',
-    glow: 'rgba(122, 145, 255, 0.18)',
+      "Turn interaction data into memories that automatically deduplicate, reconcile, and consolidate.",
+    icon: "/img/site/2026/engram-icon-02.svg",
+    glow: "rgba(122, 145, 255, 0.18)",
   },
   {
-    title: 'Boost Performance',
+    title: "Shrink context windows",
     description:
-      'Lightweight memory retrieval keeps agents fast and responsive.',
-    icon: '/img/site/2026/engram-icon-03.svg',
-    glow: 'rgba(104, 255, 168, 0.15)',
+      "Send relevant and structured memories instead of raw conversations and events.",
+    icon: "/img/site/2026/engram-icon-03.svg",
+    glow: "rgba(104, 255, 168, 0.15)",
   },
   {
-    title: 'Agent Integrations',
+    title: "Share memory across agents",
     description:
-      'Deliver personalized experiences designed for multi-agent systems.',
-    icon: '/img/site/2026/engram-icon-04.svg',
-    glow: 'rgba(0, 183, 226, 0.16)',
+      "Orchestrate multi-agent systems with shared, persistent, and scoped memories.",
+    icon: "/img/site/2026/engram-icon-04.svg",
+    glow: "rgba(0, 183, 226, 0.16)",
   },
 ];
 
@@ -41,7 +41,7 @@ export default function BenefitCards() {
               className="tw-group tw-relative tw-overflow-hidden tw-rounded-[1.875rem] tw-bg-[#1a1a1a] tw-p-8 tw-transition-all tw-duration-300 md:tw-min-h-[300px] md:tw-p-10 md:hover:tw--translate-y-1 md:hover:tw-scale-[1.01]"
               style={{
                 boxShadow:
-                  '0 0 0 1px rgba(255,255,255,0.035), 0 22px 70px rgba(0,0,0,0.18)',
+                  "0 0 0 1px rgba(255,255,255,0.035), 0 22px 70px rgba(0,0,0,0.18)",
               }}
             >
               <div
@@ -70,11 +70,11 @@ export default function BenefitCards() {
                 <h3
                   className="tw-m-0 tw-font-['Plus_Jakarta_Sans'] tw-text-[1.55rem] tw-font-semibold tw-leading-[130%] tw-tracking-[-0.03em] tw-text-[#DDEBF2] md:tw-text-[1.7rem]"
                   style={{
-                    color: '#DDEBF2',
+                    color: "#DDEBF2",
                     fontFamily: '"Plus Jakarta Sans", sans-serif',
-                    fontSize: '1.55rem',
-                    fontWeight: '600',
-                    lineHeight: '130%',
+                    fontSize: "1.4rem",
+                    fontWeight: "600",
+                    lineHeight: "130%",
                   }}
                 >
                   {card.title}
@@ -83,10 +83,10 @@ export default function BenefitCards() {
                 <p
                   className="tw-m-0 tw-mt-7 tw-font-['Inter'] tw-text-[1.15rem] tw-leading-[150%] tw-text-[#B9C8DE]"
                   style={{
-                    color: '#B9C8DE',
-                    fontFamily: 'Inter, sans-serif',
-                    fontSize: '1.125rem',
-                    lineHeight: '160%',
+                    color: "#B9C8DE",
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: "1.125rem",
+                    lineHeight: "160%",
                   }}
                 >
                   {card.description}

@@ -1,25 +1,25 @@
-import React from 'react';
+import React from "react";
 
 const steps = [
   {
-    title: 'Add Your Data',
+    title: "Choose your template",
     description:
-      'Send user interactions or events via API or Python client. No preprocessing—just pass raw data.',
+      "Use one of Engram’s composable templates for your application",
   },
   {
-    title: 'Process Automatically',
+    title: "Add your data",
     description:
-      'Engram extracts, deduplicates, and reconciles memories—then stores them for fast retrieval. All pipelines run asynchronously, so there’s no latency.',
+      "Send user interactions or application context via Engram APIs, no preprocessing needed",
   },
   {
-    title: 'Build Without Friction',
+    title: "Build Without Friction",
     description:
-      'No need to manage memory logic or background jobs. Keep building—Engram remembers what matters.',
+      "Engram handles memory extraction and management, all in the background",
   },
   {
-    title: 'Retrieve & Scale',
+    title: "Create trusted agents",
     description:
-      'Search and retrieve relevant memories to personalize and add context. Start simple and scale as your needs grow.',
+      "Retrieve memory and context in real time so your agents run consistently and reliably",
   },
 ];
 
@@ -31,11 +31,11 @@ export default function StepsSection() {
           <p
             className="tw-m-0 tw-mb-8 tw-uppercase"
             style={{
-              color: '#43E2C5',
+              color: "#43E2C5",
               fontFamily: '"Plus Jakarta Sans", sans-serif',
-              fontSize: '1rem',
+              fontSize: "1rem",
               fontWeight: 600,
-              lineHeight: '130%',
+              lineHeight: "130%",
             }}
           >
             Get Started
@@ -44,27 +44,27 @@ export default function StepsSection() {
           <h2
             className="tw-m-0"
             style={{
-              color: '#DDEBF2',
+              color: "#DDEBF2",
               fontFamily: '"Plus Jakarta Sans", sans-serif',
-              fontSize: '3rem',
+              fontSize: "3rem",
               fontWeight: 600,
-              lineHeight: '130%',
+              lineHeight: "130%",
             }}
           >
-            Start building smarter memory today
+            Starting building reliable agents with memory and context today
           </h2>
 
           <p
             className="tw-m-0 tw-mt-6"
             style={{
-              color: '#B9C8DE',
-              fontFamily: 'Inter, sans-serif',
-              fontSize: '1.125rem',
-              lineHeight: '160%',
+              color: "#B9C8DE",
+              fontFamily: "Inter, sans-serif",
+              fontSize: "1.125rem",
+              lineHeight: "160%",
             }}
           >
-            Add memory to your agents in four simple steps—Engram handles the
-            rest.
+            Integrate Engram with your agentic applications in a few simple
+            steps and let us handle the rest.
           </p>
         </div>
 
@@ -85,11 +85,11 @@ export default function StepsSection() {
                   <h3
                     className="tw-m-0"
                     style={{
-                      color: '#DDEBF2',
+                      color: "#DDEBF2",
                       fontFamily: '"Plus Jakarta Sans", sans-serif',
-                      fontSize: '1.5rem',
+                      fontSize: "1.5rem",
                       fontWeight: 600,
-                      lineHeight: '130%',
+                      lineHeight: "130%",
                     }}
                   >
                     {step.title}
@@ -98,10 +98,10 @@ export default function StepsSection() {
                   <p
                     className="tw-m-0 tw-mt-5"
                     style={{
-                      color: '#B9C8DE',
-                      fontFamily: 'Inter, sans-serif',
-                      fontSize: '1rem',
-                      lineHeight: '160%',
+                      color: "#B9C8DE",
+                      fontFamily: "Inter, sans-serif",
+                      fontSize: "1rem",
+                      lineHeight: "160%",
                     }}
                   >
                     {step.description}
@@ -116,7 +116,7 @@ export default function StepsSection() {
               className="tw-absolute tw-inset-0 tw-rounded-[2rem] tw-opacity-20"
               style={{
                 background:
-                  'linear-gradient(123deg, #26D6FF 12.44%, #D77AFF 109.26%)',
+                  "linear-gradient(123deg, #26D6FF 12.44%, #D77AFF 109.26%)",
               }}
             />
 
@@ -124,9 +124,9 @@ export default function StepsSection() {
               className="tw-relative tw-overflow-hidden tw-rounded-[2rem] tw-border tw-border-white/10 tw-p-6 md:tw-p-10"
               style={{
                 background:
-                  'linear-gradient(123deg, rgba(38,214,255,0.22) 12.44%, rgba(215,122,255,0.18) 109.26%)',
+                  "linear-gradient(123deg, rgba(38,214,255,0.22) 12.44%, rgba(215,122,255,0.18) 109.26%)",
                 boxShadow:
-                  '0 24px 80px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.08)',
+                  "0 24px 80px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.08)",
               }}
             >
               <img

@@ -1,20 +1,26 @@
-import React from 'react';
-import Link from '@docusaurus/Link';
+import React from "react";
+import Link from "@docusaurus/Link";
 
 const featureCards = [
-  ['Plug-and-play simplicity', 'Works with existing apps'],
-  ['Flexible control', 'from automatic to fully agent-driven'],
-  ['Better personalization', 'remembers user preferences'],
-  ['Scales with complexity', 'simple start, advanced control later'],
-  ['Ready-to-use templates', 'faster onboarding'],
-  ['Agent integrations', 'works with tools like coding agents'],
+  [
+    "Launch quickly with templates",
+    "Get running in minutes with ready-to-use templates for common use cases",
+  ],
+  [
+    "Secure agents with strong primitives",
+    "Scopes for data isolation when privacy matters and for context sharing when orchestration is necessary",
+  ],
+  [
+    "Customizable to fit your domains",
+    "Extensible properties and composable pipelines let you shape memory and context for your domain and business needs",
+  ],
 ];
 
 const checks = [
-  'Extracting what matters',
-  'Resolving inconsistencies over time',
-  'Adapting to changing information',
-  'Keeping context relevant and efficient',
+  "Extracting what matters",
+  "Resolving inconsistencies over time",
+  "Adapting to changing information",
+  "Keeping context relevant and efficient",
 ];
 
 export default function FeatureSplit() {
@@ -25,11 +31,11 @@ export default function FeatureSplit() {
           <p
             className="tw-m-0 tw-mb-8 tw-uppercase"
             style={{
-              color: '#43E2C5',
+              color: "#43E2C5",
               fontFamily: '"Plus Jakarta Sans", sans-serif',
-              fontSize: '1rem',
+              fontSize: "1rem",
               fontWeight: 600,
-              lineHeight: '130%',
+              lineHeight: "130%",
             }}
           >
             What is Engram?
@@ -38,23 +44,23 @@ export default function FeatureSplit() {
           <h2
             className="tw-m-0"
             style={{
-              color: '#DDEBF2',
+              color: "#DDEBF2",
               fontFamily: '"Plus Jakarta Sans", sans-serif',
-              fontSize: '3rem',
+              fontSize: "3rem",
               fontWeight: 600,
-              lineHeight: '130%',
+              lineHeight: "130%",
             }}
           >
-            Memory that adapts to your AI
+            Structured memory for agentic applications
           </h2>
 
           <p
             className="tw-m-0 tw-mt-6 tw-max-w-3xl"
             style={{
-              color: '#B9C8DE',
-              fontFamily: 'Inter, sans-serif',
-              fontSize: '1.125rem',
-              lineHeight: '160%',
+              color: "#B9C8DE",
+              fontFamily: "Inter, sans-serif",
+              fontSize: "1.125rem",
+              lineHeight: "160%",
             }}
           >
             Memory shouldn’t be an ever-growing pile of context—it should be
@@ -77,11 +83,11 @@ export default function FeatureSplit() {
               <h3
                 className="tw-m-0"
                 style={{
-                  color: '#DDEBF2',
+                  color: "#DDEBF2",
                   fontFamily: '"Plus Jakarta Sans", sans-serif',
-                  fontSize: '2rem',
+                  fontSize: "2rem",
                   fontWeight: 600,
-                  lineHeight: '130%',
+                  lineHeight: "130%",
                 }}
               >
                 Build agents that remember and get better over time
@@ -90,10 +96,10 @@ export default function FeatureSplit() {
               <p
                 className="tw-m-0 tw-mt-8"
                 style={{
-                  color: '#B9C8DE',
-                  fontFamily: 'Inter, sans-serif',
-                  fontSize: '1.125rem',
-                  lineHeight: '160%',
+                  color: "#B9C8DE",
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "1.125rem",
+                  lineHeight: "160%",
                 }}
               >
                 Engram is a managed memory service built on the Weaviate vector
@@ -107,10 +113,10 @@ export default function FeatureSplit() {
                     key={item}
                     className="tw-flex tw-items-start tw-gap-4"
                     style={{
-                      color: '#DDEBF2',
-                      fontFamily: 'Inter, sans-serif',
-                      fontSize: '1.05rem',
-                      lineHeight: '150%',
+                      color: "#DDEBF2",
+                      fontFamily: "Inter, sans-serif",
+                      fontSize: "1.05rem",
+                      lineHeight: "150%",
                     }}
                   >
                     <span className="tw-mt-1 tw-flex tw-h-5 tw-w-5 tw-shrink-0 tw-items-center tw-justify-center tw-rounded-[4px] tw-border tw-border-[#00FE6B] tw-text-xs tw-text-[#00FE6B]">
@@ -125,9 +131,9 @@ export default function FeatureSplit() {
                 to="/blog/engram-deep-dive"
                 className="tw-mt-10 tw-inline-flex tw-text-[#43E2C5] tw-underline tw-underline-offset-4 hover:tw-text-[#68FFA8]"
                 style={{
-                  fontFamily: 'Inter, sans-serif',
-                  fontSize: '1.25rem',
-                  lineHeight: '150%',
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "1.25rem",
+                  lineHeight: "150%",
                 }}
               >
                 Read the blog post to learn more
@@ -136,6 +142,19 @@ export default function FeatureSplit() {
           </div>
         </div>
 
+        <h2
+          className="tw-mt-20 tw-mb-10 tw-mx-0 tw-align-middle tw-text-center"
+          style={{
+            color: "#DDEBF2",
+            fontFamily: '"Plus Jakarta Sans", sans-serif',
+            fontSize: "2.5rem",
+            fontWeight: 600,
+            lineHeight: "130%",
+            margin: "5rem 0 2.5rem",
+          }}
+        >
+          Designed to Grow with You
+        </h2>
         <div className="tw-mt-8 tw-grid tw-gap-6 md:tw-grid-cols-2 xl:tw-grid-cols-3">
           {featureCards.map(([title, description]) => (
             <article
@@ -146,7 +165,7 @@ export default function FeatureSplit() {
                 className="tw-pointer-events-none tw-absolute tw-inset-0 tw-opacity-0 tw-transition-opacity tw-duration-300 md:group-hover:tw-opacity-100"
                 style={{
                   background:
-                    'radial-gradient(circle at top left, rgba(0,254,107,0.11) 0%, rgba(255,255,255,0.025) 35%, rgba(255,255,255,0) 70%)',
+                    "radial-gradient(circle at top left, rgba(0,254,107,0.11) 0%, rgba(255,255,255,0.025) 35%, rgba(255,255,255,0) 70%)",
                 }}
               />
 
@@ -162,11 +181,11 @@ export default function FeatureSplit() {
                   <h3
                     className="tw-m-0"
                     style={{
-                      color: '#DDEBF2',
+                      color: "#DDEBF2",
                       fontFamily: '"Plus Jakarta Sans", sans-serif',
-                      fontSize: '1.55rem',
+                      fontSize: "1.55rem",
                       fontWeight: 600,
-                      lineHeight: '130%',
+                      lineHeight: "130%",
                     }}
                   >
                     {title}
@@ -175,10 +194,10 @@ export default function FeatureSplit() {
                   <p
                     className="tw-m-0 tw-mt-4"
                     style={{
-                      color: '#B9C8DE',
-                      fontFamily: 'Inter, sans-serif',
-                      fontSize: '1.125rem',
-                      lineHeight: '160%',
+                      color: "#B9C8DE",
+                      fontFamily: "Inter, sans-serif",
+                      fontSize: "1.125rem",
+                      lineHeight: "160%",
                     }}
                   >
                     {description}

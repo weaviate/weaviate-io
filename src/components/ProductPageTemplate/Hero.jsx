@@ -1,5 +1,5 @@
-import React from 'react';
-import Link from '@docusaurus/Link';
+import React from "react";
+import Link from "@docusaurus/Link";
 
 export default function Hero() {
   return (
@@ -18,25 +18,25 @@ export default function Hero() {
             </h1>
 
             <p className="tw-mb-12 tw-max-w-2xl tw-font-['Inter'] tw-text-xl tw-leading-relaxed tw-text-[#b8c4d4] md:tw-text-2xl">
-              A fully managed API for building agents that remember, learn, and
-              continually improve over time.
+              A fully managed memory and context service purpose-built to help
+              agents remember, learn, and improve over time.
             </p>
 
             <div className="tw-flex tw-flex-wrap tw-gap-5">
               <Link
-                to="/contact"
+                to="https://console.weaviate.io/signup"
                 className="tw-inline-flex tw-min-h-[54px] tw-items-center tw-justify-center tw-rounded-md tw-bg-[#e8f3fb] tw-px-8 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-[#111111] tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-bg-white hover:tw-text-[#111111] hover:tw-no-underline"
               >
-                Request early access
+                Get started
               </Link>
 
               <Link
                 to="https://docs.weaviate.io/agents"
                 className="tw-inline-flex tw-min-h-[54px] tw-items-center tw-justify-center tw-rounded-md tw-border tw-border-white/40 tw-bg-transparent tw-px-8 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-white tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-border-white hover:tw-bg-white/10 hover:tw-text-white hover:tw-no-underline"
                 style={{
-                  fontFamily: 'Inter, sans-serif',
-                  borderRadius: '0.375rem',
-                  border: '0.5px solid #ECF4F8',
+                  fontFamily: "Inter, sans-serif",
+                  borderRadius: "0.375rem",
+                  border: "0.5px solid #ECF4F8",
                 }}
               >
                 Documentation
