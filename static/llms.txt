@@ -21,7 +21,7 @@ If you run Weaviate yourself (Docker / Kubernetes / on-prem), **use at least the
 
 **Table of contents**
 > **Evaluate**: The Weaviate Stack · Ideal Use Cases · Architecture · Misconceptions
-> **Build**: Quickstart · Best Practices · Python / TypeScript API Reference
+> **Build**: Quickstart · Best Practices · Client code examples (Python / TypeScript / Java / C#)
 > Further Resources
 
 > **Evaluate** — what Weaviate is and when to use it
@@ -151,6 +151,51 @@ with weaviate.connect_to_weaviate_cloud(
     print(res.objects[0].properties)
 ```
 
+```typescript
+import weaviate, { vectors } from 'weaviate-client';
+
+const dataObjects = [
+  {
+    title: 'The Matrix',
+    description: 'A computer hacker learns about the true nature of reality and his role in the war against its controllers.',
+    genre: 'Science Fiction',
+  },
+  {
+    title: 'Spirited Away',
+    description: 'A young girl becomes trapped in a mysterious world of spirits and must find a way to save her parents and return home.',
+    genre: 'Animation',
+  },
+  {
+    title: 'The Lord of the Rings: The Fellowship of the Ring',
+    description: 'A meek Hobbit and his companions set out on a perilous journey to destroy a powerful ring and save Middle-earth.',
+    genre: 'Fantasy',
+  },
+];
+
+const client = await weaviate.connectToWeaviateCloud(process.env.WEAVIATE_URL!, {
+  authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY!),
+});
+
+// Create (or reuse) a collection
+if (!(await client.collections.exists('Movie'))) {
+  await client.collections.create({
+    name: 'Movie',
+    vectorizers: vectors.text2VecWeaviate(),
+  });
+}
+
+const movies = client.collections.use('Movie');
+
+// Import objects
+await movies.data.insertMany(dataObjects);
+
+console.log(`Imported & vectorized ${dataObjects.length} objects into the Movie collection`);
+
+// Query
+const res = await movies.query.hybrid('science fiction movie about a virtual world', { limit: 1 });
+console.log(res.objects[0].properties);
+```
+
 ### Local (if data cannot be sent to the cloud)
 
 There are several options to run Weaviate locally:
@@ -170,11 +215,13 @@ There are several options to run Weaviate locally:
 * Use dynamic index (flat→hnsw) for MT where most tenants are small (~100k) but some are much larger.
 * BM25 (hybrid) and filter (roaring bitmap) indexes are on by default, but range-query indexes are NOT. Explicitly enable range queries for properties like price or timestamps (uses bit-sliced indexing).
 
-## Python / TypeScript
+## Python / TypeScript / Java / C#
 
-Install: `pip install weaviate-client` (Python ≥3.9) | `npm install weaviate-client` (TS, Node ≥18)
-For Query Agent: `pip install weaviate-client[agents]` | `npm install weaviate-agents`
-Docs: [Python](https://docs.weaviate.io/weaviate/client-libraries/python) | [TypeScript](https://docs.weaviate.io/weaviate/client-libraries/typescript/typescript-v3)
+Install: `pip install weaviate-client` (Python ≥3.9) | `npm install weaviate-client` (TS, Node ≥18) | `io.weaviate:client6` (Java, Maven) | `Weaviate.Client` (C#, NuGet)
+For Query Agent (Python / TypeScript only): `pip install weaviate-client[agents]` | `npm install weaviate-agents`
+Docs: [Python](https://docs.weaviate.io/weaviate/client-libraries/python) | [TypeScript](https://docs.weaviate.io/weaviate/client-libraries/typescript/typescript-v3) | [Java](https://docs.weaviate.io/weaviate/client-libraries/java) | [C#](https://docs.weaviate.io/weaviate/client-libraries/csharp)
+
+Snippets below connect to a local instance and use the local Ollama embedding/generative integrations so they run without third-party keys. For Weaviate Cloud, swap in `text2vec-weaviate` (built-in embeddings) as shown in the quickstart.
 
 ### Local connection
 
@@ -186,6 +233,14 @@ client = weaviate.connect_to_local()  # localhost:8080, gRPC 50051
 
 ```typescript
 const client = await weaviate.connectToLocal();
+```
+
+```java
+WeaviateClient client = WeaviateClient.connectToLocal();
+```
+
+```csharp
+WeaviateClient client = await Connect.Local();
 ```
 
 ### Queries (near_text, bm25)
@@ -201,8 +256,24 @@ res = col.query.bm25("food", limit=3, return_metadata=MetadataQuery(score=True))
 ```
 
 ```typescript
-const res = await col.query.nearText('animals in movies', { limit: 3, returnMetadata: ['distance'] });
-const res = await col.query.bm25('food', { limit: 3, returnMetadata: ['score'] });
+// Vector search
+const vectorRes = await col.query.nearText('animals in movies', { limit: 3, returnMetadata: ['distance'] });
+// Keyword search
+const keywordRes = await col.query.bm25('food', { limit: 3, returnMetadata: ['score'] });
+```
+
+```java
+// Vector search
+var vectorRes = col.query.nearText("animals in movies", q -> q.limit(3));
+// Keyword search
+var keywordRes = col.query.bm25("food", q -> q.limit(3));
+```
+
+```csharp
+// Vector search
+var vectorRes = await col.Query.NearText("animals in movies", limit: 3);
+// Keyword search
+var keywordRes = await col.Query.BM25("food", limit: 3);
 ```
 
 ### Filtering
@@ -213,8 +284,26 @@ With auto-schema, a collection with no property definitions already supports fil
 # Minimal: auto-schema sets filterable + searchable defaults on every property
 client.collections.create(
     "Restaurant",
-    vector_config=Configure.Vectors.text2vec_weaviate(),
+    vector_config=Configure.Vectors.text2vec_ollama(api_endpoint="http://ollama:11434", model="nomic-embed-text"),
 )
+```
+
+```typescript
+// Minimal: auto-schema sets filterable + searchable defaults on every property
+await client.collections.create({
+  name: 'Restaurant',
+  vectorizers: vectors.text2VecOllama({ apiEndpoint: 'http://ollama:11434', model: 'nomic-embed-text' }),
+});
+```
+
+```java
+// Minimal: auto-schema sets filterable + searchable defaults on every property
+client.collections.create("Restaurant", col -> col.vectorConfig(ollamaVectorizer()));
+```
+
+```csharp
+// Minimal: auto-schema sets filterable + searchable defaults on every property
+await client.Collections.Create(new CollectionCreateParams { Name = "Restaurant", VectorConfig = OllamaVectorizer() });
 ```
 
 Property index defaults: `index_filterable=True` (roaring-bitmap for equality/set filters), `index_searchable=True` (BM25 map for keyword/hybrid search), `index_range_filters=False` (opt-in for `<`/`>` queries), `tokenization="word"` (alphanumeric, lowercased). Override these when you need exact-match filtering (`tokenization=FIELD`), range queries (`index_range_filters=True`), or want to skip unnecessary indexes. Docs: [schema & property config](https://docs.weaviate.io/weaviate/config-refs/schema) | [filters how-to](https://docs.weaviate.io/weaviate/search/filters)
@@ -225,7 +314,7 @@ from weaviate.classes.config import Configure, Property, DataType, Tokenization
 # Full control: every knob set explicitly
 client.collections.create(
     "Restaurant",
-    vector_config=Configure.Vectors.text2vec_weaviate(),
+    vector_config=Configure.Vectors.text2vec_ollama(api_endpoint="http://ollama:11434", model="nomic-embed-text"),
     properties=[
         Property(name="name", data_type=DataType.TEXT, tokenization=Tokenization.WORD,
                  index_filterable=True, index_searchable=True),
@@ -240,18 +329,46 @@ client.collections.create(
 ```
 
 ```typescript
+// Full control: every knob set explicitly
 await client.collections.create({
   name: 'Restaurant',
-  vectorizers: weaviate.configure.vectorizer.text2VecWeaviate(),
+  vectorizers: vectors.text2VecOllama({ apiEndpoint: 'http://ollama:11434', model: 'nomic-embed-text' }),
   properties: [
-    { name: 'name', dataType: 'text', tokenization: 'word',
+    { name: 'name', dataType: dataType.TEXT, tokenization: 'word',
       indexFilterable: true, indexSearchable: true },
-    { name: 'cuisine', dataType: 'text', tokenization: 'field',
+    { name: 'cuisine', dataType: dataType.TEXT, tokenization: 'field',
       indexFilterable: true, indexSearchable: true },
-    { name: 'url', dataType: 'text', tokenization: 'field',
+    { name: 'url', dataType: dataType.TEXT, tokenization: 'field',
       skipVectorization: true, indexSearchable: false },
-    { name: 'price', dataType: 'number', indexRangeFilters: true },
+    { name: 'price', dataType: dataType.NUMBER, indexRangeFilters: true },
   ],
+});
+```
+
+```java
+// Full control: every knob set explicitly
+client.collections.create("Restaurant", col -> col
+    .vectorConfig(ollamaVectorizer())
+    .properties(
+        Property.text("name"),
+        Property.text("cuisine"),
+        Property.text("url"),
+        Property.number("price")));
+```
+
+```csharp
+// Full control: every knob set explicitly
+await client.Collections.Create(new CollectionCreateParams
+{
+    Name = "Restaurant",
+    VectorConfig = OllamaVectorizer(),
+    Properties =
+    [
+        Property.Text("name"),
+        Property.Text("cuisine"),
+        Property.Text("url"),
+        Property.Number("price"),
+    ],
 });
 ```
 
@@ -274,20 +391,46 @@ res = col.query.fetch_objects(
 ```
 
 ```typescript
-import { Filters } from 'weaviate-client';
-
-const res = await col.query.hybrid('ramen', {
+// Single condition
+const cheapRamen = await col.query.hybrid('ramen', {
   filters: col.filter.byProperty('price').lessThan(20), limit: 3,
 });
 
-// Combine
-const res = await col.query.fetchObjects({
+// Combine with Filters.and / Filters.or
+const japaneseUnder30 = await col.query.fetchObjects({
   filters: Filters.and(
     col.filter.byProperty('cuisine').equal('Japanese'),
     col.filter.byProperty('price').lessThan(30),
   ),
   limit: 5,
 });
+```
+
+```java
+// Single condition
+var cheapRamen = col.query.hybrid("ramen", q -> q
+    .filters(Filter.property("price").lt(20))
+    .limit(3));
+
+// Combine conditions with Filter.and / Filter.or
+var japaneseUnder30 = col.query.fetchObjects(q -> q
+    .filters(Filter.and(
+        Filter.property("cuisine").eq("Japanese"),
+        Filter.property("price").lt(30)))
+    .limit(5));
+```
+
+```csharp
+// Single condition
+var cheapRamen = await col.Query.Hybrid("ramen",
+    filters: Filter.Property("price").IsLessThan(20), limit: 3);
+
+// Combine conditions with Filter.AllOf (AND) / Filter.AnyOf (OR)
+var japaneseUnder30 = await col.Query.FetchObjects(
+    filters: Filter.AllOf(
+        Filter.Property("cuisine").IsEqual("Japanese"),
+        Filter.Property("price").IsLessThan(30)),
+    limit: 5);
 ```
 
 ### Multi-tenancy
@@ -298,7 +441,7 @@ from weaviate.classes.tenants import Tenant
 
 client.collections.create(
     "Docs",
-    vector_config=Configure.Vectors.text2vec_weaviate(),
+    vector_config=Configure.Vectors.text2vec_ollama(api_endpoint="http://ollama:11434", model="nomic-embed-text"),
     multi_tenancy_config=Configure.multi_tenancy(enabled=True),
 )
 col = client.collections.use("Docs")
@@ -311,14 +454,39 @@ res = tenant_col.query.hybrid("hello", limit=3)
 ```typescript
 await client.collections.create({
   name: 'Docs',
-  vectorizers: weaviate.configure.vectorizer.text2VecWeaviate(),
-  multiTenancy: weaviate.configure.multiTenancy({ enabled: true }),
+  vectorizers: vectors.text2VecOllama({ apiEndpoint: 'http://ollama:11434', model: 'nomic-embed-text' }),
+  multiTenancy: configure.multiTenancy({ enabled: true }),
 });
 const col = client.collections.use('Docs');
 await col.tenants.create([{ name: 'tenantA' }, { name: 'tenantB' }]);
 const tenantCol = col.withTenant('tenantA');
 await tenantCol.data.insert({ title: 'Hello' });
 const res = await tenantCol.query.hybrid('hello', { limit: 3 });
+```
+
+```java
+client.collections.create("Docs", col -> col
+    .vectorConfig(ollamaVectorizer())
+    .multiTenancy(mt -> mt.enabled(true)));
+CollectionHandle<Map<String, Object>> col = client.collections.use("Docs");
+col.tenants.create(Tenant.active("tenantA"), Tenant.active("tenantB"));
+var tenantCol = col.withTenant("tenantA");
+tenantCol.data.insert(Map.of("title", "Hello"));
+var res = tenantCol.query.hybrid("hello", q -> q.limit(3));
+```
+
+```csharp
+await client.Collections.Create(new CollectionCreateParams
+{
+    Name = "Docs",
+    VectorConfig = OllamaVectorizer(),
+    MultiTenancyConfig = new MultiTenancyConfig { Enabled = true },
+});
+var col = client.Collections.Use("Docs");
+await col.Tenants.Create(["tenantA", "tenantB"]);
+var tenantCol = col.WithTenant("tenantA");
+await tenantCol.Data.Insert(new { title = "Hello" });
+var res = await tenantCol.Query.Hybrid("hello", limit: 3);
 ```
 
 ### RBAC
@@ -343,13 +511,38 @@ client.users.db.assign_roles(user_id="alice", role_names="movie_reader")
 ```typescript
 // Create a role scoped to one collection
 await client.roles.create('movie_reader', [
-  weaviate.permissions.collections({ collection: 'Movie', readConfig: true }),
-  weaviate.permissions.data({ collection: 'Movie', read: true }),
+  ...weaviate.permissions.collections({ collection: 'Movie', read_config: true }),
+  ...weaviate.permissions.data({ collection: 'Movie', read: true }),
 ]);
 
 // Create a user and assign the role
 const apiKey = await client.users.db.create('alice');
-await client.users.db.assignRoles('alice', ['movie_reader']);
+await client.users.db.assignRoles(['movie_reader'], 'alice');
+```
+
+```java
+// Create a role scoped to one collection
+client.roles.create("movie_reader", new Permission[] {
+    Permission.collections("Movie", CollectionsPermission.Action.READ),
+    Permission.data("Movie", DataPermission.Action.READ),
+});
+
+// Create a user and assign the role
+String apiKey = client.users.db.create("alice");
+client.users.db.assignRoles("alice", "movie_reader");
+```
+
+```csharp
+// Create a role scoped to one collection
+await client.Roles.Create("movie_reader", new PermissionScope[]
+{
+    new Permissions.Collections("Movie") { Read = true },
+    new Permissions.Data("Movie") { Read = true },
+});
+
+// Create a user and assign the role
+var apiKey = await client.Users.Db.Create("alice");
+await client.Users.Db.AssignRoles("alice", new[] { "movie_reader" });
 ```
 
 ### Query Agent (RAG) — Cloud only
@@ -385,8 +578,8 @@ from weaviate.classes.config import Configure, Property, DataType
 client.collections.create(
     "Article",
     vector_config=[
-        Configure.Vectors.text2vec_weaviate(name="title", source_properties=["title"]),
-        Configure.Vectors.text2vec_weaviate(name="body", source_properties=["body"]),
+        Configure.Vectors.text2vec_ollama(name="title", source_properties=["title"], api_endpoint="http://ollama:11434", model="nomic-embed-text"),
+        Configure.Vectors.text2vec_ollama(name="body", source_properties=["body"], api_endpoint="http://ollama:11434", model="nomic-embed-text"),
     ],
     properties=[
         Property(name="title", data_type=DataType.TEXT),
@@ -398,13 +591,11 @@ res = col.query.near_text("machine learning", target_vector="title", limit=3)
 ```
 
 ```typescript
-import { vectors, dataType } from 'weaviate-client';
-
 await client.collections.create({
   name: 'Article',
   vectorizers: [
-    vectors.text2VecWeaviate({ name: 'title', sourceProperties: ['title'] }),
-    vectors.text2VecWeaviate({ name: 'body', sourceProperties: ['body'] }),
+    vectors.text2VecOllama({ name: 'title', sourceProperties: ['title'], apiEndpoint: 'http://ollama:11434', model: 'nomic-embed-text' }),
+    vectors.text2VecOllama({ name: 'body', sourceProperties: ['body'], apiEndpoint: 'http://ollama:11434', model: 'nomic-embed-text' }),
   ],
   properties: [
     { name: 'title', dataType: dataType.TEXT },
@@ -413,6 +604,257 @@ await client.collections.create({
 });
 const col = client.collections.use('Article');
 const res = await col.query.nearText('machine learning', { targetVector: 'title', limit: 3 });
+```
+
+```java
+client.collections.create("Article", col -> col
+    .vectorConfig(
+        VectorConfig.text2vecOllama("title", b -> b
+            .sourceProperties("title")
+            .apiEndpoint("http://ollama:11434").model("nomic-embed-text")),
+        VectorConfig.text2vecOllama("body", b -> b
+            .sourceProperties("body")
+            .apiEndpoint("http://ollama:11434").model("nomic-embed-text")))
+    .properties(Property.text("title"), Property.text("body")));
+CollectionHandle<Map<String, Object>> col = client.collections.use("Article");
+var res = col.query.nearText(Target.text("title", "machine learning"), q -> q.limit(3));
+```
+
+```csharp
+await client.Collections.Create(new CollectionCreateParams
+{
+    Name = "Article",
+    VectorConfig = new VectorConfigList
+    {
+        Configure.Vector("title", v => v.Text2VecOllama(apiEndpoint: "http://ollama:11434", model: "nomic-embed-text"), sourceProperties: ["title"]),
+        Configure.Vector("body", v => v.Text2VecOllama(apiEndpoint: "http://ollama:11434", model: "nomic-embed-text"), sourceProperties: ["body"]),
+    },
+    Properties = [Property.Text("title"), Property.Text("body")],
+});
+var col = client.Collections.Use("Article");
+var res = await col.Query.NearText(
+    query => query(["machine learning"]).TargetVectorsMinimum("title"), limit: 3);
+```
+
+### CRUD (single objects)
+
+Operate on a single object in an existing collection by its UUID:
+
+```python
+movies = client.collections.use("Movie")
+
+# Create — insert one object, returns its UUID
+uuid = movies.data.insert({"title": "Inception", "genre": "Science Fiction"})
+
+# Read — fetch the object by its UUID
+obj = movies.query.fetch_object_by_id(uuid)
+print(obj.properties)
+
+# Update — merge new property values into the object
+movies.data.update(uuid=uuid, properties={"genre": "Sci-Fi Thriller"})
+
+# Delete — remove the object by its UUID
+movies.data.delete_by_id(uuid)
+```
+
+```typescript
+const movies = client.collections.use('Movie');
+
+// Create — insert one object, returns its UUID
+const uuid = await movies.data.insert({ title: 'Inception', genre: 'Science Fiction' });
+
+// Read — fetch the object by its UUID
+const obj = await movies.query.fetchObjectById(uuid);
+console.log(obj?.properties);
+
+// Update — merge new property values into the object
+await movies.data.update({ id: uuid, properties: { genre: 'Sci-Fi Thriller' } });
+
+// Delete — remove the object by its UUID
+await movies.data.deleteById(uuid);
+```
+
+```java
+CollectionHandle<Map<String, Object>> movies = client.collections.use("Movie");
+
+// Create — insert one object, returns its UUID
+String uuid = movies.data.insert(Map.of("title", "Inception", "genre", "Science Fiction")).uuid();
+
+// Read — fetch the object by its UUID
+var obj = movies.query.fetchObjectById(uuid);
+System.out.println(obj);
+
+// Update — merge new property values into the object
+movies.data.update(uuid, u -> u.properties(Map.of("genre", "Sci-Fi Thriller")));
+
+// Delete — remove the object by its UUID
+movies.data.deleteById(uuid);
+```
+
+```csharp
+var movies = client.Collections.Use("Movie");
+
+// Create — insert one object, returns its UUID
+Guid uuid = await movies.Data.Insert(new { title = "Inception", genre = "Science Fiction" });
+
+// Read — fetch the object by its UUID
+var obj = await movies.Query.FetchObjectByID(uuid);
+Console.WriteLine(obj?.Properties);
+
+// Update — merge new property values into the object
+await movies.Data.Update(uuid, new { genre = "Sci-Fi Thriller" });
+
+// Delete — remove the object by its UUID
+await movies.Data.DeleteByID(uuid);
+```
+
+### Aggregations
+
+Count objects, compute numeric metrics, and group results by a property:
+
+```python
+from weaviate.classes.aggregate import GroupByAggregate, Metrics
+
+# Total object count
+total = movies.aggregate.over_all(total_count=True).total_count
+
+# Numeric metric over a property (mean rating)
+res = movies.aggregate.over_all(
+    return_metrics=Metrics("rating").number(mean=True),
+)
+
+# Group object counts by a property
+groups = movies.aggregate.over_all(group_by=GroupByAggregate(prop="genre")).groups
+```
+
+```typescript
+// Total object count
+const total = (await movies.aggregate.overAll()).totalCount;
+
+// Numeric metric over a property (mean rating)
+const ratingAgg = await movies.aggregate.overAll({
+  returnMetrics: movies.metrics.aggregate('rating').number(['mean']),
+});
+
+// Group object counts by a property
+const byGenre = await movies.aggregate.groupBy.overAll({ groupBy: { property: 'genre' } });
+```
+
+```java
+// Total object count
+var total = movies.aggregate.overAll(a -> a.includeTotalCount(true));
+
+// Numeric metric over a property (mean rating)
+var ratingAgg = movies.aggregate.overAll(a -> a
+    .metrics(Aggregate.number("rating", m -> m.mean())));
+
+// Group object counts by a property
+var byGenre = movies.aggregate.overAll(GroupBy.property("genre"));
+```
+
+```csharp
+// Total object count
+var total = await movies.Aggregate.OverAll(totalCount: true);
+
+// Group object counts by a property
+var byGenre = await movies.Aggregate.OverAll(groupBy: new Aggregate.GroupBy("genre"));
+```
+
+### Generative search (DIY RAG)
+
+Full prompt control as an alternative to the Query Agent. Python and TypeScript attach a generative model to the collection; Java and C# pass the provider at query time.
+
+```python
+from weaviate.classes.config import Configure
+
+# Attach a generative model to the collection
+client.collections.create(
+    "Movie",
+    vector_config=Configure.Vectors.text2vec_ollama(api_endpoint="http://ollama:11434", model="nomic-embed-text"),
+    generative_config=Configure.Generative.ollama(api_endpoint="http://ollama:11434", model="llama3.2"),
+)
+```
+
+```typescript
+await client.collections.create({
+  name: 'Movie',
+  vectorizers: vectors.text2VecOllama({ apiEndpoint: 'http://ollama:11434', model: 'nomic-embed-text' }),
+  generative: configure.generative.ollama({ apiEndpoint: 'http://ollama:11434', model: 'llama3.2' }),
+});
+```
+
+Run a generative query — a `single_prompt` applies per object, a `grouped_task` applies once across all results:
+
+```python
+# A single prompt applied per retrieved object
+res = movies.generate.near_text(
+    "science fiction",
+    limit=2,
+    single_prompt="Write a one-line tagline for {title}",
+)
+for obj in res.objects:
+    print(obj.generative.text)
+
+# One grouped prompt applied across all retrieved objects
+res = movies.generate.near_text(
+    "science fiction",
+    limit=2,
+    grouped_task="In one sentence, what common theme do these movies share?",
+)
+print(res.generative.text)
+```
+
+```typescript
+// A single prompt applied per retrieved object
+const singleRes = await movies.generate.nearText(
+  'science fiction',
+  { singlePrompt: 'Write a one-line tagline for {title}' },
+  { limit: 2 },
+);
+for (const obj of singleRes.objects) console.log(obj.generative?.text);
+
+// One grouped prompt applied across all retrieved objects
+const groupedRes = await movies.generate.nearText(
+  'science fiction',
+  { groupedTask: 'In one sentence, what common theme do these movies share?' },
+  { limit: 2 },
+);
+console.log(groupedRes.generative?.text);
+```
+
+```java
+var response = movies.generate.nearText(
+    "science fiction",
+    q -> q.limit(2),
+    g -> g
+        .singlePrompt("Write a one-line tagline for {title}")
+        .groupedTask(
+            "In one sentence, what common theme do these movies share?",
+            c -> c.generativeProvider(GenerativeProvider.ollama(o -> o
+                .apiEndpoint("http://ollama:11434")
+                .model("llama3.2")))));
+
+// Per-object result from the single prompt
+for (var obj : response.objects()) {
+  System.out.println(obj.generative().text());
+}
+// Combined result from the grouped task
+System.out.println(response.generative().text());
+```
+
+```csharp
+var response = await movies.Generate.NearText(
+    "science fiction",
+    limit: 2,
+    provider: new Providers.Ollama { ApiEndpoint = "http://ollama:11434", Model = "llama3.2" },
+    singlePrompt: new SinglePrompt("Write a one-line tagline for {title}"),
+    groupedTask: new GroupedTask("In one sentence, what common theme do these movies share?"));
+
+// Per-object result from the single prompt
+foreach (var obj in response.Objects)
+    Console.WriteLine(obj.Generative?.Values.First());
+// Combined result from the grouped task
+Console.WriteLine(response.Generative?.Values.First());
 ```
 
 Full API docs: [Python](https://docs.weaviate.io/weaviate/client-libraries/python) | [TypeScript](https://docs.weaviate.io/weaviate/client-libraries/typescript/typescript-v3)
