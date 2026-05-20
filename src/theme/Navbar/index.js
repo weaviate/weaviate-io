@@ -45,7 +45,7 @@ const navGroups = {
       title: 'Examples',
       items: [
         { label: 'Case Studies', to: '/case-studies/' },
-        { label: 'Demos', to: '/community/demos/' },
+        { label: 'Weaviate Playground', to: 'https://playground.weaviate.io/' },
       ],
     },
   ],
@@ -245,7 +245,21 @@ export default function Navbar() {
   };
 
   return (
-    <header className="tw-sticky tw-top-0 tw-z-50 tw-border-b tw-border-[#1f2128] tw-bg-[#090b10]/95 tw-backdrop-blur">
+    <>
+      <div
+        className="navbar"
+        aria-hidden="true"
+        style={{
+          position: 'fixed',
+          top: '-9999px',
+          left: '-9999px',
+          width: '1px',
+          height: '80px',
+          visibility: 'hidden',
+          pointerEvents: 'none',
+        }}
+      />
+      <header className="tw-sticky tw-top-0 tw-z-50 tw-border-b tw-border-[#1f2128] tw-bg-[#090b10]/95 tw-backdrop-blur">
       <div className="tw-mx-auto tw-flex tw-h-20 tw-max-w-[1320px] tw-items-center tw-px-6 lg:tw-px-10">
         <Link to="/" className="tw-shrink-0" aria-label="Weaviate home">
           <img
@@ -545,5 +559,6 @@ export default function Navbar() {
         </div>
       ) : null}
     </header>
+    </>
   );
 }

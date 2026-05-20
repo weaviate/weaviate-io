@@ -791,7 +791,7 @@ module.exports = async function createConfigAsync() {
                 copyright: `Copyright © ${new Date().getFullYear()} Weaviate, B.V. Built with Docusaurus.`,
             },
             colorMode: {
-                defaultMode: 'light',
+                defaultMode: 'dark',
                 disableSwitch: false,
                 respectPrefersColorScheme: false,
             },
@@ -803,7 +803,7 @@ module.exports = async function createConfigAsync() {
 
             customConfig: {
                 colorMode: {
-                    defaultMode: 'light',
+                    defaultMode: 'dark',
                     disableSwitch: false,
                     respectPrefersColorScheme: false,
                 },
