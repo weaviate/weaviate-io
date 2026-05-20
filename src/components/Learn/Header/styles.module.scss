@@ -1,36 +1,26 @@
 .headerHome {
-  background: url('/img/site/bg-3d-slim.png') #dce8ee;
+  position: relative;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(17, 17, 17, 0.92) 0%,
+      rgba(17, 17, 17, 0.72) 48%,
+      rgba(17, 17, 17, 0.18) 100%
+    ),
+    url("/img/site/2026/weaviate-bg-2026.jpg"), #111111;
 
   background-size: cover;
-  background-position-x: right;
+  background-position: center;
   background-repeat: no-repeat;
 
-  @media screen and (max-width: 600px) {
-    background: url('/img/site/3d-weaviate-bubble-blur-bg.jpg') #dce8ee;
-    background-size: cover;
-    background-position-x: right;
-    background-repeat: no-repeat;
-  }
+  padding: clamp(72px, 9vw, 120px) 0;
 }
 
 .grid {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 110px;
-
-  @media screen and (max-width: 950px) {
-    margin: none;
-    gap: 0px;
-  }
-
-  @media screen and (max-width: 1050px) {
-    grid-template-columns: 1fr;
-    margin: 0px 10px;
-  }
-  @media screen and (max-width: 850px) {
-    flex-direction: column;
-  }
+  align-items: center;
 }
 
 .box {
@@ -38,45 +28,31 @@
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  margin-bottom: 40px;
-  flex: 1;
-  gap: 20px;
+
+  max-width: 760px;
+  gap: 1.5rem;
 
   h1 {
-    color: #130c49;
-    font-family: 'Plus Jakarta Sans';
-    font-size: 2.5rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-
-    @media screen and (max-width: 500px) {
-      br {
-        display: none;
-      }
-    }
-
-    @media screen and (max-width: 400px) {
-      font-size: 2.3rem;
-    }
-  }
-
-  span {
-    color: #130c49;
-    font-family: 'Plus Jakarta Sans';
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    text-transform: uppercase;
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-weight: 600 !important;
+    line-height: 108% !important;
+    letter-spacing: -0.055em;
+    margin: 0;
   }
 
   p {
-    color: #130c49;
-    font-family: Inter;
-    font-size: 1.5rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 140%; /* 2.1rem */
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: clamp(1.1rem, 1.7vw, 1.45rem) !important;
+    line-height: 160% !important;
+    margin: 0;
+    max-width: 620px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .headerHome {
+    padding: 64px 0;
   }
 }
