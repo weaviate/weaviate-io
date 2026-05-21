@@ -43,11 +43,11 @@ This post walks through building a coding assistant on top of that built-in MCP 
 
 LLMs ship with a fixed cutoff and zero knowledge of your private code. The naive workaround is to dump files into the prompt. That has three problems.
 
-**Cost**: Tokens in context are billed. Every turn. A 200-file Python project doesn't fit, and even the parts that do are billed continuously while the agent reasons.
+- **Cost**: Tokens in context are billed. Every turn. A 200-file Python project doesn't fit, and even the parts that do are billed continuously while the agent reasons.
 
-**Stale context**: Once a file is in the prompt, it's frozen. If the agent changes a function and then needs to read it again, it has to reload the whole file. There's no live link between the model's view and the on-disk truth.
+- **Stale context**: Once a file is in the prompt, it's frozen. If the agent changes a function and then needs to read it again, it has to reload the whole file. There's no live link between the model's view and the on-disk truth.
 
-**Wrong granularity**: Even when files fit, the model spends attention on the wrong parts. Imports. Module-level boilerplate. The function the agent is actually editing competes for context with a hundred lines of `from x import y`.
+- **Wrong granularity**: Even when files fit, the model spends attention on the wrong parts. Imports. Module-level boilerplate. The function the agent is actually editing competes for context with a hundred lines of `from x import y`.
 
 Retrieval solves all three. Index the codebase once, store the chunks in a vector database, and let the LLM client pull only what it needs per query. That's RAG. Coding assistants haven't had a clean way to talk to such a database without a custom shim. That's where MCP comes in.
 
@@ -99,16 +99,24 @@ Honestly, I'd skip it for a while even if you think you want write-back. Read-on
 This example uses `AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'` so the post stays focused on the MCP wiring. For any networked deployment, enable an API key and add `Authorization: Bearer <key>` to your client config — Weaviate's MCP server respects standard auth and RBAC. See [§"Going further"](#going-further) for the RBAC permissions involved.
 :::
 
-Bring it up and confirm the endpoint is alive:
+Bring it up and confirm the endpoint is alive. Streamable HTTP requires an `initialize` handshake before any other call, so the liveness probe sends one:
 
 ```bash
 docker compose up -d
 curl -sf -X POST http://localhost:8080/v1/mcp \
   -H 'Content-Type: application/json' \
-  -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+  -H 'Accept: application/json, text/event-stream' \
+  -d '{
+    "jsonrpc":"2.0","id":0,"method":"initialize",
+    "params":{
+      "protocolVersion":"2025-03-26",
+      "capabilities":{},
+      "clientInfo":{"name":"curl","version":"1"}
+    }
+  }'
 ```
 
-A live MCP endpoint returns a JSON-RPC envelope listing the available tools. You don't need to parse it — a non-empty response is enough. If you get a connection refused, MCP isn't enabled.
+A live MCP server returns a JSON-RPC envelope describing the server's capabilities and sets an `Mcp-Session-Id` response header that subsequent calls must echo back. You don't need to parse the body for a sanity check — a non-empty response is enough. If you get a connection refused or a 404, MCP isn't enabled.
 
 ## Step 2: Design the schema {#step-2-design-the-schema}
 
@@ -234,7 +242,7 @@ Two collections, two chunking strategies, one Weaviate instance. The MCP server 
 
 The MCP transport is HTTP, so client config is small. Each client has its own file. All three point at the same Weaviate endpoint.
 
-**Claude Code** (`~/.claude.json`):
+**[Claude Code](https://code.claude.com/docs/en/mcp)** (`~/.claude.json`):
 
 ```json
 {
@@ -366,9 +374,26 @@ for i in {1..30}; do
   sleep 2
 done
 
-# Verify the MCP endpoint is reachable
+# Verify the MCP endpoint is reachable. Streamable HTTP requires an
+# initialize handshake first; tools/list then needs the Mcp-Session-Id
+# header returned by initialize.
+SID=$(curl -s -i -X POST http://localhost:8080/v1/mcp \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json, text/event-stream' \
+  -d '{"jsonrpc":"2.0","id":0,"method":"initialize","params":{
+        "protocolVersion":"2025-03-26","capabilities":{},
+        "clientInfo":{"name":"curl","version":"1"}}}' \
+  | awk -F': ' 'tolower($1)=="mcp-session-id"{print $2}' | tr -d '\r\n')
+
+if [ -z "$SID" ]; then
+  echo "STEP_1_MCP_FAILED: no Mcp-Session-Id returned. MCP may be disabled."
+  exit 1
+fi
+
 curl -sf -o /dev/null -X POST http://localhost:8080/v1/mcp \
   -H 'Content-Type: application/json' \
+  -H 'Accept: application/json, text/event-stream' \
+  -H "Mcp-Session-Id: $SID" \
   -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}' \
   && echo "STEP_1_MCP_OK" \
   || { echo "STEP_1_MCP_FAILED"; exit 1; }
@@ -561,11 +586,21 @@ echo "STEP_3_VSCODE_OK"
 
 #### Step 4: Verify retrieval works
 
-This single curl confirms end-to-end retrieval without involving the LLM client. Replace the query string with something the agent expects to be in the ingested codebase.
+This block confirms end-to-end retrieval without involving the LLM client. Streamable HTTP again needs the `initialize` handshake first so the session ID can be reused on the actual `tools/call`. Replace the query string with something the agent expects to be in the ingested codebase.
 
 ```bash
+SID=$(curl -s -i -X POST http://localhost:8080/v1/mcp \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json, text/event-stream' \
+  -d '{"jsonrpc":"2.0","id":0,"method":"initialize","params":{
+        "protocolVersion":"2025-03-26","capabilities":{},
+        "clientInfo":{"name":"curl","version":"1"}}}' \
+  | awk -F': ' 'tolower($1)=="mcp-session-id"{print $2}' | tr -d '\r\n')
+
 curl -sX POST http://localhost:8080/v1/mcp \
   -H 'Content-Type: application/json' \
+  -H 'Accept: application/json, text/event-stream' \
+  -H "Mcp-Session-Id: $SID" \
   -d '{
     "jsonrpc":"2.0",
     "id":1,
