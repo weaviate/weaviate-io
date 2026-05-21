@@ -53,7 +53,7 @@ Retrieval solves all three. Index the codebase once, store the chunks in a vecto
 
 ## Why Weaviate MCP fits this job {#why-weaviate-mcp-fits}
 
-[The Model Context Protocol](https://modelcontextprotocol.io/docs/develop/build-server) (MCP) is the standardized way for LLM clients like Claude Code, Cursor, and VS Code to call out to external tools. Weaviate `v1.37` exposes its core operations as MCP tools directly, on a [Streamable HTTP endpoint](https://modelcontextprotocol.io/docs/concepts/transports#streamable-http) at `/v1/mcp`. Four tools are surfaced:
+[The Model Context Protocol](https://modelcontextprotocol.io/docs/develop/build-server) (MCP) is the standardized way for LLM clients like Claude Code, Cursor, and VS Code to call out to external tools. Weaviate `v1.37.1` exposes its core operations as MCP tools directly, on a [Streamable HTTP endpoint](https://modelcontextprotocol.io/docs/concepts/transports#streamable-http) at `/v1/mcp`. Four tools are surfaced:
 
 - `weaviate-collections-get-config` — let the LLM inspect what collections exist and what properties they have
 - `weaviate-tenants-list` — list tenants when you're using multi-tenancy
@@ -95,14 +95,20 @@ services:
 
 Honestly, I'd skip it for a while even if you think you want write-back. Read-only MCP covers most of what a coding agent actually does, and you sidestep a class of failure modes where the agent writes nonsense back into your knowledge base. Turn write access on once you have a specific use case that justifies the risk.
 
+:::info Auth for production
+This example uses `AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'` so the post stays focused on the MCP wiring. For any networked deployment, enable an API key and add `Authorization: Bearer <key>` to your client config — Weaviate's MCP server respects standard auth and RBAC. See [§"Going further"](#going-further) for the RBAC permissions involved.
+:::
+
 Bring it up and confirm the endpoint is alive:
 
 ```bash
 docker compose up -d
-curl -s http://localhost:8080/v1/mcp -H 'Accept: application/json'
+curl -sf -X POST http://localhost:8080/v1/mcp \
+  -H 'Content-Type: application/json' \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
 ```
 
-A live MCP endpoint returns a JSON-RPC envelope. You don't need to parse it. If you get a connection refused, MCP isn't enabled.
+A live MCP endpoint returns a JSON-RPC envelope listing the available tools. You don't need to parse it — a non-empty response is enough. If you get a connection refused, MCP isn't enabled.
 
 ## Step 2: Design the schema {#step-2-design-the-schema}
 
@@ -567,7 +573,7 @@ curl -sX POST http://localhost:8080/v1/mcp \
     "params":{
       "name":"weaviate-query-hybrid",
       "arguments":{
-        "collection":"CodeChunks",
+        "collection_name":"CodeChunks",
         "query":"how does FastAPI handle dependency injection",
         "limit":3
       }
