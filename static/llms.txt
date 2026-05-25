@@ -211,6 +211,24 @@ There are several options to run Weaviate locally:
 * Docker (all OSes): https://docs.weaviate.io/weaviate/quickstart/local
 * Compile it yourself (Linux, Darwin, requires Go v1.21+, no Windows!): https://docs.weaviate.io/contributor-guide/weaviate-core/setup
 
+Local instances don't have access to Weaviate Embeddings, so swap `text2vec-weaviate` for a local vectorizer — for example, `text2vec-ollama` against a co-located Ollama container:
+
+```py
+import weaviate
+from weaviate.classes.config import Configure
+
+client = weaviate.connect_to_local()
+client.collections.create(
+    "Movie",
+    vector_config=Configure.Vectors.text2vec_ollama(
+        api_endpoint="http://ollama:11434",  # or http://host.docker.internal:11434
+        model="nomic-embed-text",
+    ),
+)
+```
+
+The rest of the code examples below stay the same — only the vectorizer config changes.
+
 ## Best Practices or Common Gotchas
 
 * Use Weaviate Cloud unless data must stay on-premise; then use Docker.
@@ -229,7 +247,7 @@ Install: `pip install weaviate-client` (Python ≥3.9) | `npm install weaviate-c
 For Query Agent (Python / TypeScript only): `pip install weaviate-client[agents]` | `npm install weaviate-agents`
 Docs: [Python](https://docs.weaviate.io/weaviate/client-libraries/python) | [TypeScript](https://docs.weaviate.io/weaviate/client-libraries/typescript/typescript-v3) | [Java](https://docs.weaviate.io/weaviate/client-libraries/java) | [C#](https://docs.weaviate.io/weaviate/client-libraries/csharp)
 
-Snippets below connect to a local instance and use the local Ollama embedding/generative integrations so they run without third-party keys. For Weaviate Cloud, swap in `text2vec-weaviate` (built-in embeddings) as shown in the quickstart.
+Snippets below assume a Weaviate Cloud cluster and use the built-in `text2vec-weaviate` embedding integration (no third-party API key needed) and `generative-openai` for the generative example. If you're running locally without Weaviate Embeddings, swap `text2vec-weaviate` for a local vectorizer such as `text2vec-ollama` (see the [local setup example](#local-if-data-cannot-be-sent-to-the-cloud) under Quickstart).
 
 ### Local connection
 
@@ -292,7 +310,7 @@ With auto-schema, a collection with no property definitions already supports fil
 # Minimal: auto-schema sets filterable + searchable defaults on every property
 client.collections.create(
     "Restaurant",
-    vector_config=Configure.Vectors.text2vec_ollama(api_endpoint="http://ollama:11434", model="nomic-embed-text"),
+    vector_config=Configure.Vectors.text2vec_weaviate(),
 )
 ```
 
@@ -300,18 +318,18 @@ client.collections.create(
 // Minimal: auto-schema sets filterable + searchable defaults on every property
 await client.collections.create({
   name: 'Restaurant',
-  vectorizers: vectors.text2VecOllama({ apiEndpoint: 'http://ollama:11434', model: 'nomic-embed-text' }),
+  vectorizers: vectors.text2VecWeaviate(),
 });
 ```
 
 ```java
 // Minimal: auto-schema sets filterable + searchable defaults on every property
-client.collections.create("Restaurant", col -> col.vectorConfig(ollamaVectorizer()));
+client.collections.create("Restaurant", col -> col.vectorConfig(VectorConfig.text2vecWeaviate()));
 ```
 
 ```csharp
 // Minimal: auto-schema sets filterable + searchable defaults on every property
-await client.Collections.Create(new CollectionCreateParams { Name = "Restaurant", VectorConfig = OllamaVectorizer() });
+await client.Collections.Create(new CollectionCreateParams { Name = "Restaurant", VectorConfig = Configure.Vector("default", v => v.Text2VecWeaviate()) });
 ```
 
 Property index defaults: `index_filterable=True` (roaring-bitmap for equality/set filters), `index_searchable=True` (BM25 map for keyword/hybrid search), `index_range_filters=False` (opt-in for `<`/`>` queries), `tokenization="word"` (alphanumeric, lowercased). Override these when you need exact-match filtering (`tokenization=FIELD`), range queries (`index_range_filters=True`), or want to skip unnecessary indexes. Docs: [schema & property config](https://docs.weaviate.io/weaviate/config-refs/schema) | [filters how-to](https://docs.weaviate.io/weaviate/search/filters)
@@ -322,7 +340,7 @@ from weaviate.classes.config import Configure, Property, DataType, Tokenization
 # Full control: every knob set explicitly
 client.collections.create(
     "Restaurant",
-    vector_config=Configure.Vectors.text2vec_ollama(api_endpoint="http://ollama:11434", model="nomic-embed-text"),
+    vector_config=Configure.Vectors.text2vec_weaviate(),
     properties=[
         Property(name="name", data_type=DataType.TEXT, tokenization=Tokenization.WORD,
                  index_filterable=True, index_searchable=True),
@@ -340,7 +358,7 @@ client.collections.create(
 // Full control: every knob set explicitly
 await client.collections.create({
   name: 'Restaurant',
-  vectorizers: vectors.text2VecOllama({ apiEndpoint: 'http://ollama:11434', model: 'nomic-embed-text' }),
+  vectorizers: vectors.text2VecWeaviate(),
   properties: [
     { name: 'name', dataType: dataType.TEXT, tokenization: 'word',
       indexFilterable: true, indexSearchable: true },
@@ -356,7 +374,7 @@ await client.collections.create({
 ```java
 // Full control: every knob set explicitly
 client.collections.create("Restaurant", col -> col
-    .vectorConfig(ollamaVectorizer())
+    .vectorConfig(VectorConfig.text2vecWeaviate())
     .properties(
         Property.text("name"),
         Property.text("cuisine"),
@@ -369,7 +387,7 @@ client.collections.create("Restaurant", col -> col
 await client.Collections.Create(new CollectionCreateParams
 {
     Name = "Restaurant",
-    VectorConfig = OllamaVectorizer(),
+    VectorConfig = Configure.Vector("default", v => v.Text2VecWeaviate()),
     Properties =
     [
         Property.Text("name"),
@@ -449,7 +467,7 @@ from weaviate.classes.tenants import Tenant
 
 client.collections.create(
     "Docs",
-    vector_config=Configure.Vectors.text2vec_ollama(api_endpoint="http://ollama:11434", model="nomic-embed-text"),
+    vector_config=Configure.Vectors.text2vec_weaviate(),
     multi_tenancy_config=Configure.multi_tenancy(enabled=True),
 )
 col = client.collections.use("Docs")
@@ -462,7 +480,7 @@ res = tenant_col.query.hybrid("hello", limit=3)
 ```typescript
 await client.collections.create({
   name: 'Docs',
-  vectorizers: vectors.text2VecOllama({ apiEndpoint: 'http://ollama:11434', model: 'nomic-embed-text' }),
+  vectorizers: vectors.text2VecWeaviate(),
   multiTenancy: configure.multiTenancy({ enabled: true }),
 });
 const col = client.collections.use('Docs');
@@ -474,7 +492,7 @@ const res = await tenantCol.query.hybrid('hello', { limit: 3 });
 
 ```java
 client.collections.create("Docs", col -> col
-    .vectorConfig(ollamaVectorizer())
+    .vectorConfig(VectorConfig.text2vecWeaviate())
     .multiTenancy(mt -> mt.enabled(true)));
 CollectionHandle<Map<String, Object>> col = client.collections.use("Docs");
 col.tenants.create(Tenant.active("tenantA"), Tenant.active("tenantB"));
@@ -487,7 +505,7 @@ var res = tenantCol.query.hybrid("hello", q -> q.limit(3));
 await client.Collections.Create(new CollectionCreateParams
 {
     Name = "Docs",
-    VectorConfig = OllamaVectorizer(),
+    VectorConfig = Configure.Vector("default", v => v.Text2VecWeaviate()),
     MultiTenancyConfig = new MultiTenancyConfig { Enabled = true },
 });
 var col = client.Collections.Use("Docs");
@@ -586,8 +604,8 @@ from weaviate.classes.config import Configure, Property, DataType
 client.collections.create(
     "Article",
     vector_config=[
-        Configure.Vectors.text2vec_ollama(name="title", source_properties=["title"], api_endpoint="http://ollama:11434", model="nomic-embed-text"),
-        Configure.Vectors.text2vec_ollama(name="body", source_properties=["body"], api_endpoint="http://ollama:11434", model="nomic-embed-text"),
+        Configure.Vectors.text2vec_weaviate(name="title", source_properties=["title"]),
+        Configure.Vectors.text2vec_weaviate(name="body", source_properties=["body"]),
     ],
     properties=[
         Property(name="title", data_type=DataType.TEXT),
@@ -602,8 +620,8 @@ res = col.query.near_text("machine learning", target_vector="title", limit=3)
 await client.collections.create({
   name: 'Article',
   vectorizers: [
-    vectors.text2VecOllama({ name: 'title', sourceProperties: ['title'], apiEndpoint: 'http://ollama:11434', model: 'nomic-embed-text' }),
-    vectors.text2VecOllama({ name: 'body', sourceProperties: ['body'], apiEndpoint: 'http://ollama:11434', model: 'nomic-embed-text' }),
+    vectors.text2VecWeaviate({ name: 'title', sourceProperties: ['title'] }),
+    vectors.text2VecWeaviate({ name: 'body', sourceProperties: ['body'] }),
   ],
   properties: [
     { name: 'title', dataType: dataType.TEXT },
@@ -617,12 +635,8 @@ const res = await col.query.nearText('machine learning', { targetVector: 'title'
 ```java
 client.collections.create("Article", col -> col
     .vectorConfig(
-        VectorConfig.text2vecOllama("title", b -> b
-            .sourceProperties("title")
-            .apiEndpoint("http://ollama:11434").model("nomic-embed-text")),
-        VectorConfig.text2vecOllama("body", b -> b
-            .sourceProperties("body")
-            .apiEndpoint("http://ollama:11434").model("nomic-embed-text")))
+        VectorConfig.text2vecWeaviate("title", c -> c.sourceProperties("title")),
+        VectorConfig.text2vecWeaviate("body", c -> c.sourceProperties("body")))
     .properties(Property.text("title"), Property.text("body")));
 CollectionHandle<Map<String, Object>> col = client.collections.use("Article");
 var res = col.query.nearText(Target.text("title", "machine learning"), q -> q.limit(3));
@@ -634,8 +648,8 @@ await client.Collections.Create(new CollectionCreateParams
     Name = "Article",
     VectorConfig = new VectorConfigList
     {
-        Configure.Vector("title", v => v.Text2VecOllama(apiEndpoint: "http://ollama:11434", model: "nomic-embed-text"), sourceProperties: ["title"]),
-        Configure.Vector("body", v => v.Text2VecOllama(apiEndpoint: "http://ollama:11434", model: "nomic-embed-text"), sourceProperties: ["body"]),
+        Configure.Vector("title", v => v.Text2VecWeaviate(), sourceProperties: ["title"]),
+        Configure.Vector("body", v => v.Text2VecWeaviate(), sourceProperties: ["body"]),
     },
     Properties = [Property.Text("title"), Property.Text("body")],
 });
@@ -778,16 +792,16 @@ from weaviate.classes.config import Configure
 # Attach a generative model to the collection
 client.collections.create(
     "Movie",
-    vector_config=Configure.Vectors.text2vec_ollama(api_endpoint="http://ollama:11434", model="nomic-embed-text"),
-    generative_config=Configure.Generative.ollama(api_endpoint="http://ollama:11434", model="llama3.2"),
+    vector_config=Configure.Vectors.text2vec_weaviate(),
+    generative_config=Configure.Generative.openai(),
 )
 ```
 
 ```typescript
 await client.collections.create({
   name: 'Movie',
-  vectorizers: vectors.text2VecOllama({ apiEndpoint: 'http://ollama:11434', model: 'nomic-embed-text' }),
-  generative: configure.generative.ollama({ apiEndpoint: 'http://ollama:11434', model: 'llama3.2' }),
+  vectorizers: vectors.text2VecWeaviate(),
+  generative: configure.generative.openAI(),
 });
 ```
 
@@ -838,9 +852,7 @@ var response = movies.generate.nearText(
         .singlePrompt("Write a one-line tagline for {title}")
         .groupedTask(
             "In one sentence, what common theme do these movies share?",
-            c -> c.generativeProvider(GenerativeProvider.ollama(o -> o
-                .apiEndpoint("http://ollama:11434")
-                .model("llama3.2")))));
+            c -> c.generativeProvider(GenerativeProvider.openai(o -> o))));
 
 // Per-object result from the single prompt
 for (var obj : response.objects()) {
@@ -854,7 +866,7 @@ System.out.println(response.generative().text());
 var response = await movies.Generate.NearText(
     "science fiction",
     limit: 2,
-    provider: new Providers.Ollama { ApiEndpoint = "http://ollama:11434", Model = "llama3.2" },
+    provider: new Providers.OpenAI { Model = "gpt-4o-mini" },
     singlePrompt: new SinglePrompt("Write a one-line tagline for {title}"),
     groupedTask: new GroupedTask("In one sentence, what common theme do these movies share?"));
 
