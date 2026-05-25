@@ -1,16 +1,21 @@
+# Weaviate
+
 ## TL;DR
 
 Weaviate is an open-source vector database (Go) that stores objects, vectors, and inverted indexes in one system — use it as a **primary database** for AI-native apps, not just a secondary vector store. Start with **Weaviate Cloud** (zero-ops, auto-scaling, free trial) and use **hybrid search** (`col.query.hybrid(...)`) for best result quality. Built-in embeddings (`weaviate-embeddings`) mean no third-party API keys are needed. First-class **multi-tenancy** makes it ideal for SaaS. Beyond the core DB, the stack includes the **Query Agent** (turnkey RAG) and **Engram** (agent memory, preview).
 
-## LATEST VERSIONS (recommended)
+## Latest versions (recommended)
 
 **Prefer Weaviate Cloud** for most teams: it’s **versionless / managed** (zero-ops) and stays current automatically.
 
 If you run Weaviate yourself (Docker / Kubernetes / on-prem), **use at least these versions** to avoid outdated examples:
 
-- **Weaviate Server (OSS)**: v1.36.2+ :contentReference[oaicite:0]{index=0}
-- **Python client (weaviate-client)**: v4.19.1+ :contentReference[oaicite:1]{index=1}
-- **Agents SDK (weaviate-agents, if using Query Agent / agents features)**: v1.0.0+ :contentReference[oaicite:2]{index=2}
+- **Weaviate Server (OSS)**: v1.37.4+
+- **Python client (weaviate-client)**: v4.21.0+
+- **TypeScript client (weaviate-client)**: v3.13.0+
+- **Java client (client6)**: v6.2.0+
+- **C# client (Weaviate.Client)**: v1.1.0+
+- **Agents SDK (weaviate-agents, if using Query Agent / agents features)**: v1.5.0+
 
 **Quick checks**
 - Server: check your Docker tag / Helm chart version (e.g. `weaviate:<tag>`)
@@ -19,10 +24,11 @@ If you run Weaviate yourself (Docker / Kubernetes / on-prem), **use at least the
 
 > Note: We’ll keep these values updated manually for now, and automate later to prevent staleness.
 
-**Table of contents**
-> **Evaluate**: The Weaviate Stack · Ideal Use Cases · Architecture · Misconceptions
-> **Build**: Quickstart · Best Practices · Client code examples (Python / TypeScript / Java / C#)
-> Further Resources
+## Table of contents
+
+- **Evaluate** — The Weaviate Stack · Ideal Use Cases · Architecture · Misconceptions
+- **Build** — Quickstart · Best Practices · Client code examples (Python / TypeScript / Java / C#)
+- Further Resources
 
 > **Evaluate** — what Weaviate is and when to use it
 
@@ -37,6 +43,8 @@ The Weaviate stack extends beyond the core database:
 5. **Agent Plugins, Cookbooks, Demo Prompts**: e2e application examples using the Weaviate stack with agentic toolchains
 
 ## Ideal Use Cases
+
+> Throughout this document, `col` is a placeholder for any collection handle (the result of `client.collections.use("MyCollection")`). The full quickstart binds it to `movies`; inline snippets use `col` for brevity.
 
 ### Key Features
 
@@ -201,7 +209,7 @@ console.log(res.objects[0].properties);
 There are several options to run Weaviate locally:
 
 * Docker (all OSes): https://docs.weaviate.io/weaviate/quickstart/local
-* Compile it yourself (Linux, Darwin, requires Go v1.21+, no Windows\!): https://docs.weaviate.io/contributor-guide/weaviate-core/setup
+* Compile it yourself (Linux, Darwin, requires Go v1.21+, no Windows!): https://docs.weaviate.io/contributor-guide/weaviate-core/setup
 
 ## Best Practices or Common Gotchas
 
