@@ -9,6 +9,10 @@ description: "Running ML Model Inference in production is hard. You can use Weav
 ---
 ![Support for Hugging Face Inference API in Weaviate](./img/hero.png)
 
+:::caution Outdated content
+Published 2022-09-27. Code samples use the pre-v4 Python client. For the current Hugging Face integration setup, see the [model providers reference](https://docs.weaviate.io/weaviate/model-providers).
+:::
+
 <!-- truncate -->
 
 Vector databases use Machine Learning models to offer incredible functionality to operate on your data. We are looking at anything from **summarizers** (that can summarize any text into a short) sentence), through **auto-labelers** (that can classify your data tokens), to **transformers** and **vectorizers** (that can convert any data – text, image, audio, etc. – into vectors and use that for context-based queries) and many more use cases.
@@ -48,8 +52,7 @@ In case you struggle with picking the right model, see our blog post on [choosin
 ### Private models
 If you have your own models, trained specially for your data, then you can upload them to Hugging Face (as private modules), and use them in Weaviate.
 
-<!-- TODO: update with a link to the article once it is ready -->
-*We are working on an article that will guide you on how to create your own model and upload it to Hugging Face.*
+*If you have private models on Hugging Face, you can configure Weaviate to use them — see the [Hugging Face provider docs](https://docs.weaviate.io/weaviate/model-providers/huggingface/embeddings) for the latest authentication and configuration options.*
 
 ### Fully automated and optimized
 Weaviate manages the whole process for you. From the perspective of writing your code – once you have your schema configuration – you can almost forget that Hugging Face is involved at all.
@@ -70,7 +73,7 @@ ENABLE_MODULES: text2vec-huggingface
 
 :::note
 This article is not meant as a hands-on tutorial.
-For more detailed instructions please check the [documentation](https://docs.weaviate.io/weaviate/model-providers/cohere/embeddings).
+For more detailed instructions please check the [documentation](https://docs.weaviate.io/weaviate/model-providers/huggingface/embeddings).
 :::
 
 The overall process to use a Hugging Face module with Weaviate is fairly straightforward.
@@ -150,14 +153,14 @@ result = (
 ```
 
 ## Summary
-> Now you can use [Hugging Face](https://docs.weaviate.io/weaviate/model-providers/cohere/embeddings) or [OpenAI](https://docs.weaviate.io/weaviate/model-providers/openai/embeddings) modules in Weaviate to delegate model inference out.
+> Now you can use [Hugging Face](https://docs.weaviate.io/weaviate/model-providers/huggingface/embeddings) or [OpenAI](https://docs.weaviate.io/weaviate/model-providers/openai/embeddings) modules in Weaviate to delegate model inference out.
 
 Just pick the model, provide your API key and start working with your data.
 
 Weaviate optimizes the communication process with the Inference API for you, so that you can focus on the challenges and requirements of your applications. No need to run the Inference API yourself.
 
 ## What next
-Check out the [text2vec-huggingface](https://docs.weaviate.io/weaviate/model-providers/cohere/embeddings) documentation to learn more about the new module.
+Check out the [text2vec-huggingface](https://docs.weaviate.io/weaviate/model-providers/huggingface/embeddings) documentation to learn more about the new module.
 
 import WhatsNext from '/_includes/what-next.mdx';
 
