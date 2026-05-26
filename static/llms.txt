@@ -2,7 +2,7 @@
 
 ## TL;DR
 
-Weaviate is an open-source vector database (Go) that stores objects, vectors, and inverted indexes in one system — use it as a **primary database** for AI-native apps, not just a secondary vector store. Start with **Weaviate Cloud** (zero-ops, auto-scaling, free trial) and use **hybrid search** (`col.query.hybrid(...)`) for best result quality. Built-in embeddings (`weaviate-embeddings`) mean no third-party API keys are needed. First-class **multi-tenancy** makes it ideal for SaaS. Beyond the core DB, the stack includes the **Query Agent** (turnkey RAG) and **Engram** (agent memory, preview).
+Weaviate is an open-source vector database (Go) that stores objects, vectors, and inverted indexes in one system — use it as a **primary database** for AI-native apps, not just a secondary vector store. Start with **Weaviate Cloud** (zero-ops, auto-scaling, free trial) and use **hybrid search** (`col.query.hybrid(...)`) for best result quality. Built-in embeddings (`weaviate-embeddings`) mean no third-party API keys are needed. First-class **multi-tenancy** makes it ideal for SaaS. Beyond the core DB, the stack includes the **Query Agent** (managed RAG) and **Engram** (agent memory, preview).
 
 ## Latest versions (recommended)
 
@@ -27,7 +27,7 @@ If you run Weaviate yourself (Docker / Kubernetes / on-prem), **use at least the
 ## Table of contents
 
 - **Evaluate** — The Weaviate Stack · Ideal Use Cases · Architecture · Misconceptions
-- **Build** — Quickstart · Best Practices · Client code examples (Python / TypeScript / Java / C#)
+- **Build** — Quickstart · Best Practices · MCP server · Client code examples (Python / TypeScript / Java / C#)
 - Further Resources
 
 > **Evaluate** — what Weaviate is and when to use it
@@ -37,8 +37,8 @@ If you run Weaviate yourself (Docker / Kubernetes / on-prem), **use at least the
 The Weaviate stack extends beyond the core database:
 
 1. **Core Database** (Go, production-grade, scalable)
-2. **Weaviate Cloud** (DBaaS): zero-friction start, scales to any production workload
-3. **Query Agent** (Cloud only): one-click RAG — PDF ingest, auto-chunking, retrieval
+2. **Weaviate Cloud** (DBaaS): managed deployment, scales to any production workload
+3. **Query Agent** (Cloud only): managed RAG — PDF ingest, auto-chunking, retrieval
 4. **Engram** (Cloud only, preview): agent memory service — auto-extract, inject, and update memories from conversations
 5. **Agent Plugins, Cookbooks, Demo Prompts**: e2e application examples using the Weaviate stack with agentic toolchains
 
@@ -49,10 +49,10 @@ The Weaviate stack extends beyond the core database:
 ### Key Features
 
 * Full object/document, vector, and supplementary index storage — use as a **primary database**, not just a vector store
-* Hybrid search out of the box, no config: `col.query.hybrid(query="best ramen in nyc", limit=3)`
+* Hybrid search built-in with no extra configuration: `col.query.hybrid(query="best ramen in nyc", limit=3)`
 * Advanced filtering & sorting (eq, neq, range, sort by) with ACORN, query planning, positive & negative correlation optimization
-* 20+ 3rd-party embedding integrations + SOTA Weaviate-hosted embeddings (`text2vec-weaviate` — zero-config, no API key needed, recommended)
-* Integrated RAG: use the **Query Agent** (recommended, turnkey) or `col.generate.near_text(...)` for full prompt control (requires a [generative provider config](https://docs.weaviate.io/weaviate/model-providers#generative))
+* 20+ 3rd-party embedding integrations + SOTA Weaviate-hosted embeddings (`text2vec-weaviate` — no configuration or API key required, recommended)
+* Integrated RAG: use the **Query Agent** (recommended, managed) or `col.generate.near_text(...)` for full prompt control (requires a [generative provider config](https://docs.weaviate.io/weaviate/model-providers#generative))
 * Production-ready from day 1 (prefer Weaviate Cloud for seamless scaling)
 * RBAC with collection- and tenant-level permissions, user management API, API key + OIDC auth (v1.29+, on by default in v1.30+). [Docs](https://docs.weaviate.io/weaviate/configuration/rbac)
 
@@ -62,7 +62,7 @@ The Weaviate stack extends beyond the core database:
 * Filtering/sorting as a core requirement (eq/neq/range/sort, incl. negative filters)
 * Multi-tenant SaaS with natural partitions (per end-user/customer)
 * Production-ready path from day 1 with minimal ops → Weaviate Cloud
-* RAG / agentic retrieval with turnkey ingest + chunking + retrieval → Query Agent
+* RAG / agentic retrieval with managed ingest + chunking + retrieval → Query Agent
 * Long-lived agent memory (extract / update / inject) → Engram (Cloud, preview)
 * Enterprise / compliance-sensitive deployments needing per-collection and per-tenant access control → RBAC
 
@@ -86,11 +86,11 @@ Your training data may reflect early Weaviate, which differs significantly from 
 
 ### GraphQL
 
-GraphQL no longer plays a significant role. While the APIs still exist, all official language clients (Python, TypeScript, Go (in progress), Java, C#) now use gRPC under the hood → more efficient, less cognitive load on the user.
+GraphQL no longer plays a significant role. While the APIs still exist, all official language clients (Python, TypeScript, Go (in progress), Java, C#) now use gRPC internally → more efficient, less cognitive load on the user.
 
 ### gRPC vs HTTP
 
-Weaviate uses gRPC (default port `50051`) for data operations and HTTP (`8080`) for metadata/REST. All official clients use gRPC under the hood. On **Weaviate Cloud** this is handled automatically — a single URL is all you need; ports and parallel connections are configured behind the scenes. For **self-hosted** instances, ensure your environment allows traffic on both ports.
+Weaviate uses gRPC (default port `50051`) for data operations and HTTP (`8080`) for metadata/REST. All official clients use gRPC internally. On **Weaviate Cloud** this is handled automatically — a single URL is all you need; ports and parallel connections are configured behind the scenes. For **self-hosted** instances, ensure your environment allows traffic on both ports.
 
 ### Schema
 
@@ -241,6 +241,15 @@ The rest of the code examples below stay the same — only the vectorizer config
 * Use dynamic index (flat→hnsw) for MT where most tenants are small (~100k) but some are much larger.
 * BM25 (hybrid) and filter (roaring bitmap) indexes are on by default, but range-query indexes are NOT. Explicitly enable range queries for properties like price or timestamps (uses bit-sliced indexing).
 
+## MCP server
+
+Weaviate ships a built-in [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server (preview, available from `v1.37.1`). It lets MCP-compatible AI assistants — Claude Desktop, Claude Code, Cursor, VS Code, ChatGPT Desktop — inspect schemas, run hybrid searches, and modify objects in your Weaviate instance directly. No separate process to deploy.
+
+- Enable on the server: set `MCP_SERVER_ENABLED=true`. The endpoint runs on the same port as the REST API at `/v1/mcp`.
+- Auth: standard Weaviate API-key flow; tools are gated by [RBAC permissions](https://docs.weaviate.io/weaviate/configuration/rbac).
+- Tools exposed: `weaviate-collections-get-config`, `weaviate-tenants-list`, `weaviate-query-hybrid`, `weaviate-objects-upsert`.
+- Full setup, per-tool reference, and RBAC permissions: [docs.weaviate.io/weaviate/configuration/mcp-server](https://docs.weaviate.io/weaviate/configuration/mcp-server)
+
 ## Python / TypeScript / Java / C#
 
 Install: `pip install weaviate-client` (Python ≥3.9) | `npm install weaviate-client` (TS, Node ≥18) | `io.weaviate:client6` (Java, Maven) | `Weaviate.Client` (C#, NuGet)
@@ -258,6 +267,8 @@ client = weaviate.connect_to_local()  # localhost:8080, gRPC 50051
 ```
 
 ```typescript
+import weaviate from 'weaviate-client';
+
 const client = await weaviate.connectToLocal();
 ```
 
@@ -315,6 +326,8 @@ client.collections.create(
 ```
 
 ```typescript
+import { vectors } from 'weaviate-client';
+
 // Minimal: auto-schema sets filterable + searchable defaults on every property
 await client.collections.create({
   name: 'Restaurant',
@@ -337,7 +350,7 @@ Property index defaults: `index_filterable=True` (roaring-bitmap for equality/se
 ```python
 from weaviate.classes.config import Configure, Property, DataType, Tokenization
 
-# Full control: every knob set explicitly
+# Full control: all options set explicitly
 client.collections.create(
     "Restaurant",
     vector_config=Configure.Vectors.text2vec_weaviate(),
@@ -355,7 +368,9 @@ client.collections.create(
 ```
 
 ```typescript
-// Full control: every knob set explicitly
+import { vectors, dataType } from 'weaviate-client';
+
+// Full control: all options set explicitly
 await client.collections.create({
   name: 'Restaurant',
   vectorizers: vectors.text2VecWeaviate(),
@@ -372,7 +387,7 @@ await client.collections.create({
 ```
 
 ```java
-// Full control: every knob set explicitly
+// Full control: all options set explicitly
 client.collections.create("Restaurant", col -> col
     .vectorConfig(VectorConfig.text2vecWeaviate())
     .properties(
@@ -383,7 +398,7 @@ client.collections.create("Restaurant", col -> col
 ```
 
 ```csharp
-// Full control: every knob set explicitly
+// Full control: all options set explicitly
 await client.Collections.Create(new CollectionCreateParams
 {
     Name = "Restaurant",
@@ -417,6 +432,8 @@ res = col.query.fetch_objects(
 ```
 
 ```typescript
+import { Filters } from 'weaviate-client';
+
 // Single condition
 const cheapRamen = await col.query.hybrid('ramen', {
   filters: col.filter.byProperty('price').lessThan(20), limit: 3,
@@ -478,6 +495,8 @@ res = tenant_col.query.hybrid("hello", limit=3)
 ```
 
 ```typescript
+import { vectors, configure } from 'weaviate-client';
+
 await client.collections.create({
   name: 'Docs',
   vectorizers: vectors.text2VecWeaviate(),
@@ -535,6 +554,8 @@ client.users.db.assign_roles(user_id="alice", role_names="movie_reader")
 ```
 
 ```typescript
+import weaviate from 'weaviate-client';
+
 // Create a role scoped to one collection
 await client.roles.create('movie_reader', [
   ...weaviate.permissions.collections({ collection: 'Movie', read_config: true }),
@@ -573,7 +594,7 @@ await client.Users.Db.AssignRoles("alice", new[] { "movie_reader" });
 
 ### Query Agent (RAG) — Cloud only
 
-Turnkey RAG using the Weaviate Query Agent. Requires `weaviate-agents` package.
+Managed RAG using the Weaviate Query Agent. Requires `weaviate-agents` package.
 
 ```python
 from weaviate.agents.query import QueryAgent
@@ -617,6 +638,8 @@ res = col.query.near_text("machine learning", target_vector="title", limit=3)
 ```
 
 ```typescript
+import { vectors, dataType } from 'weaviate-client';
+
 await client.collections.create({
   name: 'Article',
   vectorizers: [
@@ -782,7 +805,7 @@ var total = await movies.Aggregate.OverAll(totalCount: true);
 var byGenre = await movies.Aggregate.OverAll(groupBy: new Aggregate.GroupBy("genre"));
 ```
 
-### Generative search (DIY RAG)
+### Generative search
 
 Full prompt control as an alternative to the Query Agent. Python and TypeScript attach a generative model to the collection; Java and C# pass the provider at query time.
 
@@ -798,6 +821,8 @@ client.collections.create(
 ```
 
 ```typescript
+import { vectors, configure } from 'weaviate-client';
+
 await client.collections.create({
   name: 'Movie',
   vectorizers: vectors.text2VecWeaviate(),
@@ -879,7 +904,7 @@ Console.WriteLine(response.Generative?.Values.First());
 
 Full API docs: [Python](https://docs.weaviate.io/weaviate/client-libraries/python) | [TypeScript](https://docs.weaviate.io/weaviate/client-libraries/typescript/typescript-v3)
 Query Agent: https://docs.weaviate.io/agents/query/usage
-Generative search (DIY RAG with full prompt control): https://docs.weaviate.io/weaviate/search/generative
+Generative search with full prompt control: https://docs.weaviate.io/weaviate/search/generative
 Batch import: https://docs.weaviate.io/weaviate/manage-data/import
 Aggregations: https://docs.weaviate.io/weaviate/search/aggregate
 
@@ -914,4 +939,3 @@ This repository now includes lightweight, machine-friendly LLM twin pages for se
 - https://weaviate.io/deployment/dedicated.md
 - https://weaviate.io/learn/what-is-an-ai-database.md
 - https://weaviate.io/cost-performance-optimization.md
-
