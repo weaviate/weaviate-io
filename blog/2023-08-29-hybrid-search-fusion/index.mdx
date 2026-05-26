@@ -12,10 +12,8 @@ description: "How hybrid search works, and under the hood of Weaviate's fusion a
 ![Hybrid search hero image - shows a combination of results from vector and keyword search](./img/hero.png)
 
 :::info Highlights
-- There are two fusion algorithms available in Weaviate: `rankedFusion` and `relativeScoreFusion`.
-- `rankedFusion` was the default algorithm until 1.24
-- `relativeScoreFusion` is the newer algorithm, introduced in 1.20 and made default in 1.24, and likely the better choice for most.
-- We would love to get your feedback on hybrid search. Please fill out [this short survey](https://docs.google.com/forms/d/e/1FAIpQLSfxekC2eh5Xkl0iJYEAoOkfhK4FA5AO-Od3KUz4srreOpq00g/viewform?usp=sf_link).
+- Weaviate has two hybrid fusion algorithms: `rankedFusion` and `relativeScoreFusion`.
+- `relativeScoreFusion` has been the default since `v1.24` and is the right choice for most workloads. `rankedFusion` remains available as an opt-in alternative.
 :::
 
 -----
@@ -40,12 +38,11 @@ In this post, we’ll dive into exactly the world of hybrid search to discuss ho
 Here is an example of a hybrid search:
 
 ```python
-response = (
-    client.query
-    .get("JeopardyQuestion", ["question", "answer"])
-    .with_hybrid(query="food", alpha=0.5)
-    .with_limit(5)
-    .do()
+collection = client.collections.use("JeopardyQuestion")
+response = collection.query.hybrid(
+    query="food",
+    alpha=0.5,
+    limit=5,
 )
 ```
 
@@ -60,12 +57,10 @@ import TabItem from '@theme/TabItem';
 <TabItem value="vector" label="Vector search">
 
 ```python
-response = (
-    client.query
-    .get("JeopardyQuestion", ["question", "answer"])
-    .with_near_text({"concepts": ["food"]})
-    .with_limit(5)
-    .do()
+collection = client.collections.use("JeopardyQuestion")
+response = collection.query.near_text(
+    query="food",
+    limit=5,
 )
 ```
 
@@ -73,12 +68,10 @@ response = (
 <TabItem value="keyword" label="Keyword search">
 
 ```python
-response = (
-    client.query
-    .get("JeopardyQuestion", ["question", "answer"])
-    .with_bm25(query="food")
-    .with_limit(5)
-    .do()
+collection = client.collections.use("JeopardyQuestion")
+response = collection.query.bm25(
+    query="food",
+    limit=5,
 )
 ```
 
@@ -198,7 +191,7 @@ A short answer is that Weaviate calculates for each object a weighted score, usi
 
 :::info Weighing scores
 Hybrid searches can be ‘weighted’ to give more weight to the vector or keyword search. This is done using the `alpha` parameter. You can read more [here](https://docs.weaviate.io/weaviate/search/hybrid#weight-keyword-vs-vector-results).
-:::.
+:::
 
 ## Fusion algorithms
 
@@ -207,7 +200,7 @@ Hybrid searches can be ‘weighted’ to give more weight to the vector or keywo
 
 Each of the two (vector and keyword) searches returns a set of results with its own scores. These scores are then handed over to the selected fusion algorithm. A job of the fusion algorithm is to prepare the scores from each search to be compatible with each other, so that they can be weighted and added up and presented to the user.
 
-As of `1.20`, there are two algorithms available - one called `rankedFusion` (default until `1.24`) and another called `relativeScoreFusion`, the default from `1.24`.
+Weaviate ships two algorithms — `rankedFusion` and `relativeScoreFusion`. `relativeScoreFusion` has been the default since `v1.24` and is recommended for most workloads.
 
 ### rankedFusion
 
@@ -338,16 +331,11 @@ In `1.20` we introduced the [AutoCut](/blog/2023-07-11-weaviate-1-20-release/ind
 
 AutoCut works well with `relativeScoreFusion`, which often results in natural clusters that autocut can detect.
 
-### Why the default choice?
+### Why `relativeScoreFusion` is the default
 
-:::info Since `v1.24` the default method is Relative Score Fusion
-:::
+`relativeScoreFusion` has been the default since `v1.24`. `rankedFusion` came first and remains available — it's the more conservative choice when you want results to be driven primarily by relative ranking rather than by absolute score magnitudes.
 
-Given our earlier explanations, you might be wondering why `rankedFusion` was the default algorithm. In fact, currently we believe that `relativeScoreFusion` is more likely to be the better-performing algorithm.
-
-The answer is that `rankedFusion` is the older, reliable choice that has worked quite well. In the meantime, we have been reviewing how `relativeScoreFusion` is received by the community, and making small tweaks like adding [over-search](https://docs.weaviate.io/weaviate/api/graphql/search-operators#oversearch-with-relativescorefusion) to make it more robust.
-
-So far, the reaction has been positive. But we are still in the evaluation phase, and we would love to get additional feedback from you, our users. We have prepared [this short survey](https://docs.google.com/forms/d/e/1FAIpQLSfxekC2eh5Xkl0iJYEAoOkfhK4FA5AO-Od3KUz4srreOpq00g/viewform?usp=sf_link). We would really appreciate your input. Please let us know what you think!
+Refinements such as [over-search](https://docs.weaviate.io/weaviate/api/graphql/search-operators#oversearch-with-relativescorefusion) make `relativeScoreFusion` robust enough for most production workloads, which is why it became the default.
 
 
 
