@@ -9,14 +9,8 @@ description: "Learn how to import and query the Sphere dataset in Weaviate!"
 ---
 ![The Sphere Dataset in Weaviate](./img/hero.png)
 
-:::caution Outdated code in the v3 tab
-Published 2022-12-06. The v3 client tab on this page uses syntax that no longer works against the current Python client — use the v4 tab. Sphere is still an active Weaviate benchmark; see the [ANN benchmarks page](https://docs.weaviate.io/weaviate/benchmarks/ann).
-:::
-
 <!-- truncate -->
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/blog.sphere.endtoend.py';
 
@@ -68,84 +62,12 @@ _NOTE: because of the high volume of downloads, please request access via hello@
 
 Once you have the dataset file downloaded and unpacked, the next step is to import the dataset into Weaviate with Python:
 
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python Client v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START SphereEndToEnd"
-      endMarker="# END SphereEndToEnd"
-      language="py"
-    />
-  </TabItem>
-  <TabItem value="pyv3" label="Python Client v3">
-
-```python
-import sys
-import os
-import time
-import json
-import weaviate
-
-# Variables
-WEAVIATE_URL    = '<your-weaviate-url>'
-BATCH_SIZE      = 100
-SPHERE_DATASET  = 'sphere.100k.jsonl' # update to match your filename
-
-client = weaviate.Client(
-    url=WEAVIATE_URL,
-    timeout_config=600
-)
-
-client.batch.configure(
-    batch_size=BATCH_SIZE,
-    dynamic=True,
-    num_workers=os.cpu_count()
-)
-
-# Set DPR model used for the Page class
-client.schema.create_class({
-    "class": "Page",
-    "vectorizer": "text2vec-huggingface",
-    "moduleConfig": {
-        "passageModel": "sentence-transformers/facebook-dpr-ctx_encoder-single-nq-base",
-        "queryModel": "sentence-transformers/facebook-dpr-question_encoder-single-nq-base",
-        "options": {
-            "waitForModel": True,
-            "useGPU": False,  # Set to True if your account allows GPU usage
-            "useCache": True
-        }
-    },
-    "properties": []  # Rely on auto-schema - make sure it is enabled on your Weaviate instance
-})
-
-# Import the data#
-# The data schema will be inferred by Weaviate and created automatically
-start = time.time()
-c = 0
-with open(SPHERE_DATASET) as jsonl_file:
-    with client.batch as batch:
-        for jsonl in jsonl_file:
-            json_parsed = json.loads(jsonl)
-            batch.add_data_object({
-                    'url':  json_parsed['url'],
-                    'title': json_parsed['title'],
-                    'raw': json_parsed['raw'],
-                    'sha': json_parsed['sha']
-                },
-                'Page',
-                json_parsed['id'],
-                vector=json_parsed['vector']
-            )
-            c += 1
-            if (c % (BATCH_SIZE * 10)) == 0:
-                print('Imported', c)
-
-end = time.time()
-print('Done in', end - start)
-```
-
-  </TabItem>
-</Tabs>
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# START SphereEndToEnd"
+  endMarker="# END SphereEndToEnd"
+  language="py"
+/>
 
 *Make sure to update the SPHERE_DATASET property to correctly match your `.jsonl` filename.*
 

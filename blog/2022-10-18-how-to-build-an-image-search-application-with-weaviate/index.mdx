@@ -9,10 +9,6 @@ description: "Learn how to use build an image search application using the Img2v
 ---
 ![How to build an Image Search Application with Weaviate](./img/hero.png)
 
-:::caution Outdated content
-Published 2022-10-18. Code samples use the pre-v4 Python client and the `img2vec-neural` module. For current guidance on image search in Weaviate, see the [multimodal guide](/blog/multimodal-guide), which covers the `multi2vec-*` model family that supersedes single-modality image embedding.
-:::
-
 <!-- truncate -->
 
 Recently, I was working with my colleague Marcin (an engineer from Weaviate core) on a really cool demo project. The idea was to build an image-search application for dogs, which allows a user to provide a picture of a dog, and the app would respond with the most similar breed. And if a user provides a picture of their partner (I might've tested this on my boyfriend 😄), it returns the breed most similar to them.
@@ -75,47 +71,24 @@ The dataset we're using contains ten dogs, each containing the following propert
 
 This includes the class name, which in our case is "Dog" and the properties, such as `breed`, `image`, and `filepath`. In this case, we also need to add in the vectorizer definition, which is the `img2vec-neural` module, so that Weaviate knows to use that specific vectorizer.
 
-We will tell Weaviate that breed and filepath values are strings, weight is stored as an integer, and images are stored as a `blob` dataType. Putting it all together, the schema definition should look like the following;
+We will tell Weaviate that breed and filepath values are text, weight is stored as an integer, and images are stored as a `blob` dataType. Putting it all together, the collection definition should look like the following;
 
 ```python
-schema = {
-   "classes": [
-       {
-           "class": "Dog",
-           "description": "Images of different dogs",
-           "moduleConfig": {
-               "img2vec-neural": {
-                   "imageFields": [
-                       "image"
-                   ]
-               }
-           },
-           "vectorIndexType": "hnsw",
-           "vectorizer": "img2vec-neural", # the img2vec-neural Weaviate vectorizer
-           "properties": [
-               {
-                   "name": "breed",
-                   "dataType": ["string"],
-                   "description": "name of dog breed",
-               },
-               {
-                   "name": "image",
-                   "dataType": ["blob"],
-                   "description": "image",
-               },
-               {
-                   "name": "filepath",
-                   "dataType":["string"],
-                   "description": "filepath of the images",
-               }
-           ]
-       }
-   ]
-}
-```
-Once you've defined the schema, it is then added to Weaviate.
-```
-client.schema.create(schema)
+import weaviate
+from weaviate.classes.config import Configure, Property, DataType
+
+client = weaviate.connect_to_local()
+
+client.collections.create(
+    name="Dog",
+    description="Images of different dogs",
+    vector_config=Configure.Vectors.img2vec_neural(image_fields=["image"]),
+    properties=[
+        Property(name="breed", data_type=DataType.TEXT, description="name of dog breed"),
+        Property(name="image", data_type=DataType.BLOB, description="image"),
+        Property(name="filepath", data_type=DataType.TEXT, description="filepath of the images"),
+    ],
+)
 ```
 
 Run the `create-schema.py` to add the schema to your Weaviate instance;
@@ -138,16 +111,14 @@ Note, the base64 images are stored in the `base64_images` folder.
 ### Upload the Data Objects
 Now that we have defined the schema and converted the images to base64 values, we can upload the data objects to Weaviate.
 
-When uploading your data objects to Weaviate, you want to import your data in batches. The import speed is faster than uploading the objects one by one. Let's configure the batch process to upload in batches of 100, just in case we add more images.
+When uploading your data objects to Weaviate, you want to import your data in batches. The import speed is faster than uploading the objects one by one. In the v4 client we use a dynamic batch context manager on the collection, which automatically tunes the batch size for us.
 
 ```python
-def set_up_batch():
-   client.batch.configure(
-       batch_size=100,
-       dynamic=True,
-       timeout_retries=3,
-       callback=None,
-   )
+dog_collection = client.collections.use("Dog")
+
+with dog_collection.batch.dynamic() as batch:
+    # add objects here
+    ...
 ```
 
 We will need to define the data properties that we want to upload. The function below will:
@@ -158,9 +129,9 @@ We will need to define the data properties that we want to upload. The function 
 
 ```python
 def import_data():
+    dog_collection = client.collections.use("Dog")
 
-    client.batch.configure(batch_size=100)  # Configure batch
-    with client.batch as batch:
+    with dog_collection.batch.dynamic() as batch:
         # Iterate over all .b64 files in the base64_images folder
         for encoded_file_path in os.listdir("./base64_images"):
             with open("./base64_images/" + encoded_file_path) as file:
@@ -182,13 +153,12 @@ def import_data():
                     "filepath": image_file,
                 }
 
-                batch.add_data_object(data_properties, "Dog")
+                batch.add_object(properties=data_properties)
 ```
 
 Now we will connect to the local host and upload the data objects.
 ```python
-client = weaviate.Client("http://localhost:8080")
-set_up_batch()
+client = weaviate.connect_to_local()
 clear_up_dogs()
 import_data()
 ```
@@ -216,22 +186,21 @@ First, we will need to create our Flask application and connect it to our Weavia
 ```python
 app = Flask(__name__)
 app.config["UPLOAD_FOLDER"] = "/temp_images"
-client = weaviate.Client("http://localhost:8080")
+client = weaviate.connect_to_local()
 ```
 
 We will use the [`nearImage`](https://docs.weaviate.io/weaviate/modules/img2vec-neural#nearimage-search) operator in Weaviate, so that it will search for images closest to the image uploaded by the user. To do this we will construct the `weaviate_img_search` function to get the relevant results. The response from our search query will include the closest objects in the Dog class. From the response, the function will output the dog image with the breed name and filepath. Note that the query is also formulated so that the response is limited to two results.
 
 ```python
 def weaviate_img_search(img_str):
-   sourceImage = { "image": img_str}
+   dog_collection = client.collections.use("Dog")
 
-   weaviate_results = client.query.get(
-       "Dog", ["filepath","breed"]
-       ).with_near_image(
-           sourceImage, encode=False
-       ).with_limit(2).do()
+   response = dog_collection.query.near_image(
+       near_image=img_str,
+       limit=2,
+   )
 
-   return weaviate_results["data"]["Get"]["Dog"]
+   return [obj.properties for obj in response.objects]
 ```
 
 How cool is that? We can find visually similar dogs in just a simple query to Weaviate. We could even scale this to millions of images running in milliseconds with [Weaviate's ANN index](https://docs.weaviate.io/weaviate/concepts/vector-index).

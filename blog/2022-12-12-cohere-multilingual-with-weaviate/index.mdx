@@ -9,8 +9,8 @@ description: "Cohere announced the release of the text-understanding multilingua
 ---
 ![Cohere Multilingual ML Models with Weaviate](./img/hero.png)
 
-:::caution Outdated content
-Published 2022-12-12. This post is built around Cohere's `embed-multilingual-v2.0`, which is now two generations behind. For current guidance, see the [Cohere embeddings docs](https://docs.weaviate.io/weaviate/model-providers/cohere/embeddings) — the recommended default is `embed-multilingual-v3.0`, and `embed-v4.0` is the current flagship.
+:::note Model update
+Cohere has released newer multilingual models since this post was published. The current recommended default is `embed-multilingual-v3.0`, and `embed-v4.0` is the flagship — see the [Cohere embeddings docs](https://docs.weaviate.io/weaviate/model-providers/cohere/embeddings).
 :::
 
 <!-- truncate -->
@@ -142,33 +142,29 @@ You can find the test project on [GitHub](https://github.com/weaviate-tutorials/
 
 Probably the most interesting part is the [query code](https://github.com/weaviate-tutorials/cohere-wiki-multilingual/blob/main/wiki-large-query.ipynb), which is made of 3 parts:
 
-* `nearText` – parameters where we pass in the query from the user
-* `properties` – a list of properties we want back from the database
-* `client.query` – it takes the above two, and runs a semantic search. Note, how it doesn’t even mention the Cohere model, as all of that is done through configuration.
+* `query` – the natural-language query from the user
+* `return_properties` – a list of properties we want back from the database
+* `collection.query.near_text(...)` – runs a semantic search. Note, how it doesn’t even mention the Cohere model, as all of that is done through configuration.
 
 ```python
-def semantic_serch(query):
-   client = _setup.connect_to_weaviate()
+import weaviate
+from weaviate.classes.query import MetadataQuery
 
-   nearText = {
-       "concepts": [query],
-       "distance": 0.7,
-   }
+def semantic_search(query):
+    client = _setup.connect_to_weaviate()
 
-   properties = [
-       "name", "content", "enName", "link", "lang",
-       "_additional {certainty distance}"
-   ]
+    documents = client.collections.get("Document")
 
-   result = (
-       client.query
-       .get("Document", properties)
-       .with_near_text(nearText)
-       .with_limit(5)
-       .do()
-   )
+    response = documents.query.near_text(
+        query=query,
+        distance=0.7,
+        limit=5,
+        return_properties=["name", "content", "enName", "link", "lang"],
+        return_metadata=MetadataQuery(certainty=True, distance=True),
+    )
 
-   return result['data']['Get']['Document']
+    client.close()
+    return response.objects
 ```
 ## How does this work
 It is also important to understand how Weaviate and Cohere communicate with each other.

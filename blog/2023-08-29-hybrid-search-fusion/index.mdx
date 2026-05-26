@@ -12,8 +12,9 @@ description: "How hybrid search works, and under the hood of Weaviate's fusion a
 ![Hybrid search hero image - shows a combination of results from vector and keyword search](./img/hero.png)
 
 :::info Highlights
-- Weaviate has two hybrid fusion algorithms: `rankedFusion` and `relativeScoreFusion`.
-- `relativeScoreFusion` has been the default since `v1.24` and is the right choice for most workloads. `rankedFusion` remains available as an opt-in alternative.
+- There are two fusion algorithms available in Weaviate: `rankedFusion` and `relativeScoreFusion`.
+- `rankedFusion` was the default algorithm until 1.24
+- `relativeScoreFusion` is the newer algorithm, introduced in 1.20 and made default in 1.24, and likely the better choice for most.
 :::
 
 -----
@@ -200,7 +201,7 @@ Hybrid searches can be ‘weighted’ to give more weight to the vector or keywo
 
 Each of the two (vector and keyword) searches returns a set of results with its own scores. These scores are then handed over to the selected fusion algorithm. A job of the fusion algorithm is to prepare the scores from each search to be compatible with each other, so that they can be weighted and added up and presented to the user.
 
-Weaviate ships two algorithms — `rankedFusion` and `relativeScoreFusion`. `relativeScoreFusion` has been the default since `v1.24` and is recommended for most workloads.
+As of `1.20`, there are two algorithms available - one called `rankedFusion` (default until `1.24`) and another called `relativeScoreFusion`, the default from `1.24`.
 
 ### rankedFusion
 
@@ -331,11 +332,14 @@ In `1.20` we introduced the [AutoCut](/blog/2023-07-11-weaviate-1-20-release/ind
 
 AutoCut works well with `relativeScoreFusion`, which often results in natural clusters that autocut can detect.
 
-### Why `relativeScoreFusion` is the default
+### Why the default choice?
 
-`relativeScoreFusion` has been the default since `v1.24`. `rankedFusion` came first and remains available — it's the more conservative choice when you want results to be driven primarily by relative ranking rather than by absolute score magnitudes.
+:::info Since `v1.24` the default method is Relative Score Fusion
+:::
 
-Refinements such as [over-search](https://docs.weaviate.io/weaviate/api/graphql/search-operators#oversearch-with-relativescorefusion) make `relativeScoreFusion` robust enough for most production workloads, which is why it became the default.
+Given our earlier explanations, you might be wondering why `rankedFusion` was the default algorithm. In fact, currently we believe that `relativeScoreFusion` is more likely to be the better-performing algorithm.
+
+The answer is that `rankedFusion` is the older, reliable choice that has worked quite well. In the meantime, we have been reviewing how `relativeScoreFusion` is received by the community, and making small tweaks like adding [over-search](https://docs.weaviate.io/weaviate/api/graphql/search-operators#oversearch-with-relativescorefusion) to make it more robust.
 
 
 

@@ -11,10 +11,6 @@ description: "Demo on how to ingest PDFs into Weaviate using Unstructured."
 
 ![PDFs to Weaviate](./img/hero.png)
 
-:::caution Outdated content
-Published 2023-05-23. Code samples use the pre-v4 Python client and the now-removed LangChain `ChatVectorDBChain`. For current guidance on ingesting PDFs into Weaviate (now via multimodal embeddings — no OCR step required), see the [multimodal guide](/blog/multimodal-guide).
-:::
-
 <!-- truncate -->
 
 Since the release of ChatGPT, and the subsequent realization of pairing Vector DBs with ChatGPT, one of the most compelling applications has been chatting with your PDFs (i.e. [ChatPDF](https://www.chatpdf.com/) or [ChatDOC](https://chatdoc.com/)). Why PDFs? PDFs are fairly universal for visual documents, encompassing research papers, resumes, powerpoints, letters, and many more. In our [latest Weaviate Podcast](https://www.youtube.com/watch?v=b84Q2cJ6po8) with Unstructured Founder Brian Raymond, Brian motivates this kind of data by saying “Imagine you have a non-disclosure agreement in a PDF and want to train a classifier”. Although PDFs are great for human understanding, they have been very hard to process with computers. PDF documents contain valuable insights and information that are key to unlocking text information for businesses. With the latest advancements in multimodal deep learning (models that process both images and text), it is now possible to extract high quality data from PDF documents and add it to your Weaviate workflow.
@@ -135,17 +131,16 @@ Starting with importing the necessary libraries:
 ```python
 from pathlib import Path
 import weaviate
-from weaviate.embedded import EmbeddedOptions
+from weaviate.classes.config import Configure, Property, DataType
+from weaviate.classes.query import MetadataQuery
 import os
 ```
 
 In this example, we are using [Embedded Weaviate](https://docs.weaviate.io/weaviate/installation/embedded). You can also run it on [WCD](https://console.weaviate.cloud) or [docker](https://docs.weaviate.io/weaviate/installation/docker-compose). This demo is also using OpenAI for vectorization; you can choose another `text2vec` module [here](https://docs.weaviate.io/weaviate/model-providers).
 
 ```python
-client = weaviate.Client(
-    embedded_options=EmbeddedOptions(
-        additional_env_vars={"OPENAI_APIKEY": os.environ["OPENAI_APIKEY"]}
-    )
+client = weaviate.connect_to_embedded(
+    headers={"X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]}
 )
 ```
 
@@ -154,31 +149,22 @@ client = weaviate.Client(
 Now we need to configure our schema. We have the `document` class along with the `abstract` property.
 
 ```python
-client.schema.delete_all()
+client.collections.delete("Document")
 
-schema = {
-    "class": "Document",
-    "vectorizer": "text2vec-openai",
-    "properties": [
-        {
-            "name": "source",
-            "dataType": ["text"],
-        },
-        {
-            "name": "abstract",
-            "dataType": ["text"],
-            "moduleConfig": {
-                "text2vec-openai": {"skip": False, "vectorizePropertyName": False}
-            },
-        },
+client.collections.create(
+    name="Document",
+    vector_config=Configure.Vectors.text2vec_openai(model="text-embedding-3-large"),
+    generative_config=Configure.Generative.openai(),
+    properties=[
+        Property(name="source", data_type=DataType.TEXT),
+        Property(
+            name="abstract",
+            data_type=DataType.TEXT,
+            skip_vectorization=False,
+            vectorize_property_name=False,
+        ),
     ],
-    "moduleConfig": {
-        "generative-openai": {},
-        "text2vec-openai": {"model": "ada", "modelVersion": "002", "type": "text"},
-    },
-}
-
-client.schema.create_class(schema)
+)
 ```
 
 ### Read/Import the documents
@@ -270,10 +256,11 @@ for path in Path(data_folder).iterdir():
 The next step is to import the objects into Weaviate.
 
 ```python
-client.batch.configure(batch_size=100)  # Configure batch
-with client.batch as batch:
+documents = client.collections.use("Document")
+
+with documents.batch.dynamic() as batch:
     for data_object in data_objects:
-        batch.add_data_object(data_object, "Document")
+        batch.add_object(properties=data_object)
 ```
 
 ### Query Time
@@ -282,18 +269,23 @@ Now that we have imported our two documents, we can run some queries! Starting w
 
 
 ```python
-client.query.get("Document", "source").with_bm25(
-    query="some paper about housing prices"
-).with_additional("score").do()
+documents = client.collections.use("Document")
+
+response = documents.query.bm25(
+    query="some paper about housing prices",
+    return_metadata=MetadataQuery(score=True),
+)
+
+for obj in response.objects:
+    print(obj.properties["source"], obj.metadata.score)
 ```
 
 <details>
   <summary>Output</summary>
 
 ```
-{'data': {'Get': {'Document': [{'_additional': {'score': '0.8450042'},
-     'source': 'paper02.pdf'},
-    {'_additional': {'score': '0.26854637'}, 'source': 'paper01.pdf'}]}}}
+paper02.pdf 0.8450042
+paper01.pdf 0.26854637
 ```
 
 </details>
@@ -307,15 +299,13 @@ Please summarize the following academic abstract in a one-liner for a layperson:
 {abstract}
 """
 
-results = (
-    client.query.get("Document", "source").with_generate(single_prompt=prompt).do()
-)
+documents = client.collections.use("Document")
 
-docs = results["data"]["Get"]["Document"]
+response = documents.generate.fetch_objects(single_prompt=prompt)
 
-for doc in docs:
-    source = doc["source"]
-    abstract = doc["_additional"]["generate"]["singleResult"]
+for obj in response.objects:
+    source = obj.properties["source"]
+    abstract = obj.generated
     wrapped_abstract = textwrap.fill(abstract, width=80)
     print(f"Source: {source}\nSummary:\n{wrapped_abstract}\n")
 ```
@@ -374,26 +364,32 @@ This demo introduced how you can ingest PDFs into Weaviate. In this example we u
 
 We tested a few queries above, but we can take this one step further by using [LangChain](https://python.langchain.com/docs/modules/data_connection/vectorstores/integrations/weaviate). Once the documents are imported into Weaviate, you can build a simple chatbot to chat with your pdfs by using LangChain’s vectorstore.
 
+The original `ChatVectorDBChain` class shown here has been removed from LangChain; the current Weaviate integration lives in the `langchain-weaviate` package. See the [Weaviate-LangChain integration post](/blog/enterprise-workflow-langchain-weaviate) for an up-to-date example.
+
 ```python
-from langchain.vectorstores.weaviate import Weaviate
-from langchain.llms import OpenAI
-from langchain.chains import ChatVectorDBChain
+from langchain_weaviate.vectorstores import WeaviateVectorStore
+from langchain_openai import OpenAIEmbeddings, ChatOpenAI
+from langchain.chains import ConversationalRetrievalChain
 import weaviate
 
-client = weaviate.Client("http://localhost:8080")
+client = weaviate.connect_to_local()
 
-vectorstore = Weaviate(client, "NAME_OF_CLASS", "NAME_OF_PROPERTY")
+vectorstore = WeaviateVectorStore(
+    client=client,
+    index_name="Document",
+    text_key="abstract",
+    embedding=OpenAIEmbeddings(),
+)
 
-MyOpenAI = OpenAI(temperature=0.2,
-    openai_api_key="ENTER YOUR OPENAI KEY HERE")
+llm = ChatOpenAI(temperature=0.2)
 
-qa = ChatVectorDBChain.from_llm(MyOpenAI, vectorstore)
+qa = ConversationalRetrievalChain.from_llm(llm, vectorstore.as_retriever())
 
 chat_history = []
 
 while True:
     query = input("")
-    result = qa({"question": query, "chat_history": chat_history})
+    result = qa.invoke({"question": query, "chat_history": chat_history})
     print(result["answer"])
     chat_history = [(query, result["answer"])]
 ```

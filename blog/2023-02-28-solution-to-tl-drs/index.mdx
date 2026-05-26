@@ -11,8 +11,8 @@ description: Did you know that Weaviate can summarize information during retriev
 <!-- truncate -->
 ![The solution to TL;DRs - Weaviate's summarizer module](./img/hero.png)
 
-:::caution Outdated content
-Published 2023-02-28. Code samples use the now-deprecated `text2vec-contextionary` module and pin Weaviate to `v1.17.4`. The `sum-transformers` module still exists; for current generative-summarization patterns, see the [Cohere generative docs](https://docs.weaviate.io/weaviate/model-providers/cohere/generative).
+:::note Module update
+`text2vec-contextionary` is deprecated. For current vectorizer + generative-summarization patterns, see the [model providers reference](https://docs.weaviate.io/weaviate/model-providers).
 :::
 
 (*Note: You can skip to the TL;DR version [below](/blog/solution-to-tl-drs#bonus-tldr-version-edited)* 😉)
@@ -222,7 +222,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: cr.weaviate.io/semitechnologies/weaviate:1.17.4
+    image: cr.weaviate.io/semitechnologies/weaviate:1.37.4
     ports:
     - 8080:8080
     restart: on-failure:0

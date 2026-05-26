@@ -9,10 +9,6 @@ description: "Running ML Model Inference in production is hard. You can use Weav
 ---
 ![Support for Hugging Face Inference API in Weaviate](./img/hero.png)
 
-:::caution Outdated content
-Published 2022-09-27. Code samples use the pre-v4 Python client. For the current Hugging Face integration setup, see the [model providers reference](https://docs.weaviate.io/weaviate/model-providers).
-:::
-
 <!-- truncate -->
 
 Vector databases use Machine Learning models to offer incredible functionality to operate on your data. We are looking at anything from **summarizers** (that can summarize any text into a short) sentence), through **auto-labelers** (that can classify your data tokens), to **transformers** and **vectorizers** (that can convert any data – text, image, audio, etc. – into vectors and use that for context-based queries) and many more use cases.
@@ -117,11 +113,10 @@ For this, you need your Hugging Face API token, which is used to authorize all c
 
 Add your token, to a Weaviate client configuration. For example in Python, you do it like this:
 
-```javascript
-client = weaviate.Client(
-    url='http://localhost:8080',
-    additional_headers={
-        'X-HuggingFace-Api-Key': 'YOUR-HUGGINGFACE-API-KEY'
+```python
+client = weaviate.connect_to_local(
+    headers={
+        "X-HuggingFace-Api-Key": "YOUR-HUGGINGFACE-API-KEY"
     }
 )
 ```
@@ -135,20 +130,16 @@ Running queries also requires the same token.
 But you can reuse the same client, so you are good to go.
 
 Then, you just run the queries, as per usual:
-```javascript
-nearText = {
-    "concepts": ["How to use Hugging Face modules with Weaviate?"],
-    "distance": 0.6,
-}
+```python
+from weaviate.classes.query import MetadataQuery
 
-result = (
-    client.query
-    .get("Notes", [
-        "name",
-        "comment",
-        "_additional {certainty distance} "])
-    .with_near_text(nearText)
-    .do()
+notes = client.collections.use("Notes")
+
+result = notes.query.near_text(
+    query="How to use Hugging Face modules with Weaviate?",
+    distance=0.6,
+    return_properties=["name", "comment"],
+    return_metadata=MetadataQuery(certainty=True, distance=True),
 )
 ```
 
