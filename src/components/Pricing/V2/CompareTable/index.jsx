@@ -12,6 +12,7 @@ function Cell({ value }) {
 export default function CompareTable({ product = "database" }) {
   const data = product === "engram" ? engramCompare : databaseCompare;
   const { title, columns, sections } = data;
+  const hasGroups = columns.some((c) => c.group);
 
   return (
     <section className={styles.wrap}>
@@ -29,13 +30,53 @@ export default function CompareTable({ product = "database" }) {
 
             <thead>
               <tr>
-                <th className={styles.planHead}>Plan</th>
-                {columns.map((col) => (
-                  <th key={col.key} className={styles.planCol}>
-                    {col.label}
-                  </th>
-                ))}
+                <th
+                  className={styles.planHead}
+                  rowSpan={hasGroups ? 2 : 1}
+                >
+                  Plan
+                </th>
+                {columns.map((col, i) => {
+                  if (col.group) {
+                    const firstIdx = columns.findIndex(
+                      (c) => c.group === col.group
+                    );
+                    if (i !== firstIdx) return null;
+                    const span = columns.filter(
+                      (c) => c.group === col.group
+                    ).length;
+                    return (
+                      <th
+                        key={col.group}
+                        className={styles.planCol}
+                        colSpan={span}
+                      >
+                        {col.group}
+                      </th>
+                    );
+                  }
+                  return (
+                    <th
+                      key={col.key}
+                      className={styles.planCol}
+                      rowSpan={hasGroups ? 2 : 1}
+                    >
+                      {col.label}
+                    </th>
+                  );
+                })}
               </tr>
+              {hasGroups && (
+                <tr>
+                  {columns.map((col) =>
+                    col.group ? (
+                      <th key={col.key} className={styles.planCol}>
+                        {col.label}
+                      </th>
+                    ) : null
+                  )}
+                </tr>
+              )}
             </thead>
 
             <tbody>

@@ -55,8 +55,8 @@ const engramCompare = {
           label: 'Overage behavior',
           values: {
             free: 'Throttle at cap',
-            starter: 'Auto-topup',
-            team: 'Auto-topup',
+            starter: 'Billed in arrears',
+            team: 'Billed in arrears',
             enterprise: 'Custom',
           },
         },

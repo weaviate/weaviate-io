@@ -11,6 +11,7 @@ function TierCard({ plan }) {
     badgeType,
     title,
     price,
+    priceStrike,
     priceSuffix,
     eyebrow,
     meta,
@@ -49,6 +50,11 @@ function TierCard({ plan }) {
 
       <div className={styles.price}>
         {eyebrow && <span className={styles.from}>{eyebrow}</span>}
+        {priceStrike && (
+          <s style={{ opacity: 0.5, fontWeight: 400, marginRight: "6px" }}>
+            {priceStrike}
+          </s>
+        )}
         {price}
         {priceSuffix && <small> {priceSuffix}</small>}
       </div>
@@ -94,17 +100,6 @@ export default function PricingTiers({ product = "serverless" }) {
 
   return (
     <section className={styles.section}>
-      {isEngram && (
-        <div className={styles.sectionHeader}>
-          <p>Memory for AI agents</p>
-          <h2>Pricing that scales with your agents</h2>
-          <span>
-            Engram bills per pipeline run — one POST /memories call. Pick a plan
-            by volume; the default pipeline keeps cost predictable.
-          </span>
-        </div>
-      )}
-
       <div className={styles.tiers}>
         {plans.map((plan) => (
           <TierCard key={plan.title} plan={plan} />

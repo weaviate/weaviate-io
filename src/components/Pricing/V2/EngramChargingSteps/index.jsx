@@ -20,8 +20,8 @@ const steps = [
     text: "Flat per-run rate. Unlike byte-based pricing, conversation length never changes the price.",
   },
   {
-    title: "Overage auto-tops up",
-    text: "Past your monthly runs, Starter & Team auto-topup at the per-run rate — the service never stops.",
+    title: "Usage isn't capped",
+    text: "On paid plans you're never rate-limited — runs over your allowance are metered and billed at the start of your next cycle.",
   },
 ];
 

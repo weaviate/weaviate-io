@@ -376,8 +376,8 @@ module.exports = async function createConfigAsync() {
         ({
             image: 'og/default.jpg',
              announcementBar: {
-               id: 'announcement-bar-feb-2026',
-                content:`<a href="/blog/weaviate-agent-skills">Introducing Weaviate Agent Skills – Read our Blog </a>`,
+               id: 'announcement-bar-engram-ga',
+                content:`<a href="/blog/engram-generally-available">Introducing Engram by Weaviate - now GA - Read our Blog </a>`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,

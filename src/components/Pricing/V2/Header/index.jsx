@@ -13,8 +13,9 @@ export default function PricingHeader({ selectedType, setSelectedType }) {
           </h1>
 
           <p className={styles.subtitle}>
-            Flexible deployment options and pricing to meet the needs of every
-            use case.
+            {selectedType === "engram"
+              ? "Managed memory for AI agents — priced per pipeline run, with great defaults out of the box."
+              : "Flexible deployment options and pricing to meet the needs of every use case."}
           </p>
 
           <div className={styles.toggle}>
