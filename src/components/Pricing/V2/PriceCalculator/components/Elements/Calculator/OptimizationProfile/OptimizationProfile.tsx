@@ -15,17 +15,25 @@ const VECTOR_QUANTIZATION_DOCS =
 
 const tileMeta: Record<
   TOptimizationProfile,
-  { title: string; icon: string; iconClass: string; spec: string }
+  {
+    title: string;
+    icon?: string;
+    iconClass: string;
+    index: string;
+    compression: string;
+  }
 > = {
   'cost-optimized': {
     title: 'Cost Optimized',
     iconClass: 'is-cost',
-    spec: 'Vector Index: HFRESH · Compression: AUTO',
+    index: 'HFresh',
+    compression: 'Auto',
   },
   'performance-optimized': {
     title: 'Performance Optimized',
     iconClass: 'is-perf',
-    spec: 'Vector Index: HNSW · Compression: RQ-8',
+    index: 'HNSW',
+    compression: 'RQ-8',
   },
 };
 
@@ -75,7 +83,21 @@ export const OptimizationProfile = (props: IOptimizationProfileProps) => {
               <span className="optimizationProfile__desc">
                 {profile.description}
               </span>
-              <span className="optimizationProfile__spec">{meta.spec}</span>
+              <span className="optimizationProfile__spec">
+                <span className="optimizationProfile__specLabel">
+                  Vector index
+                </span>{' '}
+                <span className="optimizationProfile__specValue">
+                  {meta.index}
+                </span>
+                <span className="optimizationProfile__specSep">·</span>
+                <span className="optimizationProfile__specLabel">
+                  Compression
+                </span>{' '}
+                <span className="optimizationProfile__specValue">
+                  {meta.compression}
+                </span>
+              </span>
             </button>
           );
         })}

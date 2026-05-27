@@ -9,7 +9,7 @@
   }
 
   .switch-label {
-    color: v.$deselectedButtonText;
+    color: v.$calcMuted;
   }
 }
 
@@ -23,27 +23,29 @@
   button.switch-option {
     position: relative;
     padding: 8px 20px;
-    color: v.$deselectedButtonText;
-    background: v.$deselectedButtonBg;
+    color: v.$calcMuted;
+    background: transparent;
     font-size: 0.9em;
     font-weight: 700;
     min-width: 80px;
     height: 44px;
-    border: 1px solid v.$deselectedButtonBorder;
+    border: 1px solid v.$calcBorder;
     border-radius: calc(v.$space / 2);
     cursor: pointer;
-    transition: color 0.2s ease;
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
     white-space: nowrap;
     overflow: hidden;
 
     &:hover {
-      color: v.$mainColor;
+      color: v.$calcText;
+      background: rgba(255, 255, 255, 0.08);
     }
 
     &.active {
-      color: v.$white;
-      border: 1px solid v.$mainColor;
-      background: v.$mainColor;
+      color: #111111;
+      border: 1px solid v.$calcPillBorder;
+      background: v.$calcPill;
+      box-shadow: 0 0 0 1px v.$calcPillBorder;
     }
   }
 

@@ -197,10 +197,25 @@
     &__spec {
       display: block;
       margin-top: 2px;
-      color: $calcSubtle;
       font-size: 0.7rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
+    }
+
+    &__specLabel {
+      color: $calcSubtle;
+      font-weight: 500;
+    }
+
+    &__specValue {
+      color: $calcText;
+      font-weight: 700;
+    }
+
+    &__specSep {
+      color: $calcSubtle;
+      margin: 0 6px;
+      opacity: 0.55;
     }
 
     &__docs {
