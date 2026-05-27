@@ -11,9 +11,7 @@ description: "Engram, Weaviate's managed memory and context service for agentic 
 
 ![Hero image announcing Engram is now generally available](./img/hero.png)
 
-We're thrilled to announce that now Engram is generally available. Engram is our managed memory and context service, purpose-built to help agents orchestrate workflows, learn from experience, and anchor decisions to trusted knowledge. If you've been following our work on memory for agents — from the conceptual framing in [The Limit in the Loop](https://weaviate.io/blog/limit-in-the-loop) to the [architectural deep dive](https://weaviate.io/blog/engram-deep-dive) — today is the day that we open our doors for you to start building with Engram.
-
----
+We're thrilled to announce that Engram is now generally available. Engram is our managed memory and context service, purpose-built to help agents orchestrate workflows, learn from experience, and anchor decisions to trusted knowledge. If you've been following our work on memory for agents — from the conceptual framing in [The Limit in the Loop](https://weaviate.io/blog/limit-in-the-loop) to the [architectural deep dive](https://weaviate.io/blog/engram-deep-dive) — today is the day that we open our doors for you to start building with Engram.
 
 ## Memory is infrastructure
 
@@ -24,8 +22,6 @@ Agents we build are supposed to compound in value over time. They should build u
 - **Multi-agent context fragmentation.** The moment a single request crosses agents, built-in memory patterns collapse. Instead shared memory that's persistent and scoped is required to orchestrate workflows beyond single-agent loops.
 
 These problems sit on the critical path to success for any production-grade agent and are deeply structural. The solution is not a patch at the prompt layer, but rather systematic memory and context management. Memory mustn't be a superficial bolt-on but should be treated as a deliberate infrastructure component in the same way that storage, retrieval, and observability are.
-
----
 
 ## What Engram is
 
@@ -41,8 +37,6 @@ The road from preview to GA was shaped by real-world use cases; putting Engram i
 - **Built-in scopes from day one.** Per-project, per-user, and per-property isolation is part of the primitive (not a feature flag bolted on later), so the right memories are visible to the right caller by construction.
 - **Unified retrieval on Weaviate.** Memory inherits Weaviate's hybrid search, scaling characteristics, and operational track record. There's no parallel system to deploy, secure, or operate.
 
----
-
 ## Who should use Engram
 
 Engram is for teams whose agents have outgrown a single turn: assistants that should remember a user across sessions, agents that should get better from feedback instead of repeating mistakes, and multi-agent systems that need to share scoped state. If you're building one of these, you've almost certainly built some version of memory yourself.
@@ -50,8 +44,6 @@ Engram is for teams whose agents have outgrown a single turn: assistants that sh
 It usually starts as one of a few things: sending whole conversations back to the model on every turn, hand-pruning a `MEMORY.md`, storing raw events as memory directly inside a data store, or running a standalone memory provider alongside your retrieval stack. Each works for a window of complexity before breaking due to the reasons above: degrading context with growth, unreconciled raw data, and fragmenting memory across multiple agents.
 
 Engram is what's on the other side of that break: active reconciliation instead of accumulation, durable pipelines instead of synchronous side effects, and one platform for memory and retrieval instead of two.
-
----
 
 ## Get started with Engram
 
