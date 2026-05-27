@@ -1,0 +1,18 @@
+@use "../../variables" as *;
+@use "range" as range;
+@use "rangeMark" as rangeMark;
+@use "toggle" as toggle;
+@use "switch" as swtch;
+@use "label" as label;
+@use "buttonGroup" as buttonGroup;
+@use "buttons/index" as buttons;
+
+@mixin form() {
+  @include range.range();
+  @include rangeMark.rangeMark();
+  @include toggle.toggle();
+  @include swtch.switch();
+  @include label.label();
+  @include buttonGroup.buttonGroup();
+  @include buttons.buttons();
+}

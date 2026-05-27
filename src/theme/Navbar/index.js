@@ -3,34 +3,30 @@ import Link from '@docusaurus/Link';
 
 const navGroups = {
   Product: [
-    {
-      title: 'Overview',
-      items: [
-        { label: 'Vector Database', to: '/platform' },
-        { label: 'Embeddings', to: '/product/embeddings' },
-        { label: 'Integrations', to: '/product/integrations' },
-        { label: 'All Products', to: '/product/' },
-        { label: 'Previews', to: '/product-previews/' },
-        { label: 'Engram', to: '/product/engram/' },
-      ],
-    },
-    {
-      title: 'Agents',
-      items: [
-        { label: 'Query Agent', to: '/product/query-agent/' },
-        { label: 'Transformation Agent', to: '/product/transformation-agent/' },
-        { label: 'Personalization Agent', to: '/product/personalization-agent/' },
-      ],
-    },
-    {
-      title: 'Deployment',
-      items: [
-        { label: 'Shared Cloud', to: '/deployment/shared/' },
-        { label: 'Dedicated Cloud', to: '/deployment/dedicated/' },
-        { label: 'Enablement', to: '/deployment/enablement/' },
-      ],
-    },
-  ],
+  {
+    title: 'Platform Services',
+    items: [
+      {
+        label: 'Vector Database',
+        to: '/platform',
+        children: [
+          { label: 'Embeddings', to: '/product/embeddings' },
+          { label: 'Query Agent', to: '/product/query-agent/' },
+          { label: 'Integrations', to: '/product/integrations' },
+        ],
+      },
+      { label: 'Engram', to: '/product/engram/' },
+      { label: 'Product Previews', to: '/product-previews/' },
+    ],
+  },
+  {
+    title: 'Deployment Options',
+    items: [
+      { label: 'Shared Cloud', to: '/deployment/shared/' },
+      { label: 'Dedicated Cloud', to: '/deployment/dedicated/' },
+    ],
+  },
+],
   Solutions: [
     {
       title: 'Use Cases',
@@ -173,44 +169,61 @@ function MegaMenu({ sections, menuLabel }) {
               </p>
 
               <ul className="tw-m-0 tw-list-none tw-space-y-1.5 tw-p-0">
-                {section.items.map((item) => {
-                  const isExternal = item.to.startsWith('http');
-                  const itemClasses =
-                    'tw-group tw-flex tw-items-center tw-justify-between tw-rounded-xl tw-px-3 tw-py-2.5 tw-text-[15px] tw-leading-6 tw-text-[#D5DEEE] tw-no-underline tw-transition-all tw-duration-150 hover:tw-bg-white/4 hover:tw-text-white';
+               {section.items.map((item) => {
+  const isExternal = item.to.startsWith('http');
 
-                  const content = (
-                    <>
-                      <span>{item.label}</span>
-                      <span className="tw-translate-x-[-4px] tw-opacity-0 tw-transition-all tw-duration-150 group-hover:tw-translate-x-0 group-hover:tw-opacity-100 tw-text-[#7BE7C7]">
-                        →
-                      </span>
-                    </>
-                  );
+  const itemClasses =
+    'tw-group tw-flex tw-items-center tw-justify-between tw-rounded-xl tw-px-3 tw-py-2.5 tw-text-[15px] tw-leading-6 tw-text-[#D5DEEE] tw-no-underline tw-transition-all tw-duration-150 hover:tw-bg-white/4 hover:tw-text-white';
 
-                  return (
-                    <li key={item.label} className="tw-m-0 tw-list-none tw-p-0">
-                      {isExternal ? (
-                        <a
-                          href={item.to}
-                          target="_blank"
-                          rel="noreferrer"
-                          className={itemClasses}
-                          style={{ fontFamily: 'Inter, sans-serif' }}
-                        >
-                          {content}
-                        </a>
-                      ) : (
-                        <Link
-                          to={item.to}
-                          className={itemClasses}
-                          style={{ fontFamily: 'Inter, sans-serif' }}
-                        >
-                          {content}
-                        </Link>
-                      )}
-                    </li>
-                  );
-                })}
+  const content = (
+    <>
+      <span>{item.label}</span>
+      <span className="tw-translate-x-[-4px] tw-opacity-0 tw-transition-all tw-duration-150 group-hover:tw-translate-x-0 group-hover:tw-opacity-100 tw-text-[#7BE7C7]">
+        →
+      </span>
+    </>
+  );
+
+  return (
+    <li key={item.label} className="tw-m-0 tw-list-none tw-p-0">
+      {isExternal ? (
+        <a
+          href={item.to}
+          target="_blank"
+          rel="noreferrer"
+          className={itemClasses}
+          style={{ fontFamily: 'Inter, sans-serif' }}
+        >
+          {content}
+        </a>
+      ) : (
+        <Link
+          to={item.to}
+          className={itemClasses}
+          style={{ fontFamily: 'Inter, sans-serif' }}
+        >
+          {content}
+        </Link>
+      )}
+
+      {item.children?.length ? (
+        <ul className="tw-m-0 tw-ml-4 tw-mt-1 tw-list-none tw-border-l tw-border-white/10 tw-p-0 tw-pl-3">
+          {item.children.map((child) => (
+            <li key={child.label} className="tw-m-0 tw-list-none tw-p-0">
+              <Link
+                to={child.to}
+                className="tw-block tw-rounded-lg tw-px-3 tw-py-2 tw-text-[14px] tw-leading-6 tw-text-[#AEBBD1] tw-no-underline tw-transition hover:tw-bg-white/4 hover:tw-text-white"
+                style={{ fontFamily: 'Inter, sans-serif' }}
+              >
+                {child.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </li>
+  );
+})}
               </ul>
             </div>
           ))}

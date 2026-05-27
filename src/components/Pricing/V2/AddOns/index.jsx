@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "@docusaurus/Link";
 import styles from "./styles.module.scss";
 
 function AddonCard({
@@ -20,8 +19,8 @@ function AddonCard({
 
         {priceItems?.length ? (
           <ul className={styles.priceList}>
-            {priceItems.map((it, i) => (
-              <li key={i}>
+            {priceItems.map((it) => (
+              <li key={it.label}>
                 <div className={styles.priceLabel}>{it.label}</div>
                 <div className={styles.priceValue}>
                   <strong>{it.price}</strong>{" "}
@@ -34,18 +33,16 @@ function AddonCard({
 
         {bulletItems?.length ? (
           <ul className={styles.bullets}>
-            {bulletItems.map((t, i) => (
-              <li key={i}>{t}</li>
+            {bulletItems.map((item, index) => (
+              <li key={index}>{item}</li>
             ))}
           </ul>
         ) : null}
 
         {cta?.href && (
-          <div className={styles.ctaRow}>
-            <a className={styles.cta} href={cta.href}>
-              {cta.label ?? "Learn more"}
-            </a>
-          </div>
+          <a className={styles.cta} href={cta.href}>
+            {cta.label ?? "Learn more"}
+          </a>
         )}
       </div>
     </article>
@@ -57,16 +54,18 @@ export default function AddOnsSection() {
     <section className={styles.section} aria-labelledby="addons-heading">
       <div className="container">
         <div className={styles.sectionHeader}>
-          <h2 id="addons-heading" className={styles.title}>
-            Explore Add{"\u2011"}ons
-          </h2>
+          <h2 id="addons-heading">Database AI Services</h2>
+          <p>
+            Native services that run inside Weaviate Cloud — included on every
+            plan, billed by usage.
+          </p>
         </div>
 
         <div className={styles.grid}>
           <AddonCard
             variant="green"
             title="Weaviate Embeddings"
-            blurb="Access various embedding models hosted in Weaviate Cloud."
+            blurb="Access embedding models hosted in Weaviate Cloud. Simple, pay-as-you-go, GPU-powered."
             priceItems={[
               {
                 label: "SNOWFLAKE ARCTIC-EMBED-M-V1.5",
@@ -84,43 +83,26 @@ export default function AddOnsSection() {
                 unit: "/ 1M tokens",
               },
             ]}
-            cta={{ href: "/product", label: "Learn more" }}
+            cta={{ href: "/product/embeddings", label: "Learn more" }}
           />
 
           <AddonCard
-            variant="lilac"
+            variant="purple"
             title="Weaviate Query Agent"
             blurb="Turn natural-language questions into precise Weaviate database operations."
             bulletItems={[
               <>
-                <strong>Free to try</strong>
+                <strong>Free to try</strong> — 1,000 requests / month
               </>,
               <>
-                <strong>Monthly plan</strong>
+                <strong>$30</strong> / organization · monthly plan
               </>,
               <>
-                <strong>$30</strong> / organization
+                <strong>4,000 requests</strong> included
               </>,
-              <>
-                <strong>4000 requests included</strong>
-                <br></br> + unlimited additional requests with usage-based
-                pricing
-              </>,
+              <>Unlimited additional requests, usage-based</>,
             ]}
-            cta={{ href: "/product#weaviate-agents", label: "Learn more" }}
-          />
-
-          <AddonCard
-            variant="teal"
-            title="Training & Enablement"
-            blurb="Get courses, resources, and support for builders of all levels."
-            bulletItems={[
-              "Onboarding packages",
-              "Enterprise support",
-              "Free on-demand learning",
-              "Live training",
-            ]}
-            cta={{ href: "/learn", label: "Learn more" }}
+            cta={{ href: "/product/query-agent", label: "Learn more" }}
           />
         </div>
       </div>

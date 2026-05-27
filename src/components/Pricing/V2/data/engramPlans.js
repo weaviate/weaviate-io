@@ -1,0 +1,88 @@
+const engramPlans = [
+  {
+    variant: 'free',
+    title: 'Free',
+    price: '$0',
+    priceSuffix: '/mo',
+    meta: 'Hobby & evaluation',
+    blurb:
+      'Get a feel for managed memory with the default personalisation pipeline.',
+    ctaLabel: 'Start free',
+    ctaHref: '/go/console',
+    ctaVariant: 'ghost',
+    features: [
+      '1,000 pipeline runs / month',
+      '1 project',
+      'Personalisation pipeline only',
+      'Service throttles at cap — no billing',
+      'Community support',
+    ],
+  },
+  {
+    variant: 'starter',
+    featured: true,
+    badge: 'Limited offer',
+    title: 'Starter',
+    price: '$45',
+    priceSuffix: '/mo',
+    meta: '+ $0.0045 per overage run',
+    blurb: 'For developers shipping AI products that need memory.',
+    ctaLabel: 'Upgrade to Starter',
+    ctaHref: '/go/console',
+    ctaVariant: 'primary',
+    offer: {
+      title: '$75 credit on us',
+      text: 'First 3 months · offer ends July 15, 2026',
+   
+    },
+    features: [
+      '10,000 pipeline runs / month',
+      '3 projects',
+      'All preset pipelines',
+      'Auto-topup overage — no rate limiting',
+      'Email support · 24 hr response',
+      'Everything in Free',
+    ],
+  },
+  {
+    variant: 'team',
+    badge: 'Best value',
+    badgeType: 'green',
+    title: 'Team',
+    price: '$360',
+    priceSuffix: '/mo',
+    meta: '+ $0.0035 per overage run',
+    blurb: 'Production workloads at scale across multiple projects.',
+    ctaLabel: 'Upgrade to Team',
+    ctaHref: '/go/console',
+    ctaVariant: 'primary',
+    features: [
+      '90,000 pipeline runs / month',
+      '100 projects',
+      'All preset pipelines',
+      'Auto-topup overage — no rate limiting',
+      'Email support · 8 hr response',
+      'Everything in Starter',
+    ],
+  },
+  {
+    variant: 'enterprise',
+    title: 'Enterprise',
+    price: 'Custom',
+    meta: 'Custom pipelines & compliance',
+    blurb:
+      'Volume-based annual contracts with a custom pipeline builder for any domain.',
+    ctaLabel: 'Contact sales',
+    ctaHref: '#contact-sales',
+    ctaVariant: 'ghost',
+    features: [
+      'Custom run volume & unlimited projects',
+      'Custom pipeline builder for any domain',
+      'Dedicated TAM + SLA',
+      'SSO & SAML',
+      'Everything in Team',
+    ],
+  },
+];
+
+export default engramPlans;

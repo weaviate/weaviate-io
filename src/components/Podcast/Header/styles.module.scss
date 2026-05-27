@@ -1,64 +1,79 @@
 .headerSecurity {
-  background: #f5f5f5;
-  background-image: url('/img/site/3d-pricing-banner.png');
+  position: relative;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(17, 17, 17, 0.92) 0%,
+      rgba(17, 17, 17, 0.72) 48%,
+      rgba(17, 17, 17, 0.18) 100%
+    ),
+    url("/img/site/2026/weaviate-bg-2026.jpg"), #111111;
+
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+
+  padding: clamp(72px, 9vw, 120px) 0;
 }
 
 .box {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: flex-start;
   text-align: left;
+
+  max-width: 780px;
 }
 
 .headText {
-  color: #130c49;
-  font-family: 'Plus Jakarta Sans';
-  font-size: 1.1rem;
-  font-weight: 600;
+  color: #43e2c5 !important;
+  font-family: Inter, sans-serif !important;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: 10px;
+  margin: 0 0 1rem;
 }
 
 .headerBox {
-  width: 50%;
-  margin: 20px 0;
-
-  @media screen and (max-width: 900px) {
-    width: 100%;
-  }
+  width: 100%;
+  margin: 0;
 
   h1 {
-    color: #130c49;
-    font-family: 'Plus Jakarta Sans';
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 130%;
-    margin-bottom: 20px;
-
-    @media screen and (max-width: 900px) {
-      font-size: 2rem;
-    }
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-weight: 600 !important;
+    line-height: 108% !important;
+    letter-spacing: -0.055em;
+    margin: 0 0 1.5rem;
   }
 
   p {
-    color: #130c49;
-    font-family: Inter;
-    font-size: 1.1rem;
-    line-height: 157%;
-    max-width: 90%;
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+    line-height: 165%;
+    max-width: 680px;
+    margin: 0;
   }
 }
 
 .highlight {
-  color: #130c49;
+  color: #6be38c !important;
 }
 
 .buttons {
-  margin-top: 30px;
+  margin-top: 2.25rem;
   display: flex;
-  gap: 20px;
+  gap: 16px;
   flex-wrap: wrap;
+
+  a {
+    border-radius: 0.85rem !important;
+    font-family: Inter, sans-serif !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+  }
 }

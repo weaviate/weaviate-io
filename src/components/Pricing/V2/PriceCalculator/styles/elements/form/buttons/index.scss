@@ -1,0 +1,5 @@
+@use "calculatorButton" as calc;
+
+@mixin buttons() {
+  @include calc.calculatorButton();
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "question": "What counts as a pipeline run?",
+    "answer": "Each POST /memories call counts as one pipeline run. The length of the conversation or payload does not change the run count."
+  },
+  {
+    "question": "What happens when I hit my monthly run limit?",
+    "answer": "On Free, the service throttles at the cap with no billing. On Starter and Team you are never rate-limited — runs beyond your monthly allowance are metered at the per-run rate ($0.0045 on Starter, $0.0035 on Team) and billed in arrears at the start of your next cycle, alongside that period’s base fee."
+  },
+  {
+    "question": "Why per run instead of per payload size?",
+    "answer": "Per-run pricing keeps memory costs predictable. You are charged for each pipeline execution, not by the number of messages, tokens, or payload size."
+  },
+  {
+    "question": "Can I customize the memory pipeline?",
+    "answer": "Enterprise plans support custom pipeline builders for advanced memory workflows, domain-specific logic, and compliance needs."
+  },
+  {
+    "question": "Is there a free trial or credit?",
+    "answer": "The Free plan is available for hobby and evaluation use. Starter may include promotional credits when available."
+  }
+]

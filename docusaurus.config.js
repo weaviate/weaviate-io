@@ -133,6 +133,7 @@ module.exports = async function createConfigAsync() {
                 authorsMapPath: '../authors.yml',
                 showReadingTime: true,
                 onUntruncatedBlogPosts: 'ignore',
+               
             },
         ],
          // iOS Apps and Vector Databases configuration
@@ -152,6 +153,7 @@ module.exports = async function createConfigAsync() {
                 authorsMapPath: '../authors.yml',
                 showReadingTime: true,
                 onUntruncatedBlogPosts: 'ignore',
+              
             },
         ],
 
@@ -792,7 +794,7 @@ module.exports = async function createConfigAsync() {
             },
             colorMode: {
                 defaultMode: 'dark',
-                disableSwitch: false,
+                disableSwitch: true,
                 respectPrefersColorScheme: false,
             },
             prism: {
@@ -804,7 +806,7 @@ module.exports = async function createConfigAsync() {
             customConfig: {
                 colorMode: {
                     defaultMode: 'dark',
-                    disableSwitch: false,
+                    disableSwitch: true,
                     respectPrefersColorScheme: false,
                 },
             },

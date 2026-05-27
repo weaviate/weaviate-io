@@ -1,149 +1,114 @@
-.buttons {
-  margin-top: 30px;
-  gap: 20px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+.headerSecurity {
+  position: relative;
+  overflow: hidden;
 
-  a {
-    height: 45px;
-    width: 220px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    text-decoration: none;
-  }
+  background:
+    linear-gradient(
+      90deg,
+      rgba(17, 17, 17, 0.92) 0%,
+      rgba(17, 17, 17, 0.72) 48%,
+      rgba(17, 17, 17, 0.18) 100%
+    ),
+    url("/img/site/2026/weaviate-bg-2026.jpg"), #111111;
 
-  .buttonGradient {
-    border-radius: 0.3125rem;
-    outline: 1px solid #130c49;
-    background: #61bd73;
-    transition: all 1s ease-out;
-    color: #130c49;
-  }
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-  .buttonGradient:hover {
-    border-radius: 0.3125rem;
-    outline: 1px solid #ffffff;
-    background: rgb(15, 0, 50);
-    color: #fff;
-  }
-
-  .buttonOutline {
-    outline: 1px solid #ffffff;
-    color: #130c49;
-    transition: all 1s ease-out;
-  }
-
-  .buttonOutline:hover {
-    outline: 1px solid #ffffff;
-    color: #fff;
-    transition: all 1s ease-out;
-    background-color: #130c49;
-  }
-}
-
-p {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
+  padding: clamp(72px, 9vw, 120px) 0;
 }
 
 .box {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: flex-start;
   text-align: left;
-  margin-bottom: 40px;
+
+  max-width: 760px;
 
   h1 {
-    color: #130c49;
-    text-align: center;
-    font-family: Plus Jakarta Sans;
-    font-size: 2.25rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 140%;
-    margin-bottom: 1rem;
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-weight: 600 !important;
+    line-height: 108% !important;
+    letter-spacing: -0.055em;
+    margin: 0 0 1.5rem;
   }
 
   .headerBox {
-    width: 47%;
-    @media screen and (max-width: 900px) {
-      width: 100%;
-    }
+    width: 100%;
+    max-width: 640px;
 
     p {
-      color: #130c49;
-    }
-  }
-
-  hr {
-    background: #130c49;
-    width: 65rem;
-    height: 0.0625rem;
-
-    @media screen and (max-width: 900px) {
-      width: 100%;
+      color: #b9c8de !important;
+      font-family: Inter, sans-serif !important;
+      font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+      line-height: 165%;
+      margin: 0;
     }
   }
 }
 
-.buttonOutline {
-  border-radius: 0.3125rem;
-  border: 1px solid #130c49;
-  background: #f4f4f4;
-  padding: 9px;
-  color: #130c49;
-  text-align: center;
-  font-family: Inter;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 157.33%;
-  transition: all 1s ease-out;
-}
-.buttonOutline:hover {
-  border-radius: 0.3125rem;
-  outline: 1px solid #130c49;
-  background: rgb(15, 0, 50);
-  color: #fff;
-  font-weight: 400;
-}
-
-.buttonsContainer {
+.buttons {
+  margin-top: 2.25rem;
   display: flex;
-  flex-direction: row;
+  gap: 16px;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  padding: 20px 0px 10px;
-}
 
-.headerSecurity {
-  background: #f5f5f5;
-  background-image: url('/img/site/3d-pricing-banner.png');
-  background-size: cover;
+  a {
+    min-height: 52px;
+    padding: 0 24px;
 
-  @media screen and (max-width: 500px) {
-    background-image: url('/img/site/3d-pricing-banner.png');
-    background-size: cover;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 0.85rem;
+    text-decoration: none !important;
+
+    font-family: Inter, sans-serif !important;
+    font-weight: 700 !important;
+
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      border-color 0.25s ease,
+      background 0.25s ease;
+  }
+
+  .buttonGradient {
+    background: #6be38c;
+    color: #111111 !important;
+    border: 1px solid rgba(107, 227, 140, 0.8);
+    box-shadow: 0 14px 40px rgba(107, 227, 140, 0.18);
+
+    &:hover {
+      transform: translateY(-2px);
+      background: #7ceb9a;
+      color: #111111 !important;
+    }
+  }
+
+  .buttonOutline {
+    background: rgba(255, 255, 255, 0.04);
+    color: #ddebf2 !important;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+
+    &:hover {
+      transform: translateY(-2px);
+      color: #43e2c5 !important;
+      border-color: rgba(67, 226, 197, 0.32);
+      background: rgba(67, 226, 197, 0.08);
+    }
   }
 }
 
 .topText {
-  color: #130c49;
-  text-align: center;
-  font-family: Plus Jakarta Sans;
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 120%; /* 1.5rem */
+  color: #43e2c5;
+  font-family: Inter, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin: 10px 0px;
+  margin: 0 0 1rem;
 }
