@@ -79,7 +79,7 @@ services:
       - --scheme
       - http
     image:
-      cr.weaviate.io/semitechnologies/weaviate:1.17.3
+      cr.weaviate.io/semitechnologies/weaviate:1.37.4
     ports:
       - 8080:8080
     restart: on-failure:0
