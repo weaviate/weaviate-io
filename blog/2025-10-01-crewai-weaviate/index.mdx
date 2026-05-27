@@ -76,7 +76,7 @@ print(client.is_ready())
 
 
 # connect to your existing collection
-weaviate_collection = client.collections.get("WeaviateBlogChunk")
+weaviate_collection = client.collections.use("WeaviateBlogChunk")
 ```
 
 ### Initialize the Tools

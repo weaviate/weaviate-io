@@ -88,7 +88,7 @@ For example, the following query will ONLY match documents that contain all the 
 ```python
 from weaviate.classes.query import BM25Operator
 
-jeopardy = client.collections.get("JeopardyQuestion")
+jeopardy = client.collections.use("JeopardyQuestion")
 response = jeopardy.query.bm25(
     query="Australian mammal cute",
     operator=BM25Operator.and_(),
@@ -104,7 +104,7 @@ While this one will match documents that contain at least two of the terms `("au
 ```python
 from weaviate.classes.query import BM25Operator
 
-jeopardy = client.collections.get("JeopardyQuestion")
+jeopardy = client.collections.use("JeopardyQuestion")
 response = jeopardy.query.bm25(
     query="Australian mammal cute",
     operator=BM25Operator.or_(minimum_match=2),

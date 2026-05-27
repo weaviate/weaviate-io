@@ -258,7 +258,7 @@ The next step is to import the objects into Weaviate.
 ```python
 documents = client.collections.use("Document")
 
-with documents.batch.dynamic() as batch:
+with documents.batch.stream() as batch:
     for data_object in data_objects:
         batch.add_object(properties=data_object)
 ```

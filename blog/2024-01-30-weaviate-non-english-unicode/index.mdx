@@ -100,7 +100,7 @@ data = [
 
 collection = client.collections.use("MyCollection")
 
-with collection.batch.dynamic() as batch:
+with collection.batch.stream() as batch:
     for item in data:
         batch.add_object(properties={"content": item})
 ```

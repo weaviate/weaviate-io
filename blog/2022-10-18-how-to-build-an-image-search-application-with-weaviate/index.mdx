@@ -111,12 +111,12 @@ Note, the base64 images are stored in the `base64_images` folder.
 ### Upload the Data Objects
 Now that we have defined the schema and converted the images to base64 values, we can upload the data objects to Weaviate.
 
-When uploading your data objects to Weaviate, you want to import your data in batches. The import speed is faster than uploading the objects one by one. In the v4 client we use a dynamic batch context manager on the collection, which automatically tunes the batch size for us.
+When uploading your data objects to Weaviate, you want to import your data in batches. The import speed is faster than uploading the objects one by one. We use a [server-side batching](https://docs.weaviate.io/weaviate/manage-objects/import#server-side-batching) context manager on the collection — the server tells the client how fast to send data, applying backpressure so you don't have to tune batch size or concurrency by hand.
 
 ```python
 dog_collection = client.collections.use("Dog")
 
-with dog_collection.batch.dynamic() as batch:
+with dog_collection.batch.stream() as batch:
     # add objects here
     ...
 ```
@@ -131,7 +131,7 @@ We will need to define the data properties that we want to upload. The function 
 def import_data():
     dog_collection = client.collections.use("Dog")
 
-    with dog_collection.batch.dynamic() as batch:
+    with dog_collection.batch.stream() as batch:
         # Iterate over all .b64 files in the base64_images folder
         for encoded_file_path in os.listdir("./base64_images"):
             with open("./base64_images/" + encoded_file_path) as file:

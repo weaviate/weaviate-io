@@ -170,7 +170,7 @@ The `Filter` helper class makes it easier to use filters with conditions. The v3
 const results = await weaviateStore.similaritySearch(
 			"hello world", 
 			1, 
-			weaviateClient.collections.get(collectionName).filter
+			weaviateClient.collections.use(collectionName).filter
 						.byProperty("foo").equal("baz")
 ));
 ```

@@ -154,7 +154,7 @@ client.collections.delete("ZoomWorkplaceData")
 
 ZoomWorkplaceData = client.collections.create(
     name="ZoomWorkplaceData",
-    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai(model="text-embedding-3-small"),
+    vector_config=wvc.config.Configure.Vectors.text2vec_openai(model="text-embedding-3-small"),
     generative_config=wvc.config.Configure.Generative.openai(model="gpt-4")
 )
 
@@ -190,7 +190,7 @@ def query_data():
         )
 
         try:
-            ZoomWorkplaceData = client.collections.get("ZoomWorkplaceData")
+            ZoomWorkplaceData = client.collections.use("ZoomWorkplaceData")
             response = ZoomWorkplaceData.generate.hybrid(query=user_query,
                 limit=4,
                 grouped_task=f"You are a helpful AI Assistant. Be brief in your responses. Write a reply to a chat message in reply to the following data. Here's the user's message {request.json.get('message')}",)

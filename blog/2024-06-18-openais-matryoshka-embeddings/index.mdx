@@ -200,7 +200,7 @@ from weaviate.classes.config import Property, DataType
 # Define schema and create collection
 my_collection = client.collections.create(
     name="MyCollection",
-    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai(model='text-embedding-3-small',
+    vector_config=wvc.config.Configure.Vectors.text2vec_openai(model='text-embedding-3-small',
                                                                       dimensions = 512,
                                                                       vectorize_collection_name=False,
 ),
