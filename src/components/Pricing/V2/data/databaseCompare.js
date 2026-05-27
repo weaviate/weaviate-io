@@ -400,7 +400,7 @@ const databaseCompare = {
         {
           label: 'Data transfer',
           values: {
-            free: 'Free for promotional period',
+            free: 'Free',
             flex: 'Free for promotional period',
             plus: 'Free for promotional period',
             premiumShared: 'Free for promotional period',
