@@ -2,9 +2,8 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import styles from './styles.module.scss';
 
 const PREVIEW_TO_HUBSPOT_VALUE = {
-  engram: 'Engram - Memory for Agents',
   'model-eval': 'Model Evaluation Tool - Cloud Console',
-  hfresh: 'HFresh - Weaviate DB',
+  'query-agent-research': 'Query Agent - Research Mode',
 };
 
 const HUBSPOT_FIELD_NAME = 'early_access_productfeature';
