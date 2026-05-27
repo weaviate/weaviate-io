@@ -22,51 +22,22 @@ By assigning Editor or Viewer roles instead of sharing full access, organization
 
 Within a Weaviate Cloud organization, every user can be assigned one of four roles. Each role grants a specific set of permissions across organization settings, billing, cluster management, and access to cluster data.
 
-### Owner
-
-Full access to everything in the organization, including billing, user management, and the ability to invite other users as Owners. The person who creates the organization is automatically assigned this role.
-
-Owners are the only role that can promote other users to Owner. Typically reserved for the small group of people responsible for the organization end-to-end.
-
-### Admin
-
-Manages clusters, billing, and day-to-day organization activity. Admins can invite new users to the organization (but not as Owners) and have full control over cluster creation, configuration, and deletion.
-
-This is the right role for senior engineers, platform leads, or anyone who needs to operate Weaviate Cloud without the ability to reshape ownership.
-
-### Editor (New)
-
-Manages clusters without touching billing or user invitations. Editors can create, configure, modify, and delete clusters but cannot change billing information or invite new users to the organization.
-
-This role fits engineers building on Weaviate day-to-day who don't need to manage the organization itself.
-
-### Viewer (New)
-
-Read-only access. Viewers can see clusters, configurations, and organization details, but cannot make any changes.
-
-This is the right role for stakeholders who need visibility — security reviewers, finance partners, or observers from other teams — without the ability to alter anything.
+| Owner | Admin |
+|:--|:--|
+| Full access to everything in the organization, including billing, user management, and the ability to invite other users as Owners. The person who creates the organization is automatically assigned this role. <br/><br/> Owners are the only role that can promote other users to Owner. Typically reserved for the small group of people responsible for the organization end-to-end. | Manages clusters, billing, and day-to-day organization activity. Admins can invite new users to the organization (but not as Owners) and have full control over cluster creation, configuration, and deletion. <br/><br/> This is the right role for senior engineers, platform leads, or anyone who needs to operate Weaviate Cloud without the ability to reshape ownership. |
+| **Editor** *(New)* | **Viewer** *(New)* |
+| Manages clusters without touching billing or user invitations. Editors can create, configure, modify, and delete clusters but cannot change billing information or invite new users to the organization. <br/><br/> This role fits engineers building on Weaviate day-to-day who don't need to manage the organization itself. | Read-only access. Viewers can see clusters, configurations, and organization details, but cannot make any changes. <br/><br/> This is the right role for stakeholders who need visibility — security reviewers, finance partners, or observers from other teams — without the ability to alter anything. |
 
 ## How to manage roles in Weaviate Cloud
 
 Managing roles in Weaviate Cloud takes just a few clicks.
 
-### 1. Open your organization menu
-
-At the top of the Weaviate Cloud console, click the **Organization** dropdown.
-
-### 2. Select Organization settings
-
-From the dropdown, choose **Organization settings** to open your organization's management page.
-
-### 3. Manage users and roles
-
-Under the **Users and Access** section, you'll see every member of your organization, their assigned role, and a description of what that role can do.
-
-From here you can:
-
-- Click **+ Add User** to invite a new member and assign them a role during invitation
-- Change an existing user's role using the role selector
-- Remove a user from the organization
+1. **Open your organization menu.** At the top of the Weaviate Cloud console, click the *Organization* dropdown.
+2. **Select Organization settings.** From the dropdown, choose *Organization settings* to open your organization's management page.
+3. **Manage users and roles.** Under the *Users and Access* section, you'll see every member of your organization, their assigned role, and a description of what each role can do. From here you can:
+   - Click *+ Add User* to invite a new member and assign their role during invitation
+   - Change an existing user's role using the role selector
+   - Remove a user from the organization
 
 Changes take effect immediately. Users will see their new permissions on their next action in the console.
 
