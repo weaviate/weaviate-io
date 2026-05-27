@@ -9,11 +9,8 @@ const footerGroups = {
     { label: 'All Products', to: '/product' },
     { label: 'Product Previews', to: '/product-previews' },
     { label: 'Query Agent', to: '/product/query-agent' },
-    { label: 'Transformation Agent', to: '/product/transformation-agent' },
-    { label: 'Personalization Agent', to: '/product/personalization-agent' },
     { label: 'Shared Cloud', to: '/deployment/shared' },
     { label: 'Dedicated Cloud', to: '/deployment/dedicated' },
-    { label: 'Enablement', to: '/deployment/enablement' },
     { label: 'Pricing', to: '/pricing' },
   ],
   Solutions: [
