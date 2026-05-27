@@ -34,6 +34,13 @@ export const PriceReview = (props: IPriceReviewProps) => {
         transition={backgroundVariants.transition}
       />
       <motion.div
+        className="priceReview-background priceReview-background-teal"
+        initial={backgroundVariants.initial}
+        animate={{ opacity: plan === 'plus' ? 1 : 0 }}
+        exit={backgroundVariants.exit}
+        transition={backgroundVariants.transition}
+      />
+      <motion.div
         className="priceReview-background priceReview-background-blue"
         initial={backgroundVariants.initial}
         animate={{ opacity: plan === 'premium' ? 1 : 0 }}

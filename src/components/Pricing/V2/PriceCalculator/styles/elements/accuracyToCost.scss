@@ -108,4 +108,115 @@
       }
     }
   }
+
+  .optimizationProfile {
+    &__tiles {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+
+      @media (max-width: 550px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    &__tile {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      text-align: left;
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid $calcBorder;
+      background: rgba(255, 255, 255, 0.02);
+      transition: $transition;
+      height: 100%;
+
+      &:hover {
+        border-color: rgba(255, 255, 255, 0.28);
+      }
+
+      &.is-selected {
+        border-color: $calcGreen;
+        background: rgba(0, 254, 107, 0.06);
+      }
+    }
+
+    &__tileTop {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      min-height: 22px;
+    }
+
+    &__icon {
+      font-size: 1.1rem;
+      font-weight: 800;
+      line-height: 1;
+
+      &.is-cost {
+        color: $calcIconPurple;
+      }
+      &.is-perf {
+        color: $calcIconYellow;
+      }
+    }
+
+    &__check {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: $calcGreen;
+      color: #06231a;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    &__title {
+      display: block;
+      color: $calcText;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    &__desc {
+      display: block;
+      color: $calcMuted;
+      font-size: 0.82rem;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    &__spec {
+      display: block;
+      margin-top: 2px;
+      color: $calcSubtle;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    &__docs {
+      margin: 12px 0 0;
+      font-size: 0.82rem;
+      color: $calcMuted;
+
+      a {
+        color: $calcText;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+
+        &:hover {
+          opacity: 0.75;
+        }
+      }
+    }
+  }
 }

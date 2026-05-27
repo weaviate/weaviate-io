@@ -1,4 +1,4 @@
-import { pricebook } from './pricebook_20251213';
+import { pricebook } from './pricebook_20260415';
 
 export const vectorDimensions = [
   '256',
@@ -31,118 +31,84 @@ export const objectSize = [
   '8000000',
 ];
 
-type AccuracyToCostOption = {
-  compression: string | null;
-  index: string;
-  info: string;
-  memoryCompression: string;
+export type TOptimizationProfile = 'cost-optimized' | 'performance-optimized';
+
+type OptimizationProfileOption = {
+  index: string; // vector index family
+  compression: string | null; // quantization
+  label: string; // tech spec shown in the UI (matches the Console)
+  title: string;
+  description: string;
   price_per_1m_dimension: {
-    flex: number; // GCP BASE LOW
-    premium: number; // GCP BASE HIGH
+    flex: number; // GCP shared Base, Low tier
+    plus: number; // GCP shared Base, Mid tier
+    premium: number; // GCP shared Base, High tier
   };
 };
 
-// Agreed on this list of combinations with Alvin:
-// HNSW/None, HNSW/PQ, HNSW/RQ-8, HNSW/RQ-1
-// Flat/None, Flat/RQ-8, Flat/RQ-1
-
-export const accuracyToCost: Record<number, AccuracyToCostOption> = {
-  1: {
-    compression: null,
-    index: 'hnsw',
-    info: 'HNSW graph index with no compression',
-    memoryCompression: '',
+// Two optimization profiles mirror the Console's OptimizationProfile component:
+//   Cost Optimized        -> hfresh / auto  (HFRESH · AUTO)
+//   Performance Optimized -> hnsw  / rq-8    (HNSW · RQ-8)
+export const optimizationProfiles: Record<
+  TOptimizationProfile,
+  OptimizationProfileOption
+> = {
+  'cost-optimized': {
+    index: 'hfresh',
+    compression: 'auto',
+    label: 'HFRESH · AUTO',
+    title: 'Cost Optimized',
+    description:
+      'Lower memory footprint and storage cost. Suitable for small or non-latency-sensitive workloads.',
     price_per_1m_dimension: {
-      flex: pricebook.GCP.shared.Base.Low['Price per 1M Dims'].hnsw.None, // GCP BASE LOW
-      premium: pricebook.GCP.shared.Base.High['Price per 1M Dims'].hnsw.None, // GCP BASE HIGH
+      flex: pricebook.GCP.shared.Base.Low['Price per 1M Dims'].hfresh.Auto,
+      plus: pricebook.GCP.shared.Base.Mid['Price per 1M Dims'].hfresh.Auto,
+      premium: pricebook.GCP.shared.Base.High['Price per 1M Dims'].hfresh.Auto,
     },
   },
-  2: {
-    compression: 'pq',
+  'performance-optimized': {
     index: 'hnsw',
-    info: 'HNSW graph index with product quantization (PQ)',
-    memoryCompression: '24x memory reduction',
-    price_per_1m_dimension: {
-      flex: pricebook.GCP.shared.Base.Low['Price per 1M Dims'].hnsw.pq, // GCP BASE LOW
-      premium: pricebook.GCP.shared.Base.High['Price per 1M Dims'].hnsw.pq, // GCP BASE HIGH
-    },
-  },
-  3: {
     compression: 'rq-8',
-    index: 'hnsw',
-    info: 'HNSW graph index with rotational quantization (RQ-8)',
-    memoryCompression: '4x memory reduction',
+    label: 'HNSW · RQ-8',
+    title: 'Performance Optimized',
+    description:
+      'In-memory retrieval balancing speed and search quality. Suitable for most workloads.',
     price_per_1m_dimension: {
-      flex: pricebook.GCP.shared.Base.Low['Price per 1M Dims'].hnsw['rq-8'], // GCP BASE LOW
-      premium: pricebook.GCP.shared.Base.High['Price per 1M Dims'].hnsw['rq-8'], // GCP BASE HIGH
-    },
-  },
-  4: {
-    compression: 'rq-1',
-    index: 'hnsw',
-    info: 'Rotational quantization (RQ-1) and using HNSW graph index',
-    memoryCompression: '',
-    price_per_1m_dimension: {
-      flex: pricebook.GCP.shared.Base.Low['Price per 1M Dims'].hnsw['rq-1'], // GCP BASE LOW
-      premium: pricebook.GCP.shared.Base.High['Price per 1M Dims'].hnsw['rq-1'], // GCP BASE HIGH
-    },
-  },
-  5: {
-    compression: null,
-    index: 'flat',
-    info: 'FLAT index with no compression',
-    memoryCompression: '',
-    price_per_1m_dimension: {
-      flex: pricebook.GCP.shared.Base.Low['Price per 1M Dims'].flat.None, // GCP BASE LOW
-      premium: pricebook.GCP.shared.Base.High['Price per 1M Dims'].flat.None, // GCP BASE HIGH
-    },
-  },
-
-  6: {
-    compression: 'rq-8',
-    index: 'flat',
-    info: 'FLAT index with rotational quantization (RQ-8)',
-    memoryCompression: '4x memory reduction',
-    price_per_1m_dimension: {
-      flex: pricebook.GCP.shared.Base.Low['Price per 1M Dims'].flat['rq-8'], // GCP BASE LOW
-      premium: pricebook.GCP.shared.Base.High['Price per 1M Dims'].flat['rq-8'], // GCP BASE HIGH
-    },
-  },
-  7: {
-    compression: 'rq-1',
-    index: 'flat',
-    info: 'FLAT index with rotational quantization (RQ-1)',
-    memoryCompression: '',
-    price_per_1m_dimension: {
-      flex: pricebook.GCP.shared.Base.Low['Price per 1M Dims'].flat['rq-1'], // GCP BASE LOW
-      premium: pricebook.GCP.shared.Base.High['Price per 1M Dims'].flat['rq-1'], // GCP BASE HIGH
+      flex: pricebook.GCP.shared.Base.Low['Price per 1M Dims'].hnsw['rq-8'],
+      plus: pricebook.GCP.shared.Base.Mid['Price per 1M Dims'].hnsw['rq-8'],
+      premium: pricebook.GCP.shared.Base.High['Price per 1M Dims'].hnsw['rq-8'],
     },
   },
 };
 
 export const minimumPrices = {
   flex: pricebook.Minimums.shared.Low['HA'],
+  plus: pricebook.Minimums.shared.Mid['HA'],
   premium: pricebook.Minimums.shared.High['HA'],
 };
 
 export const TierFactors = {
   flex: pricebook['Tier Factors'].shared.Low,
+  plus: pricebook['Tier Factors'].shared.Mid,
   premium: pricebook['Tier Factors'].shared.High,
 };
 
 export const retentionFactors = {
   flex: 7,
+  plus: 30,
   premium: 30,
   enterprise: 45,
 };
 
 export const storageUnitPricePerGib = {
   flex: pricebook.GCP.shared.Base.Low['Price per 1GiB Storage'].block_store,
+  plus: pricebook.GCP.shared.Base.Mid['Price per 1GiB Storage'].block_store,
   premium: pricebook.GCP.shared.Base.High['Price per 1GiB Storage'].block_store,
 };
 
 export const backupUnitPricePerGib = {
   flex: pricebook.GCP.shared.Base.Low['Price per 1GiB Backup'].object_store,
+  plus: pricebook.GCP.shared.Base.Mid['Price per 1GiB Backup'].object_store,
   premium: pricebook.GCP.shared.Base.High['Price per 1GiB Backup'].object_store,
 };
 

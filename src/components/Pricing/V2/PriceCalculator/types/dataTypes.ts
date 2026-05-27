@@ -1,4 +1,6 @@
-export type TPlan = 'flex' | 'premium';
+import type { TOptimizationProfile } from './priceValues';
+
+export type TPlan = 'flex' | 'plus' | 'premium';
 export type TDeploymentType = 'shared' | 'dedicated';
 
 export interface IData {
@@ -6,7 +8,7 @@ export interface IData {
   numOfObjects: string;
   objectSize: string;
   vectorDimensions: string;
-  accuracyToCost: string;
+  optimizationProfile: TOptimizationProfile;
   deploymentType: TDeploymentType;
 }
 
@@ -15,6 +17,6 @@ export const starterState: IData = {
   numOfObjects: '100000',
   objectSize: '1024',
   vectorDimensions: '512',
-  accuracyToCost: '3',
+  optimizationProfile: 'performance-optimized',
   deploymentType: 'shared',
 };

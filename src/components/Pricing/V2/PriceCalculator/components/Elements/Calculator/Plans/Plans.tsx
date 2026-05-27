@@ -10,11 +10,12 @@ interface IPlansProps {
 
 const planDescriptions: Record<TPlan, string> = {
   flex: 'Pay-as-you-go with flexible scaling',
+  plus: 'Annual commitment with predictable pricing',
   premium: 'Fixed capacity with predictable pricing',
 };
 
 export const Plans = (props: IPlansProps) => {
-  const items: TPlan[] = ['flex', 'premium'];
+  const items: TPlan[] = ['flex', 'plus', 'premium'];
   const selectItem = (item: string) => props.updateValue('plan', item);
 
   return (

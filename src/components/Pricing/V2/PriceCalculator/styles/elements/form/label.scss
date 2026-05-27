@@ -9,7 +9,7 @@
     height: 40px;
     font-size: 0.9em;
     font-weight: 550;
-    color: v.$deselectedButtonText;
+    color: v.$calcMuted;
   }
 
   label + button {
@@ -17,7 +17,7 @@
   }
 
   .label {
-    color: v.$secondaryColor;
+    color: v.$calcText;
     font-size: 16px;
     font-weight: 550;
     flex-shrink: 0;

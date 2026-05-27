@@ -2,7 +2,6 @@ import useMeasure from 'react-use-measure';
 import { AnimatePresence, motion } from 'framer-motion';
 import type { MotionProps } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { calculatePrice } from '../../../helpers/priceHelper';
 import { calculateCosts } from '../../../types/priceCalculation';
 import type { IData } from '../../../types';
 

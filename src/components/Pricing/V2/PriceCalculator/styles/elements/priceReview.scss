@@ -15,11 +15,17 @@
     width: 100%;
     text-align: center;
     overflow: hidden;
+    color: v.$calcText;
+    background: v.$calcSurface;
+    border: 1px solid v.$calcHair;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
 
     @media (max-width: 920px) {
       max-width: initial;
     }
 
+    // Per-plan accent: a faint tinted wash over the dark panel (was a bright
+    // gradient on the light theme — toned down so it reads on the dark page).
     &-background {
       position: absolute;
       top: 0;
@@ -29,15 +35,35 @@
       z-index: 0;
 
       &-green {
-        background: v.$greenGradient;
+        background: radial-gradient(
+          120% 90% at 100% 0%,
+          rgba(0, 254, 107, 0.12),
+          transparent 60%
+        );
+      }
+
+      &-teal {
+        background: radial-gradient(
+          120% 90% at 100% 0%,
+          rgba(67, 226, 197, 0.12),
+          transparent 60%
+        );
       }
 
       &-blue {
-        background: v.$blueGradient;
+        background: radial-gradient(
+          120% 90% at 100% 0%,
+          rgba(0, 183, 226, 0.12),
+          transparent 60%
+        );
       }
 
       &-pink {
-        background: v.$pinkGradient;
+        background: radial-gradient(
+          120% 90% at 100% 0%,
+          rgba(215, 122, 255, 0.12),
+          transparent 60%
+        );
       }
     }
 
@@ -57,27 +83,36 @@
       font-weight: 700;
       margin-bottom: 20px;
       text-align: center;
+      color: v.$calcText;
     }
 
     a {
       font-weight: 700;
       text-decoration: underline;
       text-decoration-thickness: 1px;
+      color: v.$calcMuted;
     }
 
     .linkCTA {
       text-decoration: none;
+      color: #111111;
     }
 
     button {
       font-size: 1.1em;
       font-weight: 700;
-      background: v.$white;
+      background: v.$calcPill;
+      color: #111111;
       width: 100%;
       border-radius: calc(v.$space / 2);
       min-height: 56px;
-      border: 1px solid v.$mainColor;
+      border: 0;
       margin-top: 50px;
+      transition: v.$transition;
+
+      &:hover {
+        background: #ffffff;
+      }
     }
 
     &.premium {

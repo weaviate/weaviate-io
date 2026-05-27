@@ -6,7 +6,7 @@ import {
   retentionFactors,
   storageUnitPricePerGib,
   backupUnitPricePerGib,
-  accuracyToCost,
+  optimizationProfiles,
   minimumPrices,
   TierFactors,
 } from './priceValues';
@@ -37,7 +37,7 @@ const calculateDimensionBytes = (quant: string | null, dims: number) => {
     result = dims;
   } else if (quant === 'rq-8') {
     result = dims;
-  } else if (quant === 'bq' || quant === 'rq-1') {
+  } else if (quant === 'bq' || quant === 'rq-1' || quant === 'auto') {
     result = Math.ceil(dims * 0.125);
   } else {
     result = dims * 4;
@@ -57,7 +57,13 @@ const calculateVectorSize = (
   const dimSizeBytesCompressed = calculateDimensionBytes(quant, dims);
 
   let result = 0;
-  if (indexType === 'hnsw' && quant !== null) {
+  if (indexType === 'hfresh') {
+    // TODO: confirm hfresh on-disk sizing with engineering. Modeled here as a
+    // graph index with auto (rq-1-equivalent) quantization: full vector plus a
+    // compressed copy. This only affects the storage/backup estimate — the
+    // per-dimension cost uses the hfresh list rate directly.
+    result = dimSizeBytesUncompressed + dimSizeBytesCompressed;
+  } else if (indexType === 'hnsw' && quant !== null) {
     result = dimSizeBytesUncompressed + dimSizeBytesCompressed;
   } else if (indexType === 'hnsw' && quant === null) {
     result = dimSizeBytesUncompressed;
@@ -95,12 +101,9 @@ const calculateBackupGiB = (
 export const calculateCosts = (data: IData) => {
   const retentionDays = retentionFactors[data.plan];
 
-  const indexCompressionCombination =
-    accuracyToCost[Number(data.accuracyToCost)];
-  const index = indexCompressionCombination.index;
-  const compression = indexCompressionCombination.compression
-    ? indexCompressionCombination.compression
-    : null;
+  const profile = optimizationProfiles[data.optimizationProfile];
+  const index = profile.index;
+  const compression = profile.compression ? profile.compression : null;
 
   const vectorSize = calculateVectorSize(
     Number(data.vectorDimensions),
@@ -123,14 +126,13 @@ export const calculateCosts = (data: IData) => {
   const totalDimensions =
     Number(data.vectorDimensions) * Number(data.numOfObjects);
 
-  // Construct the pricing key based on plan and deployment type
-  const pricingKey = data.plan === 'flex' ? 'flex' : 'premium';
+  // Plan maps directly to a pricebook tier: flex -> Low, plus -> Mid, premium -> High.
+  const pricingKey = data.plan;
 
   const storageUnitPrice = storageUnitPricePerGib[pricingKey];
   const backupUnitPrice = backupUnitPricePerGib[pricingKey];
   const minimalSpend = minimumPrices[pricingKey];
-  const costPer1MDimensions =
-    indexCompressionCombination.price_per_1m_dimension[pricingKey];
+  const costPer1MDimensions = profile.price_per_1m_dimension[pricingKey];
 
   const storageCost = collectionStorageGiB * storageUnitPrice * HAFactor;
   const backupCost = backupStorageGiB * backupUnitPrice * HAFactor;

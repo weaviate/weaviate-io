@@ -6,6 +6,7 @@ interface IButtonGroupProps {
   value: string;
   selectItem: (text: string) => void;
   mini?: boolean;
+  labels?: Record<string, string>;
 }
 
 export const ButtonGroup = (props: IButtonGroupProps) => {
@@ -24,7 +25,7 @@ export const ButtonGroup = (props: IButtonGroupProps) => {
         }}
       >
         <CalculatorButton onClick={onClick} active={active}>
-          {item}
+          {props.labels?.[item] ?? item}
         </CalculatorButton>
       </motion.li>
     );

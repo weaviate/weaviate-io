@@ -8,7 +8,7 @@ import {
 import { PriceReview } from './components/Elements/PriceReview/PriceReview';
 import { ObjectSizeSelect } from './components/Elements/Calculator';
 import { IData, TDeploymentType, starterState } from './types';
-import { AccuracyToCost } from './components/Elements/Calculator/AccuracyToCost/AccuracyToCost';
+import { OptimizationProfile } from './components/Elements/Calculator/OptimizationProfile/OptimizationProfile';
 import { Switch } from './components/Elements/Form/Switch/Switch';
 import {
   vectorDimensions,
@@ -98,7 +98,7 @@ export const PriceCalculator = () => {
           <NumberOfObjectsSelect data={data} updateValue={updateValue} />
           <ObjectSizeSelect data={data} updateValue={updateValue} />
         </div>
-        <AccuracyToCost data={data} updateValue={updateValue} />
+        <OptimizationProfile data={data} updateValue={updateValue} />
       </div>
       <PriceReview data={data} />
     </div>

@@ -12,7 +12,7 @@
   align-items: stretch;
   width: 100%;
   gap: 20px;
-  color: $mainColor;
+  color: $calcText;
   font-family: Plus Jakarta Sans;
 
   div {
@@ -61,8 +61,9 @@
 
   > .content {
     width: 100%;
-    background: $buttonBg;
-    box-shadow: 0px 10px 20px 10px rgba(0, 0, 0, 0.05);
+    background: $calcSurface;
+    border: 1px solid $calcHair;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
     border-radius: $space;
     padding: 30px;
     gap: 15px;
@@ -70,7 +71,7 @@
     > h1 {
       font-size: 1.7em;
       font-weight: 700;
-      color: $mainColor;
+      color: $calcText;
     }
   }
 
