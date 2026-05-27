@@ -177,7 +177,7 @@ const results = await weaviateStore.similaritySearch(
 
 ### Hybrid search
 
-Blend vector, keyword, and multimodal techniques to deliver accurate, contextual search with less complexity. `Hybrid` search combines the results of a vector search and a keyword (BM25F) search by fusing the two result sets. To change the relative weights of the keyword and vector components, set the `alpha` value in your query (default value of alpha is `0.75` )
+Blend vector, keyword, and multimodal techniques to deliver accurate, contextual search with less complexity. `Hybrid` search combines the results of a vector search and a keyword (BM25F) search by fusing the two result sets. To change the relative weights of the keyword and vector components, set the `alpha` value in your query (default value of alpha is `0.5`)
 
 Check [docs](https://docs.weaviate.io/weaviate/search/hybrid) for all the options you can use with hybrid search. 
 
