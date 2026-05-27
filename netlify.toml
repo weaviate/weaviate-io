@@ -26,16 +26,6 @@ to = "https://docs.weaviate.io/weaviate/model-providers/openai/generative"
 status = 301
 
 [[redirects]]
-from = "/blog/combining-langchain-and-weaviate"
-to = "https://weaviate.io/blog/enterprise-workflow-langchain-weaviate"
-status = 301
-
-[[redirects]]
-from = "/blog/llamaindex-and-weaviate"
-to = "https://docs.llamaindex.ai/en/stable/examples/vector_stores/WeaviateIndexDemo/"
-status = 301
-
-[[redirects]]
 from = "/blog/confluent-and-weaviate"
 to = "https://weaviate.io/blog/weaviate-apache-kafka-connector"
 status = 301
