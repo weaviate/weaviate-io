@@ -17,16 +17,14 @@ Search engines and retrieval augmented generation (RAG) applications rely heavil
 In version `1.20`, Weaviate introduced the ability to run reranking at the second stage. To get started, Weaviate developers simply need to add one line of code to their schema `reranker-cohere`:
 
 ```python
-schema = {
-        "class": "BlogsFineTuned",
-        "description": "Weaviate blogs",
-        "vectorizer": "text2vec-cohere",
-        "moduleConfig": {
-            "reranker-cohere": {
-                "model": "rerank-multilingual-v2.0"
-        }
-    }
-}
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    name="BlogsFineTuned",
+    description="Weaviate blogs",
+    vector_config=Configure.Vectors.text2vec_cohere(),
+    reranker_config=Configure.Reranker.cohere(model="rerank-multilingual-v3.0"),
+)
 ```
 
 Weaviate developers also have the flexibility to choose two reranking models out of the box:
@@ -65,22 +63,19 @@ The total cost for this demo was $0.03 — this includes the vectorization and a
 
 ### Connect to your Weaviate Instance and Load your Data
 
-:::info
-This demo uses the Python v3 client, however, there is a new and improved v4 client! I will migrate this demo to use the v4 client - here is a [guide](https://docs.weaviate.io/weaviate/client-libraries/python/v3_v4_migration) on how to do so.
-:::
-
 First we’ll need to connect to our Weaviate cluster:
 
 ```python
 import weaviate
 import json
+from weaviate.classes.init import Auth
 
-client = weaviate.Client(
-    url = "WEAVIATE_URL",  # Replace with your cluster url
-    auth_client_secret=weaviate.AuthApiKey(api_key="WEAVIATE_AUTH_KEY"),  # Replace with your Weaviate instance API key
-    additional_headers = {
-        "X-Cohere-Api-Key": "API_KEY" # Replace with your inference API key
-    }
+client = weaviate.connect_to_weaviate_cloud(
+    cluster_url="WEAVIATE_URL",  # Replace with your cluster url
+    auth_credentials=Auth.api_key("WEAVIATE_AUTH_KEY"),  # Replace with your Weaviate instance API key
+    headers={
+        "X-Cohere-Api-Key": "API_KEY"  # Replace with your inference API key
+    },
 )
 ```
 
@@ -129,33 +124,29 @@ To fine-tune a model, we need the proper training dataset. Since I didn’t have
 To upload data to Weaviate, you will need to define your schema first. We will use the `text2vec-cohere` module to vectorize our blog chunks. The `Blogs` collection, will have two properties: `content` and `synthetic_query`.
 
 ```python
-schema = {
-   "classes": [
-       {
-           "class": "Blogs",
-           "description": "Weaviate blogs",
-           "vectorizer": "text2vec-cohere",
-           "properties": [
-               {
-                   "name": "content",
-                   "dataType": ["text"],
-                   "description": "Content from the blogs.",
-               },
-               {
-                   "name": "synthetic_query",
-                   "dataType": ["text"],
-                   "description": "Synthetic query generated from a LM."
-               }
-           ]
-       }
-   ]
-}
+from weaviate.classes.config import Configure, Property, DataType
 
-client.schema.create(schema)
+client.collections.create(
+    name="Blogs",
+    description="Weaviate blogs",
+    vector_config=Configure.Vectors.text2vec_cohere(),
+    properties=[
+        Property(
+            name="content",
+            data_type=DataType.TEXT,
+            description="Content from the blogs.",
+        ),
+        Property(
+            name="synthetic_query",
+            data_type=DataType.TEXT,
+            description="Synthetic query generated from a LM.",
+        ),
+    ],
+)
 ```
 
 If you need to reset your schema and delete objects in a collection, run:
-`client.schema.delete_all()` or `client.schema.delete_class("Blogs")`
+`client.collections.delete_all()` or `client.collections.delete("Blogs")`
 
 #### Synthetic Queries
 
@@ -172,7 +163,9 @@ class WriteQuery(dspy.Signature):
     document = dspy.InputField(desc="A document containing information.")
     query = dspy.OutputField(desc="A short question uniquely answered by the document.")
 
-command_nightly = dspy.Cohere(model="command-nightly",max_tokens=1000, api_key=cohere_key)
+command_nightly = dspy.Cohere(model="command-r-plus", max_tokens=1000, api_key=cohere_key)
+
+blogs_collection = client.collections.use("Blogs")
 
 for blog_chunk in blogs:
     with dspy.context(lm=command_nightly):
@@ -183,7 +176,7 @@ for blog_chunk in blogs:
         "synthetic_query": llm_query.query
     }
     print(f"{data_properties}\n")
-    client.data_object.create(data_properties, "Blogs")
+    blogs_collection.data.insert(properties=data_properties)
 ```
 
 Here is an example of the prompt and generation (`produce` is the first word sampled from the LLM as it writes the reasoning and then the query):
@@ -226,72 +219,26 @@ Now that we have the synthetic query + relevant chunk, we can export the data to
 ```python
 '''
 This example will show you how to get all of your data
-out of Weaviate and into a JSON file using the Cursor API!
+out of Weaviate and into a JSON file using the v4 iterator API!
 '''
 import time
 start = time.time()
 
-# Step 1 - Get the UUID of the first object inserted into Weaviate
+blogs_collection = client.collections.use("Blogs")
 
-get_first_object_weaviate_query = """
-{
-  Get {
-    Blogs {
-      _additional {
-        id
-      }
-    }
-  }
-}
-"""
+# Get the total number of objects in the collection
+total_objects = blogs_collection.aggregate.over_all(total_count=True).total_count
 
-results = client.query.raw(get_first_object_weaviate_query)
-uuid_cursor = results["data"]["Get"]["Blogs"][0]["_additional"]["id"]
-
-# Step 2 - Get the Total Objects in Weaviate
-
-total_objs_query = """
-{
-    Aggregate {
-        Blogs {
-            meta {
-                count
-            }
-        }
-    }
-}
-"""
-
-results = client.query.raw(total_objs_query)
-total_objects = results["data"]["Aggregate"]["Blogs"][0]["meta"]["count"]
-
-# Step 3 - Iterate through Weaviate with the Cursor
-increment = 50
+# Iterate through every object in the collection
 data = []
-for i in range(0, total_objects, increment):
-    results = (
-        client.query.get("Blogs", ["content", "synthetic_query"])
-        .with_additional(["id"])
-        .with_limit(50)
-        .with_after(uuid_cursor)
-        .do()
-    )["data"]["Get"]["Blogs"]
-    # extract data from result into JSON
-    for result in results:
-        if len(result["synthetic_query"]) < 5:
-            continue
-        new_obj = {}
-        for key in result.keys():
-            if key == "_additional":
-                continue
-            if key == "synthetic_query":
-                new_obj["query"] = result[key]
-            if key == "content":
-                new_obj["relevant_passages"] = [result[key]]
-        data.append(new_obj)
-    # update uuid cursor to continue the loop
-    # we have just exited a loop where result holds the last obj
-    uuid_cursor = result["_additional"]["id"]
+for obj in blogs_collection.iterator():
+    synthetic_query = obj.properties.get("synthetic_query", "")
+    if len(synthetic_query) < 5:
+        continue
+    data.append({
+        "query": synthetic_query,
+        "relevant_passages": [obj.properties["content"]],
+    })
 
 # save JSON
 file_path = "data.jsonl"
@@ -348,43 +295,34 @@ To use our fine-tuned reranker, we will need to upload our data again to a new c
 #### Schema
 
 ```python
-schema = {
-   "classes": [
-       {
-           "class": "BlogsFineTuned",
-           "description": "Weaviate blogs",
-           "vectorizer": "text2vec-cohere",
-           "moduleConfig": {
-                "reranker-cohere": {
-                    "model": "model_id" # grab the model_id from Cohere
-                }
-           },
-           "properties": [
-               {
-                   "name": "content",
-                   "dataType": ["text"],
-                   "description": "Content from the blogs.",
-               }
-           ]
-       }
-   ]
-}
+from weaviate.classes.config import Configure, Property, DataType
 
-client.schema.create(schema)
+client.collections.create(
+    name="BlogsFineTuned",
+    description="Weaviate blogs",
+    vector_config=Configure.Vectors.text2vec_cohere(),
+    reranker_config=Configure.Reranker.cohere(
+        model="model_id"  # grab the model_id from Cohere
+    ),
+    properties=[
+        Property(
+            name="content",
+            data_type=DataType.TEXT,
+            description="Content from the blogs.",
+        ),
+    ],
+)
 ```
 #### Import
 
 Import the blog chunks to the new collection:
 
 ```python
-for blog in blogs:
-    data_properties = {
-        "content": blog
-    }
-    client.data_object.create(
-        data_object = data_properties,
-        class_name = "BlogsFineTuned"
-    )
+blogs_fine_tuned = client.collections.use("BlogsFineTuned")
+
+with blogs_fine_tuned.batch.stream() as batch:
+    for blog in blogs:
+        batch.add_object(properties={"content": blog})
 ```
 
 :::info
@@ -398,123 +336,105 @@ Now it’s time to query our database and use the reranker! Please confirm you�
 #### Query without Reranking
 
 ```python
-response = (
-    client.query
-    .get("BlogsFineTuned", ["content"])
-    .with_near_text({
-        "concepts": ["Ref2Vec in Weaviate"]
-    })
-    .with_limit(5)
-    .do()
+blogs_fine_tuned = client.collections.use("BlogsFineTuned")
+
+response = blogs_fine_tuned.query.near_text(
+    query="Ref2Vec in Weaviate",
+    limit=5,
 )
 
-print(json.dumps(response, indent=2))
+for obj in response.objects:
+    print(obj.properties["content"])
 ```
 
 ##### Output
-```json
-{
-  "data": {
-    "Get": {
-      "BlogsFineTuned": [
-        {
-          "content": "---\ntitle: What is Ref2Vec and why you need it for your recommendation system\nslug: ref2vec-centroid\nauthors: [connor]\ndate: 2022-11-23\ntags: ['integrations', 'concepts']\nimage: ./img/hero.png\ndescription: \"Weaviate introduces Ref2Vec, a new module that utilises Cross-References for Recommendation!\"\n---\n![Ref2vec-centroid](./img/hero.png)\n\n<!-- truncate -->\n\nWeaviate 1.16 introduced the [Ref2Vec](https://docs.weaviate.io/weaviate/modules/ref2vec-centroid) module. In this article, we give you an overview of what Ref2Vec is and some examples in which it can add value such as recommendations or representing long objects. ## What is Ref2Vec? The name Ref2Vec is short for reference-to-vector, and it offers the ability to vectorize a data object with its cross-references to other objects. The Ref2Vec module currently holds the name ref2vec-**centroid** because it uses the average, or centroid vector, of the cross-referenced vectors to represent the **referencing** object."
-        },
-        {
-          "content": "In other words, the User vector is being updated in real-time here to take into account their preferences and actions, which helps to produce more relevant results at speed. Another benefit of Ref2Vec is that this calculation is not compute-heavy, leading to low overhead. With Ref2Vec, you can use Weaviate to provide Recommendation with \"user-as-query\". This is a very common and powerful way to build Home Feed style features in apps. This can be done by sending queries like this to Weaviate:\n\n```graphql\n{\n  Get {\n    Product (\n      nearObject: {\n        id: \"8abc5-4d5...\" # id for the User object with vector defined by ref2vec-centroid\n      }\n    ) {\n      product_name\n      price\n    }\n  }\n}\n```\n\nThis short query encapsulates the power of Ref2Vec."
-        },
-        {
-          "content": "![Cross-reference](./img/Weaviate-Ref2Vec_1.png)\n\nRef2Vec gives Weaviate another way to vectorize a class, such as the User class, based on their relationships to other classes. This allows Weaviate to quickly create up-to-date representations of users based on their relationships such as recent interactions. If a user clicks on 3 shoe images on an e-commerce store, it is a safe bet that they want to see more shoes. Ref2Vec captures this intuition by calculating vectors that aggregate each User's interaction with another class. The below animation visualizes a real example of this in e-Commerce images."
-        },
-        {
-          "content": "The following image depicts how Ref2Vec aggregates the representations of 3 Product items to represent a User who has purchased a pair of boots, shorts, and Weaviate t-shirt!\n\n![Ref2Vec Image](./img/ref2vec.png)\n\nSuch a representation of the User, by an aggregation of their cross-references, allows Weaviate to conveniently and immediately learn from each User's preferences and actions to provide improved and up-to-date characterizations. Ref2Vec can in other words capture each User's interests and tendencies across multiple axes, such as product categories or even fashion styles! And by doing so, the resulting recommendations can more closely match the User's product and style preferences. We envision Ref2Vec to have great potential in multiple application areas. Let's take a look at a few of them in more detail, starting with recommendation systems. ## Recommendation in Weaviate\nMany of you might primarily know Weaviate as a vector database and search engine, but Weaviate can also power high-quality, lightning-fast recommendations."
-        },
-        {
-          "content": "## More Coming Soon\nWe are very excited about the potential of Ref2Vec, and how it leverages existing symbolic data to augment vector searches in a new way. One of my favorite articles about Weaviate is Bob van Luijt's [\"The AI-First Database Ecosystem\"](/blog/semantic-search-with-wikipedia-and-weaviate). In this article, Bob describes emerging **waves** of database technology; from SQL, to NoSQL, and now, AI-first databases that focus \"on data that is processed by a machine learning model first, where the AI models help in processing, storing and searching through the data as opposed to traditional ways\". Although Weaviate puts Machine Learning data representations first, **this doesn't mean we discard symbolic data and many features of previous systems**. Rather, we are actively searching for how symbolic data can improve neural functionality and vice versa."
-        }
-      ]
-    }
-  }
-}
+```text
+---
+title: What is Ref2Vec and why you need it for your recommendation system
+slug: ref2vec-centroid
+authors: [connor]
+date: 2022-11-23
+tags: ['integrations', 'concepts']
+image: ./img/hero.png
+description: "Weaviate introduces Ref2Vec, a new module that utilises Cross-References for Recommendation!"
+---
+![Ref2vec-centroid](./img/hero.png)
+
+Weaviate 1.16 introduced the Ref2Vec module. In this article, we give you an overview of what Ref2Vec is and some examples in which it can add value such as recommendations or representing long objects. The name Ref2Vec is short for reference-to-vector, and it offers the ability to vectorize a data object with its cross-references to other objects. The Ref2Vec module currently holds the name ref2vec-centroid because it uses the average, or centroid vector, of the cross-referenced vectors to represent the referencing object.
+
+---
+
+In other words, the User vector is being updated in real-time here to take into account their preferences and actions, which helps to produce more relevant results at speed. Another benefit of Ref2Vec is that this calculation is not compute-heavy, leading to low overhead. With Ref2Vec, you can use Weaviate to provide Recommendation with "user-as-query". This is a very common and powerful way to build Home Feed style features in apps.
+
+---
+
+![Cross-reference](./img/Weaviate-Ref2Vec_1.png)
+
+Ref2Vec gives Weaviate another way to vectorize a class, such as the User class, based on their relationships to other classes. This allows Weaviate to quickly create up-to-date representations of users based on their relationships such as recent interactions.
+
+---
+
+The following image depicts how Ref2Vec aggregates the representations of 3 Product items to represent a User who has purchased a pair of boots, shorts, and Weaviate t-shirt! Such a representation of the User, by an aggregation of their cross-references, allows Weaviate to conveniently and immediately learn from each User's preferences and actions to provide improved and up-to-date characterizations.
+
+---
+
+## More Coming Soon
+We are very excited about the potential of Ref2Vec, and how it leverages existing symbolic data to augment vector searches in a new way. Although Weaviate puts Machine Learning data representations first, this doesn't mean we discard symbolic data and many features of previous systems. Rather, we are actively searching for how symbolic data can improve neural functionality and vice versa.
 ```
 
 #### Query with Reranking
 
 ```python
-response = (
-    client.query
-    .get("BlogsFineTuned", ["content"])
-    .with_near_text({
-        "concepts": ["Ref2Vec in Weaviate"]
-    })
-    .with_additional("rerank(property: \"content\" query: \"Represent users based on their product interactions\") { score }")
-    .with_limit(5)
-    .do()
+from weaviate.classes.query import Rerank
+
+blogs_fine_tuned = client.collections.use("BlogsFineTuned")
+
+response = blogs_fine_tuned.query.near_text(
+    query="Ref2Vec in Weaviate",
+    limit=5,
+    rerank=Rerank(
+        prop="content",
+        query="Represent users based on their product interactions",
+    ),
 )
 
-print(json.dumps(response, indent=2))
+for obj in response.objects:
+    print(obj.metadata.rerank_score, obj.properties["content"])
 ```
 
 ##### Output
-```json
-{
-  "data": {
-    "Get": {
-      "BlogsFineTuned": [
-        {
-          "_additional": {
-            "rerank": [
-              {
-                "score": 0.9261703
-              }
-            ]
-          },
-          "content": "![Cross-reference](./img/Weaviate-Ref2Vec_1.png)\n\nRef2Vec gives Weaviate another way to vectorize a class, such as the User class, based on their relationships to other classes. This allows Weaviate to quickly create up-to-date representations of users based on their relationships such as recent interactions. If a user clicks on 3 shoe images on an e-commerce store, it is a safe bet that they want to see more shoes. Ref2Vec captures this intuition by calculating vectors that aggregate each User's interaction with another class. The below animation visualizes a real example of this in e-Commerce images."
-        },
-        {
-          "_additional": {
-            "rerank": [
-              {
-                "score": 0.34444344
-              }
-            ]
-          },
-          "content": "The following image depicts how Ref2Vec aggregates the representations of 3 Product items to represent a User who has purchased a pair of boots, shorts, and Weaviate t-shirt!\n\n![Ref2Vec Image](./img/ref2vec.png)\n\nSuch a representation of the User, by an aggregation of their cross-references, allows Weaviate to conveniently and immediately learn from each User's preferences and actions to provide improved and up-to-date characterizations. Ref2Vec can in other words capture each User's interests and tendencies across multiple axes, such as product categories or even fashion styles! And by doing so, the resulting recommendations can more closely match the User's product and style preferences. We envision Ref2Vec to have great potential in multiple application areas. Let's take a look at a few of them in more detail, starting with recommendation systems. ## Recommendation in Weaviate\nMany of you might primarily know Weaviate as a vector database and search engine, but Weaviate can also power high-quality, lightning-fast recommendations."
-        },
-        {
-          "_additional": {
-            "rerank": [
-              {
-                "score": 0.007121429
-              }
-            ]
-          },
-          "content": "In other words, the User vector is being updated in real-time here to take into account their preferences and actions, which helps to produce more relevant results at speed. Another benefit of Ref2Vec is that this calculation is not compute-heavy, leading to low overhead. With Ref2Vec, you can use Weaviate to provide Recommendation with \"user-as-query\". This is a very common and powerful way to build Home Feed style features in apps. This can be done by sending queries like this to Weaviate:\n\n```graphql\n{\n  Get {\n    Product (\n      nearObject: {\n        id: \"8abc5-4d5...\" # id for the User object with vector defined by ref2vec-centroid\n      }\n    ) {\n      product_name\n      price\n    }\n  }\n}\n```\n\nThis short query encapsulates the power of Ref2Vec."
-        },
-        {
-          "_additional": {
-            "rerank": [
-              {
-                "score": 5.5508026e-06
-              }
-            ]
-          },
-          "content": "---\ntitle: What is Ref2Vec and why you need it for your recommendation system\nslug: ref2vec-centroid\nauthors: [connor]\ndate: 2022-11-23\ntags: ['integrations', 'concepts']\nimage: ./img/hero.png\ndescription: \"Weaviate introduces Ref2Vec, a new module that utilises Cross-References for Recommendation!\"\n---\n![Ref2vec-centroid](./img/hero.png)\n\n<!-- truncate -->\n\nWeaviate 1.16 introduced the [Ref2Vec](https://docs.weaviate.io/weaviate/modules/ref2vec-centroid) module. In this article, we give you an overview of what Ref2Vec is and some examples in which it can add value such as recommendations or representing long objects. ## What is Ref2Vec? The name Ref2Vec is short for reference-to-vector, and it offers the ability to vectorize a data object with its cross-references to other objects. The Ref2Vec module currently holds the name ref2vec-**centroid** because it uses the average, or centroid vector, of the cross-referenced vectors to represent the **referencing** object."
-        },
-        {
-          "_additional": {
-            "rerank": [
-              {
-                "score": 4.7478566e-06
-              }
-            ]
-          },
-          "content": "## More Coming Soon\nWe are very excited about the potential of Ref2Vec, and how it leverages existing symbolic data to augment vector searches in a new way. One of my favorite articles about Weaviate is Bob van Luijt's [\"The AI-First Database Ecosystem\"](/blog/semantic-search-with-wikipedia-and-weaviate). In this article, Bob describes emerging **waves** of database technology; from SQL, to NoSQL, and now, AI-first databases that focus \"on data that is processed by a machine learning model first, where the AI models help in processing, storing and searching through the data as opposed to traditional ways\". Although Weaviate puts Machine Learning data representations first, **this doesn't mean we discard symbolic data and many features of previous systems**. Rather, we are actively searching for how symbolic data can improve neural functionality and vice versa."
-        }
-      ]
-    }
-  }
-}
+```text
+0.9261703
+![Cross-reference](./img/Weaviate-Ref2Vec_1.png)
+
+Ref2Vec gives Weaviate another way to vectorize a class, such as the User class, based on their relationships to other classes. This allows Weaviate to quickly create up-to-date representations of users based on their relationships such as recent interactions.
+
+---
+
+0.34444344
+The following image depicts how Ref2Vec aggregates the representations of 3 Product items to represent a User who has purchased a pair of boots, shorts, and Weaviate t-shirt! Such a representation of the User, by an aggregation of their cross-references, allows Weaviate to conveniently and immediately learn from each User's preferences and actions to provide improved and up-to-date characterizations.
+
+---
+
+0.007121429
+In other words, the User vector is being updated in real-time here to take into account their preferences and actions, which helps to produce more relevant results at speed. Another benefit of Ref2Vec is that this calculation is not compute-heavy, leading to low overhead. With Ref2Vec, you can use Weaviate to provide Recommendation with "user-as-query".
+
+---
+
+5.5508026e-06
+---
+title: What is Ref2Vec and why you need it for your recommendation system
+slug: ref2vec-centroid
+authors: [connor]
+date: 2022-11-23
+---
+Weaviate 1.16 introduced the Ref2Vec module. The name Ref2Vec is short for reference-to-vector, and it offers the ability to vectorize a data object with its cross-references to other objects.
+
+---
+
+4.7478566e-06
+## More Coming Soon
+We are very excited about the potential of Ref2Vec, and how it leverages existing symbolic data to augment vector searches in a new way. Although Weaviate puts Machine Learning data representations first, this doesn't mean we discard symbolic data and many features of previous systems.
 ```
 
 My query was about the Ref2Vec feature in Weaviate. Without reranking, the objects were about Ref2Vec, but it wasn’t in detail about the module. In the reranking query, I first searched for concepts about Ref2Vec and then reranked the objects that were about how users are represented by their product interactions.

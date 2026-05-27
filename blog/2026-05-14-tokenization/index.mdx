@@ -43,7 +43,7 @@ BM25 doesn't operate on text. It operates on **tokens**, the discrete units the 
 
 This is why a great embedding model on top of a careless tokenizer often loses to pure-vector search. So `BM25 vs semantic search` isn't really the question. They answer different things, and hybrid search is supposed to combine them. The real question is whether your tokens make BM25 useful at all. The tokenizer is the entry point to the [inverted index](https://docs.weaviate.io/weaviate/concepts/indexing/inverted-index), and it sets the ceiling for keyword recall.
 
-Whether you're building hybrid search for RAG, classic keyword search, or a multilingual catalog, the analyzer is the part that decides what BM25 can score. If you're new to hybrid retrieval mechanics, our earlier post on [hybrid search fusion](/blog/hybrid-search-fusion) walks through the scoring math. This post focuses on the analyzer that feeds it.
+Whether you're building hybrid search for RAG, classic keyword search, or a multilingual catalog, the analyzer is the part that decides what BM25 can score. If you're new to hybrid retrieval mechanics, our earlier post on [hybrid search fusion](/blog/hybrid-search-fusion-algorithms) walks through the scoring math. This post focuses on the analyzer that feeds it.
 
 ## Tokenization methods
 
