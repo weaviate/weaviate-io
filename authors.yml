@@ -93,7 +93,7 @@ jp:
   url: https://github.com/databyjp
   image_url: /img/people/icon/jp.jpg
 jola:
-  name: Jolanta Marczewska 
+  name: Jolanta Marczewska
   title: Product Designer
   url: https://www.linkedin.com/in/jolanta-marczewska/
   image_url: /img/people/icon/jola.jpeg
@@ -341,6 +341,10 @@ yaru:
   title: Product Lead, Weaviate Cloud
   url: mailto:yaru@weaviate.io
   image_url: /img/people/icon/yaru.jpeg
+brandon:
+  name: Brandon Holwerda
+  title: Product Marketing Manager
+  image_url: /img/people/icon/Brandon-Holwerda.jpg
 tony-crewai:
   name: Tony Kipkemboi
   title: Senior Developer Relations Engineer, CrewAI
