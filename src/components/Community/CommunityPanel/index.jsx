@@ -1,6 +1,6 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
-import styles from './styles.module.scss';
+import Link from "@docusaurus/Link";
+import React from "react";
+import styles from "./styles.module.scss";
 
 export default function CommunityPanel() {
   return (
@@ -35,7 +35,6 @@ export default function CommunityPanel() {
         </div>
 
         <div className={styles.card}>
-          <div className={styles.heroGraphic}></div>
           <div className={styles.cardHeader}>
             <h3>
               COLLABORATION &<br></br> CULTURE
