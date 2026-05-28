@@ -212,7 +212,17 @@ const databaseCompare = {
     {
       heading: 'AI Services',
       rows: [
-        {
+          {
+            label: 'Query Agent',
+            values: {
+              free: 'Free tier',
+              flex: 'Free tier + usage-based',
+              plus: 'Free tier + usage-based',
+              premiumShared: 'Free tier + usage-based',
+              premiumDedicated: 'Free tier + usage-based',
+            },
+          },
+          {
           label: 'Query Agent monthly max requests',
           values: {
             free: '1,000',
@@ -223,12 +233,12 @@ const databaseCompare = {
           },
         },
         {
-          label: 'Embeddings (shared service)',
+          label: 'Embeddings',
           values: {
-            free: '2,000/day',
-            flex: true,
-            plus: true,
-            premiumShared: true,
+            free: '2,000 req/day',
+            flex: 'Usage-based',
+            plus: 'Usage-based',
+            premiumShared: 'Usage-based',
             premiumDedicated: 'Coming soon',
           },
         },
@@ -345,7 +355,7 @@ const databaseCompare = {
         {
           label: 'Regions',
           values: {
-            free: 'Limited',
+            free: 'Limited (2)',
             flex: 'Limited (7)',
             plus: 'Limited (7)',
             premiumShared: 'Limited (7)',
