@@ -5,7 +5,7 @@ import { LinkButton, ButtonContainer } from "/src/theme/Buttons";
 
 export default function AboutUsHeader() {
   return (
-    <header>
+    <header className={styles.header}>
       <div className="container">
         <div className={styles.box}>
           <h1>
@@ -36,11 +36,11 @@ export default function AboutUsHeader() {
       <div className={styles.bottomBar}>
         <div className={styles.innerBar}>
           <div className={styles.barText}>
-            13,000,000+<br></br>
+            15,000,000+<br></br>
             <span>Downloads</span>
           </div>
           <div className={styles.barText}>
-            10,500+<br></br>
+            16,300+<br></br>
             <span>GitHub stars</span>
           </div>
           <div className={styles.barText}>
