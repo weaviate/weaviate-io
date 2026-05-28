@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from '@docusaurus/Link';
 
 export default function Hero() {
   return (
@@ -35,7 +36,10 @@ export default function Hero() {
 
           <div className="tw-relative tw-flex tw-min-h-[360px] md:tw-min-h-[380px] lg:tw-min-h-[400px] tw-items-center tw-justify-center">
             <div className="tw-mx-auto tw-max-w-[880px] tw-text-center">
-              <div className="tw-inline-flex tw-items-center tw-gap-3 tw-rounded-full tw-border tw-border-white/20 tw-bg-[rgba(150,180,200,0.16)] tw-px-3 tw-py-2 tw-backdrop-blur-md tw-shadow-[inset_0_1px_0_rgba(255,255,255,0.16)]">
+              <Link
+                to="/product/engram"
+                className="tw-inline-flex tw-items-center tw-gap-3 tw-rounded-full tw-border tw-border-white/20 tw-bg-[rgba(150,180,200,0.16)] tw-px-3 tw-py-2 tw-backdrop-blur-md tw-shadow-[inset_0_1px_0_rgba(255,255,255,0.16)] tw-no-underline tw-transition hover:tw-no-underline hover:tw-bg-[rgba(150,180,200,0.22)] hover:tw-border-white/30"
+              >
                 <span className="tw-inline-flex tw-items-center tw-rounded-full tw-bg-[#0B1114] tw-px-3 tw-py-1 tw-text-[11px] tw-font-semibold tw-uppercase tw-tracking-[0.16em] tw-text-[#6EF2A3]">
                   New
                 </span>
@@ -55,7 +59,7 @@ export default function Hero() {
                   height="16"
                   className="tw-h-4 tw-w-4 tw-shrink-0"
                 />
-              </div>
+              </Link>
 
               <h1
                 className="tw-mx-auto tw-mt-7 tw-max-w-[860px] tw-text-[2.5rem] tw-font-semibold tw-leading-[0.98] md:tw-text-[3.9rem] lg:tw-text-[4.25rem]"
