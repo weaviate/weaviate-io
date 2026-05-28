@@ -223,10 +223,10 @@ const databaseCompare = {
             },
           },
           {
-          label: 'Query Agent monthly max requests',
+          label: 'Query Agent rate limits',
           values: {
-            free: '1,000',
-            flex: '30,000',
+            free: '1,000 req/mo',
+            flex: '30,000 req/mo',
             plus: 'Unlimited',
             premiumShared: 'Unlimited',
             premiumDedicated: 'Unlimited',
