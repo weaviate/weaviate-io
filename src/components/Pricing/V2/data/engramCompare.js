@@ -80,21 +80,32 @@ const engramCompare = {
       ],
     },
     {
-      heading: 'Support & Security',
+      heading: 'Support & SLAs',
       rows: [
         {
           label: 'Support',
           values: {
             free: 'Community',
-            starter: 'Email · 24 hr',
-            team: 'Email · 8 hr',
+            starter: 'Email response time - 24-hours',
+            team: 'Email response time - 8-hours',
             enterprise: 'Dedicated TAM',
           },
         },
         {
-          label: 'SLA',
-          values: { free: false, starter: true, team: true, enterprise: true },
+          label: 'Availability',
+          values: {
+            free: false,
+            starter: '99.5%',
+            team: '99.5%',
+            enterprise: '99.5%',
+          },
         },
+        
+      ],
+    },
+    {
+      heading: 'Security',
+      rows: [
         {
           label: 'SSO & SAML',
           values: { free: false, starter: false, team: false, enterprise: true },
