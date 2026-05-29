@@ -68,7 +68,8 @@ These subprocessors are used to host and operate our core application.
 | Category | Subprocessor Name | Subprocessing Activities | Website |
 |-----------|-------------------|---------------------------|----------|
 | Infrastructure | Amazon Web Services | Infrastructure and hosting provider | https://aws.amazon.com |
-| Infrastructure | Amazon Web Services (Amazon Bedrock) | LLM inference for Engram memory extraction, reconciliation, and transformation | https://azure.microsoft.com |
+| Infrastructure | Amazon Web Services (Amazon Bedrock) | LLM inference for Engram memory extraction, reconciliation, and transformation | https://aws.amazon.com |
+| Infrastructure | Temporal Cloud | Workload orchestration | https://temporal.io |
 
 ---
 
