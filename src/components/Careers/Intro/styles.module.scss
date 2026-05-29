@@ -1,97 +1,107 @@
 .introBg {
-  background: #130c49;
-  color: white;
-
-  h2 {
-    color: white;
-  }
+  background: #111111;
+  padding: clamp(4rem, 8vw, 7rem) 0;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: 4fr 2fr 2fr 1fr;
+  grid-template-columns: 1.2fr 0.7fr 0.7fr;
+  gap: 24px;
+  align-items: center;
 
-  margin-top: 2rem;
-
-  @media screen and (max-width: 850px) {
+  @media screen and (max-width: 900px) {
     grid-template-columns: 1fr;
-    margin-top: 0;
   }
 }
 
 .textGrid {
-  padding: 0 4rem;
-  margin-top: 8rem;
+  padding: clamp(2rem, 4vw, 4rem);
+
+  border-radius: 1.5rem;
+
+  background: linear-gradient(
+    145deg,
+    rgba(24, 28, 38, 0.96),
+    rgba(14, 18, 28, 0.98)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
 
   h2 {
-    margin-bottom: 2rem;
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-weight: 700 !important;
+    line-height: 110%;
+    letter-spacing: -0.05em;
+    margin-bottom: 1.5rem;
   }
 
   p {
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 1rem;
+    line-height: 170%;
     margin-bottom: 1rem;
-  }
-
-  @media screen and (max-width: 850px) {
-    padding: 0 1.5rem;
   }
 }
 
 .imgGridMiddle {
   margin-top: 3rem;
+
+  @media screen and (max-width: 900px) {
+    margin-top: 0;
+  }
+}
+
+.img1,
+.img2,
+.img3,
+.img4 {
+  width: 100%;
+  border-radius: 1.5rem;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  margin-bottom: 1rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba(67, 226, 197, 0.24);
+  }
 }
 
 .img1 {
-  background-image: url('../../../../static/img/company/careers/team.png');
-  width: 100%;
-  height: 22rem;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  margin-bottom: 1rem;
-
-  // @media screen and (max-width: 860px) {
-  //   display: none;
-  // }
+  background-image: url("../../../../static/img/company/careers/team.png");
+  min-height: 340px;
 }
 
 .img2 {
-  background-image: url('../../../../static/img/company/careers/erika.png');
-  width: 100%;
-  height: 16rem;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  margin-bottom: 1rem;
-
-  // @media screen and (max-width: 860px) {
-  //     display: none;
-  // }
+  background-image: url("../../../../static/img/company/careers/erika.png");
+  min-height: 220px;
 }
 
 .img3 {
-  background-image: url('../../../../static/img/company/careers/team-lunch.png');
-  width: 100%;
-  height: 16rem;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  margin-bottom: 1rem;
-
-  // @media screen and (max-width: 860px) {
-  //     display: none;
-  // }
+  background-image: url("../../../../static/img/company/careers/team-lunch.png");
+  min-height: 220px;
 }
 
 .img4 {
-  background-image: url('../../../../static/img/company/careers/byron.png');
-  width: 100%;
-  height: 22rem;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  margin-bottom: 1rem;
-
-  // @media screen and (max-width: 860px) {
-  //     display: none;
-  // }
+  background-image: url("../../../../static/img/company/careers/byron.png");
+  min-height: 340px;
 }
