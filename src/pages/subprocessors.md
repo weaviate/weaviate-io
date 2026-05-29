@@ -25,6 +25,8 @@ Subprocessors are grouped below based on whether they process **Business Data** 
 
 ### Business Data Subprocessors
 
+#### Weaviate Database
+
 These subprocessors are used to host and operate our core application.
 
 #### 1. Primary Hosting Providers (Customer-Selected)
@@ -58,6 +60,15 @@ These subprocessors are used **only if customers choose to utilise our Agent ser
 | Infrastructure | Modal | GPU-as-a-Service provider | https://modal.com |
 | Infrastructure | OpenAI | AI feature connectivity | https://openai.com |
 | Infrastructure | Voyage AI | AI feature connectivity | https://voyageai.com |
+
+#### Weaviate Engram
+
+These subprocessors are used to host and operate our core application.
+
+| Category | Subprocessor Name | Subprocessing Activities | Website |
+|-----------|-------------------|---------------------------|----------|
+| Infrastructure | Amazon Web Services | Infrastructure and hosting provider | https://aws.amazon.com |
+| Infrastructure | Amazon Web Services (Amazon Bedrock) | LLM inference for Engram memory extraction, reconciliation, and transformation | https://azure.microsoft.com |
 
 ---
 
