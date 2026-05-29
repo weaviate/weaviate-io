@@ -16,7 +16,7 @@ import Header from '/src/components/Subprocessors/Header';
 
 <div className ="subprocessors">
 
-**Last Updated: October, 2025**
+**Last Updated: May 2026**
 
 The following subprocessors are authorized by the Data Controller to process data on behalf of the Data Processor.  
 Subprocessors are grouped below based on whether they process **Business Data** (i.e., customer data stored in our application) or **Personal Data** (i.e., information about our customers, such as billing or marketing details).

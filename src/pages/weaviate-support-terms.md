@@ -9,6 +9,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 <div className="support-page">
 
+**Last Updated: May 2026**
 
 ### **Exclusions**
 
