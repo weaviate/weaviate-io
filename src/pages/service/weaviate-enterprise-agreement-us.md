@@ -10,7 +10,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 ### **COMMERCIAL TERMS OF SERVICE**
 
-**Last Updated: November, 2025**
+**Last Updated: May 2026**
 
 
 ---
@@ -207,22 +207,24 @@ UNDER NO LEGAL THEORY, WHETHER IN TORT, CONTRACT, OR OTHERWISE, WILL EITHER PART
 
 8. **Force Majeure Event** is an event beyond the reasonable control of a party, including earthquake, flood, or other natural disaster, act of God, labor controversy, civil disturbance, terrorism, war (whether or not officially declared), cyber-attacks (e.g., denial of service attacks), or the inability to obtain sufficient supplies, transportation, or other essential commodity or service required in the conduct of its business, or any change in or the adoption of any law, regulation, judgment, or decree.
 
-9. **Non-Weaviate Product** means a third party or Customer web-based, mobile, offline, or other software application that integrates with the Weaviate Offering (other than third party data hosting services used by Weaviate). For clarity, the Weaviate Offering excludes Non-Weaviate Products.
+9.	“**_Free Services_**” means collectively the no-fee tiers of the Weaviate Offering made available by Weaviate, including the free tier of the Weaviate hosted database, the free tier of the Weaviate Embeddings service, the free tier of the Engram Service, and any other no-fee tier of the Weaviate Offering that Weaviate may make available.
 
-10. **Order Form** means an order form or other similar document which defines the specific Weaviate Offering, the permitted number of users, pricing, and the subscription term.
+10. **Non-Weaviate Product** means a third party or Customer web-based, mobile, offline, or other software application that integrates with the Weaviate Offering (other than third party data hosting services used by Weaviate). For clarity, the Weaviate Offering excludes Non-Weaviate Products.
 
-11. **SLAs** mean the service levels offered by Weaviate as defined at [www.weaviate.io/sla](http://www.weaviate.io/sla).
+11. **Order Form** means an order form or other similar document which defines the specific Weaviate Offering, the permitted number of users, pricing, and the subscription term.
 
-12. **Support Services** means the maintenance and support services offered by Weaviate as defined at [www.weaviate.io/weaviate-support-terms](http://www.weaviate.io/weaviate-support-terms).
+12. **SLAs** mean the service levels offered by Weaviate as defined at [www.weaviate.io/sla](http://www.weaviate.io/sla).
 
-13. **System Data** means data collected by Weaviate, except Customer Data, regarding the Weaviate Offering that may be used to generate logs, statistics, or reports regarding the performance, availability, usage, integrity, or security of the Weaviate Product.
+13. **Support Services** means the maintenance and support services offered by Weaviate as defined at [www.weaviate.io/weaviate-support-terms](http://www.weaviate.io/weaviate-support-terms).
 
-14. “**_Technical Services_**”  means consulting, configuration, technical training or other professional services provided
+14. **System Data** means data collected by Weaviate, except Customer Data, regarding the Weaviate Offering that may be used to generate logs, statistics, or reports regarding the performance, availability, usage, integrity, or security of the Weaviate Product.
+
+15. “**_Technical Services_**”  means consulting, configuration, technical training or other professional services provided
 by Weaviate to Customer.
 
-15. “**_Weaviate Offering_**” means the Weaviate Product and/or the Weaviate Technical Services.
+16. “**_Weaviate Offering_**” means the Weaviate Product and/or the Weaviate Technical Services.
 
-16. **Weaviate Product** means the Weaviate hosted offering, the Weaviate self-hosted offering, the Client Software, and related Support Services.
+17. **Weaviate Product** means the Weaviate hosted offering, the Weaviate self-hosted offering, the Client Software, and related Support Services.
 
 ---
 ### **Exhibit A**

@@ -9,7 +9,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 ### **SELF-SERVE TERMS OF SERVICE**
 
-**Last Updated: November 2025**
+**Last Updated: May 2026**
 
 Thank you for using the Weaviate Offering (as defined below). To be eligible to register for a Weaviate account and use the Weaviate Offering, you must review and accept the terms of this Weaviate Terms of Service (this “**_Agreement_**” or these “**_Terms_**”) by clicking the terms of service checkbox or other mechanism provided within the registration process. PLEASE REVIEW THESE TERMS CAREFULLY. BY ACCEPTING THESE TERMS OR USING THE WEAVIATE OFFERING, YOU AGREE TO THESE TERMS AND CONDITIONS WITH WEAVIATE LLC IF YOU HAVE SELECTED THE UNITED STATES OF AMERICA IN THE REGISTRATION PROCESS OR WITH WEAVIATE B.V. (“**_Weaviate_**”) IF YOU HAVE SELECTED NON-US OR OTHER MECHANISMS PROVIDED WITHIN THE REGISTRATION PROCESS. IF YOU DO NOT AGREE TO BE BOUND BY THESE TERMS, YOU SHOULD NOT USE THE WEAVIATE OFFERING.
 
@@ -155,6 +155,8 @@ The following terms, when used in this Agreement, will have the following meanin
 
 “**_Force Majeure Event_**” is an event beyond the reasonable control of a party, including earthquake, flood, or other natural disaster, act of God, labor controversy, civil disturbance, terrorism, war (whether or not officially declared), cyber-attacks (e.g., denial of service attacks), or the inability to obtain sufficient supplies, transportation, or other essential commodity or service required in the conduct of its business, or any change in or the adoption of any law, regulation, judgment, or decree.
 
+“**_Free Services_**” means collectively the no-fee tiers of the Weaviate Offering made available by Weaviate, including the free tier of the Weaviate hosted database, the free tier of the Weaviate Embeddings service, the free tier of the Engram Service, and any other no-fee tier of the Weaviate Offering that Weaviate may make available.
+
 “**_Non-Weaviate Product_**” means a third party or Customer web-based, mobile, offline or other software application that integrates with the Weaviate Offering (other than third-party data hosting services used by Weaviate). For clarity, the Weaviate Offering excludes Non-Weaviate Products.
 
 “**_Order Form_**” means an order form or other similar document which defines the specific Weaviate Offering, the permitted number of users, pricing, and the subscription term.
@@ -169,7 +171,7 @@ The following terms, when used in this Agreement, will have the following meanin
 
 “**_Weaviate Offering_**” means the Weaviate Product and/or the Weaviate Services.
 
-“**_Weaviate Product_**” means the Weaviate hosted offering, the Weaviate self-hosted offering, the Client Software, and related Support Services.
+“**_Weaviate Product_**” means the Weaviate hosted offering, the Engram service, the Weaviate self-hosted offering, the Client Software, and related Support Services.
 
 “**_Weaviate Services_**” means consulting and training services provided by Weaviate.
 
