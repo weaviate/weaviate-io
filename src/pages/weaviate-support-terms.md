@@ -10,6 +10,11 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 <div className="support-page">
 
 
+### **Exclusions**
+
+These Weaviate Support Terms do not apply to Free Services (as defined in the Weaviate Self-Serve Terms of Service). Support for Free Services is provided on a best-effort basis through community channels only — the Weaviate Slack community, the Weaviate Forum, and public documentation. Weaviate makes no response-time, channel-availability, or escalation commitments for Free Services. To access the paid-tier support commitments described in these Support Terms, Customer must upgrade to a paid plan.
+<br></br>
+
 ### **Weaviate Support Offerings**
 
 Weaviate shall provide the following Support to Customer for the licensed products:
@@ -19,6 +24,7 @@ Weaviate shall provide the following Support to Customer for the licensed produc
 - [Dedicated Cloud](/deployment/dedicated)
 - [Embeddings](/product/embeddings)
 - [Query Agent](/product/query-agent)
+- [Engram](/product/engram)
 
 <br></br>
 
@@ -53,16 +59,18 @@ Weaviate’s online documentation includes technical and user documentation, API
 
 ### **Support Plans and Target Response Times**
 
+#### **Weaviate Database**
+
 Product plans are applicable to Weaviate Cloud subscriptions beginning on or after October 27, 2025 and have the following target response time per severity level:
 
 <br></br>
 
-| Severity Level | Criteria | Product Plan - Flex | Product Plan - Premium (Shared Deployment) | Product Plan - Premium (Dedicated Deployment) |
-|----------------|----------|------------------|----------------------|---------------------------|
-| Severity 1 (Critical) | Issues that are critical and require immediate attention, causing widespread disruption or outages. | 1 Business day | 4 hours (24/7) | 1 hour (24/7) |
-| Severity 2 (High) | High-priority problems that can impact service functionality or performance for a subset of users. | 2 Business days | 8 hours (24/7) | 4 hours (24/7) |
-| Severity 3 (Medium) | Medium-priority concerns that affect service functionality or performance for a limited number of users or use cases. | 3 Business days | 1 Business day | 8 hours (24/7) |
-| Severity 4 (Low) | Lower urgency and impact, causing minor inconveniences or issues for individual users. | 5 Business days | 2 Business days | 1 Business day |
+| Severity Level | Criteria | Product Plan - Flex | Product Plan - Plus | Product Plan - Premium (Shared Deployment) | Product Plan - Premium (Dedicated Deployment) |
+|----------------|----------|------------------|------------------|----------------------|---------------------------|
+| Severity 1 (Critical) | Issues that are critical and require immediate attention, causing widespread disruption or outages. | 1 Business day | 8 hours (24/7) | 4 hours (24/7) | 1 hour (24/7) |
+| Severity 2 (High) | High-priority problems that can impact service functionality or performance for a subset of users. | 2 Business days | 1 Business day | 8 hours (24/7) | 4 hours (24/7) |
+| Severity 3 (Medium) | Medium-priority concerns that affect service functionality or performance for a limited number of users or use cases. | 3 Business days | 2 Business days | 1 Business day | 8 hours (24/7) |
+| Severity 4 (Low) | Lower urgency and impact, causing minor inconveniences or issues for individual users. | 5 Business days | 3 Business days | 2 Business days | 1 Business day |
 
 Support tiers are applicable to Weaviate Cloud subscriptions beginning before October 27, 2025 and have the following target response time per severity level:
 
@@ -81,13 +89,24 @@ Support tiers are applicable to Weaviate Cloud subscriptions beginning before Oc
 
 <br></br>
 
+#### **Weaviate Engram**
+Product plans are applicable to Weaviate Cloud subscriptions and have the following target response times:
+
+| Product Plan - Starter | Product Plan - Team | Product Plan - Enterprise |
+| --- | --- | --- |
+| 1 Business day | 8 hours | 1 hour |
+
+<br></br>
+
 ### **Support Channels**
+
+#### **Weaviate Database**
 
 Product plans are applicable to Weaviate Cloud subscriptions beginning on or after October 27, 2025 and have the following terms per channel:
 
 <br></br>
 
-| Channel | Product Plan - Flex | Product Plan - Premium (Shared Deployment) | Product Plan - Premium (Dedicated Deployment) |
+| Channel | Product Plan - Flex / Plus | Product Plan - Premium (Shared Deployment) | Product Plan - Premium (Dedicated Deployment) |
 |----------------|----------|------------------|----------------------|
 | Email | During business hours | During business hours | During business hours |
 | Phone | N/A | 24/7 hotline for escalations | 24/7 hotline for escalations |
@@ -105,6 +124,18 @@ Support tiers are applicable to Weaviate Cloud subscriptions beginning before Oc
 | Email | During business hours | During business hours | During business hours |
 | Phone | N/A | N/A | 24/7 hotline for escalations |
 
+
+<br></br>
+
+#### **Weaviate Engram**
+
+Product plans are applicable to Weaviate Cloud subscriptions and have the following terms per channel:
+
+| Channel | Product Plan - Starter | Product Plan - Team | Product Plan - Enterprise |
+| --- | --- | --- | --- |
+| Email | During business hours | During business hours | During business hours |
+| Phone | N/A | N/A | 24/7 hotline for escalations |
+| Slack | N/A | N/A | Weaviate private Slack |
 
 <br></br>
 
