@@ -1,57 +1,122 @@
-.techBox {
-  width: 20rem;
-  height: 9.1875rem;
-  flex-shrink: 0;
-  border-radius: 0.9375rem;
-  background: #fff;
-  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+.bgColor {
+  background: #111111;
+  padding: clamp(4rem, 8vw, 7rem) 0;
 }
 
 .header {
-  text-align: left;
-  margin: auto;
-}
+  max-width: 760px;
+  margin-bottom: 3rem;
 
-.techList {
-  display: flex;
-  flex-direction: row;
-  gap: 30px;
-  margin: 50px 0px;
-  justify-content: flex-start;
-  flex-wrap: wrap;
+  h2 {
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-weight: 700 !important;
+    line-height: 110%;
+    letter-spacing: -0.05em;
+    margin: 0 0 1rem;
+  }
 
-  @media screen and (max-width: 860px) {
-    flex-wrap: nowrap;
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    justify-content: flex-start;
-    overflow-x: scroll;
-    padding: 5px 10px 20px;
-    scroll-padding: 20%;
-    scroll-snap-type: x mandatory;
+  p {
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 1rem;
+    line-height: 170%;
+    margin: 0;
+
+    br {
+      display: none;
+    }
   }
 }
 
 .techContainer {
-  margin: auto;
+  width: 100%;
 }
 
-.bgColor {
-  background: #ededed;
-  padding-top: 70px;
+.techList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
 
   @media screen and (max-width: 860px) {
-    padding: 0px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media screen and (max-width: 640px) {
+    grid-template-columns: 1fr;
   }
 }
 
+.techBox {
+  position: relative;
+  overflow: hidden;
+
+  height: 150px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 1.5rem;
+
+  background: linear-gradient(
+    145deg,
+    rgba(24, 28, 38, 0.96),
+    rgba(14, 18, 28, 0.98)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: radial-gradient(
+      circle at top left,
+      rgba(67, 226, 197, 0.08),
+      transparent 40%
+    );
+
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+
+    border-color: rgba(67, 226, 197, 0.24);
+
+    box-shadow:
+      0 32px 90px rgba(0, 0, 0, 0.36),
+      0 0 40px rgba(67, 226, 197, 0.08);
+  }
+
+  a {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none !important;
+  }
+}
 .aws {
   display: flex;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/aws-logo-partners.svg');
+  background-image: url("../../../../static/img/site/aws-logo-partners.svg");
   transition: all 1s ease-out;
   width: 50%;
   height: 70px;
@@ -64,7 +129,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/gcp-logo-partners.svg');
+  background-image: url("../../../../static/img/site/gcp-logo-partners.svg");
   transition: all 1s ease-out;
   width: 50%;
   height: 70px;
@@ -77,7 +142,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/azure-logo-partners.svg');
+  background-image: url("../../../../static/img/site/azure-logo-partners.svg");
   transition: all 1s ease-out;
   width: 50%;
   height: 70px;
@@ -90,7 +155,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/snowflake-logo-partners.svg');
+  background-image: url("../../../../static/img/site/snowflake-logo-partners.svg");
   transition: all 1s ease-out;
   width: 60%;
   height: 70px;
@@ -103,7 +168,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/databricks-logo-partners.svg');
+  background-image: url("../../../../static/img/site/databricks-logo-partners.svg");
   transition: all 1s ease-out;
   width: 50%;
   height: 70px;

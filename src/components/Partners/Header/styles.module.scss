@@ -1,153 +1,107 @@
 .partnersHead {
-  background: #130c49;
-  background-image: url('/img/site/bg-weaviate-hd-dark.jpg') !important;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(17, 17, 17, 0.94) 0%,
+      rgba(17, 17, 17, 0.78) 48%,
+      rgba(17, 17, 17, 0.32) 100%
+    ),
+    url("/img/site/bg-weaviate-hd-dark.jpg"), #111111;
+
   background-size: cover;
-
-  p {
-    color: #ffffff;
-  }
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: clamp(5rem, 8vw, 8rem) 0;
 }
+
 .grid {
+  max-width: 760px;
   display: flex;
-  padding: 2rem 0 2rem 0;
-  justify-items: center;
-  align-items: center;
-  justify-content: space-between;
-  text-align: center;
   flex-direction: column;
-
-  @media screen and (max-width: 800px) {
-    align-items: flex-start;
-  }
-}
-
-.leftGrid {
-  width: 100%;
-  height: 24rem;
-
-  padding: 1rem 2rem;
-
-  @media screen and (max-width: 500px) {
-    height: 35rem;
-    padding: unset;
-  }
-}
-
-.rightGrid {
-  width: 100%;
-  height: 24rem;
-
-  @media screen and (max-width: 950px) {
-    display: none;
-  }
-}
-
-.innerBar {
-  height: 6em;
-  display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto;
-  /* gap: 10px; */
-  margin: 0 auto;
-  align-items: center;
-  justify-content: space-evenly;
-  padding: 0 var(--ifm-spacing-horizontal);
-  width: 100%;
-  max-width: var(--ifm-container-width-xl);
-
-  @media screen and (max-width: 950px) {
-    height: 11em;
-    display: flex;
-    margin: 0 auto;
-    padding: 0 var(--ifm-spacing-horizontal);
-    width: 100%;
-    max-width: var(--ifm-container-width-xl);
-    justify-items: left;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: flex-start;
-    white-space: nowrap;
-    overflow: hidden;
-  }
+  align-items: flex-start;
+  text-align: left;
 }
 
 .title {
-  font-size: 58px;
-  font-weight: bold;
-  line-height: 69.6px;
-
-  margin-bottom: 1rem;
-
-  @media screen and (max-width: 800px) {
-    text-align: left;
-    font-size: 53px;
-  }
+  color: #ddebf2 !important;
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 105%;
+  letter-spacing: -0.06em;
+  margin: 0 0 1.25rem;
 
   span {
-    color: #61bd73;
+    color: #6be38c;
   }
 }
 
 .text {
-  max-width: 25em;
-
-  @media screen and (max-width: 800px) {
-    text-align: left;
-
-    br {
-      display: none;
-    }
-  }
-}
-
-.img {
-  width: 100%;
-  height: 100%;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-image: url('/img/site/partners_header.png');
+  max-width: 620px;
+  color: #b9c8de !important;
+  font-family: Inter, sans-serif !important;
+  font-size: 1.2rem;
+  line-height: 170%;
+  margin: 0;
 }
 
 .buttons {
-  margin-top: 30px;
-  gap: 20px;
+  margin-top: 2.25rem;
+
   display: flex;
-  flex-direction: row;
+  gap: 16px;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
 
   a {
-    height: 45px;
-    width: 220px;
-    display: flex;
+    min-height: 52px;
+    padding: 0 24px;
+
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 0.25rem;
+
+    border-radius: 0.85rem;
     cursor: pointer;
-    text-decoration: none;
-  }
+    text-decoration: none !important;
 
-  .buttonGradient {
-    border-radius: 0.3125rem;
-    color: #ffffff;
-    background: #130c49;
+    font-family: Inter, sans-serif !important;
+    font-weight: 700 !important;
 
-    flex-shrink: 0;
-    font-weight: 600;
-  }
-
-  .buttonOutline {
-    border-radius: 0.3125rem;
-    color: #130c49;
-    background: #fff;
-
-    flex-shrink: 0;
-    font-weight: 600;
+    transition:
+      transform 0.25s ease,
+      background 0.25s ease,
+      border-color 0.25s ease;
   }
 }
 
-[data-theme='light'] {
-  .img {
-    background-image: url('/img/site/partners_header.svg');
+.buttonOutline {
+  background: #e8eef5;
+  color: #111111 !important;
+  border: 1px solid rgba(232, 238, 245, 0.8);
+
+  &:hover {
+    transform: translateY(-2px);
+    background: #ffffff;
+    color: #111111 !important;
+  }
+}
+
+.buttonGradient {
+  background: #6be38c;
+  color: #111111 !important;
+  border: 1px solid rgba(107, 227, 140, 0.8);
+
+  &:hover {
+    transform: translateY(-2px);
+    background: #7ceb9a;
+    color: #111111 !important;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .grid {
+    max-width: 100%;
   }
 }

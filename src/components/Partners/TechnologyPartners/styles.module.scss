@@ -1,49 +1,95 @@
-.techBox {
-  width: 15.3125rem;
-  height: 7.5625rem;
-  border-radius: 0.9375rem;
-  background: #fff;
-  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
-  display: grid;
-  align-items: center;
-  flex-shrink: 0;
+.bgColor {
+  background: #111111;
+  padding: clamp(2rem, 5vw, 4rem) 0 clamp(4rem, 8vw, 7rem);
 }
 
 .header {
-  text-align: left;
-  margin: auto;
-}
+  max-width: 760px;
+  margin-bottom: 3rem;
 
-.techList {
-  display: flex;
-  flex-direction: row;
-  gap: 30px;
-  margin: 50px 0px;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-
-  @media screen and (max-width: 860px) {
-    flex-wrap: nowrap;
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    justify-content: flex-start;
-    overflow-x: scroll;
-    padding: 5px 10px 20px;
-    scroll-padding: 20%;
-    scroll-snap-type: x mandatory;
+  h2 {
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-weight: 700 !important;
+    line-height: 110%;
+    letter-spacing: -0.05em;
+    margin: 0;
   }
 }
 
 .techContainer {
-  margin: auto;
+  width: 100%;
 }
 
-.bgColor {
-  background: #ededed;
+.techList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 22px;
 
   @media screen and (max-width: 860px) {
-    padding: 0px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media screen and (max-width: 560px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.techBox {
+  position: relative;
+  overflow: hidden;
+  height: 132px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.25rem;
+  background: linear-gradient(
+    145deg,
+    rgba(24, 28, 38, 0.96),
+    rgba(14, 18, 28, 0.98)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: radial-gradient(
+      circle at top left,
+      rgba(67, 226, 197, 0.08),
+      transparent 42%
+    );
+
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba(67, 226, 197, 0.24);
+    box-shadow:
+      0 30px 80px rgba(0, 0, 0, 0.34),
+      0 0 40px rgba(67, 226, 197, 0.08);
+  }
+
+  a {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none !important;
   }
 }
 
@@ -52,7 +98,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/openai-logo-partners.svg');
+  background-image: url("../../../../static/img/site/openai-logo-partners.svg");
   width: 50%;
   height: 70px;
   margin: auto;
@@ -63,7 +109,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/nvidia-logo-partners.svg');
+  background-image: url("../../../../static/img/site/nvidia-logo-partners.svg");
   width: 50%;
   height: 70px;
   margin: auto;
@@ -74,7 +120,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/AI21-logo-partners.svg');
+  background-image: url("../../../../static/img/site/AI21-logo-partners.svg");
   width: 50%;
   height: 70px;
   margin: auto;
@@ -85,7 +131,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/unstructured-logo-partners.svg');
+  background-image: url("../../../../static/img/site/unstructured-logo-partners.svg");
   width: 50%;
   height: 70px;
   margin: auto;
@@ -96,7 +142,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/ditHub-logo-partners.svg');
+  background-image: url("../../../../static/img/site/ditHub-logo-partners.svg");
   width: 50%;
   height: 70px;
   margin: auto;
@@ -107,7 +153,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/dataDog-logo-partners.svg');
+  background-image: url("../../../../static/img/site/dataDog-logo-partners.svg");
   width: 50%;
   height: 70px;
   margin: auto;
@@ -118,7 +164,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/haystack-logo-partners.svg');
+  background-image: url("../../../../static/img/site/haystack-logo-partners.svg");
   width: 50%;
   height: 70px;
   margin: auto;
@@ -129,7 +175,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/intel-logo-partners.svg');
+  background-image: url("../../../../static/img/site/intel-logo-partners.svg");
   width: 50%;
   height: 70px;
   margin: auto;
@@ -140,7 +186,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/cohere-logo-partners.svg');
+  background-image: url("../../../../static/img/site/cohere-logo-partners.svg");
   width: 50%;
   height: 70px;
   margin: auto;
@@ -151,7 +197,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/langchain-logo-partners.svg');
+  background-image: url("../../../../static/img/site/langchain-logo-partners.svg");
   width: 50%;
   height: 70px;
   margin: auto;
@@ -162,7 +208,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/databricks-logo-partner.svg');
+  background-image: url("../../../../static/img/site/databricks-logo-partner.svg");
   width: 50%;
   height: 70px;
   margin: auto;
@@ -173,7 +219,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/jina-logo-partners.svg');
+  background-image: url("../../../../static/img/site/jina-logo-partners.svg");
   width: 50%;
   height: 70px;
   margin: auto;
@@ -184,7 +230,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/redhat-logo-partners.svg');
+  background-image: url("../../../../static/img/site/redhat-logo-partners.svg");
   width: 50%;
   height: 70px;
   margin: auto;
@@ -195,7 +241,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/astronomer-logo-partners.svg');
+  background-image: url("../../../../static/img/site/astronomer-logo-partners.svg");
   width: 50%;
   height: 70px;
   margin: auto;
@@ -206,7 +252,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/arize-logo-partners.svg');
+  background-image: url("../../../../static/img/site/arize-logo-partners.svg");
   width: 50%;
   height: 70px;
   margin: auto;
@@ -217,7 +263,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/aws-logo-partners.svg');
+  background-image: url("../../../../static/img/site/aws-logo-partners.svg");
   width: 28%;
   height: 70px;
   margin: auto;
@@ -228,7 +274,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/gcp-logo-partners.svg');
+  background-image: url("../../../../static/img/site/gcp-logo-partners.svg");
   width: 50%;
   height: 70px;
   margin: auto;
@@ -239,7 +285,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/azure-logo-partners.svg');
+  background-image: url("../../../../static/img/site/azure-logo-partners.svg");
   width: 50%;
   height: 70px;
   margin: auto;
@@ -250,7 +296,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/snowflake-logo-partners.svg');
+  background-image: url("../../../../static/img/site/snowflake-logo-partners.svg");
   width: 50%;
   height: 70px;
   margin: auto;
@@ -261,7 +307,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/confluent-logo-partner.svg');
+  background-image: url("../../../../static/img/site/confluent-logo-partner.svg");
   width: 100%;
   height: 110px;
   margin: auto;
@@ -272,7 +318,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/anthropic-logo-partner.svg');
+  background-image: url("../../../../static/img/site/anthropic-logo-partner.svg");
   width: 50%;
   height: 70px;
   margin: auto;
@@ -283,7 +329,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/anthropic-logo-partner.svg');
+  background-image: url("../../../../static/img/site/anthropic-logo-partner.svg");
   width: 50%;
   height: 70px;
   margin: auto;
@@ -294,7 +340,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/mistral-ai-logo-partner.svg');
+  background-image: url("../../../../static/img/site/mistral-ai-logo-partner.svg");
   width: 50%;
   height: 70px;
   margin: auto;
