@@ -70,7 +70,7 @@
   letter-spacing: -0.01rem;
 }
 .communityWrapper {
-  background: #130c49;
+  background: #1a1a1a;
   border-radius: 13px;
 }
 
@@ -158,7 +158,7 @@
 
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('/img/site/slack-circle-icon.svg');
+    background-image: url("/img/site/slack-circle-icon.svg");
   }
   .text {
     text-align: center;
@@ -172,7 +172,7 @@
     height: 6.07219rem;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('/img/site/github-circle-icon.svg');
+    background-image: url("/img/site/github-circle-icon.svg");
   }
   .twitter {
     display: flex;
@@ -180,7 +180,7 @@
     height: 6.07219rem;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('/img/site/x-circle-icon.svg');
+    background-image: url("/img/site/x-circle-icon.svg");
   }
 
   .forum {
@@ -189,7 +189,7 @@
     height: 6.07219rem;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('/img/site/weaviate-circle-icon.svg');
+    background-image: url("/img/site/weaviate-circle-icon.svg");
   }
 }
 

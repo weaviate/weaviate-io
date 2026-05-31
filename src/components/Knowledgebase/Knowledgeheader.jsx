@@ -1,27 +1,29 @@
-import Link from '@docusaurus/Link';
-import React, { useState } from 'react';
-import styles from './styles.module.scss';
-import { LinkButton, ButtonContainer } from '/src/theme/Buttons';
-import knowledge from '/data/knowledgecards.json';
-import KnowledgeSearch from './knowledgeSearch';
+import React from "react";
+import styles from "./Header/styles.module.scss";
+import KnowledgeSearch from "./knowledgeSearch";
 
 export default function KnowledgeHeader({ searchQuery, onSearchChange }) {
   return (
-    <div className={styles.knowledgeHeader}>
+    <header className={styles.headerSecurity}>
       <div className="container">
-        <div className={styles.boxGrid}>
+        <div className={styles.box}>
           <h1>Weaviate Knowledge Cards</h1>
+
           <div className={styles.headerBox}>
-            <p className="text-center">
+            <p>
               Unlock the power of vector search. Our guides will help you
-              conquer vector embeddings and build better AI applications.
+              understand vector embeddings and build better AI applications.
             </p>
+          </div>
+
+          <div className={styles.searchContainer}>
+            <KnowledgeSearch
+              searchQuery={searchQuery}
+              onSearch={onSearchChange}
+            />
           </div>
         </div>
       </div>
-      <div className={styles.searchContainer}>
-        <KnowledgeSearch searchQuery={searchQuery} onSearch={onSearchChange} />
-      </div>
-    </div>
+    </header>
   );
 }
