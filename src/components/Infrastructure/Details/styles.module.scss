@@ -80,6 +80,7 @@
       content: url("/img/site/CPO-top-icon.svg");
       display: flex;
       align-items: center;
+      filter: invert(1);
     }
   }
 
@@ -153,6 +154,7 @@
     background-position: center;
     width: 3.25rem;
     height: 3.25rem;
+    filter: invert(1);
     flex-shrink: 0;
   }
 

@@ -89,33 +89,33 @@
     background-size: contain;
     background-position: center;
     display: block;
-    filter: grayscale(1) brightness(1.6);
     opacity: 0.9;
   }
 }
 
 .logoAI {
-  background-image: url("/img/site/openai-logo-light.png");
+  background-image: url("/img/site/2026/OpenAI_logo.svg");
 }
 
 .logoH {
-  background-image: url("/img/site/higgingface-logo-light.png");
+  background-image: url("/img/site/2026/Hugging_Face_Logo.svg");
 }
 
 .logoCo {
-  background-image: url("/img/site/cohere-logo-light.png");
+  background-image: url("/img/site/2026/Cohere_logo.svg");
 }
 
 .logoGoogle {
-  background-image: url("/img/site/google-logo.svg");
+  background-image: url("/img/site/2026/google_logo.svg");
 }
 
 .logoHaystack {
-  background-image: url("/img/site/haystack-logo.svg");
+  background-image: url("/img/site/2026/haystack.png");
+  filter: invert(1);
 }
 
 .logoStreamlit {
-  background-image: url("/img/site/streamlit-logo.svg");
+  background-image: url("/img/site/2026/streamlit-logo.svg");
 }
 
 .quoteCard {

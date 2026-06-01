@@ -9,7 +9,6 @@
   h2 {
     color: #ddebf2 !important;
     font-family: "Plus Jakarta Sans" !important;
-    font-size: clamp(2rem, 4vw, 3rem) !important;
     font-weight: 600 !important;
     line-height: 120% !important;
     letter-spacing: -0.035em;
@@ -94,6 +93,7 @@
   background-size: 100% 100%;
   background-repeat: no-repeat;
   transition: transform 0.28s ease;
+  filter: invert(1);
 }
 
 .card:hover .cardIcon {

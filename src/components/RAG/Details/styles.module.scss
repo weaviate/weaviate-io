@@ -104,7 +104,7 @@
     width: 3.25rem;
     height: 3.25rem;
     flex-shrink: 0;
-
+    filter: invert(1);
     background-image: url("/img/site/rag-page-icon-01.svg");
     background-size: contain;
     background-repeat: no-repeat;

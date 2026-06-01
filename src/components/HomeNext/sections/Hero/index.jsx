@@ -1,5 +1,5 @@
-import React from 'react';
-import Link from '@docusaurus/Link';
+import React from "react";
+import Link from "@docusaurus/Link";
 
 export default function Hero() {
   return (
@@ -18,7 +18,7 @@ export default function Hero() {
   "
         >
           <img
-            src="/img/site/2026/weaviate-bg-2026.jpg"
+            src="/img/site/2026/weaviate-home-26-1280.jpg"
             alt=""
             aria-hidden="true"
             width="1280"
@@ -46,7 +46,7 @@ export default function Hero() {
 
                 <span
                   className="tw-text-[10px] tw-font-bold tw-tracking-[0.01em] tw-text-white/90 md:tw-text-[15px]"
-                  style={{ fontFamily: 'Inter, sans-serif' }}
+                  style={{ fontFamily: "Inter, sans-serif" }}
                 >
                   Weaviate Engram - Personalized AI experiences
                 </span>
@@ -64,10 +64,10 @@ export default function Hero() {
               <h1
                 className="tw-mx-auto tw-mt-7 tw-max-w-[860px] tw-text-[2.5rem] tw-font-semibold tw-leading-[0.98] md:tw-text-[3.9rem] lg:tw-text-[4.25rem]"
                 style={{
-                  color: '#F5F7FA',
+                  color: "#F5F7FA",
                   fontFamily: '"Fields Display", "Times New Roman", serif',
                   fontWeight: 600,
-                  letterSpacing: '-0.03em',
+                  letterSpacing: "-0.03em",
                 }}
               >
                 Design, build and ship complete AI experiences
@@ -76,8 +76,8 @@ export default function Hero() {
               <p
                 className="tw-mx-auto tw-mt-5 tw-max-w-[720px] tw-text-[17px] tw-leading-8 md:tw-text-[19px]"
                 style={{
-                  color: 'rgba(255,255,255,0.78)',
-                  fontFamily: 'Inter, sans-serif',
+                  color: "rgba(255,255,255,0.78)",
+                  fontFamily: "Inter, sans-serif",
                 }}
               >
                 Vector search, RAG, and memory - all in one open-source
@@ -88,15 +88,15 @@ export default function Hero() {
                 <a
                   href="/go/console"
                   className="tw-inline-flex tw-w-full tw-max-w-[300px] tw-items-center tw-justify-center tw-rounded-[10px] tw-bg-[#F1F5F9] tw-px-6 tw-py-3.5 tw-text-[14px] tw-font-semibold tw-text-slate-900 tw-no-underline tw-transition hover:tw-bg-white sm:tw-min-w-[224px] sm:tw-px-8 sm:tw-py-4 sm:tw-text-[16px]"
-                  style={{ fontFamily: 'Inter, sans-serif' }}
+                  style={{ fontFamily: "Inter, sans-serif" }}
                 >
                   Start building
                 </a>
 
                 <a
-                  href="/docs"
+                  href="https://docs.weaviate.io/weaviate"
                   className="tw-inline-flex tw-w-full tw-max-w-[300px] tw-items-center tw-justify-center tw-rounded-[10px] tw-border tw-border-white/10 tw-bg-[rgba(10,12,18,0.78)] tw-px-6 tw-py-3.5 tw-text-[14px] tw-font-semibold tw-text-white tw-no-underline tw-transition hover:tw-bg-[rgba(10,12,18,0.92)] sm:tw-min-w-[224px] sm:tw-px-8 sm:tw-py-4 sm:tw-text-[16px]"
-                  style={{ fontFamily: 'Inter, sans-serif' }}
+                  style={{ fontFamily: "Inter, sans-serif" }}
                 >
                   Documentation
                 </a>
