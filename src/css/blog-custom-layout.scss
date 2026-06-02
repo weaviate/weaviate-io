@@ -51,10 +51,10 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas:
-    'image'
-    'title'
-    'shortText'
-    'info';
+    "image"
+    "title"
+    "shortText"
+    "info";
 }
 
 .blogCardTitle {
@@ -143,7 +143,7 @@
   .agents {
     background-color: #e75959;
   }
-  
+
   .concepts {
     background-color: #20e220;
   }
@@ -173,22 +173,49 @@
   }
 
   .community {
-      background-color: #85E3BC;
+    background-color: #85e3bc;
   }
 }
 
-[data-theme='light'] {
+[data-theme="light"] {
   .blogTags {
     .tag {
-      border: 1px solid #c3c5d8;
+      border: 1px solid #39425b;
+      background: rgba(255, 255, 255, 0.03);
     }
 
     .tag a {
-      color: #130c49;
+      color: #d0d8ea !important;
+    }
+
+    .tag a:hover {
+      color: #edf4ff !important;
     }
 
     .dot {
-      border: 0.5px solid rgb(0, 0, 0, 0.5);
+      border: none;
     }
   }
+}
+
+.blog-tags-post-list-page,
+.blog-tags-post-list-page .blogContainer {
+  background: #111111;
+}
+
+.blog-tags-post-list-page header h1 {
+  color: #edf4ff !important;
+}
+
+.blog-tags-post-list-page header a {
+  color: #63e689 !important;
+}
+
+.blog-tags-post-list-page .blogCardTitle h2,
+.blog-tags-post-list-page .blogCardTitle a {
+  color: #edf4ff !important;
+}
+
+.blog-tags-post-list-page .blogCardDescription {
+  color: #b9c8de !important;
 }

@@ -78,20 +78,18 @@ function BlogTagsPostsPageContent({tag, items, sidebar, listMetadata}) {
 
   );
 }
+
 export default function BlogTagsPostsPage(props) {
   return (
-    <div className="blogContainer">
-      {/* className="custom-page noBG"*/}
     <HtmlClassNameProvider
       className={clsx(
         ThemeClassNames.wrapper.blogPages,
         ThemeClassNames.page.blogTagPostListPage,
-      )}>
+        'blogContainer',
+      )}
+    >
       <BlogTagsPostsPageMetadata {...props} />
       <BlogTagsPostsPageContent {...props} />
     </HtmlClassNameProvider>
-    
-
-    </div>
   );
 }
