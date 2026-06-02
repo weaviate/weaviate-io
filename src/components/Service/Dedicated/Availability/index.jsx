@@ -24,7 +24,7 @@ export default function availability() {
               </Link>
             </div>
             <div className={styles.techBox}>
-              <Link to="">
+              <Link to="#">
                 <span className={styles.azure} />
               </Link>
             </div>
