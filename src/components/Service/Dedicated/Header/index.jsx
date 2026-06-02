@@ -19,7 +19,7 @@ export default function ServiceHeader() {
             </p>
           </div>
           <div className={styles.buttons}>
-            <a className={styles.buttonGradient} href="/contact">
+            <a className={styles.buttonGradient} href="#contact-sales">
               Contact Sales
             </a>
           </div>

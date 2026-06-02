@@ -1,137 +1,301 @@
-[data-theme="light"] {
-  .logo {
-    background-image: url("/img/site/weaviate-logo-light.png");
-    height: 100px;
-  }
-}
-
 .contactBackground {
   background: #111111;
-}
+  padding: clamp(4rem, 8vw, 7rem) 0;
 
-.contactContainer {
-  display: flex;
-  justify-content: center;
-}
-.contactSection {
-  border-radius: 0.9375rem;
-  border: 1px solid #130c49;
-  background: #fff;
-  width: 42.4375rem;
-  height: auto;
-  min-height: 37.0625rem;
-
-  flex-shrink: 0;
-  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.04);
-  padding: 60px;
-
-  @media screen and (max-width: 768px) {
-    background: #fff;
-    width: 100%;
-    height: auto;
-
-    flex-shrink: 0;
-    box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.04);
-    padding: 14px;
+  :global(.container) {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
 }
 
-.formContact {
+.contactSplit {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 0;
+
+  overflow: hidden;
+
+  border-radius: 2rem;
+
+  background: linear-gradient(
+    180deg,
+    rgba(26, 26, 26, 0.98),
+    rgba(20, 20, 20, 0.98)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+      radial-gradient(
+        circle at top left,
+        rgba(0, 254, 107, 0.08),
+        transparent 34%
+      ),
+      linear-gradient(135deg, rgba(0, 254, 107, 0.03), rgba(0, 183, 226, 0.04));
+
+    pointer-events: none;
+  }
+
+  @media screen and (max-width: 980px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.leftContent {
+  position: relative;
+  z-index: 1;
+  padding: clamp(2rem, 5vw, 4rem);
+
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 10px;
+  justify-content: center;
 
-  input {
-    border-bottom: 1px solid #d7deef;
-    border: none;
-    height: 40px;
-    margin-bottom: -18px;
-
-    opacity: 0.800000011920929;
-    color: #6b7c93;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 157.33%;
+  h2 {
+    margin: 0 0 1rem;
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-weight: 700 !important;
+    line-height: 105%;
+    letter-spacing: -0.05em;
   }
 
-  label {
-    opacity: 0.800000011920929;
-    color: #6b7c93;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 157.33%;
-  }
-
-  span {
-    height: 1px;
-    background: #d7deef;
-  }
-
-  .formMessage {
-    height: 7.0625rem;
-    margin-bottom: 10px;
-    flex-shrink: 0;
-    border: 1px solid #c3c5d8;
-    color: #6b7c93;
-    opacity: 0.8000000119;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 157.33%;
-    font-family: "Inter";
-  }
-
-  button {
-    border-radius: 0.3125rem;
-    border: 1px solid #130c49;
-    background: #61bd73;
-    width: 10.0625rem;
-    height: 2.625rem;
-    flex-shrink: 0;
-    align-self: center;
-    transition: all 1s ease-out;
-  }
-  button:hover {
-    border-radius: 0.3125rem;
-    outline: 1px solid #130c49;
-    background: rgb(15, 0, 50);
-    color: #fff;
-    font-weight: 400;
+  p {
+    margin: 0 0 2rem;
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 1.05rem;
+    line-height: 170%;
+    max-width: 540px;
   }
 }
 
-.logo {
-  width: 100%;
-  background-position-x: center;
-  height: 200px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-image: url("/img/site/weaviate-logo-dark.png");
-}
+.tryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 56px;
+  padding: 0 2rem;
+  border-radius: 0.9rem;
+  background: #e8eef5;
+  color: #171717 !important;
+  text-decoration: none !important;
+  font-family: Inter, sans-serif !important;
+  font-size: 1rem;
+  font-weight: 700;
 
-.title {
-  text-align: center;
-}
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
 
-.links {
-  text-align: center;
-  .color {
-    color: #01b0db;
+  &:hover {
+    background: #ffffff;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 12px 28px rgba(255, 255, 255, 0.08);
   }
 }
 
-[data-theme="light"] {
-  .links {
-    .color {
-      color: --ifm-link-color;
+.linkList {
+  margin: 2rem 0 0;
+  padding: 0;
+
+  list-style: none;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    &::before {
+      content: "";
+
+      width: 10px;
+      height: 10px;
+
+      border-radius: 999px;
+
+      background: #00fe6b;
+
+      box-shadow: 0 0 12px rgba(0, 254, 107, 0.6);
+    }
+  }
+
+  a {
+    color: #ddebf2 !important;
+
+    font-family: Inter, sans-serif;
+    font-weight: 500;
+
+    text-decoration: none;
+
+    &:hover {
+      color: #43e2c5 !important;
     }
   }
 }
 
-textarea {
-  resize: none;
+.rightForm {
+  position: relative;
+  z-index: 1;
+
+  padding: clamp(2rem, 5vw, 4rem);
+
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+
+  @media screen and (max-width: 980px) {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}
+/* ==========================
+   HubSpot Form Styling
+   ========================== */
+
+.rightForm :global(.hs-form-field) {
+  margin-bottom: 1.2rem !important;
+}
+
+.rightForm :global(fieldset) {
+  max-width: none !important;
+}
+
+.rightForm :global(.form-columns-2) {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 1.2rem !important;
+}
+
+/* Labels */
+
+.rightForm :global(label),
+.rightForm :global(label span),
+.rightForm :global(.hs-form-field > label),
+.rightForm :global(.hs-form-field > label span),
+.rightForm :global(.hs-field-desc),
+.rightForm :global(.inputs-list label),
+.rightForm :global(.inputs-list label span) {
+  color: #ddebf2 !important;
+  font-family: Inter, sans-serif !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+}
+
+/* Required asterisk */
+
+.rightForm :global(.hs-form-required) {
+  color: #ff6b6b !important;
+}
+
+/* Legal text */
+
+.rightForm :global(.legal-consent-container),
+.rightForm :global(.legal-consent-container p),
+.rightForm :global(.legal-consent-container span),
+.rightForm :global(.legal-consent-container label) {
+  color: #b9c8de !important;
+  font-family: Inter, sans-serif !important;
+}
+
+.rightForm :global(.legal-consent-container a) {
+  color: #43e2c5 !important;
+}
+
+/* Validation */
+
+.rightForm :global(.hs-error-msg),
+.rightForm :global(.hs-error-msgs label) {
+  color: #ff8a8a !important;
+}
+
+/* Inputs */
+
+.rightForm :global(input),
+.rightForm :global(textarea),
+.rightForm :global(select) {
+  width: 100% !important;
+  min-height: 52px;
+
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 0.9rem !important;
+
+  color: #edf4ff !important;
+
+  padding: 0.85rem 1rem !important;
+
+  font-family: Inter, sans-serif !important;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.rightForm :global(input::placeholder),
+.rightForm :global(textarea::placeholder) {
+  color: rgba(221, 235, 242, 0.55) !important;
+}
+
+.rightForm :global(input:focus),
+.rightForm :global(textarea:focus),
+.rightForm :global(select:focus) {
+  border-color: rgba(0, 254, 107, 0.5) !important;
+  box-shadow: 0 0 0 3px rgba(0, 254, 107, 0.12) !important;
+}
+
+.rightForm :global(textarea) {
+  min-height: 140px;
+}
+
+/* Submit Button */
+
+.rightForm :global(.hs-button) {
+  width: 100% !important;
+  min-height: 56px;
+
+  border: none !important;
+  border-radius: 0.9rem !important;
+
+  background: linear-gradient(90deg, #00fe6b 0%, #00b7e2 100%) !important;
+
+  color: #111111 !important;
+
+  font-family: Inter, sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.rightForm :global(.hs-button:hover) {
+  opacity: 0.94;
+  transform: translateY(-2px);
+}
+
+/* Mobile */
+
+@media screen and (max-width: 700px) {
+  .rightForm :global(.form-columns-2) {
+    grid-template-columns: 1fr !important;
+  }
 }

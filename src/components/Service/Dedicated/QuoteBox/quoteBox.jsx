@@ -16,9 +16,9 @@ export default function quoteBox() {
 
             <p>Director of Engineering in Legal Tech </p>
 
-            <Link className={styles.buttonGradient} to="#contact-sales">
+            <a className={styles.buttonGradient} href="#contact-sales">
               Talk to Sales
-            </Link>
+            </a>
           </div>
         </div>
       </div>

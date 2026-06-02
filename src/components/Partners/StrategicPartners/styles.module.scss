@@ -116,7 +116,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url("../../../../static/img/site/aws-logo-partners.svg");
+  background-image: url("../../../../static/img/site/pricing-aws-icon.svg");
   transition: all 1s ease-out;
   width: 50%;
   height: 70px;
@@ -129,7 +129,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url("../../../../static/img/site/gcp-logo-partners.svg");
+  background-image: url("../../../../static/img/site/google-cloud-icon-notext.svg");
   transition: all 1s ease-out;
   width: 50%;
   height: 70px;
@@ -174,4 +174,5 @@
   height: 70px;
   margin: auto;
   margin-top: 37px;
+  filter: invert(1);
 }
