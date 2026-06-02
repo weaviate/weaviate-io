@@ -23,7 +23,7 @@ export default function Integrations() {
             </p>
             <div className={styles.iconsContainer}>
               <div className={`${styles.iconText} ${styles.contact}`}>
-                <a href="#contact-sales">Get in touch</a>
+                <a href="/contact">Get in touch</a>
               </div>
               <div className={`${styles.iconText} ${styles.services}`}>
                 <a href="/pricing">Check our Pricing</a>
