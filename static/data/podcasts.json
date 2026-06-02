@@ -1,6 +1,22 @@
 [
   {
-    "title": "Search Agents with Nandan Thakur - Weaviate Podcast #137!",
+    "title": "Knowledge Engineering with Bradley Allen - Weaviate Podcast #139",
+    "description": "Welcome to the 139th episode of the Weaviate Podcast featuring Bradley Allen, discussing Knowledge Engineering and its applications in AI and database systems.",
+    "youtube": "xY_SqvhArNQ",
+    "date": "26-06-01",
+    "cover_image": "/img/podcasts/podcast-139.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Booking.com and Weaviate with Başak Eskili - Weaviate Podcast #138",
+    "description": "Welcome to the 138th episode of the Weaviate Podcast featuring Başak Eskili, discussing how one of the world’s largest travel platforms adopted vector search, retrieval-augmented generation, and agentic AI at production scale.",
+    "youtube": "O9edM9ZS_FQ",
+    "date": "26-05-18",
+    "cover_image": "/img/podcasts/podcast-138.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Search Agents with Nandan Thakur - Weaviate Podcast #137",
     "description": "Welcome to the 137th episode of the Weaviate Podcast featuring Nandan Thakur, discussing Search Agents and his new work on Orbit, a synthetic training data pipeline for search agents.",
     "youtube": "B71WF6EtgK8",
     "date": "26-05-07",

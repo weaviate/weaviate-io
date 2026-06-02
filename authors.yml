@@ -93,7 +93,7 @@ jp:
   url: https://github.com/databyjp
   image_url: /img/people/icon/jp.jpg
 jola:
-  name: Jolanta Marczewska 
+  name: Jolanta Marczewska
   title: Product Designer
   url: https://www.linkedin.com/in/jolanta-marczewska/
   image_url: /img/people/icon/jola.jpeg
@@ -338,9 +338,13 @@ ivan:
   image_url: /img/people/icon/ivan.jpeg
 yaru:
   name: Yaru Lin
-  title: Director of Product
+  title: Product Lead, Weaviate Cloud
   url: mailto:yaru@weaviate.io
   image_url: /img/people/icon/yaru.jpeg
+brandon:
+  name: Brandon Holwerda
+  title: Product Marketing Manager
+  image_url: /img/people/icon/Brandon-Holwerda.jpg
 tony-crewai:
   name: Tony Kipkemboi
   title: Senior Developer Relations Engineer, CrewAI
@@ -366,6 +370,11 @@ michelangelo:
   title: Software Engineer - Client Libraries
   url: https://www.linkedin.com/in/mpartipilo/
   image_url: /img/people/icon/michelangelo.png
+andre:
+  name: André Mourão
+  title: Software Engineer - Search
+  url: https://www.linkedin.com/in/andre-mourao/
+  image_url: /img/people/team/andre-m.jpg
 devika:
   name: Devika Ambekar
   title: PhD Candidate at University of Arkansas at Little Rock
