@@ -2,7 +2,7 @@ import Link from "@docusaurus/Link";
 import React from "react";
 import styles from "./styles.module.scss";
 
-export default function quoteBox() {
+export default function QuoteBox() {
   return (
     <section className={styles.quoteSection}>
       <div className="container">
@@ -17,9 +17,9 @@ export default function quoteBox() {
 
             <p>Attendee, DeepLearning.AI course</p>
 
-            <Link className={styles.buttonGradient} to="#contact-sales">
+            <a className={styles.buttonGradient} href="#contact-sales">
               Contact Sales
-            </Link>
+            </a>
           </div>
         </div>
       </div>

@@ -19,7 +19,6 @@ export default function ServerlessPage() {
         <ServicePlan />
         <QuoteBox />
         <Integrations />
-        <div id="contact-sales" />
         <ContactUsForm />
       </Layout>
       <ThemeSwitch />

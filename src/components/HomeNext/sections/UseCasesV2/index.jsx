@@ -1,101 +1,101 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
+import Link from "@docusaurus/Link";
+import React from "react";
 
 const useCaseCards = [
   {
-    id: 'loti',
-    company: 'Loti',
-    companyLogo: '/img/site/2026/loti-white-hp.svg',
-    tag: 'RAG',
+    id: "loti",
+    company: "Loti",
+    companyLogo: "/img/site/2026/loti-white-hp.svg",
+    tag: "RAG",
     quote:
       "I need peace of mind. When we are scaling our systems, I don't want to worry about scalability and uptime of our vector database as it serves as a core foundation supporting all our services.",
-    person: 'Dr. Hirak Chhatbar',
-    role: 'Co-Founder and CTO',
-    avatar: '/img/site/2026/loti-person-icon.png',
-    ctaLabel: 'Read Case Study',
-    ctaTo: '/case-studies/loti',
+    person: "Dr. Hirak Chhatbar",
+    role: "Co-Founder and CTO",
+    avatar: "/img/site/2026/loti-person-icon.png",
+    ctaLabel: "Read Case Study",
+    ctaTo: "/case-studies/loti",
     stats: [
-      { value: '200+', label: 'Hours saved on database maintenance' },
-      { value: '9B', label: 'Vectors in production' },
+      { value: "200+", label: "Hours saved on database maintenance" },
+      { value: "9B", label: "Vectors in production" },
     ],
-    accent: 'linear-gradient(180deg, #7C7BFF 0%, #A855F7 100%)',
-    tagColor: '#8B5CF6',
+    accent: "linear-gradient(180deg, #7C7BFF 0%, #A855F7 100%)",
+    tagColor: "#8B5CF6",
   },
   {
-    id: 'docsbot',
-    company: 'DocsBot',
-    companyLogo: '/img/site/2026/docbots-logo-hp.svg',
-    tag: 'SEARCH',
+    id: "docsbot",
+    company: "DocsBot",
+    companyLogo: "/img/site/2026/docbots-logo-hp.svg",
+    tag: "SEARCH",
     quote:
-      'Weaviate stood out as it’s clearly built for production use, not just testing. It was the only solution with an efficient tenant system that scaled to our workload of tens of thousands of segmented indexes.',
-    person: 'Aaron Edwards',
-    role: 'Founder',
-    avatar: '/img/site/2026/docbots-founder-hp.jpg',
-    ctaLabel: 'Read Case Study',
-    ctaTo: '/case-studies/docbots',
+      "Weaviate stood out as it’s clearly built for production use, not just testing. It was the only solution with an efficient tenant system that scaled to our workload of tens of thousands of segmented indexes.",
+    person: "Aaron Edwards",
+    role: "Founder",
+    avatar: "/img/site/2026/docbots-founder-hp.jpg",
+    ctaLabel: "Read Case Study",
+    ctaTo: "/case-studies/docsbot",
     stats: [
-      { value: '50K+', label: 'Tenants stored in a single cluster' },
-      { value: '6.1M+', label: 'Customer questions answered' },
+      { value: "50K+", label: "Tenants stored in a single cluster" },
+      { value: "6.1M+", label: "Customer questions answered" },
     ],
-    accent: 'linear-gradient(180deg, #61D384 0%, #43E2C5 100%)',
-    tagColor: '#61D384',
+    accent: "linear-gradient(180deg, #61D384 0%, #43E2C5 100%)",
+    tagColor: "#61D384",
   },
   {
-    id: 'finster',
-    company: 'FINSTER AI',
-    companyLogo: '/img/site/2026/finster-logo-hp.svg',
-    tag: 'ENTERPRISE',
+    id: "finster",
+    company: "FINSTER AI",
+    companyLogo: "/img/site/2026/finster-logo-hp.svg",
+    tag: "ENTERPRISE",
     quote:
-      'Many large banks focus on quick AI wins but there’s a big opportunity to reinvent research workflows from start to finish in an AI-native way.',
-    person: 'Seán Kilgarriff',
-    role: 'Product Lead & Founding Team',
-    avatar: '/img/site/2026/finster-person-icon.png',
-    ctaLabel: 'Read Case Study',
-    ctaTo: '/case-studies/finster',
+      "Many large banks focus on quick AI wins but there’s a big opportunity to reinvent research workflows from start to finish in an AI-native way.",
+    person: "Seán Kilgarriff",
+    role: "Product Lead & Founding Team",
+    avatar: "/img/site/2026/finster-person-icon.png",
+    ctaLabel: "Read Case Study",
+    ctaTo: "/case-studies/finster",
     stats: [
-      { value: '42M', label: 'Vectors in production' },
-      { value: '1DAY', label: 'Enterprise deployment' },
+      { value: "42M", label: "Vectors in production" },
+      { value: "1DAY", label: "Enterprise deployment" },
     ],
-    accent: 'linear-gradient(180deg, #FF4D8D 0%, #A855F7 100%)',
-    tagColor: '#D77AFF',
+    accent: "linear-gradient(180deg, #FF4D8D 0%, #A855F7 100%)",
+    tagColor: "#D77AFF",
   },
   {
-    id: 'marvelx',
-    company: 'MarvelX',
-    companyLogo: '/img/site/2026/marvelx-logo-hp.svg',
-    tag: 'SECURITY',
+    id: "marvelx",
+    company: "MarvelX",
+    companyLogo: "/img/site/2026/marvelx-logo-hp.svg",
+    tag: "SECURITY",
     quote:
-      'Before MarvelX, I implemented Weaviate in banking where security was really important. Being able to have trust in something battle-tested is very important.',
-    person: 'Ali el Hassouni',
-    role: 'Founder',
-    avatar: '/img/site/2026/marvelx-founder-hp.png',
-    ctaLabel: 'Read Case Study',
-    ctaTo: '/case-studies/marvelx',
+      "Before MarvelX, I implemented Weaviate in banking where security was really important. Being able to have trust in something battle-tested is very important.",
+    person: "Ali el Hassouni",
+    role: "Founder",
+    avatar: "/img/site/2026/marvelx-founder-hp.png",
+    ctaLabel: "Read Case Study",
+    ctaTo: "/case-studies/marvelx",
     stats: [
-      { value: '10×', label: 'Improved processing output' },
-      { value: '99.9%', label: 'Faster turnaround' },
+      { value: "10×", label: "Improved processing output" },
+      { value: "99.9%", label: "Faster turnaround" },
     ],
-    accent: 'linear-gradient(180deg, #43E2C5 0%, #26D6FF 100%)',
-    tagColor: '#26D6FF',
+    accent: "linear-gradient(180deg, #43E2C5 0%, #26D6FF 100%)",
+    tagColor: "#26D6FF",
   },
   {
-    id: 'instabase',
-    company: 'Instabase',
-    companyLogo: '/img/site/2026/instabase-logo-hp.svg',
-    tag: 'RAG',
+    id: "instabase",
+    company: "Instabase",
+    companyLogo: "/img/site/2026/instabase-logo-hp.svg",
+    tag: "RAG",
     quote:
-      'Accuracy — how good the answer is — is the first thing we want to optimize for. That’s how we found Weaviate.',
-    person: 'Kerry Chang',
-    role: 'Head of Product Engineering',
-    avatar: '/img/site/2026/instabase-person-hp.png',
-    ctaLabel: 'Read Case Study',
-    ctaTo: '/case-studies/instabase',
+      "Accuracy — how good the answer is — is the first thing we want to optimize for. That’s how we found Weaviate.",
+    person: "Kerry Chang",
+    role: "Head of Product Engineering",
+    avatar: "/img/site/2026/instabase-person-hp.png",
+    ctaLabel: "Read Case Study",
+    ctaTo: "/case-studies/instabase",
     stats: [
-      { value: '450+', label: 'Data types supported' },
-      { value: '50K+', label: 'Tenants stored' },
+      { value: "450+", label: "Data types supported" },
+      { value: "50K+", label: "Tenants stored" },
     ],
-    accent: 'linear-gradient(180deg, #7C7BFF 0%, #A855F7 100%)',
-    tagColor: '#8B5CF6',
+    accent: "linear-gradient(180deg, #7C7BFF 0%, #A855F7 100%)",
+    tagColor: "#8B5CF6",
   },
 ];
 
@@ -114,7 +114,7 @@ function UseCaseCard({ card }) {
             <div
               className="tw-inline-flex tw-min-h-[34px] tw-items-center tw-justify-center tw-rounded-full tw-border tw-px-4 tw-text-[12px] tw-font-medium tw-uppercase tw-tracking-[0.04em] tw-text-[#DDEBF2] md:tw-min-h-[38px] md:tw-px-5 md:tw-text-[14px]"
               style={{
-                fontFamily: 'Inter, sans-serif',
+                fontFamily: "Inter, sans-serif",
                 borderColor: `${card.tagColor}80`,
               }}
             >
@@ -125,7 +125,7 @@ function UseCaseCard({ card }) {
           <div className="tw-mt-6 md:tw-mt-8">
             <p
               className="tw-m-0 tw-text-[17px] tw-leading-[1.55] tw-text-[#DDEBF2] md:tw-text-[18px]"
-              style={{ fontFamily: 'Inter, sans-serif' }}
+              style={{ fontFamily: "Inter, sans-serif" }}
             >
               “{card.quote}”
             </p>
@@ -142,13 +142,13 @@ function UseCaseCard({ card }) {
                 <div>
                   <p
                     className="tw-m-0 tw-text-[15px] tw-font-semibold tw-leading-6 tw-text-[#DDEBF2]"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
+                    style={{ fontFamily: "Inter, sans-serif" }}
                   >
                     {card.person},
                   </p>
                   <p
                     className="tw-m-0 tw-text-[15px] tw-leading-6 tw-text-[#A8B6CE]"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
+                    style={{ fontFamily: "Inter, sans-serif" }}
                   >
                     {card.role}
                   </p>
@@ -158,7 +158,7 @@ function UseCaseCard({ card }) {
               <Link
                 to={card.ctaTo}
                 className="tw-text-[16px] tw-font-medium tw-text-white tw-underline tw-underline-offset-4 hover:tw-opacity-80"
-                style={{ fontFamily: 'Inter, sans-serif' }}
+                style={{ fontFamily: "Inter, sans-serif" }}
               >
                 {card.ctaLabel}
               </Link>
@@ -178,8 +178,8 @@ function UseCaseCard({ card }) {
                   style={{
                     fontFamily: '"Plus Jakarta Sans", sans-serif',
                     background: card.accent,
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
                   }}
                 >
                   {stat.value}
@@ -187,7 +187,7 @@ function UseCaseCard({ card }) {
 
                 <p
                   className="tw-m-0 tw-mt-2 tw-max-w-[180px] tw-text-[16px] tw-leading-[1.2] tw-text-[#DDEBF2]"
-                  style={{ fontFamily: 'Inter, sans-serif' }}
+                  style={{ fontFamily: "Inter, sans-serif" }}
                 >
                   {stat.label}
                 </p>
@@ -211,7 +211,7 @@ export default function UseCasesV2() {
             className="tw-m-0 tw-mb-4 tw-text-[0.9rem] tw-font-semibold tw-uppercase tw-tracking-[0.12em] md:tw-mb-6 md:tw-text-[1rem]"
             style={{
               fontFamily: '"Plus Jakarta Sans", sans-serif',
-              color: '#43E2C5',
+              color: "#43E2C5",
             }}
           >
             USE CASES
@@ -221,7 +221,7 @@ export default function UseCasesV2() {
             className="tw-m-0 tw-text-[2rem] tw-font-semibold tw-leading-[1.08] md:tw-text-[2.75rem] lg:tw-text-[3rem]"
             style={{
               fontFamily: '"Plus Jakarta Sans", sans-serif',
-              color: '#DDEBF2',
+              color: "#DDEBF2",
             }}
           >
             Real stories. Real results.
@@ -229,7 +229,7 @@ export default function UseCasesV2() {
 
           <p
             className="tw-m-0 tw-mt-5 tw-max-w-4xl tw-text-[16px] tw-leading-8 tw-text-[#B9C8DE] md:tw-mt-6 md:tw-text-[18px]"
-            style={{ fontFamily: 'Inter, sans-serif' }}
+            style={{ fontFamily: "Inter, sans-serif" }}
           >
             With over 20M open source downloads and thousands of customers,
             Weaviate is a core piece of the stack for leading startups,

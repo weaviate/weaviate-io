@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import Layout from '@theme/Layout';
-import Head from '@docusaurus/Head';
-import Link from '@docusaurus/Link';
-import knowledge from '/data/knowledgecards.json';
-import styles from './styles.module.scss';
-import KnowledgeHeader from './Knowledgeheader';
-import ShareOptions from './shareOptions';
-import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
+import React, { useState, useEffect } from "react";
+import Layout from "@theme/Layout";
+import Head from "@docusaurus/Head";
+import Link from "@docusaurus/Link";
+import knowledge from "/data/knowledgecards.json";
+import styles from "./styles.module.scss";
+import KnowledgeHeader from "./Knowledgeheader";
+import ShareOptions from "./shareOptions";
+import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 
 const KnowledgeBasePage = () => {
   const totalCards = knowledge.all.length;
-  const card = knowledge.all.find((c) => c.title === 'Chain of Thought (CoT)');
+  const card = knowledge.all.find((c) => c.title === "Chain of Thought (CoT)");
   if (!card) return <p>Card not found</p>;
 
-  const baseUrl = 'https://weaviate.io';
+  const baseUrl = "https://weaviate.io";
 
   const imageFullUrl = card.cardImage
     ? `${baseUrl}/img/cards/${card.cardImage}`
@@ -21,40 +21,40 @@ const KnowledgeBasePage = () => {
 
   const formatTitleForUrl = (title) => {
     return title
-      .replace(/[^a-zA-Z0-9\s]/g, '')
+      .replace(/[^a-zA-Z0-9\s]/g, "")
       .trim()
-      .replace(/\s+/g, '-')
+      .replace(/\s+/g, "-")
       .toLowerCase();
   };
 
-  let pageUrl = '';
+  let pageUrl = "";
   if (ExecutionEnvironment.canUseDOM) {
     pageUrl = `${
       window.location.origin
     }/learn/knowledgecards/${formatTitleForUrl(card.title)}`;
   }
 
-  const typeClass = card.type ? card.type.toLowerCase() : '';
+  const typeClass = card.type ? card.type.toLowerCase() : "";
 
   const structuredData = {
-    '@context': 'http://schema.org',
-    '@type': 'Article',
-    headline: 'Chain of Thought (CoT) - Weaviate Knowledge Cards',
+    "@context": "http://schema.org",
+    "@type": "Article",
+    headline: "Chain of Thought (CoT) - Weaviate Knowledge Cards",
     description:
-      'Chain of Thought (CoT) prompting involves asking the model to “think step-by-step” and break down complex reasoning tasks into a series of intermediate steps.',
-    image: 'https://weaviate.io/img/cards/chain-of-thought.jpg',
-    url: 'https://weaviate.io/learn/knowledgecards/tree-of-thoughts-tot',
+      "Chain of Thought (CoT) prompting involves asking the model to “think step-by-step” and break down complex reasoning tasks into a series of intermediate steps.",
+    image: "https://weaviate.io/img/cards/chain-of-thought.jpg",
+    url: "https://weaviate.io/learn/knowledgecards/chain-of-thoughts-cot",
   };
 
   const formattedTitle = formatTitleForUrl(card.title);
 
   const filteredCards = knowledge.all.filter(
-    (c) => c.category === card.category
+    (c) => c.category === card.category,
   );
   const totalFilterCards = filteredCards.length;
 
   const [currentIndex, setCurrentIndex] = useState(
-    filteredCards.findIndex((c) => c.title === card.title)
+    filteredCards.findIndex((c) => c.title === card.title),
   );
 
   return (
@@ -76,7 +76,7 @@ const KnowledgeBasePage = () => {
           <meta property="og:image:alt" content="Knowledge card image" />
           <meta
             property="og:url"
-            content="https://weaviate.io/learn/knowledgecards/tree-of-thoughts-tot"
+            content="https://weaviate.io/learn/knowledgecards/chain-of-thoughts-cot"
           />
           <meta
             property="og:description"
