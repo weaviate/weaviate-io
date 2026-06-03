@@ -129,7 +129,7 @@
     "id": "8",
     "name": "Engram",
     "category": "Weaviate Agents",
-    "description": "Query your database in natural language; retrieve exactly what matters.",
+    "description": "A fully managed memory and context service purpose-built to help agents remember, learn, and improve over time.",
     "image": "engram-cta-logo.svg",
     "overviewImage1": "engram-screenshot.svg",
     "longDescription": "Weaviate’s Engram allows users within your organization to use a natural language prompt to query your database.",
