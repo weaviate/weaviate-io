@@ -1,156 +1,120 @@
+.dark,
 .light {
+  .soc2Container {
+    padding: 6rem 0;
+  }
+
   .box {
-    text-align: left;
-    color: white;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: flex-end;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 5rem;
     align-items: center;
-
-    @media screen and (max-width: 680px) {
-      text-align: left;
-      margin: auto;
-      width: auto;
-      color: #130c49;
-      display: flex;
-      flex-direction: column;
-      flex-wrap: nowrap;
-      align-content: flex-end;
-      align-items: center;
-      gap: 40px;
-    }
-  }
-
-  .soc2Container {
-    background: #130e46;
-  }
-
-  .soc2Box {
-    flex: 1 290px;
-    h2 {
-      color: white;
-    }
-
-    p {
-      margin-bottom: 20px;
-      color: white;
-    }
-
-    @media screen and (max-width: 680px) {
-      flex: none;
-    }
-  }
-
-  .soc2Logo {
-    background: url('/img/site/soc2-logo.svg');
-    background-size: 100% 100%;
-    width: 100%;
-    height: 130px;
-    flex: 1;
-
-    @media screen and (max-width: 680px) {
-      flex: none;
-    }
-  }
-}
-
-.dark {
-  .box {
     text-align: left;
-    color: #130c49;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: flex-end;
-    align-items: flex-start;
-    margin: 20px 0px;
-
-    @media screen and (max-width: 680px) {
-      text-align: left;
-      margin: auto;
-      width: auto;
-      color: #130c49;
-      display: flex;
-      flex-direction: column;
-      flex-wrap: nowrap;
-      align-content: flex-end;
-      align-items: center;
-      gap: 40px;
-    }
-  }
-
-  .soc2Container {
-    background: #ededed;
   }
 
   .soc2Box {
-    flex: 1;
-
     h2 {
-      color: #130c49;
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 115%;
+      margin-bottom: 1.5rem;
     }
 
     p {
-      margin: 40px 0px;
-      color: #130c49;
+      margin: 0 0 1.25rem;
+      line-height: 1.8;
     }
+  }
 
-    @media screen and (max-width: 680px) {
-      flex: none;
+  .trustLink {
+    color: #63e689 !important;
+    text-decoration: none;
+
+    &:hover {
+      color: #8ff0a7 !important;
     }
   }
 
   .soc2Logos {
     display: flex;
-    flex: 1;
     flex-direction: column;
     align-items: center;
+    gap: 2rem;
+  }
+
+  .logoCard {
+    width: 100%;
+    display: flex;
     justify-content: center;
-    align-content: flex-start;
-    flex-wrap: wrap;
-    gap: 50px;
-    @media screen and (max-width: 680px) {
-      width: 100%;
-    }
+  }
+
+  .drataLogo,
+  .soc2Logo,
+  .hipaaLogo {
+    width: 70%;
+    min-height: 120px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 
   .drataLogo {
-    background: url('/img/site/CIS-logo.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-
-    width: 50%;
-    height: 120px;
-
-    margin-left: 6%;
-
-    @media screen and (max-width: 680px) {
-      width: 100%;
-    }
+    background-image: url("/img/site/CIS-logo.png");
   }
 
   .soc2Logo {
-    background: url('/img/site/soc2-logo.svg');
-    background-size: 100% 100%;
-    width: 100%;
-    height: 130px;
-
-    @media screen and (max-width: 680px) {
-      flex: none;
-    }
+    background-image: url("/img/site/soc2-logo.svg");
   }
 
   .hipaaLogo {
-    background: url('/img/site/HIPAA-logo.png');
+    min-height: 180px;
+    background-image: url("/img/site/HIPAA-logo.png");
+  }
+}
 
-    background-size: contain;
-    width: 50%;
-    height: 200px;
-    background-repeat: no-repeat;
-    margin-left: 6%;
+.dark {
+  .soc2Container {
+    background: #111111;
+  }
 
-    @media screen and (max-width: 680px) {
+  .soc2Box {
+    h2,
+    p {
+      color: #ffffff !important;
+    }
+  }
+}
+
+.light {
+  .soc2Container {
+    background: #f8fafc;
+  }
+
+  .soc2Box {
+    h2 {
+      color: #130c49 !important;
+    }
+
+    p {
+      color: #2c3854 !important;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .light,
+  .dark {
+    .box {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .soc2Logos {
+      width: 100%;
+    }
+
+    .drataLogo,
+    .soc2Logo,
+    .hipaaLogo {
       width: 100%;
     }
   }

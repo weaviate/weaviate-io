@@ -4,8 +4,8 @@
  * work well for content-centric websites.
  */
 
-@use 'variables.scss' as *;
-@use 'shared.scss' as *;
+@use "variables.scss" as *;
+@use "shared.scss" as *;
 
 /* You can override the default Infima variables here. */
 :root {
@@ -434,7 +434,7 @@
   }
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   .tryNow {
     background: #61bd73;
     color: #130c49;
@@ -729,7 +729,7 @@
   }
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   .loginButton {
     @media screen and (max-width: 1250px) {
       margin: 0px;
@@ -770,13 +770,13 @@ a.menu__link.loginCTA {
   }
 }
 
-[data-theme='light'] {
+[data-theme="light"] {
   .separator {
     background-color: #e0e0e0;
   }
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   .separator {
     background-color: #505050;
   }
@@ -786,18 +786,18 @@ a.menu__link.loginCTA {
   font-size: 0.9rem !important;
 }
 
-[data-theme='light'] img[src$='#gh-dark-mode-only'],
-[data-theme='dark'] img[src$='#gh-light-mode-only'] {
+[data-theme="light"] img[src$="#gh-dark-mode-only"],
+[data-theme="dark"] img[src$="#gh-light-mode-only"] {
   display: none;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
+[data-theme="dark"] {
   --ifm-hero-background-color: #12bf38; //TODO: figure out where this is used
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-[data-theme='light'] {
+[data-theme="light"] {
   svg {
     path {
       fill: var(--site-base-color);
@@ -829,7 +829,7 @@ button.close {
   height: 200px;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url('/img/site/weaviate-logo-dark.png');
+  background-image: url("/img/site/weaviate-logo-dark.png");
 
   @media screen and (max-width: 768px) {
     height: 150px;
@@ -875,9 +875,9 @@ button.close {
   background-repeat: no-repeat;
 }
 
-[data-theme='light'] {
+[data-theme="light"] {
   #__docusaurus:has(.custom-page) {
-    background-image: url('/img/site/background-light.jpg');
+    background-image: url("/img/site/background-light.jpg");
 
     background-size: cover;
     background-position: center;
@@ -889,7 +889,7 @@ button.close {
   }
 
   .hero__logo {
-    background-image: url('/img/site/weaviate-logo-light.png');
+    background-image: url("/img/site/weaviate-logo-light.png");
   }
   .navbar {
     background: #ededed;
@@ -899,12 +899,12 @@ button.close {
     img {
       display: none;
     }
-    background-image: url('/img/site/weaviate-logo-horizontal-dark-1.svg');
+    background-image: url("/img/site/weaviate-logo-horizontal-dark-1.svg");
   }
 }
 
 /* Styling one class specially in dark mode */
-[data-theme='dark'] {
+[data-theme="dark"] {
   #__docusaurus:has(div.custom-page) {
     background-image: none;
     background-color: #f5f5f5;
@@ -925,7 +925,7 @@ button.close {
       img {
         display: none;
       }
-      background-image: url('/img/site/weaviate-nav-logo-light.svg');
+      background-image: url("/img/site/weaviate-nav-logo-light.svg");
     }
   }
 
@@ -941,7 +941,7 @@ button.close {
       display: none;
     }
 
-    background-image: url('/img/site/weaviate-logo-horizontal-light-1.svg');
+    background-image: url("/img/site/weaviate-logo-horizontal-light-1.svg");
     background-size: contain;
     background-repeat: no-repeat;
   }
@@ -1016,7 +1016,7 @@ button.close {
   }
 }
 
-[data-theme='light'] {
+[data-theme="light"] {
   // Weaviate configurator properties
   .__ConfigurationOption .__accordion {
     border: 1px solid rgba(0, 0, 0, 0.125);
@@ -1125,8 +1125,8 @@ Dropdown style removed.
 }*/
 
 .custom-page .footer__links:before {
-  content: '';
-  background-image: url('/img/site/weaviate-logo-horizontal-light-1.svg');
+  content: "";
+  background-image: url("/img/site/weaviate-logo-horizontal-light-1.svg");
 
   background-size: contain;
   background-repeat: no-repeat;
@@ -1261,7 +1261,7 @@ ul.dropdown__menu {
   .dropDownLabel {
     padding: 0.25rem 0.5rem;
     color: #04a886;
-    font-family: 'Plus Jakarta Sans';
+    font-family: "Plus Jakarta Sans";
     font-size: 0.75rem;
     font-style: normal;
     font-weight: 700;
@@ -1282,7 +1282,7 @@ ul.dropdown__menu {
     background-position: center;
     background-repeat: no-repeat;
     background-color: #130c49;
-    background-image: url('/img/site/w-icon-system.svg');
+    background-image: url("/img/site/w-icon-system.svg");
     height: 11.8125rem;
   }
 
@@ -1294,7 +1294,7 @@ ul.dropdown__menu {
     background-position: center;
     background-repeat: no-repeat;
     background-color: #130c49;
-    background-image: url('/img/site/w-icon-release.svg');
+    background-image: url("/img/site/w-icon-release.svg");
     height: 11.8125rem;
   }
 
@@ -1377,37 +1377,37 @@ ul.dropdown__menu {
   }
 }
 
-[data-theme='light']
+[data-theme="light"]
   .lightToggleIcon_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module {
   display: none !important;
 }
 
-[data-theme='light'] .lightToggleIcon_pyhR {
+[data-theme="light"] .lightToggleIcon_pyhR {
   display: none !important;
 }
 
-[data-theme='light']
+[data-theme="light"]
   .darkToggleIcon_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module {
   display: block !important;
 }
-[data-theme='light'] .darkToggleIcon_wfgR {
+[data-theme="light"] .darkToggleIcon_wfgR {
   display: block !important;
 }
 
-[data-theme='dark']
+[data-theme="dark"]
   .darkToggleIcon_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module {
   display: none !important;
 }
 
-[data-theme='dark'] .darkToggleIcon_wfgR {
+[data-theme="dark"] .darkToggleIcon_wfgR {
   display: none !important;
 }
 
-[data-theme='dark']
+[data-theme="dark"]
   .lightToggleIcon_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module {
   display: block !important;
 }
-[data-theme='dark'] .lightToggleIcon_pyhR {
+[data-theme="dark"] .lightToggleIcon_pyhR {
   display: block !important;
 }
 
@@ -1425,7 +1425,7 @@ ul.dropdown__menu {
   }
 }
 
-[data-theme='dark'] .githubStars {
+[data-theme="dark"] .githubStars {
   fill: white;
 }
 
@@ -1523,7 +1523,7 @@ a.navbar__item.navbar__link:hover {
   }
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   a.navbar__item.navbar__link:hover {
     i {
       color: #00a142 !important;
@@ -1644,4 +1644,44 @@ a.navbar__item.navbar__link:hover {
 
 .panel-fade-in {
   animation: panelFadeIn 220ms ease-out;
+}
+
+/* Service / policy MDX pages */
+main[class*="docMainContainer"],
+.main-wrapper {
+  background: #111111;
+  color: #b9c8de;
+}
+
+.theme-layout-main,
+.main-wrapper,
+#__docusaurus,
+body {
+  background: #111111;
+}
+
+.theme-layout-main article,
+.main-wrapper article {
+  color: #b9c8de;
+}
+
+.theme-layout-main article h1,
+.theme-layout-main article h2,
+.theme-layout-main article h3,
+.main-wrapper article h1,
+.main-wrapper article h2,
+.main-wrapper article h3 {
+  color: #edf4ff !important;
+}
+
+.theme-layout-main article a,
+.main-wrapper article a {
+  color: #63e689 !important;
+}
+
+.theme-layout-main article li,
+.theme-layout-main article p,
+.main-wrapper article li,
+.main-wrapper article p {
+  color: #b9c8de !important;
 }
