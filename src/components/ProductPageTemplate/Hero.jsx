@@ -31,7 +31,7 @@ export default function Hero() {
               </Link>
 
               <Link
-                to="https://docs.weaviate.io/agents"
+                to="https://docs.weaviate.io/engram"
                 className="tw-inline-flex tw-min-h-[54px] tw-items-center tw-justify-center tw-rounded-md tw-border tw-border-white/40 tw-bg-transparent tw-px-8 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-white tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-border-white hover:tw-bg-white/10 hover:tw-text-white hover:tw-no-underline"
                 style={{
                   fontFamily: "Inter, sans-serif",
