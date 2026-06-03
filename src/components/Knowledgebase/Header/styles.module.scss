@@ -1,0 +1,144 @@
+.headerSecurity {
+  background:
+    linear-gradient(
+      107deg,
+      rgba(11, 17, 30, 0.95) 0%,
+      rgba(18, 23, 34, 0.9) 58%,
+      rgba(10, 21, 32, 0.86) 100%
+    ),
+    url("/img/site/2026/weaviate-home-26-1280.jpg") #111111;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  padding: clamp(4rem, 8vw, 7rem) 0;
+}
+
+.box {
+  max-width: 760px;
+
+  h1 {
+    color: #edf4ff !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-weight: 700;
+    line-height: 105%;
+    letter-spacing: -0.06em;
+    margin: 0 0 1.25rem;
+  }
+}
+
+.headerBox {
+  max-width: 620px;
+
+  p {
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    line-height: 165%;
+    margin: 0;
+  }
+}
+
+.searchContainer {
+  margin-top: 2rem;
+  width: min(100%, 560px);
+
+  input {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 1rem;
+
+    border-radius: 0.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    background: rgba(255, 255, 255, 0.04);
+
+    color: #ddebf2 !important;
+    font-family: Inter, sans-serif;
+
+    outline: none;
+
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      background 0.2s ease;
+
+    &::placeholder {
+      color: #7d8ca8;
+    }
+
+    &:focus {
+      border-color: rgba(99, 230, 137, 0.45);
+      box-shadow: 0 0 0 3px rgba(99, 230, 137, 0.1);
+      background: rgba(255, 255, 255, 0.06);
+    }
+  }
+}
+
+//Knowledgebase page
+
+.headerSecurity {
+  background:
+    linear-gradient(
+      107deg,
+      rgba(11, 17, 30, 0.95) 0%,
+      rgba(18, 23, 34, 0.9) 58%,
+      rgba(10, 21, 32, 0.86) 100%
+    ),
+    url("/img/site/2026/weaviate-home-26-1280.jpg") #111111;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  padding: clamp(4rem, 8vw, 7rem) 0;
+}
+
+.box {
+  max-width: 760px;
+
+  h1 {
+    color: #edf4ff !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-weight: 700;
+    line-height: 105%;
+    letter-spacing: -0.06em;
+    margin: 0 0 1.25rem;
+  }
+}
+
+.headerBox {
+  max-width: 620px;
+
+  p {
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    line-height: 165%;
+    margin: 0;
+  }
+}
+
+.buttons {
+  margin-top: 2rem;
+}
+
+.buttonGradient {
+  min-height: 48px;
+  padding: 0 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.85rem;
+  background: #63e689;
+  color: #0a1512 !important;
+  font-family: Inter, sans-serif;
+  font-weight: 700;
+  text-decoration: none !important;
+
+  &:hover {
+    background: #7df09d;
+    color: #0a1512 !important;
+  }
+}

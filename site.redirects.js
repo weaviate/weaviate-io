@@ -294,7 +294,13 @@ const siteRedirects = {
             from: '/deployment/byoc',
         },
 
+       // Demos to Playground redirects
        
+      
+        {
+            to: 'https://playground.weaviate.io/',
+            from: '/community/demos',
+        },
 
     ],
 };

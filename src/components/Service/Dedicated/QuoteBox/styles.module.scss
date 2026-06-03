@@ -1,276 +1,118 @@
-.light {
-  .box {
-    text-align: left;
-    color: white;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: flex-end;
-    align-items: center;
-
-    @media screen and (max-width: 680px) {
-      text-align: left;
-      margin: auto;
-      width: auto;
-      color: #130c49;
-      display: flex;
-      flex-direction: column;
-      flex-wrap: nowrap;
-      align-content: flex-end;
-      align-items: center;
-      gap: 40px;
-    }
-  }
-
-  .soc2Container {
-    background: #130e46;
-  }
-
-  .soc2Box {
-    flex: 1 290px;
-    h2 {
-      color: white;
-    }
-
-    p {
-      margin-bottom: 20px;
-      color: white;
-    }
-
-    @media screen and (max-width: 680px) {
-      flex: none;
-    }
-  }
-
-  .drataLogo {
-    background: url('/img/site/drata-logo.svg');
-    background-size: 100% 100%;
-    width: 50%;
-    height: 70px;
-    width: 50%;
-    height: 40px;
-    flex: 1;
-    margin-left: 6%;
-
-    @media screen and (max-width: 680px) {
-      flex: none;
-      margin-left: 0%;
-    }
-  }
-
-  .soc2Logo {
-    background: url('/img/site/soc2-logo.svg');
-    background-size: 100% 100%;
-    width: 100%;
-    height: 130px;
-    flex: 1;
-
-    @media screen and (max-width: 680px) {
-      flex: none;
-    }
-  }
+.quoteSection {
+  background: #111111;
+  overflow: hidden;
+  padding-bottom: clamp(48px, 6vw, 72px);
 }
 
-.dark {
-  .box {
-    text-align: left;
-    color: #130c49;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: flex-end;
-    align-items: center;
-
-    @media screen and (max-width: 680px) {
-      text-align: left;
-      margin: auto;
-      width: auto;
-      color: #130c49;
-      display: flex;
-      flex-direction: column;
-      flex-wrap: nowrap;
-      align-content: flex-end;
-      align-items: center;
-      gap: 40px;
-    }
-  }
-
-  .soc2Container {
-    background: #ededed;
-  }
-
-  .soc2Box {
-    flex: 1 290px;
-    h2 {
-      color: #130c49;
-    }
-
-    p {
-      margin-bottom: 20px;
-      color: #130c49;
-    }
-
-    @media screen and (max-width: 680px) {
-      flex: none;
-    }
-  }
-
-  .drataLogo {
-    background: url('/img/site/drata-dark-logo.svg');
-    background-size: 100% 100%;
-    width: 50%;
-    height: 70px;
-    width: 50%;
-    height: 40px;
-    flex: 1;
-    margin-left: 6%;
-
-    @media screen and (max-width: 680px) {
-      flex: none;
-      margin-left: 0%;
-    }
-  }
-
-  .soc2Logo {
-    background: url('/img/site/soc2-logo.svg');
-    background-size: 100% 100%;
-    width: 100%;
-    height: 130px;
-    flex: 1;
-    @media screen and (max-width: 680px) {
-      flex: none;
-    }
-  }
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-
-  width: 14.3125rem;
-  height: 13.4375rem;
-
-  background-color: #141f39;
-  margin: 1rem;
-  padding: 2rem;
-
-  border-radius: 1.4375rem;
-  background: #fff;
-  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
-
-  @media screen and (max-width: 600px) {
-    height: auto;
-    width: 100%;
-  }
-}
-
-.longCard {
+.quoteCard {
+  position: relative;
+  overflow: hidden;
   width: 100%;
-  border-radius: unset;
-  margin: auto;
+  border-radius: 2.5rem;
+  padding: clamp(72px, 9vw, 120px) clamp(32px, 6vw, 96px);
+  background:
+    radial-gradient(
+      circle at 15% 85%,
+      rgba(0, 254, 107, 0.2) 0%,
+      rgba(0, 254, 107, 0) 36%
+    ),
+    radial-gradient(
+      circle at 84% 14%,
+      rgba(0, 183, 226, 0.2) 0%,
+      rgba(0, 183, 226, 0) 38%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(18, 29, 24, 0.96) 0%,
+      rgba(13, 31, 36, 0.98) 100%
+    );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.38);
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.04) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    pointer-events: none;
+  }
+}
+
+.quoteInner {
+  position: relative;
+  z-index: 1;
+  max-width: 1020px;
+  margin: 0 auto;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 280px;
-  gap: 20px;
-  color: #130c49;
-  z-index: 1;
-  flex-wrap: nowrap;
-  background: #ededed !important;
-  justify-content: center;
-  background-image: url('/img/site/quote-bg.svg') !important;
-  background-size: cover !important;
 
-  .cTextColor {
-    color: #130c49;
-    text-align: center;
-    font-family: Plus Jakarta Sans;
-    font-size: 1.5rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 150%; /* 2.25rem */
-  }
-  @media screen and (max-width: 1000px) {
-    height: auto;
-    min-height: 205px;
-    width: 100%;
+  h3 {
+    margin: 0;
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-size: clamp(2rem, 4vw, 2.3rem) !important;
+    font-weight: 500 !important;
+    line-height: 140% !important;
+    letter-spacing: -0.04em;
   }
 
-  @media screen and (max-width: 500px) {
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    width: 92%;
-  }
-
-  .contentDiv {
-    height: 100%;
-    width: 50%;
-    margin: 50px;
-    text-align: center;
-    @media screen and (max-width: 500px) {
-      width: 100%;
-    }
+  p {
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 1.1rem !important;
+    line-height: 160% !important;
+    margin: 36px 0 0;
+    opacity: 0.9;
   }
 }
 
-.cardLogo {
-  background-image: url('/img/site/vectrix-logo.png');
-  background-size: contain;
-  margin: auto;
-  width: 10rem;
-  height: 2.9375rem;
-  flex-shrink: 0;
-}
-
-.buttons {
-  margin-top: 30px;
-  gap: 20px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+.buttonGradient {
+  margin-top: 42px;
+  min-height: 60px;
+  padding: 0 32px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #43e2c5 0%, #6be38c 100%);
+  color: #111111 !important;
+  font-family: Inter, sans-serif !important;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none !important;
+  box-shadow: 0 16px 44px rgba(0, 254, 107, 0.18);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 
-  a {
-    height: 45px;
-    width: 220px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    text-decoration: none;
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 24px 60px rgba(0, 254, 107, 0.24);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .quoteCard {
+    border-radius: 2rem;
+    padding: 56px 24px;
+  }
+
+  .quoteInner {
+    h3 {
+      font-size: clamp(1.75rem, 7vw, 2.1rem) !important;
+      line-height: 145% !important;
+    }
   }
 
   .buttonGradient {
-    border-radius: 0.3125rem;
-    outline: 1px solid #130c49;
-    background: #61bd73;
-    transition: all 1s ease-out;
-    color: #130c49;
-  }
-
-  .buttonGradient:hover {
-    border-radius: 0.3125rem;
-    outline: 1px solid #ffffff;
-    background: rgb(15, 0, 50);
-    color: #fff;
-  }
-
-  .buttonOutline {
-    outline: 1px solid #ffffff;
-    color: #fff;
-    transition: all 1s ease-out;
-    background-color: #130c49;
-  }
-
-  .buttonOutline:hover {
-    border-radius: 0.3125rem;
-    outline: 1px solid #130c49;
-    background: rgb(97 189 115);
-    color: #130c49;
-    outline: 1px solid #130c49;
+    width: 100%;
+    max-width: 320px;
   }
 }

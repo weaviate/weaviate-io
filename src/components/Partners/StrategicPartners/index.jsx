@@ -1,14 +1,14 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
+import Link from "@docusaurus/Link";
+import React from "react";
 
-import styles from './styles.module.scss';
+import styles from "./styles.module.scss";
 
 export default function StrategicPartners() {
   return (
     <div className={styles.bgColor}>
       <div className="container">
         <div className={styles.header}>
-          <h2>Showcase Partners</h2>
+          <h2>Platform Partners</h2>
           <p>
             An industry-leading group of technology providers integrate with
             Weaviate's powerful AI<br></br> capabilities to provide enhanced

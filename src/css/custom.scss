@@ -1536,3 +1536,112 @@ a.navbar__item.navbar__link:hover {
   font-size: 1.2rem !important;
   line-height: 1.7;
 }
+
+// Marquee styling
+.tw-marquee-wrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.tw-marquee-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: usecases-marquee 120s linear infinite;
+  will-change: transform;
+}
+
+.tw-marquee-wrapper:hover .tw-marquee-track {
+  animation-play-state: paused;
+}
+
+.tw-marquee-item {
+  flex: 0 0 auto;
+}
+
+@keyframes usecases-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 12px));
+  }
+}
+
+@media (max-width: 767px) {
+  .tw-marquee-track {
+    animation-duration: 90s;
+  }
+}
+
+@media (max-width: 767px) {
+  .tw-marquee-wrapper {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .tw-marquee-track {
+    gap: 16px;
+    animation-duration: 90s;
+  }
+}
+
+@keyframes menuFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes trustedLogosMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 0.5rem));
+  }
+}
+
+@keyframes trustedLogosMarqueeMobile {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 0.375rem));
+  }
+}
+
+.trusted-logos-track {
+  animation: trustedLogosMarquee 300s linear infinite;
+  will-change: transform;
+}
+
+.trusted-logos-track:hover {
+  animation-play-state: paused;
+}
+
+.trusted-logos-track-mobile {
+  animation: trustedLogosMarqueeMobile 320s linear infinite;
+  will-change: transform;
+}
+
+@keyframes panelFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.panel-fade-in {
+  animation: panelFadeIn 220ms ease-out;
+}

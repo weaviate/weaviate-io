@@ -1,262 +1,249 @@
-.studyContainer {
-  padding: 2.5rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding: 2.5rem;
-  column-gap: 10px;
-  max-width: 1500px;
-  margin: auto;
-
-  @media screen and (max-width: 900px) {
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-  }
+.bgColor {
+  background: #111111;
+  padding: clamp(64px, 8vw, 120px) 0;
 }
 
-.bgColor {
-  background: #ededed;
+.studyContainer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+  gap: clamp(40px, 6vw, 88px);
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  @media screen and (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .leftContainer {
-  width: 40%;
-  min-width: 360px;
-
-  @media screen and (max-width: 900px) {
-    width: 100%;
-  }
-
-  ul {
-    color: #130c49;
-  }
+  min-width: 0;
 
   h2 {
-    margin: 20px 0px;
-    color: #130c49;
-    font-family: 'Plus Jakarta Sans';
-    font-size: 1.5rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 140%; /* 2.1rem */
-  }
-
-  p {
-    margin: 20px 0px;
-    color: #130c49;
-    font-family: Inter;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%; /* 1.5rem */
-  }
-
-  .boldText {
+    margin: 2.25rem 0 1rem;
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
     font-weight: 600;
+    line-height: 120%;
+    letter-spacing: -0.03em;
   }
 
-  .quote {
-    color: #130c49;
-    font-family: Inter;
-    font-size: 1.125rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 157.33%; /* 1.76994rem */
+  p,
+  li {
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 1rem;
+    line-height: 170%;
   }
 
   a {
-    color: #130c49;
-
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%;
-    text-decoration-line: underline;
+    color: #43e2c5 !important;
+    text-decoration: underline;
+    text-underline-offset: 4px;
   }
 
-  .results {
-    background: url('/img/site/morningstar-results-01.png');
-    background-size: contain;
-    max-width: 36.875rem;
-    width: 100%;
-    height: 18.4375rem;
-    flex-shrink: 0;
-    border-radius: 0.9375rem;
-    margin: 10px 0px;
-    background-repeat: no-repeat;
-    background-position: center;
+  strong {
+    color: #ddebf2;
   }
 
-  .results02 {
-    background: url('/img/site/morningstar-results-02.png');
-    background-size: contain;
-    max-width: 36.875rem;
-    width: 100%;
-    height: 18.4375rem;
-    flex-shrink: 0;
-    border-radius: 0.9375rem;
-    margin: 10px 0px;
-    background-repeat: no-repeat;
-    background-position: center;
+  .quote {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    border-left: 3px solid #43e2c5;
+    border-radius: 0 1rem 1rem 0;
+    background: rgba(67, 226, 197, 0.08);
+    color: #ddebf2 !important;
+    font-weight: 600;
+  }
+}
+
+.studyContent {
+  max-width: 760px;
+}
+
+.boldText {
+  color: #ddebf2 !important;
+  font-weight: 600;
+}
+
+.whyWeaviate {
+  li {
+    margin-bottom: 10px;
   }
 }
 
 .rightContainer {
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 28px;
+}
 
-  .topSection {
-    width: 28.625rem;
-    height: auto;
-    flex-shrink: 0;
-    border-radius: 0.9375rem;
-    background: #130c49;
-    padding: 30px;
+.topSection,
+.bottomSection {
+  width: 100%;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+}
 
-    @media screen and (max-width: 900px) {
-      width: 100%;
-      height: auto;
-    }
+.topSection {
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(67, 226, 197, 0.14),
+      transparent 42%
+    ),
+    #130c49;
 
-    h2 {
-      margin: 20px 0px;
-      color: #61bd73;
-      font-family: 'Plus Jakarta Sans';
-      font-size: 1.25rem;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 150%; /* 1.875rem */
-      text-transform: uppercase;
-    }
-
-    p {
-      margin: 20px 0px;
-      color: #fff;
-
-      font-size: 1rem;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 140%;
-    }
-
-    .white {
-      color: #ddebf2;
-      font-family: 'Plus Jakarta Sans';
-      font-size: 2rem;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 140%;
-    }
+  h2 {
+    margin: 1.5rem 0;
+    font-size: 1.2rem;
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
   }
 
-  .bottomSection {
-    border-radius: 0.9375rem;
-    background: #f5f5f5;
-    box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
-    width: 28.625rem;
-    height: auto;
-    flex-shrink: 0;
-    padding: 30px;
-
-    @media screen and (max-width: 900px) {
-      width: 100%;
-      height: auto;
-    }
-
-    .logo {
-      background-image: url('/img/site/finster-logo.svg');
-      background-size: contain;
-      background-repeat: no-repeat;
-      width: 12.25rem;
-      height: 2.5625rem;
-      flex-shrink: 0;
-    }
-
-    h2 {
-      margin: 20px 0px;
-      color: #130c49;
-      font-family: 'Plus Jakarta Sans';
-      font-size: 1.5rem;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 157.33%; /* 2.35994rem */
-    }
-
-    p {
-      margin: 20px 0px;
-      color: #130c49;
-
-      font-size: 1.1rem;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 150%; /* 1.5rem */
-    }
-    a {
-      color: #130c49;
-
-      font-size: 1.1rem;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 150%; /* 1.5rem */
-      text-decoration-line: underline;
-    }
-
-    .avatar {
-      background-image: url('/img/site/finster-ai-profile.jpg');
-      background-size: contain;
-      background-repeat: no-repeat;
-      border-radius: 50%;
-      width: 10.75rem;
-      height: 10.75rem;
-
-      flex-shrink: 0;
-    }
-
-    .quote {
-      color: #130c49;
-      font-family: Inter;
-      font-size: 1.125rem;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 157.33%; /* 1.76994rem */
-    }
-
-    .name {
-      font-size: 1.25rem;
-      font-weight: 500;
-    }
-    .span {
-      color: #130c49;
-
-      font-size: 1rem;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 157.33%;
-    }
+  h3 {
+    color: #43e2c5 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 140%;
+    text-transform: uppercase;
+    margin: 1.5rem 0 0.5rem;
   }
 
-  .navy {
-    background: #130c49 !important;
-    color: #ffffff;
-
-    .quote {
-      color: #61d384;
-
-      font-family: 'Plus Jakarta Sans';
-      font-size: 1.5rem;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 140%; /* 2.1rem */
-    }
-
-    .name {
-      color: #ddebf2;
-      font-family: Inter;
-      font-size: 1.125rem;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 140%;
-    }
+  p,
+  li {
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 0.95rem;
+    line-height: 165%;
+    margin: 0;
   }
+
+  strong {
+    color: #43e2c5;
+  }
+}
+
+.white {
+  color: #ddebf2 !important;
+}
+
+.bottomSection {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0)),
+    #1a1a1a;
+
+  .logo {
+    background-image: url("/img/site/finster-logo-white.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center;
+    width: 12.25rem;
+    height: 2.5625rem;
+    margin-bottom: 1.5rem;
+    filter: brightness(1.15);
+  }
+
+  h2,
+  h3 {
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-weight: 600;
+    line-height: 130%;
+  }
+
+  p,
+  li,
+  span {
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 0.98rem;
+    line-height: 165%;
+  }
+
+  a {
+    color: #43e2c5 !important;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+
+.name {
+  color: #ddebf2;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 10.75rem;
+  height: 10.75rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-bottom: 1rem;
+}
+
+.navy {
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(67, 226, 197, 0.14),
+      transparent 42%
+    ),
+    #130c49;
+
+  .quote {
+    background: transparent;
+    border-left: 0;
+    padding: 0;
+    margin: 0 0 1rem;
+    color: #43e2c5 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-size: 1.25rem;
+    line-height: 140%;
+  }
+}
+
+.information {
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(107, 227, 140, 0.18),
+      transparent 42%
+    ),
+    #102418;
+
+  h3 {
+    color: #6be38c !important;
+  }
+}
+
+.results,
+.results02 {
+  width: 100%;
+  max-width: 36.875rem;
+  height: 18.4375rem;
+  border-radius: 1.25rem;
+  margin: 1.5rem 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.results {
+  background-image: url("/img/site/morningstar-results-01.png");
+}
+
+.results02 {
+  background-image: url("/img/site/morningstar-results-02.png");
+}
+
+.avatar {
+  background-image: url("/img/site/finster-ai-profile.jpg");
 }

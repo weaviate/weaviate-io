@@ -1,12 +1,12 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
-import styles from './styles.module.scss';
+import React from "react";
+import styles from "./styles.module.scss";
 
 export default function SafetyTypes() {
   return (
-    <div className={styles.bgColor}>
+    <section className={styles.bgColor}>
       <div className="container">
         <div className={styles.title}>
+          <span className={styles.eyebrow}>Enablement packages</span>
           <h2>Partner with our experts to bring AI to your organization</h2>
           <p>Packages tailored to meet your needs, including:</p>
         </div>
@@ -78,6 +78,6 @@ export default function SafetyTypes() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

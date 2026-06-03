@@ -1,109 +1,85 @@
-.buttons {
-  margin-top: 30px;
-  gap: 20px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+.header {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(17, 17, 17, 0.94) 0%,
+      rgba(17, 17, 17, 0.82) 48%,
+      rgba(17, 17, 17, 0.45) 100%
+    ),
+    url("/img/site/2026/weaviate-home-26-1280.jpg"), #111111;
 
-  a {
-    height: 45px;
-    width: 320px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    text-decoration: none;
-  }
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-  .buttonGradient {
-    border-radius: 0.3125rem;
-    outline: 1px solid #130c49;
-    background: #61bd73;
-    transition: all 1s ease-out;
-    color: #130c49;
-  }
-
-  .buttonGradient:hover {
-    border-radius: 0.3125rem;
-    outline: 1px solid #130c49;
-    background: rgb(15, 0, 50);
-    color: #fff;
-  }
-
-  .buttonOutline {
-    border: 1px solid #130c49;
-    color: #130c49;
-    transition: all 1s ease-out;
-  }
-
-  .buttonOutline:hover {
-    border-radius: 0.3125rem;
-    outline: 1px solid #130c49;
-    background: rgb(97 189 115);
-    color: #130c49;
-  }
+  padding: clamp(5rem, 8vw, 8rem) 0;
 }
 
-p {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-}
 .box {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  max-width: 820px;
+  margin: 0 auto;
   text-align: center;
 
   h1 {
-    color: #130c49;
-    text-align: center;
-    font-family: Plus Jakarta Sans;
-    font-size: 3.375rem;
-    font-style: normal;
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-size: clamp(3rem, 6vw, 4.5rem);
     font-weight: 700;
-    line-height: 120%; /* 4.05rem */
+    line-height: 105%;
+    letter-spacing: -0.06em;
+    margin: 0 0 1.5rem;
+  }
+}
+
+.headerBox {
+  max-width: 720px;
+  margin: 0 auto;
+
+  p {
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 1.05rem;
+    line-height: 175%;
+    margin-bottom: 1.5rem;
   }
 
-  .headerBox {
-    width: 50%;
-    @media screen and (max-width: 900px) {
-      width: 100%;
+  a {
+    color: #43e2c5;
+    text-decoration: none;
+
+    &:hover {
+      color: #6be38c;
     }
   }
 }
 
-.buttonOutline {
-  border-radius: 0.3125rem;
-  border: 1px solid #130c49;
-  background: #f4f4f4;
-  padding: 9px;
-  color: #130c49;
-  text-align: center;
-  font-family: Inter;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 157.33%;
-  transition: all 1s ease-out;
-}
-.buttonOutline:hover {
-  border-radius: 0.3125rem;
-  outline: 1px solid #130c49;
-  background: rgb(15, 0, 50);
-  color: #fff;
-  font-weight: 400;
-}
+.buttons {
+  margin-top: 2.5rem;
 
-.buttonsContainer {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 30px;
-  padding: 20px 0px 10px;
+}
+
+.buttonGradient {
+  min-height: 54px;
+  padding: 0 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.85rem;
+  text-decoration: none !important;
+  background: #6be38c;
+  color: #111111 !important;
+  font-family: Inter, sans-serif;
+  font-weight: 700;
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+
+  &:hover {
+    background: #7ceb9a;
+    color: #111111 !important;
+    transform: translateY(-2px);
+  }
 }

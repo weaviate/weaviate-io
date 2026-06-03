@@ -1,85 +1,133 @@
-.header {
-  color: var(--ifm-link-color);
+.headerSecurity {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(17, 17, 17, 0.94) 0%,
+      rgba(17, 17, 17, 0.78) 48%,
+      rgba(17, 17, 17, 0.28) 100%
+    ),
+    url("/img/site/2026/weaviate-home-26-1280.jpg"), #111111;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  padding: clamp(72px, 9vw, 120px) 0;
+
+  z-index: 0;
 }
-p {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  margin: 0;
+
+.headerSecurity :global(.container) {
+  position: relative;
+  z-index: 1;
 }
+
 .box {
-  text-align: center;
-  margin: auto;
-  width: 85%;
-  margin-top: 2rem;
+  max-width: 760px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  text-align: left;
 
   h1 {
-    color: #130c49;
-    text-align: center;
-    font-family: Plus Jakarta Sans;
-    font-size: 3.375rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 120%;
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-weight: 700 !important;
+    line-height: 105% !important;
+    letter-spacing: -0.06em;
+    margin: 0 0 1rem;
   }
 
   h3 {
-    color: #130c49;
-    text-align: center;
-    font-family: Plus Jakarta Sans;
-    font-size: 1.25rem;
-    font-style: normal;
-    font-weight: 800;
-    line-height: 157.33%; /* 1.96663rem */
+    color: #43e2c5 !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 1rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.08em;
+    line-height: 140%;
+    text-transform: uppercase;
+    margin: 0 0 1rem;
   }
 }
 
-.textGradient {
-  background: -webkit-linear-gradient(45deg, #20e220 60%, #ffff00);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.topText {
+  color: #43e2c5 !important;
+  font-family: Inter, sans-serif !important;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+}
 
-  font-size: 3rem;
+.headerBox {
+  width: 100%;
+  max-width: 640px;
+
+  p {
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+    line-height: 165%;
+    margin: 0;
+  }
 }
 
 .buttons {
-  margin-top: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
+  margin-top: 2.25rem;
 
-  @media screen and (max-width: 860px) {
-    flex-direction: column;
-  }
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
 
   a {
-    height: 45px;
-    width: 280px;
-    display: flex;
+    min-height: 52px;
+    padding: 0 24px;
+
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    text-decoration: none;
+
+    border-radius: 0.85rem;
+    text-decoration: none !important;
+
+    font-family: Inter, sans-serif !important;
+    font-weight: 700 !important;
+
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      border-color 0.25s ease,
+      background 0.25s ease;
   }
 }
 
-.buttonGradient,
-.buttonGradient:hover {
-  border-radius: 0.3125rem;
-  color: #ffffff;
-  background: #130c49;
+.buttonGradient {
+  background: #6be38c;
+  color: #111111 !important;
+  border: 1px solid rgba(107, 227, 140, 0.8);
 
-  flex-shrink: 0;
-  font-weight: 600;
+  &:hover {
+    transform: translateY(-2px);
+    background: #7ceb9a;
+    color: #111111 !important;
+  }
 }
 
-.buttonOutline,
-.buttonOutline:hover {
-  border-radius: 0.3125rem;
-  color: #130c49;
-  background: #fff;
+.buttonOutline {
+  background: rgba(255, 255, 255, 0.04);
+  color: #ddebf2 !important;
+  border: 1px solid rgba(255, 255, 255, 0.16);
 
-  flex-shrink: 0;
-  font-weight: 600;
+  &:hover {
+    transform: translateY(-2px);
+    color: #43e2c5 !important;
+    border-color: rgba(67, 226, 197, 0.32);
+    background: rgba(67, 226, 197, 0.08);
+  }
 }

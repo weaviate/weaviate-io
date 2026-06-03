@@ -1,12 +1,12 @@
-[data-theme='light'] {
+[data-theme="light"] {
   .logo {
-    background-image: url('/img/site/weaviate-logo-light.png');
+    background-image: url("/img/site/weaviate-logo-light.png");
     height: 100px;
   }
 }
 
 .contactBackground {
-  background: #130c49;
+  background: #111111;
 }
 
 .contactContainer {
@@ -82,7 +82,7 @@
     font-style: normal;
     font-weight: 400;
     line-height: 157.33%;
-    font-family: 'Inter';
+    font-family: "Inter";
   }
 
   button {
@@ -110,7 +110,7 @@
   height: 200px;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url('/img/site/weaviate-logo-dark.png');
+  background-image: url("/img/site/weaviate-logo-dark.png");
 }
 
 .title {
@@ -124,7 +124,7 @@
   }
 }
 
-[data-theme='light'] {
+[data-theme="light"] {
   .links {
     .color {
       color: --ifm-link-color;

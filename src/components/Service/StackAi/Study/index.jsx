@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './styles.module.scss';
-import Link from '@docusaurus/Link';
+import React from "react";
+import styles from "./styles.module.scss";
+import Link from "@docusaurus/Link";
 
 export default function Study() {
   return (
@@ -26,22 +26,21 @@ export default function Study() {
               access to the latest AI models, embeddings, external applications,
               and advanced querying capabilities. The challenge lies in
               delivering these features rapidly while maintaining performance
-              and reliability.{' '}
+              and reliability.{" "}
             </p>
             <p>
               <strong>
-                {' '}
                 "Business is moving at the speed of light. If you don't add
                 features as soon as possible, competitors will add them,"
-              </strong>{' '}
-              explains Antoni Rosinol,<br></br> CEO and Co-founder of Stack AI.
-            </p>{' '}
+              </strong>{" "}
+              explains Antoni Rosinol, CEO and Co-founder of Stack AI.
+            </p>{" "}
             <p>
               As the Stack AI team evaluated which datastore they would use,
               several key requirements came up. They wanted a reliable and
               fully-featured vector database, not a solution that had vector
               search bolted on like MongoDB or Postgres with pgvector.
-            </p>{' '}
+            </p>{" "}
             <p>
               This also meant that they required top-tier performance and
               accuracy in vector search while maintaining reasonable costs for
@@ -72,12 +71,12 @@ export default function Study() {
                 Cost-effective pricing structure that grows with the company.
               </li>
               <li>
-                {' '}
+                {" "}
                 Flexible deployment capabilities for security and compliance.
-              </li>{' '}
+              </li>{" "}
               <li>
                 Ease of use with thoughtfully designed developer experience.
-              </li>{' '}
+              </li>{" "}
               <li>
                 Responsive support team helping Stack AI to quickly implement
                 new features.

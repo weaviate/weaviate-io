@@ -1,21 +1,21 @@
 ---
-title: 'Text Analysis for Hybrid Search: Tokenization, Stopwords & Accent Folding'
+title: "Text Analysis for Hybrid Search: Tokenization, Stopwords & Accent Folding"
 slug: tokenization-text-analysis-weaviate
 authors: [andre, ivan]
 date: 2026-05-14
-tags: ['concepts', 'engineering', 'search', 'tokenization']
+tags: ["concepts", "engineering", "search", "tokenization"]
 image: ./img/hero.png
 description: "Tokenization makes or breaks hybrid search. See how Weaviate's accent folding, custom stopwords, and /v1/tokenize endpoint power multilingual BM25."
 faq:
-  - question: 'Does Weaviate support custom tokenizers?'
-    answer: 'Yes - built-in methods (word, lowercase, whitespace, field, trigram) plus opt-in language-specific tokenizers (gse, gse_ch, kagome_ja, kagome_kr) enabled via environment variables. Custom user-defined tokenizers are not currently exposed; the focus is a small set of well-tuned options plus a flexible textAnalyzer config layer (accent folding, stopword presets).'
-  - question: 'How do I configure stopwords per language in a vector database?'
-    answer: 'Define named presets in invertedIndexConfig.stopwordPresets — each preset is a flat list of words. Reference them per property via textAnalyzer.stopwordPreset (only supported on properties with `word` tokenization). For additions/removals on top of a built-in, use the legacy invertedIndexConfig.stopwords field instead — stopwordPresets only accepts flat word lists.'
+  - question: "Does Weaviate support custom tokenizers?"
+    answer: "Yes - built-in methods (word, lowercase, whitespace, field, trigram) plus opt-in language-specific tokenizers (gse, gse_ch, kagome_ja, kagome_kr) enabled via environment variables. Custom user-defined tokenizers are not currently exposed; the focus is a small set of well-tuned options plus a flexible textAnalyzer config layer (accent folding, stopword presets)."
+  - question: "How do I configure stopwords per language in a vector database?"
+    answer: "Define named presets in invertedIndexConfig.stopwordPresets — each preset is a flat list of words. Reference them per property via textAnalyzer.stopwordPreset (only supported on properties with `word` tokenization). For additions/removals on top of a built-in, use the legacy invertedIndexConfig.stopwords field instead — stopwordPresets only accepts flat word lists."
   - question: "What's the difference between word and whitespace tokenization?"
-    answer: 'word lower-cases tokens and strips most punctuation — the right default for prose. whitespace only splits on whitespace, preserving case and punctuation — the right choice for case-sensitive entity names or symbol-bearing identifiers.'
-  - question: 'Can I change tokenization without reindexing?'
+    answer: "word lower-cases tokens and strips most punctuation — the right default for prose. whitespace only splits on whitespace, preserving case and punctuation — the right choice for case-sensitive entity names or symbol-bearing identifiers."
+  - question: "Can I change tokenization without reindexing?"
     answer: "Stopword changes apply immediately because stopwords are filtered at query time, not at index time. Tokenizer-level changes (e.g., switching from word to whitespace) and asciiFoldIgnore changes affect what's written to disk and so require reindexing."
-  - question: 'How do I debug tokenization in Weaviate?'
+  - question: "How do I debug tokenization in Weaviate?"
     answer: "Call POST /v1/tokenize with your text and analyzer config, or POST /v1/schema/{className}/properties/{propertyName}/tokenize to apply a real property's config. The response separates indexed and query tokens so you can see exactly what BM25 will score."
 ---
 
@@ -43,7 +43,7 @@ BM25 doesn't operate on text. It operates on **tokens**, the discrete units the 
 
 This is why a great embedding model on top of a careless tokenizer often loses to pure-vector search. So `BM25 vs semantic search` isn't really the question. They answer different things, and hybrid search is supposed to combine them. The real question is whether your tokens make BM25 useful at all. The tokenizer is the entry point to the [inverted index](https://docs.weaviate.io/weaviate/concepts/indexing/inverted-index), and it sets the ceiling for keyword recall.
 
-Whether you're building hybrid search for RAG, classic keyword search, or a multilingual catalog, the analyzer is the part that decides what BM25 can score. If you're new to hybrid retrieval mechanics, our earlier post on [hybrid search fusion](/blog/hybrid-search-fusion) walks through the scoring math. This post focuses on the analyzer that feeds it.
+Whether you're building hybrid search for RAG, classic keyword search, or a multilingual catalog, the analyzer is the part that decides what BM25 can score. If you're new to hybrid retrieval mechanics, our earlier post on [hybrid search fusion](/blog/hybrid-search-fusion-algorithms) walks through the scoring math. This post focuses on the analyzer that feeds it.
 
 ## Tokenization methods
 
@@ -192,7 +192,7 @@ Search the `name_fr` property for `"la tasse bleue et le bol"` and the analyzer 
 
 Second, you can override the stopword behavior **per property** via `textAnalyzer.stopwordPreset`. So in a single collection, `description_en` can use English stopwords, `description_fr` can use a French preset, and `brand_name` can use `none`, all sharing the same hybrid query path.
 
-One constraint to know about: `textAnalyzer.stopwordPreset` is only honoured on properties with `word` tokenization. 
+One constraint to know about: `textAnalyzer.stopwordPreset` is only honoured on properties with `word` tokenization.
 
 **Stopwords are still indexed.** They're only filtered at _query_ time. That means changing a stopword preset takes effect immediately on the next query, with no reindex.
 
@@ -290,6 +290,6 @@ To go deeper:
 - The [`/v1/tokenize` reference](https://docs.weaviate.io/weaviate/api/rest#tag/tokenize/POST/tokenize)
 - Related blog posts: [Hybrid search explained](/blog/hybrid-search-explained) and [Searching in non-English languages](/blog/weaviate-non-english-languages)
 
-import WhatsNext from '/_includes/what-next.mdx';
+import WhatsNext from "/_includes/what-next.mdx";
 
 <WhatsNext />

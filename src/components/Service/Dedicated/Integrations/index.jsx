@@ -1,8 +1,5 @@
 import React from "react";
-import { ButtonContainer } from "../../../../theme/Buttons";
 import styles from "./styles.module.scss";
-import { LinkButton } from "/src/theme/Buttons";
-import Link from "@docusaurus/Link";
 
 export default function Integrations() {
   return (
@@ -15,6 +12,7 @@ export default function Integrations() {
             <div className={styles.imageGrid3}> </div>
           </div>
           <div className={styles.right}>
+            <span className={styles.eyebrow}>Dedicated cloud</span>
             <h2>
               Our team of experts will manage everything for you in a dedicated
               instance in Weaviate Cloud.
@@ -25,7 +23,7 @@ export default function Integrations() {
             </p>
             <div className={styles.iconsContainer}>
               <div className={`${styles.iconText} ${styles.contact}`}>
-                <a href="#contact-sales">Get in touch</a>
+                <a href="/contact">Get in touch</a>
               </div>
               <div className={`${styles.iconText} ${styles.services}`}>
                 <a href="/pricing">Check our Pricing</a>

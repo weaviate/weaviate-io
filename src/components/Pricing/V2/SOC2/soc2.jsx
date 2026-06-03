@@ -1,69 +1,53 @@
-import React from 'react';
-import styles from './styles.module.scss';
+import React from "react";
+import styles from "./styles.module.scss";
 
-export default function SecurityCompliance({ theme = 'dark' }) {
-  const drataLogo =
-    theme === 'dark'
-      ? '/img/site/drata-dark-logo.svg'
-      : '/img/site/drata-logo.svg';
-
+function TrustCard({ badge, title, text, link }) {
   return (
-    <section className={styles.section} aria-labelledby="soc2-hipaa-heading">
+    <article className={styles.card}>
+      <div className={styles.badge}>{badge}</div>
+
+      <div className={styles.content}>
+        <h3>{title}</h3>
+
+        <p>
+          {text}
+
+          {link && (
+            <>
+              {" "}
+              <a href={link.href}>{link.label}</a>
+            </>
+          )}
+        </p>
+      </div>
+    </article>
+  );
+}
+
+export default function SecurityCompliance() {
+  return (
+    <section className={styles.section} aria-labelledby="trust-heading">
       <div className="container">
-        <div className={styles.groups}>
-          {/* SOC 2 + Drata */}
-          <div className={styles.group}>
-            <article className={styles.copy}>
-              <h2 id="soc2-hipaa-heading">SOC 2 Report</h2>
-              <p>
-                We work with an independent auditor to maintain a SOC 2 report,
-                which objectively certifies our controls to ensure the
-                continuous security, availability, confidentiality, and
-                integrity of our customers&apos; data.
-              </p>
-            </article>
+        <div className={styles.header}>
+          <h2 id="trust-heading">Built for trust</h2>
+        </div>
 
-            <aside className={`${styles.mediaPane} ${styles.mediaSoc}`}>
-              <img
-                className={styles.logoSoc}
-                src="/img/site/soc2-logo.svg"
-                alt="SOC 2 automated by Drata badge"
-                loading="lazy"
-                decoding="async"
-              />
-              <img
-                className={styles.logoDrata}
-                src={drataLogo}
-                alt="Drata"
-                loading="lazy"
-                decoding="async"
-              />
-            </aside>
-          </div>
+        <div className={styles.grid}>
+          <TrustCard
+            badge="SOC2"
+            title="SOC 2 Type II"
+            text="Independently audited via Drata. See our"
+            link={{
+              href: "https://trust.weaviate.io/",
+              label: "Trust Portal.",
+            }}
+          />
 
-          {/* HIPAA */}
-          <div className={styles.group}>
-            <article className={styles.copy}>
-              <h2>HIPAA Compliance</h2>
-              <p>
-                Our Enterprise Cloud on AWS environments meet HIPAA
-                requirements, enabling the secure storage, handling, and
-                processing of Protected Health Information (PHI). Support for
-                Azure and GCP deployments is actively in development and will be
-                available soon.
-              </p>
-            </article>
-
-            <aside className={`${styles.mediaPane} ${styles.mediaHipaa}`}>
-              <img
-                className={styles.logoHipaa}
-                src="/img/site/HIPAA-logo.png"
-                alt="HIPAA Compliant badge"
-                loading="lazy"
-                decoding="async"
-              />
-            </aside>
-          </div>
+          <TrustCard
+            badge="HIPAA"
+            title="HIPAA compliant"
+            text="Available on Enterprise Cloud (AWS) for regulated healthcare workloads."
+          />
         </div>
       </div>
     </section>
