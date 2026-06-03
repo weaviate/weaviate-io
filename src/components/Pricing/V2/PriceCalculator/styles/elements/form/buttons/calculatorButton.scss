@@ -1,0 +1,76 @@
+/* styles/elements/form/buttons/calculatorButton.scss */
+@use "../../../variables" as v;
+
+@mixin calculatorButton() {
+  .calculatorButton {
+    display: flex;
+    width: 100%;
+    min-width: 80px;
+    height: 44px;
+    text-transform: capitalize;
+    font-weight: 700;
+    overflow: hidden;
+    font-size: 1.1em;
+    padding: 2px 0px; // Keep the button accesible in size.
+
+    &.dropdown {
+      font-size: 0.9em;
+
+      > div {
+        background-color: v.$calcField;
+        align-items: flex-start;
+        background-image: url("/img/pricing/chevronDown.svg");
+        background-repeat: no-repeat;
+        background-position: calc(100% - 20px) center;
+        color: v.$calcText;
+        border-color: v.$calcBorder;
+      }
+    }
+
+    > div {
+      height: 100%;
+      padding: 0 v.$space;
+      border: 1px solid v.$calcBorder;
+      border-radius: calc(v.$space / 2);
+      background-color: transparent;
+      color: v.$calcMuted;
+      display: flex;
+      font-weight: 600;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      transition: v.$transition;
+    }
+
+    &.active {
+      > div {
+        background: v.$calcPill;
+        color: #111111;
+        border-color: v.$calcPillBorder;
+        box-shadow: 0 0 0 1px v.$calcPillBorder;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      > div {
+        background-color: rgba(255, 255, 255, 0.08);
+        color: v.$calcText;
+      }
+
+      &.active {
+        > div {
+          background: v.$calcPill;
+          color: #111111;
+        }
+      }
+
+      &.dropdown {
+        > div {
+          border-color: v.$calcBorder;
+          color: v.$calcText;
+        }
+      }
+    }
+  }
+}

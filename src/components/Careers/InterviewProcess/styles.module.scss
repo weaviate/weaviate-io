@@ -1,108 +1,185 @@
+.interviewProcess {
+  background: #111111;
+}
+
 .title {
   text-align: center;
-  padding: 1rem 0 2rem 0;
+  padding: clamp(4rem, 8vw, 7rem) 0 clamp(2rem, 4vw, 3rem);
+
+  h2 {
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-weight: 700 !important;
+    line-height: 110%;
+    letter-spacing: -0.05em;
+    margin: 0;
+  }
 }
 
 .box {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+
+  @media screen and (max-width: 980px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .card {
+  position: relative;
+  overflow: hidden;
+
+  min-height: 420px;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
 
-  width: 34rem;
-  height: 27rem;
-  background-color: #141f39;
-  margin: 1rem;
-  padding: 2rem;
+  border-radius: 1.5rem;
 
-  border-radius: 0.4375rem;
-  background: #fff;
-  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+  background: linear-gradient(
+    145deg,
+    rgba(24, 28, 38, 0.96),
+    rgba(14, 18, 28, 0.98)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: radial-gradient(
+      circle at top left,
+      rgba(67, 226, 197, 0.11),
+      transparent 36%
+    );
+
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba(67, 226, 197, 0.24);
+    box-shadow:
+      0 32px 90px rgba(0, 0, 0, 0.36),
+      0 0 40px rgba(67, 226, 197, 0.08);
+  }
 
   @media screen and (max-width: 600px) {
-    height: auto;
-    width: 100%;
+    min-height: auto;
   }
+}
+
+.cardHeader,
+.contentDiv,
+.cardFooter {
+  position: relative;
+  z-index: 1;
 }
 
 .cardHeader {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: auto 1fr;
+  gap: 1.25rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
 
-  .cardHeaderLeft {
-    margin: auto;
-  }
+.cardHeaderLeft {
+  margin: 0;
+}
 
-  .cardHeaderRight {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
+.cardHeaderRight {
+  display: flex;
+  align-items: center;
+}
 
-  .iconHeader {
-    height: 5rem;
-    width: 5rem;
-  }
+.cardTextColor {
+  color: #43e2c5 !important;
+  font-family: Inter, sans-serif !important;
+  font-size: 0.8rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em;
+  line-height: 140%;
+  text-transform: uppercase;
+  margin: 0;
 
-  .cardTextColor {
-    color: #02fe0c;
-    height: 5rem;
-
-    @media screen and (max-width: 600px) {
-      margin-left: 1rem;
-    }
-  }
-
-  @media screen and (max-width: 600px) {
-    margin-bottom: 1.3rem;
+  h3 {
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-size: clamp(1.15rem, 2vw, 1.45rem) !important;
+    font-weight: 700 !important;
+    line-height: 125%;
+    letter-spacing: -0.03em;
+    margin: 0.25rem 0 0;
   }
 }
 
 .contentDiv {
-  height: 100%;
-  margin-top: 0.5rem;
+  flex: 1;
+  margin-top: 0;
 }
 
 .textCardContent {
-  line-height: 1.6rem;
-  font-size: 17px;
+  color: #b9c8de !important;
+  font-family: Inter, sans-serif !important;
+  font-size: 1rem;
+  line-height: 165%;
+  margin: 0;
+
+  h3 {
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-size: clamp(1.25rem, 2vw, 1.6rem);
+    font-weight: 700;
+    line-height: 125%;
+    letter-spacing: -0.03em;
+    margin: 0 0 0.75rem;
+  }
 }
 
 .cardFooter {
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
   align-items: center;
 
-  padding: 2rem 0;
+  margin-top: 2rem;
+  padding-top: 1.25rem;
 
-  .cardFooterDiv {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-
-    p {
-      font-size: 16px;
-    }
-
-    @media screen and (max-width: 600px) {
-      margin-bottom: 0.7rem;
-    }
-  }
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 
   @media screen and (max-width: 600px) {
     flex-direction: column;
-    justify-content: flex-start;
     align-items: flex-start;
+  }
+}
 
-    padding: 1rem 0 0 0;
+.cardFooterDiv {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  p {
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 0.875rem !important;
+    line-height: 140%;
+    margin: 0;
   }
 }
 
@@ -110,130 +187,70 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-
-  // background-color: red;
+  filter: brightness(1.08);
 }
 
 .startImg {
-  background-image: url('../../../../static/img/company/careers/star-dark.png');
-  width: 2rem;
-  height: 2rem;
-
-  margin-right: 0.5rem;
+  background-image: url("../../../../static/img/company/careers/star-dark.png");
+  width: 1.6rem;
+  height: 1.6rem;
 }
 
 .clockSmallImg {
-  background-image: url('../../../../static/img/company/careers/clock-small-dark.png');
-  width: 2rem;
-  height: 2rem;
-
-  margin-right: 0.5rem;
+  background-image: url("../../../../static/img/company/careers/clock-small-dark.png");
+  width: 1.6rem;
+  height: 1.6rem;
 }
 
 .chatImg {
-  background-image: url('../../../../static/img/company/careers/chat-dark.png');
-  width: 5rem;
-  height: 5rem;
-
-  @media screen and (max-width: 600px) {
-    width: 4rem;
-    height: 4rem;
-  }
+  background-image: url("../../../../static/img/company/careers/chat-dark.png");
+  width: 4.5rem;
+  height: 4.5rem;
 }
 
 .facesImg {
-  background-image: url('../../../../static/img/company/careers/faces-dark.png');
-  width: 5rem;
-  height: 5rem;
+  background-image: url("../../../../static/img/company/careers/faces-dark.png");
+  width: 4.5rem;
+  height: 4.5rem;
 }
 
 .checkImg {
-  background-image: url('../../../../static/img/company/careers/check-dark.png');
-  width: 5rem;
-  height: 5rem;
+  background-image: url("../../../../static/img/company/careers/check-dark.png");
+  width: 4.5rem;
+  height: 4.5rem;
 }
 
 .heartImg {
-  background-image: url('../../../../static/img/company/careers/heart-dark.png');
-  width: 5rem;
-  height: 5rem;
+  background-image: url("../../../../static/img/company/careers/heart-dark.png");
+  width: 4.5rem;
+  height: 4.5rem;
 }
+
 .bigHeartImg {
-  background-image: url('../../../../static/img/company/careers/magnifying-glass.png');
-  width: 10rem;
-  height: 7rem;
-}
-[data-theme='light'] {
-  .title {
-    p {
-      color: #1c1468;
-    }
-
-    h2 {
-      color: #1c1468;
-    }
-  }
-
-  .card {
-    background-color: #fff;
-  }
-
-  .cardTextColor {
-    color: #00c342;
-
-    h3 {
-      color: rgba(46, 49, 143);
-    }
-  }
-
-  .startImg {
-    background-image: url('../../../../static/img/company/careers/star-light.png');
-  }
-
-  .clockSmallImg {
-    background-image: url('../../../../static/img/company/careers/clock-small-light.png');
-  }
-
-  .chatImg {
-    background-image: url('../../../../static/img/company/careers/chat-light.png');
-  }
-
-  .facesImg {
-    background-image: url('../../../../static/img/company/careers/faces-light.png');
-  }
-
-  .checkImg {
-    background-image: url('../../../../static/img/company/careers/check-light.png');
-  }
-
-  .heartImg {
-    background-image: url('../../../../static/img/company/careers/heart-light.png');
-  }
+  background-image: url("../../../../static/img/company/careers/magnifying-glass.png");
+  width: 7rem;
+  height: 5rem;
 }
 
 .longCard {
-  width: 92%;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  height: 175px;
-  gap: 20px;
+  grid-column: 1 / -1;
 
-  .cTextColor {
-    color: rgba(46, 49, 143);
-  }
-  @media screen and (max-width: 1000px) {
-    height: auto;
-    min-height: 205px;
-    width: 100%;
-  }
+  min-height: 220px;
 
-  @media screen and (max-width: 500px) {
-    display: flex;
-    flex-direction: column;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 2rem;
+
+  @media screen and (max-width: 700px) {
+    grid-template-columns: 1fr;
   }
 }
 
 .longHead {
-  grid-template-columns: 1fr;
+  display: block;
+}
+
+.cTextColor {
+  color: #ddebf2 !important;
 }

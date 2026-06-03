@@ -1,14 +1,13 @@
-import React from 'react';
-import { ButtonContainer } from '../../../../theme/Buttons';
-import styles from './styles.module.scss';
-import { LinkButton } from '/src/theme/Buttons';
-import Link from '@docusaurus/Link';
+import React from "react";
+import styles from "./styles.module.scss";
+import Link from "@docusaurus/Link";
 
 export default function Integrations() {
   return (
     <div className={styles.integrationsSection}>
       <div className="container">
         <div className={styles.header}>
+          <span className={styles.eyebrow}>Developer resources</span>
           <h2>Vector Database Courses & Training</h2>
           <p>
             We've built these courses to help you build amazing things with

@@ -1,126 +1,128 @@
-.pricingHeader {
-  color: #130c49;
-  text-align: center;
-  font-family: Plus Jakarta Sans;
-  font-size: 2.5rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 120%; /* 3rem */
-  @media screen and (max-width: 680px) {
-    text-align: left;
-  }
-}
-.pricingButton {
-  border-radius: 0.3125rem;
-  border: 1px solid #130e46;
-  background: #61bd73;
-  padding: 9px;
-  color: #130c49;
-  margin-right: 10px;
-  font-weight: 400;
-  transition: all 1s ease-out;
-}
-.pricingButton:hover {
-  border-radius: 0.3125rem;
-  border: 1px solid #ffffff;
-  background: rgb(15, 0, 50);
-  color: #fff;
-  font-weight: 400;
-}
-.boardButton {
-  padding: 9px;
-  margin: 10px;
-  border-radius: 0.3125rem;
-  border: 1px solid #ffffff;
-  background: rgb(15, 0, 50);
-  color: #fff;
-  font-weight: 400;
-  transition: all 1s ease-out;
-}
-.boardButton:hover {
-  border-radius: 0.3125rem;
-  border: 1px solid #ffffff;
-  background: rgb(15, 0, 50);
-  color: #fff;
-  font-weight: 400;
-}
-
-.test {
-  font-size: 1.5rem;
-  font-weight: bolder;
-}
-
-.header {
-  color: var(--ifm-link-color);
-}
-p {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  margin: 0;
-}
-.box {
-  text-align: left;
-  color: white;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: center;
-  align-items: flex-end;
-  gap: 40px;
-  justify-content: center;
-
-  h3 {
-    color: #130c49;
-  }
-
-  @media screen and (max-width: 680px) {
-    text-align: left;
-    margin: auto;
-    width: auto;
-    color: #130c49;
-  }
-}
-
-.opacity {
-  opacity: 35%;
-}
-
-.investorLogos {
-  flex: 1 15%;
-
-  @media screen and (max-width: 780px) {
-    flex-direction: column;
-    gap: 20px;
-    display: none;
-  }
-}
-
 .investorsContainer {
-  background: #130e46;
+  position: relative;
+  overflow: hidden;
+  background: #111111;
+  padding: clamp(4rem, 8vw, 7rem) 0;
+}
+
+.box {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+
+  @media screen and (max-width: 980px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .investorBox {
-  flex: 1;
-
   h2 {
-    color: white;
+    color: #ddebf2 !important;
+
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 110%;
+    letter-spacing: -0.05em;
+
+    margin-bottom: 1.5rem;
   }
 
   p {
-    margin-bottom: 20px;
-    color: white;
+    font-family: Inter, sans-serif !important;
+    font-size: 1rem;
+    line-height: 170%;
+
+    margin-bottom: 1.25rem;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  strong {
+    color: #ddebf2;
   }
 }
 
 .investorButton {
-  margin-top: 25px;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  margin-top: 2rem;
+}
+
+.pricingButton,
+.boardButton {
+  min-height: 52px;
+
+  padding: 0 1.5rem;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 0.85rem;
+
+  font-family: Inter, sans-serif;
+  font-weight: 700;
+
+  text-decoration: none !important;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.pricingButton {
+  background: #e8eef5;
+  color: #171717 !important;
+  border: none;
+
+  &:hover {
+    background: #ffffff;
+  }
+}
+
+.boardButton {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ddebf2 !important;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+}
+
+.investorLogos {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: 980px) {
+    display: none;
+  }
 }
 
 .investorDiagram {
-  background: url('/img/site/investors-diagram.png');
-  background-size: 100%;
-  background-repeat: no-repeat;
   width: 100%;
-  height: auto;
-  min-height: 400px;
+  min-height: 420px;
+  background: url("/img/site/investors-diagram.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.92;
 }

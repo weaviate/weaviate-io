@@ -1,0 +1,117 @@
+.section {
+  background: #111111;
+  padding: clamp(1rem, 8vw, 1rem) 0;
+}
+
+.header {
+  max-width: 760px;
+  margin: 0 auto clamp(2.5rem, 5vw, 4rem);
+  text-align: center;
+
+  p {
+    margin: 0 0 0.75rem;
+    color: #b9c8de;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-weight: 700 !important;
+    line-height: 115% !important;
+    letter-spacing: -0.045em;
+    margin: 0;
+  }
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+
+  @media screen and (max-width: 1100px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media screen and (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.step {
+  position: relative;
+  overflow: hidden;
+
+  min-height: 220px;
+  padding: 2rem;
+
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(0, 254, 107, 0.07), transparent 36%),
+    #1a1a1a;
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  box-shadow:
+    0 22px 70px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 254, 107, 0.22);
+    box-shadow:
+      0 28px 80px rgba(0, 0, 0, 0.28),
+      0 0 40px rgba(0, 254, 107, 0.06);
+  }
+
+  h3 {
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    line-height: 130% !important;
+    letter-spacing: -0.03em;
+    margin: 1.75rem 0 0.75rem;
+  }
+
+  p {
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 1rem !important;
+    line-height: 165% !important;
+    margin: 0;
+  }
+
+  code {
+    color: #43e2c5;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    font-size: 0.95em;
+  }
+}
+
+.number {
+  width: 42px;
+  height: 42px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 12px;
+  background: rgba(0, 254, 107, 0.12);
+
+  color: #00fe6b;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+}

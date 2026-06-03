@@ -10,7 +10,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 ### **COMMERCIAL TERMS OF SERVICE**
 
-**Last Updated: November, 2025**
+**Last Updated: May 2026**
 
 ---
 
@@ -158,6 +158,8 @@ UNDER NO LEGAL THEORY, WHETHER IN TORT, CONTRACT, OR OTHERWISE, WILL EITHER PART
 
    “**_Force Majeure Event_**” is an event beyond the reasonable control of a party, including earthquake, flood, or other natural disaster, act of God, labor controversy, civil disturbance, terrorism, war (whether or not officially declared), cyber-attacks (e.g. denial of service attacks) or the inability to obtain sufficient supplies, transportation or other essential commodity or service required in the conduct of its business, or any change in or the adoption of any law, regulation, judgment or decree.
 
+   “**_Free Services_**” means collectively the no-fee tiers of the Weaviate Offering made available by Weaviate, including the free tier of the Weaviate hosted database, the free tier of the Weaviate Embeddings service, the free tier of the Engram Service, and any other no-fee tier of the Weaviate Offering that Weaviate may make available.
+   
    “**_Non-Weaviate Product_**” means a third party or Customer web-based, mobile, offline or other software application that integrates with the Weaviate Offering (other than third-party data hosting services used by Weaviate). For clarity, the Weaviate Offering excludes Non-Weaviate Products.
 
    “**_Order Form_**” means an order form or other similar document which defines the specific Weaviate Offering, the permitted number of users, pricing, and the subscription term.
@@ -174,7 +176,7 @@ by Weaviate to Customer.
 
 “**_Weaviate Offering_**” means the Weaviate Product and/or the Weaviate Technical Services.
 
-   “**_Weaviate Product_**” means the Weaviate hosted offering, the Weaviate self-hosted offering, the Client Software, and related Support Services.
+   “**_Weaviate Product_**” means the Weaviate hosted offering, the Engram service, the Weaviate self-hosted offering, the Client Software, and related Support Services.
 
   
 

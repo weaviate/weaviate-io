@@ -16,7 +16,7 @@ import Header from '/src/components/Subprocessors/Header';
 
 <div className ="subprocessors">
 
-**Last Updated: October, 2025**
+**Last Updated: May 2026**
 
 The following subprocessors are authorized by the Data Controller to process data on behalf of the Data Processor.  
 Subprocessors are grouped below based on whether they process **Business Data** (i.e., customer data stored in our application) or **Personal Data** (i.e., information about our customers, such as billing or marketing details).
@@ -24,6 +24,8 @@ Subprocessors are grouped below based on whether they process **Business Data** 
 ---
 
 ### Business Data Subprocessors
+
+#### Weaviate Database
 
 These subprocessors are used to host and operate our core application.
 
@@ -58,6 +60,16 @@ These subprocessors are used **only if customers choose to utilise our Agent ser
 | Infrastructure | Modal | GPU-as-a-Service provider | https://modal.com |
 | Infrastructure | OpenAI | AI feature connectivity | https://openai.com |
 | Infrastructure | Voyage AI | AI feature connectivity | https://voyageai.com |
+
+#### Weaviate Engram
+
+These subprocessors are used to host and operate our core application.
+
+| Category | Subprocessor Name | Subprocessing Activities | Website |
+|-----------|-------------------|---------------------------|----------|
+| Infrastructure | Amazon Web Services | Infrastructure and hosting provider | https://aws.amazon.com |
+| Infrastructure | Amazon Web Services (Amazon Bedrock) | LLM inference for Engram memory extraction, reconciliation, and transformation | https://aws.amazon.com |
+| Infrastructure | Temporal Cloud | Workload orchestration | https://temporal.io |
 
 ---
 

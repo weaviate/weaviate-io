@@ -1,115 +1,129 @@
 .resourceBg {
-  background: #ededed;
+  background: #111111;
+  padding: clamp(4rem, 8vw, 7rem) 0;
 }
 
 .header {
-  margin-bottom: 40px;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
 }
-.info {
-  flex: 1;
-  h3,
-  p {
-    margin-left: 15px;
-  }
+
+.title {
+  color: #ddebf2 !important;
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  font-weight: 700 !important;
+  line-height: 110%;
+  letter-spacing: -0.05em;
+  margin: 0 0 1rem;
+}
+
+.subtitle {
+  color: #b9c8de !important;
+  font-family: Inter, sans-serif !important;
+  font-size: 1rem;
+  line-height: 170%;
+  margin: 0;
 }
 
 .latestModule {
-  overflow-y: hidden;
-  margin: auto;
   display: flex;
-  gap: 90px;
-  justify-content: flex-start;
-  align-items: center;
-
-  flex-direction: row;
+  gap: 28px;
+  overflow-x: auto;
   scroll-snap-type: x mandatory;
-  scroll-padding: 20%;
-  padding: 5px 10px 20px;
-
-  @media screen and (max-width: 900px) {
-    display: flex;
-    gap: 10px;
-    justify-content: flex-start;
-    align-items: center;
-    overflow-x: scroll;
-    flex-direction: row;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 21px;
-    scroll-padding: 20%;
-    padding: 5px 10px 20px;
-  }
+  padding: 5px 10px 24px;
 }
 
 .latestBox {
-  border-radius: 0.9375rem;
-  outline: 1px solid #130c49;
-  background: #fff;
-  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
-  width: 20.0625rem;
-  height: 27rem;
-  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  width: 320px;
+  min-height: 430px;
+  flex: 0 0 320px;
+  border-radius: 1.5rem;
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.22);
   scroll-snap-align: center;
+  transition:
+    transform 0.28s ease,
+    border-color 0.28s ease,
+    box-shadow 0.28s ease;
 
-  .insideBox {
-    border-radius: 0.9375rem 0.9375rem 0rem 0rem;
-    background: #130c49;
-
-    height: 13.125rem;
-    background-image: url('/img/site/insight_image_01.png');
-    background-position: center;
-  }
-
-  .resource1 {
-    background-image: url('/img/site/resources-gcp-1.svg');
-    background-size: 60%;
-    background-position-x: center;
-    background-repeat: no-repeat;
-  }
-  .resource2 {
-    background-image: url('/img/site/resources-gcp-2.png');
-    background-size: cover;
-  }
-  .resource3 {
-    background-image: url('/img/site/resources-gcp-3.png');
-    background-size: cover;
-  }
-
-  .textBox {
-    padding: 21px 17px 30px;
-
-    h3 {
-      color: #130c49;
-      font-weight: 300;
-    }
-
-    p {
-      color: #130c49;
-      font-weight: 600;
-    }
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba(67, 226, 197, 0.28);
+    box-shadow:
+      0 0 0 1px rgba(67, 226, 197, 0.08),
+      0 26px 80px rgba(0, 0, 0, 0.32);
   }
 }
 
-.latestModule::-webkit-scrollbar-thumb:horizontal {
-  background: #000;
-  border-radius: 10px;
+.insideBox {
+  height: 190px;
+  background: #232323;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 1.5rem 1.5rem 0 0;
+}
+
+.resource1 {
+  background-image: url("/img/site/resources-gcp-1.svg");
+  background-size: 60%;
+  background-position-x: center;
+  background-repeat: no-repeat;
+}
+
+.resource2 {
+  background-image: url("/img/site/resources-gcp-2.png");
+}
+
+.resource3 {
+  background-image: url("/img/site/resources-gcp-3.png");
+}
+
+.textBox {
+  padding: 1.5rem;
+
+  h3 {
+    color: #43e2c5 !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 0.78rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em;
+    line-height: 140%;
+    text-transform: uppercase;
+    margin: 0 0 0.75rem;
+  }
+
+  p {
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    line-height: 140% !important;
+    letter-spacing: -0.03em;
+    margin: 0;
+  }
+}
+
+.latestModule a {
+  text-decoration: none !important;
 }
 
 .latestModule::-webkit-scrollbar {
-  background-color: #f5f5f5;
-  height: 14px;
-}
-
-.latestModule::-webkit-scrollbar-thumb {
-  background: #2b3854;
-  margin-bottom: 10px;
-  width: 85px;
-}
-
-.latestModule::-webkit-scrollbar-thumb:hover {
-  background: #b30000;
+  height: 10px;
 }
 
 .latestModule::-webkit-scrollbar-track {
-  border: 1px solid #130c49;
-  border-radius: 8px;
+  background: #151515;
+  border-radius: 999px;
+}
+
+.latestModule::-webkit-scrollbar-thumb {
+  background: rgba(67, 226, 197, 0.35);
+  border-radius: 999px;
+}
+
+.latestModule::-webkit-scrollbar-thumb:hover {
+  background: rgba(67, 226, 197, 0.6);
 }

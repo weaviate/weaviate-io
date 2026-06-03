@@ -4,15 +4,6 @@ import styles from "./styles.module.scss";
 
 const PREVIEWS = [
   {
-    id: "engram",
-    label: "PREVIEW",
-    title: "Engram - Memory and Context Management for Agents",
-    description:
-      "A fully managed API for building agents that remember, learn, and continually improve over time.",
-    graphic: "/img/site/book-rag-graphic.svg",
-    learnMoreHref: "",
-  },
-  {
     id: "model-eval",
     label: "PREVIEW",
     title: "Model Evaluation Tool",
@@ -22,11 +13,11 @@ const PREVIEWS = [
     learnMoreHref: "",
   },
   {
-    id: "hfresh",
+    id: "query-agent-research",
     label: "PREVIEW",
-    title: "HFresh Vector Index",
+    title: "Query Agent Research Mode",
     description:
-      "Deliver high-recall retrieval and dramatically lower memory requirements with innovative indexing algorithm.",
+      "An async agent API for deep research tasks based on data stored in Weaviate Cloud.",
     graphic: "/img/site/book-agentic-graphic.svg",
     learnMoreHref: "",
   },

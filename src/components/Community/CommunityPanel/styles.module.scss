@@ -1,205 +1,198 @@
 .container {
-  padding: 3rem;
-  background: #f5f5f5;
-
-  @media screen and (max-width: 500px) {
-    padding: 3rem 0rem;
-  }
+  background: #111111;
+  padding: clamp(4rem, 8vw, 7rem) 0;
 }
 
 .title {
   text-align: center;
-  padding: 1rem 0 2rem 0;
-  margin: auto;
-  width: 83%;
+  max-width: 820px;
+  margin: 0 auto clamp(2.5rem, 5vw, 4rem);
 
   h2 {
-    color: #130c49;
-    font-size: 2.25rem;
-    font-style: normal;
-    font-weight: 900;
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-weight: 700 !important;
+    line-height: 110%;
+    letter-spacing: -0.05em;
+    margin: 0;
   }
 }
 
 .box {
-  display: flex;
-  flex-flow: wrap;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-  gap: 50px;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+
+  @media screen and (max-width: 850px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .heroGraphic {
-  width: 10.44406rem;
-  height: 7.625rem;
-  flex-shrink: 0;
+  width: 8rem;
+  height: 6rem;
+  background-image: url("../../../../static/img/site/hero-graphic.svg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url('../../../../static/img/site/hero-graphic.svg');
   position: absolute;
-  top: -120px;
-  left: 200%;
-  transform: translateX(-50%);
-
-  @media screen and (max-width: 1700px) {
-    left: 150%;
-  }
-  @media screen and (max-width: 1696px) {
-    left: 70%;
-  }
-
-  @media screen and (max-width: 1145px) {
-    width: 6.44406rem;
-    height: 6.625rem;
-    top: -89px;
-    left: 40%;
-  }
+  top: 24px;
+  right: 24px;
+  opacity: 0.28;
+  pointer-events: none;
 }
 
 .card {
   position: relative;
+  overflow: hidden;
+  min-height: 25rem;
+  padding: clamp(2rem, 4vw, 3rem);
+  border-radius: 2rem;
+
+  background: linear-gradient(
+    180deg,
+    rgba(26, 26, 26, 0.98),
+    rgba(20, 20, 20, 0.98)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
 
-  width: 29.24306rem;
-  height: 25.46663rem;
-  background-color: #141f39;
-  margin: 1rem;
-  padding: 2rem;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 
-  border-radius: 0.67781rem;
-  background: #130c49;
-  box-shadow: 0px 37.183px 99.155px 0px rgba(22, 27, 45, 0.08);
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+      radial-gradient(
+        circle at top left,
+        rgba(0, 254, 107, 0.08),
+        transparent 34%
+      ),
+      linear-gradient(135deg, rgba(0, 254, 107, 0.03), rgba(0, 183, 226, 0.04));
+
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 254, 107, 0.18);
+    box-shadow:
+      0 32px 90px rgba(0, 0, 0, 0.36),
+      0 0 40px rgba(0, 254, 107, 0.05);
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
 
   @media screen and (max-width: 600px) {
-    height: auto;
-    width: 100%;
+    min-height: auto;
   }
 }
 
 .cardHeader {
-  display: grid;
-  gap: 40px;
+  margin-bottom: 1.5rem;
 
   h3 {
-    color: #61bd73;
-    font-family: Inter;
-    font-size: 1.93663rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+    color: #43e2c5 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-size: clamp(1.35rem, 2vw, 1.9rem) !important;
+    font-weight: 700 !important;
+    line-height: 115%;
+    letter-spacing: -0.03em;
+    margin: 0;
   }
 }
 
 .contentDiv {
-  height: 100%;
-  margin-top: 0.5rem;
+  flex: 1;
 }
 
 .textCardContent {
-  color: #fff;
-  font-family: Inter;
-  font-size: 1.162rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 140%; /* 1.62675rem */
+  color: #b9c8de !important;
+  font-family: Inter, sans-serif !important;
+  font-size: 1rem;
+  line-height: 165%;
 
   p {
-    color: #fff;
-    font-family: Inter;
-    font-size: 1.162rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 140%; /* 1.62675rem */
-    margin: 10px 0px;
-  }
-}
-
-.cardFooter {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 2rem 0;
-
-  .cardFooterDiv {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-
-    p {
-      font-size: 16px;
-    }
-
-    @media screen and (max-width: 600px) {
-      margin-bottom: 0.7rem;
-    }
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 1rem;
+    line-height: 165%;
+    margin: 0 0 1rem;
   }
 
-  @media screen and (max-width: 600px) {
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+  ul {
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
 
-    padding: 1rem 0 0 0;
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  li {
+    position: relative;
+    padding-left: 1.35rem;
+    color: #b9c8de;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.65em;
+
+      width: 7px;
+      height: 7px;
+
+      border-radius: 999px;
+      background: #00fe6b;
+      box-shadow: 0 0 12px rgba(0, 254, 107, 0.6);
+    }
   }
 }
 
 .buttons {
-  margin-top: 70px;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 30px;
-
-  @media screen and (max-width: 860px) {
-    flex-direction: column;
-  }
-
-  a {
-    height: 45px;
-    width: 280px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    text-decoration: none;
-  }
 }
 
 .buttonGradient {
-  border-radius: 0.3125rem;
-  outline: 1px solid #130c49;
-  background: #61bd73;
-  color: #130c49;
-  font-weight: 400;
-  transition: all 1s ease-out;
-}
+  min-height: 52px;
+  padding: 0 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background: #e8eef5;
+  color: #171717 !important;
+  text-decoration: none !important;
+  font-family: Inter, sans-serif;
+  font-weight: 700;
 
-.buttonOutline {
-  font-weight: 400;
-  border-radius: 0.3125rem;
-  outline: 1px solid #130c49;
-  color: #130c49;
-  transition: all 1s ease-out;
-}
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
 
-.buttonGradient:hover {
-  border-radius: 0.3125rem;
-  outline: 1px solid #130c49;
-  background: rgb(15, 0, 50);
-  color: #fff;
-  font-weight: 400;
-}
-
-.buttonOutline:hover {
-  border-radius: 0.3125rem;
-  outline: 1px solid #130c49;
-  background: rgb(15, 0, 50);
-  color: #fff;
-  font-weight: 400;
+  &:hover {
+    background: #ffffff;
+    transform: translateY(-2px);
+  }
 }

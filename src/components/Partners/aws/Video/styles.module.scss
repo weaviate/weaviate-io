@@ -1,58 +1,43 @@
-.techBox {
-  border-radius: 0.9375rem;
-  border: 1px solid #130c49;
-  background: #fff;
-  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
-  width: 14.375rem;
-  height: 9.1875rem;
-  flex-shrink: 0;
+.bgColor {
+  background: #111111;
+  padding: clamp(4rem, 8vw, 7rem) 0;
 }
 
 .header {
-  text-align: left;
-  margin: auto;
-  color: #fff;
+  max-width: 860px;
+  margin-bottom: 2rem;
 
   h2 {
-    color: #fff;
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-weight: 700 !important;
+    line-height: 110%;
+    letter-spacing: -0.05em;
+    margin: 0 0 1rem;
   }
-}
 
-.techList {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 30px;
-  margin: 50px 0px;
-  justify-content: space-around;
+  p {
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 1rem;
+    line-height: 170%;
+    margin: 0;
 
-  @media screen and (max-width: 860px) {
-    flex-direction: column;
+    br {
+      display: none;
+    }
   }
 }
 
 .techContainer {
-  margin: auto;
+  max-width: 880px;
 
   iframe {
-    margin: 10px 0px 0px 0px;
-    @media screen and (min-width: 600px) and (max-width: 800px) {
-      width: 100%;
-      height: 320px;
-    }
-    @media screen and (max-width: 600px) {
-      width: 100%;
-      height: 240px;
-    }
-  }
-}
-
-.bgColor {
-  background: #130c49;
-
-  padding: 70px;
-
-  @media screen and (max-width: 860px) {
-    padding: 0px;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    border: 0;
+    border-radius: 1.5rem;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
   }
 }

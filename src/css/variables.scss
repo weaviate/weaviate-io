@@ -4,76 +4,81 @@
 }
 
 //********************* Themed colour variables *********************
-[data-theme='light'] {
-  --site-base-color: #1c1468;
-  --site-base-color-shade: #2c3854;
+[data-theme="light"] {
+  --site-base-color: #edf4ff;
+  --site-base-color-shade: #b9c8de;
 
-  --site-primary: #00a142;
-  --site-primary-dark: #00c342;
-  --site-accent: #fc3988;
-  --site-accent-dark: #fb0b6d;
+  --site-primary: #63e689;
+  --site-primary-dark: #4fd676;
 
-  --site-background: #f5f5f5;
+  --site-accent: #26d6ff;
+  --site-accent-dark: #00b7e2;
 
-  --site-font-main-color: #1c1468;
-  --site-font-header-color: #2c3854;
-  --site-font-accent-color: #00a142;
-  --site-font-link-color: #00a142;
+  --site-background: #111111;
 
-  --docs-base-color: #000000;
-  --docs-header-color: #130c49;
-  --docs-sidebar-bg: #ffffff;
-  --docs-body-bg: #ffffff;
+  --site-font-main-color: #b9c8de;
+  --site-font-header-color: #edf4ff;
+  --site-font-accent-color: #63e689;
+  --site-font-link-color: #63e689;
+
+  --docs-base-color: #b9c8de;
+  --docs-header-color: #edf4ff;
+  --docs-sidebar-bg: #121722;
+  --docs-body-bg: #111111;
 }
-[data-theme='dark'] {
-  --site-base-color: #f7f9fd;
-  --site-base-color-shade: #f5f5f5;
+[data-theme="dark"] {
+  --site-base-color: #edf4ff;
+  --site-base-color-shade: #b9c8de;
 
-  --site-primary: #00c342;
-  --site-primary-dark: #00a142;
-  --site-accent: #fc3988;
-  --site-accent-dark: #fb0b6d;
+  --site-primary: #63e689;
+  --site-primary-dark: #4fd676;
 
-  --site-background: #0c1428;
+  --site-accent: #26d6ff;
+  --site-accent-dark: #00b7e2;
 
-  --site-font-main-color: #c3c5d8;
-  --site-font-header-color: #f7f9fd;
-  --site-font-accent-color: #00c342;
-  --site-font-link-color: #00c342;
+  --site-background: #111111;
 
-  --docs-base-color: #ffffff;
-  --docs-header-color: #dddddd;
-  --docs-sidebar-bg: #000000;
-  --docs-body-bg: #000000;
+  --site-font-main-color: #b9c8de;
+  --site-font-header-color: #edf4ff;
+  --site-font-accent-color: #63e689;
+  --site-font-link-color: #63e689;
+
+  --docs-base-color: #b9c8de;
+  --docs-header-color: #edf4ff;
+  --docs-sidebar-bg: #121722;
+  --docs-body-bg: #111111;
 }
 
 //********************* FONTS *********************
 @font-face {
-  font-family: 'FredokaOneRegular';
-  src: url('/fonts/FredokaOne-Regular.ttf');
+  font-family: "FredokaOneRegular";
+  src: url("/fonts/FredokaOne-Regular.ttf");
 }
 
 @font-face {
-  font-family: 'NiramitRegular';
-  src: url('/fonts/Niramit-Regular.ttf');
+  font-family: "NiramitRegular";
+  src: url("/fonts/Niramit-Regular.ttf");
 }
 
 @font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('/fonts/PlusJakartaSans-Regular.ttf');
+  font-family: "Plus Jakarta Sans";
+  src: url("/fonts/PlusJakartaSans-Regular.ttf");
+  font-display: swap;
 }
 
 @font-face {
-  font-family: 'Inter';
-  src: url('/fonts/Inter-Regular.ttf');
+  font-family: "Inter";
+  src: url("/fonts/Inter-Regular.ttf");
+  font-display: swap;
 }
 
 :root {
-  --site-font-base-family: 'Inter', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji';
-  --site-font-heading-family: 'Plus Jakarta Sans', ui-monospace, SFMono-Regular,
-    SF Mono, Menlo, Consolas, Liberation Mono, monospace;
-  --site-font-fun-heading-family: 'Plus Jakarta Sans';
-  --site-font-fun-base-family: 'Inter';
+  --site-font-base-family:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --site-font-heading-family:
+    "Plus Jakarta Sans", ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
+    Liberation Mono, monospace;
+  --site-font-fun-heading-family: "Plus Jakarta Sans";
+  --site-font-fun-base-family: "Inter";
 }

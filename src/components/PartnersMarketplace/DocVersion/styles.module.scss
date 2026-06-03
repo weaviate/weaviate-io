@@ -5,10 +5,12 @@
 }
 
 .card {
-  border: 1px solid #e0e0e0;
+  border: 1px solid #2a2f3f;
   border-radius: 8px;
   padding: 1rem;
   width: 300px;
+  background-color: #121722;
+  color: #d0d8ea;
 }
 
 .cardImage {
@@ -26,7 +28,8 @@
 
 .cardTag {
   display: inline-block;
-  background-color: #f0f0f0;
+  background-color: #1a2439;
+  color: #63e689;
   padding: 0.25rem 0.5rem;
   margin: 0.25rem 0.25rem 0.25rem 0rem;
   border-radius: 4px;
@@ -36,6 +39,12 @@
   margin-bottom: 1rem;
   padding: 0.5rem;
   width: 100%;
-  border: 1px solid #e0e0e0;
+  color: #d0d8ea;
+  background-color: #0f1520;
+  border: 1px solid #2a2f3f;
   border-radius: 8px;
+}
+
+.searchInput::placeholder {
+  color: #8f9ab3;
 }
