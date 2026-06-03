@@ -25,8 +25,6 @@ Weaviate shall provide the following Support to Customer for the licensed produc
 
 ### **Support Access**
 
-Weaviate provides a ticketing system operated by the Weaviate technical team that brings product expertise. Support tickets can be opened 24x7.
-
 Weaviate provides a ticketing system operated by the Weaviate technical team that brings product expertise. Support tickets can be opened 24x7 by emailing [support@weaviate.io](mailto:support@weaviate.io) as well as through the [customer portal](https://support.weaviate.io/).
 <br></br>
 

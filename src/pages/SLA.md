@@ -18,10 +18,6 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 This Service Level Agreement ("**SLA**") delineates the service levels for Weaviate's vector database services. The infrastructure of the services is designed for Normal Use, and the Availability is applicable solely for Normal Use of the services. Any usage beyond Normal Use may lead to a degradation of service quality and availability. Issues accessing the service due to application errors (like misuse, misconfiguration, etc.) are excluded from Availability calculations and are not considered downtime as these are the responsibility of the Customer.
 <br></br>
 
-### **Exclusions**
-
-This Service Level Agreement does not apply to Free Services (as defined in the Weaviate Self-Serve Terms of Service). Availability for Free Services is provided on a best-effort basis, with no uptime commitment and no service credits.
-<br></br>
 
 ### **Normal Use**
 
@@ -62,11 +58,6 @@ Availability signifies that the services are functional and accessible to the Cu
 |-----------|----------|--------------|-------------------|
 | Availability per Quarter | 99.5% | 99.5% | 99.5% |
 
-<br></br>
-
-##### **Exclusions**
-
-Exclusions from the calculation of Availability include planned maintenance windows, maintenance requested by the Customer, and all downtime resulting from interruptions by third parties or other factors beyond Weaviate's control.
 <br></br>
 
 
