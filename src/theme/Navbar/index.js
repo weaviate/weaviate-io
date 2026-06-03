@@ -171,7 +171,7 @@ function MegaMenu({ sections, menuLabel }) {
       className={`tw-absolute tw-top-full tw-z-50 ${widthClass} tw-pt-4 ${positionClass}`}
     >
       <div
-        className="tw-relative tw-overflow-hidden tw-rounded-[24px] tw-border tw-border-white/8 tw-bg-[rgba(8,10,16,0.88)] tw-p-7 tw-shadow-[0_24px_80px_rgba(0,0,0,0.42)] tw-backdrop-blur-[16px]"
+        className="tw-relative tw-overflow-hidden tw-rounded-[24px] tw-border tw-border-white/8 tw-bg-[rgba(3,5,9,0.96)] tw-p-7 tw-shadow-[0_24px_90px_rgba(0,0,0,0.62)] tw-backdrop-blur-[20px]"
         style={{
           animation: 'menuFadeIn 180ms cubic-bezier(0.16, 1, 0.3, 1) both',
         }}

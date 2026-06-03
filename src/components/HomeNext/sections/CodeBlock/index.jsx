@@ -61,7 +61,7 @@ response = supportTickets.generate.near_text(
 print(response.generative.text)
 `;
 
-const tenantExample = `# Create a multi-tenanant collection
+const tenantExample = `# Create a multi-tenant collection
 emails = client.collections.create(
     name="CustomerEmails",
     vectorizer_config=Configure.Vectorizer.text2vec_weaviate(),

@@ -51,7 +51,7 @@ export default function StepsSection() {
               lineHeight: "130%",
             }}
           >
-            Starting building reliable agents with memory and context today
+            Start building reliable agents with memory and context today
           </h2>
 
           <p
