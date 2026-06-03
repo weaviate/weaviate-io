@@ -98,7 +98,7 @@ For subscriptions beginning October 27, 2025 or later, Weaviate employs the foll
 <br></br>
 
 - **Flex:** Daily backup, stored in the same region for 7 days.
-  **Plus:** Daily backup, stored in the same region for 30 days.
+- **Plus:** Daily backup, stored in the same region for 30 days.
 - **Premium (Shared Deployment):** Daily backup, stored in the same region for 30 days.
 - **Premium (Dedicated Deployment):** Daily backup, stored in the same region for 45 days.
 
