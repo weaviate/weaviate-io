@@ -9,7 +9,9 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 ### **SERVICE LEVEL AGREEMENT (SLA)**
 
+
 **Last Updated: May 2026**
+<br></br>
 
 **Introduction**
 
@@ -31,10 +33,10 @@ Normal Use refers to the utilization of the service within the parameters outlin
 
 #### **Availability**
 
-##### **Weaviate Database**
+##### **Weaviate Cloud**
 
-Availability signifies that the services are functional and accessible to the Customer. 
-For subscriptions beginning October 27, 2025 or later, the details are as follows per **subscription plan**:
+Availability signifies that the services are functional and accessible to the Customer. For subscriptions beginning October
+27, 2025 or later, the details are as follows per **subscription plan**:
 <br></br>
 
 | Parameter | Flex | Plus | Premium <br/> <small>(Shared Deployment)</small> | Premium <br/> <small>(Dedicated Deployment)</small>  |
@@ -51,7 +53,7 @@ For subscriptions beginning prior to October 27, 2025, the details are as follow
 <br></br>
 
 
-##### **Weaviate Engram**
+##### **Engram**
 
 Availability signifies that the services are functional and accessible to the Customer. The details are as follows per **subscription plan**:
 <br></br>
@@ -99,13 +101,13 @@ Planned maintenance windows are periods during which the availability of the ser
 
 ### **Backup Policy**
 
-#### **Weaviate Database**
+#### **Weaviate Cloud**
 
 For subscriptions beginning October 27, 2025 or later, Weaviate employs the following backup policies for each  **subscription plan**:
 <br></br>
 
 - **Flex:** Daily backup, stored in the same region for 7 days.
-  **Plus:** Daily backup, stored in the same region for 7 days.
+  **Plus:** Daily backup, stored in the same region for 30 days.
 - **Premium (Shared Deployment):** Daily backup, stored in the same region for 30 days.
 - **Premium (Dedicated Deployment):** Daily backup, stored in the same region for 45 days.
 
@@ -117,21 +119,21 @@ For subscriptions beginning before October 27, 2025, Weaviate employs the follow
 - **Business Critical Tier:** Daily full backup, stored in the same region for 30 days.
 <br></br>
 
-#### **Weaviate Engram**
+#### **Engram**
 
 Weaviate employs the following backup policies for each **subscription plan**:
 <br></br>
 
-- **Starter:** Daily backup
-- **Team:** Daily backup.
-- **Enterprise:** Daily backup.
+- **Starter:** Daily full backup
+- **Team:** Daily full backup.
+- **Enterprise:** Daily full backup.
   
 <br></br>
 
 
 ### **Service Credits**
 
-#### **Weaviate Database**
+#### **Weaviate Cloud**
 
 In the event that the availability of the services as described herein is not met, Customer shall have the right to claim service credits according to the table below:
 <br></br>
@@ -147,7 +149,7 @@ In the event that the availability of the services as described herein is not me
 
 <br></br>
 
-#### **Weaviate Engram**
+#### **Engram**
 
 In the event that the availability of the services as described herein is not met, Customer shall have the right to claim service credits according to the table below:
 <br></br>
@@ -155,7 +157,7 @@ In the event that the availability of the services as described herein is not me
 | Service Level Targets | Starter Plan | Team Plan | Enterprise Plan |
 |-----------------------|---------------|-------------------|------------------------|
 | 99.5% or more | No service credits | No service credits | No service credits |
-| Less than 99.5% but more than 99% | No service credits | 5% service credit | 5% service credit |
+| Less than 99.5% but more than 99% | No service credits | No service credits | No service credits |
 | Less than 99% but more than 98.5% | 5% service credit | 10% service credit | 10% service credit |
 | Less than 98.5% but more than 98% | 10% service credit | 20% service credit | 20% service credit |
 | Below 98 | 20% service credit | 30% service credit | 30% service credit |
@@ -163,3 +165,9 @@ In the event that the availability of the services as described herein is not me
 <br></br>
 
 Service credits are calculated as a percentage of the monthly fees paid by the Customer and will be applied against future payments of fees due from the Customer. To receive service credits, the Customer must notify Weaviate by email (support@weaviate.io) within 30 days from the time the availability of the services was not met.
+<br></br>
+
+
+### **Exclusions**
+
+This Service Level Agreement does not apply to Free Services (as defined in the Weaviate [Terms of Service](/service/weaviate-cloud-agreement)). Availability for Free Services is provided on a best-effort basis, with no uptime commitment and no service credits.
