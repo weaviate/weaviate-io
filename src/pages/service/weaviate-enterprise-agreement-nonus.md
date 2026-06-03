@@ -22,8 +22,8 @@ Subject to the terms and conditions of this Agreement, Weaviate will make the We
 <br></br>
 
 2. **Customer Responsibilities.**  
-2.1. Customer acknowledges that Weaviate’s provision of the Weaviate Offering is dependent on Customer providing all reasonably required cooperation (including the prompt provision of access to Customer’s systems, personnel, cooperation and materials as reasonably required and any other access as may be specified in the applicable Order Form) and Customer will provide all such cooperation in a diligent and timely manner.
-<br></br> 2.2. Customer will (i) be responsible for all use of the Weaviate Offering under its account, (ii) use commercially reasonable efforts to prevent unauthorized access to or use of the Weaviate Offering and notify Weaviate promptly of any such unauthorized access or use or any other known or suspected breach of security or misuse of the Weaviate Offering, and (iii) be responsible for obtaining and maintaining any equipment, software, and ancillary services needed to connect to, access or otherwise use the Weaviate Offering, including as set forth in the Documentation. Customer will be solely responsible for its failure to maintain such equipment, software, and services, and Weaviate will have no liability for such failure (including under any service level agreement).
+2.1. Customer acknowledges that Weaviate’s provision of the Weaviate Offering is dependent on Customer providing all reasonably required cooperation (including the prompt provision of access to Customer’s systems, personnel, cooperation and materials as reasonably required and any other access as may be specified in the applicable Order Form) and Customer will provide all such cooperation in a diligent and timely manner.<br></br><br></br>
+2.2. Customer will (i) be responsible for all use of the Weaviate Offering under its account, (ii) use commercially reasonable efforts to prevent unauthorized access to or use of the Weaviate Offering and notify Weaviate promptly of any such unauthorized access or use or any other known or suspected breach of security or misuse of the Weaviate Offering, and (iii) be responsible for obtaining and maintaining any equipment, software, and ancillary services needed to connect to, access or otherwise use the Weaviate Offering, including as set forth in the Documentation. Customer will be solely responsible for its failure to maintain such equipment, software, and services, and Weaviate will have no liability for such failure (including under any service level agreement).
 <br></br>
 
 
@@ -81,9 +81,8 @@ Subject to the terms and conditions of this Agreement, Weaviate will make the We
 
 1. **Weaviate Warranty**. Weaviate warrants that it will, consistent with prevailing industry standards, provide the Weaviate Offering in a professional and workmanlike manner and the Weaviate Offering will conform in all material respects with the Documentation. For breach of the foregoing express warranty, Customer’s exclusive remedy shall be the re-performance of the deficient Weaviate Offering or, if Weaviate cannot re-perform such deficient Weaviate Offering as warranted within thirty (30) days after receipt of written notice of the warranty breach, Customer shall be entitled to terminate the applicable Order Form and recover a pro-rata portion of the prepaid unused fees corresponding to the terminated portion of the applicable Weaviate Offering.
 <br></br>
-
 2. **Customer Warranty**. Customer warrants that it has all necessary rights and consents to provide any information, data (including personal data) and other materials that it provides hereunder and to permit Weaviate to use the same as contemplated under this Agreement.
-
+<br></br>
 3. **DISCLAIMERS**. EXCEPT AS EXPRESSLY SET FORTH IN THIS CLAUSE 5.1 AND 5.2, EACH PARTY EACH PARTY EXPRESSLY EXCLUDES ANY AND ALL FURTHER DUTIES OF CONFORMITY, GUARANTEES, REPRESENTATIONS, OR WARRANTIES OF ANY KIND, WHETHER IMPLIED,
 STATUTORY OR OTHERWISE. CUSTOMER ACKNOWLEDGES THAT THE WEAVIATE OFFERING IS INTENDED TO AUGMENT THE EFFICIENCY OF, BUT NOT REPLACE, CUSTOMER’S TRANSCRIPTION SYSTEMS AND PROCESSES. WEAVIATE DOES NOT REPRESENT OR WARRANT THAT THE WEAVIATE OFFERING WILL BE ERROR-FREE. WEAVIATE IS NOT RESPONSIBLE OR LIABLE FOR ANY NON- WEAVIATE OFFERINGS, DOES NOT GUARANTEE THE CONTINUED AVAILABILITY THEREOF OR ANY INTEGRATION THEREWITH, AND MAY CEASE MAKING ANY SUCH INTEGRATION AVAILABLE IN ITS DISCRETION.
 <br></br>
@@ -97,21 +96,21 @@ STATUTORY OR OTHERWISE. CUSTOMER ACKNOWLEDGES THAT THE WEAVIATE OFFERING IS INTE
 
 1. **Indemnity by Weaviate.** 
 Weaviate will defend Customer against any Claim made or brought against Customer by a third party alleging that the use of the Weaviate Offering as permitted hereunder infringes or misappropriates a patent, copyright or trade secret and will indemnify Customer for any damages finally awarded against Customer (or any settlement approved by Weaviate) in connection with any such Claim. If the use of the Weaviate Offering by Customer has become, or in Weaviate’s opinion is likely to become, the subject of any claim of infringement, Weaviate may at its option and expense (i) procure for Customer the right to continue using and receiving the Weaviate Offering as set forth under this Agreement; (ii) replace or modify the Weaviate Offering to make it non-infringing (with comparable functionality); or (iii) if the options in clauses (i) or (ii) are not reasonably practicable, terminate the applicable Order Form and provide a pro rata refund of any prepaid unused fees corresponding to the terminated portion of the applicable Weaviate Offering.  Weaviate will have no liability or obligation with respect to any Claim if such Claim is caused in whole or in part by (A) compliance with designs, guidelines, plans or specifications provided by Customer; (B) use of the Weaviate Offering by Customer not in accordance with this Agreement; (C) modification of the Weaviate Offering by or on behalf of Customer; (D) Customer’s collection, treatment or providing of Customer Confidential Information in a manner that violates applicable law or otherwise infringes third party rights, (E) open source software, or (F) the combination, operation or use of the Weaviate Offering with other products or services where the Weaviate Offering would not by itself be infringing (clauses (A) through (F), “**Excluded Claims**”).  This Section states Weaviate’s sole and exclusive liability and obligation, and Customer’s exclusive remedy, for any claim of any nature related to infringement or misappropriation of intellectual property.
-   <br></br>
+<br></br>
 
 2. **Indemnification by Customer.**  
 Customer will defend Weaviate against any Claim made or brought against Weaviate by a third party arising out of the Excluded Claims, and Customer will indemnify Weaviate for any damages finally awarded against Weaviate (or any settlement approved by Customer) in connection with any such Claim.
-   <br></br>
+<br></br>
 
 3. **Indemnification Procedure.**  
 Each indemnifying Party’s obligation under Section 6.1 or Section 6.2, respectively, are conditioned upon the following provided: (i) the indemnified party first provides written notice of the Claim to the indemnifying party within thirty (30) days after becoming aware of or reasonably should have been aware of the Claim, provided, however, the failure to provide such notice will only relieve the indemnifying party of its obligations under this Section 5 to the extent the indemnifying party is prejudiced thereby; (ii) the indemnified party must tender sole and exclusive control of the Claim to the indemnifying party, (iii) the indemnified party must provide reasonable assistance, cooperation, and required information with respect to the defense and/or settlement of the Claim. The indemnified party may participate in the Claim, at its sole cost and expense, except that the indemnifying party will retain sole control of the defense and/or settlement. The indemnifying party shall not agree to any settlement of the Claim, that includes an injunction against the indemnified party, or admission of liability of the indemnified party without the indemnified party’s prior written consent, whose consent shall not be unreasonably withheld.
-   <br></br>
+<br></br>
 
 ---
 
 ### 7. **Limitation of Liability**
 
-UNDER NO LEGAL THEORY, WHETHER IN TORT, CONTRACT, OR OTHERWISE, WILL EITHER PARTY BE LIABLE TO THE OTHER UNDER THIS AGREEMENT FOR ANY INDIRECT, SPECIAL, INCIDENTAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES OF ANY CHARACTER, INCLUDING DAMAGES FOR LOSS OF GOODWILL, LOST PROFITS, LOST SALES OR BUSINESS, WORK STOPPAGE, COMPUTER FAILURE OR MALFUNCTION, LOST CONTENT OR DATA, EVEN IF A REPRESENTATIVE OF SUCH PARTY HAS BEEN ADVISED, KNEW OR SHOULD HAVE KNOWN OF THE POSSIBILITY OF SUCH DAMAGES. EXCEPT FOR A PARTY’S BREACH OF THE CONFIDENTIALITY OBLIGATIONS AND RESTRICTIONS UNDER SECTION 4, A PARTY’S INDEMNIFICATION OBLIGATIONS UNDER SECTION 6, A PARTY’S INFRINGEMENT OR MISAPPROPRIATION OF THE OTHER PARTY’S INTELLECTUAL PROPERTY RIGHTS, AND CUSTOMER’S PAYMENT OBLIGATIONS UNDER SECTION 2, NEITHER PARTY’S TOTAL AGGREGATE LIABILITY UNDER THIS AGREEMENT WILL EXCEED THE AMOUNTS PAID BY CUSTOMER UNDER THIS AGREEMENT DURING THE TWELVE (12) MONTHS PRECEDING THE CLAIM.
+1. UNDER NO LEGAL THEORY, WHETHER IN TORT, CONTRACT, OR OTHERWISE, WILL EITHER PARTY BE LIABLE TO THE OTHER UNDER THIS AGREEMENT FOR ANY INDIRECT, SPECIAL, INCIDENTAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES OF ANY CHARACTER, INCLUDING DAMAGES FOR LOSS OF GOODWILL, LOST PROFITS, LOST SALES OR BUSINESS, WORK STOPPAGE, COMPUTER FAILURE OR MALFUNCTION, LOST CONTENT OR DATA, EVEN IF A REPRESENTATIVE OF SUCH PARTY HAS BEEN ADVISED, KNEW OR SHOULD HAVE KNOWN OF THE POSSIBILITY OF SUCH DAMAGES. EXCEPT FOR A PARTY’S BREACH OF THE CONFIDENTIALITY OBLIGATIONS AND RESTRICTIONS UNDER SECTION 4, A PARTY’S INDEMNIFICATION OBLIGATIONS UNDER SECTION 6, A PARTY’S INFRINGEMENT OR MISAPPROPRIATION OF THE OTHER PARTY’S INTELLECTUAL PROPERTY RIGHTS, AND CUSTOMER’S PAYMENT OBLIGATIONS UNDER SECTION 2, NEITHER PARTY’S TOTAL AGGREGATE LIABILITY UNDER THIS AGREEMENT WILL EXCEED THE AMOUNTS PAID BY CUSTOMER UNDER THIS AGREEMENT DURING THE TWELVE (12) MONTHS PRECEDING THE CLAIM.
 
 ---
 
@@ -166,43 +165,60 @@ UNDER NO LEGAL THEORY, WHETHER IN TORT, CONTRACT, OR OTHERWISE, WILL EITHER PART
 
 ### 10. **Definitions**
 
- The following terms, when used in this Agreement will have the following meanings:
+The following terms, when used in this Agreement will have the following meanings:
+<br></br>
 
-   “**_Affiliates_**” means an entity that directly or indirectly Controls, is Controlled by, or is under common Control with another entity, so long as such Control exists. For the purposes of this definition, “**_Control_**” means beneficial ownership of 50% or more of the voting power or equity in an entity.
+“**_Affiliates_**” means an entity that directly or indirectly Controls, is Controlled by, or is under common Control with another entity, so long as such Control exists. For the purposes of this definition, “**_Control_**” means beneficial ownership of 50% or more of the voting power or equity in an entity.
+<br></br>
 
-   “**_Claim_**” means any claim, demand, suit, or proceeding.
+“**_Claim_**” means any claim, demand, suit, or proceeding.
+<br></br>
 
-   “**_Client Software_**” means the specific portion of the Weaviate Offering made available by Weaviate to be installed on Customer hardware.
+“**_Client Software_**” means the specific portion of the Weaviate Offering made available by Weaviate to be installed on Customer hardware.
+<br></br>
 
-   “**_Confidential Information_**” means any information or data disclosed by either party that is marked or otherwise designated as confidential or proprietary or that should otherwise be reasonably understood to be confidential in light of the nature of the information and the circumstances surrounding disclosure. However, “Confidential Information” will not include any information which (a) is in the public domain through no fault of the receiving party; (b) was properly known to the receiving party without restriction prior to disclosure by the disclosing party; (c) was properly disclosed to the receiving party without restriction by another person with the legal authority to do so; or (d) is independently developed by the receiving party without use of or reference to the disclosing party’s Confidential Information.
+“**_Confidential Information_**” means any information or data disclosed by either party that is marked or otherwise designated as confidential or proprietary or that should otherwise be reasonably understood to be confidential in light of the nature of the information and the circumstances surrounding disclosure. However, “Confidential Information” will not include any information which (a) is in the public domain through no fault of the receiving party; (b) was properly known to the receiving party without restriction prior to disclosure by the disclosing party; (c) was properly disclosed to the receiving party without restriction by another person with the legal authority to do so; or (d) is independently developed by the receiving party without use of or reference to the disclosing party’s Confidential Information.
+<br></br>
 
-   “**_Customer Data_**” means personal data made available by Customer to Weaviate and insights produced specifically for Customer via the use of the Weaviate Offering by Customer.
+“**_Customer Data_**” means personal data made available by Customer to Weaviate and insights produced specifically for Customer via the use of the Weaviate Offering by Customer.
+<br></br>
 
-   “**_Documentation_**” means the on-line help files, electronic technical documentation, and other electronic user manuals made available by Weaviate as part of the Weaviate Offering.
+“**_Documentation_**” means the on-line help files, electronic technical documentation, and other electronic user manuals made available by Weaviate as part of the Weaviate Offering.
+<br></br>
 
-   “**_Feedback_**” means suggestions or comments for enhancements, improvements, features, functionality, or other feedback provided to Weaviate.
+“**_Feedback_**” means suggestions or comments for enhancements, improvements, features, functionality, or other feedback provided to Weaviate.
+<br></br>
 
-   “**_Force Majeure Event_**” is an event beyond the reasonable control of a party, including earthquake, flood, or other natural disaster, act of God, labor controversy, civil disturbance, terrorism, war (whether or not officially declared), cyber-attacks (e.g. denial of service attacks) or the inability to obtain sufficient supplies, transportation or other essential commodity or service required in the conduct of its business, or any change in or the adoption of any law, regulation, judgment or decree.
+“**_Force Majeure Event_**” is an event beyond the reasonable control of a party, including earthquake, flood, or other natural disaster, act of God, labor controversy, civil disturbance, terrorism, war (whether or not officially declared), cyber-attacks (e.g. denial of service attacks) or the inability to obtain sufficient supplies, transportation or other essential commodity or service required in the conduct of its business, or any change in or the adoption of any law, regulation, judgment or decree.
+<br></br>
 
-   “**_Free Services_**” means collectively the no-fee tiers of the Weaviate Offering made available by Weaviate, including the free tier of the Weaviate hosted database, the free tier of the Weaviate Embeddings service, the free tier of the Engram Service, and any other no-fee tier of the Weaviate Offering that Weaviate may make available.
+“**_Free Services_**” means collectively the no-fee tiers of the Weaviate Offering made available by Weaviate, including the free tier of the Weaviate hosted database, the free tier of the Weaviate Embeddings service, the free tier of the Engram Service, and any other no-fee tier of the Weaviate Offering that Weaviate may make available.
+<br></br>
    
-   “**_Non-Weaviate Product_**” means a third party or Customer web-based, mobile, offline or other software application that integrates with the Weaviate Offering (other than third-party data hosting services used by Weaviate). For clarity, the Weaviate Offering excludes Non-Weaviate Products.
+“**_Non-Weaviate Product_**” means a third party or Customer web-based, mobile, offline or other software application that integrates with the Weaviate Offering (other than third-party data hosting services used by Weaviate). For clarity, the Weaviate Offering excludes Non-Weaviate Products.
+<br></br>
 
-   “**_Order Form_**” means an order form or other similar document which defines the specific Weaviate Offering, the permitted number of users, pricing, and the subscription term.
+“**_Order Form_**” means an order form or other similar document which defines the specific Weaviate Offering, the permitted number of users, pricing, and the subscription term.
+<br></br>
 
-   “**_SLAs_**” mean the service levels offered by Weaviate as defined at [www.weaviate.io/sla](http://www.weaviate.io/sla).
+“**_SLAs_**” mean the service levels offered by Weaviate as defined at [www.weaviate.io/sla](http://www.weaviate.io/sla).
+<br></br>
 
-   “**_Support Services_**” means the maintenance and support services offered by Weaviate as defined at [www.weaviate.io/weaviate-support-terms](http://www.weaviate.io/weaviate-support-terms).
+“**_Support Services_**” means the maintenance and support services offered by Weaviate as defined at [www.weaviate.io/weaviate-support-terms](http://www.weaviate.io/weaviate-support-terms).
+<br></br>
 
-   “**_System Data_**” means data collected by Weaviate, Except Customer Data, regarding the Weaviate Offering that may be used to generate logs, statistics, or reports regarding the performance, availability, usage, integrity, or security of the Weaviate Product.
-
+“**_System Data_**” means data collected by Weaviate, Except Customer Data, regarding the Weaviate Offering that may be used to generate logs, statistics, or reports regarding the performance, availability, usage, integrity, or security of the Weaviate Product.
+<br></br>
 
 “**_Technical Services_**”  means consulting, configuration, technical training or other professional services provided
 by Weaviate to Customer.
+<br></br>
 
 “**_Weaviate Offering_**” means the Weaviate Product and/or the Weaviate Technical Services.
+<br></br>
 
-   “**_Weaviate Product_**” means the Weaviate hosted offering, the Engram service, the Weaviate self-hosted offering, the Client Software, and related Support Services.
+“**_Weaviate Product_**” means the Weaviate hosted offering, the Engram service, the Weaviate self-hosted offering, the Client Software, and related Support Services.
+<br></br>
 
   
 
@@ -212,13 +228,19 @@ by Weaviate to Customer.
 
 1. **Weaviate Cloud Consumption**
    1. Generally. The Weaviate Cloud service is provided to Customers as a service which consumes resources for distinct functions as set forth herein and is available in several different SLAs and hosted in different geographical regions by certain third-party cloud providers, as described more fully in your Order Form and the Documentation. Customer Data is uploaded into Customer’s cluster and may be stored in different storage tiers).
+   <br></br>
    2. Burst Handling and Peak Consumption Management. In the Weaviate Dedicated Cloud, Customer may experience fluctuations in compute resource usage. To manage these fluctuations, Customer is permitted to increase their peak consumption by up to 50% over the baseline capacity without prior notice. This ensures flexibility in handling temporary spikes in demand. For any anticipated increases in peak consumption that exceed 50%, Customer must notify Weaviate and obtain approval at least one week in advance. This lead time is necessary to ensure that the required infrastructure can be provisioned to support the increased load without impacting service quality. Failure to provide adequate notice may result in the inability to accommodate the additional demand, or may incur additional charges.
+   <br></br>
    3. Infrastructure Overhead Charge. Operating the Weaviate Dedicated Cloud offering requires the setup and maintenance of dedicated compute resources, referred to as “Infrastructure Overhead.” This overhead is essential for managing and operating Customer clusters within a single-tenant architecture, ensuring that the cluster is always available, secure, and performing optimally. Due to the inherent costs associated with maintaining a single-tenant infrastructure, a minimum charge per hour will apply, irrespective of actual usage. This charge reflects the baseline compute resources required to keep Customer Weaviate cluster operational, even during periods of low activity.
-
+<br></br>
 
 2. **Weaviate AI Units**
    1. Storage and Compute. When Weaviate bills for storage and compute using purchasable AI Units, as described herein (“Weaviate AIUs”). Virtual CPUs (“vCPU”) and different types of storage tiers (Hot, warm, and cold storage) use Weaviate AIUs at certain rates based on the effective size of the Customer cluster while in operation, as set forth in the Order Form. Unless otherwise noted, when a Customer cluster is started or resumed, a minimum of one hour worth of Weaivate AIUs will be consumed. In the event Weaviate uses storage and compute resources that are equivalently larger or smaller than the initial estimation, the AIU consumption rate will be adjusted accordingly. For example, if a Customer cluster uses storage and compute resources that go over estimated usage for 30 minutes, such use is measured as one storage- or compute-Hour. Storage and compute-Hours are calculated on a per hour basis, rounded up to the nearest whole hour. Weaviate-managed storage and compute is billed at the rate of the number of Weaviate AIUs per category as listed in the Order Form, multiplied by the applicable Customer AIU price. Storage and compute appears in the usage statement as a single line item per category.
+   <br></br>
    2. Additional Options. Weaviate offers a number of additional options (e.g., SSO and Private Link) as described in the Documentation. Additional options operate on the Customer cluster and are reflected in the Customer AIU price.
+   <br></br>
    3. Tools and Apps. Weaviate additionally offers tools and apps that run on Weaviate-managed compute resources (“Weaviate Tools and Apps”). Weaviate Tools and Apps are billed at the rates set forth in the Customer Order Form.
+   <br></br>
    4. AIU Pricing. The Weaviate Offering may be subscribed to on an On Demand basis, where usage is invoiced in arrears every month, or on a Fixed Term basis, where a set dollar amount of usage is purchased up front. Pricing depends on whether you are in On Demand or Capacity.
+   <br></br>
    5. Changes to Weaviate AIU pricing. The Weaviate AIUs required for storage and compute may be updated from time to time. Weaviate will use reasonable efforts to provide advance notice via email or through the Weaviate Service of material changes, but the changes shall be effective on the date that Weaviate announces they are effective. If any change to the Weaviate AIU storage and compute materially increases the Weaviate AIUs required to use the Weaviate Service, you may terminate the applicable Order Form upon written notice to Weaviate and receive a refund of any prepaid and unused AIUs that you have purchased.
