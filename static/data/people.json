@@ -1,7 +1,7 @@
 [
   {
     "name": "Aarthi Iyer",
-    "title": "Lead QA Engineer",
+    "title": "QA Engineer",
     "photo": "aarthi.jpg",
     "linkedin": "aarthiiyer",
     "team": "wcd"
@@ -287,9 +287,11 @@
     "team": "applied-research"
   },
   {
-    "name": "José Luis Franco",
-    "title": "QA Engineer",
+    "name": "José Luis Franco Arza",
+    "title": "Lead QA Engineer",
     "photo": "Jose-Luis-Franco.jpg",
+    "linkedin": "joseluisfrancoarza",
+    "github": "jfrancoa",
     "team": "database"
   },
   {
