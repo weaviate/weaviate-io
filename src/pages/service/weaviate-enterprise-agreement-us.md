@@ -191,46 +191,46 @@ All amounts payable hereunder are exclusive of any sales, use, and other taxes o
 
 ### 10. **Definitions**
 
-**_Affiliates_** means an entity that directly or indirectly Controls, is Controlled by, or is under common Control with another entity, so long as such Control exists. For the purposes of this definition, “Control” means beneficial ownership of 50% or more of the voting power or equity in an entity.
+"**_Affiliates_**" means an entity that directly or indirectly Controls, is Controlled by, or is under common Control with another entity, so long as such Control exists. For the purposes of this definition, “Control” means beneficial ownership of 50% or more of the voting power or equity in an entity.
 <br></br>
 
-**_Claim_** means any claim, demand, suit, or proceeding.
+"**_Claim_**" means any claim, demand, suit, or proceeding.
 <br></br>
 
-**_Client Software_** means the specific portion of the Weaviate Offering made available by Weaviate to be installed on Customer hardware.
+"**_Client Software_**" means the specific portion of the Weaviate Offering made available by Weaviate to be installed on Customer hardware.
 <br></br>
 
-**_Confidential Information_** means any information or data disclosed by either party that is marked or otherwise designated as confidential or proprietary, or that should otherwise be reasonably understood to be confidential in light of the nature of the information and the circumstances surrounding disclosure. However, “Confidential Information” will not include any information which (a) is in the public domain through no fault of the receiving party; (b) was properly known to the receiving party, without restriction, prior to disclosure by the disclosing party; (c) was properly disclosed to the receiving party, without restriction, by another person with the legal authority to do so; or (d) is independently developed by the receiving party without use of or reference to the disclosing party’s Confidential Information.
+"**_Confidential Information_**" means any information or data disclosed by either party that is marked or otherwise designated as confidential or proprietary, or that should otherwise be reasonably understood to be confidential in light of the nature of the information and the circumstances surrounding disclosure. However, “Confidential Information” will not include any information which (a) is in the public domain through no fault of the receiving party; (b) was properly known to the receiving party, without restriction, prior to disclosure by the disclosing party; (c) was properly disclosed to the receiving party, without restriction, by another person with the legal authority to do so; or (d) is independently developed by the receiving party without use of or reference to the disclosing party’s Confidential Information.
 <br></br>
 
-**_Customer Data_** means personal data made available by Customer to Weaviate and insights produced specifically for Customer via the use of the Weaviate Offering.
+"**_Customer Data_**" means personal data made available by Customer to Weaviate and insights produced specifically for Customer via the use of the Weaviate Offering.
 <br></br>
 
-**_Documentation_** means the on-line help files, electronic technical documentation, and other electronic user manuals made available by Weaviate as part of the Weaviate Offering.
+"**_Documentation_**" means the on-line help files, electronic technical documentation, and other electronic user manuals made available by Weaviate as part of the Weaviate Offering.
 <br></br>
 
-**_Feedback_** means suggestions or comments for enhancements, improvements, features, functionality, or other feedback provided to Weaviate.
+"**_Feedback_**" means suggestions or comments for enhancements, improvements, features, functionality, or other feedback provided to Weaviate.
 <br></br>
 
-**_Force Majeure Event_** is an event beyond the reasonable control of a party, including earthquake, flood, or other natural disaster, act of God, labor controversy, civil disturbance, terrorism, war (whether or not officially declared), cyber-attacks (e.g., denial of service attacks), or the inability to obtain sufficient supplies, transportation, or other essential commodity or service required in the conduct of its business, or any change in or the adoption of any law, regulation, judgment, or decree.
+"**_Force Majeure Event_**" is an event beyond the reasonable control of a party, including earthquake, flood, or other natural disaster, act of God, labor controversy, civil disturbance, terrorism, war (whether or not officially declared), cyber-attacks (e.g., denial of service attacks), or the inability to obtain sufficient supplies, transportation, or other essential commodity or service required in the conduct of its business, or any change in or the adoption of any law, regulation, judgment, or decree.
 <br></br>
 
 “**_Free Services_**” means collectively the no-fee tiers of the Weaviate Offering made available by Weaviate, including the free tier of the Weaviate hosted database, the free tier of the Weaviate Embeddings service, the free tier of the Engram Service, and any other no-fee tier of the Weaviate Offering that Weaviate may make available.
 <br></br>
 
-**_Non-Weaviate Product_** means a third party or Customer web-based, mobile, offline, or other software application that integrates with the Weaviate Offering (other than third party data hosting services used by Weaviate). For clarity, the Weaviate Offering excludes Non-Weaviate Products.
+"**_Non-Weaviate Product_**" means a third party or Customer web-based, mobile, offline, or other software application that integrates with the Weaviate Offering (other than third party data hosting services used by Weaviate). For clarity, the Weaviate Offering excludes Non-Weaviate Products.
 <br></br>
 
-**_Order Form_** means an order form or other similar document which defines the specific Weaviate Offering, the permitted number of users, pricing, and the subscription term.
+"**_Order Form_**" means an order form or other similar document which defines the specific Weaviate Offering, the permitted number of users, pricing, and the subscription term.
 <br></br>
 
-**_SLAs_** mean the service levels offered by Weaviate as defined at [www.weaviate.io/sla](http://www.weaviate.io/sla).
+"**_SLAs_**" mean the service levels offered by Weaviate as defined at [www.weaviate.io/sla](http://www.weaviate.io/sla).
 <br></br>
 
-**_Support Services_** means the maintenance and support services offered by Weaviate as defined at [www.weaviate.io/weaviate-support-terms](http://www.weaviate.io/weaviate-support-terms).
+"**_Support Services_**" means the maintenance and support services offered by Weaviate as defined at [www.weaviate.io/weaviate-support-terms](http://www.weaviate.io/weaviate-support-terms).
 <br></br>
 
-**_System Data_** means data collected by Weaviate, except Customer Data, regarding the Weaviate Offering that may be used to generate logs, statistics, or reports regarding the performance, availability, usage, integrity, or security of the Weaviate Product.
+"**_System Data_**" means data collected by Weaviate, except Customer Data, regarding the Weaviate Offering that may be used to generate logs, statistics, or reports regarding the performance, availability, usage, integrity, or security of the Weaviate Product.
 <br></br>
 
 “**_Technical Services_**”  means consulting, configuration, technical training or other professional services provided
@@ -240,7 +240,7 @@ by Weaviate to Customer.
 “**_Weaviate Offering_**” means the Weaviate Product and/or the Weaviate Technical Services.
 <br></br>
 
-**Weaviate Product** means the Weaviate hosted offering, the Weaviate self-hosted offering, the Client Software, and related Support Services.
+"**Weaviate Product**" means the Weaviate hosted offering, the Weaviate self-hosted offering, the Client Software, and related Support Services.
 
 ---
 ### **Exhibit A**

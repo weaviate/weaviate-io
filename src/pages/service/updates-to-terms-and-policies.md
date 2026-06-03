@@ -21,7 +21,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
    1. Sections updated regarding new product: Engram
    2. Added Exclusions for Free Services
 
-3.  **_May 2026_ - Document: Self-serve, and Commercial ToS**
+3. **_May 2026_ - Document: Self-serve, and Commercial ToS**
    1. New definition added: Free Services
 
 4. **_February 2026_ - Document: Weaviate EOL Policy**
