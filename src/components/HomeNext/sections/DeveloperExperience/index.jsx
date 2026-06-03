@@ -1,70 +1,70 @@
-import Link from '@docusaurus/Link';
-import React, { useMemo, useState } from 'react';
-import CodeTabs from '../CodeBlock';
+import Link from "@docusaurus/Link";
+import React, { useMemo, useState } from "react";
+import CodeTabs from "../CodeBlock";
 
 const PANEL_MIN_HEIGHT = 630;
 
 const navItems = [
   {
-    id: 'quickstart',
-    title: 'Quickstart',
-    icon: '/img/site/2026/Quickstart-2.svg',
-    iconActive: '/img/site/2026/Quickstart.svg',
-    iconPressed: '/img/site/2026/Quickstart-3.svg',
+    id: "quickstart",
+    title: "Quickstart",
+    icon: "/img/site/2026/Quickstart-2.svg",
+    iconActive: "/img/site/2026/Quickstart.svg",
+    iconPressed: "/img/site/2026/Quickstart-3.svg",
     description:
-      'Use SDKs for Python, Go, TypeScript, or JavaScript, or connect to GraphQL or REST APIs.',
+      "Use SDKs for Python, Go, TypeScript, or JavaScript, or connect to GraphQL or REST APIs.",
   },
   {
-    id: 'agent-skills',
-    title: 'Agent Skills',
-    icon: '/img/site/2026/Agent-Skills-2.svg',
-    iconActive: '/img/site/2026/Agent-Skills.svg',
-    iconPressed: '/img/site/2026/Agent-Skills-3.svg',
+    id: "agent-skills",
+    title: "Agent Skills",
+    icon: "/img/site/2026/Agent-Skills-2.svg",
+    iconActive: "/img/site/2026/Agent-Skills.svg",
+    iconPressed: "/img/site/2026/Agent-Skills-3.svg",
     description:
-      'Ship adaptive workflows with built-in skills and contextual memory.',
+      "Ship adaptive workflows with built-in skills and contextual memory.",
   },
   {
-    id: 'cloud-tools',
-    title: 'Cloud Console & Tools',
-    icon: '/img/site/2026/Cloud-Tools-2.svg',
-    iconActive: '/img/site/2026/Cloud-Tools.svg',
-    iconPressed: '/img/site/2026/Cloud-Tools-3.svg',
+    id: "cloud-tools",
+    title: "Cloud Console & Tools",
+    icon: "/img/site/2026/Cloud-Tools-2.svg",
+    iconActive: "/img/site/2026/Cloud-Tools.svg",
+    iconPressed: "/img/site/2026/Cloud-Tools-3.svg",
     description:
-      'Manage your data directly in Cloud Console. Simplify development and confidently deploy enterprise-ready AI applications.',
+      "Manage your data directly in Cloud Console. Simplify development and confidently deploy enterprise-ready AI applications.",
   },
   {
-    id: 'deployment',
-    title: 'Deployment',
-    icon: '/img/site/2026/Deployment-2.svg',
-    iconActive: '/img/site/2026/Deployment.svg',
-    iconPressed: '/img/site/2026/Deployment-3.svg',
+    id: "deployment",
+    title: "Deployment",
+    icon: "/img/site/2026/Deployment-2.svg",
+    iconActive: "/img/site/2026/Deployment.svg",
+    iconPressed: "/img/site/2026/Deployment-3.svg",
     description:
-      'Run shared, dedicated, or self-hosted based on your compliance needs.',
+      "Run shared, dedicated, or self-hosted based on your compliance needs.",
   },
   {
-    id: 'integrations',
-    title: 'Integrations',
-    icon: '/img/site/2026/Integrations-2.svg',
-    iconActive: '/img/site/2026/Integrations.svg',
-    iconPressed: '/img/site/2026/Integrations-3.svg',
+    id: "integrations",
+    title: "Integrations",
+    icon: "/img/site/2026/Integrations-2.svg",
+    iconActive: "/img/site/2026/Integrations.svg",
+    iconPressed: "/img/site/2026/Integrations-3.svg",
     description:
-      'Connect model providers, orchestration frameworks, and data pipelines.',
+      "Connect model providers, orchestration frameworks, and data pipelines.",
   },
   {
-    id: 'developer-resources',
-    title: 'Developer Resources',
-    icon: '/img/site/2026/Developer-Resources-2.svg',
-    iconActive: '/img/site/2026/Developer-Resources.svg',
-    iconPressed: '/img/site/2026/Developer-Resources-3.svg',
+    id: "developer-resources",
+    title: "Developer Resources",
+    icon: "/img/site/2026/Developer-Resources-2.svg",
+    iconActive: "/img/site/2026/Developer-Resources.svg",
+    iconPressed: "/img/site/2026/Developer-Resources-3.svg",
     description:
-      'Docs, tutorials, examples, and learning tracks for every team stage.',
+      "Docs, tutorials, examples, and learning tracks for every team stage.",
   },
   {
-    id: 'demos',
-    title: 'Explore Demos',
-    icon: '/img/site/2026/Explore-Demos-2.svg',
-    iconActive: '/img/site/2026/Explore-Demos.svg',
-    iconPressed: '/img/site/2026/Explore-Demos-3.svg',
+    id: "demos",
+    title: "Explore Demos",
+    icon: "/img/site/2026/Explore-Demos-2.svg",
+    iconActive: "/img/site/2026/Explore-Demos.svg",
+    iconPressed: "/img/site/2026/Explore-Demos-3.svg",
     description:
       "Check out our favorite Weaviate projects! We've hand picked the best to showcase AI innovation and creativity.",
   },
@@ -80,10 +80,10 @@ function PanelShell({ children }) {
 
 function panelBaseStyle(backgroundImage) {
   return {
-    backgroundColor: '#14161c',
+    backgroundColor: "#14161c",
     backgroundImage,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
+    backgroundSize: "cover",
+    backgroundPosition: "center",
   };
 }
 
@@ -141,7 +141,7 @@ function AgentSkillsPanel() {
             <Link
               to="/blog/weaviate-agent-skills"
               className="tw-inline-flex tw-items-center tw-justify-center tw-rounded-[10px] tw-bg-[#DDEBF2] tw-px-8 tw-py-3 tw-text-[16px] tw-font-medium tw-text-[#111111] tw-no-underline tw-transition hover:tw-opacity-90"
-              style={{ fontFamily: 'Inter, sans-serif' }}
+              style={{ fontFamily: "Inter, sans-serif" }}
             >
               Explore Skills
             </Link>
@@ -149,7 +149,7 @@ function AgentSkillsPanel() {
             <Link
               to="https://docs.weaviate.io/agents"
               className="tw-inline-flex tw-items-center tw-justify-center tw-rounded-[10px] tw-bg-[#111111] tw-px-8 tw-py-3 tw-text-[16px] tw-font-medium tw-text-[#DDEBF2] tw-no-underline tw-transition hover:tw-bg-[#1b1b1b]"
-              style={{ fontFamily: 'Inter, sans-serif' }}
+              style={{ fontFamily: "Inter, sans-serif" }}
             >
               Prompt library
             </Link>
@@ -160,22 +160,22 @@ function AgentSkillsPanel() {
   );
 }
 
-function GuideflowEmbed({ iframeId = 'dr973w8bnp' }) {
+function GuideflowEmbed({ iframeId = "dr973w8bnp" }) {
   React.useEffect(() => {
     const existing = document.querySelector(
       'script[src="https://app.guideflow.com/assets/opt.js"]',
     );
 
     if (!existing) {
-      const s = document.createElement('script');
-      s.src = 'https://app.guideflow.com/assets/opt.js';
+      const s = document.createElement("script");
+      s.src = "https://app.guideflow.com/assets/opt.js";
       s.async = true;
-      s.setAttribute('data-cookieconsent', 'ignore');
-      s.setAttribute('data-iframe-id', iframeId);
+      s.setAttribute("data-cookieconsent", "ignore");
+      s.setAttribute("data-iframe-id", iframeId);
       document.body.appendChild(s);
     } else {
-      existing.setAttribute('data-iframe-id', iframeId);
-      window.dispatchEvent(new Event('guideflow:check'));
+      existing.setAttribute("data-iframe-id", iframeId);
+      window.dispatchEvent(new Event("guideflow:check"));
     }
   }, [iframeId]);
 
@@ -213,7 +213,7 @@ function CloudToolsPanel() {
             <Link
               to="/go/console"
               className="tw-inline-flex tw-items-center tw-justify-center tw-rounded-[10px] tw-bg-[#DDEBF2] tw-px-8 tw-py-3 tw-text-[16px] tw-font-medium tw-text-[#111111] tw-no-underline tw-transition hover:tw-opacity-90"
-              style={{ fontFamily: 'Inter, sans-serif' }}
+              style={{ fontFamily: "Inter, sans-serif" }}
             >
               Try Cloud Console
             </Link>
@@ -221,7 +221,7 @@ function CloudToolsPanel() {
             <Link
               to="https://docs.weaviate.io/cloud"
               className="tw-inline-flex tw-items-center tw-justify-center tw-rounded-[10px] tw-bg-[#111111] tw-px-8 tw-py-3 tw-text-[16px] tw-font-medium tw-text-[#DDEBF2] tw-no-underline tw-transition hover:tw-bg-[#1b1b1b]"
-              style={{ fontFamily: 'Inter, sans-serif' }}
+              style={{ fontFamily: "Inter, sans-serif" }}
             >
               Cloud Docs
             </Link>
@@ -234,21 +234,21 @@ function CloudToolsPanel() {
 
 function DeploymentPanel() {
   const sharedCloud = [
-    'Fully-managed SaaS on shared infrastructure',
-    'Automatic scalability based on vector memory',
-    'Simple one-click cluster management',
-    'Consumption-based pricing (vector dimensions, storage, backups)',
-    'Available across five cloud regions',
-    '99.5% - 99.9% uptime SLA',
+    "Fully-managed SaaS on shared infrastructure",
+    "Automatic scalability based on vector memory",
+    "Simple one-click cluster management",
+    "Consumption-based pricing (vector dimensions, storage, backups)",
+    "Available across five cloud regions",
+    "99.5% - 99.9% uptime SLA",
   ];
 
   const dedicatedCloud = [
-    'Dedicated instance with isolated infrastructure',
-    'Enhanced security and compliance (SOC II, HIPAA)',
-    'Predictable performance with dedicated resources',
-    '99.9% - 99.95% uptime SLA',
-    'Dedicated Success Manager included',
-    '24/7 professional support',
+    "Dedicated instance with isolated infrastructure",
+    "Enhanced security and compliance (SOC II, HIPAA)",
+    "Predictable performance with dedicated resources",
+    "99.9% - 99.95% uptime SLA",
+    "Dedicated Success Manager included",
+    "24/7 professional support",
   ];
 
   return (
@@ -266,7 +266,7 @@ function DeploymentPanel() {
             <div className="tw-rounded-[16px] tw-bg-[linear-gradient(48deg,#00FE6B_13.81%,#00B7E2_92.18%)] tw-p-4">
               <h3
                 className="tw-m-0 tw-text-[20px] tw-font-semibold tw-text-[#111]"
-                style={{ fontWeight: 700, lineHeight: '130%', color: '#111' }}
+                style={{ fontWeight: 700, lineHeight: "130%", color: "#111" }}
               >
                 Shared Cloud
               </h3>
@@ -306,7 +306,7 @@ function DeploymentPanel() {
             <div className="tw-rounded-[16px] tw-bg-[linear-gradient(123deg,#26D6FF_12.44%,#D77AFF_109.26%)] tw-p-4">
               <h3
                 className="tw-m-0 tw-text-[20px] tw-font-semibold tw-text-[#111]"
-                style={{ fontWeight: 700, lineHeight: '130%', color: '#111' }}
+                style={{ fontWeight: 700, lineHeight: "130%", color: "#111" }}
               >
                 Dedicated Cloud
               </h3>
@@ -371,7 +371,7 @@ function IntegrationsPanel() {
             <Link
               to="/integrations"
               className="tw-inline-flex tw-items-center tw-justify-center tw-rounded-[10px] tw-bg-[#DDEBF2] tw-px-8 tw-py-3 tw-text-[16px] tw-font-medium tw-text-[#111111] tw-no-underline tw-transition hover:tw-opacity-90"
-              style={{ fontFamily: 'Inter, sans-serif' }}
+              style={{ fontFamily: "Inter, sans-serif" }}
             >
               Explore Integrations
             </Link>
@@ -379,7 +379,7 @@ function IntegrationsPanel() {
             <Link
               to="https://docs.weaviate.io/weaviate/model-providers"
               className="tw-inline-flex tw-items-center tw-justify-center tw-rounded-[10px] tw-bg-[#111111] tw-px-8 tw-py-3 tw-text-[16px] tw-font-medium tw-text-[#DDEBF2] tw-no-underline tw-transition hover:tw-bg-[#1b1b1b]"
-              style={{ fontFamily: 'Inter, sans-serif' }}
+              style={{ fontFamily: "Inter, sans-serif" }}
             >
               Model Providers
             </Link>
@@ -393,44 +393,44 @@ function IntegrationsPanel() {
 function DeveloperResourcesPanel() {
   const resources = [
     {
-      title: 'Docs',
-      desc: 'Find the right documentation and resources.',
-      link: 'https://docs.weaviate.io',
+      title: "Docs",
+      desc: "Find the right documentation and resources.",
+      link: "https://docs.weaviate.io",
     },
     {
-      title: 'Academy',
-      desc: 'Explore our comprehensive course library.',
-      link: '/academy',
+      title: "Academy",
+      desc: "Explore our comprehensive course library.",
+      link: "/academy",
     },
     {
-      title: 'Blog',
-      desc: 'Read latest news and insights from our experts.',
-      link: '/blog',
+      title: "Blog",
+      desc: "Read latest news and insights from our experts.",
+      link: "/blog",
     },
     {
-      title: 'Learn',
-      desc: 'A learning resources hub for builders of all levels.',
-      link: '/learn',
+      title: "Learn",
+      desc: "A learning resources hub for builders of all levels.",
+      link: "/learn",
     },
     {
-      title: 'Demos',
-      desc: 'Example projects and demo apps built with Weaviate.',
-      link: '/developers/weaviate/demos',
+      title: "Demos",
+      desc: "Example projects and demo apps built with Weaviate.",
+      link: "https://playground.weaviate.io",
     },
     {
-      title: 'Ebooks',
-      desc: 'In-depth resources to help you deepen your knowledge.',
-      link: '/ebooks',
+      title: "Ebooks",
+      desc: "In-depth resources to help you deepen your knowledge.",
+      link: "/ebooks",
     },
     {
-      title: 'Podcast',
-      desc: 'Interviews with industry leaders and experts.',
-      link: '/podcast',
+      title: "Podcast",
+      desc: "Interviews with industry leaders and experts.",
+      link: "/podcast",
     },
     {
-      title: 'Forum',
-      desc: 'Share your experience and get help from community.',
-      link: 'https://forum.weaviate.io',
+      title: "Forum",
+      desc: "Share your experience and get help from community.",
+      link: "https://forum.weaviate.io",
     },
   ];
 
@@ -464,9 +464,9 @@ function DeveloperResourcesPanel() {
                   <h3
                     className="tw-m-0 tw-text-[20px] tw-font-semibold tw-text-white"
                     style={{
-                      color: '#ffffff',
+                      color: "#ffffff",
                       fontWeight: 600,
-                      lineHeight: '130%',
+                      lineHeight: "130%",
                     }}
                   >
                     {item.title}
@@ -511,9 +511,9 @@ function DemosPanel() {
 
           <div className="tw-mt-6 tw-flex tw-flex-wrap tw-justify-center tw-gap-4">
             <Link
-              to="/developers/weaviate/demos"
+              to="https://playground.weaviate.io"
               className="tw-inline-flex tw-items-center tw-justify-center tw-rounded-[10px] tw-bg-[#111111] tw-px-8 tw-py-3 tw-text-[16px] tw-font-medium tw-text-[#DDEBF2] tw-no-underline tw-transition hover:tw-bg-[#1b1b1b]"
-              style={{ fontFamily: 'Inter, sans-serif', textAlign: 'center' }}
+              style={{ fontFamily: "Inter, sans-serif", textAlign: "center" }}
             >
               Visit Weaviate Playground to view all the demos
             </Link>
@@ -531,7 +531,7 @@ function PlaceholderPanel({ title }) {
         className="tw-m-0 tw-text-2xl tw-font-semibold tw-leading-tight tw-text-[#DDEBF2]"
         style={{
           fontFamily: '"Plus Jakarta Sans", sans-serif',
-          color: '#DDEBF2',
+          color: "#DDEBF2",
         }}
       >
         {title}
@@ -539,7 +539,7 @@ function PlaceholderPanel({ title }) {
 
       <p
         className="tw-mt-4 tw-max-w-2xl tw-text-base tw-leading-8 tw-text-[#b7c2da]"
-        style={{ fontFamily: 'Inter, sans-serif' }}
+        style={{ fontFamily: "Inter, sans-serif" }}
       >
         Content.
       </p>
@@ -565,7 +565,7 @@ export default function DeveloperExperience() {
           className="tw-m-0 tw-mb-6 tw-text-[1rem] tw-font-semibold tw-uppercase tw-tracking-[0.12em]"
           style={{
             fontFamily: '"Plus Jakarta Sans", sans-serif',
-            color: '#43E2C5',
+            color: "#43E2C5",
           }}
         >
           DEVELOPER EXPERIENCE
@@ -575,7 +575,7 @@ export default function DeveloperExperience() {
           className="tw-mt-4 tw-text-[2.5rem] tw-font-semibold tw-leading-[1.08] md:tw-text-[2.5rem]"
           style={{
             fontFamily: '"Plus Jakarta Sans", sans-serif',
-            color: '#DDEBF2',
+            color: "#DDEBF2",
           }}
         >
           Production-ready AI applications, faster
@@ -583,7 +583,7 @@ export default function DeveloperExperience() {
 
         <p
           className="tw-mt-5 tw-max-w-4xl tw-text-[18px] tw-leading-8 tw-text-[#B9C8DE]"
-          style={{ fontFamily: 'Inter, sans-serif' }}
+          style={{ fontFamily: "Inter, sans-serif" }}
         >
           Spin up a cluster, point it at your data, and go. Weaviate can take
           care of embeddings, ranking, and auto-scaling so you can ship
@@ -602,10 +602,10 @@ export default function DeveloperExperience() {
                 onClick={() => setActiveNav(item.id)}
                 className="tw-flex tw-shrink-0 tw-items-center tw-gap-2 tw-rounded-full tw-border tw-px-4 tw-py-3 tw-text-sm tw-transition"
                 style={{
-                  fontFamily: 'Inter, sans-serif',
-                  borderColor: isActive ? '#68FFA8' : 'rgba(255,255,255,0.1)',
-                  background: isActive ? '#11141d' : '#1A1A1A',
-                  color: isActive ? '#68FFA8' : '#d0d8ea',
+                  fontFamily: "Inter, sans-serif",
+                  borderColor: isActive ? "#68FFA8" : "rgba(255,255,255,0.1)",
+                  background: isActive ? "#11141d" : "#1A1A1A",
+                  color: isActive ? "#68FFA8" : "#d0d8ea",
                 }}
               >
                 <img
@@ -643,8 +643,8 @@ export default function DeveloperExperience() {
                   onMouseLeave={() => setPressedNav(null)}
                   className={`tw-group tw-w-full tw-rounded-[24px] tw-border tw-text-left tw-transition-all tw-duration-200 ${
                     isActive
-                      ? 'tw-border-[#68FFA8]/70 tw-bg-[linear-gradient(180deg,#171a1f_0%,#131720_100%)] tw-px-6 tw-py-6 tw-shadow-[0_0_0_1px_rgba(104,255,168,0.08),0_18px_40px_rgba(0,0,0,0.18)]'
-                      : 'tw-border-transparent tw-bg-[#1A1A1A] tw-px-5 tw-py-5 hover:tw-border-[#31384b] hover:tw-bg-[#1d1d1d]'
+                      ? "tw-border-[#68FFA8]/70 tw-bg-[linear-gradient(180deg,#171a1f_0%,#131720_100%)] tw-px-6 tw-py-6 tw-shadow-[0_0_0_1px_rgba(104,255,168,0.08),0_18px_40px_rgba(0,0,0,0.18)]"
+                      : "tw-border-transparent tw-bg-[#1A1A1A] tw-px-5 tw-py-5 hover:tw-border-[#31384b] hover:tw-bg-[#1d1d1d]"
                   }`}
                 >
                   {isActive ? (
@@ -662,7 +662,7 @@ export default function DeveloperExperience() {
                         className="tw-m-0 tw-mt-4 tw-text-[18px] tw-font-semibold tw-leading-tight"
                         style={{
                           fontFamily: '"Plus Jakarta Sans", sans-serif',
-                          color: '#DDEBF2',
+                          color: "#DDEBF2",
                         }}
                       >
                         {item.title}
@@ -670,7 +670,7 @@ export default function DeveloperExperience() {
 
                       <p
                         className="tw-mt-2 tw-text-[14px] tw-leading-7 tw-text-[#b7c3db]"
-                        style={{ fontFamily: 'Inter, sans-serif' }}
+                        style={{ fontFamily: "Inter, sans-serif" }}
                       >
                         {item.description}
                       </p>
@@ -688,7 +688,7 @@ export default function DeveloperExperience() {
 
                       <p
                         className="tw-m-0 tw-text-[16px] tw-font-normal tw-leading-tight tw-text-[#d0d8ea]"
-                        style={{ fontFamily: 'Inter, sans-serif' }}
+                        style={{ fontFamily: "Inter, sans-serif" }}
                       >
                         {item.title}
                       </p>
@@ -701,13 +701,13 @@ export default function DeveloperExperience() {
 
           <div className="tw-self-start lg:tw-sticky lg:tw-top-28">
             <PanelShell>
-              {activeItem.id === 'quickstart' ? <QuickstartPanel /> : null}
-              {activeItem.id === 'agent-skills' ? <AgentSkillsPanel /> : null}
-              {activeItem.id === 'cloud-tools' ? <CloudToolsPanel /> : null}
-              {activeItem.id === 'deployment' ? <DeploymentPanel /> : null}
-              {activeItem.id === 'integrations' ? <IntegrationsPanel /> : null}
-              {activeItem.id === 'demos' ? <DemosPanel /> : null}
-              {activeItem.id === 'developer-resources' ? (
+              {activeItem.id === "quickstart" ? <QuickstartPanel /> : null}
+              {activeItem.id === "agent-skills" ? <AgentSkillsPanel /> : null}
+              {activeItem.id === "cloud-tools" ? <CloudToolsPanel /> : null}
+              {activeItem.id === "deployment" ? <DeploymentPanel /> : null}
+              {activeItem.id === "integrations" ? <IntegrationsPanel /> : null}
+              {activeItem.id === "demos" ? <DemosPanel /> : null}
+              {activeItem.id === "developer-resources" ? (
                 <DeveloperResourcesPanel />
               ) : null}
             </PanelShell>

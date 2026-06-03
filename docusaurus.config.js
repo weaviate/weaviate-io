@@ -375,13 +375,15 @@ module.exports = async function createConfigAsync() {
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
             image: 'og/default.jpg',
-             announcementBar: {
-               id: 'announcement-bar-engram-ga',
-                content:`<a href="/blog/engram-generally-available">Introducing Engram by Weaviate - now GA - Read our Blog </a>`,
-                backgroundColor: '#1C1468',
-                textColor: '#F5F5F5',
-                isCloseable: true,
-            },
+
+            // Hiding for new UI launch
+           //  announcementBar: {
+        //       id: 'announcement-bar-engram-ga',
+        //        content:`<a href="/blog/engram-generally-available">Introducing Engram by Weaviate - now GA - Read our Blog </a>`,
+        //        backgroundColor: '#1C1468',
+        //        textColor: '#F5F5F5',
+         //       isCloseable: true,
+       //     },
             // docs: {
             //     sidebar: {
             //         hideable: true,
