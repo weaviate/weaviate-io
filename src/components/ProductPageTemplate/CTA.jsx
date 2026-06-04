@@ -4,53 +4,65 @@ import Link from "@docusaurus/Link";
 export default function CTA() {
   return (
     <section className="tw-bg-[#111111] tw-px-6 tw-py-12 md:tw-py-16 lg:tw-py-20">
-      <div
-        className="tw-relative tw-mx-auto tw-max-w-[1320px] tw-overflow-hidden tw-rounded-[2rem] tw-p-8 md:tw-p-12 lg:tw-p-14"
-        style={{
-          background:
-            "linear-gradient(48deg, #00fe6b75 13.81%, #00B7E2 92.18%)",
-        }}
-      >
-        <div className="tw-absolute tw-inset-0 tw-bg-black/55" />
-
-        <div className="tw-relative tw-grid tw-items-center tw-gap-10 lg:tw-grid-cols-[220px_1fr_auto] lg:tw-gap-16">
-          <div className="tw-flex tw-justify-center lg:tw-justify-start">
-            <div className="tw-flex tw-h-[220px] tw-w-[220px] tw-items-center tw-justify-center tw-rounded-[2rem] tw-bg-[#171717] tw-p-8">
-              <img
-                src="/img/site/2026/engram-cta-logo.svg"
-                alt="Engram logo"
-                className="tw-h-auto tw-w-full tw-max-w-[150px]"
-              />
-            </div>
-          </div>
-
-          <div className="tw-max-w-3xl">
+      <div className="tw-mx-auto tw-max-w-[1320px]">
+        <div
+          className="
+        tw-relative
+        tw-overflow-hidden
+        tw-min-h-[300px]
+        tw-flex
+        tw-items-center
+        tw-justify-center
+        tw-bg-cover
+        tw-bg-center
+        tw-bg-no-repeat
+        tw-rounded-[1.875rem]
+      "
+          style={{
+            backgroundImage: "url('/img/site/2026/engram-cta-bg.png')",
+          }}
+        >
+          <div className="tw-relative tw-z-10 tw-flex tw-flex-col tw-items-center tw-text-center">
             <h2
-              className="tw-m-0"
+              className="tw-m-0 tw-max-w-[700px]"
               style={{
                 color: "#DDEBF2",
                 fontFamily: '"Plus Jakarta Sans", sans-serif',
-                fontSize: "2.5rem",
+                fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
                 fontWeight: 600,
-                lineHeight: "140%",
+                lineHeight: "120%",
               }}
             >
-              Give your agents memory that works in production
+              Give your agents memory
+              <br />
+              that works in production
             </h2>
-          </div>
 
-          <div className="tw-flex tw-justify-start lg:tw-justify-end">
             <Link
-              to="https://console.weaviate.io"
-              className="tw-inline-flex tw-min-h-[60px] tw-items-center tw-justify-center tw-rounded-[0.75rem] tw-bg-[#E8EEF5] tw-px-8 tw-text-center tw-no-underline tw-transition-all tw-duration-300 hover:tw--translate-y-0.5 hover:tw-bg-white hover:tw-no-underline"
+              to="https://console.weaviate.io/signup"
+              className="
+            tw-mt-10
+            tw-inline-flex
+            tw-items-center
+            tw-justify-center
+            tw-rounded-xl
+            tw-px-10
+            tw-py-4
+            tw-font-semibold
+            tw-text-[#111]
+            tw-no-underline
+            tw-transition-all
+            hover:tw--translate-y-0.5
+            hover:tw-no-underline
+            hover:tw-text-[#111]
+          "
               style={{
-                color: "#171717",
-                fontFamily: "Inter, sans-serif",
-                fontSize: "1.125rem",
-                fontWeight: 600,
+                background:
+                  "linear-gradient(48deg, #00FE6B 13.81%, #00B7E2 92.18%)",
+                textcolor: "#111",
               }}
             >
-              Get Started
+              Get started
             </Link>
           </div>
         </div>

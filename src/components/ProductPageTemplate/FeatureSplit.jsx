@@ -2,18 +2,24 @@ import React from "react";
 import Link from "@docusaurus/Link";
 
 const featureCards = [
-  [
-    "Launch quickly with templates",
-    "Get running in minutes with ready-to-use templates for common use cases",
-  ],
-  [
-    "Secure agents with strong primitives",
-    "Scopes for data isolation when privacy matters and for context sharing when orchestration is necessary",
-  ],
-  [
-    "Customizable to fit your domains",
-    "Extensible properties and composable pipelines let you shape memory and context for your domain and business needs",
-  ],
+  {
+    icon: "/img/site/2026/launch.svg",
+    title: "Launch quickly with templates",
+    description:
+      "Get running in minutes with ready-to-use templates for common use cases",
+  },
+  {
+    icon: "/img/site/2026/secure.svg",
+    title: "Secure agents with strong primitives",
+    description:
+      "Scopes for data isolation when privacy matters and for context sharing when orchestration is necessary",
+  },
+  {
+    icon: "/img/site/2026/customize.svg",
+    title: "Customizable to fit your domains",
+    description:
+      "Extensible properties and composable pipelines let you shape memory and context for your domain and business needs",
+  },
 ];
 
 const checks = [
@@ -156,7 +162,7 @@ export default function FeatureSplit() {
           Designed to Grow with You
         </h2>
         <div className="tw-mt-8 tw-grid tw-gap-6 md:tw-grid-cols-2 xl:tw-grid-cols-3">
-          {featureCards.map(([title, description]) => (
+          {featureCards.map(({ icon, title, description }) => (
             <article
               key={title}
               className="tw-group tw-relative tw-overflow-hidden tw-rounded-[1.5rem] tw-bg-[#1a1a1a] tw-p-8 tw-transition-all tw-duration-300 md:hover:tw--translate-y-1"
@@ -169,40 +175,38 @@ export default function FeatureSplit() {
                 }}
               />
 
-              <div className="tw-relative tw-flex tw-gap-6">
+              <div className="tw-relative">
                 <img
-                  src="/img/site/2026/engram-icon-01.svg"
+                  src={icon}
                   alt=""
                   aria-hidden="true"
-                  className="tw-h-[62px] tw-w-[62px] tw-shrink-0 tw-object-contain tw-transition-transform tw-duration-300 md:group-hover:tw-scale-105"
+                  className="tw-mb-8 tw-h-[62px] tw-w-[62px] tw-object-contain tw-transition-transform tw-duration-300 md:group-hover:tw-scale-105"
                 />
 
-                <div>
-                  <h3
-                    className="tw-m-0"
-                    style={{
-                      color: "#DDEBF2",
-                      fontFamily: '"Plus Jakarta Sans", sans-serif',
-                      fontSize: "1.55rem",
-                      fontWeight: 600,
-                      lineHeight: "130%",
-                    }}
-                  >
-                    {title}
-                  </h3>
+                <h3
+                  className="tw-m-0"
+                  style={{
+                    color: "#DDEBF2",
+                    fontFamily: '"Plus Jakarta Sans", sans-serif',
+                    fontSize: "1.55rem",
+                    fontWeight: 600,
+                    lineHeight: "130%",
+                  }}
+                >
+                  {title}
+                </h3>
 
-                  <p
-                    className="tw-m-0 tw-mt-4"
-                    style={{
-                      color: "#B9C8DE",
-                      fontFamily: "Inter, sans-serif",
-                      fontSize: "1.125rem",
-                      lineHeight: "160%",
-                    }}
-                  >
-                    {description}
-                  </p>
-                </div>
+                <p
+                  className="tw-m-0 tw-mt-6"
+                  style={{
+                    color: "#B9C8DE",
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: "1.125rem",
+                    lineHeight: "160%",
+                  }}
+                >
+                  {description}
+                </p>
               </div>
             </article>
           ))}

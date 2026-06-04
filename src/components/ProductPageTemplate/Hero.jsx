@@ -19,13 +19,13 @@ export default function Hero() {
 
             <p className="tw-mb-12 tw-max-w-2xl tw-font-['Inter'] tw-text-xl tw-leading-relaxed tw-text-[#b8c4d4] md:tw-text-2xl">
               A fully managed memory and context service purpose-built to help
-              agents remember, learn, and improve over time.
+              agents remember, learn, and improve over time
             </p>
 
             <div className="tw-flex tw-flex-wrap tw-gap-5">
               <Link
                 to="https://console.weaviate.io/signup"
-                className="tw-inline-flex tw-min-h-[54px] tw-items-center tw-justify-center tw-rounded-md tw-bg-[#e8f3fb] tw-px-8 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-[#111111] tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-bg-white hover:tw-text-[#111111] hover:tw-no-underline"
+                className="tw-inline-flex tw-min-h-[54px] tw-items-center tw-justify-center tw-rounded-md tw-bg-[linear-gradient(48deg,_#00FE6B_13.81%,_#00B7E2_92.18%)] tw-px-8 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-[#111111] tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-bg-white hover:tw-text-[#111111] hover:tw-no-underline"
               >
                 Get started
               </Link>
@@ -47,9 +47,9 @@ export default function Hero() {
           <div className="tw-relative">
             <div className="tw-absolute tw-inset-0 tw-rounded-[1.875rem] tw-bg-[linear-gradient(48deg,#68FFA8_-4.58%,#00B7E2_86.47%)] tw-opacity-20" />
 
-            <div className="tw-relative tw-rounded-[1.875rem] tw-border tw-border-white/10 tw-bg-[linear-gradient(48deg,rgba(104,255,168,0.16)_-4.58%,rgba(0,183,226,0.22)_86.47%)] tw-p-6 tw-shadow-[0_28px_90px_rgba(0,0,0,0.35)] md:tw-p-10">
+            <div className="tw-relative tw-rounded-[1.875rem] tw-border tw-border-white/10 tw-bg-[linear-gradient(123deg,_rgba(38,214,255,0.2)_12.44%,_rgba(215,122,255,0.2)_109.26%)] tw-p-6 tw-shadow-[0_28px_90px_rgba(0,0,0,0.35)] md:tw-p-10">
               <img
-                src="/img/site/2026/engram-header-diagram.svg"
+                src="/img/site/2026/engram-diagram-hero.svg"
                 alt="Engram memory architecture diagram"
                 className="tw-h-auto tw-w-full tw-rounded-2xl"
               />

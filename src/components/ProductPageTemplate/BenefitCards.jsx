@@ -4,28 +4,28 @@ const benefitCards = [
   {
     title: "Build personalization and continuity",
     description: "Remember preferences and decisions across sessions.",
-    icon: "/img/site/2026/engram-icon-01.svg",
+    icon: "/img/site/2026/build.svg",
     glow: "rgba(0, 254, 107, 0.16)",
   },
   {
     title: "Extract facts and resolve inconsistencies",
     description:
       "Turn interaction data into memories that automatically deduplicate, reconcile, and consolidate.",
-    icon: "/img/site/2026/engram-icon-02.svg",
+    icon: "/img/site/2026/extract.svg",
     glow: "rgba(122, 145, 255, 0.18)",
   },
   {
     title: "Shrink context windows",
     description:
       "Send relevant and structured memories instead of raw conversations and events.",
-    icon: "/img/site/2026/engram-icon-03.svg",
+    icon: "/img/site/2026/shrink.svg",
     glow: "rgba(104, 255, 168, 0.15)",
   },
   {
     title: "Share memory across agents",
     description:
       "Orchestrate multi-agent systems with shared, persistent, and scoped memories.",
-    icon: "/img/site/2026/engram-icon-04.svg",
+    icon: "/img/site/2026/share.svg",
     glow: "rgba(0, 183, 226, 0.16)",
   },
 ];
@@ -58,7 +58,7 @@ export default function BenefitCards() {
               />
 
               <div className="tw-relative tw-flex tw-min-h-[240px] tw-flex-col">
-                <div className="tw-mb-14 tw-flex tw-h-[62px] tw-w-[62px] tw-items-center tw-justify-center tw-transition-transform tw-duration-300 md:group-hover:tw-scale-105">
+                <div className="tw-mb-6 tw-flex tw-h-[62px] tw-w-[62px] tw-items-center tw-justify-center tw-transition-transform tw-duration-300 md:group-hover:tw-scale-105">
                   <img
                     src={card.icon}
                     alt=""
