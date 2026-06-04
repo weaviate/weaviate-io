@@ -5,21 +5,25 @@ const steps = [
     title: "Choose your template",
     description:
       "Use one of Engram’s composable templates for your application",
+    icon: "/img/site/2026/choose.svg",
   },
   {
     title: "Add your data",
     description:
       "Send user interactions or application context via Engram APIs, no preprocessing needed",
+    icon: "/img/site/2026/add.svg",
   },
   {
     title: "Build Without Friction",
     description:
       "Engram handles memory extraction and management, all in the background",
+    icon: "/img/site/2026/friction.svg",
   },
   {
     title: "Create trusted agents",
     description:
       "Retrieve memory and context in real time so your agents run consistently and reliably",
+    icon: "/img/site/2026/create.svg",
   },
 ];
 
@@ -74,7 +78,7 @@ export default function StepsSection() {
               <div key={step.title} className="tw-flex tw-gap-8">
                 <div className="tw-shrink-0">
                   <img
-                    src="/img/site/2026/engram-icon-01.svg"
+                    src={step.icon}
                     alt=""
                     aria-hidden="true"
                     className="tw-h-[62px] tw-w-[62px] tw-object-contain"
