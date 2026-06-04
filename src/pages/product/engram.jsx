@@ -1,12 +1,13 @@
-import React from 'react';
-import Layout from '@theme/Layout';
-import { MetaSEO } from '/src/theme/MetaSEO';
+import React from "react";
+import Layout from "@theme/Layout";
+import { MetaSEO } from "/src/theme/MetaSEO";
 
-import Hero from '/src/components/ProductPageTemplate/Hero';
-import BenefitCards from '/src/components/ProductPageTemplate/BenefitCards';
-import FeatureSplit from '/src/components/ProductPageTemplate/FeatureSplit';
-import StepsSection from '/src/components/ProductPageTemplate/StepsSection';
-import CTA from '/src/components/ProductPageTemplate/CTA';
+import Hero from "/src/components/ProductPageTemplate/Hero";
+import BenefitCards from "/src/components/ProductPageTemplate/BenefitCards";
+import FeatureSplit from "/src/components/ProductPageTemplate/FeatureSplit";
+import StepsSection from "/src/components/ProductPageTemplate/StepsSection";
+import CTA from "/src/components/ProductPageTemplate/CTA";
+import Blogs from "/src/components/ProductPageTemplate/Blogs";
 
 export default function Engram() {
   return (
@@ -23,6 +24,7 @@ export default function Engram() {
           <FeatureSplit />
           <StepsSection />
           <CTA />
+          <Blogs />
         </main>
       </Layout>
     </div>

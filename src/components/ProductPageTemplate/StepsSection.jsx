@@ -123,14 +123,11 @@ export default function StepsSection() {
             <div
               className="tw-relative tw-overflow-hidden tw-rounded-[2rem] tw-border tw-border-white/10 tw-p-6 md:tw-p-10"
               style={{
-                background:
-                  "linear-gradient(123deg, rgba(38,214,255,0.22) 12.44%, rgba(215,122,255,0.18) 109.26%)",
-                boxShadow:
-                  "0 24px 80px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.08)",
+                background: "#1A1A1A",
               }}
             >
               <img
-                src="/img/site/2026/engram-component-diagram-02.svg"
+                src="/img/site/2026/engram-diagram-get-started.svg"
                 alt="Engram workflow diagram"
                 className="tw-h-auto tw-w-full"
               />
