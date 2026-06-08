@@ -3,9 +3,9 @@ title: Introduction to LLM RAG - Retrieval Augmented Generation Explained
 slug: introduction-to-rag
 authors: [mary]
 date: 2024-10-15
-tags: ['concepts']
+tags: ["concepts"]
 image: ./img/hero.png
-description: 'Learn what LLM RAG (Retrieval Augmented Generation) is, how RAG pipelines work, key use cases, implementation approaches, and evaluation methods.'
+description: "Learn what LLM RAG (Retrieval Augmented Generation) is, how RAG pipelines work, key use cases, implementation approaches, and evaluation methods."
 faq:
   - question: "What is Retrieval-Augmented Generation (RAG)?"
     answer: "Retrieval-Augmented Generation (RAG) is a framework that augments the general knowledge of a generative LLM by providing it with additional data relevant to the task at hand retrieved from an external data source."
@@ -18,9 +18,10 @@ faq:
   - question: "What is the difference between RAG and fine-tuning?"
     answer: "Fine-tuning trains a model on domain data to specialize behavior, while RAG retrieves external data at inference time to improve accuracy and reduce hallucinations without retraining."
 ---
+
 ![Introduction to Retrieval Augmented Generation (RAG)](./img/hero.png)
 
-import Verba from './img/verba_nocompress.mp4';
+import Verba from "./img/verba_nocompress.mp4";
 
 Despite the steady release of increasingly larger and smarter models, state-of-the-art generative large language models (LLMs) still have a big problem: they struggle with tasks that require specialized knowledge. This lack of specialized knowledge can lead to issues like hallucinations, where the model generates inaccurate or fabricated information. **Retrieval-Augmented Generation (RAG)**—often called LLM RAG—helps mitigate this by allowing the model to pull in real-time, niche data from external sources, enhancing its ability to provide accurate and detailed responses.
 
@@ -44,7 +45,7 @@ The key to enhancing performance on specialized tasks and reducing hallucination
 
 ## What is Retrieval Augmented Generation (RAG)?
 
-[**Retrieval-Augmented Generation (RAG)**](https://arxiv.org/abs/2005.11401) is a framework that *augments* the general knowledge of a generative LLM by providing it with additional data relevant to the task at hand *retrieved* from an external data source.
+[**Retrieval-Augmented Generation (RAG)**](https://arxiv.org/abs/2005.11401) is a framework that _augments_ the general knowledge of a generative LLM by providing it with additional data relevant to the task at hand _retrieved_ from an external data source.
 
 You’ll also see this written as retrieval augmented generation (without the hyphen), and many teams refer to it as LLM RAG because it’s most often used to augment large language models at inference time.
 
@@ -129,7 +130,7 @@ Now that we’ve covered what RAG is, how it works, and its architecture, let’
 
 ### Real-time information retrieval
 
-When used alone, generative models are limited to retrieving only information found in their training dataset. When used in the context of RAG, however, these models can retrieve data and information from external sources, ensuring more accurate and up-to-date responses. One such example is ChatGPT-4o’s ability to access and retrieve information directly from the web in real-time. This is an example of a RAG use case that leverages an external data source that is *not* embedded in a vector database and can be especially useful in responding to user queries regarding the news or other current events, such as stock prices, travel advisories, and weather updates.
+When used alone, generative models are limited to retrieving only information found in their training dataset. When used in the context of RAG, however, these models can retrieve data and information from external sources, ensuring more accurate and up-to-date responses. One such example is ChatGPT-4o’s ability to access and retrieve information directly from the web in real-time. This is an example of a RAG use case that leverages an external data source that is _not_ embedded in a vector database and can be especially useful in responding to user queries regarding the news or other current events, such as stock prices, travel advisories, and weather updates.
 
 ### Content recommendation systems
 
@@ -145,9 +146,9 @@ Now that we know how RAG works, let’s explore how to build a functional RAG pi
 
 LangChain, LlamaIndex, and DSPy are all robust open source Python libraries with highly engaged communities that offer powerful tools and integrations for building and optimizing RAG pipelines and LLM applications.
 
-* [**LangChain**](https://www.langchain.com/) provides building blocks, components, and third-party integrations to aid in the development of LLM-powered applications. It can be used with [LangGraph](https://langchain-ai.github.io/langgraph/tutorials/introduction/) for building agentic RAG pipelines and [LangSmith](https://docs.smith.langchain.com/) for RAG evaluation.
-* [**LlamaIndex**](https://www.llamaindex.ai/) is a framework that offers tools to build LLM-powered applications integrated with external data sources. LlamaIndex maintains the [LlamaHub](https://llamahub.ai/), a rich repository of data loaders, agent tools, datasets, and other components, that streamline the creation of RAG pipelines.
-* [**DSPy**](https://dspy-docs.vercel.app/) is a modular framework for optimizing LLM pipelines. Both LLMs and RMs (Retrieval Models) can be configured within DSPy, allowing for seamless optimization of RAG pipelines.
+- [**LangChain**](https://www.langchain.com/) provides building blocks, components, and third-party integrations to aid in the development of LLM-powered applications. It can be used with [LangGraph](https://langchain-ai.github.io/langgraph/tutorials/introduction/) for building agentic RAG pipelines and [LangSmith](https://docs.smith.langchain.com/) for RAG evaluation.
+- [**LlamaIndex**](https://www.llamaindex.ai/) is a framework that offers tools to build LLM-powered applications integrated with external data sources. LlamaIndex maintains the [LlamaHub](https://llamahub.ai/), a rich repository of data loaders, agent tools, datasets, and other components, that streamline the creation of RAG pipelines.
+- [**DSPy**](https://dspy-docs.vercel.app/) is a modular framework for optimizing LLM pipelines. Both LLMs and RMs (Retrieval Models) can be configured within DSPy, allowing for seamless optimization of RAG pipelines.
 
 :::note
 
@@ -155,15 +156,7 @@ Weaviate provides [integrations](https://docs.weaviate.io/integrations) and [rec
 
 :::
 
-If you’re looking for a way to get up and running with RAG quickly, check out [**Verba**](https://github.com/weaviate/Verba), an open source out-of-the-box RAG application with a shiny, pre-built frontend. Verba enables you to visually explore datasets, extract insights, and build customizable RAG pipelines in just a few easy steps, without having to learn an entirely new framework. Verba is a multifunctional tool that can be used as a playground for testing and experimenting with RAG pipelines as well as for personal tasks like assisting with research, analyzing internal documents, and streamlining various RAG-related tasks.
-
-<figure>
-  <video width="100%" autoplay loop muted controls>
-    <source src={Verba} type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
-  <figcaption>Out-of-the-box RAG implementation with Verba</figcaption>
-</figure>
+If you're looking for a way to get up and running with RAG quickly, try [**Elysia**](https://elysia.weaviate.io/), our agentic RAG assistant. Elysia connects directly to your Weaviate Cloud instance, automatically understands your data structure, and handles complex queries across multiple data types — no framework setup required. You can also explore more RAG demos at [playground.weaviate.io](https://playground.weaviate.io/).
 
 ## RAG techniques
 
@@ -187,7 +180,7 @@ To take a closer look at a RAG pipeline that incorporates agents, check out this
 
 ### Graph RAG
 
-While traditional RAG excels at simple question answering tasks that can be resolved by retrieval alone, it is unable to answer questions and draw conclusions over an *entire* external knowledge base. Graph RAG aims to solve this by using a generative model to create a knowledge graph that extracts and stores the relationships between key entities and can then be added as a data source to the RAG pipeline. This enables the RAG system to respond to queries asking to compare and summarize multiple documents and data sources.
+While traditional RAG excels at simple question answering tasks that can be resolved by retrieval alone, it is unable to answer questions and draw conclusions over an _entire_ external knowledge base. Graph RAG aims to solve this by using a generative model to create a knowledge graph that extracts and stores the relationships between key entities and can then be added as a data source to the RAG pipeline. This enables the RAG system to respond to queries asking to compare and summarize multiple documents and data sources.
 
 For more information on building graph RAG pipelines, take a look at Microsoft’s GraphRAG [package](https://github.com/microsoft/graphrag/tree/main?tab=readme-ov-file) and [documentation](https://microsoft.github.io/graphrag/).
 
@@ -245,6 +238,6 @@ At a minimum, each section in this post deserves its own individual blog post, i
 
 📄 [Evaluation of Retrieval-Augmented Generation: A Survey](https://arxiv.org/abs/2405.07437) (Academic paper)
 
-import WhatsNext from '/_includes/what-next.mdx';
+import WhatsNext from "/_includes/what-next.mdx";
 
 <WhatsNext />
