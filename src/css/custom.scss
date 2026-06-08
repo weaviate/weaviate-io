@@ -1647,41 +1647,9 @@ a.navbar__item.navbar__link:hover {
 }
 
 /* Service / policy MDX pages */
+
 main[class*="docMainContainer"],
 .main-wrapper {
   background: #111111;
   color: #b9c8de;
-}
-
-.theme-layout-main,
-.main-wrapper,
-#__docusaurus,
-body {
-  background: #111111;
-}
-
-.theme-layout-main article,
-.main-wrapper article {
-  color: #b9c8de;
-}
-
-.theme-layout-main article h1,
-.theme-layout-main article h2,
-.theme-layout-main article h3,
-.main-wrapper article h1,
-.main-wrapper article h2,
-.main-wrapper article h3 {
-  color: #edf4ff !important;
-}
-
-.theme-layout-main article a,
-.main-wrapper article a {
-  color: #63e689 !important;
-}
-
-.theme-layout-main article li,
-.theme-layout-main article p,
-.main-wrapper article li,
-.main-wrapper article p {
-  color: #b9c8de !important;
 }
