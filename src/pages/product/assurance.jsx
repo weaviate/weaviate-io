@@ -127,36 +127,36 @@ const outOfScope = [
 
 function Hero() {
   return (
-    <section className="tw-relative tw-overflow-hidden tw-bg-[#111111] tw-py-20 lg:tw-py-24">
+    <header
+      className="tw-relative tw-overflow-hidden"
+      style={{
+        background: "#111111",
+        backgroundImage:
+          'linear-gradient(rgba(17, 17, 17, 0.24), rgba(17, 17, 17, 0.72)), url("/img/site/2026/weaviate-home-26-1280.jpg")',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        padding: "clamp(72px, 8vw, 120px) 0 clamp(56px, 7vw, 96px)",
+      }}
+    >
       <div className="container">
-        <div className="tw-mx-auto tw-max-w-4xl tw-text-center">
+        <div className="tw-mx-auto tw-flex tw-max-w-[860px] tw-flex-col tw-items-center tw-text-center">
           <p
-            className="tw-mb-5 tw-text-[13px] tw-font-semibold tw-uppercase tw-tracking-[0.14em]"
-            style={{
-              ...headingFont,
-              background:
-                "linear-gradient(223deg, #43E2C5 -4.42%, #70EE62 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
+            className="tw-m-0 tw-mb-4 tw-text-[0.9rem] tw-font-semibold tw-uppercase tw-tracking-[0.08em] tw-text-[#B9C8DE]"
+            style={bodyFont}
           >
             Weaviate Assurance
           </p>
 
           <h1
-            className="tw-mb-8 tw-text-[3rem] tw-font-semibold tw-leading-[130%] tw-tracking-[-0.03em]"
+            className="tw-mb-4 tw-text-[2rem] tw-font-semibold tw-leading-[120%] tw-tracking-[-0.04em] tw-text-[#DDEBF2]"
             style={headingFont}
           >
-            <span className="tw-block tw-text-[#DDEBF2]">
-              Enterprise assurance for
-            </span>
-            <span className="tw-block tw-bg-[linear-gradient(48deg,#00FE6B_13.81%,#00B7E2_92.18%)] tw-bg-clip-text tw-text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]">
-              self-hosted Weaviate
-            </span>
+            Enterprise assurance for self-hosted Weaviate.
           </h1>
 
           <p
-            className="tw-mx-auto tw-mb-12 tw-max-w-2xl tw-text-xl tw-leading-relaxed tw-text-[#b8c4d4]"
+            className="tw-m-0 tw-max-w-[860px] tw-text-[1.125rem] tw-leading-[165%] tw-text-[#B9C8DE]"
             style={bodyFont}
           >
             A premium subscription that bridges the gap between self-hosted
@@ -165,30 +165,33 @@ function Hero() {
             times in the industry.
           </p>
 
-          <div className="tw-flex tw-flex-wrap tw-justify-center tw-gap-5">
+          <div className="tw-mt-8 tw-flex tw-flex-wrap tw-justify-center tw-gap-5">
             <Link
               to="/contact"
-              className="tw-inline-flex tw-min-h-[54px] tw-items-center tw-justify-center tw-rounded-md tw-bg-[linear-gradient(48deg,_#00FE6B_13.81%,_#00B7E2_92.18%)] tw-px-8 tw-text-base tw-font-semibold tw-text-[#111111] tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-bg-white hover:tw-text-[#111111] hover:tw-no-underline"
-              style={bodyFont}
+              className="tw-inline-flex tw-min-h-[54px] tw-min-w-[220px] tw-items-center tw-justify-center tw-rounded-xl tw-px-[30px] tw-text-[1rem] tw-font-bold tw-text-[#111111] tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-text-[#111111] hover:tw-no-underline"
+              style={{
+                ...bodyFont,
+                background: "linear-gradient(135deg, #43e2c5 0%, #6be38c 100%)",
+                boxShadow: "0 16px 44px rgba(67, 226, 197, 0.22)",
+              }}
             >
-              Contact sales
+              Contact Sales
             </Link>
 
             <Link
               to="/enterprise"
-              className="tw-inline-flex tw-min-h-[54px] tw-items-center tw-justify-center tw-rounded-md tw-border tw-bg-transparent tw-px-8 tw-text-base tw-font-semibold tw-text-white tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-bg-white/10 hover:tw-text-white hover:tw-no-underline"
+              className="tw-inline-flex tw-min-h-[54px] tw-min-w-[220px] tw-items-center tw-justify-center tw-rounded-xl tw-border tw-bg-transparent tw-px-[30px] tw-text-[1rem] tw-font-bold tw-text-white tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-bg-white/10 hover:tw-text-white hover:tw-no-underline"
               style={{
                 ...bodyFont,
-                border: "0.5px solid #ECF4F8",
-                borderRadius: "0.375rem",
+                border: "1px solid rgba(236, 244, 248, 0.6)",
               }}
             >
-              Explore enterprise options
+              Explore Enterprise Options
             </Link>
           </div>
         </div>
       </div>
-    </section>
+    </header>
   );
 }
 
