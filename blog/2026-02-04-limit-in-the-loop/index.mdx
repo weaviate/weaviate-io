@@ -1,9 +1,9 @@
 ---
-title: 'The Limit in the Loop'
+title: "The Limit in the Loop"
 slug: limit-in-the-loop
 authors: [charles-pierse, yaru]
 date: 2026-02-04
-tags: ['concepts']
+tags: ["concepts"]
 image: ./img/hero.png
 description: "Memory isn't just a feature for AI applications—it's infrastructure. As agents scale, the limited loop of stateless interactions breaks down, and continuity becomes a systems problem that requires active maintenance."
 faq:
@@ -14,13 +14,14 @@ faq:
   - question: "Why should memory be first-class infrastructure?"
     answer: “Memory must store and retrieve states with strong data guarantees, and thus be treated as critical infrastructure for applications.”
 ---
+
 ![Hero](./img/hero.png)
 
-<br/>
+<br />
 
-> **If you're interested in where memory is heading at Weaviate, [sign up for a preview today](https://weaviate.io/product-previews#preview-engram).**
+> **Get started with [Engram](/product/engram) in [Weaviate Cloud](https://console.weaviate.cloud/) today.**
 
-<br/>
+<br />
 
 Memory is a term you've probably been hearing like a steadily increasing drumbeat over the last year. This is for good reason – many of 2024 and 2025's PoC's have graduated and become full-fledged, mission-critical production applications. And with that an interesting problem has emerged, and it's not one that can be solved by today, or tomorrow's LLMs. Not because models aren't capable, but because this is fundamentally a systems problem and not a model limitation.
 
@@ -28,7 +29,7 @@ What we're running into is the infinite loop the user and the system (read: the 
 
 ## I Am A Limited Loop
 
-Today's AI applications operate in what might be called a *limited loop*, where each interaction is treated largely as disposable, bound to a single session and with incidental carryover between sessions. For those of you who have used chat-based LLMs without memory, some of these frustrating loops may already feel familiar. You might have a particular preference for how you want information to be presented, or simple facts about yourself like your name, where you live, what your favorite foods are. Personally, I like it when complex or unfamiliar topics are explained simply at first, and only then do I want the deep dive.
+Today's AI applications operate in what might be called a _limited loop_, where each interaction is treated largely as disposable, bound to a single session and with incidental carryover between sessions. For those of you who have used chat-based LLMs without memory, some of these frustrating loops may already feel familiar. You might have a particular preference for how you want information to be presented, or simple facts about yourself like your name, where you live, what your favorite foods are. Personally, I like it when complex or unfamiliar topics are explained simply at first, and only then do I want the deep dive.
 
 But the content of these loops goes beyond preferences. It might be a particular overarching goal you have for a period of time: maybe you are learning to knit this year, gradually gaining more skill across a series of interactions; or maybe you're working on a complex coding project that spans many chats, with specific technical decisions important to your specific project. In both cases, your context accumulates over time. And in both cases you find yourself restating and refreshing said context again and again just to get the system to "play ball".
 
@@ -69,7 +70,7 @@ This is why memory isn't something you simply store. It's something you have to 
 These custodial duties include:
 
 - **Write Control:** what to store, when to store it, and at what confidence.
-  Not every interaction deserves to become a memory. A passing comment, speculative answer, or unverified assumption should not be treated the same as confirmed preference or durable decision. Good write control prevents noise from *becoming* fact.
+  Not every interaction deserves to become a memory. A passing comment, speculative answer, or unverified assumption should not be treated the same as confirmed preference or durable decision. Good write control prevents noise from _becoming_ fact.
 
 - **Deduplication:** collapsing repeats and near-repeats into a single canonical fact.
   If a user mentions their preferred format ten times a day in ten different ways, the system shouldn't remember ten slightly different versions. It should remember one stable preference and not a growing pile of paraphrases.
@@ -108,8 +109,8 @@ These tentpoles we'll be using here at Weaviate as we build memory from the grou
 
 Built upon these guidelines, memory becomes the maintained state that agents can rely on as they independently operate, coordinate work, and adapt continuously to a changing world. These are the standards we are holding ourselves to, and we are excited to have all of you along for the ride.
 
-> **If you're interested in where memory is heading at Weaviate, [sign up for a preview today](https://weaviate.io/product-previews#preview-engram).**
+> **Get started with [Engram](/product/engram) in [Weaviate Cloud](https://console.weaviate.cloud/) today.**
 
-import WhatsNext from '/_includes/what-next.mdx';
+import WhatsNext from "/_includes/what-next.mdx";
 
 <WhatsNext />
