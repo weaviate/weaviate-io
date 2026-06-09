@@ -11,6 +11,8 @@ const footerGroups = {
     { label: 'Product Previews', to: '/product-previews' },
     { label: 'Shared Cloud', to: '/deployment/shared' },
     { label: 'Dedicated Cloud', to: '/deployment/dedicated' },
+    { label: 'Enterprise', to: '/enterprise' },
+    { label: 'Weaviate Assurance', to: '/product/assurance' },
     { label: 'Pricing', to: '/pricing' },
   ],
   Solutions: [
