@@ -4,16 +4,20 @@ title: Locally running RAG pipeline with Verba and Llama3 with Ollama
 slug: local-llm-with-verba-for-RAG
 authors: [adam]
 date: 2024-07-09
-tags: ['how-to', 'integrations']
+tags: ["how-to", "integrations"]
 image: ./img/hero.png
 description: "Run your RAG pipelines entirely locally with Verba and Ollama."
 ---
 
 ![Local RAG pipelines with Verba, Llama3, and Ollama.](./img/hero.png)
 
-import OllamaPull from './img/OllamaPullLlama3.mp4';
-import DocumentImportAndInference from './img/import-docs-and-do-inference.mp4';
-import GenerateCluster from './img/GenerateCluster.mp4';
+:::caution Verba has been deprecated
+Verba is no longer actively maintained. For RAG demos and interactive examples, visit **[playground.weaviate.io](https://playground.weaviate.io)** — including [Elysia](https://elysia.weaviate.io), our next-generation agentic RAG assistant, and more.
+:::
+
+import OllamaPull from "./img/OllamaPullLlama3.mp4";
+import DocumentImportAndInference from "./img/import-docs-and-do-inference.mp4";
+import GenerateCluster from "./img/GenerateCluster.mp4";
 
 # Overview
 
@@ -33,7 +37,6 @@ First ensure your Python version is >=3.10.0. You can check your python version 
 
     $ python3 --version
 
-
 To install Verba from Pypi, we'll want to set up and activate a Python virtual environment.
 
     $ python3 -m venv venv
@@ -44,24 +47,21 @@ Once those complete, you'll be able to start Verba running locally with:
 
     $ verba start
 
-This will start a web server at port 8000, and if you point your browser to `localhost:8000`, you'll see Verba running on your local machine! 
-
+This will start a web server at port 8000, and if you point your browser to `localhost:8000`, you'll see Verba running on your local machine!
 
 ![local-verba](./img/verba-browser.png)
 
-:::note 
+:::note
 If you used Verba before, you may have noticed that Verba looks different! Verba continues to evolve in our Open Source ecosystem with developers like you! We welcome all sorts of contributions and community engagements to make Verba even better, if you have an idea, don't hesitate to create a GitHub issue for it and talk about it in our forum!
 :::
 
-
-Under the hood, `verba start` looks for a `.env` environments file to configure Verba. Since we did not create any `.env` files yet, Verba defaults to loading an embedded instance of Weaviate locally on your computer as well. 
+Under the hood, `verba start` looks for a `.env` environments file to configure Verba. Since we did not create any `.env` files yet, Verba defaults to loading an embedded instance of Weaviate locally on your computer as well.
 
 Embedded Weaviate is an experimental feature that runs an instance of Weaviate through your application code. It stores data on disk at some configurable location, so that even if your application code stops running, the data will persist. Learn more about Embedded Weaviate [here](https://docs.weaviate.io/weaviate/installation/embedded).
 
 Embedded Weaviate is perfect if you're testing or prototyping with small datasets, but you may find that you are limited in how much data you can load into this embedded database, especially if the machine you're working on is also hardware constrained.
 
 For now, we'll keep this configuration of Verba and Weaviate.
-
 
 # Getting Ollama for Local inference
 
@@ -89,11 +89,12 @@ While we're still in the terminal, let's download an embedding model to help us 
 
 This will download the Snowflake embedding model which we'll configure Weaviate ard Verba to use for generating the embeddings of our dataset so we can execute retrieval for augmenting our LLM generations.
 
-# Enviroment Variable Configuration 
+# Enviroment Variable Configuration
 
-To use Ollama with Verba we need to apply some configuration through a `.env` environment variables file. 
+To use Ollama with Verba we need to apply some configuration through a `.env` environment variables file.
 
 Verba looks for a .env file and will use it as configuration. Some configurable paramaters include, but not limited to:
+
 - Weaviate instance to use
 - what embedding model to use
 - what language model to use
@@ -113,10 +114,9 @@ Once you do this, restart Verba, and load it back into your browser and you shou
 
 ![Verba-Configured-With-Ollama](./img/verba-ollama-configured.png)
 
-
 # Loading Data into Weaviate through Verba
 
-With Verba configured with Ollama for inference and vectorization of your documents, let's go ahead and import some documents. 
+With Verba configured with Ollama for inference and vectorization of your documents, let's go ahead and import some documents.
 
 Let's set up the RAG settings. Click on **RAG** at from the top nav. Ensure that the Ollama Embedder is selected, the Window Retriever is selected, and that Ollama is configured for Inference. Your RAG configuration should look like the following:
 
@@ -140,12 +140,11 @@ Notice how the generated response surfaces a response that has context of this b
 
 So that's the foundation! You now have a full RAG pipeline running locally on your machine, using Weaviate for vector storage and retrieval, Ollama for inference, Snowflake's Arctic Embed for embedding generation, Llama3 for generation, and Verba tying it altogether.
 
-In the next portion of this blog post, we're going to explore more robust deployment methods of Weaviate, while still using Ollama and Verba. 
-
+In the next portion of this blog post, we're going to explore more robust deployment methods of Weaviate, while still using Ollama and Verba.
 
 # Alternative Deployment Methods for Weaviate
 
-We've already explored Embedded Weaviate, so let's dive into a more reliable, production ready ways to use Weaviate. If you are unsure of the size of your use case, and don't want to manage additional compute resources, we recommend using Weaviate Cloud. You can create and use a free Weaviate Cloud Sandbox for 14 days. 
+We've already explored Embedded Weaviate, so let's dive into a more reliable, production ready ways to use Weaviate. If you are unsure of the size of your use case, and don't want to manage additional compute resources, we recommend using Weaviate Cloud. You can create and use a free Weaviate Cloud Sandbox for 14 days.
 
 In the following section, we'll set up a free Weaviate Cloud Sandbox.
 
@@ -155,9 +154,7 @@ Point your browser over to Weaviate Cloud at [https://console.weaviate.cloud/](h
 
 ![Weaviate-Cloud-Console-Dashboard](./img/weaviate-cloud-console.png)
 
-
 At the top right, click Create Cluster, give your sandbox a name, scroll down and acknowledge this is 100% free sandbox that expires in 14 days. With that said, you will be able to extend these once, but if you want to keep your data you'll have to export the data programmatically and then import it into a new Weaviate cluster when you're ready.
-
 
 <figure>
   <video width="100%" autoplay loop muted controls>
@@ -167,13 +164,11 @@ At the top right, click Create Cluster, give your sandbox a name, scroll down an
   <figcaption>Generate a free Weaviate Sandbox</figcaption>
 </figure>
 
-
 Now that a cluster has been created, you can access the **REST Endpoint** and the **API Key**. Click on "Details" of your shiny new Weaviate sandbox from the Console Dashboard. You'll see the **REST Endpoint**, copy that into a text file for later. Then click on **API Keys**, this will produce a modal that exposes your Admin API Key. Don't let this get exposed in a git repo, or anywhere else! It's a sensitive key that allows you to connect to your private Weaviate Cluster!
 
 ![cluster-details](./img/cluster-details.png)
 
 ![cluster-api-keys](./img/cluster-api-key.png)
-
 
 We'll take these two parameters and update our `.env` environment variables file, make sure to replace the values with your own REST Endpoint and API Key.
 
@@ -212,11 +207,10 @@ This assumes you did not change the default port from 8080, and that you've enab
 It wasn't discussed in this blog post, but Weaviate can also be deployed in a Kubernetes environment with our Helm charts.
 :::
 
-
 That's a wrap! If you like [Weaviate](https://github.com/weaviate/weaviate) and [Verba](https://github.com/weaviate/verba), make sure to give the Open Source git repositories some love and star those repos!
 
 If you have questions, come on by to our community Forum.
 
-import WhatsNext from '/_includes/what-next.mdx';
+import WhatsNext from "/_includes/what-next.mdx";
 
 <WhatsNext />
