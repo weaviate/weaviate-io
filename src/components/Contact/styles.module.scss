@@ -71,7 +71,7 @@
   }
 
   p {
-    margin: 0 0 2rem;
+    margin: 0 0 1rem;
     color: #b9c8de !important;
     font-family: Inter, sans-serif !important;
     font-size: 1.05rem;
@@ -297,5 +297,40 @@
 @media screen and (max-width: 700px) {
   .rightForm :global(.form-columns-2) {
     grid-template-columns: 1fr !important;
+  }
+}
+
+.supportNotice {
+  margin: 1.5rem 0 2rem;
+  padding: 1.25rem 0;
+  max-width: 540px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  h3 {
+    margin: 0 0 0.5rem;
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  p {
+    margin: 0 0 0.75rem;
+    color: #b9c8de !important;
+    font-size: 1.05rem;
+    line-height: 155%;
+  }
+}
+
+.supportLink {
+  color: #43e2c5 !important;
+  font-family: Inter, sans-serif;
+  font-weight: 700;
+  text-decoration: none !important;
+
+  &:hover {
+    color: #6be38c !important;
   }
 }

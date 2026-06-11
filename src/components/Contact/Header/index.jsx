@@ -29,12 +29,6 @@ export default function ContactHeader() {
             >
               Subscribe
             </Link>
-            <Link
-              className={styles.buttonSupport}
-              to="https://docs.weaviate.io/support"
-            >
-              Get Support
-            </Link>
           </div>
         </div>
       </div>

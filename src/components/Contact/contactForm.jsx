@@ -99,6 +99,22 @@ export default function ContactForm() {
               you find the right path forward.
             </p>
 
+            <div className={styles.supportNotice}>
+              <h3>Already using Weaviate?</h3>
+
+              <p>
+                Need technical support, troubleshooting, or account-specific
+                help?
+              </p>
+
+              <Link
+                className={styles.supportLink}
+                to="https://docs.weaviate.io/support"
+              >
+                Visit the Support Center →
+              </Link>
+            </div>
+
             <Link className={styles.tryButton} to="/go/console">
               Try Weaviate Cloud
             </Link>
