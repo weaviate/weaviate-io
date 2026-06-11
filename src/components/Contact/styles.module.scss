@@ -1,6 +1,6 @@
 .contactBackground {
   background: #111111;
-  padding: clamp(4rem, 8vw, 7rem) 0;
+  padding: clamp(4rem, 8vw, 4rem) 0;
 
   :global(.container) {
     padding-top: 0 !important;
@@ -274,7 +274,7 @@
   border: none !important;
   border-radius: 0.9rem !important;
 
-  background: linear-gradient(90deg, #00fe6b 0%, #00b7e2 100%) !important;
+  background: #6be38c !important;
 
   color: #111111 !important;
 

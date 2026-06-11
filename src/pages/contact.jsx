@@ -6,6 +6,7 @@ import Header from "/src/components/Contact/Header";
 import ContactFrom from "/src/components/Contact/contactForm.jsx";
 import ThemeSwitch from "/src/components/ThemeSwitch";
 import CTA from "/src/components/RAG/CTA";
+import Support from "/src/components/Contact/Support";
 
 export default function ContactPage() {
   return (
@@ -17,6 +18,7 @@ export default function ContactPage() {
         <MetaSEO img="og/content/contact.jpg" />
         <Header />
         <ContactFrom />
+        <Support />
         <CTA />
       </Layout>
       <ThemeSwitch />
