@@ -23,9 +23,9 @@
     height: 2.5rem;
     flex-shrink: 0;
     border-radius: 0.3125rem;
-    border: 1px solid #130c49;
-    background: #f7f9fd;
-    color: #130c49;
+    border: 1px solid #63e689;
+    background: #63e689;
+    color: #0a1512;
     text-align: center;
     font-family: Inter;
     font-size: 0.875rem;
@@ -36,8 +36,9 @@
 
   .buttonOutline {
     border-radius: 0.3125rem;
-    background: #fff;
-    color: #130c49;
+    background: transparent;
+    color: #d0d8ea;
+    border: 1px solid #39425b;
     text-align: center;
     font-size: 1rem;
     font-style: normal;
@@ -57,10 +58,12 @@ p {
   justify-content: center;
   align-items: flex-start;
   text-align: left;
-  margin-bottom: 40px;
+  margin-bottom: 0;
+  background-color: transparent;
+  padding: 2rem 0 2.5rem;
 
   h1 {
-    color: #130c49;
+    color: #edf4ff;
     font-family: Plus Jakarta Sans;
     font-size: 2.25rem;
     font-style: normal;
@@ -70,18 +73,14 @@ p {
   }
 
   .headerBox {
-    width: 50%;
+    width: 58%;
     @media screen and (max-width: 900px) {
       width: 100%;
-    }
-
-    p {
-      color: #130c49;
     }
   }
 
   hr {
-    background: #130c49;
+    background: #2a2f3f;
     width: 65rem;
     height: 0.0625rem;
 
@@ -96,9 +95,9 @@ p {
   height: 2.5rem;
   flex-shrink: 0;
   border-radius: 0.3125rem;
-  border: 1px solid #130c49;
-  background: #130c49;
-  color: #f7f9fd;
+  border: 1px solid #63e689;
+  background: #63e689;
+  color: #0a1512;
   text-align: center;
   font-family: Inter;
   font-size: 0.875rem;
@@ -111,7 +110,8 @@ p {
   align-items: center;
 
   &:hover {
-    color: #f7f9fd;
+    color: #0a1512;
+    background: #7df09d;
   }
 }
 
@@ -119,10 +119,10 @@ p {
   width: 10.5625rem;
   height: 2.5rem;
   border-radius: 0.3125rem;
-  border: 1px solid #130c49;
-  background: #f4f4f4;
+  border: 1px solid #39425b;
+  background: transparent;
   padding: 9px;
-  color: #130c49;
+  color: #d0d8ea;
   text-align: center;
   font-family: Inter;
   font-size: 0.875rem;
@@ -135,7 +135,8 @@ p {
   align-items: center;
 
   &:hover {
-    color: #130c49;
+    color: #edf4ff;
+    border-color: #4a5574;
   }
 }
 
@@ -143,7 +144,7 @@ p {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 30px;
   padding: 20px 0px 10px;
@@ -160,12 +161,26 @@ p {
 }
 
 .headerSecurity {
-  background: #f5f5f5;
-  background-image: url('/img/site/3d-pricing-banner.png');
+  background:
+    linear-gradient(
+      107deg,
+      rgba(11, 17, 30, 0.95) 0%,
+      rgba(18, 23, 34, 0.92) 58%,
+      rgba(10, 21, 32, 0.9) 100%
+    ),
+    url("/img/site/2026/weaviate-home-26-1280.jpg") #111111;
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
   @media screen and (max-width: 500px) {
-    background-image: url('/img/site/3d-pricing-banner.png');
+    background:
+      linear-gradient(
+        135deg,
+        rgba(11, 17, 30, 0.97) 0%,
+        rgba(18, 23, 34, 0.94) 100%
+      ),
+      url("/img/site/2026/weaviate-home-26-1280.jpg") #111111;
     background-size: cover;
     background-position-y: bottom;
     background-repeat: no-repeat;
@@ -173,7 +188,7 @@ p {
 }
 
 .topText {
-  color: #130c49;
+  color: #d0d8ea;
   text-align: center;
   font-family: Plus Jakarta Sans;
   font-size: 1.25rem;

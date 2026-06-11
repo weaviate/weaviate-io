@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import Highlight, { defaultProps } from 'prism-react-renderer';
-import theme from 'prism-react-renderer/themes/nightOwl';
-import styles from './styles.module.scss';
+import React, { useState } from "react";
+import { Highlight, themes } from "prism-react-renderer";
+import styles from "./styles.module.scss";
 
 let searchExample = `# Select collection
 collection = client.collections.get("SupportTickets")
@@ -138,7 +137,7 @@ const codeExamples = {
 };
 
 export default function CodeTabs() {
-  const [active, setActive] = useState('search');
+  const [active, setActive] = useState("search");
 
   return (
     <div className={styles.codeTabs}>
@@ -147,7 +146,7 @@ export default function CodeTabs() {
           <button
             key={key}
             onClick={() => setActive(key)}
-            className={active === key ? styles.active : ''}
+            className={active === key ? styles.active : ""}
           >
             {key.toUpperCase()}
           </button>
@@ -155,8 +154,7 @@ export default function CodeTabs() {
       </div>
 
       <Highlight
-        {...defaultProps}
-        theme={theme}
+        theme={themes.nightOwl}
         code={codeExamples[active]}
         language="python"
       >
@@ -165,15 +163,15 @@ export default function CodeTabs() {
             className={`${className} ${styles.codeBlock}`}
             style={{
               ...style,
-              backgroundColor: 'transparent',
-              overflowX: 'auto',
-              maxHeight: '100%',
+              backgroundColor: "transparent",
+              overflowX: "auto",
+              maxHeight: "100%",
             }}
           >
             {tokens.map((line, i) => (
-              <div key={i} {...getLineProps({ line, key: i })}>
+              <div key={i} {...getLineProps({ line })}>
                 {line.map((token, key) => (
-                  <span key={key} {...getTokenProps({ token, key })} />
+                  <span key={key} {...getTokenProps({ token })} />
                 ))}
               </div>
             ))}

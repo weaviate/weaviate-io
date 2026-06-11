@@ -1,0 +1,53 @@
+$uiMinHeight: 40px;
+
+$mainColor: #120D5E;
+$secondaryColor: rgb(145, 145, 145);
+$space: 12px;
+$transition: all 0.25s ease-in-out;
+$yellow: #EDCB59;
+$green: #8bfcad;
+$bg: #FFFFFF;
+$grey: #D7DDE8;
+
+$borderColor: rgba(0, 0, 0, 0.1);
+$boxShadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+
+// Button and form colors
+$buttonBg: #FFFFFF;
+$buttonBgHover: #EBF4F9;
+$buttonBgDropdown: #ECF4F8;
+$buttonBorder: #A3AFF1;
+$selectBg: #EDF4F8;
+$selectItemHover: #D5DEEA;
+$toggleBg: #EBF4F9;
+$white: #fff;
+$textGrey: #6A678E;
+$textDark: #42424B;
+$darkBorder: #130C49;
+
+// Deselected Buttons
+$deselectedButtonBg: #FFFFFF;
+$deselectedButtonText: #b0b0b0;
+$deselectedButtonBorder: #adadad;
+
+// Gradients
+$blueGradient: linear-gradient(150.47deg, #92ebff 0%, #51c5ef 100%);
+$greenGradient: linear-gradient(150.47deg, #75fbae 0%, #b6f874 100%);
+$pinkGradient: linear-gradient(150.47deg, #ffe196 0%, #fb80d2 100%);
+// Plus: greenish-teal, sits between Flex green and Premium blue
+$tealGradient: linear-gradient(150.47deg, #76fbcf 0%, #6fd9d6 100%);
+
+// Calculator dark theme (the calculator sits on the dark pricing page)
+$calcText: #DDEBF2;
+$calcMuted: #B9C8DE;
+$calcSubtle: #8A98AC;
+$calcSurface: #1A1A1A;
+$calcField: #0F0F0F;
+$calcBorder: rgba(255, 255, 255, 0.12);
+$calcHair: rgba(255, 255, 255, 0.06);
+$calcGreen: #00FE6B;
+$calcPill: #E8EEF5;
+$calcPillBorder: #00FE6B;
+$calcIconPurple: #C9A9FF;
+$calcIconYellow: #FADE76;
+

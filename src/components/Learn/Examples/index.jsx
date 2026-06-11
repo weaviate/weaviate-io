@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { ButtonContainer } from '../../../theme/Buttons';
-import styles from './styles.module.scss';
-import { LinkButton } from '/src/theme/Buttons';
-import Link from '@docusaurus/Link';
+import React, { useState } from "react";
+import { ButtonContainer } from "../../../theme/Buttons";
+import styles from "./styles.module.scss";
+import { LinkButton } from "/src/theme/Buttons";
+import Link from "@docusaurus/Link";
 
 export default function Examples() {
   return (
@@ -28,19 +28,19 @@ export default function Examples() {
                       to="https://github.com/weaviate/recipes"
                     >
                       Python recipes
-                    </Link>:{' '}
-                    Integrations (DSPy, Llamalndex, etc.), Reranking,
-                    Search, Multi-tenancy, and more
+                    </Link>
+                    : Integrations (DSPy, Llamalndex, etc.), Reranking, Search,
+                    Multi-tenancy, and more
                   </li>
                   <li>
-                  <Link
+                    <Link
                       className={styles.external}
                       to="https://github.com/weaviate/recipes-ts"
                     >
                       JS/TS recipes
-                    </Link>:{' '}
-                    Integrations (LangChain, etc.), Reranking,
-                    Search, Multi-tenancy, and more
+                    </Link>
+                    : Integrations (LangChain, etc.), Reranking, Search,
+                    Multi-tenancy, and more
                   </li>
                 </ul>
               </div>
@@ -56,34 +56,7 @@ export default function Examples() {
                   <li>
                     <Link
                       className={styles.external}
-                      to="https://verba.weaviate.io/"
-                    >
-                      Verba:
-                    </Link>{' '}
-                    The Golden RAGtriever
-                  </li>
-                  <li>
-                    <Link
-                      className={styles.external}
-                      to="https://healthsearch.weaviate.io/"
-                    >
-                      Healthsearch:
-                    </Link>{' '}
-                    Generative AI in Healthcare
-                  </li>
-                  <li>
-                    <Link
-                      className={styles.external}
-                      to="https://awesome-moviate.weaviate.io/"
-                    >
-                      Awesome-moviate:
-                    </Link>{' '}
-                    A Movie Search Engine
-                  </li>
-                  <li>
-                    <Link
-                      className={styles.external}
-                      to="/community/demos"
+                      to="https://playground.weaviate.io/"
                     >
                       See more demos here
                     </Link>
@@ -108,7 +81,7 @@ export default function Examples() {
                       to="https://github.com/weaviate/weaviate"
                     >
                       weaviate:
-                    </Link>{' '}
+                    </Link>{" "}
                     The "core" database & web server
                   </li>
                   <li>
@@ -117,7 +90,7 @@ export default function Examples() {
                       to="https://github.com/weaviate/weaviate-python-client"
                     >
                       weaviate-python-client:
-                    </Link>{' '}
+                    </Link>{" "}
                     Python client library
                   </li>
                   <li>
@@ -126,7 +99,7 @@ export default function Examples() {
                       to="https://github.com/weaviate/typescript-client"
                     >
                       typescript-client:
-                    </Link>{' '}
+                    </Link>{" "}
                     TS/JS client library
                   </li>
                 </ul>
@@ -138,7 +111,7 @@ export default function Examples() {
                       to="https://github.com/weaviate/weaviate-go-client"
                     >
                       weaviate-go-client:
-                    </Link>{' '}
+                    </Link>{" "}
                     Golang client library
                   </li>
                   <li>
@@ -147,7 +120,7 @@ export default function Examples() {
                       to="https://github.com/weaviate/java-client"
                     >
                       java-client:
-                    </Link>{' '}
+                    </Link>{" "}
                     Java client library
                   </li>
                 </ul>

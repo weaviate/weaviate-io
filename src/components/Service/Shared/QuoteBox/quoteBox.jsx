@@ -1,26 +1,29 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
-import styles from './styles.module.scss';
+import Link from "@docusaurus/Link";
+import React from "react";
+import styles from "./styles.module.scss";
 
-const socLight = 'dark';
-
-export default function quoteBox(props) {
-  const { socLight } = props;
+export default function QuoteBox() {
   return (
-    <div className={styles[socLight]}>
-      <div className={styles.soc2Container}>
-        <div className={`${styles.card} ${styles.longCard}`}>
-          <div className={styles.contentDiv}>
+    <section className={styles.quoteSection}>
+      <div className="container">
+        <div className={styles.quoteCard}>
+          <div className={styles.quoteInner}>
             <div className={styles.cardLogo}></div>
-            <h3 className={styles.cTextColor}>
-              “Weaviate's Shared offering helps our team build Generative AI
-              apps faster by removing the need to create boilerplate code and
+
+            <h3>
+              “Weaviate&apos;s Shared offering helps our team build Generative
+              AI apps faster by removing the need to create boilerplate code and
               manage infrastructure.”
             </h3>
+
             <p>Ben Selleslagh, Co-founder at Vectrix</p>
+
+            <Link className={styles.buttonGradient} to="/go/console">
+              Start Building with Weaviate
+            </Link>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

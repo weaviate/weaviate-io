@@ -1,0 +1,153 @@
+@use "../../variables.scss" as v;
+@use "sass:color";
+
+.selectContentWrapper {
+  z-index: 1999;
+
+  ul,
+  li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-size: inherit;
+    font-weight: inherit;
+  }
+
+  button,
+  input,
+  textarea {
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: none;
+  }
+
+  button {
+    cursor: pointer;
+  }
+}
+
+.selectContent {
+  background: v.$calcSurface;
+  border: 1px solid v.$calcBorder;
+  border-radius: 5px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.selectTarget {
+  display: flex;
+  padding: 0 v.$space;
+  border: 1px solid v.$calcBorder;
+  border-radius: 5px;
+  align-self: center;
+  min-width: 200px;
+  height: 30px;
+  align-items: center;
+  justify-content: flex-start;
+  text-transform: capitalize;
+  color: v.$calcText;
+  transition: v.$transition;
+
+  &:focus,
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
+}
+
+.selectInputTarget {
+  display: flex;
+  flex-direction: row !important;
+  align-items: stretch;
+  width: 100%;
+  min-width: 200px;
+  height: 44px;
+  border: 1px solid v.$calcBorder;
+  border-radius: calc(v.$space / 2);
+  background: v.$calcField;
+  overflow: hidden;
+  flex-shrink: 0;
+
+  .selectInput {
+    flex: 1 1 auto;
+    padding: 0 v.$space;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: v.$calcText;
+    font-size: 0.9em;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-family: inherit;
+    min-width: 0;
+
+    &::placeholder {
+      color: v.$calcSubtle;
+    }
+  }
+
+  .selectChevronButton {
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    min-width: 44px;
+    max-width: 44px;
+    flex-shrink: 0;
+    border: none;
+    border-left: 1px solid v.$calcBorder;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .chevronIcon {
+      width: 12px;
+      height: 12px;
+      pointer-events: none;
+      // Tint the dark chevron asset to a light teal for the dark theme.
+      filter: brightness(0) saturate(100%) invert(82%) sepia(36%)
+        saturate(640%) hue-rotate(118deg) brightness(98%) contrast(92%);
+    }
+  }
+}
+
+ul.selectList {
+  button {
+    cursor: pointer;
+    min-height: 36px;
+    width: 100%;
+    text-align: left;
+    padding: 0 10px;
+    color: v.$calcMuted;
+    font-size: 0.9em;
+    transition: v.$transition;
+    padding-left: 30px;
+    background-position: 10px center;
+    background-repeat: no-repeat;
+
+    &:hover,
+    &:focus {
+      background-color: rgba(255, 255, 255, 0.06);
+      color: v.$calcText;
+    }
+
+    &.active {
+      color: v.$calcText;
+      background-color: rgba(255, 255, 255, 0.08);
+      background-image: url("/img/pricing/check.svg");
+      background-position: 10px center;
+      background-repeat: no-repeat;
+    }
+  }
+}

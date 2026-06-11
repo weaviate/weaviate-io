@@ -1,36 +1,49 @@
 .benefitsBg {
-  background: #ededed;
+  background: #111111;
+  padding: clamp(4rem, 8vw, 7rem) 0;
 }
 
 .title {
   text-align: center;
-  padding: 1rem 0 2rem 0;
-  max-width: 30rem;
-  margin: auto;
-  margin-bottom: 2rem;
+  max-width: 720px;
+  margin: 0 auto clamp(2.5rem, 5vw, 4rem);
+
+  h2 {
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-weight: 700 !important;
+    line-height: 110%;
+    letter-spacing: -0.05em;
+    margin: 0 0 1rem;
+  }
+
+  p {
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 1rem;
+    line-height: 170%;
+    margin: 0 auto;
+    max-width: 560px;
+  }
 }
 
 .box {
-  // display: grid;
-  // grid-template-columns: 1fr 1fr 1fr;
-  // margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
 
-  // @media screen and (max-width: 860px) {
-  //   grid-template-rows: 1fr 1fr 1fr;
-  // }
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-
-  @media screen and (max-width: 860px) {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  @media screen and (max-width: 980px) {
+    grid-template-columns: 1fr;
   }
 }
 
 .item {
+  position: relative;
+  overflow: hidden;
+
+  min-height: 320px;
+  padding: clamp(2rem, 4vw, 3rem);
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,68 +51,89 @@
 
   text-align: center;
 
-  max-width: 30%;
+  border-radius: 1.5rem;
+
+  background: linear-gradient(
+    145deg,
+    rgba(24, 28, 38, 0.96),
+    rgba(14, 18, 28, 0.98)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: radial-gradient(
+      circle at top left,
+      rgba(67, 226, 197, 0.11),
+      transparent 36%
+    );
+
+    pointer-events: none;
+  }
 
   @media screen and (max-width: 860px) {
-    max-width: 100%;
+    min-height: auto;
   }
+}
+
+.img,
+.itemText {
+  position: relative;
+  z-index: 1;
 }
 
 .img {
   width: 100%;
   height: 6rem;
+  margin-bottom: 1.5rem;
+
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .flowerImg {
-  background-image: url('../../../../static/img/company/careers/flower.png');
+  background-image: url("../../../../static/img/company/careers/flower.png");
 }
 
 .facesImg {
-  background-image: url('../../../../static/img/company/careers/square-faces.png');
+  background-image: url("../../../../static/img/company/careers/square-faces.png");
 }
 
 .earthImg {
-  background-image: url('../../../../static/img/company/careers/earth.png');
+  background-image: url("../../../../static/img/company/careers/earth.png");
 }
 
 .itemText {
-  padding: 2rem;
+  padding: 0;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+  h3 {
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    font-weight: 700;
+    line-height: 125%;
+    letter-spacing: -0.03em;
+    margin: 0 0 1rem;
+  }
 
-[data-theme='light'] {
-  .title {
-    p {
-      color: #1c1468;
+  p {
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 1rem;
+    line-height: 165%;
+    margin: 0;
+
+    br {
+      display: none;
     }
-
-    h2 {
-      color: #1c1468;
-    }
-  }
-
-  .itemText {
-    h3 {
-      color: #1c1468;
-    }
-  }
-
-  .flowerImg {
-    background-image: url('../../../../static/img/company/careers/flower-light.png');
-  }
-
-  .facesImg {
-    background-image: url('../../../../static/img/company/careers/square-faces-light.png');
-  }
-
-  .earthImg {
-    background-image: url('../../../../static/img/company/careers/earth-light.png');
   }
 }

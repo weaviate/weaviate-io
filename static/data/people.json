@@ -1,7 +1,7 @@
 [
   {
     "name": "Aarthi Iyer",
-    "title": "Lead QA Engineer",
+    "title": "QA Engineer",
     "photo": "aarthi.jpg",
     "linkedin": "aarthiiyer",
     "team": "wcd"
@@ -27,6 +27,13 @@
     "photo": "Alexandre-El-Khoury.jpg",
     "linkedin": "alexandre-el-khoury",
     "team": "wcd"
+  },
+  {
+    "name": "Alisa Riley",
+    "title": "Enterprise Account Executive",
+    "photo": "alisa-riley.jpg",
+    "linkedin": "alisa-riley-39642b84/",
+    "team": "partnerships"
   },
   {
     "name": "André Mourão",
@@ -172,7 +179,7 @@
   },
   {
     "name": "Duda Nogueira",
-    "title": "Community Technical Support",
+    "title": "Senior Support Engineer",
     "photo": "duda.jpg",
     "linkedin": "dudanogueira",
     "team": "support-engineering"
@@ -240,7 +247,7 @@
   },
   {
     "name": "Ivan Despot",
-    "title": "Senior DX & Docs Engineer",
+    "title": "Senior DX & Docs Lead",
     "photo": "Ivan.jpg",
     "team": "database",
     "linkedin": "ivan-g-despot",
@@ -280,9 +287,11 @@
     "team": "applied-research"
   },
   {
-    "name": "José Luis Franco",
-    "title": "QA Engineer",
+    "name": "José Luis Franco Arza",
+    "title": "Lead QA Engineer",
     "photo": "Jose-Luis-Franco.jpg",
+    "linkedin": "joseluisfrancoarza",
+    "github": "jfrancoa",
     "team": "database"
   },
   {
@@ -351,7 +360,7 @@
   },
   {
     "name": "Mohamed Shahin",
-    "title": "Product Support Engineer",
+    "title": "Support Tech Lead",
     "photo": "mohamed.jpg",
     "linkedin": "shahinmohamed",
     "twitter": "shah91n",
@@ -461,7 +470,7 @@
   },
   {
     "name": "Yaru Lin",
-    "title": "Director of Product Management",
+    "title": "Director of Product",
     "photo": "yaru-lin.jpg",
     "linkedin": "linyaru",
     "team": "product"

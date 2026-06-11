@@ -338,9 +338,13 @@ ivan:
   image_url: /img/people/icon/ivan.jpeg
 yaru:
   name: Yaru Lin
-  title: Product Lead, Weaviate Cloud
+  title: Director of Product
   url: mailto:yaru@weaviate.io
   image_url: /img/people/icon/yaru.jpeg
+brandon:
+  name: Brandon Holwerda
+  title: Product Marketing Manager
+  image_url: /img/people/icon/Brandon-Holwerda.jpg
 tony-crewai:
   name: Tony Kipkemboi
   title: Senior Developer Relations Engineer, CrewAI
@@ -366,13 +370,13 @@ michelangelo:
   title: Software Engineer - Client Libraries
   url: https://www.linkedin.com/in/mpartipilo/
   image_url: /img/people/icon/michelangelo.png
+andre:
+  name: André Mourão
+  title: Software Engineer - Search
+  url: https://www.linkedin.com/in/andre-mourao/
+  image_url: /img/people/team/andre-m.jpg
 devika:
   name: Devika Ambekar
   title: PhD Candidate at University of Arkansas at Little Rock
   url: https://www.linkedin.com/in/divikaambekar/
   image_url: /img/people/icon/devika.jpg
-shan:
-  name: Shan Blackwood
-  title: Web Developer
-  url: https://www.linkedin.com/in/shanblackwood/
-  image_url: /img/people/icon/shan.jpg

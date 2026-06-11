@@ -1,83 +1,84 @@
-@import '/src/css/blog-custom-layout.scss';
-
 .featuredTags {
-    padding-bottom: 20px;
-    border-bottom: 1px solid #2C3854;
-    .label {
-        font-size: larger;
-        font-weight: bold;
-    }
+  padding-bottom: 20px;
+  border-bottom: 1px solid #2a2f3f;
 
-    .tags {
-        display: flex;
-        flex-wrap: wrap;
-    }
+  .label {
+    color: #edf4ff !important;
+    font-size: larger;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
 
-    .tag {
-        font-size: large;
-        border-radius: var(--ifm-global-radius);
-        border: 1px solid #C3C5D8;
-        margin: 5px 5px;
-    }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
 
-    .tag a {
-      color: #fff;
-      text-transform: capitalize;
-      padding: 4px 8px;
+  .tag {
+    border-radius: 0.5rem;
+    border: 1px solid #39425b;
+    background: rgba(255, 255, 255, 0.03);
+    transition:
+      border-color 0.2s ease,
+      background 0.2s ease,
+      transform 0.2s ease;
 
-      display: flex;
-      justify-self: center;
-      align-items: center;
+    &:hover {
+      transform: translateY(-2px);
+      border-color: rgba(99, 230, 137, 0.45);
+      background: rgba(99, 230, 137, 0.06);
     }
+  }
 
-    .dot {
-      height: 10px;
-      width: 10px;
-      border-radius: 50%;
-      margin-left: 7px;
-    }
+  .tag a {
+    color: #d0d8ea !important;
+    text-transform: capitalize;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    text-decoration: none !important;
+    font-size: 1rem;
+    font-weight: 500;
 
-    .agents {
-      background-color: #e75959;
+    &:hover {
+      color: #edf4ff !important;
     }
-    .concepts {
-      background-color: #20E220;
-    }
-    .engineering {
-      background-color: #FFCB00;
-    }
-    .integrations {
-      background-color: #00B7E2;
-    }
-    .how-to {
-      background-color: #00998B;
-    }
-    .release {
-      background-color: #FFFF00;
-    }
-    .research {
-      background-color: #7C69EF;
-    }
-    .search {
-      background-color: #D4498C;
-    }
-    .community {
-      background-color: #85E3BC;
-    }
-}
+  }
 
-[data-theme='light'] {
-  .featuredTags {
-    .tag {
-      border: 1px solid #C3C5D8;
-    }
+  .dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    margin-left: 8px;
+    flex-shrink: 0;
+  }
 
-    .tag a {
-      color: #130C49
-    }
-
-    .dot {
-      border: 0.5px solid rgb(0, 0, 0, 0.5);
-    }
+  .agents {
+    background-color: #e75959;
+  }
+  .concepts {
+    background-color: #63e689;
+  }
+  .engineering {
+    background-color: #ffcb00;
+  }
+  .integrations {
+    background-color: #00b7e2;
+  }
+  .how-to {
+    background-color: #00998b;
+  }
+  .release {
+    background-color: #ffff00;
+  }
+  .research {
+    background-color: #7c69ef;
+  }
+  .search {
+    background-color: #d4498c;
+  }
+  .community {
+    background-color: #85e3bc;
   }
 }

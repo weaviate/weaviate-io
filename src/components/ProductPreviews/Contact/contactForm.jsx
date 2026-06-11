@@ -1,18 +1,17 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import styles from './styles.module.scss';
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import styles from "./styles.module.scss";
 
 const PREVIEW_TO_HUBSPOT_VALUE = {
-  engram: 'Engram - Memory for Agents',
-  'model-eval': 'Model Evaluation Tool - Cloud Console',
-  hfresh: 'HFresh - Weaviate DB',
+  "model-eval": "Model Evaluation Tool - Cloud Console",
+  "query-agent-research": "Query Agent - Research Mode",
 };
 
-const HUBSPOT_FIELD_NAME = 'early_access_productfeature';
+const HUBSPOT_FIELD_NAME = "early_access_productfeature";
 
 function getPreviewFromUrl() {
   try {
     const url = new URL(window.location.href);
-    return url.searchParams.get('preview');
+    return url.searchParams.get("preview");
   } catch (e) {
     return null;
   }
@@ -29,8 +28,8 @@ function setHubspotDropdownInsideIframe(value) {
     tries++;
 
     const iframe =
-      document.querySelector('#hubspotForm iframe.hs-form-iframe') ||
-      document.querySelector('#hubspotForm iframe');
+      document.querySelector("#hubspotForm iframe.hs-form-iframe") ||
+      document.querySelector("#hubspotForm iframe");
 
     if (!iframe || !iframe.contentWindow) {
       if (tries < maxTries) return window.setTimeout(tick, delay);
@@ -49,9 +48,9 @@ function setHubspotDropdownInsideIframe(value) {
       }
 
       select.value = value;
-      select.classList.remove('is-placeholder');
-      select.dispatchEvent(new Event('input', { bubbles: true }));
-      select.dispatchEvent(new Event('change', { bubbles: true }));
+      select.classList.remove("is-placeholder");
+      select.dispatchEvent(new Event("input", { bubbles: true }));
+      select.dispatchEvent(new Event("change", { bubbles: true }));
       return;
     }
 
@@ -62,7 +61,7 @@ function setHubspotDropdownInsideIframe(value) {
 }
 
 export default function ContactForm() {
-  const [title, setTitle] = useState('Get in touch with us');
+  const [title, setTitle] = useState("Get in touch with us");
   const [previewKey, setPreviewKey] = useState(null);
 
   const scriptRef = useRef(null);
@@ -77,12 +76,12 @@ export default function ContactForm() {
     const sync = () => setPreviewKey(getPreviewFromUrl());
 
     sync();
-    window.addEventListener('popstate', sync);
-    window.addEventListener('previewchange', sync);
+    window.addEventListener("popstate", sync);
+    window.addEventListener("previewchange", sync);
 
     return () => {
-      window.removeEventListener('popstate', sync);
-      window.removeEventListener('previewchange', sync);
+      window.removeEventListener("popstate", sync);
+      window.removeEventListener("previewchange", sync);
     };
   }, []);
 
@@ -95,7 +94,7 @@ export default function ContactForm() {
           {selectedValue}
         </>,
       );
-    else setTitle('Get in touch with us');
+    else setTitle("Get in touch with us");
 
     setHubspotDropdownInsideIframe(selectedValue);
   }, [selectedValue]);
@@ -106,15 +105,15 @@ export default function ContactForm() {
         if (window.hbspt && window.hbspt.forms) return resolve();
 
         if (scriptRef.current) {
-          scriptRef.current.addEventListener('load', resolve, { once: true });
+          scriptRef.current.addEventListener("load", resolve, { once: true });
           return;
         }
 
-        const script = document.createElement('script');
-        script.src = '//js.hsforms.net/forms/embed/v2.js';
+        const script = document.createElement("script");
+        script.src = "//js.hsforms.net/forms/embed/v2.js";
         script.async = true;
-        script.setAttribute('data-cookieconsent', 'ignore');
-        script.addEventListener('load', resolve, { once: true });
+        script.setAttribute("data-cookieconsent", "ignore");
+        script.addEventListener("load", resolve, { once: true });
 
         document.body.appendChild(script);
         scriptRef.current = script;
@@ -129,13 +128,13 @@ export default function ContactForm() {
       await ensureScript();
       if (!window.hbspt || !window.hbspt.forms) return;
 
-      const mount = document.getElementById('hubspotForm');
-      if (mount) mount.innerHTML = '';
+      const mount = document.getElementById("hubspotForm");
+      if (mount) mount.innerHTML = "";
 
       window.hbspt.forms.create({
-        portalId: '8738733',
-        formId: '1fe0b40e-9218-4f92-aa3f-874562bd1702',
-        target: '#hubspotForm',
+        portalId: "8738733",
+        formId: "1fe0b40e-9218-4f92-aa3f-874562bd1702",
+        target: "#hubspotForm",
         onFormReady: () => {
           formCreatedRef.current = true;
           setHubspotDropdownInsideIframe(selectedValue);
@@ -147,17 +146,15 @@ export default function ContactForm() {
   }, []);
 
   return (
-    <div className={styles.contactBackground} id="register-interest">
+    <section className={styles.contactBackground} id="register-interest">
       <div className="container">
-        <div className={styles.contactContainer}>
-          <div className={styles.contactSection}>
-            <form className={styles.formContact}>
-              <h2 className={styles.title}>{title}</h2>
-              <div id="hubspotForm" data-hs-forms-root="true" />
-            </form>
+        <div className={styles.contactShell}>
+          <h2 className={styles.title}>{title}</h2>
+          <div className={styles.rightForm}>
+            <div id="hubspotForm" data-hs-forms-root="true" />
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

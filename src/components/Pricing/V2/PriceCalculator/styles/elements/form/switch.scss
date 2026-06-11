@@ -1,0 +1,56 @@
+@use "../../variables" as v;
+
+@mixin switch() {
+  .switch-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+  }
+
+  .switch-label {
+    color: v.$calcMuted;
+  }
+}
+
+.switch {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: v.$space;
+  padding: 4px 0px;
+  width: fit-content;
+
+  button.switch-option {
+    position: relative;
+    padding: 8px 20px;
+    color: v.$calcMuted;
+    background: transparent;
+    font-size: 0.9em;
+    font-weight: 700;
+    min-width: 80px;
+    height: 44px;
+    border: 1px solid v.$calcBorder;
+    border-radius: calc(v.$space / 2);
+    cursor: pointer;
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+    overflow: hidden;
+
+    &:hover {
+      color: v.$calcText;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    &.active {
+      color: #111111;
+      border: 1px solid v.$calcPillBorder;
+      background: v.$calcPill;
+      box-shadow: 0 0 0 1px v.$calcPillBorder;
+    }
+  }
+
+  .switch-text {
+    position: relative;
+    z-index: 1;
+  }
+}

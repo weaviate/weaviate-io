@@ -1,126 +1,99 @@
-.pricingHeader {
-  color: #130c49;
-  text-align: center;
-  font-family: Plus Jakarta Sans;
-  font-size: 2.5rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 120%; /* 3rem */
-  @media screen and (max-width: 680px) {
-    text-align: left;
-  }
-}
-.pricingButton {
-  border-radius: 0.3125rem;
-  border: 1px solid #130e46;
-  background: #61bd73;
-  padding: 9px;
-  color: #130c49;
-  margin-right: 10px;
-  font-weight: 400;
-  transition: all 1s ease-out;
-}
-.pricingButton:hover {
-  border-radius: 0.3125rem;
-  border: 1px solid #ffffff;
-  background: rgb(15, 0, 50);
-  color: #fff;
-  font-weight: 400;
-}
-.boardButton {
-  padding: 9px;
-  margin: 10px;
-  border-radius: 0.3125rem;
-  border: 1px solid #ffffff;
-  background: rgb(15, 0, 50);
-  color: #fff;
-  font-weight: 400;
-  transition: all 1s ease-out;
-}
-.boardButton:hover {
-  border-radius: 0.3125rem;
-  border: 1px solid #ffffff;
-  background: rgb(15, 0, 50);
-  color: #fff;
-  font-weight: 400;
+.mapsContainer {
+  background: #111111;
+  padding: clamp(4rem, 8vw, 7rem) 0;
 }
 
-.test {
-  font-size: 1.5rem;
-  font-weight: bolder;
-}
-
-.header {
-  color: var(--ifm-link-color);
-}
-p {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  margin: 0;
-}
 .box {
-  text-align: left;
-  color: white;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: center;
-  align-items: center;
-  gap: 40px;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  align-items: stretch;
+  min-height: 711px;
 
-  h3 {
-    color: #130c49;
-  }
-
-  @media screen and (max-width: 780px) {
-    flex-direction: column-reverse;
+  @media screen and (max-width: 980px) {
+    grid-template-columns: 1fr;
   }
 }
 
 .mapLogos {
-  flex: 1 15%;
+  min-height: 711px;
+  overflow: hidden;
 
-  @media screen and (max-width: 780px) {
-    flex-direction: column;
-    gap: 20px;
-    display: block;
-    width: 100%;
+  @media screen and (max-width: 980px) {
+    min-height: 520px;
   }
 }
 
-.mapsContainer {
-  background: #130e46;
+.mapLogos :global(.gm-style) {
+  filter: saturate(0.9) brightness(0.82);
 }
 
 .mapBox {
-  flex: 1;
-  padding: 50px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 4rem);
+  background: linear-gradient(
+    145deg,
+    rgba(24, 28, 38, 0.96),
+    rgba(14, 18, 28, 0.98)
+  );
+
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at top left,
+      rgba(67, 226, 197, 0.12),
+      transparent 38%
+    );
+
+    pointer-events: none;
+  }
+
+  h2,
+  p {
+    position: relative;
+    z-index: 1;
+  }
+
   h2 {
-    color: white;
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-weight: 700 !important;
+    line-height: 110%;
+    letter-spacing: -0.05em;
+    margin: 0 0 1rem;
   }
 
   p {
-    margin-bottom: 20px;
-    color: white;
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 1rem;
+    line-height: 170%;
+    margin: 0;
+    max-width: 520px;
   }
-}
 
-.mapButton {
-  margin-top: 25px;
-}
-
-.mapDiagram {
-  background: url('/img/site/remote-map.png');
-  background-size: 100%;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: auto;
-  min-height: 711px;
+  @media screen and (max-width: 980px) {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    min-height: 320px;
+  }
 }
 
 .infoCard {
   display: flex;
   align-items: center;
   flex-direction: column;
+  color: #130c49;
+
+  h3 {
+    color: #130c49;
+    margin: 0.75rem 0 0;
+  }
 }

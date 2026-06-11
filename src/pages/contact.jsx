@@ -1,11 +1,11 @@
-import React from 'react';
-import Layout from '@theme/Layout';
-import { MetaSEO } from '/src/theme/MetaSEO';
+import React from "react";
+import Layout from "@theme/Layout";
+import { MetaSEO } from "/src/theme/MetaSEO";
 
-import Header from '/src/components/Contact/Header';
-import ContactFrom from '/src/components/Contact/contactForm.jsx';
-import ThemeSwitch from '/src/components/ThemeSwitch';
-import CTA from '/src/components/Home/Redesign/CTA';
+import Header from "/src/components/Contact/Header";
+import ContactFrom from "/src/components/Contact/contactForm.jsx";
+import ThemeSwitch from "/src/components/ThemeSwitch";
+import CTA from "/src/components/RAG/CTA";
 
 export default function ContactPage() {
   return (

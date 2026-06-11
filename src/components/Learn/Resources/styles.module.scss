@@ -1,92 +1,112 @@
 .container {
-  padding: 2rem;
+  padding: 1.25rem 2rem;
+
+  @media screen and (max-width: 768px) {
+    padding: 1rem 1.25rem;
+  }
 }
 
 .bgCol {
-  background: #130c49;
-}
+  position: sticky;
+  top: 72px;
+  z-index: 20;
 
-.header {
-  width: 70%;
-  margin: 30px 0px;
+  background: rgba(10, 10, 10, 0.92);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 
-  h2 {
-    color: #ffffff;
-  }
-
-  p {
-    color: #130c49;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 157.33%; /* 1.57331rem */
-  }
-  @media screen and (max-width: 950px) {
-    width: 100%;
+  @media screen and (max-width: 996px) {
+    top: 60px;
   }
 }
 
 .boxContainer {
   display: flex;
   justify-content: center;
-  gap: 50px;
-  flex-direction: row;
+  align-items: center;
+  gap: 18px;
   flex-wrap: wrap;
 
-  p {
-    color: #ffffff;
-  }
   ul {
-    color: #ffffff;
-    max-width: 170px;
-    width: 100%;
-    text-align: center;
     margin: 0;
-
-    @media screen and (max-width: 1400px) {
-      max-width: 180px;
-    }
-
-    @media screen and (max-width: 800px) {
-      width: 100%;
-      text-align: left;
-    }
-
-    @media screen and (max-width: 500px) {
-      width: 100%;
-      max-width: 160px;
-    }
+    padding: 0;
+    list-style: none;
   }
 
   a {
-    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    font-size: 1.125rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 163.8%; /* 1.84275rem */
+    min-width: 150px;
+    padding: 0.7rem 1.1rem;
 
-    margin-left: -13px;
-    transition: all 0.5s ease;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    background: rgba(255, 255, 255, 0.03);
+
+    color: #ddebf2;
+    text-decoration: none;
+
+    font-family: Inter, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1;
+
+    transition:
+      background 0.25s ease,
+      border 0.25s ease,
+      color 0.25s ease,
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
   }
 
   a:hover {
-    color: #61bd73;
-    text-decoration-line: underline;
+    background: #6be38c;
+    border-color: #6be38c;
+    color: #111111;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 0 18px rgba(107, 227, 140, 0.12);
+
+    text-decoration: none;
   }
 
-  @media screen and (max-width: 1300px) {
-    gap: 20px;
-  }
-  @media screen and (max-width: 1050px) {
-    display: flex;
-    gap: 10px;
-    flex-flow: wrap;
-    flex-direction: unset;
+  @media screen and (max-width: 900px) {
     justify-content: flex-start;
+    gap: 12px;
+
+    a {
+      min-width: unset;
+      width: auto;
+      padding: 0.7rem 1rem;
+      font-size: 0.9rem;
+    }
   }
 
-  @media screen and (max-width: 800px) {
-    gap: 6px;
+  @media screen and (max-width: 600px) {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 6px;
+
+    &::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+    }
+
+    ul {
+      flex-shrink: 0;
+    }
+
+    a {
+      white-space: nowrap;
+    }
   }
 }

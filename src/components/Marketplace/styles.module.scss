@@ -1,10 +1,10 @@
 .bottomBar {
   height: 10rem;
   display: flex;
-  background: #130c49;
+  background: #111111;
 
   .barText {
-    color: #2fc514;
+    color: #63e689;
     font-family: Plus Jakarta Sans;
     font-size: 2.25rem;
     font-style: normal;
@@ -12,7 +12,7 @@
     line-height: 120%; /* 2.7rem */
 
     span {
-      color: #fff;
+      color: #d0d8ea;
       font-family: Inter;
       font-size: 1rem;
       font-style: normal;
@@ -55,30 +55,30 @@
 
   .buttonGradient {
     border-radius: 0.3125rem;
-    outline: 1px solid #130c49;
-    background: #61bd73;
+    outline: 1px solid #63e689;
+    background: #63e689;
     transition: all 1s ease-out;
-    color: #130c49;
+    color: #0a1512;
   }
 
   .buttonGradient:hover {
     border-radius: 0.3125rem;
-    outline: 1px solid #130c49;
-    background: rgb(15, 0, 50);
-    color: #fff;
+    outline: 1px solid #7df09d;
+    background: #7df09d;
+    color: #0a1512;
   }
 
   .buttonOutline {
-    border: 1px solid #130c49;
-    color: #130c49;
+    border: 1px solid #39425b;
+    color: #d0d8ea;
     transition: all 1s ease-out;
   }
 
   .buttonOutline:hover {
     border-radius: 0.3125rem;
-    outline: 1px solid #130c49;
-    background: rgb(97 189 115);
-    color: #130c49;
+    outline: 1px solid #4a5574;
+    background: transparent;
+    color: #edf4ff;
   }
 }
 
@@ -109,10 +109,11 @@
   align-items: center;
   text-align: center;
   padding: 0px 20px 0px 0px;
+  background-color: #111111;
 
   @media screen and (max-width: 600px) {
     padding: 0px 0px 0px 0px;
-    border-bottom: 1px solid #bec3c9;
+    border-bottom: 1px solid #2a2f3f;
     margin-bottom: 20px;
   }
 
@@ -139,22 +140,24 @@
     }
 
     a {
-      color: #130c49;
+      color: #d0d8ea;
       font-style: normal;
       font-weight: 200;
-      border: none;
-      background: whitesmoke;
+      border: 1px solid #2a2f3f;
+      background: #121722;
       transition: all 0.2s ease-out;
     }
 
     a:hover {
       font-weight: 500;
+      border-color: #63e689;
+      color: #63e689;
     }
   }
 
   input {
-    border: 0.5px solid #130c49;
-    background: #ffffff;
+    border: 0.5px solid #2a2f3f;
+    background: #0f1520;
     width: 0.8125rem;
     height: 0.8125rem;
     appearance: none;
@@ -163,11 +166,11 @@
 
   input :active,
   :focus {
-    background: #61bd73;
+    background: #63e689;
   }
 
   label {
-    color: #0c1428;
+    color: #d0d8ea;
     font-size: 0.875rem;
     font-style: normal;
     font-weight: 400;
@@ -175,7 +178,7 @@
 }
 
 .filterLine {
-  background: #8f99b1;
+  background: #2a2f3f;
   width: 0.5px;
   height: 216.4375rem;
   flex-shrink: 0;
@@ -187,8 +190,8 @@
 }
 
 .knowledgeHeader {
-  background: #130c49;
-  background-image: url('/img/site/home-page-bg-pattern.svg') !important;
+  background: #111111;
+  background-image: url("/img/site/home-page-bg-pattern.svg") !important;
   background-size: cover;
 }
 
@@ -200,7 +203,7 @@
   text-align: center;
 
   h1 {
-    color: #ffffff;
+    color: #edf4ff;
     text-align: center;
     font-family: Plus Jakarta Sans;
     font-size: 43px;
@@ -213,7 +216,7 @@
 
   .headerBox {
     width: 50%;
-    color: #ffffff;
+    color: #d0d8ea;
     @media screen and (max-width: 900px) {
       width: 100%;
     }
@@ -232,21 +235,23 @@
     width: 100%;
 
     a {
-      color: #130c49;
+      color: #d0d8ea;
       font-style: normal;
       font-weight: 200;
-      border: none;
-      background: whitesmoke;
+      border: 1px solid #2a2f3f;
+      background: #121722;
       transition: all 0.2s ease-out;
     }
 
     a:hover {
       font-weight: 500;
+      border-color: #63e689;
+      color: #63e689;
     }
   }
 
   hr {
-    background: #130c49;
+    background: #2a2f3f;
     width: 65rem;
     height: 0.0625rem;
 
@@ -271,7 +276,7 @@
 }
 
 .categoryText {
-  color: #130c49;
+  color: #d0d8ea;
   font-size: 1rem;
   font-weight: 400;
   display: block;
@@ -292,16 +297,17 @@
   height: 350px;
   padding: 0px 20px 20px 20px;
   border-radius: 0.4375rem;
-  background: #fff;
-  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+  background: #121722;
+  box-shadow: 0px 24px 64px 0px rgba(0, 0, 0, 0.4);
   margin: 10px 10px;
+  border: 1px solid #2a2f3f;
 
   @media screen and (max-width: 600px) {
     margin: 10px 0px;
   }
 
   h3 {
-    color: #1b1464;
+    color: #edf4ff;
     text-align: left;
     font-size: 1rem;
     font-weight: 700;
@@ -309,7 +315,7 @@
   }
 
   span {
-    color: #130c49;
+    color: #b7c2da;
     text-align: center;
     font-size: 0.5rem;
     font-weight: 300;
@@ -326,9 +332,9 @@
 
   .cardType {
     margin: 4px;
-    color: #fff;
+    color: #111111;
     text-align: center;
-    font-family: 'Plus Jakarta Sans';
+    font-family: "Plus Jakarta Sans";
     font-size: 0.625rem;
     font-style: normal;
     font-weight: 600;
@@ -336,7 +342,7 @@
   }
 
   .cardText {
-    color: #1b1464;
+    color: #d0d8ea;
     text-align: left;
     font-size: 0.8rem;
     font-weight: 400;
@@ -346,7 +352,7 @@
   .cardLink {
     margin: 10px;
     text-decoration: underline;
-    color: #1b1464;
+    color: #63e689;
     font-size: 0.75rem;
     font-weight: 400;
   }
@@ -377,18 +383,18 @@
       margin: 17px 0px 0px 0px;
     }
     a {
-      background-color: #130c49;
+      background-color: #63e689;
       width: 35px;
       border-radius: 25px;
       height: 35px;
-      color: white;
+      color: #111111;
       margin: 0px 5px;
     }
   }
 }
 
 .cardHeader {
-  background: #00a88b;
+  background: #63e689;
   width: 325px;
   height: 1.7rem;
   flex-shrink: 0;
@@ -398,19 +404,19 @@
 }
 
 .knowledgeBG {
-  background-color: #f5f5f5;
+  background-color: #111111;
 }
 
 .valuesBG {
-  background-color: #ededed;
+  background-color: #0a0e1a;
 }
 
 .buttonOutline {
   border-radius: 0.3125rem;
-  border: 1px solid #130c49;
-  background: #f4f4f4;
+  border: 1px solid #39425b;
+  background: transparent;
   padding: 9px;
-  color: #130c49;
+  color: #d0d8ea;
   text-align: center;
   font-family: Inter;
   font-size: 1rem;
@@ -421,9 +427,9 @@
 }
 .buttonOutline:hover {
   border-radius: 0.3125rem;
-  outline: 1px solid #130c49;
-  background: rgb(15, 0, 50);
-  color: #fff;
+  outline: 1px solid #4a5574;
+  background: transparent;
+  color: #edf4ff;
   font-weight: 400;
 }
 
@@ -452,7 +458,7 @@
 }
 
 .teamFilter::-webkit-scrollbar-thumb:horizontal {
-  background: #ebe8e8;
+  background: #39425b;
   border-radius: 10px;
 }
 
@@ -466,7 +472,7 @@
 }
 
 .teamFilter::-webkit-scrollbar-thumb:hover {
-  background: #bab7b7;
+  background: #4a5574;
 }
 
 .teamFilter::-webkit-scrollbar-track {
@@ -480,9 +486,11 @@
 .tag {
   margin: 4px;
   padding: 2px 8px;
-  background-color: #f0f0f0;
+  background-color: #1a2439;
   border-radius: 4px;
   display: inline-block;
+  color: #63e689;
+  border: 1px solid #2a2f3f;
 }
 
 .searchContainer {
@@ -492,15 +500,15 @@
 
   input {
     margin: auto;
-    color: #2a97e1;
+    color: #d0d8ea;
     padding-block: 1px;
     padding-inline: 10px;
     width: 35.75rem;
     height: 2.625rem;
     flex-shrink: 0;
     border-radius: 1.25rem;
-    border: 0.5px solid #2a97e1;
-    background: #262262;
+    border: 0.5px solid #2a2f3f;
+    background: #0f1520;
 
     @media screen and (max-width: 600px) {
       width: 100%;
@@ -508,7 +516,7 @@
   }
 
   input::placeholder {
-    color: #2a97e1;
+    color: #8f98ae;
     font-size: 0.875rem;
     font-style: normal;
     font-weight: 300;
@@ -603,15 +611,16 @@
   height: fit-content;
   padding: 0px 20px 20px 20px;
   border-radius: 0.4375rem;
-  background: #fff;
-  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+  background: #121722;
+  box-shadow: 0px 24px 64px 0px rgba(0, 0, 0, 0.4);
+  border: 1px solid #2a2f3f;
 
   @media screen and (max-width: 550px) {
     width: 100%;
   }
 
   h3 {
-    color: #1b1464;
+    color: #edf4ff;
     text-align: center;
     font-size: 1rem;
     font-weight: 700;
@@ -623,7 +632,7 @@
   }
 
   span {
-    color: #130c49;
+    color: #b7c2da;
     text-align: center;
     font-size: 0.8rem;
     font-weight: 300;
@@ -651,14 +660,14 @@
     margin: 4px;
     color: #fff;
     text-align: center;
-    font-family: 'Plus Jakarta Sans';
+    font-family: "Plus Jakarta Sans";
     font-size: 0.625rem;
     font-style: normal;
     font-weight: 600;
     line-height: 140.5%; /* 0.87813rem */
   }
   .cardHeader {
-    background: #00a88b;
+    background: #63e689;
     width: 500px;
     height: 1.7rem;
     text-align: center;
@@ -680,7 +689,7 @@
     }
   }
   .cardText {
-    color: #1b1464;
+    color: #d0d8ea;
     text-align: center;
     font-size: 0.625rem;
     font-weight: 400;
@@ -689,7 +698,7 @@
   .cardLink {
     margin: 10px;
     text-decoration: underline;
-    color: #1b1464;
+    color: #63e689;
     font-size: 0.75rem;
     font-weight: 400;
   }
@@ -720,11 +729,11 @@
       margin: 17px 0px 0px 0px;
     }
     a {
-      background-color: #130c49;
+      background-color: #63e689;
       width: 35px;
       border-radius: 25px;
       height: 35px;
-      color: white;
+      color: #111111;
       margin: 0px 5px;
     }
   }
@@ -760,15 +769,15 @@
     }
 
     .relatedTitle {
-      color: #130c49;
-      font-family: 'Plus Jakarta Sans';
+      color: #d0d8ea;
+      font-family: "Plus Jakarta Sans";
       font-size: 0.8rem;
       font-weight: 300;
     }
 
     .relatedSubtitle {
-      color: #130c49;
-      font-family: 'Plus Jakarta Sans';
+      color: #b7c2da;
+      font-family: "Plus Jakarta Sans";
       font-size: 0.6rem;
       font-weight: 600;
 
@@ -784,9 +793,9 @@
     display: flex;
     height: 8.9rem;
     flex-shrink: 0;
-    border: 0.764px solid rgb(19, 12, 73);
-    background: rgb(255, 255, 255);
-    box-shadow: rgba(22, 27, 45, 0.08) 0px 18.341px 48.908px 0px;
+    border: 0.764px solid #2a2f3f;
+    background: #121722;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 18.341px 48.908px 0px;
     flex-direction: column;
 
     @media screen and (max-width: 550px) {
@@ -795,7 +804,7 @@
   }
 
   .relatedImage {
-    background-image: url('/img/site/related-posts-image.png');
+    background-image: url("/img/site/related-posts-image.png");
     background-size: contain;
     background-repeat: no-repeat;
     width: 9rem;
@@ -904,7 +913,7 @@
 
 .close {
   font-size: 1rem;
-  color: #ffffff;
+  color: #d0d8ea;
   cursor: pointer;
   background: none;
   border: none;
@@ -919,7 +928,7 @@
   text-decoration-line: underline;
   background: none;
   border: none;
-  color: #130c49;
+  color: #d0d8ea;
   cursor: pointer;
 }
 
@@ -928,15 +937,31 @@
   gap: 10px;
 }
 
+.marketplaceSection,
+.productBG {
+  background: #111111;
+}
+
 .appContainer {
   display: flex;
+  background: #111111;
+
+  padding: 2rem;
+
+  @media screen and (max-width: 1100px) {
+    padding: 1.25rem;
+  }
+
+  @media screen and (max-width: 600px) {
+    padding: 1rem;
+  }
 }
 
 .sidebar {
   width: 380px;
   padding: 20px;
-  background-color: #f4f4f9;
-  border-right: 0.5px solid #8f99b1;
+  background-color: #0f1520;
+  border-right: 0.5px solid #2a2f3f;
   display: none;
 
   @media screen and (max-width: 1100px) {
@@ -952,8 +977,10 @@
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid #2a2f3f;
   border-radius: 4px;
+  background: #0f1520;
+  color: #d0d8ea;
 }
 
 .categoryList {
@@ -964,16 +991,33 @@
 .categoryList li {
   padding: 10px;
   cursor: pointer;
+  color: #d0d8ea;
 }
 
 .categoryList li:hover,
 .categoryList li.active {
-  background-color: #e0e0e0;
+  background-color: #1a2439;
   border-radius: 4px;
+  color: #63e689;
 }
 
 .mainContent {
   flex-grow: 1;
+
+  h2,
+  h3 {
+    color: #edf4ff;
+  }
+
+  p,
+  li,
+  strong {
+    color: #d0d8ea;
+  }
+
+  a {
+    color: #63e689;
+  }
 }
 
 .appDetailContainer {
@@ -1003,7 +1047,7 @@
 
 .appDetailHeader h1 {
   margin: 0;
-  color: #0c1428;
+  color: #edf4ff;
 
   font-size: 1.875rem;
   font-style: normal;
@@ -1013,7 +1057,7 @@
 
 .appDetailHeader p {
   margin: 5px 0;
-  color: #130c49;
+  color: #d0d8ea;
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
@@ -1029,10 +1073,10 @@
 .appDivider {
   position: relative;
   display: block;
-  background: #8f99b1;
-  width: 63.5625rem;
+  background: #2a2f3f;
+  width: 100%;
   height: 0.01rem;
-  left: -20px;
+  left: 0;
   margin: 30px 0px;
 
   @media screen and (max-width: 1100px) {
@@ -1054,7 +1098,7 @@
   width: 36.875rem;
   height: 20rem;
   flex-shrink: 0;
-  background: url('/img/site/workbench-overview-bg.png') no-repeat center center;
+  background: url("/img/site/workbench-overview-bg.png") no-repeat center center;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1150,10 +1194,10 @@
   border-radius: 4px;
   cursor: pointer;
   border-radius: 0.3125rem;
-  background: #130c49;
+  background: #63e689;
   width: 11.6875rem;
   height: 2.1875rem;
-  color: #fff;
+  color: #0a1512;
   text-align: center;
   font-size: 0.875rem;
   font-style: normal;
@@ -1174,11 +1218,11 @@
   cursor: pointer;
   border-radius: 0.3125rem;
 
-  border: 1px solid #130c49;
-  background: #f7f9fd;
+  border: 1px solid #39425b;
+  background: transparent;
   width: 8.6875rem;
   height: 2.1875rem;
-  color: #130c49;
+  color: #d0d8ea;
   text-align: center;
   font-size: 0.875rem;
   font-style: normal;
@@ -1195,7 +1239,7 @@
   flex-grow: 1;
 
   button {
-    color: rgba(12, 20, 40, 0.7);
+    color: #b7c2da;
     font-size: 0.875rem;
     font-style: normal;
     font-weight: 400;
@@ -1210,7 +1254,7 @@
   button:focus {
     flex-shrink: 0;
     border-radius: 0.3125rem;
-    border: 1px solid #c3c5d8;
+    border: 1px solid #2a2f3f;
   }
 }
 
@@ -1235,7 +1279,7 @@
   }
 
   p {
-    color: #130c49;
+    color: #d0d8ea;
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
@@ -1250,12 +1294,12 @@
   }
 
   strong {
-    color: #130c49;
+    color: #edf4ff;
     font-weight: 700;
   }
 
   ul {
-    color: #130c49;
+    color: #d0d8ea;
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
@@ -1275,14 +1319,16 @@
 .additionalInfo {
   padding: 0px 60px;
   width: 30.75rem;
-
+  background: #121722;
+  border: 1px solid #2a2f3f;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
   flex-shrink: 0;
-  border-radius: 0.3125rem;
 
   p,
   li,
   a {
-    color: #130c49;
+    color: #d0d8ea;
     font-size: 0.875rem;
     font-style: normal;
     font-weight: 400;
@@ -1292,7 +1338,7 @@
   }
 
   @media screen and (max-width: 1100px) {
-    padding: 0px;
+    padding: 1rem;
     width: 70%;
   }
 
@@ -1320,9 +1366,10 @@
 }
 
 .appCard {
-  background: white;
+  background: #1a1a1a;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  border: 1px solid #2a2f3f;
   padding: 20px;
   width: calc(30.333% - 20px);
   box-sizing: border-box;
@@ -1338,14 +1385,14 @@
 }
 
 .appCard img {
-  max-width: 100%;
+  max-width: 20%;
   border-radius: 4px;
 }
 
 .appCard h3 {
   margin: 15px 0;
-  color: #130c49;
-  font-family: 'Plus Jakarta Sans';
+  color: #edf4ff;
+  font-family: "Plus Jakarta Sans";
   font-size: 1rem;
   font-style: normal;
   font-weight: 700;
@@ -1354,7 +1401,7 @@
 }
 
 .appCard p {
-  color: #6b7c93;
+  color: #d0d8ea;
 
   font-size: 0.75rem;
   font-style: normal;
@@ -1370,7 +1417,7 @@
 }
 
 .appCard a {
-  color: #007bff;
+  color: #63e689;
   text-decoration: none;
 }
 
@@ -1380,10 +1427,10 @@
 
 .backButton {
   text-decoration: none;
-  color: white;
+  color: #0a1512;
   cursor: pointer;
   border-radius: 0.3125rem;
-  background: #130c49;
+  background: #63e689;
   width: 9.6875rem;
   height: 2.1875rem;
   display: flex;
@@ -1398,7 +1445,7 @@
   justify-content: space-between;
 
   span {
-    color: #130c49;
+    color: #b7c2da;
     font-family: Inter;
     font-size: 0.75rem;
     font-style: normal;
@@ -1407,7 +1454,7 @@
   }
 
   a {
-    color: #130c49;
+    color: #63e689;
     text-align: center;
     font-family: Inter;
     font-size: 0.875rem;
@@ -1425,7 +1472,7 @@
 }
 
 .heart {
-  background-image: url('/img/site/apps-heart-icon.svg');
+  background-image: url("/img/site/apps-heart-icon.svg");
   background-size: contain;
   width: 0.625rem;
   height: 0.5625rem;
@@ -1449,7 +1496,7 @@
   flex-direction: column;
 
   h4 {
-    color: #6b7c93;
+    color: #b7c2da;
     font-family: Inter;
     font-size: 0.75rem;
     font-style: normal;
@@ -1459,8 +1506,8 @@
 }
 
 .comingSoon {
-  background: #130c49;
-  color: #ffffff;
+  background: #1a2439;
+  color: #63e689;
   width: 140px;
   height: 35px;
   display: flex;
@@ -1476,8 +1523,8 @@
 }
 
 .tba {
-  background: #c3c5d8;
-  color: #130c49;
+  background: #2a2f3f;
+  color: #d0d8ea;
   width: 140px;
   height: 35px;
   display: flex;
@@ -1499,22 +1546,22 @@
 }
 
 .highlightedCategory {
-  background: #130c49;
-  color: #fff;
+  background: #0a0e1a;
+  color: #d0d8ea;
 
   margin: 0px;
   max-width: var(--ifm-container-width-xl);
 
   h2 {
-    color: #61bb73;
+    color: #63e689;
   }
 
   a {
-    color: #130c49;
+    color: #63e689;
   }
 
   .categoryDescriptions {
-    color: #fff;
+    color: #d0d8ea;
   }
   @media screen and (max-width: 1200px) {
     padding: 2rem;
@@ -1525,11 +1572,11 @@
 }
 
 .highlightedContain {
-  background: #130c49;
+  background: #0a0e1a;
 }
 
 .categoryDescriptions {
-  color: rgba(12, 20, 40, 0.7);
+  color: #b7c2da;
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
@@ -1537,7 +1584,7 @@
   margin-bottom: 10px;
 
   a {
-    color: rgba(12, 20, 40, 0.7);
+    color: #63e689;
   }
 }
 
@@ -1548,8 +1595,12 @@
   margin-bottom: 50px;
   transform: translateY(-20px);
 
+  span {
+    color: #b7c2da;
+  }
+
   a {
-    color: #130c49;
+    color: #d0d8ea;
     font-weight: 700;
   }
 
@@ -1559,7 +1610,7 @@
 }
 
 .home {
-  background-image: url('/img/site/apps-home-icon.svg');
+  background-image: url("/img/site/apps-home-icon.svg");
   background-size: contain;
   width: 0.84375rem;
   height: 0.9375rem;
@@ -1567,7 +1618,7 @@
 }
 
 .arrow {
-  background-image: url('/img/site/apps-polygon-icon.svg');
+  background-image: url("/img/site/apps-polygon-icon.svg");
   background-size: contain;
   width: 0.5625rem;
   height: 0.5625rem;
@@ -1640,7 +1691,8 @@
 .infoTable th,
 .infoTable td {
   padding: 12px 15px;
-  border: 1px solid #ddd;
+  border: 1px solid #2a2f3f;
+  color: #d0d8ea;
   font-size: 13px;
 
   ul {
@@ -1654,13 +1706,13 @@
 }
 
 .infoTable th {
-  background-color: #f4f4f4;
+  background-color: #1a2439;
   text-align: left;
 }
 
 .infoDisclaimer {
   font-size: 0.875rem;
-  color: #6b7c93;
+  color: #b7c2da;
   margin-top: 10px;
 
   ul {
@@ -1670,7 +1722,7 @@
 
   li {
     font-size: 0.875rem;
-    color: #6b7c93;
+    color: #b7c2da;
     margin: 0 !important;
   }
 }
@@ -1683,13 +1735,13 @@
 .planSubhead {
   margin: 0 0 10px;
   font-weight: 600;
-  color: #0c1428;
+  color: #edf4ff;
 }
 
 .planPrice {
   margin: 4px 0 0;
   font-weight: 700;
-  color: #130c49;
+  color: #edf4ff;
 }
 
 .planList {
@@ -1707,7 +1759,7 @@
 
 .infoDisclaimer {
   padding: 16px 18px;
-  color: #6b7c93;
+  color: #b7c2da;
 
   ul {
     margin: 8px 0 10px;
@@ -1736,28 +1788,28 @@
 }
 
 .agentPricingPlan {
-  background: #f8f9fa;
+  background: #121722;
   border-radius: 0.5rem;
   padding: 20px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #2a2f3f;
   transition: all 0.2s ease;
 
   &:hover {
-    box-shadow: 0px 4px 12px 0px rgba(22, 27, 45, 0.1);
+    box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.25);
   }
 
   &.agentPaidPlan {
-    background: linear-gradient(135deg, #f0fdf4 0%, #f8f9fa 100%);
-    border: 2px solid #61bd73;
+    background: linear-gradient(135deg, #121722 0%, #152338 100%);
+    border: 1px solid #63e689;
 
     h4 {
-      color: #00a88b;
+      color: #63e689;
     }
   }
 
   h4 {
     margin: 0 0 10px 0;
-    color: #130c49;
+    color: #edf4ff;
     font-size: 1.125rem;
     font-weight: 700;
   }
@@ -1774,7 +1826,7 @@
 }
 
 .agentPlanLabel {
-  color: #6b7c93;
+  color: #8f98ae;
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -1787,15 +1839,16 @@
   line-height: 1.5;
 
   strong {
-    color: #130c49;
+    color: #edf4ff;
     font-size: 1.75rem;
     font-weight: 700;
   }
 }
 
 .agentPricingNotes {
-  background: #fffbeb;
+  background: #201b12;
   border-left: 3px solid #f59e0b;
+  color: #f3dec2;
   border-radius: 0.375rem;
   padding: 12px 15px;
   margin: 20px 0;

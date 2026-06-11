@@ -1,0 +1,103 @@
+.section {
+  background: #111111;
+  padding: clamp(3rem, 6vw, 5rem) 0;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2rem;
+  padding: clamp(2rem, 4vw, 3.5rem);
+  background: linear-gradient(48deg, #00fe6b75 13.81%, #00b7e2 92.18%);
+}
+
+.veil {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.withLogo {
+  grid-template-columns: 220px 1fr auto;
+}
+
+.noLogo {
+  grid-template-columns: 1fr auto;
+}
+
+.logoBox {
+  width: 220px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2rem;
+  background: #171717;
+  padding: 2rem;
+
+  img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+  }
+}
+
+.inner h2 {
+  color: #ddebf2 !important;
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  font-size: clamp(2rem, 4vw, 2.5rem) !important;
+  font-weight: 600 !important;
+  line-height: 140% !important;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+.button {
+  min-height: 60px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background: #e8eef5;
+  color: #171717 !important;
+  font-family: Inter, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+
+  padding: 0 2rem;
+  text-decoration: none !important;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    background: #ffffff;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .withLogo,
+  .noLogo {
+    grid-template-columns: 1fr;
+  }
+
+  .logoBox {
+    width: 180px;
+    height: 180px;
+  }
+
+  .button {
+    width: fit-content;
+  }
+}

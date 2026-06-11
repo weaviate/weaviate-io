@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import styles from './styles.module.scss';
-import { LinkButton } from '/src/theme/Buttons';
-import Link from '@docusaurus/Link';
-import Card from './card';
-import knowledge from '/data/knowledgecards.json';
-import { ButtonContainer } from '../../theme/Buttons';
-import Highlights from './highlights';
+import React, { useState, useEffect } from "react";
+import styles from "./styles.module.scss";
+import { LinkButton } from "/src/theme/Buttons";
+import Link from "@docusaurus/Link";
+import Card from "./card";
+import knowledge from "/data/knowledgecards.json";
+import { ButtonContainer } from "../../theme/Buttons";
+import Highlights from "./highlights";
 
 export default function KnowledgeBase({ searchQuery }) {
-  const [selectedCard, setSelectedCard] = useState('All');
+  const [selectedCard, setSelectedCard] = useState("All");
   const [showMore, setShowMore] = useState({});
   const [activeCard, setActiveCard] = useState(null);
 
@@ -20,14 +20,14 @@ export default function KnowledgeBase({ searchQuery }) {
 
   const filteredCards = allCards.filter((card) => {
     return (
-      (selectedCard === 'All' || card.type === selectedCard) &&
+      (selectedCard === "All" || card.type === selectedCard) &&
       ((card.title &&
         card.title.toLowerCase().includes(searchQuery.toLowerCase())) ||
         (card.text &&
           card.text.toLowerCase().includes(searchQuery.toLowerCase())) ||
         (card.tags &&
           card.tags.some((tag) =>
-            tag.toLowerCase().includes(searchQuery.toLowerCase())
+            tag.toLowerCase().includes(searchQuery.toLowerCase()),
           )))
     );
   });
@@ -41,24 +41,24 @@ export default function KnowledgeBase({ searchQuery }) {
 
   useEffect(() => {
     const hash = window.location.hash;
-    if (hash.startsWith('#card=')) {
+    if (hash.startsWith("#card=")) {
       const titleFromUrl = hash.substring(6); // Get the formatted title from the URL
       const matchedCard = allCards.find(
-        (card) => formatTitleForUrl(card.title) === titleFromUrl
+        (card) => formatTitleForUrl(card.title) === titleFromUrl,
       );
 
       if (matchedCard) {
         setActiveCard(matchedCard);
         setShowMore((prev) => ({ ...prev, [matchedCard.category]: true }));
       } else {
-        console.error('No matching card found for title:', titleFromUrl);
+        console.error("No matching card found for title:", titleFromUrl);
         setActiveCard(null);
       }
     }
   }, [allCards]);
 
   const updateUrlHash = (cardTitle) => {
-    const formattedTitle = cardTitle.replace(/[\s/]+/g, '-').toLowerCase();
+    const formattedTitle = cardTitle.replace(/[\s/]+/g, "-").toLowerCase();
     window.location.hash = `card=${encodeURIComponent(formattedTitle)}`;
   };
 
@@ -70,19 +70,19 @@ export default function KnowledgeBase({ searchQuery }) {
   };
 
   useEffect(() => {
-    document.body.style.overflow = activeCard ? 'hidden' : 'visible';
+    document.body.style.overflow = activeCard ? "hidden" : "visible";
   }, [activeCard]); // Dependency on activeCard to stop overflow when modal is open
 
   // Helper function to create URL-friendly names
   function formatTitleForUrl(title) {
     return title
-      .replace(/[^\w\s]/gi, '')
-      .replace(/\s+/g, '-')
+      .replace(/[^\w\s]/gi, "")
+      .replace(/\s+/g, "-")
       .toLowerCase();
   }
   const renderCards = (category) => {
     const categoryCards = filteredCards.filter(
-      (card) => card.category === category
+      (card) => card.category === category,
     );
     const visibleCards = showMore[category]
       ? categoryCards
@@ -97,16 +97,16 @@ export default function KnowledgeBase({ searchQuery }) {
 
       // Filter cards to those in the same category as the active card
       const cardsInSameCategory = allCards.filter(
-        (card) => card.category === activeCard.category
+        (card) => card.category === activeCard.category,
       );
 
       // Determine the new index based on navigation direction
       let newIndex = cardsInSameCategory.findIndex(
-        (card) => card.id === activeCard.id
+        (card) => card.id === activeCard.id,
       );
-      if (direction === 'next') {
+      if (direction === "next") {
         newIndex = (newIndex + 1) % cardsInSameCategory.length;
-      } else if (direction === 'previous') {
+      } else if (direction === "previous") {
         newIndex =
           newIndex - 1 < 0 ? cardsInSameCategory.length - 1 : newIndex - 1;
       }
@@ -119,26 +119,26 @@ export default function KnowledgeBase({ searchQuery }) {
     };
 
     const categoryDescriptions = {
-      'Intro to Vector Databases':
-        'Databases designed to store and search data using vector embeddings, enabling efficient similarity search for unstructured data like text and images.',
+      "Intro to Vector Databases":
+        "Databases designed to store and search data using vector embeddings, enabling efficient similarity search for unstructured data like text and images.",
       Search:
-        'A search method that combines vector search with traditional keyword search to improve retrieval accuracy and relevance.',
-      'Hierarchical Navigable Small World':
-        'An indexing algorithm used in vector databases to enable fast and efficient similarity search.',
-      'Multimodal RAG':
-        'A technique that combines retrieval of relevant multimodal data, such as images, text, audio, or video, with generative large language models to generate natural language responses or content to a query.',
+        "A search method that combines vector search with traditional keyword search to improve retrieval accuracy and relevance.",
+      "Hierarchical Navigable Small World":
+        "An indexing algorithm used in vector databases to enable fast and efficient similarity search.",
+      "Multimodal RAG":
+        "A technique that combines retrieval of relevant multimodal data, such as images, text, audio, or video, with generative large language models to generate natural language responses or content to a query.",
       Databases:
-        'Systems for storing and storing, organizing, and retrieving structured or unstructured data efficiently.',
-      'Large Language Models':
-        'Deep learning models trained on massive datasets to understand and generate human-like text, used in applications like chatbots and content generation.',
-      'Information Retrieval/Search':
-        'Techniques for finding relevant information in a large collection of data, such as documents, images, or videos.',
-      'Embedding Types':
-        'Different types of embeddings used in vector databases, such as text embeddings, image embeddings, and multimodal embeddings.',
-      'Chunking Techniques':
-        'Techniques for breaking down large data into smaller, more manageable chunks for processing and storage.',
-      'Advanced RAG Techniques':
-        'Techniques for improving the performance and capabilities of the RAG model, such as training on custom datasets, fine-tuning, and optimizing for specific tasks.',
+        "Systems for storing and storing, organizing, and retrieving structured or unstructured data efficiently.",
+      "Large Language Models":
+        "Deep learning models trained on massive datasets to understand and generate human-like text, used in applications like chatbots and content generation.",
+      "Information Retrieval/Search":
+        "Techniques for finding relevant information in a large collection of data, such as documents, images, or videos.",
+      "Embedding Types":
+        "Different types of embeddings used in vector databases, such as text embeddings, image embeddings, and multimodal embeddings.",
+      "Chunking Techniques":
+        "Techniques for breaking down large data into smaller, more manageable chunks for processing and storage.",
+      "Advanced RAG Techniques":
+        "Techniques for improving the performance and capabilities of the RAG model, such as training on custom datasets, fine-tuning, and optimizing for specific tasks.",
     };
 
     const totalCards = categoryCards.length;
@@ -152,21 +152,7 @@ export default function KnowledgeBase({ searchQuery }) {
           className={`${styles.cardContainer} ${category.toLowerCase()}-card`}
         >
           {visibleCards.map((card, index) => (
-            <Card
-              key={card.title}
-              details={card}
-              setActiveCard={setActiveCard}
-              onOpenModal={() => {
-                setActiveCard({ category: card.category, index });
-                //updateUrlHash(card.type, index);
-                handleCardOpen(card);
-              }}
-              isActive={activeCard && activeCard.id === card.id}
-              currentIndex={index + 1}
-              totalCards={categoryCards.length}
-              onNext={() => handleNavigation('next')}
-              onPrevious={() => handleNavigation('previous')}
-            />
+            <Card key={card.title} details={card} />
           ))}
         </div>
         {categoryCards.length > 3 && (
@@ -175,7 +161,7 @@ export default function KnowledgeBase({ searchQuery }) {
               className={styles.buttonOutline}
               onClick={() => handleShowMore(category)}
             >
-              {showMore[category] ? 'Show Less' : 'Show More'}
+              {showMore[category] ? "Show Less" : "Show More"}
             </button>
           </div>
         )}
@@ -198,8 +184,8 @@ export default function KnowledgeBase({ searchQuery }) {
                     id="filterAll"
                     name="cardFilter"
                     value="All"
-                    checked={selectedCard === 'All'}
-                    onChange={() => handleCardFilter('All')}
+                    checked={selectedCard === "All"}
+                    onChange={() => handleCardFilter("All")}
                   />
                   <label htmlFor="filterAll">All</label>
                 </div>
@@ -209,8 +195,8 @@ export default function KnowledgeBase({ searchQuery }) {
                     id="filterIntroduction"
                     name="cardFilter"
                     value="Introduction"
-                    checked={selectedCard === 'Introduction'}
-                    onChange={() => handleCardFilter('Introduction')}
+                    checked={selectedCard === "Introduction"}
+                    onChange={() => handleCardFilter("Introduction")}
                   />
                   <label htmlFor="filterIntroduction">
                     Intro to Vector Databases
@@ -222,8 +208,8 @@ export default function KnowledgeBase({ searchQuery }) {
                     id="filterSearch"
                     name="cardFilter"
                     value="Search"
-                    checked={selectedCard === 'Search'}
-                    onChange={() => handleCardFilter('Search')}
+                    checked={selectedCard === "Search"}
+                    onChange={() => handleCardFilter("Search")}
                   />
                   <label htmlFor="filterSearch">Search</label>
                 </div>
@@ -233,8 +219,8 @@ export default function KnowledgeBase({ searchQuery }) {
                     id="filterHNSW"
                     name="cardFilter"
                     value="HNSW"
-                    checked={selectedCard === 'HNSW'}
-                    onChange={() => handleCardFilter('HNSW')}
+                    checked={selectedCard === "HNSW"}
+                    onChange={() => handleCardFilter("HNSW")}
                   />
                   <label htmlFor="filterHNSW">HNSW</label>
                 </div>
@@ -244,8 +230,8 @@ export default function KnowledgeBase({ searchQuery }) {
                     id="filterRAG"
                     name="cardFilter"
                     value="RAG"
-                    checked={selectedCard === 'RAG'}
-                    onChange={() => handleCardFilter('RAG')}
+                    checked={selectedCard === "RAG"}
+                    onChange={() => handleCardFilter("RAG")}
                   />
                   <label htmlFor="filterRAG">Multimodal RAG</label>
                 </div>
@@ -255,8 +241,8 @@ export default function KnowledgeBase({ searchQuery }) {
                     id="filterDatabases"
                     name="cardFilter"
                     value="Databases"
-                    checked={selectedCard === 'Databases'}
-                    onChange={() => handleCardFilter('Databases')}
+                    checked={selectedCard === "Databases"}
+                    onChange={() => handleCardFilter("Databases")}
                   />
                   <label htmlFor="filterDatabases">Databases</label>
                 </div>
@@ -266,8 +252,8 @@ export default function KnowledgeBase({ searchQuery }) {
                     id="filterLLMS"
                     name="cardFilter"
                     value="LLMS"
-                    checked={selectedCard === 'LLMS'}
-                    onChange={() => handleCardFilter('LLMS')}
+                    checked={selectedCard === "LLMS"}
+                    onChange={() => handleCardFilter("LLMS")}
                   />
                   <label htmlFor="filterLLMS">LLMS</label>
                 </div>
@@ -277,8 +263,8 @@ export default function KnowledgeBase({ searchQuery }) {
                     id="filterIRS"
                     name="cardFilter"
                     value="IRS"
-                    checked={selectedCard === 'IRS'}
-                    onChange={() => handleCardFilter('IRS')}
+                    checked={selectedCard === "IRS"}
+                    onChange={() => handleCardFilter("IRS")}
                   />
                   <label htmlFor="filterIRS">
                     Information Retrieval/Search
@@ -290,8 +276,8 @@ export default function KnowledgeBase({ searchQuery }) {
                     id="filterET"
                     name="cardFilter"
                     value="ET"
-                    checked={selectedCard === 'ET'}
-                    onChange={() => handleCardFilter('ET')}
+                    checked={selectedCard === "ET"}
+                    onChange={() => handleCardFilter("ET")}
                   />
                   <label htmlFor="filterET">Embedding Types</label>
                 </div>
@@ -301,8 +287,8 @@ export default function KnowledgeBase({ searchQuery }) {
                     id="filterCT"
                     name="cardFilter"
                     value="CT"
-                    checked={selectedCard === 'CT'}
-                    onChange={() => handleCardFilter('CT')}
+                    checked={selectedCard === "CT"}
+                    onChange={() => handleCardFilter("CT")}
                   />
                   <label htmlFor="filterCT">Chunking Techniques</label>
                 </div>
@@ -312,10 +298,10 @@ export default function KnowledgeBase({ searchQuery }) {
                     id="filterART"
                     name="cardFilter"
                     value="ART"
-                    checked={selectedCard === 'ART'}
-                    onChange={() => handleCardFilter('ART')}
+                    checked={selectedCard === "ART"}
+                    onChange={() => handleCardFilter("ART")}
                   />
-                  <label htmlFor="filterCT">Advanced RAG Techniques</label>
+                  <label htmlFor="filterART">Advanced RAG Techniques</label>
                 </div>
               </div>
             </div>
@@ -342,8 +328,8 @@ export default function KnowledgeBase({ searchQuery }) {
                   id="filterAll"
                   name="cardFilter"
                   value="All"
-                  checked={selectedCard === 'All'}
-                  onChange={() => handleCardFilter('All')}
+                  checked={selectedCard === "All"}
+                  onChange={() => handleCardFilter("All")}
                 />
                 <label htmlFor="filterAll">All</label>
               </div>
@@ -353,8 +339,8 @@ export default function KnowledgeBase({ searchQuery }) {
                   id="filterIntroduction"
                   name="cardFilter"
                   value="Introduction"
-                  checked={selectedCard === 'Introduction'}
-                  onChange={() => handleCardFilter('Introduction')}
+                  checked={selectedCard === "Introduction"}
+                  onChange={() => handleCardFilter("Introduction")}
                 />
                 <label htmlFor="filterIntroduction">
                   Intro to Vector Databases
@@ -366,8 +352,8 @@ export default function KnowledgeBase({ searchQuery }) {
                   id="filterSearch"
                   name="cardFilter"
                   value="Search"
-                  checked={selectedCard === 'Search'}
-                  onChange={() => handleCardFilter('Search')}
+                  checked={selectedCard === "Search"}
+                  onChange={() => handleCardFilter("Search")}
                 />
                 <label htmlFor="filterSearch">Search</label>
               </div>
@@ -377,8 +363,8 @@ export default function KnowledgeBase({ searchQuery }) {
                   id="filterHNSW"
                   name="cardFilter"
                   value="HNSW"
-                  checked={selectedCard === 'HNSW'}
-                  onChange={() => handleCardFilter('HNSW')}
+                  checked={selectedCard === "HNSW"}
+                  onChange={() => handleCardFilter("HNSW")}
                 />
                 <label htmlFor="filterHNSW">HNSW</label>
               </div>
@@ -388,8 +374,8 @@ export default function KnowledgeBase({ searchQuery }) {
                   id="filterRAG"
                   name="cardFilter"
                   value="RAG"
-                  checked={selectedCard === 'RAG'}
-                  onChange={() => handleCardFilter('RAG')}
+                  checked={selectedCard === "RAG"}
+                  onChange={() => handleCardFilter("RAG")}
                 />
                 <label htmlFor="filterRAG">Multimodal RAG</label>
               </div>
@@ -399,8 +385,8 @@ export default function KnowledgeBase({ searchQuery }) {
                   id="filterDatabases"
                   name="cardFilter"
                   value="Databases"
-                  checked={selectedCard === 'Databases'}
-                  onChange={() => handleCardFilter('Databases')}
+                  checked={selectedCard === "Databases"}
+                  onChange={() => handleCardFilter("Databases")}
                 />
                 <label htmlFor="filterDatabases">Databases</label>
               </div>
@@ -410,8 +396,8 @@ export default function KnowledgeBase({ searchQuery }) {
                   id="filterLLMS"
                   name="cardFilter"
                   value="LLMS"
-                  checked={selectedCard === 'LLMS'}
-                  onChange={() => handleCardFilter('LLMS')}
+                  checked={selectedCard === "LLMS"}
+                  onChange={() => handleCardFilter("LLMS")}
                 />
                 <label htmlFor="filterLLMS">LLMS</label>
               </div>
@@ -421,8 +407,8 @@ export default function KnowledgeBase({ searchQuery }) {
                   id="filterIRS"
                   name="cardFilter"
                   value="IRS"
-                  checked={selectedCard === 'IRS'}
-                  onChange={() => handleCardFilter('IRS')}
+                  checked={selectedCard === "IRS"}
+                  onChange={() => handleCardFilter("IRS")}
                 />
                 <label htmlFor="filterIRS">Information Retrieval/Search</label>
               </div>
@@ -432,8 +418,8 @@ export default function KnowledgeBase({ searchQuery }) {
                   id="filterET"
                   name="cardFilter"
                   value="ET"
-                  checked={selectedCard === 'ET'}
-                  onChange={() => handleCardFilter('ET')}
+                  checked={selectedCard === "ET"}
+                  onChange={() => handleCardFilter("ET")}
                 />
                 <label htmlFor="filterET">Embedding Types</label>
               </div>
@@ -443,8 +429,8 @@ export default function KnowledgeBase({ searchQuery }) {
                   id="filterCT"
                   name="cardFilter"
                   value="CT"
-                  checked={selectedCard === 'CT'}
-                  onChange={() => handleCardFilter('CT')}
+                  checked={selectedCard === "CT"}
+                  onChange={() => handleCardFilter("CT")}
                 />
                 <label htmlFor="filterCT">Chunking Techniques</label>
               </div>
@@ -454,8 +440,8 @@ export default function KnowledgeBase({ searchQuery }) {
                   id="filterART"
                   name="cardFilter"
                   value="ART"
-                  checked={selectedCard === 'ART'}
-                  onChange={() => handleCardFilter('ART')}
+                  checked={selectedCard === "ART"}
+                  onChange={() => handleCardFilter("ART")}
                 />
                 <label htmlFor="filterART">Advanced RAG Techniques</label>
               </div>
@@ -463,16 +449,16 @@ export default function KnowledgeBase({ searchQuery }) {
           </div>
           <div className={styles.filterLine}></div>
           <main className={styles.cardResults}>
-            {renderCards('Intro to Vector Databases')}
-            {renderCards('Search')}
-            {renderCards('Hierarchical Navigable Small World')}
-            {renderCards('Multimodal RAG')}
-            {renderCards('Databases')}
-            {renderCards('Large Language Models')}
-            {renderCards('Information Retrieval/Search')}
-            {renderCards('Embedding Types')}
-            {renderCards('Chunking Techniques')}
-            {renderCards('Advanced RAG Techniques')}
+            {renderCards("Intro to Vector Databases")}
+            {renderCards("Search")}
+            {renderCards("Hierarchical Navigable Small World")}
+            {renderCards("Multimodal RAG")}
+            {renderCards("Databases")}
+            {renderCards("Large Language Models")}
+            {renderCards("Information Retrieval/Search")}
+            {renderCards("Embedding Types")}
+            {renderCards("Chunking Techniques")}
+            {renderCards("Advanced RAG Techniques")}
           </main>
         </div>
       </div>

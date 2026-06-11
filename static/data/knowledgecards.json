@@ -924,6 +924,7 @@
       "type": "ART",
       "category": "Advanced RAG Techniques",
       "title": "Chain of Thought (CoT)",
+      "slug": "/learn/knowledgecards/chain-of-thoughts-cot",
       "photo": "chain-of-thought-card-icon.svg",
       "text": "Chain of Thought (CoT) prompting involves asking the model to “think step-by-step” and break down complex reasoning tasks into a series of intermediate steps...",
       "longText": "Chain of Thought (CoT) prompting involves asking the model to “think step-by-step” and break down complex reasoning tasks into a series of intermediate steps. This can be especially useful when retrieved documents contain conflicting or dense information that requires careful analysis.",

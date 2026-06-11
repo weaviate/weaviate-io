@@ -1,11 +1,11 @@
 ---
-title: 'Weaviate Authentication & Authorization: A Complete Security Guide'
+title: "Weaviate Authentication & Authorization: A Complete Security Guide"
 slug: weaviate-security-authn-authz
 authors: [dirk, ivan]
 date: 2026-02-18
-tags: ['security', 'authentication', 'authorization']
+tags: ["security", "authentication", "authorization"]
 image: ./img/hero.png
-description: 'Learn how to secure your Weaviate vector database with API keys, OIDC, and role-based access control (RBAC). Includes practical examples and setup steps.'
+description: "Learn how to secure your Weaviate vector database with API keys, OIDC, and role-based access control (RBAC). Includes practical examples and setup steps."
 ---
 
 ![Authentication & Authorization](./img/hero.png)
@@ -31,7 +31,7 @@ Two complementary mechanisms are essential to meet this goal:
 
 ### Authentication vs. Authorization
 
-Put simply: authentication answers *"who are you?"* while authorization answers *"what are you allowed to do?"*. You need both—authentication without authorization means everyone who logs in gets full access, and authorization without authentication means you can't reliably enforce any rules. The rest of this guide covers how Weaviate implements each.
+Put simply: authentication answers _"who are you?"_ while authorization answers _"what are you allowed to do?"_. You need both—authentication without authorization means everyone who logs in gets full access, and authorization without authentication means you can't reliably enforce any rules. The rest of this guide covers how Weaviate implements each.
 
 ## Authentication in Weaviate
 
@@ -82,7 +82,7 @@ You can also define API keys as environment variables (e.g. `AUTHENTICATION_APIK
 - You want to create service accounts for different applications or services
 - You're using Weaviate Cloud (where API key auth is pre-configured)
 
-API keys work well for many production scenarios, especially when combined with [role-based access control](#role-based-access-control-rbac).
+API keys work well for many production scenarios, especially when combined with [role-based access control](#authorization-in-weaviate-rbac).
 
 ### OIDC - Identity Provider (IdP) Integration
 
@@ -106,7 +106,7 @@ IdP integration offers several advantages:
 
 A key feature of IdP integration is that user credentials are never sent to Weaviate. Instead, the user authenticates against the IdP, which generates a JSON Web Token (JWT) for use with Weaviate. This token has far more limited scope than the original credentials, reducing risk for everyone involved.
 
-OIDC also works with [RBAC](#role-based-access-control-rbac), and supports **OIDC groups** — allowing you to manage role assignments at the group level in your identity provider rather than per-user in Weaviate. We'll explore OIDC groups in detail in an upcoming blog post.
+OIDC also works with [RBAC](#authorization-in-weaviate-rbac), and supports **OIDC groups** — allowing you to manage role assignments at the group level in your identity provider rather than per-user in Weaviate. We'll explore OIDC groups in detail in an upcoming blog post.
 
 **When to use it:**
 
@@ -143,14 +143,15 @@ Once a user is authenticated, authorization determines what they can do. RBAC (R
 - **Roles** are containers for one or more permissions (e.g., `admin`, `dataScientist`, `searchApplication`)
 - **Users** are assigned one or more roles
 
-Additionally: 
+Additionally:
+
 - **OIDC groups** can also be assigned roles, so that all users in a group automatically inherit the corresponding permissions
 
 When a request comes in, Weaviate checks the user's role(s), evaluates their permissions for the requested operation, and either allows or denies access accordingly. All access decisions are recorded in [audit logs](#audit-logging), giving you full visibility into who accessed what and when.
 
 ![RBAC diagram](./img/weaviate-rbac.png)
 
-*RBAC structure showing how users inherit permissions through roles*
+_RBAC structure showing how users inherit permissions through roles_
 
 **Built-in Roles:**
 
@@ -197,7 +198,7 @@ You define three custom roles with these permissions:
 
 | Role                  | `Products`  | `CustomerBehavior` | `InternalAnalytics` | Collections for development |
 | --------------------- | ----------- | ------------------ | ------------------- | --------------------------- |
-| **admin**     | Full access | Full access        | Full access         | Full access                 |
+| **admin**             | Full access | Full access        | Full access         | Full access                 |
 | **dataScientist**     | Read only   | Read only          | Read only           | Full access                 |
 | **searchApplication** | Read only   | No access          | No access           | No access                   |
 
@@ -261,7 +262,7 @@ Check out the Weaviate Cloud [authentication](https://docs.weaviate.io/cloud/man
 
 ## Conclusion
 
-Authentication and authorization might seem like just another checkbox on the path to production, but they're fundamental to building secure, trustworthy applications. By verifying who's accessing your Weaviate instance (authentication) and controlling what they can do (authorization), you can prevent significant problems down the line. 
+Authentication and authorization might seem like just another checkbox on the path to production, but they're fundamental to building secure, trustworthy applications. By verifying who's accessing your Weaviate instance (authentication) and controlling what they can do (authorization), you can prevent significant problems down the line.
 
 Start with the security model that fits your current needs:
 
@@ -281,6 +282,6 @@ The key is to implement security from the start and scale it as you grow. Weavia
 
 Get started with Weaviate Cloud's pre-configured security, or follow the open source setup guide to configure authentication and RBAC for your deployment.
 
-import WhatsNext from '/_includes/what-next.mdx';
+import WhatsNext from "/_includes/what-next.mdx";
 
 <WhatsNext />

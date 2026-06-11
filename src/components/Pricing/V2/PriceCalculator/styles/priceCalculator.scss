@@ -1,0 +1,82 @@
+@use "./variables" as *;
+
+.wrap {
+  background-color: #111111;
+}
+
+.priceCalculator {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  gap: 20px;
+  color: $calcText;
+  font-family: Plus Jakarta Sans;
+
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  a {
+    color: inherit;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+  }
+
+  ul,
+  li,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  p {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-size: inherit;
+    font-weight: inherit;
+  }
+
+  button,
+  input,
+  textarea {
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: none;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  > .content {
+    width: 100%;
+    background: $calcSurface;
+    border: 1px solid $calcHair;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+    border-radius: $space;
+    padding: 30px;
+    gap: 15px;
+
+    > h1 {
+      font-size: 1.7em;
+      font-weight: 700;
+      color: $calcText;
+    }
+  }
+
+  @media (max-width: 920px) {
+    flex-direction: column;
+    gap: 15px;
+  }
+}

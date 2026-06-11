@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './styles.module.scss';
-import Link from '@docusaurus/Link';
+import React from "react";
+import styles from "./styles.module.scss";
+import Link from "@docusaurus/Link";
 
 export default function LearnMore() {
   return (
@@ -51,7 +51,7 @@ export default function LearnMore() {
                   high-level overview of Weaviate here, so that you have some
                   context before moving on to any other sections.
                 </p>
-                <p className={styles.date}>Go to DOCS</p>
+                <div className={styles.date}>Go to DOCS</div>
               </div>
             </Link>
           </div>
