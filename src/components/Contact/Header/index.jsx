@@ -1,6 +1,6 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
-import styles from './styles.module.scss';
+import Link from "@docusaurus/Link";
+import React from "react";
+import styles from "./styles.module.scss";
 
 export default function ContactHeader() {
   return (
@@ -28,6 +28,12 @@ export default function ContactHeader() {
               to="https://newsletter.weaviate.io/"
             >
               Subscribe
+            </Link>
+            <Link
+              className={styles.buttonSupport}
+              to="https://docs.weaviate.io/support"
+            >
+              Get Support
             </Link>
           </div>
         </div>

@@ -4,7 +4,7 @@ import Link from "@docusaurus/Link";
 
 const Support = () => {
   return (
-    <section className={styles.supportSection}>
+    <section className={styles.supportSection} id="support">
       <div className="container">
         <div className={styles.supportCard}>
           <div>
