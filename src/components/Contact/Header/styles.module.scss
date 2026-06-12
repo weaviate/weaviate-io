@@ -97,6 +97,17 @@
   }
 }
 
+.buttonSupport {
+  background: rgba(0, 183, 226, 0.08);
+  border: 1px solid rgba(0, 183, 226, 0.28);
+  color: #ddebf2 !important;
+
+  &:hover {
+    background: rgba(0, 183, 226, 0.14);
+    border-color: rgba(0, 183, 226, 0.45);
+  }
+}
+
 .topText {
   color: #43e2c5;
   font-family: Inter, sans-serif;
