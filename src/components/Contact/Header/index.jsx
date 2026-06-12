@@ -16,20 +16,6 @@ export default function ContactHeader() {
               communities.
             </p>
           </div>
-          <div className={styles.buttons}>
-            <Link
-              className={styles.buttonGradient}
-              to="https://forum.weaviate.io/"
-            >
-              Join us
-            </Link>
-            <Link
-              className={styles.buttonOutline}
-              to="https://newsletter.weaviate.io/"
-            >
-              Subscribe
-            </Link>
-          </div>
         </div>
       </div>
     </header>

@@ -129,6 +129,12 @@ export default function ContactForm() {
               <li>
                 <Link to="/partners">Partner with us</Link>
               </li>
+              <li>
+                <Link to="https://forum.weaviate.io/">Forum</Link>
+              </li>
+              <li>
+                <Link to="https://newsletter.weaviate.io/">Newsletter</Link>
+              </li>
             </ul>
           </div>
 
