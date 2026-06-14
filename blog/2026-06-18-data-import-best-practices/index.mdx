@@ -122,6 +122,14 @@ Common failure modes and what to do about them:
 | Duplicate objects after a retry | Fresh random UUIDs on each run                     | Use `generate_uuid5` from a stable source key     |
 | Empty vectors after import      | Vectorizer module not configured on the collection | Check the collection config before re-running     |
 
+## Ingesting through the MCP server
+
+Weaviate ships a built-in [MCP server](https://docs.weaviate.io/weaviate/configuration/mcp-server) (preview, added in v1.37.1) that lets an LLM or IDE assistant — Claude Code, Cursor, VS Code — read and write your instance over the [Model Context Protocol](https://modelcontextprotocol.io/). Enable it with `MCP_SERVER_ENABLED=true`, opt into writes with `MCP_SERVER_WRITE_ACCESS_ENABLED=true`, and the server exposes a `weaviate-objects-upsert` tool that creates or updates objects from inside a conversation. It runs on the same port as the REST API and respects RBAC, so there is nothing extra to deploy.
+
+This is the right tool when an agent needs to write a few records as it works — persisting agent memory, syncing a small collection, or fixing up a handful of objects without leaving your editor.
+
+It is not an ingestion pipeline. Every object is assembled by the model and handed over as a tool call, so you are bound by the context window and per-call latency, with none of the backpressure, streaming, or retry-checkpoint machinery from the sections above. Past a few dozen objects, reach for `collection.batch.stream()` (or your client's batch API) and leave the MCP server for the conversational, small-batch writes it is built for.
+
 ## Choosing data types before you import
 
 Schema decisions cost ten times more to fix after the import has run. Get them right the first time.
