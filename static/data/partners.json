@@ -461,12 +461,6 @@
         "title": "Read & Listen",
         "items": [
           {
-            "topic": "Make Real-Time AI a Reality with Weaviate + Confluent",
-            "description": "Learn how to build an application using Weaviate and Confluent.",
-            "type": "Blog",
-            "url": "https://weaviate.io/blog/confluent-and-weaviate"
-          },
-          {
             "topic": "Introducing the New Weaviate Confluent Apache Kafka® Connector: Real-Time Vector Data Pipelines Made Easy",
             "description": "Learn about the new certified Weaviate Confluent Apache Kafka Connector!",
             "type": "Blog",

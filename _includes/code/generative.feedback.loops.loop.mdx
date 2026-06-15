@@ -38,23 +38,19 @@ for ad in response.objects:
 <TabItem value="js" label="TypeScript">
 
 ```ts
-import { generateUuid5 } from 'weaviate-client';
-
 const generatePrompt: string = 'Please write an engaging advertisement for the following AirBnB Listing: Description: {description}';
 
 const listings = client.collections.use('Listing');
 const ads = client.collections.use('Ad');
 
-const response = await listings.generate.fetchObjects({
-  limit: 5,
-  singlePrompt: generatePrompt,
-});
+const response = await listings.generate.fetchObjects(
+  { singlePrompt: generatePrompt },
+  { limit: 5 }
+);
 
 for (const ad of response.objects) {
-  const newAdId = generateUuid5(String(ad.uuid));
-  await ads.data.insert({
-    id: newAdId,
-    properties: { content: ad.generated },
+  const newAdId = await ads.data.insert({
+    properties: { content: ad.generative?.text },
   });
   await listings.data.referenceAdd({
     fromUuid: ad.uuid,

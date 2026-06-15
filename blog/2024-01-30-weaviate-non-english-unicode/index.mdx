@@ -156,7 +156,7 @@ client.collections.create(
 )
 ```
 
-The `kagome_ja` and `kagome_kr` tokenizers are opt-in: enable them on the server by setting the corresponding environment variables (`ENABLE_TOKENIZER_KAGOME_JA=true`, `ENABLE_TOKENIZER_KAGOME_KR=true`) on your Weaviate instance. The `gse`/`gse_ch`/`trigram` tokenizers work the same way — set `tokenization=Tokenization.GSE` (or `TRIGRAM`) on the property.
+The `gse`, `gse_ch`, `kagome_ja`, and `kagome_kr` tokenizers are opt-in: each must be enabled on the server with its own environment variable (`ENABLE_TOKENIZER_GSE`, `ENABLE_TOKENIZER_GSE_CH`, `ENABLE_TOKENIZER_KAGOME_JA`, or `ENABLE_TOKENIZER_KAGOME_KR`) before the matching `Tokenization.*` value can be used on a property. `trigram` is built in — it needs no environment variable, so you can set `tokenization=Tokenization.TRIGRAM` on any instance.
 
 With a Japanese-aware tokenizer in place, both BM25 and hybrid search work as expected on Japanese text:
 

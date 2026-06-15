@@ -170,7 +170,7 @@ const quotesCollection = await client.collections.create({
       skipVectorization: true,
     },
   ],
-  vectorizers: weaviate.configure.vectors.text2VecOpenAI('default'),
+  vectorizers: weaviate.configure.vectors.text2VecOpenAI(),
 });
 ```
 
@@ -241,7 +241,7 @@ export async function findQuotesBySearchTerm(
   searchTerm: string,
   alpha: number
 ) {
-  const collection = await client.collections.use<Omit<QuoteType, 'distance'>>(
+  const collection = client.collections.use<Omit<QuoteType, 'distance'>>(
     'Quotes'
   );
 

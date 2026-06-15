@@ -47,15 +47,15 @@ const generatePrompt: string = 'Please write a description for the following Air
 
 const listings = client.collections.use('Listing');
 
-const response = await listings.generate.fetchObjects({
-  limit: 5,
-  singlePrompt: generatePrompt,
-});
+const response = await listings.generate.fetchObjects(
+  { singlePrompt: generatePrompt },
+  { limit: 5 }
+);
 
 for (const listing of response.objects) {
   await listings.data.update({
     id: listing.uuid,
-    properties: { description: listing.generated },
+    properties: { description: listing.generative?.text },
   });
 }
 ```

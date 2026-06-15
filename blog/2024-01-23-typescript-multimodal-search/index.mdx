@@ -162,7 +162,7 @@ export const createCollection = async (name: string) => {
 
   const newCollection = await client.collections.create({
     name: name,
-    vectorizers: weaviate.configure.vectors.multi2VecPalm({
+    vectorizers: weaviate.configure.vectors.multi2VecGoogle({
       projectId: 'semi-random-dev',
       location: 'us-central1',
       imageFields: ['image'],
