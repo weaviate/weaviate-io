@@ -57,7 +57,7 @@ Query Agent translates search and retrieval best practices into powerful capabil
 * **Intelligent Reranking**: Aggregate and reorder results to reflect the original query’s intent and context, improving precision beyond simple retrieval.  
 * **Answer Citation**: Every answer includes full traceability back to the collections and objects, giving you transparency and trust in results.
 
-For a full breakdown of supported features and technical details, see the Query Agent [documentation](https://docs.weaviate.io/agents/query).
+For a full breakdown of supported features and technical details, see the Query Agent [documentation](https://docs.weaviate.io/query-agent).
 
 ---
 
@@ -73,23 +73,23 @@ Since releasing the Query Agent for preview in March, we’ve worked closely wit
 
 ## Advanced Retrieval & Search
 
-A major addition is [**Search Mode**](https://docs.weaviate.io/agents/query/usage#search), built for teams that don’t need answer generation but still want the agent’s ability to adapt searches and create filters at runtime. In early benchmarks, this mode consistently outperformed hybrid search across common information retrieval tasks. (Stay tuned – next week we’ll share a deep dive into these results!)
+A major addition is [**Search Mode**](https://docs.weaviate.io/query-agent/guides/search_mode), built for teams that don’t need answer generation but still want the agent’s ability to adapt searches and create filters at runtime. In early benchmarks, this mode consistently outperformed hybrid search across common information retrieval tasks. (Stay tuned – next week we’ll share a deep dive into these results!)
 
-We also added support for [**user-defined filters**](https://docs.weaviate.io/agents/query/usage#user-defined-filters), which are combined with the agent’s generated filters. This gives developers greater control and ensures that critical constraints are always applied, no matter how the query is phrased.
+We also added support for [**user-defined filters**](https://docs.weaviate.io/query-agent/reference/additional_filters), which are combined with the agent’s generated filters. This gives developers greater control and ensures that critical constraints are always applied, no matter how the query is phrased.
 
-With [**multi-tenant collection support**](https://docs.weaviate.io/agents/query/usage#configure-collections), the Query Agent can now be scoped to specific tenants. This brings parity between single-tenant and multi-tenant use cases and makes it easier to adopt in production environments.
+With [**multi-tenant collection support**](https://docs.weaviate.io/query-agent/reference/advanced_collections), the Query Agent can now be scoped to specific tenants. This brings parity between single-tenant and multi-tenant use cases and makes it easier to adopt in production environments.
 
 ## Conversation & Interaction
 
-The agent now supports [**multi-turn context**](https://docs.weaviate.io/agents/query/usage#conversational-queries). Previously, it could only reference the immediately preceding message, but now it leverages standard message syntax to support full conversation memory - ideal for chat-style applications.
+The agent now supports [**multi-turn context**](https://docs.weaviate.io/query-agent/reference/multi_turn_conversations). Previously, it could only reference the immediately preceding message, but now it leverages standard message syntax to support full conversation memory - ideal for chat-style applications.
 
-We also introduced [**Ask Mode**](https://docs.weaviate.io/agents/query/usage#ask), which replaces the old run() method with a clearer and more natural API for conversational and query-driven workflows. 
+We also introduced [**Ask Mode**](https://docs.weaviate.io/query-agent/guides/ask_mode), which replaces the old run() method with a clearer and more natural API for conversational and query-driven workflows. 
 
 ## Performance & Tooling
 
-The agent now supports [**streaming**](https://docs.weaviate.io/agents/query/usage#stream-responses), emitting updates for each step it takes. Developers can pass these progress messages directly to their users, offering both real-time visibility into the agent’s reasoning and a smoother experience through token-by-token answer streaming.
+The agent now supports [**streaming**](https://docs.weaviate.io/query-agent/guides/ask_mode#streaming), emitting updates for each step it takes. Developers can pass these progress messages directly to their users, offering both real-time visibility into the agent’s reasoning and a smoother experience through token-by-token answer streaming.
 
-Finally, we released a [**TypeScript client**](https://docs.weaviate.io/agents/query/usage#client-library), developed in response to strong developer demand. Fully aligned with our Python client and supporting modern [async workflows](https://docs.weaviate.io/agents/query/usage#usage---async-python-client), it enables seamless integration into Node backends, edge functions, and other JavaScript environments.
+Finally, we released a [**TypeScript client**](https://docs.weaviate.io/query-agent/clients/typescript), developed in response to strong developer demand. Fully aligned with our Python client and supporting modern [async workflows](https://docs.weaviate.io/query-agent/guides/ask_mode#async), it enables seamless integration into Node backends, edge functions, and other JavaScript environments.
 
 ## What Our Users Are Saying
 
@@ -107,7 +107,7 @@ Want the full story? Read the [Metabuddy case study](https://weaviate.io/case-st
 
 Ready to start building with data in an entirely new way? Query Agent is available now, and you can try it today for free in [Weaviate Cloud](https://console.weaviate.cloud). You can also explore an [interactive demo](https://app.guideflow.com/player/yr4q72xslp) or experiment with a [Colab notebook](https://colab.research.google.com/drive/1SSuHeBq7Xe2VYsttoX0ZA1kJKrIHDXM3?usp=sharing). 
 
-Learn more about Query Agent [APIs](https://docs.weaviate.io/agents/query/usage). 
+Learn more about Query Agent [APIs](https://docs.weaviate.io/query-agent/guides/ask_mode). 
 
 Stay up to date with the latest news, product updates, and best practices for the Query Agent and other Weaviate Agents by subscribing to [the Weaviate Agents newsletter](https://events.weaviate.io/weaviate-agents-newsletter).  
 

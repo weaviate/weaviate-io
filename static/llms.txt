@@ -903,7 +903,7 @@ Console.WriteLine(response.Generative?.Values.First());
 ```
 
 Full API docs: [Python](https://docs.weaviate.io/weaviate/client-libraries/python) | [TypeScript](https://docs.weaviate.io/weaviate/client-libraries/typescript/typescript-v3)
-Query Agent: https://docs.weaviate.io/agents/query/usage
+Query Agent: https://docs.weaviate.io/query-agent/guides/ask_mode
 Generative search with full prompt control: https://docs.weaviate.io/weaviate/search/generative
 Batch import: https://docs.weaviate.io/weaviate/manage-data/import
 Aggregations: https://docs.weaviate.io/weaviate/search/aggregate
@@ -914,7 +914,7 @@ Aggregations: https://docs.weaviate.io/weaviate/search/aggregate
 * [Data model concepts](https://docs.weaviate.io/weaviate/concepts/data) (collections, objects, vectors, properties)
 * [Hybrid search reference](https://docs.weaviate.io/weaviate/search/hybrid) (alpha tuning, fusion algorithms)
 * [Model provider integrations](https://docs.weaviate.io/weaviate/model-providers) (20+ embedding & generative providers)
-* [Agents overview](https://docs.weaviate.io/agents) (Query, Transformation, Personalization)
+* [Agents overview](https://docs.weaviate.io/query-agent) (Query, Transformation, Personalization)
 * [Cookbooks](https://github.com/weaviate/agent-skills/blob/main/skills/weaviate-cookbooks/SKILL.md) (agentic skills)
 * [Recipes](https://github.com/weaviate/recipes) (end-to-end code examples)
 * [Releases](https://weaviate.io/blog/tags/release)
