@@ -1,7 +1,7 @@
 ---
 title: 'Import & Vectorize Data with Weaviate at Scale'
 slug: data-import-best-practices
-authors: [ivan]
+authors: [ivan, tommy]
 date: 2026-06-18
 image: ./img/hero.png
 tags: ['how-to', 'engineering', 'concepts']
@@ -73,8 +73,6 @@ if collection.batch.failed_objects:
 ```
 
 That is the whole pattern. No `batch_size`, no `concurrent_requests`, no tuning. The `stream()` context manager opens the persistent connection, the server sets the rate, errors stream back asynchronously without interrupting the flow.
-
-One caveat. Server-side batching shipped in the Python client first. TypeScript, Go, Java, and C# clients still use the existing client-side batch API. If you are on Python, use `stream()`. If you are not, the [client-library import reference](https://docs.weaviate.io/weaviate/manage-objects/import) has the current pattern for every client, and your migration path is one method call when your client catches up.
 
 ## Error handling and retries
 
