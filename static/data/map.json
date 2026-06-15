@@ -150,6 +150,11 @@
     "photo": "philip.jpg"
   },
   {
+    "name": "Rodrigo López",
+    "location": { "lat": 40.4189, "lng": -3.7048 },
+    "photo": "Rodrigo-Lopez.jpg"
+  },
+  {
     "name": "Shan Blackwood",
     "location": { "lat": 51.5104, "lng": -0.1308 },
     "photo": "shan.jpg"

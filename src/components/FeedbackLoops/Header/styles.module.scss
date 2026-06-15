@@ -5,7 +5,7 @@
 @media screen and (max-width: 768px) {
   .container {
     padding: 2rem;
-    background-image: url('/img/site/bg-light-mobile.svg');
+    background-image: url("/img/site/bg-light-mobile.svg");
     background-position-y: 0px;
     background-size: cover;
     background-repeat: no-repeat;
@@ -30,13 +30,13 @@
 }
 
 .headerHome {
-  background: url('/img/site/3d-weaviate-bubble-blur-bg.jpg') #dce8ee;
+  background: url("/img/site/2026/weaviate-home-26-1280.jpg") #dce8ee;
   background-size: contain;
   background-position-x: right;
   background-repeat: no-repeat;
 
   @media screen and (max-width: 600px) {
-    background: url('/img/site/3d-weaviate-bubble-blur-bg.jpg') #dce8ee;
+    background: url("/img/site/2026/weaviate-home-26-1280.jpg") #dce8ee;
     background-size: cover;
     background-position-x: right;
     background-repeat: no-repeat;
@@ -182,7 +182,7 @@
 }
 
 .customerLogo {
-  background-image: url('/img/site/redhat-logo.svg');
+  background-image: url("/img/site/redhat-logo.svg");
 
   background-size: contain;
   background-repeat: no-repeat;
@@ -198,27 +198,27 @@
 }
 
 .redhatLogo {
-  background-image: url('/img/site/red-hat-logo.svg');
+  background-image: url("/img/site/red-hat-logo.svg");
   background-position: center;
 }
 
 .stackoverflowLogo {
-  background-image: url('/img/site/stack-overflow-logo.svg');
+  background-image: url("/img/site/stack-overflow-logo.svg");
   background-position: center;
 }
 
 .instabaseLogo {
-  background-image: url('/img/site/instabase-logo.svg');
+  background-image: url("/img/site/instabase-logo.svg");
   background-position: center;
 }
 
 .shippoLogo {
-  background-image: url('/img/site/shippo-logo.svg');
+  background-image: url("/img/site/shippo-logo.svg");
   background-position: center;
 }
 
 .mulinyLogo {
-  background-image: url('/img/site/muliny-logo.svg');
+  background-image: url("/img/site/muliny-logo.svg");
   background-position: center;
 }
 .title {
@@ -260,7 +260,7 @@
   margin: auto;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url('/img/site/W-logo-3d-shadow.png');
+  background-image: url("/img/site/W-logo-3d-shadow.png");
 
   @media screen and (max-width: 500px) {
     display: none;
@@ -373,7 +373,7 @@
 }
 
 .awsBanner {
-  background-image: url('/img/site/AI-in-prod-NY-web.png');
+  background-image: url("/img/site/AI-in-prod-NY-web.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position-x: center;
@@ -381,7 +381,7 @@
   width: 100%;
   height: 141px;
   @media screen and (max-width: 1600px) and (min-width: 800px) {
-    background-image: url('/img/site/AI-in-prod-NY-web.png');
+    background-image: url("/img/site/AI-in-prod-NY-web.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position-x: center;
@@ -391,7 +391,7 @@
   }
 
   @media screen and (max-width: 800px) and (min-width: 500px) {
-    background-image: url('/img/site/AI-in-prod-NY-web.png');
+    background-image: url("/img/site/AI-in-prod-NY-web.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position-x: center;
@@ -400,7 +400,7 @@
   }
 
   @media screen and (max-width: 500px) {
-    background-image: url('/img/site/AI-in-prod-NY-mobile.png');
+    background-image: url("/img/site/AI-in-prod-NY-mobile.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position-x: center;
@@ -546,7 +546,7 @@
   }
 }
 .codeBlockTitle {
-  background-image: url('/img/site/three-dots.svg');
+  background-image: url("/img/site/three-dots.svg");
 
   background-size: contain;
   background-repeat: no-repeat;
@@ -738,7 +738,7 @@
   width: 24rem;
   background-size: 100%;
   background-repeat: no-repeat;
-  background-image: url('/img/site/gen-feedback-code-block.png');
+  background-image: url("/img/site/gen-feedback-code-block.png");
 
   @media screen and (min-width: 500px) {
     display: none !important;
@@ -750,19 +750,19 @@
 }
 
 .codeImage01 {
-  background-image: url('/img/site/hybrid-search-code-block.png');
+  background-image: url("/img/site/hybrid-search-code-block.png");
 }
 
 .codeImage02 {
-  background-image: url('/img/site/rag-code-block.png');
+  background-image: url("/img/site/rag-code-block.png");
 }
 
 .codeImage03 {
-  background-image: url('/img/site/gen-feedback-code-block.png');
+  background-image: url("/img/site/gen-feedback-code-block.png");
 }
 
 .codeImage04 {
-  background-image: url('/img/site/secure-slide-code-block.png');
+  background-image: url("/img/site/secure-slide-code-block.png");
 }
 
 .box {
@@ -776,7 +776,7 @@
 
   h1 {
     color: #130c49;
-    font-family: 'Plus Jakarta Sans';
+    font-family: "Plus Jakarta Sans";
     font-size: 2.5rem;
     font-style: normal;
     font-weight: 600;
@@ -795,7 +795,7 @@
 
   span {
     color: #130c49;
-    font-family: 'Plus Jakarta Sans';
+    font-family: "Plus Jakarta Sans";
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
@@ -816,7 +816,7 @@
 .exampleBox {
   border-radius: 0.93325rem;
 
-  background-image: url('/img/site/gen-code-block.svg');
+  background-image: url("/img/site/gen-code-block.svg");
   background-repeat: no-repeat;
   width: 26.50388rem;
   max-width: 31.50388rem;
@@ -841,7 +841,7 @@
   }
 }
 .codeSnippet {
-  background-image: url('/img/site/hybrid-code-block.svg');
+  background-image: url("/img/site/hybrid-code-block.svg");
   background-size: cover;
   width: 20.1875rem;
   height: 19.9375rem;
@@ -857,7 +857,7 @@
   height: 150px;
   margin: auto;
 
-  background-image: url('/img/site/ai-in-prod-weaviate.png');
+  background-image: url("/img/site/ai-in-prod-weaviate.png");
 
   @media screen and (max-width: 1600px) and (min-width: 800px) {
     max-width: 1029px;
@@ -901,7 +901,7 @@
   }
 
   @media screen and (max-width: 500px) {
-    background-image: url('/img/site/ai-in-prod-weaviate-m.png');
+    background-image: url("/img/site/ai-in-prod-weaviate-m.png");
     background-size: 100%;
     background-repeat: no-repeat;
     background-position-y: bottom;
@@ -937,7 +937,7 @@
   height: 100px;
 
   .homeIcon {
-    background-image: url('/img/site/homepage-hybrid-icon.svg');
+    background-image: url("/img/site/homepage-hybrid-icon.svg");
     background-size: contain;
     background-repeat: no-repeat;
     width: 2.125rem;
@@ -946,7 +946,7 @@
 
   h2 {
     color: #161b2d;
-    font-family: 'Plus Jakarta Sans';
+    font-family: "Plus Jakarta Sans";
     font-size: 1.1875rem;
     font-style: normal;
     font-weight: 600;
@@ -956,10 +956,10 @@
 }
 
 .ragIcon {
-  background-image: url('/img/site/homepage-rag-icon.svg');
+  background-image: url("/img/site/homepage-rag-icon.svg");
 }
 .genIcon {
-  background-image: url('/img/site/homepage-gen-icon.svg');
+  background-image: url("/img/site/homepage-gen-icon.svg");
 }
 
 .typeText {
@@ -1006,7 +1006,7 @@
 
   h2 {
     color: #fff;
-    font-family: 'Plus Jakarta Sans';
+    font-family: "Plus Jakarta Sans";
     font-size: 1.75rem;
     font-style: normal;
     font-weight: 600;
@@ -1015,7 +1015,7 @@
 
   span {
     color: #fff;
-    font-family: 'Plus Jakarta Sans';
+    font-family: "Plus Jakarta Sans";
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;

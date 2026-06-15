@@ -1,0 +1,40 @@
+@use "../../variables" as v;
+
+@mixin label() {
+  label {
+    display: flex;
+    width: 150px;
+    flex-shrink: 0;
+    align-items: center;
+    height: 40px;
+    font-size: 0.9em;
+    font-weight: 550;
+    color: v.$calcMuted;
+  }
+
+  label + button {
+    margin-top: v.$space;
+  }
+
+  .label {
+    color: v.$calcText;
+    font-size: 16px;
+    font-weight: 550;
+    flex-shrink: 0;
+    padding-bottom: 8px;
+  }
+
+  .label-with-badge {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 6px;
+    flex-direction: row;
+    justify-content: start;
+    padding-bottom: 8px;
+
+    .label {
+      padding-bottom: 0;
+    }
+  }
+}

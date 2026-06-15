@@ -29,7 +29,7 @@ a {
 }
 
 .subprocessors {
-  color: #130c49;
+  color: var(--site-font-main-color);
   display: flex;
   flex-direction: column;
   align-items: flex-start;

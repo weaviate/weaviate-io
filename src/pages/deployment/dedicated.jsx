@@ -9,7 +9,7 @@ import QuoteBox from "../../components/Service/Dedicated/QuoteBox/quoteBox.jsx";
 import Integrations from "../../components/Service/Dedicated/Integrations/index.jsx";
 import Availability from "../../components/Service/Dedicated/Availability/index.jsx";
 
-export default function EDPage() {
+export default function DedicatedPage() {
   return (
     <div className="custom-page noBG">
       <Layout
@@ -22,7 +22,6 @@ export default function EDPage() {
         <Integrations />
         <Highlights />
         <Availability />
-        <div id="contact-sales" />
         <ContactUsForm theme="dark" />
       </Layout>
       <ThemeSwitch />

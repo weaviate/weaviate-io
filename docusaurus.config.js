@@ -133,6 +133,7 @@ module.exports = async function createConfigAsync() {
                 authorsMapPath: '../authors.yml',
                 showReadingTime: true,
                 onUntruncatedBlogPosts: 'ignore',
+               
             },
         ],
          // iOS Apps and Vector Databases configuration
@@ -152,6 +153,7 @@ module.exports = async function createConfigAsync() {
                 authorsMapPath: '../authors.yml',
                 showReadingTime: true,
                 onUntruncatedBlogPosts: 'ignore',
+              
             },
         ],
 
@@ -358,6 +360,7 @@ module.exports = async function createConfigAsync() {
                 },
                 theme: {
                     customCss: [
+                        require.resolve('./src/css/tailwind.css'),
                         require.resolve('./src/css/custom.scss'),
                         require.resolve('./src/css/blog-and-docs.scss'),
                     ],
@@ -372,10 +375,12 @@ module.exports = async function createConfigAsync() {
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
             image: 'og/default.jpg',
+
+            
              announcementBar: {
-               id: 'announcement-bar-feb-2026',
-                content:`<a href="/blog/weaviate-agent-skills">Introducing Weaviate Agent Skills – Read our Blog </a>`,
-                backgroundColor: '#1C1468',
+               id: 'announcement-bar-engram-ga',
+                content:`<a href="/blog/engram-generally-available">Introducing Engram by Weaviate - now GA - Read our Blog </a>`,
+               backgroundColor: '#160F52',
                 textColor: '#F5F5F5',
                 isCloseable: true,
             },
@@ -790,8 +795,8 @@ module.exports = async function createConfigAsync() {
                 copyright: `Copyright © ${new Date().getFullYear()} Weaviate, B.V. Built with Docusaurus.`,
             },
             colorMode: {
-                defaultMode: 'light',
-                disableSwitch: false,
+                defaultMode: 'dark',
+                disableSwitch: true,
                 respectPrefersColorScheme: false,
             },
             prism: {
@@ -802,8 +807,8 @@ module.exports = async function createConfigAsync() {
 
             customConfig: {
                 colorMode: {
-                    defaultMode: 'light',
-                    disableSwitch: false,
+                    defaultMode: 'dark',
+                    disableSwitch: true,
                     respectPrefersColorScheme: false,
                 },
             },

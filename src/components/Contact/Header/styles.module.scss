@@ -1,92 +1,119 @@
-.buttons {
-  margin-top: 30px;
-  gap: 20px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+.headerSecurity {
+  position: relative;
+  overflow: hidden;
 
-  a {
-    height: 45px;
-    width: 220px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    text-decoration: none;
-  }
+  background:
+    linear-gradient(
+      90deg,
+      rgba(17, 17, 17, 0.94) 0%,
+      rgba(17, 17, 17, 0.82) 48%,
+      rgba(17, 17, 17, 0.45) 100%
+    ),
+    url("/img/site/2026/weaviate-home-26-1280.jpg"), #111111;
 
-  .buttonGradient {
-    border-radius: 0.3125rem;
-    color: #ffffff;
-    background: #130c49;
-    width: 10.0625rem;
-    height: 2.625rem;
-    flex-shrink: 0;
-    font-weight: 600;
-  }
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-  .buttonOutline {
-    border-radius: 0.3125rem;
-    color: #130c49;
-    background: #fff;
-    width: 10.0625rem;
-    height: 2.625rem;
-    flex-shrink: 0;
-    font-weight: 600;
-  }
+  padding: clamp(5rem, 8vw, 8rem) 0;
 }
 
-p {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-}
 .box {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  max-width: 760px;
+  margin: 0 auto;
   text-align: center;
-  margin: 40px 0px;
 
   h1 {
-    color: #130c49;
-    text-align: center;
-    font-family: Plus Jakarta Sans;
-    font-size: 2.25rem;
-    font-style: normal;
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
     font-weight: 700;
-    line-height: 140%; /* 3.15rem */
-    margin-bottom: 1rem;
-  }
-
-  .headerBox {
-    p {
-      color: #130c49;
-    }
+    line-height: 105%;
+    letter-spacing: -0.06em;
+    margin: 0 0 1.5rem;
   }
 }
-.headerSecurity {
-  background: #f5f5f5;
-  background-image: url('/img/site/3d-pricing-banner.png');
-  background-size: cover;
 
-  @media screen and (max-width: 500px) {
-    background-image: url('/img/site/3d-pricing-banner.png');
-    background-size: cover;
+.headerBox {
+  max-width: 640px;
+  margin: 0 auto;
+
+  p {
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 1.05rem;
+    line-height: 175%;
+    margin: 0;
+  }
+}
+
+.buttons {
+  margin-top: 2.5rem;
+
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+
+  a {
+    min-height: 52px;
+    padding: 0 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.85rem;
+    text-decoration: none !important;
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+
+    transition:
+      transform 0.25s ease,
+      background 0.25s ease,
+      border-color 0.25s ease;
+  }
+}
+
+.buttonGradient {
+  background: #6be38c;
+  color: #111111 !important;
+  border: 1px solid rgba(107, 227, 140, 0.8);
+
+  &:hover {
+    background: #7ceb9a;
+    color: #111111 !important;
+    transform: translateY(-2px);
+  }
+}
+
+.buttonOutline {
+  background: rgba(255, 255, 255, 0.04);
+  color: #ddebf2 !important;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+
+  &:hover {
+    transform: translateY(-2px);
+    color: #43e2c5 !important;
+    border-color: rgba(67, 226, 197, 0.32);
+    background: rgba(67, 226, 197, 0.08);
+  }
+}
+
+.buttonSupport {
+  background: rgba(0, 183, 226, 0.08);
+  border: 1px solid rgba(0, 183, 226, 0.28);
+  color: #ddebf2 !important;
+
+  &:hover {
+    background: rgba(0, 183, 226, 0.14);
+    border-color: rgba(0, 183, 226, 0.45);
   }
 }
 
 .topText {
-  color: #130c49;
-  text-align: center;
-  font-family: Plus Jakarta Sans;
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 120%; /* 1.5rem */
+  color: #43e2c5;
+  font-family: Inter, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin: 10px 0px;
+  margin-bottom: 1rem;
 }

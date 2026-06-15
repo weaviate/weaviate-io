@@ -1,18 +1,15 @@
-import React, { useState } from 'react';
-import styles from './styles.module.scss';
-import faq from './faq.json';
-import faqByoc from './faqByoc.json';
+import React, { useState } from "react";
+import styles from "./styles.module.scss";
+import faqDatabase from "./faqDatabase.json";
+import faqEngram from "./faqEngram.json";
 
-export default function PricingFAQ(props) {
-  const { faqType } = props;
-  let faqData = [];
+const faqMap = {
+  Database: faqDatabase,
+  Engram: faqEngram,
+};
 
-  if (faqType === 'Serverless') {
-    faqData = faq;
-  } else if (faqType === 'BYOC') {
-    faqData = faqByoc;
-  }
-
+export default function PricingFAQ({ faqType = "Database" }) {
+  const faqData = faqMap[faqType] || faqDatabase;
   const [expandedQuestion, setExpandedQuestion] = useState(null);
 
   const toggleFAQ = (index) => {
@@ -20,60 +17,53 @@ export default function PricingFAQ(props) {
   };
 
   return (
-    <div className={styles.faqBG} id="faq">
+    <section className={styles.faqBG} id="faq">
       <div className="container">
         <div className={styles.intro}>
-          <h2>Frequently asked questions</h2>
-          <p>Let us help answer the most common questions you might have.</p>
+          <h2>
+            {faqType === "Engram"
+              ? "Engram pricing FAQ"
+              : "Database pricing FAQ"}
+          </h2>
         </div>
 
         <div className={styles.boxGrid}>
-          {faqData.map((item, index) => (
-            <div
-              key={index}
-              className={styles.box}
-              data-open={expandedQuestion === index ? 'true' : 'false'}
-            >
+          {faqData.map((item, index) => {
+            const isOpen = expandedQuestion === index;
+
+            return (
               <div
-                className={styles.question}
-                onClick={() => toggleFAQ(index)}
-                role="button"
-                aria-expanded={expandedQuestion === index}
-                aria-controls={`faq-panel-${index}`}
+                key={item.question}
+                className={styles.box}
+                data-open={isOpen ? "true" : "false"}
               >
-                <span dangerouslySetInnerHTML={{ __html: item.question }} />
-                <span
-                  className={`${styles.arrow} ${
-                    expandedQuestion === index ? styles.expanded : ''
-                  }`}
-                  aria-hidden="true"
+                <button
+                  className={styles.question}
+                  onClick={() => toggleFAQ(index)}
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-panel-${index}`}
+                  type="button"
                 >
-                  ▼
-                </span>
-              </div>
+                  <span dangerouslySetInnerHTML={{ __html: item.question }} />
+                  <span className={styles.arrow} aria-hidden="true">
+                    {isOpen ? "−" : "+"}
+                  </span>
+                </button>
 
-              <hr className={styles.priceHr} />
-
-              <div className={styles.answerOuter} id={`faq-panel-${index}`}>
-                <div className={styles.answerInner}>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: (item.answer || '').replace(/\n/g, '<br />'),
-                    }}
-                  />
-                  {item.code && (
+                <div className={styles.answerOuter} id={`faq-panel-${index}`}>
+                  <div className={styles.answerInner}>
                     <p
                       dangerouslySetInnerHTML={{
-                        __html: (item.code || '').replace(/\n/g, '<br />'),
+                        __html: (item.answer || "").replace(/\n/g, "<br />"),
                       }}
                     />
-                  )}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

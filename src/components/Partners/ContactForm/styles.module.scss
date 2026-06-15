@@ -1,184 +1,239 @@
-[data-theme='light'] {
-  .logo {
-    background-image: url('/img/site/weaviate-logo-light.png');
-    height: 100px;
-  }
-}
-
 .contactBackground {
-  background: #130c49;
-  margin-top: 250px;
-
-  @media screen and (max-width: 768px) {
-    margin-top: 250px;
-  }
+  background: #111111;
+  padding: clamp(4rem, 8vw, 7rem) 0;
 }
 
 .contactContainer {
   display: flex;
   justify-content: center;
 }
+
 .contactSection {
-  border-radius: 0.9375rem;
-  border: 1px solid #130c49;
-  background: #fff;
-  width: 800px;
-  height: auto;
-  min-height: 500px;
-  margin-top: -270px;
-  flex-shrink: 0;
-  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.04);
-  padding: 60px;
+  position: relative;
+  overflow: hidden;
+  width: min(100%, 860px);
+  padding: clamp(2rem, 5vw, 4rem);
+  border-radius: 2rem;
+  background: linear-gradient(
+    180deg,
+    rgba(26, 26, 26, 0.98),
+    rgba(20, 20, 20, 0.98)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+      radial-gradient(
+        circle at top left,
+        rgba(0, 254, 107, 0.08),
+        transparent 34%
+      ),
+      linear-gradient(135deg, rgba(0, 254, 107, 0.03), rgba(0, 183, 226, 0.04));
+
+    pointer-events: none;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  h2 {
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-weight: 700 !important;
+    line-height: 110%;
+    letter-spacing: -0.05em;
+    margin: 0 0 1rem;
+  }
 
   p {
-    color: #130c49;
-    font-family: Inter;
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
     font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 157.33%;
+    line-height: 170%;
+    margin: 0;
   }
-
-  @media screen and (max-width: 768px) {
-    background: #fff;
-    width: 100%;
-    height: auto;
-    margin-top: -270px;
-    flex-shrink: 0;
-    box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.04);
-    padding: 14px;
-  }
-
-  @media screen and (max-width: 768px) {
-    iframe {
-      width: 100%;
-    }
-  }
-}
-
-.formContact {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 10px;
-
-  input {
-    border-bottom: 1px solid #d7deef;
-    border: none;
-    height: 40px;
-    margin-bottom: -18px;
-
-    opacity: 0.800000011920929;
-    color: #6b7c93;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 157.33%;
-  }
-
-  label {
-    opacity: 0.800000011920929;
-    color: #6b7c93;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 157.33%;
-  }
-
-  span {
-    height: 1px;
-    background: #d7deef;
-  }
-
-  .formMessage {
-    height: 7.0625rem;
-    margin-bottom: 10px;
-    flex-shrink: 0;
-    border: 1px solid #c3c5d8;
-    color: #6b7c93;
-    opacity: 0.8000000119;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 157.33%;
-    font-family: 'Inter';
-  }
-
-  button {
-    border-radius: 0.3125rem;
-    border: 1px solid #130c49;
-    background: #61bd73;
-    width: 10.0625rem;
-    height: 2.625rem;
-    flex-shrink: 0;
-    align-self: center;
-    transition: all 1s ease-out;
-  }
-  button:hover {
-    border-radius: 0.3125rem;
-    outline: 1px solid #130c49;
-    background: rgb(15, 0, 50);
-    color: #fff;
-    font-weight: 400;
-  }
-}
-
-.logo {
-  width: 100%;
-  background-position-x: center;
-  height: 200px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-image: url('/img/site/weaviate-logo-dark.png');
-}
-
-.title {
-  text-align: center;
-}
-
-.links {
-  text-align: center;
-  .color {
-    color: #01b0db;
-  }
-}
-
-[data-theme='light'] {
-  .links {
-    .color {
-      color: --ifm-link-color;
-    }
-  }
-}
-
-textarea {
-  resize: none;
 }
 
 .tabs {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-  border-bottom: 2px solid #d7deef;
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .tab {
-  padding: 12px 24px;
-  font-size: 1rem;
-  font-weight: bold;
+  min-height: 42px;
+  padding: 0 1.25rem;
   border: none;
+  border-radius: 999px;
   background: transparent;
+  color: #b9c8de;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  border-bottom: 3px solid transparent;
-}
+  font-family: Inter, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 
-.tab:hover {
-  color: #130c49;
+  &:hover {
+    color: #ddebf2;
+  }
 }
 
 .activeTab {
-  border-bottom: 3px solid #130c49;
-  color: #130c49;
+  background: #e8eef5;
+  color: #111111 !important;
+}
+
+/* HubSpot basic wrapping */
+
+.contactSection :global(#hubspotForm) {
+  margin-top: 1rem;
+}
+
+.contactSection :global(iframe) {
+  width: 100% !important;
+}
+
+/* If HubSpot renders inline rather than iframe */
+
+.contactSection :global(.hs-form-field label),
+.contactSection :global(label) {
+  color: #b9c8de !important;
+  font-family: Inter, sans-serif !important;
+}
+
+.contactSection :global(.hs-richtext),
+.contactSection :global(.hs-richtext p),
+.contactSection :global(.legal-consent-container),
+.contactSection :global(.hs-error-msg) {
+  color: #b9c8de !important;
+}
+
+.contactSection :global(input),
+.contactSection :global(textarea),
+.contactSection :global(select) {
+  width: 100% !important;
+  min-height: 50px;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 0.85rem !important;
+  color: #ddebf2 !important;
+  padding: 0.8rem 1rem !important;
+  font-family: Inter, sans-serif !important;
+}
+
+.contactSection :global(textarea) {
+  min-height: 130px;
+  resize: none;
+}
+
+.contactSection :global(.hs-button) {
+  min-height: 52px;
+  border: none !important;
+  border-radius: 0.85rem !important;
+  background: linear-gradient(90deg, #00fe6b 0%, #00b7e2 100%) !important;
+  color: #111111 !important;
+  font-family: Inter, sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  padding: 0 1.5rem !important;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.94;
+    transform: translateY(-2px);
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .tabs {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    border-radius: 1rem;
+  }
+
+  .tab {
+    width: 100%;
+    border-radius: 0.75rem;
+  }
+}
+
+.hubspotForm {
+  margin-top: 1rem;
+}
+
+/* Scoped only to this component */
+.hubspotForm :global(label),
+.hubspotForm :global(label span),
+.hubspotForm :global(.hs-form-field label),
+.hubspotForm :global(.hs-form-field label span),
+.hubspotForm :global(.hs-field-desc),
+.hubspotForm :global(.legal-consent-container),
+.hubspotForm :global(.legal-consent-container span),
+.hubspotForm :global(.legal-consent-container p) {
+  color: #b9c8de !important;
+  font-family: Inter, sans-serif !important;
+}
+
+.hubspotForm :global(input),
+.hubspotForm :global(textarea),
+.hubspotForm :global(select) {
+  width: 100% !important;
+  min-height: 50px;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 0.85rem !important;
+  color: #ddebf2 !important;
+  padding: 0.8rem 1rem !important;
+  font-family: Inter, sans-serif !important;
+}
+
+.hubspotForm :global(textarea) {
+  min-height: 130px;
+  resize: none;
+}
+
+.hubspotForm :global(.hs-button) {
+  min-height: 52px;
+  border: none !important;
+  border-radius: 0.85rem !important;
+  background: linear-gradient(90deg, #00fe6b 0%, #00b7e2 100%) !important;
+  color: #111111 !important;
+  font-family: Inter, sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  padding: 0 1.5rem !important;
+}
+
+.hubspotForm :global(.hs-form label span),
+.hubspotForm :global(.hs-form .hs-form-field label span),
+.hubspotForm :global(.hs-form .hs-form-radio-display span),
+.hubspotForm :global(.hs-form .hs-field-desc),
+.hubspotForm :global(.hs-form .hs-form-required) {
+  color: #b9c8de !important;
+  font-family: Inter, sans-serif !important;
+}
+
+.hubspotForm :global([data-hs-forms-root="true"] span) {
+  color: #b9c8de !important;
 }

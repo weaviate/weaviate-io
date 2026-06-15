@@ -1,23 +1,27 @@
-import React, { useEffect } from 'react';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import Layout from '@theme/Layout';
-import { MetaSEO } from '/src/theme/MetaSEO';
-import Head from '@docusaurus/Head';
-import HomepageHeader from '/src/components/JPLocale/Header';
-import HomepageWhatYouCanDo from '/src/components/JPLocale/WhatYouCanDoUpdate';
-import ContactForm from '/src/components/JPLocale/ContactForm/contactForm';
-import ThemeSwitch from '/src/components/ThemeSwitch';
+import React, { useEffect } from "react";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import Layout from "@theme/Layout";
+import { MetaSEO } from "/src/theme/MetaSEO";
+import Head from "@docusaurus/Head";
+import HomepageHeader from "/src/components/JPLocale/Header";
+import HomepageWhatYouCanDo from "/src/components/JPLocale/WhatYouCanDoUpdate";
+import ContactForm from "/src/components/JPLocale/ContactForm/contactForm";
+import ThemeSwitch from "/src/components/ThemeSwitch";
 
 export default function HomeJP() {
   const { siteConfig } = useDocusaurusContext();
 
   useEffect(() => {
-    const tryButton = document.querySelector('.tryNow');
+    const tryButton = document.querySelector(".tryNow");
 
-    if (window.location.pathname === '/ja') {
-      document.body.classList.add('jp-page');
-
-      tryButton.innerHTML = '無料で始める';
+    if (
+      window.location.pathname === "/ja" ||
+      window.location.pathname === "/ja/"
+    ) {
+      document.body.classList.add("jp-page");
+      if (tryButton) {
+        tryButton.textContent = "無料で始める";
+      }
     }
   }, []);
 
@@ -61,11 +65,11 @@ export default function HomeJP() {
           <link rel="canonical" href="https://weaviate.jp" />
           <script type="application/ld+json">
             {JSON.stringify({
-              '@context': 'https://schema.org/',
-              '@type': 'Organization',
-              name: 'Weaviate ベクトルデータベース',
-              url: 'https://weaviate.jp',
-              logo: 'https://weaviate.jp/og/website/home-jp.jpg',
+              "@context": "https://schema.org/",
+              "@type": "Organization",
+              name: "Weaviate ベクトルデータベース",
+              url: "https://weaviate.jp",
+              logo: "https://weaviate.jp/og/website/home-jp.jpg",
             })}
           </script>
         </Head>

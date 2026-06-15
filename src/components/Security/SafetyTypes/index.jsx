@@ -1,6 +1,6 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
-import styles from './styles.module.scss';
+import Link from "@docusaurus/Link";
+import React from "react";
+import styles from "./styles.module.scss";
 
 export default function SafetyTypes() {
   return (
@@ -13,9 +13,9 @@ export default function SafetyTypes() {
             database and give development teams peace of mind. Whether you’re
             running Weaviate as a Serverless, Weaviate Enterprise Cloud, or
             Bring Your Own Cloud solution– our top priority is keeping your data
-            safe and available. Read more about our SLAs{' '}
+            safe and available. Read more about our SLAs{" "}
             <Link to="/service">here</Link>. You can also read our Security
-            Checklist for Self-Managed Weaviate Deployments{' '}
+            Checklist for Self-Managed Weaviate Deployments{" "}
             <Link
               to="/img/site/Security-Checklist.pdf"
               target="_blank"
@@ -97,19 +97,19 @@ export default function SafetyTypes() {
             </div>
           </div>
 
-          <div className={` ${styles.longCard} ${styles.card} `}>
-            <div className={styles.contentDiv}>
-              <h3 className={styles.cTextColor}>
+          <div className={styles.quoteCard}>
+            <div className={styles.quoteInner}>
+              <h3>
                 “We're building AI-powered research and intelligence tools for
                 the highly-regulated pharma industry. Weaviate has been integral
                 to ensuring we fetch relevant information.”
               </h3>
+
               <p>Vamsidhar Reddy, Cedience</p>
-              <div className={styles.buttons}>
-                <Link className={styles.buttonGradient} to="/go/console">
-                  Start Free
-                </Link>
-              </div>
+
+              <Link className={styles.buttonGradient} to="/go/console">
+                Start Free
+              </Link>
             </div>
           </div>
         </div>

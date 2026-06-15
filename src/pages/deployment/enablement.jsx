@@ -20,7 +20,6 @@ export default function EducationandSupportPage() {
         <QuoteBox />
         <Integrations />
         <Highlights />
-        <div id="contact-sales" />
         <ContactUsForm theme="dark" />
       </Layout>
       <ThemeSwitch />

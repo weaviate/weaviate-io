@@ -1,0 +1,63 @@
+.supportSection {
+  background: #111;
+  padding: 0 0 5rem;
+}
+
+.supportCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+
+  background: linear-gradient(
+    135deg,
+    rgba(0, 254, 107, 0.05),
+    rgba(0, 183, 226, 0.05)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  h2 {
+    color: #ddebf2;
+    margin: 1rem 0;
+  }
+
+  p {
+    color: #b9c8de;
+    max-width: 700px;
+    font-size: 1.05rem;
+  }
+}
+
+.supportLabel {
+  display: inline-flex;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(0, 254, 107, 0.08);
+  color: #43e2c5;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.supportButton {
+  white-space: nowrap;
+  padding: 1rem 1.8rem;
+  border-radius: 0.9rem;
+  background: #6be38c;
+
+  color: #111 !important;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}

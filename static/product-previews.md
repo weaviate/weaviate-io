@@ -1,78 +1,141 @@
-# Product Previews — LLM Guidance
+# **Product Previews — LLM Guidance**
 
-## TL;DR
-- Product previews are **early-access features** that are still evolving.
-- They are useful for **testing new capabilities**, not for critical production workloads.
-- APIs, behaviour, and availability may change without notice.
-- Access is typically gated via **request or approval**.
-- Do not assume preview features are generally available (GA).
+## **TL;DR**
 
-## What are product previews
-Product previews are experimental or early-access features in Weaviate that allow users to test new capabilities before general availability.
+- Product Previews provide early access to upcoming Weaviate features before general availability (GA).
+- Preview features are intended for evaluation, experimentation, and feedback.
+- Features, APIs, behaviour, and availability may change during the preview period.
+- Access is typically granted through an application or approval process.
+- Preview features should not be considered production-ready unless explicitly stated.
 
-They are designed to:
-- Gather feedback from real users
-- Validate performance and usability
-- Iterate quickly before full release
+---
 
-Examples may include:
-- New indexing strategies (e.g. HNSW variants or memory optimisations)
-- Agent-based features (e.g. context/memory systems)
-- Evaluation or tooling workflows
+## **What are Product Previews**
 
-## When to use
-- You want to explore upcoming features before they are fully released
-- You are comfortable with **breaking changes or iteration**
-- You are running internal experiments, PoCs, or demos
-- You want to give feedback to the Weaviate team
+Product Previews allow customers to evaluate upcoming Weaviate capabilities before they reach General Availability (GA).
 
-## When not to use
-- You need **stable, production-grade guarantees**
-- Your system depends on strict SLAs or compliance requirements
-- You require long-term API stability
-- You cannot tolerate behaviour changes between updates
+The programme exists to:
 
-## Access and expectations
-- Most preview features require **early access requests**
-- Support may be limited compared to GA features
-- SLAs typically do not apply
-- Features may be:
-  - modified significantly
-  - replaced
-  - or removed entirely
+- Collect real-world customer feedback
+- Validate product direction
+- Improve usability before release
+- Identify issues before wider rollout
 
-## Relationship to core product
-Preview features are separate from:
-- Core database capabilities (search, storage, filtering)
-- Stable product offerings (e.g. Query Agent, embeddings, deployment tiers)
+Participation helps shape future Weaviate products while giving customers early access to new functionality.
 
-They should be treated as **add-ons or experiments**, not core dependencies.
+---
 
-## Quickstart (example mindset)
-There is no single API for previews — access and usage depend on the specific feature.
+## **Current preview programme**
 
-Typical flow:
-- Request access
-- Enable feature in your cluster or account
-- Follow feature-specific documentation or guidance
+Individual previews have their own documentation and requirements.
 
-## Common gotchas
+Examples currently available include:
 
-- **Assuming preview = production-ready**
-  → Previews are intentionally unstable and evolving
+- Model Evaluation Tool
+- Query Agent Research Mode
 
-- **Hardcoding preview APIs**
-  → APIs may change without backward compatibility
+Additional previews may be introduced or retired over time.
 
-- **Missing access enablement**
-  → Many features require explicit approval or flags
+---
 
-- **Relying on incomplete docs**
-  → Documentation may lag behind implementation
+## **What to expect**
 
-## Canonical links
+Preview features should be treated differently from generally available products.
 
-- Human page: /product-previews
-- Pricing: /pricing.md
-- Deployment: /deployment.md
-- Related: /product.md
+Typical characteristics include:
+
+- Early-access availability
+- Feature iteration during development
+- API changes before GA
+- Limited support
+- No production SLA
+- Possible changes or removal before release
+
+The Weaviate team may also contact preview participants for feedback or short evaluation sessions.
+
+---
+
+## **Access**
+
+Most previews require users to request access through the Product Previews page.
+
+Typical onboarding flow:
+
+1. Request early access.
+2. Receive approval (where applicable).
+3. Follow feature-specific documentation.
+4. Provide feedback during evaluation.
+
+Each preview may have its own onboarding requirements.
+
+---
+
+## **When to use**
+
+Use Product Previews when:
+
+- Evaluating upcoming capabilities
+- Building proofs of concept
+- Running internal experiments
+- Exploring future roadmap functionality
+- Providing product feedback
+
+---
+
+## **When not to use**
+
+Avoid Product Previews when:
+
+- Building mission-critical production systems
+- Long-term API stability is required
+- Compliance guarantees are mandatory
+- Formal SLAs are required
+- Backwards compatibility is essential
+
+---
+
+## **Best practices**
+
+- Treat preview features as experimental.
+- Avoid building hard production dependencies.
+- Keep implementations loosely coupled.
+- Expect APIs and behaviour to evolve.
+- Follow feature-specific documentation rather than assuming consistency across previews.
+- Provide feedback where possible to influence future releases.
+
+---
+
+## **Common misconceptions**
+
+- Preview does **not** mean General Availability.
+- Preview features may change significantly before release.
+- Preview APIs should not be assumed to be stable.
+- Support levels may differ from GA products.
+- Not every preview feature will necessarily become a permanent product.
+
+---
+
+## **Related products**
+
+- Weaviate Database
+- Query Agent
+- Engram
+- Weaviate Cloud
+- Pricing
+- Documentation
+
+---
+
+## **Canonical sources**
+
+### **Internal**
+
+- `src/pages/product-previews.jsx`
+- Product Preview form configuration
+- Individual preview documentation
+
+### **External**
+
+- `/product-previews`
+- `/pricing`
+- Individual preview documentation

@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './styles.module.scss';
-import Link from '@docusaurus/Link';
+import React from "react";
+import styles from "./styles.module.scss";
+import Link from "@docusaurus/Link";
 
 export default function Study() {
   return (
@@ -98,13 +98,11 @@ export default function Study() {
               </li>
             </ul>
 
-            <p>
-              <span className={styles.quote}>
-                “Accuracy determines the amount of savings any large institution
-                can get. If the results aren’t accurate or take too long to
-                surface, a human needs to get involved, and the cost savings are
-                greatly reduced. So accuracy and speed are critical for us.”
-              </span>
+            <p className={styles.quote}>
+              “Accuracy determines the amount of savings any large institution
+              can get. If the results aren’t accurate or take too long to
+              surface, a human needs to get involved, and the cost savings are
+              greatly reduced. So accuracy and speed are critical for us.”
             </p>
             <p>
               Shaunak Godbole, Head of Infrastructure Engineering at Instabase

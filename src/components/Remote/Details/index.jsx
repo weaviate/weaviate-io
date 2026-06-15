@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
-import styles from './styles.module.scss';
-import Link from '@docusaurus/Link';
+import React, { useState, useRef } from "react";
+import styles from "./styles.module.scss";
+import Link from "@docusaurus/Link";
 
 export default function Details() {
   const [tooltipVisible, setTooltipVisible] = useState(false);
@@ -83,51 +83,51 @@ export default function Details() {
               </div>
               <div className={styles.typeText}>
                 <p>
-                  Home office budget, flexible time off, and{' '}
-                  <Link
+                  Home office budget, flexible time off, and{" "}
+                  <span
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                     className={styles.tooltipTrigger}
                   >
                     local benefits
-                  </Link>
+                  </span>
                   .
-                  {tooltipVisible && (
-                    <div
-                      className={styles.tooltip}
-                      onMouseEnter={handleMouseEnter}
-                      onMouseLeave={handleMouseLeave}
-                    >
-                      <div className={styles.tooltipContent}>
-                        <div className={styles.toolList}>
-                          <ul>
-                            <strong>USA:</strong>
-                            <li>Healthcare</li>
-                            <li>
-                              401(k) employer
-                              <br /> matching
-                            </li>
-                          </ul>
-
-                          <ul>
-                            <strong>The Netherlands:</strong>
-                            <li>Holiday allowance</li>
-                            <li>Pension plan</li>
-                          </ul>
-                        </div>
-                        <p>
-                          *For benefits in other countries, we rely on our
-                          Employer of Record partner Remote. Have a look at the
-                          benefits they offer{' '}
-                          <Link to="https://remote.com/country-explorer?service=all">
-                            here
-                          </Link>
-                          .
-                        </p>
-                      </div>
-                    </div>
-                  )}
                 </p>
+                {tooltipVisible && (
+                  <div
+                    className={styles.tooltip}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <div className={styles.tooltipContent}>
+                      <div className={styles.toolList}>
+                        <ul>
+                          <strong>USA:</strong>
+                          <li>Healthcare</li>
+                          <li>
+                            401(k) employer
+                            <br /> matching
+                          </li>
+                        </ul>
+
+                        <ul>
+                          <strong>The Netherlands:</strong>
+                          <li>Holiday allowance</li>
+                          <li>Pension plan</li>
+                        </ul>
+                      </div>
+                      <p>
+                        *For benefits in other countries, we rely on our
+                        Employer of Record partner Remote. Have a look at the
+                        benefits they offer{" "}
+                        <Link to="https://remote.com/country-explorer?service=all">
+                          here
+                        </Link>
+                        .
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

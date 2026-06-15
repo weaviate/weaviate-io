@@ -1,6 +1,6 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
-import styles from './styles.module.scss';
+import Link from "@docusaurus/Link";
+import React from "react";
+import styles from "./styles.module.scss";
 
 export default function ContactHeader() {
   return (
@@ -15,20 +15,6 @@ export default function ContactHeader() {
               <br></br>Please contact us via the form below or join our
               communities.
             </p>
-          </div>
-          <div className={styles.buttons}>
-            <Link
-              className={styles.buttonGradient}
-              to="https://forum.weaviate.io/"
-            >
-              Join us
-            </Link>
-            <Link
-              className={styles.buttonOutline}
-              to="https://newsletter.weaviate.io/"
-            >
-              Subscribe
-            </Link>
           </div>
         </div>
       </div>

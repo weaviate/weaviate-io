@@ -3,7 +3,7 @@ title: "Engram: Memory by Weaviate"
 slug: engram-deep-dive
 authors: [dan-jones, victoria]
 date: 2026-04-21
-tags: ['concepts']
+tags: ["concepts"]
 image: ./img/hero.png
 description: "A deep dive into Engram, our managed memory service for agents which is simple to get started but adaptable to any use case."
 faq:
@@ -21,11 +21,11 @@ faq:
 
 ![Hero](./img/hero.png)
 
-<br/>
+<br />
 
-> **If you're interested in learning more about Engram, [sign up for a preview today](https://weaviate.io/product-previews#preview-engram).**
+> **Get started with [Engram](/product/engram) in [Weaviate Cloud](https://console.weaviate.cloud/) today.**
 
-<br/>
+<br />
 
 As agentic applications have gone from experimental features to production use cases, it's become clear that they’re most effective when they’re fully integrated into the rest of your system, are strongly personalised to the user, and can continually learn to get better over time. These agents need memory, designed as robust and predictable infrastructure rather than an ad-hoc afterthought. That's why we built Engram, a managed memory service running on top of Weaviate, which focuses on being easy to get started but flexible enough to adapt to any use case.
 
@@ -84,13 +84,13 @@ When Engram extracts memories from your raw data, it automatically organises the
 
 Each topic has a "scope" that controls which raw data is allowed to influence each memory. Scopes combine optional hard and soft isolation of memories to give several different combinations:
 
-* **Project-wide** memories are shared between all users in your project, letting you share information quickly between a team or have your agent continually learn from all of its experiences.  
-* **User-scoped** memories belong to one specific user and can never be influenced by data added for another user. Hard isolation between user data is strictly enforced by Weaviate's multi-tenancy feature.  
-* **Property-scoped** memories have additional key-value data attached. These give soft isolation, meaning that while Engram always enforces this separation when creating and updating memories from new data, you have the option of querying these memories either filtered by these properties or not. For example, this could be used to attach a `conversation_id` and have memories relating to a single conversation only, while still being able to search over memories across all a user's conversations if needed.
+- **Project-wide** memories are shared between all users in your project, letting you share information quickly between a team or have your agent continually learn from all of its experiences.
+- **User-scoped** memories belong to one specific user and can never be influenced by data added for another user. Hard isolation between user data is strictly enforced by Weaviate's multi-tenancy feature.
+- **Property-scoped** memories have additional key-value data attached. These give soft isolation, meaning that while Engram always enforces this separation when creating and updating memories from new data, you have the option of querying these memories either filtered by these properties or not. For example, this could be used to attach a `conversation_id` and have memories relating to a single conversation only, while still being able to search over memories across all a user's conversations if needed.
 
 Scopes are enforced by Engram both when adding data and querying memories, meaning you can never forget to pass a `user_id` and accidentally leak data between your users.
 
-All of your Engram configuration is then collected into groups, which combine the topics (which control *what* memories are extracted) and associated pipeline (which controls *how* memories are extracted). Memories belonging to one group are isolated from other groups using multi-tenancy, and should correspond to distinct use cases in your application that you want to keep separate. Each group can contain multiple topics, and each topic can have different scopes.
+All of your Engram configuration is then collected into groups, which combine the topics (which control _what_ memories are extracted) and associated pipeline (which controls _how_ memories are extracted). Memories belonging to one group are isolated from other groups using multi-tenancy, and should correspond to distinct use cases in your application that you want to keep separate. Each group can contain multiple topics, and each topic can have different scopes.
 
 Topics can also be marked as being `bounded`, which means that Engram will constrain memories in this topic to have at most one object per scope (e.g., once per user, or once per conversation). This can be used to implement features such as user profiles, where you know your agent will always have that memory in their system prompt (and so it must be comprehensive). The provided `personalization` template also includes an optional `ConversationSummary` topic which continually updates with every new chat message, and so is marked as a `bounded` topic to ensure there is at most one summary per conversation.
 
@@ -98,7 +98,7 @@ Topics can also be marked as being `bounded`, which means that Engram will const
 
 ### Processing raw data into memories
 
-Engram uses pipelines to control exactly how raw data is processed into memories persisted in Weaviate. This unique approach to building memory gives you the maximum possible flexibility, letting you adapt memory to your specific use case rather than the other way around. At the same time, prebuilt templates covering common use cases make it simple to get started without  needing to handle all these details right away.
+Engram uses pipelines to control exactly how raw data is processed into memories persisted in Weaviate. This unique approach to building memory gives you the maximum possible flexibility, letting you adapt memory to your specific use case rather than the other way around. At the same time, prebuilt templates covering common use cases make it simple to get started without needing to handle all these details right away.
 
 Pipelines are graphs of steps which run asynchronously, gradually transforming raw data into batches of memories which are persisted in Weaviate. We’ve built these pipelines on top of [Temporal](https://temporal.io/) workflows to provide durable execution. As a result, you can be confident that once data has been successfully added to Engram, the pipeline will run and any resulting changes to objects in Weaviate will be completed. This also lets us enforce strict in-order processing of raw data. You can add many batches of data rapidly (thanks to the low-latency API) and Engram will queue the pipeline runs, grouping by the scope IDs you provide, ensuring that processing is done in the order you added data without you having to manually manage it.
 
@@ -108,8 +108,8 @@ Pipelines give us a way to flexibly control how raw data is processed into store
 
 The first step in a pipeline is often an extract step. This step type uses an LLM to write memories using the content of your data which match the topics you've configured. Engram supports multiple different input types, and each of these have their own dedicated extract steps:
 
-- **Conversation data** contains a list of messages in the standard `role`/`content` format. This is ideal for naturally conversationally shaped data, such as for chatbot applications.  
-- **String data** gives you a flexible way to insert data that doesn't fit into a standard conversation shape (e.g., user events like "User viewed page X"), while still letting Engram handle extracting memories for you.  
+- **Conversation data** contains a list of messages in the standard `role`/`content` format. This is ideal for naturally conversationally shaped data, such as for chatbot applications.
+- **String data** gives you a flexible way to insert data that doesn't fit into a standard conversation shape (e.g., user events like "User viewed page X"), while still letting Engram handle extracting memories for you.
 - **Pre-extracted memories** are an escape hatch for when you want to handle extraction yourself, e.g., by using your own tool-calling agent. In this case, you pass both the content string and the corresponding topic, and Engram passes them immediately onto the next pipeline step without further extraction. This lets you handle the extraction process completely while still taking advantage of the rest of Engram's pipeline steps for integrating with existing memories.
 
 We are also working to add more input data types for specific use cases in the future.
@@ -122,15 +122,15 @@ For tasks such as deduplication or handling changes to preferences over time, th
 
 Let’s look at some specific examples, showing the inputs and LLM tool-call outputs that Engram is orchestrating for you using pipelines. First we have a conversation with a user who has previously told the agent they are a machine learning engineer who works from home. Now, in a new message, they tell us their efforts have been rewarded with a promotion to CEO\!
 
-![Memory cycle](./img/memory_cycle.png)  
+![Memory cycle](./img/memory_cycle.png)
 
 Given this new message, Engram will first extract a memory (matching the `UserKnowledge` topic included as a default in the `personalization` template) describing this promotion.
 
 ```json
 {
   "new_memory": {
-      "topic": "UserKnowledge",
-      "content": "User has been promoted to CEO."
+    "topic": "UserKnowledge",
+    "content": "User has been promoted to CEO."
   }
 }
 ```
@@ -139,14 +139,14 @@ Next, a `TransformWithContext` step runs, and starts by retrieving relevant memo
 
 ```json
 {
-    "memory_1": {
-      "topic": "UserKnowledge",
-      "content": "User works as a machine learning engineer."
-    },
-    "memory_2": {
-      "topic": "UserKnowledge",
-      "content": "User works from home."
-    }
+  "memory_1": {
+    "topic": "UserKnowledge",
+    "content": "User works as a machine learning engineer."
+  },
+  "memory_2": {
+    "topic": "UserKnowledge",
+    "content": "User works from home."
+  }
 }
 ```
 
@@ -181,8 +181,14 @@ First, we add new messages from each of our agents in this multi-agent system to
 
 ```json
 [
-    {"topic": "task_goal", "content": "User asked assistant to query their collection for comedy movies."},
-    {"topic": "actions_taken", "content": "Assistant called the search tool to do a near-text query on 'comedy'."}
+  {
+    "topic": "task_goal",
+    "content": "User asked assistant to query their collection for comedy movies."
+  },
+  {
+    "topic": "actions_taken",
+    "content": "Assistant called the search tool to do a near-text query on 'comedy'."
+  }
 ]
 ```
 
@@ -192,7 +198,10 @@ Finally, the user sends their follow-up message to the main agent, giving feedba
 
 ```json
 [
-    {"topic": "feedback", "content": "Comedy is a genre, and so you should filter on the 'genres' property."}
+  {
+    "topic": "feedback",
+    "content": "Comedy is a genre, and so you should filter on the 'genres' property."
+  }
 ]
 ```
 
@@ -200,10 +209,10 @@ Now that we have all the pieces we need, the buffer flushes and Engram continues
 
 ```json
 [
-    {
-        "topic": "experience",
-        "content": "When asked to find movies or a particular genre (e.g., comedy), you should filter on the genres property, not do a near-text query."
-    }
+  {
+    "topic": "experience",
+    "content": "When asked to find movies or a particular genre (e.g., comedy), you should filter on the genres property, not do a near-text query."
+  }
 ]
 ```
 
@@ -223,9 +232,9 @@ Buffers let us naturally combine several different use cases, and rely on the fa
 
 Some use cases for buffers include:
 
-- Debouncing sudden spikes of inputs to process them together using an idle timer.  
-- Waiting until we have all the information we need before continuing (e.g. the previous continual learning example).  
-- Aggregating memories into "daily rollups", e.g., all your interactions yesterday.  
+- Debouncing sudden spikes of inputs to process them together using an idle timer.
+- Waiting until we have all the information we need before continuing (e.g. the previous continual learning example).
+- Aggregating memories into "daily rollups", e.g., all your interactions yesterday.
 - Storing previous inputs and flushing a sliding window, to give extract steps additional context without having to manage it manually.
 
 ## Fitting Engram into your application
@@ -234,10 +243,10 @@ Engram is designed to allow you to add any raw data and rely on Engram to extrac
 
 You can also retrieve memories to use in your application in various different ways, depending on your use case. In a typical chatbot use case, where you want that agent to be able to recall personal details and preferences about the user as required, one simple approach is to use the current user message as a search query before every message, including any memory in context which has a sufficiently high similarity score. If you want your agent to have more control over how and what it retrieves, you can also expose Engram's `client.memories.search` method as a tool call. This will allow your agent to search as often as it needs, e.g., during reasoning traces or tool calling loops. You can also get memories from Engram using the `fetch` retrieval mode when you know there's a specific memory you want to retrieve. For example, you could configure a `UserProfile` topic which is user-scoped and bounded (meaning there is at most one memory per user), then fetch this to insert into your agent's system prompt for all interactions.
 
-Engram is designed to be highly flexible but also as simple as possible to get started. We have pre-built templates for personalisation and continual learning use cases which expose some customisation (e.g., topic descriptions) without needing to understand the full details of the pipelines first. We will also have integrations for coding agents such as Claude Code available so you can immediately integrate Engram into your workflows, but you can read more about our first experiences in our [Oh Memories, Where'd You Go](https://weaviate.io/blog/engram-internal-use-case) blog. Finally, we'll release more tutorials around how to integrate these features into your applications as we get to GA\!  
+Engram is designed to be highly flexible but also as simple as possible to get started. We have pre-built templates for personalisation and continual learning use cases which expose some customisation (e.g., topic descriptions) without needing to understand the full details of the pipelines first. We will also have integrations for coding agents such as Claude Code available so you can immediately integrate Engram into your workflows, but you can read more about our first experiences in our [Oh Memories, Where'd You Go](https://weaviate.io/blog/engram-internal-use-case) blog. Finally, we'll release more tutorials around how to integrate these features into your applications as we get to GA\!
 
-> **If you're interested in learning more about Engram, [sign up for a preview today](https://weaviate.io/product-previews#preview-engram).**
+> **Get started with [Engram](/product/engram) in [Weaviate Cloud](https://console.weaviate.cloud/) today.**
 
-import WhatsNext from '/_includes/what-next.mdx';
+import WhatsNext from "/_includes/what-next.mdx";
 
 <WhatsNext />

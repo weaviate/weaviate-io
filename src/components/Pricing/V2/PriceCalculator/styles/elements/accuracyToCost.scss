@@ -1,0 +1,237 @@
+@use "../variables" as *;
+
+@mixin accuracyToCost() {
+  .accuracyToCost {
+    width: 100%;
+    flex-direction: column;
+    gap: $space;
+
+    &__slider {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      padding: 0 16px;
+      @media (max-width: 550px) {
+        padding: 0 16px;
+      }
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      padding-top: 12px;
+
+      @media (max-width: 550px) {
+        gap: 8px;
+        font-size: 0.9em;
+      }
+    }
+
+    &__info-label {
+      font-size: 0.85em;
+      font-weight: 500;
+      color: $secondaryColor;
+    }
+
+    &__info-value {
+      font-size: 0.9em;
+      font-weight: 600;
+      color: $mainColor;
+      padding: 4px 12px;
+      background: $toggleBg;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    &__info-separator {
+      font-size: 0.85em;
+      color: $grey;
+      margin: 0 4px;
+    }
+
+    &__info-button-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    &__info-button {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 100%;
+      background-color: $mainColor;
+      color: $white;
+      cursor: pointer;
+    }
+
+    &__tooltip {
+      position: absolute;
+      bottom: calc(100% + 12px);
+      right: 0;
+      min-width: 280px;
+      max-width: 350px;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 12px 16px;
+      text-wrap: balance;
+      box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.12),
+        0 2px 8px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      z-index: 10;
+      pointer-events: none;
+
+      p {
+        margin: 0;
+        font-size: 13px;
+        line-height: 1.5;
+        color: $mainColor;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      @media (max-width: 768px) {
+        min-width: 240px;
+        max-width: 280px;
+        font-size: 12px;
+        right: -10px;
+      }
+    }
+  }
+
+  .optimizationProfile {
+    &__tiles {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+
+      @media (max-width: 550px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    &__tile {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      text-align: left;
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid $calcBorder;
+      background: rgba(255, 255, 255, 0.02);
+      transition: $transition;
+      height: 100%;
+
+      &:hover {
+        border-color: rgba(255, 255, 255, 0.28);
+      }
+
+      &.is-selected {
+        border-color: $calcGreen;
+        background: rgba(0, 254, 107, 0.06);
+      }
+    }
+
+    &__tileTop {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      min-height: 22px;
+    }
+
+    &__icon {
+      font-size: 1.1rem;
+      font-weight: 800;
+      line-height: 1;
+
+      &.is-cost {
+        color: $calcIconPurple;
+      }
+      &.is-perf {
+        color: $calcIconYellow;
+      }
+    }
+
+    &__check {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: $calcGreen;
+      color: #06231a;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    &__title {
+      display: block;
+      color: $calcText;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    &__desc {
+      display: block;
+      color: $calcMuted;
+      font-size: 0.82rem;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    &__spec {
+      display: block;
+      margin-top: 2px;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    &__specLabel {
+      color: $calcSubtle;
+      font-weight: 500;
+    }
+
+    &__specValue {
+      color: $calcText;
+      font-weight: 700;
+    }
+
+    &__specSep {
+      color: $calcSubtle;
+      margin: 0 6px;
+      opacity: 0.55;
+    }
+
+    &__docs {
+      margin: 12px 0 0;
+      font-size: 0.82rem;
+      color: $calcMuted;
+
+      a {
+        color: $calcText;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+
+        &:hover {
+          opacity: 0.75;
+        }
+      }
+    }
+  }
+}

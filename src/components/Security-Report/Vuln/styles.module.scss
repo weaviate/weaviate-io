@@ -1,194 +1,99 @@
+.dark,
 .light {
-  .box {
-    text-align: left;
-    color: white;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: flex-end;
-    align-items: center;
-
-    @media screen and (max-width: 680px) {
-      text-align: left;
-      margin: auto;
-      width: auto;
-      color: #130c49;
-      display: flex;
-      flex-direction: column;
-      flex-wrap: nowrap;
-      align-content: flex-end;
-      align-items: center;
-      gap: 40px;
-    }
+  .VulnContainer {
+    background: #111111;
+    padding: clamp(4rem, 8vw, 7rem) 0;
   }
 
-  .VulnContainer {
-    background: #130e46;
+  .box {
+    max-width: 1040px;
+    margin: 0 auto;
   }
 
   .VulnBox {
-    flex: 1 290px;
     h2 {
-      color: white;
+      color: #ddebf2 !important;
+      font-family: "Plus Jakarta Sans", sans-serif !important;
+      line-height: 115%;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.5rem;
     }
 
-    p {
-      margin-bottom: 20px;
-      color: white;
+    p,
+    li {
+      color: #b9c8de !important;
+      font-family: Inter, sans-serif !important;
+      font-size: 1rem;
+      line-height: 170%;
     }
 
-    @media screen and (max-width: 680px) {
-      flex: none;
+    a {
+      color: #63e689 !important;
     }
-  }
 
-  .VulnLogo {
-    background: url('/img/site/soc2-logo.svg');
-    background-size: 100% 100%;
-    width: 100%;
-    height: 130px;
-    flex: 1;
-
-    @media screen and (max-width: 680px) {
-      flex: none;
+    .buttonGradient {
+      color: #111111 !important;
     }
   }
 }
+
+.tableWrap {
+  margin-top: 2.5rem;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #1a1a1a;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+
+  table {
+    width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+  }
+
+  td {
+    padding: 2rem;
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  strong {
+    display: block;
+    margin-bottom: 1rem;
+    color: #edf4ff;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 1.2rem;
+  }
+
+  ul {
+    margin-bottom: 0;
+  }
+}
+
 .buttons {
-  margin-top: 30px;
-  gap: 20px;
+  margin-top: 2.5rem;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.buttonGradient {
+  min-height: 56px;
+  padding: 0 2rem;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  border-radius: 0.85rem;
+  background: linear-gradient(135deg, #43e2c5 0%, #6be38c 100%);
+  color: #111111 !important;
+  font-family: Inter, sans-serif !important;
+  font-weight: 700;
+  text-decoration: none !important;
+  box-shadow: 0 16px 44px rgba(0, 254, 107, 0.18);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 
-  a {
-    height: 45px;
-    width: 220px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    text-decoration: none;
-  }
-
-  .buttonGradient {
-    border-radius: 0.3125rem;
-    outline: 1px solid #130c49;
-    background: #61bd73;
-    transition: all 1s ease-out;
-    color: #130c49;
-  }
-
-  .buttonGradient:hover {
-    border-radius: 0.3125rem;
-    outline: 1px solid #ffffff;
-    background: rgb(15, 0, 50);
-    color: #fff;
-  }
-
-  .buttonOutline {
-    font-weight: 400;
-    border-radius: 0.3125rem;
-    outline: 1px solid #ffffff;
-    color: #ffffff;
-
-    transition: all 1s ease-out;
-  }
-
-  .buttonOutline:hover {
-    border-radius: 0.3125rem;
-    outline: 1px solid #130c49;
-    background: rgb(15, 0, 50);
-    color: #fff;
-    font-weight: 400;
-  }
-}
-
-.dark {
-  .box {
-    text-align: left;
-    color: #130c49;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: flex-end;
-    align-items: flex-start;
-    margin: 20px 0px;
-
-    @media screen and (max-width: 680px) {
-      text-align: left;
-      margin: auto;
-      width: auto;
-      color: #130c49;
-      display: flex;
-      flex-direction: column;
-      flex-wrap: nowrap;
-      align-content: flex-end;
-      align-items: center;
-      gap: 40px;
-    }
-  }
-
-  .VulnContainer {
-    background: #ededed;
-  }
-
-  .VulnBox {
-    flex: 1;
-
-    h2 {
-      color: #130c49;
-    }
-
-    p {
-      margin: 40px 0px;
-      color: #130c49;
-    }
-
-    @media screen and (max-width: 680px) {
-      flex: none;
-    }
-  }
-
-  .VulnLogos {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    align-content: flex-start;
-    flex-wrap: wrap;
-    gap: 50px;
-    @media screen and (max-width: 680px) {
-      width: 100%;
-    }
-  }
-
-  .drataLogo {
-    background: url('/img/site/CIS-logo.png');
-    background-size: 100% 100%;
-
-    width: 50%;
-    height: 120px;
-
-    margin-left: 6%;
-
-    @media screen and (max-width: 680px) {
-      width: 100%;
-    }
-  }
-
-  .VulnLogo {
-    background: url('/img/site/soc2-logo.svg');
-    background-size: 100% 100%;
-    width: 100%;
-    height: 130px;
-
-    @media screen and (max-width: 680px) {
-      flex: none;
-    }
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 24px 60px rgba(0, 254, 107, 0.24);
   }
 }

@@ -3,7 +3,7 @@ title: "Oh Memories, Where'd You Go"
 slug: engram-internal-use-case
 authors: [yaru, charles-pierse]
 date: 2026-04-02
-tags: ['concepts', 'agents', 'integrations']
+tags: ["concepts", "agents", "integrations"]
 image: ./img/hero.png
 description: "Two weeks of dogfooding Engram, Weaviate's memory product, in daily Claude Code sessions. This surfaced where a dedicated memory product adds value, and the specific mechanics that prevent integration with coding assistants from working well."
 faq:
@@ -15,7 +15,7 @@ faq:
 
 ![Hero](./img/hero.png)
 
-<br/>
+<br />
 
 When I asked Claude why it wasn't using the memory tools I'd given it, the answer was more honest than I expected.
 
@@ -50,16 +50,16 @@ I needed to answer a more basic question: what is Engram actually for, if `MEMOR
 All that context is why we need Engram.
 
 ![How Engram grounds memory](./img/memory-layers.png)
-*How Engram fits alongside `MEMORY.md`*
+_How Engram fits alongside `MEMORY.md`_
 
-Engram structures memory around *topics*: semantic categories that let recall filter to exactly what's relevant rather than searching a flat pile of everything. I went through my typical work and identified four categories that would actually be meaningful for my workflow:
+Engram structures memory around _topics_: semantic categories that let recall filter to exactly what's relevant rather than searching a flat pile of everything. I went through my typical work and identified four categories that would actually be meaningful for my workflow:
 
 - **`communication-style`**: output format preferences, tone, verbosity, what I hate
 - **`domain-context`**: persistent role, company, and product knowledge
 - **`tool-preferences`**: languages, frameworks, tools, stack choices
 - **`workflow`**: how I prefer to work with Claude
 
-With those categories in place defining *what* to store, the next question emerged naturally: *when*? I then landed on these interaction patterns:
+With those categories in place defining _what_ to store, the next question emerged naturally: _when_? I then landed on these interaction patterns:
 
 - At session start, recall with a broad project query so Claude gets primed with cross-session context before the first question rather than starting cold
 - During the session, trigger saves on significant moments: a decision made, a direction changed, a deliverable produced
@@ -69,21 +69,21 @@ With those categories in place defining *what* to store, the next question emerg
 Since every recall costs a round-trip and context window space, I opted to have mid-session recall only fire on specific triggers: cross-project references, decision archaeology, and resumed work after a gap.
 
 ![How Engram grounds sessions](./img/session-cycle.png)
-*The session lifecycle: when Engram saves and recalls*
+_The session lifecycle: when Engram saves and recalls_
 
 One practical constraint shaped the approach: large saves were timing out, which pushed us toward shorter, single-topic saves of 2–4 sentences. It turned out to be better for retrieval anyway — a focused memory is easier to find than a paragraph you have to parse.
 
-> **Interested in trying Engram in your own coding assistant workflow? <a href="https://weaviate.io/product-previews#preview-engram" target="_blank" rel="noopener noreferrer">Sign up for the Engram Preview</a>**
+> **Get started with [Engram](/product/engram) in [Weaviate Cloud](https://console.weaviate.cloud/) today.**
 
 ## The live recording
 
 After two weeks of running Engram across my daily Claude Code sessions — spanning product strategy, writing specs, campaign planning, and design — I ran a structured evaluation comparing two Claude sessions performing the same task with identical `MEMORY.md`, `CLAUDE.md`, and task prompts. The only difference was whether Claude had access to Engram. An independent Claude instance judged the transcripts, and evaluation results split almost cleanly down the middle: "this is what Engram is for" and "this is the problem we still need to solve."
 
-| Evaluation Scenario | Without Engram | With Engram |
-|---|---|---|
-| Decision archaeology | Reconstructed from files: correct framing, right conclusions | Recalled reasoning chains and document intent; 30% faster on the first exchange |
-| Incomplete context (early single-session test) | Fabricated a plausible URL to fill the gap, twice | Grounded recall prevented the fabrication both times |
-| Campaign planning | Strong plan, worked from the prompt alone | Also ignored Engram entirely; also a strong plan |
+| Evaluation Scenario                            | Without Engram                                               | With Engram                                                                     |
+| ---------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------------------------- |
+| Decision archaeology                           | Reconstructed from files: correct framing, right conclusions | Recalled reasoning chains and document intent; 30% faster on the first exchange |
+| Incomplete context (early single-session test) | Fabricated a plausible URL to fill the gap, twice            | Grounded recall prevented the fabrication both times                            |
+| Campaign planning                              | Strong plan, worked from the prompt alone                    | Also ignored Engram entirely; also a strong plan                                |
 
 ### Where it worked
 
@@ -105,7 +105,7 @@ This confirmed something we'd suspected: on planning tasks, Claude interprets "H
 
 Writing to Engram added noticeable overhead to sessions. An early test recorded 19 seconds of startup cost on one run, and sessions with Engram ran about 10% slower overall. This isn't inherent to the approach, but it's a real friction point in daily use: if saving a memory visibly pauses the session, users will notice.
 
-> **Interested in trying Engram in your own coding assistant workflow? <a href="https://weaviate.io/product-previews#preview-engram" target="_blank" rel="noopener noreferrer">Sign up for the Engram Preview</a>**
+> **Get started with [Engram](/product/engram) in [Weaviate Cloud](https://console.weaviate.cloud/) today.**
 
 ## Back in the studio
 
@@ -139,6 +139,6 @@ I started this expecting to prove that Engram is valuable, and instead found som
 
 You can bet that a real Claude Code integration will be available by GA and should be much better than my shabby homegrown version. And then you can all try it out yourselves and let us know where else it falls down.
 
-import WhatsNext from '/_includes/what-next.mdx';
+import WhatsNext from "/_includes/what-next.mdx";
 
 <WhatsNext />

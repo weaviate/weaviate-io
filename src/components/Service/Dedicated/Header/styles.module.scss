@@ -1,160 +1,110 @@
-.buttons {
-  margin-top: 30px;
-  gap: 20px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+.headerSecurity {
+  background: #111111;
+  background-image:
+    linear-gradient(rgba(17, 17, 17, 0.24), rgba(17, 17, 17, 0.72)),
+    url("/img/site/2026/weaviate-home-26-1280.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: clamp(72px, 8vw, 120px) 0 clamp(56px, 7vw, 96px);
 
-  a {
-    height: 45px;
-    width: 220px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    text-decoration: none;
+  @media screen and (max-width: 900px) {
+    padding-top: clamp(64px, 10vw, 92px);
   }
-  .buttonGradient {
-    border-radius: 0.3125rem;
-    background: #130c49;
-    color: #fff;
-    text-align: center;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 157.33%;
-  }
-
-  .buttonOutline {
-    border-radius: 0.3125rem;
-    background: #fff;
-    color: #130c49;
-    text-align: center;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 157.33%;
-  }
-}
-
-p {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
 }
 
 .box {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  text-align: left;
-  margin-bottom: 40px;
-
-  h1,
-  .headText {
-    color: #130c49;
-    font-family: Plus Jakarta Sans;
-    font-size: 2.25rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 140%;
-    margin-bottom: 1rem;
-    width: 50%;
-
-    @media screen and (max-width: 900px) {
-      width: 100%;
-    }
-  }
-
-  .headerBox {
-    width: 50%;
-    margin: 20px 0px;
-    @media screen and (max-width: 900px) {
-      width: 100%;
-    }
-
-    h1 {
-      color: #130c49;
-      font-family: Inter;
-      font-size: 1.2rem;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 157.33%;
-      margin: 0;
-      width: 100%;
-    }
-    p {
-      color: #130c49;
-    }
-  }
-
-  hr {
-    background: #130c49;
-    width: 65rem;
-    height: 0.0625rem;
-
-    @media screen and (max-width: 900px) {
-      width: 100%;
-    }
-  }
-}
-
-.buttonOutline {
-  border-radius: 0.3125rem;
-  border: 1px solid #130c49;
-  background: #f4f4f4;
-  padding: 9px;
-  color: #130c49;
-  text-align: center;
-  font-family: Inter;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 157.33%;
-  transition: all 1s ease-out;
-}
-.buttonOutline:hover {
-  border-radius: 0.3125rem;
-  outline: 1px solid #130c49;
-  background: rgb(15, 0, 50);
-  color: #fff;
-  font-weight: 400;
-}
-
-.buttonsContainer {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
   align-items: center;
-  gap: 30px;
-  padding: 20px 0px 10px;
+  text-align: center;
+
+  h1 {
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-size: clamp(2rem, 5vw, 2rem) !important;
+    font-weight: 600 !important;
+    line-height: 120% !important;
+    letter-spacing: -0.04em;
+    margin-bottom: 1rem;
+  }
 }
 
-.headerSecurity {
-  background: #f5f5f5;
-  background-image: url('/img/site/3d-pricing-banner.png');
-  background-size: cover;
+.headText {
+  color: #b9c8de !important;
+  font-family: Inter, sans-serif !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+}
 
-  @media screen and (max-width: 500px) {
-    background-image: url('/img/site/3d-pricing-banner.png');
-    background-size: cover;
-    background-position-y: bottom;
-    background-repeat: no-repeat;
+.headerBox {
+  width: min(860px, 100%);
+  margin-top: 1.25rem;
+
+  p {
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 1.125rem !important;
+    line-height: 165% !important;
+    margin: 0;
+  }
+}
+
+.buttons {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+
+  a {
+    min-height: 54px;
+    min-width: 220px;
+    padding: 0 30px;
+    border-radius: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none !important;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      filter 0.25s ease;
+  }
+
+  .buttonGradient {
+    background: linear-gradient(135deg, #43e2c5 0%, #6be38c 100%);
+    color: #111111 !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 1rem;
+    font-weight: 700;
+    box-shadow: 0 16px 44px rgba(67, 226, 197, 0.22);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 24px 64px rgba(67, 226, 197, 0.3);
+      filter: brightness(1.03);
+    }
+  }
+
+  @media screen and (max-width: 560px) {
+    width: 100%;
+
+    a {
+      width: 100%;
+      max-width: 320px;
+    }
   }
 }
 
 .topText {
-  color: #130c49;
+  color: #b9c8de;
   text-align: center;
-  font-family: Plus Jakarta Sans;
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 120%; /* 1.5rem */
+  font-family: Inter, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin: 10px 0px;
+  margin: 0 0 1rem;
 }

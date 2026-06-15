@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import styles from './styles.module.scss';
+import React, { useEffect, useState } from "react";
+import styles from "./styles.module.scss";
 
 const featuredTags = [
-  'agents',
-  'concepts',
-  'engineering',
-  'integrations',
-  'how-to',
-  'release',
-  'research',
-  'search',
-  'community',
+  "agents",
+  "concepts",
+  "engineering",
+  "integrations",
+  "how-to",
+  "release",
+  "research",
+  "search",
+  "community",
 ];
 
 export default function FeaturedBlogTags() {
@@ -19,7 +19,7 @@ export default function FeaturedBlogTags() {
       <h3 className={styles.label}>Featured Tags:</h3>
       <div className={styles.tags}>
         {featuredTags.map((tag) => (
-          <div className={styles.tag}>
+          <div className={styles.tag} key={tag}>
             <a href={`/blog/tags/${tag}`}>
               {tag} <div className={`${styles.dot} ${styles[tag]}`}></div>
             </a>

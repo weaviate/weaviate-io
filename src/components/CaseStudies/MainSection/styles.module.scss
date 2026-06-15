@@ -2,8 +2,8 @@
   --darkColor: #130c49;
   --subColor: #8396b1;
   --lightColor: ##f7f9fd;
-  --headerFont: 'Plus Jakarta Sans';
-  --paraFont: 'Inter';
+  --headerFont: "Plus Jakarta Sans";
+  --paraFont: "Inter";
 }
 
 .headerSecurity {
@@ -35,7 +35,7 @@
   h2 {
     color: #130c49;
     text-align: center;
-    font-family: 'Plus Jakarta Sans';
+    font-family: "Plus Jakarta Sans";
     font-size: 2rem;
     font-style: normal;
     font-weight: 700;
@@ -113,7 +113,7 @@
         margin: 0px 0px 20px;
       }
       .bentoLogo {
-        background: url('/img/site/instabase-cs.svg');
+        background: url("/img/site/instabase-cs.svg");
         background-size: contain;
         background-repeat: no-repeat;
         width: 12.3125rem;
@@ -124,7 +124,7 @@
 
       h3 {
         color: #130c49;
-        font-family: 'Plus Jakarta Sans';
+        font-family: "Plus Jakarta Sans";
         font-size: 1.4rem;
         font-style: normal;
         font-weight: 600;
@@ -161,7 +161,7 @@
   }
 
   .bentoSmall.BS01 .bentoLogo {
-    background: url('/img/site/instabase-logo.svg');
+    background: url("/img/site/instabase-logo.svg");
     background-size: contain;
     background-repeat: no-repeat;
     width: 12.3125rem;
@@ -171,7 +171,7 @@
   }
 
   .bentoSmall.BS02 .bentoLogo {
-    background: url('/img/site/logo-kapa-dark.png');
+    background: url("/img/site/logo-kapa-dark.png");
     background-size: contain;
     background-repeat: no-repeat;
     width: 8.22988rem;
@@ -182,7 +182,7 @@
   }
 
   .bentoSmall.BS02 .bentoLogo {
-    background: url('/img/site/logo-kapa-dark.png');
+    background: url("/img/site/logo-kapa-dark.png");
     background-size: contain;
     background-repeat: no-repeat;
     width: 12.3125rem;
@@ -192,7 +192,7 @@
   }
 
   .bentoSmall.BS03 .bentoLogo {
-    background: url('/img/site/neople-build-logo.svg');
+    background: url("/img/site/neople-build-logo.svg");
     background-size: contain;
     background-repeat: no-repeat;
     width: 5.88406rem;
@@ -202,7 +202,7 @@
   }
 
   .bentoSmall.BS04 .bentoLogo {
-    background: url('/img/site/finster-logo.svg');
+    background: url("/img/site/finster-logo.svg");
     background-size: contain;
     background-repeat: no-repeat;
     width: 11.77794rem;
@@ -244,7 +244,7 @@
     }
 
     .bentoLogo {
-      background: url('/img/site/marveIX-white-logo.svg');
+      background: url("/img/site/marveIX-white-logo.svg");
       background-size: contain;
       background-repeat: no-repeat;
       width: 9rem;
@@ -287,7 +287,7 @@
     }
 
     .bentoLogo {
-      background: url('/img/site/loti-white.svg');
+      background: url("/img/site/loti-white.svg");
       background-size: contain;
       background-repeat: no-repeat;
       width: 6.8125rem;
@@ -330,7 +330,7 @@
     }
 
     .bentoLogo {
-      background: url('/img/site/Morningstar.svg');
+      background: url("/img/site/Morningstar.svg");
       background-size: contain;
       background-repeat: no-repeat;
       width: 9rem;
@@ -372,7 +372,7 @@
     }
 
     .bentoLogo {
-      background: url('/img/site/stackai-logo.svg');
+      background: url("/img/site/stackai-logo.svg");
       background-size: contain;
       background-repeat: no-repeat;
       width: 9rem;
@@ -414,7 +414,7 @@
     }
 
     .bentoLogo {
-      background: url('/img/site/moonsift-logo-black.svg');
+      background: url("/img/site/moonsift-logo-black.svg");
       background-size: contain;
       background-repeat: no-repeat;
       width: 9rem;
@@ -498,7 +498,7 @@
     }
 
     .bentoLogo {
-      background: url('/img/site/astronomer-logo-cs.svg');
+      background: url("/img/site/astronomer-logo-cs.svg");
       background-size: contain;
       background-repeat: no-repeat;
       width: 10.5rem;
@@ -538,7 +538,7 @@
     }
 
     .bentoLogo {
-      background: url('/img/site/preverity-logo-cs.svg');
+      background: url("/img/site/preverity-logo-cs.svg");
       background-size: contain;
       background-repeat: no-repeat;
       width: 9rem;
@@ -581,7 +581,7 @@
     }
 
     .bentoLogo {
-      background: url('/img/site/unbody_white_logo.svg');
+      background: url("/img/site/unbody_white_logo.svg");
       background-size: contain;
       background-repeat: no-repeat;
       width: 9rem;
@@ -623,7 +623,7 @@
     }
 
     .bentoLogo {
-      background: url('/img/site/predori-logo.svg');
+      background: url("/img/site/predori-logo.svg");
       background-size: contain;
       background-repeat: no-repeat;
       width: 9rem;
@@ -669,7 +669,7 @@
     }
 
     .bentoLogo {
-      background: url('/img/site/docsbot-logo.svg');
+      background: url("/img/site/docsbot-logo.svg");
       background-size: contain;
       background-repeat: no-repeat;
       width: 9rem;
@@ -714,16 +714,16 @@
   }
 
   .qLoti {
-    background-image: url('/img/site/loti-quotebox.png');
+    background-image: url("/img/site/loti-quotebox.png");
   }
   .qInstabase {
-    background-image: url('/img/site/instabase-quotebox.png');
+    background-image: url("/img/site/instabase-quotebox.png");
   }
   .qStackAI {
-    background-image: url('/img/site/stackai-quotebox.png');
+    background-image: url("/img/site/stackai-quotebox.png");
   }
   .qMorningstar {
-    background-image: url('/img/site/morningstar-quotebox.png');
+    background-image: url("/img/site/morningstar-quotebox.png");
   }
 
   @media (max-width: 1440px) {
@@ -780,7 +780,7 @@
     }
 
     .bentoImage {
-      background: url('/img/site/kerry-chang-hp.png');
+      background: url("/img/site/kerry-chang-hp.png");
       background-size: cover;
       background-position: center;
       width: 30rem;
@@ -809,7 +809,7 @@
 
       h3 {
         color: #ddebf2;
-        font-family: 'Plus Jakarta Sans';
+        font-family: "Plus Jakarta Sans";
         font-size: 1rem;
         font-style: normal;
         font-weight: 600;
@@ -896,19 +896,19 @@
   }
 
   .bentoWithImage.BWI01 .bentoImage {
-    background: url('/img/site/morningstar-bento-image.png');
+    background: url("/img/site/morningstar-bento-image.png");
     background-size: cover;
     background-position: center;
   }
 
   .bentoWithImage.BWI02 .bentoImage {
-    background: url('/img/site/factset-bento-image.jpg');
+    background: url("/img/site/factset-bento-image.jpg");
     background-size: cover;
     background-position: center;
   }
 
   .bentoWithImage.BWI03 .bentoImage {
-    background: url('/img/site/stackai-bento-image.png');
+    background: url("/img/site/stackai-bento-image.png");
     background-size: cover;
     background-position: center;
   }
@@ -942,7 +942,7 @@
 
     background-image:
       linear-gradient(218deg, rgba(247, 249, 253, 0) 5.67%, #2f288bc7 48.39%),
-      url('/img/site/lets-build-together.jpg');
+      url("/img/site/lets-build-together.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -966,7 +966,7 @@
 
       h3 {
         color: #f7f9fd;
-        font-family: 'Plus Jakarta Sans';
+        font-family: "Plus Jakarta Sans";
         font-size: 2.25rem;
         font-style: normal;
         font-weight: 700;
@@ -991,7 +991,7 @@
         .socialLink {
           width: 3.89363rem;
           height: 3.89363rem;
-          background: url('/img/site/build-github-icon.svg');
+          background: url("/img/site/build-github-icon.svg");
           background-size: contain;
           background-repeat: no-repeat;
           background-position: center;
@@ -999,7 +999,7 @@
         }
 
         .slack {
-          background: url('/img/site/build-slack-icon.svg');
+          background: url("/img/site/build-slack-icon.svg");
           background-size: contain;
           background-repeat: no-repeat;
           background-position: center;
@@ -1007,7 +1007,7 @@
         }
 
         .weaviate {
-          background: url('/img/site/build-weaviate-icon.svg');
+          background: url("/img/site/build-weaviate-icon.svg");
           background-size: contain;
           background-repeat: no-repeat;
           background-position: center;
@@ -1015,7 +1015,7 @@
         }
 
         .x {
-          background: url('/img/site/build-x-icon.svg');
+          background: url("/img/site/build-x-icon.svg");
           background-size: contain;
           background-repeat: no-repeat;
           background-position: center;
@@ -1023,7 +1023,7 @@
         }
 
         .linkedin {
-          background: url('/img/site/build-linkedin-icon.svg');
+          background: url("/img/site/build-linkedin-icon.svg");
           background-size: contain;
           background-repeat: no-repeat;
           background-position: center;
@@ -1104,7 +1104,7 @@
       rgba(255, 255, 255, 0) 0%,
       rgba(47, 47, 169, 0.8) 100%
     ),
-    url('/img/site/instabase-bg-image.png');
+    url("/img/site/instabase-bg-image.png");
   background-size: cover;
   background-position: center;
   transition: all 0.3s ease-in-out;
@@ -1121,7 +1121,7 @@
       margin: 0px 0px 20px;
     }
     .bentoLogo {
-      background: url('/img/site/instabase-cs.svg');
+      background: url("/img/site/instabase-cs.svg");
       background-size: contain;
       background-repeat: no-repeat;
       width: 12.3125rem;
@@ -1132,7 +1132,7 @@
 
     h3 {
       color: #f7f9fd;
-      font-family: 'Plus Jakarta Sans';
+      font-family: "Plus Jakarta Sans";
       font-size: 2.25rem;
       font-style: normal;
       font-weight: 700;
@@ -1171,7 +1171,7 @@
       rgba(255, 255, 255, 1) 0%,
       rgba(47, 47, 169, 0.1) 100%
     ),
-    url('/img/site/neople-background-image.png');
+    url("/img/site/neople-background-image.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position-y: bottom;
@@ -1189,7 +1189,7 @@
       margin: 0px 0px 20px;
     }
     .bentoLogo {
-      background: url('/img/site/neople-cs.svg');
+      background: url("/img/site/neople-cs.svg");
       background-size: contain;
       background-repeat: no-repeat;
       width: 9.02219rem;
@@ -1200,7 +1200,7 @@
 
     h3 {
       color: #130c49;
-      font-family: 'Plus Jakarta Sans';
+      font-family: "Plus Jakarta Sans";
       font-size: 1.75rem;
       font-style: normal;
       font-weight: 700;
@@ -1225,7 +1225,7 @@
       rgba(247, 249, 253, 0.6) 0%,
       rgba(46, 40, 139, 0.8) 100%
     ),
-    url('/img/site/moonsift-background-image.png');
+    url("/img/site/moonsift-background-image.png");
   background-size: cover;
 
   background-repeat: no-repeat;
@@ -1253,7 +1253,7 @@
       margin: 0px 0px 20px;
     }
     .bentoLogo {
-      background: url('/img/site/moonsift-cs.svg');
+      background: url("/img/site/moonsift-cs.svg");
       background-size: contain;
       background-repeat: no-repeat;
       width: 9.02219rem;
@@ -1264,7 +1264,7 @@
 
     h3 {
       color: #f7f9fd;
-      font-family: 'Plus Jakarta Sans';
+      font-family: "Plus Jakarta Sans";
       font-size: 2.25rem;
       font-style: normal;
       font-weight: 700;
@@ -1299,21 +1299,21 @@
   .bentoLogo {
     width: 14.125rem;
     height: 2.75rem;
-    background: url('/img/site/astronomer-logo-cs.svg');
+    background: url("/img/site/astronomer-logo-cs.svg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
   }
 
   .logo02 {
-    background: url('/img/site/preverity-logo-cs.svg');
+    background: url("/img/site/preverity-logo-cs.svg");
     background-repeat: no-repeat;
     background-size: contain;
     background-position-y: -220%;
   }
 
   .logo03 {
-    background: url('/img/site/humach-logo-cs.svg');
+    background: url("/img/site/humach-logo-cs.svg");
     background-repeat: no-repeat;
   }
 
@@ -1364,7 +1364,7 @@
       margin: 0px 0px 20px;
     }
     .bentoImage {
-      background: url('/img/site/unbody-header-image.png');
+      background: url("/img/site/unbody-header-image.png");
 
       background-repeat: no-repeat;
       width: 100%;
@@ -1383,7 +1383,7 @@
 
     h3 {
       color: #130c49;
-      font-family: 'Plus Jakarta Sans';
+      font-family: "Plus Jakarta Sans";
       font-size: 2rem;
       font-style: normal;
       font-weight: 700;
@@ -1403,7 +1403,7 @@
   background: #5bd787 !important;
 
   .bentoLogo {
-    background: url('/img/site/stackai-logo.svg');
+    background: url("/img/site/stackai-logo.svg");
     background-size: contain;
     background-repeat: no-repeat;
     width: 9.02219rem;
@@ -1413,7 +1413,7 @@
   }
 
   .bentoImage {
-    background: url('/img/site/stack-ai-overview.png') !important;
+    background: url("/img/site/stack-ai-overview.png") !important;
     border-radius: 10px;
     background-repeat: no-repeat !important;
     background-size: cover !important;
@@ -1443,7 +1443,7 @@
       flex-direction: column;
     }
     .bentoImage {
-      background: url('/img/site/morningstar-header-image.png');
+      background: url("/img/site/morningstar-header-image.png");
       background-size: cover;
       background-position-x: center;
       width: 11.9375rem;
@@ -1459,7 +1459,7 @@
 
     h3 {
       color: #f7f9fd;
-      font-family: 'Plus Jakarta Sans';
+      font-family: "Plus Jakarta Sans";
       font-size: 2rem;
       font-style: normal;
       font-weight: 600;
@@ -1493,7 +1493,7 @@
 
 .finance {
   width: 64.875rem;
-  background: url('/img/site/header-bg.svg') #130c49;
+  background: url("/img/site/header-bg.svg") #130c49;
   background-size: cover;
   background-position-x: 70%;
   background-position-y: center;
@@ -1513,14 +1513,14 @@
 .agent {
   width: 26.5625rem;
   height: 24.875rem;
-  background: url('/img/site/header-bg.svg') #130c49;
+  background: url("/img/site/header-bg.svg") #130c49;
   background-size: cover;
   background-position-x: 70%;
   background-position-y: center;
   background-repeat: no-repeat;
 
   .bentoLogo {
-    background: url('/img/site/kapa-logo-dark.png');
+    background: url("/img/site/kapa-logo-dark.png");
     background-size: contain;
     background-repeat: no-repeat;
     width: 7.3125rem;
@@ -1543,7 +1543,7 @@
   width: 100%;
   height: 18.875rem;
   border-radius: 1.25rem;
-  background: url('/img/site/gradient-bg-cs.png');
+  background: url("/img/site/gradient-bg-cs.png");
   background-size: cover;
   background-position-x: center;
 
@@ -1566,7 +1566,7 @@
 
     h3 {
       color: #130c49;
-      font-family: 'Plus Jakarta Sans';
+      font-family: "Plus Jakarta Sans";
       font-size: 2.5rem;
       font-style: normal;
       font-weight: 700;
@@ -1738,7 +1738,7 @@
         rgba(255, 255, 255, 0) 0%,
         rgba(47, 47, 169, 0.1) 100%
       ),
-      url('/img/site/neople-background-image-alpha.png');
+      url("/img/site/neople-background-image-alpha.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position-y: bottom;
@@ -1753,7 +1753,7 @@
   right: 20px;
 
   .arrowButton {
-    background: url('/img/site/arrowButtonDark.svg');
+    background: url("/img/site/arrowButtonDark.svg");
     background-size: contain;
     background-repeat: no-repeat;
     width: 2.76563rem;
@@ -1767,7 +1767,7 @@
   }
 
   .arrowButtonLight {
-    background: url('/img/site/ArrowButton.svg');
+    background: url("/img/site/ArrowButton.svg");
     background-size: contain;
     background-repeat: no-repeat;
   }
@@ -1935,7 +1935,7 @@
 }
 
 .filteredTitle {
-  font-family: 'Plus Jakarta Sans';
+  font-family: "Plus Jakarta Sans";
   font-weight: 700;
   font-size: 1.1rem;
   line-height: 140%;
@@ -2006,4 +2006,133 @@
 }
 .filteredCard:hover {
   transform: translateY(-2px);
+}
+
+.headerSecurity {
+  background:
+    radial-gradient(circle at top, rgba(67, 226, 197, 0.06), transparent 34%),
+    #eef2f7;
+}
+
+.row .bentoSmall {
+  border-radius: 1.25rem;
+  overflow: hidden;
+  border: 1px solid rgba(19, 12, 73, 0.08);
+  box-shadow: 0 18px 48px rgba(19, 12, 73, 0.12);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.row .bentoSmall:hover {
+  transform: translateY(-4px);
+  border-color: rgba(67, 226, 197, 0.3);
+  box-shadow: 0 24px 70px rgba(19, 12, 73, 0.18);
+}
+
+/* controlled colour pass */
+.row .bentoSmall.BS01,
+.row .bentoSmall.BS04,
+.row .bentoSmall.BS08 {
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(107, 227, 140, 0.18),
+      transparent 48%
+    ),
+    #baf4c8;
+}
+
+.row .bentoSmall.BS02,
+.row .bentoSmall.BS09,
+.row .bentoSmall.BS15 {
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(168, 139, 250, 0.2),
+      transparent 48%
+    ),
+    #cfc7f4;
+}
+
+.row .bentoSmall.BS03,
+.row .bentoSmall.BS10 {
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(67, 226, 197, 0.18),
+      transparent 48%
+    ),
+    #b8ecf5;
+}
+
+.row .bentoSmall.BS05,
+.row .bentoSmall.BS13,
+.row .bentoSmall.BS14 {
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(67, 226, 197, 0.12),
+      transparent 48%
+    ),
+    #130c49;
+}
+
+.row .bentoSmall.BS06 {
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(107, 227, 140, 0.22),
+      transparent 48%
+    ),
+    #6be38c;
+}
+
+.row .bentoSmall.BS07,
+.row .bentoSmall.BS11,
+.row .bentoSmall.BS12 {
+  background: linear-gradient(180deg, #ffffff, #eef3f8);
+}
+
+/* typography safety */
+.row .bentoSmall .bentoText h3 {
+  letter-spacing: -0.03em;
+}
+
+.row .bentoSmall.BS05 .bentoText h3,
+.row .bentoSmall.BS13 .bentoText h3,
+.row .bentoSmall.BS14 .bentoText h3 {
+  color: #ecf4f8;
+}
+
+/* stop CTA floating through title */
+.buttons {
+  z-index: 2;
+}
+
+.csLink {
+  color: #130c49;
+  text-decoration: none;
+}
+
+.csLight {
+  color: #43e2c5;
+}
+
+.csLink:hover,
+.csLight:hover {
+  color: #43e2c5;
+}
+
+.searchInput {
+  border-radius: 0.75rem;
+}
+
+.tagPill {
+  font-size: 0.8rem;
+}
+
+.row .bentoSmall:hover {
+  transform: translateY(-3px);
 }
