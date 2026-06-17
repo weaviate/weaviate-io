@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./styles.module.scss";
 import databasePlans from "../data/databasePlans";
 import engramPlans from "../data/engramPlans";
+import { SHOW_PLUS_PLAN } from "../config/planVisibility";
 
 function TierCard({ plan }) {
   const {
@@ -97,11 +98,15 @@ function TierCard({ plan }) {
 export default function PricingTiers({ product = "serverless" }) {
   const isEngram = product === "engram";
   const plans = isEngram ? engramPlans : databasePlans;
+  const visiblePlans =
+    isEngram || SHOW_PLUS_PLAN
+      ? plans
+      : plans.filter((plan) => plan.variant !== "plus");
 
   return (
     <section className={styles.section}>
       <div className={styles.tiers}>
-        {plans.map((plan) => (
+        {visiblePlans.map((plan) => (
           <TierCard key={plan.title} plan={plan} />
         ))}
       </div>
