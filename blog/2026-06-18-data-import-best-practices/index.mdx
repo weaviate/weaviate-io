@@ -12,7 +12,7 @@ faq:
   - question: 'How do I retry failed imports without duplicating work?'
     answer: 'Generate deterministic UUIDs with `generate_uuid5` from a stable source key. Inspect `collection.batch.failed_objects` after each batch, write failures to a file, and re-import them. Deterministic UUIDs mean retries overwrite the same object instead of creating duplicates.'
   - question: 'Can Weaviate vectorize PDFs?'
-    answer: "Yes. The easiest path is a Weaviate Cloud instance with Weaviate Embeddings, which embeds PDF page images directly with no OCR or preprocessing. Google's `gemini-embedding-2` also accepts PDFs natively and is enabled by default on Weaviate Cloud."
+    answer: "Yes. Render each page to an image and embed it with a multimodal model — no OCR, text extraction, or layout detection required. The lowest-friction path is a Weaviate Cloud instance with Weaviate Embeddings, whose multimodal model is built for image-based document retrieval. Note that the multimodal modules embed page images, not raw PDF files, so the page-to-image step is on you."
   - question: 'What is the difference between blob and blobHash?'
     answer: '`blob` stores the full base64-encoded payload on disk. `blobHash` (added in v1.37) sends the raw bytes through the vectorizer at import but only persists a SHA-256 hash. Use `blobHash` when you do not need to retrieve the original media bytes from Weaviate.'
   - question: 'Does Weaviate support video embeddings?'
@@ -170,7 +170,7 @@ For most readers, the practical question is "how do I ingest a folder of PDFs wi
 
 Weaviate Embeddings has a multimodal model designed for image-based document retrieval. You hand it a page image, it produces a vector. No OCR step. No layout detection. No text extraction. Tables, charts, scanned forms, mixed-language documents all go in the same way. This is cloud-only, but it is the lowest-friction path for trying PDF retrieval on a real dataset and works well for collections up to a few hundred thousand pages without any architectural decisions on your part.
 
-The other ready-made option is Google's `gemini-embedding-2`, which accepts PDFs directly at 3072 dimensions and is enabled by default on Weaviate Cloud.
+Another ready-made option is Google's `multi2vec-google` (with `gemini-embedding-2` at 3072 dimensions), enabled by default on Weaviate Cloud. It follows the same workflow: you render pages to images and embed those. The module takes image input, not raw PDF files, so the rasterization step is the same as with Weaviate Embeddings.
 
 If you are self-hosting at scale and document layout matters, look at the [multi-vector ColPali recipe](https://docs.weaviate.io/weaviate/recipes/multi-vector-colipali-rag). It uses a vision-language model to produce multiple vectors per page and skips chunking entirely. More moving parts, but it is the state of the art for retrieval over visually rich documents.
 
@@ -182,16 +182,16 @@ Multimodal in Weaviate is not a separate product. It is a vectorizer module on t
 
 Coverage by provider:
 
-| Provider                | Module               | Text | Image | Audio | Video | PDF             |
-| ----------------------- | -------------------- | ---- | ----- | ----- | ----- | --------------- |
-| Weaviate Embeddings     | native (WCD)         | ✓    | ✓     |       |       | ✓ (page images) |
-| Google                  | `multi2vec-google`   | ✓    | ✓     | ✓     | ✓     | ✓               |
-| Voyage AI               | `multi2vec-voyageai` | ✓    | ✓     |       | ✓     |                 |
-| Jina AI                 | `multi2vec-jinaai`   | ✓    | ✓     |       |       |                 |
-| Cohere                  | `multi2vec-cohere`   | ✓    | ✓     |       |       |                 |
-| NVIDIA                  | `multi2vec-nvidia`   | ✓    | ✓     |       |       |                 |
-| CLIP (self-hosted)      | `multi2vec-clip`     | ✓    | ✓     |       |       |                 |
-| ImageBind (self-hosted) | `multi2vec-bind`     | ✓    | ✓     | ✓     | ✓     |                 |
+| Provider                | Module               | Text | Image | Audio | Video |
+| ----------------------- | -------------------- | ---- | ----- | ----- | ----- |
+| Weaviate Embeddings     | native (WCD)         | ✓    | ✓     |       |       |
+| Google                  | `multi2vec-google`   | ✓    | ✓     | ✓     | ✓     |
+| Voyage AI               | `multi2vec-voyageai` | ✓    | ✓     |       | ✓     |
+| Jina AI                 | `multi2vec-jinaai`   | ✓    | ✓     |       |       |
+| Cohere                  | `multi2vec-cohere`   | ✓    | ✓     |       |       |
+| NVIDIA                  | `multi2vec-nvidia`   | ✓    | ✓     |       |       |
+| CLIP (self-hosted)      | `multi2vec-clip`     | ✓    | ✓     |       |       |
+| ImageBind (self-hosted) | `multi2vec-bind`     | ✓    | ✓     |       |       |
 
 A concrete scenario. You are building search for an e-commerce catalog. Every product has a name, a description, three photos, and a fifteen-second demo video. You want one query — "compact wireless earbuds with active noise cancellation" — to find the right product whether the relevant signal is in the text, the photo, or the video.
 
