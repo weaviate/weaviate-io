@@ -27,7 +27,7 @@ export default function SecurityCompliance() {
             Security & Compliance
           </p>
 
-          <h2 className="tw-m-0 tw-font-['Plus_Jakarta_Sans'] tw-text-[3rem] tw-font-semibold tw-leading-[120%] tw-tracking-[-0.04em] tw-text-[#DDEBF2]">
+          <h2 className="tw-m-0 tw-font-['Plus_Jakarta_Sans'] tw-text-[2.5rem] tw-font-semibold tw-leading-[120%] tw-tracking-[-0.04em] tw-text-[#DDEBF2]">
             Built for your security review
           </h2>
 
@@ -51,11 +51,11 @@ export default function SecurityCompliance() {
                 </div>
 
                 <div>
-                  <h3 className="tw-m-0 tw-font-['Plus_Jakarta_Sans'] tw-text-[2.4rem] tw-font-semibold tw-leading-[120%] tw-tracking-[-0.04em] tw-text-[#DDEBF2]">
+                  <h3 className="tw-m-0 tw-font-['Plus_Jakarta_Sans'] tw-font-semibold tw-leading-[120%] tw-tracking-[-0.04em] tw-text-[#DDEBF2]">
                     {card.title}
                   </h3>
 
-                  <p className="tw-m-0 tw-mt-5 tw-font-['Inter'] tw-text-[1.35rem] tw-leading-[160%] tw-text-[#B9C8DE]">
+                  <p className="tw-m-0 tw-mt-5 tw-font-['Inter']  tw-leading-[160%] tw-text-[#B9C8DE]">
                     {card.text}
                     {card.link ? (
                       <>

@@ -135,11 +135,8 @@ function Hero() {
               className="tw-m-0 tw-mb-8 tw-uppercase"
               style={{
                 color: "#00FE6B",
-
                 fontFamily: '"Plus Jakarta Sans", sans-serif',
-
                 fontSize: "1.1rem",
-
                 fontWeight: 600,
               }}
             >
@@ -147,13 +144,12 @@ function Hero() {
             </p>
 
             <h1
-              className="tw-m-0 tw-max-w-3xl tw-text-[3rem] tw-font-semibold tw-leading-[1.18] md:tw-text-[4rem]"
+              className="tw-mb-8 tw-font-['Plus_Jakarta_Sans'] tw-text-[3rem] tw-font-semibold tw-leading-[130%] tw-tracking-[-0.03em]"
               style={{
                 color: "#DDEBF2",
-
                 fontFamily: '"Plus Jakarta Sans", sans-serif',
-
                 letterSpacing: "-0.04em",
+                fontSize: "3rem",
               }}
             >
               Enterprise assurance for self-hosted Weaviate
@@ -182,7 +178,12 @@ function Hero() {
 
               <Link
                 to="/enterprise"
-                className="tw-inline-flex tw-min-h-[58px] tw-items-center tw-justify-center tw-rounded-md tw-border tw-border-[#00FE6B]/60 tw-bg-transparent tw-px-8 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-white tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-bg-white/10 hover:tw-text-white hover:tw-no-underline"
+                className="tw-inline-flex tw-min-h-[54px] tw-items-center tw-justify-center tw-rounded-md tw-border tw-border-white/40 tw-bg-transparent tw-px-8 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-white tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-border-white hover:tw-bg-white/10 hover:tw-text-white hover:tw-no-underline"
+                style={{
+                  fontFamily: "Inter, sans-serif",
+                  borderRadius: "0.375rem",
+                  border: "0.5px solid #ECF4F8",
+                }}
               >
                 Explore Enterprise
               </Link>

@@ -3,25 +3,25 @@ import CodeTabs from "../CodeBlock";
 
 const devItems = [
   {
-    icon: "/img/site/2026/database-icon-01.svg",
+    icon: "/img/site/2026/database-code-icon-01.svg",
     title: "Set up a collection",
     description:
       "Import data from any source. Define the schema and configure your collection.",
   },
   {
-    icon: "/img/site/2026/database-icon-02.svg",
+    icon: "/img/site/2026/database-code-icon-02.svg",
     title: "Search",
     description:
       "Perform hybrid, semantic, and keyword search with fine-tuned parameters.",
   },
   {
-    icon: "/img/site/2026/database-icon-03.svg",
+    icon: "/img/site/2026/database-code-icon-03.svg",
     title: "Ask",
     description:
       "Get answers from your data by using a natural language prompt/question.",
   },
   {
-    icon: "/img/site/2026/database-icon-04.svg",
+    icon: "/img/site/2026/database-code-icon-04.svg",
     title: "Generate",
     description:
       "Combine retrieved context with a model to generate accurate answers.",
@@ -38,8 +38,8 @@ export default function DeveloperExperience() {
   return (
     <section className="tw-bg-[#111111] tw-px-6 tw-py-14 md:tw-py-16 lg:tw-py-20">
       <div className="tw-mx-auto tw-max-w-[1320px]">
-        <div className="tw-grid tw-items-center tw-gap-12 lg:tw-grid-cols-[0.85fr_1.15fr] lg:tw-gap-20">
-          <div>
+        <div className="tw-grid tw-items-start tw-gap-12 lg:tw-min-h-[900px] lg:tw-grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:tw-gap-20">
+          <div className="tw-min-w-0">
             <p
               className="tw-m-0 tw-mb-6 tw-text-[1rem] tw-font-semibold tw-uppercase"
               style={{
@@ -74,12 +74,12 @@ export default function DeveloperExperience() {
             <div className="tw-mt-12 tw-space-y-8">
               {devItems.map((item) => (
                 <div key={item.title} className="tw-flex tw-gap-7">
-                  <div className="tw-flex tw-h-[62px] tw-w-[62px] tw-shrink-0 tw-items-center tw-justify-center tw-rounded-[14px] tw-border tw-border-[#6f6a9c] tw-bg-[#151515]">
+                  <div className="tw-flex tw-h-[62px] tw-w-[62px] tw-shrink-0 tw-items-center tw-justify-center tw-rounded-[14px] ">
                     <img
                       src={item.icon}
                       alt=""
                       aria-hidden="true"
-                      className="tw-h-8 tw-w-8 tw-object-contain"
+                      className="tw-h-14 tw-w-14 tw-object-contain"
                     />
                   </div>
 
@@ -109,17 +109,19 @@ export default function DeveloperExperience() {
             </div>
           </div>
 
-          <div
-            className="tw-relative tw-overflow-hidden tw-rounded-[1.875rem] tw-p-8 md:tw-p-12"
-            style={{
-              background:
-                "linear-gradient(48deg, rgba(0,254,107,0.72) 13.81%, rgba(0,183,226,0.72) 92.18%), url('/img/site/2026/quickstart-bg.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          >
-            <div className="tw-mx-auto tw-w-full tw-max-w-[720px] tw-overflow-hidden tw-rounded-[24px] tw-border tw-border-[#241d31] tw-bg-[#130d1d]/95 tw-shadow-[0_24px_80px_rgba(0,0,0,0.42)]">
-              <CodeTabs />
+          <div className="tw-min-w-0 lg:tw-sticky lg:tw-top-[120px] lg:tw-self-start">
+            <div
+              className="tw-relative tw-w-full tw-overflow-hidden tw-rounded-[1.875rem] tw-p-8 md:tw-p-12"
+              style={{
+                background:
+                  "linear-gradient(48deg, rgba(0,254,107,0.72) 13.81%, rgba(0,183,226,0.72) 92.18%), url('/img/site/2026/quickstart-bg.jpg')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              <div className="tw-mx-auto tw-h-[560px] tw-w-full tw-max-w-[720px] tw-overflow-hidden tw-rounded-[24px] tw-border tw-border-[#241d31] tw-bg-[#130d1d]/95 tw-shadow-[0_24px_80px_rgba(0,0,0,0.42)]">
+                <CodeTabs />
+              </div>
             </div>
           </div>
         </div>

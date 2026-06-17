@@ -218,7 +218,7 @@ export default function UseCasesV2() {
           </p>
 
           <h2
-            className="tw-m-0 tw-text-[2rem] tw-font-semibold tw-leading-[1.08] md:tw-text-[2.75rem] lg:tw-text-[3rem]"
+            className="tw-m-0 tw-text-[2.5rem] tw-font-semibold tw-leading-[1.08]"
             style={{
               fontFamily: '"Plus Jakarta Sans", sans-serif',
               color: "#DDEBF2",

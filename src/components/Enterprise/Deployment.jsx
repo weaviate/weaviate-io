@@ -53,7 +53,7 @@ export default function DeploymentOptions() {
             Deployment
           </p>
 
-          <h2 className="tw-m-0 tw-font-['Plus_Jakarta_Sans'] tw-text-[2.6rem] tw-font-semibold tw-leading-[120%] tw-tracking-[-0.04em] tw-text-[#DDEBF2] md:tw-text-[3.4rem]">
+          <h2 className="tw-m-0 tw-font-['Plus_Jakarta_Sans'] tw-text-[2.5rem] tw-font-semibold tw-leading-[120%] tw-tracking-[-0.04em] tw-text-[#DDEBF2]">
             Run Weaviate the way your organization requires
           </h2>
 
@@ -67,13 +67,52 @@ export default function DeploymentOptions() {
           {cards.map((card) => (
             <article
               key={card.title}
-              className={`tw-flex tw-min-h-[470px] tw-flex-col tw-rounded-[2rem] tw-bg-[#1A1A1A] tw-p-8 tw-shadow-[0_24px_80px_rgba(0,0,0,0.28)] md:tw-p-10 ${
-                card.featured
-                  ? "tw-border tw-border-[#00FE6B]/35"
-                  : "tw-border tw-border-white/5"
-              }`}
+              className={`
+  tw-group
+  tw-flex
+  tw-min-h-[470px]
+  tw-flex-col
+  tw-rounded-[2rem]
+  tw-bg-[#1A1A1A]
+  tw-p-8
+  md:tw-p-10
+  tw-transition-all
+  tw-duration-300
+  tw-ease-out
+  hover:tw--translate-y-1
+  ${
+    card.featured
+      ? `
+        tw-border
+        tw-border-[#00FE6B]/35
+        
+      `
+      : `
+        tw-border
+        tw-border-white/5
+        hover:tw-border-[#00FE6B]/35
+      `
+  }
+  hover:tw-bg-[#1D1D1D]
+  
+`}
             >
-              <p className="tw-m-0 tw-mb-7 tw-font-['Plus_Jakarta_Sans'] tw-text-[0.85rem] tw-font-semibold tw-uppercase tw-tracking-[0.18em] tw-text-[#7BE7C7]">
+              <p
+                className="
+tw-m-0
+tw-mb-7
+tw-font-['Plus_Jakarta_Sans']
+tw-text-[0.85rem]
+tw-font-semibold
+tw-uppercase
+tw-tracking-[0.18em]
+tw-text-[#7BE7C7]
+tw-transition-colors
+tw-duration-300
+group-hover:tw-text-[#68FFA8]
+"
+              >
+                {" "}
                 {card.eyebrow}
               </p>
 
@@ -102,7 +141,9 @@ export default function DeploymentOptions() {
                 className="tw-mt-auto tw-inline-flex tw-pt-10 tw-font-['Inter'] tw-text-[1rem] tw-font-semibold tw-text-[#7BE7C7] tw-no-underline hover:tw-text-[#68FFA8] hover:tw-no-underline"
               >
                 {card.cta}
-                <span className="tw-ml-3">→</span>
+                <span className="tw-ml-3 tw-transition-transform tw-duration-300 group-hover:tw-translate-x-1">
+                  →
+                </span>
               </Link>
             </article>
           ))}

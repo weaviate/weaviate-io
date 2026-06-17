@@ -38,7 +38,7 @@ export default function DeveloperExperience() {
   return (
     <section className="tw-bg-[#111111] tw-px-6 tw-py-14 md:tw-py-16 lg:tw-py-20">
       <div className="tw-mx-auto tw-max-w-[1320px]">
-        <div className="tw-grid tw-items-center tw-gap-12 lg:tw-grid-cols-[0.85fr_1.15fr] lg:tw-gap-20">
+        <div className="tw-grid tw-items-start tw-gap-12 lg:tw-min-h-[900px] lg:tw-grid-cols-[0.85fr_1.15fr] lg:tw-gap-20">
           <div>
             <p
               className="tw-m-0 tw-mb-6 tw-text-[1rem] tw-font-semibold tw-uppercase"
@@ -109,17 +109,19 @@ export default function DeveloperExperience() {
             </div>
           </div>
 
-          <div
-            className="tw-relative tw-overflow-hidden tw-rounded-[1.875rem] tw-p-8 md:tw-p-12"
-            style={{
-              background:
-                "linear-gradient(48deg, rgba(0,254,107,0.72) 13.81%, rgba(0,183,226,0.72) 92.18%), url('/img/site/2026/quickstart-bg.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          >
-            <div className="tw-mx-auto tw-w-full tw-max-w-[720px] tw-overflow-hidden tw-rounded-[24px] tw-border tw-border-[#241d31] tw-bg-[#130d1d]/95 tw-shadow-[0_24px_80px_rgba(0,0,0,0.42)]">
-              <CodeTabs />
+          <div className="lg:tw-sticky lg:tw-top-[120px] lg:tw-self-start">
+            <div
+              className="tw-relative tw-overflow-hidden tw-rounded-[1.875rem] tw-p-8 md:tw-p-12"
+              style={{
+                background:
+                  "linear-gradient(48deg, rgba(0,254,107,0.72) 13.81%, rgba(0,183,226,0.72) 92.18%), url('/img/site/2026/quickstart-bg.jpg')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              <div className="tw-mx-auto tw-w-full tw-max-w-[720px] tw-overflow-hidden tw-rounded-[24px] tw-border tw-border-[#241d31] tw-bg-[#130d1d]/95 tw-shadow-[0_24px_80px_rgba(0,0,0,0.42)]">
+                <CodeTabs />
+              </div>
             </div>
           </div>
         </div>

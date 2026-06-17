@@ -9,6 +9,7 @@ export default function CTA() {
           className="tw-relative tw-flex tw-min-h-[320px] tw-items-center tw-justify-center tw-overflow-hidden tw-rounded-[1.875rem] tw-bg-cover tw-bg-center tw-bg-no-repeat tw-px-6 tw-py-12"
           style={{
             backgroundImage: "url('/img/site/2026/engram-cta-bg.png')",
+            opacity: 0.9,
           }}
         >
           <div className="tw-relative tw-z-10 tw-flex tw-max-w-[760px] tw-flex-col tw-items-center tw-text-center">
@@ -17,7 +18,6 @@ export default function CTA() {
               style={{
                 color: "#DDEBF2",
                 fontFamily: '"Plus Jakarta Sans", sans-serif',
-                fontSize: "clamp(2rem, 4vw, 3.5rem)",
                 fontWeight: 600,
                 lineHeight: "120%",
                 letterSpacing: "-0.04em",

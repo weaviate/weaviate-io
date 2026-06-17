@@ -51,7 +51,6 @@ export default function AssuranceSection() {
               color: "#DDEBF2",
               fontFamily: '"Plus Jakarta Sans", sans-serif',
               fontWeight: 600,
-              fontSize: "3.2rem",
               lineHeight: "120%",
               letterSpacing: "-0.04em",
             }}
@@ -79,26 +78,21 @@ export default function AssuranceSection() {
               key={pillar.title}
               className="tw-group tw-relative tw-overflow-hidden tw-rounded-[2rem] tw-p-[1px]"
               style={{
+                borderRadius: "1.25rem",
                 background:
-                  "linear-gradient(135deg, rgba(38,214,255,.25), rgba(215,122,255,.22))",
+                  "linear-gradient(123deg, rgba(38,214,255,0.18) 12.44%, rgba(215,122,255,0.18) 109.26%)",
               }}
             >
-              <div className="tw-relative tw-flex tw-h-full tw-flex-col tw-rounded-[calc(2rem-1px)] tw-bg-[#1A1A1A] tw-p-10">
-                <div
-                  className="tw-pointer-events-none tw-absolute tw-inset-0 tw-opacity-60"
-                  style={{
-                    background:
-                      "radial-gradient(circle at top left, rgba(0,254,107,.08), transparent 45%)",
-                  }}
-                />
+              <div className="tw-relative tw-flex tw-h-full tw-flex-col tw-rounded-[calc(2rem-1px)] tw-p-8">
+                <div className="tw-pointer-events-none tw-absolute tw-inset-0 tw-opacity-60" />
 
                 <div className="tw-relative">
-                  <div className="tw-mb-8 tw-flex tw-h-[86px] tw-w-[86px] tw-items-center tw-justify-center tw-rounded-[18px] tw-border tw-border-[#7D73A8]/70 tw-bg-[#111111]">
+                  <div className="tw-mb-8 tw-flex tw-h-[60px] tw-w-[60px] tw-items-center tw-justify-center tw-rounded-[18px] ">
                     <img
                       src={pillar.icon}
                       alt=""
                       aria-hidden="true"
-                      className="tw-h-10 tw-w-10"
+                      className="tw-h-14 tw-w-14"
                     />
                   </div>
 
@@ -108,7 +102,6 @@ export default function AssuranceSection() {
                       color: "#DDEBF2",
                       fontFamily: '"Plus Jakarta Sans", sans-serif',
                       fontWeight: 600,
-                      fontSize: "2rem",
                       lineHeight: "120%",
                     }}
                   >
@@ -120,7 +113,7 @@ export default function AssuranceSection() {
                     style={{
                       color: "#B9C8DE",
                       fontFamily: "Inter, sans-serif",
-                      fontSize: "1.15rem",
+                      fontSize: "1rem",
                       lineHeight: "165%",
                     }}
                   >
