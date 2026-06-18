@@ -152,7 +152,7 @@ function Hero() {
                 fontSize: "3rem",
               }}
             >
-              Enterprise assurance for self-hosted Weaviate
+              Enterprise support for self-hosted Weaviate
             </h1>
 
             <p
@@ -210,19 +210,20 @@ function Hero() {
 function About() {
   return (
     <section className="tw-bg-[#111111] tw-px-6 tw-py-12 lg:tw-py-16">
-      <div className="tw-mx-auto tw-max-w-3xl tw-text-center">
-        <p
-          className="tw-m-0 tw-text-lg tw-leading-[170%] tw-text-[#B9C8DE]"
-          style={bodyFont}
-        >
-          As AI applications move from prototype to production, the underlying
-          database becomes mission-critical infrastructure. For enterprises
-          opting for self-hosted deployments, maintaining the delicate balance
-          of performance, scale, and uptime requires deep domain expertise.
-          Weaviate Assurance is more than a support ticket system — it is a
-          standardized, recurring partnership that integrates Weaviate&apos;s
-          internal expertise into your operational workflow.
-        </p>
+      <div className="tw-mx-auto tw-max-w-[980px]">
+        <div className="tw-rounded-[1.5rem] tw-border tw-border-white/10 tw-bg-[#1A1A1A] tw-p-8 tw-text-center md:tw-p-10">
+          <p
+            className="tw-m-0 tw-text-lg tw-leading-[175%] tw-text-[#B9C8DE] md:tw-text-xl"
+            style={bodyFont}
+          >
+            As AI applications move from prototype to production, the underlying
+            database becomes mission-critical infrastructure. For enterprises
+            opting for self-hosted deployments, Weaviate Assurance gives your
+            team a recurring partnership with Weaviate&apos;s engineering
+            expertise helping you manage performance, scale, uptime, and
+            operational confidence.
+          </p>
+        </div>
       </div>
     </section>
   );
@@ -447,7 +448,7 @@ function FinalCTA() {
         >
           <div className="tw-relative tw-z-10 tw-flex tw-max-w-[760px] tw-flex-col tw-items-center tw-text-center">
             <h2
-              className="tw-m-0 tw-text-[2rem] tw-font-semibold tw-leading-[120%] tw-tracking-[-0.04em] tw-text-[#DDEBF2] md:tw-text-[3.5rem]"
+              className="tw-m-0 tw-text-[2.5rem] tw-font-semibold tw-leading-[120%] tw-tracking-[-0.04em] tw-text-[#DDEBF2] "
               style={headingFont}
             >
               Back your self-hosted deployment with Weaviate expertise
