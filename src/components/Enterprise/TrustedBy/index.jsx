@@ -1,54 +1,14 @@
 import React from "react";
 
 const logos = [
-  "answear_logo.svg",
-  "akamai-logo.svg",
-  "alexi-logo.svg",
-  "asksage-logo.png",
-  "avara-logo.svg",
-  "booking-logo.svg",
-  "bosch-logo.svg",
-  "build_logo_Kapa_AI.svg",
-  "build_logo_point72.svg",
-  "build-ltk-logo.svg",
-  "build-trc-logo.svg",
-  "build-vw-logo.svg",
-  "bumble_logo.svg",
-  "deel-logo.svg",
+  "bunq-logo.svg",
   "cisco.svg",
-  "deacero-logo.svg",
+  "stackoverflow-logo.svg",
+  "gsk.svg",
+  "redhat.svg",
   "factset.svg",
-  "finster-logo.svg",
-  "givingcompass-logo.svg",
-  "globo-logo.png",
-  "gloo-logo.svg",
-  "Intel-logo.svg",
-  "intuit-logo.svg",
-  "inveniam-logo.svg",
-  "Kantar-logo.svg",
-  "Kuhnelo-logo.svg",
-  "loti-white.svg",
-  "MBH-bank-logo.svg",
-  "medengine-logo.svg",
-  "mednet-logo.svg",
-  "MTG-logo.svg",
-  "nato.svg",
-  "netapp.svg",
-  "oliver-logo.svg",
-  "PA-Logo.svg",
-  "Patronus-Logo.svg",
-  "Perceptyx-logo.svg",
-  "predori-logo.svg",
-  "proposal-logo.svg",
-  "prm_logo.svg",
-  "scribd.svg",
-  "Sing-Tao-logo.svg",
+  "build-ltk-logo.svg",
   "stack.svg",
-  "thales-logo.svg",
-  "toric-logo.svg",
-  "Vecflow-august.svg",
-  "yabble-logo.svg",
-  "wearmedicine_logo.svg",
 ];
 
 const loopedLogos = [...logos, ...logos];
@@ -58,8 +18,8 @@ function LogoCard({ logo, mobile = false }) {
     <div
       className={`tw-flex tw-shrink-0 tw-items-center tw-justify-center tw-border tw-border-white/10 tw-bg-[#151515] tw-transition-colors tw-duration-300 hover:tw-border-white/20 hover:tw-bg-[#191919] ${
         mobile
-          ? "tw-h-14 tw-w-[168px] tw-rounded-[12px] tw-px-4"
-          : "tw-h-16 tw-w-[196px] tw-rounded-[14px] tw-px-5"
+          ? "tw-h-14 tw-w-[140px] tw-rounded-[12px] tw-px-4"
+          : "tw-h-16 tw-w-[180px] tw-rounded-[14px] tw-px-5"
       }`}
     >
       <img

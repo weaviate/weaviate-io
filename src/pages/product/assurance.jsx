@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import { MetaSEO } from "/src/theme/MetaSEO";
+import TrustedBy from "/src/components/Enterprise/TrustedBy";
 
 const headingFont = { fontFamily: '"Plus Jakarta Sans", sans-serif' };
 const bodyFont = { fontFamily: "Inter, sans-serif" };
@@ -127,83 +128,86 @@ const outOfScope = [
 
 function Hero() {
   return (
-    <section className="tw-relative tw-overflow-hidden tw-bg-[#111111] tw-px-6 tw-py-16 lg:tw-py-20">
-      <div className="tw-mx-auto tw-max-w-[1320px]">
-        <div className="tw-grid tw-items-center tw-gap-12 lg:tw-grid-cols-[0.95fr_1.05fr] lg:tw-gap-16">
-          <div>
-            <p
-              className="tw-m-0 tw-mb-8 tw-uppercase"
-              style={{
-                color: "#00FE6B",
-                fontFamily: '"Plus Jakarta Sans", sans-serif',
-                fontSize: "1.1rem",
-                fontWeight: 600,
-              }}
-            >
-              Weaviate Assurance
-            </p>
-
-            <h1
-              className="tw-mb-8 tw-font-['Plus_Jakarta_Sans'] tw-text-[3rem] tw-font-semibold tw-leading-[130%] tw-tracking-[-0.03em]"
-              style={{
-                color: "#DDEBF2",
-                fontFamily: '"Plus Jakarta Sans", sans-serif',
-                letterSpacing: "-0.04em",
-                fontSize: "3rem",
-              }}
-            >
-              Enterprise support for self-hosted Weaviate
-            </h1>
-
-            <p
-              className="tw-mt-8 tw-max-w-2xl tw-text-xl tw-leading-relaxed md:tw-text-2xl"
-              style={{
-                color: "#B9C8DE",
-
-                fontFamily: "Inter, sans-serif",
-              }}
-            >
-              Self-hosted flexibility with managed-service reliability — a
-              direct line to Weaviate’s core engineering team for critical AI
-              workloads.
-            </p>
-
-            <div className="tw-mt-12 tw-flex tw-flex-wrap tw-gap-5">
-              <Link
-                to="/contact"
-                className="tw-inline-flex tw-min-h-[58px] tw-items-center tw-justify-center tw-rounded-md tw-bg-[linear-gradient(48deg,#00FE6B_13.81%,#00B7E2_92.18%)] tw-px-8 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-[#111111] tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-text-[#111111] hover:tw-no-underline"
-              >
-                Contact Sales
-              </Link>
-
-              <Link
-                to="/enterprise"
-                className="tw-inline-flex tw-min-h-[54px] tw-items-center tw-justify-center tw-rounded-md tw-border tw-border-white/40 tw-bg-transparent tw-px-8 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-white tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-border-white hover:tw-bg-white/10 hover:tw-text-white hover:tw-no-underline"
+    <>
+      <section className="tw-relative tw-overflow-hidden tw-bg-[#111111] tw-px-6 tw-py-16 lg:tw-py-20">
+        <div className="tw-mx-auto tw-max-w-[1320px]">
+          <div className="tw-grid tw-items-center tw-gap-12 lg:tw-grid-cols-[0.95fr_1.05fr] lg:tw-gap-16">
+            <div>
+              <p
+                className="tw-m-0 tw-mb-8 tw-uppercase"
                 style={{
-                  fontFamily: "Inter, sans-serif",
-                  borderRadius: "0.375rem",
-                  border: "0.5px solid #ECF4F8",
+                  color: "#00FE6B",
+                  fontFamily: '"Plus Jakarta Sans", sans-serif',
+                  fontSize: "1.1rem",
+                  fontWeight: 600,
                 }}
               >
-                Explore Enterprise
-              </Link>
+                Weaviate Assurance
+              </p>
+
+              <h1
+                className="tw-mb-8 tw-font-['Plus_Jakarta_Sans'] tw-text-[3rem] tw-font-semibold tw-leading-[130%] tw-tracking-[-0.03em]"
+                style={{
+                  color: "#DDEBF2",
+                  fontFamily: '"Plus Jakarta Sans", sans-serif',
+                  letterSpacing: "-0.04em",
+                  fontSize: "3rem",
+                }}
+              >
+                Enterprise support for self-hosted Weaviate
+              </h1>
+
+              <p
+                className="tw-mt-8 tw-max-w-2xl tw-text-xl tw-leading-relaxed md:tw-text-2xl"
+                style={{
+                  color: "#B9C8DE",
+
+                  fontFamily: "Inter, sans-serif",
+                }}
+              >
+                Self-hosted flexibility with managed-service reliability — a
+                direct line to Weaviate’s core engineering team for critical AI
+                workloads.
+              </p>
+
+              <div className="tw-mt-12 tw-flex tw-flex-wrap tw-gap-5">
+                <Link
+                  to="/contact"
+                  className="tw-inline-flex tw-min-h-[58px] tw-items-center tw-justify-center tw-rounded-md tw-bg-[linear-gradient(48deg,#00FE6B_13.81%,#00B7E2_92.18%)] tw-px-8 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-[#111111] tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-text-[#111111] hover:tw-no-underline"
+                >
+                  Contact Sales
+                </Link>
+
+                <Link
+                  to="/enterprise"
+                  className="tw-inline-flex tw-min-h-[54px] tw-items-center tw-justify-center tw-rounded-md tw-border tw-border-white/40 tw-bg-transparent tw-px-8 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-white tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-border-white hover:tw-bg-white/10 hover:tw-text-white hover:tw-no-underline"
+                  style={{
+                    fontFamily: "Inter, sans-serif",
+                    borderRadius: "0.375rem",
+                    border: "0.5px solid #ECF4F8",
+                  }}
+                >
+                  Explore Enterprise
+                </Link>
+              </div>
             </div>
-          </div>
 
-          <div className="tw-relative">
-            <div className="tw-absolute tw-inset-0 tw-rounded-[1.875rem] tw-bg-[linear-gradient(123deg,#26D6FF_12.44%,#D77AFF_109.26%)] tw-opacity-20" />
+            <div className="tw-relative">
+              <div className="tw-absolute tw-inset-0 tw-rounded-[1.875rem] tw-bg-[linear-gradient(123deg,#26D6FF_12.44%,#D77AFF_109.26%)] tw-opacity-20" />
 
-            <div className="tw-relative tw-rounded-[1.875rem] tw-border tw-border-white/10 tw-bg-[linear-gradient(123deg,rgba(38,214,255,0.18)_12.44%,rgba(215,122,255,0.18)_109.26%)] tw-p-6 tw-shadow-[0_28px_90px_rgba(0,0,0,0.35)] md:tw-p-10">
-              <img
-                src="/img/site/2026/enterprise-diagram-26.svg"
-                alt="Enterprise AI infrastructure diagram"
-                className="tw-h-auto tw-w-full"
-              />
+              <div className="tw-relative tw-rounded-[1.875rem] tw-border tw-border-white/10 tw-bg-[linear-gradient(123deg,rgba(38,214,255,0.18)_12.44%,rgba(215,122,255,0.18)_109.26%)] tw-p-6 tw-shadow-[0_28px_90px_rgba(0,0,0,0.35)] md:tw-p-10">
+                <img
+                  src="/img/site/2026/enterprise-diagram-26.svg"
+                  alt="Enterprise AI infrastructure diagram"
+                  className="tw-h-auto tw-w-full"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <TrustedBy />
+    </>
   );
 }
 
@@ -223,6 +227,201 @@ function About() {
             expertise helping you manage performance, scale, uptime, and
             operational confidence.
           </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AssuranceFramework() {
+  const tableBorder = "1px solid rgba(112, 120, 172, 0.58)";
+  const cellBorder = "1px solid rgba(112, 120, 172, 0.5)";
+  const headerGradient =
+    "linear-gradient(48deg, #00FE6B 13.81%, #00B7E2 92.18%)";
+  const programBoundariesGradient =
+    "linear-gradient(234deg, #A254EC 8.5%, #F4404E 92.78%)";
+  const programBoundaryColumns = [
+    [outOfScope[0], outOfScope[3]],
+    [outOfScope[1], outOfScope[2]],
+    [outOfScope[4]],
+  ];
+  const renderLeadText = (text) => {
+    const separatorIndex = text.indexOf(":");
+
+    if (separatorIndex === -1) {
+      return <span>{text}</span>;
+    }
+
+    const lead = text.slice(0, separatorIndex + 1);
+    const rest = text.slice(separatorIndex + 1).trimStart();
+
+    return (
+      <>
+        <strong style={{ color: "#DDEBF2", fontWeight: 700 }}>{lead}</strong>{" "}
+        <span>{rest}</span>
+      </>
+    );
+  };
+
+  return (
+    <section className="tw-bg-[#111111] tw-px-6 tw-py-16 lg:tw-py-24">
+      <div className="tw-mx-auto tw-max-w-[1320px]">
+        <div className="tw-mb-14 tw-max-w-5xl">
+          <p
+            className="tw-m-0 tw-mb-6 tw-text-[1rem] tw-font-semibold tw-uppercase tw-text-[#43E2C5]"
+            style={headingFont}
+          >
+            Assurance Framework
+          </p>
+
+          <h2
+            className="tw-m-0 tw-text-[2.5rem] tw-font-semibold tw-leading-[120%] tw-tracking-[-0.04em] tw-text-[#DDEBF2]"
+            style={headingFont}
+          >
+            Your partner for production-ready AI
+          </h2>
+
+          <p
+            className="tw-m-0 tw-mt-6 tw-max-w-5xl tw-text-[1.125rem] tw-leading-[160%] tw-text-[#B9C8DE]"
+            style={bodyFont}
+          >
+            Weaviate Assurance gives your team a recurring partnership with
+            Weaviate&apos;s engineering expertise, helping you manage
+            performance, scale, uptime, and operational confidence.
+          </p>
+        </div>
+
+        <div
+          className="tw-overflow-hidden tw-rounded-[1.5rem] tw-bg-[#141414]"
+          style={{
+            border: tableBorder,
+            backgroundColor: "#111318",
+            boxShadow: "0 18px 55px rgba(0, 0, 0, 0.24)",
+          }}
+        >
+          <div className="tw-grid md:tw-grid-cols-2 xl:tw-grid-cols-4">
+            {pillars.map((pillar) => (
+              <article
+                key={pillar.title}
+                className="tw-p-6 md:tw-p-7"
+                style={{
+                  borderBottom: cellBorder,
+                  borderRight: cellBorder,
+                }}
+              >
+                <h3
+                  className="tw-m-0 tw-text-[1.15rem] tw-font-semibold tw-leading-[130%] tw-text-[#00FE6B]"
+                  style={{
+                    ...headingFont,
+                    background: headerGradient,
+                    backgroundClip: "text",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  {pillar.number}. {pillar.title}
+                </h3>
+
+                <p
+                  className="tw-m-0 tw-mt-7 tw-text-[0.95rem] tw-leading-[160%] tw-text-[#DDEBF2]"
+                  style={bodyFont}
+                >
+                  {pillar.description}
+                </p>
+
+                <ul className="tw-m-0 tw-mt-7 tw-space-y-4 tw-p-0">
+                  {pillar.items.map((item) => (
+                    <li
+                      key={item}
+                      className="tw-flex tw-gap-3 tw-text-[0.92rem] tw-leading-[155%] tw-text-[#B9C8DE]"
+                      style={bodyFont}
+                    >
+                      <span
+                        className="tw-text-[#22E7A7]"
+                        style={{ fontWeight: 700, lineHeight: 1.25 }}
+                      >
+                        ✓
+                      </span>
+                      <span>{renderLeadText(item)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+
+          <div
+            className="tw-p-6 md:tw-p-7"
+            style={{
+              borderBottom: cellBorder,
+              backgroundColor: "#0E1015",
+            }}
+          >
+            <h3
+              className="tw-m-0 tw-text-[1.4rem] tw-font-semibold tw-text-[linear-gradient(234deg,#A254EC_8.5%,#F4404E_92.78%)]"
+              style={{
+                ...headingFont,
+                background: programBoundariesGradient,
+                backgroundClip: "text",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              Program Boundaries
+            </h3>
+          </div>
+
+          <div className="tw-grid md:tw-grid-cols-2 xl:tw-grid-cols-4">
+            <div
+              className="tw-p-6 md:tw-p-7"
+              style={{
+                borderRight: cellBorder,
+                backgroundColor: "#090B10",
+              }}
+            >
+              <p
+                className="tw-m-0 tw-text-[0.95rem] tw-leading-[160%] tw-text-[#B9C8DE]"
+                style={bodyFont}
+              >
+                To maintain predictability and quality, these items are
+                classified as Professional Services and are outside the scope of
+                this subscription.
+              </p>
+            </div>
+
+            {programBoundaryColumns.map((column, columnIndex) => (
+              <div
+                key={`column-${columnIndex}`}
+                className="tw-p-6 md:tw-p-7"
+                style={{
+                  borderRight: columnIndex < 2 ? cellBorder : "none",
+                  backgroundColor: "#090B10",
+                }}
+              >
+                {column.map((item, itemIndex) => (
+                  <div
+                    key={item.title}
+                    style={{ marginTop: itemIndex === 0 ? 0 : "1.25rem" }}
+                  >
+                    <p
+                      className="tw-m-0 tw-text-[0.95rem] tw-font-semibold tw-text-[#DDEBF2]"
+                      style={bodyFont}
+                    >
+                      <span className="tw-mr-3 tw-text-[#FF4DB8]">×</span>
+                      {item.title}
+                    </p>
+
+                    <p
+                      className="tw-m-0 tw-mt-4 tw-text-[0.92rem] tw-leading-[155%] tw-text-[#B9C8DE]"
+                      style={bodyFont}
+                    >
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -389,53 +588,6 @@ function Tiers() {
   );
 }
 
-function ProgramBoundaries() {
-  return (
-    <section className="tw-bg-[#111111] tw-px-6 tw-py-16 lg:tw-py-20">
-      <div className="tw-mx-auto tw-max-w-[1320px]">
-        <div className="tw-mx-auto tw-mb-12 tw-max-w-3xl tw-text-center">
-          <h2
-            className="tw-m-0 tw-text-[2.2rem] tw-font-semibold tw-leading-[130%] tw-tracking-[-0.03em] tw-text-[#DDEBF2]"
-            style={headingFont}
-          >
-            Program boundaries
-          </h2>
-          <p
-            className="tw-mx-auto tw-mt-5 tw-max-w-2xl tw-text-lg tw-leading-relaxed tw-text-[#B9C8DE]"
-            style={bodyFont}
-          >
-            To keep the Assurance program predictable and high quality, the
-            following are delivered separately as Professional Services.
-          </p>
-        </div>
-
-        <div className="tw-mx-auto tw-grid tw-max-w-5xl tw-gap-5 md:tw-grid-cols-2 xl:tw-grid-cols-3">
-          {outOfScope.map((item) => (
-            <article
-              key={item.title}
-              className="tw-rounded-[1.25rem] tw-bg-[#1a1a1a] tw-p-6"
-              style={{ boxShadow: "0 0 0 1px rgba(255,255,255,0.035)" }}
-            >
-              <h3
-                className="tw-m-0 tw-text-[1.1rem] tw-font-semibold tw-text-[#DDEBF2]"
-                style={headingFont}
-              >
-                {item.title}
-              </h3>
-              <p
-                className="tw-m-0 tw-mt-2 tw-text-[14px] tw-leading-[160%] tw-text-[#B9C8DE]"
-                style={bodyFont}
-              >
-                {item.description}
-              </p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function FinalCTA() {
   return (
     <section className="tw-bg-[#111111] tw-px-6 tw-py-16 lg:tw-py-24">
@@ -487,10 +639,8 @@ export default function Assurance() {
 
         <main className="tw-bg-[#111111] tw-text-white">
           <Hero />
-          <About />
-          <Pillars />
+          <AssuranceFramework />
           <Tiers />
-          <ProgramBoundaries />
           <FinalCTA />
         </main>
       </Layout>

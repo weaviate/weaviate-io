@@ -67,52 +67,32 @@ export default function DeploymentOptions() {
           {cards.map((card) => (
             <article
               key={card.title}
-              className={`
-  tw-group
-  tw-flex
-  tw-min-h-[470px]
-  tw-flex-col
-  tw-rounded-[2rem]
-  tw-bg-[#1A1A1A]
-  tw-p-8
-  md:tw-p-10
-  tw-transition-all
-  tw-duration-300
-  tw-ease-out
-  hover:tw--translate-y-1
-  ${
-    card.featured
-      ? `
-        tw-border
-        tw-border-[#00FE6B]/35
-        
-      `
-      : `
-        tw-border
-        tw-border-white/5
-        hover:tw-border-[#00FE6B]/35
-      `
-  }
-  hover:tw-bg-[#1D1D1D]
-  
-`}
+              className={`tw-group tw-flex tw-min-h-[440px] tw-flex-col tw-rounded-[2rem] tw-bg-[#1A1A1A] tw-p-7 md:tw-p-8 tw-transition-all tw-duration-300 tw-ease-out hover:tw--translate-y-1 hover:tw-bg-[#1D1D1D] tw-border ${
+                card.featured
+                  ? "tw-border-[#00FE6B]/35"
+                  : "tw-border-white/5 hover:tw-border-[#00FE6B]/35"
+              }`}
+              style={
+                card.featured
+                  ? {
+                      boxShadow: "inset 0 0 0 1px rgba(0, 254, 107, 0.35)",
+                      background:
+                        "linear-gradient(180deg, rgba(0, 254, 107, 0.05) 0%, #1A1A1A 35%)",
+                    }
+                  : undefined
+              }
             >
               <p
-                className="
-tw-m-0
-tw-mb-7
-tw-font-['Plus_Jakarta_Sans']
-tw-text-[0.85rem]
-tw-font-semibold
-tw-uppercase
-tw-tracking-[0.18em]
-tw-text-[#7BE7C7]
-tw-transition-colors
-tw-duration-300
-group-hover:tw-text-[#68FFA8]
-"
+                className="tw-m-0 tw-mb-6 tw-font-['Plus_Jakarta_Sans'] tw-text-[0.85rem] tw-font-semibold tw-uppercase tw-tracking-[0.18em] tw-text-[#7BE7C7] tw-transition-colors tw-duration-300 group-hover:tw-text-[#68FFA8]"
+                style={
+                  card.featured
+                    ? {
+                        color: "#8CF6D5",
+                        letterSpacing: "0.2em",
+                      }
+                    : undefined
+                }
               >
-                {" "}
                 {card.eyebrow}
               </p>
 
