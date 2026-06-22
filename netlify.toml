@@ -78,3 +78,23 @@ path = "/blog/feed"
 [[edge_functions]]
 function = "block-feed-bot"
 path = "/blog/feed.xml"
+
+[[edge_functions]]
+  path = "/llms.txt"
+  function = "track-llm-pages"
+
+[[edge_functions]]
+  path = "/*.md"
+  function = "track-llm-pages"
+
+[[edge_functions]]
+  path = "/product/*.md"
+  function = "track-llm-pages"
+
+[[edge_functions]]
+  path = "/deployment/*.md"
+  function = "track-llm-pages"
+
+[[edge_functions]]
+  path = "/learn/*.md"
+  function = "track-llm-pages"
