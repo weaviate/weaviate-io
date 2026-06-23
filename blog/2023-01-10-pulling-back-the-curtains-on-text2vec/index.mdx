@@ -42,14 +42,14 @@ Let's try vectorizing data with the `text2vec-cohere` module. We will be using d
 Load the data into a Pandas dataframe, then populate Weaviate like this:
 
 ```python
-client.batch.configure(batch_size=100)  # Configure batch
-with client.batch as batch:
+questions = client.collections.use("Question")
+with questions.batch.stream() as batch:
     for i, row in df.iterrows():
         properties = {
             "question": row.Question,
             "answer": row.Answer
         }
-        batch.add_data_object(properties, "Question")
+        batch.add_object(properties=properties)
 ```
 
 This should add a series of `Question` objects with text properties like this:
@@ -62,13 +62,15 @@ This should add a series of `Question` objects with text properties like this:
 Since we use the `text2vec-cohere` module to vectorize our data, we can query Weaviate to find data objects most similar to any input text. Look for entries closest to `fast food chains` like so:
 
 ```python
-near_text = {"concepts": ["fast food chains"]}
-wv_resp = client.query.get(
-    "Question",
-    ["question", "answer"]
-).with_limit(2).with_near_text(
-    near_text
-).with_additional(['distance', 'vector']).do()
+from weaviate.classes.query import MetadataQuery
+
+questions = client.collections.use("Question")
+wv_resp = questions.query.near_text(
+    query="fast food chains",
+    limit=2,
+    return_metadata=MetadataQuery(distance=True),
+    include_vector=True,
+)
 ```
 
 This yields the McDonald's `Question` object above, including the object vector and the distance. The result is a `768`-dimensional vector that is about `0.1` away from the query vector.
@@ -104,18 +106,20 @@ Then, use the Cohere API to generate the vector like so, where `cohere_key` is t
 ```python
 import cohere
 co = cohere.Client(cohere_key)
-co_resp = co.embed([str_in], model="embed-multilingual-v2.0")
+co_resp = co.embed(texts=[str_in], model="embed-multilingual-v3.0", input_type="search_document")
 ```
 
 Then we run a `nearVector` based query to find the best matching object to this vector:
 
 ```python
-client.query.get(
-    "Question",
-    ["question", "answer"]
-).with_limit(2).with_near_vector(
-    {'vector': co_resp.embeddings[0]}
-).with_additional(['distance']).do()
+from weaviate.classes.query import MetadataQuery
+
+questions = client.collections.use("Question")
+questions.query.near_vector(
+    near_vector=co_resp.embeddings[0],
+    limit=2,
+    return_metadata=MetadataQuery(distance=True),
+)
 ```
 
 Interestingly, we get a distance of `0.0181` - small, but not zero. In other words - we did something differently to Weaviate!
@@ -189,7 +193,7 @@ All this means that you can also use the schema to tweak Weaviate's vectorizatio
 * At the **property** level:
     * `skip` will determine whether the property should be skipped (i.e. ignored) in vectorization, and
     * `vectorizePropertyName` will determine whether the property name will be used.
-* The property `dataType` determines whether Weaviate will ignore the property, as it will ignore everything but `string` and `text` values.
+* The property `dataType` determines whether Weaviate will ignore the property, as it will ignore everything but `text` (and `text[]`) values.
 
 > You can read more about each variable in the [schema configuration documentation](https://docs.weaviate.io/weaviate/manage-data/collections).
 Let's apply this to our data to set Weaviate's vectorization behavior, then we will confirm it manually using the Cohere API as we did above.
@@ -197,40 +201,31 @@ Let's apply this to our data to set Weaviate's vectorization behavior, then we w
 Our new schema is below - note the commented lines:
 
 ```python
-question_class = {
-    "class": "Question",
-    "description": "Details of a Jeopardy! question",
-    "moduleConfig": {
-        "text2vec-cohere": {  # The vectorizer name - must match the vectorizer used
-            "vectorizeClassName": False,  # Ignore class name
-        },
-    },
-    "properties": [
-        {
-            "name": "answer",
-            "description": "What the host prompts the contestants with.",
-            "dataType": ["string"],
-            "moduleConfig": {
-                "text2vec-cohere": {
-                    "skip": False,  # Do not skip class
-                    "vectorizePropertyName": False  # Ignore property name
-                }
-            }
-        },
-        {
-            "name": "question",
-            "description": "What the contestant is to provide.",
-            "dataType": ["string"],
-            "moduleConfig": {
-                "text2vec-cohere": {
-                    "skip": False,  # Do not skip class
-                    "vectorizePropertyName": True  # Do not ignore property name
-                }
-            }
-        },
-    ]
-}
-client.schema.create_class(question_class)
+from weaviate.classes.config import Configure, Property, DataType
+
+client.collections.create(
+    name="Question",
+    description="Details of a Jeopardy! question",
+    vector_config=Configure.Vectors.text2vec_cohere(
+        vectorize_collection_name=False,  # Ignore collection name
+    ),
+    properties=[
+        Property(
+            name="answer",
+            description="What the host prompts the contestants with.",
+            data_type=DataType.TEXT,
+            skip_vectorization=False,        # Do not skip this property
+            vectorize_property_name=False,   # Ignore property name
+        ),
+        Property(
+            name="question",
+            description="What the contestant is to provide.",
+            data_type=DataType.TEXT,
+            skip_vectorization=False,        # Do not skip this property
+            vectorize_property_name=True,    # Do not ignore property name
+        ),
+    ],
+)
 ```
 
 The schema is defined such that at least some of the options, such as `moduleConfig`/`text2vec-cohere` /`vectorizeClassName` and `properties`/`moduleConfig`/`text2vec-cohere`/`vectorizePropertyName` differ from their defaults.
@@ -256,7 +251,7 @@ Searching with the vector generated from this input, the closest matching object
 
 So there it is. Throughout the above journey, we saw how exactly Weaviate creates vectors from the text data objects, which is:
 
-- Vectorize properties that use `string` or `text` data types
+- Vectorize properties that use the `text` (or `text[]`) data type
 - Sorts properties in alphabetical (a-z) order before concatenating values
 - Prepends the class name
 - And converts the whole string to lowercase

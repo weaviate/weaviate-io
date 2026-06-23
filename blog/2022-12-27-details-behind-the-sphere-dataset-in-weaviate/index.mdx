@@ -9,6 +9,10 @@ description: "Learn about the hardware, software and performance metric specific
 ---
 ![Sphere dataset in Weaviate](./img/hero.png)
 
+:::note Roadmap items shipped
+The "coming soon" features mentioned in this post (Vamana indexing, HNSW+PQ) have since shipped. See the [ANN benchmarks page](https://docs.weaviate.io/weaviate/benchmarks/ann) for current Sphere usage.
+:::
+
 <!-- truncate -->
 
 Earlier in December, we wrote [a blog post](/blog/sphere-dataset-in-weaviate) about importing the Sphere dataset into Weaviate. In that post, we talked about what the Sphere dataset is, announced the release of the Sphere dataset files for Weaviate, and shared how you can use Weaviate to search through large datasets like Sphere. More specifically, we provided a short guide on how you could import Sphere into Weaviate using Python as well as Spark, before finishing with example queries on the entire Sphere dataset. If you haven’t checked that out we recommend you have a quick look!
@@ -70,20 +74,22 @@ _NOTE: because of the high volume of downloads, please request access via hello@
 df = spark.read.parquet("gs://sphere-demo/parquet/sphere.899M.parquet")
 ```
 
-Next up, spin up a Weaviate instance (or cluster), connect to it and create a schema for the Sphere dataset:
+Next up, spin up a Weaviate instance (or cluster), connect to it and create a collection for the Sphere dataset:
 
 ```python
-client = weaviate.Client("http://localhost:8080")
-client.schema.create_class(
-    {
-        "class": "Sphere",
-        "properties": [
-            {"name": "raw", "dataType": ["string"]},
-            {"name": "sha", "dataType": ["string"]},
-            {"name": "title", "dataType": ["string"]},
-            {"name": "url", "dataType": ["string"]},
-        ],
-    }
+import weaviate
+from weaviate.classes.config import Property, DataType
+
+client = weaviate.connect_to_local()
+
+client.collections.create(
+    name="Sphere",
+    properties=[
+        Property(name="raw", data_type=DataType.TEXT),
+        Property(name="sha", data_type=DataType.TEXT),
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="url", data_type=DataType.TEXT),
+    ],
 )
 ```
 

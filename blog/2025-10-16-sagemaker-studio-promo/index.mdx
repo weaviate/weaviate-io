@@ -163,9 +163,9 @@ weaviate_client.collections.create(
 Transfer data from our Iceberg table to Weaviate using batch operations
 ```python
 def save_reviews_to_weaviate(client, df):
-    reviews_collection = client.collections.get('Airline_Reviews')
+    reviews_collection = client.collections.use('Airline_Reviews')
     
-    with reviews_collection.batch.dynamic() as batch:
+    with reviews_collection.batch.stream() as batch:
         for _, row in df.iterrows():
             review_obj = {
                 "review_id": row['review_id'],

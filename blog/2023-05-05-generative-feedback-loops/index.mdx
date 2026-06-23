@@ -35,15 +35,17 @@ Here is a quick overview of the code snippets before diving in:
 The GitHub repo with notebooks (using Weaviate embedded) can be found [here](https://github.com/weaviate/Generative-Feedback-Loops/).
 :::
 
-In this example we will be using the OpenAI `text-davinci-003` and the Cohere `command-xlarge-nightly` LLMs to generate content, but this is also possible with other providers such as HuggingFace, Anthropic, and more. Set your OpenAI or Cohere key to use with Weaviate’s generate module using the following block of code:
+In this example we will be using the OpenAI `gpt-4o-mini` and the Cohere `command-r-plus` LLMs to generate content, but this is also possible with other providers such as HuggingFace, Anthropic, and more. Set your OpenAI or Cohere key to use with Weaviate's generate module using the following block of code:
 
 ```python
 import weaviate
-client = weaviate.Client(embedded_options=weaviate.EmbeddedOptions(),
-			    additional_headers = {
-				“X-OpenAI-Api-Key”: “<YOUR OPENAI KEY HERE>”
-			  }) # if using Cohere, replace this with "X-Cohere-Api-Key"
-client.get_meta() # see which modules are enabled in Weaviate Embedded
+
+client = weaviate.connect_to_local(
+    headers={
+        "X-OpenAI-Api-Key": "<YOUR OPENAI KEY HERE>",  # if using Cohere, replace with "X-Cohere-Api-Key"
+    },
+)
+client.get_meta()  # see which modules are enabled in your Weaviate instance
 ```
 
 The table below illustrates the schema of the data we will use, please see the notebook for reference of the full json dictionary to create Weaviate schemas with configurations like this:
@@ -168,16 +170,16 @@ In the future we may want to add other properties to the `Ad` objects, such as d
 Now we will add more data to our prompt, a high-level ad target. We will write ads targeting (1) young couples, (2) elderly couples, and (3) single travelers. We will add `target` as a property to the `Ad` class, like this:
 
 ```python
-target_property = {
-   "dataType": [
-       "text"
-   ],
-   "name": "target",
-   "description": "High-level audience target for this ad."
-}
+from weaviate.classes.config import Property, DataType
 
-
-client.schema.property.create("Ad", target_property)
+ad_collection = client.collections.use("Ad")
+ad_collection.config.add_property(
+    Property(
+        name="target",
+        data_type=DataType.TEXT,
+        description="High-level audience target for this ad.",
+    )
+)
 ```
 
 <details>
@@ -221,41 +223,41 @@ In the future we may want to add other properties, such as dates when we ran the
 Let’s keep unpeeling the onion and show how we could even further target these ads based on user biographies.
 
 ```python
-users = client.query\
-              .get("User", ["biography"])\
-              .with_additional(["id"])\
-              .with_limit(5)\
-              .do()["data"]["Get"]["User"]
+from uuid import uuid4
+
+user_collection = client.collections.use("User")
+listing_collection = client.collections.use("Listing")
+ad_collection = client.collections.use("Ad")
+
+users = user_collection.query.fetch_objects(limit=5).objects
 
 for user in users:
-  generatePrompt = """
-  Please write an engaging advertisement for the following AirBnb Listing:
-  Description: {description}
-  Please write the advertisement for this listing to target the following user:
-  """ + user["biography"]
-
-  ads = client.query\
-              .get("Listing", ["description"])\
-              .with_generate(single_prompt=generatePrompt)\
-              .with_additional(["id"])\
-              .with_limit(5)\
-              .do()["data"]["Get"]["Listing"]
-
-  for ad in ads:
-    new_ad_properties = {
-        "content": ad["_additional"]["generate"]["singleResult"],
-    }
-    new_ad_id = get_valid_uuid(uuid4())
-    client.data_object.create(
-        data_object = new_ad_properties,
-        class_name = "Ad",
-        uuid = new_ad_id
+    generate_prompt = (
+        "Please write an engaging advertisement for the following AirBnb Listing:\n"
+        "Description: {description}\n"
+        "Please write the advertisement for this listing to target the following user:\n"
+        f"{user.properties['biography']}"
     )
-    client.data_object.reference.add(
-        from_uuid = new_ad_id,
-        from_property_name = "hasUserTarget",
-        to_uuid = user["_additional"]["id"]
+
+    response = listing_collection.generate.fetch_objects(
+        limit=5,
+        single_prompt=generate_prompt,
     )
+
+    for ad in response.objects:
+        new_ad_properties = {
+            "content": ad.generated,
+        }
+        new_ad_id = uuid4()
+        ad_collection.data.insert(
+            properties=new_ad_properties,
+            uuid=new_ad_id,
+        )
+        ad_collection.data.reference_add(
+            from_uuid=new_ad_id,
+            from_property="hasUserTarget",
+            to=user.uuid,
+        )
 ```
 
 

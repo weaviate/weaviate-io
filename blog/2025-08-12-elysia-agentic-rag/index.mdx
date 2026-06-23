@@ -182,7 +182,7 @@ In order to test whether Elysia actually worked as a flexible agentic framework 
 
 For the Glowe-Elysia tree, we created three custom tools specifically for the app’s needs: 
 
-1. A query agent tool for finding the right products with complex filters (powered by the [Weaviate Query Agent](https://docs.weaviate.io/agents/query))
+1. A query agent tool for finding the right products with complex filters (powered by the [Weaviate Query Agent](https://docs.weaviate.io/query-agent))
 2. A stack generation tool that creates product collections specific to a user through natural language
 3. A similar products tool that provides recommendations based on the current context and individual user
 
@@ -337,7 +337,7 @@ Then, you can either add data to your cluster by following [the quickstart tutor
     # For other formats, adjust accordingly
 
     # Import data in batches
-    with collection.batch.fixed_size(batch_size=200) as batch:
+    with collection.batch.stream() as batch:
         for i, item in enumerate(data):
             batch.add_object({
                 # LLM TODO: Map user's data properties to collection schema

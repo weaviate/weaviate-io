@@ -90,20 +90,26 @@ Weaviate lets you tune how each property is indexed, or if they’re indexed at 
 In this demo, we determined that search performance could be improved by exactly matching a particular `title` value. This requires creating an inverted index to find text matches on the `title` property. This is denoted in your schema by setting `indexFilterable` to `True`. We further want to use BM25 scoring on the title, so we create an inverted index for keyword scoring as well. This is achieved by setting `indexSearchable` to `True`. However, for the `url` and `content` properties, although we want the data stored, we do not need an index, so we turn it off by setting both `indexFilterable` and `indexSearchable` to `False`.
 
 ### Batch Imports
-When importing data into Weaviate, we suggest using batch imports. This will send multiple objects in a single request, rather than importing them individually. There are [three methods](https://docs.weaviate.io/weaviate/client-libraries/python#batch-sizing) to choose from:
+When importing data into Weaviate, we suggest using batch imports. This will send multiple objects in a single request, rather than importing them individually. There are [four methods](https://docs.weaviate.io/weaviate/manage-objects/import#server-side-batching) to choose from:
 
-1. `dynamic`: The batch size and number of requests are dynamically adjusted as you import data. The size and number of each are dependent on the server load.
+1. `stream` (**recommended**): [Server-side batching](https://docs.weaviate.io/weaviate/manage-objects/import#server-side-batching). The server tells the client how fast to send data based on its own current workload, applying backpressure so you don't have to tune batch size or concurrency by hand.
+
+```python
+with client.batch.stream() as batch:
+```
+
+2. `dynamic`: Client-side dynamic batching. The batch size and number of requests are adjusted as you import data, based on observed server load.
 
 ```python
 with client.batch.dynamic() as batch:
 ```
 
-2. `fixed_size`: The user specifies the batch size and number of requests.
+3. `fixed_size`: The user specifies the batch size and number of requests.
 ```python
 with client.batch.fixed_size(batch_size=100, concurrent_requests=4) as batch:
 ```
 
-3. `rate_limit`: If there is a third-party vectorization rate limit you want to avoid, you can specify the number of objects to send per minute.
+4. `rate_limit`: If there is a third-party vectorization rate limit you want to avoid, you can specify the number of objects to send per minute.
 
 ```python
 with client.batch.rate_limit(requests_per_minute=600) as batch:

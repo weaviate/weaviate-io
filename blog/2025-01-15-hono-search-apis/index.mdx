@@ -178,7 +178,7 @@ app.get('/', async (c) => {
   const client = await connectToDB();
   const searchTerm = c.req.query("searchTerm");
 
-  const wikipedia = client.collections.get("Wikipedia")
+  const wikipedia = client.collections.use("Wikipedia")
 
   if (searchTerm) {
     try {
@@ -227,7 +227,7 @@ app.get('/', async (c) => {
   const client = await connectToDB();
   const searchTerm = c.req.query("searchTerm");
 
-  const wikipedia = client.collections.get("Wikipedia")
+  const wikipedia = client.collections.use("Wikipedia")
 
   if (searchTerm) {
     try {
@@ -278,7 +278,7 @@ app.get('/', async (c) => {
   const searchTerm = c.req.query("searchTerm");
   const prompt = c.req.query("prompt")
 
-  const wikipedia = client.collections.get("Wikipedia")
+  const wikipedia = client.collections.use("Wikipedia")
 
   if (searchTerm) {
     try {

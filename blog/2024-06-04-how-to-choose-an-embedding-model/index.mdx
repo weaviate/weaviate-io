@@ -81,7 +81,7 @@ from weaviate.classes.config import Property, DataType
 # Create data collection
 pastries = client.collections.create(
     name="Pastries",
-    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai(model='text-embedding-3-small'),
+    vector_config=wvc.config.Configure.Vectors.text2vec_openai(model='text-embedding-3-small'),
     properties=[
         Property(name="pastry_name", data_type=DataType.TEXT),
         Property(name="pastry_description", data_type=DataType.TEXT),

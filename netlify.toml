@@ -26,6 +26,16 @@ to = "https://docs.weaviate.io/weaviate/model-providers/openai/generative"
 status = 301
 
 [[redirects]]
+from = "/blog/confluent-and-weaviate"
+to = "https://weaviate.io/blog/weaviate-apache-kafka-connector"
+status = 301
+
+[[redirects]]
+from = "/blog/how-to-chatgpt-plugin"
+to = "https://weaviate.io/blog/coding-assistant-weaviate-mcp"
+status = 301
+
+[[redirects]]
 from = "/collections-count-limit"
 to = "https://docs.weaviate.io/weaviate/starter-guides/managing-collections/collections-scaling-limits"
 status = 301

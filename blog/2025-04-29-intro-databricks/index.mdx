@@ -110,8 +110,8 @@ if client.collections.exists("AmazonProducts"):
 
 collection = client.collections.create(
     name="AmazonProducts",
-    vectorizer_config=[
-        wvcc.Configure.NamedVectors.text2vec_databricks(
+    vector_config=[
+        wvcc.Configure.Vectors.text2vec_databricks(
             name="default", 
             endpoint=EMBEDDINGS_ENDPOINT
         )
@@ -132,12 +132,12 @@ collection = client.collections.create(
     ]
 )
     
-collection = client.collections.get("AmazonProducts")
+collection = client.collections.use("AmazonProducts")
 ```
 
 We’ve created an AmazonProducts collection with two properties, title and description, which aligns with the columns in our DataFrame. Additionally, the collection is using the [Databricks module](https://docs.weaviate.io/weaviate/model-providers/databricks) to: 
 
-* Vectorize Objects (`vectorizer_config`): The `text2vec_databricks` configuration enables Weaviate to generate embeddings for the Amazon products using the Databricks endpoint specified in `EMBEDDINGS_ENDPOINT`.   
+* Vectorize Objects (`vector_config`): The `text2vec_databricks` configuration enables Weaviate to generate embeddings for the Amazon products using the Databricks endpoint specified in `EMBEDDINGS_ENDPOINT`.   
 * Generative Model (`generative_config`): The `generative_databricks` configuration connects to a Databricks hosted large language model at `LLM_ENDPOINT`, to enable generative search.
 
 ## Ingesting the Data 
@@ -169,7 +169,7 @@ In this code snippet, the options used are:
 With the data now in Weaviate, we’re all set to run a few queries. We’ll first retrieve the `AmazonProducts` collection so we can use it for each query.
 
 ```python
-products = client.collections.get("AmazonProducts")
+products = client.collections.use("AmazonProducts")
 ```
 
 ### Hybrid Search

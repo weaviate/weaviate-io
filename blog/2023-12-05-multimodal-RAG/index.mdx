@@ -74,7 +74,7 @@ First, you need to create a collection that can hold data in different modalitie
 ```python
 client.collections.create(
     name="Animals",
-    vectorizer_config=wvc.config.Configure.Vectorizer.multi2vec_bind(
+    vector_config=wvc.config.Configure.Vectors.multi2vec_bind(
         audio_fields=["audio"],
         image_fields=["image"],
         video_fields=["video"],
@@ -96,7 +96,7 @@ for name in source:
         "image": toBase64(path),
         "mediaType": "image"
     })
-animals = client.collections.get("Animals")
+animals = client.collections.use("Animals")
 animals.data.insert_many(items)
 ```
 

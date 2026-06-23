@@ -199,7 +199,7 @@ Const handleClick = async () => {
 async def weaviate_relevance_generator(request: SessionRequest):
     sessionId = request.sessionId
     weaviate_gfl_client = weaviate.connect_to_local()
-    weaviate_blog_collection = weaviate_gfl_client.collections.get("Blog")
+    weaviate_blog_collection = weaviate_gfl_client.collections.use("Blog")
     # load state into a BlogPost to format_blog_draft
     blog_container = BlogPost()
     saved_blog_properties = weaviate_blog_collection.query.fetch_object_by_id(sessionId)
