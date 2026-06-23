@@ -1,13 +1,13 @@
 import React from "react";
 import Layout from "@theme/Layout";
 import { MetaSEO } from "/src/theme/MetaSEO";
-import Hero from "../components/Database/Hero";
-import FeatureSplit from "../components/Database/FeatureSplit";
-import BenefitCards from "../components/Database/BenefitCards";
-import DeveloperExperience from "../components/Database/DeveloperExperience";
-import CTA from "../components/Database/CTA";
-import Blogs from "../components/Database/Blogs";
-import Capabilities from "../components/Database/Capabilities";
+import Hero from "../../components/Database/Hero";
+import FeatureSplit from "../../components/Database/FeatureSplit";
+import BenefitCards from "../../components/Database/BenefitCards";
+import DeveloperExperience from "../../components/Database/DeveloperExperience";
+import CTA from "../../components/Database/CTA";
+import Blogs from "../../components/Database/Blogs";
+import Capabilities from "../../components/Database/Capabilities";
 
 export default function DatabasePage() {
   return (
