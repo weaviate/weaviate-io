@@ -197,8 +197,8 @@ function Hero() {
 
               <div className="tw-relative tw-rounded-[1.875rem] tw-border tw-border-white/10 tw-bg-[linear-gradient(123deg,rgba(38,214,255,0.18)_12.44%,rgba(215,122,255,0.18)_109.26%)] tw-p-6 tw-shadow-[0_28px_90px_rgba(0,0,0,0.35)] md:tw-p-10">
                 <img
-                  src="/img/site/2026/enterprise-diagram-26.svg"
-                  alt="Enterprise AI infrastructure diagram"
+                  src="/img/site/2026/assurance-diagram-26.svg"
+                  alt="Assurance infrastructure diagram"
                   className="tw-h-auto tw-w-full"
                 />
               </div>
@@ -561,7 +561,7 @@ function Tiers() {
               </ul>
 
               <Link
-                to="/contact"
+                to="/pricing#contact-sales"
                 className="tw-inline-flex tw-min-h-[50px] tw-items-center tw-justify-center tw-rounded-md tw-border tw-bg-transparent tw-px-8 tw-text-base tw-font-semibold tw-text-white tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-bg-white/10 hover:tw-text-white hover:tw-no-underline"
                 style={{
                   ...bodyFont,
@@ -607,7 +607,7 @@ function FinalCTA() {
             </h2>
 
             <p
-              className="tw-m-0 tw-mt-7 tw-max-w-[680px] tw-text-[1.125rem] tw-leading-[160%] tw-text-[#DDEBF2]"
+              className="tw-m-0 tw-mt-7 tw-max-w-[380px] tw-text-[1.125rem] tw-leading-[160%] tw-text-[#DDEBF2]"
               style={bodyFont}
             >
               Talk to our team about a tailored quote based on your cluster

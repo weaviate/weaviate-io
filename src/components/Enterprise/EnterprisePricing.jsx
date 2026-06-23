@@ -79,7 +79,7 @@ export default function EnterprisePricing() {
                       src={plan.icon}
                       alt=""
                       aria-hidden="true"
-                      className="tw-h-9 tw-w-9 tw-object-contain"
+                      className="tw-h-13 tw-w-13 tw-object-contain"
                     />
                   </div>
 
