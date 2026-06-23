@@ -1,0 +1,285 @@
+---
+title: How to extract meaning from charts and tables in PDFs
+slug: charts-tables-pdfs
+authors: [etienne, augustas]
+date: 2026-05-11
+tags: ['how-to', 'search']
+image: ./img/query-agent-response.png
+description: "PDFs full of charts and tables are notoriously hard to put through a traditional RAG pipeline. In this post, we show how late-interaction multi-vector retrieval lets you search PDFs by what the page looks like: no OCR, no chunking, no text extraction."
+---
+
+![Gross margin trend chart from NVIDIA's Q2 FY26 deck, retrieved by a single text query without any OCR.](./img/nvidia-gross-margin-trend.png)
+
+<!-- truncate -->
+
+## Intro
+
+If you have ever tried to put a stack of investor decks, scientific papers, or annual reports through a RAG pipeline, then you know the drill: set up an Optical Character Recognition (OCR) or text-extraction step, pick a chunking strategy, embed text, and finally retrieve information. After going through all this, someone may ask a question about revenue in `Q2 FY25`, and your retrieval would return three pages of unrelated bullet points because the actual answer is in a bar chart that was invisible to your index.
+
+This used to be what people had to do — just leave out the interesting parts of a PDF from RAG such as bar charts with trends, comparison tables, architectural diagrams, and things in general that make PDFs so much more valuable than mere text.
+
+In this article, we'll show you a better way that not only retrieves the rich information embedded in charts, but also eliminates complex processing steps. We'll cover:
+
+* **Classic RAG**: Why OCR and text embedding works great for some (structured and unstructured) data, but not for rich PDFs.
+* **Late Interaction RAG**: What late-interaction multi-vector models are, and why they let you skip text extraction entirely.
+* **Drag-N-Drop and Done**: How to ingest multiple PDFs in Weaviate Cloud with just a few clicks.
+* **Real Examples**: Example queries against NVIDIA's FY2026 quarterly earnings, where each top result is the *exact chart* that answers a question.
+* **Complex Agentic Reasoning**: How to wrap the same data with the Weaviate Query Agent for synthesised answers with page-image citations.
+* **Codified and Deployment-Ready**: The same ingestion pipeline in roughly 50 lines of Python for when you need to deploy this in production.
+
+If you'd rather just see the demo first and read the explanations later, skip to the queries section below.
+
+## How traditional RAG falls short
+
+Let's first look at what most people do today when it comes to building a RAG pipeline for PDFs:
+
+1. OCR (or text-extract) the file (using either a python library or third-party tooling).
+2. Chunk the text.
+3. Embed the chunks with a text embedding model.
+4. Retrieve, (maybe) rerank, generate.
+
+There's nothing inherently bad about this workflow, but there's a naive underlying assumption that *the page can be reduced to a sequence of text tokens without losing the richness of the content*. For a press release or a Wikipedia article, this is mostly fine, but for a slide deck full of charts, a 10-K with comparison tables, or an academic paper with illustrative figures, it's simply not enough.
+
+You could build a complex ETL pipeline to extract charts and vectorize them separately, but that means another model in the pipeline and introduces more complexity into the stack as well as merging problems at query time.
+
+With a late-interaction multi-vector model, you don't need any of those: You embed the *page*, and not the text within it. The model sees the chart the way you do. Yes, you heard that right, there is not even a chunking step — the page *is* the chunk.
+
+## Late-interaction multi-vector retrieval, in two paragraphs
+
+Before we get to the demo, let's take a quick detour on what makes this work. If you already know your way around ColPali / ColBERT, feel free to skip or skim.
+
+Traditional dense embedding models compress an entire document (or chunk) into a single vector. Late-interaction multi-vector models do something different: they encode the document as a *set* of vectors, typically one per token (or for a vision model like the one we're about to use, one per image patch). At query time, your query is also encoded as a set, and the relevance score is the sum of best matches between query tokens and document tokens (a quantity called MaxSim).
+
+Instead of asking *"is this whole page about my whole question?"*, the model can ask *"is the part of this page that talks about Q4 FY26 a good match for the part of my question about 'change over time'?"*. For a chart-heavy page, this is exactly the granularity that's needed. The model doesn't have to summarise an entire slide into a single vector, but can keep one vector per region of the page, and the query can pick out the regions that matter.
+
+So really, there are two distinct advantages here:
+1. Because it's a **visual model** you keep the layout, the charts, the tables, etc. *and*
+2. By using MaxSim over a set of vectors, you **eliminate the need for chunking**.
+
+Weaviate offers `multi2multivec-weaviate`, a vectorizer module that runs a hosted late-interaction multi-vector model on Weaviate Cloud, so you don't have to host or manage a model in order to generate multi-vectors from your PDFs.
+
+## Ingesting PDFs by Drag-and-Drop
+
+The fastest way to try this is the drag-and-drop importer in [Weaviate Cloud](https://console.weaviate.cloud).
+
+1. Open your cluster in the Console.
+2. Go to *Collections* and create a new collection.
+3. Select the upload from file option and drop in your PDFs.
+
+<div style={{display: 'flex', gap: '1rem', alignItems: 'flex-start', margin: '1.5rem 0'}}>
+  <div style={{flex: '1.5606 1 0'}}>
+    <a href={require('./img/console-create-collection.png').default} target="_blank" rel="noopener noreferrer">
+      <img src={require('./img/console-create-collection.png').default} alt="Create new collection page in the Weaviate Console, with the Upload CSV, Excel or PDF option highlighted" style={{width: '100%', height: 'auto', display: 'block'}} />
+    </a>
+  </div>
+  <div style={{flex: '1.7175 1 0'}}>
+    <a href={require('./img/console-upload-completed.png').default} target="_blank" rel="noopener noreferrer">
+      <img src={require('./img/console-upload-completed.png').default} alt="Weaviate Console after upload: a single NVIDIA Q4 FY26 PDF marked complete with a Next button" style={{width: '100%', height: 'auto', display: 'block'}} />
+    </a>
+  </div>
+</div>
+
+And that's the entire ingestion process. Behind the scenes, Weaviate is doing three things:
+
+1. Rendering each PDF page to a high-resolution image.
+2. Storing that image as a `BLOB` property on a new collection.
+3. Vectorizing it with the `multi2multivec-weaviate` module, producing many vectors per page.
+
+A few things are worth noting:
+
+* **One object equals one page.** The unit of retrieval is the page, which is also the unit a human navigates a document by.
+* **No OCR.** The model never sees the text as text. It sees the page as an image. That's why a chart with no caption is just as searchable as a paragraph.
+* **The vectors are compressed.** Late-interaction models can produce hundreds of vectors per page, which would be expensive to store naively. Weaviate uses a [multi-vector encoding](https://docs.weaviate.io/weaviate/configuration/compression/multi-vectors) scheme that keeps the index compact. (More on that also in the trade-offs section below.)
+
+For this demo, we've imported NVIDIA's four FY2026 quarterly investor presentations (Q1 through Q4). They cover the financial year ending in January 2026, contain wall-to-wall charts and tables, and total 92 pages. The whole import took about a minute and a half.
+
+## Interrogating NVIDIA's Quarterly Earnings
+
+Before we do anything fancy such as agentic reasoning on the data, we want to show you the raw retrieval results, as they are already impressive on their own.
+
+With ingestion complete, you can query the data directly in the Console (or with any Weaviate client). The query is in plain English, and the result is a ranked list of pages with page images inline.
+
+Let's walk through three queries and show you what results are returned.
+
+### Query 1: *"how did automotive revenue change over time?"*
+
+![Top result for the automotive revenue query — a five-quarter bar chart from NVIDIA's Q2 FY26 deck](./img/nvidia-automotive-revenue.png)
+
+The top result is a single page from the Q2 FY26 deck, titled *Automotive*. The left half is a bar chart showing five quarters of revenue (`$346M → $449M → $570M → $567M → $586M`, +69% Y/Y). The right half contains three bullet points about `Thor SoC` and `DRIVE AV`.
+
+The phrase *"over time"* doesn't appear anywhere on this page. Neither does the word *"change"*. The model didn't match against text semantically, but rather the image of the page. What it saw was five bars of increasing height with quarterly labels, and that was enough to identify the page as a match for a question about a temporal trend.
+
+### Query 2: *"gross margin trend"*
+
+![Top result for the gross margin trend query — a combination chart with revenue bars and a gross margin line over five quarters, plus a financial KPI table](./img/nvidia-gross-margin-trend.png)
+
+The top result here is the *Q2 FY26 Financial Summary* page. On the left is a combination chart: revenue bars and a non-GAAP gross margin line over five quarters. On the right is a GAAP/non-GAAP KPI table with Y/Y and Q/Q deltas.
+
+Again, nothing on this page literally says "gross margin trend", but there *is* a line chart that visualises the gross margin dipping from 75.7% to 61.0% in Q1 FY26 and recovering to 72.7% in Q2 FY26. That's what a *trend* looks like, and it's what the model retrieved.
+
+A side note: the same page also contains a detailed financial table. That makes it a particularly useful retrieval target if you're then going to ask follow-up questions like *"by how many basis points did gross margin recover Q/Q?"* The answer is sitting on the page the model already returned. More on that below when we introduce the Query Agent.
+
+### Query 3: *"how did data center revenue change over time?"*
+
+![Top result for the data center revenue query — Q4 FY26 revenue page with a Y/Y bar chart and bullet points](./img/nvidia-data-center-revenue.png)
+
+The top result is the Q4 FY26 *Revenue* page — a Y/Y bar chart (`$39.3B → $68.1B`) with a callout that data center revenue is up 13x since the emergence of ChatGPT. This is a great example that the model still respects text when it's the better match. In this case the chart is less relevant, but the box stating the exact answer is what returned the highest similarity (MaxSim) on this page. So you get the best of both modalities.
+
+The runner-up is the dedicated *Data Center* page from a different quarter, which splits the segment into Compute and Networking:
+
+![Runner-up: Q3 FY26 Data Center page splitting the segment into Compute and Networking bar charts](./img/nvidia-data-center-split.png)
+
+Notice how the second-best match isn't simply *"another page about data center"*, but a different *kind* of answer — the same revenue, broken down differently. That's a useful property for an agent that wants to triangulate across multiple views of the same underlying number. Speaking of which...
+
+## From search to answers: the Weaviate Query Agent
+
+Vector search returns results, but sometimes you want an answer.
+
+The [Weaviate Query Agent](https://docs.weaviate.io/agents/query) is a managed agent that wraps vector retrieval with multi-step reasoning, source citations, and inline page images. It is available out of the box for any Weaviate Cloud cluster. Simply point it to a collection and ask a question.
+
+![Weaviate Query Agent answering an automotive revenue question with a synthesised, multi-quarter response](./img/query-agent-response.png)
+
+If we ask *"How did automotive revenue change across FY26 quarters? What's driving it?"* about the same collection, the agent comes back with a synthesised answer (the numbers from the bar chart, plus the bullet points about `Thor SoC` and `DRIVE AV` adoption) and the underlying page images as citations. The agent decided which pages to retrieve, *looked* at them visually, and quoted directly from the slide.
+
+<div style={{display: 'flex', gap: '1.5rem', alignItems: 'flex-start', margin: '1.5rem 0'}}>
+  <div style={{flex: 1}}>
+
+Open the *Sources* panel and you'll see exactly which pages backed the answer. Among the citations is the *Automotive* page from the Q1 FY26 deck — the same kind of bar chart we surfaced in the raw vector search earlier, just for a different quarter.
+
+Every numerical claim in the response is anchored to a specific page in a specific PDF, with the page image right there for verification. You don't have to blindly trust the agent, but can read the contents of the slide for yourself.
+
+  </div>
+  <img src={require('./img/query-agent-sources.png').default} alt="Sources panel from the Query Agent — the cited pages include the actual Automotive bar chart from the Q1 FY26 deck" style={{width: '40%', flex: '0 0 40%', maxWidth: '360px'}} />
+</div>
+
+## Building a deployable pipeline with Python
+
+
+The drag-and-drop UI is the fastest path to creating a POC, but most production pipelines need code, and here is the equivalent in roughly 50 lines.
+
+First, install the dependencies:
+
+```bash
+pip install "weaviate-client>=4.21" PyMuPDF
+```
+
+Then, render each PDF page to a 2000-pixel PNG and store it as a BLOB in a collection vectorized with `multi2multivec-weaviate`:
+
+```python
+import os
+from base64 import b64encode
+from pathlib import Path
+
+import fitz  # PyMuPDF
+from weaviate import connect_to_weaviate_cloud
+from weaviate.classes.config import Configure, DataType, Property
+
+
+def page_to_b64(page, long_edge: int = 2000) -> str:
+    scale = long_edge / max(page.rect.width, page.rect.height)
+    pix = page.get_pixmap(matrix=fitz.Matrix(scale, scale))
+    return b64encode(pix.tobytes(output="png")).decode()
+
+
+client = connect_to_weaviate_cloud(
+    os.environ["WEAVIATE_URL"],
+    auth_credentials=os.environ["WEAVIATE_API_KEY"],
+)
+
+if not client.collections.exists("PDF"):
+    client.collections.create(
+        name="PDF",
+        properties=[
+            Property(name="pdf_name", data_type=DataType.TEXT),
+            Property(name="page_number", data_type=DataType.INT),
+            Property(name="page_image", data_type=DataType.BLOB),
+        ],
+        vector_config=Configure.MultiVectors.multi2vec_weaviate(
+            image_field="page_image",
+        ),
+    )
+
+col = client.collections.get("PDF")
+for pdf_path in Path("pdfs").glob("*.pdf"):
+    with col.batch.fixed_size(batch_size=2) as batch, fitz.open(pdf_path) as doc:
+        for i, page in enumerate(doc, start=1):
+            batch.add_object(properties={
+                "pdf_name": pdf_path.name,
+                "page_number": i,
+                "page_image": page_to_b64(page),
+            })
+
+client.close()
+```
+
+A few notes on the above:
+
+* **The Python call `MultiVectors.multi2vec_weaviate(image_field="page_image")` configures the `multi2multivec-weaviate` module.** This is the same vectorizer used by the Console import UI.
+* **`PyMuPDF` does the rasterization.** The `2000` pixel long-edge target is a sensible default; smaller targets saves time while larger gives the model more detail. We haven't found a strong case for going below 1500 or above 2500.
+* **`batch_size=2` is intentional.** Each object carries a multi-megabyte image, so small batches keep the gRPC payload sane.
+
+Query the created collection to return ranked pages:
+
+```python
+from weaviate.classes.query import MetadataQuery
+
+res = col.query.near_text(
+    query="how did automotive revenue change over time",
+    limit=5,
+    return_properties=["pdf_name", "page_number"],
+    return_metadata=MetadataQuery(distance=True),
+)
+for o in res.objects:
+    print(o.metadata.distance, o.properties)
+```
+
+On the NVIDIA corpus, this returns the Q2 FY26 *Automotive* page as result #1: the same five-quarter bar chart you saw above, retrieved by an end-to-end pipeline that contains zero OCR.
+
+The same Query Agent you saw in the Console is also available from Python. Pass it the collections to reason over, then `ask()`:
+
+```python
+from weaviate.agents.query import QueryAgent
+from weaviate_agents.classes import QueryAgentCollectionConfig
+
+agent = QueryAgent(
+    client=client,
+    collections=[
+        QueryAgentCollectionConfig(name="PDF"),
+    ],
+)
+
+response = agent.ask("How did automotive revenue change across FY26 quarters? What's driving it?")
+response.display()
+```
+
+`response.display()` renders the same synthesised answer plus page-image citations you saw in the Console.
+
+## So is this the silver bullet for PDFs?
+
+Of course not. As always in Engineering, there are trade-offs:
+
+* **Many vectors per object/page.** Late-interaction multi-vector models produce many vectors per page. You can partially offset this with compression techniques, such as [Muvera](/blog/muvera), which are natively supported in Weaviate. This helps, but also introduces a compression/accuracy trade-off. For a corpus that is dominated by large amounts of plain text (think legal contracts, transcripts, or log files), a text embedding model will still be cheaper and just as accurate.
+* **Page-level retrieval is coarse.** If your answer lives in one paragraph buried in a dense contract, returning a whole page may be more context than you want. In practice, we see this typically mitigated in the agent layer (e.g. Weaviate's Query agent), where the relevant paragraph can be identified without requiring a significant number of tokens. 
+* **The model has to understand your charts.** It generalises well from the public corpora it was trained on, but if you have very domain-specific visual conventions (think highly stylised internal templates), you should validate retrieval quality on it first.
+
+So when does this approach with late-interaction multi-vector models win? Mostly in PDF-heavy domains that contain assets such as quarterly slide decks, due-diligence packets, scientific figures, and technical drawings, etc. For text-dominated corpora, a text pipeline is most likely cheaper and sufficiently performant. 
+
+For further optimization, you might consider using a hybrid approach, where you identify pages with charts to implement as multi-vectors and the remaining corpus as text, and then use an RRF-style approach to merge results at query time.
+
+## Conclusion
+
+Let's wrap up with the key takeaways:
+
+* **Charts and tables are not problems to be solved by better OCR.** They are *primary information* that gets destroyed in extraction. If your pipeline only indexes text, valuable information from charts is already lost before you started embedding.
+* **Late-interaction multi-vector models let you skip extraction entirely.** Render the page, embed the image, and ask questions about what the image means. The model retrieves pages by what they look like --- charts, tables, layout, and all.
+* **On Weaviate Cloud, ingestion is drag-and-drop.** Point the Query Agent at the resulting collection, ask a question, and get an answer with proper images as citation.
+* **Turn the same primitive into deployable code.** `MultiVectors.multi2vec_weaviate(image_field="page_image")` is the entire vectorizer config. The rest is rasterising pages with PyMuPDF and a small `batch.add_object` loop.
+
+If you have been working around chart-heavy PDFs because the indexing pipeline made them too painful to deal with, this is worth a try. The kind of files you used to skip, because they were *"mostly charts"*, are exactly what this approach is built for.
+
+Spin up a [Weaviate Cloud](https://console.weaviate.cloud) cluster, upload your PDFs, and start asking questions today. 
+
+
+import WhatsNext from '/_includes/what-next.mdx';
+
+<WhatsNext />
