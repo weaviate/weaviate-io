@@ -136,7 +136,11 @@ export default function FeatureSplit() {
                     }}
                   >
                     <span className="tw-mt-1 tw-flex tw-h-5 tw-w-5 tw-shrink-0 tw-items-center tw-justify-center tw-rounded-[4px] tw-border tw-border-[#00FE6B] tw-text-xs tw-text-[#00FE6B]">
-                      ✓
+                      <img
+                        src="/img/site/2026/tick-icon-db.svg"
+                        alt=""
+                        aria-hidden="true"
+                      />
                     </span>
                     {item}
                   </li>
@@ -144,7 +148,7 @@ export default function FeatureSplit() {
               </ul>
 
               <Link
-                to="/blog/engram-deep-dive"
+                to="https://docs.weaviate.io/weaviate"
                 className="tw-mt-10 tw-inline-flex tw-text-[#43E2C5] tw-underline tw-underline-offset-4 hover:tw-text-[#68FFA8]"
                 style={{
                   fontFamily: "Inter, sans-serif",
@@ -152,7 +156,7 @@ export default function FeatureSplit() {
                   lineHeight: "150%",
                 }}
               >
-                Read the blog post to learn more
+                Read the docs
               </Link>
             </div>
           </div>

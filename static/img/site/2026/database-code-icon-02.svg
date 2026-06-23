@@ -5,9 +5,9 @@
 <path d="M40.5 40.5L34.7667 34.7667L40.5 40.5Z" fill="#111111"/>
 <path d="M23.1667 27.1667L25.8334 29.8334L31.1667 24.5M40.5 40.5L34.7667 34.7667M37.8334 27.1667C37.8334 33.0578 33.0578 37.8334 27.1667 37.8334C21.2756 37.8334 16.5 33.0578 16.5 27.1667C16.5 21.2756 21.2756 16.5 27.1667 16.5C33.0578 16.5 37.8334 21.2756 37.8334 27.1667Z" stroke="url(#paint0_linear_14993_329)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <defs>
-<linearGradient id="paint0_linear_14993_329" x1="40.5" y1="14.46" x2="16.5" y2="40.5" gradientUnits="userSpaceOnUse">
-<stop stop-color="#43E2C5"/>
-<stop offset="1" stop-color="#70EE62"/>
+<linearGradient id="paint0_linear_14993_329" x1="11.3366" y1="20.3123" x2="43.5903" y2="41.3967" gradientUnits="userSpaceOnUse">
+<stop offset="0.165259" stop-color="#26D6FF"/>
+<stop offset="1" stop-color="#D77AFF"/>
 </linearGradient>
 </defs>
 </svg>

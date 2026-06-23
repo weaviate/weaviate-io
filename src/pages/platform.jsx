@@ -7,6 +7,7 @@ import BenefitCards from "../components/Database/BenefitCards";
 import DeveloperExperience from "../components/Database/DeveloperExperience";
 import CTA from "../components/Database/CTA";
 import Blogs from "../components/Database/Blogs";
+import Capabilities from "../components/Database/Capabilities";
 
 export default function DatabasePage() {
   return (
@@ -21,7 +22,7 @@ export default function DatabasePage() {
         <FeatureSplit />
         <DeveloperExperience />
         <CTA />
-        <Blogs />
+        <Capabilities />
       </main>
     </Layout>
   );

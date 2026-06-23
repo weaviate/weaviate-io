@@ -27,7 +27,7 @@ const devItems = [
       "Combine retrieved context with a model to generate accurate answers.",
   },
   {
-    icon: "/img/site/2026/database-icon-05.svg",
+    icon: "/img/site/2026/database-code-icon-05.svg",
     title: "Personalize",
     description:
       "Recommendations, content, and responses that adapt to each individual.",
