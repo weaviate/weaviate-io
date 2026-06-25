@@ -38,21 +38,6 @@ client.collections.create(
 )
 ```
 
-Or set `vectorIndexType` to `hfresh` directly in the REST schema:
-
-```json
-{
-  "class": "Article",
-  "vectorConfig": {
-    "default": {
-      "vectorIndexType": "hfresh",
-      "vectorIndexConfig": { "distance": "cosine" },
-      "vectorizer": { "text2vec-weaviate": {} }
-    }
-  }
-}
-```
-
 HFresh has **RQ-1** [quantization](https://docs.weaviate.io/weaviate/concepts/vector-quantization) built in: postings are stored compressed on disk, and final ranking rescores against the uncompressed vectors for accuracy. It supports the `cosine` and `l2-squared` distance metrics.
 
 Because the index rebalances incrementally — splitting oversized postings, merging undersized ones, and reassigning vectors as the boundaries shift — it keeps up with continuous updates without the periodic full rebuilds that other on-disk indexes depend on.
@@ -67,6 +52,13 @@ Because the index rebalances incrementally — splitting oversized postings, mer
 ## MCP Server - General Availability
 
 The built-in [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server, introduced as a preview in [`v1.37`](/blog/weaviate-1-37-release#mcp-server-preview), is now **generally available**. It lets LLMs, IDEs, and AI agents work with Weaviate directly — inspecting schemas, running hybrid searches, and writing objects back — with no glue code. The server is a Streamable HTTP endpoint at `/v1/mcp` on the same port as the REST API, authenticates with a Bearer / API-key token, and respects Weaviate's standard [RBAC](https://docs.weaviate.io/deploy/configuration/authorization) permissions.
+
+The server exposes four tools:
+
+- **`weaviate-collections-get-config`** — inspect a collection's schema and configuration
+- **`weaviate-tenants-list`** — list the tenants of a multi-tenant collection
+- **`weaviate-query-hybrid`** — run a hybrid (vector + keyword) search
+- **`weaviate-objects-upsert`** — insert or update objects (only when write access is enabled)
 
 ### How it works
 
