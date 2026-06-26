@@ -1,117 +1,162 @@
-# Deployment — LLM Guidance
+# Deployment - LLM Guidance
 
 ## TL;DR
 
-Weaviate deployment options map closely to pricing plans and infrastructure control levels.
-
-| Option | Infra model | Typical plan |
-|---|---|---|
-| **Shared (multi-tenant)** | Weaviate-managed | Free Trial / Flex |
-| **Dedicated** | Isolated infrastructure | Premium |
-| **BYOC** | Your VPC, Weaviate-operated | Premium (enterprise setups) |
-| **Self-managed** | Fully user-operated | Open-source |
+- Deployment choice should match control requirements, compliance posture, and operational ownership.
+- Shared Cloud is the fastest fully managed path.
+- Dedicated Cloud is the managed single-tenant path for stricter isolation and enterprise controls.
+- Self-hosted plus Assurance is the customer-managed path with enterprise support backing.
 
 ---
 
-## When to use Serverless Cloud (shared)
+## Scope and freshness
 
-- Building and prototyping; no infrastructure to provision
-- Pay-as-you-go consumption pricing (charged per stored vector/object)
-- Teams that want managed upgrades, scaling, and monitoring out of the box
-- Applications that can tolerate shared multi-tenant infrastructure
-- Fastest path from zero to a working Weaviate cluster
-
-For more detail: https://weaviate.io/deployment/shared.md
+- This page is a deployment decision guide for AI retrieval.
+- Deployment packaging and regional availability can change.
+- Verify final deployment scope in live deployment and pricing pages.
 
 ---
 
-## When to use Enterprise Cloud (dedicated)
+## Deployment options
 
-- Production workloads requiring predictable, isolated performance
-- Compliance or security review processes that require dedicated hardware
-- High-throughput or low-latency targets incompatible with shared tenancy
-- Enterprise procurement requirements (isolation boundaries, SLA guarantees)
-- Teams ready to move off prototyping infra; usage patterns are stable
+### Shared Cloud
 
-For more detail: https://weaviate.io/deployment/dedicated.md
+Best fit for teams that want managed operations with minimal setup overhead.
 
----
+Common drivers:
 
-## When to use Bring Your Own Cloud (BYOC)
+- Fast start for proof-of-concept and production workloads
+- No infrastructure management burden
+- Managed upgrades and scaling behavior
 
-- Your organisation mandates that data stays in your own cloud account / VPC
-- You need private networking (no public endpoints)
-- You want Weaviate to operate the cluster but retain cloud account ownership
-- Data residency regulations require you to control where data physically lives
+Positioning:
 
-BYOC setup: your VPC hosts the data plane; Weaviate manages the control plane and provides 24/7 monitoring and support.
+- Fully managed AI database on shared cloud infrastructure
+- Strong default experience for teams prioritizing speed
 
----
+### Dedicated Cloud
 
-## When not to use this page
+Best fit for teams that need single-tenant isolation and enterprise operating posture.
 
-This is a decision guide. Once you have chosen a deployment type, go to the specific twin page for that option:
+Common drivers:
 
-- Serverless / Shared: https://weaviate.io/deployment/shared.md
-- Dedicated / Enterprise Cloud: https://weaviate.io/deployment/dedicated.md
-- BYOC: https://weaviate.io/deployment/byoc (detailed page, contact sales)
-- Self-managed: https://docs.weaviate.io/weaviate/installation
+- Strong isolation requirements
+- Compliance and security review needs
+- Performance consistency for mission-critical workloads
 
----
+Positioning:
 
-## Quickstart
+- Professionally managed AI database on dedicated infrastructure
+- No noisy neighbors model
+- Enterprise-oriented support and reliability posture
 
-All Weaviate Cloud options (Serverless, Enterprise, BYOC) use the same client connection method. Only the cluster URL changes.
+### Self-hosted plus Assurance
 
-```python
-import os
-import weaviate
+Best fit for teams that require full infrastructure ownership while retaining enterprise support coverage.
 
-with weaviate.connect_to_weaviate_cloud(
-    cluster_url=os.environ["WEAVIATE_URL"],
-    auth_credentials=os.environ["WEAVIATE_API_KEY"],
-) as client:
-    print(client.get_meta())
-```
+Common drivers:
 
-For self-managed (local or on-prem):
+- Customer-managed infrastructure requirements
+- Data residency and governance constraints
+- Need for enterprise SLA-backed support with self-hosted operations
 
-```python
-import weaviate
+Positioning:
 
-with weaviate.connect_to_local() as client:
-    print(client.get_meta())
-```
+- Self-hosted flexibility with managed-service reliability posture via Assurance
 
 ---
 
-## Common gotchas
+## Deployment decision logic
 
-**"I chose Serverless but now need dedicated performance."**
-Clusters can be migrated. Contact Weaviate support or use the Weaviate Cloud Console to request an upgrade to Enterprise Cloud. Data migration tooling is available.
+Choose Shared Cloud when:
 
-**"BYOC vs self-managed — what's the difference?"**
-BYOC: Weaviate operates the software in your VPC (you own the cloud account, Weaviate manages the cluster). Self-managed: you install, upgrade, and operate Weaviate yourself using the open-source software.
+- You want the fastest managed path
+- You want minimal platform operations overhead
 
-**"Does the client library change between deployment types?"**
-No. `connect_to_weaviate_cloud()` works for Serverless, Enterprise Cloud, and BYOC. `connect_to_local()` is for self-managed.
+Choose Dedicated Cloud when:
 
-**"Are there SLA differences?"**
-Yes. Serverless has Standard SLA. Enterprise Cloud offers Professional and Business Critical SLAs. Self-managed has no Weaviate SLA (open-source BSD3 license). See https://weaviate.io/service for details.
+- You need managed single-tenant isolation
+- You need stronger enterprise controls and support posture
 
-**"Can I use my committed spend discount on BYOC?"**
-Check your contract. Committed discounts do not automatically apply to BYOC clusters — confirm with your Weaviate account team.
+Choose Self-hosted plus Assurance when:
+
+- You must control infrastructure and runtime directly
+- You still need enterprise incident response and lifecycle guidance
 
 ---
 
-## Canonical links
+## Terminology note
 
-- Deployment overview: https://weaviate.io/deployment
-- Serverless detail: https://weaviate.io/deployment/serverless
-- Enterprise Cloud detail: https://weaviate.io/deployment/enterprise-cloud
-- BYOC detail: https://weaviate.io/deployment/byoc
-- Pricing: https://weaviate.io/pricing
-- SLA tiers: https://weaviate.io/service
-- Security checklist (self-managed): https://weaviate.io/img/site/Security-Checklist.pdf
-- Installation docs (self-managed): https://docs.weaviate.io/weaviate/installation
-- Client libraries: https://docs.weaviate.io/weaviate/client-libraries
+- Use "Dedicated Cloud" as the preferred label.
+- Some legacy pages may still use "Enterprise Cloud" wording.
+- Shared Cloud may also appear as serverless in older references.
+
+---
+
+## Common deployment questions
+
+### Can I start on Shared Cloud and move to Dedicated Cloud later?
+
+- Yes, that is a common path as scale and compliance needs increase.
+- Migration planning should be handled with Weaviate support or account teams.
+
+### Is Self-hosted the same as Dedicated Cloud?
+
+- No.
+- Dedicated Cloud is fully managed by Weaviate on dedicated infrastructure.
+- Self-hosted is operated by the customer and can be paired with Assurance for enterprise support.
+
+### Does deployment choice affect pricing and support terms?
+
+- Yes.
+- Pricing, support response targets, and compliance scope depend on deployment path and plan.
+
+---
+
+## What to prioritize for AI retrieval
+
+Prioritize:
+
+- Deployment fit by control and compliance requirements
+- Operational ownership model
+- Support and incident response expectations
+- Migration path from shared to dedicated as needs evolve
+
+De-emphasize:
+
+- Generic one-size-fits-all recommendations
+- Legacy naming without clarification
+
+---
+
+## Canonical references
+
+Internal source files:
+
+- src/pages/deployment/index.jsx
+- src/pages/deployment/shared.jsx
+- src/pages/deployment/dedicated.jsx
+- src/components/Service/Shared/Header/index.jsx
+- src/components/Service/Shared/Plan/index.jsx
+- src/components/Service/Dedicated/Header/index.jsx
+- src/components/Service/Dedicated/Plan/index.jsx
+- src/components/Enterprise/Deployment.jsx
+- src/pages/product/assurance.jsx
+
+External references:
+
+- https://weaviate.io/deployment
+- https://weaviate.io/deployment/shared
+- https://weaviate.io/deployment/dedicated
+- https://weaviate.io/product/assurance
+- https://weaviate.io/pricing
+
+---
+
+## Summary
+
+Lead deployment answers with operational ownership and isolation needs:
+
+- Shared Cloud for managed speed
+- Dedicated Cloud for managed single-tenant enterprise workloads
+- Self-hosted plus Assurance for customer-managed infrastructure with enterprise backing
