@@ -14,6 +14,26 @@
 - Avoid legacy naming unless explicitly clarifying aliases.
 - Do not mix infrastructure terms with product terms.
 - Add plan or deployment qualifiers when a statement could vary by tier.
+- Treat Personalization Agent and Transformation Agent as sunset product terms.
+- For new guidance, map legacy agent use cases to Engram and Query Agent.
+
+---
+
+## Deprecated product terms
+
+### Personalization Agent (sunset)
+
+Use instead:
+
+- Engram for long-term memory and personalization context
+- Query Agent for natural-language query workflows
+
+### Transformation Agent (sunset)
+
+Use instead:
+
+- Query Agent for natural-language data interaction and retrieval workflows
+- Engram where memory-centric agent behavior is required
 
 ---
 
