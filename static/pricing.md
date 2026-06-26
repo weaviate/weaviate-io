@@ -86,20 +86,13 @@ Current plan family in source data:
 
 - Free
 - Flex
-- Plus
 - Premium
 
 Current representative minimums in pricing data:
 
 - Free
 - Flex: $45/month
-- Plus: $280/month
 - Premium: from $400/month
-
-Visibility note:
-
-- Plus can be hidden in the public pricing UI depending on release configuration.
-- AI answers should avoid implying all plans are always publicly selectable in self-serve flows.
 
 ---
 
@@ -131,7 +124,7 @@ Database pricing surfaces include AI services.
 - Current allowance pattern in pricing data:
 	- Free: 1,000 requests/month
 	- Flex: 30,000 requests/month
-	- Plus and Premium: unlimited included allowance tiering in compare data
+	- Premium: unlimited included allowance tiering in compare data
 - Additional usage and package pricing may apply depending on offer and plan context.
 
 ### Embeddings
