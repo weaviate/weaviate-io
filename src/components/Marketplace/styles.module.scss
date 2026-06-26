@@ -1220,7 +1220,7 @@
 
   border: 1px solid #39425b;
   background: transparent;
-  width: 8.6875rem;
+
   height: 2.1875rem;
   color: #d0d8ea;
   text-align: center;
@@ -1615,6 +1615,7 @@
   width: 0.84375rem;
   height: 0.9375rem;
   flex-shrink: 0;
+  filter: invert(1);
 }
 
 .arrow {
@@ -1623,6 +1624,7 @@
   width: 0.5625rem;
   height: 0.5625rem;
   flex-shrink: 0;
+  filter: invert(1);
 }
 
 .mediaSlot {
