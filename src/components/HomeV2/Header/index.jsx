@@ -1,54 +1,46 @@
-import Link from '@docusaurus/Link';
-import React, { useEffect, useState } from 'react';
-import styles from './styles.module.scss';
-import { LinkButton, ButtonContainer } from '/src/theme/Buttons';
+import Link from "@docusaurus/Link";
+import React, { useEffect, useState } from "react";
+import styles from "./styles.module.scss";
+import { LinkButton, ButtonContainer } from "/src/theme/Buttons";
 
 const hpLogos = [
-  'akamai-logo.svg',
-  'alexi-logo.svg',
-  'asksage-logo.svg',
-  'avara-logo.svg',
-  'build_logo_Kapa_AI.svg',
-  'build_logo_point72.svg',
-  'build-ltk-logo.svg',
-  'build-trc-logo.svg',
-  'build-vw-logo.svg',
-  'bumble_logo.svg',
-  'bunq.svg',
-  'cisco.svg',
-  'deacero-logo.svg',
-  'factset.svg',
-  'finster-logo.svg',
-  'givingcompass-logo.svg',
-  'globo-logo.png',
-  'gloo-logo.svg',
-  'instabase.svg',
-  'Intel-logo.svg',
-  'intuit-logo.svg',
-  'inveniam-logo.svg',
-  'Kantar-logo.svg',
-  'Kuhnelo-logo.svg',
-  'loti-white.svg',
-  'MBH-bank-logo.svg',
-  'medengine-logo.svg',
-  'mednet-logo.svg',
-  'MTG-logo.svg',
-  'nato.svg',
-  'netapp.svg',
-  'oliver-logo.svg',
-  'PA-Logo.svg',
-  'Patronus-Logo.svg',
-  'Perceptyx-logo.svg',
-  'predori-logo.svg',
-  'proposal-logo.svg',
-  'rohirrim-logo.svg',
-  'scribd.svg',
-  'Sing-Tao-logo.svg',
-  'stack.svg',
-  'thales-logo.svg',
-  'toric-logo.svg',
-  'Vecflow-august.svg',
-  'yabble-logo.svg',
+  "akamai-logo.svg",
+  "alexi-logo.svg",
+  "asksage-logo.svg",
+  "build_logo_Kapa_AI.svg",
+  "build_logo_point72.svg",
+  "build-ltk-logo.svg",
+  "build-trc-logo.svg",
+  "bumble_logo.svg",
+  "bunq.svg",
+  "cisco.svg",
+  "deacero-logo.svg",
+  "factset.svg",
+  "finster-logo.svg",
+  "givingcompass-logo.svg",
+  "globo-logo.png",
+  "gloo-logo.svg",
+  "HPE_logo.svg",
+  "instabase.svg",
+  "intuit-logo.svg",
+  "inveniam-logo.svg",
+  "Kantar-logo.svg",
+  "loti-white.svg",
+  "MBH-bank-logo.svg",
+  "mednet-logo.svg",
+  "MTG-logo.svg",
+  "netapp.svg",
+  "oliver-logo.svg",
+  "Patronus-Logo.svg",
+  "Perceptyx-logo.svg",
+  "predori-logo.svg",
+  "proposal-logo.svg",
+  "rohirrim-logo.svg",
+  "saga_legal.svg",
+  "scribd.svg",
+  "stack.svg",
+  "thales-logo.svg",
+  "yabble-logo.svg",
 ];
 
 function shuffle(arr) {
@@ -79,7 +71,7 @@ export default function StudyHeader() {
             </h1>
             <p>
               Start fast, scale to billions with a feature-rich vector database
-              trusted by AI innovators{' '}
+              trusted by AI innovators{" "}
             </p>
             <div className={styles.headerBox}>
               <div className={styles.buttons}>
@@ -109,7 +101,7 @@ export default function StudyHeader() {
               key={i}
               className={styles.logo}
               style={{ backgroundImage: `url('/img/site/HP-logos/${file}')` }}
-              aria-label={file.replace(/\.(png|svg)$/i, '')}
+              aria-label={file.replace(/\.(png|svg)$/i, "")}
               role="img"
             />
           ))}

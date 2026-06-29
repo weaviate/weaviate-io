@@ -1,56 +1,48 @@
-import Link from '@docusaurus/Link';
-import React, { useEffect, useState } from 'react';
-import styles from './stylesTwoLine.module.scss';
+import Link from "@docusaurus/Link";
+import React, { useEffect, useState } from "react";
+import styles from "./stylesTwoLine.module.scss";
 
 const hpLogos = [
-  'answear_logo.svg',
-  'akamai-logo.svg',
-  'alexi-logo.svg',
-  'asksage-logo.png',
-  'avara-logo.svg',
-  'booking-logo.svg',
-  'bosch-logo.svg',
-  'build_logo_Kapa_AI.svg',
-  'build_logo_point72.svg',
-  'build-ltk-logo.svg',
-  'build-trc-logo.svg',
-  'build-vw-logo.svg',
-  'bumble_logo.svg',
-  'deel-logo.svg',
-  'cisco.svg',
-  'deacero-logo.svg',
-  'factset.svg',
-  'finster-logo.svg',
-  'givingcompass-logo.svg',
-  'globo-logo.png',
-  'gloo-logo.svg',
-  'Intel-logo.svg',
-  'intuit-logo.svg',
-  'inveniam-logo.svg',
-  'Kantar-logo.svg',
-  'Kuhnelo-logo.svg',
-  'loti-white.svg',
-  'MBH-bank-logo.svg',
-  'medengine-logo.svg',
-  'mednet-logo.svg',
-  'MTG-logo.svg',
-  'nato.svg',
-  'netapp.svg',
-  'oliver-logo.svg',
-  'PA-Logo.svg',
-  'Patronus-Logo.svg',
-  'Perceptyx-logo.svg',
-  'predori-logo.svg',
-  'proposal-logo.svg',
-  'prm_logo.svg',
-  'scribd.svg',
-  'Sing-Tao-logo.svg',
-  'stack.svg',
-  'thales-logo.svg',
-  'toric-logo.svg',
-  'Vecflow-august.svg',
-  'yabble-logo.svg',
-  'wearmedicine_logo.svg',
+  "answear_logo.svg",
+  "akamai-logo.svg",
+  "alexi-logo.svg",
+  "asksage-logo.png",
+  "booking-logo.svg",
+  "bosch-logo.svg",
+  "build_logo_Kapa_AI.svg",
+  "build_logo_point72.svg",
+  "build-ltk-logo.svg",
+  "build-trc-logo.svg",
+  "bumble_logo.svg",
+  "deel-logo.svg",
+  "cisco.svg",
+  "deacero-logo.svg",
+  "factset.svg",
+  "finster-logo.svg",
+  "givingcompass-logo.svg",
+  "globo-logo.png",
+  "gloo-logo.svg",
+  "HPE_logo.svg",
+  "intuit-logo.svg",
+  "inveniam-logo.svg",
+  "Kantar-logo.svg",
+  "loti-white.svg",
+  "MBH-bank-logo.svg",
+  "mednet-logo.svg",
+  "MTG-logo.svg",
+  "netapp.svg",
+  "oliver-logo.svg",
+  "Patronus-Logo.svg",
+  "Perceptyx-logo.svg",
+  "predori-logo.svg",
+  "proposal-logo.svg",
+  "prm_logo.svg",
+  "saga_legal.svg",
+  "scribd.svg",
+  "stack.svg",
+  "thales-logo.svg",
+  "yabble-logo.svg",
+  "wearmedicine_logo.svg",
 ];
 
 function shuffle(arr) {
@@ -85,7 +77,7 @@ export default function StudyHeaderTwoLine() {
               <span>turning ideas into products</span>
             </h1>
             <p>
-              Design, build, and ship complete AI experiences with Weaviate{' '}
+              Design, build, and ship complete AI experiences with Weaviate{" "}
             </p>
             <div className={styles.headerBox}>
               <div className={styles.buttons}>
