@@ -75,13 +75,7 @@ module.exports = async function createConfigAsync() {
       };
     },
   }),
-        [
-            '@docusaurus/plugin-google-gtag',
-            {
-                trackingID:  'None',
-                anonymizeIP: true,
-            },
-        ],
+      
 
         [
             '@docusaurus/plugin-google-tag-manager',
