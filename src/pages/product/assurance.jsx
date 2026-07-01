@@ -71,24 +71,15 @@ const tiers = [
     featured: false,
   },
   {
-    title: "Plus",
-    badge: "Most popular",
-    intro: "Deeper engineering engagement and access to operational tooling.",
+    title: "Premium",
+    badge: null,
+    intro: "Self-service diagnostics and forward-looking capacity planning.",
     features: [
       "Everything in Flex",
       "Weekly expert office hours (52 hrs/year)",
       "Weaviate Kubernetes Operator access",
       "Weaviate Tenant Controller access",
       "Pre-release upgrade calls for every release",
-    ],
-    featured: true,
-  },
-  {
-    title: "Premium",
-    badge: "Coming soon",
-    intro: "Self-service diagnostics and forward-looking capacity planning.",
-    features: [
-      "Everything in Plus",
       "Support Portal with self-service diagnostics",
       "Custom monitoring & alerting integration",
       "Capacity planning tools",
@@ -495,7 +486,7 @@ function Tiers() {
             className="tw-m-0 tw-text-[2.2rem] tw-font-semibold tw-leading-[130%] tw-tracking-[-0.03em] tw-text-[#DDEBF2]"
             style={headingFont}
           >
-            Three tiers, standardized entitlements
+            Two tiers, standardized entitlements
           </h2>
           <p
             className="tw-mx-auto tw-mt-5 tw-max-w-2xl tw-text-lg tw-leading-relaxed tw-text-[#B9C8DE]"
@@ -507,7 +498,7 @@ function Tiers() {
           </p>
         </div>
 
-        <div className="tw-grid tw-gap-6 lg:tw-grid-cols-3">
+        <div className="tw-mx-auto tw-grid tw-max-w-[920px] tw-gap-6 lg:tw-grid-cols-2">
           {tiers.map((tier) => (
             <article
               key={tier.title}

@@ -24,7 +24,7 @@ const cards = [
     points: [
       "Zero infrastructure to operate",
       "Scales from prototype to production",
-      "Available on Flex, Plus, and Premium plans",
+      "Available on Flex and Premium plans",
     ],
     link: "/deployment/shared",
     cta: "Explore Shared Cloud",

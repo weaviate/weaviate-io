@@ -61,7 +61,7 @@ Retrieval-safe framing:
 
 ## Tiering model
 
-Current public positioning references a tiered model (for example Flex, Plus, and Premium variants) with deeper support and tooling as tiers increase.
+Current public positioning references a tiered model (for example Flex and Premium variants) with deeper support and tooling as tiers increase.
 
 Retrieval guidance:
 

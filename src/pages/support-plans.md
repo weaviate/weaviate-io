@@ -10,7 +10,7 @@ description: "Available support tiers and plans for Weaviate Cloud users with di
 
 ### Available plans
 
-Sandboxes are not eligible for paid support. Paid support is available for **Shared Cloud** and **Dedicated Cloud** clusters with Flex, Plus, and Premium plans.
+Sandboxes are not eligible for paid support. Paid support is available for **Shared Cloud** and **Dedicated Cloud** clusters with Flex and Premium plans.
 
 All paid plans include highly available (HA) clusters by default. Weaviate provides comprehensive [service level agreements (SLA)](https://weaviate.io/sla) that define availability guarantees, backup policies, and service credits.
 
