@@ -9,7 +9,7 @@ const PREVIEWS = [
     title: "Agentic Provisioning - Clusters",
     description:
       "Enable agents to provision and manage Weaviate Cloud clusters, with human-in-the-loop authentication for sensitive actions.",
-    graphic: "/img/site/book-rag-graphic.svg",
+    graphic: "/img/site/2026/Agentic_Provisioning.svg",
     learnMoreHref: "",
   },
   {
@@ -18,7 +18,7 @@ const PREVIEWS = [
     title: "Model Evaluation Tool",
     description:
       "Evaluate and compare embedding models using your own data and queries in Weaviate Cloud.",
-    graphic: "/img/site/book-scale-graphic.svg",
+    graphic: "/img/site/2026/Model_Evaluation_Tool.svg",
     learnMoreHref: "",
   },
   {
@@ -27,7 +27,7 @@ const PREVIEWS = [
     title: "Query Agent Research Mode",
     description:
       "An async agent API for deep research tasks based on data stored in Weaviate Cloud.",
-    graphic: "/img/site/book-agentic-graphic.svg",
+    graphic: "/img/site/2026/Query_Agent_Research_Mode.svg",
     learnMoreHref: "",
   },
 ];
