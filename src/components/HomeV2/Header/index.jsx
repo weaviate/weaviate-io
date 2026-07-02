@@ -6,7 +6,6 @@ import { LinkButton, ButtonContainer } from "/src/theme/Buttons";
 const hpLogos = [
   "akamai-logo.svg",
   "alexi-logo.svg",
-  "asksage-logo.svg",
   "build_logo_Kapa_AI.svg",
   "build_logo_point72.svg",
   "build-ltk-logo.svg",
@@ -34,7 +33,6 @@ const hpLogos = [
   "Patronus-Logo.svg",
   "Perceptyx-logo.svg",
   "predori-logo.svg",
-  "proposal-logo.svg",
   "rohirrim-logo.svg",
   "saga_legal.svg",
   "scribd.svg",

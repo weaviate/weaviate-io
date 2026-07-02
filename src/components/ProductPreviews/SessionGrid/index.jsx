@@ -4,6 +4,15 @@ import styles from "./styles.module.scss";
 
 const PREVIEWS = [
   {
+    id: "agentic-provisioning",
+    label: "PREVIEW",
+    title: "Agentic Provisioning - Clusters",
+    description:
+      "Enable agents to provision and manage Weaviate Cloud clusters, with human-in-the-loop authentication for sensitive actions.",
+    graphic: "/img/site/book-rag-graphic.svg",
+    learnMoreHref: "",
+  },
+  {
     id: "model-eval",
     label: "PREVIEW",
     title: "Model Evaluation Tool",

@@ -4,6 +4,7 @@ import styles from "./styles.module.scss";
 const PREVIEW_TO_HUBSPOT_VALUE = {
   "model-eval": "Model Evaluation Tool - Cloud Console",
   "query-agent-research": "Query Agent - Research Mode",
+  "agentic-provisioning": "Agentic Provisioning - Clusters",
 };
 
 const HUBSPOT_FIELD_NAME = "early_access_productfeature";

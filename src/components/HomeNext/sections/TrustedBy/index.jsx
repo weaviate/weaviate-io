@@ -4,7 +4,6 @@ const logos = [
   "answear_logo.svg",
   "akamai-logo.svg",
   "alexi-logo.svg",
-  "asksage-logo.png",
   "booking-logo.svg",
   "bosch-logo.svg",
   "build_logo_Kapa_AI.svg",
@@ -33,7 +32,6 @@ const logos = [
   "Patronus-Logo.svg",
   "Perceptyx-logo.svg",
   "predori-logo.svg",
-  "proposal-logo.svg",
   "prm_logo.svg",
   "saga_legal.svg",
   "scribd.svg",
@@ -44,6 +42,8 @@ const logos = [
 ];
 
 const loopedLogos = [...logos, ...logos];
+const DESKTOP_MARQUEE_DURATION_SECONDS = 250;
+const MOBILE_MARQUEE_DURATION_SECONDS = 350;
 
 function LogoCard({ logo, mobile = false }) {
   return (
@@ -67,6 +67,37 @@ function LogoCard({ logo, mobile = false }) {
 }
 
 export default function TrustedBy() {
+  const [animationDelays, setAnimationDelays] = React.useState({
+    desktop: "0s",
+    mobile: "0s",
+  });
+  const [isDesktopPaused, setIsDesktopPaused] = React.useState(false);
+  const [isMobilePaused, setIsMobilePaused] = React.useState(false);
+  const desktopContainerRef = React.useRef(null);
+  const mobileContainerRef = React.useRef(null);
+
+  const handleWheelWhenPaused = React.useCallback(
+    (event, containerRef, isPaused) => {
+      if (!isPaused || !containerRef.current) return;
+
+      // While paused, map vertical wheel movement to horizontal scrolling.
+      event.preventDefault();
+      containerRef.current.scrollLeft += event.deltaY + event.deltaX;
+    },
+    [],
+  );
+
+  React.useEffect(() => {
+    setAnimationDelays({
+      desktop: `-${(Math.random() * DESKTOP_MARQUEE_DURATION_SECONDS).toFixed(
+        2,
+      )}s`,
+      mobile: `-${(Math.random() * MOBILE_MARQUEE_DURATION_SECONDS).toFixed(
+        2,
+      )}s`,
+    });
+  }, []);
+
   return (
     <section className="tw-bg-[#111111] tw-pb-10 tw-pt-2 md:tw-pb-12 md:tw-pt-2">
       <div className="tw-mx-auto tw-max-w-7xl tw-px-6">
@@ -82,10 +113,34 @@ export default function TrustedBy() {
           <div className="tw-pointer-events-none tw-absolute tw-bottom-0 tw-left-0 tw-top-0 tw-z-10 tw-w-10 tw-bg-[linear-gradient(90deg,#111111_0%,rgba(17,17,17,0)_100%)]" />
           <div className="tw-pointer-events-none tw-absolute tw-bottom-0 tw-right-0 tw-top-0 tw-z-10 tw-w-10 tw-bg-[linear-gradient(270deg,#111111_0%,rgba(17,17,17,0)_100%)]" />
 
-          <div className="trusted-logos-track-mobile tw-flex tw-w-max tw-gap-3">
-            {loopedLogos.map((logo, index) => (
-              <LogoCard key={`mobile-${logo}-${index}`} logo={logo} mobile />
-            ))}
+          <div
+            ref={mobileContainerRef}
+            className={
+              isMobilePaused
+                ? "tw-overflow-x-auto tw-overflow-y-hidden"
+                : "tw-overflow-hidden"
+            }
+            onMouseEnter={() => setIsMobilePaused(true)}
+            onMouseLeave={() => setIsMobilePaused(false)}
+            onTouchStart={() => setIsMobilePaused(true)}
+            onTouchEnd={() => setIsMobilePaused(false)}
+            onTouchCancel={() => setIsMobilePaused(false)}
+            onWheel={(event) =>
+              handleWheelWhenPaused(event, mobileContainerRef, isMobilePaused)
+            }
+          >
+            <div
+              className="trusted-logos-track-mobile tw-flex tw-w-max tw-gap-3"
+              style={{
+                "--trusted-logos-mobile-duration": `${MOBILE_MARQUEE_DURATION_SECONDS}s`,
+                "--trusted-logos-mobile-delay": animationDelays.mobile,
+                animationPlayState: isMobilePaused ? "paused" : "running",
+              }}
+            >
+              {loopedLogos.map((logo, index) => (
+                <LogoCard key={`mobile-${logo}-${index}`} logo={logo} mobile />
+              ))}
+            </div>
           </div>
         </div>
 
@@ -94,10 +149,31 @@ export default function TrustedBy() {
           <div className="tw-pointer-events-none tw-absolute tw-bottom-0 tw-left-0 tw-top-0 tw-z-10 tw-w-24 tw-bg-[linear-gradient(90deg,#111111_0%,rgba(17,17,17,0)_100%)]" />
           <div className="tw-pointer-events-none tw-absolute tw-bottom-0 tw-right-0 tw-top-0 tw-z-10 tw-w-24 tw-bg-[linear-gradient(270deg,#111111_0%,rgba(17,17,17,0)_100%)]" />
 
-          <div className="trusted-logos-track tw-flex tw-w-max tw-gap-4">
-            {loopedLogos.map((logo, index) => (
-              <LogoCard key={`${logo}-${index}`} logo={logo} />
-            ))}
+          <div
+            ref={desktopContainerRef}
+            className={
+              isDesktopPaused
+                ? "tw-overflow-x-auto tw-overflow-y-hidden"
+                : "tw-overflow-hidden"
+            }
+            onMouseEnter={() => setIsDesktopPaused(true)}
+            onMouseLeave={() => setIsDesktopPaused(false)}
+            onWheel={(event) =>
+              handleWheelWhenPaused(event, desktopContainerRef, isDesktopPaused)
+            }
+          >
+            <div
+              className="trusted-logos-track tw-flex tw-w-max tw-gap-4"
+              style={{
+                "--trusted-logos-duration": `${DESKTOP_MARQUEE_DURATION_SECONDS}s`,
+                "--trusted-logos-delay": animationDelays.desktop,
+                animationPlayState: isDesktopPaused ? "paused" : "running",
+              }}
+            >
+              {loopedLogos.map((logo, index) => (
+                <LogoCard key={`${logo}-${index}`} logo={logo} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
