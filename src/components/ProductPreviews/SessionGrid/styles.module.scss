@@ -183,13 +183,12 @@
 }
 
 .graphic {
-  min-height: 210px;
+  min-height: 200px;
   border-radius: 1rem;
-  padding: clamp(14px, 1.3vw, 18px);
+  padding: clamp(44px, 1.3vw, 58px);
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: invert(1);
 
   img {
     width: 100%;
