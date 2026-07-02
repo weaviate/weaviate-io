@@ -8,7 +8,7 @@ const PREVIEWS = [
     label: "PREVIEW",
     title: "Agentic Provisioning - Clusters",
     description:
-      "Sign up and provision Weaviate Cloud clusters via the Weaviate CLI; built for agents, with human-in-the-loop authentication.",
+      "Enable agents to provision and manage Weaviate Cloud clusters, with human-in-the-loop authentication for sensitive actions.",
     graphic: "/img/site/book-rag-graphic.svg",
     learnMoreHref: "",
   },
