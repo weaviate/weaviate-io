@@ -17,7 +17,7 @@ const databasePlans = [
       '100,000 objects · 1 GB memory · 10 GB disk.',
       '1 collection, up to 3 tenants.',
       'Embeddings (2,000 req/day) + Query Agent (1,000 req/mo).',
-      'Help via Weaviate Slack & Community.',
+      'Basic support',
     ],
   },
   {
@@ -39,7 +39,7 @@ const databasePlans = [
       'Baseline security with RBAC.',
       'Highly available clusters — 99.5% uptime.',
       'Query Agent free tier + usage-based; Embeddings usage-based.',
-      'Email support, next-business-day Severity 1 response.',
+      'Standard support — next-business-day Sev 1.',
     ],
   },
   {
@@ -82,7 +82,7 @@ const databasePlans = [
       'Trusted reliability — up to 99.95% uptime.',
       'Global coverage on AWS, GCP & Azure.',
       'Query Agent free tier + usage-based; Embeddings usage-based.',
-      'Enterprise support: as low as 1-hour Sev 1, Technical Account Team.',
+      'Enterprise support — as fast as 1-hour Sev 1 + dedicated Technical Account Team.',
     ],
   },
 ];
