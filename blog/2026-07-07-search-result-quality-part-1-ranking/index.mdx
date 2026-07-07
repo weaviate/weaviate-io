@@ -1,0 +1,173 @@
+---
+title: "Ranking: getting the right results to the top"
+slug: search-result-quality-ranking
+authors: [ivan]
+date: 2026-07-07
+tags: ["concepts", "engineering", "search"]
+description: "The right documents come back, but in the wrong order. A practical tour of Weaviate's ranking dials — alpha, fusion, reranking, and Boost — with runnable code."
+---
+
+{/* TODO(publish): add hero image at ./img/hero.png, then restore the `image: ./img/hero.png` frontmatter line and a leading ![alt](./img/hero.png) tag. */}
+{/* TODO(publish): date is a placeholder — set the real publish date before release. */}
+
+Your retrieval works. You type a question, the right page is somewhere in the results, and yet the answer your users actually needed is sitting at position seven. The search isn't *broken* — it's *mis-ordered*. That gap between "relevant results came back" and "the best result is on top" is where a surprising amount of search quality is won or lost.
+
+It helps to split search into three stages. **Retrieval** finds a candidate set. **Ranking** reorders that set so the best items rise. **Presentation** cleans up what's left — removing duplicates, adding diversity, explaining scores. Most teams pour their energy into stage one and treat the order they get back as a given. This post is about stage two: the dials Weaviate gives you to *reorder the set you already retrieved*.
+
+We'll use one running example throughout: a documentation search over a `DocChunk` collection, the kind you'd build for RAG. Each object has `content`, `title`, `url`, `product`, `version`, and `updated_at`. It's a deceptively hard ranking problem — chunked pages produce near-duplicates, old versions cause staleness, and "relevant-ish but wrong order" is the everyday symptom. We'll fix the ordering here; the cleanup (dedupe, diversity, explainability) is Part 2.
+
+{/* TODO(publish): this is Part 1 of 2; link Part 2 "Clean result sets: dedupe, diversify, and explain" once published. */}
+
+{/* TODO(verify): the local test instance runs on :8090 — execute every snippet with weaviate.connect_to_local(port=8090). Published snippets use the default 8080 so readers can copy-paste against a standard Docker deployment. Assume `DocChunk` already exists and is populated. */}
+
+## The alpha dial: keyword vs. vector
+
+Hybrid search runs two retrievers — BM25 keyword scoring and vector similarity — and fuses their results. The single most important knob is `alpha`, which sets **how much weight the vector side gets**. `alpha=0` is pure keyword, `alpha=1` is pure vector, and everything in between is a blend. If you don't set it, Weaviate uses **`alpha=0.75`** — deliberately vector-leaning, because semantic recall is usually the stronger default for natural-language queries.
+
+But "usually" isn't "always." A query like `configure backups to S3` carries an exact token — `S3` — that pure vector search can smear into "cloud storage" and bury. The fastest way to build intuition is to sweep `alpha` and watch the top results move:
+
+```python
+import weaviate
+
+client = weaviate.connect_to_local()
+docs = client.collections.use("DocChunk")
+
+for alpha in [0.0, 0.5, 0.75, 1.0]:
+    response = docs.query.hybrid(
+        query="configure backups to S3",
+        alpha=alpha,
+        limit=5,
+    )
+    titles = [o.properties["title"] for o in response.objects]
+    print(f"alpha={alpha}: {titles}")
+
+client.close()
+```
+
+At `alpha=0` the exact `S3` mentions dominate; at `alpha=1` the conceptually-related backup pages surface even when they phrase things differently. Somewhere in between is the ordering your users actually want. There's no universal best value — sweep it against a handful of real queries and pick what wins. (Auto-tuning `alpha` per query is an open idea the team is tracking in [issue #11627](https://github.com/weaviate/weaviate/issues/11627); for now it's a dial you set.)
+
+:::note[The BM25 half, in brief]
+The keyword side is [BM25](https://docs.weaviate.io/weaviate/search/bm25), with sensible defaults (`k1=1.2`, `b=0.75`) you rarely need to touch. Two levers matter for ranking: you can weight fields with `query_properties=["content^2", "title"]` so a title match counts double, and you can require all query tokens with `bm25_operator=BM25Operator.and_()` (versus the default OR). One sharp edge to know: under Weaviate's default keyword backend, **`AND` is scoped per-property** — every token must co-occur *within a single searched property*, not spread across fields. A query that matches `backups` in `content` and `S3` in `title` will **not** satisfy `AND`. It's a common surprise; plan for it, or stay on OR.
+:::
+
+## Fusion: how the two lists become one
+
+Once both retrievers return their ranked lists, Weaviate has to merge them, and *how* it merges changes the outcome. There are two algorithms.
+
+**`rankedFusion`** is Reciprocal Rank Fusion (RRF). It throws away raw scores and looks only at rank position: each result contributes `weight / (rank + 60)`. That constant, `60`, is the classic RRF `k` — and in Weaviate it's **hardcoded, not a tunable parameter**. RRF is robust precisely because it ignores score magnitudes, so a wildly out-of-scale outlier from one retriever can't hijack the result.
+
+**`relativeScoreFusion`** keeps the magnitudes. It min-max normalizes each retriever's scores to `[0, 1]` and then blends them by weight. Because it preserves *how much* better one result was than the next — not just that it ranked higher — it responds smoothly to your `alpha` setting. This is the **server default**.
+
+```python
+from weaviate.classes.query import HybridFusion
+
+response = docs.query.hybrid(
+    query="configure backups to S3",
+    alpha=0.6,
+    fusion_type=HybridFusion.RELATIVE_SCORE,  # the default; try HybridFusion.RANKED for RRF
+    limit=5,
+)
+```
+
+When should you switch to RRF? When one retriever's scores are erratic or on a strange scale and you'd rather trust pure rank order than raw numbers. The rest of the time, `relativeScoreFusion` plus a tuned `alpha` is the more expressive pairing — and it's the combination that makes Weaviate's fusion *tunable* rather than one-size-fits-all. Everyone in this space ships RRF; the normalized-score-plus-alpha story is the one worth learning. If you want the math, our [deep dive on fusion algorithms](/blog/hybrid-search-fusion-algorithms) walks through it.
+
+## Reranking: a second, smarter opinion
+
+Hybrid fusion is fast but shallow — it never reads a query and a document *together*. A **reranker** does exactly that: a cross-encoder model scores each `(query, document)` pair directly, catching relevance that bi-encoder embeddings miss. Weaviate ships six reranker modules. Five are API-based and need a provider key — `reranker-cohere`, `reranker-voyageai`, `reranker-jinaai`, `reranker-nvidia`, and `reranker-contextualai` — and one, `reranker-transformers`, runs self-hosted so nothing leaves your infrastructure.
+
+Here's the one fact that trips people up, and it's worth tattooing somewhere: **a reranker only reorders the page you already retrieved.** It does not re-query the corpus. If your hybrid search returned 10 objects, the reranker shuffles those 10 — it can't pull in an 11th that scored just below the cut. So the move is always the same: **over-fetch first, rerank second.** Raise your `limit` to give the reranker a deep enough pool to work with, then let it surface the best of that pool.
+
+```python
+from weaviate.classes.query import Rerank, MetadataQuery
+
+response = docs.query.hybrid(
+    query="configure backups to S3",
+    alpha=0.6,
+    limit=50,  # over-fetch: the reranker can only reorder what you retrieved
+    rerank=Rerank(prop="content", query="configure backups to S3"),
+    return_metadata=MetadataQuery(score=True),
+)
+
+for o in response.objects[:5]:
+    print(o.properties["title"], o.metadata.rerank_score)
+```
+
+Be honest about the tradeoffs. Reranking a pool of 50 is far slower than fusing scores, so it's a top-of-funnel refinement, not something to run over thousands of candidates. And on the provider side, this is an area where Weaviate leans on the ecosystem rather than owning it: Pinecone hosts its own rerank models, and Elastic ships a first-party Elastic Rerank model plus Learning-to-Rank. Weaviate relies on these external provider modules — there's no first-party hosted reranker and no LTR yet. In exchange you get provider choice and a self-hosted option; it's a real tradeoff, not a clear win. (For the concepts, see the [reranking docs](https://docs.weaviate.io/weaviate/search/rerank).)
+
+{/* TODO(publish): CONFIRM Boost API is GA and stamp the exact version. As of drafting it is Preview in 1.38. If still Preview at publish, reframe this section with a preview caveat. */}
+
+## Boost: rank by your business signals
+
+Relevance to the *query* isn't the only thing you care about. A documentation search has opinions the query never states: newer pages beat older ones, the current release beats a version from two years ago. The **Boost API** lets you fold those signals into the ranking at query time.
+
+A boost is a **soft rescorer**. The primary search over-fetches a pool of candidates, the boost re-scores them against your conditions, and the pool is re-sorted. The crucial word is *soft*: **a boost never excludes anything.** Unlike a filter, a non-matching object isn't dropped — it just ranks lower. That's what makes it safe to reach for; you're nudging the order, not risking an empty result set. You can stack up to **20 conditions** in a single boost.
+
+For `DocChunk`, two signals cover most of the staleness pain: decay the score by how old a page is, and give a lift to chunks from the version the user is on. `Boost.blend()` combines them, each with its own relative weight:
+
+```python
+from weaviate.classes.query import Boost, Filter
+
+response = docs.query.hybrid(
+    query="configure backups to S3",
+    alpha=0.6,
+    limit=50,  # final results returned after re-scoring
+    boost=Boost.blend(
+        [
+            Boost.time_decay("updated_at", scale="180d", weight=1.0),
+            Boost.filter(Filter.by_property("version").equal("1.38"), weight=0.5),
+        ],
+        weight=0.4,  # how strongly the blended boost pulls against the primary score
+    ),
+)
+```
+
+{/* TODO(verify): confirm the Boost client surface (Boost.blend / time_decay / filter, weight/scale kwargs) against the installed weaviate-python-client version — this landed in python-client PR #2030. */}
+
+The recency condition scores a page `1.0` today and decays it as `updated_at` moves into the past — `scale="180d"` sets how fast. The version condition lifts anything tagged `1.38`. The outer `weight=0.4` controls how hard the whole boost pulls against the query-relevance score, so you're never fully overriding relevance — just leaning on it.
+
+This is where Weaviate has a genuinely ownable angle. Rivals ship rescoring too — Elastic's `function_score`, Qdrant's `FormulaQuery`, and Milvus's decay ranker all let you fold recency or formula-based signals into the score. The difference is scope: those are a separate rescoring mechanism you wire up per retrieval mode, whereas Weaviate's Boost applies the same decay-and-business-signal logic across vector, keyword, *and* hybrid search in a single call — so the same recency-and-version rules hold whether the underlying search was semantic, lexical, or a blend of both. (Full parameter reference — curves, offsets, numeric decay — is in the [Boost docs](https://docs.weaviate.io/weaviate/search/boost).)
+
+## Putting it together
+
+None of these dials are exclusive. A production query often fuses two retrievers, hands the pool to a reranker, and blends in business signals — in a single call:
+
+```python
+from weaviate.classes.query import HybridFusion, Rerank, Boost, Filter, MetadataQuery
+
+response = docs.query.hybrid(
+    query="configure backups to S3",
+    alpha=0.6,
+    fusion_type=HybridFusion.RELATIVE_SCORE,
+    limit=50,  # over-fetch once; rerank and boost both work on this pool
+    rerank=Rerank(prop="content", query="configure backups to S3"),
+    boost=Boost.blend(
+        [
+            Boost.time_decay("updated_at", scale="180d", weight=1.0),
+            Boost.filter(Filter.by_property("version").equal("1.38"), weight=0.5),
+        ],
+        weight=0.4,
+    ),
+    return_metadata=MetadataQuery(score=True),
+)
+
+for o in response.objects[:5]:
+    print(o.properties["title"], o.properties["version"])
+```
+
+The mental model: **hybrid** decides *what's relevant and how the two retrievers combine*, the **reranker** applies a deeper relevance model to the shortlist, and **boost** layers your domain priorities on top. Introduce them one at a time — each has a cost, and you want to know which dial moved the needle.
+
+A quick field guide for when the order looks wrong:
+
+| Symptom | Reach for |
+| --- | --- |
+| Exact terms, IDs, or error codes missing | Lower `alpha` (more keyword) |
+| Right meaning, but literal-match noise on top | Raise `alpha` (more vector) |
+| One retriever's scores drowning out the other | `relativeScoreFusion` (default) + tune `alpha`; `rankedFusion` if you only trust rank order |
+| Top-k is relevant but subtly mis-ordered | Add a reranker — over-fetch first |
+| Stale or old-version pages outranking current ones | `Boost`: recency decay + version match |
+
+Getting the best result to the top is stage two. Stage three is making the *set* clean — collapsing the near-duplicate chunks, diversifying so the top five aren't five slices of one page, cutting the long tail with `autocut`, and explaining why a result scored the way it did. That's **Part 2: Clean result sets — dedupe, diversify, and explain.**
+
+import WhatsNext from '/_includes/what-next.mdx';
+
+<WhatsNext />
