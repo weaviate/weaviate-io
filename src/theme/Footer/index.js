@@ -84,6 +84,9 @@ const socialLinks = [
   },
 ];
 
+const BEEHIIV_EMBED_URL =
+  'https://embeds.beehiiv.com/15b21ebd-decd-433b-ada8-2d405e345f2e?slim=true';
+
 function CookieSettingsButton() {
   return (
     <button
@@ -206,25 +209,16 @@ export default function Footer() {
             Product updates, how-tos, community spotlights, and more. Delivered monthly to your inbox.
           </p>
 
-          <div className="tw-mt-6 tw-flex tw-max-w-[400px] tw-items-center tw-overflow-hidden tw-rounded-xl tw-border tw-border-[#2a2f3f] tw-bg-[#05070b]">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="tw-h-14 tw-w-full tw-bg-transparent tw-px-5 tw-text-[16px] tw-text-[#d8deec] tw-outline-none placeholder:tw-text-[#8f98ae]"
-              style={{ fontFamily: 'Inter, sans-serif' }}
-            />
-            <button
-              type="button"
-              aria-label="Submit email"
-              className="tw-inline-flex tw-h-14 tw-w-14 tw-shrink-0 tw-items-center tw-justify-center tw-border-l tw-border-[#2a2f3f] tw-bg-[#F4F6F8] tw-transition hover:tw-bg-white"
-            >
-              <img
-                src="/img/site/2026/weaviate-arrow-2026.svg"
-                alt=""
-                aria-hidden="true"
-                className="tw-h-5 tw-w-5"
-              />
-            </button>
+          <div className="tw-mt-6 tw-max-w-[400px] tw-overflow-hidden tw-rounded-xl tw-border tw-border-[#2a2f3f] tw-bg-[#05070b]">
+            <iframe
+              src={BEEHIIV_EMBED_URL}
+              title="Newsletter signup"
+              data-test-id="beehiiv-embed"
+              frameBorder="0"
+              scrolling="no"
+              className="tw-h-[53px] tw-w-full"
+              style={{ margin: 0, backgroundColor: 'transparent' }}
+            ></iframe>
           </div>
 
           <p
