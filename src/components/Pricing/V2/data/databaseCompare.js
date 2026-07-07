@@ -250,7 +250,7 @@ const databaseCompare = {
         {
           label: 'Email support',
           values: {
-            free: false,
+            free: true,
             flex: true,
             plus: true,
             premiumShared: true,
