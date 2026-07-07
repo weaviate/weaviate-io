@@ -39,7 +39,7 @@ const cards = [
       "24×7 incident response with 1-hour P1 SLA",
       "Proactive upgrade and lifecycle guidance",
     ],
-    link: "/deployment/self-hosted",
+    link: "/product/assurance",
     cta: "Explore Weaviate Assurance",
   },
 ];
