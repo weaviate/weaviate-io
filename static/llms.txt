@@ -10,12 +10,12 @@ Weaviate is an open-source vector database (Go) that stores objects, vectors, an
 
 If you run Weaviate yourself (Docker / Kubernetes / on-prem), **use at least these versions** to avoid outdated examples:
 
-- **Weaviate Server (OSS)**: v1.37.4+
-- **Python client (weaviate-client)**: v4.21.0+
-- **TypeScript client (weaviate-client)**: v3.13.0+
-- **Java client (client6)**: v6.2.0+
-- **C# client (Weaviate.Client)**: v1.1.0+
-- **Agents SDK (weaviate-agents, if using Query Agent / agents features)**: v1.5.0+
+- **Weaviate Server (OSS)**: v1.38.2+
+- **Python client (weaviate-client)**: v4.22.0+
+- **TypeScript client (weaviate-client)**: v3.13.1+
+- **Java client (client6)**: v6.3.0+
+- **C# client (Weaviate.Client)**: v1.1.1+
+- **Agents SDK (weaviate-agents, if using Query Agent / agents features)**: v1.6.0+
 
 **Quick checks**
 - Server: check your Docker tag / Helm chart version (e.g. `weaviate:<tag>`)
