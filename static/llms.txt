@@ -13,7 +13,7 @@ If you run Weaviate yourself (Docker / Kubernetes / on-prem), **use at least the
 - **Weaviate Server (OSS)**: v1.38.2+
 - **Python client (weaviate-client)**: v4.22.0+
 - **TypeScript client (weaviate-client)**: v3.13.1+
-- **Java client (client6)**: v6.2.1+
+- **Java client (client6)**: v6.3.0+
 - **C# client (Weaviate.Client)**: v1.1.1+
 - **Agents SDK (weaviate-agents, if using Query Agent / agents features)**: v1.6.0+
 
@@ -604,7 +604,7 @@ response = qa.ask("Recommend sci-fi movies with good reviews under $15")
 print(response.final_answer)
 
 # Retrieval only (no generation)
-search_response = qa.search("sci-fi movies", filtering="recall", limit=5)
+search_response = qa.search("sci-fi movies", limit=5)
 ```
 
 ```typescript
