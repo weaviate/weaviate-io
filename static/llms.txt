@@ -10,7 +10,7 @@ Weaviate is an open-source vector database (Go) that stores objects, vectors, an
 
 If you run Weaviate yourself (Docker / Kubernetes / on-prem), **use at least these versions** to avoid outdated examples:
 
-- **Weaviate Server (OSS)**: v1.38.2+
+- **Weaviate Server (OSS)**: v1.38.3+
 - **Python client (weaviate-client)**: v4.22.0+
 - **TypeScript client (weaviate-client)**: v3.13.1+
 - **Java client (client6)**: v6.3.0+
