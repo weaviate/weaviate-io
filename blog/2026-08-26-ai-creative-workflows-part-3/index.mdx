@@ -10,9 +10,13 @@ description: "Part 3: We stop describing retrieval problems and start building a
 
 ![hero](./img/hero.jpg)
 
+> Building Foundry
+>
+> Episode 3: Planning the prototype
+
 Part 1 framed the problem. Part 2 explained why folder structures, tags, and keyword search start failing as projects scale. This is where the series changes pace.
 
-In this article, we stop describing the issue and start building a prototype. Not a finished product, and not a replacement for existing pipelines. A practical, adaptable retrieval layer any creative team can run, inspect, and evolve.
+In this article, we stop describing the issue and start building a prototype. Not a finished product, and not a replacement for existing pipelines. A practical retrieval layer any creative team can run, inspect, and evolve.
 
 ---
 
@@ -30,21 +34,67 @@ That is what we are building for.
 
 ---
 
-## The project
+## Meet Foundry
 
-Working name: Foundry.
+Throughout this series, we are building a small open-source application called Foundry.
 
-Foundry is a small desktop application that indexes existing creative folders and makes them searchable by meaning. It does not replace your folder structure, and it does not force a migration to a new DAM. It sits on top of work teams already have.
+Foundry is not trying to replace Dropbox, Google Drive, or your existing asset manager. It adds something those tools were never designed to do: understand what files actually contain.
 
-It should handle the kinds of files creative teams actually work with every day: concept art, PSD files, Blender scenes, video exports, audio, PDFs, references, and production docs.
+It indexes existing creative folders and makes them searchable by meaning. No manual migration. No requirement to reorganize years of historical projects before the system becomes useful.
 
-The constraint is deliberate: no manual retagging campaign, no multi-month reorganization effort, no requirement to rename years of historical assets.
+Foundry should work with the files teams already touch every day: concept art, PSD files, Blender scenes, video exports, audio, PDFs, references, and production docs.
+
+---
+
+## Roadmap
+
+```text
+✓ Part 1
+Understanding the problem
+
+✓ Part 2
+Why retrieval breaks
+
+► Part 3
+Planning and building Foundry
+
+○ Part 4
+Building the scanner
+
+○ Part 5
+Generating metadata
+
+○ Part 6
+Creating embeddings
+
+○ Part 7
+Building search
+
+○ Part 8
+Feedback loop
+```
+
+If you are joining from this post, you can still start here. The goal is to build in public, one practical piece at a time, and keep each episode runnable on its own.
 
 ---
 
 ## Phase 1 — Discovering your archive
 
-Every retrieval system begins with a non-AI question: what do we actually have?
+Before Foundry can understand your archive, it has to discover it.
+
+Imagine pointing it at five years of work spread across active projects, old client folders, exports, and external drives.
+
+```text
+Projects/
+Clients/
+Archive/
+External_HDD/
+Downloads/
+```
+
+Thousands of files appear: PSDs, Blender scenes, Premiere projects, audio stems, PDFs, references, screenshots.
+
+Most teams think they know the answer until they scan a production drive for the first time.
 
 The first version of Foundry just walks the folder tree and records facts. No ranking, no model calls, no search UI. It creates a manifest.
 
@@ -67,7 +117,18 @@ Nothing clever yet. Just a trustworthy inventory.
 
 ## Phase 2 — Giving files meaning
 
-Now we enrich the manifest.
+Once we know what exists, we enrich it.
+
+Imagine opening a folder and seeing this:
+
+```text
+final.psd
+final_FINAL.psd
+final_v5.psd
+export_new_FINAL.png
+```
+
+Those names carry almost no usable context. The files themselves carry a lot: mood, palette, composition, typography, subject matter, style.
 
 An image can receive a generated description. A document can be summarized. A video can produce keyframe-level descriptors and transcript text. Audio can be transcribed and labeled with structural notes.
 
@@ -93,15 +154,31 @@ Even with enrichment, pure text matching still misses intent shifts.
 
 A user searching for spooky woodland may need the same material another person described as dark fantasy forest. Text overlap can be weak while meaning overlap is high.
 
+Think of an embedding as a coordinate on a very large map of meaning. Two dark-forest concepts can appear close together on that map even if one file is named forest.psd and the other is named final_v7.png. Instead of searching only words, we start searching concepts.
+
 This is where embeddings enter the flow. We convert descriptions and extracted text into vectors, then store them in Weaviate with metadata.
 
 At this point, we have moved from files plus labels to a searchable semantic index that can handle language variation across teams.
 
 ---
 
+## Why this is not another file search
+
+Spotlight, Finder, and Windows Search are useful and should remain part of your workflow.
+
+They are designed primarily for exact filenames, paths, and literal text matches. Foundry solves a different retrieval task.
+
+Traditional file search asks: which file contains these exact words?
+
+Foundry asks: which asset is most similar to what I am describing?
+
+That is why semantic retrieval belongs alongside existing search, not in opposition to it.
+
+---
+
 ## Phase 4 — Searching with hybrid retrieval
 
-Now we add the actual query workflow: search bar, filter panel, relevance-ranked results.
+Now we add the actual query workflow: a search bar, production filters, and relevance-ranked results.
 
 Hybrid search combines keyword signals and vector similarity in one request. That combination is important in real projects because users move constantly between exact and fuzzy intent.
 
@@ -111,11 +188,34 @@ Example patterns:
 - A game artist remembers mood and composition but not file names: semantic signal dominates.
 - A film editor needs a mood plus a rights constraint: semantic plus metadata filters.
 
+What this can feel like in practice:
+
+```text
+Search:
+dark fantasy forest with blue fog
+
+---------------------------------
+
+Results
+
+1) DarkForestConcept_v3.psd
+	97% match
+	Project: Nightfall
+
+2) CastleMoodBoard.png
+	94% match
+	Project: RPG_Prototype
+
+3) FogPalette.ai
+	90% match
+	Project: LightingTests
+```
+
 This is where Foundry becomes operational, not conceptual.
 
 ---
 
-## Phase 5 — Retrieval feedback
+## Phase 5 — Teaching Foundry
 
 Good retrieval systems are not static. Teams should be able to mark results as useful or not useful and feed that back into ranking and data quality improvements.
 
@@ -126,6 +226,39 @@ This can start small:
 - regular review of failed queries
 
 Creative vocabulary shifts over time. Feedback is how the system keeps up.
+
+---
+
+## What Foundry will not do
+
+Foundry is intentionally narrow. It is not a replacement for storage, source control, or asset management systems.
+
+```text
+Foundry will not replace:
+- Dropbox
+- Google Drive
+- NAS storage
+- Perforce
+- Git
+- DAM platforms
+```
+
+It adds a retrieval layer on top of what teams already use.
+
+---
+
+## Technology stack
+
+Foundry stays intentionally simple.
+
+- Desktop app shell: Electron or Tauri
+- Scanner: Node.js filesystem pipeline
+- Enrichment: vision model, OCR, and audio transcription
+- Storage and retrieval: Weaviate
+- Frontend: React
+- Search mode: hybrid search with metadata filters
+
+This is not the only possible architecture, but it is practical for teams that want to build quickly and iterate in public.
 
 ---
 
@@ -146,11 +279,17 @@ By the end, readers should have more than theory. They should have a working pro
 
 ---
 
-## Where we go from here
+## Next episode
 
 Part 1 explained the friction. Part 2 explained the failure modes. Part 3 starts the build.
 
-In the next post, we will implement Phase 1 and Phase 2 in code: scanner plus manifest, with a simple enrichment pass and test data from a realistic creative folder structure.
+We are going to build the scanner.
+
+Not AI. Not embeddings. The foundation.
+
+We will point Foundry at a messy production folder and watch it create its first manifest before a single model is called.
+
+Good retrieval starts long before search.
 
 ---
 
