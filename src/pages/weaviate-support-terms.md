@@ -52,38 +52,38 @@ Weaviate’s online documentation includes technical and user documentation, API
 
 ### **Support Plans and Target Response Times**
 
-#### Weaviate Cloud
+#### Weaviate Database
 
-Product plans are applicable to Weaviate Cloud subscriptions beginning on or after June 1st, 2026 and have the following target response time per severity level:
-
-<br></br>
-
-| Severity Level | Criteria | Product Plan - Flex | Product Plan - Plus | Product Plan - Premium (Shared Deployment) | Product Plan - Premium (Dedicated Deployment) |
-|----------------|----------|------------------|------------------|----------------------|---------------------------|
-| Severity 1 (Critical) | Issues that are critical and require immediate attention, causing widespread disruption or outages. | 1 Business day | 8 hours (24/7) | 4 hours (24/7) | 1 hour (24/7) |
-| Severity 2 (High) | High-priority problems that can impact service functionality or performance for a subset of users. | 2 Business days | 1 Business day | 8 hours (24/7) | 4 hours (24/7) |
-| Severity 3 (Medium) | Medium-priority concerns that affect service functionality or performance for a limited number of users or use cases. | 3 Business days | 2 Business days | 1 Business day | 8 hours (24/7) |
-| Severity 4 (Low) | Lower urgency and impact, causing minor inconveniences or issues for individual users. | 5 Business days | 3 Business days | 2 Business days | 1 Business day |
-
-
-Support tiers are applicable to Weaviate Cloud subscriptions beginning before October 27, 2025 and have the following target response time per severity level:
+Product plans are applicable to Weaviate database subscriptions beginning on or after June 1st, 2026 and have the following target response time per severity level:
 
 <br></br>
 
-
-| Severity Level | Criteria | Product Plan - Flex | Product Plan - Plus | Product Plan - Premium |
+| Severity Level | Criteria | Product Plan - Flex | Product Plan - Premium (Shared Deployment) | Product Plan - Premium (Dedicated Deployment) |
 |----------------|----------|------------------|----------------------|---------------------------|
 | Severity 1 (Critical) | Issues that are critical and require immediate attention, causing widespread disruption or outages. | 1 Business day | 4 hours (24/7) | 1 hour (24/7) |
 | Severity 2 (High) | High-priority problems that can impact service functionality or performance for a subset of users. | 2 Business days | 8 hours (24/7) | 4 hours (24/7) |
 | Severity 3 (Medium) | Medium-priority concerns that affect service functionality or performance for a limited number of users or use cases. | 3 Business days | 1 Business day | 8 hours (24/7) |
 | Severity 4 (Low) | Lower urgency and impact, causing minor inconveniences or issues for individual users. | 5 Business days | 2 Business days | 1 Business day |
 
+
+Support tiers are applicable to Weaviate Database subscriptions beginning before October 27, 2025 and have the following target response time per severity level:
+
+<br></br>
+
+
+| Severity Level | Criteria | Product Plan - Flex | Product Plan - Premium |
+|----------------|----------|------------------|---------------------------|
+| Severity 1 (Critical) | Issues that are critical and require immediate attention, causing widespread disruption or outages. | 1 Business day | 1 hour (24/7) |
+| Severity 2 (High) | High-priority problems that can impact service functionality or performance for a subset of users. | 2 Business days | 4 hours (24/7) |
+| Severity 3 (Medium) | Medium-priority concerns that affect service functionality or performance for a limited number of users or use cases. | 3 Business days | 8 hours (24/7) |
+| Severity 4 (Low) | Lower urgency and impact, causing minor inconveniences or issues for individual users. | 5 Business days | 1 Business day |
+
 > *All (24/7) cases must be followed up via phone.* <br></br>
 *Business hours are defined based on the current timezone of the contracting entity of Weaviate. A business day starts at 9am and ends at 5pm. Public holidays are excluded.*
 
 <br></br>
 
-#### Engram
+#### Weaviate Engram
 
 Product plans are applicable to Engram have the following target response time per severity level:
 
@@ -94,22 +94,22 @@ Product plans are applicable to Engram have the following target response time p
 
 ### **Support Channels**
 
-#### Weaviate Cloud
+#### Weaviate Database
 
-Product plans are applicable to Weaviate Cloud subscriptions beginning on or after October 27, 2025 and have the following terms per channel:
-
-<br></br>
-
-| Channel | Product Plan - Flex | Product Plan - Plus | Product Plan - Premium |
-|----------------|----------|------------------|----------------------|
-| Email | During business hours | During business hours | During business hours |
-| Phone | N/A | 24/7 hotline for escalations | 24/7 hotline for escalations |
-| Slack | N/A | Weaviate private Slack  | Weaviate private Slack  |
-| Technical Account Team | N/A | 1 hour per month | 4 hours per month |
+Product plans are applicable to Weaviate Database subscriptions beginning on or after October 27, 2025 and have the following terms per channel:
 
 <br></br>
 
-Support tiers are applicable to Weaviate Cloud subscriptions beginning before October 27, 2025 and have the following terms per channel:
+| Channel | Product Plan - Flex | Product Plan - Premium |
+|----------------|----------|----------------------|
+| Email | During business hours | During business hours |
+| Phone | N/A | 24/7 hotline for escalations |
+| Slack | N/A | Weaviate private Slack  |
+| Technical Account Team | N/A | 4 hours per month |
+
+<br></br>
+
+Support tiers are applicable to Weaviate Database subscriptions beginning before October 27, 2025 and have the following terms per channel:
 
 <br></br>
 
@@ -124,7 +124,7 @@ Support tiers are applicable to Weaviate Cloud subscriptions beginning before Oc
 #### **Weaviate Engram**
 
 
-Product plans are applicable to Weaviate Cloud subscriptions and have the following terms per channel:
+Product plans are applicable to Weaviate Database subscriptions and have the following terms per channel:
 
 <br></br>
 

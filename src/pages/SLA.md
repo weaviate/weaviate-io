@@ -29,15 +29,15 @@ Normal Use refers to the utilization of the service within the parameters outlin
 
 #### **Availability**
 
-##### **Weaviate Cloud**
+##### **Weaviate Database**
 
 Availability signifies that the services are functional and accessible to the Customer. For subscriptions beginning October
 27, 2025 or later, the details are as follows per **subscription plan**:
 <br></br>
 
-| Parameter | Flex | Plus | Premium <br/> <small>(Shared Deployment)</small> | Premium <br/> <small>(Dedicated Deployment)</small>  |
-|-----------|----------|----------|--------------|-------------------|
-| Availability per Quarter | 99.5% | 99.9% | 99.9% | 99.95% |
+| Parameter | Flex | Premium <br/> <small>(Shared Deployment)</small> | Premium <br/> <small>(Dedicated Deployment)</small>  |
+|-----------|----------|--------------|-------------------|
+| Availability per Quarter | 99.5% | 99.9% | 99.95% |
 
 For subscriptions beginning prior to October 27, 2025, the details are as follows per **support tier**:
 <br></br>
@@ -49,7 +49,7 @@ For subscriptions beginning prior to October 27, 2025, the details are as follow
 <br></br>
 
 
-##### **Engram**
+##### **Weaviate Engram**
 
 Availability signifies that the services are functional and accessible to the Customer. The details are as follows per **subscription plan**:
 <br></br>
@@ -92,13 +92,12 @@ Planned maintenance windows are periods during which the availability of the ser
 
 ### **Backup Policy**
 
-#### **Weaviate Cloud**
+#### **Weaviate Database**
 
 For subscriptions beginning October 27, 2025 or later, Weaviate employs the following backup policies for each  **subscription plan**:
 <br></br>
 
 - **Flex:** Daily backup, stored in the same region for 7 days.
-- **Plus:** Daily backup, stored in the same region for 30 days.
 - **Premium (Shared Deployment):** Daily backup, stored in the same region for 30 days.
 - **Premium (Dedicated Deployment):** Daily backup, stored in the same region for 45 days.
 
@@ -110,7 +109,7 @@ For subscriptions beginning before October 27, 2025, Weaviate employs the follow
 - **Business Critical Tier:** Daily full backup, stored in the same region for 30 days.
 <br></br>
 
-#### **Engram**
+#### **Weaviate Engram**
 
 Weaviate employs the following backup policies for each **subscription plan**:
 <br></br>
@@ -124,12 +123,12 @@ Weaviate employs the following backup policies for each **subscription plan**:
 
 ### **Service Credits**
 
-#### **Weaviate Cloud**
+#### **Weaviate Database**
 
 In the event that the availability of the services as described herein is not met, Customer shall have the right to claim service credits according to the table below:
 <br></br>
 
-| Service Level Targets | Flex Plan /<br></br>Plus Plan/<br></br> Standard Tier | Premium Plan (Shared Deployment) /<br></br> Professional Tier | Premium Plan (Dedicated Deployment) /<br></br>  Business Critical Tier |
+| Service Level Targets | Flex Plan /<br></br> Standard Tier | Premium Plan (Shared Deployment) /<br></br> Professional Tier | Premium Plan (Dedicated Deployment) /<br></br>  Business Critical Tier |
 |-----------------------|---------------|-------------------|------------------------|
 | 99.9% or more | No service credits | No service credits | No service credits |
 | Less than 99.9% but more than 99.5% | No service credits | 5% service credit | 5% service credit |
@@ -140,7 +139,7 @@ In the event that the availability of the services as described herein is not me
 
 <br></br>
 
-#### **Engram**
+#### **Weaviate Engram**
 
 In the event that the availability of the services as described herein is not met, Customer shall have the right to claim service credits according to the table below:
 <br></br>
