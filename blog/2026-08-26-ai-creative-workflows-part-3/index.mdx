@@ -1,295 +1,205 @@
 ---
-title: "Part 3: Let’s build it — a creative retrieval prototype"
+title: "Part 3: Building Foundry — discovering a creative archive"
 slug: ai-not-replacing-creativity-part-3
 authors: [shan, svitlana]
 date: 2026-08-26
 image: ./img/hero.jpg
 tags: ["creative-ai", "workflows", "search"]
-description: "Part 3: We stop describing retrieval problems and start building a working prototype creative teams can adapt."
+description: "Part 3: We build Foundry's first working discovery pass, scanning a messy creative archive and turning it into a trustworthy manifest for retrieval."
 ---
 
 ![hero](./img/hero.jpg)
 
-> Building Foundry
->
-> Episode 3: Planning the prototype
+> **Building Foundry**  
+> Episode 3: Discovering the archive
 
-Part 1 framed the problem. Part 2 explained why folder structures, tags, and keyword search start failing as projects scale. This is where the series changes pace.
+Part 1 explored why creative teams lose time searching for work that already exists. Part 2 looked at the mechanics behind that problem: folder structures drift, tags decay, and keyword search depends on people remembering language they may never have used in the first place.
 
-In this article, we stop describing the issue and start building a prototype. Not a finished product, and not a replacement for existing pipelines. A practical retrieval layer any creative team can run, inspect, and evolve.
+Now we can begin building.
+
+The first version of Foundry does not generate embeddings or run semantic search. It starts with a less glamorous but more important question: **what is actually in the archive?**
+
+That question became our first working prototype: a read-only discovery pass that scans a creative folder, identifies its contents, creates a structured manifest, and presents the result as a visual inventory. It is the foundation on which enrichment and retrieval will be built.
 
 ---
 
-## Imagine this
+## The asset you remember but cannot name
 
-You are six months into production.
+Imagine you are six months into production and need a concept image from an earlier review. You remember its cold palette, the blue atmospheric fog, and a ruined structure near the centre of the frame. You may even remember who presented it. What you cannot remember is whether it was saved under the active project, an old exploration folder, or an export directory with a name such as `final_FINAL_v7`.
 
-Somewhere in your drive is the exact concept image you need.
+Traditional search cannot do much with that memory. Semantic search eventually can, but only after the asset has been discovered and represented in a searchable system. Before Foundry can understand the image, it needs to establish that the image exists, where it lives, what kind of file it is, and whether it has changed since the previous scan.
 
-You remember the atmosphere. You remember the palette. You remember showing it in a review.
-
-You do not remember what it was called.
-
-That is what we are building for.
+This is the purpose of the discovery pass.
 
 ---
 
 ## Meet Foundry
 
-Throughout this series, we are building a small open-source application called Foundry.
+![hero](./img/image-1.jpg)
 
-Foundry is not trying to replace Dropbox, Google Drive, or your existing asset manager. It adds something those tools were never designed to do: understand what files actually contain.
+Foundry is a small creative-retrieval prototype that we are developing throughout this series. It is designed to sit above existing storage rather than replace it. A studio should not have to migrate years of work or reorganise every historical project before retrieval becomes useful.
 
-It indexes existing creative folders and makes them searchable by meaning. No manual migration. No requirement to reorganize years of historical projects before the system becomes useful.
+The current prototype points at an existing folder and builds an inventory without renaming, moving, or modifying any source files. Our test archive deliberately resembles the kind of production drive discussed in the previous articles. It contains several fictional projects, inconsistently named concept images, trailer references, design exports, production notes, and video.
 
-Foundry should work with the files teams already touch every day: concept art, PSD files, Blender scenes, video exports, audio, PDFs, references, and production docs.
+Some filenames are descriptive. Others are not:
+
+```text
+final_FINAL_v7.svg
+ENV_ALTSTYLING_DARK_V4.svg
+BROLL_NEW2.svg
+scene_14_USE_THIS.svg
+review_notes_final.md
+```
+
+That inconsistency is intentional. A useful retrieval system must tolerate the archive a team already has, rather than the archive it wishes it had.
 
 ---
 
-## Roadmap
+## Running the first prototype
 
-```text
-✓ Part 1
-Understanding the problem
+The complete discovery demo currently runs with one command:
 
-✓ Part 2
-Why retrieval breaks
-
-► Part 3
-Planning and building Foundry
-
-○ Part 4
-Building the scanner
-
-○ Part 5
-Generating metadata
-
-○ Part 6
-Creating embeddings
-
-○ Part 7
-Building search
-
-○ Part 8
-Feedback loop
+```bash
+npm run demo
 ```
 
-If you are joining from this post, you can still start here. The goal is to build in public, one practical piece at a time, and keep each episode runnable on its own.
+Foundry scans the configured archive, generates a JSON manifest and opens a local visual report. The opening sequence shows the stages of discovery: walking folders, identifying media and production metadata, and assembling the manifest. The completed view then shows each asset with its project, folder, type, size, and ingestion status.
+
+Images appear as visual cards. Videos can be previewed directly. Documents remain visible even when they do not yet have a graphical preview. This matters because a creative archive is rarely composed of a single media type. The concept art may be an image, the rationale may be buried in a document, and the final expression of the idea may be a video export.
+
+<!-- Add screenshot: Foundry discovery loading state. -->
+
+<!-- Add screenshot: Completed archive inventory with reference images and video output. -->
+
+The browser report is not the search product. It is an inspection surface: a way to confirm that Foundry has seen the same archive we expect it to see before any automated interpretation begins.
 
 ---
 
-## Phase 1 — Discovering your archive
+## What the scanner records
 
-Before Foundry can understand your archive, it has to discover it.
-
-Imagine pointing it at five years of work spread across active projects, old client folders, exports, and external drives.
-
-```text
-Projects/
-Clients/
-Archive/
-External_HDD/
-Downloads/
-```
-
-Thousands of files appear: PSDs, Blender scenes, Premiere projects, audio stems, PDFs, references, screenshots.
-
-Most teams think they know the answer until they scan a production drive for the first time.
-
-The first version of Foundry just walks the folder tree and records facts. No ranking, no model calls, no search UI. It creates a manifest.
-
-In game production, this surfaces what is spread across level directories, outsource drops, and archive branches. In film post, it maps proxies, source footage, and exports that live in different storage paths. In design and animation, it reveals how much material exists outside the current project folder but still affects active work.
-
-The first manifest can be simple:
+The scanner recursively walks the selected directory and creates one record for every supported asset. The initial schema focuses on observable facts:
 
 ```text
 filename
-path
-size
-modified_date
-file_type
-hash
+relative path
+source location
+file extension
+MIME type
+asset type
+project
+folder
+file size
+modified date
+content hash
 ```
 
-Nothing clever yet. Just a trustworthy inventory.
+It also creates placeholders for information that will arrive later, including generated descriptions, extracted text, tags, rights information, and enrichment status.
+
+A simplified manifest record looks like this:
+
+```json
+{
+  "id": "1f020c98de36e792a4f82061",
+  "fileName": "final_FINAL_v7.svg",
+  "relativePath": "NIGHTFALL/01_CONCEPT/forest/final_FINAL_v7.svg",
+  "mimeType": "image/svg+xml",
+  "assetType": "image",
+  "project": "NIGHTFALL",
+  "folderPath": "NIGHTFALL/01_CONCEPT/forest",
+  "contentHash": "1f020c98de36e792a4f820616c4fbcf0...",
+  "enrichment": {
+    "status": "pending",
+    "description": null,
+    "tags": [],
+    "extractedText": null
+  },
+  "rights": {
+    "status": "unknown",
+    "expiresAt": null
+  }
+}
+```
+
+The empty fields are useful. They make uncertainty explicit. Foundry does not infer that an asset is licensed merely because it exists, and it does not claim to understand an image before the enrichment stage has run.
 
 ---
 
-## Phase 2 — Giving files meaning
+## Why hashes and stable records matter
 
-Once we know what exists, we enrich it.
+A folder scanner can easily produce a list of filenames. A retrieval pipeline needs something more dependable.
 
-Imagine opening a folder and seeing this:
+Foundry generates a content hash for each file and derives a stable identifier from it. If the same unchanged asset appears in a later scan, it retains the same identity. If the contents change while the filename stays the same, the new hash exposes that change.
+
+This distinction is particularly important in creative production, where filenames are frequently copied between versions or where a supposedly final export is overwritten. A stable inventory gives later pipeline stages a way to avoid unnecessary enrichment calls, update changed records, and identify possible duplicates across different folders.
+
+The scanner remains read-only throughout this process. Source files are not reorganised for the convenience of the demo. Foundry adapts to the production archive, not the other way around.
+
+---
+
+## From isolated files to creative relationships
+
+The current showcase includes the beginning of another useful idea: assets should not always be presented as unrelated objects.
+
+In the sample trailer project, reference images are visually highlighted alongside a motion output. Today that relationship is inferred from the project and folder structure. Later, it could be strengthened using shared metadata, visual similarity, production history, or explicit links created by the team.
+
+This begins to answer a richer question than “Which files are in this folder?” A future version of Foundry should be able to show how a group of references informed an output, which concepts preceded an approved design, or which project notes explain a creative decision.
+
+Discovery therefore establishes two foundations. It identifies individual assets, and it provides the evidence from which relationships between those assets can eventually be built.
+
+---
+
+## Why discovery comes before AI
+
+It is tempting to start a retrieval prototype with an embedding model and a search box. That approach can produce an impressive demonstration quickly, but it hides the operational questions that determine whether the system will remain useful.
+
+Has every source been scanned? Which formats were skipped? Has an asset changed since it was enriched? Does the record point back to a source the user can still access? Is rights information known, missing, or expired? If ingestion fails, can the team identify which records were affected?
+
+The manifest gives us a boundary between the creative archive and the AI pipeline. The scanner is responsible for observable file facts. Enrichment will be responsible for derived descriptions and extracted content. Weaviate will be responsible for storing and retrieving the searchable representation. Keeping those responsibilities visible makes the prototype easier to inspect, test, and improve.
+
+---
+
+## What Foundry does today
+
+At this point in the build, Foundry can:
+
+- scan a nested creative archive without modifying it;
+- recognise images, video, audio, documents, design files, and scene files;
+- generate stable asset records and content hashes;
+- organise the inventory by project and source folder;
+- preview supported images and videos in a browser;
+- expose enrichment and rights fields that still require attention;
+- produce a JSON manifest ready for the next pipeline stage; and
+- begin surfacing relationships between creative references and outputs.
+
+It does not yet describe the visual content, extract document meaning, generate embeddings, ingest records into Weaviate, or answer semantic queries. Those limitations are deliberate. This episode records the first completed layer rather than presenting the planned architecture as though it already exists.
+
+---
+
+## The next build: enrichment and ingestion
+
+The completed discovery view ends with a “Prepare to ingest” action. For now, that action marks the boundary of the prototype. The next stage will make it functional.
+
+We will take the records produced by the scanner and enrich them according to media type. Images can receive descriptions and visual tags. Documents can contribute extracted text. Video can be represented through transcripts, sampled keyframes, and scene-level descriptions. Existing project and rights metadata can be preserved as structured fields rather than folded into generated prose.
+
+Those enriched records can then be batch-ingested into Weaviate. Their descriptions and extracted content will support semantic retrieval, filenames will remain available to keyword search, and structured metadata will support filters for project, file type, status, and rights.
+
+The resulting flow will look like this:
 
 ```text
-final.psd
-final_FINAL.psd
-final_v5.psd
-export_new_FINAL.png
+Creative archive
+      ↓
+Read-only discovery scan
+      ↓
+Reviewable manifest
+      ↓
+Media-specific enrichment
+      ↓
+Weaviate ingestion
+      ↓
+Hybrid search and metadata filters
 ```
 
-Those names carry almost no usable context. The files themselves carry a lot: mood, palette, composition, typography, subject matter, style.
-
-An image can receive a generated description. A document can be summarized. A video can produce keyframe-level descriptors and transcript text. Audio can be transcribed and labeled with structural notes.
-
-So this:
-
-```text
-final_v7.psd
-```
-
-becomes a richer record with usable context.
-
-In production terms, this is where retrieval stops depending only on filenames and starts depending on observable content.
-
-For a design team, that might include campaign and status fields. For animation, sequence and shot metadata. For game teams, project branch and engine compatibility. For film, rights and delivery constraints.
-
-Metadata is still critical here. Meaning helps with recall. Metadata enforces precision.
-
----
-
-## Phase 3 — Creating embeddings
-
-Even with enrichment, pure text matching still misses intent shifts.
-
-A user searching for spooky woodland may need the same material another person described as dark fantasy forest. Text overlap can be weak while meaning overlap is high.
-
-Think of an embedding as a coordinate on a very large map of meaning. Two dark-forest concepts can appear close together on that map even if one file is named forest.psd and the other is named final_v7.png. Instead of searching only words, we start searching concepts.
-
-This is where embeddings enter the flow. We convert descriptions and extracted text into vectors, then store them in Weaviate with metadata.
-
-At this point, we have moved from files plus labels to a searchable semantic index that can handle language variation across teams.
-
----
-
-## Why this is not another file search
-
-Spotlight, Finder, and Windows Search are useful and should remain part of your workflow.
-
-They are designed primarily for exact filenames, paths, and literal text matches. Foundry solves a different retrieval task.
-
-Traditional file search asks: which file contains these exact words?
-
-Foundry asks: which asset is most similar to what I am describing?
-
-That is why semantic retrieval belongs alongside existing search, not in opposition to it.
-
----
-
-## Phase 4 — Searching with hybrid retrieval
-
-Now we add the actual query workflow: a search bar, production filters, and relevance-ranked results.
-
-Hybrid search combines keyword signals and vector similarity in one request. That combination is important in real projects because users move constantly between exact and fuzzy intent.
-
-Example patterns:
-
-- A music producer remembers the exact sample pack name: keyword signal dominates.
-- A game artist remembers mood and composition but not file names: semantic signal dominates.
-- A film editor needs a mood plus a rights constraint: semantic plus metadata filters.
-
-What this can feel like in practice:
-
-```text
-Search:
-dark fantasy forest with blue fog
-
----------------------------------
-
-Results
-
-1) DarkForestConcept_v3.psd
-	97% match
-	Project: Nightfall
-
-2) CastleMoodBoard.png
-	94% match
-	Project: RPG_Prototype
-
-3) FogPalette.ai
-	90% match
-	Project: LightingTests
-```
-
-This is where Foundry becomes operational, not conceptual.
-
----
-
-## Phase 5 — Teaching Foundry
-
-Good retrieval systems are not static. Teams should be able to mark results as useful or not useful and feed that back into ranking and data quality improvements.
-
-This can start small:
-
-- thumbs up and thumbs down on results
-- saved query sets by role or project
-- regular review of failed queries
-
-Creative vocabulary shifts over time. Feedback is how the system keeps up.
-
----
-
-## What Foundry will not do
-
-Foundry is intentionally narrow. It is not a replacement for storage, source control, or asset management systems.
-
-```text
-Foundry will not replace:
-- Dropbox
-- Google Drive
-- NAS storage
-- Perforce
-- Git
-- DAM platforms
-```
-
-It adds a retrieval layer on top of what teams already use.
-
----
-
-## Technology stack
-
-Foundry stays intentionally simple.
-
-- Desktop app shell: Electron or Tauri
-- Scanner: Node.js filesystem pipeline
-- Enrichment: vision model, OCR, and audio transcription
-- Storage and retrieval: Weaviate
-- Frontend: React
-- Search mode: hybrid search with metadata filters
-
-This is not the only possible architecture, but it is practical for teams that want to build quickly and iterate in public.
-
----
-
-## Real-world path for the next episodes
-
-If this series is going to be useful, it should be buildable.
-
-So instead of shipping one giant walkthrough, we can develop Foundry as a sequence that readers can follow and run.
-
-1. Building Foundry: Scanner
-2. Building Foundry: Manifest Generator
-3. Building Foundry: Enrichment Pipeline
-4. Building Foundry: Weaviate Ingestion
-5. Building Foundry: Hybrid Search UI
-6. Building Foundry: Feedback Loop
-
-By the end, readers should have more than theory. They should have a working project and a pattern they can adapt to their own studio workflows.
-
----
-
-## Next episode
-
-Part 1 explained the friction. Part 2 explained the failure modes. Part 3 starts the build.
-
-We are going to build the scanner.
-
-Not AI. Not embeddings. The foundation.
-
-We will point Foundry at a messy production folder and watch it create its first manifest before a single model is called.
-
-Good retrieval starts long before search.
+Foundry does not understand the archive yet. It now knows what exists, where it came from, and what still needs to happen before the archive becomes searchable by meaning. That is a modest milestone, but it is also the point at which the idea becomes a working system.
 
 ---
 
