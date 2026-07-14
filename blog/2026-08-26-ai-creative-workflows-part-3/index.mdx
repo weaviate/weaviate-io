@@ -1,0 +1,159 @@
+---
+title: "Part 3: Let’s build it — a creative retrieval prototype"
+slug: ai-not-replacing-creativity-part-3
+authors: [shan, svitlana]
+date: 2026-08-26
+image: ./img/hero.jpg
+tags: ["creative-ai", "workflows", "search"]
+description: "Part 3: We stop describing retrieval problems and start building a working prototype creative teams can adapt."
+---
+
+![hero](./img/hero.jpg)
+
+Part 1 framed the problem. Part 2 explained why folder structures, tags, and keyword search start failing as projects scale. This is where the series changes pace.
+
+In this article, we stop describing the issue and start building a prototype. Not a finished product, and not a replacement for existing pipelines. A practical, adaptable retrieval layer any creative team can run, inspect, and evolve.
+
+---
+
+## Imagine this
+
+You are six months into production.
+
+Somewhere in your drive is the exact concept image you need.
+
+You remember the atmosphere. You remember the palette. You remember showing it in a review.
+
+You do not remember what it was called.
+
+That is what we are building for.
+
+---
+
+## The project
+
+Working name: Foundry.
+
+Foundry is a small desktop application that indexes existing creative folders and makes them searchable by meaning. It does not replace your folder structure, and it does not force a migration to a new DAM. It sits on top of work teams already have.
+
+It should handle the kinds of files creative teams actually work with every day: concept art, PSD files, Blender scenes, video exports, audio, PDFs, references, and production docs.
+
+The constraint is deliberate: no manual retagging campaign, no multi-month reorganization effort, no requirement to rename years of historical assets.
+
+---
+
+## Phase 1 — Discovering your archive
+
+Every retrieval system begins with a non-AI question: what do we actually have?
+
+The first version of Foundry just walks the folder tree and records facts. No ranking, no model calls, no search UI. It creates a manifest.
+
+In game production, this surfaces what is spread across level directories, outsource drops, and archive branches. In film post, it maps proxies, source footage, and exports that live in different storage paths. In design and animation, it reveals how much material exists outside the current project folder but still affects active work.
+
+The first manifest can be simple:
+
+```text
+filename
+path
+size
+modified_date
+file_type
+hash
+```
+
+Nothing clever yet. Just a trustworthy inventory.
+
+---
+
+## Phase 2 — Giving files meaning
+
+Now we enrich the manifest.
+
+An image can receive a generated description. A document can be summarized. A video can produce keyframe-level descriptors and transcript text. Audio can be transcribed and labeled with structural notes.
+
+So this:
+
+```text
+final_v7.psd
+```
+
+becomes a richer record with usable context.
+
+In production terms, this is where retrieval stops depending only on filenames and starts depending on observable content.
+
+For a design team, that might include campaign and status fields. For animation, sequence and shot metadata. For game teams, project branch and engine compatibility. For film, rights and delivery constraints.
+
+Metadata is still critical here. Meaning helps with recall. Metadata enforces precision.
+
+---
+
+## Phase 3 — Creating embeddings
+
+Even with enrichment, pure text matching still misses intent shifts.
+
+A user searching for spooky woodland may need the same material another person described as dark fantasy forest. Text overlap can be weak while meaning overlap is high.
+
+This is where embeddings enter the flow. We convert descriptions and extracted text into vectors, then store them in Weaviate with metadata.
+
+At this point, we have moved from files plus labels to a searchable semantic index that can handle language variation across teams.
+
+---
+
+## Phase 4 — Searching with hybrid retrieval
+
+Now we add the actual query workflow: search bar, filter panel, relevance-ranked results.
+
+Hybrid search combines keyword signals and vector similarity in one request. That combination is important in real projects because users move constantly between exact and fuzzy intent.
+
+Example patterns:
+
+- A music producer remembers the exact sample pack name: keyword signal dominates.
+- A game artist remembers mood and composition but not file names: semantic signal dominates.
+- A film editor needs a mood plus a rights constraint: semantic plus metadata filters.
+
+This is where Foundry becomes operational, not conceptual.
+
+---
+
+## Phase 5 — Retrieval feedback
+
+Good retrieval systems are not static. Teams should be able to mark results as useful or not useful and feed that back into ranking and data quality improvements.
+
+This can start small:
+
+- thumbs up and thumbs down on results
+- saved query sets by role or project
+- regular review of failed queries
+
+Creative vocabulary shifts over time. Feedback is how the system keeps up.
+
+---
+
+## Real-world path for the next episodes
+
+If this series is going to be useful, it should be buildable.
+
+So instead of shipping one giant walkthrough, we can develop Foundry as a sequence that readers can follow and run.
+
+1. Building Foundry: Scanner
+2. Building Foundry: Manifest Generator
+3. Building Foundry: Enrichment Pipeline
+4. Building Foundry: Weaviate Ingestion
+5. Building Foundry: Hybrid Search UI
+6. Building Foundry: Feedback Loop
+
+By the end, readers should have more than theory. They should have a working project and a pattern they can adapt to their own studio workflows.
+
+---
+
+## Where we go from here
+
+Part 1 explained the friction. Part 2 explained the failure modes. Part 3 starts the build.
+
+In the next post, we will implement Phase 1 and Phase 2 in code: scanner plus manifest, with a simple enrichment pass and test data from a realistic creative folder structure.
+
+---
+
+import WhatsNext from "/_includes/what-next.mdx";
+
+<WhatsNext />
