@@ -1,6 +1,6 @@
 ---
-title: "Part 4: Foundry can search the archive"
-slug: ai-not-replacing-creativity-part-4
+title: "Building Foundry: From archive to creative search"
+slug: building-foundry-creative-search
 authors: [shan, svitlana]
 date: 2026-09-02
 image: ./img/hero.jpg
@@ -8,10 +8,21 @@ tags: ["creative-ai", "workflows", "search", "weaviate"]
 description: "We turn Foundry's archive manifest into a working creative search experience with Weaviate, managed embeddings, hybrid retrieval, and metadata filters."
 ---
 
-![Foundry searching the creative archive](./img/image-01.jpg)
+import foundryTestVideo from "./img/Foundry_test.mp4";
+
+<figure>
+  <video width="100%" autoPlay loop muted controls>
+    <source src={foundryTestVideo} type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <figcaption>Foundry searching the archive</figcaption>
+</figure>
 
 > **Building Foundry**  
+> A practical series on creative workflows, semantic search, and Weaviate.
 > Episode 4: From archive discovery to creative search
+
+Read the previous post in the series: [Part 3: Discovering a creative archive](/blog/building-foundry-discovering-creative-archive).
 
 Part 1 introduced the problem: creative teams lose time looking for work that already exists. Part 2 examined why folders, tags, and keyword search become unreliable as projects grow. Part 3 built the first layer of Foundry, a read-only scanner that maps a messy archive into a reviewable manifest.
 
@@ -38,6 +49,8 @@ keyword, semantic, or hybrid search
       ↓
 source asset
 ```
+
+![Foundry searching the creative archive](./img/image-01.jpg)
 
 That separation matters. Storage remains the source of truth, while Weaviate becomes the searchable layer on top of it.
 
