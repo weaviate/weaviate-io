@@ -27,7 +27,7 @@ Weaviate has always been able to answer this. The trouble was getting the answer
 
 The existing tool is the [slow query log](https://docs.weaviate.io/deploy/configuration/logging#slow-query-logging). You turn it on with two environment variables and restart the node:
 
-```sh
+```bash
 QUERY_SLOW_LOG_ENABLED=true
 QUERY_SLOW_LOG_THRESHOLD=2s
 ```
@@ -76,6 +76,8 @@ Query profiling was [introduced in v1.36.9](https://docs.weaviate.io/weaviate/se
 ## Reading the numbers
 
 The profile is organized by shard. Each shard entry names the shard and the node that ran it, and holds a `details` map of metric name to value for each search type it performed. A pure vector query shows the vector timers, a [BM25](https://docs.weaviate.io/weaviate/search/bm25) query shows the keyword timers, a [filtered](https://docs.weaviate.io/weaviate/search/filters) query adds the filter timers, and a hybrid query carries both a vector and a keyword section. Only the stages that actually ran show up, so the exact set of fields depends on the query.
+
+![Search Metrics Diagram](./img/search_metrics.png)
 
 `total_took` is the wall time of the whole shard search. Everything else explains where that time went.
 
@@ -137,7 +139,7 @@ A filter that matches too much:
           "details": {
             "total_took": "61.5ms",
             "filters_build_allow_list_took": "41.2ms",
-            "filters_ids_matched": "1284000",
+            "filters_ids_matched": "12840000",
             "vector_search_took": "15.6ms",
             "knn_search_layer_0_took": "14.8ms",
             "hnsw_flat_search": "false",
@@ -150,7 +152,7 @@ A filter that matches too much:
 }
 ```
 
-Here `filters_build_allow_list_took` is the largest slice, and `filters_ids_matched` is over a million. The filter is broad, so building the allow-list is the cost. This is a cardinality problem, not a disk one: rethink the filter so it selects less, or apply the wide condition differently rather than as a pre-filter over the whole set.
+Here `filters_build_allow_list_took` is the largest slice, and `filters_ids_matched` is over ten million. The filter is broad, so building the allow-list is the cost. This is a cardinality problem, not a disk one: rethink the filter so it selects less, or apply the wide condition differently rather than as a pre-filter over the whole set.
 
 A compressed index where rescore hits disk:
 
@@ -183,7 +185,7 @@ The graph traversal at layer 0 is fine. Almost all of `vector_search_took` is `k
 
 Query profiling has become one of the first things our solution engineering team reaches for when a customer reports a slow query. Instead of enabling a log, waiting for the query to be slow again, and stitching node logs together, you set one flag, run the query once, and read the breakdown across the whole cluster. The guesswork about where the time went is gone, and what is left is a specific stage to fix.
 
-If you want help reading a profile or working out what to change based on one, reach out. Our solution engineering team looks at these breakdowns with customers on a regular basis, so if you are a customer, your usual Weaviate contact or support channel is the fastest way to get us the details. If you are running the open-source project, ask in the community forum or Slack and we will help you work through it there.
+If you want help reading a profile or working out what to change based on one, reach out. Our solution engineering team looks at these breakdowns with customers on a regular basis, so if you are a customer, your usual Weaviate contact or support channel is the fastest way to get us the details. If you are running the open-source project, ask in the [community forum](https://forum.weaviate.io/) and we will help you work through it there.
 
 To go deeper:
 
