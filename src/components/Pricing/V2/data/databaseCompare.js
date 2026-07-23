@@ -308,7 +308,7 @@ const databaseCompare = {
             free: 'Best effort',
             flex: '99.5%',
             plus: '99.9%',
-            premiumShared: '99.95%',
+            premiumShared: '99.99%',
             premiumDedicated: '99.95%',
           },
         },
