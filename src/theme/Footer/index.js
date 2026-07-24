@@ -25,7 +25,7 @@ const footerGroups = {
     { label: 'Weaviate Database Docs', to: 'https://docs.weaviate.io/weaviate' },
     { label: 'Weaviate Cloud Docs', to: 'https://docs.weaviate.io/cloud' },
     { label: 'Weaviate Deployment Docs', to: 'https://docs.weaviate.io/deploy' },
-    { label: 'Weaviate Agents Docs', to: 'https://docs.weaviate.io/agents' },
+    { label: 'Weaviate Agents Docs', to: 'https://docs.weaviate.io/query-agent' },
     { label: 'LLM / Agent guides', to: 'https://weaviate.io/llms.txt' },
     { label: 'GitHub', to: 'https://github.com/weaviate/weaviate' },
     { label: 'Learning Center', to: '/learn' },

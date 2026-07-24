@@ -2,9 +2,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart/endtoend.py';
-import EndToEndPy3Code from '!!raw-loader!/_includes/code/quickstart/endtoend.py3.py';
 import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart/endtoend.ts';
-import EndToEndTSCodeLegacy from '!!raw-loader!/_includes/code/quickstart/endtoend-v2.ts';
 import GoGenerative from '!!raw-loader!/_includes/code/quickstart/go-query-generative.go';
 
 <Tabs groupId="languages">
@@ -35,28 +33,12 @@ import GoGenerative from '!!raw-loader!/_includes/code/quickstart/go-query-gener
   language="py"
 />
 </TabItem>
-<TabItem value="py3" label="Python Client v3">
-<FilteredTextBlock
-  text={EndToEndPy3Code}
-  startMarker="# GenerativeSearchExample"
-  endMarker="# END GenerativeSearchExample"
-  language="py"
-/>
-</TabItem>
 <TabItem value="js" label="JS/TS Client v3">
 <FilteredTextBlock
   text={EndToEndTSCode}
   startMarker="// GenerativeSearchExample"
   endMarker="// END GenerativeSearchExample"
   language="ts"
-/>
-</TabItem>
-<TabItem value="js2" label="JS/TS Client v2">
-<FilteredTextBlock
-  text={EndToEndTSCodeLegacy}
-  startMarker="// GenerativeSearchExample"
-  endMarker="// END GenerativeSearchExample"
-  language="tsv2"
 />
 </TabItem>
 <TabItem value="go" label="Go">

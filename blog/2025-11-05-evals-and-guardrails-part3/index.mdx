@@ -179,7 +179,7 @@ faq_data = dataset['train'].to_pandas()
 print(f"Dataset loaded: {len(faq_data)} FAQ entries")
 
 print("Importing FAQ data...")
-with weaviate_client.batch.dynamic() as batch:
+with weaviate_client.batch.stream() as batch:
     for idx, row in faq_data.iterrows():
         batch.add_object(
             collection=collection_name,

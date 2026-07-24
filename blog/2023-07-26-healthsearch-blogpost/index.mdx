@@ -150,7 +150,7 @@ Your browser does not support the video tag.
 
 The strength of Semantic Search truly shines in this use case because reviews are often unstructured, and reviews can be expressed in numerous ways. Phrases such as `good for joint pain`, `helpful for joint pain`, and `improves arthritis`, may differ in wording but bear the same semantic meaning. Capturing these variations is important for this specific use case and it’s also universally applicable to other use cases involving user reviews.
 
-But how did we accomplish this with Weaviate? The process is surprisingly straightforward. We created `Product` objects embedded with their reviews, summaries, and other metadata, to enable semantic search. To optimize performance, we vectorize specific fields using the `gpt-3.5-turbo` model and leave out fields that do not require vectorization. We choose the model because it’s faster than GPT4, but you can use any other embedding model (Cohere, HuggingFace, etc.).
+But how did we accomplish this with Weaviate? The process is surprisingly straightforward. We created `Product` objects embedded with their reviews, summaries, and other metadata, to enable semantic search. To optimize performance, we vectorize specific fields using OpenAI's `text-embedding-3-small` embedding model and leave out fields that do not require vectorization. You can use any other embedding model (Cohere, HuggingFace, etc.) — the [model providers reference](https://docs.weaviate.io/weaviate/model-providers) lists supported options.
 
 <details>
   <summary>Product Schema</summary>

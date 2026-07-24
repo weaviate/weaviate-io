@@ -194,9 +194,9 @@ def chunk_python_file(path: Path) -> list[dict]:
 Batch-ingest with the standard Weaviate batch pattern:
 
 ```python
-code_chunks = client.collections.get("CodeChunks")
+code_chunks = client.collections.use("CodeChunks")
 
-with code_chunks.batch.dynamic() as batch:
+with code_chunks.batch.stream() as batch:
     for py_file in Path("./src").rglob("*.py"):
         for chunk in chunk_python_file(py_file):
             batch.add_object(properties=chunk)
@@ -222,9 +222,9 @@ def chunk_markdown(text: str, max_chars: int = 1500) -> list[str]:
                 chunks.append(sub.strip())
     return [c for c in chunks if c]
 
-doc_chunks = client.collections.get("DocChunks")
+doc_chunks = client.collections.use("DocChunks")
 
-with doc_chunks.batch.dynamic() as batch:
+with doc_chunks.batch.stream() as batch:
     for md_file in Path("./docs").rglob("*.md"):
         text = md_file.read_text()
         title = md_file.stem
@@ -448,9 +448,9 @@ try:
         )
 
     # ---- Code: AST-chunk every .py file ----
-    code = client.collections.get("CodeChunks")
+    code = client.collections.use("CodeChunks")
     code_count = 0
-    with code.batch.dynamic() as batch:
+    with code.batch.stream() as batch:
         for py in CODE_DIR.rglob("*.py"):
             if any(part.startswith(".") or part in ("node_modules", "venv", ".venv", "__pycache__") for part in py.parts):
                 continue
@@ -474,9 +474,9 @@ try:
     print(f"STEP_2_CODE_CHUNKS={code_count}")
 
     # ---- Docs: heading-chunk every .md file ----
-    docs = client.collections.get("DocChunks")
+    docs = client.collections.use("DocChunks")
     doc_count = 0
-    with docs.batch.dynamic() as batch:
+    with docs.batch.stream() as batch:
         for md in DOCS_DIR.rglob("*.md"):
             if any(part.startswith(".") for part in md.parts):
                 continue

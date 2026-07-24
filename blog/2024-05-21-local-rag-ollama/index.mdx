@@ -61,7 +61,7 @@ Install both the [`docker`](https://docs.docker.com/desktop/) (Docker 17.09.0 or
 Now, you can run the following command from a terminal to start up a Weaviate instance from the default Docker image.
 
 ```
-docker run -p 8080:8080 -p 50051:50051 cr.weaviate.io/semitechnologies/weaviate:1.24.8
+docker run -p 8080:8080 -p 50051:50051 cr.weaviate.io/semitechnologies/weaviate:1.37.4
 ```
 
 ### Step 3: Install the Weaviate Python client
@@ -128,7 +128,7 @@ Now, you can load the data into the predefined structure. For this, you can iter
 import ollama
 
 # Store each document in a vector embedding database
-with collection.batch.fixed_size(batch_size=200) as batch:
+with collection.batch.stream() as batch:
   for i, d in enumerate(documents):
     # Generate embeddings
     response = ollama.embeddings(model = "all-minilm",

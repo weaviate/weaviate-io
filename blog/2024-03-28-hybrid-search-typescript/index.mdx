@@ -42,7 +42,7 @@ Hybrid search in Weaviate combines keyword (BM25) and vector search to leverage 
 A code snippet of hybrid search in JavaScript will look something like this.
 
 ```typescript
-const myCollection = client.collections.get('JeopardyQuestion');
+const myCollection = client.collections.use('JeopardyQuestion');
 
 const result = await myCollection.query.hybrid('food', {
   limit: 2,
@@ -63,7 +63,7 @@ Think of alpha as a measure of how much your hybrid search should lean towards e
 The code snippet below demonstrates how to change the alpha of your hybrid search in JavaScript.
 
 ```typescript
-const myCollection = client.collections.get('JeopardyQuestion');
+const myCollection = client.collections.use('JeopardyQuestion');
 
 const result = await myCollection.query.hybrid('food', {
   // highlight-start
@@ -93,7 +93,7 @@ In a nutshell, **Ranked Fusion** (the original hybrid search algorithm in Weavia
 The code snippet below demonstrates how to change the ranking algorithm of your hybrid search in JavaScript.
 
 ```typescript
-const myCollection = client.collections.get('JeopardyQuestion');
+const myCollection = client.collections.use('JeopardyQuestion');
 
 const result = await myCollection.query.hybrid('food', {
   // highlight-start
@@ -170,7 +170,7 @@ const quotesCollection = await client.collections.create({
       skipVectorization: true,
     },
   ],
-  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI('default'),
+  vectorizers: weaviate.configure.vectors.text2VecOpenAI(),
 });
 ```
 
@@ -241,7 +241,7 @@ export async function findQuotesBySearchTerm(
   searchTerm: string,
   alpha: number
 ) {
-  const collection = await client.collections.get<Omit<QuoteType, 'distance'>>(
+  const collection = client.collections.use<Omit<QuoteType, 'distance'>>(
     'Quotes'
   );
 

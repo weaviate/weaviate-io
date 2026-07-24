@@ -87,7 +87,7 @@ With client-side batching, you have to manually define batch sizes and concurren
 Use `batch.stream()` to enable server-side batching. The server dynamically controls how fast the client sends data — no batch size configuration needed:
 
 ```python
-collection = client.collections.get("Articles")
+collection = client.collections.use("Articles")
 
 with collection.batch.stream() as batch:
     for item in data:
@@ -207,7 +207,7 @@ Previously, once an inverted index was created on a property, it could not be re
 You can drop specific index types individually — `searchable`, `filterable`, or `rangeFilters`:
 
 ```python
-collection = client.collections.get("Article")
+collection = client.collections.use("Article")
 
 # Drop the searchable inverted index from the "title" property
 collection.config.delete_property_index("title", "searchable")

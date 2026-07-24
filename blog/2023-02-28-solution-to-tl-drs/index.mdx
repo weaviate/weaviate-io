@@ -11,6 +11,10 @@ description: Did you know that Weaviate can summarize information during retriev
 <!-- truncate -->
 ![The solution to TL;DRs - Weaviate's summarizer module](./img/hero.png)
 
+:::note Module update
+`text2vec-contextionary` is deprecated. For current vectorizer + generative-summarization patterns, see the [model providers reference](https://docs.weaviate.io/weaviate/model-providers).
+:::
+
 (*Note: You can skip to the TL;DR version [below](/blog/solution-to-tl-drs#bonus-tldr-version-edited)* 😉)
 
 How often do you find yourself facing a wall of text in an email, a report, or a paper, and letting out a sigh? Nobody enjoys hacking their way through boring, dense prose. Especially if it's just to see if the information is even relevant.
@@ -218,7 +222,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: cr.weaviate.io/semitechnologies/weaviate:1.17.4
+    image: cr.weaviate.io/semitechnologies/weaviate:1.37.4
     ports:
     - 8080:8080
     restart: on-failure:0

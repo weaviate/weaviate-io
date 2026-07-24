@@ -117,7 +117,7 @@ We've refreshed the way you reconfigure collections.
 import weaviate from 'weaviate-client';
 const { vectorizer, vectorIndex } = weaviate.reconfigure;
 
-const myCollection = client.collection.get('Article')
+const myCollection = client.collections.use('Article')
 
 const config = await myCollection.config.update({
   vectorizers: vectorizer.update({

@@ -58,7 +58,7 @@ POST /v1/schema
   "properties": [
     {"name": "content", "dataType": ["text"]},
     {"name": "title", "dataType": ["text"]},
-    {"name": "tags", "dataType": ["string[]"]},
+    {"name": "tags", "dataType": ["text[]"]},
     {"name": "fileLink", "dataType": ["text"]},
     {"name": "timestamp", "dataType": ["date"]}
   ]
@@ -69,9 +69,9 @@ Once this is set up, every CRUD operation is tenant-aware:
 
 ```
 curl -X POST \
-  -H "X-Weaviate-Tenant: user-123" \
   -H "Content-Type: application/json" \
-  -d '{"title": "Note 1", "content": "AI + Mindmaps"}' \
+  -H "Authorization: Bearer $WEAVIATE_API_KEY" \
+  -d '{"class": "Note", "tenant": "user-123", "properties": {"title": "Note 1", "content": "AI + Mindmaps"}}' \
   https://<your-cluster>/v1/objects
 ```
 
@@ -166,15 +166,21 @@ Originally, we tried running vector search locally on mobile. It broke down fast
 Weaviate solved this. Now, mobile only computes query embeddings and sends those to the centralized database.
 
 ```python
-from weaviate import Client
+import os
+import weaviate
+from weaviate.classes.init import Auth
 
-client = Client("https://<your-cluster>")
+client = weaviate.connect_to_weaviate_cloud(
+    cluster_url=os.environ["WEAVIATE_URL"],
+    auth_credentials=Auth.api_key(os.environ["WEAVIATE_API_KEY"]),
+)
 
-results = client.query.get("Note", ["title", "fileLink"])
-    .with_near_vector({"vector": query_embedding})
-    .with_tenant("user-123")
-    .with_limit(10)
-    .do()
+notes = client.collections.use("Note").with_tenant("user-123")
+results = notes.query.near_vector(
+    near_vector=query_embedding,
+    limit=10,
+    return_properties=["title", "fileLink"],
+)
 ```
 
 We get fast, accurate results, no matter where the notes came from.

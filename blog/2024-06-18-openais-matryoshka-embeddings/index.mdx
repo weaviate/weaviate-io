@@ -176,7 +176,7 @@ pip install -U weaviate-client
 
 Next, you need to setup a Weaviate vector database instance. For this example, you can [start up a local instance of Weaviate via Docker](https://docs.weaviate.io/weaviate/installation/docker-compose), as follows:
 ```powershell
-docker run -p 8080:8080 -p 50051:50051 cr.weaviate.io/semitechnologies/weaviate:1.25.0
+docker run -p 8080:8080 -p 50051:50051 cr.weaviate.io/semitechnologies/weaviate:1.37.4
 ````
 
 Once your vector database instance is up and running, you can connect to it as shown below:
@@ -200,7 +200,7 @@ from weaviate.classes.config import Property, DataType
 # Define schema and create collection
 my_collection = client.collections.create(
     name="MyCollection",
-    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai(model='text-embedding-3-small',
+    vector_config=wvc.config.Configure.Vectors.text2vec_openai(model='text-embedding-3-small',
                                                                       dimensions = 512,
                                                                       vectorize_collection_name=False,
 ),

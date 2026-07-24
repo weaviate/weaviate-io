@@ -147,7 +147,7 @@ function AgentSkillsPanel() {
             </Link>
 
             <Link
-              to="https://docs.weaviate.io/agents"
+              to="https://docs.weaviate.io/query-agent"
               className="tw-inline-flex tw-items-center tw-justify-center tw-rounded-[10px] tw-bg-[#111111] tw-px-8 tw-py-3 tw-text-[16px] tw-font-medium tw-text-[#DDEBF2] tw-no-underline tw-transition hover:tw-bg-[#1b1b1b]"
               style={{ fontFamily: "Inter, sans-serif" }}
             >

@@ -5,23 +5,31 @@ import TabItem from '@theme/TabItem';
 <TabItem value="py" label="Python">
 
 ```python
-client.query.get("Listing", "description").with_near_text({
-   "concepts": ["AirBnB near a place to walk my dog"]
-}).do()
+listing_collection = client.collections.use("Listing")
+
+response = listing_collection.query.near_text(
+    query="AirBnB near a place to walk my dog",
+    limit=3,
+)
+
+for obj in response.objects:
+    print(obj.properties["description"])
 ```
 </TabItem>
 
 <TabItem value="js" label="TypeScript">
 
 ```ts
-client.graphql
-  .get()
-  .withClassName('Listing')
-  .withFields('description')
-  .withNearText({
-    concepts: ['AirBnB near a place to walk my dog']
-  })
-  .do()
+const listings = client.collections.use('Listing');
+
+const response = await listings.query.nearText('AirBnB near a place to walk my dog', {
+  limit: 3,
+  returnProperties: ['description'],
+});
+
+for (const obj of response.objects) {
+  console.log(obj.properties.description);
+}
 ```
 
 </TabItem>

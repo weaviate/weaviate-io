@@ -2,9 +2,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart/endtoend.py';
-import EndToEndPy3Code from '!!raw-loader!/_includes/code/quickstart/endtoend.py3.py';
 import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart/endtoend.ts';
-import EndToEndTSCodeLegacy from '!!raw-loader!/_includes/code/quickstart/endtoend-v2.ts';
 import GoCollectionDefine from '!!raw-loader!/_includes/code/quickstart/go-collection-define.go';
 
 <Tabs groupId="languages">
@@ -12,16 +10,6 @@ import GoCollectionDefine from '!!raw-loader!/_includes/code/quickstart/go-colle
 
 <FilteredTextBlock
   text={EndToEndPyCode}
-  startMarker="# ===== define collection ====="
-  endMarker="# ===== import data ====="
-  language="py"
-/>
-
-</TabItem>
-<TabItem value="py3" label="Python Client v3">
-
-<FilteredTextBlock
-  text={EndToEndPy3Code}
   startMarker="# ===== define collection ====="
   endMarker="# ===== import data ====="
   language="py"
@@ -39,14 +27,6 @@ import GoCollectionDefine from '!!raw-loader!/_includes/code/quickstart/go-colle
 
 </TabItem>
 
-<TabItem value="js2" label="JS/TS Client v2">
-<FilteredTextBlock
-  text={EndToEndTSCodeLegacy}
-  startMarker="// START CreateCollection"
-  endMarker="// END CreateCollection"
-  language="tsv2"
-/>
-</TabItem>
 <TabItem value="go" label="Go">
 <FilteredTextBlock
   text={GoCollectionDefine}

@@ -97,7 +97,7 @@ There are two main things to think about:
 1. **Users don’t usually interact with chatbots or input boxes in the ideal way**. Most demos will assume the users input their complete requests in the form of perfectly formatted sentences, but in production apps, the actual usage tends to be messy, unclear, and incomplete. 
 2. **Different parts of your AI system need to understand and use the user’s query in different ways.** The format that’s best for an LLM is probably not the same one that you would use to query a vector database, and so we need a way to augment the query to suit different tools and steps within our workflow. 
 
-The [Weaviate Query Agent](https://docs.weaviate.io/agents/query) is a great example of how query augmentation can easily be built into any AI app. It works by taking a user’s prompt in natural language and deciding the best way to structure the query for the database based on it’s knowledge of the cluster’s data structure and Weaviate itself. 
+The [Weaviate Query Agent](https://docs.weaviate.io/query-agent) is a great example of how query augmentation can easily be built into any AI app. It works by taking a user’s prompt in natural language and deciding the best way to structure the query for the database based on it’s knowledge of the cluster’s data structure and Weaviate itself. 
 
 ![the query agent behind the scenes](./img/query-agent.png)
 

@@ -102,7 +102,7 @@ data = [
 日本語のKAGOMEトークナイザーを使用したハイブリッド検索をWeaviateで利用するには、Weaviate`v1.28`以降のバージョンを使用していることを確認する必要があります。以下の手順で、[Dockerを使用してWeaviateベクトルデータベースのインスタンスをローカル環境にセットアップ](https://docs.weaviate.io/weaviate/installation/docker-compose)できます：
 
 ```
-docker run -p 8080:8080 -p 50051:50051  -e ENABLE_TOKENIZER_KAGOME_JA='true' -e ENABLE_MODULES='text2vec-cohere' cr.weaviate.io/semitechnologies/weaviate:1.28.1
+docker run -p 8080:8080 -p 50051:50051  -e ENABLE_TOKENIZER_KAGOME_JA='true' -e ENABLE_MODULES='text2vec-cohere' cr.weaviate.io/semitechnologies/weaviate:1.37.4
 ```
 
 次は[Weaviate ClientのPythonライブラリ](https://docs.weaviate.io/weaviate/client-libraries)を準備します。バージョン4.9.6以上が必要です。
@@ -135,7 +135,7 @@ import weaviate.classes.config as wc
 
 client.collections.create(
     name="ClothingItems",
-    vectorizer_config=wc.Configure.Vectorizer.text2vec_cohere(
+    vector_config=wc.Configure.Vectors.text2vec_cohere(
         model="embed-multilingual-v3.0",    ),
     properties=[
         wc.Property(name="item", 
@@ -156,9 +156,9 @@ client.collections.create(
 
 ```py
 # Get a collection object for "ClothingItems"
-clothes = client.collections.get("ClothingItems")
+clothes = client.collections.use("ClothingItems")
 
-with clothes.batch.fixed_size(batch_size=200) as batch:
+with clothes.batch.stream() as batch:
     for d in data:
         batch.add_object({
             "item": d[0],

@@ -89,7 +89,7 @@ async function processJsonFile(
     })),
     // Use Weaviate vectorize to create embeddings
     vectorizers: [
-      weaviate.configure.vectorizer.text2VecOpenAI({
+      weaviate.configure.vectors.text2VecOpenAI({
         name: "recipe_vector",
         sourceProperties: properties as any,
       }),
@@ -155,7 +155,7 @@ export const generateMeal = inngest.createFunction(
 
     // Query relevant recipes based on cusine type preference
     let relevantRecipes = await step.run("query-recipes", async () => {
-      const collection = weaviate.collections.get("Thefoodprocessorcuisinetype");
+      const collection = weaviate.collections.use("Thefoodprocessorcuisinetype");
       const query = cuisine_type;
 
       const result = await collection.query.nearText(query, {
@@ -237,7 +237,7 @@ export const generateMeal = inngest.createFunction(
       ingredientsAlternatives = await step.run(
         "query-ingredients-alternatives",
         async () => {
-          const collection = client.collections.get(
+          const collection = client.collections.use(
             "Thefoodprocessoringredientsalternatives"
           );
           const query = allergiesAnalysis.choices[0].message.content!;

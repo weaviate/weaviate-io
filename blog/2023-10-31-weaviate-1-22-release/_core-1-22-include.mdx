@@ -239,7 +239,7 @@ import weaviate.classes as wvc
 
 client.collections.create(
     name="Question",
-    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai(),
+    vector_config=wvc.config.Configure.Vectors.text2vec_openai(),
     generative_config=wvc.config.Configure.Generative.openai()
 )
 ```
@@ -261,7 +261,7 @@ Now looks like:
 
 ```python
 # New (v4) Python client syntax
-questions = client.collections.get("Question")
+questions = client.collections.use("Question")
 questions.query.near_text(query="biology", limit=2)
 ```
 
