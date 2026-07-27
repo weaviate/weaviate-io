@@ -1,30 +1,50 @@
 # Transformation Agent — LLM Guidance
 
 ## TL;DR
-- **Transformation Agent** uses an LLM + prompts to **manipulate and improve your dataset** inside Weaviate.
-- It can **update existing objects**, **create new properties**, and **augment data** (e.g., translate, classify, summarize, generate).
-- Best for **data cleaning + enrichment** workflows that improve retrieval quality for RAG/agents.
-- Available as a **Weaviate Cloud preview** (see docs for current availability and limits).
+- **Status:** Sunset.
+- For new builds, use **Query Agent** for natural-language data workflows and **Engram** where memory-centric behavior is required.
+- Do not start new implementations on Transformation Agent.
+
+## Status
+
+- Lifecycle: **Sunset**
+- Recommended replacement: **Query Agent + Engram**
+- Guidance: Maintain existing workloads while planning migration.
 
 ## What this product is
-Transformation Agent is a Weaviate-native agent that performs **prompt-driven data engineering** tasks. You describe the transformation you want (“normalize titles”, “extract entities”, “translate descriptions”, “classify docs”), and it uses a pretrained LLM to apply changes across your objects/properties.
+Transformation Agent was a prompt-driven data engineering tool for dataset transformation and enrichment inside Weaviate.
 
-Think: **LLM-powered dataset maintenance and enrichment** to make your collections more searchable, filterable, and consistent.
+Its use cases are now better addressed through:
+
+- **Query Agent** for natural-language data interaction and retrieval workflows
+- **Engram** for memory-driven agent behavior and persistent context
 
 ## When to use
-- You want to **clean and standardize** messy data before or after ingestion (formatting, normalization, deduping signals).
-- You need **structured extraction** into new properties (entities, categories, timestamps, tags).
-- You want to **augment** objects to improve retrieval (summaries, keywords, translations, classifications).
-- You’re preparing datasets for **RAG / agentic retrieval**, and better structure will improve precision and filtering.
+- You are supporting an existing Transformation Agent workflow during migration.
+- You need to compare legacy behavior before cutover.
 
 ## When not to use
-- Your data is already clean/structured and transformations won’t improve retrieval outcomes.
-- You require deterministic, rule-based processing only (no LLM variability).
-- You can’t send data to managed services / need strict local-only processing (use your own pipeline + Weaviate ingestion).
-- You’re trying to replace core ingestion, indexing, or retrieval logic — this is for **transform/enrich**, not querying.
+- Do not use for new implementations.
+- Do not build new transformation pipelines on Transformation Agent.
+
+## Migration guidance
+
+Recommended target architecture:
+
+- Move natural-language retrieval and interaction workflows to **Query Agent**.
+- Use **Engram** where workflows require persistent memory and context.
+- Keep deterministic transformations in explicit ETL/data engineering pipelines when needed.
+
+Practical migration steps:
+
+- Inventory current transformation prompts and output properties.
+- Classify each use case into retrieval, memory, or deterministic ETL.
+- Replace retrieval-oriented workflows with Query Agent paths.
+- Introduce Engram for persistent context where applicable.
+- Validate schema compatibility and result quality before decommissioning legacy paths.
 
 ## Quickstart (Python)
-> Patterns vary by workflow. Typical flow: **fetch → transform/enrich → write back**.
+Use this as a migration starting point:
 
 ```py
 import os
@@ -34,17 +54,7 @@ with weaviate.connect_to_weaviate_cloud(
     cluster_url=os.environ["WEAVIATE_URL"],
     auth_credentials=os.environ["WEAVIATE_API_KEY"],
 ) as client:
-    col = client.collections.use("Docs")
-
-    # 1) Fetch objects you want to transform (example: missing tags)
-    objs = col.query.fetch_objects(limit=20).objects
-
-    # 2) Apply a prompt-driven transformation (see docs for the agent API)
-    # Example intent:
-    # - create a new property `topic`
-    # - classify each doc into: "Security", "RAG", "Operations", "Other"
-    #
-    # 3) Write updated properties back to Weaviate
-    for o in objs:
-        col.data.update(uuid=o.uuid, properties={"topic": "Other"})  # placeholder
+    print("Migrate to Query Agent + Engram")
+    print("Query Agent: https://docs.weaviate.io/agents/query/usage")
+    print("Engram: https://docs.weaviate.io/agents/engram/usage")
 ```

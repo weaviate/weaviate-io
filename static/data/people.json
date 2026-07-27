@@ -163,7 +163,7 @@
   },
   {
     "name": "Dirk Kulawiak",
-    "title": "Storage Team Lead",
+    "title": "Director of Database",
     "photo": "dirk.jpg",
     "linkedin": "dirk-kulawiak",
     "github": "dirkkul",
@@ -238,6 +238,12 @@
     "photo": "Giorgos.jpg",
     "linkedin": "gkampitakis",
     "team": "wcd"
+  },
+  {
+    "name": "Harneet Singh",
+    "title": "Security & IT Operations Lead",
+    "photo": "harneet.jpg",
+    "team": "support-engineering"
   },
   {
     "name": "Ian Gregson",
@@ -338,14 +344,6 @@
     "team": "support-engineering"
   },
   {
-    "name": "Michelangelo Partipilo",
-    "title": "Software Engineer",
-    "photo": "Michelangelo-Partipilo.jpg",
-    "linkedin": "mpartipilo",
-    "twitter": "mpartipilom",
-    "team": "database"
-  },
-  {
     "name": "Mila Vernazza",
     "title": "Customer Solution Engineer",
     "photo": "Mila.jpg",
@@ -388,13 +386,6 @@
     "linkedin": "philipvollet",
     "twitter": "philipvollet",
     "team": "developer-growth"
-  },
-  {
-    "name": "Pierre Demagny",
-    "title": "Cloud Platform Engineer",
-    "photo": "Pierre-Demagny.jpg",
-    "linkedin": "pdemagny",
-    "team": "delivery"
   },
   {
     "name": "Prajjwal Yadav",

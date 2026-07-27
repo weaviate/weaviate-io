@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import type { MotionProps } from 'framer-motion';
 import { Price } from '../Price/Price';
 import type { IData } from '../../../types';
+import { SHOW_PLUS_PLAN } from '../../../../config/planVisibility';
 
 interface IPriceReviewProps {
   data: IData;
@@ -33,13 +34,15 @@ export const PriceReview = (props: IPriceReviewProps) => {
         exit={backgroundVariants.exit}
         transition={backgroundVariants.transition}
       />
-      <motion.div
-        className="priceReview-background priceReview-background-teal"
-        initial={backgroundVariants.initial}
-        animate={{ opacity: plan === 'plus' ? 1 : 0 }}
-        exit={backgroundVariants.exit}
-        transition={backgroundVariants.transition}
-      />
+      {SHOW_PLUS_PLAN && (
+        <motion.div
+          className="priceReview-background priceReview-background-teal"
+          initial={backgroundVariants.initial}
+          animate={{ opacity: plan === 'plus' ? 1 : 0 }}
+          exit={backgroundVariants.exit}
+          transition={backgroundVariants.transition}
+        />
+      )}
       <motion.div
         className="priceReview-background priceReview-background-blue"
         initial={backgroundVariants.initial}

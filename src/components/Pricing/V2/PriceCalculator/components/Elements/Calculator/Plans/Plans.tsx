@@ -1,6 +1,7 @@
 import { ButtonGroup } from '../../Form/ButtonGroup/ButtonGroup';
 import { Badge } from '../../Badge/Badge';
 import type { IData, TPlan } from '../../../../types';
+import { SHOW_PLUS_PLAN } from '../../../../../config/planVisibility';
 
 interface IPlansProps {
   updateValue: (n: string, v: string) => void;
@@ -15,7 +16,9 @@ const planDescriptions: Record<TPlan, string> = {
 };
 
 export const Plans = (props: IPlansProps) => {
-  const items: TPlan[] = ['flex', 'plus', 'premium'];
+  const items: TPlan[] = SHOW_PLUS_PLAN
+    ? ['flex', 'plus', 'premium']
+    : ['flex', 'premium'];
   const selectItem = (item: string) => props.updateValue('plan', item);
 
   return (

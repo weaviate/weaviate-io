@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./styles.module.scss";
 import databaseCompare from "../data/databaseCompare";
 import engramCompare from "../data/engramCompare";
+import { SHOW_PLUS_PLAN } from "../config/planVisibility";
 
 function Cell({ value }) {
   if (value === true) return <span className={styles.yes}>✓</span>;
@@ -12,7 +13,11 @@ function Cell({ value }) {
 export default function CompareTable({ product = "database" }) {
   const data = product === "engram" ? engramCompare : databaseCompare;
   const { title, columns, sections } = data;
-  const hasGroups = columns.some((c) => c.group);
+  const visibleColumns =
+    product === "database" && !SHOW_PLUS_PLAN
+      ? columns.filter((col) => col.key !== "plus")
+      : columns;
+  const hasGroups = visibleColumns.some((c) => c.group);
 
   return (
     <section className={styles.wrap}>
@@ -23,27 +28,24 @@ export default function CompareTable({ product = "database" }) {
           <table className={styles.table}>
             <colgroup>
               <col className={styles.featureCol} />
-              {columns.map((col) => (
+              {visibleColumns.map((col) => (
                 <col key={col.key} className={styles.planWidthCol} />
               ))}
             </colgroup>
 
             <thead>
               <tr>
-                <th
-                  className={styles.planHead}
-                  rowSpan={hasGroups ? 2 : 1}
-                >
+                <th className={styles.planHead} rowSpan={hasGroups ? 2 : 1}>
                   Plan
                 </th>
-                {columns.map((col, i) => {
+                {visibleColumns.map((col, i) => {
                   if (col.group) {
-                    const firstIdx = columns.findIndex(
-                      (c) => c.group === col.group
+                    const firstIdx = visibleColumns.findIndex(
+                      (c) => c.group === col.group,
                     );
                     if (i !== firstIdx) return null;
-                    const span = columns.filter(
-                      (c) => c.group === col.group
+                    const span = visibleColumns.filter(
+                      (c) => c.group === col.group,
                     ).length;
                     return (
                       <th
@@ -68,12 +70,12 @@ export default function CompareTable({ product = "database" }) {
               </tr>
               {hasGroups && (
                 <tr>
-                  {columns.map((col) =>
+                  {visibleColumns.map((col) =>
                     col.group ? (
                       <th key={col.key} className={styles.planCol}>
                         {col.label}
                       </th>
-                    ) : null
+                    ) : null,
                   )}
                 </tr>
               )}
@@ -83,13 +85,15 @@ export default function CompareTable({ product = "database" }) {
               {sections.map((section) => (
                 <React.Fragment key={section.heading}>
                   <tr className={styles.sectionRow}>
-                    <th colSpan={columns.length + 1}>{section.heading}</th>
+                    <th colSpan={visibleColumns.length + 1}>
+                      {section.heading}
+                    </th>
                   </tr>
 
                   {section.rows.map((row) => (
                     <tr key={`${section.heading}-${row.label}`}>
                       <th className={styles.rowHeader}>{row.label}</th>
-                      {columns.map((col) => (
+                      {visibleColumns.map((col) => (
                         <td key={col.key}>
                           <Cell value={row.values[col.key]} />
                         </td>

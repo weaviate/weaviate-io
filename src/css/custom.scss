@@ -1618,7 +1618,11 @@ a.navbar__item.navbar__link:hover {
 }
 
 .trusted-logos-track {
-  animation: trustedLogosMarquee 300s linear infinite;
+  animation-name: trustedLogosMarquee;
+  animation-duration: var(--trusted-logos-duration, 150s);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-delay: var(--trusted-logos-delay, 0s);
   will-change: transform;
 }
 
@@ -1627,7 +1631,11 @@ a.navbar__item.navbar__link:hover {
 }
 
 .trusted-logos-track-mobile {
-  animation: trustedLogosMarqueeMobile 320s linear infinite;
+  animation-name: trustedLogosMarqueeMobile;
+  animation-duration: var(--trusted-logos-mobile-duration, 170s);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-delay: var(--trusted-logos-mobile-delay, 0s);
   will-change: transform;
 }
 

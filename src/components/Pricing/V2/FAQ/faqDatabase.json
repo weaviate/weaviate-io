@@ -5,7 +5,7 @@
   },
   {
     "question": "What is the minimum monthly amount?",
-    "answer": "The minimum covers the baseline cluster cost and includes charges for Vector Dimensions and Storage: $45/month on Flex, $280/month on Plus, $400/month on Premium. Backups are charged on top, based on data volume and retention."
+    "answer": "The minimum covers the baseline cluster cost and includes charges for Vector Dimensions and Storage: $45/month on Flex and from $400/month on Premium. Backups are charged on top, based on data volume and retention."
   },
   {
     "question": "Does compression change the cost?",

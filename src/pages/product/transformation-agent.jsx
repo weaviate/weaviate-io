@@ -1,21 +1,30 @@
-import React from 'react';
-import Layout from '@theme/Layout';
-import Link from '@docusaurus/Link';
-import { MetaSEO } from '/src/theme/MetaSEO';
-import appData from '/data/apps.json';
-import styles from '/src/components/Marketplace/styles.module.scss';
-import AppCard from '/src/components/Marketplace/card';
+import React from "react";
+import Layout from "@theme/Layout";
+import Link from "@docusaurus/Link";
+import { MetaSEO } from "/src/theme/MetaSEO";
+import appData from "/data/apps.json";
+import styles from "/src/components/Marketplace/styles.module.scss";
+import AppCard from "/src/components/Marketplace/card";
 
 export default function QueryPage() {
-  const app = appData.find((app) => app.name === 'Transformation Agent');
-
-  if (!app) return <div>App not found</div>;
+  const app = appData.find((app) => app.name === "Transformation Agent") ||
+    appData.find((app) => app.name === "Query Agent") || {
+      id: "transformation-agent-sunset",
+      name: "Transformation Agent",
+      category: "Weaviate Agents",
+      description:
+        "This product is being sunset. For new builds, use Query Agent and Engram.",
+      image: "query-agent.svg",
+      overviewImage1: "query-agent-screenshot.svg",
+      url: "/product/transformation-agent",
+      released: "no",
+    };
 
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Transformation Agent | Weaviate Products"
-        description="Automatically improve your dataset with a single prompt."
+        title="Transformation Agent (Sunset) | Weaviate Products"
+        description="Transformation Agent is being sunset. Use Query Agent and Engram for new workloads."
       >
         <MetaSEO />
         <section className={styles.productBG}>
@@ -37,27 +46,33 @@ export default function QueryPage() {
               </div>
               <div className={styles.mainContent}>
                 <div className={styles.appDetailHeader}>
-                  <img src={'/img/site/' + app.image} alt={app.name} />
+                  <img src={"/img/site/" + app.image} alt={app.name} />
                   <div>
                     <h1>{app.name}</h1>
                     <p>{app.description}</p>
+                    <div
+                      style={{
+                        marginTop: "12px",
+                        marginBottom: "12px",
+                        padding: "12px 14px",
+                        border: "1px solid rgba(255, 183, 3, 0.35)",
+                        borderRadius: "8px",
+                        background: "rgba(255, 183, 3, 0.08)",
+                        color: "#ecf4f8",
+                      }}
+                    >
+                      <strong>Sunset notice:</strong> Transformation Agent is
+                      being retired in favor of Query Agent and Engram.
+                    </div>
                     <div className={styles.installButtons}>
-                      {app.released === 'yes' ? (
-                        <Link to="https://events.weaviate.io/weaviate-agents">
-                          <button className={styles.installButton}>
-                            Sign up for updates
-                          </button>
-                        </Link>
-                      ) : (
-                        <Link to="https://docs.weaviate.io/agents/transformation/usage">
-                          <button className={styles.installButton}>
-                            Preview
-                          </button>
-                        </Link>
-                      )}
-                      <Link to="https://docs.weaviate.io/agents/transformation">
+                      <Link to="/product/query-agent">
+                        <button className={styles.installButton}>
+                          Explore Query Agent
+                        </button>
+                      </Link>
+                      <Link to="/product/engram">
                         <button className={styles.docButton}>
-                          Read the Docs
+                          Explore Engram
                         </button>
                       </Link>
                     </div>
@@ -65,7 +80,7 @@ export default function QueryPage() {
                   <div className={styles.imageContainer}>
                     <div className={styles.overviewImage}>
                       <img
-                        src={'/img/site/' + app.overviewImage1}
+                        src={"/img/site/" + app.overviewImage1}
                         alt={app.name}
                       />
                     </div>
@@ -78,27 +93,25 @@ export default function QueryPage() {
                       <h3>Overview</h3>
 
                       <p>
-                        Weaviate’s <strong>Transformation Agent</strong> lets
-                        you manipulate your data using simple prompts. Based on
-                        the instructions you give it, it uses a pre-trained LLM
-                        to automatically update data, create new properties, add
-                        new data, and more.
+                        <strong>Transformation Agent is being sunset.</strong>{" "}
+                        For new implementations, use{" "}
+                        <strong>Query Agent</strong> for natural-language query
+                        workflows and <strong>Engram</strong> where
+                        memory-centric agent behavior is needed.
                       </p>
                       <ul>
                         <li>
-                          <strong>Simplify data engineering tasks:</strong>{' '}
-                          Transform your dataset with the power of prompts and
-                          pre-trained LLMs.
+                          <strong>Migration path:</strong> Shift
+                          natural-language data access and orchestration
+                          workflows to Query Agent.
                         </li>
                         <li>
-                          <strong>Improve the quality of your data:</strong>{' '}
-                          Clean and organize your dataset to make it more
-                          reliable.
+                          <strong>Memory workflows:</strong> Use Engram for
+                          durable, agent-oriented memory pipelines.
                         </li>
                         <li>
-                          <strong>Augment your dataset:</strong> Translate,
-                          classify, or create new content based on existing
-                          objects.
+                          <strong>Recommendation:</strong> Avoid starting new
+                          workloads on Transformation Agent.
                         </li>
                       </ul>
                     </div>
@@ -106,10 +119,19 @@ export default function QueryPage() {
                     <div className={styles.additionalInfo}>
                       <h3>Additional details</h3>
                       <p>
-                        Availability:{' '}
-                        <Link to="https://docs.weaviate.io/agents/transformation/usage">
+                        Status: <strong>Sunset</strong>
+                      </p>
+                      <p>
+                        Recommended replacement:{" "}
+                        <Link to="/product/query-agent">
                           <strong>
-                            <u>Preview in Weaviate Cloud</u>
+                            <u>Query Agent</u>
+                          </strong>
+                        </Link>{" "}
+                        +{" "}
+                        <Link to="/product/engram">
+                          <strong>
+                            <u>Engram</u>
                           </strong>
                         </Link>
                       </p>

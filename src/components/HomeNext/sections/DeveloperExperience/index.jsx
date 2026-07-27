@@ -400,7 +400,7 @@ function DeveloperResourcesPanel() {
     {
       title: "Academy",
       desc: "Explore our comprehensive course library.",
-      link: "/academy",
+      link: "https://academy.weaviate.io/",
     },
     {
       title: "Blog",
@@ -420,7 +420,7 @@ function DeveloperResourcesPanel() {
     {
       title: "Ebooks",
       desc: "In-depth resources to help you deepen your knowledge.",
-      link: "/ebooks",
+      link: "/community/events#ebooks",
     },
     {
       title: "Podcast",

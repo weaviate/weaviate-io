@@ -1,21 +1,30 @@
-import React from 'react';
-import Layout from '@theme/Layout';
-import Link from '@docusaurus/Link';
-import { MetaSEO } from '/src/theme/MetaSEO';
-import appData from '/data/apps.json';
-import styles from '/src/components/Marketplace/styles.module.scss';
-import AppCard from '/src/components/Marketplace/card';
+import React from "react";
+import Layout from "@theme/Layout";
+import Link from "@docusaurus/Link";
+import { MetaSEO } from "/src/theme/MetaSEO";
+import appData from "/data/apps.json";
+import styles from "/src/components/Marketplace/styles.module.scss";
+import AppCard from "/src/components/Marketplace/card";
 
 export default function QueryPage() {
-  const app = appData.find((app) => app.name === 'Personalization Agent');
-
-  if (!app) return <div>App not found</div>;
+  const app = appData.find((app) => app.name === "Personalization Agent") ||
+    appData.find((app) => app.name === "Engram") || {
+      id: "personalization-agent-sunset",
+      name: "Personalization Agent",
+      category: "Weaviate Agents",
+      description:
+        "This product is being sunset. For new builds, use Engram and Query Agent.",
+      image: "engram-cta-logo.svg",
+      overviewImage1: "engram-arch-diagram.png",
+      url: "/product/personalization-agent",
+      released: "no",
+    };
 
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Personalization Agent | Weaviate Workbench"
-        description="Dynamically personalize experiences based on user behavior."
+        title="Personalization Agent (Sunset) | Weaviate Workbench"
+        description="Personalization Agent is being sunset. Use Engram and Query Agent for new workloads."
       >
         <MetaSEO />
         <section className={styles.productBG}>
@@ -37,27 +46,33 @@ export default function QueryPage() {
               </div>
               <div className={styles.mainContent}>
                 <div className={styles.appDetailHeader}>
-                  <img src={'/img/site/' + app.image} alt={app.name} />
+                  <img src={"/img/site/" + app.image} alt={app.name} />
                   <div>
                     <h1>{app.name}</h1>
                     <p>{app.description}</p>
+                    <div
+                      style={{
+                        marginTop: "12px",
+                        marginBottom: "12px",
+                        padding: "12px 14px",
+                        border: "1px solid rgba(255, 183, 3, 0.35)",
+                        borderRadius: "8px",
+                        background: "rgba(255, 183, 3, 0.08)",
+                        color: "#ecf4f8",
+                      }}
+                    >
+                      <strong>Sunset notice:</strong> Personalization Agent is
+                      being retired in favor of Query Agent and Engram.
+                    </div>
                     <div className={styles.installButtons}>
-                      {app.released === 'yes' ? (
-                        <Link to="https://events.weaviate.io/weaviate-agents">
-                          <button className={styles.installButton}>
-                            Sign up for updates
-                          </button>
-                        </Link>
-                      ) : (
-                        <Link to="https://docs.weaviate.io/agents/personalization/usage">
-                          <button className={styles.installButton}>
-                            Preview
-                          </button>
-                        </Link>
-                      )}
-                      <Link to="https://docs.weaviate.io/agents/personalization">
+                      <Link to="/product/engram">
+                        <button className={styles.installButton}>
+                          Explore Engram
+                        </button>
+                      </Link>
+                      <Link to="/product/query-agent">
                         <button className={styles.docButton}>
-                          Read the Docs
+                          Explore Query Agent
                         </button>
                       </Link>
                     </div>
@@ -65,7 +80,7 @@ export default function QueryPage() {
                   <div className={styles.imageContainer}>
                     <div className={styles.overviewImage}>
                       <img
-                        src={'/img/site/' + app.overviewImage1}
+                        src={"/img/site/" + app.overviewImage1}
                         alt={app.name}
                       />
                     </div>
@@ -78,26 +93,24 @@ export default function QueryPage() {
                       <h3>Overview</h3>
 
                       <p>
-                        Weaviate’s <strong>Personalization Agent</strong> learns
-                        user behavior and can personalize any experience. 
+                        <strong>Personalization Agent is being sunset.</strong>{" "}
+                        For new implementations, use <strong>Engram</strong> for
+                        memory and personalization context, and{" "}
+                        <strong>Query Agent</strong> for natural-language
+                        retrieval workflows.
                       </p>
                       <ul>
                         <li>
-                          <strong>
-                            Deliver tailored results in real-time:
-                          </strong>{' '}
-                          Automatically curate search results based on each
-                          user’s interactions.
+                          <strong>Migration path:</strong> Move long-term user
+                          context and preference memory into Engram.
                         </li>
                         <li>
-                          <strong>Understand each recommendation:</strong> As
-                          user experiences adapt, your team gets natural
-                          language explanations for each recommendation.
+                          <strong>Query layer:</strong> Use Query Agent for
+                          natural-language data retrieval and orchestration.
                         </li>
                         <li>
-                          <strong>Simplify development:</strong> Go beyond
-                          static, rules-based recommendations and get smart,
-                          LLM-based personalization out of the box.
+                          <strong>Recommendation:</strong> Avoid starting new
+                          workloads on Personalization Agent.
                         </li>
                       </ul>
                     </div>
@@ -105,10 +118,19 @@ export default function QueryPage() {
                     <div className={styles.additionalInfo}>
                       <h3>Additional details</h3>
                       <p>
-                        Availability:{' '}
-                        <Link to="https://docs.weaviate.io/agents/personalization/usage">
+                        Status: <strong>Sunset</strong>
+                      </p>
+                      <p>
+                        Recommended replacement:{" "}
+                        <Link to="/product/engram">
                           <strong>
-                            <u>Preview in Weaviate Cloud</u>
+                            <u>Engram</u>
+                          </strong>
+                        </Link>{" "}
+                        +{" "}
+                        <Link to="/product/query-agent">
+                          <strong>
+                            <u>Query Agent</u>
                           </strong>
                         </Link>
                       </p>

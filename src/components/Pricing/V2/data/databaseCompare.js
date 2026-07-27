@@ -212,17 +212,17 @@ const databaseCompare = {
     {
       heading: 'AI Services',
       rows: [
-          {
-            label: 'Query Agent',
-            values: {
-              free: 'Free tier',
-              flex: 'Free tier + usage-based',
-              plus: 'Free tier + usage-based',
-              premiumShared: 'Free tier + usage-based',
-              premiumDedicated: 'Free tier + usage-based',
-            },
+        {
+          label: 'Query Agent',
+          values: {
+            free: 'Free tier',
+            flex: 'Free tier + usage-based',
+            plus: 'Free tier + usage-based',
+            premiumShared: 'Free tier + usage-based',
+            premiumDedicated: 'Free tier + usage-based',
           },
-          {
+        },
+        {
           label: 'Query Agent rate limits',
           values: {
             free: '1,000 req/mo',
@@ -250,7 +250,7 @@ const databaseCompare = {
         {
           label: 'Email support',
           values: {
-            free: false,
+            free: true,
             flex: true,
             plus: true,
             premiumShared: true,
@@ -308,7 +308,7 @@ const databaseCompare = {
             free: 'Best effort',
             flex: '99.5%',
             plus: '99.9%',
-            premiumShared: '99.95%',
+            premiumShared: '99.9%',
             premiumDedicated: '99.95%',
           },
         },
