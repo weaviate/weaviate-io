@@ -45,11 +45,6 @@
     "photo": "cari.jpg"
   },
   {
-    "name": "Charles Pierse",
-    "location": { "lat": 53.3508, "lng": -6.2613 },
-    "photo": "charles-pierse.jpg"
-  },
-  {
     "name": "Connor Shorten",
     "location": { "lat": 42.3621, "lng": -71.0609 },
     "photo": "connor.jpg"

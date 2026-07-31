@@ -1,5 +1,13 @@
 [
   {
+    "title": "Founding Weaviate with Bob van Luijt and Etienne Dilocker  - Weaviate Podcast #140",
+    "description": "Weaviate Co-Founders Bob van Luijt and Etienne Dilocker return to the Weaviate Podcast to celebrate seven years of building the company, answering questions submitted by the community.",
+    "youtube": "pvv-vnT-LfQ",
+    "date": "26-07-27",
+    "cover_image": "/img/podcasts/podcast-140.jpg",
+    "is_use_case": false
+  },
+  {
     "title": "Knowledge Engineering with Bradley Allen - Weaviate Podcast #139",
     "description": "Welcome to the 139th episode of the Weaviate Podcast featuring Bradley Allen, discussing Knowledge Engineering and its applications in AI and database systems.",
     "youtube": "xY_SqvhArNQ",

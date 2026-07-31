@@ -118,14 +118,6 @@
     "team": "people-and-culture"
   },
   {
-    "name": "Charles Pierse",
-    "title": "Director of Innovation Labs",
-    "photo": "charles-pierse.jpg",
-    "linkedin": "charles-pierse",
-    "twitter": "cdpierse",
-    "team": "weaviate-labs"
-  },
-  {
     "name": "Colton Robak",
     "title": "Product Support Engineer",
     "photo": "colton.jpg",
@@ -388,13 +380,6 @@
     "team": "developer-growth"
   },
   {
-    "name": "Pierre Demagny",
-    "title": "Cloud Platform Engineer",
-    "photo": "Pierre-Demagny.jpg",
-    "linkedin": "pdemagny",
-    "team": "delivery"
-  },
-  {
     "name": "Prajjwal Yadav",
     "title": "Developer Growth Intern",
     "photo": "prajjwal.jpg",
@@ -465,13 +450,6 @@
     "linkedin": "wera-kr",
     "github": "Weroiko",
     "team": "wcd"
-  },
-  {
-    "name": "Yaru Lin",
-    "title": "Director of Product",
-    "photo": "yaru-lin.jpg",
-    "linkedin": "linyaru",
-    "team": "product"
   },
   {
     "name": "Chrétien Minke",
