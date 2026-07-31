@@ -38,7 +38,7 @@ export default function BlogTagsListPage({tags, sidebar}) {
 
           <div className="tw-grid tw-gap-x-12 md:tw-grid-cols-2">
             {letterGroups.map(({letter, tags: letterTags}) => (
-              <section className="tw-border-t tw-border-[#2a2f3f] tw-py-7" key={letter}>
+              <section className="tw-border-t tw-border-solid tw-border-[#2a2f3f] tw-py-7" key={letter}>
                 <h2 className="tw-mb-5 tw-text-2xl tw-text-[#ddebf2]">{letter}</h2>
                 <div className="tw-flex tw-flex-wrap tw-gap-2">
                   {letterTags.map((tag) => (
@@ -46,7 +46,7 @@ export default function BlogTagsListPage({tags, sidebar}) {
                       key={tag.permalink}
                       to={tag.permalink}
                       rel="tag"
-                      className="tw-inline-flex tw-items-center tw-gap-2 tw-rounded tw-border tw-border-[#39425b] tw-bg-white/[0.03] tw-px-3 tw-py-2 tw-text-sm tw-text-[#d0d8ea] hover:tw-border-[#63e689]/60 hover:tw-bg-[#63e689]/[0.06] hover:tw-text-[#edf4ff] hover:tw-no-underline">
+                      className="tw-inline-flex tw-items-center tw-gap-2 tw-rounded tw-border tw-border-solid tw-border-[#39425b] tw-bg-white/[0.03] tw-px-3 tw-py-2 tw-text-sm tw-text-[#d0d8ea] hover:tw-border-[#63e689]/60 hover:tw-bg-[#63e689]/[0.06] hover:tw-text-[#edf4ff] hover:tw-no-underline">
                       <span>{tag.label}</span>
                       <span className="tw-rounded-full tw-bg-[#252a35] tw-px-1.5 tw-py-0.5 tw-text-[0.65rem] tw-text-[#b9c8de]">{tag.count}</span>
                     </Link>

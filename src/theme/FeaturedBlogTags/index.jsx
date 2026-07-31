@@ -18,7 +18,7 @@ export default function FeaturedBlogTags({ activeTag = "all" }) {
   const isActive = (tag) => activeTag.toLowerCase() === tag;
   const tagClass = (tag) =>
     clsx(
-      "tw-rounded-lg tw-border-[0.5px] tw-transition-colors",
+      "tw-rounded-lg tw-border-[0.2px] tw-border-solid tw-transition-colors",
       isActive(tag)
         ? "tw-border-[#6E6B91] tw-bg-[linear-gradient(223deg,#43E2C5_-4.42%,#70EE62_100%)]"
         : "tw-border-[#6E6B91] tw-bg-transparent hover:tw-border-[#63e689]/60 hover:tw-bg-[#63e689]/[0.06]",

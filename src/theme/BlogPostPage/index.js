@@ -52,7 +52,7 @@ function PostHero() {
         <p className="tw-mb-6 tw-text-xs tw-text-[#8a93a9]">
           {displayDate} · {Math.round(readingTime)} min read
         </p>
-        <h1 className="tw-mb-10 tw-text-[clamp(2.5rem,5vw,4.5rem)] tw-leading-[1.08] tw-tracking-[-0.04em] tw-text-[#ddebf2]">
+        <h1 className="tw-mb-10 tw-text-[clamp(3rem,5vw,3rem)] tw-leading-[1.08] tw-tracking-[-0.04em] tw-text-[#ddebf2]">
           {title}
         </h1>
         <div className="tw-flex tw-flex-wrap tw-gap-5">
@@ -68,7 +68,7 @@ function PostHero() {
       {assets.image && (
         <div className="tw-flex tw-min-h-[280px] tw-items-center tw-justify-center tw-overflow-hidden tw-rounded tw-bg-[#1A1A1A] lg:tw-min-h-[390px]">
           <img
-            className="tw-block tw-h-full tw-max-h-[520px] tw-w-full tw-object-contain"
+            className="tw-block tw-h-full tw-max-h-[520px] tw-w-[640px] tw-object-contain"
             src={assets.image}
             alt=""
             fetchPriority="high"

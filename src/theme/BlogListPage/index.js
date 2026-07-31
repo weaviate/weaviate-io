@@ -38,9 +38,9 @@ function FeaturedPost({item}) {
   const {metadata, assets} = post;
 
   return (
-    <article className="tw-my-[30px] tw-grid tw-overflow-hidden tw-border-[0.5px] tw-border-[#6E6B91] tw-bg-[#1A1A1A] lg:tw-grid-cols-[1.05fr_1fr]">
+    <article className="tw-my-[30px] tw-grid tw-overflow-hidden tw-border-[0.1px] tw-border-solid tw-border-[#6E6B91] tw-bg-[#1A1A1A] lg:tw-grid-cols-[1.05fr_1fr]">
       <Link className="tw-flex tw-min-h-[220px] tw-items-center tw-justify-center tw-bg-[#1A1A1A] md:tw-min-h-[320px]" to={metadata.permalink}>
-        <img className="tw-block tw-h-full tw-max-h-[480px] tw-w-[560px] tw-object-contain" src={assets.image} alt="" fetchPriority="high" />
+        <img className="tw-block tw-h-full tw-max-h-[480px] tw-w-[550px] tw-object-contain" src={assets.image} alt="" fetchPriority="high" />
       </Link>
       <div className="tw-flex tw-flex-col tw-justify-center tw-p-7 md:tw-p-10 xl:tw-p-[54px]">
         <div className="tw-mb-6 tw-flex tw-gap-2">
@@ -48,7 +48,7 @@ function FeaturedPost({item}) {
             <Link
               key={tag.permalink}
               className={clsx(
-                'tw-rounded-lg tw-border-[0.5px] tw-border-[#6E6B91] tw-px-[9px] tw-py-[5px] tw-text-[0.7rem] tw-capitalize tw-leading-none hover:tw-no-underline',
+                'tw-rounded-lg tw-border-[0.1px] tw-border-solid tw-border-[#6E6B91] tw-px-[9px] tw-py-[5px] tw-text-[0.7rem] tw-capitalize tw-leading-none hover:tw-no-underline',
                 index === 0
                   ? 'tw-bg-[linear-gradient(223deg,#43E2C5_-4.42%,#70EE62_100%)] tw-text-[#08120c] hover:tw-text-[#08120c]'
                   : 'tw-bg-transparent tw-text-[#d0d8ea] hover:tw-border-[#63e689]/60 hover:tw-text-[#edf4ff]',
