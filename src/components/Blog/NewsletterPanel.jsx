@@ -4,19 +4,19 @@ const socialLinks = [
   [
     "GitHub",
     "https://github.com/weaviate/weaviate",
-    "/img/site/2026/github-logo.svg",
+    "/img/site/2026/github-blog-icon.svg",
   ],
-  ["Community", "/community", null],
-  ["X", "https://x.com/weaviate_io", "/img/site/2026/x-logo.svg"],
+  ["Community", "/community", "/img/site/2026/weaviate-blog-icon.svg"],
+  ["X", "https://x.com/weaviate_io", "/img/site/2026/x-blog-icon.svg"],
   [
     "YouTube",
     "https://youtube.com/@Weaviate",
-    "/img/site/2026/youtube-logo.svg",
+    "/img/site/2026/youtube-blog-icon.svg",
   ],
   [
     "LinkedIn",
     "https://www.linkedin.com/company/weaviate-io",
-    "/img/site/2026/linkedin-logo.svg",
+    "/img/site/2026/linkedin-blog-icon.svg",
   ],
 ];
 
@@ -31,7 +31,7 @@ export default function NewsletterPanel() {
     >
       <div className="tw-px-[34px] tw-py-[30px]">
         <h2
-          className="tw-mb-2 !tw-text-transparent !tw-bg-[linear-gradient(48deg,#00FE6B_13.81%,#00B7E2_92.18%)] tw-bg-clip-text tw-font-['Plus_Jakarta_Sans'] tw-text-[2rem] tw-font-semibold tw-leading-[1.4]"
+          className="tw-mb-2 !tw-text-transparent !tw-bg-[linear-gradient(2deg,#00FE6B_46.81%,#00B7E2_92.18%)] tw-bg-clip-text tw-font-['Plus_Jakarta_Sans'] tw-text-[2rem] tw-font-semibold tw-leading-[1.4]"
           id="blog-newsletter-title"
         >
           Don&apos;t want to miss another blog post?

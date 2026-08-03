@@ -15,6 +15,7 @@ import {
 } from '@docusaurus/plugin-content-blog/client';
 import {blogPostContainerID} from '@docusaurus/utils-common';
 import NewsletterPanel from '../../components/Blog/NewsletterPanel';
+import RelatedPosts from '../../components/Blog/RelatedPosts';
 
 function Author({author, imageURL}) {
   return (
@@ -72,6 +73,7 @@ function PostHero() {
             src={assets.image}
             alt=""
             fetchPriority="high"
+            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/img/site/card-3-light.jpg'; }}
           />
         </div>
       )}
@@ -156,10 +158,13 @@ function PostPageContent({BlogPostContent}) {
           )}
         </div>
 
-        <div className="tw-mx-auto tw-max-w-[1100px]">
+        <div className="tw-mx-auto tw-w-full tw-max-w-[1320px]">
           <ShareAndTags />
           <div className="tw-mt-12">
             <NewsletterPanel />
+          </div>
+          <div className="tw-mt-12">
+            <RelatedPosts />
           </div>
         </div>
       </main>

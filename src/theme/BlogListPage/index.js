@@ -36,11 +36,26 @@ function BlogListPageMetadata({metadata}) {
 function FeaturedPost({item}) {
   const post = item.content;
   const {metadata, assets} = post;
+  const displayDate =
+    metadata.formattedDate || (metadata.date
+      ? new Intl.DateTimeFormat('en-US', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric',
+          timeZone: 'UTC',
+        }).format(new Date(metadata.date))
+      : '');
 
   return (
     <article className="tw-my-[30px] tw-grid tw-overflow-hidden tw-border-[0.1px] tw-border-solid tw-border-[#6E6B91] tw-bg-[#1A1A1A] lg:tw-grid-cols-[1.05fr_1fr]">
       <Link className="tw-flex tw-min-h-[220px] tw-items-center tw-justify-center tw-bg-[#1A1A1A] md:tw-min-h-[320px]" to={metadata.permalink}>
-        <img className="tw-block tw-h-full tw-max-h-[480px] tw-w-[550px] tw-object-contain" src={assets.image} alt="" fetchPriority="high" />
+        <img
+          className="tw-block tw-h-full tw-max-h-[480px] tw-w-[550px] tw-object-contain"
+          src={assets.image}
+          alt=""
+          fetchPriority="high"
+          onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/img/site/card-3-light.jpg'; }}
+        />
       </Link>
       <div className="tw-flex tw-flex-col tw-justify-center tw-p-7 md:tw-p-10 xl:tw-p-[54px]">
         <div className="tw-mb-6 tw-flex tw-gap-2">
@@ -63,7 +78,7 @@ function FeaturedPost({item}) {
         </Link>
         <p className="tw-mb-7 tw-text-[0.95rem] tw-leading-[1.65] tw-text-[#b9c8de]">{metadata.description}</p>
         <span className="tw-text-xs tw-text-[#8a93a9]">
-          {metadata.formattedDate} · {Math.round(metadata.readingTime)} min read
+          {displayDate} · {Math.round(metadata.readingTime)} min read
         </span>
       </div>
     </article>
@@ -79,7 +94,7 @@ function BlogListPageContent({metadata, items, sidebar}) {
     <BlogLayout sidebar={sidebar}>
       <div className="tw-mx-auto tw-w-full tw-max-w-[1320px] tw-px-[18px] tw-pb-24 tw-pt-11 sm:tw-px-6 sm:tw-pt-16">
         <header className="tw-mb-[34px] tw-max-w-[640px]">
-          <h1 className="tw-mb-4 tw-text-[clamp(2.5rem,5vw,4rem)] tw-leading-[1.05] tw-tracking-[-0.04em] tw-text-[#ddebf2]"><span className="tw-text-[#22e6a8]">Weaviate</span> Blog</h1>
+          <h1 className="tw-mb-4 tw-text-[clamp(2.5rem,5vw,4rem)] tw-leading-[1.05] tw-tracking-[-0.04em] tw-text-[#ddebf2]"><span className="tw-mb-2 !tw-text-transparent !tw-bg-[linear-gradient(359deg,#00FE6B_46.81%,#00B7E2_92.18%)] tw-bg-clip-text tw-font-['Plus_Jakarta_Sans'] tw-text-[clamp(2.5rem,5vw,4rem)] tw-font-semibold tw-leading-[1.4]">Weaviate</span> Blog</h1>
           <p className="tw-m-0 tw-max-w-[560px] tw-text-base tw-leading-[1.6] tw-text-[#b9c8de]">Keep up-to-date on the latest product updates, how-tos, industry insights, and community spotlights.</p>
         </header>
 
