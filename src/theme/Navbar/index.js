@@ -69,8 +69,8 @@ const navGroups = {
           to: 'https://docs.weaviate.io/deploy',
         },
         {
-          label: 'Weaviate Agents Docs',
-          to: 'https://docs.weaviate.io/agents',
+          label: 'Query Agent Docs',
+          to: 'https://docs.weaviate.io/query-agent',
         },
         {
           label: 'Engram Docs',

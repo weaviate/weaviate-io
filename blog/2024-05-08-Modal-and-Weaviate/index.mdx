@@ -90,7 +90,17 @@ Weaviate lets you tune how each property is indexed, or if they’re indexed at 
 In this demo, we determined that search performance could be improved by exactly matching a particular `title` value. This requires creating an inverted index to find text matches on the `title` property. This is denoted in your schema by setting `indexFilterable` to `True`. We further want to use BM25 scoring on the title, so we create an inverted index for keyword scoring as well. This is achieved by setting `indexSearchable` to `True`. However, for the `url` and `content` properties, although we want the data stored, we do not need an index, so we turn it off by setting both `indexFilterable` and `indexSearchable` to `False`.
 
 ### Batch Imports
-When importing data into Weaviate, we suggest using batch imports. This will send multiple objects in a single request, rather than importing them individually. There are [three methods](https://docs.weaviate.io/weaviate/client-libraries/python#batch-sizing) to choose from:
+When importing data into Weaviate, we suggest using batch imports. This will send multiple objects in a single request, rather than importing them individually.
+
+:::note Update since publication
+Weaviate has since added [server-side batching](https://docs.weaviate.io/weaviate/manage-objects/import#server-side-batching), and it is now the recommended starting point. The server tells the client how fast to send data based on its own load, so there is no batch size or concurrency for you to tune. Open the `stream()` context manager, or use the one-shot `collection.data.ingest(objects)` for a straight bulk load. Both need Weaviate `1.36` or newer and Python client `4.20` or newer. The three client-side methods below still work, and they are what we used for this demo in May 2024.
+:::
+
+```python
+with collection.batch.stream() as batch:
+```
+
+There are [three client-side methods](https://docs.weaviate.io/weaviate/client-libraries/python#batch-processing) to choose from:
 
 1. `dynamic`: The batch size and number of requests are dynamically adjusted as you import data. The size and number of each are dependent on the server load.
 

@@ -34,7 +34,7 @@ client = weaviate.connect_to_weaviate_cloud(
 if not client.collections.exists("Docs"):
     client.collections.create(
         name="Docs",
-        vectorizer_config=weaviate.classes.config.Configure.Vectorizer.text2vec_openai()
+        vector_config=weaviate.classes.config.Configure.Vectors.text2vec_openai()
     )
 
 docs = client.collections.use("Docs")
@@ -55,3 +55,4 @@ for obj in response.objects:
     print(obj.properties)
 
 client.close()
+```

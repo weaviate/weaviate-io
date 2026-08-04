@@ -520,8 +520,8 @@ collection_config_params = {
     
     # Sycamore can be used to embed document chunks before writing to Weaviate, so this is primarily to 
     # ensure that queries are embedded using the correct model in Weaviate. If you don't need to embed
-    # queries or can do so externally, you can change the vectorizer_config to None. 
-    "vectorizer_config": [Configure.NamedVectors.text2vec_transformers(name="embedding", source_properties=['text_representation'])],
+    # queries or can do so externally, you can change the vector_config to None. 
+    "vector_config": [Configure.Vectors.text2vec_transformers(name="embedding", source_properties=['text_representation'])],
 }
 
 ```
@@ -593,7 +593,7 @@ wv_client_args = {
 collection_config_params = {
     "name": collection,
     "description": "A collection to demo data-prep with Sycamore",
-    "vectorizer_config": [Configure.NamedVectors.text2vec_transformers(name="embedding", source_properties=['text_representation'])],
+    "vector_config": [Configure.Vectors.text2vec_transformers(name="embedding", source_properties=['text_representation'])],
 }
 model_name = "sentence-transformers/all-MiniLM-L6-v2"
 

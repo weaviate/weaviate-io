@@ -42,7 +42,7 @@ Hybrid search in Weaviate combines keyword (BM25) and vector search to leverage 
 A code snippet of hybrid search in JavaScript will look something like this.
 
 ```typescript
-const myCollection = client.collections.get('JeopardyQuestion');
+const myCollection = client.collections.use('JeopardyQuestion');
 
 const result = await myCollection.query.hybrid('food', {
   limit: 2,
@@ -63,7 +63,7 @@ Think of alpha as a measure of how much your hybrid search should lean towards e
 The code snippet below demonstrates how to change the alpha of your hybrid search in JavaScript.
 
 ```typescript
-const myCollection = client.collections.get('JeopardyQuestion');
+const myCollection = client.collections.use('JeopardyQuestion');
 
 const result = await myCollection.query.hybrid('food', {
   // highlight-start
@@ -93,7 +93,7 @@ In a nutshell, **Ranked Fusion** (the original hybrid search algorithm in Weavia
 The code snippet below demonstrates how to change the ranking algorithm of your hybrid search in JavaScript.
 
 ```typescript
-const myCollection = client.collections.get('JeopardyQuestion');
+const myCollection = client.collections.use('JeopardyQuestion');
 
 const result = await myCollection.query.hybrid('food', {
   // highlight-start
@@ -149,7 +149,7 @@ const client = await weaviate.connectToWeaviateCloud(
 The code above helps us connect to our WCD database instance. The variables prefixed with `process.env` are called environment variables. These are usually values that should not be public and therefore should not be specified directly in the code itself. To supply these values, create a file named `.env.local` at the root of your project. Specify your values like this, replacing the values in angle brackets with the values from WCD. As we use [text2vec-openai](https://docs.weaviate.io/weaviate/model-providers/openai/embeddings) to vectorize our data, you will need to add your Open AI API key as well.
 
 ```bash
-WEAVIATE_URL=<YOUR_WEAVIATE_URL
+WEAVIATE_URL=<YOUR_WEAVIATE_URL>
 WEAVIATE_API_KEY=<YOUR_WEAVIATE_API_KEY>
 OPENAI_APIKEY=<YOUR_OPENAI_APIKEY>
 ```
@@ -170,7 +170,7 @@ const quotesCollection = await client.collections.create({
       skipVectorization: true,
     },
   ],
-  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI('default'),
+  vectorizers: weaviate.configure.vectors.text2VecOpenAI(),
 });
 ```
 
@@ -241,7 +241,7 @@ export async function findQuotesBySearchTerm(
   searchTerm: string,
   alpha: number
 ) {
-  const collection = await client.collections.get<Omit<QuoteType, 'distance'>>(
+  const collection = client.collections.use<'Quotes', Omit<QuoteType, 'score'>>(
     'Quotes'
   );
 
@@ -254,10 +254,10 @@ export async function findQuotesBySearchTerm(
 
   const quotes: QuoteType[] = objects.map((quote) => ({
     ...quote.properties,
-    distance: quote.metadata?.score!!,
+    score: quote.metadata?.score!,
   }));
 
-  return quotesAndAuthorsArray;
+  return quotes;
 }
 ```
 
@@ -270,7 +270,7 @@ Replace the contents of `app/page.tsx` with the code below.
 ```typescript
 'use client';
 
-import { findQuotesByArgument } from '@/actions';
+import { findQuotesBySearchTerm } from '@/actions';
 import { useState } from 'react';
 import { QuoteType } from '@/types';
 
@@ -280,7 +280,7 @@ export default function Home() {
   const [alpha, setAlpha] = useState(0.5);
 
   const handleSubmit = async () => {
-    const quotes = await findQuotesByArgument(searchTerm, alpha);
+    const quotes = await findQuotesBySearchTerm(searchTerm, alpha);
     setQuotes(quotes);
   };
 

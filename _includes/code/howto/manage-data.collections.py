@@ -49,7 +49,7 @@ client.collections.create(
 # END CreateCollectionWithProperties
 
 # Test
-articles = client.collections.get("Article")
+articles = client.collections.use("Article")
 assert client.collections.exists("Article")
 assert len(articles.config.get().properties) == 2
 
@@ -76,7 +76,7 @@ client.collections.create(
 # END Vectorizer
 
 # Test
-collection = client.collections.get("Article")
+collection = client.collections.use("Article")
 config = collection.config.get()
 
 assert config.vectorizer.value == "text2vec-openai"
@@ -123,7 +123,7 @@ client.collections.create(
 # END BasicNamedVectors
 
 # Test
-collection = client.collections.get("ArticleNV")
+collection = client.collections.use("ArticleNV")
 config = collection.config.get()
 
 assertion_dicts = {
@@ -160,7 +160,7 @@ client.collections.create(
 # END SetVectorIndexType
 
 # Test
-collection = client.collections.get("Article")
+collection = client.collections.use("Article")
 config = collection.config.get()
 assert config.vectorizer.value == "text2vec-openai"
 assert config.vector_index_type.name == "HNSW"
@@ -191,7 +191,7 @@ client.collections.create(
 # END SetVectorIndexParams
 
 # Test
-collection = client.collections.get("Article")
+collection = client.collections.use("Article")
 config = collection.config.get()
 assert config.vector_index_config.filter_strategy.name == "SWEEPING"
 assert config.vector_index_type.name == "HNSW"
@@ -247,7 +247,7 @@ client.collections.create(
 # END SetInvertedIndexParams
 
 # Test
-collection = client.collections.get("Article")
+collection = client.collections.use("Article")
 config = collection.config.get()
 assert config.inverted_index_config.bm25.b == 0.7
 assert config.inverted_index_config.bm25.k1 == 1.25
@@ -275,7 +275,7 @@ client.collections.create(
 # END SetReranker
 
 # Test
-collection = client.collections.get("Article")
+collection = client.collections.use("Article")
 config = collection.config.get()
 assert config.reranker_config.reranker == "reranker-cohere"
 
@@ -302,7 +302,7 @@ client.collections.create(
 # START UpdateReranker
 from weaviate.classes.config import Reconfigure
 
-collection = client.collections.get("Article")
+collection = client.collections.use("Article")
 
 collection.config.update(
     # highlight-start
@@ -312,7 +312,7 @@ collection.config.update(
 # END UpdateReranker
 
 # Test
-collection = client.collections.get("Article")
+collection = client.collections.use("Article")
 config = collection.config.get()
 assert config.reranker_config.reranker == "reranker-cohere"
 
@@ -341,7 +341,7 @@ client.collections.create(
 # END SetGenerative
 
 # Test
-collection = client.collections.get("Article")
+collection = client.collections.use("Article")
 config = collection.config.get()
 assert config.generative_config.generative == "generative-openai"
 
@@ -367,7 +367,7 @@ client.collections.create(
 # START UpdateGenerative
 from weaviate.classes.config import Reconfigure
 
-collection = client.collections.get("Article")
+collection = client.collections.use("Article")
 
 collection.config.update(
     # highlight-start
@@ -377,7 +377,7 @@ collection.config.update(
 # END UpdateGenerative
 
 # Test
-collection = client.collections.get("Article")
+collection = client.collections.use("Article")
 config = collection.config.get()
 assert config.generative_config.generative == "generative-cohere"
 
@@ -532,7 +532,7 @@ client.collections.create(
 # END ModuleSettings
 
 # Test
-collection = client.collections.get("Article")
+collection = client.collections.use("Article")
 config = collection.config.get()
 assert config.vectorizer.value == "text2vec-cohere"
 assert config.vectorizer_config.model["model"] == "embed-multilingual-v2.0"
@@ -580,7 +580,7 @@ client.collections.create(
 # START AddNamedVectors
 from weaviate.classes.config import Configure
 
-articles = client.collections.get("Article")
+articles = client.collections.use("Article")
 
 articles.config.add_vector(
     vector_config=Configure.NamedVectors.text2vec_cohere(
@@ -591,7 +591,7 @@ articles.config.add_vector(
 # END AddNamedVectors
 
 # Test
-collection = client.collections.get("Article")
+collection = client.collections.use("Article")
 config = collection.config.get()
 
 assert config.vectorizer_config.vectorizer.value == "text2vec-cohere"
@@ -623,7 +623,7 @@ client.collections.create(
 # END DistanceMetric
 
 # Test
-collection = client.collections.get("Article")
+collection = client.collections.use("Article")
 config = collection.config.get()
 assert config.vector_index_config.distance_metric.value == "cosine"
 
@@ -653,7 +653,7 @@ client.collections.create(
 # END ReplicationSettings
 
 # Test
-collection = client.collections.get("Article")
+collection = client.collections.use("Article")
 config = collection.config.get()
 assert config.replication_config.factor == 3
 
@@ -686,7 +686,7 @@ client.collections.create(
 # END AsyncRepair
 
 # Test
-collection = client.collections.get("Article")
+collection = client.collections.use("Article")
 config = collection.config.get()
 # assert config.replication_config.factor == 3   #ASYNC NEEDS TEST
 
@@ -720,7 +720,7 @@ client.collections.create(
 # END AllReplicationSettings
 
 # Test
-collection = client.collections.get("Article")
+collection = client.collections.use("Article")
 config = collection.config.get()
 assert config.replication_config.async_enabled == True
 assert config.replication_config.deletion_strategy == ReplicationDeletionStrategy.TIME_BASED_RESOLUTION
@@ -752,7 +752,7 @@ client.collections.create(
 # END ShardingSettings
 
 # Test
-collection = client.collections.get("Article")
+collection = client.collections.use("Article")
 config = collection.config.get()
 assert config.sharding_config.virtual_per_physical == 128
 assert config.sharding_config.desired_count == 1
@@ -776,7 +776,7 @@ client.collections.create(
 )
 # END Multi-tenancy
 
-collection = client.collections.get("Article")
+collection = client.collections.use("Article")
 config = collection.config.get()
 assert config.multi_tenancy_config.enabled == True
 
@@ -788,7 +788,7 @@ assert config.multi_tenancy_config.enabled == True
 from weaviate.classes.config import Property, DataType
 
 # Get the Article collection object
-articles = client.collections.get("Article")
+articles = client.collections.use("Article")
 
 # Add a new property
 articles.config.add_property(
@@ -802,7 +802,7 @@ articles.config.add_property(
 # END AddProp
 
 # Test
-collection = client.collections.get("Article")
+collection = client.collections.use("Article")
 config = collection.config.get()
 assert len(config.properties) == 1
 assert config.properties[0].name == "body"
@@ -812,7 +812,7 @@ assert config.properties[0].name == "body"
 # ================================
 
 # START ReadOneCollection
-articles = client.collections.get("Article")
+articles = client.collections.use("Article")
 articles_config = articles.config.get()
 
 print(articles_config)
@@ -875,7 +875,7 @@ for _ in range(5):
 # START UpdateCollection
 from weaviate.classes.config import Reconfigure, VectorFilterStrategy, ReplicationDeletionStrategy
 
-articles = client.collections.get("Article")
+articles = client.collections.use("Article")
 
 # Update the collection definition
 articles.config.update(
@@ -928,7 +928,7 @@ client.collections.create(
 # START AddProperty
 from weaviate.classes.config import Property, DataType
 
-articles = client.collections.get("Article")
+articles = client.collections.use("Article")
 
 articles.config.add_property(
     Property(
@@ -943,7 +943,7 @@ articles.config.add_property(
 # ========================================
 
 # START InspectCollectionShards
-articles = client.collections.get("Article")
+articles = client.collections.use("Article")
 
 # highlight-start
 article_shards = articles.config.get_shards()
@@ -960,7 +960,7 @@ shards = articles.config.get_shards()
 shard_names = [s.name for s in shards]
 
 # START UpdateCollectionShards
-articles = client.collections.get("Article")
+articles = client.collections.use("Article")
 
 # highlight-start
 article_shards = articles.config.update_shards(

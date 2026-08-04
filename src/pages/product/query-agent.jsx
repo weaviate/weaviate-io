@@ -83,13 +83,13 @@ export default function QueryPage() {
                           </button>
                         </Link>
                       ) : (
-                        <Link to="https://docs.weaviate.io/agents/query/usage">
+                        <Link to="https://docs.weaviate.io/query-agent/guides/ask_mode">
                           <button className={styles.installButton}>
                             Try Free
                           </button>
                         </Link>
                       )}
-                      <Link to="https://docs.weaviate.io/agents/query">
+                      <Link to="https://docs.weaviate.io/query-agent">
                         <button className={styles.docButton}>
                           Read the Docs
                         </button>
