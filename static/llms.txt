@@ -10,12 +10,12 @@ Weaviate is an open-source vector database (Go) that stores objects, vectors, an
 
 If you run Weaviate yourself (Docker / Kubernetes / on-prem), **use at least these versions** to avoid outdated examples:
 
-- **Weaviate Server (OSS)**: v1.38.2+
+- **Weaviate Server (OSS)**: v1.38.8+
 - **Python client (weaviate-client)**: v4.22.0+
-- **TypeScript client (weaviate-client)**: v3.13.1+
+- **TypeScript client (weaviate-client)**: v3.14.0+
 - **Java client (client6)**: v6.3.0+
 - **C# client (Weaviate.Client)**: v1.1.1+
-- **Agents SDK (weaviate-agents, if using Query Agent / agents features)**: v1.6.0+
+- **Agents SDK (weaviate-agents, if using Query Agent / agents features)**: v1.7.1+
 
 **Quick checks**
 - Server: check your Docker tag / Helm chart version (e.g. `weaviate:<tag>`)
@@ -145,9 +145,7 @@ with weaviate.connect_to_weaviate_cloud(
     movies = client.collections.use("Movie")
 
     # Import objects
-    with movies.batch.fixed_size(batch_size=200) as batch:
-        for obj in data_objects:
-            batch.add_object(properties=obj)
+    movies.data.ingest(data_objects)
 
     print(f"Imported & vectorized {len(data_objects)} objects into the Movie collection")
 
@@ -195,7 +193,7 @@ if (!(await client.collections.exists('Movie'))) {
 const movies = client.collections.use('Movie');
 
 // Import objects
-await movies.data.insertMany(dataObjects);
+await movies.data.ingest(dataObjects.map((properties) => ({ properties })));
 
 console.log(`Imported & vectorized ${dataObjects.length} objects into the Movie collection`);
 
