@@ -12,6 +12,7 @@ import BlogLayout from '@theme/BlogLayout';
 import BlogListPaginator from '@theme/BlogListPaginator';
 import SearchMetadata from '@theme/SearchMetadata';
 import BlogPostItems from '@theme/BlogPostItems';
+import PaginationMetadata from '/src/components/PaginationMetadata';
 
 
 
@@ -45,12 +46,13 @@ function useBlogTagsPostsPageTitle(tag) {
     {nPosts: blogPostsPlural(tag.count), tagName: tag.label},
   );
 }
-function BlogTagsPostsPageMetadata({tag}) {
+function BlogTagsPostsPageMetadata({tag, listMetadata}) {
   const title = useBlogTagsPostsPageTitle(tag);
   return (
     <>
       <PageMetadata title={title} />
       <SearchMetadata tag="blog_tags_posts" />
+      <PaginationMetadata metadata={listMetadata} />
      
     </>
   );
