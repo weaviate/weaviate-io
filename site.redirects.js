@@ -211,6 +211,43 @@ const siteRedirects = {
             from: '/product/recommender',
         },
 
+        // Workbench > Product Changes
+        // The /workbench/* pages were stale duplicates of /product/*; they were
+        // removed and every route they served now redirects to its /product
+        // counterpart. All of these were in the sitemap, so keep the redirects.
+        {
+            to: '/product',
+            from: '/workbench',
+        },
+        {
+            to: '/product/collections',
+            from: '/workbench/collections',
+        },
+        {
+            to: '/product/embeddings',
+            from: '/workbench/embeddings',
+        },
+        {
+            to: '/product/explorer',
+            from: '/workbench/explorer',
+        },
+        {
+            to: '/product/personalization-agent',
+            from: '/workbench/personalization-agent',
+        },
+        {
+            to: '/product/query',
+            from: '/workbench/query',
+        },
+        {
+            to: '/product/query-agent',
+            from: '/workbench/query-agent',
+        },
+        {
+            to: '/product/transformation-agent',
+            from: '/workbench/transformation-agent',
+        },
+
         // // GFL > Agentic AI Changes
         {
             to: '/agentic-ai',
