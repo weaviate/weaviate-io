@@ -12,6 +12,7 @@ import SearchMetadata from '@theme/SearchMetadata';
 import BlogPostItems from '@theme/BlogPostItems';
 import FeaturedBlogTags from '../FeaturedBlogTags';
 import { MetaSEO } from '/src/theme/MetaSEO';
+import PaginationMetadata from '/src/components/PaginationMetadata';
 
 function BlogListPageMetadata(props) {
   const { metadata } = props;
@@ -34,6 +35,7 @@ function BlogListPageMetadata(props) {
       <MetaSEO img={ogimg} />
       <PageMetadata title={title} description={description} />
       <SearchMetadata tag="blog_posts_list" />
+      <PaginationMetadata metadata={metadata} />
     </>
   );
 }
