@@ -191,16 +191,20 @@ def chunk_python_file(path: Path) -> list[dict]:
     return chunks
 ```
 
-Batch-ingest with the standard Weaviate batch pattern:
+Ingest with [server-side batching](https://docs.weaviate.io/weaviate/manage-objects/import#server-side-batching). `data.ingest()` takes any iterable, so a generator expression over the repo streams chunks to the server as they are produced, at whatever pace the server asks for:
 
 ```python
 code_chunks = client.collections.use("CodeChunks")
 
-with code_chunks.batch.stream() as batch:
-    for py_file in Path("./src").rglob("*.py"):
-        for chunk in chunk_python_file(py_file):
-            batch.add_object(properties=chunk)
+code_chunks.data.ingest(
+    chunk
+    for py_file in Path("./src").rglob("*.py")
+    for chunk in chunk_python_file(py_file)
+)
 ```
+
+:::note Requires Python client 4.20+
+:::
 
 Weaviate vectorizes each chunk on insert via the configured [`text2vec-openai`](https://docs.weaviate.io/weaviate/model-providers/openai/embeddings) module, so there's no separate embedding step. Replace the vectorizer with `text2vec-voyageai` (Voyage's `voyage-code-2` is purpose-built for code) or `text2vec-cohere` if you want a different embedding family.
 
@@ -224,16 +228,15 @@ def chunk_markdown(text: str, max_chars: int = 1500) -> list[str]:
 
 doc_chunks = client.collections.use("DocChunks")
 
-with doc_chunks.batch.stream() as batch:
-    for md_file in Path("./docs").rglob("*.md"):
-        text = md_file.read_text()
-        title = md_file.stem
-        for content in chunk_markdown(text):
-            batch.add_object(properties={
-                "content": content,
-                "title": title,
-                "source_url": f"https://docs.example.com/{md_file.stem}",
-            })
+doc_chunks.data.ingest(
+    {
+        "content": content,
+        "title": md_file.stem,
+        "source_url": f"https://docs.example.com/{md_file.stem}",
+    }
+    for md_file in Path("./docs").rglob("*.md")
+    for content in chunk_markdown(md_file.read_text())
+)
 ```
 
 Two collections, two chunking strategies, one Weaviate instance. The MCP server exposes both through the same `weaviate-query-hybrid` tool. The agent picks which collection to query.

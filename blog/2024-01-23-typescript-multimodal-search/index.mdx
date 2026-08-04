@@ -103,7 +103,7 @@ export const getWeaviateClient = async () => {
     client = await weaviate.connectToWeaviateCloud(process.env.WEAVIATE_URL || '',{
     authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY || ''),
     headers: {
-      'X-Palm-Api-Key': process.env.GOOGLE_API_KEY || '',  // Replace with your inference API key
+      'X-Goog-Vertex-Api-Key': process.env.GOOGLE_API_KEY || '',  // Replace with your inference API key
     }
   }
 )
@@ -193,7 +193,7 @@ export const deleteCollection = async (name: string) => {
 
 This file contains a function to create a collection, a function to delete a collection, and a function to check if a collection exists. If there are any details we want to change that would define our collections, we can do so in this file.
 
-Notably, we create a new collection and define media types of image, and video and to our `multi2vecPalm` module. We also add the following properties to our collection:  `name`, `image`, and optionally you can add audio. Think of these as properties we will be able to query against when we start to make queries or import data to Weaviate.
+Notably, we create a new collection and point the `multi2vec-google` module at our `image` property, so Weaviate embeds the images themselves. The module also accepts `textFields` and `videoFields` if you want to vectorize more than one modality. We also add the following properties to our collection: `name` and `image`. Think of these as properties we will be able to query against when we start to make queries or import data to Weaviate.
 
 
 
@@ -414,7 +414,7 @@ export async function vectorSearch(searchTerm: string) {
   const client = await weaviate.connectToWeaviateCloud(process.env.WEAVIATE_URL || '',{
     authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY || ''),
     headers: {
-      'X-Palm-Api-Key': process.env.GOOGLE_API_KEY || ''
+      'X-Goog-Vertex-Api-Key': process.env.GOOGLE_API_KEY || ''
     }
   },
 );

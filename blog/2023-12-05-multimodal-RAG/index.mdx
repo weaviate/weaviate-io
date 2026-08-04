@@ -156,7 +156,7 @@ You can find the full code for this example in [this Jupyter notebook](https://g
 def retrieve_image(query):
     response = animals.query.near_text(
         query=query,
-        filters=wvc.query.Filter(path="mediaType").equal("image"),
+        filters=wvc.query.Filter.by_property("mediaType").equal("image"),
         return_properties=['name','path','mediaType','image'],
         limit = 1,
     )

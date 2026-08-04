@@ -237,7 +237,7 @@ export const generateMeal = inngest.createFunction(
       ingredientsAlternatives = await step.run(
         "query-ingredients-alternatives",
         async () => {
-          const collection = client.collections.use(
+          const collection = weaviate.collections.use(
             "Thefoodprocessoringredientsalternatives"
           );
           const query = allergiesAnalysis.choices[0].message.content!;

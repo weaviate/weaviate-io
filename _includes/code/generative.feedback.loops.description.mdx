@@ -35,7 +35,7 @@ response = listing_collection.generate.fetch_objects(
 for listing in response.objects:
     listing_collection.data.update(
         uuid=listing.uuid,
-        properties={"description": listing.generated},
+        properties={"description": listing.generative.text},
     )
 ```
 </TabItem>

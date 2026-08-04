@@ -336,7 +336,7 @@ Then, you can either add data to your cluster by following [the quickstart tutor
 
     # For other formats, adjust accordingly
 
-    # Import data in batches
+    # Import data with server-side batching (needs Weaviate 1.36+ and client 4.20+)
     with collection.batch.stream() as batch:
         for i, item in enumerate(data):
             batch.add_object({

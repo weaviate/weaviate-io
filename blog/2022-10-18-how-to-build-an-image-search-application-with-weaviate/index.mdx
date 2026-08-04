@@ -54,6 +54,8 @@ The demo contains a `docker-compose.yml` file, which defines all the Weaviate mo
 ```
 docker compose up -d
 ```
+
+Before you do, change the `image: semitechnologies/weaviate:1.16.0` line in that `docker-compose.yml` to a `1.36` or newer release. The import step later in this post uses server-side batching, which the pinned version does not support.
 Once Weaviate is up, check that it is running with:
 
 ```bash
@@ -111,15 +113,22 @@ Note, the base64 images are stored in the `base64_images` folder.
 ### Upload the Data Objects
 Now that we have defined the schema and converted the images to base64 values, we can upload the data objects to Weaviate.
 
-When uploading your data objects to Weaviate, you want to import your data in batches. The import speed is faster than uploading the objects one by one. We use a [server-side batching](https://docs.weaviate.io/weaviate/manage-objects/import#server-side-batching) context manager on the collection — the server tells the client how fast to send data, applying backpressure so you don't have to tune batch size or concurrency by hand.
+When uploading your data objects to Weaviate, you want to import them in batches rather than one at a time. We recommend [server-side batching](https://docs.weaviate.io/weaviate/manage-objects/import#server-side-batching): the server tells the client how fast to send data based on its own load, so there is no batch size for you to pick and no tuning to redo when the dataset grows.
+
+The entry point is the `batch.stream()` context manager. You add objects to it one at a time and the client sends them at whatever pace the server asks for:
 
 ```python
 dog_collection = client.collections.use("Dog")
 
 with dog_collection.batch.stream() as batch:
-    # add objects here
-    ...
+    batch.add_object(properties={"breed": "corgi", "filepath": "corgi.jpg"})
 ```
+
+Base64-encoded images are large, so we will feed that context manager from a generator. Objects then go to the server as the generator produces them, and the whole dataset never has to sit in memory at once.
+
+:::caution Bump the demo repo's Weaviate version first
+Server-side batching needs Weaviate `1.36`+ and Python client `4.20`+, but the `nearest-neighbor-dog-search` demo you cloned still pins `semitechnologies/weaviate:1.16.0` in its `docker-compose.yml`.
+:::
 
 We will need to define the data properties that we want to upload. The function below will:
 1. Grab the images in the `base64_images` folder.
@@ -128,32 +137,35 @@ We will need to define the data properties that we want to upload. The function 
 4. Upload new data objects to Weaviate
 
 ```python
+def dog_objects():
+    # Iterate over all .b64 files in the base64_images folder
+    for encoded_file_path in os.listdir("./base64_images"):
+        with open("./base64_images/" + encoded_file_path) as file:
+            file_lines = file.readlines()
+
+            base64_encoding = " ".join(file_lines)
+            base64_encoding = base64_encoding.replace("\n", "").replace(" ", "")
+
+            # remove .b64 to get the original file name
+            image_file = encoded_file_path.replace(".b64", "")
+
+            # remove image file extension and swap - for " " to get the breed name
+            breed = re.sub(".(jpg|jpeg|png)", "", image_file).replace("-", " ")
+
+            # The properties from our schema
+            yield {
+                "breed": breed,
+                "image": base64_encoding,
+                "filepath": image_file,
+            }
+
+
 def import_data():
     dog_collection = client.collections.use("Dog")
 
     with dog_collection.batch.stream() as batch:
-        # Iterate over all .b64 files in the base64_images folder
-        for encoded_file_path in os.listdir("./base64_images"):
-            with open("./base64_images/" + encoded_file_path) as file:
-                file_lines = file.readlines()
-
-                base64_encoding = " ".join(file_lines)
-                base64_encoding = base64_encoding.replace("\n", "").replace(" ", "")
-
-                # remove .b64 to get the original file name
-                image_file = encoded_file_path.replace(".b64", "")
-
-                # remove image file extension and swap - for " " to get the breed name
-                breed = re.sub(".(jpg|jpeg|png)", "", image_file).replace("-", " ")
-
-                # The properties from our schema
-                data_properties = {
-                    "breed": breed,
-                    "image": base64_encoding,
-                    "filepath": image_file,
-                }
-
-                batch.add_object(properties=data_properties)
+        for properties in dog_objects():
+            batch.add_object(properties=properties)
 ```
 
 Now we will connect to the local host and upload the data objects.
@@ -198,6 +210,7 @@ def weaviate_img_search(img_str):
    response = dog_collection.query.near_image(
        near_image=img_str,
        limit=2,
+       return_properties=["filepath", "breed"],
    )
 
    return [obj.properties for obj in response.objects]

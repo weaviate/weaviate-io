@@ -66,7 +66,7 @@ docker run -p 8080:8080 -p 50051:50051 cr.weaviate.io/semitechnologies/weaviate:
 
 ### Step 3: Install the Weaviate Python client
 
-Since we’re implementing the RAG pipeline in Python, you will need to `pip` install the Python library. In this tutorial, we’re using version 4.5.5.
+Since we’re implementing the RAG pipeline in Python, you will need to `pip` install the Python library. This tutorial uses the `batch.stream()` server-side batching API, which needs client version `4.20` or newer against Weaviate `1.36` or newer.
 
 ```
 pip install -U weaviate-client
@@ -122,7 +122,7 @@ collection = client.collections.create(
 )
 ```
 
-Now, you can load the data into the predefined structure. For this, you can iterate over your `documents` and generate the embeddings for each data object with Ollama’s `embeddings()` method. Then, the text and its embedding are stored together in the vector database.
+Now, you can load the data into the predefined structure. For this, you can iterate over your `documents` and generate the embeddings for each data object with Ollama’s `embeddings()` method. Then, the text and its embedding are stored together in the vector database. The `batch.stream()` context manager uses [server-side batching](https://docs.weaviate.io/weaviate/manage-objects/import#server-side-batching), so the server sets the pace and you add objects one at a time as Ollama returns each embedding.
 
 ```python
 import ollama

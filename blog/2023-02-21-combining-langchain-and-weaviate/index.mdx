@@ -124,29 +124,19 @@ This demo is built off of Connor Shorten’s [Podcast Search](https://github.com
 
 ```python
 from langchain_weaviate import WeaviateVectorStore
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_openai import OpenAI
 from langchain.chains import ConversationalRetrievalChain
 import weaviate
 
 client = weaviate.connect_to_local()
 
-embeddings = OpenAIEmbeddings(
-    model="text-embedding-3-small",
-    openai_api_key="sk-key",
-)
-
 vectorstore = WeaviateVectorStore(
     client=client,
     index_name="PodClip",
     text_key="content",
-    embedding=embeddings,
 )
 
-MyOpenAI = ChatOpenAI(
-    model="gpt-4o-mini",
-    temperature=0.2,
-    openai_api_key="sk-key",
-)
+MyOpenAI = OpenAI(temperature=0.2, openai_api_key="sk-key")
 
 qa = ConversationalRetrievalChain.from_llm(MyOpenAI, vectorstore.as_retriever())
 

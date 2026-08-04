@@ -23,7 +23,7 @@ response = listing_collection.generate.fetch_objects(
 for ad in response.objects:
     new_ad_id = uuid4()
     ad_collection.data.insert(
-        properties={"content": ad.generated},
+        properties={"content": ad.generative.text},
         uuid=new_ad_id,
     )
     listing_collection.data.reference_add(
@@ -50,7 +50,7 @@ const response = await listings.generate.fetchObjects(
 
 for (const ad of response.objects) {
   const newAdId = await ads.data.insert({
-    properties: { content: ad.generative?.text },
+    properties: { content: ad.generative?.text ?? '' },
   });
   await listings.data.referenceAdd({
     fromUuid: ad.uuid,

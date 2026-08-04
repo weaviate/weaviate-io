@@ -9,8 +9,8 @@ description: "Learn about the hardware, software and performance metric specific
 ---
 ![Sphere dataset in Weaviate](./img/hero.png)
 
-:::note Roadmap items shipped
-The "coming soon" features mentioned in this post (Vamana indexing, HNSW+PQ) have since shipped. See the [ANN benchmarks page](https://docs.weaviate.io/weaviate/benchmarks/ann) for current Sphere usage.
+:::note What shipped from the roadmap in this post
+Of the two technologies teased near the end of this post, one shipped and one did not. HNSW+PQ arrived in Weaviate `v1.18`; see the [v1.18 release post](/blog/weaviate-1-18-release) and the [PQ compression docs](https://docs.weaviate.io/weaviate/configuration/compression/pq-compression). Vamana / DiskANN was researched and benchmarked but never shipped as a Weaviate index type. Compressed HNSW is the route we took for memory usage at scale, and Weaviate now offers [several vector compression options](https://docs.weaviate.io/weaviate/configuration/compression). The [ANN benchmarks page](https://docs.weaviate.io/weaviate/benchmarks/ann) has current numbers.
 :::
 
 <!-- truncate -->

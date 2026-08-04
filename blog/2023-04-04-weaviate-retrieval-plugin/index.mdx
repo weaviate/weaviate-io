@@ -10,6 +10,10 @@ description: "Learn how you can connect Weaviate to ChatGPT to generate customiz
 ---
 ![Weaviate Retrieval Plugin](./img/hero.png)
 
+:::caution Historical post: the ChatGPT plugins program is retired
+Published 2023-04-04, during the closed alpha for ChatGPT plugins. OpenAI retired the program in 2024, so the Weaviate Retrieval Plugin and the install flow in the screenshots below no longer exist. The idea the post describes, giving a chat model long-term memory by attaching a vector database, became standard [RAG](/blog/introduction-to-rag), and the equivalent integration today is a [Model Context Protocol (MCP)](https://docs.weaviate.io/weaviate/configuration/mcp-server) server. See [Build a Coding Assistant with Weaviate MCP](/blog/coding-assistant-weaviate-mcp) for the current version of this workflow, and [How to Create Your Own ChatGPT Plugin](/blog/how-to-chatgpt-plugin) for the companion build write-up.
+:::
+
 <!-- truncate -->
 
 ## Overview of ChatGPT plugins
@@ -30,9 +34,9 @@ This has the potential to be the most widely used plugin as it will allow users 
 
 ![gdbtweet](./img/gdbtweet.png)
 
-::::note
-Plugins for ChatGPT, including the Weaviate Retrieval Plugin, are currently in Alpha and thus not available to the public.
-::::
+:::note
+At the time of publication, plugins for ChatGPT, including the Weaviate Retrieval Plugin, were in a closed alpha and not available to the public.
+:::
 
 ## The ChatGPT Retrieval Plugin
 

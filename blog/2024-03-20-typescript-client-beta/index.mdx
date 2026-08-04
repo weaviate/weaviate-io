@@ -11,7 +11,15 @@ description: "A beta release of our new TypeScript client is now available! Help
 ![The pre-release Weaviate TypeScript client](./img/hero.png)
 
 :::caution Outdated beta content
-Published 2024-03-21 as a *beta* of the v3 TypeScript client. Several API names in this post changed before GA (e.g. `weaviate.configure.vectorizer.*` became `weaviate.configure.vectors.*`, and `weaviate.configure.dataType.TEXT` was renamed). For the current API, see the [TypeScript client docs](https://docs.weaviate.io/weaviate/client-libraries/typescript/typescript-v3).
+Published 2024-03-21 against a *beta* of the v3 TypeScript client. The snippets are kept as they were written, and several of them no longer compile. What changed:
+
+- On `collections.create()`, `vectorizerConfig:` is now `vectorizers:`, and `generative_config:` is now `generative:`. The top-level `vectorIndexConfig:` moved inside the vectorizer factory's options.
+- The factory names picked up their final casing: `configure.vectorizer.text2vecOpenai()` is now `configure.vectors.text2VecOpenAI()`, and `configure.generative.openai()` is now `configure.generative.openAI()`.
+- The `configure.vectorizer` namespace became `configure.vectors` in July 2025, more than a year after the v3.0.0 release. The old name still resolves, but it is deprecated.
+- `client.collection.get(...)` appears once below with a singular `collection`. That was a typo in the original post; the client has only `client.collections`.
+- A couple of the code blocks carry Python-style `#` comments, which TypeScript does not accept.
+
+For the current API, see the [TypeScript client docs](https://docs.weaviate.io/weaviate/client-libraries/typescript/typescript-v3).
 :::
 
 :::info TL;DR

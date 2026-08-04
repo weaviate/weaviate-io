@@ -140,9 +140,14 @@ In this example, we are using [Embedded Weaviate](https://docs.weaviate.io/weavi
 
 ```python
 client = weaviate.connect_to_embedded(
-    headers={"X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]}
+    version="1.36.0",  # server-side batching needs Weaviate 1.36 or newer
+    headers={"X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]},
 )
 ```
+
+:::note Requires Weaviate `1.36`+ and Python client `4.20`+
+The import step below uses `batch.stream()`, which hands batching to the server. That arrived in Weaviate `1.36` and in the Python client `4.20`. Embedded Weaviate still defaults to an older build, which is why the version is pinned above. On an older server, use `batch.dynamic()` instead.
+:::
 
 ### Configure the Schema
 
@@ -153,7 +158,9 @@ client.collections.delete("Document")
 
 client.collections.create(
     name="Document",
-    vector_config=Configure.Vectors.text2vec_openai(model="text-embedding-3-large"),
+    vector_config=Configure.Vectors.text2vec_openai(
+        model="ada", model_version="002", type_="text"
+    ),
     generative_config=Configure.Generative.openai(),
     properties=[
         Property(name="source", data_type=DataType.TEXT),
@@ -305,7 +312,7 @@ response = documents.generate.fetch_objects(single_prompt=prompt)
 
 for obj in response.objects:
     source = obj.properties["source"]
-    abstract = obj.generated
+    abstract = obj.generative.text
     wrapped_abstract = textwrap.fill(abstract, width=80)
     print(f"Source: {source}\nSummary:\n{wrapped_abstract}\n")
 ```
@@ -362,9 +369,11 @@ There is a [GitHub issue](https://github.com/Unstructured-IO/unstructured/issues
 ## Last Thought
 This demo introduced how you can ingest PDFs into Weaviate. In this example we used two research papers; however, there is the possibility to add Powerpoint presentations or even scanned letters to your Weaviate instance. Unstructured has really simplified the process of using visual document parsing for diverse document types.
 
-We tested a few queries above, but we can take this one step further by using [LangChain](https://python.langchain.com/docs/modules/data_connection/vectorstores/integrations/weaviate). Once the documents are imported into Weaviate, you can build a simple chatbot to chat with your pdfs by using LangChain’s vectorstore.
+We tested a few queries above, but we can take this one step further by using [LangChain](https://python.langchain.com/docs/integrations/vectorstores/weaviate/). Once the documents are imported into Weaviate, you can build a simple chatbot to chat with your pdfs by using LangChain’s vectorstore.
 
-The original `ChatVectorDBChain` class shown here has been removed from LangChain; the current Weaviate integration lives in the `langchain-weaviate` package. See the [Weaviate-LangChain integration post](/blog/enterprise-workflow-langchain-weaviate) for an up-to-date example.
+:::note LangChain has moved on since 2023
+`ChatVectorDBChain`, which the original version of this snippet used, has been removed from LangChain, and the Weaviate vectorstore now lives in the separate `langchain-weaviate` package. The snippet below has been updated to match. For a current end-to-end example, see the [Weaviate and LangChain post](/blog/enterprise-workflow-langchain-weaviate).
+:::
 
 ```python
 from langchain_weaviate.vectorstores import WeaviateVectorStore

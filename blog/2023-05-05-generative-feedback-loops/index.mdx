@@ -35,17 +35,21 @@ Here is a quick overview of the code snippets before diving in:
 The GitHub repo with notebooks (using Weaviate embedded) can be found [here](https://github.com/weaviate/Generative-Feedback-Loops/).
 :::
 
-In this example we will be using the OpenAI `gpt-4o-mini` and the Cohere `command-r-plus` LLMs to generate content, but this is also possible with other providers such as HuggingFace, Anthropic, and more. Set your OpenAI or Cohere key to use with Weaviate's generate module using the following block of code:
+:::caution These models have been retired
+`text-davinci-003` and `command-xlarge-nightly` were the current models when this post was written in May 2023, and every generation shown below came from them. Both have since been retired by their providers, so the code below will fail until you pick a current model from the [OpenAI](https://docs.weaviate.io/weaviate/model-providers/openai/generative) or [Cohere](https://docs.weaviate.io/weaviate/model-providers/cohere/generative) generative docs. The pattern is unchanged; only the model name moves.
+:::
+
+In this example we will be using the OpenAI `text-davinci-003` and the Cohere `command-xlarge-nightly` LLMs to generate content, but this is also possible with other providers such as HuggingFace, Anthropic, and more. Set your OpenAI or Cohere key to use with Weaviate's generate module using the following block of code:
 
 ```python
 import weaviate
 
-client = weaviate.connect_to_local(
+client = weaviate.connect_to_embedded(
     headers={
         "X-OpenAI-Api-Key": "<YOUR OPENAI KEY HERE>",  # if using Cohere, replace with "X-Cohere-Api-Key"
     },
 )
-client.get_meta()  # see which modules are enabled in your Weaviate instance
+client.get_meta()  # see which modules are enabled in Weaviate Embedded
 ```
 
 The table below illustrates the schema of the data we will use, please see the notebook for reference of the full json dictionary to create Weaviate schemas with configurations like this:
@@ -246,7 +250,7 @@ for user in users:
 
     for ad in response.objects:
         new_ad_properties = {
-            "content": ad.generated,
+            "content": ad.generative.text,
         }
         new_ad_id = uuid4()
         ad_collection.data.insert(

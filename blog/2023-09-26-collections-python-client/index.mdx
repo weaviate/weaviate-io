@@ -11,7 +11,7 @@ description: "A preview release of our new Python client is now available! Help 
 ![The pre-release Weaviate Python client with a new API](./img/hero.png)
 
 :::caution Outdated preview content
-Published 2023-09-26 as a *preview* of the v4 Python client. Several API names in this post changed before GA (e.g. `client.collection.get` became `client.collections.use`). For the current API, see the [Python client docs](https://docs.weaviate.io/weaviate/client-libraries/python). The official v4 release announcement is [here](/blog/py-client-v4-release/).
+Published 2023-09-26 as a *preview* of the v4 Python client. Several API names in this post changed before GA (e.g. `client.collection.get` became `client.collections.get`, and was later renamed again to `client.collections.use`), and `wvc.ConfigFactory` was renamed to `wvc.config.Configure` before release, so the snippets below will not run as written. Collection creation has since moved on again: `vectorizer_config=` is now `vector_config=`, and the `Vectorizer` factory is now `Vectors`. For the current API, see the [Python client docs](https://docs.weaviate.io/weaviate/client-libraries/python). The official v4 release announcement is [here](/blog/py-client-v4-release/).
 :::
 
 :::info TL;DR

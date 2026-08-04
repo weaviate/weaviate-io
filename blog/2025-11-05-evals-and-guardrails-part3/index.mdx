@@ -129,14 +129,15 @@ Weaviate Cloud [quickstart](https://docs.weaviate.io/cloud/quickstart#11-create-
 ```python
 import weaviate
 import weaviate.classes as wvc
+from weaviate.classes.init import Auth
 
 weaviate_client = weaviate.connect_to_weaviate_cloud(
-    cluster_url=[WEAVIATE_CLOUD_URL],
-    auth_credentials=weaviate.auth.AuthApiKey([WEAVIATE_API_KEY]),
+    cluster_url=WEAVIATE_CLOUD_URL,
+    auth_credentials=Auth.api_key(WEAVIATE_API_KEY),
     headers={
-        "X-AWS-Access-Key": [AWS_ACCESS_KEY],
-        "X-AWS-Secret-Key": [AWS_SECRET_KEY],
-        "X-OpenAI-Api-Key": [OPENAI_KEY],
+        "X-AWS-Access-Key": AWS_ACCESS_KEY,
+        "X-AWS-Secret-Key": AWS_SECRET_KEY,
+        "X-OpenAI-Api-Key": OPENAI_KEY,
     }
 )
 ```

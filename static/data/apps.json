@@ -122,7 +122,6 @@
     "languages": ["English", "Spanish", "French", "German"],
     "url": "/product/query-agent",
     "released": "yes",
-    "privatePreview": "yes",
     "ppLink": "https://docs.weaviate.io/query-agent/guides/ask_mode"
   },
   {

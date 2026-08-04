@@ -216,6 +216,12 @@ If you are wondering how to use the new gRPC functionality, we have you covered 
 
 This client marks the first beta release of the `v4` client, with not only gRPC support but also an improved API. The new API is more Pythonic, with a focus on improving the user/developer experience. Custom classes and methods now trigger IDE auto-completion in place of untyped dictionaries.
 
+:::note Snippets updated to current client syntax
+
+The `v4` snippets below have been updated to the syntax of the current Python client, so you can copy them and have them run today. They are not the syntax that shipped in the October 2023 beta. In the beta, collection creation used `vectorizer_config=` with `Configure.Vectorizer`, and you fetched a collection with `collections.get()`. Both spellings still work; `vectorizer_config=` now emits a deprecation warning. See the [Python client docs](https://docs.weaviate.io/weaviate/client-libraries/python) for the current API.
+
+:::
+
 As one example, an older collection creation requests that used to look like:
 
 ```python

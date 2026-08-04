@@ -465,6 +465,12 @@
             "description": "Learn about the new certified Weaviate Confluent Apache Kafka Connector!",
             "type": "Blog",
             "url": "https://weaviate.io/blog/weaviate-apache-kafka-connector"
+          },
+          {
+            "topic": "Make Real-Time AI a Reality with Weaviate + Confluent",
+            "description": "Our original 2023 partnership announcement. The Spark-based mechanism it describes has been superseded by the certified Kafka connector above.",
+            "type": "Blog",
+            "url": "https://weaviate.io/blog/confluent-and-weaviate"
           }
         ]
       }

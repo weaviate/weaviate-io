@@ -12,6 +12,10 @@ description: Ever wonder how Weaviate turns objects into vectors, behind-the-sce
 
 ![Pulling back the curtains on text2vec](./img/hero.png)
 
+:::note Model versions and defaults have changed since 2023
+This walkthrough was recorded in January 2023, when `text2vec-cohere` used Cohere's `embed-multilingual-v2.0` model. The `768` dimensions and the exact distances below come from that model.
+:::
+
 You probably know that Weaviate converts a text corpus into a set of vectors - each object is given a vector that captures its 'meaning'. But you might not know exactly how it does that, or how to adjust that behavior. Here, we will pull back the curtains to examine those questions, by revealing some of the mechanics behind `text2vec`'s magic.
 
 First, we will reproduce Weaviate's output vector using only an external API. Then we will see how the text vectorization process can be tweaked, before wrapping up by discussing a few considerations also.
@@ -43,14 +47,21 @@ Load the data into a Pandas dataframe, then populate Weaviate like this:
 
 ```python
 questions = client.collections.use("Question")
-with questions.batch.stream() as batch:
-    for i, row in df.iterrows():
-        properties = {
-            "question": row.Question,
-            "answer": row.Answer
-        }
-        batch.add_object(properties=properties)
+
+objects = []
+for i, row in df.iterrows():
+    properties = {
+        "question": row.Question,
+        "answer": row.Answer
+    }
+    objects.append(properties)
+
+questions.data.ingest(objects)
 ```
+
+:::note Requires Weaviate `1.36`+ and Python client `4.20`+
+`data.ingest()` hands the batching to the server, so you do not size batches yourself. It arrived in Weaviate `1.36` and in the Python client `4.20`. On an older server, use `batch.dynamic()` instead.
+:::
 
 This should add a series of `Question` objects with text properties like this:
 
@@ -106,7 +117,7 @@ Then, use the Cohere API to generate the vector like so, where `cohere_key` is t
 ```python
 import cohere
 co = cohere.Client(cohere_key)
-co_resp = co.embed(texts=[str_in], model="embed-multilingual-v3.0", input_type="search_document")
+co_resp = co.embed(texts=[str_in], model="embed-multilingual-v2.0")
 ```
 
 Then we run a `nearVector` based query to find the best matching object to this vector:
