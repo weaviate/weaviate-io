@@ -55,7 +55,7 @@ The demo contains a `docker-compose.yml` file, which defines all the Weaviate mo
 docker compose up -d
 ```
 
-Before you do, change the `image: semitechnologies/weaviate:1.16.0` line in that `docker-compose.yml` to a `1.36` or newer release. The import step later in this post uses server-side batching, which the pinned version does not support.
+Before you do, change the `image: semitechnologies/weaviate:1.16.0` line in that `docker-compose.yml` to a `1.38.8` or newer release. The import step later in this post uses server-side batching, which the pinned version does not support.
 Once Weaviate is up, check that it is running with:
 
 ```bash
@@ -127,7 +127,7 @@ with dog_collection.batch.stream() as batch:
 Base64-encoded images are large, so we will feed that context manager from a generator. Objects then go to the server as the generator produces them, and the whole dataset never has to sit in memory at once.
 
 :::caution Bump the demo repo's Weaviate version first
-Server-side batching needs Weaviate `1.36`+ and Python client `4.20`+, but the `nearest-neighbor-dog-search` demo you cloned still pins `semitechnologies/weaviate:1.16.0` in its `docker-compose.yml`.
+Server-side batching needs Weaviate `1.36`+ and Python client `4.20`+, but the `nearest-neighbor-dog-search` demo you cloned still pins `semitechnologies/weaviate:1.16.0` in its `docker-compose.yml`. Bump that line to a `1.38.8` or newer release before you run the import.
 :::
 
 We will need to define the data properties that we want to upload. The function below will:

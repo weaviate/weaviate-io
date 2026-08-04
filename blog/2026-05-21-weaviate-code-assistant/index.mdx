@@ -78,7 +78,7 @@ The MCP server is disabled by default. Two environment variables turn it on:
 # docker-compose.yml
 services:
   weaviate:
-    image: cr.weaviate.io/semitechnologies/weaviate:1.37.1
+    image: cr.weaviate.io/semitechnologies/weaviate:1.38.8
     ports:
       - '8080:8080'
       - '50051:50051'
@@ -348,7 +348,7 @@ cd "$WEAVIATE_DIR"
 cat > docker-compose.yml <<'YAML'
 services:
   weaviate:
-    image: cr.weaviate.io/semitechnologies/weaviate:1.37.1
+    image: cr.weaviate.io/semitechnologies/weaviate:1.38.8
     ports:
       - "8080:8080"
       - "50051:50051"

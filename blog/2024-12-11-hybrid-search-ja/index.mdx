@@ -102,7 +102,7 @@ data = [
 日本語のKAGOMEトークナイザーを使用したハイブリッド検索はWeaviate`v1.28`以降で利用できますが、このチュートリアルではサーバーサイドバッチング（`data.ingest()`）も使用するため、Weaviate`v1.36`以降のバージョンが必要です。以下の手順で、[Dockerを使用してWeaviateベクトルデータベースのインスタンスをローカル環境にセットアップ](https://docs.weaviate.io/weaviate/installation/docker-compose)できます：
 
 ```
-docker run -p 8080:8080 -p 50051:50051  -e ENABLE_TOKENIZER_KAGOME_JA='true' -e ENABLE_MODULES='text2vec-cohere' cr.weaviate.io/semitechnologies/weaviate:1.37.4
+docker run -p 8080:8080 -p 50051:50051  -e ENABLE_TOKENIZER_KAGOME_JA='true' -e ENABLE_MODULES='text2vec-cohere' cr.weaviate.io/semitechnologies/weaviate:1.38.8
 ```
 
 次は[Weaviate ClientのPythonライブラリ](https://docs.weaviate.io/weaviate/client-libraries)を準備します。`data.ingest()`を使用するため、バージョン`4.20`以上が必要です。

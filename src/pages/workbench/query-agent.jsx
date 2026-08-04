@@ -48,13 +48,13 @@ export default function QueryPage() {
                         </button>
                       </Link>
                     ) : (
-                      <Link to="https://docs.weaviate.io/query-agent/guides/ask_mode">
+                      <Link to="https://docs.weaviate.io/agents/query/usage">
                         <button className={styles.installButton}>
-                          Generally Available
+                          Public Preview
                         </button>
                       </Link>
                     )}
-                    <Link to="https://docs.weaviate.io/query-agent">
+                    <Link to="https://docs.weaviate.io/agents/query">
                       <button className={styles.docButton}>
                         Read the Docs
                       </button>
@@ -107,9 +107,9 @@ export default function QueryPage() {
                     <h3>Additional details</h3>
                     <p>
                       Availability:{' '}
-                      <Link to="https://docs.weaviate.io/query-agent/guides/ask_mode">
+                      <Link to="https://docs.weaviate.io/agents/query/usage">
                         <strong>
-                          <u>Generally Available in Weaviate Cloud</u>
+                          <u>Public Preview in Weaviate Cloud</u>
                         </strong>
                       </Link>
                     </p>
