@@ -46,12 +46,12 @@ export default function Hero() {
               </p>
 
               <div className="tw-mt-12 tw-flex tw-flex-wrap tw-gap-5">
-                <Link
-                  to="/pricing#contact-sales"
+                <a
+                  href="/pricing#contact-sales"
                   className="tw-inline-flex tw-min-h-[58px] tw-items-center tw-justify-center tw-rounded-md tw-bg-[linear-gradient(48deg,#00FE6B_13.81%,#00B7E2_92.18%)] tw-px-8 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-[#111111] tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-text-[#111111] hover:tw-no-underline"
                 >
                   Contact Sales
-                </Link>
+                </a>
 
                 <Link
                   to="/pricing"

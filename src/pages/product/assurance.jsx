@@ -560,8 +560,8 @@ function Tiers() {
                 ))}
               </ul>
 
-              <Link
-                to="/pricing#contact-sales"
+              <a
+                href="/pricing#contact-sales"
                 className="tw-inline-flex tw-min-h-[50px] tw-items-center tw-justify-center tw-rounded-md tw-border tw-bg-transparent tw-px-8 tw-text-base tw-font-semibold tw-text-white tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-bg-white/10 hover:tw-text-white hover:tw-no-underline"
                 style={{
                   ...bodyFont,
@@ -570,7 +570,7 @@ function Tiers() {
                 }}
               >
                 Contact sales for a quote
-              </Link>
+              </a>
             </article>
           ))}
         </div>
