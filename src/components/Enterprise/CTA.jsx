@@ -38,8 +38,8 @@ export default function CTA() {
               support level for your workloads.
             </p>
 
-            <Link
-              to="/pricing#contact-sales"
+            <a
+              href="/pricing#contact-sales"
               className="tw-mt-10 tw-inline-flex tw-items-center tw-justify-center tw-rounded-xl tw-px-10 tw-py-4 tw-font-semibold tw-text-[#111111] tw-no-underline tw-transition-all hover:tw--translate-y-0.5 hover:tw-text-[#111111] hover:tw-no-underline"
               style={{
                 background:
@@ -49,7 +49,7 @@ export default function CTA() {
               }}
             >
               Contact sales
-            </Link>
+            </a>
           </div>
         </div>
       </div>
