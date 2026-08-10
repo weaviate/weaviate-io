@@ -72,7 +72,7 @@ Search Mode’s three `effort` tiers: `medium`, `high`, and `ultrahigh` scale co
 
 ## Benchmarks
 
-The following table compares our `low`, `medium`, and `high` effort tiers in Search Mode against Weaviate’s Hybrid Search across 8 benchmarks: 5 subsets from BRIGHT, IRPAPERS, WixQA, and a subset from OBLIQ-Bench. We chose these benchmarks because they illustrate reasoning-intensive and domain-specific retrieval problems.
+The following table compares our `medium`, `high`, and `ultrahigh` effort tiers in Search Mode against Weaviate’s Hybrid Search across 8 benchmarks: 5 subsets from BRIGHT, IRPAPERS, WixQA, and a subset from OBLIQ-Bench. We chose these benchmarks because they illustrate reasoning-intensive and domain-specific retrieval problems.
 
 ### Methodology
 
@@ -100,33 +100,33 @@ For all metrics, higher values indicate better performance. Each metric emphasiz
 
 ![Search Mode Effort Benchmarks](./img/metric-viewer.png)
 
-Across all eight benchmarks, the pattern is consistent: every `effort` tier of Search Mode outperforms Hybrid Search, and higher effort delivers higher accuracy on average. The size of the gap between tiers depends on the problem. On BRIGHT, where queries demand multi-step reasoning, the tiers separate sharply. High effort lifts nDCG@10 from 13.0 to 57.5 on Biology and from 22.2 to 54.4 on Psychology, with each step up in effort buying meaningful additional accuracy. On domain-specific, but less reasoning-intensive benchmarks like IRPAPERS and WixQA, the gap shrinks. Here low effort already captures most of the gain over Hybrid Search, and higher tiers add smaller increments on top.
+Across all eight benchmarks, the pattern is consistent: every `effort` tier of Search Mode outperforms Hybrid Search, and higher effort delivers higher accuracy on average. The size of the gap between tiers depends on the problem. On BRIGHT, where queries demand multi-step reasoning, the tiers separate sharply. Ultrahigh effort lifts nDCG@10 from 13.0 to 57.5 on Biology and from 22.2 to 54.4 on Psychology, with each step up in effort buying meaningful additional accuracy. On domain-specific, but less reasoning-intensive benchmarks like IRPAPERS and WixQA, the gap shrinks. Here medium effort already captures most of the gain over Hybrid Search, and higher tiers add smaller increments on top.
 
-Because Search Mode’s inference pipeline is stochastic, adjacent tiers can overlap on individual datasets. For example, on BRIGHT Economics, low effort edges out medium. Averaged across benchmarks and trials, the ordering holds and higher effort consistently delivers higher accuracy. Standard deviations are computed across three trials per system, and the consistency across runs gives us confidence these gains are robust rather than artifacts of a single sample.
+Because Search Mode’s inference pipeline is stochastic, adjacent tiers can overlap on individual datasets. For example, on BRIGHT Economics, medium effort edges out high. Averaged across benchmarks and trials, the ordering holds and higher effort consistently delivers higher accuracy. Standard deviations are computed across three trials per system, and the consistency across runs gives us confidence these gains are robust rather than artifacts of a single sample.
 
 ### BRIGHT
 
 ![BRIGHT results](./img/bright-average-of-5-subsets.png)
 
-The BRIGHT subsets reward effort differently. On Biology and Psychology, each step up in effort buys a meaningful gain, with high effort roughly quadrupling Hybrid Search's nDCG@10 on Biology. Earth Science tells a different story, where low effort already triples the Hybrid Search baseline and the higher tiers add smaller refinements on top. Robotics is the most striking case where low and medium effort improve on Hybrid Search only modestly, but high effort jumps well past both, lifting Success@1 from 25.7 at medium to 45.9 at high. Robotics also has by far the longest queries of the five subsets, averaging 819 tokens, which suggests the hardest queries are exactly where the extra computation pays off most.
+The BRIGHT subsets reward effort differently. On Biology and Psychology, each step up in effort buys a meaningful gain, with ultrahigh effort roughly quadrupling Hybrid Search's nDCG@10 on Biology. Earth Science tells a different story, where medium effort already triples the Hybrid Search baseline and the higher tiers add smaller refinements on top. Robotics is the most striking case where medium and high effort improve on Hybrid Search only modestly, but ultrahigh effort jumps well past both, lifting Success@1 from 25.7 at medium to 45.9 at high. Robotics also has by far the longest queries of the five subsets, averaging 819 tokens, which suggests the hardest queries are exactly where the extra computation pays off most.
 
 ### IRPAPERS
 
 ![IRPAPERS results](./img/irpapers-text-only.png)
 
-Compared to BRIGHT, the effort tiers sit much closer together on IRPAPERS. Low effort already captures most of the gain over Hybrid Search, with medium and high adding only a couple of points on top.
+Compared to BRIGHT, the effort tiers sit much closer together on IRPAPERS. Medium effort already captures most of the gain over Hybrid Search, with high and ultrahigh adding only a couple of points on top.
 
 ### WixQA
 
 ![WixQA results](./img/wixqa.png)
 
-The pattern from IRPAPERS repeats here. Every Search Mode effort tier clears Hybrid Search by a wide margin, while the gaps between effort tiers stay small. In practical terms, even at low effort, Search Mode returns the document a Wix support specialist would hand you at rank 1 for about two out of three customer questions, compared to two out of five with Hybrid Search. On benchmarks like these, where queries are shorter and demand less multi-step reasoning than BRIGHT, low effort seems to capture most of the available gain. For latency-sensitive applications or to save cost, it may be worth testing whether the cheapest tier is already enough.
+The pattern from IRPAPERS repeats here. Every Search Mode effort tier clears Hybrid Search by a wide margin, while the gaps between effort tiers stay small. In practical terms, even at medium effort, Search Mode returns the document a Wix support specialist would hand you at rank 1 for about two out of three customer questions, compared to two out of five with Hybrid Search. On benchmarks like these, where queries are shorter and demand less multi-step reasoning than BRIGHT, medium effort seems to capture most of the available gain. For latency-sensitive applications or to save cost, it may be worth testing whether the cheapest tier is already enough.
 
 ### OBLIQ-Bench
 
 ![OBLIQ-Bench results](./img/obliq-bench-congress.png)
 
-These are the lowest absolute scores in this analysis. Hybrid Search essentially hits the floor, surfacing the gold passage in its top 20 results for fewer than 1 in 12 queries. Search Mode changes the picture substantially. High effort reaches 24.4 Success@1, roughly a 7x improvement over Hybrid Search, and this is the one benchmark where the tiers stay cleanly separated on every metric. Each step up in effort buys a real gain, reinforcing the pattern from BRIGHT that the hardest problems reward the most computation.
+These are the lowest absolute scores in this analysis. Hybrid Search essentially hits the floor, surfacing the gold passage in its top 20 results for fewer than 1 in 12 queries. Search Mode changes the picture substantially. Ultrahigh effort reaches 24.4 Success@1, roughly a 7x improvement over Hybrid Search, and this is the one benchmark where the tiers stay cleanly separated on every metric. Each step up in effort buys a real gain, reinforcing the pattern from BRIGHT that the hardest problems reward the most computation.
 
 ## What is Search Mode?
 
@@ -138,7 +138,7 @@ The benchmarks so far have tested how well Search Mode finds relevant documents,
 
 ## Conclusion
 
-Our benchmarks show what higher effort in Search Mode buys: consistent accuracy gains that grow with the difficulty of the retrieval problem. Additional effort trades latency and cost for that quality. If your application depends on surfacing the right result, such as agentic workflows, deep research, or high-stakes question answering, we recommend experimenting with the new effort tiers. If you are latency-sensitive, low effort Search Mode or Weaviate's Hybrid Search remains a great fit.
+Our benchmarks show what higher effort in Search Mode buys: consistent accuracy gains that grow with the difficulty of the retrieval problem. Additional effort trades latency and cost for that quality. If your application depends on surfacing the right result, such as agentic workflows, deep research, or high-stakes question answering, we recommend experimenting with the new effort tiers. If you are latency-sensitive, medium effort Search Mode or Weaviate's Hybrid Search remains a great fit.
 
 All results can be found or reproduced with our open-source [query-agent-benchmarking](https://github.com/weaviate/query-agent-benchmarking) tool. This tool supports 22 benchmarks in total, further including benchmarks such as BEIR, LoTTe, EnronQA, and FreshStack if you would like to extend these comparisons. The tool further supports running the effort sweep comparison on your own search evals stored in Weaviate.
 
