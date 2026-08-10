@@ -23,7 +23,7 @@ faq:
     answer: "Yes, the open-source query-agent-benchmarking tool contains all results and code, supports 22 benchmarks in total including BEIR, LoTTe, EnronQA, and FreshStack, and can run the effort sweep comparison on your own search evals stored in Weaviate."
 ---
 
-Scaling test-time compute has become one of the clearest successes of the foundation model era. Spend more compute on a problem at inference, get a better result. Retrieval is no exception. The new `effort` parameter in the Query Agent’s [Search Mode](https://docs.weaviate.io/query-agent/guides/search_mode) now lets you control this. On BRIGHT Biology, one of the hardest reasoning-intensive retrieval benchmarks, high effort Search Mode lifts nDCG@10 to 57.5 compared to 13.0 with Hybrid Search alone.
+Scaling test-time compute has become one of the clearest successes of the foundation model era. Spend more compute on a problem at inference, get a better result. Retrieval is no exception. The new `effort` parameter in the Query Agent’s [Search Mode](https://docs.weaviate.io/query-agent/guides/search_mode) now lets you control this. On BRIGHT Biology, one of the hardest reasoning-intensive retrieval benchmarks, ultrahigh effort Search Mode lifts nDCG@10 to 57.5 compared to 13.0 with Hybrid Search alone.
 
 Different applications sit at different points on the accuracy / latency tradeoff curve. Available in `weaviate-agents 1.8.0` and `agents-typescript-client 1.7.0`, `effort` lets you choose per request how much work the Query Agent invests in each search.
 
@@ -43,7 +43,7 @@ qa = QueryAgent(
 
 response = qa.search(
   "What are Listwise Rerankers?",
-  effort="high"
+  effort="ultrahigh"
 )
 ```
 
@@ -61,14 +61,14 @@ const qa = new QueryAgent(
 );
 
 const response = await qa.search("What are Setwise Rerankers?", {
-  effort: "high",
+  effort: "ultrahigh",
 });
 ```
 
 </TabItem>
 </Tabs>
 
-Search Mode’s three `effort` tiers: `low`, `medium`, and `high` scale computation at the two stages where Search Mode does its work: query writing and reranking. At higher effort, the agent thinks longer about how to decompose queries and reranks results more thoroughly. At lower effort, it trades some of that depth for speed and cost. Turn it up when the answer matters, and turn it down when latency does!
+Search Mode’s three `effort` tiers: `medium`, `high`, and `ultrahigh` scale computation at the two stages where Search Mode does its work: query writing and reranking. At higher effort, the agent thinks longer about how to decompose queries and reranks results more thoroughly. At lower effort, it trades some of that depth for speed and cost. Turn it up when the answer matters, and turn it down when latency does!
 
 ## Benchmarks
 
