@@ -5,10 +5,10 @@ authors: [connor]
 date: 2026-08-11
 tags: ["agents", "search", "release"]
 image: ./img/hero.png
-description: 'Introducing low, medium, and high effort tiers.'
+description: 'Introducing medium, high, and ultrahigh effort tiers.'
 faq:
   - question: "What is the effort parameter in the Query Agent's Search Mode?"
-    answer: "Effort is a parameter with three tiers — low, medium, and high — that controls how much computation the agent invests per search. It scales the two stages where Search Mode does its work: query writing and reranking. Higher effort thinks longer about decomposing queries and reranks more thoroughly; lower effort trades depth for speed and cost."
+    answer: "Effort is a parameter with three tiers, medium, high, and ultrahigh, that controls how much computation the agent invests per search. It scales the two stages where Search Mode does its work: query writing and reranking. Higher effort thinks longer about decomposing queries and reranks more thoroughly; lower effort trades depth for speed and cost."
   - question: "How much accuracy does higher effort buy in Search Mode?"
     answer: "It depends on the difficulty of the retrieval problem. On reasoning-intensive benchmarks the gains are large — high effort lifts nDCG@10 on BRIGHT Biology from 13.0 with Hybrid Search to 57.5, and reaches roughly a 7x Success@1 improvement on OBLIQ-Bench Congress. On domain-specific benchmarks like IRPAPERS and WixQA, low effort already captures most of the gain."
   - question: "Which Search Mode effort tier should I use for my application?"
@@ -18,7 +18,7 @@ faq:
   - question: "How is Search Mode different from Weaviate's Hybrid Search?"
     answer: "Hybrid Search runs a fixed retrieval pass combining BM25 and vector search with Reciprocal Rank Fusion. Search Mode puts an agent in the loop that reasons about your request — decomposing queries, translating natural language into structured filters, and reranking results. Every effort tier outperformed Hybrid Search across all eight benchmarks, at the cost of additional latency."
   - question: "How do I set the effort parameter in the Weaviate Query Agent?"
-    answer: "Effort is available in weaviate-agents 1.8.0 (Python) and agents-typescript-client 1.7.0 (TypeScript). Pass effort=\"high\", \"medium\", or \"low\" to the Query Agent's search method per request."
+    answer: "Effort is available in weaviate-agents 1.8.0 (Python) and agents-typescript-client 1.7.0 (TypeScript). Pass effort=\"ultrahigh\", \"high\", or \"medium\" to the Query Agent's search method per request."
   - question: "Can I reproduce the Search Mode benchmark results or run them on my own data?"
     answer: "Yes, the open-source query-agent-benchmarking tool contains all results and code, supports 22 benchmarks in total including BEIR, LoTTe, EnronQA, and FreshStack, and can run the effort sweep comparison on your own search evals stored in Weaviate."
 ---
