@@ -712,3 +712,8 @@ This repository now includes lightweight, machine-friendly LLM twin pages for se
 - https://weaviate.io/deployment/dedicated.md
 - https://weaviate.io/learn/what-is-an-ai-database.md
 - https://weaviate.io/cost-performance-optimization.md
+- https://weaviate.io/partners.md
+- https://weaviate.io/partners/aws.md
+- https://weaviate.io/partners/gcp.md
+- https://weaviate.io/partners/databricks.md
+- https://weaviate.io/partners/snowflake.md

@@ -22,6 +22,11 @@ const TRACKED_PATHS = [
   "/product/engram.md",
   "/product/explorer.md",
   "/product-previews.md",
+  "/partners.md",
+  "/partners/aws.md",
+  "/partners/gcp.md",
+  "/partners/databricks.md",
+  "/partners/snowflake.md",
 ];
 
 const TRACKED_PATH_SET = new Set(TRACKED_PATHS);
