@@ -705,6 +705,7 @@ This repository now includes lightweight, machine-friendly LLM twin pages for se
 - https://weaviate.io/product/embeddings.md
 - https://weaviate.io/product/transformation-agent.md
 - https://weaviate.io/product/personalization-agent.md
+- http://weaviate.io/product/explorer.md
 - https://weaviate.io/rag.md
 - https://weaviate.io/hybrid-search.md
 - https://weaviate.io/agentic-ai.md
