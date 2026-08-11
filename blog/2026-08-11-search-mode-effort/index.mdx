@@ -18,17 +18,19 @@ faq:
   - question: "How is Search Mode different from Weaviate's Hybrid Search?"
     answer: "Hybrid Search runs a fixed retrieval pass combining BM25 and vector search with Reciprocal Rank Fusion. Search Mode puts an agent in the loop that reasons about your request — decomposing queries, translating natural language into structured filters, and reranking results. Every effort tier outperformed Hybrid Search across all eight benchmarks, at the cost of additional latency."
   - question: "How do I set the effort parameter in the Weaviate Query Agent?"
-    answer: "Effort is available in weaviate-agents 1.8.0 (Python) and agents-typescript-client 1.7.0 (TypeScript). Pass effort=\"ultrahigh\", \"high\", or \"medium\" to the Query Agent's search method per request."
+    answer: 'Effort is available in weaviate-agents 1.8.0 (Python) and agents-typescript-client 1.7.0 (TypeScript). Pass effort="ultrahigh", "high", or "medium" to the Query Agent''s search method per request.'
   - question: "Can I reproduce the Search Mode benchmark results or run them on my own data?"
     answer: "Yes, the open-source query-agent-benchmarking tool contains all results and code, supports 22 benchmarks in total including BEIR, LoTTe, EnronQA, and FreshStack, and can run the effort sweep comparison on your own search evals stored in Weaviate."
 ---
+
+![hero](./img/hero.png)
 
 Scaling test-time compute has become one of the clearest successes of the foundation model era. Spend more compute on a problem at inference, get a better result. Retrieval is no exception. The new `effort` parameter in the Query Agent’s [Search Mode](https://docs.weaviate.io/query-agent/guides/search_mode) now lets you control this. On BRIGHT Biology, one of the hardest reasoning-intensive retrieval benchmarks, ultrahigh effort Search Mode lifts nDCG@10 to 57.5 compared to 13.0 with Hybrid Search alone.
 
 Different applications sit at different points on the accuracy / latency tradeoff curve. Available in `weaviate-agents 1.8.0` and `agents-typescript-client 1.7.0`, `effort` lets you choose per request how much work the Query Agent invests in each search.
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
@@ -51,14 +53,11 @@ response = qa.search(
 <TabItem value="js" label="JS/TS">
 
 ```typescript
-import { QueryAgent } from 'weaviate-agents';
+import { QueryAgent } from "weaviate-agents";
 
-const qa = new QueryAgent(
-  client,
-  {
-    collections: ['IRPAPERS'],
-  }
-);
+const qa = new QueryAgent(client, {
+  collections: ["IRPAPERS"],
+});
 
 const response = await qa.search("What are Setwise Rerankers?", {
   effort: "ultrahigh",
@@ -134,7 +133,7 @@ The Query Agent is Weaviate’s agentic interface to your data. Instead of writi
 
 Search Mode is a drop-in upgrade for any pipeline that expects ranked search results and can tolerate additional latency, whether that’s a RAG system, an agentic workflow, or even a search bar.
 
-The benchmarks so far have tested how well Search Mode finds relevant documents, but it can do more. Because the Query Agent understands your collection schemas, it can translate natural language into structured queries. For example, given a query such as, *"Find me some vintage shoes under \$70"*, Search Mode recognizes "under \$70" as a structured filter. It applies a hard constraint on the price property, and searches for vintage shoes among the results that qualify. This lets you combine semantic meaning and structured constraints with one system.
+The benchmarks so far have tested how well Search Mode finds relevant documents, but it can do more. Because the Query Agent understands your collection schemas, it can translate natural language into structured queries. For example, given a query such as, _"Find me some vintage shoes under \$70"_, Search Mode recognizes "under \$70" as a structured filter. It applies a hard constraint on the price property, and searches for vintage shoes among the results that qualify. This lets you combine semantic meaning and structured constraints with one system.
 
 ## Conclusion
 
@@ -144,6 +143,6 @@ All results can be found or reproduced with our open-source [query-agent-benchma
 
 Thank you for reading!
 
-import WhatsNext from '/_includes/what-next.mdx'
+import WhatsNext from "/_includes/what-next.mdx";
 
 <WhatsNext />
