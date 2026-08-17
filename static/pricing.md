@@ -262,9 +262,7 @@ regardless of conversation or payload length.
 - All preset pipelines.
 - Overage billed in arrears, no rate limiting.
 - Email support, 24-hour response.
-- Promotional rate: the pricing page currently advertises $20 / month for the
-  first 3 months, then $45 / month, labelled "Offer ends July 15, 2026". Check
-  the live pricing page for whether the promotion is still running.
+
 
 ### Team
 
