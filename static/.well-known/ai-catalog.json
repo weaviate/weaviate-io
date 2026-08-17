@@ -1,0 +1,142 @@
+{
+  "name": "Weaviate",
+  "legalName": "Weaviate B.V.",
+  "url": "https://weaviate.io",
+  "description": "Weaviate is an open-source, AI-native vector database that stores objects and vectors together and supports vector search, keyword search, hybrid search, filtering, multi-tenancy, and retrieval-augmented generation.",
+  "updated": "2026-08-13",
+  "documentation": "https://docs.weaviate.io",
+  "resources": [
+    {
+      "id": "docs",
+      "type": "documentation",
+      "name": "Weaviate documentation",
+      "description": "Authoritative product, deployment, and client-library documentation for Weaviate.",
+      "url": "https://docs.weaviate.io",
+      "mediaType": "text/html"
+    },
+    {
+      "id": "openapi",
+      "type": "openapi",
+      "name": "Weaviate REST API specification",
+      "description": "Swagger 2.0 specification for the Weaviate REST API. It covers REST endpoints only: many client data operations use gRPC and are not described here.",
+      "url": "https://docs.weaviate.io/openapi.json",
+      "mediaType": "application/json",
+      "specificationFormat": "swagger-2.0"
+    },
+    {
+      "id": "mcp-server",
+      "type": "documentation",
+      "name": "Weaviate MCP server documentation",
+      "description": "How to connect an MCP-compatible client to a Weaviate instance.",
+      "url": "https://docs.weaviate.io/weaviate/configuration/mcp-server",
+      "mediaType": "text/html"
+    },
+    {
+      "id": "agent-skills",
+      "type": "agent-skills",
+      "name": "Weaviate Agent Skills",
+      "description": "Official Weaviate skills for coding agents, following the Agent Skills open standard. Install with: npx skills add weaviate/agent-skills",
+      "url": "https://github.com/weaviate/agent-skills",
+      "mediaType": "text/html"
+    },
+    {
+      "id": "llms-txt",
+      "type": "llms-txt",
+      "name": "LLM navigation index",
+      "description": "Condensed product guidance and canonical machine-readable links for language models.",
+      "url": "https://weaviate.io/llms.txt",
+      "mediaType": "text/plain"
+    },
+    {
+      "id": "agents-md",
+      "type": "markdown",
+      "name": "Resources for AI agents",
+      "description": "Entry point for agents: which Weaviate resource to use for which task, plus default recommendations.",
+      "url": "https://weaviate.io/agents.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "id": "site-index-md",
+      "type": "markdown",
+      "name": "weaviate.io site index (markdown)",
+      "description": "Markdown overview of weaviate.io with links to the markdown version of each main page.",
+      "url": "https://weaviate.io/index.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "id": "quickstart-md",
+      "type": "markdown",
+      "name": "Quickstart guidance (markdown)",
+      "description": "Shortest path to connecting to Weaviate, creating a collection, importing data, and querying it.",
+      "url": "https://weaviate.io/quickstart.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "id": "pricing",
+      "type": "pricing",
+      "name": "Pricing",
+      "description": "Pricing for Weaviate Cloud and Engram. Markdown version: https://weaviate.io/pricing.md",
+      "url": "https://weaviate.io/pricing",
+      "mediaType": "text/html"
+    },
+    {
+      "id": "pricing-md",
+      "type": "markdown",
+      "name": "Pricing guidance (markdown)",
+      "description": "Markdown version of the pricing page for machine consumption.",
+      "url": "https://weaviate.io/pricing.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "id": "source-code",
+      "type": "repository",
+      "name": "Weaviate database source code",
+      "description": "The open-source Weaviate database (BSD-3-Clause), written in Go.",
+      "url": "https://github.com/weaviate/weaviate",
+      "mediaType": "text/html"
+    },
+    {
+      "id": "cloud-console",
+      "type": "application",
+      "name": "Weaviate Cloud console",
+      "description": "Create and manage Weaviate Cloud clusters.",
+      "url": "https://console.weaviate.cloud/",
+      "mediaType": "text/html"
+    },
+    {
+      "id": "sitemap",
+      "type": "sitemap",
+      "name": "weaviate.io sitemap",
+      "description": "XML sitemap for weaviate.io.",
+      "url": "https://weaviate.io/sitemap.xml",
+      "mediaType": "application/xml"
+    },
+    {
+      "id": "docs-sitemap",
+      "type": "sitemap",
+      "name": "docs.weaviate.io sitemap",
+      "description": "XML sitemap for the documentation site.",
+      "url": "https://docs.weaviate.io/sitemap.xml",
+      "mediaType": "application/xml"
+    },
+    {
+      "id": "robots",
+      "type": "robots",
+      "name": "robots.txt",
+      "description": "Crawling rules, including rules for AI crawlers.",
+      "url": "https://weaviate.io/robots.txt",
+      "mediaType": "text/plain"
+    }
+  ],
+  "contact": {
+    "general": "hello@weaviate.io",
+    "support": "support@weaviate.io",
+    "security": "https://weaviate.io/security.txt",
+    "forum": "https://forum.weaviate.io/",
+    "contactPage": "https://weaviate.io/contact"
+  },
+  "policies": {
+    "privacy": "https://weaviate.io/privacy",
+    "terms": "https://weaviate.io/service"
+  }
+}

@@ -1,3 +1,10 @@
+---
+title: "Cost and performance optimization with Weaviate"
+description: "Levers that move cost and latency for AI apps: hybrid search and filters, vector compression, index strategy, and deployment choice."
+canonical: https://weaviate.io/cost-performance-optimization
+last-updated: 2026-03-20
+---
+
 # Cost-Performance Optimization — LLM Guidance
 
 ## TL;DR

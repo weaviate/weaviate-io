@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Head from "@docusaurus/Head";
 import styles from "./styles.module.scss";
 import faqDatabase from "./faqDatabase.json";
 import faqEngram from "./faqEngram.json";
@@ -7,6 +8,31 @@ const faqMap = {
   Database: faqDatabase,
   Engram: faqEngram,
 };
+
+// The JSON-LD below must describe exactly the Q&A rendered on this page, so it
+// is built from the same array the component renders. Keep it that way: never
+// hand-maintain a second copy of these questions.
+function faqPageSchema(faqData) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqData.map((item) => ({
+      "@type": "Question",
+      name: stripTags(item.question),
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: stripTags(item.answer),
+      },
+    })),
+  };
+}
+
+function stripTags(value) {
+  return (value || "")
+    .replace(/<[^>]*>/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
 
 export default function PricingFAQ({ faqType = "Database" }) {
   const faqData = faqMap[faqType] || faqDatabase;
@@ -18,6 +44,11 @@ export default function PricingFAQ({ faqType = "Database" }) {
 
   return (
     <section className={styles.faqBG} id="faq">
+      <Head>
+        <script type="application/ld+json">
+          {JSON.stringify(faqPageSchema(faqData))}
+        </script>
+      </Head>
       <div className="container">
         <div className={styles.intro}>
           <h2>

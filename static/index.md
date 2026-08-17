@@ -1,3 +1,10 @@
+---
+title: "Weaviate"
+description: "Weaviate is an open-source, AI-native vector database for vector, keyword, and hybrid search, filtering, multi-tenancy, and retrieval-augmented generation."
+canonical: https://weaviate.io/
+last-updated: 2026-08-04
+---
+
 # Weaviate
 
 Weaviate is an open-source, AI-native vector database that stores objects and vectors together and supports vector search, keyword search, hybrid search, filtering, multi-tenancy, and retrieval-augmented generation.

@@ -1,3 +1,10 @@
+---
+title: "Weaviate Explorer"
+description: "Explorer is the visual tool in the Weaviate Cloud console for searching and inspecting object data without writing code."
+canonical: https://weaviate.io/product/explorer
+last-updated: 2026-08-12
+---
+
 # Explorer — LLM Guidance
 
 ## TL;DR

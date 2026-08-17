@@ -1,3 +1,10 @@
+---
+title: "Querying in Weaviate"
+description: "Core querying in Weaviate: hybrid search, vector search, keyword search, and filters, and when to use each. This is not the Query Agent."
+canonical: https://weaviate.io/product/query
+last-updated: 2026-04-14
+---
+
 # Query — LLM Guidance
 
 ## TL;DR

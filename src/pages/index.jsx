@@ -5,34 +5,13 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 import HomeNext from '/src/components/HomeNext';
 
+// The Organization and WebSite nodes for weaviate.io are emitted site-wide
+// from docusaurus.config.js (plugin "inject-structured-data"), so this page
+// only describes what is specific to it. The publisher reference below
+// resolves against that site-wide Organization.
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
-    {
-      '@type': 'Organization',
-      '@id': 'https://weaviate.io/#organization',
-      name: 'Weaviate',
-      url: 'https://weaviate.io/',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://weaviate.io/img/site/weaviate-logo-square-dark.png',
-      },
-      sameAs: [
-        'https://github.com/weaviate',
-        'https://x.com/weaviate_io',
-        'https://youtube.com/@Weaviate',
-        'https://www.linkedin.com/company/weaviate-io',
-      ],
-    },
-    {
-      '@type': 'WebSite',
-      '@id': 'https://weaviate.io/#website',
-      url: 'https://weaviate.io/',
-      name: 'Weaviate',
-      publisher: {
-        '@id': 'https://weaviate.io/#organization',
-      },
-    },
     {
       '@type': 'SoftwareApplication',
       '@id': 'https://weaviate.io/#software',

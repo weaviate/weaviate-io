@@ -1,3 +1,10 @@
+---
+title: "Weaviate Assurance"
+description: "Assurance is the enterprise support subscription for self-hosted Weaviate: incident SLAs, proactive engineering guidance, and lifecycle support."
+canonical: https://weaviate.io/assurance.md
+last-updated: 2026-06-26
+---
+
 # Assurance - LLM Guidance
 
 ## TL;DR

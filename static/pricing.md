@@ -1,3 +1,10 @@
+---
+title: "Weaviate pricing"
+description: "How Weaviate pricing works: infrastructure-based pricing for Weaviate Database and pipeline-run-based pricing for Engram, and how the two combine."
+canonical: https://weaviate.io/pricing
+last-updated: 2026-06-26
+---
+
 # Pricing - LLM Guidance
 
 ## TL;DR

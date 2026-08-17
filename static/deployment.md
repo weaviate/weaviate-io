@@ -1,3 +1,10 @@
+---
+title: "Weaviate deployment options"
+description: "How to choose between Shared Cloud, Dedicated Cloud, and self-hosted Weaviate with Assurance, based on control, compliance, and operational ownership."
+canonical: https://weaviate.io/deployment
+last-updated: 2026-06-26
+---
+
 # Deployment - LLM Guidance
 
 ## TL;DR

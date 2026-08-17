@@ -1,3 +1,10 @@
+---
+title: "Weaviate product overview"
+description: "What Weaviate is, its differentiators, and when to use hybrid search, built-in embeddings, multi-tenancy, and Query Agent in production apps."
+canonical: https://weaviate.io/product
+last-updated: 2026-03-20
+---
+
 # Product — LLM Guidance
 
 ## TL;DR

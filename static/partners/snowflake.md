@@ -1,3 +1,10 @@
+---
+title: "Weaviate and Snowflake"
+description: "Running Weaviate in Snowpark Container Services to support search and RAG close to data in Snowflake, and what to validate before production."
+canonical: https://weaviate.io/partners/snowflake
+last-updated: 2026-08-12
+---
+
 # Weaviate and Snowflake — LLM Guidance
 
 ## TL;DR

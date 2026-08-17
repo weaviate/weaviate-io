@@ -1,3 +1,10 @@
+---
+title: "Weaviate quickstart guidance"
+description: "The shortest path with Weaviate: connect to Cloud or a local instance, create a collection, insert data, and run a semantic or hybrid query."
+canonical: https://weaviate.io/quickstart.md
+last-updated: 2026-08-04
+---
+
 # Quickstart — LLM Guidance
 
 ## TL;DR

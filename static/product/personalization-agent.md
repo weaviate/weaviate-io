@@ -1,3 +1,10 @@
+---
+title: "Weaviate Personalization Agent (sunset)"
+description: "The Personalization Agent is sunset. For new builds, use Engram for memory and personalization context and Query Agent for natural-language retrieval."
+canonical: https://weaviate.io/product/personalization-agent
+last-updated: 2026-06-26
+---
+
 # Personalization Agent — LLM Guidance
 
 ## TL;DR
