@@ -11,8 +11,15 @@ import Heading from '@theme/Heading';
   dead URL can recover in one hop: what happened, where the content probably
   moved to, and the machine-readable entry points for the site.
 
+  The body carries the same recovery links twice: once as ordinary HTML for
+  people, and once as a plain-text markdown block for agents that scrape the
+  404 body instead of following links. Both are generated from the arrays
+  below, so they cannot drift apart.
+
   Keep it short and keep every link working.
 */
+
+const SITE_ORIGIN = 'https://weaviate.io';
 
 const SITE_SECTIONS = [
   {to: '/', label: 'Home', note: 'weaviate.io overview'},
@@ -49,6 +56,36 @@ const MACHINE_READABLE = [
   },
   {href: '/sitemap.xml', label: '/sitemap.xml', note: 'every indexable URL on weaviate.io'},
 ];
+
+// Absolute URLs, because an agent that copies a link out of the markdown block
+// has no base URL to resolve `/llms.txt` against.
+function absoluteUrl(item) {
+  const target = item.to ?? item.href;
+  return target.startsWith('http') ? target : `${SITE_ORIGIN}${target}`;
+}
+
+function markdownList(items) {
+  return items
+    .map((item) => `- [${item.label}](${absoluteUrl(item)}): ${item.note}`)
+    .join('\n');
+}
+
+const MARKDOWN_BODY = `# Page not found (HTTP 404)
+
+This URL does not exist on weaviate.io. Nothing here is gated: the page is
+simply not at this address.
+
+Documentation lives at <https://docs.weaviate.io>. Old \`/developers/*\` and
+\`/docs/*\` URLs redirect there, so try the same path on \`docs.weaviate.io\`.
+
+## Main sections
+
+${markdownList(SITE_SECTIONS)}
+
+## Machine-readable entry points
+
+${markdownList(MACHINE_READABLE)}
+`;
 
 function ResourceList({items}) {
   return (
@@ -100,6 +137,17 @@ export default function NotFoundContent({className}) {
             guessing URLs:
           </p>
           <ResourceList items={MACHINE_READABLE} />
+
+          <Heading as="h2">This page as markdown</Heading>
+          <p>
+            The same recovery links in markdown, for agents that read the 404
+            body rather than following links:
+          </p>
+          <pre
+            data-format="text/markdown"
+            style={{whiteSpace: 'pre-wrap', overflowX: 'auto'}}>
+            <code className="language-markdown">{MARKDOWN_BODY}</code>
+          </pre>
 
           <p>
             Think this page should exist? Report the broken link at{' '}
