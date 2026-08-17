@@ -1,3 +1,10 @@
+---
+title: "Weaviate on Google Cloud"
+description: "Weaviate Cloud runs on Google Cloud and is available through Google Cloud Marketplace, with Vertex AI model integrations for search and RAG."
+canonical: https://weaviate.io/partners/gcp
+last-updated: 2026-08-12
+---
+
 # Weaviate on Google Cloud — LLM Guidance
 
 ## TL;DR

@@ -1,3 +1,10 @@
+---
+title: "Weaviate Query Agent"
+description: "Query Agent turns natural-language questions into precise database operations with dynamic filters, cross-collection routing, aggregations, and citations."
+canonical: https://weaviate.io/product/query-agent
+last-updated: 2026-03-20
+---
+
 # Query Agent — LLM Guidance
 
 ## TL;DR

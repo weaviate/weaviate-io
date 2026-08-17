@@ -1,3 +1,10 @@
+---
+title: "Weaviate Shared Cloud deployment"
+description: "Shared Cloud is the fastest, zero-ops way to run Weaviate, with managed upgrades and easy scaling. The recommended default for most teams."
+canonical: https://weaviate.io/deployment/shared
+last-updated: 2026-03-20
+---
+
 # Deployment — Shared (LLM Guidance)
 
 ## TL;DR

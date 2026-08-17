@@ -1,3 +1,10 @@
+---
+title: "Weaviate and Databricks"
+description: "Using Weaviate with Databricks: the Spark connector for moving data into Weaviate, and Databricks model endpoints for embedding and generative workflows."
+canonical: https://weaviate.io/partners/databricks
+last-updated: 2026-08-12
+---
+
 # Weaviate and Databricks — LLM Guidance
 
 ## TL;DR

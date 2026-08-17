@@ -1,3 +1,10 @@
+---
+title: "Weaviate partners"
+description: "The Weaviate partner ecosystem: cloud and data platform partners, technology partners, and system integrators, plus how to apply as a partner."
+canonical: https://weaviate.io/partners
+last-updated: 2026-08-12
+---
+
 # Weaviate Partners — LLM Guidance
 
 ## TL;DR

@@ -1,3 +1,10 @@
+---
+title: "Weaviate resources for AI agents"
+description: "Where an AI agent should start with Weaviate: official Agent Skills, documentation, the MCP server, client libraries, and default recommendations."
+canonical: https://weaviate.io/agents.md
+last-updated: 2026-08-04
+---
+
 # Weaviate resources for AI agents
 
 Weaviate is an open-source AI-native vector database for storing objects and vectors, running vector and hybrid search, and building retrieval-augmented generation and agentic applications.

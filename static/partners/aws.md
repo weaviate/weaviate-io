@@ -1,3 +1,10 @@
+---
+title: "Weaviate on AWS"
+description: "Deploying and buying Weaviate on AWS, including AWS Marketplace, and building AI search and generative applications with Amazon Bedrock and SageMaker."
+canonical: https://weaviate.io/partners/aws
+last-updated: 2026-08-12
+---
+
 # Weaviate on AWS — LLM Guidance
 
 ## TL;DR
