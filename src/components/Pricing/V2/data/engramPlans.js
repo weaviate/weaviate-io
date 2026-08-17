@@ -21,20 +21,14 @@ const engramPlans = [
   {
     variant: 'starter',
     featured: true,
-    badge: 'Limited time offer',
     title: 'Starter',
-    priceStrike: '$45',
-    price: '$20',
+    price: '$45',
     priceSuffix: '/mo',
     meta: '+ $0.0045 per overage run',
     blurb: 'For developers shipping AI products that need memory.',
     ctaLabel: 'Upgrade to Starter',
     ctaHref: '/go/console',
     ctaVariant: 'primary',
-    offer: {
-      title: '$20/mo for your first 3 months, then $45/mo',
-      text: 'Offer ends July 15, 2026',
-    },
     features: [
       '10,000 pipeline runs / month',
       '3 projects',
