@@ -120,13 +120,14 @@ Weaviate offers [multiple deployment options](https://docs.weaviate.io/deploy) t
 ```python
 import weaviate
 import weaviate.classes as wvc
+from weaviate.classes.init import Auth
 
 weaviate_client = weaviate.connect_to_weaviate_cloud(
-    cluster_url=[WEAVIATE_CLOUD_URL],
-    auth_credentials=weaviate.auth.AuthApiKey([WEAVIATE_API_KEY]),
+    cluster_url=WEAVIATE_CLOUD_URL,
+    auth_credentials=Auth.api_key(WEAVIATE_API_KEY),
     headers={
-        "X-AWS-Access-Key": [AWS_ACCESS_KEY],
-        "X-AWS-Secret-Key": [AWS_SECRET_KEY],
+        "X-AWS-Access-Key": AWS_ACCESS_KEY,
+        "X-AWS-Secret-Key": AWS_SECRET_KEY,
     }
 )
 ```
@@ -160,14 +161,14 @@ weaviate_client.collections.create(
 ```
 
 ### Lakehouse to Weaviate
-Transfer data from our Iceberg table to Weaviate using batch operations
+Transfer data from our Iceberg table to Weaviate with [server-side batching](https://docs.weaviate.io/weaviate/manage-objects/import#server-side-batching). `data.ingest()` accepts any iterable, so we hand it a generator over the DataFrame rows and the server paces the import for us. This requires Weaviate `1.36`+ and Python client `4.20`+.
 ```python
 def save_reviews_to_weaviate(client, df):
-    reviews_collection = client.collections.get('Airline_Reviews')
-    
-    with reviews_collection.batch.dynamic() as batch:
+    reviews_collection = client.collections.use('Airline_Reviews')
+
+    def review_objects():
         for _, row in df.iterrows():
-            review_obj = {
+            yield {
                 "review_id": row['review_id'],
                 "airline": row['airline'],
                 "product_id": row['product_id'],
@@ -175,11 +176,14 @@ def save_reviews_to_weaviate(client, df):
                 "rating": int(row['rating']),
                 "cabin": int(row['cabin']),
                 "luggage": int(row['luggage']),
-                "staff": int(row['staff'], 
+                "staff": int(row['staff']),
                 "review_text": row['review_text']
             }
-            batch.add_object(review_obj)
+
+    return reviews_collection.data.ingest(review_objects())
+
 reviews_saved = save_reviews_to_weaviate(weaviate_client, df)
+print(f"Imported {len(reviews_saved.uuids)} reviews, {len(reviews_saved.errors)} errors")
 ```
 ### Hybrid Search
 

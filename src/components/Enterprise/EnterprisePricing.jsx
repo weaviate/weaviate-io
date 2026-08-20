@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "@docusaurus/Link";
+// Using a normal anchor for external anchor targeting
 
 const plans = [
   {
@@ -132,8 +132,8 @@ export default function EnterprisePricing() {
                 </ul>
 
                 <div className="tw-mt-8 tw-flex tw-justify-end">
-                  <Link
-                    to="/pricing#contact-sales"
+                  <a
+                    href="/pricing#contact-sales"
                     className="
     tw-inline-flex
     tw-min-h-[44px]
@@ -159,7 +159,7 @@ export default function EnterprisePricing() {
                     }}
                   >
                     Contact sales
-                  </Link>
+                  </a>
                 </div>
               </div>
             </article>

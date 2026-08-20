@@ -63,13 +63,22 @@ export default function HomeJP() {
           />
           <link rel="preconnect" href="https://weaviate.jp" />
           <link rel="canonical" href="https://weaviate.jp" />
+          {/*
+            This page also receives the site-wide Organization + WebSite JSON-LD
+            (docusaurus.config.js, plugin "inject-structured-data"). The node
+            below describes the separate Japanese site, so it carries its own
+            @id and is marked as the same organization rather than competing
+            with https://weaviate.io/#organization.
+          */}
           <script type="application/ld+json">
             {JSON.stringify({
               "@context": "https://schema.org/",
               "@type": "Organization",
+              "@id": "https://weaviate.jp/#organization",
               name: "Weaviate ベクトルデータベース",
               url: "https://weaviate.jp",
               logo: "https://weaviate.jp/og/website/home-jp.jpg",
+              sameAs: ["https://weaviate.io"],
             })}
           </script>
         </Head>

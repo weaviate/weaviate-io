@@ -58,11 +58,6 @@ to = "/404"
 status = 404
 force = true
 
-  [[redirects]]
-  from = "/slack"
-  to = "https://forum.weaviate.io/t/saying-goodbye-to-our-public-slack/22266"
-  status = 301
-
 [[edge_functions]]
 function = "block-feed-bot"
 path = "/blog/rss.xml"
@@ -78,23 +73,3 @@ path = "/blog/feed"
 [[edge_functions]]
 function = "block-feed-bot"
 path = "/blog/feed.xml"
-
-[[edge_functions]]
-  path = "/llms.txt"
-  function = "track-llm-pages"
-
-[[edge_functions]]
-  path = "/*.md"
-  function = "track-llm-pages"
-
-[[edge_functions]]
-  path = "/product/*.md"
-  function = "track-llm-pages"
-
-[[edge_functions]]
-  path = "/deployment/*.md"
-  function = "track-llm-pages"
-
-[[edge_functions]]
-  path = "/learn/*.md"
-  function = "track-llm-pages"

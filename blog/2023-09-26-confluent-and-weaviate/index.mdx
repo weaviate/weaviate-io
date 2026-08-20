@@ -14,6 +14,10 @@ import confluentVideo from './img/weaviate-confluent.mp4';
 Your browser does not support the video tag.
 </video>
 
+:::caution Outdated integration mechanism
+Published 2023-09-26. The Weaviate and Confluent partnership described here still ships, but the mechanism shown below does not. This post streams data through a Spark cluster loaded with the `confluent-connector` JAR. That approach has been superseded by the certified Weaviate Sink Kafka Connector, which runs on Kafka Connect with no Spark cluster and no custom JAR. The Python snippets also use the removed `v3` client API. For a current setup, read [Introducing the New Weaviate Confluent Apache Kafka Connector](/blog/weaviate-apache-kafka-connector).
+:::
+
 <!-- truncate -->
 
 Today, we’re excited to announce our new integration with [Confluent Cloud](https://www.confluent.io/confluent-cloud/?utm_campaign=tm.pmm_cd.2023_partner_cwc_weaviate_generic&utm_source=weaviate&utm_medium=partnerref). Weaviate users now have simple access to data streams from across their entire business to build a real-time, contextual, and trustworthy knowledge base fueling their AI applications. Confluent’s data streaming platform bridges the legacy and modern data stack, providing a continuous supply of AI-ready data for development of sophisticated customer experiences with constant awareness of what’s happening in the world and their business right now.
@@ -214,7 +218,7 @@ Key Points to Note:
 
 Not yet a Weaviate customer? Kickstart your AI journey with a [free sandbox environment](https://console.weaviate.cloud/) in Weaviate Cloud today - no credit card required.
 
-Not yet a Confluent customer? Start your [free trial of Confluent Cloud](https://www.confluent.io/confluent-cloud/tryfree/?utm_campaign=tm.pmm_cd.2023_partner_cwc_weaviate_tryfree&utm_source=weaviate&utm_medium=partnerref) today. New signups receive $400 to spend during their first 30 days—no credit card required.
+Not yet a Confluent customer? Start your [free trial of Confluent Cloud](https://www.confluent.io/confluent-cloud/tryfree/?utm_campaign=tm.pmm_cd.2023_partner_cwc_weaviate_tryfree&utm_source=weaviate&utm_medium=partnerref) today. New signups receive $400 to spend during their first 30 days, no credit card required.
 
 **Join the Open-Source Movement**: This integration is open-source, and we welcome your participation in its development. Whether it's sharing feedback, filing bug reports, or contributing code, your collaboration can help make this integration even better. **[Learn how to contribute](https://github.com/weaviate/confluent-connector#contributing)**.
 

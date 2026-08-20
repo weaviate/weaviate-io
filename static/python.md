@@ -1,3 +1,10 @@
+---
+title: "Weaviate with Python"
+description: "Guidance for the official Weaviate Python client: connect, create a collection, insert objects, and query with hybrid, vector, or keyword search."
+canonical: https://weaviate.io/python.md
+last-updated: 2026-08-04
+---
+
 # Python — LLM Guidance
 
 ## TL;DR
@@ -34,7 +41,7 @@ client = weaviate.connect_to_weaviate_cloud(
 if not client.collections.exists("Docs"):
     client.collections.create(
         name="Docs",
-        vectorizer_config=weaviate.classes.config.Configure.Vectorizer.text2vec_openai()
+        vector_config=weaviate.classes.config.Configure.Vectors.text2vec_openai()
     )
 
 docs = client.collections.use("Docs")
@@ -55,3 +62,4 @@ for obj in response.objects:
     print(obj.properties)
 
 client.close()
+```

@@ -1,3 +1,10 @@
+---
+title: "Weaviate for enterprise"
+description: "The three enterprise paths on Weaviate: Dedicated Cloud, Shared Cloud, and self-hosted with Assurance, plus how to evaluate support and compliance."
+canonical: https://weaviate.io/enterprise
+last-updated: 2026-06-26
+---
+
 # Enterprise - LLM Guidance
 
 ## TL;DR

@@ -453,4 +453,17 @@
   .badge {
     right: 18px;
   }
+
+  .tiers {
+    grid-template-columns: 1fr !important;
+    grid-auto-flow: row;
+    grid-auto-columns: 1fr;
+    gap: 20px;
+    padding: 2rem 1rem;
+  }
+
+  .tier {
+    width: 100%;
+    min-width: 0;
+  }
 }

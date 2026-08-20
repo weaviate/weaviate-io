@@ -70,8 +70,8 @@ const navGroups = {
           to: 'https://docs.weaviate.io/deploy',
         },
         {
-          label: 'Weaviate Agents Docs',
-          to: 'https://docs.weaviate.io/agents',
+          label: 'Query Agent Docs',
+          to: 'https://docs.weaviate.io/query-agent',
         },
         {
           label: 'Engram Docs',
@@ -368,7 +368,7 @@ export default function Navbar() {
 
             <Link
               to="/go/console"
-              className="tw-inline-flex tw-items-center tw-justify-center tw-rounded-lg tw-bg-[#6BE38C] tw-px-5 tw-py-2.5 tw-text-[14px] tw-font-medium tw-text-[#081012] tw-no-underline tw-transition hover:tw-bg-[#7ced9d]"
+              className="tw-inline-flex tw-items-center tw-justify-center tw-rounded-lg tw-bg-[#6BE38C] tw-px-5 tw-py-2.5 tw-text-[14px] tw-font-medium tw-text-[#081012] tw-no-underline tw-transition hover:tw-bg-[#7ced9d] hover:tw-text-[#081012]"
               style={{ fontFamily: 'Inter, sans-serif', lineHeight: '163.8%' }}
             >
               Try now

@@ -295,7 +295,7 @@ task_description = GenerateAnswer_instruction_from_dspy_json("RAG-with-Command-R
 
 We can then query in Weaviate using the v4 Python client with:
 ```
-weaviate_blogs = weaviate_client.collections.get("WeaviateBlogChunk")
+weaviate_blogs = weaviate_client.collections.use("WeaviateBlogChunk")
 
 query = "What is Product Quantization? Why is it helpful for Vector Databases?"
 extended_task_description = task_description + "\nQuery: {query}\nAnswer:"

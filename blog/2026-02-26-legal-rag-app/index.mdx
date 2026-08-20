@@ -13,7 +13,7 @@ Legal research is difficult by design. Sorting through thousands of complex cont
 
 We decided to see if we could break that timeline.
 
-When our own finance team at Weaviate asked us to help them navigate internal contracts, we used the [Query Agent](https://docs.weaviate.io/agents/query?utm_source=blogs&utm_campaign=paralegal) to turn these raw documents into a production-ready application in just 36 hours. We’ve replaced our private data with a public dataset in the demo below so you can experience this "one-prompt" legal assistant for yourself. In this post, we are showing you exactly how the architecture works and how to build it yourself.
+When our own finance team at Weaviate asked us to help them navigate internal contracts, we used the [Query Agent](https://docs.weaviate.io/query-agent?utm_source=blogs&utm_campaign=paralegal) to turn these raw documents into a production-ready application in just 36 hours. We’ve replaced our private data with a public dataset in the demo below so you can experience this "one-prompt" legal assistant for yourself. In this post, we are showing you exactly how the architecture works and how to build it yourself.
 
 :::info
 Try out the [Legal App demo](https://paralegal.weaviate.io/?utm_source=blogs&utm_campaign=paralegal) that we’ve built, or [get started building here](#get-started).
@@ -44,7 +44,7 @@ Rather than placing all contracts in a single collection, we split them into thr
 
 ![Architecture](./img/architecture.png)
 
-The [Query Agent](https://docs.weaviate.io/agents/query?utm_source=blogs&utm_campaign=paralegal) works as the heavy lifter for the entire application. Instead of performing a simple keyword match, the agent uses agentic search strategies to turn natural-language questions into a structured Weaviate query, deciding on the search terms, filters, and which collections to search through. 
+The [Query Agent](https://docs.weaviate.io/query-agent?utm_source=blogs&utm_campaign=paralegal) works as the heavy lifter for the entire application. Instead of performing a simple keyword match, the agent uses agentic search strategies to turn natural-language questions into a structured Weaviate query, deciding on the search terms, filters, and which collections to search through. 
 
 Depending on the user's goal, the agent operates in two ways:
 
