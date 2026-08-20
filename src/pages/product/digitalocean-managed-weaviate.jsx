@@ -9,21 +9,25 @@ const bodyFont = { fontFamily: "Inter, sans-serif" };
 
 const whyManaged = [
   {
+    icon: "digital-ocean-icon-01.svg",
     title: "Spend less time managing infrastructure",
     description:
       "Stop allocating engineering cycles to upgrades, patching, backups, and scaling. Keep your team focused on shipping AI product features.",
   },
   {
+    icon: "digital-ocean-icon-02.svg",
     title: "Deploy production clusters in minutes",
     description:
       "Provision from the DigitalOcean control panel, API, or doctl, then connect with official Weaviate SDKs without rewriting your stack.",
   },
   {
+    icon: "digital-ocean-icon-03.svg",
     title: "Keep AI applications online",
     description:
       "Run production RAG, semantic search, hybrid retrieval, and agentic workflows on infrastructure designed for uptime and operational continuity.",
   },
   {
+    icon: "digital-ocean-icon-04.svg",
     title: "Scale with predictable operational costs",
     description:
       "Start at $20/month with flat pricing, no per-query read unit fees, and no per-dimension pricing surprises as usage grows.",
@@ -39,64 +43,6 @@ const managedFeatures = [
   "Maintain uptime with high availability",
   "Diagnose faster with integrated insights and logs",
   "Rotate credentials without downtime",
-];
-
-const aiWorkloads = [
-  "Retrieval-augmented generation (RAG)",
-  "Semantic search",
-  "Hybrid search",
-  "Agentic workflows and memory",
-  "Similarity-based recommendations",
-  "Retrieval pipelines with co-located inference",
-];
-
-const previewFeatures = [
-  {
-    title: "Stay current without upgrade projects",
-    description:
-      "DigitalOcean manages upgrade cadence, and new clusters launch on a latest supported version.",
-  },
-  {
-    title: "Test changes safely with forked clusters",
-    description:
-      "Create a new cluster from an existing cluster at a specific point in time.",
-  },
-  {
-    title: "Troubleshoot quickly with built-in observability",
-    description:
-      "Monitor performance and review logs directly from the DigitalOcean control panel.",
-  },
-  {
-    title: "Rotate credentials without operational friction",
-    description: "Rotate cluster admin API tokens from the control panel.",
-  },
-  {
-    title: "Organize environments with tags",
-    description: "Organize clusters for billing and reporting.",
-  },
-  {
-    title: "Ship secure connectivity by default",
-    description:
-      "All HTTP and gRPC traffic is secured over HTTPS/TLS on port 443.",
-  },
-];
-
-const deploymentJourney = [
-  {
-    title: "Provision",
-    description:
-      "Create a cluster from the control panel, API, or doctl and start with production-ready defaults.",
-  },
-  {
-    title: "Connect",
-    description:
-      "Connect using your HTTP host, gRPC host, and API key with official Weaviate SDKs and compatible APIs.",
-  },
-  {
-    title: "Build",
-    description:
-      "Ship RAG, semantic search, hybrid retrieval, and agentic workflows while DigitalOcean handles infrastructure operations.",
-  },
 ];
 
 const relatedResources = [
@@ -130,18 +76,29 @@ const relatedResources = [
   },
 ];
 
-function IllustrationPlaceholder({ label }) {
-  return (
-    <div className="tw-rounded-[1.25rem] tw-border tw-border-white/15 tw-bg-[#141414] tw-p-6 tw-text-center">
-      <p
-        className="tw-m-0 tw-text-sm tw-font-semibold tw-uppercase tw-tracking-[0.09em] tw-text-[#7BE7C7]"
-        style={headingFont}
-      >
-        {label}
-      </p>
-    </div>
-  );
-}
+const deploymentSteps = [
+  {
+    step: "STEP 1",
+    title: "Provision",
+    icon: "/img/site/2026/digital-ocean-step-01.svg",
+    description:
+      "Create a cluster from the control panel, API, or doctl and start with production-ready defaults.",
+  },
+  {
+    step: "STEP 2",
+    title: "Connect",
+    icon: "/img/site/2026/digital-ocean-step-02.svg",
+    description:
+      "Connect using your HTTP host, gRPC host, and API key with official Weaviate SDKs and compatible APIs.",
+  },
+  {
+    step: "STEP 3",
+    title: "Build",
+    icon: "/img/site/2026/digital-ocean-step-03.svg",
+    description:
+      "Ship RAG, semantic search, hybrid retrieval, and agentic workflows while DigitalOcean handles infrastructure operations.",
+  },
+];
 
 function Hero() {
   return (
@@ -212,7 +169,11 @@ function Hero() {
               <div className="tw-absolute tw-inset-0 tw-rounded-[1.875rem] tw-bg-[linear-gradient(123deg,#26D6FF_12.44%,#D77AFF_109.26%)] tw-opacity-20" />
 
               <div className="tw-relative tw-rounded-[1.875rem] tw-border tw-border-white/10 tw-bg-[linear-gradient(123deg,rgba(38,214,255,0.18)_12.44%,rgba(215,122,255,0.18)_109.26%)] tw-p-6 tw-shadow-[0_28px_90px_rgba(0,0,0,0.35)] md:tw-p-10">
-                <IllustrationPlaceholder label="[Illustration]" />
+                <img
+                  src="/img/site/2026/digital-ocean-header.svg"
+                  alt="Managed Weaviate on DigitalOcean"
+                  className="tw-w-full"
+                />
               </div>
             </div>
           </div>
@@ -227,36 +188,29 @@ function WhyManaged() {
   return (
     <section className="tw-bg-[#111111] tw-px-6 tw-py-16 lg:tw-py-20">
       <div className="tw-mx-auto tw-max-w-[1320px]">
-        <div className="tw-mb-12 tw-max-w-3xl">
-          <p
-            className="tw-m-0 tw-mb-4 tw-text-[1rem] tw-font-semibold tw-uppercase tw-tracking-[0.08em] tw-text-[#43E2C5]"
-            style={bodyFont}
-          >
-            The Problem
-          </p>
-
-          <h2
-            className="tw-m-0 tw-text-[2.4rem] tw-font-semibold tw-leading-[120%] tw-tracking-[-0.04em] tw-text-[#DDEBF2]"
-            style={headingFont}
-          >
-            Self-hosting is powerful, but operationally expensive
-          </h2>
-        </div>
-
         <div className="tw-grid tw-gap-6 md:tw-grid-cols-2 xl:tw-grid-cols-4">
           {whyManaged.map((item) => (
             <article
               key={item.title}
-              className="tw-relative tw-overflow-hidden tw-rounded-[1.5rem] tw-bg-[#1a1a1a] tw-p-8"
+              className="tw-relative tw-overflow-hidden tw-rounded-[1.5rem] tw-bg-[#1A1A1A] tw-p-8"
             >
-              <div className="tw-pointer-events-none tw-absolute tw-inset-0 tw-bg-[linear-gradient(123deg,rgba(38,214,255,0.12)_12.44%,rgba(215,122,255,0.12)_109.26%)]" />
               <div className="tw-relative">
+                <div className="tw-mb-5 tw-h-16 tw-w-16">
+                  <img
+                    src={`/img/site/2026/${item.icon}`}
+                    alt=""
+                    aria-hidden="true"
+                    className="tw-h-full tw-w-full"
+                  />
+                </div>
+
                 <h3
                   className="tw-m-0 tw-text-[1.35rem] tw-font-semibold tw-leading-[130%] tw-text-[#DDEBF2]"
                   style={headingFont}
                 >
                   {item.title}
                 </h3>
+
                 <p
                   className="tw-m-0 tw-mt-5 tw-text-[1rem] tw-leading-[160%] tw-text-[#B9C8DE]"
                   style={bodyFont}
@@ -276,46 +230,89 @@ function EverythingManaged() {
   return (
     <section className="tw-bg-[#111111] tw-px-6 tw-py-16 lg:tw-py-20">
       <div className="tw-mx-auto tw-max-w-[1320px]">
-        <div className="tw-grid tw-gap-8 lg:tw-grid-cols-[1fr_1fr] lg:tw-items-start">
-          <div className="tw-rounded-[1.5rem] tw-border tw-border-white/10 tw-bg-[#1A1A1A] tw-p-8 md:tw-p-10">
-            <p
-              className="tw-m-0 tw-text-[1rem] tw-font-semibold tw-uppercase tw-tracking-[0.08em] tw-text-[#43E2C5]"
-              style={headingFont}
-            >
-              The Solution
-            </p>
-            <h2
-              className="tw-m-0 tw-mt-4 tw-text-[2.1rem] tw-font-semibold tw-leading-[125%] tw-tracking-[-0.03em] tw-text-[#DDEBF2]"
-              style={headingFont}
-            >
-              Fully managed infrastructure for open-source Weaviate
-            </h2>
+        <div className="tw-mb-12 tw-max-w-[35rem]">
+          <p
+            className="tw-m-0 tw-mb-4 tw-text-[1rem] tw-font-semibold tw-uppercase tw-tracking-[0.08em] tw-text-[#43E2C5]"
+            style={bodyFont}
+          >
+            Why build on DigitalOcean
+          </p>
 
-            <p
-              className="tw-m-0 tw-mt-6 tw-text-[1.05rem] tw-leading-[165%] tw-text-[#B9C8DE]"
-              style={bodyFont}
-            >
-              Keep the Weaviate engine, APIs, and SDK compatibility your team
-              already uses, while moving daily infrastructure operations out of
-              your sprint plan.
-            </p>
+          <h2
+            className="tw-m-0 tw-text-[2.4rem] tw-font-semibold tw-leading-[120%] tw-tracking-[-0.04em] tw-text-[#DDEBF2]"
+            style={headingFont}
+          >
+            Fully managed infrastructure for open-source Weaviate
+          </h2>
 
-            <ul className="tw-m-0 tw-mt-8 tw-grid tw-gap-3 tw-p-0 md:tw-grid-cols-2">
-              {managedFeatures.map((feature) => (
-                <li
-                  key={feature}
-                  className="tw-flex tw-gap-3 tw-text-[0.95rem] tw-leading-[155%] tw-text-[#B9C8DE]"
-                  style={bodyFont}
-                >
-                  <span className="tw-font-bold tw-text-[#22E7A7]">+</span>
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
+          <p
+            className="tw-m-0 tw-mt-5 tw-text-[1rem] tw-leading-[160%] tw-text-[#B9C8DE]"
+            style={bodyFont}
+          >
+            Keep the Weaviate engine, APIs, and SDK compatibility your team
+            already uses, while moving daily infrastructure operations out of
+            your sprint plan.
+          </p>
+        </div>
+
+        <div className="tw-grid tw-gap-8 lg:tw-grid-cols-[1.1fr_0.9fr] lg:tw-items-stretch tw-bg-[#1A1A1A]">
+          <div className="tw-rounded-[1.5rem] tw-border tw-border-white/10 tw-bg-[#1A1A1A] tw-p-6 md:tw-p-10">
+            <img
+              src="/img/site/2026/digital-ocean-diagram.svg"
+              alt="Managed Weaviate on DigitalOcean architecture"
+              className="tw-w-full"
+            />
           </div>
 
-          <div className="tw-space-y-6">
-            <IllustrationPlaceholder label="[Illustration" />
+          <div className="tw-rounded-[1.5rem] tw-border tw-border-white/10 tw-bg-[#1A1A1A] tw-p-6 md:tw-p-10">
+            <h3
+              className="tw-m-0 tw-mt-4 tw-text-[1.375rem] tw-font-semibold tw-leading-[120%] tw-tracking-[-0.04em] tw-text-[#DDEBF2]"
+              style={headingFont}
+            >
+              Open source portability without platform lock-in
+            </h3>
+
+            <p
+              className="tw-m-0 tw-mt-4 tw-text-[1rem] tw-leading-[160%] tw-text-[#B9C8DE]"
+              style={bodyFont}
+            >
+              Managed Weaviate is part of the DigitalOcean ecosystem alongside
+              Managed Databases, Knowledge Bases, and Serverless Inference.
+            </p>
+
+            <p
+              className="tw-m-0 tw-mt-4 tw-text-[1rem] tw-leading-[160%] tw-text-[#B9C8DE]"
+              style={bodyFont}
+            >
+              Build retrieval and generation pipelines on one platform with
+              unified billing and no egress fees between DigitalOcean services.
+            </p>
+
+            <p
+              className="tw-m-0 tw-mt-4 tw-text-[1rem] tw-leading-[160%] tw-text-[#B9C8DE]"
+              style={bodyFont}
+            >
+              The platform is OpenAI-compatible and includes native integration
+              paths for DigitalOcean Serverless Inference.
+            </p>
+
+            <div className="tw-mt-8 tw-grid tw-gap-4 md:tw-grid-cols-2">
+              {managedFeatures.map((feature) => (
+                <div
+                  key={feature}
+                  className="tw-flex tw-items-start tw-gap-4 tw-text-[0.98rem] tw-leading-[160%] tw-text-[#B9C8DE]"
+                  style={bodyFont}
+                >
+                  <img
+                    src="/img/site/2026/tick-icon-db.svg"
+                    alt=""
+                    aria-hidden="true"
+                    className="tw-mt-1 tw-h-4 tw-w-4 tw-flex-none"
+                  />
+                  <span>{feature}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -325,213 +322,69 @@ function EverythingManaged() {
 
 function PricingAndPortability() {
   return (
-    <section className="tw-bg-[#111111] tw-px-6 tw-py-16 lg:tw-py-20">
-      <div className="tw-mx-auto tw-grid tw-max-w-[1320px] tw-gap-6 lg:tw-grid-cols-2">
-        <article className="tw-rounded-[1.5rem] tw-bg-[#1a1a1a] tw-p-8 md:tw-p-10">
-          <h2
-            className="tw-m-0 tw-text-[2rem] tw-font-semibold tw-leading-[125%] tw-tracking-[-0.03em] tw-text-[#DDEBF2]"
-            style={headingFont}
-          >
-            Why managed is better for production teams
-          </h2>
+    <section className="tw-bg-[#111111] tw-px-6 tw-py-16 lg:tw-py-24">
+      <div className="tw-mx-auto tw-w-full tw-max-w-[1320px]">
+        <div className="tw-mb-12 lg:tw-mb-14">
           <p
-            className="tw-m-0 tw-mt-5 tw-text-[1rem] tw-leading-[165%] tw-text-[#B9C8DE]"
+            className="tw-m-0 tw-mb-5 tw-text-[0.95rem] tw-font-semibold tw-uppercase tw-tracking-[0.08em] tw-text-[#43E2C5]"
             style={bodyFont}
           >
-            Managed Weaviate starts at $20/month with flat pricing built for
-            production usage. There are no per-query read unit fees and no
-            per-dimension pricing penalties, so costs stay predictable as
-            applications scale.
+            Get started
           </p>
-          <p
-            className="tw-m-0 tw-mt-5 tw-text-[1rem] tw-leading-[165%] tw-text-[#B9C8DE]"
-            style={bodyFont}
-          >
-            RQ8 compression is enabled by default, reducing RAM usage by
-            approximately 4x versus uncompressed vectors while preserving
-            recall.
-          </p>
-        </article>
 
-        <article className="tw-rounded-[1.5rem] tw-bg-[#1a1a1a] tw-p-8 md:tw-p-10">
           <h2
-            className="tw-m-0 tw-text-[2rem] tw-font-semibold tw-leading-[125%] tw-tracking-[-0.03em] tw-text-[#DDEBF2]"
+            className="tw-m-0 tw-max-w-[860px] tw-text-[2.25rem] tw-font-semibold tw-leading-[1.15] tw-tracking-[-0.03em] tw-text-[#DDEBF2] md:tw-text-[2.75rem]"
             style={headingFont}
           >
-            Open source portability without platform lock-in
+            Deployment journey:
+            <br className="tw-hidden md:tw-block" /> from cluster to production
           </h2>
+
           <p
-            className="tw-m-0 tw-mt-5 tw-text-[1rem] tw-leading-[165%] tw-text-[#B9C8DE]"
+            className="tw-m-0 tw-mt-5 tw-max-w-[940px] tw-text-[1rem] tw-leading-[1.6] tw-text-[#B9C8DE]"
             style={bodyFont}
           >
             Managed Weaviate runs the unmodified open-source engine with full
             compatibility for GraphQL, REST, and gRPC, so your deployment model
             can change without rewriting application logic.
           </p>
-          <p
-            className="tw-m-0 tw-mt-5 tw-text-[1rem] tw-leading-[165%] tw-text-[#B9C8DE]"
-            style={bodyFont}
-          >
-            Use official Weaviate SDKs for Python, JavaScript/TypeScript, Go,
-            and Java with no proprietary abstraction layer.
-          </p>
-        </article>
-      </div>
-    </section>
-  );
-}
-
-function AIAndEcosystem() {
-  return (
-    <section className="tw-bg-[#111111] tw-px-6 tw-py-16 lg:tw-py-20">
-      <div className="tw-mx-auto tw-max-w-[1320px]">
-        <div className="tw-grid tw-gap-6 lg:tw-grid-cols-2">
-          <article className="tw-rounded-[1.5rem] tw-border tw-border-white/10 tw-bg-[#1a1a1a] tw-p-8 md:tw-p-10">
-            <h2
-              className="tw-m-0 tw-text-[2rem] tw-font-semibold tw-leading-[125%] tw-tracking-[-0.03em] tw-text-[#DDEBF2]"
-              style={headingFont}
-            >
-              Production capabilities for AI applications
-            </h2>
-            <ul className="tw-m-0 tw-mt-7 tw-space-y-3 tw-p-0">
-              {aiWorkloads.map((workload) => (
-                <li
-                  key={workload}
-                  className="tw-flex tw-items-start tw-gap-3 tw-text-[0.96rem] tw-leading-[160%] tw-text-[#B9C8DE]"
-                  style={bodyFont}
-                >
-                  <span className="tw-text-[#00FE6B]">+</span>
-                  <span>{workload}</span>
-                </li>
-              ))}
-            </ul>
-          </article>
-
-          <article className="tw-rounded-[1.5rem] tw-border tw-border-white/10 tw-bg-[#1a1a1a] tw-p-8 md:tw-p-10">
-            <h2
-              className="tw-m-0 tw-text-[2rem] tw-font-semibold tw-leading-[125%] tw-tracking-[-0.03em] tw-text-[#DDEBF2]"
-              style={headingFont}
-            >
-              Why build on DigitalOcean
-            </h2>
-
-            <p
-              className="tw-m-0 tw-mt-5 tw-text-[1rem] tw-leading-[165%] tw-text-[#B9C8DE]"
-              style={bodyFont}
-            >
-              Managed Weaviate is part of the DigitalOcean ecosystem alongside
-              Managed Databases, Knowledge Bases, and Serverless Inference.
-            </p>
-
-            <p
-              className="tw-m-0 tw-mt-5 tw-text-[1rem] tw-leading-[165%] tw-text-[#B9C8DE]"
-              style={bodyFont}
-            >
-              Build retrieval and generation pipelines on one platform with
-              unified billing and no egress fees between DigitalOcean services.
-            </p>
-
-            <p
-              className="tw-m-0 tw-mt-5 tw-text-[1rem] tw-leading-[165%] tw-text-[#B9C8DE]"
-              style={bodyFont}
-            >
-              The platform is OpenAI-compatible and includes native integration
-              paths for DigitalOcean Serverless Inference.
-            </p>
-
-            <div className="tw-mt-7">
-              <IllustrationPlaceholder label="[Diagram]" />
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function PublicPreviewFeatures() {
-  return (
-    <section className="tw-bg-[#111111] tw-px-6 tw-py-16 lg:tw-py-20">
-      <div className="tw-mx-auto tw-max-w-[1320px]">
-        <div className="tw-mb-12 tw-max-w-3xl">
-          <p
-            className="tw-m-0 tw-mb-4 tw-text-[1rem] tw-font-semibold tw-uppercase tw-tracking-[0.08em] tw-text-[#43E2C5]"
-            style={bodyFont}
-          >
-            How It Works
-          </p>
-
-          <h2
-            className="tw-m-0 tw-text-[2.4rem] tw-font-semibold tw-leading-[120%] tw-tracking-[-0.04em] tw-text-[#DDEBF2]"
-            style={headingFont}
-          >
-            Production capabilities available in public preview
-          </h2>
         </div>
 
-        <div className="tw-grid tw-gap-6 md:tw-grid-cols-2 xl:tw-grid-cols-3">
-          {previewFeatures.map((feature) => (
+        <div className="tw-grid tw-gap-5 lg:tw-grid-cols-3">
+          {deploymentSteps.map((item) => (
             <article
-              key={feature.title}
-              className="tw-rounded-[1.5rem] tw-bg-[#1a1a1a] tw-p-8"
+              key={item.step}
+              className="tw-min-h-[238px] tw-rounded-[18px] tw-bg-[#1B1B1B] tw-p-7 lg:tw-p-8"
             >
-              <h3
-                className="tw-m-0 tw-text-[1.3rem] tw-font-semibold tw-leading-[130%] tw-text-[#DDEBF2]"
-                style={headingFont}
-              >
-                {feature.title}
-              </h3>
-              <p
-                className="tw-m-0 tw-mt-5 tw-text-[0.98rem] tw-leading-[160%] tw-text-[#B9C8DE]"
-                style={bodyFont}
-              >
-                {feature.description}
-              </p>
-            </article>
-          ))}
-        </div>
+              <div className="tw-flex tw-items-start tw-gap-6">
+                <div className="tw-flex tw-h-[64px] tw-w-[64px] tw-flex-none tw-items-center tw-justify-center tw-rounded-[12px] tw-border tw-border-[#666080] tw-bg-[#111111]">
+                  <img
+                    src={item.icon}
+                    alt=""
+                    aria-hidden="true"
+                    className="tw-h-16 tw-w-16"
+                  />
+                </div>
 
-        <div className="tw-mt-6">
-          <IllustrationPlaceholder label="[Architecture illustration]" />
-        </div>
-      </div>
-    </section>
-  );
-}
+                <div className="tw-pt-1">
+                  <p
+                    className="tw-m-0 tw-text-[0.85rem] tw-font-semibold tw-uppercase tw-text-[#43E2C5]"
+                    style={bodyFont}
+                  >
+                    {item.step}
+                  </p>
 
-function FAQs() {
-  return (
-    <section className="tw-bg-[#111111] tw-px-6 tw-py-16 lg:tw-py-20">
-      <div className="tw-mx-auto tw-max-w-[980px]">
-        <div className="tw-mb-10 tw-text-center">
-          <h2
-            className="tw-m-0 tw-text-[2.2rem] tw-font-semibold tw-leading-[130%] tw-tracking-[-0.03em] tw-text-[#DDEBF2]"
-            style={headingFont}
-          >
-            Deployment journey: from cluster to production
-          </h2>
-        </div>
+                  <h3
+                    className="tw-m-0 tw-mt-2 tw-text-[1.5rem] tw-font-semibold tw-leading-[1.2] tw-text-[#DDEBF2]"
+                    style={headingFont}
+                  >
+                    {item.title}
+                  </h3>
+                </div>
+              </div>
 
-        <div className="tw-grid tw-gap-4 md:tw-grid-cols-3">
-          {deploymentJourney.map((item, index) => (
-            <article
-              key={item.title}
-              className="tw-rounded-xl tw-border tw-border-white/10 tw-bg-[#1A1A1A] tw-p-6"
-            >
               <p
-                className="tw-m-0 tw-text-xs tw-font-semibold tw-uppercase tw-tracking-[0.08em] tw-text-[#43E2C5]"
-                style={headingFont}
-              >
-                Step {index + 1}
-              </p>
-              <h3
-                className="tw-m-0 tw-mt-3 tw-text-[1.2rem] tw-font-semibold tw-leading-[140%] tw-text-[#DDEBF2]"
-                style={headingFont}
-              >
-                {item.title}
-              </h3>
-              <p
-                className="tw-m-0 tw-mt-4 tw-text-[0.98rem] tw-leading-[165%] tw-text-[#B9C8DE]"
+                className="tw-m-0 tw-mt-6 tw-text-[0.98rem] tw-leading-[1.65] tw-text-[#B9C8DE]"
                 style={bodyFont}
               >
                 {item.description}
@@ -540,51 +393,89 @@ function FAQs() {
           ))}
         </div>
 
-        <div className="tw-mt-10 tw-flex tw-flex-wrap tw-justify-center tw-gap-4">
-          <Link
-            to="https://docs.weaviate.io/deploy/installation-guides/digitalocean"
-            className="tw-inline-flex tw-min-h-[50px] tw-items-center tw-justify-center tw-rounded-md tw-border tw-border-white/40 tw-bg-transparent tw-px-8 tw-text-base tw-font-semibold tw-text-white tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-bg-white/10 hover:tw-text-white hover:tw-no-underline"
-            style={bodyFont}
-          >
-            View deployment guide
-          </Link>
-          <Link
-            to="https://docs.digitalocean.com/products/vector-databases/details/pricing/"
-            className="tw-inline-flex tw-min-h-[50px] tw-items-center tw-justify-center tw-rounded-md tw-border tw-border-white/40 tw-bg-transparent tw-px-8 tw-text-base tw-font-semibold tw-text-white tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-bg-white/10 hover:tw-text-white hover:tw-no-underline"
-            style={bodyFont}
-          >
-            Explore pricing
-          </Link>
-        </div>
+        <div className="tw-mt-9 tw-grid tw-gap-5 lg:tw-grid-cols-2">
+          <article className="tw-rounded-[18px] tw-bg-[#1B1B1B] tw-p-8 md:tw-p-10 lg:tw-p-11">
+            <p
+              className="tw-m-0 tw-text-[0.9rem] tw-font-semibold tw-uppercase tw-tracking-[0.03em] tw-text-[#43E2C5]"
+              style={bodyFont}
+            >
+              Pricing
+            </p>
 
-        <div className="tw-mt-10 tw-w-full tw-rounded-[1rem] tw-border tw-border-white/10 tw-bg-[#121212]/90 tw-p-6 tw-text-left">
-          <p
-            className="tw-m-0 tw-text-sm tw-font-semibold tw-uppercase tw-tracking-[0.08em] tw-text-[#43E2C5]"
-            style={headingFont}
-          >
-            Related resources
-          </p>
-          <div className="tw-mt-4 tw-grid tw-gap-4 md:tw-grid-cols-2">
-            {relatedResources.map((resource) => (
+            <h3
+              className="tw-m-0 tw-mt-7 tw-max-w-[650px] tw-text-[1.8rem] tw-font-semibold tw-leading-[1.35] tw-tracking-[-0.02em] tw-text-[#DDEBF2] md:tw-text-[2rem]"
+              style={headingFont}
+            >
+              Managed Weaviate starts at{" "}
+              <span className="tw-text-[#43E2C5]">$20/mo</span> with flat
+              pricing built for production usage
+            </h3>
+
+            <div className="tw-mt-6 tw-max-w-[650px] tw-space-y-5">
+              <p
+                className="tw-m-0 tw-text-[0.98rem] tw-leading-[1.65] tw-text-[#B9C8DE]"
+                style={bodyFont}
+              >
+                There are no per-query read unit fees and no per-dimension
+                pricing penalties, so costs stay predictable as applications
+                scale.
+              </p>
+
+              <p
+                className="tw-m-0 tw-text-[0.98rem] tw-leading-[1.65] tw-text-[#B9C8DE]"
+                style={bodyFont}
+              >
+                RQ8 compression is enabled by default, reducing RAM usage by
+                approximately 4x versus uncompressed vectors while preserving
+                recall.
+              </p>
+            </div>
+
+            <Link
+              to="/pricing"
+              className="tw-mt-7 tw-inline-block tw-border-b tw-border-[#43E2C5] tw-text-[0.98rem] tw-font-medium tw-text-[#43E2C5] hover:tw-text-[#7BE7C7]"
+              style={bodyFont}
+            >
+              View all pricing
+            </Link>
+          </article>
+
+          <div className="tw-grid tw-gap-5 sm:tw-grid-cols-2">
+            {relatedResources.map((resource, idx) => (
               <article
                 key={resource.title}
-                className="tw-flex tw-h-full tw-flex-col tw-rounded-xl tw-border tw-border-white/10 tw-bg-[#1A1A1A] tw-p-5"
+                className="tw-flex tw-min-h-[210px] tw-flex-col tw-rounded-[18px] tw-bg-[#1B1B1B] tw-p-7 lg:tw-p-8"
               >
-                <h3
-                  className="tw-m-0 tw-text-[1.05rem] tw-font-semibold tw-leading-[145%] tw-text-[#DDEBF2]"
-                  style={headingFont}
-                >
-                  {resource.title}
-                </h3>
+                <div className="tw-flex tw-items-start tw-gap-5">
+                  <div className="tw-flex tw-h-[54px] tw-w-[54px] tw-flex-none tw-items-center tw-justify-center tw-rounded-[10px] tw-border tw-border-[#666080] tw-bg-[#111111]">
+                    <img
+                      src={`/img/site/2026/digital-ocean-small-icon-0${
+                        idx + 1
+                      }.svg`}
+                      alt=""
+                      aria-hidden="true"
+                      className="tw-h-[52px] tw-w-[52px]"
+                    />
+                  </div>
+
+                  <h4
+                    className="tw-m-0 tw-pt-1 tw-text-[1.25rem] tw-font-semibold tw-leading-[1.25] tw-text-[#DDEBF2]"
+                    style={headingFont}
+                  >
+                    {resource.title}
+                  </h4>
+                </div>
+
                 <p
-                  className="tw-m-0 tw-mt-3 tw-flex-1 tw-text-[0.92rem] tw-leading-[160%] tw-text-[#B9C8DE]"
+                  className="tw-m-0 tw-mt-6 tw-text-[0.95rem] tw-leading-[1.65] tw-text-[#B9C8DE]"
                   style={bodyFont}
                 >
                   {resource.description}
                 </p>
+
                 <Link
                   to={resource.href}
-                  className="tw-mt-4 tw-text-[0.9rem] tw-font-semibold tw-text-[#7BE7C7] tw-no-underline hover:tw-text-[#A5F6DD] hover:tw-no-underline"
+                  className="tw-mt-auto tw-pt-5 tw-text-[0.95rem] tw-font-medium tw-text-[#43E2C5] tw-no-underline hover:tw-text-[#7BE7C7] hover:tw-no-underline"
                   style={bodyFont}
                 >
                   {resource.cta}
@@ -652,9 +543,6 @@ export default function ManagedWeaviateOnDigitalOcean() {
           <WhyManaged />
           <EverythingManaged />
           <PricingAndPortability />
-          <AIAndEcosystem />
-          <PublicPreviewFeatures />
-          <FAQs />
           <FinalCTA />
         </main>
       </Layout>
