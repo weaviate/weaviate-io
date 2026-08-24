@@ -198,7 +198,7 @@ Both settings can be changed without rebuilding the index.
 
 ## Experiments
 
-To compare HFresh with HNSW in practice, we benchmarked four index configurations on the DBpedia OpenAI 1M dataset: uncompressed HNSW, HNSW with RQ1, HNSW with RQ8, and HFresh. We used default index parameters, varied the search-time parameters, and measured heap usage at rest and query throughput.
+To compare HFresh with HNSW in practice, we benchmarked four index configurations on the DBpedia OpenAI 1M dataset: uncompressed HNSW, HNSW with RQ1, HNSW with RQ8, and HFresh. The benchmarks ran on a Google Cloud `n2-standard-8` instance with 8 vCPUs and 32 GB of memory, using a 200 GB Balanced Persistent Disk (`pd-balanced`). We used default index parameters, varied the search-time parameters, and measured heap usage at rest and query throughput.
 
 ### Heap usage
 
