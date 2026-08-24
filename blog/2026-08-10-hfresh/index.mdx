@@ -10,7 +10,7 @@ faq:
   - question: "What is HFresh?"
     answer: "HFresh is Weaviate's disk-based vector index for large-scale vector search. It keeps a compact centroid index in memory and stores compressed vector postings on disk."
   - question: "How does HFresh differ from HNSW?"
-    answer: "HNSW keeps its graph and vector cache in memory for the lowest latency and highest throughput. HFresh uses an in-memory HNSW index only for routing, then searches selected postings stored on disk to reduce memory requirements."
+    answer: "HNSW keeps its graph and vector cache in memory for the lowest latency and highest throughput. HFresh uses an in-memory HNSW index only for routing, then searches selected postings stored on disk to reduce the amount of index data kept on the heap."
   - question: "When should I use HFresh instead of HNSW?"
     answer: "Use HFresh when memory efficiency and scaling to larger, frequently updated datasets matter more than peak query throughput. Use HNSW when the lowest latency and highest throughput are the primary requirements."
 ---
@@ -21,11 +21,11 @@ faq:
 
 <br />
 
-HFresh is Weaviate's disk-based vector index for large-scale vector search when memory efficiency matters more than peak throughput.
+HFresh is Weaviate's disk-based vector index for large-scale vector search when keeping most index data off the heap matters more than peak throughput.
 
 ## Understanding HNSW's memory bottleneck in similarity search
 
-When it comes to finding similar vectors quickly, HNSW (Hierarchical Navigable Small World) has become the gold standard. It's fast and accurate, but as datasets grow from millions to billions of vectors, HNSW reveals a fundamental constraint: it needs to keep everything in memory.
+When it comes to finding similar vectors quickly, HNSW (Hierarchical Navigable Small World) has become the gold standard. It's fast and accurate, but as datasets grow from millions to billions of vectors, HNSW reveals a fundamental constraint: its graph and vector cache are kept in memory.
 
 HNSW is a graph-based index that organizes vectors into a hierarchical structure. At the top layer, you have a sparse graph with long-distance connections that help you quickly navigate to the right neighborhood. As you descend through the layers, the graphs become denser with more local connections, eventually guiding you to the most similar vectors at the bottom layer.
 
@@ -200,29 +200,31 @@ Both settings can be changed without rebuilding the index.
 
 To compare HFresh with HNSW in practice, we benchmarked four index configurations on the DBpedia OpenAI 1M dataset: uncompressed HNSW, HNSW with RQ1, HNSW with RQ8, and HFresh. We used default index parameters, varied the search-time parameters, and measured heap usage at rest and query throughput.
 
-### Memory usage
+### Heap usage
 
 ![Heap memory usage at rest for HFresh, uncompressed HNSW, HNSW with RQ1, and HNSW with RQ8.](./img/vector-memory-chart.png)
+
+These measurements report Go heap usage, not total process or system memory. HFresh also relies on OS-managed caching for its on-disk data, which is not captured by the heap figures.
 
 The clearest difference is heap usage at rest. HFresh uses 295 MB of heap, compared with 6.73 GB for uncompressed HNSW.
 
 HFresh also uses less heap than quantized HNSW. HNSW with RQ1 uses 715 MB, 2.4x as much as HFresh, while HNSW with RQ8 uses 2.33 GB, nearly 8x as much.
 
-This difference follows directly from HFresh's architecture. By keeping only the RQ8-compressed centroid index in memory and storing postings on disk, HFresh reduces the need for high-memory instances as datasets grow.
+This difference follows directly from HFresh's architecture. By keeping only the RQ8-compressed centroid index in memory and storing postings on disk, HFresh reduces the heap required for index data as datasets grow.
 
 ### Query throughput
 
 ![Query throughput versus recall for HFresh, uncompressed HNSW, HNSW with RQ1, and HNSW with RQ8.](./img/qps-recall.png)
 
-The QPS-recall curve shows the query-performance side of HFresh's memory advantage.
+The QPS-recall curve shows the query-performance side of HFresh's heap advantage.
 
 At comparable recall, HNSW and its quantized variants deliver substantially higher throughput than HFresh. This is expected: HNSW searches an in-memory graph, while HFresh reads selected postings from disk and fetches original vectors for rescoring.
 
-These results clarify when to choose each index. HNSW remains the better option when the lowest latency and highest throughput matter most. HFresh is designed for workloads where keeping the full index in memory is too expensive and lower throughput is an acceptable tradeoff for a much smaller memory footprint.
+These results clarify when to choose each index. HNSW remains the better option when the lowest latency and highest throughput matter most. HFresh is designed for workloads where keeping the full index in memory is too expensive and lower throughput is an acceptable tradeoff for a much smaller heap footprint.
 
 ## Conclusion
 
-HFresh gives Weaviate a disk-based index for large, mutable vector datasets. By keeping only the centroid index in memory and maintaining disk-resident postings incrementally, it reduces memory requirements without relying on full index rebuilds. HNSW remains the better choice when the lowest latency and highest throughput matter most; HFresh is designed for workloads where memory efficiency and scale justify lower query throughput.
+HFresh gives Weaviate a disk-based index for large, mutable vector datasets. By keeping only the centroid index in memory and maintaining disk-resident postings incrementally, it reduces the heap required for index data without relying on full index rebuilds. HNSW remains the better choice when the lowest latency and highest throughput matter most; HFresh is designed for workloads where a smaller heap footprint and scale justify lower query throughput.
 
 HFresh has been available since Weaviate 1.36. See the [documentation](https://docs.weaviate.io/weaviate/concepts/vector-index#hfresh-index) to get started.
 
