@@ -148,24 +148,20 @@ Filtered vector search adds another constraint: results must be similar to the q
 
 HFresh uses an allow list, represented as a bitmap, to track the document IDs that satisfy the filter. It then chooses between two search strategies based on the number of matching vectors.
 
-### Flat search
+For highly selective filters, running the full HFresh pipeline can cost more than searching the matching subset directly. When the allow list contains fewer than 5,000 IDs, HFresh bypasses centroid routing and posting scans, fetches the original vectors for those IDs, and computes exact distances over them. The current 5,000-ID cutoff is a fixed internal heuristic, not a configurable threshold or a general tuning recommendation.
 
-When fewer than 5,000 vectors satisfy the filter, HFresh uses flat search and computes distances directly over those vectors.
+### Posting-aware filtering
 
-For small allow lists, this brute-force approach can be faster than the regular search path, which must navigate the centroid graph, read postings from disk, and rescore candidates.
-
-### Regular search
-
-When 5,000 or more vectors pass the filter, HFresh uses the full search pipeline with one key modification.
-
-Each posting's metadata records the IDs of the vectors it contains.
+For broader filters, HFresh uses its regular two-stage search with a posting-aware form of prefiltering. The filter identifies matching objects, but the centroid HNSW routes queries to postings rather than individual objects. HFresh bridges those two levels using metadata that records which vector IDs belong to each posting.
 
 The process is:
 
-1. Navigate the centroid HNSW using the [ACORN](https://weaviate.io/blog/speed-up-filtered-vector-search) search strategy.
-2. Collect postings containing at least one vector that passes the filter.
-3. Search the selected postings by brute force, skipping vectors that do not match the filter.
-4. Rescore the top candidates using uncompressed vectors.
+1. Translate the object-level allow list into posting eligibility using the posting metadata.
+2. Navigate the centroid HNSW with [ACORN](https://weaviate.io/blog/speed-up-filtered-vector-search), selecting postings that can contribute at least one matching vector.
+3. Read the selected postings and reapply the original allow list while scanning their compressed vectors.
+4. Rescore the top candidates using their original uncompressed vectors.
+
+Because HFresh can replicate a vector across multiple postings, it also tracks which matching vectors have already contributed to posting selection. This avoids reading multiple postings solely because they contain replicas of the same match. Together, posting-level selection and vector-level checks reduce unnecessary disk reads while ensuring that the final results satisfy the filter.
 
 ## How to use HFresh
 
