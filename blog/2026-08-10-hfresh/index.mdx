@@ -218,6 +218,25 @@ At comparable recall, HNSW and its quantized variants deliver substantially high
 
 These results clarify when to choose each index. HNSW remains the better option when the lowest latency and highest throughput matter most. HFresh is designed for workloads where keeping the full index in memory is too expensive and lower throughput is an acceptable tradeoff for a much smaller heap footprint.
 
+### Scaling to one billion vectors
+
+Separately from the DBpedia benchmarks, we tested HFresh index construction with one billion randomly generated 256-dimensional vectors. We used default index-construction settings and imported batches of 1,000 with 12 workers.
+
+| Metric | Result |
+| --- | --- |
+| Dataset | **1 billion 256-dimensional vectors** |
+| Compute | **32 vCPUs, 256 GB RAM** (`n2-highmem-32`) |
+| Storage | **4 TB SSD Persistent Disk** (`pd-ssd`) |
+| Peak VM memory usage | **204 GB** |
+| VM memory usage after restart | **54 GB** |
+| Go heap after restart | **47 GB** |
+| Peak disk usage | **3.09 TB** |
+| Disk usage after import | **2.28 TB** |
+
+The run successfully constructed the billion-vector HFresh index. No recall or QPS measurements were collected for this scale test.
+
+The VM memory measurements come from GCP system metrics, while the heap measurement comes from a Go heap profile.
+
 ## Conclusion
 
 HFresh gives Weaviate a disk-based index for large, mutable vector datasets. By keeping only the centroid index in memory and maintaining disk-resident postings incrementally, it reduces the heap required for index data without relying on full index rebuilds. HNSW remains the better choice when the lowest latency and highest throughput matter most; HFresh is designed for workloads where a smaller heap footprint and scale justify lower query throughput.
