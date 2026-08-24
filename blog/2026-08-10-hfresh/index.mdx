@@ -226,7 +226,7 @@ These results clarify when to choose each index. HNSW remains the better option 
 
 HFresh gives Weaviate a disk-based index for large, mutable vector datasets. By keeping only the centroid index in memory and maintaining disk-resident postings incrementally, it reduces the heap required for index data without relying on full index rebuilds. HNSW remains the better choice when the lowest latency and highest throughput matter most; HFresh is designed for workloads where a smaller heap footprint and scale justify lower query throughput.
 
-HFresh has been available since Weaviate 1.36. See the [documentation](https://docs.weaviate.io/weaviate/concepts/vector-index#hfresh-index) to get started.
+HFresh was introduced as a technical preview in Weaviate 1.36 and became generally available in Weaviate 1.38. See the [documentation](https://docs.weaviate.io/weaviate/concepts/vector-index#hfresh-index) to get started.
 
 If you are evaluating HFresh for a large-scale workload, we would like to hear about your dataset, performance requirements, and results.
 
