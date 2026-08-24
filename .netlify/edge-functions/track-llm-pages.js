@@ -27,6 +27,15 @@ const TRACKED_PATHS = [
   "/partners/gcp.md",
   "/partners/databricks.md",
   "/partners/snowflake.md",
+  "/agents.md",
+  "/index.md",
+  "/case-studies.md",
+  "/case-studies/docsbot.md",
+  "/case-studies/instabase.md",
+  "/case-studies/kapa.md",
+  "/case-studies/morningstar.md",
+  "/case-studies/finster.md",
+  "/company/about-us.md",
 ];
 
 const TRACKED_PATH_SET = new Set(TRACKED_PATHS);

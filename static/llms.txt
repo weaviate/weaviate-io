@@ -719,3 +719,12 @@ This repository now includes lightweight, machine-friendly LLM twin pages for se
 - https://weaviate.io/partners/gcp.md
 - https://weaviate.io/partners/databricks.md
 - https://weaviate.io/partners/snowflake.md
+- https://weaviate.io/agents.md
+- https://weaviate.io/index.md
+- https://weaviate.io/case-studies.md
+- https://weaviate.io/case-studies/docsbot.md
+- https://weaviate.io/case-studies/instabase.md
+- https://weaviate.io/case-studies/kapa.md
+- https://weaviate.io/case-studies/morningstar.md
+- https://weaviate.io/case-studies/finster.md
+- https://weaviate.io/company/about-us.md
