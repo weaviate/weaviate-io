@@ -24,7 +24,7 @@
  *
  * Standalone markdown resources with no HTML page (so no rel=alternate, and
  * they are self-canonical): /agents.md, /quickstart.md, /python.md,
- * /terminology.md, /assurance.md.
+ * /terminology.md, /assurance.md, /auth.md.
  */
 const MARKDOWN_TWINS = {
   '/': '/index.md',
