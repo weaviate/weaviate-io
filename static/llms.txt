@@ -30,6 +30,8 @@ If you run Weaviate yourself (Docker / Kubernetes / on-prem), **use at least the
 - **Build** — Quickstart · Best Practices · MCP server · Client code examples (Python / TypeScript / Java / C#)
 - Further Resources
 
+Authentication and SDK installation: [auth.md](https://weaviate.io/auth.md)
+
 > **Evaluate** — what Weaviate is and when to use it
 
 ## The Weaviate Stack

@@ -2,7 +2,7 @@
 title: "Weaviate resources for AI agents"
 description: "Where an AI agent should start with Weaviate: official Agent Skills, documentation, the MCP server, client libraries, and default recommendations."
 canonical: https://weaviate.io/agents.md
-last-updated: 2026-08-04
+last-updated: 2026-08-25
 ---
 
 # Weaviate resources for AI agents
@@ -27,11 +27,13 @@ The repository also documents installation through the Claude Code Plugin Manage
 - [Weaviate documentation](https://docs.weaviate.io/): authoritative product and API documentation.
 - [Quickstart](https://weaviate.io/quickstart.md): the shortest path to creating and querying a collection.
 - [LLM navigation index](https://weaviate.io/llms.txt): concise product guidance and canonical machine-readable links.
+- [Authentication guide](https://weaviate.io/auth.md): machine-readable authentication, RBAC, credential lifecycle, and SDK installation guidance.
 - [MCP server documentation](https://docs.weaviate.io/weaviate/configuration/mcp-server): connect an MCP-compatible client to a Weaviate instance.
-- [Python client](https://docs.weaviate.io/weaviate/client-libraries/python)
-- [TypeScript client](https://docs.weaviate.io/weaviate/client-libraries/typescript/typescript-v3)
-- [Java client](https://docs.weaviate.io/weaviate/client-libraries/java)
-- [C# client](https://docs.weaviate.io/weaviate/client-libraries/csharp)
+- [Python client documentation](https://docs.weaviate.io/weaviate/client-libraries/python) — [PyPI: `weaviate-client`](https://pypi.org/project/weaviate-client/)
+- [TypeScript client documentation](https://docs.weaviate.io/weaviate/client-libraries/typescript/typescript-v3) — [npm: `weaviate-client`](https://www.npmjs.com/package/weaviate-client)
+- [Go client documentation](https://docs.weaviate.io/weaviate/client-libraries/go) — [Go module: `github.com/weaviate/weaviate-go-client/v5`](https://pkg.go.dev/github.com/weaviate/weaviate-go-client/v5)
+- [Java client documentation](https://docs.weaviate.io/weaviate/client-libraries/java) — [Maven: `io.weaviate:client6`](https://central.sonatype.com/artifact/io.weaviate/client6)
+- [C# client documentation](https://docs.weaviate.io/weaviate/client-libraries/csharp) — [NuGet: `Weaviate.Client`](https://www.nuget.org/packages/Weaviate.Client)
 
 ## Default recommendations
 
