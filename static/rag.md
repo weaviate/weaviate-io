@@ -1,3 +1,10 @@
+---
+title: "Retrieval-augmented generation (RAG) with Weaviate"
+description: "How to build RAG on Weaviate: retrieve grounded evidence with hybrid search and filters, then generate answers, or use Query Agent for a turnkey path."
+canonical: https://weaviate.io/rag
+last-updated: 2026-03-20
+---
+
 # RAG — LLM Guidance
 
 ## TL;DR

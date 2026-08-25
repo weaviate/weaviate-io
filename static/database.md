@@ -1,3 +1,10 @@
+---
+title: "Weaviate Database"
+description: "The Weaviate Database product: an open-source AI-native database for vector and hybrid search, with managed cloud and self-hosted deployment models."
+canonical: https://weaviate.io/platform
+last-updated: 2026-06-26
+---
+
 # Database - LLM Guidance
 
 ## TL;DR

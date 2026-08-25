@@ -1,8 +1,23 @@
 import React, { useEffect } from 'react';
 import { useLocation } from '@docusaurus/router';
+import Head from '@docusaurus/Head';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import markdownTwins from '@site/src/data/markdownTwins';
+
+// Only pages listed in src/data/markdownTwins.js have a .md twin, so the
+// alternate link is emitted per page here rather than as a global header.
+function markdownTwinFor(pathname) {
+  const route =
+    pathname.length > 1 && pathname.endsWith('/')
+      ? pathname.slice(0, -1)
+      : pathname;
+  return markdownTwins[route];
+}
 
 export default function Root({ children }) {
   const location = useLocation();
+  const { siteConfig } = useDocusaurusContext();
+  const twin = markdownTwinFor(location.pathname);
 
   useEffect(() => {
     // Function to manage Kapi Widget
@@ -61,5 +76,18 @@ export default function Root({ children }) {
     manageKapiWidget();
   }, [location]); 
 
-  return <>{children}</>;
+  return (
+    <>
+      {twin && (
+        <Head>
+          <link
+            rel="alternate"
+            type="text/markdown"
+            href={`${siteConfig.url}${twin}`}
+          />
+        </Head>
+      )}
+      {children}
+    </>
+  );
 }

@@ -146,7 +146,7 @@ async function createCollection() {
 
     const productsResponse = await client.collections.create({
         name: "TestProduct",
-        vectorizers: weaviate.configure.vectorizer.text2VecCohere({
+        vectorizers: weaviate.configure.vectors.text2VecCohere({
             model: 'embed-multilingual-v3.0',
             sourceProperties: ['name', 'sub_category'] 
  }),
@@ -163,7 +163,7 @@ async function importProductData(fileName: string, collectionName: string) {
     console.log('content', content)
     const records = parse(content, { delimiter: ';' });
 
-    const myCollection = client.collections.get(collectionName);
+    const myCollection = client.collections.use(collectionName);
     let itemsToInsert = [];
     let counter = 0;
 
@@ -256,7 +256,7 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(config.weav
 )
 
 async function initialFetch() {
-const myProductCollection = client.collections.get('TestProduct')
+const myProductCollection = client.collections.use('TestProduct')
 
 const response = await myProductCollection.query.fetchObjects({ limit : 20 })
 
@@ -295,7 +295,7 @@ const responseSchema = z.object({
 })
 
 async function vectorSearch(searchTerm:string) {
-  const myProductCollection = client.collections.get('TestProduct')
+  const myProductCollection = client.collections.use('TestProduct')
 
 const response = await myProductCollection.query.nearText(searchTerm, { limit : 10 })
 

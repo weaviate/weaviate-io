@@ -65,7 +65,7 @@ By comparing vector embeddings of the user search queries with the translations 
 ```python
 search_query = "how to buy flowers"
 
-conversations = client.collections.get("ConversationalStatements")
+conversations = client.collections.use("ConversationalStatements")
 
 response = conversations.query.hybrid(
     limit=10,

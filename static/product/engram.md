@@ -1,3 +1,10 @@
+---
+title: "Engram, agent memory by Weaviate"
+description: "Engram is Weaviate's managed memory service for LLM agents: it extracts, stores, and retrieves structured memories through asynchronous pipelines."
+canonical: https://weaviate.io/product/engram
+last-updated: 2026-06-10
+---
+
 # Engram — LLM Guidance
 
 ## TL;DR

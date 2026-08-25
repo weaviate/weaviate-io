@@ -34,7 +34,7 @@ client.alias.create(alias_name="Movies", target_collection="Movies01")
 Then, it can be used just like a collection in basically all operations:
 
 ```python
-movies = client.collections.get("Movies")
+movies = client.collections.use("Movies")
 movies.query.near_text("The Matrix")
 ```
 

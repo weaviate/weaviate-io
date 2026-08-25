@@ -1,3 +1,10 @@
+---
+title: "Weaviate Embeddings"
+description: "Weaviate Embeddings creates embeddings next to your data in Weaviate Cloud, with no external embedding API keys, usage-based pricing, and text and multimodal models."
+canonical: https://weaviate.io/product/embeddings
+last-updated: 2026-03-20
+---
+
 # Embeddings — LLM Guidance
 
 ## TL;DR

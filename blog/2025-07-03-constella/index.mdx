@@ -10,6 +10,10 @@ description: "How we built cross-platform vector search and syncing for a thinki
 
 ![hero image](./img/hero.png)
 
+:::note Editor's note
+This post is Constella's own account, and the code is theirs. We have corrected two things since publication. The tenant name goes in the object body as `"tenant"`, not in an `X-Weaviate-Tenant` request header, which Weaviate does not read. And the `string[]` data type in the schema below is now `text[]`, because `string` was removed from Weaviate. The Python examples use the v3 Python client that Constella was running at the time; for new code, see the [v4 client documentation](https://docs.weaviate.io/weaviate/client-libraries/python).
+:::
+
 At Constella, we’re building a revolutionary new infinite AI canvas. One where personal knowledge base feels like an extension of your brain, instant, effortless and useful. That meant enabling users to instantly capture thoughts across platforms \- Mac, Windows, iOS, Android \- and retrieve them instantly when needed. But not just retrieve. Contextually recall, link, and synthesize. Think with their notes, not just store them. Vector search became a no-brainer for us and is the differentiating factor between Constella and older apps from the pre-AI era.
 
 To do that, we needed a fast, scalable way to make vector search feel local, even when it wasn't. And to make it work across devices, users, and platforms, we had to solve syncing, multi-tenancy, and latency without sacrificing privacy or context.
@@ -46,7 +50,7 @@ To undertake this ambitious quest, we had a stern set of requirements. Here is e
 
 We’re in public beta with thousands of users and growing. From day one, we needed to isolate each user’s data to avoid cross-contamination and simplify access controls.
 
-[Weaviate supports true multi-tenancy](https://docs.weaviate.io/weaviate/manage-collections/multi-tenancy) at the collection level. Each tenant has its own namespace within a class, with full CRUD capabilities. This meant we didn’t have to spin up separate clusters or databases per user \- we just define tenants and assign data accordi
+[Weaviate supports true multi-tenancy](https://docs.weaviate.io/weaviate/manage-collections/multi-tenancy) at the collection level. Each tenant has its own namespace within a class, with full CRUD capabilities. This meant we didn’t have to spin up separate clusters or databases per user \- we just define tenants and assign data accordingly.
 
 ```
 POST /v1/schema
@@ -58,7 +62,7 @@ POST /v1/schema
   "properties": [
     {"name": "content", "dataType": ["text"]},
     {"name": "title", "dataType": ["text"]},
-    {"name": "tags", "dataType": ["string[]"]},
+    {"name": "tags", "dataType": ["text[]"]},
     {"name": "fileLink", "dataType": ["text"]},
     {"name": "timestamp", "dataType": ["date"]}
   ]
@@ -67,11 +71,10 @@ POST /v1/schema
 
 Once this is set up, every CRUD operation is tenant-aware:
 
-```
+```bash
 curl -X POST \
-  -H "X-Weaviate-Tenant: user-123" \
   -H "Content-Type: application/json" \
-  -d '{"title": "Note 1", "content": "AI + Mindmaps"}' \
+  -d '{"class": "Note", "tenant": "user-123", "properties": {"title": "Note 1", "content": "AI + Mindmaps"}}' \
   https://<your-cluster>/v1/objects
 ```
 
@@ -83,7 +86,7 @@ Each vector object contains not just the embedding, but metadata: tags, links, t
 
 We don’t store files in the vector database. That bloats the index and adds cost. Instead, we keep all content in S3 and link via metadata.
 
-```
+```json
 {
   "class": "Note",
   "vector": [/* custom embedding */],
@@ -170,11 +173,13 @@ from weaviate import Client
 
 client = Client("https://<your-cluster>")
 
-results = client.query.get("Note", ["title", "fileLink"])
+results = (
+    client.query.get("Note", ["title", "fileLink"])
     .with_near_vector({"vector": query_embedding})
     .with_tenant("user-123")
     .with_limit(10)
     .do()
+)
 ```
 
 We get fast, accurate results, no matter where the notes came from.

@@ -10,6 +10,12 @@ description: "A show-and-tell of how we created the Weaviate Retrieval Plugin fo
 ---
 ![How To Create ChatGPT Plugins](./img/hero.png)
 
+:::caution Historical post: the ChatGPT plugins program is retired
+Published 2023-04-27, when ChatGPT plugins were in a closed alpha. OpenAI retired the program in 2024, so the `ai-plugin.json` manifest, the `.well-known` mount, and the plugin install flow below no longer apply. The hackathon this post promotes was held in May 2023, and the Weaviate code uses the removed `v3` Python client.
+
+What still transfers is the service design. The model decides *when* and *how* to call your endpoints purely from the descriptions you write for them, which is the same thing that makes or breaks a tool definition today. The modern equivalent of this build is a [Model Context Protocol (MCP)](https://docs.weaviate.io/weaviate/configuration/mcp-server) server, and Weaviate ships one inside the database. For a current walkthrough, read [Build a Coding Assistant with Weaviate MCP](/blog/coding-assistant-weaviate-mcp).
+:::
+
 <!-- truncate -->
 
 ## Introduction
@@ -319,9 +325,9 @@ def delete(delete_request: DeleteRequest, client=Depends(get_weaviate_client)):
 
 Here we showed you how our endpoints work, this will be where your plugin will be most unique, depending on what functionality you want implemented you can create corresponding endpoints and test them.
 
-::::tip
+:::tip
 Notice the docstrings we’ve included with all of our endpoints, these will be very important in the next step!
-::::
+:::
 
 **Step 2: Prepare plugin manifest files**
 
@@ -364,9 +370,9 @@ This specifies data such as the name of the app, logo assets, and more interesti
 
 This file most importantly specifies the endpoints and describes each one to ChatGPT.
 
-::::tip
+:::tip
 Generating this `.yaml` file was quite challenging until we realized that you could simply generate the spec in json format by going to the SwaggerUI using `/docs` and clicking on the `/openapi.json` link. Then you can use this [website](https://www.json2yaml.com/) to convert from `.json` to `.yaml`.
-::::
+:::
 
 
 These two files are critical in order for ChatGPT to understand and utilize the exposed endpoints for your plugin correctly.

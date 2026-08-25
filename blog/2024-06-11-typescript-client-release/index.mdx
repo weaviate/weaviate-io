@@ -66,7 +66,7 @@ A collection definition with two properties and multiple vectorizers looks like 
 
 ```ts
 import weaviate from 'weaviate-client';
-const { vectorizer, dataType } = weaviate.configure;
+const { vectors, dataType } = weaviate.configure;
 
 const newCollection = await client.collections.create({
   name: 'Article',
@@ -76,11 +76,11 @@ const newCollection = await client.collections.create({
   ],
  // highlight-start
   vectorizers: [
-    vectorizer.text2VecOpenAI({
+    vectors.text2VecOpenAI({
       name: 'title_body',
       sourceProperties: ['title', 'body'],
     }),
-    vectorizer.text2VecCohere({
+    vectors.text2VecCohere({
       name: 'body',
       sourceProperties: ['body']
     })
@@ -95,7 +95,7 @@ The changes to the vectorizer configuration still let you define a single vector
 
 ```ts
 import weaviate from 'weaviate-client';
-const { vectorizer, dataType } = weaviate.configure;
+const { vectors, dataType } = weaviate.configure;
 
 const newCollection = await client.collections.create({
   name: 'Article',
@@ -104,7 +104,7 @@ const newCollection = await client.collections.create({
     { name: 'body', dataType: dataType.TEXT },
   ],
  // highlight-start
-  vectorizers: vectorizer.text2VecCohere()
+  vectorizers: vectors.text2VecCohere()
  // highlight-end
 })
 ```
@@ -115,15 +115,17 @@ We've refreshed the way you reconfigure collections.
 
 ```ts
 import weaviate from 'weaviate-client';
-const { vectorizer, vectorIndex } = weaviate.reconfigure;
+const { vectors, vectorIndex } = weaviate.reconfigure;
 
-const myCollection = client.collection.get('Article')
+const myCollection = client.collections.use('Article')
 
 const config = await myCollection.config.update({
-  vectorizers: vectorizer.update({
-    name: 'body',
-    vectorIndexConfig: vectorIndex.hnsw({ ef: 4 }),
-  }),
+  vectorizers: [
+    vectors.update({
+      name: 'body',
+      vectorIndexConfig: vectorIndex.hnsw({ ef: 4 }),
+    }),
+  ],
 })
 ```
 
@@ -137,7 +139,7 @@ import { weaviateV2 } from 'weaviate-client'
 This by design means you can have an application running both v3 and v2 code all from a single client; v3. Should you want to avoid any confusion with the default v3 import, we recommend renaming the import. This might be useful as you migrate your code base or test out v3 in a v2 project.
 
 ```ts
-import weaviateNext, { weaviateV2: weaviate } from 'weaviate-client'
+import weaviateNext, { weaviateV2 as weaviate } from 'weaviate-client'
 ```
 
 

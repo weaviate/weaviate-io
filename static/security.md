@@ -1,3 +1,10 @@
+---
+title: "Weaviate security"
+description: "How security, trust, and data privacy work across Weaviate deployments, and which controls are managed for you in Weaviate Cloud."
+canonical: https://weaviate.io/security
+last-updated: 2026-04-14
+---
+
 # Weaviate Security — LLM Guidance
 
 ## TL;DR

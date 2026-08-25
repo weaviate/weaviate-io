@@ -62,7 +62,7 @@ try:
     # ===== define collection =====
     questions = client.collections.create(
         name="Question",
-        vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai(),  # If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
+        vector_config=wvc.config.Configure.Vectors.text2vec_openai(),  # If set to `Vectors.self_provided()` you must always provide vectors yourself. Could be any other "text2vec-*" also.
         generative_config=wvc.config.Configure.Generative.openai()  # Ensure the `generative-openai` module is used for generative queries
     )
 
@@ -78,7 +78,7 @@ try:
             "category": d["Category"],
         })
 
-    questions = client.collections.get("Question")
+    questions = client.collections.use("Question")
     questions.data.insert_many(question_objs)
 
     # END EndToEndExample    # Test import
@@ -89,7 +89,7 @@ try:
     assert obj_count.total_count == 10
 
     # NearTextExample
-    questions = client.collections.get("Question")
+    questions = client.collections.use("Question")
 
     response = questions.query.near_text(
         query="biology",
@@ -104,7 +104,7 @@ try:
     assert response.objects[0].properties["answer"] == "the nose or snout"
 
     # NearTextWhereExample
-    questions = client.collections.get("Question")
+    questions = client.collections.use("Question")
 
     response = questions.query.near_text(
         query="biology",
@@ -121,7 +121,7 @@ try:
 
 
     # GenerativeSearchExample
-    questions = client.collections.get("Question")
+    questions = client.collections.use("Question")
 
     response = questions.generate.near_text(
         query="biology",
@@ -137,7 +137,7 @@ try:
     assert len(response.objects[0].generated) > 0
 
     # GenerativeSearchGroupedTaskExample
-    questions = client.collections.get("Question")
+    questions = client.collections.use("Question")
 
     response = questions.generate.near_text(
         query="biology",
@@ -178,7 +178,7 @@ try:
             vector=d["vector"]
         ))
 
-    questions = client.collections.get("Question")
+    questions = client.collections.use("Question")
     questions.data.insert_many(question_objs)    # This uses batching under the hood
     # ===== END import with custom vectors =====
 

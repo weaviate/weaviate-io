@@ -1,3 +1,10 @@
+---
+title: "Weaviate Dedicated Cloud deployment"
+description: "Dedicated Cloud gives isolated infrastructure, predictable performance, private networking, and enterprise controls for regulated environments."
+canonical: https://weaviate.io/deployment/dedicated
+last-updated: 2026-03-20
+---
+
 # Deployment — Dedicated (LLM Guidance)
 
 ## TL;DR

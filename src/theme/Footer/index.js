@@ -11,6 +11,8 @@ const footerGroups = {
     { label: 'Product Previews', to: '/product-previews' },
     { label: 'Shared Cloud', to: '/deployment/shared' },
     { label: 'Dedicated Cloud', to: '/deployment/dedicated' },
+    { label: 'Weaviate Assurance', to: '/product/assurance' },
+    { label: 'DigitalOcean', to: '/product/digitalocean-managed-weaviate' },
     { label: 'Pricing', to: '/pricing' },
   ],
   Solutions: [
@@ -25,7 +27,7 @@ const footerGroups = {
     { label: 'Weaviate Database Docs', to: 'https://docs.weaviate.io/weaviate' },
     { label: 'Weaviate Cloud Docs', to: 'https://docs.weaviate.io/cloud' },
     { label: 'Weaviate Deployment Docs', to: 'https://docs.weaviate.io/deploy' },
-    { label: 'Weaviate Agents Docs', to: 'https://docs.weaviate.io/agents' },
+    { label: 'Query Agent Docs', to: 'https://docs.weaviate.io/query-agent' },
     { label: 'LLM / Agent guides', to: 'https://weaviate.io/llms.txt' },
     { label: 'GitHub', to: 'https://github.com/weaviate/weaviate' },
     { label: 'Learning Center', to: '/learn' },

@@ -15,7 +15,6 @@ description: "How hybrid search works, and under the hood of Weaviate's fusion a
 - There are two fusion algorithms available in Weaviate: `rankedFusion` and `relativeScoreFusion`.
 - `rankedFusion` was the default algorithm until 1.24
 - `relativeScoreFusion` is the newer algorithm, introduced in 1.20 and made default in 1.24, and likely the better choice for most.
-- We would love to get your feedback on hybrid search. Please fill out [this short survey](https://docs.google.com/forms/d/e/1FAIpQLSfxekC2eh5Xkl0iJYEAoOkfhK4FA5AO-Od3KUz4srreOpq00g/viewform?usp=sf_link).
 :::
 
 -----
@@ -40,12 +39,11 @@ In this post, we’ll dive into exactly the world of hybrid search to discuss ho
 Here is an example of a hybrid search:
 
 ```python
-response = (
-    client.query
-    .get("JeopardyQuestion", ["question", "answer"])
-    .with_hybrid(query="food", alpha=0.5)
-    .with_limit(5)
-    .do()
+collection = client.collections.use("JeopardyQuestion")
+response = collection.query.hybrid(
+    query="food",
+    alpha=0.5,
+    limit=5,
 )
 ```
 
@@ -60,12 +58,10 @@ import TabItem from '@theme/TabItem';
 <TabItem value="vector" label="Vector search">
 
 ```python
-response = (
-    client.query
-    .get("JeopardyQuestion", ["question", "answer"])
-    .with_near_text({"concepts": ["food"]})
-    .with_limit(5)
-    .do()
+collection = client.collections.use("JeopardyQuestion")
+response = collection.query.near_text(
+    query="food",
+    limit=5,
 )
 ```
 
@@ -73,12 +69,10 @@ response = (
 <TabItem value="keyword" label="Keyword search">
 
 ```python
-response = (
-    client.query
-    .get("JeopardyQuestion", ["question", "answer"])
-    .with_bm25(query="food")
-    .with_limit(5)
-    .do()
+collection = client.collections.use("JeopardyQuestion")
+response = collection.query.bm25(
+    query="food",
+    limit=5,
 )
 ```
 
@@ -198,7 +192,7 @@ A short answer is that Weaviate calculates for each object a weighted score, usi
 
 :::info Weighing scores
 Hybrid searches can be ‘weighted’ to give more weight to the vector or keyword search. This is done using the `alpha` parameter. You can read more [here](https://docs.weaviate.io/weaviate/search/hybrid#weight-keyword-vs-vector-results).
-:::.
+:::
 
 ## Fusion algorithms
 
@@ -346,8 +340,6 @@ AutoCut works well with `relativeScoreFusion`, which often results in natural cl
 Given our earlier explanations, you might be wondering why `rankedFusion` was the default algorithm. In fact, currently we believe that `relativeScoreFusion` is more likely to be the better-performing algorithm.
 
 The answer is that `rankedFusion` is the older, reliable choice that has worked quite well. In the meantime, we have been reviewing how `relativeScoreFusion` is received by the community, and making small tweaks like adding [over-search](https://docs.weaviate.io/weaviate/api/graphql/search-operators#oversearch-with-relativescorefusion) to make it more robust.
-
-So far, the reaction has been positive. But we are still in the evaluation phase, and we would love to get additional feedback from you, our users. We have prepared [this short survey](https://docs.google.com/forms/d/e/1FAIpQLSfxekC2eh5Xkl0iJYEAoOkfhK4FA5AO-Od3KUz4srreOpq00g/viewform?usp=sf_link). We would really appreciate your input. Please let us know what you think!
 
 
 

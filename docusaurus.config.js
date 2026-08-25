@@ -7,6 +7,7 @@ const {themes} = require('prism-react-renderer');
 // SUBDOMAIN_MIGRATION - to do: delete site.redirects.js
 const siteRedirects = require('./site.redirects');
 const path = require('path');
+const fs = require('fs');
 
 module.exports = async function createConfigAsync() {
   const math = (await import('remark-math')).default;
@@ -150,6 +151,135 @@ module.exports = async function createConfigAsync() {
               
             },
         ],
+
+        // Fail the build if a route claims a markdown twin that is not in
+        // static/. src/data/markdownTwins.js is the only place the mapping
+        // lives; this keeps it honest, since a <link rel="alternate"> pointing
+        // at a 404 is worse than no link at all.
+        () => ({
+            name: 'check-markdown-twins',
+            async loadContent() {
+                const twins = require('./src/data/markdownTwins');
+                const missing = Object.entries(twins)
+                    .filter(
+                        ([, file]) =>
+                            !fs.existsSync(path.join(__dirname, 'static', file)),
+                    )
+                    .map(([route, file]) => `  ${route} -> static${file}`);
+                if (missing.length > 0) {
+                    throw new Error(
+                        'markdownTwins: mapped twin file(s) missing from static/:\n' +
+                            missing.join('\n'),
+                    );
+                }
+            },
+        }),
+
+        // Site-wide structured data (schema.org JSON-LD).
+        // This is the ONE Organization + WebSite block for weaviate.io. Do not
+        // add a second Organization node on an individual page: give any page
+        // that needs extra structured data its own @type (Product, FAQPage, ...)
+        // and reference this one via {"@id": "https://weaviate.io/#organization"}.
+        () => ({
+            name: 'inject-structured-data',
+            injectHtmlTags() {
+                return {
+                    headTags: [
+                        {
+                            tagName: 'script',
+                            attributes: {type: 'application/ld+json'},
+                            innerHTML: JSON.stringify({
+                                '@context': 'https://schema.org',
+                                '@graph': [
+                                    {
+                                        '@type': 'Organization',
+                                        '@id': 'https://weaviate.io/#organization',
+                                        name: 'Weaviate',
+                                        legalName: 'Weaviate B.V.',
+                                        // Matches the homepage <link rel="canonical">,
+                                        // which resolves to the trailing-slash form
+                                        // even though siteConfig sets trailingSlash:
+                                        // false.
+                                        url: 'https://weaviate.io/',
+                                        description:
+                                            'Weaviate is an open-source, AI-native vector database that stores objects and vectors together and supports vector search, keyword search, hybrid search, filtering, multi-tenancy, and retrieval-augmented generation.',
+                                        // The logo weaviate.io has always declared. Changing
+                                        // the mark that feeds the knowledge panel is a
+                                        // deliberate brand decision, not a side effect of
+                                        // consolidating structured data.
+                                        logo: {
+                                            '@type': 'ImageObject',
+                                            url: 'https://weaviate.io/img/site/weaviate-logo-square-dark.png',
+                                            width: 607,
+                                            height: 421,
+                                        },
+                                        email: 'hello@weaviate.io',
+                                        // Source: privacy policy and DPA (src/pages/privacy/index.md,
+                                        // src/pages/dpa.md) — the published registered address.
+                                        address: {
+                                            '@type': 'PostalAddress',
+                                            streetAddress: 'Prinsengracht 769A',
+                                            postalCode: '1017 JZ',
+                                            addressLocality: 'Amsterdam',
+                                            addressCountry: 'NL',
+                                        },
+                                        // TODO(ivan): no phone number is published anywhere on the
+                                        // site, so `telephone` is deliberately omitted rather than
+                                        // invented. Add it here if there is an official one.
+                                        contactPoint: [
+                                            {
+                                                '@type': 'ContactPoint',
+                                                contactType: 'customer support',
+                                                email: 'support@weaviate.io',
+                                                url: 'https://forum.weaviate.io/',
+                                                availableLanguage: ['English'],
+                                            },
+                                            {
+                                                '@type': 'ContactPoint',
+                                                contactType: 'sales',
+                                                email: 'hello@weaviate.io',
+                                                url: 'https://weaviate.io/contact',
+                                                availableLanguage: ['English'],
+                                            },
+                                            {
+                                                '@type': 'ContactPoint',
+                                                contactType: 'technical support',
+                                                url: 'https://forum.weaviate.io/',
+                                                availableLanguage: ['English'],
+                                            },
+                                            {
+                                                '@type': 'ContactPoint',
+                                                contactType: 'security',
+                                                url: 'https://weaviate.io/security-report',
+                                                availableLanguage: ['English'],
+                                            },
+                                        ],
+                                        // github.com/weaviate is the GitHub org profile
+                                        // (the entity this node describes); the repo URL
+                                        // is kept because it was already published here.
+                                        sameAs: [
+                                            'https://github.com/weaviate',
+                                            'https://github.com/weaviate/weaviate',
+                                            'https://www.linkedin.com/company/weaviate-io',
+                                            'https://x.com/weaviate_io',
+                                            'https://youtube.com/@Weaviate',
+                                        ],
+                                    },
+                                    {
+                                        '@type': 'WebSite',
+                                        '@id': 'https://weaviate.io/#website',
+                                        url: 'https://weaviate.io/',
+                                        name: 'Weaviate',
+                                        inLanguage: 'en',
+                                        publisher: {'@id': 'https://weaviate.io/#organization'},
+                                    },
+                                ],
+                            }),
+                        },
+                    ],
+                };
+            },
+        }),
 
         // Add HTML Header tags
         () => ({
@@ -454,7 +584,7 @@ module.exports = async function createConfigAsync() {
                         items: [
                             {
                                 type: 'html',
-                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Build</li><li><a class="dropdown__link" href="https://docs.weaviate.io/weaviate" data-hsdo-not-track="true">Weaviate Database Docs</a></li><li><a class="dropdown__link" href="https://docs.weaviate.io/cloud" data-hsdo-not-track="true">Weaviate Cloud Docs</a></li><li><a class="dropdown__link" href="https://docs.weaviate.io/deploy" data-hsdo-not-track="true">Weaviate Deployment Docs</a></li><li><a class="dropdown__link" href="https://docs.weaviate.io/agents" data-hsdo-not-track="true">Weaviate Agents Docs</a></li><li><a class="dropdown__link" href="https://github.com/weaviate/weaviate">GitHub</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Learn</li><li><a class="dropdown__link" href="/learn">Learning Center</a></li><li><a class="dropdown__link" href="/blog">Blog</a></li><li><a class="dropdown__link" href="https://academy.weaviate.io/" data-hsdo-not-track="true">Academy</a></li><li><a class="dropdown__link" href="/learn/knowledgecards">Knowledge Cards</a></li><li><a class="dropdown__link" href="/papers">Paper Reviews</a></li><li><a class="dropdown__link" href="/podcast">Podcasts</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Engage</li><li><a class="dropdown__link" href="/community/events">Events & Webinars</a></li><li><a class="dropdown__link" href="/community">Weaviate Hero Program</a></li><li><a class="dropdown__link" href="https://forum.weaviate.io/">Forum</a></li></ul></div><ul class="menu__list mobileNav"><li class="menu__list-item"><li class="dropDownLabel mobDrop">Build</li><a class="menu__link" href="https://docs.weaviate.io/weaviate" data-hsdo-not-track="true">Weaviate Database Docs</a></li><li class="menu__list-item"><a class="menu__link" href="https://docs.weaviate.io/cloud" data-hsdo-not-track="true">Weaviate Cloud Docs</a></li><li class="menu__list-item"><a class="menu__link" href="https://docs.weaviate.io/deploy" data-hsdo-not-track="true">Weaviate Deployment Docs</a></li><li class="menu__list-item"><a class="menu__link" href="https://docs.weaviate.io/agents" data-hsdo-not-track="true">Weaviate Agents Docs</a></li><li class="menu__list-item"><a class="menu__link" href="https://github.com/weaviate/weaviate">GitHub</a></li><li class="dropDownLabel mobDrop">Learn</li><li class="menu__list-item"><a class="menu__link" href="/learn">Learning Center</a></li><li class="menu__list-item"><a class="menu__link" href="/blog">Blog</a></li><li class="menu__list-item"><a class="menu__link" href="https://academy.weaviate.io/" data-hsdo-not-track="true">Academy</a></li><li class="menu__list-item"><li class="menu__list-item"><a class="menu__link" href="/learn/knowledgecards">Knowledge Cards</a></li><li class="menu__list-item"><a class="menu__link" href="/papers">Paper Reviews</a></li><li class="menu__list-item"><a class="menu__link" href="/podcast">Podcasts</a></li><li class="dropDownLabel mobDrop">Engage</li><li class="menu__list-item"><a class="menu__link" href="/community/events">Events & Webinars</a></li><li class="menu__list-item"><a class="menu__link" href="/community">Weaviate Hero Program</a></li><li class="menu__list-item"><a class="menu__link" href="https://forum.weaviate.io/">Forum</a></li></ul>',
+                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Build</li><li><a class="dropdown__link" href="https://docs.weaviate.io/weaviate" data-hsdo-not-track="true">Weaviate Database Docs</a></li><li><a class="dropdown__link" href="https://docs.weaviate.io/cloud" data-hsdo-not-track="true">Weaviate Cloud Docs</a></li><li><a class="dropdown__link" href="https://docs.weaviate.io/deploy" data-hsdo-not-track="true">Weaviate Deployment Docs</a></li><li><a class="dropdown__link" href="https://docs.weaviate.io/query-agent" data-hsdo-not-track="true">Query Agent Docs</a></li><li><a class="dropdown__link" href="https://github.com/weaviate/weaviate">GitHub</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Learn</li><li><a class="dropdown__link" href="/learn">Learning Center</a></li><li><a class="dropdown__link" href="/blog">Blog</a></li><li><a class="dropdown__link" href="https://academy.weaviate.io/" data-hsdo-not-track="true">Academy</a></li><li><a class="dropdown__link" href="/learn/knowledgecards">Knowledge Cards</a></li><li><a class="dropdown__link" href="/papers">Paper Reviews</a></li><li><a class="dropdown__link" href="/podcast">Podcasts</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Engage</li><li><a class="dropdown__link" href="/community/events">Events & Webinars</a></li><li><a class="dropdown__link" href="/community">Weaviate Hero Program</a></li><li><a class="dropdown__link" href="https://forum.weaviate.io/">Forum</a></li></ul></div><ul class="menu__list mobileNav"><li class="menu__list-item"><li class="dropDownLabel mobDrop">Build</li><a class="menu__link" href="https://docs.weaviate.io/weaviate" data-hsdo-not-track="true">Weaviate Database Docs</a></li><li class="menu__list-item"><a class="menu__link" href="https://docs.weaviate.io/cloud" data-hsdo-not-track="true">Weaviate Cloud Docs</a></li><li class="menu__list-item"><a class="menu__link" href="https://docs.weaviate.io/deploy" data-hsdo-not-track="true">Weaviate Deployment Docs</a></li><li class="menu__list-item"><a class="menu__link" href="https://docs.weaviate.io/query-agent" data-hsdo-not-track="true">Query Agent Docs</a></li><li class="menu__list-item"><a class="menu__link" href="https://github.com/weaviate/weaviate">GitHub</a></li><li class="dropDownLabel mobDrop">Learn</li><li class="menu__list-item"><a class="menu__link" href="/learn">Learning Center</a></li><li class="menu__list-item"><a class="menu__link" href="/blog">Blog</a></li><li class="menu__list-item"><a class="menu__link" href="https://academy.weaviate.io/" data-hsdo-not-track="true">Academy</a></li><li class="menu__list-item"><li class="menu__list-item"><a class="menu__link" href="/learn/knowledgecards">Knowledge Cards</a></li><li class="menu__list-item"><a class="menu__link" href="/papers">Paper Reviews</a></li><li class="menu__list-item"><a class="menu__link" href="/podcast">Podcasts</a></li><li class="dropDownLabel mobDrop">Engage</li><li class="menu__list-item"><a class="menu__link" href="/community/events">Events & Webinars</a></li><li class="menu__list-item"><a class="menu__link" href="/community">Weaviate Hero Program</a></li><li class="menu__list-item"><a class="menu__link" href="https://forum.weaviate.io/">Forum</a></li></ul>',
                                 className: 'dropDownContainer2',
                             },
                         ],
@@ -659,8 +789,8 @@ module.exports = async function createConfigAsync() {
                                 to: 'https://docs.weaviate.io/deploy',
                             },
                             {
-                                label: 'Weaviate Agents Docs',
-                                to: 'https://docs.weaviate.io/agents',
+                                label: 'Query Agent Docs',
+                                to: 'https://docs.weaviate.io/query-agent',
                             },
                             {
                                 label: 'GitHub',

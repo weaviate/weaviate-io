@@ -25,6 +25,7 @@ const navGroups = {
         { label: 'Shared Cloud', to: '/deployment/shared/' },
         { label: 'Dedicated Cloud', to: '/deployment/dedicated/' },
         { label: 'Weaviate Assurance', to: '/product/assurance/' },
+        { label: 'DigitalOcean', to: '/product/digitalocean-managed-weaviate/' }
       ],
     },
   ],
@@ -69,8 +70,8 @@ const navGroups = {
           to: 'https://docs.weaviate.io/deploy',
         },
         {
-          label: 'Weaviate Agents Docs',
-          to: 'https://docs.weaviate.io/agents',
+          label: 'Query Agent Docs',
+          to: 'https://docs.weaviate.io/query-agent',
         },
         {
           label: 'Engram Docs',

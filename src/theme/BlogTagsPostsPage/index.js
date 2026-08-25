@@ -12,7 +12,7 @@ import BlogLayout from '@theme/BlogLayout';
 import BlogListPaginator from '@theme/BlogListPaginator';
 import SearchMetadata from '@theme/SearchMetadata';
 import BlogPostItems from '@theme/BlogPostItems';
-import FeaturedBlogTags from '../FeaturedBlogTags';
+import PaginationMetadata from '/src/components/PaginationMetadata';
 
 
 
@@ -46,12 +46,13 @@ function useBlogTagsPostsPageTitle(tag) {
     {nPosts: blogPostsPlural(tag.count), tagName: tag.label},
   );
 }
-function BlogTagsPostsPageMetadata({tag}) {
+function BlogTagsPostsPageMetadata({tag, listMetadata}) {
   const title = useBlogTagsPostsPageTitle(tag);
   return (
     <>
       <PageMetadata title={title} />
       <SearchMetadata tag="blog_tags_posts" />
+      <PaginationMetadata metadata={listMetadata} />
      
     </>
   );
@@ -60,12 +61,11 @@ function BlogTagsPostsPageContent({tag, items, sidebar, listMetadata}) {
   const title = useBlogTagsPostsPageTitle(tag);
   return (
     
-    <BlogLayout sidebar={sidebar}>
-      <div className="tw-mx-auto tw-w-full tw-max-w-[1320px] tw-px-[18px] tw-pb-24 tw-pt-11 sm:tw-px-6 sm:tw-pt-16">
-      <header className="tw-mb-8">
-        <p className="tw-mb-3 tw-text-sm tw-font-semibold tw-uppercase tw-tracking-[0.14em] tw-text-[#63e689]">Blog category</p>
-        <h1 className="tw-mb-4 tw-text-[clamp(2.25rem,4vw,3.5rem)] tw-leading-tight tw-tracking-[-0.03em] tw-text-[#ddebf2]">{title}</h1>
-        <Link className="tw-text-sm tw-text-[#63e689]" to={tag.allTagsPath}>
+    <BlogLayout sidebar={sidebar} >
+      <header className="margin-bottom--xl">
+        <h1>{title}</h1>
+
+        <Link href={tag.allTagsPath}>
           <Translate
             id="theme.tags.tagsPageLink"
             description="The label of the link targeting the tag list page">
@@ -73,14 +73,9 @@ function BlogTagsPostsPageContent({tag, items, sidebar, listMetadata}) {
           </Translate>
         </Link>
       </header>
-      <div className="tw-mb-8">
-        <FeaturedBlogTags activeTag={tag.label} />
-      </div>
       <BlogPostItems items={items} />
-      <div className="tw-mt-10">
-        <BlogListPaginator metadata={listMetadata} />
-      </div>
-      </div>
+      <BlogListPaginator metadata={listMetadata} />
+
     </BlogLayout>
 
   );
