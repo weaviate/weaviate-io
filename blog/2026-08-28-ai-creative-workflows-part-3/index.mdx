@@ -2,10 +2,10 @@
 title: "Building Foundry Part 3: From archive to creative search"
 slug: building-foundry-creative-search
 authors: [shan, svitlana, victoria]
-date: 2026-09-02
+date: 2026-08-28
 image: ./img/hero.jpg
 tags: ["creative-ai", "workflows", "search", "weaviate"]
-description: "Part 3: We scan a messy creative archive, prepare its manifest, ingest searchable records into Weaviate, and retrieve assets by keyword or meaning."
+description: "Part 3: We turn a messy creative archive into a searchable library using a manifest, Weaviate, and hybrid search."
 ---
 
 import foundryTestVideo from "./img/Foundry_test.mp4";
@@ -23,11 +23,9 @@ import foundryTestVideo from "./img/Foundry_test.mp4";
 
 Read the previous post in the series: [Part 2: Where creative workflows break](/blog/building-foundry-where-workflows-break).
 
-Part 1 introduced the problem. Creative teams lose time searching for work that already exists. Part 2 showed why folders, tags, and keyword search become less reliable as projects grow.
+Part 1 introduced the problem. Part 2 showed why familiar ways of organising work become less reliable as an archive grows. Now we are going to build the solution.
 
-Now we can build the full retrieval loop.
-
-Foundry scans an existing archive and creates a stable manifest. It prepares each record for search and synchronises the result with Weaviate. The original files stay in place. The searchable layer points back to them.
+Foundry turns an existing archive into a searchable creative library. It scans the files, records what it finds, prepares each asset for retrieval, and synchronises the result with Weaviate. Nothing is moved or renamed. Every result still leads back to its original source.
 
 ```text
 creative archive
@@ -45,7 +43,7 @@ source asset
 
 ## Starting with the archive we already have
 
-The test archive contains 23 assets across five fictional projects. It includes concept art, design exports, reference images, production notes, audio references, and video.
+Our test archive contains 23 assets from five fictional projects. Inside are concept art, design exports, production notes, audio, video, and reference images.
 
 The names are deliberately inconsistent:
 
@@ -57,11 +55,11 @@ logo_options_FINAL3.svg
 bridge_texture.svg
 ```
 
-This is the point of the test. Foundry should work with an active archive. It should not require a clean-up project before search becomes useful.
+That mess is intentional. Foundry should be useful with the archive a team has today, not the perfectly organised archive it may never have time to create.
 
 ## Step 1: scan without changing the source
 
-The first stage is a read-only discovery pass. Foundry walks the selected folder and records facts about every supported file.
+Foundry begins with a read-only scan. It walks the selected folder and records facts about every supported file.
 
 ```bash
 npm install
@@ -72,17 +70,17 @@ The scanner captures the source path, project, file type, size, modified date, a
 
 ![Foundry archive inventory showing references, concepts, and video assets](./img/image-02.jpg)
 
-The content hash gives each asset a stable identity. Foundry can detect a changed file even when its name stays the same. It can also avoid repeating work for records that have not changed.
+The content hash gives each asset a stable identity. It lets Foundry detect changes even when a filename stays the same and skip work when nothing has changed.
 
-The browser view makes the manifest easy to inspect. Images have previews. Videos can be played. Documents remain visible even when they do not have a thumbnail.
+The browser turns that inventory into something visual. Images have previews, videos can be played, and documents remain visible without thumbnails.
 
-This checkpoint matters. Search cannot repair an incomplete inventory.
+This first checkpoint matters because search cannot find what the scanner missed.
 
 ## Step 2: prepare records for retrieval
 
-The manifest begins with facts from the filesystem. Search needs more context.
+The manifest tells us what exists. The next step is to describe what those files contain.
 
-The preparation stage adds descriptions, tags, extracted text, relationship roles, and a stable source URI. A prepared image record looks like this:
+The preparation stage adds descriptions, tags, extracted text, relationship roles, and a source URI. A prepared image record looks like this:
 
 ```json
 {
@@ -99,19 +97,19 @@ The preparation stage adds descriptions, tags, extracted text, relationship role
 
 The `foundry://` URI points back to the asset without treating Weaviate as file storage. A production version could use a DAM link, mounted path, S3 URL, or application route.
 
-The current demo uses a small enrichment manifest so each run is repeatable. Later versions can generate this context with image captioning, OCR, transcripts, and video keyframes.
+For now, the demo uses a small enrichment manifest so every run produces the same result. Later versions can generate this context from image captions, OCR, transcripts, and video keyframes.
 
 ## Step 3: synchronise with Weaviate
 
-Foundry shows the prepared records before synchronisation. This gives the user a chance to review what will be indexed.
+Before synchronisation, Foundry shows exactly what will be indexed. The user can review descriptions, metadata, and source paths before anything reaches Weaviate.
 
 ![Foundry ingestion review showing objects and vectorised fields](./img/image-03.jpg)
 
-The application then creates or updates the `Foundry` collection. Weaviate generates managed embeddings and stores them beside the structured metadata. Each object retains its source path and rights status.
+The application then creates or updates the `Foundry` collection. Weaviate generates embeddings and stores them beside the metadata. Each object keeps its source path and rights status.
 
 ![Foundry showing a completed Weaviate synchronisation](./img/image-04.jpg)
 
-Re-running the process does not create duplicate assets. Records use deterministic identifiers so an unchanged asset replaces the same object.
+Running the process again does not create duplicates. Deterministic identifiers ensure that each asset updates the same object.
 
 The same workflow is available from the command line:
 
@@ -131,7 +129,7 @@ WEAVIATE_COLLECTION=Foundry
 
 ## Step 4: search the archive
 
-Once synchronisation finishes the browser becomes a live search workspace.
+Once synchronisation finishes, the archive becomes a live search workspace.
 
 The first test query is easy to describe but hard to map to a filename:
 
@@ -141,7 +139,7 @@ white rabbit in a grassy landscape
 
 ![Foundry hybrid retrieval returning rabbit and landscape assets](./img/image-05.jpg)
 
-The results include a rabbit reference, the Big Buck Bunny trailer, and related landscape imagery. The user does not need to remember the video filename. They can describe the idea and inspect the assets that support it.
+The results include a rabbit reference, the Big Buck Bunny trailer, and related landscape imagery. There is no need to remember a filename or folder. The user describes what they remember and Foundry brings the relevant work back into view.
 
 Foundry exposes three retrieval modes:
 
@@ -151,13 +149,13 @@ semantic → meaning represented by embeddings
 hybrid   → keyword and semantic signals combined
 ```
 
-Keyword search is useful when someone remembers a filename or production term. Semantic search helps when they remember the content instead. Hybrid search supports both kinds of memory in one result set.
+Keyword search works when someone remembers a filename or production term. Semantic search works when they remember the content. Hybrid search brings both kinds of memory into one result set.
 
-Metadata filters keep those results practical. A user can limit results by project, file type, or relationship role. The same approach can later support approval status, rights, expiry date, or delivery format.
+Filters make those results practical. Users can narrow the archive by project, file type, or relationship role. The same pattern can support approval status, rights, expiry dates, and delivery formats.
 
 ## What the build proves
 
-The current prototype completes the path from source folder to returned asset:
+The prototype now completes the journey from source folder to useful result:
 
 - It scans a nested archive without changing the source files.
 - It creates stable records and detects changes with content hashes.
@@ -166,7 +164,7 @@ The current prototype completes the path from source folder to returned asset:
 - It compares keyword, semantic, and hybrid retrieval on the same archive.
 - It returns images and video with links back to their source.
 
-Foundry is still a prototype. Automatic enrichment, incremental rescans, rights-aware filtering, and relevance feedback remain future work. The important change is that these features now have a working retrieval loop to build on.
+Foundry is still a prototype. Automatic enrichment, incremental rescans, rights-aware filtering, and relevance feedback come next. The foundation already works.
 
 ## Run Foundry
 
@@ -188,9 +186,11 @@ Explore the [Foundry repository](https://github.com/Shan-Weaviate/foundry) and f
 
 ## From hidden files to useful history
 
-Foundry began with a common frustration. Someone knows an asset exists but cannot remember its name or location.
+Foundry began with a familiar creative frustration: remembering the work but not where it lives.
 
-The solution does not replace the folders where creative work lives. It adds a searchable layer above them. That layer helps teams rediscover old work and reuse it with more confidence.
+It does not replace the folders, tools, or habits behind that work. It gives the archive a new way to reveal itself. An asset that once depended on the right filename, folder, or colleague can now be found through the idea behind it.
+
+The archive stops being a place where finished work disappears. It becomes creative material again.
 
 import WhatsNext from "/_includes/what-next.mdx";
 
