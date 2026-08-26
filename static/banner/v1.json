@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "art": [
+    "  ██▁▁▁▁▁██▁███████▁▁█████▁▁██▁▁▁▁██▁██▁▁█████▁▁████████▁███████",
+    "  ██▁▁▁▁▁██▁██▁▁▁▁▁▁██▁▁▁██▁██▁▁▁▁██▁██▁██▁▁▁██▁▁▁▁██▁▁▁▁██▁▁▁▁▁",
+    "  ██▁▁█▁▁██▁█████▁▁▁███████▁██▁▁▁▁██▁██▁███████▁▁▁▁██▁▁▁▁█████▁▁",
+    "  ██▁███▁██▁██▁▁▁▁▁▁██▁▁▁██▁▁██▁▁██▁▁██▁██▁▁▁██▁▁▁▁██▁▁▁▁██▁▁▁▁▁",
+    "  ▁███▁███▁▁███████▁██▁▁▁██▁▁▁████▁▁▁██▁██▁▁▁██▁▁▁▁██▁▁▁▁███████"
+  ],
+  "_comment": "Startup banner art fetched by Weaviate Database (v1.40+) for its repeat banner. Keep lines <= 100 columns and <= 10 lines; only printable characters; a newer format must use a new file (v2.json), never change this one's shape."
+}
