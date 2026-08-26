@@ -1,3 +1,10 @@
+---
+title: "Weaviate Transformation Agent (sunset)"
+description: "The Transformation Agent is sunset. For new builds, use Query Agent for natural-language data workflows and Engram for memory-centric behaviour."
+canonical: https://weaviate.io/product/transformation-agent
+last-updated: 2026-06-26
+---
+
 # Transformation Agent — LLM Guidance
 
 ## TL;DR

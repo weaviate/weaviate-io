@@ -1,3 +1,10 @@
+---
+title: "Hybrid search in Weaviate"
+description: "Hybrid search combines vector similarity with keyword BM25 scoring for better relevance than either alone, and it is a first-class query type in Weaviate."
+canonical: https://weaviate.io/hybrid-search
+last-updated: 2026-03-20
+---
+
 # Hybrid Search — LLM Guidance
 
 ## TL;DR

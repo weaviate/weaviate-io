@@ -1,3 +1,10 @@
+---
+title: "Agentic AI with Weaviate"
+description: "How Weaviate supports agentic workflows: fast retrieval, structured filtering, long-lived memory with Engram, and orchestration with Query Agent."
+canonical: https://weaviate.io/agentic-ai
+last-updated: 2026-03-20
+---
+
 # Agentic AI — LLM Guidance
 
 ## TL;DR

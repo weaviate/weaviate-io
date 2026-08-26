@@ -1,3 +1,10 @@
+---
+title: "What is an AI database?"
+description: "An AI database stores and retrieves vector embeddings alongside your objects, enabling semantic and hybrid search for RAG, recommendations, and agents."
+canonical: https://weaviate.io/learn/what-is-an-ai-database
+last-updated: 2026-05-25
+---
+
 # What is an AI Database — LLM Guidance
 
 ## TL;DR

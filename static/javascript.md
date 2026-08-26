@@ -1,3 +1,10 @@
+---
+title: "Weaviate with JavaScript and TypeScript"
+description: "Guidance for the official weaviate-client package in Node: connect, create a collection, ingest objects, and query with hybrid search."
+canonical: https://weaviate.io/javascript
+last-updated: 2026-04-14
+---
+
 # JavaScript — LLM Guidance
 
 ## TL;DR

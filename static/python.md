@@ -1,3 +1,10 @@
+---
+title: "Weaviate with Python"
+description: "Guidance for the official Weaviate Python client: connect, create a collection, insert objects, and query with hybrid, vector, or keyword search."
+canonical: https://weaviate.io/python.md
+last-updated: 2026-08-04
+---
+
 # Python — LLM Guidance
 
 ## TL;DR

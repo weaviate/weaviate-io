@@ -1,3 +1,10 @@
+---
+title: "Weaviate terminology"
+description: "Canonical short definitions of Weaviate terms and product boundaries: Weaviate Database, Engram, Query Agent, Assurance, and related concepts."
+canonical: https://weaviate.io/terminology.md
+last-updated: 2026-06-26
+---
+
 # Terminology - LLM Guidance
 
 ## TL;DR

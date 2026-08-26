@@ -1,3 +1,10 @@
+---
+title: "Weaviate product previews"
+description: "Product Previews give early access to Weaviate features before general availability, for evaluation and feedback. Behaviour can change during preview."
+canonical: https://weaviate.io/product-previews
+last-updated: 2026-06-10
+---
+
 # **Product Previews — LLM Guidance**
 
 ## **TL;DR**
