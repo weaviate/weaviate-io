@@ -1,0 +1,393 @@
+Weaviate `v1.39` is now available open-source and on [Weaviate Cloud](https://console.weaviate.cloud).
+
+Two search features reach **general availability** in this release: the **Boost API** for query-time rescoring, and **Maximal Marginal Relevance (MMR) diversity selection**, which works on hybrid search as well as vector search. Two more are new: **4-bit Rotational Quantization** as a preview, and an experimental **Search REST API**. This post also covers **gRPC-Web**, which shipped quietly in the 1.38 line, and the **HNSW snapshot** rework, which cuts commit-log disk usage and speeds up startup.
+
+Here are the release highlights!
+
+![Weaviate 1.39 is released](./img/hero.png)
+
+- [Boost API - General Availability](#boost-api---general-availability)
+- [MMR Diversity Selection - General Availability](#mmr-diversity-selection---general-availability)
+- [4-bit Rotational Quantization (Preview)](#4-bit-rotational-quantization-preview)
+- [Search REST API (Experimental)](#search-rest-api-experimental)
+- [gRPC-Web](#grpc-web)
+- [HNSW Snapshots, Automatic - General Availability](#hnsw-snapshots-automatic---general-availability)
+- [Performance Improvements and Fixes](#performance-improvements-and-fixes)
+- [Community Contributions](#community-contributions)
+- [Summary](#summary)
+
+## Boost API - General Availability
+
+The [Boost API](/blog/weaviate-1-38-release#boost-api-preview), introduced as a preview in `v1.38`, is now **generally available**.
+
+Boost is a query-time rescorer. After the primary search fetches its candidates, Weaviate scores each one against your boost conditions and re-sorts the list. Unlike a filter, it never removes anything: an object that matches nothing is demoted, not dropped. That is the difference between "only show me in-stock products" and "prefer in-stock products, but still show me the perfect match that is out of stock".
+
+### How it works
+
+A boost holds between one and twenty conditions, and there are four kinds:
+
+- **`filter`** promotes results that satisfy a filter
+- **`property_value`** ranks by a numeric property's value
+- **`time_decay`** favors objects near a point in time
+- **`numeric_decay`** favors objects near a target number
+
+Two weights control the result. The outer `weight` (default `0.5`) mixes the boost score into the original relevance score: `(1 - weight) * primary + weight * boost`. Each condition then carries its own `weight` (default `1.0`). Make that one **negative** if you want the condition to demote instead of promote.
+
+A third setting, `depth` (default `100`, capped by `QUERY_MAXIMUM_RESULTS`), is how many candidates the primary search fetches before the re-sort. An operator can move that default for the whole cluster with `QUERY_BOOST_DEFAULT_DEPTH`.
+
+Here is what that does to a real result page. The same query runs twice over a small product catalog: once plain, once with a boost that prefers products that are in stock and recently released:
+
+```python
+from datetime import timedelta
+from weaviate.classes.query import Boost, Filter
+
+prefer_in_stock_and_recent = Boost.blend(
+    [
+        Boost.filter(Filter.by_property("in_stock").equal(True), weight=2.0),
+        Boost.time_decay("released", scale=timedelta(days=30)),
+    ],
+    weight=0.3,   # 30% boost, 70% original relevance
+    depth=200,    # re-score the top 200 candidates
+)
+
+for label, boost in (("plain hybrid", None), ("with boost", prefer_in_stock_and_recent)):
+    response = collection.query.hybrid(query="wireless headphones", limit=4, boost=boost)
+    print(label)
+    for obj in response.objects:
+        print("  ", obj.properties["title"], "| in stock:", obj.properties["in_stock"])
+```
+
+```text
+plain hybrid
+   Kestrel Wireless Headphones | in stock: True
+   Meridian Wireless Headphones | in stock: False
+   Aurora Wireless Headphones | in stock: False
+   Nimbus Wireless Headphones | in stock: True
+with boost
+   Kestrel Wireless Headphones | in stock: True
+   Nimbus Wireless Headphones | in stock: True
+   Wireless Earbuds Pro | in stock: True
+   Meridian Wireless Headphones | in stock: False
+```
+
+Nimbus is in stock and twelve days old, so it climbs from fourth to second. The earbuds take third for the same reason, even though the text match is weaker. The two out-of-stock listings lose ground: Meridian slides to fourth, and Aurora drops off the page. Neither one was removed from the result set. Kestrel, the best keyword and vector match, still holds first place. A `weight` of `0.3` leaves 70% of the score with the search itself. Raise it toward `1.0` and stock and freshness take over the ordering. Lower it toward `0.0` and you get the plain result back.
+
+Boost is available on `hybrid`, `bm25`, `near_text`, `near_vector`, `near_object`, `near_media`, and `near_image`, in both the `.query.*` and `.generate.*` namespaces. It is not available on `fetch_objects`, which has no relevance score to blend with.
+
+:::note Boost runs before a reranker
+If you combine `boost=` with `rerank=`, the [reranker](https://docs.weaviate.io/weaviate/search/rerank) runs afterwards and re-sorts the boosted page, so it has the last word. Use one or the other unless you want that layering.
+:::
+
+:::info Related resources
+
+- [How-to: Search - Boost results](https://docs.weaviate.io/weaviate/search/boost)
+- [How-to: Search - Blending and weights](https://docs.weaviate.io/weaviate/search/boost#blending-and-weights)
+
+:::
+
+## MMR Diversity Selection - General Availability
+
+[MMR diversity selection](/blog/weaviate-1-37-release#diversity-search-with-mmr-preview), a preview since `v1.37`, is now **generally available**. It works on hybrid search alongside every `near_*` search. Hybrid support is not new in `v1.39`: it landed in `v1.38.6`, so if you are on a recent 1.38 patch you already have it. What `v1.39` changes is the maturity label.
+
+MMR picks results one at a time. At each step it weighs two things: how well a candidate matches the query, and how different it is from the results already picked. You end up with a first page that covers the topic instead of showing the same passage nine times. That helps most in [hybrid search](/blog/hybrid-search-explained). The keyword half and the vector half of a hybrid query tend to agree on the same cluster of near-identical chunks, so their merged top 10 is often the most repetitive list in your system.
+
+### How it works
+
+MMR runs near the end of the query pipeline, after the two halves are merged and before the page is cut. A reranker, if you use one, runs after MMR:
+
+```mermaid
+flowchart LR
+  Q["Hybrid query"] --> F["Merge keyword + vector"]
+  F --> A["Autocut"]
+  A --> B["Boost"]
+  B --> M["MMR"]
+  M --> P["Paginate"]
+  P --> R["Rerank (optional)"]
+  style Q fill:#ffffff,stroke:#130C49,color:#130C49
+  style F fill:#ffffff,stroke:#B9C8DF,color:#130C49
+  style A fill:#ffffff,stroke:#B9C8DF,color:#130C49
+  style B fill:#ffffff,stroke:#B9C8DF,color:#130C49
+  style M fill:#ffffff,stroke:#130C49,color:#130C49
+  style P fill:#ffffff,stroke:#B9C8DF,color:#130C49
+  style R fill:#ffffff,stroke:#B9C8DF,color:#130C49
+```
+
+Two values configure it, and both are easy to get backwards.
+
+**`balance`** trades relevance against diversity. It takes a value from `0.0` to `1.0`, and anything outside that range is rejected with `MMR balance must be between 0 and 1`. At `1.0` you get **pure relevance**, which is the same order you would get without MMR. At `0.0` you get **pure diversity**. So **lower means more diverse**. The default is `0.0`, not `0.5`. Leave `balance` out and you get the most aggressive setting there is, so always pass it explicitly.
+
+**`limit`** on the MMR selection is your **page size**, the number of results you get back. MMR picks those results out of a candidate pool, and the pool is the query's own `limit`. The MMR limit must be at least 1 and no larger than the query limit.
+
+Here is the same query at three settings. The collection holds documentation chunks, and four of them say roughly the same thing about carbon pricing:
+
+```python
+from weaviate.classes.query import Diversity
+
+for balance in (1.0, 0.3, 0.0):
+    response = collection.query.hybrid(
+        query="carbon pricing",
+        limit=8,                                                      # candidate pool
+        diversity_selection=Diversity.mmr(limit=4, balance=balance),  # 4 returned
+    )
+    print(f"balance={balance}")
+    for obj in response.objects:
+        print("  ", obj.properties["title"])
+```
+
+```text
+balance=1.0
+   Carbon tax versus cap and trade
+   Carbon pricing basics
+   Carbon pricing FAQ
+   What is a carbon price?
+balance=0.3
+   Carbon tax versus cap and trade
+   Carbon pricing FAQ
+   Carbon pricing basics
+   Adaptation funding for coastal cities
+balance=0.0
+   Carbon tax versus cap and trade
+   Methane rules for oil and gas
+   Adaptation funding for coastal cities
+   Renewable subsidies and grid buildout
+```
+
+At `1.0` the page is four ways of saying the same thing, which is the page you get without MMR. At `0.3` one of the duplicates gives up its slot to a chunk on adaptation funding. At `0.0` relevance stops counting after the first pick, and a carbon-pricing query comes back with methane rules and grid buildout. That last one is what you get if you leave `balance` out.
+
+You need Python client **4.23.0** or newer. That is the release where `diversity_selection` arrives on `collection.query.hybrid` and `collection.generate.hybrid`. MMR is not available on `bm25`, which has no vectors to measure distance between, and it does not work on multi-vector collections.
+
+:::info Related resources
+
+- [How-to: Search - Diversity selection (MMR)](https://docs.weaviate.io/weaviate/search/similarity#diversity-selection-mmr)
+- [How-to: Hybrid search - Diversity selection (MMR)](https://docs.weaviate.io/weaviate/search/hybrid#diversity-selection-mmr)
+- [Blog: Hybrid search explained](/blog/hybrid-search-explained)
+
+:::
+
+## 4-bit Rotational Quantization (Preview)
+
+[Rotational quantization (RQ)](https://docs.weaviate.io/weaviate/concepts/vector-quantization#rotational-quantization) shrinks vectors in two steps. First it rotates the vector so the values spread evenly across the dimensions. Then it stores each dimension as a small integer code instead of a 32-bit float. Weaviate already ships 8-bit and 1-bit RQ. `v1.39` adds a **4-bit** width as a preview.
+
+Four bits is half a byte, so two dimensions pack into one byte. At 1536 dimensions that is a 16-byte header plus 768 bytes of codes: **784 bytes per vector**, against 6144 bytes for raw `float32`. That is **7.84x** smaller, not a round "8x", because the header stays.
+
+The general form is `16 + ceil(outputDim / 2)` bytes, where `outputDim = 64 * ceil(inputDim / 64)`. The rotation rounds your dimension count up to the next multiple of 64. At 1536 that round-up is free, because 1536 is 24 x 64. At 1000 dimensions it is not: you pay for 1024.
+
+### How it works
+
+There is no preview flag to unlock. It is a plain schema value, `rq.bits = 4`, on a vector index:
+
+```python
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "Doc",
+    vector_config=Configure.Vectors.text2vec_weaviate(
+        name="default",
+        source_properties=["title", "body"],
+        vector_index_config=Configure.VectorIndex.hnsw(
+            quantizer=Configure.VectorIndex.Quantizer.rq(
+                bits=4,
+                rescore_limit=20,
+            ),
+        ),
+    ),
+)
+```
+
+`bits` is fixed the moment RQ is first enabled on a vector, and you cannot change it later. There is no migration from 8-bit codes to 4-bit codes, so pick the width when you create the collection.
+
+If you would rather not set it per collection, an operator can make it the cluster-wide default for new vector indexes with `DEFAULT_QUANTIZATION=rq-4`. A new HNSW index then comes up with `bits: 4` and a `rescoreLimit` of `20`. Flat indexes are left alone.
+
+:::caution 4-bit is HNSW-only
+The flat index still rejects it with `RQ bits must be either 1 or 8`, and that applies to the flat side of a dynamic index too. Use `bits: 4` on an HNSW index.
+:::
+
+Like the other RQ widths, 4-bit works with the `cosine`, `dot`, and `l2-squared` distance metrics.
+
+:::caution Preview
+The 4-bit width is a **preview** feature. Its behavior and defaults may change in future releases.
+:::
+
+:::info Related resources
+
+- [Concepts: Vector quantization - Rotational quantization](https://docs.weaviate.io/weaviate/concepts/vector-quantization#rotational-quantization)
+- [Concepts: Vector quantization - Rescoring](https://docs.weaviate.io/weaviate/concepts/vector-quantization#rescoring)
+- [Config references: Vector index parameters](https://docs.weaviate.io/weaviate/config-refs/indexing/vector-index)
+
+:::
+
+## Search REST API (Experimental)
+
+Weaviate has two search APIs today. gRPC is fast, but it wants a generated client and HTTP/2. GraphQL means building a query string by hand and digging metadata out of `_additional`. Neither is pleasant from a shell script, a Lambda, an edge worker, an API gateway, or a language with no Weaviate client.
+
+`v1.39` adds an **experimental Search REST API**. You post JSON over plain HTTP/1.1 and get JSON back, and the endpoints are described by the OpenAPI spec like the rest of the REST API. That also suits LLM tool calling, where a model needs a documented HTTP endpoint rather than a client library.
+
+`v1.39.0` shipped one endpoint, `POST /v1/search/{collection}/near-text`. The `v1.39.1` patch added three more search endpoints and a matching aggregate endpoint, so on `1.39.1` or newer you get [all five](https://docs.weaviate.io/weaviate/api/rest#tag/search):
+
+- `POST /v1/search/{collection}/near-text`
+- `POST /v1/search/{collection}/bm25`
+- `POST /v1/search/{collection}/hybrid`
+- `POST /v1/search/{collection}/near-object`
+- `POST /v1/aggregate/{collection}`
+
+The examples below use `near-text`.
+
+### How it works
+
+The endpoints are **off by default**. Turn them on per node with [`EXPERIMENTAL_REST_SEARCH_ENABLED`](https://docs.weaviate.io/deploy/configuration/env-vars#EXPERIMENTAL_REST_SEARCH_ENABLED):
+
+```yaml
+services:
+  weaviate:
+    image: cr.weaviate.io/semitechnologies/weaviate:1.39.1
+    environment:
+      EXPERIMENTAL_REST_SEARCH_ENABLED: 'true'
+```
+
+Accepted truthy values are `on`, `enabled`, `1`, and `true`. One switch covers every endpoint in the set. When the feature is off, the routes are still there. They answer `422` with a message naming the variable to set, instead of a confusing `404`.
+
+The request body is all camelCase. For `near-text`, `query` is a **required array of strings**, and each string is a piece of text to search for. Send one string for an ordinary search. Send several and Weaviate averages them into a single search vector. You can also send `certainty` or `distance` (not both), `targetVector`, `where`, `limit`, `offset`, `autoLimit`, `returnProperties`, `returnMetadata`, `tenant`, and `consistencyLevel`.
+
+```bash
+curl -s -X POST http://localhost:8080/v1/search/Movie/near-text \
+  -H 'Content-Type: application/json' \
+  -d '{"query":["spaceship galaxy"],"limit":3,
+       "returnProperties":["title","hasAuthor.name"],
+       "returnMetadata":["distance"]}'
+```
+
+The response is `{results, tookMs}`. Every hit comes back in the same flat shape, `{id, properties, references, metadata}`:
+
+```json
+{
+  "results": [
+    {
+      "id": "2aeb3309-33e7-4a8d-a8e2-6413b53890d8",
+      "properties": { "title": "spaceship galaxy adventure" },
+      "references": { "hasAuthor": [ { "name": "famous writer" } ] },
+      "metadata": { "distance": 0.07182336 }
+    }
+  ],
+  "tookMs": 2
+}
+```
+
+`references` is left out when your query does not read across a reference, and `metadata` is left out when you asked for nothing beyond the id. Vectors are never returned.
+
+On errors you get the standard `{"error": [{"message": "..."}]}` body.
+
+:::caution Experimental means the shape can still change
+This API is off by default, and its request and response shape is not frozen. Reference selection is the most likely part to change. In `v1.39` you ask for a referenced property by writing it with a dot inside `returnProperties`, one level deep, such as `"hasAuthor.name"`. That form is being replaced, so expect to update anything you build on it today.
+:::
+
+No official client wraps this endpoint yet. Every Weaviate client speaks gRPC for search, so `curl` or raw HTTP is how you reach it for now. Boost, MMR, reranking, generative search, and group-by are not available over REST.
+
+:::info Related resources
+
+- [References: RESTful API - Search endpoints](https://docs.weaviate.io/weaviate/api/rest#tag/search)
+- [Environment variables: `EXPERIMENTAL_REST_SEARCH_ENABLED`](https://docs.weaviate.io/deploy/configuration/env-vars#EXPERIMENTAL_REST_SEARCH_ENABLED)
+
+:::
+
+## gRPC-Web
+
+Browsers cannot speak plain gRPC, so front-end code has never been able to call Weaviate's gRPC API directly. **gRPC-Web** closes that gap by serving the same API over ordinary HTTP. It arrived in `v1.38.3` and has not been covered in a release post until now.
+
+The interface lives under the `/v1/grpc-web/` path prefix on the **same port as the REST API** (default `8080`). It is not on the gRPC port and not on a port of its own, so there is no second port to open in a firewall or an ingress rule.
+
+It is **enabled by default**. To turn it off, set the [runtime-configuration](https://docs.weaviate.io/deploy/configuration/env-vars/runtime-config) key `grpc_web_enabled` to `false`. The key is snake_case, and it has no environment-variable equivalent. The change takes effect without a restart. While the interface is off, a request to a `/v1/grpc-web/` path comes back as a plain `404`, the same as any other path Weaviate does not serve. The rest of the REST API is unaffected.
+
+One caveat: the Weaviate client libraries all connect over plain gRPC today, so none of them uses this interface yet.
+
+:::info Related resources
+
+- [References: gRPC API - gRPC-Web](https://docs.weaviate.io/weaviate/api/grpc#grpc-web)
+
+:::
+
+## HNSW Snapshots, Automatic - General Availability
+
+An HNSW index is rebuilt on startup by replaying its commit log, the append-only write-ahead log that records every change to the graph. A *snapshot* is a compacted image of that graph, so startup can load one file instead of replaying millions of records. Until now the snapshot was an optional cache: you scheduled it with a handful of environment variables, and the log it summarized stayed on disk forever. You paid for the same graph twice.
+
+In `v1.39` snapshots are automatic and **generally available**. Weaviate writes and refreshes them in the background, and once a new snapshot is safely on disk it **deletes every commit log that snapshot covers**. What you get:
+
+- **Less disk.** You keep the snapshot plus the writes made since it, instead of the snapshot plus the full history. On vector-heavy clusters that is most of the win.
+- **Faster, steadier startup.** Loading a snapshot takes about the same time on every restart. Replaying a log that only ever grows does not.
+- **Nothing to tune.** There are no snapshot environment variables and no schedule to set. Weaviate decides when to write the next one.
+
+Two things to know about the disk savings. The cleanup only runs on shards that are **loaded**, so an inactive tenant keeps its old files until the next time you use it. And disk usage goes **up** for a while during a snapshot, because Weaviate writes the new file before it deletes the old ones. Keep the headroom you have today.
+
+Five settings that used to control snapshotting are now **ignored**. Weaviate still accepts them, and they will be removed in a future version:
+
+```text
+PERSISTENCE_HNSW_DISABLE_SNAPSHOTS
+PERSISTENCE_HNSW_SNAPSHOT_INTERVAL_SECONDS
+PERSISTENCE_HNSW_SNAPSHOT_ON_STARTUP
+PERSISTENCE_HNSW_SNAPSHOT_MIN_DELTA_COMMITLOGS_NUMBER
+PERSISTENCE_HNSW_SNAPSHOT_MIN_DELTA_COMMITLOGS_SIZE_PERCENTAGE
+```
+
+Setting any of them logs a one-line warning at startup instead of failing, so an upgrade will not break on a stale config file. Delete them when it suits you. One HNSW persistence setting survives: [`PERSISTENCE_HNSW_MAX_LOG_SIZE`](https://docs.weaviate.io/deploy/configuration/env-vars#PERSISTENCE_HNSW_MAX_LOG_SIZE) (default `500MiB`). It sets the write-ahead-log rotation size, not anything about snapshots, and it still applies.
+
+:::info Related resources
+
+- [Concepts: Storage - HNSW snapshots](https://docs.weaviate.io/weaviate/concepts/storage#hnsw-snapshots)
+- [Environment variables: `PERSISTENCE_HNSW_MAX_LOG_SIZE`](https://docs.weaviate.io/deploy/configuration/env-vars#PERSISTENCE_HNSW_MAX_LOG_SIZE)
+
+:::
+
+## Performance Improvements and Fixes
+
+Beyond the headline features, `v1.39` ships a long list of improvements. A few worth calling out:
+
+- **Faster keyword search:** `bm25` queries, and the keyword half of `hybrid`, come back sooner after a round of work on the scoring path.
+- **Cross-property keyword `AND`:** a new `AndCross` search operator asks for every query term to appear somewhere on the object, rather than all of them inside one property. It shipped in the 1.38 line, and it is opt-in, so plain `And` keeps the behavior you have today.
+- **Cheaper async replication:** background repair does less redundant work on clusters with many tenants. Fixes stop deleted objects from coming back during a first scan, stop a repair from overwriting a newer local write, and stop a tenant shutdown from leaking memory.
+- **Leaner HFresh:** the HFresh vector index uses less memory and writes to disk less often.
+- **More reliable backups:** listing a backup on Azure no longer scans every object, a restore no longer forces lazy-loaded shards to load, and you can now set how many files an incremental backup deduplicates.
+- **Safer replica movement:** moving a replica between nodes now uses hard links, so it no longer pauses compaction. Schema changes that would clash with a move in flight are rejected, and two copy operations on the same shard no longer trip over each other.
+- **Latency metrics below a millisecond:** the HTTP and gRPC request-duration histograms now have buckets down to 100µs, so fast queries no longer all land in one bucket.
+- **Batch delete returns 422:** a batch delete with missing match fields now answers `422 Unprocessable Entity` instead of `500`.
+
+:::info Related resources
+
+- [Weaviate 1.39: GitHub Release Notes](https://github.com/weaviate/weaviate/releases/tag/v1.39.0)
+
+:::
+
+## Community Contributions
+
+Weaviate is open source, and this release includes work from five first-time contributors. Thank you to:
+
+- [@hashkanna](https://github.com/hashkanna): location configuration for the `text2vec-google` module ([#8418](https://github.com/weaviate/weaviate/pull/8418))
+- [@vjsai](https://github.com/vjsai): rejecting a negative `desiredCount` in sharding configuration ([#11824](https://github.com/weaviate/weaviate/pull/11824))
+- [@Joe-Weaviate](https://github.com/Joe-Weaviate): using `automaxprocs` to set `GOMAXPROCS`, adding cgroup v2 support ([#11918](https://github.com/weaviate/weaviate/pull/11918))
+- [@VihaanAgarwal](https://github.com/VihaanAgarwal): a fix to the object write path on collections with named vectors ([#11919](https://github.com/weaviate/weaviate/pull/11919))
+- [@apoorva-01](https://github.com/apoorva-01): returning `422` for a batch delete with missing match fields ([#12049](https://github.com/weaviate/weaviate/pull/12049))
+
+If you'd like to contribute, check out the [contributor guide](https://docs.weaviate.io/contributor-guide/) and the [`good-first-issue`](https://github.com/weaviate/weaviate/issues) label on GitHub.
+
+## Summary
+
+Weaviate `v1.39` promotes two search features to general availability, previews a third, and makes HNSW snapshots automatic.
+
+**Key highlights:**
+
+- **Boost API (GA)**: query-time rescoring that promotes or demotes results without dropping any, across hybrid, keyword, and vector searches
+- **MMR Diversity Selection (GA)**: diversity selection on hybrid and `near_*` searches, so page one covers the topic instead of repeating it
+- **4-bit Rotational Quantization (Preview)**: a third RQ width at 784 bytes per 1536-dimension vector, 7.84x smaller than raw `float32`, on HNSW indexes
+- **Search REST API (Experimental)**: JSON over plain HTTP/1.1, off by default. `near-text` in `v1.39.0`, plus `bm25`, `hybrid`, `near-object`, and an aggregate endpoint in `v1.39.1`
+- **gRPC-Web**: the gRPC API reachable from a browser over ordinary HTTP, on the REST port, enabled by default since `v1.38.3`
+- **HNSW Snapshots, Automatic (GA)**: less disk spent on commit logs, faster and steadier startup, five tuning knobs retired, and nothing left to schedule
+
+**Ready to get started?**
+
+The release is available open-source on [GitHub](https://github.com/weaviate/weaviate/releases/tag/v1.39.0) and on [Weaviate Cloud](https://console.weaviate.cloud/), where you can spin up a cluster on the free tier.
+
+:::note
+Not all features may be available on Weaviate Cloud. Preview and experimental features, and anything that needs specific environment configuration, may not be enabled on managed clusters, or may arrive there on a different schedule.
+:::
+
+If you are upgrading a self-hosted cluster, check the [migration guide](https://docs.weaviate.io/deploy/migration#general-upgrade-instructions) for version-specific notes.
+
+Thanks for reading, and happy vector searching!
