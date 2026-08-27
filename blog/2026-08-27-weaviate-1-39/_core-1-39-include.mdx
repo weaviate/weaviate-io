@@ -156,10 +156,6 @@ At `1.0` the page is four ways of saying the same thing, which is the page you g
 
 You need Python client **4.23.0** or newer. That is the release where `diversity_selection` arrives on `collection.query.hybrid` and `collection.generate.hybrid`. MMR is not available on `bm25`, which has no vectors to measure distance between, and it does not work on multi-vector collections.
 
-:::note A balance of 0.5 is not a safe middle
-On hybrid search the two sides of the trade are not measured on the same scale: relevance is a merged score normalized into `[0, 1]`, and diversity is a raw distance in your collection's metric. Start at `1.0` and check that you get your current ordering back, then lower `balance` until the page stops repeating itself.
-:::
-
 :::info Related resources
 
 - [How-to: Search - Diversity selection (MMR)](https://docs.weaviate.io/weaviate/search/similarity#diversity-selection-mmr)
