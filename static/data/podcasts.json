@@ -1,5 +1,21 @@
 [
   {
+    "title": "Recursive Language Models with Alex Zhang - Weaviate Podcast #142",
+    "description": "Alex Zhang, a PhD student at MIT, joins the Weaviate Podcast to discuss Recursive Language Models (RLMs), a new abstraction for designing agent harnesses.",
+    "youtube": "iv0MtXS_DQo",
+    "date": "26-08-26",
+    "cover_image": "/img/podcasts/podcast-142.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Drowning in Documents with Mathew Jacob - Weaviate Podcast #141",
+    "description": "Mathew Jacob, lead author of \"Drowning in Documents: Consequences of Scaling Reranker Inference\" and now a PhD student in ML systems at the University of Washington, joins the Weaviate Podcast to unpack one of the most surprising results in modern search: cross-encoder rerankers get worse as you give them more documents.",
+    "youtube": "fWuavBcoTzk",
+    "date": "26-08-17",
+    "cover_image": "/img/podcasts/podcast-141.jpg",
+    "is_use_case": false
+  },
+  {
     "title": "Founding Weaviate with Bob van Luijt and Etienne Dilocker  - Weaviate Podcast #140",
     "description": "Weaviate Co-Founders Bob van Luijt and Etienne Dilocker return to the Weaviate Podcast to celebrate seven years of building the company, answering questions submitted by the community.",
     "youtube": "pvv-vnT-LfQ",
