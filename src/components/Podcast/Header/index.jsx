@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './styles.module.scss';
-import { LinkButton, ButtonContainer } from '/src/theme/Buttons';
+import React from "react";
+import styles from "./styles.module.scss";
+import { LinkButton, ButtonContainer } from "/src/theme/Buttons";
 
 export default function PodcastHeader() {
   return (
@@ -23,13 +23,16 @@ export default function PodcastHeader() {
 
           <div className={styles.buttons}>
             <LinkButton
-              color="accent"
+              style={{ color: "#111111" }}
               link="https://www.youtube.com/playlist?list=PLTL2JUbrY6tW-KOQfOek8dtUmPgGQj3F0"
             >
               Subscribe on YouTube
             </LinkButton>
 
-            <LinkButton link="https://open.spotify.com/show/4TlG6dnrWYdgN2YHpoSnM7">
+            <LinkButton
+              style={{ color: "#111111" }}
+              link="https://open.spotify.com/show/4TlG6dnrWYdgN2YHpoSnM7"
+            >
               Open in Spotify
             </LinkButton>
 
