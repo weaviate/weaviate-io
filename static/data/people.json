@@ -151,7 +151,7 @@
     "title": "Machine Learning Engineer",
     "photo": "daniel-williams.jpg",
     "linkedin": "dannyjameswilliams",
-    "team": "developer-growth"
+    "team": "weaviate-labs"
   },
   {
     "name": "Dirk Kulawiak",
@@ -369,7 +369,7 @@
     "photo": "paul-de-grijp.jpg",
     "linkedin": "pauldegrijp",
     "twitter": "pauldegrijp",
-    "team": ["wcd", "database", "applied-research", "weaviate-labs"]
+    "team": ["wcd", "database", "applied-research"]
   },
   {
     "name": "Philip Vollet",
