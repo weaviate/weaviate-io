@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "art": [
+    "WEAVIATE"
+  ],
+  "message": [
+    "Weaviate 1.39 is out: https://weaviate.io/blog/weaviate-1-39-release"
+  ],
+  "_comment": "Startup banner content fetched by Weaviate Database (v1.40+) for its repeat banner. art: <= 10 lines of <= 100 printable columns. message: optional news printed under the banner as a news entry, e.g. a release or feature announcement; <= 3 lines of <= 100 columns, one line of text ending in a link works best; leave it empty when there is nothing to announce. A newer format must use a new file (v2.json), never change this one's shape."
+}
