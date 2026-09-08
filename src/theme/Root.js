@@ -35,7 +35,7 @@ export default function Root({ children }) {
         
         const script = document.createElement('script');
         script.src = "https://widget.kapa.ai/kapa-widget.bundle.js";
-        script.setAttribute("data-website-id", "109019ee-418e-4434-b485-85a09533c865");
+        script.setAttribute("data-website-id", "e32eec67-0732-4dd7-97b9-19f0fab039c8");
         script.setAttribute("data-project-name", "Weaviate");
         script.setAttribute("data-project-color", "#130c49");
         script.setAttribute("data-project-logo", "/img/site/weaviate-logo-w.png");
