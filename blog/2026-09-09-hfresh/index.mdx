@@ -4,7 +4,7 @@ slug: hfresh
 authors: [asdine, roberto]
 date: 2026-09-09
 tags: ["engineering", "concepts", "search"]
-image: ./img/hero.png
+image: ./img/hero.jpg
 description: "HFresh is Weaviate's disk-based vector index for memory-efficient vector search, combining low heap usage with incremental background maintenance."
 faq:
   - question: "What is HFresh?"
@@ -15,7 +15,7 @@ faq:
     answer: "Use HFresh when lower memory use matters more than peak query throughput, whether you are building a small application with limited resources or working with a large, frequently updated dataset. Use HNSW when the lowest latency and highest throughput are the primary requirements."
 ---
 
-![Scaling a vector database across multiple nodes.](./img/hero.png)
+![Scaling a vector database across multiple nodes.](./img/hero.jpg)
 
 <br />
 
@@ -220,16 +220,16 @@ These results clarify when to choose each index. HNSW remains the better option 
 
 Separately from the DBpedia benchmarks, we tested HFresh index construction with one billion randomly generated 256-dimensional vectors. We used default index-construction settings and imported batches of 1,000 with 12 workers.
 
-| Metric | Result |
-| --- | --- |
-| Dataset | **1 billion 256-dimensional vectors** |
-| Compute | **32 vCPUs, 256 GB RAM** (`n2-highmem-32`) |
-| Storage | **4 TB SSD Persistent Disk** (`pd-ssd`) |
-| Peak VM memory usage | **204 GB** |
-| VM memory usage after restart | **54 GB** |
-| Go heap after restart | **47 GB** |
-| Peak disk usage | **3.09 TB** |
-| Disk usage after import | **2.28 TB** |
+| Metric                        | Result                                     |
+| ----------------------------- | ------------------------------------------ |
+| Dataset                       | **1 billion 256-dimensional vectors**      |
+| Compute                       | **32 vCPUs, 256 GB RAM** (`n2-highmem-32`) |
+| Storage                       | **4 TB SSD Persistent Disk** (`pd-ssd`)    |
+| Peak VM memory usage          | **204 GB**                                 |
+| VM memory usage after restart | **54 GB**                                  |
+| Go heap after restart         | **47 GB**                                  |
+| Peak disk usage               | **3.09 TB**                                |
+| Disk usage after import       | **2.28 TB**                                |
 
 The run successfully constructed the billion-vector HFresh index. No recall or QPS measurements were collected for this scale test.
 
@@ -243,6 +243,6 @@ HFresh was introduced as a technical preview in Weaviate 1.36 and became general
 
 If you are evaluating HFresh for a large-scale workload, we would like to hear about your dataset, performance requirements, and results.
 
-import WhatsNext from '/_includes/what-next.mdx';
+import WhatsNext from "/_includes/what-next.mdx";
 
 <WhatsNext />
