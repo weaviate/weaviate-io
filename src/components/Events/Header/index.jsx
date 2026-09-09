@@ -1,4 +1,3 @@
-import Link from '@docusaurus/Link';
 import React from 'react';
 import styles from './styles.module.scss';
 
@@ -7,21 +6,23 @@ export default function WorkshopsHeader() {
     <header className={styles.headerSecurity}>
       <div className="container">
         <div className={styles.box}>
-          <h1>Online Workshops & Events</h1>
+          <p className={styles.topText}>Weaviate webinars</p>
+          <h1>Build better AI applications, live with the experts</h1>
 
           <div className={styles.headerBox}>
             <p>
-              We hold workshops for different experience levels.<br />
-              Sign up below to learn how to build AI-native apps.
+              Join practical sessions with Weaviate engineers, partners, and
+              community experts. Register for an upcoming webinar or explore
+              our on-demand library.
             </p>
           </div>
           <div className={styles.buttons}>
-            {/* <Link
-              className={styles.buttonGradient}
-              to="https://newsletter.weaviate.io/subscribe"
-            >
-              Subscribe to Newsletter
-            </Link> */}
+            <a className={styles.buttonGradient} href="#upcoming-webinars">
+              View upcoming webinars
+            </a>
+            <a className={styles.buttonOutline} href="#on-demand-webinars">
+              Watch on demand
+            </a>
           </div>
         </div>
       </div>

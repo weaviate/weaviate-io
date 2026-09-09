@@ -1,74 +1,149 @@
 .container {
-  padding: clamp(4rem, 8vw, 6rem) 2rem;
+  padding: clamp(4rem, 8vw, 7rem) 2rem;
   background: #111111;
 }
 
-.headerBox {
-  max-width: 760px;
+.featuredCard {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  max-width: 1180px;
   margin: 0 auto;
-  text-align: center;
+  overflow: hidden;
+  border: 1px solid rgba(185, 200, 222, 0.14);
+  border-radius: 1.5rem;
+  background: linear-gradient(135deg, #151a26 0%, #10131c 100%);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+}
+
+.content {
+  padding: clamp(2rem, 5vw, 4.5rem);
 
   h2 {
     color: #ddebf2 !important;
     font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
     font-weight: 600;
-    line-height: 112%;
+    line-height: 108%;
     letter-spacing: -0.04em;
-    margin-bottom: 1.25rem;
-  }
-
-  p {
-    color: #6f8197;
-    font-family: Inter, sans-serif;
-    font-size: 1.05rem;
-    line-height: 170%;
-    margin: 0;
+    margin: 0 0 1.25rem;
   }
 }
 
-.messageBox {
-  position: relative;
-  overflow: hidden;
+.eyebrow {
+  color: #6be38c;
+  font: 700 0.78rem/1.2 Inter, sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 1.25rem;
+}
 
-  margin: 3rem auto 0;
-  max-width: 760px;
+.date {
+  color: #b9c8de;
+  font: 600 1rem/1.5 Inter, sans-serif;
+  margin: 0 0 0.75rem;
+}
 
-  padding: 2.5rem;
+.description {
+  max-width: 650px;
+  color: #91a2b8;
+  font: 400 1.08rem/1.7 Inter, sans-serif;
+  margin: 0 0 2rem;
+}
 
-  border-radius: 1.5rem;
+.button {
+  display: inline-flex;
+  min-height: 50px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.5rem;
+  border-radius: 0.75rem;
+  background: #6be38c;
+  color: #111111 !important;
+  font: 700 1rem/1 Inter, sans-serif;
+  text-decoration: none !important;
+  transition: transform 0.2s ease, background 0.2s ease;
 
-  background:
-    radial-gradient(
-      circle at top left,
-      rgba(107, 227, 140, 0.08),
-      transparent 38%
-    ),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.95));
-
-  border: 1px solid rgba(17, 17, 17, 0.06);
-
-  box-shadow:
-    0 24px 80px rgba(15, 23, 42, 0.06),
-    0 2px 12px rgba(15, 23, 42, 0.04);
-
-  text-align: center;
-
-  p {
-    margin: 0;
-
-    color: #445468;
-    font-family: Inter, sans-serif;
-    font-size: 1.05rem;
-    line-height: 180%;
+  &:hover {
+    transform: translateY(-2px);
+    background: #7ceb9a;
   }
+}
+
+.visual {
+  position: relative;
+  display: flex;
+  min-height: 420px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(107, 227, 140, 0.3), transparent 25%),
+    radial-gradient(circle at 70% 75%, rgba(55, 174, 255, 0.25), transparent 36%),
+    #0b1018;
+  border-left: 1px solid rgba(185, 200, 222, 0.12);
+}
+
+.visualLabel {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid rgba(107, 227, 140, 0.28);
+  border-radius: 999px;
+  background: rgba(107, 227, 140, 0.08);
+  color: #6be38c;
+  font: 700 0.7rem/1 Inter, sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.mcp {
+  position: relative;
+  z-index: 1;
+  color: #ddebf2;
+  font: 700 clamp(4rem, 9vw, 7rem)/1 "Plus Jakarta Sans", sans-serif;
+  letter-spacing: -0.07em;
+}
+
+.nodes {
+  position: absolute;
+  inset: 0;
+
+  span {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #6be38c;
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(107, 227, 140, 0.7);
+  }
+
+  span:nth-child(1) { left: 18%; top: 24%; }
+  span:nth-child(2) { right: 16%; top: 42%; }
+  span:nth-child(3) { left: 35%; bottom: 18%; }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 60%;
+    height: 1px;
+    left: 20%;
+    top: 42%;
+    background: linear-gradient(90deg, transparent, rgba(107, 227, 140, 0.55), transparent);
+    transform: rotate(28deg);
+  }
+
+  &::after { top: 61%; transform: rotate(-18deg); }
 }
 
 @media screen and (max-width: 900px) {
-  .container {
-    padding: 4rem 1.25rem;
-  }
-
-  .messageBox {
-    padding: 2rem 1.5rem;
+  .container { padding: 4rem 1.25rem; }
+  .featuredCard { grid-template-columns: 1fr; }
+  .visual {
+    min-height: 260px;
+    border-top: 1px solid rgba(185, 200, 222, 0.12);
+    border-left: 0;
   }
 }

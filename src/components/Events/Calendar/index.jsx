@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styles from './styles.module.scss';
 
 export default function CalendarSection() {
   return (
-    <div className={styles.container}>
+    <section className={styles.container} id="upcoming-webinars">
       <div className={styles.headerBox}>
-        <h2>More Events & Workshops</h2>
+        <p className={styles.eyebrow}>Save your seat</p>
+        <h2>Upcoming webinars</h2>
         <p>
-          A selection of more events and workshops to attend in-person or
-          online.{' '}
+          Browse the schedule and register for the sessions you want to join.
+          Your confirmation and calendar details will follow after signup.
         </p>
       </div>
       <div className={styles.workshopWrapper}>
@@ -18,17 +19,18 @@ export default function CalendarSection() {
             src="https://lu.ma/embed/calendar/cal-S7gDcd9Akzu62RD/events"
             style={{
               width: '1200px',
-              height: '450px',
-              border: '1px solid #bfcbda88',
-              borderRadius: '8px',
+              height: '520px',
+              border: '1px solid rgba(185, 200, 222, 0.18)',
+              borderRadius: '16px',
               maxWidth: '100%',
             }}
+            title="Upcoming Weaviate webinars"
             allowFullScreen
             aria-hidden="false"
             tabIndex="0"
           ></iframe>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
