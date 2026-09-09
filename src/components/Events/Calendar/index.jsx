@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './styles.module.scss';
+import React from "react";
+import styles from "./styles.module.scss";
 
 export default function CalendarSection() {
   return (
@@ -18,11 +18,11 @@ export default function CalendarSection() {
             className={styles.lumaCalendar}
             src="https://lu.ma/embed/calendar/cal-S7gDcd9Akzu62RD/events"
             style={{
-              width: '1200px',
-              height: '520px',
-              border: '1px solid rgba(185, 200, 222, 0.18)',
-              borderRadius: '16px',
-              maxWidth: '100%',
+              width: "1200px",
+              height: "520px",
+              border: "1px solid rgba(185, 200, 222, 0.18)",
+              borderRadius: "16px",
+              maxWidth: "100%",
             }}
             title="Upcoming Weaviate webinars"
             allowFullScreen

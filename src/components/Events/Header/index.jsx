@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './styles.module.scss';
+import React from "react";
+import styles from "./styles.module.scss";
 
 export default function WorkshopsHeader() {
   return (
@@ -7,13 +7,13 @@ export default function WorkshopsHeader() {
       <div className="container">
         <div className={styles.box}>
           <p className={styles.topText}>Weaviate webinars</p>
-          <h1>Build better AI applications, live with the experts</h1>
+          <h1>Build AI applications, live with the experts</h1>
 
           <div className={styles.headerBox}>
             <p>
               Join practical sessions with Weaviate engineers, partners, and
-              community experts. Register for an upcoming webinar or explore
-              our on-demand library.
+              community experts. Register for an upcoming webinar or explore our
+              on-demand library.
             </p>
           </div>
           <div className={styles.buttons}>
