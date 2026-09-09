@@ -1,25 +1,25 @@
 ---
-title: "HFresh: Memory-Efficient Vector Search at Scale"
+title: "HFresh: Memory-Efficient Vector Search"
 slug: hfresh
 authors: [asdine, roberto]
 date: 2026-08-10
 tags: ["engineering", "concepts", "search"]
 image: ./img/hero.png
-description: "HFresh is Weaviate's disk-based vector index for large, mutable datasets, combining low memory use with incremental background maintenance."
+description: "HFresh is Weaviate's disk-based vector index for memory-efficient vector search, combining low heap usage with incremental background maintenance."
 faq:
   - question: "What is HFresh?"
-    answer: "HFresh is Weaviate's disk-based vector index for large-scale vector search. It keeps a compact centroid index and supporting metadata in memory and stores compressed vector postings on disk."
+    answer: "HFresh is Weaviate's disk-based vector index for memory-efficient vector search. It keeps a compact centroid index and supporting metadata in memory and stores compressed vector postings on disk."
   - question: "How does HFresh differ from HNSW?"
     answer: "HNSW keeps its graph and vector cache in memory for the lowest latency and highest throughput. HFresh uses an in-memory HNSW index only for routing, then searches selected postings stored on disk to reduce the amount of index data kept on the heap."
   - question: "When should I use HFresh instead of HNSW?"
-    answer: "Use HFresh when memory efficiency and scaling to larger, frequently updated datasets matter more than peak query throughput. Use HNSW when the lowest latency and highest throughput are the primary requirements."
+    answer: "Use HFresh when lower memory use matters more than peak query throughput, whether you are building a small application with limited resources or working with a large, frequently updated dataset. Use HNSW when the lowest latency and highest throughput are the primary requirements."
 ---
 
 ![Scaling a vector database across multiple nodes.](./img/hero.png)
 
 <br />
 
-HFresh is Weaviate's disk-based vector index for large-scale vector search when keeping most index data off the heap matters more than peak throughput.
+HFresh is Weaviate's disk-based vector index for applications that prioritize lower memory use over peak query throughput. That tradeoff is useful for small applications with limited resources as well as large datasets. Weaviate Cloud's [Free Tier](https://docs.weaviate.io/cloud/manage-clusters/create#optimization-profile), for example, uses HFresh by default through its Cost Optimized profile.
 
 ## Understanding HNSW's memory bottleneck in similarity search
 
@@ -237,7 +237,7 @@ The VM memory measurements come from GCP system metrics, while the heap measurem
 
 ## Conclusion
 
-HFresh gives Weaviate a disk-based index for large, mutable vector datasets. By keeping a compact centroid index and supporting metadata in memory and maintaining disk-resident postings incrementally, it reduces the heap required for index data without relying on full index rebuilds. HNSW remains the better choice when the lowest latency and highest throughput matter most; HFresh is designed for workloads where a smaller heap footprint and scale justify lower query throughput.
+HFresh gives Weaviate a disk-based index for memory-efficient vector search, from small applications to large, mutable datasets. By keeping a compact centroid index and supporting metadata in memory and maintaining disk-resident postings incrementally, it reduces the heap required for index data without relying on full index rebuilds. HNSW remains the better choice when the lowest latency and highest throughput matter most; HFresh is designed for workloads where a smaller heap footprint justifies lower query throughput.
 
 HFresh was introduced as a technical preview in Weaviate 1.36 and became generally available in Weaviate 1.38. See the [documentation](https://docs.weaviate.io/weaviate/concepts/vector-index#hfresh-index) to get started.
 
