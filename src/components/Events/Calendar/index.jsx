@@ -16,7 +16,7 @@ export default function CalendarSection() {
         <div className={styles.workshopContainer}>
           <iframe
             className={styles.lumaCalendar}
-            src="https://lu.ma/embed/calendar/cal-S7gDcd9Akzu62RD/events"
+            src="https://lu.ma/embed/calendar/cal-OP0oDRoimHFzYgM/events"
             style={{
               width: "1200px",
               height: "520px",
