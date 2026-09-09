@@ -200,9 +200,9 @@ We benchmarked uncompressed HNSW, HNSW with RQ1, HNSW with RQ8, and HFresh on th
 
 These measurements report Go heap usage, not total process or system memory. HFresh also relies on OS-managed caching for its on-disk data, which is not captured by the heap figures.
 
-The clearest difference is heap usage at rest. HFresh uses 295 MB of heap, compared with 6.73 GB for uncompressed HNSW.
+The clearest difference is heap usage at rest. HFresh uses 239 MB of heap, compared with 6.67 GB for uncompressed HNSW.
 
-HFresh also uses less heap than quantized HNSW. HNSW with RQ1 uses 715 MB, 2.4x as much as HFresh, while HNSW with RQ8 uses 2.33 GB, nearly 8x as much.
+HFresh also uses less heap than quantized HNSW. HNSW with RQ1 uses 715 MB, approximately 3x as much as HFresh, while HNSW with RQ8 uses 2.38 GB, approximately 10x as much.
 
 This difference follows directly from HFresh's architecture. HFresh keeps the RQ8-compressed centroid index and supporting metadata in memory while storing compressed postings on disk. Posting membership, vector versions and deletion state, and posting sizes also consume heap and grow with the dataset, but this layout reduces the heap required for index data.
 
