@@ -55,9 +55,9 @@ In traditional partition-based indexes, updates can accumulate and partitions ca
 
 SPFresh shows that this is often unnecessary. In a well-structured partitioned index, inserting or deleting a vector typically only affects a small neighborhood of the vector space. Instead of rebuilding everything, you can maintain index quality through incremental rebalancing, using a small set of local operations.
 
-- Splitting oversized postings
-- Merging undersized ones
-- Reassigning vectors when boundaries shift
+- **Splitting** oversized postings
+- **Merging** undersized ones
+- **Reassigning** vectors when boundaries shift
 
 These operations run mostly asynchronously in the background, continuously repairing small local imbalances before they accumulate into global problems. The result is an index that stays fresh and well-balanced over time, without disruptive rebuild cycles.
 
@@ -85,7 +85,7 @@ Centroids are not static: splits, merges, and reassignments continuously reshape
 
 Another advantage is that the centroid index can itself be quantized. Because the centroid layer is only used to identify promising regions of the vector space, HFresh can compress those vectors aggressively enough to reduce memory usage while maintaining the accuracy needed for strong recall. In fact, HFresh uses HNSW with RQ8, reducing memory usage of centroids by 4x.
 
-Using HNSW here also means that improvements to HNSW automatically benefit HFresh. A good example is ACORN, which improves filtered search by making graph traversal more efficient when only part of the dataset matches a filter. Since HFresh relies on HNSW as the centroid layer, those improvements are not isolated: they strengthen HFresh's query path.
+Using HNSW here also means that improvements to HNSW automatically benefit HFresh. A good example is [ACORN](/blog/speed-up-filtered-vector-search), which improves filtered search by making graph traversal more efficient when only part of the dataset matches a filter. Since HFresh relies on HNSW as the centroid layer, those improvements are not isolated: they strengthen HFresh's query path.
 
 ## Quantization
 
@@ -155,7 +155,7 @@ For broader filters, HFresh uses its regular two-stage search with a posting-awa
 The process is:
 
 1. Translate the object-level allow list into posting eligibility using the posting metadata.
-2. Navigate the centroid HNSW with [ACORN](https://weaviate.io/blog/speed-up-filtered-vector-search), selecting postings that can contribute at least one matching vector.
+2. Navigate the centroid HNSW with [ACORN](/blog/speed-up-filtered-vector-search), selecting postings that can contribute at least one matching vector.
 3. Read the selected postings and reapply the original allow list while scanning their compressed vectors.
 4. Rescore the top candidates using their original uncompressed vectors.
 
@@ -192,7 +192,7 @@ Both settings can be changed without rebuilding the index.
 
 ## Experiments
 
-We benchmarked uncompressed HNSW, HNSW with RQ1, HNSW with RQ8, and HFresh on the DBpedia OpenAI 1M dataset. HNSW indexes were built with `efConstruction=256` and `maxConnections=16`. The chart below includes the machine configuration and query settings.
+We benchmarked uncompressed HNSW, HNSW with RQ1, HNSW with RQ8, and HFresh on the DBpedia OpenAI 1M dataset. HNSW indexes were built with `efConstruction=256` and `maxConnections=16`.
 
 ### Heap usage
 
