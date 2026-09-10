@@ -468,6 +468,16 @@ module.exports = async function createConfigAsync() {
             '@docusaurus/preset-classic',
             {
                 docs: false,
+                sitemap: {
+                    // Use the source file's Git history to provide a meaningful
+                    // freshness signal. Google ignores changefreq and priority.
+                    lastmod: 'date',
+                    changefreq: null,
+                    priority: null,
+                    // This route declares noindex in its front matter but is not
+                    // currently filtered from the generated sitemap.
+                    ignorePatterns: ['/payment/thank-you'],
+                },
                 blog: {
                     blogTitle: 'Blog',
                     blogDescription: 'Blog',
