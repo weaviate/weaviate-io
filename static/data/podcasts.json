@@ -1,5 +1,13 @@
 [
   {
+    "title": "AutoIndex with Sam O'Nuallain - Weaviate Podcast #143",
+    "description": "Sam O'Nuallain joins the Weaviate Podcast to discuss AutoIndex, research from UMass Amherst and Databricks on learning representation programs for retrieval.",
+    "youtube": "mAj92SoEhjc",
+    "date": "26-09-07",
+    "cover_image": "/img/podcasts/podcast-143.jpg",
+    "is_use_case": false
+  },
+  {
     "title": "Recursive Language Models with Alex Zhang - Weaviate Podcast #142",
     "description": "Alex Zhang, a PhD student at MIT, joins the Weaviate Podcast to discuss Recursive Language Models (RLMs), a new abstraction for designing agent harnesses.",
     "youtube": "iv0MtXS_DQo",
