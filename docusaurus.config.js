@@ -512,8 +512,8 @@ module.exports = async function createConfigAsync() {
 
             
              announcementBar: {
-               id: 'announcement-bar-engram-ga',
-                content:`<a href="/blog/engram-generally-available">Introducing Engram by Weaviate - now GA - Read our Blog </a>`,
+               id: 'announcement-bar-hfresh-ga',
+                content:`<a href="/blog/hfresh">Introducing HFresh  - Read our Blog </a>`,
                backgroundColor: '#160F52',
                 textColor: '#F5F5F5',
                 isCloseable: true,
