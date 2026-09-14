@@ -16,10 +16,20 @@ import Header from '/src/components/Subprocessors/Header';
 
 <div className ="subprocessors">
 
-**Last Updated: May 2026**
+**Last Updated: September 2026**
 
 The following subprocessors are authorized by the Data Controller to process data on behalf of the Data Processor.  
 Subprocessors are grouped below based on whether they process **Business Data** (i.e., customer data stored in our application) or **Personal Data** (i.e., information about our customers, such as billing or marketing details).
+
+---
+
+### Weaviate Group Entities (Intra-Group Subprocessors)
+
+Where the Weaviate entity contracting with the customer is an affiliate of the entity operating the platform, the operating entity acts as an intra-group subprocessor.
+
+| Category | Entity | Subprocessing Activities | Location |
+|-----------|-------------------|---------------------------|----------|
+| Affiliate | Weaviate B.V. | Operation of the Weaviate Cloud platform and customer support on behalf of affiliate contracting entities (e.g., Weaviate, LLC) | Amsterdam, The Netherlands |
 
 ---
 
@@ -88,6 +98,9 @@ They do **not** process customer-stored business data.
 | Support | Stripe | Payment services provider | https://stripe.com |
 | Support | Sphere | Billing and tax automation | https://getsphere.com |
 | Support | Omni | Billing analytics | https://omniapp.co |
+| Authentication | Descope | Console user authentication and session management | https://descope.com |
+| Support | Orb | Usage metering and billing invoicing | https://withorb.com |
+| Infrastructure | Fivetran | Data pipeline for billing and product analytics | https://fivetran.com |
 
 ---
 
