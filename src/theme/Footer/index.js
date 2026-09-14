@@ -32,6 +32,8 @@ const footerGroups = {
     { label: 'GitHub', to: 'https://github.com/weaviate/weaviate' },
     { label: 'Learning Center', to: '/learn' },
     { label: 'Blog', to: '/blog' },
+    { label: 'What is a Vector Database?', to: '/blog/what-is-a-vector-database' },
+    { label: 'What is RAG in AI?', to: '/blog/introduction-to-rag' },
     { label: 'Academy', to: 'https://academy.weaviate.io/' },
     { label: 'Knowledge Cards', to: '/learn/knowledgecards' },
     { label: 'Paper Reviews', to: '/papers' },

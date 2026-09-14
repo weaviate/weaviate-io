@@ -482,6 +482,9 @@ module.exports = async function createConfigAsync() {
                     blogTitle: 'Blog',
                     blogDescription: 'Blog',
                     showReadingTime: true,
+                    // Modified dates are opt-in through each post's
+                    // `last_update` frontmatter and rendered by the blog theme.
+                    showLastUpdateTime: false,
                     authorsMapPath: '../authors.yml',
                     editUrl:
                         'https://github.com/weaviate/weaviate-io/tree/main/',
