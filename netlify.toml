@@ -21,6 +21,12 @@ status = 301
 force = true
 
 [[redirects]]
+from = "/learn/cards/*"
+to = "/learn/knowledgecards/:splat"
+status = 301
+force = true
+
+[[redirects]]
 from = "/blog/chatgpt-for-generative-search"
 to = "https://docs.weaviate.io/weaviate/model-providers/openai/generative"
 status = 301
