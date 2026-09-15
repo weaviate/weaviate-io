@@ -1,0 +1,195 @@
+---
+title: Better Search Results with Boost and MMR
+slug: better-search-results-boost-mmr
+authors: [ivan]
+date: 2026-09-14
+tags: ['search', 'how-to', 'concepts']
+description: 'Your search returns the right results in the wrong order. Learn how to tune search relevance in Weaviate with the Boost API, MMR diversity selection, and more.'
+faq:
+  - question: "What is the Boost API in Weaviate?"
+    answer: "Boost re-scores search results at query time. Once a vector, keyword, or hybrid search has fetched its candidates, each one gets a second score from conditions you define, and the list is re-sorted with that score blended in. Unlike a filter, a boost never removes anything: objects that match nothing are demoted, not dropped. It is generally available in Weaviate 1.39."
+  - question: "What does the balance parameter do in Weaviate's MMR diversity selection?"
+    answer: "balance trades relevance against diversity, from 0.0 to 1.0. At 1.0 you get pure relevance, the same order as without MMR. At 0.0 you get pure diversity. Lower means more diverse. The default is 0.0, the most aggressive setting, so always pass balance explicitly."
+  - question: "What is the difference between a boost and a filter in Weaviate?"
+    answer: "A filter is binary: objects that fail the condition are removed from the result set. A boost is soft: objects that match a condition move up, objects that do not move down, and nothing is removed. Use a filter for hard requirements and a boost for preferences."
+  - question: "Can I use Boost and MMR in the same query?"
+    answer: "Yes. Boost runs first and re-sorts the candidate pool, then MMR picks a diverse page out of the re-sorted pool. If you also add a reranker, it runs last and has the final word on the order."
+---
+
+{/* Image prompt: Hero illustration for a blog post about improving search result ranking. A split view of the same search results page. Left half labeled "before": a vertical list of five result cards where the top card looks dusty and outdated (small clock icon, muted color) and three middle cards are visibly identical copies of each other. Right half labeled "after": the same five slots now show one clearly highlighted best result on top and four varied, distinct cards below. Flat vector illustration style, white background, dark navy (#130C49) text and outlines, light blue (#B9C8DF) accents, subtle green highlight on the improved side. No photorealism, no gradients heavier than a subtle tint, generous whitespace. */}
+
+You type "chicken curry" into the recipe search you built, and the search results look fine. Nobody files a bug. But look closer and the page is not good: the top hit is a three-hour recipe from 2019, positions two through four are the same basic curry uploaded three times with slightly different titles, and the quick weeknight version people actually click on is sitting at position nine.
+
+<!-- truncate -->
+
+That is the state most search projects reach: the right results, in the wrong order, with too much repetition. This post covers two Weaviate features built for exactly that stage, both **generally available in Weaviate 1.39**: the **Boost API**, which nudges preferred results up without dropping anything, and **MMR diversity selection**, which stops page one from repeating itself. A third section maps out the other relevance-tuning tools in Weaviate, so you know which knob to reach for when.
+
+Both features work at query time. You change nothing about your data, your schema, or your embeddings (the numeric vectors that represent your documents for semantic search). The code examples use the Python client, version 4.23.0 or newer, and one running example throughout: a `Recipe` collection with `title`, `description`, a `total_minutes` integer, a `rating` number, and a `published` date. If you want the release-announcement view of these features instead, that is the [Weaviate 1.39 release post](/blog/weaviate-1-39-release).
+
+## What is the Boost API?
+
+Boost re-scores results at query time. Your primary search runs first, whether that is vector search, keyword search, or [hybrid search](/blog/hybrid-search-explained) (which combines the two), and fetches a pool of candidates. Boost then gives each candidate a second score, built from conditions you define, and re-sorts the list with that score mixed in.
+
+The important part is what boost does *not* do: it never removes a result. An object that matches none of your conditions gets demoted, and that is all. This is the difference between "only show quick recipes" and "prefer quick recipes, but still show the slow-cooked one that matches the query best".
+
+### Boost vs. filter: demote instead of drop
+
+You could get a similar-looking page with a `where` filter, but a filter is binary. Filter on `total_minutes < 30` and the best slow-cooked match is gone entirely. Users notice that as "search is broken", because the recipe they know exists no longer shows up.
+
+A boost is the soft version of the same idea. Quick recipes move up. Slow recipes move down. Nothing disappears. Use a filter for hard requirements (this tenant, this language, in stock) and a boost for preferences (recent, popular, quick).
+
+{/* Image prompt: Side-by-side comparison of a filter and a boost acting on the same search results, two columns. Left column titled "FILTER: removes". Six rounded result cards with short recipe titles, three of them crossed out with a red X and fading to grey, only three remain. Right column titled "BOOST: reorders". The same six cards, all still present, in a different vertical order, with small green up arrows next to the cards that moved up and orange down arrows next to the cards that moved down. A caption under the right column reads "A boost re-sorts. It never removes." Flat vector illustration, white background, dark navy (#130C49) text and outlines, light blue (#B9C8DF) card fills, red X marks only in the left column, green and orange only for the arrows. */}
+
+### Boosting search results in one line
+
+The smallest useful boost is a single filter condition. Matching objects score 1, non-matching objects score 0, and that signal is blended into the search score:
+
+```python
+from weaviate.classes.query import Boost, Filter
+
+recipes = client.collections.use("Recipe")
+
+response = recipes.query.hybrid(
+    query="chicken curry",
+    limit=10,
+    boost=Boost.filter(
+        Filter.by_property("total_minutes").less_than(30),
+        weight=0.3,
+    ),
+)
+```
+
+The `weight` decides how strongly the boost pulls on the final order. The final score is `(1 - weight) * search_score + weight * boost_score`, so `weight=0.3` keeps 70% of the original relevance and hands 30% to the "is it quick" signal. The range is 0 to 1, the server default is 0.5, and `weight=0` switches the boost off entirely. Start low. A boost should adjust the order the search produced, not replace it.
+
+### Blending several signals
+
+Real ranking preferences usually stack: quick, and recent, and well rated. `Boost.blend()` takes a list of conditions and combines them:
+
+```python
+from datetime import timedelta
+from weaviate.classes.query import Boost, Filter
+
+prefer_quick_recent_favorites = Boost.blend(
+    [
+        Boost.filter(Filter.by_property("total_minutes").less_than(30), weight=2.0),
+        Boost.time_decay("published", scale=timedelta(days=90)),
+        Boost.numeric_property("rating"),
+    ],
+    weight=0.3,   # 30% boost signal, 70% original relevance
+    depth=200,    # re-score the top 200 candidates
+)
+
+response = recipes.query.hybrid(
+    query="chicken curry",
+    limit=10,
+    boost=prefer_quick_recent_favorites,
+)
+```
+
+There are four kinds of condition, and this snippet uses three of them:
+
+- **`filter`**: matches score 1, everything else scores 0. The soft `where`.
+- **`time_decay`**: full score at the origin (by default, now), decaying with age. `scale=timedelta(days=90)` means a recipe 90 days old scores half.
+- **`numeric_property`**: higher values score higher, so a 4.8-rated recipe beats a 3.9. For values that span orders of magnitude, like view counts, an optional `log1p` or `sqrt` modifier keeps one viral outlier from flattening everything else.
+- **`numeric_decay`** (not shown): closer to a target number is better. Think "prefer recipes that take about 45 minutes", where both the 15-minute snack and the 3-hour roast lose ground.
+
+Inside a blend, each condition's `weight` is relative to the others. Here the quickness filter counts double against recency and rating, which both sit at the default of 1.0. A per-condition weight can also be **negative**, which turns a promote into a demote: `weight=-1.0` on a filter pushes matching objects down instead of up. A single boost holds at most 20 conditions.
+
+One quiet behavior worth knowing: if an object has no value for a boosted property, it scores 0 for that condition. No error, no exclusion, it just gets no credit.
+
+### What does depth do?
+
+`depth` is how many of the top candidates get re-scored, counted from the top of the primary search's ranking. The server default is 100. A result sitting at position 250 cannot be promoted by a `depth=200` boost, because the rescorer never sees it. If your boost seems to have no effect on a large collection, depth is the first thing to check. Raising it costs some query time, since more candidates get scored.
+
+### Where Boost works
+
+Boost is available on `hybrid`, `bm25` (keyword search), `near_text`, `near_vector`, `near_object`, `near_image`, and `near_media` queries. It is not available on `fetch_objects`, which has no relevance score to blend with. All official clients run queries over gRPC, Weaviate's binary query protocol, which is where boost lives, so there is nothing to configure: pass `boost=` and it works. If you come to Weaviate from Elasticsearch, boost plays roughly the role of `function_score`, applied to vector and hybrid search as well as keyword search. The full parameter reference is on the [boost documentation page](https://docs.weaviate.io/weaviate/search/boost).
+
+One ordering rule to remember: boost runs **before** a [reranker](https://docs.weaviate.io/weaviate/search/rerank), the optional second model that re-orders the final page. If you pass both `boost=` and `rerank=`, the reranker re-sorts the boosted page afterward and has the last word.
+
+## What is MMR diversity selection?
+
+Back to the "chicken curry" page: positions two through four were the same recipe three times. Nothing was wrong with the ranking. Those three uploads really are all excellent matches, and a ranker's job is to score each result on its own. That is the blind spot: no single result is bad, but the *page* is, because it keeps repeating itself.
+
+Maximal Marginal Relevance (MMR) fixes the page instead of the results. It picks results one at a time, and each pick weighs two things: how well a candidate matches the query, and how different it is from the results already picked. The first pick is always the most relevant candidate. From the second pick on, a near-copy of something already on the page loses out to a strong match that adds something new.
+
+{/* Image prompt: Comparison of a repetitive search results page and a diverse one, two smartphone-style result lists side by side. Left list titled "without MMR": five recipe cards named "Classic Chicken Curry", "Chicken Curry (Classic)", "My Classic Curry with Chicken", "Classic Chicken Curry Recipe", "Easy Classic Chicken Curry", drawn nearly identically to emphasize duplication. Right list titled "with MMR": five clearly distinct cards named "Classic Chicken Curry", "30-Minute Weeknight Chicken Curry", "Thai Green Chicken Curry", "Slow-Cooker Chicken Curry", "Chicken Curry Spice Guide", each with a different small icon. Flat vector style, white background, dark navy (#130C49) text, light blue (#B9C8DF) card outlines, a small green check above the right list. */}
+
+This matters most in hybrid search. Near-identical documents score well on both halves of a hybrid query at once: they win on keywords and on meaning, so merging the two lists stacks the copies at the top of the page. The same property of vectors also explains why plain [BM25](https://en.wikipedia.org/wiki/Okapi_BM25) (keyword) search cannot use MMR: measuring "how different is this from what I already picked" needs vectors, and a pure keyword query has none.
+
+### How to use MMR in Weaviate
+
+MMR takes two values, `limit` and `balance`:
+
+```python
+from weaviate.classes.query import Diversity
+
+response = recipes.query.hybrid(
+    query="chicken curry",
+    limit=30,   # the candidate pool MMR picks from
+    diversity_selection=Diversity.mmr(limit=5, balance=0.7),
+)
+```
+
+The MMR `limit` is your page size: five results come back. The query's own `limit` is the candidate pool MMR picks them from, thirty here. Give it room. Picking a diverse five out of five is a no-op; picking five out of thirty is a real choice.
+
+### Always set balance
+
+`balance` trades relevance against diversity, from 0.0 to 1.0:
+
+- **`balance=1.0`** is pure relevance. You get the same order as without MMR.
+- **`balance=0.0`** is pure diversity. After the first pick, being different is all that counts, and a chicken curry query can come back with a bread recipe in slot four.
+- **Lower means more diverse.** In between, you trade a little relevance for a page that covers more ground.
+
+Here is the catch: **when you leave `balance` out, it defaults to `0.0`**. That is pure diversity, the strongest setting on the dial, and probably not what you meant. Set `balance` in every query. A value like `0.7` is a sensible starting point for "mostly relevance, with the duplicates broken up", but the right number depends on your data, so try a few values against queries you know are repetitive.
+
+### Where MMR runs, and what it skips
+
+For one hybrid query, the pipeline order is: fetch candidates, fuse the keyword and vector lists, apply autocut (a score-based cutoff, covered below) if set, apply boost, then MMR picks your page. A reranker, if you use one, runs after MMR. That order is also the answer to "can I combine these?": yes, a boost re-sorts the pool and MMR picks a diverse page out of the re-sorted pool.
+
+{/* Image prompt: Horizontal pipeline diagram with six rounded rectangle stages connected by right-pointing arrows, in this order: "Fetch candidates", "Fuse keyword + vector", "Autocut", "Boost", "MMR", "Your page", followed by a dashed arrow to a seventh stage "Rerank (optional)". The "Boost" and "MMR" stages are visually emphasized with a slightly thicker dark navy outline. Flat vector style, white background, dark navy (#130C49) text and arrows, light blue (#B9C8DF) fills for the non-emphasized stages. Keep all labels exactly as written. */}
+
+MMR works on `hybrid` and on every `near_*` search. It does not work on plain `bm25` (no vectors, as above), and it is not supported on multi-vector collections, where each object holds many small vectors instead of one. The docs cover MMR for [hybrid search](https://docs.weaviate.io/weaviate/search/hybrid#diversity-selection-mmr) and for [vector search](https://docs.weaviate.io/weaviate/search/similarity#diversity-selection-mmr).
+
+## What else tunes search relevance?
+
+Boost and MMR are two tools in a longer row of knobs. Here is the map, keyed by symptom:
+
+| What you see | Reach for |
+| --- | --- |
+| Right results, wrong order (freshness, popularity, stock) | Boost |
+| Page one repeats itself | MMR |
+| Keyword and semantic matches feel out of balance | Hybrid `alpha` |
+| Good candidates, sloppy top 5 | Reranker |
+| A trail of barely-related results at the bottom | Autocut |
+| Title matches should count more than body matches | BM25 property weights |
+| Query drifts toward the wrong sense of a word | `move_to` / `move_away` |
+| Results must meet a condition, full stop | Filter |
+
+A short note on each, with links instead of a re-teach:
+
+**Hybrid alpha and fusion.** In a hybrid query, `alpha` weights the vector half against the keyword half: 0 is pure keyword, 1 is pure vector, and the server default is 0.75, applied when a request leaves `alpha` unset. As with `balance` above, set it explicitly, so you know what each query actually ran with. Behind it sit two fusion algorithms that merge the two ranked lists, with `relativeScoreFusion` as the default. If your hybrid results lean too literal or too loose, tune alpha before anything else. [Hybrid Search Explained](/blog/hybrid-search-explained) covers the idea, and [the fusion deep dive](/blog/hybrid-search-fusion-algorithms) covers how the merge works.
+
+**Reranking.** A [reranker](https://docs.weaviate.io/weaviate/search/rerank) sends the retrieved page through a heavier model that scores each result against the query, then re-orders. Weaviate has reranker modules for providers including Cohere, VoyageAI, JinaAI, NVIDIA, and Contextual AI, plus local transformer models. Two things to keep straight: a reranker only re-orders what was already retrieved, so it cannot recover a document your search missed, and it runs last, after boost and MMR. If you have wired reranking into a Pinecone or Qdrant stack, the pattern is the same; in Weaviate the rerank step is part of the query rather than a second call you orchestrate yourself.
+
+**Keyword (BM25) tuning.** For the keyword side, you can weight properties relative to each other, so a match in the title counts more than one in the body: `properties=["title^2", "description"]`. There is also a search operator that controls whether all query terms must match or only some. Both are on the [keyword search page](https://docs.weaviate.io/weaviate/search/bm25).
+
+**Autocut.** Result lists often have a natural cliff: a handful of strong matches, then a long tail of weak ones. [Autocut](https://docs.weaviate.io/weaviate/api/graphql/additional-operators#autocut) cuts the list at those score jumps, so you return "the good ones" instead of a fixed twenty.
+
+**Steering a vector query.** `near_text` queries accept [`move_to` and `move_away`](https://docs.weaviate.io/weaviate/api/graphql/search-operators#neartext) arguments that pull the query vector toward or away from concepts you name. Searching "jaguar" and drowning in cars? Move away from "vehicle". It is a blunt instrument next to a boost, but sometimes a blunt instrument is what the query needs.
+
+And if you would rather hand the whole tuning problem to an agent that rewrites queries and reranks for you, that is a different layer of the stack: the Query Agent's [Search Mode](/blog/search-mode-effort).
+
+## Summary
+
+Search tuning goes wrong when every problem gets the same fix. The fix depends on the symptom:
+
+- **Boost** when the order is wrong: promote quick, recent, or popular results without dropping anything. Keep `weight` low, watch `depth`.
+- **MMR** when page one repeats itself: pick a diverse page from a generous candidate pool, and always pass `balance`.
+- **Alpha, rerankers, BM25 weights, autocut, and query steering** for the rest, per the table above.
+
+Boost and MMR are both generally available in Weaviate 1.39, on [GitHub](https://github.com/weaviate/weaviate/releases/tag/v1.39.0) and on [Weaviate Cloud](https://console.weaviate.cloud/), where the free tier is enough to try everything in this post. Load a collection you know well, run your ten most common queries, and look at the pages the way a user would. The wrong-order ones want a boost. The repetitive ones want MMR.
+
+import WhatsNext from '/_includes/what-next.mdx';
+
+<WhatsNext />
