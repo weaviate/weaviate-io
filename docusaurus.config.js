@@ -516,7 +516,7 @@ module.exports = async function createConfigAsync() {
             
              announcementBar: {
                id: 'announcement-bar-hfresh-ga',
-                content:`<a href="https://luma.com/5mw2w4n8?lm_source=embed">Inside Weaviate's MCP Ecosystem  - Register for the webinar </a>`,
+                content:`<a href="/webinars/inside-weaviate-mcp-ecosystem">Inside Weaviate's MCP Ecosystem  - Register for the webinar </a>`,
                backgroundColor: '#160F52',
                 textColor: '#F5F5F5',
                 isCloseable: true,
