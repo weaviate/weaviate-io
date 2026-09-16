@@ -17,6 +17,8 @@ faq:
     answer: "Yes. Boost runs first and re-sorts the candidate pool, then MMR picks a diverse page out of the re-sorted pool. If you also add a reranker, it runs last and has the final word on the order."
 ---
 
+![A search query fanning out to a pool of candidates, with the best matches picked into a ranked list](./img/hero.jpeg)
+
 You type "chicken curry" into the recipe search you built, and the search results look fine. Nobody files a bug. But look closer and the page is not good: the top hit is a three-hour recipe from 2019, positions two through four are the same basic curry uploaded three times with slightly different titles, and the quick weeknight version people actually click on is sitting at position nine.
 
 <!-- truncate -->
@@ -146,7 +148,7 @@ Here is the catch: **when you leave `balance` out, it defaults to `0.0`**. That 
 
 For one hybrid query, the pipeline order is: fetch candidates, fuse the keyword and vector lists, apply autocut (a score-based cutoff, covered below) if set, apply boost, then MMR picks your page. A reranker, if you use one, runs after MMR. That order is also the answer to "can I combine these?": yes, a boost re-sorts the pool and MMR picks a diverse page out of the re-sorted pool.
 
-![The query pipeline runs fetch, fuse, autocut, boost, then MMR before the page is returned; a reranker runs after, if set](./img/query-pipeline.jpeg)
+![The query pipeline runs fetch, filter, fuse, autocut, boost, then MMR, with an optional rerank at the end](./img/query-pipeline.jpeg)
 
 MMR works on `hybrid` and on every `near_*` search. It does not work on plain `bm25` (no vectors, as above), and it is not supported on multi-vector collections, where each object holds many small vectors instead of one. The docs cover MMR for [hybrid search](https://docs.weaviate.io/weaviate/search/hybrid#diversity-selection-mmr) and for [vector search](https://docs.weaviate.io/weaviate/search/similarity#diversity-selection-mmr).
 
