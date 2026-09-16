@@ -3,10 +3,10 @@
     "featured": true,
     "eyebrow": "Featured upcoming webinar",
     "date": "October 14th · Online",
-    "title": "Build with Weaviate MCP servers",
-    "description": "See how Weaviate MCP servers connect AI assistants to your data and tools. Join our experts for a practical walkthrough, live demos, and Q&A.",
+    "title": "Inside Weaviate's MCP Ecosystem",
+    "description": "​In this webinar, we’ll explore why MCP matters and demonstrate two MCP servers in the Weaviate ecosystem: Weaviate Database and Weaviate Query Agent MCP.",
     "buttonLabel": "Register for the webinar",
-    "link": "",
+    "link": "https://luma.com/5mw2w4n8?lm_source=embed",
     "visualLabel": "Live webinar",
     "visualText": "MCP"
   }
