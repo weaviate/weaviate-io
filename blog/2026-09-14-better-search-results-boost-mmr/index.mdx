@@ -165,17 +165,27 @@ Boost and MMR are two tools in a longer row of knobs. Here is the map, keyed by 
 | Query drifts toward the wrong sense of a word | `move_to` / `move_away` |
 | Results must meet a condition, full stop | Filter |
 
-A short note on each, with links instead of a re-teach:
+A short note on each, with links instead of a re-teach.
 
-**Hybrid alpha and fusion.** In a hybrid query, `alpha` weights the vector half against the keyword half: 0 is pure keyword, 1 is pure vector, and the server default is 0.75, applied when a request leaves `alpha` unset. As with `balance` above, set it explicitly, so you know what each query actually ran with. Behind it sit two fusion algorithms that merge the two ranked lists, with `relativeScoreFusion` as the default. If your hybrid results lean too literal or too loose, tune alpha before anything else. [Hybrid Search Explained](/blog/hybrid-search-explained) covers the idea, and [the fusion deep dive](/blog/hybrid-search-fusion-algorithms) covers how the merge works.
+### Hybrid alpha and fusion
 
-**Reranking.** A [reranker](https://docs.weaviate.io/weaviate/search/rerank) sends the retrieved page through a heavier model that scores each result against the query, then re-orders. Weaviate has reranker modules for providers including Cohere, VoyageAI, JinaAI, NVIDIA, and Contextual AI, plus local transformer models. Two things to keep straight: a reranker only re-orders what was already retrieved, so it cannot recover a document your search missed, and it runs last, after boost and MMR. If you have wired reranking into a Pinecone or Qdrant stack, the pattern is the same; in Weaviate the rerank step is part of the query rather than a second call you orchestrate yourself.
+In a hybrid query, `alpha` weights the vector half against the keyword half: 0 is pure keyword, 1 is pure vector, and the server default is 0.75, applied when a request leaves `alpha` unset. As with `balance` above, set it explicitly, so you know what each query actually ran with. Behind it sit two fusion algorithms that merge the two ranked lists, with `relativeScoreFusion` as the default. If your hybrid results lean too literal or too loose, tune alpha before anything else. [Hybrid Search Explained](/blog/hybrid-search-explained) covers the idea, and [the fusion deep dive](/blog/hybrid-search-fusion-algorithms) covers how the merge works.
 
-**Keyword (BM25) tuning.** For the keyword side, you can weight properties relative to each other, so a match in the title counts more than one in the body: `properties=["title^2", "description"]`. There is also a search operator that controls whether all query terms must match or only some. Both are on the [keyword search page](https://docs.weaviate.io/weaviate/search/bm25).
+### Reranking
 
-**Autocut.** Result lists often have a natural cliff: a handful of strong matches, then a long tail of weak ones. [Autocut](https://docs.weaviate.io/weaviate/api/graphql/additional-operators#autocut) cuts the list at those score jumps, so you return "the good ones" instead of a fixed twenty.
+A [reranker](https://docs.weaviate.io/weaviate/search/rerank) sends the retrieved page through a heavier model that scores each result against the query, then re-orders. Weaviate has reranker modules for providers including Cohere, VoyageAI, JinaAI, NVIDIA, and Contextual AI, plus local transformer models. Two things to keep straight: a reranker only re-orders what was already retrieved, so it cannot recover a document your search missed, and it runs last, after boost and MMR. If you have wired reranking into a Pinecone or Qdrant stack, the pattern is the same; in Weaviate the rerank step is part of the query rather than a second call you orchestrate yourself.
 
-**Steering a vector query.** `near_text` queries accept [`move_to` and `move_away`](https://docs.weaviate.io/weaviate/api/graphql/search-operators#neartext) arguments that pull the query vector toward or away from concepts you name. Searching "jaguar" and drowning in cars? Move away from "vehicle". It is a blunt instrument next to a boost, but sometimes a blunt instrument is what the query needs.
+### Keyword (BM25) tuning
+
+For the keyword side, you can weight properties relative to each other, so a match in the title counts more than one in the body: `properties=["title^2", "description"]`. There is also a search operator that controls whether all query terms must match or only some. Both are on the [keyword search page](https://docs.weaviate.io/weaviate/search/bm25).
+
+### Autocut
+
+Result lists often have a natural cliff: a handful of strong matches, then a long tail of weak ones. [Autocut](https://docs.weaviate.io/weaviate/api/graphql/additional-operators#autocut) cuts the list at those score jumps, so you return "the good ones" instead of a fixed twenty.
+
+### Steering a vector query
+
+`near_text` queries accept [`move_to` and `move_away`](https://docs.weaviate.io/weaviate/api/graphql/search-operators#neartext) arguments that pull the query vector toward or away from concepts you name. Searching "jaguar" and drowning in cars? Move away from "vehicle". It is a blunt instrument next to a boost, but sometimes a blunt instrument is what the query needs.
 
 And if you would rather hand the whole tuning problem to an agent that rewrites queries and reranks for you, that is a different layer of the stack: the Query Agent's [Search Mode](/blog/search-mode-effort).
 
