@@ -1,0 +1,49 @@
+---
+title: "Weaviate security release - High severity fix for credential disclosure in the Google modules (CVE pending assignment)"
+slug: weaviate-security-release-googlemodules-2026
+authors: [harneet]
+date: 2026-09-09
+tags: ["security"]
+description: "Weaviate v1.39.3 fixes a high-severity credential disclosure issue in the Google modules."
+---
+
+## Intro
+
+This week we have released Weaviate `v1.39.3`. This release contains a fix for a high severity credential disclosure vulnerability in Weaviate's Google-backed modules, where an unvalidated endpoint setting could be used to redirect an outbound request, and the operator's Google credential with it, to an arbitrary host. A CVE has been requested from MITRE and is pending assignment; we will update this post with the CVE ID once it has been issued.
+
+As per our security policy, Weaviate customers running in Weaviate Cloud, and Marketplace customers on AWS, Azure and GCP have been patched seamlessly. Our Weaviate Enterprise Support customers have received early notification under embargo, and our customer-facing teams are working with Weaviate Dedicated customers to organize version upgrades where appropriate.
+
+## Credential disclosure via unvalidated apiEndpoint in the Google modules (CVE pending assignment)
+
+Weaviate's Google-backed modules (`text2vec-google`, `multi2vec-google` and `generative-google`) allow the host used for outbound Vertex AI and Gemini requests to be set through an `apiEndpoint` configuration value. That value was written directly into the host portion of the request URL without validation, and the operator's configured Google credential was attached to the request as a bearer token regardless of where the request was being sent. A user who can influence `apiEndpoint` could therefore cause Weaviate to deliver that credential to a host of their choosing.
+
+There were two paths to setting the value:
+
+1. Through collection configuration. Setting `moduleConfig.text2vec-google.apiEndpoint` (or the equivalent for the other two modules) when creating or updating a collection. Validation at this layer checked only that a project ID was present; the endpoint string itself was never checked. This path requires schema-write privileges.
+2. Through a GraphQL query parameter. `generative-google` accepted `apiEndpoint` as an inline parameter on a generative query, and the per-query value overrode the collection default. This path requires only ordinary read access to a collection already configured to use `generative-google`, with no schema-write privilege and no change to stored configuration.
+
+The second path is the more serious of the two, and is the main reason for the severity rating.
+
+The credential exposed depends on how the deployment authenticates to Google. Where a static API key is configured, that key is disclosed. Where `USE_GOOGLE_AUTH` is enabled, the disclosed value is a live OAuth access token scoped to `cloud-platform`, which is broad enough to reach most Google Cloud APIs available to the underlying service account. This is the documented way to run Vertex AI vectorization using Google Cloud Application Default Credentials, and the usual arrangement for GKE deployments using Workload Identity.
+
+This is a distinct code path from the base URL validation added in earlier releases. That work hardened the endpoint fields of a large number of other model providers, but those fields are named `baseURL`; the Google modules' field is named `apiEndpoint` and was not covered. The related dial-time protection is also opt-in via `MODULES_VALIDATE_BASE_URL` and blocks only loopback, private and link-local addresses, so it does not prevent a credential being sent to an attacker-controlled host on the public internet.
+
+The fix extends endpoint validation to the `apiEndpoint` field in all three Google modules, at both the configuration-validation layer and the GraphQL query-parameter layer.
+
+The CVSS score for this vulnerability is High (7.1).
+
+Impacted versions of Weaviate are < `v1.39.3`. We recommend that impacted users update their Weaviate installations to `v1.39.3` or later to fully address the vulnerability. Until you can upgrade, the affected modules can be disabled by removing `text2vec-google`, `multi2vec-google` and `generative-google` from the `"enabled_modules"` flag. Where the modules are required, we recommend restricting schema-write and query access to collections configured to use them, and scoping the service account used for Vertex AI as narrowly as your workload allows rather than relying on a broad `cloud-platform` scope.
+
+We have no indication that this vulnerability has been exploited.
+
+## Acknowledgements
+
+This vulnerability was discovered and reported by Syed Anas Mohiuddin, an independent security researcher, who notified us through our Vulnerability Disclosure Program. We would like to thank him for the detail and care of the report, and for working with us through validation and remediation.
+
+## Reporting Security Issues
+
+If you think you have found a security vulnerability, please go to our [Security Report page](https://weaviate.io/security-report) to learn how to send us a report. Weaviate will contact you to acknowledge your report, and advise on next steps. We ask that researchers do not disclose vulnerabilities publicly until they have been fixed and announced, unless you have received a response from the Weaviate security team that you can do so.
+
+import WhatNext from "/_includes/what-next.mdx";
+
+<WhatNext />
