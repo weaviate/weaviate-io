@@ -294,8 +294,8 @@ Which topics go in front depends on how often they get rewritten, not on whether
 
 Also, name the topics explicitly in both calls, or the same memory can appear twice. A plain `search` may return the user’s profile alongside everything else, so in our running example the split would become:
 
-- `fetch(topics=["UserProfile"])` when the session opens
-- `search(topics=[...])` for the rest, on every turn
+- a `fetch` with `topics=["UserProfile"]` when the session opens
+- a `search` with `topics` set to the rest, on every turn
 
 The trade-off here is freshness. Whatever the user says in the current session is in the history anyway, but if another session rewrites one of the fetched memories, the current session won't see the change until the next one opens.
 
@@ -321,6 +321,8 @@ So, how much you save depends on how much sits in front of the memory block and 
 The fastest way to fix what your agent remembers isn't more application code. It's opening the topics you clicked past during setup and writing down what you actually want kept - what to leave out, what shape to write it in, and what isn't worth recording at all (unless your setup works just fine using one of our templates).
 
 Then bound the topics that must be singular, scope the ones that need partitioning, set a `limit` to the number of memories you actually want in the prompt, and keep what you fetched at the front of the prompt and what you searched for at the end. A few minutes on that config screen is usually all it takes! Otherwise you get an agent that remembers your name and not much else.
+
+> **Get started with [Engram](/product/engram) in [Weaviate Cloud](https://console.weaviate.cloud/) and create your free project today.**
 
 For any questions, ideas, or to just chat, feel free to join the conversation on our [community forum](https://forum.weaviate.io/).
 
