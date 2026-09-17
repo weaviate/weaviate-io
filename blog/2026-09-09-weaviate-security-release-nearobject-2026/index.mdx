@@ -1,0 +1,53 @@
+---
+title: "Weaviate security release - Medium severity fix for a cross-collection vector disclosure in nearObject (CVE pending assignment)"
+slug: weaviate-security-release-nearobject-2026
+authors: [harneet]
+date: 2026-09-09
+tags: ["security"]
+image: ./img/hero.jpg
+description: "Weaviate v1.39.3 fixes a medium-severity authorization issue in the nearObject GraphQL operator."
+---
+
+![Intro](./img/hero.jpg)
+
+## Intro
+
+This week we have released Weaviate `v1.39.3`. This release contains a fix for a medium severity authorization vulnerability in Weaviate's GraphQL `nearObject` search operator, where a user could read the vector of an object in a collection they do not have permission to read. A CVE has been requested from MITRE and is pending assignment; we will update this post with the CVE ID once it has been issued.
+
+As per our security policy, Weaviate customers running in Weaviate Cloud, and Marketplace customers on AWS, Azure and GCP have been patched seamlessly. Our Weaviate Enterprise Support customers have received early notification under embargo, and our customer-facing teams are working with Weaviate Dedicated customers to organize version upgrades where appropriate.
+
+## Cross-collection vector disclosure via nearObject (CVE pending assignment)
+
+A `nearObject` search takes a beacon naming an existing object, loads that object's vector, and uses it as the search vector. Weaviate authorized the collection being searched, but did not authorize the collection named in the beacon. Where the two differed, the vector of the beacon target was loaded and used even if the caller had no read permission on it.
+
+The result is not a direct read of the protected object. The caller never sees the object, its properties or its vector in the response. What the caller does receive is the distance between the protected vector and each object returned by the search, and those distances are enough to reconstruct the protected vector. By populating a collection they do control with chosen probe vectors and then running a `nearObject` search against that collection with a beacon pointing into a collection they do not control, a caller can recover the protected vector to a high degree of precision. The reporter demonstrated recovery of a normalized four-dimensional vector to within 5e-9 using eight probe objects.
+
+To carry out the attack, a user needs:
+
+1. The name of the target collection and the UUID of a specific object within it. These are not guessable, but they are often known, for example where an application stores cross-references between collections.
+2. Permission to read collection definitions, which GraphQL requires in order to expose the collection's fields.
+3. Permission to create and read data in some other collection, used to hold the probe vectors.
+
+The user does not need read permission on the target collection. Weaviate correctly returns 403 for a direct read of the protected object while the same account retrieves the same vector through the search path.
+
+This affects deployments that rely on RBAC to separate collections within a shared cluster, for instance where several teams or applications share one Weaviate instance and each has read access only to its own collection. Deployments where every user with query access is already trusted with all collection data are not meaningfully affected.
+
+The fix authorizes the beacon target before its vector is loaded, at the shared vector lookup rather than in the GraphQL resolver, so that every API surface using that lookup is covered by the same check.
+
+The CVSS score for this vulnerability is Medium.
+
+Impacted versions of Weaviate are < `v1.39.3`. We recommend that impacted users update their Weaviate installations to `v1.39.3` or later to fully address the vulnerability. Until you can upgrade, we recommend reviewing which roles hold `read_collections` across all collections, since a user who cannot see a collection's definition cannot query its fields through GraphQL, and narrowing that permission to the collections each role legitimately needs. Reviewing which roles hold `create_data` on any collection is also worthwhile, as the attack requires somewhere to place probe vectors.
+
+We have no indication that this vulnerability has been exploited.
+
+## Acknowledgements
+
+This vulnerability was discovered and reported by Civitasmass, who notified us through our Vulnerability Disclosure Program. The report included a complete working reproducer and a precise root cause analysis, which allowed us to confirm and fix the issue quickly. We would like to thank them for reporting it responsibly.
+
+## Reporting Security Issues
+
+If you think you have found a security vulnerability, please go to our [Security Report page](https://weaviate.io/security-report) to learn how to send us a report. Weaviate will contact you to acknowledge your report, and advise on next steps. We ask that researchers do not disclose vulnerabilities publicly until they have been fixed and announced, unless you have received a response from the Weaviate security team that you can do so.
+
+import WhatNext from "/_includes/what-next.mdx";
+
+<WhatNext />
