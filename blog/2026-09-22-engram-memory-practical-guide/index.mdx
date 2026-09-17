@@ -68,9 +68,11 @@ Victoria's walkthrough video covers that end-to-end, including the console setup
     </iframe>
 </div>
 
+<br />
+
 `memories.add` hands back a run, not a memory, and nothing you send is searchable until that run finishes. The [run status guide](https://docs.weaviate.io/engram/guides/check-run-status) covers the states, and why you usually shouldn't wait on one.
 
-Everything below is the part you configure yourself, the topics.
+For how the pipeline itself works, the [Engram: Memory by Weaviate](/blog/engram-deep-dive) blog goes through it step by step. Which memories it pulls out of the data you send, though, is decided by your topic descriptions, so that is where we start.
 
 ## How topic descriptions decide what gets remembered {#topic-descriptions}
 
@@ -96,9 +98,9 @@ Other ready-to-use project templates exist as well, like `Coding Assistant` and 
 
 :::
 
-![The same sentence sent to three topics. Each description produces a different memory shape.](./img/three-descriptions.png)
-
 `UserKnowledge` broke that one sentence into three atomic facts, each retrievable on its own. `ConversationSummary` kept it whole as a flowing narrative. Same input, same pipeline, same moment, and two completely different shapes, because the two topics describe themselves differently.
+
+![The same sentence sent to three topics. Each description produces a different memory shape.](./img/three-descriptions.png)
 
 We didn’t write any routing logic or a formatter. The descriptions did both, because a topic description is the memory extraction prompt, and it controls three things:
 
@@ -112,25 +114,23 @@ Take a throwaway message like:
 
 Four memories came back. Three were weather, hardware, and other passing events. The agent now knows it rained on Thursday, and short of a delete call, that fact can stick around indefinitely.
 
-To fix this, the broad topic can be replaced with a focused one by just specifying what you don't want to be remembered. I created a more focused topic called `UserFacts` to replace `UserKnowledge` and its description ends with a new rule:
+To fix this, the broad topic can be replaced with a focused one by just specifying what you don't want to be remembered. I created a new topic called `UserFacts` to replace `UserKnowledge` and its description ends with a new rule:
 
 > *"Do not record events, incidents, or passing conditions."*
 
-That one line made the difference as instead of listing every kind of junk to exclude, it gives the model general criteria for what to ignore.
+That one line made the difference as it gives the model general criteria for what to ignore. I tested it with three new messages: a late train, a cat on the keyboard, and a stolen lunch, each paired with one lasting decision. Across 24 runs, none of the noisy incidents reached memories created by `UserFacts`, and the decisions were captured in all of them.
 
-I tested it with three new messages: a late train, a cat on the keyboard, and a stolen lunch, each paired with one lasting decision. Across 24 runs, none of the noisy incidents reached memories created by `UserFacts`, and the decisions were captured in all of them.
-
-For a focused topic, a rule about what to exclude does more work than a list of what to include. Name the kind of thing you want left out, rather than every example you can think of, and the rule generalises to cases you never anticipated (`UserFacts` was only created for this experiment and from here on, I switched back to stock `UserKnowledge`).
+So, for a focused topic, a rule about what to exclude does more work than a list of what to include. Name the kind of thing you want left out, rather than every example you can think of, and the rule can generalise to cases you never anticipated. Also, `UserFacts` was created only for this experiment and from here on, I switched back to the stock `UserKnowledge` topic.
 
 ### What shape to write it in
 
-You're almost certainly going to read your memories into a prompt, so you should also describe the form you want, not just the subject. For example, *"Two or three sentences of plain prose, second person, no headings or bullet points"* gets you something you can drop into context untouched. Or, ask for atomic facts instead, and you can get rows you can retrieve one at a time.
+You're almost certainly going to read your memories into a prompt, so you should describe the form you want, not just the subject. For example, *"Two or three sentences of plain prose, second person, no headings or bullet points"* gives you something you can drop into context untouched. Or ask for atomic facts instead, and you can get rows you can retrieve one at a time.
 
 ### When something is worth remembering
 
 A description is applied to one input at a time, alongside whatever related memories the pipeline pulls in for it. That makes it good at judgements it can settle on the spot, but it cannot help with anything that depends on what came before.
 
-Accumulating is a separate step. A pipeline chains extract, transform and commit step by default, and a fourth kind of step, a buffer, can sit anywhere among them, holding memories or raw inputs back until a trigger fires which could be a count, or a timer. A rule about something building up over time belongs there, not in the wording of your description.
+Accumulating is a separate step. A pipeline chains extract, transform and commit step by default, and a fourth kind of step, a buffer, can sit anywhere among them. It holds memories or raw inputs back until a trigger fires which could be a count, or a timer. A rule about something building up over time belongs there, not in the wording of your description.
 
 :::note
 
@@ -138,7 +138,7 @@ A default project runs extract, transform and commit. Adding a buffer, or reorde
 
 :::
 
-Also, descriptions are editable in the console at any time, without recreating the project - so you can always iterate until they work correctly as intended.
+Also, descriptions are editable in the console at any time, without recreating the project - so you can always iterate until they work correctly.
 
 ## The other config fields
 
@@ -164,7 +164,7 @@ Continuing the 100-line demo example from earlier, let's say four days later I s
 
 > "Update: the demo is 400 lines now. The 100-line rule is officially dead."
 
-Zero created, two updated. `UserKnowledge` memories afterwards:
+Zero memories created, two updated. `UserKnowledge` memories afterwards:
 
 ```
 [UserKnowledge] Prajjwal works as a developer advocate at Weaviate.
@@ -173,13 +173,13 @@ Zero created, two updated. `UserKnowledge` memories afterwards:
                 under 100 lines; as of 5 Sep 2026 his demos are 400 lines long.
 ```
 
-The memory about the 100-line rule was rewritten in place: the rule is gone. The other two were left alone, since nothing in the new message contradicted them. That is the transform step from the Engram pipeline doing its job, and every topic gets it, bounded or not. Note that `deleted` was zero, as reconciliation generally supersedes rather than erases. If you want a memory gone explicitly, you delete it with `memories.delete()`.
+The memory about the 100-line rule was rewritten in place and the rule is gone. The other two were left alone, since nothing in the new message contradicted them. That is the transform step from the Engram pipeline doing its job, and every topic gets it, bounded or not. Note that `deleted` was zero, as reconciliation generally supersedes rather than erases. If you want a memory gone explicitly, you delete it with `memories.delete()`.
 
 ### Bounded
 
 What bounded adds is a promise about the count. A bounded topic holds at most one memory per unique scope. Engram derives the memory's ID from the topic name and the scope, so every later write lands on that same ID and updates it instead of adding another.
 
-The update above was one run. Send the introduction and then the update to five fresh users, each starting from an empty store, and count how many memories land:
+The update above was one run. Send the introduction and then the update message to five fresh users, each starting from an empty store, and count how many memories land:
 
 ```
                               run 0  run 1  run 2  run 3  run 4
@@ -187,13 +187,13 @@ UserKnowledge (unbounded)         2      4      4      3      3
 UserProfile (bounded)             1      1      1      1      1
 ```
 
-The unbounded topic landed anywhere between two and four memories: sometimes the retraction became one memory, sometimes two. `UserProfile` always held exactly one memory, five times out of five, because it is bounded. So if your code needs to read a single standing memory for a topic, you should always bound the topic rather than trusting the count. The template bounds `ConversationSummary` for the same reason. A conversation should have one running summary that gets rewritten, not a new one per message.
+The unbounded topic landed anywhere between two and four memories: sometimes the retraction became one memory, sometimes two, and so on. `UserProfile` always held exactly one memory, five times out of five, because it is bounded. So if your code needs to read a single standing memory for a topic, you should always bound the topic rather than trusting the count. The template bounds `ConversationSummary` for the same reason. A conversation should have one running summary that gets rewritten, not a new one per message.
 
 ### Scope
 
 Scope partitions a topic, and there are two kinds. User scope is a hard wall as every write and every read has to carry a `user_id`. Property scopes like `conversation_id` or `repo` are required on writes but optional on reads, so you can read one partition or all of them at once.
 
-That optionality is the reason to use a property. The template scopes `ConversationSummary` by `conversation_id`, so each thread keeps its own summary and you can still ask for every summary a user has. If two partitions should never be read together, don't use a property. Give them separate `user_id`s instead. And if a fact should follow the user everywhere, leave it at user scope and add nothing.
+That optionality is the reason to use a property. The template scopes `ConversationSummary` by `conversation_id`, so each thread keeps its own summary and you can still ask for every summary a user has. If two partitions are never meant to be read together, don't use a property and give them separate `user_id`s instead. And if a fact should follow the user everywhere, leave it at user scope and add nothing.
 
 A write has to carry every key the topic declares, or it's rejected like this:
 
@@ -203,9 +203,7 @@ insufficient scope: missing required user_id to write memories
 invalid scope property: [repo] not configured on any topic (configured properties: [conversation_id])
 ```
 
-An empty string counts as missing, and a property no topic declares gets an error naming the ones the project has.
-
-Reads only insist on `user_id`. An empty `conversation_id` is treated as absent and searches every conversation, even though a write would have rejected it, and a `conversation_id` that was never written simply returns nothing from the conversation-scoped topic.
+An empty string counts as missing, and a property no topic declares gets an error naming the ones the project has. Reads only insist on `user_id`. An empty `conversation_id` is treated as absent and searches every conversation, even though a write would have rejected it, and a `conversation_id` that was never written simply returns nothing from the conversation-scoped topic.
 
 ## How to read memories back {#retrieval}
 
@@ -247,7 +245,7 @@ Nothing comes back with a score as the results are not ranked. It suits bounded 
 
 ### Get
 
-And if you already hold a memory's ID, use `get` to simply read it back:
+If you already hold a memory's ID, use `get` to simply read it back:
 
 ```python
 memory = client.memories.get(
@@ -277,9 +275,9 @@ Engram's two reads line up with them: `fetch` returns a whole topic without a qu
 
 ### Search results go last
 
-Another approach is to move the memory search results to the end of the prompt, after the user's message, in a message block of their own. On the next turn, you replace that message block with the new search results rather than keeping both. Put the breakpoint on the user message just before it. Now the system prompt and the whole history are read from cache, and you pay full price just for the new messages and the memory block.
+A better option is to move the search results to the end of the prompt, after the user's message, in a message of their own. On the next turn, you replace that message with the new search results rather than keeping both. Put the breakpoint on the user message just before it. Now the system prompt and the whole history are read from cache, and you pay in full only for the new messages and the memory block.
 
-The breakpoint is the important part here because if you don't place it, the provider puts it at the end of the last message, which in this layout is the memory block. And if that block is different next turn, the prefix doesn't match. In this situation, OpenAI's GPT-5.6 models cache the system prompt and nothing after it. Anthropic caches nothing at all.
+The breakpoint is the important part here because if you don't place it, the provider puts it at the end of the last message, which in this layout is the memory block. And if that block is different next turn, the prefix doesn't match. In this situation, GPT-5.6 models end up caching only the system prompt, and Claude models don't get a cache hit at all.
 
 The field for placing the breakpoint also differs by provider:
 
@@ -290,9 +288,9 @@ The field for placing the breakpoint also differs by provider:
 
 Some memories are needed on every turn, whatever the user asks. Like, in one of our internal agents I built, those were the user's profile and writing preferences. If someone says they write in British English or introduces themselves, every reply in the session should know that, not just the replies where the search happens to bring it back.
 
-Searching for those every turn is wasted work, and it puts text that never changes inside the block that does. A better layout is to `fetch` them once when the session opens and put the result in a user message right after the system prompt. It stays identical all session, so it is read from cache from the second turn on.
+Searching for those every turn is wasted work, and it puts text that never changes inside the block that does. The alternative is to `fetch` them once when the session opens and put the result in a user message right after the system prompt. It stays identical all session, so it is read from cache from the second turn on.
 
-Always pick the topics by how often they get rewritten, not by whether they are bounded. In our example, `UserProfile` changes less frequently, so it can sit at the front while `ConversationSummary` is bounded too, but it is rewritten on every message, so it stays in the per-turn search.
+Which topics go in front depends on how often they get rewritten, not on whether they are bounded. In our example, `UserProfile` rarely changes, so it can sit at the front. `ConversationSummary` is bounded too, but it is rewritten on every message, so it stays in the per-turn search.
 
 Also, name the topics explicitly in both calls, or the same memory can appear twice. A plain `search` may return the user’s profile alongside everything else, so in our running example the split would become:
 
@@ -322,7 +320,7 @@ So, how much you save depends on how much sits in front of the memory block and 
 
 The fastest way to fix what your agent remembers isn't more application code. It's opening the topics you clicked past during setup and writing down what you actually want kept - what to leave out, what shape to write it in, and what isn't worth recording at all (unless your setup works just fine using one of our templates).
 
-Then bound the topics that must be singular, set a `limit` to the number of memories you actually want in the prompt, and keep what you fetched at the front of the prompt and what you searched for at the end. A few minutes on that config screen is usually all it takes! Otherwise you get an agent that remembers your name and not much else.
+Then bound the topics that must be singular, scope the ones that need partitioning, set a `limit` to the number of memories you actually want in the prompt, and keep what you fetched at the front of the prompt and what you searched for at the end. A few minutes on that config screen is usually all it takes! Otherwise you get an agent that remembers your name and not much else.
 
 For any questions, ideas, or to just chat, feel free to join the conversation on our [community forum](https://forum.weaviate.io/).
 
