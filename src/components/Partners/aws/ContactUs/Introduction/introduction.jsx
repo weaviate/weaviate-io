@@ -1,21 +1,21 @@
-import Link from '@docusaurus/Link';
-import React, { useEffect } from 'react';
-import styles from './styles.module.scss';
+import Link from "@docusaurus/Link";
+import React, { useEffect } from "react";
+import styles from "./styles.module.scss";
 
 export default function introduction() {
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://js.hsforms.net/forms/embed/v2.js';
+    const script = document.createElement("script");
+    script.src = "https://js.hsforms.net/forms/embed/v2.js";
     document.body.appendChild(script);
 
-    script.addEventListener('load', () => {
+    script.addEventListener("load", () => {
       // @TS-ignore
       if (window.hbspt) {
         // @TS-ignore
         window.hbspt.forms.create({
-          portalId: '8738733',
-          formId: 'df09b2ec-ecbb-48ee-8c1e-f307049fc0bf',
-          target: '#hubspotForm',
+          portalId: "8738733",
+          formId: "df09b2ec-ecbb-48ee-8c1e-f307049fc0bf",
+          target: "#hubspotForm",
         });
       }
     });
@@ -36,14 +36,12 @@ export default function introduction() {
               back.
             </p>
             <p className={styles.smallText}>
-              Fill out the form to get access to the Weaviate Vector database
-              deployed via the AWS Marketplace free for 30 days. AWS
-              infrastructure charges will be extra and not included. If you have
-              already subscribed, we will send you an additional private offer
-              that you can use any time during the next six months.
+              Fill out the form and our team will help you get started with
+              Weaviate Cloud on AWS Marketplace. Start with a free tier, then
+              scale with pay-as-you-go pricing billed through your AWS account.
+              Our team can help you:
             </p>
             <ul className={styles.smallText}>
-              <li>Get access to office hours to help you:</li>
               <li>Get started with Weaviate</li>
               <li>Learn best practices</li>
               <li>Work through setup issues</li>
