@@ -12,6 +12,13 @@ const CASE_STUDIES = [
     styleClass: styles.BS16,
   },
   {
+    id: "booking",
+    title: "How Booking.com selected Weaviate as its vector database standard",
+    href: "/case-studies/booking",
+    tags: ["enterprise", "vectors", "production"],
+    styleClass: styles.BS17,
+  },
+  {
     id: "instabase",
     title: "Turning over 450 data types into customer insights",
     href: "/case-studies/instabase",
@@ -363,6 +370,29 @@ export default function MainSection() {
                     </div>
                     <div className={styles.buttons}>
                       <div className={`${styles.csLink} ${styles.csLight}`}>
+                        Read Case Study {"->"}
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+
+              {/* Featured Booking.com case study */}
+              <div className={styles.row}>
+                <Link
+                  to="/case-studies/booking"
+                  className={`${styles.bentoSmall} ${styles.BS17}`}
+                >
+                  <div className={styles.bentoText}>
+                    <div className={styles.innerText}>
+                      <div className={styles.bentoLogo}></div>
+                      <h3>
+                        How Booking.com selected Weaviate as its vector database
+                        standard
+                      </h3>
+                    </div>
+                    <div className={styles.buttons}>
+                      <div className={`${styles.csLink}`}>
                         Read Case Study {"->"}
                       </div>
                     </div>
