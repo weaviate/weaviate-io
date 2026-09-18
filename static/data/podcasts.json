@@ -1,5 +1,13 @@
 [
   {
+    "title": "Delegance Brokerage with Alex Ledbetter - Weaviate Podcast #144",
+    "description": "Alex Ledbetter is the founder of Delegance Brokerage, an AI-native commercial insurance brokerage he built entirely on his own.",
+    "youtube": "RYB4cj9L3bQ",
+    "date": "26-09-17",
+    "cover_image": "/img/podcasts/podcast-144.jpg",
+    "is_use_case": false
+  },
+  {
     "title": "AutoIndex with Sam O'Nuallain - Weaviate Podcast #143",
     "description": "Sam O'Nuallain joins the Weaviate Podcast to discuss AutoIndex, research from UMass Amherst and Databricks on learning representation programs for retrieval.",
     "youtube": "mAj92SoEhjc",
