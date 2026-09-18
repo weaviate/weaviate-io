@@ -1866,10 +1866,10 @@
 }
 
 .csLight {
-  color: #b9c8de;
+  color: #b9c8de !important;
 
   &:hover {
-    color: #b9c8de;
+    color: #b9c8de !important;
   }
 }
 
@@ -2157,7 +2157,7 @@
 
 .csLink:hover,
 .csLight:hover {
-  color: #43e2c5;
+  color: #43e2c5 !important;
 }
 
 .searchInput {
