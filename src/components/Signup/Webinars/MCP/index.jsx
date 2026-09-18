@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import styles from './styles.module.scss';
+import React, { useEffect, useState } from "react";
+import styles from "./styles.module.scss";
 
 const HUBSPOT = {
-  portalId: '8738733',
-  formId: '4f916e0b-6762-4270-af8e-af3b4ce6938f',
-  region: 'na1',
-  shareUrl: 'https://share.hsforms.com/1T5FuC2diQnCvjq87TOaTjw57aul',
+  portalId: "8738733",
+  formId: "4f916e0b-6762-4270-af8e-af3b4ce6938f",
+  region: "na1",
+  shareUrl: "https://share.hsforms.com/1T5FuC2diQnCvjq87TOaTjw57aul",
 };
 
 export default function WebinarRegistration() {
@@ -32,7 +32,7 @@ export default function WebinarRegistration() {
           portalId: HUBSPOT.portalId,
           formId: HUBSPOT.formId,
           region: HUBSPOT.region,
-          target: '#webinar-registration-form',
+          target: "#webinar-registration-form",
         });
         formCreated = true;
         clearTimeout(timer);
@@ -43,36 +43,36 @@ export default function WebinarRegistration() {
 
     const onLoad = () => {
       const script = document.querySelector(scriptSelector);
-      script?.setAttribute('data-loaded', 'true');
+      script?.setAttribute("data-loaded", "true");
       createForm();
     };
 
     const onError = () => setFallback(true);
 
     if (existing) {
-      existing.addEventListener('load', onLoad, { once: true });
-      existing.addEventListener('error', onError, { once: true });
+      existing.addEventListener("load", onLoad, { once: true });
+      existing.addEventListener("error", onError, { once: true });
 
       if (
-        existing.getAttribute('data-loaded') === 'true' &&
+        existing.getAttribute("data-loaded") === "true" &&
         window.hbspt?.forms?.create
       ) {
         createForm();
       }
     } else {
-      const script = document.createElement('script');
-      script.src = 'https://js.hsforms.net/forms/embed/v2.js';
+      const script = document.createElement("script");
+      script.src = "https://js.hsforms.net/forms/embed/v2.js";
       script.async = true;
-      script.setAttribute('data-cookieconsent', 'ignore');
-      script.addEventListener('load', onLoad);
-      script.addEventListener('error', onError);
+      script.setAttribute("data-cookieconsent", "ignore");
+      script.addEventListener("load", onLoad);
+      script.addEventListener("error", onError);
       document.body.appendChild(script);
     }
 
     return () => {
       clearTimeout(timer);
-      existing?.removeEventListener('load', onLoad);
-      existing?.removeEventListener('error', onError);
+      existing?.removeEventListener("load", onLoad);
+      existing?.removeEventListener("error", onError);
     };
   }, []);
 
@@ -93,7 +93,7 @@ export default function WebinarRegistration() {
 
             <div className={styles.eventMeta}>
               <span>WEBINAR</span>
-              <span>OCTOBER 14 · ONLINE</span>
+              <span>OCTOBER 14 · ONLINE · 16:00 - 17:00 BST</span>
             </div>
             <h1>Inside Weaviate's MCP Ecosystem</h1>
             <p>
@@ -103,7 +103,10 @@ export default function WebinarRegistration() {
             </p>
           </section>
 
-          <section className={styles.registration} aria-labelledby="register-title">
+          <section
+            className={styles.registration}
+            aria-labelledby="register-title"
+          >
             <p className={styles.eyebrow}>Save your seat</p>
             <h2 id="register-title">Register for the webinar</h2>
             <p className={styles.formIntro}>
@@ -131,7 +134,7 @@ export default function WebinarRegistration() {
 
             {fallback && (
               <p className={styles.fallbackNote}>
-                Having trouble loading the form?{' '}
+                Having trouble loading the form?{" "}
                 <a
                   href={HUBSPOT.shareUrl}
                   target="_blank"
@@ -154,8 +157,8 @@ export default function WebinarRegistration() {
               assistants to external data sources and tools.
             </p>
             <p>
-              In this webinar, we’ll explore why MCP matters and demonstrate
-              two MCP servers in the Weaviate ecosystem: Weaviate Database and
+              In this webinar, we’ll explore why MCP matters and demonstrate two
+              MCP servers in the Weaviate ecosystem: Weaviate Database and
               Weaviate Query Agent MCP. Through live demos, you’ll see how an AI
               assistant can inspect your schema, run hybrid search across your
               collections, and answer plain-English questions about your own
@@ -164,8 +167,7 @@ export default function WebinarRegistration() {
             <p>
               We’ll also be joined by Delegance Brokerage, who built their own
               MCP server on top of Weaviate. They’ll share what they built, why
-              they chose MCP, and what they learned bringing it into
-              production.
+              they chose MCP, and what they learned bringing it into production.
             </p>
           </div>
         </section>
