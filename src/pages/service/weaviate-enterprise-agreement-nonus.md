@@ -234,7 +234,7 @@ by Weaviate to Customer.
    3. Infrastructure Overhead Charge. Operating the Weaviate Dedicated Cloud offering requires the setup and maintenance of dedicated compute resources, referred to as “Infrastructure Overhead.” This overhead is essential for managing and operating Customer clusters within a single-tenant architecture, ensuring that the cluster is always available, secure, and performing optimally. Due to the inherent costs associated with maintaining a single-tenant infrastructure, a minimum charge per hour will apply, irrespective of actual usage. This charge reflects the baseline compute resources required to keep Customer Weaviate cluster operational, even during periods of low activity.
 <br></br>
 
-2. **Weaviate Units**
+2. **Weaviate**
    <br></br>
    1. Weaviate Units (WUs): Weaviate bills for customer usage using purchasable Weaviate Units (“WUs”). Consumption of WUs is calculated based on four primary billable components: (A) Vector Dimensions: WU consumption for vector dimensions varies dynamically based on the applicable index type (e.g., HNSW, flat), compression method (e.g., product quantization, scalar quantization, uncompressed), and cloud/deployment region. (B) Storage: Charges based on the volume and storage tiering (e.g., Hot, Warm, or Cold storage) of data maintained within the Customer cluster. (C) Backup: Charges for backup storage, snapshot creation, and retention of backup data. (D) Data Transfer: Charges for network data transfer, including data egress, ingress, and cross-region transfer.
    <br></br>
