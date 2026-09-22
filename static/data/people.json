@@ -177,15 +177,6 @@
     "team": "support-engineering"
   },
   {
-    "name": "Edward Schmuhl",
-    "title": "Machine Learning Engineer",
-    "photo": "edward.jpg",
-    "linkedin": "edward-schmuhl-563161195",
-    "twitter": "aestheticedwar1",
-    "github": "thomashacker",
-    "team": "developer-growth"
-  },
-  {
     "name": "Emma Dikmessalim",
     "title": "Director of People & Culture",
     "photo": "Emma-Dikmessalim.jpg",
@@ -372,21 +363,6 @@
     "team": ["wcd", "database", "applied-research"]
   },
   {
-    "name": "Philip Vollet",
-    "title": "VP of Growth",
-    "photo": "philip.jpg",
-    "linkedin": "philipvollet",
-    "twitter": "philipvollet",
-    "team": "developer-growth"
-  },
-  {
-    "name": "Prajjwal Yadav",
-    "title": "Developer Growth Intern",
-    "photo": "prajjwal.jpg",
-    "linkedin": "prajjwal-yadav",
-    "team": "developer-growth"
-  },
-  {
     "name": "Rodrigo López",
     "title": "QA Engineer",
     "photo": "Rodrigo-Lopez.jpg",
@@ -442,14 +418,6 @@
     "photo": "tommy.jpg",
     "linkedin": "tbs181194",
     "team": "database"
-  },
-  {
-    "name": "Victoria Slocum",
-    "title": "Machine Learning Engineer",
-    "photo": "victoria.jpg",
-    "linkedin": "victorialslocum",
-    "twitter": "victorialslocum",
-    "team": "developer-growth"
   },
   {
     "name": "Weronika Krajcarz",

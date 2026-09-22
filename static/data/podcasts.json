@@ -1,5 +1,13 @@
 [
   {
+    "title": "humans& with Alexis Ross, Manya Bansal, and Niloofar Mireshghallah - Weaviate Podcast #145",
+    "description": "Alexis, Manya, and Niloofar from humans& join the Weaviate Podcast to introduce Persimmon, a user model built to simulate how humans actually behave in multi-turn, multi-party conversations.",
+    "youtube": "6IC9jkwiZBg",
+    "date": "26-09-21",
+    "cover_image": "/img/podcasts/podcast-145.jpg",
+    "is_use_case": false
+  },
+  {
     "title": "Delegance Brokerage with Alex Ledbetter - Weaviate Podcast #144",
     "description": "Alex Ledbetter is the founder of Delegance Brokerage, an AI-native commercial insurance brokerage he built entirely on his own.",
     "youtube": "RYB4cj9L3bQ",
