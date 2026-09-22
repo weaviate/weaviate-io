@@ -67,9 +67,10 @@ const databasePlans = [
   {
     variant: 'premium',
     title: 'Premium',
-    price: '$400',
-    priceSuffix: '/mo',
-    eyebrow: 'Starts at',
+    price: 'Contact sales for more information',
+    priceSuffix: '',
+    priceSize: 'sm',
+    eyebrow: 'Dedicated | Shared',
     meta: 'Prepaid contract',
     blurb:
       'For teams scaling AI in production who need predictable pricing and enhanced reliability.',

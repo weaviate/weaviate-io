@@ -373,8 +373,8 @@ const databaseCompare = {
             free: 'Free',
             flex: '$45 / month',
             plus: '$280 / month',
-            premiumShared: 'from $400 / month',
-            premiumDedicated: 'from $400 / month',
+            premiumShared: 'Contact sales for more information',
+            premiumDedicated: 'Contact sales for more information',
           },
         },
         {
