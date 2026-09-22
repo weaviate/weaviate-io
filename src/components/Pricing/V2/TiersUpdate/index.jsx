@@ -21,6 +21,7 @@ function TierCard({ plan }) {
     ctaHref,
     ctaVariant,
     offer,
+    priceSize,
     features = [],
   } = plan;
 
@@ -49,7 +50,11 @@ function TierCard({ plan }) {
 
       <h3>{title}</h3>
 
-      <div className={styles.price}>
+      <div
+        className={[styles.price, priceSize === "sm" && styles.priceSm]
+          .filter(Boolean)
+          .join(" ")}
+      >
         {eyebrow && <span className={styles.from}>{eyebrow}</span>}
         {priceStrike && (
           <s style={{ opacity: 0.5, fontWeight: 400, marginRight: "6px" }}>
