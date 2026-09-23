@@ -1,0 +1,19 @@
+[
+  {
+    "featured": true,
+    "eyebrow": "Featured upcoming webinar",
+    "date": "October 14th · Online",
+    "dateLabel": "14 Oct",
+    "weekday": "Wednesday",
+    "time": "16:00 - 17:00 BST",
+    "hosts": "Erika Shorten, Connor Shorten, Ivan and Alexander Ledbetter",
+    "platform": "Zoom",
+    "image": "/img/site/2026/ecosystem-event.jpg",
+    "title": "Inside Weaviate's MCP Ecosystem",
+    "description": "​In this webinar, we’ll explore why MCP matters and demonstrate two MCP servers in the Weaviate ecosystem: Weaviate Database and Weaviate Query Agent MCP.",
+    "buttonLabel": "Register for the webinar",
+    "link": "/webinars/inside-weaviate-mcp-ecosystem",
+    "visualLabel": "Live webinar",
+    "visualText": "MCP"
+  }
+]

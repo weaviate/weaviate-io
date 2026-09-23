@@ -17,6 +17,11 @@ ara:
   title: People Operations Manager
   url: https://linkedin.com/in/aranzazugonzalez
   image_url: /img/people/icon/ara.jpg
+augustas:
+  name: Augustas Skaburskas
+  title: Senior Full Stack Engineer
+  url: https://www.linkedin.com/in/augustas-skaburskas/
+  image_url: /img/people/icon/augustas.jpg
 ben:
   name: Ben Sabrin
   title: VP of Sales
@@ -228,7 +233,7 @@ adam:
   image_url: /img/people/icon/adam.jpg
 asdine:
   name: Asdine El Hrychy
-  title: Software Engineer
+  title: Staff Research Engineer
   url: https://github.com/asdine
   image_url: /img/people/icon/asdine.jpg
 ajit:

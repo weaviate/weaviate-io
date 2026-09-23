@@ -1,0 +1,180 @@
+.bgColor {
+  background: #111111;
+  padding: clamp(64px, 8vw, 120px) 0;
+}
+
+.studyContainer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+  gap: clamp(40px, 6vw, 88px);
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  @media screen and (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.leftContainer {
+  min-width: 0;
+
+  h2 {
+    margin: 2.25rem 0 1rem;
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-weight: 600;
+    line-height: 120%;
+    letter-spacing: -0.03em;
+  }
+
+  p,
+  li {
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 1rem;
+    line-height: 170%;
+  }
+
+  a {
+    color: #43e2c5 !important;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  strong {
+    color: #ddebf2;
+  }
+
+  .quote {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    border-left: 3px solid #43e2c5;
+    border-radius: 0 1rem 1rem 0;
+    background: rgba(67, 226, 197, 0.08);
+    color: #ddebf2 !important;
+    font-weight: 600;
+  }
+
+  .founderImage {
+    background-image: url("/img/site/Aaron-Edwards-DocBots.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 300px;
+    height: 300px;
+    border-radius: 1.25rem;
+    margin: 2rem 0;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.studyContent {
+  max-width: 760px;
+}
+
+.rightContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.topSection,
+.bottomSection {
+  width: 100%;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+}
+
+.topSection {
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(67, 226, 197, 0.14),
+      transparent 42%
+    ),
+    #130c49;
+
+  h2 {
+    margin: 1.5rem 0;
+    font-size: 1.2rem;
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  h3 {
+    color: #43e2c5 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 140%;
+    text-transform: uppercase;
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  p,
+  li {
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 0.95rem;
+    line-height: 165%;
+    margin: 0;
+  }
+}
+
+.bottomSection {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0)),
+    #1a1a1a;
+
+  .logo {
+    background-image: url("/img/site/2026/delegance-logo.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center;
+    width: 9rem;
+    height: 3rem;
+    margin-bottom: 1.5rem;
+    filter: brightness(1.15);
+  }
+
+  h2,
+  h3 {
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-weight: 600;
+    line-height: 130%;
+  }
+
+  p,
+  li {
+    color: #b9c8de !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 0.98rem;
+    line-height: 165%;
+  }
+
+  a {
+    color: #43e2c5 !important;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+
+.information {
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(107, 227, 140, 0.18),
+      transparent 42%
+    ),
+    #102418;
+
+  h3 {
+    color: #6be38c !important;
+  }
+}

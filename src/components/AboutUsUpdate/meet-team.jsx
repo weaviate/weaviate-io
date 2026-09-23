@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import styles from './styles.module.scss';
-import { LinkButton } from '/src/theme/Buttons';
-import Link from '@docusaurus/Link';
-import Person from './person';
-import people from '/data/people.json';
-import { ButtonContainer } from '../../theme/Buttons';
+import React, { useState } from "react";
+import styles from "./styles.module.scss";
+import { LinkButton } from "/src/theme/Buttons";
+import Link from "@docusaurus/Link";
+import Person from "./person";
+import people from "/data/people.json";
+import { ButtonContainer } from "../../theme/Buttons";
 
 export default function MeetTheTeam() {
-  const [selectedTeam, setSelectedTeam] = useState('applied-research');
+  const [selectedTeam, setSelectedTeam] = useState("applied-research");
 
   const handleTeamFilter = (team) => {
     setSelectedTeam(team);
   };
 
   const filterPeople = (person) => {
-    if (selectedTeam === 'All') {
+    if (selectedTeam === "All") {
       return true;
     }
     return person.team.includes(selectedTeam);
@@ -32,115 +32,115 @@ export default function MeetTheTeam() {
           </p>
           <div className={styles.teamFilter}>
             <Link
-              className={selectedTeam === 'All' ? styles.linkActive : ''}
-              onClick={() => handleTeamFilter('All')}
+              className={selectedTeam === "All" ? styles.linkActive : ""}
+              onClick={() => handleTeamFilter("All")}
             >
               #All
             </Link>
             <Link
               className={
-                selectedTeam === 'applied-research' ? styles.linkActive : ''
+                selectedTeam === "applied-research" ? styles.linkActive : ""
               }
-              onClick={() => handleTeamFilter('applied-research')}
+              onClick={() => handleTeamFilter("applied-research")}
             >
               #Applied Research (Engineering)
             </Link>
 
             <Link
               className={
-                selectedTeam === 'board-advisors' ? styles.linkActive : ''
+                selectedTeam === "board-advisors" ? styles.linkActive : ""
               }
-              onClick={() => handleTeamFilter('board-advisors')}
+              onClick={() => handleTeamFilter("board-advisors")}
             >
               #Board & Advisors
             </Link>
             <Link
-              className={selectedTeam === 'ceo-team' ? styles.linkActive : ''}
-              onClick={() => handleTeamFilter('ceo-team')}
+              className={selectedTeam === "ceo-team" ? styles.linkActive : ""}
+              onClick={() => handleTeamFilter("ceo-team")}
             >
               #CEO
             </Link>
             <Link
-              className={selectedTeam === 'cto' ? styles.linkActive : ''}
-              onClick={() => handleTeamFilter('cto')}
+              className={selectedTeam === "cto" ? styles.linkActive : ""}
+              onClick={() => handleTeamFilter("cto")}
             >
               #CxO Leadership
             </Link>
 
             <Link
-              className={selectedTeam === 'database' ? styles.linkActive : ''}
-              onClick={() => handleTeamFilter('database')}
+              className={selectedTeam === "database" ? styles.linkActive : ""}
+              onClick={() => handleTeamFilter("database")}
             >
               #Database (Engineering)
             </Link>
 
             <Link
               className={
-                selectedTeam === 'developer-growth' ? styles.linkActive : ''
+                selectedTeam === "developer-growth" ? styles.linkActive : ""
               }
-              onClick={() => handleTeamFilter('developer-growth')}
+              onClick={() => handleTeamFilter("developer-growth")}
             >
               #Growth
             </Link>
             <Link
               className={
-                selectedTeam === 'weaviate-labs' ? styles.linkActive : ''
+                selectedTeam === "weaviate-labs" ? styles.linkActive : ""
               }
-              onClick={() => handleTeamFilter('weaviate-labs')}
+              onClick={() => handleTeamFilter("weaviate-labs")}
             >
-              #Innovation Labs (Engineering)
+              #Agents (Engineering)
             </Link>
             <Link
               className={
-                selectedTeam === 'people-and-culture' ? styles.linkActive : ''
+                selectedTeam === "people-and-culture" ? styles.linkActive : ""
               }
-              onClick={() => handleTeamFilter('people-and-culture')}
+              onClick={() => handleTeamFilter("people-and-culture")}
             >
               #People & Culture
             </Link>
             <Link
-              className={selectedTeam === 'delivery' ? styles.linkActive : ''}
-              onClick={() => handleTeamFilter('delivery')}
+              className={selectedTeam === "delivery" ? styles.linkActive : ""}
+              onClick={() => handleTeamFilter("delivery")}
             >
               #Platform & SRE (Platform Operations & Security)
             </Link>
           </div>
           <div className={styles.teamFilter}>
             <Link
-              className={selectedTeam === 'product' ? styles.linkActive : ''}
-              onClick={() => handleTeamFilter('product')}
+              className={selectedTeam === "product" ? styles.linkActive : ""}
+              onClick={() => handleTeamFilter("product")}
             >
               #Product
             </Link>
             <Link
               className={
-                selectedTeam === 'partnerships' ? styles.linkActive : ''
+                selectedTeam === "partnerships" ? styles.linkActive : ""
               }
-              onClick={() => handleTeamFilter('partnerships')}
+              onClick={() => handleTeamFilter("partnerships")}
             >
               #Sales & Business Development
             </Link>
 
             <Link
               className={
-                selectedTeam === 'solution-engineering' ? styles.linkActive : ''
+                selectedTeam === "solution-engineering" ? styles.linkActive : ""
               }
-              onClick={() => handleTeamFilter('solution-engineering')}
+              onClick={() => handleTeamFilter("solution-engineering")}
             >
               #Solution Engineering (Platform Operations)
             </Link>
             <Link
               className={
-                selectedTeam === 'support-engineering' ? styles.linkActive : ''
+                selectedTeam === "support-engineering" ? styles.linkActive : ""
               }
-              onClick={() => handleTeamFilter('support-engineering')}
+              onClick={() => handleTeamFilter("support-engineering")}
             >
               #Support Engineering (Platform Operations & Security)
             </Link>
 
             <Link
-              className={selectedTeam === 'wcd' ? styles.linkActive : ''}
-              onClick={() => handleTeamFilter('wcd')}
+              className={selectedTeam === "wcd" ? styles.linkActive : ""}
+              onClick={() => handleTeamFilter("wcd")}
             >
               #Weaviate Cloud Console (Engineering)
             </Link>

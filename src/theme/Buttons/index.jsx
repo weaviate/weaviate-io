@@ -1,46 +1,67 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
-import styles from './styles.module.scss';
+import Link from "@docusaurus/Link";
+import React from "react";
+import styles from "./styles.module.scss";
 
-export function LinkButton({children, link, color='main', newTab=true}) {
+export function LinkButton({
+  children,
+  link,
+  color = "main",
+  newTab = true,
+  className,
+  style: customStyle,
+}) {
   let style = styles.btn;
-  switch(color) {
-    case 'accent':
-      style += ' ' + styles.btnAccent;
+  switch (color) {
+    case "accent":
+      style += " " + styles.btnAccent;
       break;
-      case 'outlined':
-        style += ' ' + styles.btnOutlined;
-        break;
+    case "outlined":
+      style += " " + styles.btnOutlined;
+      break;
     default:
-      style += ' ' + styles.btnMain;
+      style += " " + styles.btnMain;
+  }
+  if (className) {
+    style += " " + className;
   }
 
   return (
-    <Link className={style}
+    <Link
+      className={style}
+      style={customStyle}
       to={link}
-      target={newTab ? '_blank' : '_self'}
-    >{children}</Link>
+      target={newTab ? "_blank" : "_self"}
+    >
+      {children}
+    </Link>
   );
 }
 
-export function DownloadButton({children, link, color='main', newTab=true}) {
+export function DownloadButton({
+  children,
+  link,
+  color = "main",
+  newTab = true,
+}) {
   let style = styles.btn;
-  switch(color) {
-    case 'accent':
-      style += ' ' + styles.btnAccent;
+  switch (color) {
+    case "accent":
+      style += " " + styles.btnAccent;
       break;
     default:
-      style += ' ' + styles.btnMain;
+      style += " " + styles.btnMain;
   }
 
   return (
-    <a className={style} href={link} download>{children}</a>
+    <a className={style} href={link} download>
+      {children}
+    </a>
   );
 }
 
-export function ButtonContainer({children, position="center"}) {
+export function ButtonContainer({ children, position = "center" }) {
   let style = styles.buttons;
-  switch(position) {
+  switch (position) {
     case "left":
       style += " " + styles.left;
       break;
@@ -48,9 +69,5 @@ export function ButtonContainer({children, position="center"}) {
       style += " " + styles.right;
   }
 
-  return (
-    <div className={style}>
-      {children}
-    </div>
-  );
+  return <div className={style}>{children}</div>;
 }

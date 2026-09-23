@@ -468,10 +468,23 @@ module.exports = async function createConfigAsync() {
             '@docusaurus/preset-classic',
             {
                 docs: false,
+                sitemap: {
+                    // Use the source file's Git history to provide a meaningful
+                    // freshness signal. Google ignores changefreq and priority.
+                    lastmod: 'date',
+                    changefreq: null,
+                    priority: null,
+                    // This route declares noindex in its front matter but is not
+                    // currently filtered from the generated sitemap.
+                    ignorePatterns: ['/payment/thank-you'],
+                },
                 blog: {
                     blogTitle: 'Blog',
                     blogDescription: 'Blog',
                     showReadingTime: true,
+                    // Modified dates are opt-in through each post's
+                    // `last_update` frontmatter and rendered by the blog theme.
+                    showLastUpdateTime: false,
                     authorsMapPath: '../authors.yml',
                     editUrl:
                         'https://github.com/weaviate/weaviate-io/tree/main/',
@@ -502,8 +515,8 @@ module.exports = async function createConfigAsync() {
 
             
              announcementBar: {
-               id: 'announcement-bar-engram-ga',
-                content:`<a href="/blog/engram-generally-available">Introducing Engram by Weaviate - now GA - Read our Blog </a>`,
+               id: 'announcement-bar-hfresh-ga',
+                content:`<a href="/webinars/inside-weaviate-mcp-ecosystem?utm_source=weaviate&amp;utm_medium=announcement-bar&amp;utm_campaign=mcp-webinar">Inside Weaviate's MCP Ecosystem  - Register for the webinar </a>`,
                backgroundColor: '#160F52',
                 textColor: '#F5F5F5',
                 isCloseable: true,

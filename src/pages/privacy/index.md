@@ -243,10 +243,13 @@ b. If you **complete forms on (one of) our websites**, we process the following 
 |                                                                                                                                                                                                                                                                                |                                                                                                                                                                   |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Type of data**                                                                                                                                                                                                                                                               | **Purposes**                                                                                                                                                      |
-| We collect personal data that you provide when you complete forms on our websites. We may process such information, for example when you register for an event or webinar, submit a contact or support request, request access to a startup or partner program, or register to receive a newsletter (please also refer to Section 5 of this Privacy Policy). | To contact you based on your request, to provide you with the service you requested, to contact you with relevant offers or services, and for marketing purposes. |
+| We collect personal data that you provide when you complete forms on our websites. We may process such information, for example when you submit a contact or support request, request access to a startup or partner program, or register to receive a newsletter (please also refer to Section 5 of this Privacy Policy). | To contact you based on your request, to provide you with the service you requested, to contact you with relevant offers or services, and for marketing purposes. |
+| If you register for an event or webinar, we process your name and work email. Where a session is recorded, the recording may also include your image, voice, or contributions. | To register you, send you the joining link, reminders, and materials, and to run the session, including any recording. |
 | We also collect personal data that you voluntarily provide in response to requests and inquiries we may make at various places and through various mechanisms on Weaviate websites.                                                                                            | To improve our products and services, to improve our customer support, and or marketing purposes.                                                                 |
 
-For the processing of this personal data, we rely on your consent or on our legitimate interest to make our websites and services available to you.
+For event and webinar registrations, we rely on the performance of your request and our legitimate interest in organising our events. We only use your details for other marketing, or share them with a co-hosting partner named on the registration page, with your consent, which you can withdraw at any time.
+
+For the other processing described in this Section, we rely on your consent or on our legitimate interest to make our websites and services available to you.
 
 <br></br>
 
@@ -445,6 +448,8 @@ We may disclose your personal data or make your personal data available to third
 - Google, for email, document storage, and data warehousing;
 
 - Zapier, for workflow automation.
+
+- Zoom, for hosting online events and webinars;
 
 - Cloud providers (such as AWS and GCP), for sharing cloud metadata collected via our optional telemetry module, to enable them to contact you regarding Weaviate support, maintenance, or hosting services.
 

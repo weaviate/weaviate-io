@@ -21,6 +21,20 @@
       "updatedAt": "2026-08-17T00:00:00Z"
     },
     {
+      "identifier": "urn:air:weaviate.io:guide:auth",
+      "displayName": "Weaviate authentication guide",
+      "type": "text/markdown",
+      "url": "https://weaviate.io/auth.md",
+      "description": "Machine-readable guidance for Weaviate Cloud API keys, applicable OIDC deployments, RBAC least privilege, credential rotation and revocation, Cloud onboarding, and official SDK installation.",
+      "tags": ["weaviate", "authentication", "authorization", "rbac", "sdk"],
+      "representativeQueries": [
+        "how do I authenticate to Weaviate Cloud",
+        "which Weaviate SDKs are officially maintained",
+        "how do I rotate a Weaviate API key"
+      ],
+      "updatedAt": "2026-08-25T00:00:00Z"
+    },
+    {
       "identifier": "urn:air:weaviate.io:guide:site-index",
       "displayName": "weaviate.io site index (markdown)",
       "type": "text/markdown",
@@ -103,7 +117,15 @@
       "url": "https://docs.weaviate.io/openapi.json",
       "description": "Machine-readable description of the Weaviate REST API in Swagger 2.0 (OpenAPI 2.0) format. It covers REST endpoints only: most client read and write operations use gRPC and are not described here.",
       "tags": ["api", "openapi", "swagger", "rest"],
-      "capabilities": ["schema", "objects", "batch", "backups", "classification", "nodes", "meta"],
+      "capabilities": [
+        "schema",
+        "objects",
+        "batch",
+        "backups",
+        "classification",
+        "nodes",
+        "meta"
+      ],
       "representativeQueries": [
         "which REST endpoints does Weaviate expose",
         "how do I create a Weaviate collection over REST",

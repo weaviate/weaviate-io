@@ -35,8 +35,8 @@ Subject to the terms and conditions of this Agreement, Weaviate will make the We
    When Weaviate Offering entails Weaviate Cloud. Details are described in Exhibit A.1
 <br></br>
 
-5. **Weaviate AIUs.**  
-   When Weaviate Offering is charged through Weaviate AI Units, details are described in Exhibit A.2
+5. **Weaviate Units.**  
+   When Weaviate Offering is charged through Weaviate Units, details are described in Exhibit A.III
 <br></br>
 
 ---
@@ -253,14 +253,17 @@ by Weaviate to Customer.
    3. Infrastructure Overhead Charge. Operating the Weaviate Dedicated Cloud offering requires the setup and maintenance of dedicated compute resources, referred to as “Infrastructure Overhead.” This overhead is essential for managing and operating Customer clusters within a single-tenant architecture, ensuring that the cluster is always available, secure, and performing optimally. Due to the inherent costs associated with maintaining a single-tenant infrastructure, a minimum charge per hour will apply, irrespective of actual usage. This charge reflects the baseline compute resources required to keep Customer Weaviate cluster operational, even during periods of low activity.
    <br></br>
 
-2. **Weaviate AI Units**
+2. **Weaviate Units**
    <br></br>
-   1. Storage and Compute. When Weaviate bills for storage and compute using purchasable AI Units, as described herein (“Weaviate AIUs”). Virtual CPUs (“vCPU”) and different types of storage tiers (Hot, warm, and cold storage) use Weaviate AIUs at certain rates based on the effective size of the Customer cluster while in operation, as set forth in the Order Form. Unless otherwise noted, when a Customer cluster is started or resumed, a minimum of one hour worth of Weaivate AIUs will be consumed. In the event Weaviate uses storage and compute resources that are equivalently larger or smaller than the initial estimation, the AIU consumption rate will be adjusted accordingly. For example, if a Customer cluster uses storage and compute resources that go over estimated usage for 30 minutes, such use is measured as one storage- or compute-Hour. Storage and compute-Hours are calculated on a per hour basis, rounded up to the nearest whole hour. Weaviate-managed storage and compute is billed at the rate of the number of Weaviate AIUs per category as listed in the Order Form, multiplied by the applicable Customer AIU price. Storage and compute appears in the usage statement as a single line item per category.
+   1. Weaviate Units (WUs): Weaviate bills for customer usage using purchasable Weaviate Units (“WUs”). Consumption of WUs is calculated based on four primary billable components: (A) Vector Dimensions: WU consumption for vector dimensions varies dynamically based on the applicable index type (e.g., HNSW, flat), compression method (e.g., product quantization, scalar quantization, uncompressed), and cloud/deployment region. (B) Storage: Charges based on the volume and storage tiering of data maintained within the Customer cluster. (C) Backup: Charges for backup storage, snapshot creation, and retention of backup data. (D) Data Transfer: Charges for network data transfer, including data egress, ingress, and cross-region transfer.
    <br></br>
-   2. Additional Options. Weaviate offers a number of additional options (e.g., SSO and Private Link) as described in the Documentation. Additional options operate on the Customer cluster and are reflected in the Customer AIU price.
+   2. Measurement and Calculation. Usage across vector dimensions, storage, backup, and data transfer consumes WUs at the applicable rates set forth in the Order Form or standard pricing documentation. Unless otherwise noted in an Order Form, when a Customer cluster or associated service is active or resumed, a minimum consumption rate may apply, and fractional usage is calculated on a per-hour basis rounded up to the nearest whole hour (or applicable billing interval). In the event actual resource utilization or dimension counts exceed initial estimations, WU consumption will adjust dynamically according to actual usage. WUs appear on the monthly usage statement itemized by component category.
    <br></br>
-   3. Tools and Apps. Weaviate additionally offers tools and apps that run on Weaviate-managed compute resources (“Weaviate Tools and Apps”). Weaviate Tools and Apps are billed at the rates set forth in the Customer Order Form.
+   3. Tools and Apps. Weaviate additionally offers tools, extensions, and applications that run on Weaviate-managed infrastructure (“Weaviate Tools and Apps”). Weaviate Tools and Apps consume WUs or are billed at the rates set forth on [www.weaviate.io/pricing](http://www.weaviate.io/pricing).
    <br></br>
-   4. AIU Pricing. The Weaviate Offering may be subscribed to on an On Demand basis, where usage is invoiced in arrears every month, or on a Fixed Term basis, where a set dollar amount of usage is purchased up front. Pricing depends on whether you are in On Demand or Capacity.
+   4. WU Pricing. The Weaviate Offering may be subscribed to on an On-Demand basis, where actual WU usage is invoiced in arrears every month, or on a Fixed Term / Capacity basis, where a pre-committed dollar amount or WU allocation is purchased up front. Unit pricing per WU depends on whether Customer has subscribed under On-Demand or Capacity pricing as set forth in the Order Form.
    <br></br>
-   5. Changes to Weaviate AIU pricing. The Weaviate AIUs required for storage and compute may be updated from time to time. Weaviate will use reasonable efforts to provide advance notice via email or through the Weaviate Service of material changes, but the changes shall be effective on the date that Weaviate announces they are effective. If any change to the Weaviate AIU storage and compute materially increases the Weaviate AIUs required to use the Weaviate Service, you may terminate the applicable Order Form upon written notice to Weaviate and receive a refund of any prepaid and unused AIUs that you have purchased.
+
+3. **Changes to Weaviate Unit pricing.**
+   <br></br>
+   1. The Weaviate Units (WUs) required for vector dimensions, storage, backup, and data transfer may be updated from time to time. Weaviate will use reasonable efforts to provide advance notice via email or through the Weaviate Service of material changes, but the changes shall be effective on the date that Weaviate announces they are effective. If any change to the WU consumption rates materially increases the WUs required to use the Weaviate Service, you may terminate the applicable Order Form upon written notice to Weaviate and receive a refund of any prepaid and unused WUs that you have purchased.
