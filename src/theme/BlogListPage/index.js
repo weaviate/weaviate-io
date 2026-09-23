@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -15,6 +15,7 @@ import FeaturedBlogTags from '../FeaturedBlogTags';
 import NewsletterPanel from '../../components/Blog/NewsletterPanel';
 import { MetaSEO } from '/src/theme/MetaSEO';
 import PaginationMetadata from '/src/components/PaginationMetadata';
+import BlogSearch from '../../components/Blog/BlogSearch';
 
 function BlogListPageMetadata({metadata}) {
   const {
@@ -88,6 +89,7 @@ function FeaturedPost({item}) {
 }
 
 function BlogListPageContent({metadata, items, sidebar}) {
+  const [isSearching, setIsSearching] = useState(false);
   const isMainBlogPage = metadata.permalink === '/blog' && (!metadata.page || metadata.page === 1);
   const featuredItem = isMainBlogPage ? items[0] : null;
   const gridItems = featuredItem ? items.slice(1) : items;
@@ -100,14 +102,17 @@ function BlogListPageContent({metadata, items, sidebar}) {
           <p className="tw-m-0 tw-max-w-[560px] tw-text-base tw-leading-[1.6] tw-text-[#b9c8de]">Keep up-to-date on the latest product updates, how-tos, industry insights, and community spotlights.</p>
         </header>
 
-        {isMainBlogPage && <FeaturedBlogTags activeTag="all" />}
-        {featuredItem && <FeaturedPost item={featuredItem} />}
-        {isMainBlogPage && <NewsletterPanel />}
+        {isMainBlogPage && <BlogSearch onSearchChange={setIsSearching} />}
+        {isMainBlogPage && !isSearching && <FeaturedBlogTags activeTag="all" />}
+        {featuredItem && !isSearching && <FeaturedPost item={featuredItem} />}
+        {isMainBlogPage && !isSearching && <NewsletterPanel />}
 
-        <BlogPostItems items={gridItems} />
-        <div className="tw-mt-10">
-          <BlogListPaginator metadata={metadata} />
-        </div>
+        {!isSearching && <BlogPostItems items={gridItems} />}
+        {!isSearching && (
+          <div className="tw-mt-10">
+            <BlogListPaginator metadata={metadata} />
+          </div>
+        )}
       </div>
     </BlogLayout>
   );

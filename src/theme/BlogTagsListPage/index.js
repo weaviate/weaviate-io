@@ -38,7 +38,7 @@ export default function BlogTagsListPage({tags, sidebar}) {
 
           <div className="tw-grid tw-gap-x-12 md:tw-grid-cols-2">
             {letterGroups.map(({letter, tags: letterTags}) => (
-              <section className="tw-border-t tw-border-solid tw-border-[#2a2f3f] tw-py-7" key={letter}>
+              <section className="tw-py-7" key={letter}>
                 <h2 className="tw-mb-5 tw-text-2xl tw-text-[#ddebf2]">{letter}</h2>
                 <div className="tw-flex tw-flex-wrap tw-gap-2">
                   {letterTags.map((tag) => (

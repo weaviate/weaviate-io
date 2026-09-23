@@ -39,23 +39,36 @@ function Author({author, imageURL}) {
 
 function PostHero() {
   const {metadata, assets} = useBlogPost();
-  const {title, date, formattedDate, readingTime, authors} = metadata;
+  const {title, date, formattedDate, readingTime, authors, frontMatter} = metadata;
   const displayDate = formattedDate || new Intl.DateTimeFormat('en-US', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
     timeZone: 'UTC',
   }).format(new Date(date));
+  const modifiedDateValue = frontMatter?.last_update?.date;
+  const modifiedDate = modifiedDateValue
+    ? new Intl.DateTimeFormat('en-US', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        timeZone: 'UTC',
+      }).format(new Date(modifiedDateValue))
+    : null;
 
   return (
     <header className="tw-grid tw-gap-10 tw-border-b-[0.5px] tw-border-[#6E6B91] tw-pb-12 lg:tw-grid-cols-[minmax(0,0.85fr)_minmax(420px,1.15fr)] lg:tw-items-center">
       <div>
-        <p className="tw-mb-6 tw-text-xs tw-text-[#8a93a9]">
-          {displayDate} · {Math.round(readingTime)} min read
-        </p>
-        <h1 className="tw-mb-10 tw-text-[clamp(3rem,5vw,3rem)] tw-leading-[1.08] tw-tracking-[-0.04em] tw-text-[#ddebf2]">
+        <h1 className="tw-mb-6 tw-text-[clamp(3rem,5vw,3rem)] tw-leading-[1.08] tw-tracking-[-0.04em] tw-text-[#ddebf2]">
           {title}
         </h1>
+        <p className="tw-mb-8 tw-text-[0.72rem] tw-leading-relaxed tw-text-[#8a93a9]">
+          <time dateTime={new Date(date).toISOString()} itemProp="datePublished">{displayDate}</time>
+          {modifiedDate && (
+            <> · Updated <time dateTime={new Date(modifiedDateValue).toISOString()} itemProp="dateModified">{modifiedDate}</time></>
+          )}
+          {' · '}{Math.round(readingTime)} min read
+        </p>
         <div className="tw-flex tw-flex-wrap tw-gap-5">
           {authors.map((author, index) => (
             <Author
