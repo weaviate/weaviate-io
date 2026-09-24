@@ -171,6 +171,16 @@ export default function WebinarRegistration() {
             </p>
           </div>
         </section>
+
+        <section className={styles.speakers} aria-labelledby="webinar-speakers">
+          <p className={styles.eyebrow}>Meet the speakers</p>
+          <h2 id="webinar-speakers">Learn from the people building with MCP</h2>
+          <img
+            src="/img/site/2026/MCP-Ecosystem-speakers-webinar-socials.jpg"
+            alt="Webinar speakers Connor Shorten, Ivan Despot, and Alexander Ledbetter"
+            loading="lazy"
+          />
+        </section>
       </div>
     </main>
   );
