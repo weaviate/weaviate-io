@@ -148,7 +148,13 @@ function PostPageContent({BlogPostContent}) {
       <main className="tw-mx-auto tw-w-full tw-max-w-[1320px] tw-px-[18px] tw-pb-24 tw-pt-12 sm:tw-px-6 sm:tw-pt-16">
         <PostHero />
 
-        <div className="tw-grid tw-gap-12 tw-py-12 lg:tw-grid-cols-[minmax(0,760px)_260px] lg:tw-justify-center xl:tw-gap-20">
+        <div
+          className={clsx(
+            'tw-py-12',
+            showToc
+              ? 'tw-grid tw-gap-12 lg:tw-grid-cols-[minmax(0,760px)_260px] lg:tw-justify-center xl:tw-gap-20'
+              : 'tw-mx-auto tw-w-full tw-max-w-[960px]',
+          )}>
           <article
             id={blogPostContainerID}
             className="markdown tw-min-w-0 tw-text-[#b9c8de] [&>p:first-child:has(img)]:tw-hidden">
