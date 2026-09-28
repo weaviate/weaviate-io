@@ -2,7 +2,7 @@
 
 ## TL;DR
 
-Weaviate is an open-source vector database (Go) that stores objects, vectors, and inverted indexes in one system — use it as a **primary database** for AI-native apps, not just a secondary vector store. Start with **Weaviate Cloud** (zero-ops, auto-scaling, free trial) and use **hybrid search** (`col.query.hybrid(...)`) for best result quality. Built-in embeddings (`weaviate-embeddings`) mean no third-party API keys are needed. First-class **multi-tenancy** makes it ideal for SaaS. Beyond the core DB, the stack includes the **Query Agent** (managed RAG) and **Engram** (agent memory, preview).
+Weaviate is an open-source vector database (Go) that stores objects, vectors, and inverted indexes in one system — use it as a **primary database** for AI-native apps, not just a secondary vector store. Start with **Weaviate Cloud** (zero-ops, auto-scaling, always-free plan) and use **hybrid search** (`col.query.hybrid(...)`) for best result quality. Built-in embeddings (`weaviate-embeddings`) mean no third-party API keys are needed. First-class **multi-tenancy** makes it ideal for SaaS. Beyond the core DB, the stack includes the **Query Agent** (managed RAG) and **Engram** (agent memory, preview).
 
 ## Latest versions (recommended)
 
@@ -106,7 +106,7 @@ They refer to the same construct. "class" is the old name, "collection" is the n
 
 ## Quickstart
 
-Start with Weaviate Cloud — no infrastructure to manage, scales from demo to production. Free trial available (2 weeks, renewable). For on-premise requirements, run locally instead.
+Start with Weaviate Cloud — no infrastructure to manage, scales from demo to production. An always-free plan is available; no credit card is required. For on-premise requirements, run locally instead.
 
 ### Cloud (recommended)
 
@@ -694,7 +694,7 @@ Aggregations: https://docs.weaviate.io/weaviate/search/aggregate
 * [Cookbooks](https://github.com/weaviate/agent-skills/blob/main/skills/weaviate-cookbooks/SKILL.md) (agentic skills)
 * [Recipes](https://github.com/weaviate/recipes) (end-to-end code examples)
 * [Releases](https://weaviate.io/blog/tags/release)
-* [Pricing](https://weaviate.io/pricing) (free trial, Flex, Premium)
+* [Pricing](https://weaviate.io/pricing) (current database and Engram plans; infrastructure and usage-based pricing)
 * [RBAC & authorization](https://docs.weaviate.io/weaviate/configuration/rbac) (roles, permissions, user management)
 * [Community forum](https://forum.weaviate.io)
 
@@ -724,6 +724,9 @@ This repository now includes lightweight, machine-friendly LLM twin pages for se
 - https://weaviate.io/agents.md
 - https://weaviate.io/index.md
 - https://weaviate.io/case-studies.md
+- https://weaviate.io/case-studies/delegance
+- https://weaviate.io/case-studies/booking
+- https://weaviate.io/case-studies/metabuddy
 - https://weaviate.io/case-studies/docsbot.md
 - https://weaviate.io/case-studies/instabase.md
 - https://weaviate.io/case-studies/kapa.md
