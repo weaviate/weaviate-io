@@ -165,7 +165,7 @@ function PostPageContent({BlogPostContent}) {
 
           {showToc && (
             <aside className="tw-hidden lg:tw-block">
-              <div className="tw-sticky tw-top-28 tw-border-l-[0.5px] tw-border-[#6E6B91] tw-pl-7">
+              <div className="tw-sticky tw-top-28 tw-max-h-[calc(100vh-8rem)] tw-overflow-y-auto tw-border-l-[0.5px] tw-border-[#6E6B91] tw-pl-7 tw-pr-3">
                 <h2 className="tw-mb-5 tw-text-xs tw-font-semibold tw-uppercase tw-tracking-[0.12em] tw-text-[#43E2C5]">Table of contents</h2>
                 <TOC
                   toc={toc}
@@ -180,10 +180,10 @@ function PostPageContent({BlogPostContent}) {
         <div className="tw-mx-auto tw-w-full tw-max-w-[1320px]">
           <ShareAndTags />
           <div className="tw-mt-12">
-            <NewsletterPanel />
+            <RelatedPosts />
           </div>
           <div className="tw-mt-12">
-            <RelatedPosts />
+            <NewsletterPanel />
           </div>
         </div>
       </main>

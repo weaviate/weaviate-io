@@ -64,19 +64,12 @@ export default function BlogSearch({ onSearchChange }) {
         Search blog posts
       </label>
       <div className="tw-relative tw-max-w-[680px]">
-        <svg
+        <img
           className="tw-pointer-events-none tw-absolute tw-left-4 tw-top-1/2 tw-h-5 tw-w-5 -tw-translate-y-1/2 tw-text-[#8a93a9]"
-          viewBox="0 0 24 24"
-          fill="none"
+          src="/img/site/2026/blog-search-icon.svg"
+          alt=""
           aria-hidden="true"
-        >
-          <path
-            d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"
-            stroke="currentColor"
-            strokeWidth="1.7"
-            strokeLinecap="round"
-          />
-        </svg>
+        />
         <input
           id="blog-search"
           type="search"
