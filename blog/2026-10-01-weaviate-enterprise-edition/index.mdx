@@ -1,0 +1,73 @@
+---
+title: Introducing the Weaviate Enterprise Edition
+slug: weaviate-enterprise-edition
+authors: [etienne,ivan]
+date: 2026-10-05
+image: ./img/hero.jpeg
+tags: ['announcement', 'release']
+description: "Weaviate is open source under BSD-3-Clause and stays that way. The new Enterprise Edition adds features to the same image, enabled by a license key."
+---
+
+![Introducing the Weaviate Enterprise Edition](./img/hero.jpeg)
+
+With **Weaviate 1.40**, we're introducing the **Weaviate Enterprise Edition**, a set of features for organizations that run Weaviate at scale. It is available alongside the Community Edition, the open-source Weaviate licensed under BSD-3-Clause. This post covers what stays the same, what the Enterprise Edition adds, how a license key enables it, and the commitments we're making with this change.
+
+## What isn't changing
+
+Weaviate is open source under the [BSD-3-Clause License](https://github.com/weaviate/weaviate/blob/main/LICENSE-BSD), and it stays that way. It ships as the same Docker image, with the same download and no registration. If you use Weaviate today, nothing about your setup changes.
+
+The open-source Weaviate you run today is now called the **Community Edition**. You can use, modify, and redistribute it, including commercially and in production, at no charge. When you upgrade to Weaviate 1.40, there is nothing new to configure. Without a license key, Weaviate starts as the Community Edition.
+
+No existing open-source feature moves to the **Enterprise Edition**. We are not adding artificial limits to the Community Edition, either.
+
+## What we're adding and why
+
+Weaviate is open source, with an optional Enterprise Edition that adds advanced features under a commercial license. The Enterprise Edition sits alongside the open-source Community Edition. It is for organizations that run Weaviate at scale, and it adds capabilities in three areas: **security**, **scaling**, and **stability**.
+
+Work in those areas doesn't fit in a single release. A feature that automates cluster operations has to be built, then maintained as the rest of Weaviate changes around it. That takes engineering investment that carries across many releases, and the Enterprise Edition funds a team that does that work full-time.
+
+That investment also pays for work that lands in the Community Edition:
+
+- **Security fixes and responsible disclosure:** Reported vulnerabilities get fixed in the Community Edition too.
+- **The regular release and patch cadence:** Community Edition users get the same releases and patches.
+- **Performance work:** Improvements to features like indexing and search ship in the Community Edition.
+- **Dependency maintenance:** Libraries and toolchains stay current, including their security patches.
+
+The first Enterprise Edition feature is [Shard Self-Recovery](https://docs.weaviate.io/deploy/enterprise), operational automation built on top of the replication the Community Edition already includes for free. {/* TODO(ivan): confirm CE baseline sentence with core/product */} That is one feature, and we're starting there. More Enterprise Edition features arrive with upcoming releases.
+
+## How the Enterprise Edition works
+
+Both editions ship in one Docker image and one binary. A license key selects the edition when Weaviate starts:
+
+- **Without a license key, Weaviate runs as the open-source Community Edition.**
+- **A valid license key enables Enterprise Edition features at runtime.**
+
+![How the Enterprise Edition works](./img/license.jpeg)
+
+Upgrading from the Community Edition to the Enterprise Edition means obtaining a license key and restarting Weaviate with it. You don't need a new image or a new download. You pass the key in the `LICENSE_KEY` or `LICENSE_KEY_FILE` environment variable, and the [Enterprise Edition docs](https://docs.weaviate.io/deploy/enterprise#activate-the-enterprise-edition) cover the details. License keys apply to self-hosted deployments only. If you use Weaviate Cloud, you don't need one.
+
+The Enterprise Edition code is source-visible. It lives in the [`wl/` directory](https://github.com/weaviate/weaviate/tree/main/wl) of the [`weaviate/weaviate`](https://github.com/weaviate/weaviate) repository, where it is publicly available for inspection. The code sits in the same public repository for transparency and auditability, so you can read exactly what the Enterprise Edition adds. Reading it doesn't grant a license to use it. That code is licensed under the Weaviate License and requires a commercial agreement. Everything outside `wl/` is the Community Edition, under BSD-3-Clause. The repository's top-level [`LICENSE`](https://github.com/weaviate/weaviate/blob/main/LICENSE) file says which license applies to which code, and the Weaviate License terms are in [`wl/LICENSE-WEAVIATE`](https://github.com/weaviate/weaviate/blob/main/wl/LICENSE-WEAVIATE).
+
+{/* TODO(ivan): legal page link */}
+
+## Our commitments
+
+These are the commitments we're making with this change:
+
+{/* TODO(ivan): confirm which commitments leadership signs */}
+
+- The **Community Edition is open source** under BSD-3-Clause.
+- No existing open-source feature moves to a paid tier.
+- The Community Edition has no artificial limits.
+- Both editions ship in one image, with no registration required.
+- Enterprise Edition code is clearly separated in the `wl/` directory and marked with its own license.
+
+If you run the open-source Community Edition, send questions and bug reports to [GitHub issues](https://github.com/weaviate/weaviate/issues) in the `weaviate/weaviate` repository. Enterprise Edition customers can reach us through the [Weaviate support portal](https://support.weaviate.io/).
+
+The [Enterprise Edition docs](https://docs.weaviate.io/deploy/enterprise) explain both editions, activation, and the feature list. A licensing FAQ is coming soon.
+
+{/* TODO(ivan): FAQ link when live */}
+
+import WhatsNext from '/_includes/what-next.mdx';
+
+<WhatsNext />
