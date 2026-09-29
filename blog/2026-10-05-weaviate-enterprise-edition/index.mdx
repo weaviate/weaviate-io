@@ -5,7 +5,7 @@ authors: [etienne,ivan]
 date: 2026-10-05
 image: ./img/hero.jpeg
 tags: ['announcement', 'release']
-description: "Weaviate is open source under BSD-3-Clause and stays that way. The new Enterprise Edition adds features to the same image, enabled by a license key."
+description: "Weaviate is open source under BSD-3-Clause, and that isn't changing. The new Enterprise Edition adds features to the same image, enabled by a license key."
 ---
 
 ![Introducing the Weaviate Enterprise Edition](./img/hero.jpeg)
@@ -30,12 +30,12 @@ We aren't moving any existing open-source feature into the Enterprise Edition, a
 
 Work in those areas doesn't fit in a single release. A feature that automates cluster operations has to be built, and then kept working as the rest of Weaviate changes around it. Security hardening and resilience for large clusters take the same kind of steady engineering work across many releases. Revenue from support and Weaviate Cloud doesn't cover investment at that depth on its own, and the Enterprise Edition goes a long way toward funding this kind of work.
 
-The same investment pays for work you get in the Community Edition:
+Here's some of what that funds in the open-source Community Edition:
 
-- **Security fixes and responsible disclosure:** When someone reports a vulnerability, we fix it in the Community Edition too.
-- **The regular release and patch cadence:** You get the same releases and patches on the Community Edition.
-- **Performance work:** Improvements to features like indexing and search ship in the Community Edition.
-- **Dependency maintenance:** We keep libraries and toolchains current, including their security patches.
+- **Security fixes and responsible disclosure:** Vulnerability reports go through the same process no matter which edition you run, and the fixes land in the Community Edition.
+- **Releases and patches:** Both editions ship from one release. A patch for one is a patch for both.
+- **Performance improvements:** Faster indexing, faster search. These improvements live in the core, so they ship in the Community Edition.
+- **Dependency maintenance:** We keep libraries and toolchains current, security patches included.
 
 The first Enterprise Edition feature is [Shard Self-Recovery](https://docs.weaviate.io/deploy/enterprise), which automates operations on top of the replication the Community Edition already includes for free. It's one feature, and that's where we're starting. More Enterprise Edition features will arrive in upcoming releases.
 
@@ -65,18 +65,15 @@ We'd rather spell our commitments out than leave you to infer them. Here's what 
 - The Community Edition is open source under BSD-3-Clause.
 - No existing open-source feature moves to a paid tier.
 - The Community Edition has no artificial limits.
-- Both editions ship in one image, with no registration required.
+- Both editions ship in one image, and the Community Edition needs no registration.
 - Enterprise Edition code is clearly separated in the `wl/` directory and marked with its own license.
 
-**No feature that is open source today moves to the Enterprise Edition.**
+## Questions and feedback
 
-If you run the open-source Community Edition and have questions about this change, or anything else, open a [GitHub issue](https://github.com/weaviate/weaviate/issues) in the `weaviate/weaviate` repository. That's also where bug reports go. Enterprise Edition customers can reach us through the [Weaviate support portal](https://support.weaviate.io/).
+To discuss this change or ask questions in the open, join the dedicated thread on the [Weaviate forum](https://forum.weaviate.io/). We'll be there answering. 
+{/* TODO(ivan): forum thread link before publish */}
 
-To discuss this change or ask questions in the open, join the dedicated thread on the [Weaviate forum](https://forum.weaviate.io/). We'll be there answering. {/* TODO(ivan): forum thread link before publish */}
-
-The [Enterprise Edition docs](https://docs.weaviate.io/deploy/enterprise) explain both editions, activation, and the feature list. We're also writing a licensing FAQ, and it's coming soon.
-
-{/* TODO(ivan): FAQ link when live */}
+You can also check out the [Enterprise Edition docs](https://docs.weaviate.io/deploy/enterprise) which explain both editions in detail.
 
 import WhatsNext from '/_includes/what-next.mdx';
 
