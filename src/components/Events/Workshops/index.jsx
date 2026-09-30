@@ -27,18 +27,11 @@ export default function WorkshopSection() {
             {featuredWebinar.buttonLabel || 'Register for the webinar'}
           </a>
         </div>
-        <div className={styles.visual} aria-hidden="true">
-          <span className={styles.visualLabel}>
-            {featuredWebinar.visualLabel || 'Live webinar'}
-          </span>
-          <span className={styles.mcp}>
-            {featuredWebinar.visualText || 'Live'}
-          </span>
-          <div className={styles.nodes}>
-            <span />
-            <span />
-            <span />
-          </div>
+        <div className={styles.visual}>
+          <img
+            src={featuredWebinar.featuredImage || featuredWebinar.image}
+            alt={`${featuredWebinar.title} webinar artwork`}
+          />
         </div>
       </div>
     </section>

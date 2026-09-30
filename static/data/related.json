@@ -1,0 +1,95 @@
+{
+  "related": [
+    {
+      "link": "/blog/forbes-ai-50-2024",
+      "backgroundImage": "/img/related/forbes-ai-50-2024.png",
+      "tagline": "Forbes AI 50 List: The most promising AI startups in 2024",
+      "date": "April 11, 2024",
+      "tags": ["AI", "industry", "news"]
+    },
+    {
+      "link": "/blog/binary-quantization",
+      "backgroundImage": "/img/related/binary-quantization.png",
+      "tagline": "32x Reduced Memory Usage With Binary Quantization",
+      "date": "April 2, 2024",
+      "tags": ["performance", "research", "quantization"]
+    },
+    {
+      "link": "/blog/hybrid-search-fusion-algorithms",
+      "backgroundImage": "/img/related/hybrid-search-fusion-algorithms.png",
+      "tagline": "Unlocking the Power of Hybrid Search",
+      "date": "August 29, 2023",
+      "tags": ["search", "hybrid", "engineering"]
+    },
+    {
+      "link": "/blog/hybrid-search-for-web-developers",
+      "backgroundImage": "/img/related/hybrid-search-for-web-developers.png",
+      "tagline": "A Web Developers Guide to Hybrid Search",
+      "date": "April 2, 2024",
+      "tags": ["search", "web", "tutorial"]
+    },
+    {
+      "link": "/blog/moonsift-story",
+      "backgroundImage": "/img/related/moonsift-story.png",
+      "tagline": "Building an AI-Powered Shopping Copilot with Weaviate",
+      "date": "November 15, 2023",
+      "tags": ["case-study", "retail", "agents"]
+    },
+    {
+      "link": "/blog/multimodal-RAG",
+      "backgroundImage": "/img/related/multimodal-RAG.png",
+      "tagline": "Multimodal Retrieval Augmented Generation(RAG)",
+      "date": "December 5, 2023",
+      "tags": ["RAG", "multimodal", "research"]
+    },
+    {
+      "link": "/blog/rag-evaluation",
+      "backgroundImage": "/img/related/rag-evaluation.png",
+      "tagline": "An Overview on RAG Evaluation",
+      "date": "November 21, 2023",
+      "tags": ["RAG", "evaluation", "research"]
+    },
+    {
+      "link": "/blog/generative-feedback-loops-with-llms",
+      "backgroundImage": "/img/related/generative-feedback-loops-with-llms.png",
+      "tagline": "Generative Feedback Loops with LLMs for Vector Databases",
+      "date": "May 5, 2023",
+      "tags": ["generative", "LLMs", "research"]
+    },
+    {
+      "link": "/blog/what-is-agentic-rag",
+      "backgroundImage": "/img/related/what-is-agentic-rag.jpg",
+      "tagline": "What is Agentic RAG",
+      "date": "November 21, 2023",
+      "tags": ["agents", "RAG", "architecture"]
+    },
+    {
+      "link": "/blog/what-are-llms",
+      "backgroundImage": "/img/related/what-are-llms.jpg",
+      "tagline": "What are LLMs? An approachable introduction",
+      "date": "March 23, 2023",
+      "tags": ["concepts", "LLMs", "basics"]
+    },
+    {
+      "link": "/blog/monitoring-weaviate-in-production",
+      "backgroundImage": "/img/related/2023-03-28-monitoring-weaviate-in-production.png",
+      "tagline": "Monitoring Weaviate in production",
+      "date": "March 28, 2023",
+      "tags": ["engineering", "monitoring", "production"]
+    },
+    {
+      "link": "/blog/combining-langchain-and-weaviate",
+      "backgroundImage": "/img/related/2023-02-21-combining-langchain-and-weaviate.png",
+      "tagline": "Combining LangChain and Weaviate",
+      "date": "February 21, 2023",
+      "tags": ["integrations", "LangChain", "how-to"]
+    },
+    {
+      "link": "/blog/multimodal-search-in-typescript",
+      "backgroundImage": "/img/related/2024-01-23-typescript-multimodal-search.png",
+      "tagline": "TypeScript multimodal search tutorial",
+      "date": "January 23, 2024",
+      "tags": ["multimodal", "search", "javascript"]
+    }
+  ]
+}

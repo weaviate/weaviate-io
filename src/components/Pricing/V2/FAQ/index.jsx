@@ -16,14 +16,16 @@ function faqPageSchema(faqData) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faqData.map((item) => ({
-      "@type": "Question",
-      name: stripTags(item.question),
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: stripTags(item.answer),
-      },
-    })),
+    mainEntity: faqData
+      .filter((item) => item.type !== "header")
+      .map((item) => ({
+        "@type": "Question",
+        name: stripTags(item.question),
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: stripTags(item.answer),
+        },
+      })),
   };
 }
 
@@ -60,6 +62,16 @@ export default function PricingFAQ({ faqType = "Database" }) {
 
         <div className={styles.boxGrid}>
           {faqData.map((item, index) => {
+            if (item.type === "header") {
+              return (
+                <h3
+                  key={item.question}
+                  className={styles.sectionHeader}
+                  dangerouslySetInnerHTML={{ __html: item.question }}
+                />
+              );
+            }
+
             const isOpen = expandedQuestion === index;
 
             return (

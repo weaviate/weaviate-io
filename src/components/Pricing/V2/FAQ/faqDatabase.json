@@ -22,5 +22,33 @@
   {
     "question": "Is Weaviate Cloud SOC 2 / HIPAA compliant?",
     "answer": "Yes. Weaviate Cloud is SOC 2 audited, and Enterprise Cloud on AWS is HIPAA compliant. See the <a href=\"https://app.drata.com/trust/6e7c8db4-d0a7-4ed1-90ae-f4710a557ea5\">Trust Portal</a> for details."
+  },
+  {
+    "type": "header",
+    "question": "Weaviate Cloud pricing update: September 2026"
+  },
+  {
+    "question": "What changed?",
+    "answer": "We updated the Weaviate Cloud price book. Two things changed:\n\nRQ-4 compression is now available on HNSW collections and has its own price, which sits between RQ-1 and RQ-8.\n\nBackups are billed at a corrected rate per GiB. The rate now starts from the same base on AWS, GCP and Azure, and then varies by region."
+  },
+  {
+    "question": "When do the new rates apply?",
+    "answer": "To usage from 1 September 2026. The running costs in your Weaviate Cloud console already reflect them."
+  },
+  {
+    "question": "How does this affect my bill?",
+    "answer": "Backups are on by default for every cluster, so the change shows up on your backup line. Whether that line went up or down depends on which cloud and region your clusters run in. For some customers it went up, for others it came down. If you use RQ-4 compression, those collections are now billed at the RQ-4 rate. Everything else on your bill is unchanged."
+  },
+  {
+    "question": "Why did backup pricing change?",
+    "answer": "Backup rates used to be set separately for each cloud, and some of them were out of line with what hyperscalers charge us to host your backups. The new rates use one common base with regional adjustments, so pricing is consistent and fair wherever you run."
+  },
+  {
+    "question": "Where can I see the new rates?",
+    "answer": "List prices are on <a href=\"https://weaviate.io/pricing\">weaviate.io/pricing</a>. The console shows your cluster's current running cost."
+  },
+  {
+    "question": "What if my costs aren't what I expected?",
+    "answer": "Contact <a href=\"mailto:support@weaviate.io\">support@weaviate.io</a>, and we'll go through your account with you."
   }
 ]

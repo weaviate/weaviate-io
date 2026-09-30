@@ -692,6 +692,80 @@
     }
   }
 
+  .bentoSmall.BS16 {
+    border-radius: 0.625rem;
+    background: linear-gradient(120deg, #130c49 0%, #1e3563 52%, #130c49 145%);
+    box-shadow: 0 3px 5px 0 rgba(79, 150, 172, 0.1);
+    width: 100%;
+    max-width: 74rem;
+    color: #130c49;
+    height: 17.5rem;
+    flex-shrink: 0;
+
+    .bentoText h3 {
+      color: #ecf4f8;
+      max-width: 42rem;
+
+      @media screen and (max-width: 900px) {
+        max-width: 100%;
+      }
+    }
+
+    .bentoLogo {
+      background: url("/img/site/2026/delegance-logo.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 10rem;
+      height: 2.5rem;
+      flex-shrink: 0;
+      margin: 30px 0px;
+      filter: brightness(0) invert(1);
+    }
+
+    @media screen and (max-width: 600px) {
+      width: 100%;
+    }
+  }
+
+  .bentoSmall.BS17 {
+    border-radius: 0.625rem;
+    background:
+      radial-gradient(
+        circle at top left,
+        rgba(168, 139, 250, 0.2),
+        transparent 48%
+      ),
+      #cfc7f4;
+    box-shadow: 0 3px 5px 0 rgba(79, 150, 172, 0.1);
+    width: 100%;
+    max-width: 74rem;
+    height: 17.5rem;
+    flex-shrink: 0;
+
+    .bentoText h3 {
+      color: #130c49;
+      max-width: 42rem;
+
+      @media screen and (max-width: 900px) {
+        max-width: 100%;
+      }
+    }
+
+    .bentoLogo {
+      background: url("/img/site/2026/Booking-com_Logo.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 12rem;
+      height: 2.5rem;
+      flex-shrink: 0;
+      margin: 30px 0px;
+    }
+
+    @media screen and (max-width: 600px) {
+      width: 100%;
+    }
+  }
+
   .bento04 {
     width: 23.75rem;
     height: 13.75rem;
@@ -1831,10 +1905,10 @@
 }
 
 .csLight {
-  color: #b9c8de;
+  color: #b9c8de !important;
 
   &:hover {
-    color: #b9c8de;
+    color: #b9c8de !important;
   }
 }
 
@@ -2122,7 +2196,7 @@
 
 .csLink:hover,
 .csLight:hover {
-  color: #43e2c5;
+  color: #43e2c5 !important;
 }
 
 .searchInput {
