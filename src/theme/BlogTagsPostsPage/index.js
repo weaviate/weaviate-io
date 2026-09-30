@@ -60,24 +60,32 @@ function BlogTagsPostsPageMetadata({tag, listMetadata}) {
 function BlogTagsPostsPageContent({tag, items, sidebar, listMetadata}) {
   const title = useBlogTagsPostsPageTitle(tag);
   return (
-    
-    <BlogLayout sidebar={sidebar} >
-      <header className="margin-bottom--xl">
-        <h1>{title}</h1>
-
-        <Link href={tag.allTagsPath}>
-          <Translate
-            id="theme.tags.tagsPageLink"
-            description="The label of the link targeting the tag list page">
-            View All Tags
-          </Translate>
+    <BlogLayout sidebar={sidebar}>
+      <div className="tw-mx-auto tw-w-full tw-max-w-[1320px] tw-px-[18px] tw-pb-24 tw-pt-11 sm:tw-px-6 sm:tw-pt-16">
+        <Link
+          to="/blog"
+          className="tw-mb-8 tw-inline-flex tw-items-center tw-gap-2 tw-text-sm tw-font-medium tw-text-[#63e689] hover:tw-text-[#43E2C5] hover:tw-no-underline">
+          <span aria-hidden="true">←</span>
+          Back to Blogs
         </Link>
-      </header>
-      <BlogPostItems items={items} />
-      <BlogListPaginator metadata={listMetadata} />
-
+        <header className="blog-tag-page-header tw-mb-12">
+          <h1 className="tw-mb-4 tw-text-[clamp(2.25rem,5vw,4rem)] tw-leading-tight tw-tracking-[-0.035em] tw-text-[#edf4ff]">{title}</h1>
+          <Link
+            to={tag.allTagsPath}
+            className="tw-text-base tw-font-medium tw-text-[#63e689] hover:tw-text-[#43E2C5] hover:tw-no-underline">
+            <Translate
+              id="theme.tags.tagsPageLink"
+              description="The label of the link targeting the tag list page">
+              View All Tags
+            </Translate>
+          </Link>
+        </header>
+        <BlogPostItems items={items} />
+        <div className="tw-mt-10">
+          <BlogListPaginator metadata={listMetadata} />
+        </div>
+      </div>
     </BlogLayout>
-
   );
 }
 
@@ -87,7 +95,6 @@ export default function BlogTagsPostsPage(props) {
       className={clsx(
         ThemeClassNames.wrapper.blogPages,
         ThemeClassNames.page.blogTagPostListPage,
-        'blogContainer',
       )}
     >
       <BlogTagsPostsPageMetadata {...props} />

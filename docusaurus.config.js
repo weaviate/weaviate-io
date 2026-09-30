@@ -37,6 +37,8 @@ module.exports = async function createConfigAsync() {
       },
     plugins: [
 
+        require.resolve('./plugins/blog-search-index'),
+
          () => ({
     name: 'inject-pre-google',
     injectHtmlTags() {
