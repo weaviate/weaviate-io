@@ -339,6 +339,13 @@ const siteRedirects = {
             from: '/community/demos',
         },
 
+
+        // Service weaviate-non-enterprise-agreement to cloud
+        {
+            to: '/service/weaviate-cloud-agreement',
+            from: '/service/weaviate-non-enterprise-agreement',
+        },
+
     ],
 };
 
