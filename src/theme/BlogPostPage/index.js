@@ -80,9 +80,9 @@ function PostHero() {
         </div>
       </div>
       {assets.image && (
-        <div className="tw-flex tw-min-h-[280px] tw-items-center tw-justify-center tw-overflow-hidden tw-rounded tw-bg-[#1A1A1A] lg:tw-min-h-[390px]">
+        <div className="tw-flex tw-items-center tw-justify-center tw-overflow-hidden tw-rounded tw-bg-[#1A1A1A] tw-p-2 sm:tw-min-h-[280px] sm:tw-p-4 lg:tw-min-h-[390px]">
           <img
-            className="tw-block tw-h-full tw-max-h-[520px] tw-w-[640px] tw-object-contain"
+            className="tw-block tw-h-auto tw-max-h-[520px] tw-w-full tw-max-w-[640px] tw-object-contain"
             src={assets.image}
             alt=""
             fetchPriority="high"

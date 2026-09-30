@@ -29,9 +29,9 @@ export default function NewsletterPanel() {
       className="tw-mb-[26px] tw-grid tw-border-[0.5px] tw-border-solid tw-border-[#6E6B91]  md:tw-grid-cols-[minmax(0,2fr)_minmax(250px,1fr)]"
       aria-labelledby="blog-newsletter-title"
     >
-      <div className="tw-px-[34px] tw-py-[30px]">
+      <div className="tw-px-5 tw-py-7 sm:tw-px-[34px] sm:tw-py-[30px]">
         <h2
-          className="tw-mb-2 !tw-text-transparent !tw-bg-[linear-gradient(2deg,#00FE6B_46.81%,#00B7E2_92.18%)] tw-bg-clip-text tw-font-['Plus_Jakarta_Sans'] tw-text-[2rem] tw-font-semibold tw-leading-[1.4]"
+          className="tw-mb-2 !tw-text-transparent !tw-bg-[linear-gradient(2deg,#00FE6B_46.81%,#00B7E2_92.18%)] tw-bg-clip-text tw-font-['Plus_Jakarta_Sans'] tw-text-[clamp(1.55rem,7vw,2rem)] tw-font-semibold tw-leading-[1.3]"
           id="blog-newsletter-title"
         >
           Don&apos;t want to miss another blog post?
@@ -50,11 +50,11 @@ export default function NewsletterPanel() {
           />
         </div>
       </div>
-      <div className="tw-flex tw-items-center tw-gap-3 tw-border-[0.1px] tw-border-solid tw-border-[#6E6B91] tw-px-[34px] tw-py-[30px]  md:tw-border-t-0">
-        <h3 className="tw-mb-5 tw-mt-5 tw-text-base tw-text-[#b9c8de]">
+      <div className="tw-flex tw-flex-col tw-items-center tw-justify-center tw-gap-4 tw-border-[0.1px] tw-border-solid tw-border-[#6E6B91] tw-px-5 tw-py-6 sm:tw-flex-row sm:tw-px-[34px] sm:tw-py-[30px] md:tw-border-t-0">
+        <h3 className="tw-m-0 tw-whitespace-nowrap tw-text-sm tw-text-[#b9c8de] sm:tw-text-base">
           Follow us
         </h3>
-        <div className="tw-flex tw-flex-wrap tw-gap-3 tw-mt-[-11px]">
+        <div className="tw-flex tw-flex-wrap tw-justify-center tw-gap-3">
           {socialLinks.map(([label, href, image]) => (
             <a
               key={label}

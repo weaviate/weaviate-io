@@ -211,3 +211,24 @@
 .blog-tags-post-list-page .blogCardDescription {
   color: #b9c8de !important;
 }
+
+// Blog articles are always presented on a dark canvas. Keep code and
+// admonitions stable during the initial render, before Docusaurus restores a
+// previously saved colour-mode preference on the client.
+.blog-post-page {
+  color-scheme: dark;
+  --ifm-code-background: rgba(255, 255, 255, 0.1);
+  --ifm-pre-background: #252936;
+  --ifm-color-primary-contrast-background: #102445;
+  --ifm-color-primary-contrast-foreground: #ebf2fc;
+  --ifm-color-secondary-contrast-background: #474748;
+  --ifm-color-secondary-contrast-foreground: #fdfdfe;
+  --ifm-color-success-contrast-background: #003100;
+  --ifm-color-success-contrast-foreground: #e6f6e6;
+  --ifm-color-info-contrast-background: #193c47;
+  --ifm-color-info-contrast-foreground: #eef9fd;
+  --ifm-color-warning-contrast-background: #4d3800;
+  --ifm-color-warning-contrast-foreground: #fff8e6;
+  --ifm-color-danger-contrast-background: #4b1113;
+  --ifm-color-danger-contrast-foreground: #ffebec;
+}
