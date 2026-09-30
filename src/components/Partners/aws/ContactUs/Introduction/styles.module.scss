@@ -56,12 +56,16 @@ p {
     flex-direction: column;
     gap: 20px;
   }
+
+  h2 {
+    color: #130c49 !important;
+  }
 }
 
 .investorsContainer {
   background: #131144;
 
-  background-image: url('/img/site/contact-us-background.png');
+  background-image: url("/img/site/contact-us-background.png");
   background-size: 50%;
   background-position-y: bottom;
   background-repeat: no-repeat;
@@ -106,7 +110,7 @@ p {
 }
 
 .g2Diagram {
-  background: url('/img/site/weaviate-g2.svg');
+  background: url("/img/site/weaviate-g2.svg");
 
   background-size: cover;
   max-width: 418px;
