@@ -6,7 +6,7 @@ const socialLinks = [
     "https://github.com/weaviate/weaviate",
     "/img/site/2026/github-blog-icon.svg",
   ],
-  ["Community", "/community", "/img/site/2026/weaviate-blog-icon.svg"],
+
   ["X", "https://x.com/weaviate_io", "/img/site/2026/x-blog-icon.svg"],
   [
     "YouTube",
@@ -51,7 +51,7 @@ export default function NewsletterPanel() {
         </div>
       </div>
       <div className="tw-flex tw-flex-col tw-items-center tw-justify-center tw-gap-4 tw-border-[0.1px] tw-border-solid tw-border-[#6E6B91] tw-px-5 tw-py-6 sm:tw-flex-row sm:tw-px-[34px] sm:tw-py-[30px] md:tw-border-t-0">
-        <h3 className="tw-m-0 tw-whitespace-nowrap tw-text-sm tw-text-[#b9c8de] sm:tw-text-base">
+        <h3 className="!tw-m-0 tw-whitespace-nowrap tw-text-sm tw-text-[#b9c8de] sm:tw-text-base">
           Follow us
         </h3>
         <div className="tw-flex tw-flex-wrap tw-justify-center tw-gap-3">
