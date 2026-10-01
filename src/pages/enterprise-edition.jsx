@@ -37,7 +37,8 @@ export default function EnterpriseEditionPage() {
                 <p className="tw-mb-0 tw-mt-7 tw-max-w-2xl tw-font-['Inter'] tw-text-lg tw-leading-relaxed tw-text-[#B9C8DE] md:tw-text-xl">
                   Weaviate is open source. Enterprise Edition adds features for
                   teams running Weaviate on their own infrastructure at scale,
-                  available under a commercial license.
+                  and is included with Weaviate Assurance, our enterprise
+                  subscription for self-hosted teams.
                 </p>
                 <p className="tw-mb-0 tw-mt-5 tw-max-w-2xl tw-font-['Inter'] tw-text-lg tw-leading-relaxed tw-text-[#B9C8DE]">
                   It focuses on security, scaling and stability for larger
@@ -46,41 +47,58 @@ export default function EnterpriseEditionPage() {
                 </p>
               </div>
 
-              <div className="tw-rounded-xl tw-bg-white tw-p-6 md:tw-p-8">
-                <h2
-                  className="tw-m-0 tw-font-['Plus_Jakarta_Sans'] tw-text-2xl tw-font-semibold tw-text-[#111111]"
-                  style={{ color: "#111111" }}
-                >
-                  Request a license key
-                </h2>
-                <p className="tw-mb-5 tw-mt-2 tw-font-['Inter'] tw-text-base tw-leading-relaxed tw-text-[#4B5563]">
-                  Share a few details about your deployment and what you would
-                  like to do with Enterprise Edition.
-                </p>
-                <div
-                  className="hs-form-frame"
-                  data-region="na1"
-                  data-form-id="0edcff12-285d-4534-bbc9-58e807d97855"
-                  data-portal-id="8738733"
-                />
-                <p className="tw-mb-0 tw-mt-4 tw-font-['Inter'] tw-text-sm tw-leading-relaxed tw-text-[#4B5563]">
-                  Someone will be in touch within one business day.
-                </p>
+              <div
+                className="tw-rounded-2xl tw-p-[2px] lg:tw-ml-4"
+                style={{
+                  background:
+                    "linear-gradient(48deg, #68FFA8 -4.58%, #00B7E2 86.47%)",
+                }}
+              >
+                <div className="tw-rounded-[14px] tw-bg-[#111111] tw-p-6 md:tw-p-8">
+                  <h2
+                    className="tw-m-0 tw-font-['Plus_Jakarta_Sans'] tw-text-2xl tw-font-semibold tw-text-[#111111]"
+                    style={{ color: "#DDEBF2" }}
+                  >
+                    Request a license key
+                  </h2>
+                  <p
+                    className="tw-mb-5 tw-mt-2 tw-font-['Inter'] tw-text-base tw-leading-relaxed tw-text-[#4B5563]"
+                    style={{ color: "#B9C8DE" }}
+                  >
+                    Share a few details about your deployment and what you would
+                    like to do with Enterprise Edition.
+                  </p>
+                  <div
+                    className="hs-form-frame"
+                    data-region="na1"
+                    data-form-id="0edcff12-285d-4534-bbc9-58e807d97855"
+                    data-portal-id="8738733"
+                  />
+                  <p
+                    className="tw-mb-0 tw-mt-4 tw-font-['Inter'] tw-text-sm tw-leading-relaxed tw-text-[#4B5563]"
+                    style={{ color: "#B9C8DE" }}
+                  >
+                    Someone will be in touch within one business day.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="tw-bg-[#F4F7F7] tw-px-6 tw-py-14 md:tw-py-20">
+        <section className="tw-bg-[#111111] tw-px-6 tw-py-14 md:tw-py-20">
           <div className="tw-mx-auto tw-grid tw-max-w-[1320px] tw-gap-12 lg:tw-grid-cols-2 lg:tw-gap-20">
             <div>
               <h2
                 className="tw-m-0 tw-font-['Plus_Jakarta_Sans'] tw-text-3xl tw-font-semibold tw-text-[#111111]"
-                style={{ color: "#111111" }}
+                style={{ color: "#DDEBF2" }}
               >
                 How it works
               </h2>
-              <ul className="tw-mb-0 tw-mt-6 tw-space-y-5 tw-pl-6 tw-font-['Inter'] tw-text-lg tw-leading-relaxed tw-text-[#374151]">
+              <ul
+                className="tw-mb-0 tw-mt-6 tw-space-y-5 tw-pl-6 tw-font-['Inter'] tw-text-lg tw-leading-relaxed tw-text-[#374151]"
+                style={{ color: "#B9C8DE" }}
+              >
                 <li>
                   One image, one binary. Community Edition and Enterprise
                   Edition ship in the same Docker image.
@@ -94,32 +112,37 @@ export default function EnterpriseEditionPage() {
                   with it, and the Enterprise features activate.
                 </li>
                 <li>
-                  Already on Weaviate Cloud? Enterprise Edition features are
-                  part of what you already pay for. License keys apply to
-                  self-hosted deployments only.
+                  Already on Weaviate Cloud? You don't need a license key.
+                  License keys apply to self-hosted deployments only.
                 </li>
               </ul>
             </div>
 
-            <div className="tw-border-t tw-border-[#D1D5DB] tw-pt-8 lg:tw-border-l lg:tw-border-t-0 lg:tw-pl-12 lg:tw-pt-0">
+            <div className="tw-border-t tw-border-[#4B5563] tw-pt-8 lg:tw-border-l lg:tw-border-t-0 lg:tw-pl-12 lg:tw-pt-0">
               <h2
                 className="tw-m-0 tw-font-['Plus_Jakarta_Sans'] tw-text-3xl tw-font-semibold tw-text-[#111111]"
-                style={{ color: "#111111" }}
+                style={{ color: "#DDEBF2" }}
               >
                 Learn more
               </h2>
-              <p className="tw-mb-0 tw-mt-5 tw-font-['Inter'] tw-text-lg tw-leading-relaxed tw-text-[#374151]">
+              <p
+                className="tw-mb-0 tw-mt-5 tw-font-['Inter'] tw-text-lg tw-leading-relaxed tw-text-[#374151]"
+                style={{ color: "#B9C8DE" }}
+              >
                 For activation details, environment variables and the full
                 feature list, see the{" "}
                 <Link
-                  to="https://docs.weaviate.io/deploy/enterprise"
-                  className="tw-text-[#087F65] tw-underline tw-underline-offset-4"
+                  to="http://docs.weaviate.io/deploy/enterprise"
+                  className="tw-text-[#43E2C5] tw-underline tw-underline-offset-4"
                 >
                   Enterprise Edition documentation
                 </Link>
                 .
               </p>
-              <p className="tw-mb-0 tw-mt-5 tw-font-['Inter'] tw-text-lg tw-leading-relaxed tw-text-[#374151]">
+              <p
+                className="tw-mb-0 tw-mt-5 tw-font-['Inter'] tw-text-lg tw-leading-relaxed tw-text-[#374151]"
+                style={{ color: "#B9C8DE" }}
+              >
                 License terms: Enterprise Edition license page.
               </p>
             </div>
