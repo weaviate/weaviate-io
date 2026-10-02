@@ -394,17 +394,17 @@ const databaseCompare = {
             flex: 'from $0.12 / GiB',
             plus: 'from $0.10 / GiB',
             premiumShared: 'from $0.10 / GiB',
-            premiumDedicated: 'from $0.1505 / GiB',
+            premiumDedicated: 'from $0.33 / GiB',
           },
         },
         {
           label: 'Backup',
           values: {
             free: 'Free',
-            flex: 'from $0.0290 / GiB',
+            flex: 'from $0.03036/ GiB',
             plus: 'from $0.0042 / GiB',
-            premiumShared: 'from $0.0200 / GiB',
-            premiumDedicated: 'from $0.0134 / GiB',
+            premiumShared: 'from $0.021 / GiB',
+            premiumDedicated: 'from $0.014 / GiB',
           },
         },
         {
