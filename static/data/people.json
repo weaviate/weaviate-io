@@ -36,6 +36,12 @@
     "team": "partnerships"
   },
   {
+    "name": "Andy Ellicott",
+    "title": "Director of Marketing",
+    "photo": "Andy.jpg",
+    "team": "marketing"
+  },
+  {
     "name": "André Mourão",
     "title": "Software Engineer",
     "photo": "andre-m.jpg",
@@ -85,7 +91,7 @@
     "name": "Brandon Holwerda",
     "title": "Product Marketing Manager",
     "photo": "Brandon-Holwerda.jpg",
-    "team": "product"
+    "team": "marketing"
   },
   {
     "name": "Brave Okafor",
@@ -292,9 +298,9 @@
   },
   {
     "name": "Kamil Tyborowski",
-    "title": "Software Engineer",
+    "title": "GTM Engineer",
     "photo": "Kamil.jpg",
-    "team": "developer-growth"
+    "team": "marketing"
   },
   {
     "name": "Laura Stoye",
@@ -371,10 +377,10 @@
   },
   {
     "name": "Shan Blackwood",
-    "title": "Web Developer",
+    "title": "Senior Growth Engineer",
     "photo": "shan.jpg",
     "linkedin": "shan-blackwood-79251876",
-    "team": "developer-growth"
+    "team": "marketing"
   },
   {
     "name": "Silvio Martinico",
@@ -396,7 +402,7 @@
     "photo": "svitlana.jpg",
     "linkedin": "svitlana-sm",
     "twitter": "switlana_c",
-    "team": "developer-growth"
+    "team": "marketing"
   },
   {
     "name": "Thomas Maurice",
