@@ -132,18 +132,12 @@ export default function EnterpriseEditionPage() {
                 For activation details, environment variables and the full
                 feature list, see the{" "}
                 <Link
-                  to="http://docs.weaviate.io/deploy/enterprise"
+                  to="http://docs.weaviate.io/deploy/enterprise#frequently-asked-questions"
                   className="tw-text-[#43E2C5] tw-underline tw-underline-offset-4"
                 >
                   Enterprise Edition documentation
                 </Link>
                 .
-              </p>
-              <p
-                className="tw-mb-0 tw-mt-5 tw-font-['Inter'] tw-text-lg tw-leading-relaxed tw-text-[#374151]"
-                style={{ color: "#B9C8DE" }}
-              >
-                License terms: Enterprise Edition license page.
               </p>
             </div>
           </div>
