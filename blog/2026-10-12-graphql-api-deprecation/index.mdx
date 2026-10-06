@@ -24,7 +24,7 @@ import TabItem from "@theme/TabItem";
 
 ![Deprecating the GraphQL API: timeline and migration paths](./img/hero.jpeg)
 
-GraphQL was Weaviate's [first query API](/blog/graphql-api-design), and many of you have built on it since our earliest releases. On October 12, 2026, we are deprecating it. **Nothing will break or change until April 2027**, when Weaviate Cloud switches GraphQL off. Weaviate Cloud already creates new clusters without GraphQL. The [GraphQL migration guide](https://docs.weaviate.io/weaviate/api/graphql/migration) walks you through the move, and this post explains why we made the decision, when things happen and what your options are.
+GraphQL was Weaviate's [first query API](/blog/graphql-api-design), and many of you have built on it since our earliest releases. On October 12, 2026, we are deprecating it. **Nothing will break or change until April 2027**, when Weaviate Cloud switches GraphQL off. The [GraphQL migration guide](https://docs.weaviate.io/weaviate/api/graphql/migration) walks you through the move, and this post explains why we made the decision, when things happen and what your options are.
 
 <!-- truncate -->
 
@@ -93,8 +93,6 @@ For stacks that cannot run a client at all, the [REST Search API](https://docs.w
 {/* TODO(ivan): Q5. Confirm the release status of the Go client v6, @weaviate/web and the REST Search API on October 12 and update the labels. */}
 
 A few GraphQL-only features have no equivalent today. The guide lists them under [GraphQL features without an equivalent](https://docs.weaviate.io/weaviate/api/graphql/migration#graphql-features-without-an-equivalent). If one of them is essential to you, tell us through the channels at the end of this post, and we will look at adding it.
-
-{/* TODO(ivan): Q3. Say what happens to the GraphQL-only features once decided. */}
 
 ## How to migrate
 
@@ -195,8 +193,6 @@ With GraphQL disabled, `POST /v1/graphql` and `POST /v1/graphql/batch` return HT
 { "error": [{ "message": "graphql api is disabled" }] }
 ```
 
-Authorization runs first, so a caller without read permission gets `403` instead. The Python client raises `UnexpectedStatusCodeError` and the Go v5 client returns a `WeaviateClientError`, both carrying this status and message.
-
 GraphQL keeps working in open-source Weaviate until at least April 1, 2027. The first minor release after that date disables it by default, and you can switch it back on while you finish migrating. We will remove it in a later release, and we have not set that date yet.
 
 ### Weaviate Cloud
@@ -204,8 +200,6 @@ GraphQL keeps working in open-source Weaviate until at least April 1, 2027. The 
 Weaviate Cloud switches GraphQL off in two steps. On November 1, 2026, clusters that have not been using GraphQL get it switched off, since nothing on them depends on it. On April 1, 2027, it is switched off on all remaining clusters. New clusters are already created with GraphQL disabled.
 
 After that date, GraphQL requests to your cluster will fail the same way they do with `DISABLE_GRAPHQL` set: HTTP `422` with `graphql api is disabled`. To see how your application behaves before then, test it against a self-hosted instance or a new cluster with GraphQL disabled.
-
-{/* TODO(ivan): Q7. Confirm Cloud uses the DISABLE_GRAPHQL mechanism after the switch-off, whether existing clusters can turn GraphQL off early, and whether extensions exist. */}
 
 Weaviate Cloud and Enterprise customers who need help planning the move can contact us through the [support portal](https://support.weaviate.io/).
 
