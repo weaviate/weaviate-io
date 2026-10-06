@@ -22,9 +22,11 @@ faq:
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
+{/* TODO(ivan): Before publishing, switch every docs-graphql-deprecation--docs-weaviate-io.netlify.app link back to docs.weaviate.io. */}
+
 ![Deprecating the GraphQL API: timeline and migration paths](./img/hero.jpeg)
 
-GraphQL was Weaviate's [first query API](/blog/graphql-api-design), and many of you have built on it since our earliest releases. On October 12, 2026, we are deprecating it. **Nothing will break or change until April 2027**, when Weaviate Cloud switches GraphQL off. The [GraphQL migration guide](https://docs.weaviate.io/weaviate/api/graphql/migration) walks you through the move, and this post explains why we made the decision, when things happen and what your options are.
+GraphQL was Weaviate's [first query API](/blog/graphql-api-design), and many of you have built on it since our earliest releases. On October 12, 2026, we are deprecating it. **Nothing will break or change until April 2027**, when Weaviate Cloud switches GraphQL off. The [GraphQL migration guide](https://docs-graphql-deprecation--docs-weaviate-io.netlify.app/weaviate/api/graphql/migration) walks you through the move, and this post explains why we made the decision, when things happen and what your options are.
 
 <!-- truncate -->
 
@@ -33,7 +35,7 @@ GraphQL was Weaviate's [first query API](/blog/graphql-api-design), and many of 
 - The GraphQL API is deprecated as of October 12, 2026. Nothing breaks on that day.
 - Weaviate Cloud switches GraphQL off on November 1, 2026 for clusters that do not use it, and on April 1, 2027 for all remaining clusters. New Weaviate Cloud clusters already have GraphQL turned off.
 - Open-source Weaviate keeps GraphQL working until at least April 1, 2027. The first minor release after that date disables it by default, and you can switch it back on. It is removed in a later release.
-- If your application searches through a current Python, TypeScript, Java or C# client, you are most likely not affected. Everyone else should follow the [migration guide](https://docs.weaviate.io/weaviate/api/graphql/migration).
+- If your application searches through a current Python, TypeScript, Java or C# client, you are most likely not affected. Everyone else should follow the [migration guide](https://docs-graphql-deprecation--docs-weaviate-io.netlify.app/weaviate/api/graphql/migration).
 
 :::
 
@@ -64,7 +66,7 @@ You **are affected** if any of these apply:
 - Browser code in your application posts GraphQL queries.
 - A no-code or BI tool sends GraphQL to your cluster.
 
-The guide explains how to [find your GraphQL usage](https://docs.weaviate.io/weaviate/api/graphql/migration#find-your-graphql-usage).
+The guide explains how to [find your GraphQL usage](https://docs-graphql-deprecation--docs-weaviate-io.netlify.app/weaviate/api/graphql/migration#find-your-graphql-usage).
 
 ## Why we are deprecating GraphQL
 
@@ -80,28 +82,28 @@ GraphQL served Weaviate and its users well for a long time. It gave you one read
 
 ### Client libraries (recommended)
 
-The current Python, TypeScript, Java and C# clients search over gRPC, and they are the path we recommend. For Go, the gRPC-based client is v6, which is a release candidate today. The stable Go client v5 still queries over GraphQL. See [client libraries](https://docs.weaviate.io/weaviate/api/graphql/migration#client-libraries-recommended) in the guide.
+The current Python, TypeScript, Java and C# clients search over gRPC, and they are the path we recommend. For Go, the gRPC-based client is v6, which is a release candidate today. The stable Go client v5 still queries over GraphQL. See [client libraries](https://docs-graphql-deprecation--docs-weaviate-io.netlify.app/weaviate/api/graphql/migration#client-libraries-recommended) in the guide.
 
 ### TypeScript web client
 
-For browsers and edge runtimes that cannot open a native gRPC connection, the TypeScript web client (`@weaviate/web`) uses gRPC-Web. It is in alpha today. See the [TypeScript client for web](https://docs.weaviate.io/weaviate/api/graphql/migration#typescript-client-for-web).
+For browsers and edge runtimes that cannot open a native gRPC connection, the TypeScript web client (`@weaviate/web`) uses gRPC-Web. It is in alpha today. See the [TypeScript client for web](https://docs-graphql-deprecation--docs-weaviate-io.netlify.app/weaviate/api/graphql/migration#typescript-client-for-web).
 
 ### REST Search API
 
-For stacks that cannot run a client at all, the [REST Search API](https://docs.weaviate.io/weaviate/api/graphql/migration#rest-search-api) offers plain JSON endpoints for search and aggregation (see the [REST API reference](https://docs.weaviate.io/weaviate/api/rest#tag/search)). It is in Preview today. It is a subset of what GraphQL offers, so check the [queries without a REST equivalent yet](https://docs.weaviate.io/weaviate/api/graphql/migration#queries-without-a-rest-equivalent-yet) before you start.
+For stacks that cannot run a client at all, the [REST Search API](https://docs-graphql-deprecation--docs-weaviate-io.netlify.app/weaviate/api/graphql/migration#rest-search-api) offers plain JSON endpoints for search and aggregation (see the [REST API reference](https://docs-graphql-deprecation--docs-weaviate-io.netlify.app/weaviate/api/rest#tag/search)). It is in Preview today. It is a subset of what GraphQL offers, so check the [queries without a REST equivalent yet](https://docs-graphql-deprecation--docs-weaviate-io.netlify.app/weaviate/api/graphql/migration#queries-without-a-rest-equivalent-yet) before you start.
 
 {/* TODO(ivan): Q5. Confirm the release status of the Go client v6, @weaviate/web and the REST Search API on October 12 and update the labels. */}
 
-A few GraphQL-only features have no equivalent today. The guide lists them under [GraphQL features without an equivalent](https://docs.weaviate.io/weaviate/api/graphql/migration#graphql-features-without-an-equivalent). If one of them is essential to you, tell us through the channels at the end of this post, and we will look at adding it.
+A few GraphQL-only features have no equivalent today. The guide lists them under [GraphQL features without an equivalent](https://docs-graphql-deprecation--docs-weaviate-io.netlify.app/weaviate/api/graphql/migration#graphql-features-without-an-equivalent). If one of them is essential to you, tell us through the channels at the end of this post, and we will look at adding it.
 
 ## How to migrate
 
-The [migration guide](https://docs.weaviate.io/weaviate/api/graphql/migration) maps GraphQL queries to their replacements. There are almost six months between the deprecation and the Cloud switch-off, so you can plan the move around your own releases. And you can switch GraphQL off on your own instance today, so you find out if anything breaks.
+The [migration guide](https://docs-graphql-deprecation--docs-weaviate-io.netlify.app/weaviate/api/graphql/migration) maps GraphQL queries to their replacements. There are almost six months between the deprecation and the Cloud switch-off, so you can plan the move around your own releases. And you can switch GraphQL off on your own instance today, so you find out if anything breaks.
 
-1. **Find your GraphQL calls:** Search your code, proxies and tools for `/v1/graphql` and raw GraphQL helpers. See [find your GraphQL usage](https://docs.weaviate.io/weaviate/api/graphql/migration#find-your-graphql-usage).
-2. **Pick a path:** Use a client library where you can, the TypeScript web client in the browser, and the REST Search API where neither fits. The guide starts with [what is changing and when](https://docs.weaviate.io/weaviate/api/graphql/migration#what-is-changing-and-when).
-3. **Convert your queries:** Use the [Migration guide](https://docs.weaviate.io/weaviate/api/graphql/migration) to map existing GraphQL queries to alternative methods.
-4. **Verify with GraphQL disabled:** Run your application against a Weaviate instance with GraphQL turned off. See [test with GraphQL disabled](https://docs.weaviate.io/weaviate/api/graphql/migration#test-with-graphql-disabled).
+1. **Find your GraphQL calls:** Search your code, proxies and tools for `/v1/graphql` and raw GraphQL helpers. See [find your GraphQL usage](https://docs-graphql-deprecation--docs-weaviate-io.netlify.app/weaviate/api/graphql/migration#find-your-graphql-usage).
+2. **Pick a path:** Use a client library where you can, the TypeScript web client in the browser, and the REST Search API where neither fits. The guide starts with [what is changing and when](https://docs-graphql-deprecation--docs-weaviate-io.netlify.app/weaviate/api/graphql/migration#what-is-changing-and-when).
+3. **Convert your queries:** Use the [Migration guide](https://docs-graphql-deprecation--docs-weaviate-io.netlify.app/weaviate/api/graphql/migration) to map existing GraphQL queries to alternative methods.
+4. **Verify with GraphQL disabled:** Run your application against a Weaviate instance with GraphQL turned off. See [test with GraphQL disabled](https://docs-graphql-deprecation--docs-weaviate-io.netlify.app/weaviate/api/graphql/migration#test-with-graphql-disabled).
 
 <details>
   <summary>One query, three ways</summary>
