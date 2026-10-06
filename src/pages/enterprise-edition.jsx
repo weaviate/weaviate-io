@@ -1,18 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Head from "@docusaurus/Head";
 import Link from "@docusaurus/Link";
 import Layout from "@theme/Layout";
 
 export default function EnterpriseEditionPage() {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://js.hsforms.net/forms/embed/8738733.js";
-    script.defer = true;
-    document.body.appendChild(script);
-
-    return () => script.remove();
-  }, []);
-
   return (
     <Layout
       title="Enterprise Edition license request"
@@ -65,21 +56,16 @@ export default function EnterpriseEditionPage() {
                     className="tw-mb-5 tw-mt-2 tw-font-['Inter'] tw-text-base tw-leading-relaxed tw-text-[#4B5563]"
                     style={{ color: "#B9C8DE" }}
                   >
-                    Share a few details about your deployment and what you would
-                    like to do with Enterprise Edition.
+                    Sign in to Weaviate Cloud to get your Enterprise Edition
+                    license key.
                   </p>
-                  <div
-                    className="hs-form-frame"
-                    data-region="na1"
-                    data-form-id="0edcff12-285d-4534-bbc9-58e807d97855"
-                    data-portal-id="8738733"
-                  />
-                  <p
-                    className="tw-mb-0 tw-mt-4 tw-font-['Inter'] tw-text-sm tw-leading-relaxed tw-text-[#4B5563]"
-                    style={{ color: "#B9C8DE" }}
+                  <Link
+                    to="https://console.weaviate.cloud/enterprise-edition-trial"
+                    className="tw-inline-block tw-rounded-lg tw-bg-[#43E2C5] tw-px-6 tw-py-3 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-[#111111] hover:tw-no-underline"
+                    style={{ color: "#111111" }}
                   >
-                    Someone will be in touch within one business day.
-                  </p>
+                    Sign in to Weaviate Cloud
+                  </Link>
                 </div>
               </div>
             </div>
