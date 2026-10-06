@@ -1,10 +1,10 @@
 ---
 title: "Deprecating the GraphQL API: timeline and migration paths"
 slug: graphql-api-deprecation
-authors: [ivan, dirk]
+authors: [dirk, ivan]
 date: 2026-10-12
-tags: ['engineering']
-image: ./img/hero.png
+tags: ["engineering"]
+image: ./img/hero.jpeg
 description: "Weaviate's GraphQL API is deprecated as of October 12, 2026. See the timeline for Weaviate Cloud and self-hosted, who is affected, and how to migrate."
 faq:
   - question: "Is the GraphQL API removed today?"
@@ -19,54 +19,47 @@ faq:
     answer: "Only the GraphQL endpoints, POST /v1/graphql and POST /v1/graphql/batch, are deprecated. The other REST endpoints are not part of this deprecation."
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
-![Deprecating the GraphQL API: timeline and migration paths](./img/hero.png)
+![Deprecating the GraphQL API: timeline and migration paths](./img/hero.jpeg)
 {/* TODO(ivan): Placeholder hero copied from the Python v3 deprecation post. Replace with the real image. */}
 
-GraphQL was Weaviate's [first query API](/blog/graphql-api-design). As of October 12, 2026, it is deprecated. This affects anyone who sends GraphQL to Weaviate, whether through direct HTTP calls, an older client generation, or the Go client. The [GraphQL migration guide](https://docs.weaviate.io/weaviate/api/graphql/migration) has the details, and this post covers the decision, the dates and your options.
+GraphQL was Weaviate's [first query API](/blog/graphql-api-design), and many of you have built on it since our earliest releases. On October 12, 2026, it is going to become deprecated. **Nothing will break or change until April 2027**, when Weaviate Cloud switches GraphQL off. Weaviate Cloud already creates new clusters without GraphQL. The [GraphQL migration guide](https://docs.weaviate.io/weaviate/api/graphql/migration) walks you through the move, and this post explains why we made the decision, when things happen and what your options are.
 
 <!-- truncate -->
 
-**In short:**
+:::info In short
 
 - The GraphQL API is deprecated as of October 12, 2026. Nothing breaks on that day.
-- Weaviate Cloud switches GraphQL off on all clusters on April 1, 2027.
-- Self-hosted Weaviate disables GraphQL by default in an upcoming minor release, and removes it later.
+- Weaviate Cloud switches GraphQL off on all clusters on April 1, 2027. New Weaviate Cloud cluster already have GraphQL turned off. 
+- Self-hosted Weaviate will remove GraphQL in a release after April 1, 2027.
   {/* TODO(ivan): Q1. Replace "an upcoming minor release" with the version once Dirk confirms. */}
-- If your application searches through a current Python, TypeScript, Java or C# client against Weaviate v1.29 or later, you are most likely already off GraphQL.
-- Everyone else should follow the [migration guide](https://docs.weaviate.io/weaviate/api/graphql/migration).
+- If your application searches through a current Python, TypeScript, Java or C# client, you are most likely not affected. Everyone else should follow the [migration guide](https://docs.weaviate.io/weaviate/api/graphql/migration).
+
+:::
 
 ## Timeline
 
-| Date | Weaviate Cloud | Self-hosted Weaviate |
-| --- | --- | --- |
-| Already true | New clusters are created with GraphQL disabled | `DISABLE_GRAPHQL` lets you turn GraphQL off to test |
-| October 12, 2026 | GraphQL deprecated. Existing clusters keep working | GraphQL deprecated. Nothing changes |
-| April 1, 2027 | GraphQL switched off on all clusters | No change |
-| An upcoming minor release | n/a | GraphQL disabled by default. You can switch it back on |
-| A later release | n/a | GraphQL removed |
-
-{/* TODO(ivan): Q1. Replace "An upcoming minor release" in the table with the version once Dirk confirms. */}
+![Timeline: September 30, 2026, new Weaviate Cloud clusters are created with GraphQL disabled. October 12, 2026, GraphQL is deprecated and nothing changes in Weaviate Cloud or self-hosted Weaviate. April 1, 2027, GraphQL is fully removed on existing Cloud clusters and disabled by default in self-hosted Weaviate, where you can switch it back on. A later release fully removes GraphQL from Weaviate.](./img/timeline.png)
 
 ## Are you affected?
 
 You are most likely **not affected** if every search in your application goes through one of these clients:
 
-| Client | Version | Condition |
-| --- | --- | --- |
-| Python `weaviate-client` | v4.11 and later | Weaviate v1.29 or later. `graphql_raw_query()` still uses GraphQL |
-| TypeScript `weaviate-client` | v3.4 and later | Weaviate v1.29 or later. The bundled `weaviateV2` client still uses GraphQL |
-| Java `io.weaviate:client6` | 6.0.0 and later | None |
-| C# client | 1.0.0 and later | None |
+| Client                       | Version         | Condition                                                         |
+| ---------------------------- | --------------- | ----------------------------------------------------------------- |
+| Python `weaviate-client`     | v4.11 and later | Weaviate v1.29 or later. `graphql_raw_query()` still uses GraphQL |
+| TypeScript `weaviate-client` | v3.4 and later  | Weaviate v1.29 or later.                                          |
+| Java `io.weaviate:client6`   | 6.0.0 and later | None                                                              |
+| C# client                    | 1.0.0 and later | None                                                              |
 
 On Weaviate older than v1.29, the Python and TypeScript clients fall back to GraphQL for aggregations.
 
 You **are affected** if any of these apply:
 
 - You send HTTP requests to `/v1/graphql` directly.
-- You use a raw GraphQL helper in a client, such as `graphql_raw_query()` in Python or `client.graphql.*` in the TypeScript `weaviateV2` client.
+- You use a raw GraphQL helper in a client, such as `graphql_raw_query()` in Python.
 - You run an older client generation: the Python v3 API (`weaviate.Client`), `weaviate-ts-client` v2, or the Java client v5 and earlier.
 - You use the Go client. The current stable Go client, v5, queries over GraphQL. Go client v6 uses gRPC, but it is a pre-release today.
 - Browser code in your application posts GraphQL queries.
@@ -76,15 +69,13 @@ The guide explains how to [find your GraphQL usage](https://docs.weaviate.io/wea
 
 ## Why we are deprecating GraphQL
 
-**It is slow:** GraphQL sends JSON over HTTP. The client libraries use gRPC, which sends binary Protocol Buffers over HTTP/2. We measured the difference when we moved the clients over, and the [gRPC performance post](/blog/grpc-performance-improvements) has the results.
+GraphQL served Weaviate and its users well for a long time. It gave you one readable language for every kind of search, and a lot of what you built on Weaviate went through it. We are proud of that work. We are moving on because the APIs we built since then do the same job better. These are some of the reasons:
 
-**It is inflexible:** A GraphQL query is a string that you assemble by hand. Errors come back with HTTP `200` inside an `errors` array, so a failed query can look like a successful request. Search metadata such as distance or score sits under a separate `_additional` field.
+- **It is slow:** GraphQL sends JSON over HTTP. The client libraries use gRPC, which sends binary Protocol Buffers over HTTP/2. We measured the difference when we moved the clients over, and the [gRPC performance post](/blog/grpc-performance-improvements) has the results.
 
-**It fits client libraries poorly:** GraphQL results are untyped JSON. Every client had to parse nested responses back into objects, which is the work gRPC's typed messages now do for us.
+- **It is inflexible:** A GraphQL query is a string that you assemble by hand. Errors come back with HTTP `200` inside an `errors` array, so a failed query can look like a successful request. Search metadata such as distance or score sits under a separate `_additional` field.
 
-**Two query APIs cost twice as much:** Every search feature had to be built, tested and documented for both GraphQL and gRPC. Dropping GraphQL lets us put that effort into one API.
-
-{/* TODO(ivan): Invite Dirk to add engineering specifics to the four reasons above. Do not add performance numbers (Q6). */}
+- **It fits client libraries poorly:** GraphQL results are untyped JSON. Every client had to parse nested responses back into objects, which is the work gRPC's typed messages now do for us.
 
 ## What to use instead
 
@@ -106,7 +97,17 @@ A few GraphQL-only features have no equivalent today. The guide lists them under
 
 {/* TODO(ivan): Q3. Say what happens to the GraphQL-only features once decided. */}
 
-## One query, three ways
+## How to migrate
+
+The [migration guide](https://docs.weaviate.io/weaviate/api/graphql/migration) maps GraphQL queries to their replacements. There are almost six months between the deprecation and the Cloud switch-off, so you can plan the move around your own releases. And you can switch GraphQL off on your own instance today, so you find out if anything breaks.
+
+1. **Find your GraphQL calls:** Search your code, proxies and tools for `/v1/graphql` and raw GraphQL helpers. See [find your GraphQL usage](https://docs.weaviate.io/weaviate/api/graphql/migration#find-your-graphql-usage).
+2. **Pick a path:** Use a client library where you can, the TypeScript web client in the browser, and the REST Search API where neither fits. The guide starts with [what is changing and when](https://docs.weaviate.io/weaviate/api/graphql/migration#what-is-changing-and-when).
+3. **Convert your queries:** Use the [Migration guide](https://docs.weaviate.io/weaviate/api/graphql/migration) to map existing GraphQL queries to alternative methods.
+4. **Verify with GraphQL disabled:** Run your application against a Weaviate instance with GraphQL turned off. See [test with GraphQL disabled](https://docs.weaviate.io/weaviate/api/graphql/migration#test-with-graphql-disabled).
+
+<details>
+  <summary>One query, three ways</summary>
 
 Here is one near-text search on a `Movie` collection: five "space opera" movies from 1980 or later in the `scifi` category, with title, year and distance.
 
@@ -183,24 +184,16 @@ for o in response.objects:
 
 </TabItem>
 </Tabs>
+</details>
 
-The REST `where` object is the same JSON you pass in GraphQL. The response is a flat list of results instead of the nested `data.Get.Movie` shape.
-
-## How to migrate
-
-1. **Find your GraphQL calls.** Search your code, proxies and tools for `/v1/graphql` and raw GraphQL helpers. See [find your GraphQL usage](https://docs.weaviate.io/weaviate/api/graphql/migration#find-your-graphql-usage).
-2. **Pick a path.** Use a client library where you can, the TypeScript web client in the browser, and the REST Search API where neither fits. The guide starts with [what is changing and when](https://docs.weaviate.io/weaviate/api/graphql/migration#what-is-changing-and-when).
-3. **Convert your queries.** Use the [GraphQL to REST cheat sheet](https://docs.weaviate.io/weaviate/api/graphql/migration#graphql-to-rest-cheat-sheet) and read the [differences to check before you convert](https://docs.weaviate.io/weaviate/api/graphql/migration#differences-to-check-before-you-convert).
-4. **Verify with GraphQL disabled.** Run your application against a Weaviate instance with GraphQL turned off. See [test with GraphQL disabled](https://docs.weaviate.io/weaviate/api/graphql/migration#test-with-graphql-disabled).
-
-## Self-hosted Weaviate
+### Self-hosted Weaviate
 
 You can test today. Set the `DISABLE_GRAPHQL` environment variable to `true` and GraphQL is off. It is also available as the runtime-config key `disable_graphql`.
 
 With GraphQL disabled, `POST /v1/graphql` and `POST /v1/graphql/batch` return HTTP `422`:
 
 ```json
-{"error":[{"message":"graphql api is disabled"}]}
+{ "error": [{ "message": "graphql api is disabled" }] }
 ```
 
 Authorization runs first, so a caller without read permission gets `403` instead. The Python client raises `UnexpectedStatusCodeError` and the Go v5 client returns a `WeaviateClientError`, both carrying this status and message.
@@ -209,7 +202,7 @@ When an upcoming minor release turns GraphQL off by default, you will be able to
 
 {/* TODO(ivan): Q1. Replace "an upcoming minor release" with the version once Dirk confirms. */}
 
-## Weaviate Cloud
+### Weaviate Cloud
 
 GraphQL is switched off on all Weaviate Cloud clusters on April 1, 2027. New clusters are already created with GraphQL disabled.
 
@@ -221,6 +214,12 @@ Weaviate Cloud and Enterprise customers who need help planning the move can cont
 
 ## Get help
 
+If something in your setup does not fit the paths above, tell us early so we can assist you with the migration.
+
 - Ask migration questions on the [Weaviate forum](https://forum.weaviate.io/).
 - If you have a query that you cannot convert, [open a GitHub issue](https://github.com/weaviate/weaviate/issues) with the GraphQL query and what it is for.
 - Weaviate Cloud and Enterprise customers can reach us through the [support portal](https://support.weaviate.io/).
+
+import WhatsNext from "/_includes/what-next.mdx";
+
+<WhatsNext />
