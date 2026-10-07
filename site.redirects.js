@@ -1,6 +1,10 @@
 const siteRedirects = {
     redirects: [
         {
+            to: '/enterprise',
+            from: '/product/enterprise',
+        },
+        {
             to: '/company/about-us',
             from: '/company',
         },
