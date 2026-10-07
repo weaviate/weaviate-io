@@ -41,7 +41,7 @@ Here's some of what that funds in the open-source Community Edition:
 - **Performance improvements:** Faster indexing, faster search. These improvements live in the core, so they ship in the Community Edition.
 - **Dependency maintenance:** We keep libraries and toolchains current, security patches included.
 
-The Enterprise Edition starts small. The first features are [Shard Self-Recovery](https://docs.weaviate.io/deploy/configuration/self-recovery), which automates recovery on top of the replication the Community Edition includes for free, Namespaces, and Deduplicated backups. More Enterprise Edition features will arrive in upcoming releases.
+The Enterprise Edition starts small. The first features are [Shard Self-Recovery](https://docs.weaviate.io/deploy/configuration/self-recovery), which automates recovery on top of the replication the Community Edition includes for free, Namespaces, and [Deduplicated backups](https://docs.weaviate.io/deploy/configuration/backups#deduplicated-backups). More Enterprise Edition features will arrive in upcoming releases.
 
 ## How the Enterprise Edition works
 
@@ -52,7 +52,7 @@ Both editions ship in one Docker image and one binary. When Weaviate starts, the
 
 ![How the Enterprise Edition works](./img/license.png)
 
-To move from the Community Edition to the Enterprise Edition, you [get a license key](https://console.weaviate.cloud/enterprise-edition-trial) and restart Weaviate with it. You can also request a trial at [license.weaviate.io/trial](https://license.weaviate.io/trial). There's no new image and no new download. You pass the key in the `LICENSE_KEY` or `LICENSE_KEY_FILE` environment variable, and the [Enterprise Edition docs](https://docs.weaviate.io/deploy/enterprise#activate-the-enterprise-edition) cover the details. License keys apply to self-hosted deployments only.
+To move from the Community Edition to the Enterprise Edition, you [get a license key](https://console.weaviate.cloud/enterprise-edition-trial) and restart Weaviate with it. There's no new image and no new download. You pass the key in the `LICENSE_KEY` or `LICENSE_KEY_FILE` environment variable, and the [Enterprise Edition docs](https://docs.weaviate.io/deploy/enterprise#activate-the-enterprise-edition) cover the details. License keys apply to self-hosted deployments only.
 
 **If you use Weaviate Cloud, this change has no impact on you. You don't need a license key.**
 
