@@ -1,7 +1,16 @@
 import React from "react";
 import Link from "@docusaurus/Link";
 
-export default function CTA() {
+export default function CTA({
+  heading = (
+    <>
+      Give your agents memory
+      <br />
+      that works in production
+    </>
+  ),
+  cta = { label: "Get started", to: "https://console.weaviate.io/signup" },
+}) {
   return (
     <section className="tw-bg-[#111111] tw-px-6 tw-py-12 md:tw-py-16 lg:tw-py-20">
       <div className="tw-mx-auto tw-max-w-[1320px]">
@@ -33,13 +42,11 @@ export default function CTA() {
                 lineHeight: "120%",
               }}
             >
-              Give your agents memory
-              <br />
-              that works in production
+              {heading}
             </h2>
 
             <Link
-              to="https://console.weaviate.io/signup"
+              to={cta.to}
               className="
             tw-mt-10
             tw-inline-flex
@@ -62,7 +69,7 @@ export default function CTA() {
                 textcolor: "#111",
               }}
             >
-              Get started
+              {cta.label}
             </Link>
           </div>
         </div>

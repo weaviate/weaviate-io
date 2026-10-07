@@ -1,6 +1,6 @@
 import React from "react";
 
-const steps = [
+const defaultSteps = [
   {
     title: "Choose your template",
     description:
@@ -27,7 +27,19 @@ const steps = [
   },
 ];
 
-export default function StepsSection() {
+export default function StepsSection({
+  eyebrow = "Get Started",
+  heading = "Start building reliable agents with memory and context today",
+  intro = "Integrate Engram with your agentic applications in a few simple steps and let us handle the rest.",
+  steps = defaultSteps,
+  visual = (
+    <img
+      src="/img/site/2026/engram-diagram-get-started.svg"
+      alt="Engram workflow diagram"
+      className="tw-h-auto tw-w-full"
+    />
+  ),
+}) {
   return (
     <section className="tw-bg-[#111111] tw-px-6 tw-py-12 md:tw-py-16 lg:tw-py-20">
       <div className="tw-mx-auto tw-max-w-[1320px]">
@@ -42,7 +54,7 @@ export default function StepsSection() {
               lineHeight: "130%",
             }}
           >
-            Get Started
+            {eyebrow}
           </p>
 
           <h2
@@ -55,7 +67,7 @@ export default function StepsSection() {
               lineHeight: "130%",
             }}
           >
-            Start building reliable agents with memory and context today
+            {heading}
           </h2>
 
           <p
@@ -67,8 +79,7 @@ export default function StepsSection() {
               lineHeight: "160%",
             }}
           >
-            Integrate Engram with your agentic applications in a few simple
-            steps and let us handle the rest.
+            {intro}
           </p>
         </div>
 
@@ -130,11 +141,7 @@ export default function StepsSection() {
                 background: "#1A1A1A",
               }}
             >
-              <img
-                src="/img/site/2026/engram-diagram-get-started.svg"
-                alt="Engram workflow diagram"
-                className="tw-h-auto tw-w-full"
-              />
+              {visual}
             </div>
           </div>
         </div>

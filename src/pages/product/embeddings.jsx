@@ -1,325 +1,207 @@
 import React from "react";
 import Layout from "@theme/Layout";
-import Link from "@docusaurus/Link";
 import { MetaSEO } from "/src/theme/MetaSEO";
 import appData from "/data/apps.json";
-import styles from "/src/components/Marketplace/styles.module.scss";
-import AppCard from "/src/components/Marketplace/card";
 
-const modelCardStyles = {
-  section: {
-    marginTop: "40px",
-    marginBottom: "40px",
-  },
-  categoryTitle: {
-    color: "#fff",
-    fontSize: "1.25rem",
-    fontWeight: "600",
-    marginBottom: "20px",
-    marginTop: "30px",
-  },
-  cardsContainer: {
-    display: "flex",
-    flexWrap: "wrap",
-    gap: "20px",
-  },
-  card: {
-    background: "#1a1a1a",
-    borderRadius: "8px",
-    border: "1px solid rgba(255, 255, 255, 0.06)",
-    padding: "24px",
-    width: "320px",
-    boxShadow: "0px 4px 12px 0px rgba(22, 27, 45, 0.08)",
-  },
-  cardHeader: {
-    display: "flex",
-    alignItems: "center",
-    gap: "12px",
-    marginBottom: "16px",
-  },
-  cardIcon: {
-    width: "40px",
-    height: "40px",
-    borderRadius: "8px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    fontSize: "20px",
-  },
-  snowflakeIcon: {
-    background: "#e3f2fd",
-  },
-  modernvbertIcon: {
-    background: "#f3e5f5",
-  },
-  cardTitle: {
-    margin: 0,
-    fontSize: "1rem",
-    fontWeight: "700",
-    color: "#f7f9fd",
-  },
-  cardSubtitle: {
-    margin: 0,
-    fontSize: "0.875rem",
-    color: "#d8def0",
-  },
-  cardBullets: {
-    listStyle: "none",
-    padding: 0,
-    margin: "0 0 16px 0",
-  },
-  bullet: {
-    display: "flex",
-    alignItems: "flex-start",
-    gap: "8px",
-    marginBottom: "8px",
-    fontSize: "0.875rem",
-    color: "#d8def0",
-  },
-  bulletIcon: {
-    color: "#61bd73",
-    fontWeight: "bold",
-    marginTop: "2px",
-  },
-  learnMore: {
-    color: "#61bd73",
-    fontSize: "0.875rem",
-    fontWeight: "500",
-    textDecoration: "underline",
-  },
-  defaultBadge: {
-    background: "#61bd73",
-    color: "#fff",
-    fontSize: "0.625rem",
-    padding: "2px 8px",
-    borderRadius: "4px",
-    fontWeight: "600",
-    marginLeft: "8px",
-  },
-};
+import Hero from "/src/components/ProductPageTemplate/Hero";
+import BenefitCards from "/src/components/ProductPageTemplate/BenefitCards";
+import FeatureSplit from "/src/components/ProductPageTemplate/FeatureSplit";
+import PricingSection from "/src/components/ProductPageTemplate/PricingSection";
+import RelatedProducts from "/src/components/ProductPageTemplate/RelatedProducts";
+import CTA from "/src/components/ProductPageTemplate/CTA";
+import Blogs from "/src/components/ProductPageTemplate/Blogs";
 
-function ModelCard({
-  icon,
-  iconStyle,
-  title,
-  subtitle,
-  bullets,
-  learnMoreUrl,
-  isDefault,
-}) {
-  return (
-    <div style={modelCardStyles.card}>
-      <div style={modelCardStyles.cardHeader}>
-        <div style={{ ...modelCardStyles.cardIcon, ...iconStyle }}>{icon}</div>
-        <div>
-          <h4 style={modelCardStyles.cardTitle}>
-            {title}
-            {isDefault && (
-              <span style={modelCardStyles.defaultBadge}>Default</span>
-            )}
-          </h4>
-          <p style={modelCardStyles.cardSubtitle}>{subtitle}</p>
-        </div>
-      </div>
-      <ul style={modelCardStyles.cardBullets}>
-        {bullets.map((bullet, index) => (
-          <li key={index} style={modelCardStyles.bullet}>
-            <span style={modelCardStyles.bulletIcon}>•</span>
-            <span>{bullet}</span>
-          </li>
-        ))}
-      </ul>
-      <Link to={learnMoreUrl} style={modelCardStyles.learnMore}>
-        Learn more
-      </Link>
-    </div>
-  );
-}
+const DOCS_URL = "https://docs.weaviate.io/cloud/embeddings";
+const MODEL_ICON = "/img/site/2026/embeddings-icon.svg";
 
-export default function QueryPage() {
+const benefitCards = [
+  {
+    title: "Fast, flexible development",
+    description:
+      "Simplify operations with one less API and vendor to manage. Choose between class-leading OSS and proprietary models.",
+    icon: "/img/site/2026/build.svg",
+    glow: "rgba(0, 254, 107, 0.16)",
+  },
+  {
+    title: "Freedom from rate limits",
+    description:
+      "Bring models closer to your data to reduce latency, with no artificial constraints on embeddings per second.",
+    icon: "/img/site/2026/extract.svg",
+    glow: "rgba(122, 145, 255, 0.18)",
+  },
+  {
+    title: "GPU-powered and cost-efficient",
+    description:
+      "Maximize performance while managing costs with simple, pay-as-you-go pricing.",
+    icon: "/img/site/2026/shrink.svg",
+    glow: "rgba(104, 255, 168, 0.15)",
+  },
+  {
+    title: "No external provider needed",
+    description:
+      "Access embedding models directly in Weaviate Cloud without sending data to a third party.",
+    icon: "/img/site/2026/share.svg",
+    glow: "rgba(0, 183, 226, 0.16)",
+  },
+];
+
+const modelCards = [
+  {
+    icon: MODEL_ICON,
+    title: "Snowflake Arctic L v2.0 (Default)",
+    description:
+      "Multilingual support and up to 8,192 tokens. Best for big-scale, complex retrieval.",
+  },
+  {
+    icon: MODEL_ICON,
+    title: "Snowflake Arctic M v1.5",
+    description:
+      "English support and up to 512 tokens. Best for fast, lightweight retrieval.",
+  },
+  {
+    icon: MODEL_ICON,
+    title: "ModernVBERT ColModernVBERT",
+    description:
+      "Multimodal, English support for images and document pages (query text limit: 8,092 tokens). Best for visual documents like PDFs, slides and invoices without OCR preprocessing.",
+  },
+];
+
+const plans = [
+  {
+    name: "Snowflake Arctic Embed 1.5",
+    label: "Text embedding",
+    price: "$0.025",
+    unit: "per 1M tokens",
+  },
+  {
+    name: "Snowflake Arctic Embed 2.0",
+    label: "Text embedding",
+    price: "$0.040",
+    unit: "per 1M tokens",
+    highlighted: true,
+  },
+  {
+    name: "ModernVBERT ColModernVBERT",
+    label: "Multimodal embedding",
+    price: "$0.065",
+    unit: "per 1M tokens",
+  },
+];
+
+const blogPosts = [
+  {
+    title: "Introducing Weaviate Embeddings",
+    description:
+      "Embedding models hosted alongside your data in Weaviate Cloud, with no third-party provider to manage.",
+    image: "/img/site/2026/embeddings-blog-intro.jpg",
+    cover: true,
+    gradient: "linear-gradient(42deg,#148f54 10%,#106d63 45%,#135d73 100%)",
+    link: "/blog/introducing-weaviate-embeddings",
+  },
+  {
+    title: "How to choose an embedding model",
+    description:
+      "A practical guide to picking the right embedding model for your use case.",
+    image: "/img/site/2026/embeddings-blog-choose.png",
+    cover: true,
+    gradient: "linear-gradient(42deg,#6d25b5 10%,#4d1fa5 55%,#2f1d87 100%)",
+    link: "/blog/how-to-choose-an-embedding-model",
+  },
+  {
+    title: "Fine-tune an embedding model",
+    description:
+      "Learn how fine-tuning an embedding model can improve retrieval for your domain.",
+    image: "/img/site/2026/embeddings-blog-finetune.png",
+    cover: true,
+    gradient: "linear-gradient(42deg,#2b6f84 10%,#4d6785 55%,#66608b 100%)",
+    link: "/blog/fine-tune-embedding-model",
+  },
+];
+
+export default function EmbeddingsPage() {
   const app = appData.find((app) => app.name === "Embeddings");
 
   if (!app) return <div>App not found</div>;
 
+  const related = appData.filter(
+    (a) => a.category === app.category && a.id !== app.id,
+  );
+
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Embeddings | Weaviate Workbench"
-        description="Build personalized, multi-modal recommendations with simple interface."
+        title="Embeddings | Weaviate Cloud"
+        description="Generate embeddings within Weaviate Cloud, without rate limits or a third-party provider."
       >
-        <MetaSEO />
-        <section className={styles.productBG}>
-          <div className="container">
-            <div className={styles.breadCrumbs}>
-              <Link to="/product">
-                <div className={styles.home} />
-              </Link>
-              <div className={styles.arrow} />
-              <span>
-                {app.category}: <Link to={app.url}>{app.name}</Link>
-              </span>
-            </div>
-            <div className={styles.appContainer}>
-              <div className={`${styles.sidebar} ${styles.mini}`}>
-                <Link to="/product" className={styles.backButton}>
-                  Workbench
-                </Link>
-              </div>
-              <div className={styles.mainContent}>
-                <div className={styles.appDetailHeader}>
-                  <img src={"/img/site/" + app.image} alt={app.name} />
-                  <div>
-                    <h1>{app.name}</h1>
-                    <p>{app.longDescription}</p>
-                    <div className={styles.installButtons}>
-                      {app.released === "yes" ? (
-                        <Link to="/go/console">
-                          <button className={styles.installButton}>
-                            Open in Weaviate Cloud
-                          </button>
-                        </Link>
-                      ) : (
-                        <Link to="https://events.weaviate.io/embeddings-preview">
-                          <button className={styles.installButton}>
-                            Request Preview Access
-                          </button>
-                        </Link>
-                      )}
-                      <Link to="https://docs.weaviate.io/cloud/embeddings">
-                        <button className={styles.docButton}>
-                          Read the Docs
-                        </button>
-                      </Link>
-                    </div>
-                  </div>
-                  <div className={styles.imageContainer}>
-                    <div className={styles.overviewImage}>
-                      <img
-                        className={`${styles.smallScreen} ${styles.embeddings}`}
-                        src={"/img/site/" + app.overviewImage1}
-                        alt={app.name}
-                      />
-                    </div>
-                  </div>
-                </div>
+        <MetaSEO img="og/website/home.jpg" />
 
-                <div className={styles.appDetailContent}>
-                  <div className={styles.tabBottomContent}>
-                    <div>
-                      <h3>Overview</h3>
-                      <p>
-                        Weaviate Embeddings is a service in Weaviate Cloud that
-                        simplifies the creation and management of vector
-                        embeddings. With Weaviate Embeddings, developers can
-                        access to various embedding models without needing to
-                        send data to an external provider.
-                      </p>
-                      <ul>
-                        <li>
-                          <strong>Fast, flexible development:</strong> Simply
-                          operations with one less API and vendor to manage.
-                          Choose between class-leading OSS and proprietary
-                          models.
-                        </li>
-                        <li>
-                          <strong>Freedom from rate limits:</strong> Bring
-                          models closer to your data to reduce latency. Enable
-                          limitless embeddings per second without artificial
-                          constraints.
-                        </li>
-                        <li>
-                          <strong>GPU-powered and cost-efficient:</strong>{" "}
-                          Maximize performance while managing costs with simple,
-                          pay-as-you-go pricing.
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div className={styles.additionalInfo}>
-                      <h3>Additional Details and Pricing</h3>
-                      <p>
-                        Snowflake arctic-embed 1.5 = <strong>$0.025</strong> per
-                        1M tokens<br></br>Snowflake arctic-embed 2.0 ={" "}
-                        <strong>$0.040</strong> per 1M tokens<br></br>
-                        ModernVBERT colmodernvbert = <strong>$0.065</strong> per
-                        1M tokens
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div style={modelCardStyles.section}>
-                  <h3>Available Models</h3>
-
-                  <h4 style={modelCardStyles.categoryTitle}>
-                    Text Embedding Models
-                  </h4>
-                  <div style={modelCardStyles.cardsContainer}>
-                    <ModelCard
-                      icon="❄️"
-                      iconStyle={modelCardStyles.snowflakeIcon}
-                      title="Arctic L v2.0"
-                      subtitle="Snowflake"
-                      isDefault={true}
-                      bullets={[
-                        "Multilingual support",
-                        "Up to 8,192 tokens",
-                        "Best for big-scale, complex retrieval",
-                      ]}
-                      learnMoreUrl="https://docs.weaviate.io/cloud/embeddings"
-                    />
-                    <ModelCard
-                      icon="❄️"
-                      iconStyle={modelCardStyles.snowflakeIcon}
-                      title="Arctic M v1.5"
-                      subtitle="Snowflake"
-                      bullets={[
-                        "English support",
-                        "Up to 512 tokens",
-                        "Best for fast, lightweight retrieval",
-                      ]}
-                      learnMoreUrl="https://docs.weaviate.io/cloud/embeddings"
-                    />
-                  </div>
-
-                  <h4 style={modelCardStyles.categoryTitle}>
-                    Multimodal Models
-                  </h4>
-                  <div style={modelCardStyles.cardsContainer}>
-                    <ModelCard
-                      icon="🔮"
-                      iconStyle={modelCardStyles.modernvbertIcon}
-                      title="ColModernVBERT"
-                      subtitle="ModernVBERT"
-                      bullets={[
-                        "English support",
-                        "Supports images and document pages",
-                        "Query text limit: 8,092 tokens",
-                        "Best for visual documents (PDFs, slides, invoices) without OCR preprocessing",
-                      ]}
-                      learnMoreUrl="https://docs.weaviate.io/cloud/embeddings"
-                    />
-                  </div>
-                </div>
-                <div className={styles.appDivider} />
-                <div className={styles.relatedApps}>
-                  <h3>Related Products</h3>
-                  <div className={styles.cardContainer}>
-                    {appData
-                      .filter(
-                        (relatedApp) =>
-                          relatedApp.category === app.category &&
-                          relatedApp.id !== app.id,
-                      )
-                      .map((relatedApp) => (
-                        <AppCard key={relatedApp.id} app={relatedApp} />
-                      ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <main className="tw-bg-[#111111] tw-text-white">
+          <Hero
+            title="Embeddings:"
+            subtitle="Built into Weaviate Cloud"
+            description="Say goodbye to rate limits and the hassle of managing multiple embedding providers."
+            primaryCta={
+              app.released === "yes"
+                ? { label: "Open in Weaviate Cloud", to: "/go/console" }
+                : {
+                    label: "Request Preview Access",
+                    to: "https://events.weaviate.io/embeddings-preview",
+                  }
+            }
+            secondaryCta={{ label: "Read the Docs", to: DOCS_URL }}
+            media={
+              <img
+                src={"/img/site/" + app.overviewImage1}
+                alt="Weaviate Embeddings architecture"
+                className="tw-block tw-h-auto tw-w-full tw-rounded-2xl"
+              />
+            }
+          />
+          <BenefitCards cards={benefitCards} />
+          <FeatureSplit
+            eyebrow="What is Weaviate Embeddings?"
+            heading="Embeddings, right next to your data"
+            intro="Weaviate Embeddings is a service in Weaviate Cloud that simplifies the creation and management of vector embeddings."
+            visual={
+              <img
+                src={"/img/site/" + app.overviewImage1}
+                alt="Weaviate Embeddings architecture"
+                className="tw-mx-auto tw-block tw-h-auto tw-w-full tw-max-w-[520px]"
+              />
+            }
+            panelHeading="Access leading models without leaving Weaviate"
+            panelDescription="Developers can use a range of embedding models without needing to send data to an external provider:"
+            checks={[
+              "One less API and vendor to manage",
+              "Class-leading OSS and proprietary models",
+              "Lower latency, closer to your data",
+              "Simple pay-as-you-go pricing",
+            ]}
+            link={{
+              label: "Read the blog post to learn more",
+              to: "/blog/introducing-weaviate-embeddings",
+            }}
+            cardsHeading="Available models"
+            featureCards={modelCards}
+          />
+          <PricingSection
+            title="Simple, pay-as-you-go pricing"
+            intro="Pay only for the tokens you embed."
+            plans={plans}
+          />
+          <RelatedProducts products={related} />
+          <CTA
+            heading={
+              <>
+                Generate embeddings
+                <br />
+                inside Weaviate Cloud
+              </>
+            }
+            cta={{ label: "Open in Weaviate Cloud", to: "/go/console" }}
+          />
+          <Blogs blogPosts={blogPosts} />
+        </main>
       </Layout>
     </div>
   );

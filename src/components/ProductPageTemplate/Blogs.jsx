@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "@docusaurus/Link";
 
-const blogPosts = [
+const defaultBlogPosts = [
   {
     title: "Engram: Memory by Weaviate",
     description:
@@ -28,7 +28,7 @@ const blogPosts = [
   },
 ];
 
-export default function Blogs() {
+export default function Blogs({ blogPosts = defaultBlogPosts }) {
   return (
     <section className="tw-bg-[#111111] tw-px-6 tw-py-12 md:tw-py-16 lg:tw-py-20">
       <div className="tw-mx-auto tw-max-w-[1320px]">
@@ -45,12 +45,18 @@ export default function Blogs() {
                   style={{ background: post.gradient }}
                 />
 
-                <img
-                  src={post.image}
-                  alt=""
-                  aria-hidden="true"
-                  className="tw-relative tw-h-full tw-w-full tw-object-contain tw-opacity-70 tw-mix-blend-screen tw-transition-transform tw-duration-300 group-hover:tw-scale-105"
-                />
+                {post.image && (
+                  <img
+                    src={post.image}
+                    alt=""
+                    aria-hidden="true"
+                    className={`tw-relative tw-h-full tw-w-full tw-transition-transform tw-duration-300 group-hover:tw-scale-105 ${
+                      post.cover
+                        ? "tw-object-cover"
+                        : "tw-object-contain tw-opacity-70 tw-mix-blend-screen"
+                    }`}
+                  />
+                )}
                 <div
                   className="tw-absolute tw-inset-0"
                   style={{

@@ -1,7 +1,20 @@
 import React from "react";
 import Link from "@docusaurus/Link";
 
-export default function Hero() {
+export default function Hero({
+  title = "Engram:",
+  subtitle = "Memory Built for AI Agents",
+  description = "A fully managed memory and context service purpose-built to help agents remember, learn, and improve over time",
+  primaryCta = { label: "Get started", to: "https://console.weaviate.io/signup" },
+  secondaryCta = { label: "Documentation", to: "https://docs.weaviate.io/engram" },
+  media = (
+    <img
+      src="/img/site/2026/engram-diagram-hero.svg"
+      alt="Engram memory architecture diagram"
+      className="tw-h-auto tw-w-full tw-rounded-2xl"
+    />
+  ),
+}) {
   return (
     <section className="tw-relative tw-overflow-hidden tw-bg-[#111111] tw-py-20 lg:tw-py-20">
       <div className="container">
@@ -9,29 +22,28 @@ export default function Hero() {
           <div>
             <h1 className="tw-mb-8 tw-font-['Plus_Jakarta_Sans'] tw-text-[3rem] tw-font-semibold tw-leading-[130%] tw-tracking-[-0.03em]">
               <span className="tw-block tw-bg-[linear-gradient(48deg,#00FE6B_13.81%,#00B7E2_92.18%)] tw-bg-clip-text tw-text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]">
-                Engram:
+                {title}
               </span>
 
               <span className="tw-block tw-text-[#DDEBF2]">
-                Memory Built for AI Agents
+                {subtitle}
               </span>
             </h1>
 
             <p className="tw-mb-12 tw-max-w-2xl tw-font-['Inter'] tw-text-xl tw-leading-relaxed tw-text-[#b8c4d4] md:tw-text-2xl">
-              A fully managed memory and context service purpose-built to help
-              agents remember, learn, and improve over time
+              {description}
             </p>
 
             <div className="tw-flex tw-flex-wrap tw-gap-5">
               <Link
-                to="https://console.weaviate.io/signup"
+                to={primaryCta.to}
                 className="tw-inline-flex tw-min-h-[54px] tw-items-center tw-justify-center tw-rounded-md tw-bg-[linear-gradient(48deg,_#00FE6B_13.81%,_#00B7E2_92.18%)] tw-px-8 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-[#111111] tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-bg-white hover:tw-text-[#111111] hover:tw-no-underline"
               >
-                Get started
+                {primaryCta.label}
               </Link>
 
               <Link
-                to="https://docs.weaviate.io/engram"
+                to={secondaryCta.to}
                 className="tw-inline-flex tw-min-h-[54px] tw-items-center tw-justify-center tw-rounded-md tw-border tw-border-white/40 tw-bg-transparent tw-px-8 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-white tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-border-white hover:tw-bg-white/10 hover:tw-text-white hover:tw-no-underline"
                 style={{
                   fontFamily: "Inter, sans-serif",
@@ -39,7 +51,7 @@ export default function Hero() {
                   border: "0.5px solid #ECF4F8",
                 }}
               >
-                Documentation
+                {secondaryCta.label}
               </Link>
             </div>
           </div>
@@ -48,11 +60,7 @@ export default function Hero() {
             <div className="tw-absolute tw-inset-0 tw-rounded-[1.875rem] tw-bg-[linear-gradient(48deg,#68FFA8_-4.58%,#00B7E2_86.47%)] tw-opacity-20" />
 
             <div className="tw-relative tw-rounded-[1.875rem] tw-border tw-border-white/10 tw-bg-[linear-gradient(123deg,_rgba(38,214,255,0.2)_12.44%,_rgba(215,122,255,0.2)_109.26%)] tw-p-6 tw-shadow-[0_28px_90px_rgba(0,0,0,0.35)] md:tw-p-10">
-              <img
-                src="/img/site/2026/engram-diagram-hero.svg"
-                alt="Engram memory architecture diagram"
-                className="tw-h-auto tw-w-full tw-rounded-2xl"
-              />
+              {media}
             </div>
           </div>
         </div>
