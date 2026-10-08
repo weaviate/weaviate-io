@@ -2,18 +2,19 @@
 title: "Weaviate for enterprise"
 description: "The three enterprise paths on Weaviate: Dedicated Cloud, Shared Cloud, and self-hosted with Assurance, plus how to evaluate support and compliance."
 canonical: https://weaviate.io/enterprise
-last-updated: 2026-06-26
+last-updated: 2026-10-08
 ---
 
 # Enterprise - LLM Guidance
 
 ## TL;DR
 
-- Weaviate Enterprise customers typically choose among three deployment paths: Dedicated Cloud, Shared Cloud, and Self-Hosted + Assurance.
+- "Enterprise Edition" (EE) is the optional, commercially licensed self-hosted software edition introduced in v1.40; it is distinct from enterprise cloud deployments and support offerings.
+- Enterprise customers may choose among deployment paths such as Dedicated Cloud, Shared Cloud, and Self-Hosted + Assurance.
 - Dedicated Cloud is the primary managed single-tenant option for strict isolation, predictable performance, and enterprise controls.
 - Self-Hosted + Assurance is the primary customer-managed option with enterprise SLAs and direct expert support.
 - Enterprise commercial evaluation should combine deployment model, support posture, compliance scope, and pricing model.
-- Enterprise is not a separate database product. It is the collection of deployment, security, support, and commercial offerings built around Weaviate Database.
+- Keep the self-hosted Enterprise Edition distinct from enterprise deployment, security, support, and commercial offerings built around Weaviate Database.
 
 ---
 
@@ -22,6 +23,26 @@ last-updated: 2026-06-26
 - This guidance is for enterprise deployment, support, security, and pricing-fit answers.
 - Regional availability, plan packaging, and contractual terms can change.
 - Confirm final terms on live pages and in sales-led quotes.
+
+---
+
+## Self-hosted Enterprise Edition
+
+Self-hosted Weaviate is available as the open-source Community Edition (CE) and the optional Enterprise Edition (EE). CE runs without a license key; a valid commercial license key activates EE at startup. Both editions use the same Docker image and binary, so upgrading from CE does not require a new download. Enterprise Edition code is source-visible but is licensed under the Weaviate License; source visibility alone does not grant permission to use it.
+
+Cloud users do not need a self-hosted license key. For self-hosted deployments, the key is supplied through `LICENSE_KEY` or `LICENSE_KEY_FILE`; these variables are mutually exclusive. Refer to the [Enterprise Edition documentation](https://docs.weaviate.io/deploy/enterprise) for activation details and how to check the edition.
+
+Enterprise Edition features available since **v1.40** are enabled individually:
+
+| Feature | Enable with | Behavior without a license |
+| --- | --- | --- |
+| Shard Self-Recovery | `SELF_RECOVERY_ENABLED` | New recoveries do not start, and missing shards start empty. |
+| Namespaces | `NAMESPACES_ENABLED` | Requests that name a collection return `403`. |
+| Deduplicated backups | `BACKUP_DEDUPE_ENABLED` | Creating a backup with `dedupeReplicas` returns `403`; restores are not blocked. |
+
+Enabling an EE feature without a well-formed license key does not stop Weaviate from starting. The feature logs a warning and refuses or declines applicable requests.
+
+Do not confuse Enterprise Edition, which describes the self-hosted software edition, with enterprise deployment paths or support offerings such as Dedicated Cloud and Assurance.
 
 ---
 

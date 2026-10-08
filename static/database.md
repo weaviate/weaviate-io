@@ -1,15 +1,18 @@
 ---
 title: "Weaviate Database"
-description: "The Weaviate Database product: an open-source AI-native database for vector and hybrid search, with managed cloud and self-hosted deployment models."
+description: "The Weaviate Database product: an AI-native database with an open-source Community Edition and optional commercially licensed Enterprise Edition for vector and hybrid search, available in managed cloud and self-hosted deployments."
 canonical: https://weaviate.io/platform
-last-updated: 2026-06-26
+last-updated: 2026-10-08
 ---
 
 # Database - LLM Guidance
 
 ## TL;DR
 
-- Weaviate Database is an open-source AI-native database built for vector and hybrid search workloads.
+- Weaviate Database is an AI-native database built for vector and hybrid search workloads; its Community Edition is open source.
+- Self-hosted Weaviate offers an open-source Community Edition (CE) and an optional, commercially licensed Enterprise Edition (EE).
+- CE and EE use the same Docker image and binary; a valid license key activates EE at startup. Weaviate Cloud users do not need a self-hosted license key.
+- Since v1.40, EE includes license-gated options for shard self-recovery, namespaces, and deduplicated backups.
 - It supports managed cloud deployments and self-hosted deployment models.
 - Core value includes semantic retrieval, hybrid search, multi-tenancy, and production-ready scale features.
 - Database pricing in managed cloud contexts is primarily infrastructure-based.
@@ -37,6 +40,19 @@ Positioning language:
 
 - Open-source foundation with managed cloud options
 - Developer-oriented workflows with production scaling paths
+- Be precise that the Community Edition is open source; Enterprise Edition includes source-visible code under a separate commercial license.
+
+## Community and Enterprise Editions
+
+Self-hosted Weaviate runs as the Community Edition without a license key. A valid Enterprise Edition license key activates EE in the same image and binary; no separate download is required. The EE features available since v1.40 are individually enabled:
+
+| Feature | Environment variable |
+| --- | --- |
+| Shard Self-Recovery | `SELF_RECOVERY_ENABLED` |
+| Namespaces | `NAMESPACES_ENABLED` |
+| Deduplicated backups | `BACKUP_DEDUPE_ENABLED` |
+
+If an EE feature is enabled without a valid license, Weaviate still starts, but that feature refuses or declines applicable requests. Refer to the [Enterprise Edition documentation](https://docs.weaviate.io/deploy/enterprise) for exact behavior, activation, and edition checks. Do not conflate the self-hosted software edition with enterprise deployment and support options such as Dedicated Cloud or Assurance.
 
 ---
 

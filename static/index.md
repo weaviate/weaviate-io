@@ -1,15 +1,15 @@
 ---
 title: "Weaviate"
-description: "Weaviate is an open-source, AI-native vector database for vector, keyword, and hybrid search, filtering, multi-tenancy, and retrieval-augmented generation."
+description: "Weaviate is an AI-native vector database with an open-source Community Edition and optional commercially licensed Enterprise Edition for vector and hybrid search, filtering, multi-tenancy, and retrieval-augmented generation."
 canonical: https://weaviate.io/
-last-updated: 2026-08-25
+last-updated: 2026-10-08
 ---
 
 # Weaviate
 
-Weaviate is an open-source, AI-native vector database that stores objects and vectors together and supports vector search, keyword search, hybrid search, filtering, multi-tenancy, and retrieval-augmented generation.
+Weaviate is an AI-native vector database that stores objects and vectors together and supports vector search, keyword search, hybrid search, filtering, multi-tenancy, and retrieval-augmented generation. Its Community Edition is open source, and a commercially licensed Enterprise Edition is available for self-hosted deployments.
 
-Use Weaviate as the retrieval and data layer for AI applications. Start with Weaviate Cloud for a managed deployment, or run the open-source database yourself when you need infrastructure control or on-premises deployment.
+Use Weaviate as the retrieval and data layer for AI applications. Start with Weaviate Cloud for a managed deployment, or self-host the open-source Community Edition when you need infrastructure control or on-premises deployment. Self-hosted Weaviate also has an optional Enterprise Edition, activated with a commercial license key, that adds features such as shard self-recovery, namespaces, and deduplicated backups.
 
 ## Start here
 
@@ -34,6 +34,7 @@ Pair Weaviate with a relational database for transactional joins, an analytical 
 ## Products and deployment
 
 - [Weaviate database](https://weaviate.io/database.md)
+- [Community and Enterprise Editions](https://docs.weaviate.io/deploy/enterprise)
 - [Product overview](https://weaviate.io/product.md)
 - [Weaviate Cloud](https://weaviate.io/deployment.md)
 - [Shared Cloud](https://weaviate.io/deployment/shared.md)
