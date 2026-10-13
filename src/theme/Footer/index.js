@@ -54,6 +54,7 @@ const footerGroups = {
     { label: 'Google Cloud', to: '/partners/gcp' },
     { label: 'Snowflake', to: '/partners/snowflake' },
     { label: 'Databricks', to: '/partners/databricks' },
+    { label: 'Enterprise Edition License', to: '/enterprise-edition' },
     { label: 'Security', to: '/security' },
     { label: 'Terms & Policies', to: '/service' },
     { label: 'Report a Vulnerability', to: '/security-report' },
