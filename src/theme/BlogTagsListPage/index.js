@@ -11,6 +11,7 @@ import {
 import BlogLayout from '@theme/BlogLayout';
 import SearchMetadata from '@theme/SearchMetadata';
 import FeaturedBlogTags from '../FeaturedBlogTags';
+import BreadcrumbStructuredData from '../../components/SEO/BreadcrumbStructuredData';
 
 export default function BlogTagsListPage({tags, sidebar}) {
   const title = translateTagsPageTitle();
@@ -22,7 +23,17 @@ export default function BlogTagsListPage({tags, sidebar}) {
         ThemeClassNames.wrapper.blogPages,
         ThemeClassNames.page.blogTagsListPage,
       )}>
-      <PageMetadata title={title} />
+      <PageMetadata
+        title={title}
+        description="Explore every topic covered by the Weaviate team and community."
+      />
+      <BreadcrumbStructuredData
+        items={[
+          {name: 'Home', path: '/'},
+          {name: 'Blog', path: '/blog'},
+          {name: 'Tags', path: '/blog/tags'},
+        ]}
+      />
       <SearchMetadata tag="blog_tags_list" />
       <BlogLayout sidebar={sidebar}>
         <div className="tw-mx-auto tw-w-full tw-max-w-[1320px] tw-px-[18px] tw-pb-24 tw-pt-11 sm:tw-px-6 sm:tw-pt-16">

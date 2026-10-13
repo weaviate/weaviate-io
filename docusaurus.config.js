@@ -38,6 +38,7 @@ module.exports = async function createConfigAsync() {
     plugins: [
 
         require.resolve('./plugins/blog-search-index'),
+        require.resolve('./plugins/blog-frontmatter-validation'),
 
          () => ({
     name: 'inject-pre-google',
