@@ -73,6 +73,7 @@ function readPosts(blogDirectory) {
         readingTime: Math.max(1, Math.ceil(wordCount / 220)),
         tags,
         image: image?.publicPath || '',
+        imageAlt: typeof data.imageAlt === 'string' ? data.imageAlt.trim() : '',
         imageSource: image?.sourcePath || '',
         imageOutput: image?.outputPath || '',
         primaryTag: data.primaryTag || tags[0] || '',

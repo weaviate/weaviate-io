@@ -16,6 +16,7 @@ import {
 import {blogPostContainerID} from '@docusaurus/utils-common';
 import NewsletterPanel from '../../components/Blog/NewsletterPanel';
 import RelatedPosts from '../../components/Blog/RelatedPosts';
+import BreadcrumbStructuredData from '../../components/SEO/BreadcrumbStructuredData';
 
 function Author({author, imageURL}) {
   return (
@@ -84,7 +85,7 @@ function PostHero() {
           <img
             className="tw-block tw-h-auto tw-max-h-[520px] tw-w-full tw-max-w-[640px] tw-object-contain"
             src={assets.image}
-            alt=""
+            alt={frontMatter.imageAlt || title}
             fetchPriority="high"
             onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/img/site/card-3-light.jpg'; }}
           />
@@ -191,6 +192,20 @@ function PostPageContent({BlogPostContent}) {
   );
 }
 
+function BlogPostBreadcrumbs() {
+  const {metadata} = useBlogPost();
+
+  return (
+    <BreadcrumbStructuredData
+      items={[
+        {name: 'Home', path: '/'},
+        {name: 'Blog', path: '/blog'},
+        {name: metadata.title, path: metadata.permalink},
+      ]}
+    />
+  );
+}
+
 export default function BlogPostPage(props) {
   const BlogPostContent = props.content;
   const frontMatter = BlogPostContent?.frontMatter || {};
@@ -218,6 +233,7 @@ export default function BlogPostPage(props) {
         )}>
         <BlogPostPageMetadata />
         <BlogPostPageStructuredData />
+        <BlogPostBreadcrumbs />
         {faqJsonLd && (
           <Head>
             <script key="ld-faq" type="application/ld+json">

@@ -101,7 +101,7 @@ export default function BlogSearch({ onSearchChange }) {
                     <img
                       className="tw-block tw-h-full tw-w-full tw-object-cover tw-transition-transform tw-duration-200 group-hover:tw-scale-[1.025]"
                       src={post.image || "/img/site/card-3-light.jpg"}
-                      alt=""
+                      alt={post.imageAlt || post.title}
                       loading="lazy"
                       onError={(event) => {
                         event.currentTarget.onerror = null;

@@ -13,6 +13,7 @@ import BlogListPaginator from '@theme/BlogListPaginator';
 import SearchMetadata from '@theme/SearchMetadata';
 import BlogPostItems from '@theme/BlogPostItems';
 import PaginationMetadata from '/src/components/PaginationMetadata';
+import BreadcrumbStructuredData from '../../components/SEO/BreadcrumbStructuredData';
 
 
 
@@ -48,9 +49,18 @@ function useBlogTagsPostsPageTitle(tag) {
 }
 function BlogTagsPostsPageMetadata({tag, listMetadata}) {
   const title = useBlogTagsPostsPageTitle(tag);
+  const description = `Explore ${tag.count} Weaviate ${tag.count === 1 ? 'article' : 'articles'} about ${tag.label}, including tutorials, engineering guides, and product updates.`;
   return (
     <>
-      <PageMetadata title={title} />
+      <PageMetadata title={title} description={description} />
+      <BreadcrumbStructuredData
+        items={[
+          {name: 'Home', path: '/'},
+          {name: 'Blog', path: '/blog'},
+          {name: 'Tags', path: tag.allTagsPath},
+          {name: tag.label, path: tag.permalink},
+        ]}
+      />
       <SearchMetadata tag="blog_tags_posts" />
       <PaginationMetadata metadata={listMetadata} />
      

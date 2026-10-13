@@ -7,7 +7,8 @@ export default function BlogPostItems({items}) {
   return (
     <div className="tw-grid tw-grid-cols-1  sm:tw-grid-cols-2 lg:tw-grid-cols-3">
       {items.map(({content}) => {
-        const {metadata, assets} = content;
+        const {metadata, assets, frontMatter} = content;
+        const imageAlt = frontMatter?.imageAlt || metadata.imageAlt || metadata.title;
         const displayDate =
           metadata.formattedDate || (metadata.date
             ? new Intl.DateTimeFormat('en-US', {
@@ -26,7 +27,7 @@ export default function BlogPostItems({items}) {
               <img
                 className="tw-block tw-h-full tw-w-full tw-object-cover tw-transition-transform tw-duration-200 group-hover:tw-scale-[1.025]"
                 src={assets.image}
-                alt=""
+                alt={imageAlt}
                 loading="lazy"
                 onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/img/site/card-3-light.jpg'; }}
               />

@@ -32,6 +32,7 @@ function toBlogItem(post) {
           permalink: `/blog/tags/${encodeURIComponent(slugifyTag(tag))}`,
         })),
         description: post.description || '',
+        imageAlt: post.imageAlt || post.title,
       },
       assets: {image: post.image || '/img/site/card-3-light.jpg'},
     },
@@ -47,6 +48,7 @@ function editorialPost(entry, indexedPost) {
     description: entry.description || indexedPost?.description || '',
     permalink: normalizePermalink(entry),
     image: entry.image || indexedPost?.image || '',
+    imageAlt: entry.imageAlt || indexedPost?.imageAlt || entry.title || indexedPost?.title || '',
     tags: entry.tags || indexedPost?.tags || [],
     date: entry.date || indexedPost?.date || '',
   };
