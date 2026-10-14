@@ -107,43 +107,13 @@ export default function WebinarRegistration() {
             className={styles.registration}
             aria-labelledby="register-title"
           >
-            <p className={styles.eyebrow}>Save your seat</p>
-            <h2 id="register-title">Register for the webinar</h2>
+            <p className={styles.eyebrow}>Thank you</p>
+            <h2 id="register-title">Webinar Registration Closed</h2>
             <p className={styles.formIntro}>
-              Complete the form to receive the joining link, reminders, and
-              webinar materials.
+              The registration for this webinar has ended. Please visit our{" "}
+              <a href="/community/events#on-demand-webinars">our events page</a>{" "}
+              for on-demand webinars.
             </p>
-
-            <div className={styles.formWrapper}>
-              {!fallback ? (
-                <div
-                  id="webinar-registration-form"
-                  className={styles.webinarForm}
-                  aria-live="polite"
-                />
-              ) : (
-                <iframe
-                  title="Register for Inside Weaviate's MCP Ecosystem"
-                  className={styles.hsIframe}
-                  src={HUBSPOT.shareUrl}
-                  loading="lazy"
-                  sandbox="allow-forms allow-scripts allow-same-origin"
-                />
-              )}
-            </div>
-
-            {fallback && (
-              <p className={styles.fallbackNote}>
-                Having trouble loading the form?{" "}
-                <a
-                  href={HUBSPOT.shareUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Open the registration form.
-                </a>
-              </p>
-            )}
           </section>
         </div>
 
