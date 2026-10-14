@@ -111,8 +111,8 @@ export default function WebinarRegistration() {
             <h2 id="register-title">Webinar Registration Closed</h2>
             <p className={styles.formIntro}>
               The registration for this webinar has ended. Please visit our{" "}
-              <a href="/community/events#on-demand-webinars">our events page</a>{" "}
-              for on-demand webinars.
+              <a href="/community/events#on-demand-webinars">events page</a> for
+              on-demand webinars.
             </p>
           </section>
         </div>
