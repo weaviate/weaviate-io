@@ -32,7 +32,7 @@ Weaviate may revise these Terms from time to time. If Weaviate does revise these
 3. **Weaviate Updates**. Weaviate reserves the right to update EOL software to newer versions to address security vulnerabilities, ensure platform operability, and comply with regulatory requirements. For Shared Services, Weaviate reserves the right for infrastructure upgrade and software update at any time, when in accordance with SLAs. 
 <br></br>
 
-4. **Open-source Software**. The Weaviate Offering may include individual open-source software components, each of which has its own copyright and its own applicable license conditions. These open-source software components are licensed under the terms of the applicable open-source license conditions and/or copyright notices.
+4. **Open-source Software**. The Weaviate Offering may include individual open-source software components, each of which has its own copyright and its own applicable license conditions. These open-source software components are licensed under the terms of the applicable open-source license conditions and/or copyright notices. In addition, breach of this Agreement will be deemed a breach of such open software licenses, and breach of such open software licenses will be deemed a breach of this Agreement. Customer acknowledges that Weaviate's obligations under Sections 5 and 6 of this Agreement do not apply to any material used by Customer solely under such open licenses, and not under this Agreement.
 <br></br>
 
 ---
@@ -234,4 +234,3 @@ The following terms, when used in this Agreement, will have the following meanin
 “**_Weaviate Services_**” means consulting and training services provided by Weaviate.
 
 ---
-
