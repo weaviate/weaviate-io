@@ -5,6 +5,7 @@ import { LinkButton, ButtonContainer, DownloadButton } from './Buttons';
 import { MetaSEO } from './MetaSEO';
 import { Roadmap } from './Roadmap';
 import FeaturedBlogTags from './FeaturedBlogTags';
+import ContinueReading from '../components/Blog/ContinueReading';
 
 export default {
   // Re-use the default mapping
@@ -15,4 +16,5 @@ export default {
   MetaSEO: MetaSEO,
   Roadmap: Roadmap,
   FeaturedBlogTags: FeaturedBlogTags,
+  ContinueReading: ContinueReading,
 };

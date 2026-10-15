@@ -60,11 +60,6 @@
     "photo": "duda.jpg"
   },
   {
-    "name": "Edward Schmuhl",
-    "location": { "lat": 52.521, "lng": 13.406 },
-    "photo": "edward.jpg"
-  },
-  {
     "name": "Eric Caleb Macharia",
     "location": { "lat": 52.3686, "lng": 4.9051 },
     "photo": "eric.jpg"
@@ -140,11 +135,6 @@
     "photo": "paul-de-grijp.jpg"
   },
   {
-    "name": "Philip Vollet",
-    "location": { "lat": 52.521, "lng": 13.406 },
-    "photo": "philip.jpg"
-  },
-  {
     "name": "Rodrigo López",
     "location": { "lat": 40.4189, "lng": -3.7048 },
     "photo": "Rodrigo-Lopez.jpg"
@@ -168,11 +158,6 @@
     "name": "Thomas Maurice",
     "location": { "lat": 50.6302, "lng": 3.0583 },
     "photo": "thomas.jpg"
-  },
-  {
-    "name": "Victoria Slocum",
-    "location": { "lat": 52.523, "lng": 13.407 },
-    "photo": "victoria.jpg"
   },
   {
     "name": "Weronika Krajcarz",

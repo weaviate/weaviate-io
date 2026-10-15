@@ -1,5 +1,37 @@
 [
   {
+    "title": "SkyDiscover with Alexander Krentsel, Shu Liu, Shubham Agarwal, and Mert Cemri - Weaviate Podcast #147",
+    "description": "Shu Liu, Alexander Krentsel, Mert Cemri, and Shubham Agarwal, PhD students at U.C. Berkeley's Sky Computing Lab, join the Weaviate Podcast to discuss SkyDiscover and what it means for AI to build entire systems, not just code!",
+    "youtube": "SzRX2rtgAic",
+    "date": "26-10-05",
+    "cover_image": "/img/podcasts/podcast-147.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "In-Context Retrieval with Siddharth Gollapudi - Weaviate Podcast #146",
+    "description": "Siddharth Gollapudi, a researcher at UC Berkeley, joins the Weaviate Podcast to discuss in-context retrieval and his paper \"Can Language Models Actually Retrieve In-Context? Drowning in Documents at Million Token Scale.\" ",
+    "youtube": "gCGEg7jJXh0",
+    "date": "26-10-01",
+    "cover_image": "/img/podcasts/podcast-146.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "humans& with Alexis Ross, Manya Bansal, and Niloofar Mireshghallah - Weaviate Podcast #145",
+    "description": "Alexis, Manya, and Niloofar from humans& join the Weaviate Podcast to introduce Persimmon, a user model built to simulate how humans actually behave in multi-turn, multi-party conversations.",
+    "youtube": "6IC9jkwiZBg",
+    "date": "26-09-21",
+    "cover_image": "/img/podcasts/podcast-145.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Delegance Brokerage with Alex Ledbetter - Weaviate Podcast #144",
+    "description": "Alex Ledbetter is the founder of Delegance Brokerage, an AI-native commercial insurance brokerage he built entirely on his own.",
+    "youtube": "RYB4cj9L3bQ",
+    "date": "26-09-17",
+    "cover_image": "/img/podcasts/podcast-144.jpg",
+    "is_use_case": false
+  },
+  {
     "title": "AutoIndex with Sam O'Nuallain - Weaviate Podcast #143",
     "description": "Sam O'Nuallain joins the Weaviate Podcast to discuss AutoIndex, research from UMass Amherst and Databricks on learning representation programs for retrieval.",
     "youtube": "mAj92SoEhjc",

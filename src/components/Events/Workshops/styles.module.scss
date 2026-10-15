@@ -5,7 +5,7 @@
 
 .featuredCard {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 1fr);
   max-width: 1180px;
   margin: 0 auto;
   overflow: hidden;
@@ -84,102 +84,22 @@
 }
 
 .visual {
-  position: relative;
   display: flex;
   min-height: 420px;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   overflow: hidden;
-  background:
-    radial-gradient(
-      circle at 50% 35%,
-      rgba(107, 227, 140, 0.3),
-      transparent 25%
-    ),
-    radial-gradient(
-      circle at 70% 75%,
-      rgba(55, 174, 255, 0.25),
-      transparent 36%
-    ),
-    #0b1018;
+  padding: 1rem;
+  background: #0b1018;
   border-left: 1px solid rgba(185, 200, 222, 0.12);
-}
 
-.visualLabel {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  padding: 0.45rem 0.75rem;
-  border: 1px solid rgba(107, 227, 140, 0.28);
-  border-radius: 999px;
-  background: rgba(107, 227, 140, 0.08);
-  color: #6be38c;
-  font-size: 0.7rem;
-  font-weight: 700;
-  line-height: 1;
-  font-family: Inter, sans-serif;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.mcp {
-  position: relative;
-  z-index: 1;
-  color: #ddebf2;
-  font-size: clamp(4rem, 9vw, 7rem);
-  font-weight: 700;
-  line-height: 1;
-  font-family: "Plus Jakarta Sans", sans-serif;
-  letter-spacing: -0.07em;
-}
-
-.nodes {
-  position: absolute;
-  inset: 0;
-
-  span {
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    border: 2px solid #6be38c;
-    border-radius: 50%;
-    box-shadow: 0 0 30px rgba(107, 227, 140, 0.7);
-  }
-
-  span:nth-child(1) {
-    left: 18%;
-    top: 24%;
-  }
-  span:nth-child(2) {
-    right: 16%;
-    top: 42%;
-  }
-  span:nth-child(3) {
-    left: 35%;
-    bottom: 18%;
-  }
-
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    width: 60%;
-    height: 1px;
-    left: 20%;
-    top: 42%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(107, 227, 140, 0.55),
-      transparent
-    );
-    transform: rotate(28deg);
-  }
-
-  &::after {
-    top: 61%;
-    transform: rotate(-18deg);
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-height: 420px;
+    border-radius: 0.8rem;
+    object-fit: contain;
   }
 }
 

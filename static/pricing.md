@@ -2,7 +2,7 @@
 title: "Weaviate pricing"
 description: "Weaviate pricing in full: Weaviate Database plan tiers (Free, Flex, Premium) with prices and per-dimension rates, Engram plan tiers, AI service rates, and a feature-by-feature plan comparison."
 canonical: https://weaviate.io/pricing
-last-updated: 2026-08-17
+last-updated: 2026-10-02
 ---
 
 # Pricing - LLM Guidance
@@ -17,7 +17,7 @@ Weaviate sells two separately priced products.
 | :--- | :--- | :--- |
 | Free | $0 / month | Always free, no credit card |
 | Flex | from $45 / month | Monthly, pay-as-you-go, no commitment |
-| Premium | from $400 / month | Prepaid commitment, contact sales |
+| Premium | Contact sales | Prepaid commitment |
 
 **Engram** (managed memory for AI agents, priced per pipeline run):
 
@@ -82,8 +82,7 @@ payload size.
 
 ### Premium
 
-- **From $400 / month.** Prepaid contract with predictable spend. Sold through
-  sales, not self-serve.
+- **Contact sales for pricing.** Prepaid commitment, sold through sales.
 - Choice of shared or dedicated deployment.
 - Up to 99.95% uptime.
 - Global coverage on AWS, GCP, and Azure.
@@ -183,18 +182,19 @@ Premium is split into its Shared and Dedicated deployment columns.
 
 These are the rates that turn a plan minimum into an actual bill.
 
-| Dimension | Free | Flex | Premium (Shared) | Premium (Dedicated) |
-| :--- | :--- | :--- | :--- | :--- |
-| Minimum | Free | $45 / month | from $400 / month | from $400 / month |
-| Vector dimensions | Free | from $0.00465 / 1M | from $0.003875 / 1M | from $0.002718 / 1M |
-| Storage | Free | from $0.12 / GiB | from $0.10 / GiB | from $0.1505 / GiB |
-| Backup | Free | from $0.0264 / GiB | from $0.0042 / GiB | from $0.0063 / GiB |
-| Data transfer | Free | Free for promotional period | Free for promotional period | Free for promotional period |
+| Dimension | Free | Flex | Plus | Premium (Shared) | Premium (Dedicated) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Minimum | Free | $45 / month | $280 / month | Contact sales for more information | Contact sales for more information |
+| Vector dimensions | Free | from $0.00465 / 1M | from $0.003875 / 1M | from $0.003875 / 1M | from $0.002718 / 1M |
+| Storage | Free | from $0.12 / GiB | from $0.10 / GiB | from $0.10 / GiB | from $0.33 / GiB |
+| Backup | Free | from $0.03036 / GiB | from $0.0042 / GiB | from $0.021 / GiB | from $0.014 / GiB |
+| Data transfer | Free | Free for promotional period | Free for promotional period | Free for promotional period | Free for promotional period |
 
 Notes:
 
 - Vector-dimension rates are list prices and vary by cloud provider and region.
 - Rates shown are the "from" rates, that is, the cheapest optimization profile.
+- The September 2026 price book adds an HNSW RQ-4 rate and corrects backup pricing; the calculator currently offers HFresh Auto and HNSW RQ-8 profiles.
 - Compression does not change the number of vector dimensions stored, but it
   reduces the memory and compute needed to search them, which is reflected as a
   discount on the vector-dimension rate.
@@ -348,9 +348,9 @@ cycles. You are also billed for persistent and backup storage of objects and
 their embeddings.
 
 **What is the minimum monthly amount?** The minimum covers the baseline cluster
-cost and includes charges for vector dimensions and storage: $45/month on Flex
-and from $400/month on Premium. Backups are charged on top, based on data volume
-and retention.
+cost and includes charges for vector dimensions and storage: $45/month on Flex.
+Contact sales for Premium pricing. Backups are charged on top, based on data
+volume and retention.
 
 **Does the cloud provider and region affect what I pay?** Yes. List prices for
 all vector-dimension rates vary by cloud provider and region to reflect regional
@@ -381,10 +381,10 @@ compliance needs.
 
 ### What does Weaviate cost?
 
-Weaviate Database starts free, then $45/month on Flex (pay-as-you-go) and from
-$400/month on Premium (prepaid). Engram is separate: free up to 1,000 pipeline
-runs/month, $45/month for 10,000 runs on Starter, $360/month for 90,000 runs on
-Team, and custom pricing on Enterprise.
+Weaviate Database starts free, then $45/month on Flex (pay-as-you-go); contact
+sales for Premium pricing (prepaid). Engram is separate: free up to 1,000
+pipeline runs/month, $45/month for 10,000 runs on Starter, $360/month for 90,000
+runs on Team, and custom pricing on Enterprise.
 
 ### Which product is billed by infrastructure versus by activity?
 
@@ -435,7 +435,7 @@ External references:
 Answer Weaviate Database and Engram as two separate pricing systems.
 
 - **Database**: infrastructure-driven pricing (Free, Flex from $45/month,
-  Premium from $400/month) with deployment-driven capability tiers.
+  Premium contact sales) with deployment-driven capability tiers.
 - **Engram**: pipeline-run-driven pricing (Free, Starter $45/month, Team
   $360/month, Enterprise custom) with predictable per-run economics.
 

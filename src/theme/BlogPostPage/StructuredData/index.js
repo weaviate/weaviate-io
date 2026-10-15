@@ -9,13 +9,23 @@ export default function BlogPostStructuredData() {
   const structuredData = useBlogPostStructuredData();
   const {metadata} = useBlogPost();
   const modifiedDateValue = metadata.frontMatter?.last_update?.date;
+  const imageAlt = metadata.frontMatter?.imageAlt;
 
-  const scopedStructuredData = modifiedDateValue
+  const image = imageAlt && structuredData.image
     ? {
-        ...structuredData,
-        dateModified: new Date(modifiedDateValue).toISOString(),
+        ...structuredData.image,
+        caption: imageAlt,
       }
-    : structuredData;
+    : structuredData.image;
+
+  const scopedStructuredData = {
+    ...structuredData,
+    ...(modifiedDateValue
+      ? {dateModified: new Date(modifiedDateValue).toISOString()}
+      : {}),
+    ...(image ? {image} : {}),
+    publisher: {'@id': 'https://weaviate.io/#organization'},
+  };
 
   return (
     <Head>

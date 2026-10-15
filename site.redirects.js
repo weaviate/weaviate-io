@@ -1,6 +1,10 @@
 const siteRedirects = {
     redirects: [
         {
+            to: '/enterprise',
+            from: '/product/enterprise',
+        },
+        {
             to: '/company/about-us',
             from: '/company',
         },
@@ -337,6 +341,13 @@ const siteRedirects = {
         {
             to: 'https://playground.weaviate.io/',
             from: '/community/demos',
+        },
+
+
+        // Service weaviate-non-enterprise-agreement to cloud
+        {
+            to: '/service/weaviate-cloud-agreement',
+            from: '/service/weaviate-non-enterprise-agreement',
         },
 
     ],

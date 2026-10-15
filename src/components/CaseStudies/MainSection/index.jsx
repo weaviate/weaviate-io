@@ -1,115 +1,130 @@
-import Link from '@docusaurus/Link';
-import React, { useEffect, useMemo, useState } from 'react';
-import styles from './styles.module.scss';
+import Link from "@docusaurus/Link";
+import React, { useEffect, useMemo, useState } from "react";
+import styles from "./styles.module.scss";
 
 const CASE_STUDIES = [
   {
-    id: 'instabase',
-    title: 'Turning over 450 data types into customer insights',
-    href: '/case-studies/instabase',
-    tags: ['enterprise', 'rag'],
+    id: "delegance",
+    title:
+      "How the founder of Delegance vibe-coded an AI-native insurance brokerage on Weaviate",
+    href: "/case-studies/delegance",
+    tags: ["enterprise", "insurance", "ai-native"],
+    styleClass: styles.BS16,
+  },
+  {
+    id: "booking",
+    title: "How Booking.com selected Weaviate as its vector database standard",
+    href: "/case-studies/booking",
+    tags: ["enterprise", "vectors", "production"],
+    styleClass: styles.BS17,
+  },
+  {
+    id: "instabase",
+    title: "Turning over 450 data types into customer insights",
+    href: "/case-studies/instabase",
+    tags: ["enterprise", "rag"],
     styleClass: styles.BS01,
   },
   {
-    id: 'kapa',
-    title: 'Production-ready AI assistant built in 7 days',
-    href: '/case-studies/kapa',
-    tags: ['enterprise', 'agentic'],
+    id: "kapa",
+    title: "Production-ready AI assistant built in 7 days",
+    href: "/case-studies/kapa",
+    tags: ["enterprise", "agentic"],
     styleClass: styles.BS02,
   },
   {
-    id: 'neople',
-    title: 'Customer service agents with 90% faster search',
-    href: '/case-studies/neople',
-    tags: ['enterprise', 'rag'],
+    id: "neople",
+    title: "Customer service agents with 90% faster search",
+    href: "/case-studies/neople",
+    tags: ["enterprise", "rag"],
     styleClass: styles.BS03,
   },
   {
-    id: 'finster',
-    title: 'Successful management of 42M vectors in production',
-    href: '/case-studies/finster',
-    tags: ['enterprise', 'vectors', 'production'],
+    id: "finster",
+    title: "Successful management of 42M vectors in production",
+    href: "/case-studies/finster",
+    tags: ["enterprise", "vectors", "production"],
     styleClass: styles.BS04,
   },
   {
-    id: 'marvelx',
-    title: 'How MarvelX is Scaling Insurance Processing at the Speed of AI',
-    href: '/case-studies/marvelx',
-    tags: ['enterprise', 'security'],
+    id: "marvelx",
+    title: "How MarvelX is Scaling Insurance Processing at the Speed of AI",
+    href: "/case-studies/marvelx",
+    tags: ["enterprise", "security"],
     styleClass: styles.BS05,
   },
   {
-    id: 'loti',
+    id: "loti",
     title:
-      'How Loti AI fights likeness infringement and digital impersonation with Weaviate',
-    href: '/case-studies/loti',
-    tags: ['security', 'enterprise', 'search'],
+      "How Loti AI fights likeness infringement and digital impersonation with Weaviate",
+    href: "/case-studies/loti",
+    tags: ["security", "enterprise", "search"],
     styleClass: styles.BS06,
   },
   {
-    id: 'morningstar',
+    id: "morningstar",
     title:
-      'How Morningstar built a trustworthy, AI-driven financial data platform',
-    href: '/case-studies/morningstar',
-    tags: ['finance', 'enterprise', 'security'],
+      "How Morningstar built a trustworthy, AI-driven financial data platform",
+    href: "/case-studies/morningstar",
+    tags: ["finance", "enterprise", "security"],
     styleClass: styles.BS07,
   },
   {
-    id: 'stack-ai',
-    title: 'How Stack AI Delivers Lighting-Fast Agentic AI for Enterprises',
-    href: '/case-studies/stack-ai',
-    tags: ['agentic', 'enterprise', 'automation'],
+    id: "stack-ai",
+    title: "How Stack AI Delivers Lighting-Fast Agentic AI for Enterprises",
+    href: "/case-studies/stack-ai",
+    tags: ["agentic", "enterprise", "automation"],
     styleClass: styles.BS08,
   },
   {
-    id: 'moonsift',
-    title: 'Building an AI-Powered Shopping Copilot',
-    href: '/blog/moonsift-story',
-    tags: ['ecommerce', 'enterprise', 'search'],
+    id: "moonsift",
+    title: "Building an AI-Powered Shopping Copilot",
+    href: "/blog/moonsift-story",
+    tags: ["ecommerce", "enterprise", "search"],
     styleClass: styles.BS09,
   },
   {
-    id: 'finance',
+    id: "finance",
     title:
-      'How a Leading Financial Data Company Commercialized AI in Under a Year',
-    href: '/case-studies/finance',
-    tags: ['finance', 'enterprise', 'security'],
+      "How a Leading Financial Data Company Commercialized AI in Under a Year",
+    href: "/case-studies/finance",
+    tags: ["finance", "enterprise", "security"],
     styleClass: styles.BS10,
   },
   {
-    id: 'astronomer',
-    title: 'Ask Astro: An open source LLM Application',
-    href: 'https://www.astronomer.io/blog/ask-astro-open-source-llm-application-apache-airflow/',
-    tags: ['llm', 'open-source'],
+    id: "astronomer",
+    title: "Ask Astro: An open source LLM Application",
+    href: "https://www.astronomer.io/blog/ask-astro-open-source-llm-application-apache-airflow/",
+    tags: ["llm", "open-source"],
     styleClass: styles.BS11,
   },
   {
-    id: 'preverity',
-    title: 'Transforming Risk Management with Generative AI',
-    href: 'https://innovativesol.com/success-stories/preverity/',
-    tags: ['security', 'enterprise'],
+    id: "preverity",
+    title: "Transforming Risk Management with Generative AI",
+    href: "https://innovativesol.com/success-stories/preverity/",
+    tags: ["security", "enterprise"],
     styleClass: styles.BS12,
   },
   {
-    id: 'unbody',
-    title: 'Building Foundations for AI-First App Development',
-    href: '/blog/unbody-weaviate',
-    tags: ['platform', 'enterprise'],
+    id: "unbody",
+    title: "Building Foundations for AI-First App Development",
+    href: "/blog/unbody-weaviate",
+    tags: ["platform", "enterprise"],
     styleClass: styles.BS13,
   },
   {
-    id: 'predori',
+    id: "predori",
     title:
-      'How predori cut operational costs over 80% with an AI-Powered Patent Intelligence Platform',
-    href: '/case-studies/predori',
-    tags: ['rag', 'enterprise', 'platform'],
+      "How predori cut operational costs over 80% with an AI-Powered Patent Intelligence Platform",
+    href: "/case-studies/predori",
+    tags: ["rag", "enterprise", "platform"],
     styleClass: styles.BS14,
   },
   {
-    id: 'docsbot',
-    title: 'How DocsBot Answers Millions of Customer Questions with Weaviate',
-    href: '/case-studies/docsbot',
-    tags: ['enterprise', 'search'],
+    id: "docsbot",
+    title: "How DocsBot Answers Millions of Customer Questions with Weaviate",
+    href: "/case-studies/docsbot",
+    tags: ["enterprise", "search"],
     styleClass: styles.BS15,
   },
 ];
@@ -117,7 +132,7 @@ const CASE_STUDIES = [
 export default function MainSection() {
   const [mounted, setMounted] = useState(false);
 
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [activeTags, setActiveTags] = useState([]);
 
   useEffect(() => {
@@ -136,7 +151,7 @@ export default function MainSection() {
     return CASE_STUDIES.filter((c) => {
       const matchesQuery =
         !q ||
-        (c.title || '').toLowerCase().includes(q) ||
+        (c.title || "").toLowerCase().includes(q) ||
         (c.tags || []).some((t) => String(t).toLowerCase().includes(q));
 
       const matchesTags =
@@ -156,13 +171,13 @@ export default function MainSection() {
   };
 
   const clearAll = () => {
-    setQuery('');
+    setQuery("");
     setActiveTags([]);
   };
 
   const isExternal = (href) =>
-    typeof href === 'string' &&
-    (href.startsWith('http://') || href.startsWith('https://'));
+    typeof href === "string" &&
+    (href.startsWith("http://") || href.startsWith("https://"));
 
   const FilteredCard = ({ item }) => {
     const content = (
@@ -243,7 +258,7 @@ export default function MainSection() {
                 <button
                   key={tag}
                   type="button"
-                  className={`${styles.tagPill} ${isActive ? styles.tagPillActive : ''}`}
+                  className={`${styles.tagPill} ${isActive ? styles.tagPillActive : ""}`}
                   onClick={() => toggleTag(tag)}
                   aria-pressed={isActive}
                 >
@@ -268,7 +283,7 @@ export default function MainSection() {
                     <div className={styles.innerText}>
                       <div className={styles.bentoLogo}></div>
                       <h3>
-                        Turning over 450 data types into customer insights{' '}
+                        Turning over 450 data types into customer insights{" "}
                       </h3>
                     </div>
                     <div className={styles.buttons}>
@@ -276,7 +291,7 @@ export default function MainSection() {
                         className={styles.csLink}
                         to="/case-studies/instabase"
                       >
-                        Read Case Study {'->'}
+                        Read Case Study {"->"}
                       </Link>
                     </div>
                   </div>
@@ -293,7 +308,7 @@ export default function MainSection() {
                     </div>
                     <div className={styles.buttons}>
                       <Link className={styles.csLink} to="/case-studies/kapa">
-                        Read Case Study {'->'}
+                        Read Case Study {"->"}
                       </Link>
                     </div>
                   </div>
@@ -310,7 +325,7 @@ export default function MainSection() {
                     </div>
                     <div className={styles.buttons}>
                       <Link className={styles.csLink} to="/case-studies/neople">
-                        Read Case Study {'->'}
+                        Read Case Study {"->"}
                       </Link>
                     </div>
                   </div>
@@ -332,8 +347,54 @@ export default function MainSection() {
                         className={styles.csLink}
                         to="/case-studies/finster"
                       >
-                        Read Case Study {'->'}
+                        Read Case Study {"->"}
                       </Link>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+
+              {/* Featured Delegance case study */}
+              <div className={styles.row}>
+                <Link
+                  to="/case-studies/delegance"
+                  className={`${styles.bentoSmall} ${styles.BS16}`}
+                >
+                  <div className={styles.bentoText}>
+                    <div className={styles.innerText}>
+                      <div className={styles.bentoLogo}></div>
+                      <h3>
+                        How the founder of Delegance vibe-coded an AI-native
+                        insurance brokerage on Weaviate
+                      </h3>
+                    </div>
+                    <div className={styles.buttons}>
+                      <div className={`${styles.csLink} ${styles.csLight}`}>
+                        Read Case Study {"->"}
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+
+              {/* Featured Booking.com case study */}
+              <div className={styles.row}>
+                <Link
+                  to="/case-studies/booking"
+                  className={`${styles.bentoSmall} ${styles.BS17}`}
+                >
+                  <div className={styles.bentoText}>
+                    <div className={styles.innerText}>
+                      <div className={styles.bentoLogo}></div>
+                      <h3>
+                        How Booking.com selected Weaviate as its vector database
+                        standard
+                      </h3>
+                    </div>
+                    <div className={styles.buttons}>
+                      <div className={`${styles.csLink}`}>
+                        Read Case Study {"->"}
+                      </div>
                     </div>
                   </div>
                 </Link>
@@ -358,7 +419,7 @@ export default function MainSection() {
                         className={`${styles.csLink} ${styles.csLight}`}
                         to="/case-studies/marvelx"
                       >
-                        Read Case Study {'->'}
+                        Read Case Study {"->"}
                       </Link>
                     </div>
                   </div>
@@ -378,7 +439,7 @@ export default function MainSection() {
                     </div>
                     <div className={styles.buttons}>
                       <Link className={styles.csLink} to="/case-studies/loti">
-                        Read Case Study {'->'}
+                        Read Case Study {"->"}
                       </Link>
                     </div>
                   </div>
@@ -401,7 +462,7 @@ export default function MainSection() {
                         className={styles.csLink}
                         to="/case-studies/morningstar"
                       >
-                        Read Case Study {'->'}
+                        Read Case Study {"->"}
                       </Link>
                     </div>
                   </div>
@@ -427,7 +488,7 @@ export default function MainSection() {
                         className={styles.csLink}
                         to="/case-studies/stack-ai"
                       >
-                        Read Case Study {'->'}
+                        Read Case Study {"->"}
                       </Link>
                     </div>
                   </div>
@@ -444,7 +505,7 @@ export default function MainSection() {
                     </div>
                     <div className={styles.buttons}>
                       <Link className={styles.csLink} to="/blog/moonsift-story">
-                        Read Case Study {'->'}
+                        Read Case Study {"->"}
                       </Link>
                     </div>
                   </div>
@@ -466,7 +527,7 @@ export default function MainSection() {
                         className={styles.csLink}
                         to="/case-studies/finance"
                       >
-                        Read Case Study {'->'}
+                        Read Case Study {"->"}
                       </Link>
                     </div>
                   </div>
@@ -489,7 +550,7 @@ export default function MainSection() {
                         className={styles.csLink}
                         to="https://www.astronomer.io/blog/ask-astro-open-source-llm-application-apache-airflow/"
                       >
-                        Read Case Study {'->'}
+                        Read Case Study {"->"}
                       </Link>
                     </div>
                   </div>
@@ -509,7 +570,7 @@ export default function MainSection() {
                         className={styles.csLink}
                         to="https://innovativesol.com/success-stories/preverity/"
                       >
-                        Read Case Study {'->'}
+                        Read Case Study {"->"}
                       </Link>
                     </div>
                   </div>
@@ -529,7 +590,7 @@ export default function MainSection() {
                         className={`${styles.csLink} ${styles.csLight}`}
                         to="/blog/unbody-weaviate"
                       >
-                        Read Case Study {'->'}
+                        Read Case Study {"->"}
                       </Link>
                     </div>
                   </div>
@@ -552,7 +613,7 @@ export default function MainSection() {
                         className={`${styles.csLink} ${styles.csLight}`}
                         to="/case-studies/predori"
                       >
-                        Read Case Study {'->'}
+                        Read Case Study {"->"}
                       </Link>
                     </div>
                   </div>
@@ -574,7 +635,7 @@ export default function MainSection() {
                         className={styles.csLink}
                         to="/case-studies/docsbot"
                       >
-                        Read Case Study {'->'}
+                        Read Case Study {"->"}
                       </Link>
                     </div>
                   </div>
@@ -585,7 +646,7 @@ export default function MainSection() {
             <>
               <div
                 className={`${styles.filteredGrid} ${styles.fadeInUp}`}
-                key={`filtered-${query}-${activeTags.join(',')}`}
+                key={`filtered-${query}-${activeTags.join(",")}`}
               >
                 {filtered.length === 0 ? (
                   <div className={styles.noResults}>

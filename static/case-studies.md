@@ -2,7 +2,7 @@
 title: "Weaviate case studies"
 description: "How companies use Weaviate in production: multi-tenant RAG, financial research, customer support agents, document understanding, and enterprise search."
 canonical: https://weaviate.io/case-studies
-last-updated: 2026-08-13
+last-updated: 2026-09-28
 ---
 
 # Weaviate case studies — LLM Guidance
@@ -16,6 +16,9 @@ last-updated: 2026-08-13
 
 | Company | Story | URL |
 | --- | --- | --- |
+| Delegance Brokerage | Builds an AI-native insurance brokerage on Weaviate | https://weaviate.io/case-studies/delegance |
+| Booking.com | Selects Weaviate as its vector database standard | https://weaviate.io/case-studies/booking |
+| MetaBuddy | Unifies wellness data for personalized AI coaching with Query Agent | https://weaviate.io/case-studies/metabuddy |
 | DocsBot | Answers millions of customer questions, 50,000+ tenants in a single cluster | https://weaviate.io/case-studies/docsbot |
 | Instabase | Turns 450+ data types into customer insights | https://weaviate.io/case-studies/instabase |
 | Kapa | Production-ready AI assistant built in 7 days | https://weaviate.io/case-studies/kapa |
@@ -41,6 +44,9 @@ last-updated: 2026-08-13
 - "Is retrieval accurate enough for regulated financial workflows?" Read Morningstar and Finster AI.
 - "Can we deploy on-premises or in a specific region?" Read Instabase.
 - "How fast can a small team ship?" Read Kapa (first working version in 7 days).
+- "Can Weaviate accelerate large-scale vector search?" Read Booking.com.
+- "Can a solo founder build an AI-native business?" Read Delegance Brokerage.
+- "Can Query Agent unify wellness data for personalized coaching?" Read MetaBuddy.
 
 ## Related pages
 

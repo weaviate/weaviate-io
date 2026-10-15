@@ -2,8 +2,16 @@
   min-height: 100vh;
   padding: clamp(2rem, 5vw, 4.5rem) 1.5rem;
   background:
-    radial-gradient(circle at 18% 32%, rgba(0, 219, 116, 0.12), transparent 28%),
-    radial-gradient(circle at 82% 68%, rgba(55, 174, 255, 0.16), transparent 32%),
+    radial-gradient(
+      circle at 18% 32%,
+      rgba(0, 219, 116, 0.12),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 82% 68%,
+      rgba(55, 174, 255, 0.16),
+      transparent 32%
+    ),
     #111111;
 }
 
@@ -18,7 +26,8 @@
   width: 168px;
   height: 28px;
   margin-bottom: clamp(2.5rem, 5vw, 4rem);
-  background: url('/img/site/weaviate-logo-light-alpha.svg') center / contain no-repeat;
+  background: url("/img/site/weaviate-logo-light-alpha.svg") center / contain
+    no-repeat;
 }
 
 .grid {
@@ -33,7 +42,7 @@
     max-width: 680px;
     margin: 1rem 0 1.25rem;
     color: #ddebf2 !important;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
     font-size: clamp(2.4rem, 5vw, 4.75rem);
     font-weight: 600;
     line-height: 1.04;
@@ -60,7 +69,8 @@
   margin-bottom: 2rem;
   border: 1px solid rgba(185, 200, 222, 0.14);
   border-radius: 1.5rem;
-  background: #0b1018 url('/img/site/2026/ecosystem-event.jpg') center / cover no-repeat;
+  background: #0b1018 url("/img/site/2026/MCP-Ecosystem-webinar-LP.jpg")
+    center / cover no-repeat;
   box-shadow: 0 28px 80px rgba(0, 0, 0, 0.28);
 }
 
@@ -73,7 +83,9 @@
   border-radius: 999px;
   background: rgba(107, 227, 140, 0.08);
   color: #6be38c;
-  font: 700 0.7rem/1 Inter, sans-serif;
+  font:
+    700 0.7rem/1 Inter,
+    sans-serif;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -85,7 +97,9 @@
 
   span {
     color: #6be38c;
-    font: 700 0.78rem/1.2 Inter, sans-serif;
+    font:
+      700 0.78rem/1.2 Inter,
+      sans-serif;
     letter-spacing: 0.1em;
   }
 }
@@ -100,7 +114,7 @@
   h2 {
     margin: 0 0 0.75rem;
     color: #ddebf2 !important;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
     font-size: clamp(1.8rem, 3vw, 2.5rem);
     font-weight: 600;
     line-height: 1.15;
@@ -111,7 +125,9 @@
 .eyebrow {
   margin: 0 0 0.75rem;
   color: #6be38c;
-  font: 700 0.78rem/1.2 Inter, sans-serif;
+  font:
+    700 0.78rem/1.2 Inter,
+    sans-serif;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -119,7 +135,9 @@
 .formIntro {
   margin: 0 0 1.5rem;
   color: #91a2b8;
-  font: 400 1rem/1.6 Inter, sans-serif;
+  font:
+    400 1rem/1.6 Inter,
+    sans-serif;
 }
 
 .formWrapper {
@@ -129,9 +147,9 @@
 .webinarForm {
   color: #b5d2dc;
 
-  input[type='text'],
-  input[type='email'],
-  input[type='tel'],
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
   select,
   textarea {
     width: 100% !important;
@@ -143,7 +161,7 @@
     color: #ecf4f8;
   }
 
-  input[type='submit'] {
+  input[type="submit"] {
     width: 100%;
     min-height: 50px;
     padding: 0.75rem 1rem;
@@ -151,7 +169,9 @@
     border-radius: 0.5rem;
     background: #6be38c;
     color: #111111;
-    font: 700 1rem/1 Inter, sans-serif;
+    font:
+      700 1rem/1 Inter,
+      sans-serif;
     cursor: pointer;
   }
 
@@ -163,8 +183,12 @@
     font-family: Inter, sans-serif;
   }
 
-  ul { padding-left: 0; }
-  li { list-style: none; }
+  ul {
+    padding-left: 0;
+  }
+  li {
+    list-style: none;
+  }
 }
 
 .hsIframe {
@@ -178,9 +202,13 @@
 .fallbackNote {
   margin: 1rem 0 0;
   color: #91a2b8;
-  font: 400 0.9rem/1.5 Inter, sans-serif;
+  font:
+    400 0.9rem/1.5 Inter,
+    sans-serif;
 
-  a { color: #6be38c; }
+  a {
+    color: #6be38c;
+  }
 }
 
 .about {
@@ -192,7 +220,7 @@
   h2 {
     margin: 0 0 1.5rem;
     color: #ddebf2 !important;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
     font-size: clamp(2rem, 4vw, 3.25rem);
     font-weight: 600;
     line-height: 1.12;
@@ -211,13 +239,46 @@
   }
 }
 
+.speakers {
+  margin-top: clamp(3rem, 6vw, 5rem);
+
+  h2 {
+    max-width: 760px;
+    margin: 0 0 1.5rem;
+    color: #ddebf2 !important;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -0.04em;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    border: 1px solid rgba(185, 200, 222, 0.14);
+    border-radius: 1.5rem;
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.28);
+  }
+}
+
 @media screen and (max-width: 900px) {
-  .grid { grid-template-columns: 1fr; }
-  .registration { max-width: 680px; }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .registration {
+    max-width: 680px;
+  }
 }
 
 @media screen and (max-width: 600px) {
-  .page { padding: 1.5rem 1rem 3rem; }
-  .logo { margin-bottom: 2rem; }
-  .registration { padding: 1.5rem; }
+  .page {
+    padding: 1.5rem 1rem 3rem;
+  }
+  .logo {
+    margin-bottom: 2rem;
+  }
+  .registration {
+    padding: 1.5rem;
+  }
 }

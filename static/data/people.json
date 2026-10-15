@@ -36,6 +36,12 @@
     "team": "partnerships"
   },
   {
+    "name": "Andy Ellicott",
+    "title": "Director of Marketing",
+    "photo": "Andy.jpg",
+    "team": "marketing"
+  },
+  {
     "name": "André Mourão",
     "title": "Software Engineer",
     "photo": "andre-m.jpg",
@@ -85,7 +91,7 @@
     "name": "Brandon Holwerda",
     "title": "Product Marketing Manager",
     "photo": "Brandon-Holwerda.jpg",
-    "team": "product"
+    "team": "marketing"
   },
   {
     "name": "Brave Okafor",
@@ -175,15 +181,6 @@
     "photo": "duda.jpg",
     "linkedin": "dudanogueira",
     "team": "support-engineering"
-  },
-  {
-    "name": "Edward Schmuhl",
-    "title": "Machine Learning Engineer",
-    "photo": "edward.jpg",
-    "linkedin": "edward-schmuhl-563161195",
-    "twitter": "aestheticedwar1",
-    "github": "thomashacker",
-    "team": "developer-growth"
   },
   {
     "name": "Emma Dikmessalim",
@@ -300,10 +297,18 @@
     "linkedin": "joe-green-11381620a"
   },
   {
+    "name": "Joon-Pil (JP) Hwang",
+    "title": "Lead Developer & Agent Experience Engineer",
+    "photo": "jp.jpg",
+    "team": "database",
+    "linkedin": "jphwang",
+    "twitter": "_jphwang"
+  },
+  {
     "name": "Kamil Tyborowski",
-    "title": "Software Engineer",
+    "title": "GTM Engineer",
     "photo": "Kamil.jpg",
-    "team": "developer-growth"
+    "team": "marketing"
   },
   {
     "name": "Laura Stoye",
@@ -372,21 +377,6 @@
     "team": ["wcd", "database", "applied-research"]
   },
   {
-    "name": "Philip Vollet",
-    "title": "VP of Growth",
-    "photo": "philip.jpg",
-    "linkedin": "philipvollet",
-    "twitter": "philipvollet",
-    "team": "developer-growth"
-  },
-  {
-    "name": "Prajjwal Yadav",
-    "title": "Developer Growth Intern",
-    "photo": "prajjwal.jpg",
-    "linkedin": "prajjwal-yadav",
-    "team": "developer-growth"
-  },
-  {
     "name": "Rodrigo López",
     "title": "QA Engineer",
     "photo": "Rodrigo-Lopez.jpg",
@@ -394,18 +384,11 @@
     "team": "applied-research"
   },
   {
-    "name": "Sean Forde",
-    "title": "Technical Sales Specialist",
-    "photo": "Sean-Forde.jpg",
-    "team": "partnerships",
-    "linkedin": "seanf0rde"
-  },
-  {
     "name": "Shan Blackwood",
-    "title": "Web Developer",
+    "title": "Senior Growth Engineer",
     "photo": "shan.jpg",
     "linkedin": "shan-blackwood-79251876",
-    "team": "developer-growth"
+    "team": "marketing"
   },
   {
     "name": "Silvio Martinico",
@@ -427,7 +410,7 @@
     "photo": "svitlana.jpg",
     "linkedin": "svitlana-sm",
     "twitter": "switlana_c",
-    "team": "developer-growth"
+    "team": "marketing"
   },
   {
     "name": "Thomas Maurice",
@@ -442,14 +425,6 @@
     "photo": "tommy.jpg",
     "linkedin": "tbs181194",
     "team": "database"
-  },
-  {
-    "name": "Victoria Slocum",
-    "title": "Machine Learning Engineer",
-    "photo": "victoria.jpg",
-    "linkedin": "victorialslocum",
-    "twitter": "victorialslocum",
-    "team": "developer-growth"
   },
   {
     "name": "Weronika Krajcarz",

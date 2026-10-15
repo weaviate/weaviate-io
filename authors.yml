@@ -94,7 +94,7 @@ jessie:
   image_url: /img/people/icon/jessie.jpg
 jp:
   name: Joon-Pil (JP) Hwang
-  title: Educator
+  title: Lead Developer & Agent Experience Engineer
   url: https://github.com/databyjp
   image_url: /img/people/icon/jp.jpg
 jola:
@@ -134,7 +134,7 @@ pete:
   image_url: /img/people/icon/pete.jpg
 prajjwal:
   name: Prajjwal Yadav
-  title: Developer Advocate Intern
+  title: Developer Advocate
   url: https://www.linkedin.com/in/prajjwalyd
   image_url: /img/people/icon/prajjwal.jpg
 roberto:
@@ -395,3 +395,8 @@ harneet:
   title: Security & IT Operations Lead
   url: https://www.linkedin.com/in/harneet-singh/
   image_url: /img/people/team/harneet.jpg
+paul:
+  name: Paul de Grijp
+  title: VP of Engineering
+  url: https://www.linkedin.com/in/pauldegrijp/
+  image_url: /img/people/team/paul-de-grijp.jpg

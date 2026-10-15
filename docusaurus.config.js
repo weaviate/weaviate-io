@@ -37,6 +37,9 @@ module.exports = async function createConfigAsync() {
       },
     plugins: [
 
+        require.resolve('./plugins/blog-search-index'),
+        require.resolve('./plugins/blog-frontmatter-validation'),
+
          () => ({
     name: 'inject-pre-google',
     injectHtmlTags() {
@@ -515,8 +518,8 @@ module.exports = async function createConfigAsync() {
 
             
              announcementBar: {
-               id: 'announcement-bar-hfresh-ga',
-                content:`<a href="/webinars/inside-weaviate-mcp-ecosystem">Inside Weaviate's MCP Ecosystem  - Register for the webinar </a>`,
+               id: 'announcement-bar-pathseer-ga',
+                content:`<a href="/blog/pathseer-filtered-vector-search">PathSeer: Adaptive Filtered Vector Search - Read more</a>`,
                backgroundColor: '#160F52',
                 textColor: '#F5F5F5',
                 isCloseable: true,

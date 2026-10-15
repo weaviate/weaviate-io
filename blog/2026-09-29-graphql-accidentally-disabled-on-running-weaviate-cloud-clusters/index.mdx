@@ -1,0 +1,128 @@
+---
+title: "Incident report: GraphQL accidentally disabled on running Weaviate Cloud clusters, 22 September 2026"
+slug: graphql-accidentally-disabled-on-running-weaviate-cloud-clusters
+authors: [paul]
+date: 2026-09-29
+image: ./img/hero.png
+tags: []
+unlisted: true
+description: "On 22 September 2026, from about 13:30 to 16:56 CEST, GraphQL requests to some existing Weaviate Cloud clusters were rejected, with no data lost and GraphQL restored the same day."
+---
+
+![Incident report: GraphQL accidentally disabled on running Weaviate Cloud clusters, 22 September 2026](./img/hero.png)
+
+## Summary
+
+On 22 September 2026, from about 13:30 to 16:56 CEST (11:30 to 14:56 UTC), GraphQL requests to a limited number of existing Weaviate Cloud clusters were rejected. The cause was a configuration change on our side which had an unintended effect.
+
+The change was meant for new clusters only, which are now created with GraphQL disabled. It also treated any cluster without an explicit GraphQL setting as disabled, and existing clusters lacked explicit configuration for this field. When our automated maintenance process reapplied configuration that afternoon, every cluster it reached accidentally disabled GraphQL.
+
+No data was lost, modified, or exposed. The gRPC and REST APIs worked normally throughout. GraphQL support was restored as part of the incident work, and our platform no longer accepts a cluster configuration that leaves the setting unset.
+
+We would like to apologize for this partial outage. We are fully aware that our unintended configuration change made GraphQL queries fail for applications that depend on them. As part of our incident review, we also acknowledge that we took too long to recognize it as a platform-wide problem rather than one customer's issue.
+
+## What you would have seen
+
+If your application queried an affected cluster over GraphQL, the request failed with HTTP status `422` and this response body:
+
+```json
+{"error":[{"message":"graphql api is disabled"}]}
+```
+
+Every GraphQL operation failed, including `Get` and `Aggregate` queries. Requests over gRPC and the REST API were not affected. The affected clusters were existing Shared Cloud and Dedicated Cloud clusters.
+
+You may have been affected even if you never write GraphQL yourself. Some clients and integrations send queries over GraphQL under the hood, for example, the Go client's standard query builder and the legacy v3 Python client. If you still use the legacy v3 Python client, we encourage you to upgrade immediately. We will also release a new version of our Go client shortly, which will no longer depend on GraphQL.
+
+The duration of the impact varied. Most were remediated within minutes. It depended on when our maintenance process reached that cluster and when GraphQL was switched back on for it. The 13:30 to 16:56 CEST window covers the whole incident, not how long each cluster was down.
+
+You do not need to do anything. GraphQL is enabled again on every cluster that had it before the incident.
+
+## What happened
+
+A default we changed for new clusters reached existing clusters, because our platform orchestration tooling read a missing setting as "disabled."
+
+Weaviate switches off its GraphQL API when `DISABLE_GRAPHQL` is true, and the default is false. Since 22 September, new Weaviate Cloud clusters are created with `DISABLE_GRAPHQL=true` (see the [Weaviate Cloud FAQ](https://docs.weaviate.io/cloud/faq#graphql)). Existing clusters were meant to keep GraphQL on.
+
+Until then, our platform never stored a GraphQL setting for a cluster at all. Every existing cluster had GraphQL on simply because Weaviate's own default is on.
+
+The change we deployed at 08:48 CEST handled explicit settings correctly, but it incorrectly read a cluster with no setting as disabled.
+
+The effect was not immediate. Our platform applies configuration to a cluster the next time that cluster is processed, not the moment configuration state changes.
+
+At 13:12, our automated maintenance process started a routine run that reapplies configuration to clusters across the fleet. Each cluster it processed picked up the new interpretation and lost GraphQL. From about 13:30, GraphQL requests to those clusters started to fail.
+
+The following factors contributed to this incident:
+
+- **Delayed propagation:** The first failures came more than four hours after the change was initially applied, so there were no errors to see right after the deployment. A GraphQL-specific smoke test of what the change did to existing clusters' configuration would have caught it, and we have now added checks of that kind.
+- **Gradual rollout:** Clusters disabled GraphQL one at a time, on the maintenance process's schedule, so the first reports looked like isolated problems.
+
+## Why it took us too long to respond
+
+Our support team received the first report at 13:32, but we did not declare a high-severity incident until 14:20. Support handled that report as one customer's problem and restored GraphQL on that customer's clusters at 14:11. Only when the problem showed up beyond that one customer did we open a fleet-wide incident with the appropriate severity level and bring in more engineering teams.
+
+Once the teams owning the affected systems were engaged, it took five minutes to identify the cause. The 48 minutes between the first report and the incident declaration extended the impact for some customers. We have changed our escalation criteria so that we declare an incident sooner when customer reports suggest a platform-wide cause.
+
+Individual customers also noticed the problem before our alerting did. We have improved our alerting on sudden increases in rejected API requests, so that we catch this kind of failure before you do.
+
+## How we recovered
+
+Each affected cluster recovered without a restart once GraphQL was re-enabled on it. The GraphQL setting is one of those Weaviate can change while running, through the `disable_graphql` [runtime configuration](https://docs.weaviate.io/deploy/configuration/env-vars/runtime-config) override.
+
+Recovery ran in three steps:
+
+1. From 14:11, our support team re-enabled GraphQL directly on each cluster that customers reported.
+2. At 14:52, we deployed a fix so that a cluster without an explicit GraphQL setting keeps GraphQL enabled. We also re-enabled GraphQL on all affected clusters identified by then.
+3. From 15:22, we explicitly re-enabled GraphQL on every existing cluster on the platform, working through the fleet group by group.
+
+The platform-wide re-enablement finished at 16:52. At 16:56 we confirmed that every cluster was restored.
+
+## Timeline
+
+All times are CEST (UTC+2) on 22 September 2026.
+
+| Time | Event |
+| --- | --- |
+| 08:48 | We deploy a platform change that treats clusters without an explicit GraphQL setting as "disabled." Existing clusters are not changed yet. |
+| 13:12 | Our automated maintenance process starts reapplying configuration to existing clusters. Each cluster it processes has GraphQL switched off. |
+| About 13:30 | GraphQL requests to affected clusters start failing with `422 graphql api is disabled`. |
+| 13:32 | Support receives the first customer report and handles it as a single-customer issue. |
+| 14:11 | GraphQL restored on the first reported clusters. The customer confirms at 14:20. |
+| 14:20 | High-severity incident declared. Engineering engaged. |
+| 14:25 | Cause identified: the new default is being applied to existing clusters. |
+| 14:25 to 14:50 | Support re-enables GraphQL on each cluster as customers report it. |
+| 14:52 | Fix deployed: a cluster without an explicit GraphQL setting keeps GraphQL enabled. GraphQL re-enabled on all affected clusters identified so far. |
+| 15:22 | Platform-wide re-enablement starts, group by group. |
+| 16:12 | Automated maintenance process paused. |
+| 16:52 | Platform-wide re-enablement complete. |
+| 16:56 | All clusters confirmed restored. |
+
+## What we've changed
+
+Already done (as of 12 October 2026):
+
+- Every cluster now has an explicit GraphQL setting, enabled or disabled. Our platform rejects a cluster configuration that leaves it unset.
+- We reviewed our other on/off configuration settings to make sure none of them can be left unset in the same way.
+- We checked GraphQL status on every cluster and fixed every case where a cluster's running configuration did not match its intended configuration.
+- A check in the Kubernetes operator that manages Weaviate Cloud clusters, so we can detect and correct a cluster whose runtime configuration has changed.
+- Better alerting on sudden increases in rejected API requests, so we detect this kind of failure before customers do.
+- Extra checks in our end-to-end tests and manual runbooks, to confirm that automated maintenance does not change runtime configuration unexpectedly.
+- A review of our incident process, so that we declare incidents sooner in situations like this.
+
+## What we learned
+
+Relying on implicit values leads to unpredictable behavior. In this particular instance, not setting a value for GraphQL meant GraphQL was enabled (or rather "not disabled") until September 22. Then the meaning of an unset value suddenly flipped, putting many clusters at risk.
+
+Changing how our systems interpret an unset value is a migration. The safe order is to record the current state explicitly first (here: GraphQL enabled on every existing cluster), and only then change what an unset value means. Our platform now enforces the first half: a cluster's GraphQL setting can no longer be unset.
+
+## GraphQL on Weaviate Cloud today
+
+This incident came out of a planned change, so here is where things stand:
+
+- New clusters are created with GraphQL disabled. To query them, use the [REST Search API](https://docs.weaviate.io/weaviate/api/rest) or a [client library](https://docs.weaviate.io/weaviate/client-libraries) that searches over gRPC. The [FAQ](https://docs.weaviate.io/cloud/faq#graphql) covers the options.
+- Existing clusters have GraphQL enabled, now as an explicit setting rather than an implicit default.
+
+Many of you run production workloads on Weaviate Cloud, and this outage was caused by our own change. If you were affected and want details about your clusters, contact us at [support@weaviate.io](mailto:support@weaviate.io).
+
+We would like to apologize again for any inconvenience this incident caused you. We assure you that, while GraphQL is being deprecated eventually, it will be a smooth and predictable process. We will guide you through it. The easiest way to make sure you're not implicitly using GraphQL right now is by upgrading your Weaviate clients to the latest version.
+
+{/* TODO(ivan): once the GraphQL deprecation post is live (planned 2026-10-26 at /blog/graphql-api-deprecation), add a sentence linking it here, per Paul's doc comment. */}
