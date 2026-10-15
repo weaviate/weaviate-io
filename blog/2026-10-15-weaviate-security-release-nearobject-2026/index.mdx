@@ -2,7 +2,7 @@
 title: "Weaviate security release - Medium severity fix for a cross-collection vector disclosure in nearObject (CVE pending assignment)"
 slug: weaviate-security-release-nearobject-2026
 authors: [harneet]
-date: 2026-09-09
+date: 2026-10-15
 tags: ["security"]
 image: ./img/hero.jpg
 description: "Weaviate v1.39.3 fixes a medium-severity authorization issue in the nearObject GraphQL operator."
@@ -12,7 +12,7 @@ description: "Weaviate v1.39.3 fixes a medium-severity authorization issue in th
 
 ## Intro
 
-This week we have released Weaviate `v1.39.3`. This release contains a fix for a medium severity authorization vulnerability in Weaviate's GraphQL `nearObject` search operator, where a user could read the vector of an object in a collection they do not have permission to read. A CVE has been requested from MITRE and is pending assignment; we will update this post with the CVE ID once it has been issued.
+With the release of Weaviate `v1.39.3` and >, there is a fix for a medium severity authorization vulnerability in Weaviate's GraphQL `nearObject` search operator, where a user could read the vector of an object in a collection they do not have permission to read. A CVE has been requested from MITRE and is pending assignment; we will update this post with the CVE ID once it has been issued.
 
 As per our security policy, Weaviate customers running in Weaviate Cloud, and Marketplace customers on AWS, Azure and GCP have been patched seamlessly. Our Weaviate Enterprise Support customers have received early notification under embargo, and our customer-facing teams are working with Weaviate Dedicated customers to organize version upgrades where appropriate.
 
