@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Head from "@docusaurus/Head";
 import Link from "@docusaurus/Link";
 import Layout from "@theme/Layout";
 
 export default function EnterpriseEditionPage() {
+  // The embed script scans for .hs-form-frame on load, so it must be
+  // (re)inserted after the container is mounted.
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://js.hsforms.net/forms/embed/8738733.js";
+    script.defer = true;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <Layout
       title="Enterprise Edition license request"
@@ -52,20 +64,12 @@ export default function EnterpriseEditionPage() {
                   >
                     Request a license key
                   </h2>
-                  <p
-                    className="tw-mb-5 tw-mt-2 tw-font-['Inter'] tw-text-base tw-leading-relaxed tw-text-[#4B5563]"
-                    style={{ color: "#B9C8DE" }}
-                  >
-                    Sign in to Weaviate Cloud to get your Enterprise Edition
-                    license key.
-                  </p>
-                  <Link
-                    to="https://console.weaviate.cloud/enterprise-edition-trial"
-                    className="tw-inline-block tw-rounded-lg tw-bg-[#43E2C5] tw-px-6 tw-py-3 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-[#111111] hover:tw-no-underline"
-                    style={{ color: "#111111" }}
-                  >
-                    Sign in to Weaviate Cloud
-                  </Link>
+                  <div
+                    className="hs-form-frame"
+                    data-region="na1"
+                    data-form-id="0edcff12-285d-4534-bbc9-58e807d97855"
+                    data-portal-id="8738733"
+                  />
                 </div>
               </div>
             </div>
