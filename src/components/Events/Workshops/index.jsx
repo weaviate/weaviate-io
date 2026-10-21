@@ -13,7 +13,7 @@ export default function WorkshopSection() {
     return null;
   }
 
-  const registrationLink = featuredWebinar.link || "#upcoming-webinars";
+  const registrationLink = featuredWebinar.link || "#past-webinars";
 
   return (
     <section className={styles.container} aria-labelledby="featured-webinar">

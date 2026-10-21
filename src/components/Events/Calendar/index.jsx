@@ -5,13 +5,12 @@ import styles from './styles.module.scss';
 
 export default function CalendarSection() {
   return (
-    <section className={styles.container} id="upcoming-webinars">
+    <section className={styles.container} id="past-webinars">
       <div className={styles.headerBox}>
-        <p className={styles.eyebrow}>Save your seat</p>
-        <h2>Upcoming webinars</h2>
+        <p className={styles.eyebrow}>Watch on demand</p>
+        <h2>Past webinars</h2>
         <p>
-          Browse the schedule and register for the sessions you want to join.
-          Your confirmation and calendar details will follow after signup.
+          Catch up on recent sessions with Weaviate engineers and partners.
         </p>
       </div>
       <div className={styles.workshopWrapper}>
@@ -30,8 +29,8 @@ export default function CalendarSection() {
 
                   <Link
                     className={styles.eventCard}
-                    to={event.link || '#upcoming-webinars'}
-                    aria-label={`${event.buttonLabel || 'Register for'} ${event.title}`}
+                    to={event.link || '#past-webinars'}
+                    aria-label={`${event.buttonLabel || 'Watch'} ${event.title}`}
                   >
                     <div className={styles.eventContent}>
                       {event.time && (
@@ -68,7 +67,7 @@ export default function CalendarSection() {
                         </p>
                       )}
                       <span className={styles.registerLink}>
-                        {event.buttonLabel || 'Register now'}
+                        {event.buttonLabel || 'Watch on demand'}
                         <span aria-hidden="true">→</span>
                       </span>
                     </div>
