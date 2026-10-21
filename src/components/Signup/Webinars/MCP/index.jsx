@@ -1,81 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./styles.module.scss";
 
-const HUBSPOT = {
-  portalId: "8738733",
-  formId: "4f916e0b-6762-4270-af8e-af3b4ce6938f",
-  region: "na1",
-  shareUrl: "https://share.hsforms.com/1T5FuC2diQnCvjq87TOaTjw57aul",
-};
+const VIDEO_ID = "VZjicnVSfVs";
 
-export default function WebinarRegistration() {
-  const [fallback, setFallback] = useState(false);
-
-  useEffect(() => {
-    let formCreated = false;
-    const timer = setTimeout(() => {
-      if (!formCreated) setFallback(true);
-    }, 2500);
-
-    const scriptSelector =
-      'script[src="https://js.hsforms.net/forms/embed/v2.js"]';
-    const existing = document.querySelector(scriptSelector);
-
-    const createForm = () => {
-      if (!window.hbspt?.forms?.create) {
-        setFallback(true);
-        return;
-      }
-
-      try {
-        window.hbspt.forms.create({
-          portalId: HUBSPOT.portalId,
-          formId: HUBSPOT.formId,
-          region: HUBSPOT.region,
-          target: "#webinar-registration-form",
-        });
-        formCreated = true;
-        clearTimeout(timer);
-      } catch (error) {
-        setFallback(true);
-      }
-    };
-
-    const onLoad = () => {
-      const script = document.querySelector(scriptSelector);
-      script?.setAttribute("data-loaded", "true");
-      createForm();
-    };
-
-    const onError = () => setFallback(true);
-
-    if (existing) {
-      existing.addEventListener("load", onLoad, { once: true });
-      existing.addEventListener("error", onError, { once: true });
-
-      if (
-        existing.getAttribute("data-loaded") === "true" &&
-        window.hbspt?.forms?.create
-      ) {
-        createForm();
-      }
-    } else {
-      const script = document.createElement("script");
-      script.src = "https://js.hsforms.net/forms/embed/v2.js";
-      script.async = true;
-      script.setAttribute("data-cookieconsent", "ignore");
-      script.addEventListener("load", onLoad);
-      script.addEventListener("error", onError);
-      document.body.appendChild(script);
-    }
-
-    return () => {
-      clearTimeout(timer);
-      existing?.removeEventListener("load", onLoad);
-      existing?.removeEventListener("error", onError);
-    };
-  }, []);
-
+export default function WebinarOnDemand() {
   return (
     <main className={styles.page}>
       <div className={styles.container}>
@@ -83,17 +11,9 @@ export default function WebinarRegistration() {
 
         <div className={styles.grid}>
           <section className={styles.introduction}>
-            <div
-              className={styles.visual}
-              role="img"
-              aria-label="Inside Weaviate's MCP Ecosystem webinar"
-            >
-              <span className={styles.liveLabel}>Live webinar</span>
-            </div>
-
             <div className={styles.eventMeta}>
-              <span>WEBINAR</span>
-              <span>OCTOBER 14 · ONLINE · 16:00 - 17:00 BST</span>
+              <span>WEBINAR RECORDING</span>
+              <span>ON DEMAND · RECORDED OCTOBER 14</span>
             </div>
             <h1>Inside Weaviate's MCP Ecosystem</h1>
             <p>
@@ -103,16 +23,18 @@ export default function WebinarRegistration() {
             </p>
           </section>
 
-          <section
-            className={styles.registration}
-            aria-labelledby="register-title"
-          >
-            <p className={styles.eyebrow}>Thank you</p>
-            <h2 id="register-title">Webinar Registration Closed</h2>
-            <p className={styles.formIntro}>
-              The registration for this webinar has ended. Please visit our{" "}
-              <a href="/community/events#on-demand-webinars">events page</a> for
-              on-demand webinars.
+          <section className={styles.video} aria-label="Webinar recording">
+            <div className={styles.videoFrame}>
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${VIDEO_ID}`}
+                title="Inside Weaviate's MCP Ecosystem"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                allowFullScreen
+              />
+            </div>
+            <p className={styles.videoNote}>
+              Want more? Browse all{" "}
+              <a href="/community/events#past-webinars">on-demand webinars</a>.
             </p>
           </section>
         </div>

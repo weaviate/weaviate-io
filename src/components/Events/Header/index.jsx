@@ -12,13 +12,13 @@ export default function WorkshopsHeader() {
           <div className={styles.headerBox}>
             <p>
               Join practical sessions with Weaviate engineers, partners, and
-              community experts. Register for an upcoming webinar or explore our
+              community experts. Watch past sessions on demand or explore our
               on-demand library.
             </p>
           </div>
           <div className={styles.buttons}>
-            <a className={styles.buttonGradient} href="#upcoming-webinars">
-              View upcoming webinars
+            <a className={styles.buttonGradient} href="#past-webinars">
+              View past webinars
             </a>
             <a className={styles.buttonOutline} href="#on-demand-webinars">
               Watch on demand

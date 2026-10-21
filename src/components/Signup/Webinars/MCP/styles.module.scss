@@ -32,7 +32,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(380px, 0.95fr);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   gap: clamp(2.5rem, 6vw, 6rem);
   align-items: start;
 }
@@ -43,7 +43,7 @@
     margin: 1rem 0 1.25rem;
     color: #ddebf2 !important;
     font-family: "Plus Jakarta Sans", sans-serif;
-    font-size: clamp(2.4rem, 5vw, 4.75rem);
+    font-size: clamp(2.4rem, 5vw, 2.4rem);
     font-weight: 600;
     line-height: 1.04;
     letter-spacing: -0.055em;
@@ -57,37 +57,6 @@
     font-size: clamp(1.05rem, 1.5vw, 1.25rem);
     line-height: 1.7;
   }
-}
-
-.visual {
-  position: relative;
-  display: flex;
-  aspect-ratio: 1;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  margin-bottom: 2rem;
-  border: 1px solid rgba(185, 200, 222, 0.14);
-  border-radius: 1.5rem;
-  background: #0b1018 url("/img/site/2026/MCP-Ecosystem-webinar-LP.jpg")
-    center / cover no-repeat;
-  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.28);
-}
-
-.liveLabel {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
-  padding: 0.45rem 0.75rem;
-  border: 1px solid rgba(107, 227, 140, 0.28);
-  border-radius: 999px;
-  background: rgba(107, 227, 140, 0.08);
-  color: #6be38c;
-  font:
-    700 0.7rem/1 Inter,
-    sans-serif;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .eventMeta {
@@ -104,21 +73,37 @@
   }
 }
 
-.registration {
-  padding: clamp(1.75rem, 4vw, 3rem);
+.video {
+  min-width: 0;
+}
+
+.videoFrame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
   border: 1px solid rgba(185, 200, 222, 0.14);
   border-radius: 1.5rem;
-  background: rgba(20, 24, 34, 0.92);
+  background: #0b1018;
   box-shadow: 0 28px 80px rgba(0, 0, 0, 0.3);
 
-  h2 {
-    margin: 0 0 0.75rem;
-    color: #ddebf2 !important;
-    font-family: "Plus Jakarta Sans", sans-serif;
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    font-weight: 600;
-    line-height: 1.15;
-    letter-spacing: -0.035em;
+  iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+}
+
+.videoNote {
+  margin: 1rem 0 0;
+  color: #a9b8ca;
+  font:
+    400 0.95rem/1.5 Inter,
+    sans-serif;
+
+  a {
+    color: #6be38c;
   }
 }
 
@@ -132,85 +117,6 @@
   text-transform: uppercase;
 }
 
-.formIntro {
-  margin: 0 0 1.5rem;
-  color: #91a2b8;
-  font:
-    400 1rem/1.6 Inter,
-    sans-serif;
-}
-
-.formWrapper {
-  min-height: 360px;
-}
-
-.webinarForm {
-  color: #b5d2dc;
-
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  select,
-  textarea {
-    width: 100% !important;
-    min-height: 48px;
-    padding: 0.7rem 0.85rem;
-    border: 1px solid rgba(185, 200, 222, 0.14);
-    border-radius: 0.5rem;
-    background: #272361;
-    color: #ecf4f8;
-  }
-
-  input[type="submit"] {
-    width: 100%;
-    min-height: 50px;
-    padding: 0.75rem 1rem;
-    border: 0;
-    border-radius: 0.5rem;
-    background: #6be38c;
-    color: #111111;
-    font:
-      700 1rem/1 Inter,
-      sans-serif;
-    cursor: pointer;
-  }
-
-  label,
-  span,
-  p,
-  li {
-    color: #b5d2dc;
-    font-family: Inter, sans-serif;
-  }
-
-  ul {
-    padding-left: 0;
-  }
-  li {
-    list-style: none;
-  }
-}
-
-.hsIframe {
-  width: 100%;
-  min-height: 620px;
-  border: 0;
-  border-radius: 0.75rem;
-  background: #ffffff;
-}
-
-.fallbackNote {
-  margin: 1rem 0 0;
-  color: #91a2b8;
-  font:
-    400 0.9rem/1.5 Inter,
-    sans-serif;
-
-  a {
-    color: #6be38c;
-  }
-}
-
 .about {
   max-width: 920px;
   margin-top: clamp(4rem, 8vw, 7rem);
@@ -221,7 +127,7 @@
     margin: 0 0 1.5rem;
     color: #ddebf2 !important;
     font-family: "Plus Jakarta Sans", sans-serif;
-    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-size: clamp(2rem, 4vw, 2rem);
     font-weight: 600;
     line-height: 1.12;
     letter-spacing: -0.04em;
@@ -247,7 +153,7 @@
     margin: 0 0 1.5rem;
     color: #ddebf2 !important;
     font-family: "Plus Jakarta Sans", sans-serif;
-    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-size: clamp(2rem, 4vw, 2rem);
     font-weight: 600;
     line-height: 1.12;
     letter-spacing: -0.04em;
@@ -266,9 +172,6 @@
   .grid {
     grid-template-columns: 1fr;
   }
-  .registration {
-    max-width: 680px;
-  }
 }
 
 @media screen and (max-width: 600px) {
@@ -277,8 +180,5 @@
   }
   .logo {
     margin-bottom: 2rem;
-  }
-  .registration {
-    padding: 1.5rem;
   }
 }

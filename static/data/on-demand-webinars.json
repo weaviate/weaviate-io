@@ -1,0 +1,46 @@
+[
+  {
+    "title": "Inside Weaviate's MCP Ecosystem",
+    "link": "/webinars/inside-weaviate-mcp-ecosystem"
+  },
+  {
+    "title": "Intro to Hybrid Search: Combining the power of keyword and vector search",
+    "link": "https://events.weaviate.io/hybrid-search-webinar"
+  },
+  {
+    "title": "Multimodal Product Discovery: The next generation of search for ecommerce",
+    "link": "https://events.weaviate.io/ecommerce-webinar"
+  },
+  {
+    "title": "Building an AI-Native Foundation for Enterprise Applications",
+    "link": "https://events.weaviate.io/enterprise-apps-webinar"
+  },
+  {
+    "title": "JS June - Build AI Apps with Weaviate!",
+    "link": "https://events.weaviate.io/js-june-24"
+  },
+  {
+    "title": "Improving Customer Support With Generative AI-Powered Assistants",
+    "link": "https://events.weaviate.io/customer-support-webinar"
+  },
+  {
+    "title": "Weaviate Product Update: Optimizing AI infrastructure for your use case",
+    "link": "https://events.weaviate.io/update-126"
+  },
+  {
+    "title": "Benchmarking AI Databases: How to test and optimize for your use case",
+    "link": "https://events.weaviate.io/benchmarking-webinar"
+  },
+  {
+    "title": "Navigating the AI Database Landscape: Guidance from the Field",
+    "link": "https://events.weaviate.io/gigaom-webinar-2025"
+  },
+  {
+    "title": "Beyond the Hype: How AI Agents can Transform Your Business",
+    "link": "https://events.weaviate.io/agents-stackai-webinar-2025"
+  },
+  {
+    "title": "Reimagining Data Workflows with Weaviate Agents",
+    "link": "https://events.weaviate.io/weaviate-agents-livestream-2025"
+  }
+]
