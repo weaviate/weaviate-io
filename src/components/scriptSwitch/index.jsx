@@ -9,6 +9,7 @@ const CustomScriptLoader = () => {
 
       const script = document.createElement("img");
       script.src = src;
+      script.alt = "";
       script.referrerPolicy = "no-referrer-when-downgrade";
       script.style = "display: none;";
       document.body.appendChild(script);
