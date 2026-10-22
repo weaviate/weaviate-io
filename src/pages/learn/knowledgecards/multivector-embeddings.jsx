@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Usage of multiple vectors instead of one pooled vector  to represent e.g., token-wise embeddings (e.g., ColBERT). Allows for more detailed representation of complex texts."
           />
+          <meta name="description" content="Usage of multiple vectors instead of one pooled vector  to represent e.g., token-wise embeddings (e.g., ColBERT). Allows for more detailed representation of complex texts." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

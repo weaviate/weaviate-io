@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Tree of Thoughts prompting builds on CoT by instructing the model to evaluate its responses at each step in the problem-solving process or even generate several different solutions to a problem."
           />
+          <meta name="description" content="Tree of Thoughts prompting builds on CoT by instructing the model to evaluate its responses at each step in the problem-solving process or even generate several different solutions to a problem." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

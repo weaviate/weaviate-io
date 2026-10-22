@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="This advanced technique uses a Language Model (LLM) to generate chunks. The LLM processes the text and generates semantically isolated sentences..."
           />
+          <meta name="description" content="This advanced technique uses a Language Model (LLM) to generate chunks. The LLM processes the text and generates semantically isolated sentences..." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

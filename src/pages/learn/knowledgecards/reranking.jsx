@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Re-ranking is adjusting the scores of search results after initial retrieval. It usually uses a machine learning model to reassess the relevance between the query and each result, refining the scores to improve accuracy and relevance for the user or an LLM's task. It's like a second quality check."
           />
+          <meta name="description" content="Re-ranking is adjusting the scores of search results after initial retrieval. It usually uses a machine learning model to reassess the relevance between the query and each result, refining the scores to improve accuracy and relevance for the user or an LLM's task. It's like a second quality check." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="A graph database stores data in nodes and edges, representing entities and their relationships. It\'s optimized for querying connections and patterns within the data, making it powerful for network, social, and recommendation systems."
           />
+          <meta name="description" content="A graph database stores data in nodes and edges, representing entities and their relationships. It\'s optimized for querying connections and patterns within the data, making it powerful for network, social, and recommendation systems." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Distance thresholding adds a quality check by setting a maximum allowed distance between vectors..."
           />
+          <meta name="description" content="Distance thresholding adds a quality check by setting a maximum allowed distance between vectors..." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

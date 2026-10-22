@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Semantic search, also known as vector search, uses machine learning to grasp text context, not just keywords. It converts text to numerical vectors, finding matches based on conceptual similarity for accurate, relevant search results."
           />
+          <meta name="description" content="Semantic search, also known as vector search, uses machine learning to grasp text context, not just keywords. It converts text to numerical vectors, finding matches based on conceptual similarity for accurate, relevant search results." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

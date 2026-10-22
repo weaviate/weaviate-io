@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Text is initially split using a primary separator, like paragraphs. If the resulting chunks are too large, secondary separators..."
           />
+          <meta name="description" content="Text is initially split using a primary separator, like paragraphs. If the resulting chunks are too large, secondary separators..." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="A vector database indexes, stores, and provides access to structured or unstructured data (e.g., text or images) alongside its vector embeddings, which are the data\'s numerical representation. It allows users to find and retrieve similar objects quickly at scale in production."
           />
+          <meta name="description" content="A vector database indexes, stores, and provides access to structured or unstructured data (e.g., text or images) alongside its vector embeddings, which are the data\'s numerical representation. It allows users to find and retrieve similar objects quickly at scale in production." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

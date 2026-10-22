@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Dense embeddings contain mostly non-zero values and are generated from machine learning models like Transformers. These vectors capture the semantic meaning of text and are used in semantic search."
           />
+          <meta name="description" content="Dense embeddings contain mostly non-zero values and are generated from machine learning models like Transformers. These vectors capture the semantic meaning of text and are used in semantic search." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

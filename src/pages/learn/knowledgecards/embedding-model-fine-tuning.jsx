@@ -84,6 +84,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Embedding model fine-tuning can significantly improve the quality of embeddings, subsequently improving performance on downstream tasks like RAG."
           />
+          <meta name="description" content="Embedding model fine-tuning can significantly improve the quality of embeddings, subsequently improving performance on downstream tasks like RAG." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

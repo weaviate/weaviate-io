@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="HNSW is a graph-based indexing technique, meaning that it organizes the data points in a graph structure rather than traditional tree-based or hash-based structures. This graph-based approach is key to its performance in high-dimensional vector space searches."
           />
+          <meta name="description" content="HNSW is a graph-based indexing technique, meaning that it organizes the data points in a graph structure rather than traditional tree-based or hash-based structures. This graph-based approach is key to its performance in high-dimensional vector space searches." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

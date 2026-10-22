@@ -84,6 +84,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="HNSW utilizes a multi-layered graph structure where each layer is a graph of the data points. The top layers contain fewer points with long-range connections, and as you go down the layers, the number of points increases, and the connections become more local. This hierarchical structure allows for efficient navigation during search queries."
           />
+          <meta name="description" content="HNSW utilizes a multi-layered graph structure where each layer is a graph of the data points. The top layers contain fewer points with long-range connections, and as you go down the layers, the number of points increases, and the connections become more local. This hierarchical structure allows for efficient navigation during search queries." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

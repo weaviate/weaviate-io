@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="In this technique, the text is divided into meaningful units, such as sentences or paragraphs, which are then vectorized..."
           />
+          <meta name="description" content="In this technique, the text is divided into meaningful units, such as sentences or paragraphs, which are then vectorized..." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Hybrid search in Weaviate combines keyword (BM25) and vector search to leverage both exact term matching and semantic context. It uses rankedFusion or relativeScoreFusion algorithms to merge results, providing a balance between precision and semantic understanding."
           />
+          <meta name="description" content="Hybrid search in Weaviate combines keyword (BM25) and vector search to leverage both exact term matching and semantic context. It uses rankedFusion or relativeScoreFusion algorithms to merge results, providing a balance between precision and semantic understanding." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

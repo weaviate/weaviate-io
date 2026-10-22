@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Cross-modal reasoning refers to the ability to make connections by integrating information from different modalities or sources including text, images, audio and video. It involves leveraging knowledge from one modality to understand or reason about data from another modality."
           />
+          <meta name="description" content="Cross-modal reasoning refers to the ability to make connections by integrating information from different modalities or sources including text, images, audio and video. It involves leveraging knowledge from one modality to understand or reason about data from another modality." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

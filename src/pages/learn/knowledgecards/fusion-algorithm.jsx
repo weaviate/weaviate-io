@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="In hybrid search, the fusion algorithm combines results from keyword and vector searches into a final list of ranked search results. A popular fusion algorithm is called reciprocal ranked fusion, which uses the sum of the inverse of the position of the results. There are multiple types of fusion algorithms. Weaviate supports reciprocal rank fusion and relative score fusion."
           />
+          <meta name="description" content="In hybrid search, the fusion algorithm combines results from keyword and vector searches into a final list of ranked search results. A popular fusion algorithm is called reciprocal ranked fusion, which uses the sum of the inverse of the position of the results. There are multiple types of fusion algorithms. Weaviate supports reciprocal rank fusion and relative score fusion." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

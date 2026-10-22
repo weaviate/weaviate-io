@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="An inverted index is a database indexing structure that maps keywords to their locations in documents, enabling fast full-text searches by listing all documents containing a given word, optimizing retrieval times. In Weaviate, it's used for keyword searches and fast filtering."
           />
+          <meta name="description" content="An inverted index is a database indexing structure that maps keywords to their locations in documents, enabling fast full-text searches by listing all documents containing a given word, optimizing retrieval times. In Weaviate, it's used for keyword searches and fast filtering." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

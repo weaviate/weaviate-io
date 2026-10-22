@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="In any-to-any search we can pass in as a query any modality the model understands and use it to perform vector similarity search in multimodal embedding space, getting back objects of any other modality that are similar in concept."
           />
+          <meta name="description" content="In any-to-any search we can pass in as a query any modality the model understands and use it to perform vector similarity search in multimodal embedding space, getting back objects of any other modality that are similar in concept." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

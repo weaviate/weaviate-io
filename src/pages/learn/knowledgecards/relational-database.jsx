@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="A relational database organizes data into tables linked by relationships, enabling complex queries like finding students with both cats and dogs. It uses SQL for structured, precise data management, optimizing operations like filtering and joining for efficient data retrieval."
           />
+          <meta name="description" content="A relational database organizes data into tables linked by relationships, enabling complex queries like finding students with both cats and dogs. It uses SQL for structured, precise data management, optimizing operations like filtering and joining for efficient data retrieval." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

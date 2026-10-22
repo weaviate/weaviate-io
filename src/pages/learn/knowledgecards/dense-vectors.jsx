@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="In contrast to sparse vectors, dense vectors contain mostly non-zero values and are generated from machine learning models like GloVe and Transformers. These vectors capture the semantic meaning of text and are used in vector search techniques."
           />
+          <meta name="description" content="In contrast to sparse vectors, dense vectors contain mostly non-zero values and are generated from machine learning models like GloVe and Transformers. These vectors capture the semantic meaning of text and are used in vector search techniques." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

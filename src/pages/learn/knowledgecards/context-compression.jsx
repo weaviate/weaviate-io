@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Context compression refines RAG retrieval by filtering out irrelevant or redundant data, reducing token usage and costs."
           />
+          <meta name="description" content="Context compression refines RAG retrieval by filtering out irrelevant or redundant data, reducing token usage and costs." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

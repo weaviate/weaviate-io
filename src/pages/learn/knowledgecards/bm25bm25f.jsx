@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="BM25 is a ranking function used by search engines to estimate the relevance of documents to a given search query. It is part of the family of probabilistic information retrieval models. BM25F is a variant of BM25 that can handle fields with different weights, such as title and body in documents."
           />
+          <meta name="description" content="BM25 is a ranking function used by search engines to estimate the relevance of documents to a given search query. It is part of the family of probabilistic information retrieval models. BM25F is a variant of BM25 that can handle fields with different weights, such as title and body in documents." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

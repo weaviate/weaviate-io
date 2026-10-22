@@ -84,6 +84,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Data extraction and parsing convert raw data into an LLM-ready format. Text-based files retain structure, while OCR handles scanned docs. Advanced multimodal models may replace OCR by embedding images directly."
           />
+          <meta name="description" content="Data extraction and parsing convert raw data into an LLM-ready format. Text-based files retain structure, while OCR handles scanned docs. Advanced multimodal models may replace OCR by embedding images directly." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

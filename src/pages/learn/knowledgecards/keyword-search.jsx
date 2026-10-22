@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Keyword search finds objects with an exact match between the terms in the query and in the documents. Weaviate uses the BM25/F function to calculate the relevancy of a document to a query, which uses both the term frequency and inverse document frequency."
           />
+          <meta name="description" content="Keyword search finds objects with an exact match between the terms in the query and in the documents. Weaviate uses the BM25/F function to calculate the relevancy of a document to a query, which uses both the term frequency and inverse document frequency." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta
