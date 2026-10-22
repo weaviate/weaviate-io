@@ -12,42 +12,6 @@ import RelatedProducts from "/src/components/ProductPageTemplate/RelatedProducts
 import CTA from "/src/components/ProductPageTemplate/CTA";
 import Blogs from "/src/components/ProductPageTemplate/Blogs";
 
-const GUIDEFLOW_ID = "dr973w8bnp";
-
-function GuideflowEmbed({ iframeId = GUIDEFLOW_ID }) {
-  React.useEffect(() => {
-    const existing = document.querySelector(
-      'script[src="https://app.guideflow.com/assets/opt.js"]',
-    );
-    if (!existing) {
-      const s = document.createElement("script");
-      s.src = "https://app.guideflow.com/assets/opt.js";
-      s.async = true;
-      s.setAttribute("data-cookieconsent", "ignore");
-      s.setAttribute("data-iframe-id", iframeId);
-      document.body.appendChild(s);
-    } else {
-      if (!existing.getAttribute("data-iframe-id")) {
-        existing.setAttribute("data-iframe-id", iframeId);
-      }
-      window.dispatchEvent(new Event("guideflow:check"));
-    }
-  }, [iframeId]);
-
-  return (
-    <div className="tw-relative tw-aspect-[16/10] tw-w-full tw-overflow-hidden tw-rounded-2xl">
-      <iframe
-        id={iframeId}
-        src={`https://app.guideflow.com/embed/${iframeId}`}
-        title="Query Agent interactive demo"
-        allow="clipboard-read; clipboard-write"
-        allowFullScreen
-        className="tw-absolute tw-inset-0 tw-h-full tw-w-full tw-border-0"
-      />
-    </div>
-  );
-}
-
 const benefitCards = [
   {
     title: "Ask in natural language",
@@ -187,9 +151,7 @@ export default function QueryPage() {
 
   if (!app) return <div>App not found</div>;
 
-  const related = appData.filter(
-    (a) => a.category === app.category && a.id !== app.id,
-  );
+  const related = appData.filter((a) => a.name === "Embeddings");
 
   return (
     <div className="custom-page noBG">
@@ -209,7 +171,16 @@ export default function QueryPage() {
               label: "Read the Docs",
               to: "https://docs.weaviate.io/query-agent",
             }}
-            media={<GuideflowEmbed />}
+            media={
+              <img
+                src="/img/site/query-agent-console.png"
+                alt="Query Agent in Weaviate Cloud, showing agent settings, plan usage, and resources"
+                width={3008}
+                height={1548}
+                loading="eager"
+                className="tw-block tw-h-auto tw-w-full tw-rounded-2xl tw-border tw-border-white/10"
+              />
+            }
           />
           <BenefitCards cards={benefitCards} />
           <FeatureSplit
@@ -219,7 +190,7 @@ export default function QueryPage() {
             visual={
               <img
                 src="/img/site/query-agent-screenshot.svg"
-                alt="Query Agent in the Weaviate Cloud Console"
+                alt="Query Agent code example"
                 className="tw-h-auto tw-w-full"
               />
             }
@@ -256,10 +227,9 @@ export default function QueryPage() {
             plans={plans}
             notes={notes}
             newsletter={{
-              label: "Subscribe to Weaviate Agents newsletter",
-              to: "https://events.weaviate.io/weaviate-agents-newsletter",
-              description:
-                "Stay up to date with the latest news, product updates, and best practices for the Query Agent and other Weaviate Agents.",
+              label: "Try for free, upgrade later",
+              to: "/go/console",
+              description: "Start with the free plan and upgrade when you're ready.",
             }}
           />
           <RelatedProducts products={related} />

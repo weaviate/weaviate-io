@@ -18,14 +18,13 @@ const benefitCards = [
   {
     title: "Fast, flexible development",
     description:
-      "Simplify operations with one less API and vendor to manage. Choose between class-leading OSS and proprietary models.",
+      "Simplify operations with one less API and vendor to manage. Choose from class-leading open-source models.",
     icon: "/img/site/2026/build.svg",
     glow: "rgba(0, 254, 107, 0.16)",
   },
   {
-    title: "Freedom from rate limits",
-    description:
-      "Bring models closer to your data to reduce latency, with no artificial constraints on embeddings per second.",
+    title: "Models close to your data",
+    description: "Bring models closer to your data.",
     icon: "/img/site/2026/extract.svg",
     glow: "rgba(122, 145, 255, 0.18)",
   },
@@ -131,7 +130,7 @@ export default function EmbeddingsPage() {
     <div className="custom-page noBG">
       <Layout
         title="Embeddings | Weaviate Cloud"
-        description="Generate embeddings within Weaviate Cloud, without rate limits or a third-party provider."
+        description="Generate embeddings within Weaviate Cloud, without a third-party provider."
       >
         <MetaSEO img="og/website/home.jpg" />
 
@@ -139,7 +138,7 @@ export default function EmbeddingsPage() {
           <Hero
             title="Embeddings:"
             subtitle="Built into Weaviate Cloud"
-            description="Say goodbye to rate limits and the hassle of managing multiple embedding providers."
+            description="Create embeddings in Weaviate Cloud without managing multiple embedding providers."
             primaryCta={
               app.released === "yes"
                 ? { label: "Open in Weaviate Cloud", to: "/go/console" }
@@ -173,7 +172,7 @@ export default function EmbeddingsPage() {
             panelDescription="Developers can use a range of embedding models without needing to send data to an external provider:"
             checks={[
               "One less API and vendor to manage",
-              "Class-leading OSS and proprietary models",
+              "Class-leading open-source models",
               "Lower latency, closer to your data",
               "Simple pay-as-you-go pricing",
             ]}
