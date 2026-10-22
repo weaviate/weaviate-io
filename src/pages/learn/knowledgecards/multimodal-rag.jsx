@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Multimodal RAG involves retrieving from a multimodal knowledge base and then generation using a large multimodal model by generating text or images grounded in the retrieved context, which can include images, text, audio, and other modalities."
           />
+          <meta name="description" content="Multimodal RAG involves retrieving from a multimodal knowledge base and then generation using a large multimodal model by generating text or images grounded in the retrieved context, which can include images, text, audio, and other modalities." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

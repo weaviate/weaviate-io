@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Compressed dense vectors using lower-precision data types (e.g., float32 to int8). Reduces memory usage and speeds up search..."
           />
+          <meta name="description" content="Compressed dense vectors using lower-precision data types (e.g., float32 to int8). Reduces memory usage and speeds up search..." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

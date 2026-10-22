@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Query routing directs queries to specific pipelines based on content and intent, optimizing RAG systems."
           />
+          <meta name="description" content="Query routing directs queries to specific pipelines based on content and intent, optimizing RAG systems." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

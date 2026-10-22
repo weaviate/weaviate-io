@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="This is an optional parameter in hybrid search queries that determines the weighting of each search algorithm during the re-ranking process. An alpha value of 0 gives full weight to the sparse vector (BM25), 1 gives full weight to the dense vector, and 0.5 gives equal weight to both."
           />
+          <meta name="description" content="This is an optional parameter in hybrid search queries that determines the weighting of each search algorithm during the re-ranking process. An alpha value of 0 gives full weight to the sparse vector (BM25), 1 gives full weight to the dense vector, and 0.5 gives equal weight to both." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

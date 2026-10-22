@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Query Rewriting involves reformulating the original user query to make it more suitable for retrieval."
           />
+          <meta name="description" content="Query Rewriting involves reformulating the original user query to make it more suitable for retrieval." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

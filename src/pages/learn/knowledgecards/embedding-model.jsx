@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="An embedding model, or vectorizer, transforms text or images into vector embeddings, capturing semantic meaning through statistical analysis, converting conceptual significance into numerical representations."
           />
+          <meta name="description" content="An embedding model, or vectorizer, transforms text or images into vector embeddings, capturing semantic meaning through statistical analysis, converting conceptual significance into numerical representations." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

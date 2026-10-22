@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Generative AI is a type of artificial intelligence powered by generative machine learning models that produces new and original outputs like images, text, audio, or video based off user provided prompts or input."
           />
+          <meta name="description" content="Generative AI is a type of artificial intelligence powered by generative machine learning models that produces new and original outputs like images, text, audio, or video based off user provided prompts or input." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

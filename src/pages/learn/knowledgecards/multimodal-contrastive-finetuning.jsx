@@ -85,6 +85,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Multimodal Embeddings Models produce a joint embedding space for multimodal data that understands text, images, audio and more. Objects that are similar are closer together and dissimilar objects are farther apart, this means that the model preserves semantic similarity within and across modalities."
           />
+          <meta name="description" content="Multimodal Embeddings Models produce a joint embedding space for multimodal data that understands text, images, audio and more. Objects that are similar are closer together and dissimilar objects are farther apart, this means that the model preserves semantic similarity within and across modalities." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

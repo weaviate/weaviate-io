@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Sparse vectors are often high-dimensional with many zeros. Sparse embeddings are generated from algorithms like BM25 and SPLADE. These algorithms are used in keyword-based search to represent text documents."
           />
+          <meta name="description" content="Sparse vectors are often high-dimensional with many zeros. Sparse embeddings are generated from algorithms like BM25 and SPLADE. These algorithms are used in keyword-based search to represent text documents." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

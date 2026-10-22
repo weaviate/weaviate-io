@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="During a search, HNSW starts at the topmost layer and makes 'big jumps' across the graph to quickly move closer to the target region. As it moves down the layers, the search becomes more refined, with smaller, more local jumps until the nearest neighbors are identified in the bottom layer."
           />
+          <meta name="description" content="During a search, HNSW starts at the topmost layer and makes 'big jumps' across the graph to quickly move closer to the target region. As it moves down the layers, the search becomes more refined, with smaller, more local jumps until the nearest neighbors are identified in the bottom layer." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

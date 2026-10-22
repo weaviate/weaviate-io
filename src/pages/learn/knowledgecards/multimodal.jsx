@@ -79,6 +79,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Multimodal learning involves integrating various data types like images, text, audio, and sensory inputs to create models that understand and process information like humans, recognizing patterns and context across different modes for different types of use-cases, like e-commerce."
           />
+          <meta name="description" content="Multimodal learning involves integrating various data types like images, text, audio, and sensory inputs to create models that understand and process information like humans, recognizing patterns and context across different modes for different types of use-cases, like e-commerce." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

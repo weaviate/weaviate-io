@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Metadata is contextual information attached to documents in vector databases, including timestamps, categories, and source references."
           />
+          <meta name="description" content="Metadata is contextual information attached to documents in vector databases, including timestamps, categories, and source references." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

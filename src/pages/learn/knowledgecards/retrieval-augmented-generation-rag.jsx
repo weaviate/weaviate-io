@@ -84,6 +84,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Retrieval Augmented Generation (RAG) is the process of contextualising prompts for large language models (LLMs) by leveraging available data in a store allowing an LLMs to ingest relevant information that guides their predictions."
           />
+          <meta name="description" content="Retrieval Augmented Generation (RAG) is the process of contextualising prompts for large language models (LLMs) by leveraging available data in a store allowing an LLMs to ingest relevant information that guides their predictions." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

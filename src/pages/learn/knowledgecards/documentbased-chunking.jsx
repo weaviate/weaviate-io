@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="This technique creates chunks based on the natural divisions within the document, such as headings or sections. It\'s very effective for structured data like HTML..."
           />
+          <meta name="description" content="This technique creates chunks based on the natural divisions within the document, such as headings or sections. It\'s very effective for structured data like HTML..." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

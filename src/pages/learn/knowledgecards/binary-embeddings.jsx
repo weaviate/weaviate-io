@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Extreme quantization, reducing vector components to binary (0 or 1) values. Drastically reduces memory use."
           />
+          <meta name="description" content="Extreme quantization, reducing vector components to binary (0 or 1) values. Drastically reduces memory use." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta
