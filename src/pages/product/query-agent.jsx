@@ -58,9 +58,9 @@ const featureCards = [
   },
   {
     icon: "/img/site/2026/customize.svg",
-    title: "Python and TypeScript SDKs",
+    title: "SDKs, MCP, and Console",
     description:
-      "Integrate retrieval directly into your applications with the Weaviate client libraries.",
+      "Build with Python or TypeScript, connect AI tools through Model Context Protocol (MCP), or explore your data in the Weaviate Cloud Console.",
   },
 ];
 
@@ -74,7 +74,7 @@ const steps = [
   {
     title: "Ask a question",
     description:
-      "Use the Python or TypeScript client, or the Weaviate Cloud Console, to send a natural-language query",
+      "Send a natural-language query through a Python or TypeScript client, an MCP-compatible AI tool, or the Weaviate Cloud Console",
     icon: "/img/site/2026/add.svg",
   },
   {
@@ -84,9 +84,9 @@ const steps = [
     icon: "/img/site/2026/friction.svg",
   },
   {
-    title: "Get cited results",
+    title: "Get relevant results",
     description:
-      "Receive accurate answers or search results with source citations",
+      "Receive answers or search results relevant to your question",
     icon: "/img/site/2026/create.svg",
   },
 ];
@@ -203,8 +203,8 @@ export default function QueryPage() {
               "Aggregations with source citations",
             ]}
             link={{
-              label: "Read the blog post to learn more",
-              to: "/blog/query-agent-generally-available",
+              label: "Read the Query Agent docs",
+              to: "https://docs.weaviate.io/query-agent",
             }}
             cardsHeading="Two modes, one agent"
             featureCards={featureCards}
@@ -212,7 +212,7 @@ export default function QueryPage() {
           <StepsSection
             eyebrow="Get Started"
             heading="Start querying your data in natural language today"
-            intro="Use the Python and TypeScript client SDKs, or the Weaviate Cloud Console for fast exploration, validation, and experimentation."
+            intro="Integrate with Python or TypeScript SDKs, connect AI assistants through the hosted MCP server, or try queries directly in the Weaviate Cloud Console."
             steps={steps}
             visual={
               <img
