@@ -113,7 +113,7 @@ const plans = [
 
 const notes = [
   "Requests consumption by query type: Ask (4 requests/query), Search (1 request/query)",
-  "Model units consumption varies by query complexity and size of retrieved content",
+  "Model units are a normalized measure of tokens based on price, and vary by query complexity and size of retrieved content",
 ];
 
 const blogPosts = [
