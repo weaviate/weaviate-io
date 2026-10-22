@@ -214,7 +214,7 @@ for (const o of response.objects) {
 
 ### Self-hosted Weaviate
 
-You can test today. Set the `DISABLE_GRAPHQL` environment variable to `true` and GraphQL is off. It is also available as the runtime-config key `disable_graphql`.
+You can test today. Set the `DISABLE_GRAPHQL` environment variable to `true` and restart Weaviate to disable GraphQL. It is also available as the [runtime-config](https://docs.weaviate.io/deploy/configuration/env-vars/runtime-config) key `disable_graphql`.
 
 With GraphQL disabled, `POST /v1/graphql` and `POST /v1/graphql/batch` return HTTP `422`:
 
@@ -239,7 +239,7 @@ Weaviate Cloud and Enterprise customers who need help planning the move can cont
 
 We will get you through this migration. Whatever your setup, and even if you do not know where your GraphQL requests come from, contact support and we work it out with you. If a query or feature you rely on has no equivalent yet, tell us and we will try to add what is missing.
 
-- **Support, for everyone:** Reach our support team through the [support portal](https://support.weaviate.io/) or at [support@weaviate.io](mailto:support@weaviate.io). 
+- **Support, for everyone:** Reach our support team through the [support portal](https://support.weaviate.io/) or at [support@weaviate.io](mailto:support@weaviate.io).
 - **Community questions:** Ask on the [Weaviate forum](https://forum.weaviate.io/).
 
 import WhatsNext from "/_includes/what-next.mdx";
