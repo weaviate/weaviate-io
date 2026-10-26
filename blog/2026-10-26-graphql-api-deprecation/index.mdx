@@ -22,8 +22,6 @@ faq:
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-{/* TODO(ivan): Before publishing, switch every docs.weaviate.io link back to docs.weaviate.io. */}
-
 ![Deprecating the GraphQL API: timeline and migration paths](./img/hero.jpeg)
 
 GraphQL was Weaviate's [first query API](/blog/graphql-api-design), and many of you have built on it since our earliest releases. Today we are deprecating it. **Nothing breaks today. Clusters that use GraphQL keep it until May 1, 2027**, the end-of-life date for GraphQL on Weaviate Cloud. We can help you through the migration. Contact our support team through the [support portal](https://support.weaviate.io/) or at [support@weaviate.io](mailto:support@weaviate.io), whatever your setup looks like. The [GraphQL migration guide](https://docs.weaviate.io/weaviate/api/graphql/migration) walks you through the move, and this post explains why, what happens when, and what your options are.
@@ -58,7 +56,6 @@ One API also means every search feature is built, tested and documented once, wh
 ## Timeline
 
 ![Timeline: September 30, 2026, new Weaviate Cloud clusters are created without GraphQL. October 26, 2026, GraphQL is deprecated and nothing changes in Weaviate Cloud or self-hosted Weaviate. December 1, 2026, GraphQL is switched off on Weaviate Cloud clusters that do not use it. May 1, 2027, GraphQL is switched off on all remaining Cloud clusters. The first minor release after May 1, 2027 disables GraphQL by default in self-hosted Weaviate, where you can switch it back on. A later release fully removes GraphQL from Weaviate.](./img/timeline.png)
-{/* TODO(ivan): Regenerate timeline.png with these milestones: September 30, 2026 (new Cloud clusters created without GraphQL). October 26, 2026 (GraphQL deprecated). December 1, 2026 (Cloud clusters that have not used GraphQL in the last 30 days switched off). May 1, 2027 (all remaining Cloud clusters switched off, self-hosted keeps working until at least this date). First minor release after May 1, 2027 (self-hosted disabled by default, can be switched back on). A later release (GraphQL removed). */}
 
 ## Are you affected?
 
@@ -226,7 +223,6 @@ Every Weaviate version released before May 1, 2027 keeps a working GraphQL API. 
 ### Weaviate Cloud
 
 Weaviate Cloud switches GraphQL off in two steps. On December 1, 2026, we switch it off on clusters that have not used GraphQL in the last 30 days, since nothing on them depends on it. On May 1, 2027, we switch it off on all remaining clusters. May 1, 2027 is the end-of-life date for GraphQL on Weaviate Cloud. New clusters are already created without GraphQL.
-{/* TODO(ivan): Align the 30-day window with the number Brandon and Dirk settle on for the emails. */}
 
 If your cluster is scheduled for December 1 and you believe it still needs GraphQL, contact support and we switch it off later. If you want to test earlier, support can switch it off on a cluster of your choice.
 
