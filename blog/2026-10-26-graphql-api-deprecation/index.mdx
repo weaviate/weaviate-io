@@ -41,6 +41,20 @@ GraphQL was Weaviate's [first query API](/blog/graphql-api-design), and many of 
 
 :::
 
+## Modernizing Weaviate's query API
+
+GraphQL served Weaviate and its users well for a long time. It gave you one readable language for every kind of search, and a lot of what you built on Weaviate went through it. We are proud of that work. We are moving to one modern query API, and here is what you gain:
+
+- **Speed:** gRPC sends binary Protocol Buffers over HTTP/2, so queries use less bandwidth and return faster than JSON over HTTP. The [gRPC performance post](/blog/grpc-performance-improvements) has the measurements.
+
+- **Clear contracts:** Typed messages give every client typed results and generated request objects, so there is no query string to assemble and no nested JSON to parse. Errors arrive as real status codes, not as HTTP `200` with an `errors` array. Metadata is a field on the result, not a separate `_additional` block.
+
+- **Security that fits fine-grained access:** GraphQL introspection needs read permission on every collection. That does not fit role-based access control (RBAC) with per-collection permissions. The gRPC and REST APIs check exactly the collection you query.
+
+- **Built for how queries are written today:** GraphQL's strength was a query language you could read and type by hand. Today most queries are built by client libraries, frameworks and agents. A compact binary protocol and a plain JSON API serve them better than a hand-written query language.
+
+One API also means every search feature is built, tested and documented once, which lets us ship improvements faster.
+
 ## Timeline
 
 ![Timeline: September 30, 2026, new Weaviate Cloud clusters are created without GraphQL. October 26, 2026, GraphQL is deprecated and nothing changes in Weaviate Cloud or self-hosted Weaviate. December 1, 2026, GraphQL is switched off on Weaviate Cloud clusters that do not use it. May 1, 2027, GraphQL is switched off on all remaining Cloud clusters. The first minor release after May 1, 2027 disables GraphQL by default in self-hosted Weaviate, where you can switch it back on. A later release fully removes GraphQL from Weaviate.](./img/timeline.png)
@@ -65,20 +79,6 @@ A client or tool sends it for you:
 The guide explains how to [find your GraphQL usage](https://docs-graphql-deprecation--docs-weaviate-io.netlify.app/weaviate/api/graphql/migration#find-your-graphql-usage).
 
 If you reach Weaviate through a framework such as LangChain or LlamaIndex, use the official Weaviate integration built on a current client. A community package may still send GraphQL.
-
-## Modernizing Weaviate's query API
-
-GraphQL served Weaviate and its users well for a long time. It gave you one readable language for every kind of search, and a lot of what you built on Weaviate went through it. We are proud of that work. We are moving to one modern query API, and here is what you gain:
-
-- **Speed:** gRPC sends binary Protocol Buffers over HTTP/2, so queries use less bandwidth and return faster than JSON over HTTP. The [gRPC performance post](/blog/grpc-performance-improvements) has the measurements.
-
-- **Clear contracts:** Typed messages give every client typed results and generated request objects, so there is no query string to assemble and no nested JSON to parse. Errors arrive as real status codes, not as HTTP `200` with an `errors` array. Metadata is a field on the result, not a separate `_additional` block.
-
-- **Security that fits fine-grained access:** GraphQL introspection needs read permission on every collection. That does not fit role-based access control (RBAC) with per-collection permissions. The gRPC and REST APIs check exactly the collection you query.
-
-- **Built for how queries are written today:** GraphQL's strength was a query language you could read and type by hand. Today most queries are built by client libraries, frameworks and agents. A compact binary protocol and a plain JSON API serve them better than a hand-written query language.
-
-One API also means every search feature is built, tested and documented once, which lets us ship improvements faster.
 
 ## What to use instead
 
