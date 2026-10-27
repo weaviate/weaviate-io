@@ -51,7 +51,7 @@ GraphQL served Weaviate and its users well for a long time. It gave you one read
 
 - **Built for how queries are written today:** GraphQL's strength was a query language you could read and type by hand. Today most queries are built by client libraries, frameworks and agents. A compact binary protocol and a plain JSON API serve them better than a hand-written query language.
 
-- **Working with large collection count:** An instance with many collections on a server is a usecase we see more and more often. But this can cause significant slowdowns to your Weaviate system if you have a large number of collections (e.g. 1000+). This is due to each addition or removal of a collection requiring a rebuild of the full GQL schema.
+- **Scales to many collections:** A Weaviate instance with many collections is a use case we see more and more often. However, if you have a large number of collections (e.g. 1000+), each addition or removal of a collection may take a significant amount of time as it requires a rebuild of the full GraphQL schema. Retiring GraphQL eliminates this bottleneck.
 
 One API also means every search feature is built, tested and documented once, which lets us ship improvements faster.
 
