@@ -51,6 +51,8 @@ GraphQL served Weaviate and its users well for a long time. It gave you one read
 
 - **Built for how queries are written today:** GraphQL's strength was a query language you could read and type by hand. Today most queries are built by client libraries, frameworks and agents. A compact binary protocol and a plain JSON API serve them better than a hand-written query language.
 
+- **Scales to many collections:** A Weaviate instance with many collections is a use case we see more and more often. However, if you have a large number of collections (e.g. 1000+), each addition or removal of a collection may take a significant amount of time as it requires a rebuild of the full GraphQL schema. Retiring GraphQL eliminates this bottleneck.
+
 One API also means every search feature is built, tested and documented once, which lets us ship improvements faster.
 
 ## Timeline
@@ -235,7 +237,7 @@ Weaviate Cloud and Enterprise customers who need help planning the move can cont
 We will get you through this migration. Whatever your setup, and even if you do not know where your GraphQL requests come from, contact support and we work it out with you. If a query or feature you rely on has no equivalent yet, tell us and we will try to add what is missing.
 
 - **Support, for everyone:** Reach our support team through the [support portal](https://support.weaviate.io/) or at [support@weaviate.io](mailto:support@weaviate.io).
-- **Community questions:** Ask on the [Weaviate forum](https://forum.weaviate.io/).
+- **Community questions:** Ask on the [Weaviate forum](https://forum.weaviate.io/t/graphql-api-deprecation-timeline-and-how-to-migrate/22669).
 
 import WhatsNext from "/_includes/what-next.mdx";
 
