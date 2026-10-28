@@ -22,8 +22,8 @@ export default function EnterpriseEditionPage() {
       description="Request a commercial license key for Weaviate Enterprise Edition."
     >
       <Head>
-        <meta name="robots" content="noindex, nofollow" />
-        <meta name="googlebot" content="noindex, nofollow" />
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
       </Head>
 
       <main>

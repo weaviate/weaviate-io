@@ -47,6 +47,7 @@ const MARKDOWN_TWINS = {
   '/deployment/shared': '/deployment/shared.md',
   '/deployment/dedicated': '/deployment/dedicated.md',
   '/enterprise': '/enterprise.md',
+  '/enterprise-edition': '/enterprise-edition.md',
   '/security': '/security.md',
 
   // Use cases
