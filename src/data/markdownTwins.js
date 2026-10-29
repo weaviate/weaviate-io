@@ -69,6 +69,7 @@ const MARKDOWN_TWINS = {
 
   // Case studies
   '/case-studies': '/case-studies.md',
+  '/case-studies/datafy': '/case-studies/datafy.md',
   '/case-studies/docsbot': '/case-studies/docsbot.md',
   '/case-studies/instabase': '/case-studies/instabase.md',
   '/case-studies/kapa': '/case-studies/kapa.md',
