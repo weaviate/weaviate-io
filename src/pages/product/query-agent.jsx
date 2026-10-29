@@ -85,8 +85,7 @@ const steps = [
   },
   {
     title: "Get relevant results",
-    description:
-      "Receive answers or search results relevant to your question",
+    description: "Receive answers or search results relevant to your question",
     icon: "/img/site/2026/create.svg",
   },
 ];
@@ -173,7 +172,7 @@ export default function QueryPage() {
             }}
             media={
               <img
-                src="/img/site/query-agent-console.png"
+                src="/img/site/query-agent-console.jpg"
                 alt="Query Agent in Weaviate Cloud, showing agent settings, plan usage, and resources"
                 width={3008}
                 height={1548}
@@ -229,7 +228,8 @@ export default function QueryPage() {
             newsletter={{
               label: "Try for free, upgrade later",
               to: "/go/console",
-              description: "Start with the free plan and upgrade when you're ready.",
+              description:
+                "Start with the free plan and upgrade when you're ready.",
             }}
           />
           <RelatedProducts products={related} />
