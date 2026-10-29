@@ -1,6 +1,6 @@
 import React from "react";
 
-const benefitCards = [
+export const defaultBenefitCards = [
   {
     title: "Build personalization and continuity",
     description: "Remember preferences and decisions across sessions.",
@@ -30,12 +30,12 @@ const benefitCards = [
   },
 ];
 
-export default function BenefitCards() {
+export default function BenefitCards({ cards = defaultBenefitCards }) {
   return (
     <section className="tw-bg-[#111111] tw-px-6 tw-py-12 md:tw-py-16 lg:tw-py-20">
       <div className="tw-mx-auto tw-max-w-[1320px]">
         <div className="tw-grid tw-gap-6 md:tw-grid-cols-2 xl:tw-grid-cols-4">
-          {benefitCards.map((card) => (
+          {cards.map((card) => (
             <article
               key={card.title}
               className="tw-group tw-relative tw-overflow-hidden tw-rounded-[1.875rem] tw-bg-[#1a1a1a] tw-p-8 tw-transition-all tw-duration-300 md:tw-min-h-[300px] md:tw-p-10 md:hover:tw--translate-y-1 md:hover:tw-scale-[1.01]"
