@@ -84,6 +84,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Unstructured data objects are data objects without a predefined structure, making them difficult to manage conventionally. Examples include text documents, images, audio, video, social media posts, and emails."
           />
+          <meta name="description" content="Unstructured data objects are data objects without a predefined structure, making them difficult to manage conventionally. Examples include text documents, images, audio, video, social media posts, and emails." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

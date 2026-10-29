@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="An algorithm or model that transforms objects (like words) into vector embeddings. This enables capturing contextual and semantic information."
           />
+          <meta name="description" content="An algorithm or model that transforms objects (like words) into vector embeddings. This enables capturing contextual and semantic information." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

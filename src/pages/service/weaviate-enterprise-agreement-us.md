@@ -28,7 +28,7 @@ Subject to the terms and conditions of this Agreement, Weaviate will make the We
 
 
 3. **Open Source Software.**  
-   The Weaviate Offering may include individual open source software components, each of which has its own copyright and its own applicable license conditions. These open-source software components are licensed under the terms of the applicable open-source license conditions and/or copyright notices.
+   The Weaviate Offering may include individual open source software components, each of which has its own copyright and its own applicable license conditions. These open-source software components are licensed under the terms of the applicable open-source license conditions and/or copyright notices. In addition, breach of this Agreement will be deemed a breach of such open software licenses, and breach of such open software licenses will be deemed a breach of this Agreement. Customer acknowledges that Weaviate's obligations under Sections 5 and 6 of this Agreement do not apply to any material used by Customer solely under such open licenses, and not under this Agreement.
 <br></br>
 
 4. **Weaviate Cloud.**  

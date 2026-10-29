@@ -1,0 +1,333 @@
+---
+title: "PathSeer: Adaptive Filtered Vector Search"
+slug: pathseer-filtered-vector-search
+authors: [john, abdel]
+date: 2026-10-14
+tags: ["engineering", "research", "search"]
+image: ./img/hero.png
+description: "Weaviate 1.40 adds PathSeer, a third HNSW filter strategy from a SIGMOD 2026 paper, contributed by the paper's first author. How it works, and how it compares to sweeping and ACORN."
+---
+
+![PathSeer: adaptive filtered vector search](./img/hero.png)
+
+<br />
+
+import ThemedImage from '@theme/ThemedImage';
+
+## Introduction
+
+Most vector search use-cases have need for filtered vector search and it can be argued this is the most popular query type. A filtered vector search combines a semantic query such as `books about architecture` with structured criteria like `published_date > 2000` or `language = 'en'`.
+
+There are many ways to approach this problem with vector indices. One set of approaches are filter ***aware***, you define what filters will be used upfront. Filter aware approaches perform very well on low-cardinality static data, but do not work well in a dynamic environment where filters (and even the schema) change over time. The other set of approaches (like ACORN) can be termed filter (or predicate) ***agnostic***, and generally amount to different ways to explore the ANN neighbour graph.
+
+In late 2024, we were one of the first vector databases to ship [ACORN](/blog/speed-up-filtered-vector-search) as an HNSW filter strategy, and it became the default in 1.34. ACORN performs particularly well when filters are negatively correlated, however it loses recall on very sparse filters, and above 40% selectivity its two-hop expansion costs more than it saves, so we restricted ACORN based on selectivity.
+
+We felt there were still improvements available and so were pleasantly surprised when Zhiyue Li, Guangyan Zhang and colleagues at Tsinghua University announced their SIGMOD 2026 paper [*PathSeer: Adaptive Neighbor Handling for Efficient Filtered ANN Search*](https://doi.org/10.1145/3802098). The paper describes PathSeer, a new predicate-agnostic filtered vector search algorithm in HNSW with large performance improvements over other strategies.
+
+As part of their research, Zhiyue Li added [PathSeer to Weaviate](https://github.com/weaviate/weaviate/pull/12137). In this blog we will go through the algorithm and showcase performance improvements, and how to use it in Weaviate 1.40.
+
+## How to handle a neighbor
+
+When using graph-based ANN techniques like HNSW, candidates are found using a beam search algorithm which determines the order in which new nodes get explored.
+
+With unfiltered vector search this is relatively easy - just compute the distance calculation between the query vector and candidate vector. However with filtered vector search there are more decisions to make.
+
+One important decision is: do you compute the distance first or check the filter first?
+
+The PathSeer paper names these two options:
+
+- **Distance first (DFN).** Compute the distance to every neighbor and push it to the candidate heap. Check the filter when a neighbor is good enough to enter the result set. This is equivalent to Weaviate's ***sweeping*** strategy. It ensures the graph never disconnects, but at low selectivity most of the distance computations are wasted on nodes that don't pass the filter.
+- **Filter first (DOS).** Check the filter on every neighbor and only calculate distances for the ones that pass. This is in essence ***ACORN***. It avoids wasted distance calculations but has potential to disconnect the graph leading to lower recall. One insight from ACORN is to use 2-hop neighbors, i.e. check if a neighbor matches the filter or any of its neighbors. It tends to work well in low-selectivity filters but at high selectivity the two hops multiply the number of filter checks needed.
+
+The paper measured both strategies on six workloads and found the best choice varied by dataset, depending on how selective a filter was and how expensive the filter check was compared to the distance calculation.
+
+In Weaviate we resolve the filter against the inverted index into a [roaring bitmap](/blog/weaviate-1-18-release#faster-filtering-with-roaring-bitmaps) before the vector search starts. This ensures that the filter check is just a bitmap lookup (around 17 ns), regardless of how complex the original filter was. The distance computation will cost roughly 50 - 110 ns dependent on quantization and size of the vector.
+
+## Introducing PathSeer
+
+PathSeer's answer to this is to decide the strategy per node dynamically.
+
+In the paper PathSeer splits each node's neighbor list in two. The *sparse zone* has the usual pruned HNSW neighbors and is always explored distance first. The *expanding zone* has extra, unpruned neighbors sorted by distance. The expanding zone is walked filter first until a predefined budget is passed where it switches to distance first. The result is a mixture of filter first and distance first computations with no per query tuning.
+
+In the authors' Faiss implementation this gave 1.2 to 13.5 times the throughput of plain HNSW, and 1.6 to 10.6 times the throughput of ACORN, at 90% recall@10, for selectivities from 100% down to 0.1%.
+
+Zhiyue Li, one of the authors of the PathSeer paper created the original Weaviate PR, however with [notable](https://github.com/weaviate/weaviate/pull/12137#issuecomment-5231357934) improvements to compatibility:
+
+- In the new approach, separate neighbor lists are no longer needed and PathSeer is compatible with normal HNSW indices.
+- This allows for filter strategies to be changed on an existing HNSW index - no rebuild required.
+
+In the modified approach there are two phases:
+
+1. **Two-hop burst.** While the heap has fewer than `ef` entries, each popped node also adds its two hop neighbors that match the filter. This operates as the expanding zone, but is taken from the existing graph. It stops once the heap is full, so it does not multiply filter checks for the rest of the search.
+2. **Once the heap is full, skip distances between non-matching nodes.** When a popped node does not match the filter, its neighbors that also don't match are skipped, with no distance computed. When the popped node does match, all its neighbors get distances as in sweeping, matching or not. The second half is important: non-matching nodes next to matching ones stay in the search as bridges, so it can still cross regions where nothing matches. Skipped nodes are not marked visited, so another path can still reach them later.
+
+import ModesLight from './img/pathseer-modes.png';
+import ModesDark from './img/pathseer-modes_dark.png';
+
+<ThemedImage
+  alt="PathSeer's two phases at layer zero: while the result heap is filling, every neighbour of a popped node gets a distance computation and matching two-hop neighbours are added; once the heap holds ef matches, a popped node that fails the filter skips its non-matching neighbours without a distance computation"
+  sources={{
+    light: ModesLight,
+    dark: ModesDark,
+  }}
+/>
+
+## Benchmarks
+
+The below benchmarks used a Weaviate 1.40 build on a GCP c4-standard-16 (16 vCPUs, 60 GB Memory) instance. The Weaviate [benchmarker](https://github.com/weaviate/weaviate-benchmarking) tool was used, in particular with flat search cutoff disabled, so we could test the filtered ANN performance even when normally the filter would be restrictive enough to trigger a brute force search.
+
+Three sources for filtered datasets are used.
+
+- **BEIR Cohere.** The sets from the ACORN post: 500k Cohere v3 embeddings mixed from the NQ and MS MARCO corpora, with a filter on the MS MARCO share, plus a 1.1M set of 22 BEIR corpora with a filter on the source corpus.
+- **Sphere DPR.** 1M 768-dimension embeddings with uniformly random categories.
+- **wiki-dpr 10M.** 10M Wiki passages from [e5-base-v2 embeddings](https://huggingface.co/datasets/kenhktsui/wiki_dpr_e5) on Hugging Face, with 27 generated filters (random, topical, and conjunction) and exact filtered ground truth for each.
+
+### Topical filters
+
+First we use a filtered dataset using Cohere v3 embeddings from BEIR that we used previously to evaluate ACORN. We combine two datasets (NQ and MSMARCO) and vary the percentage to change the selectivity of the filter.
+
+In this dataset PathSeer matches or beats both sweeping and ACORN at every selectivity range.
+
+import SweepLight from './img/qps_at_recall_vs_selectivity.png';
+import SweepDark from './img/qps_at_recall_vs_selectivity_dark.png';
+
+<ThemedImage
+  alt="Throughput at recall@10 = 0.90 against filter selectivity from 20% to 90% for sweeping, acorn and pathseer on BEIR Cohere 500k"
+  sources={{
+    light: SweepLight,
+    dark: SweepDark,
+  }}
+/>
+
+Here is a QPS vs recall graph showing 20% selectivity (20% of the dataset matches the filter) and low correlation (the query vector is not part of the filter).
+
+import Beir02Light from './img/qps_recall_beir-cohere-500k-filtered-dot-0.2.png';
+import Beir02Dark from './img/qps_recall_beir-cohere-500k-filtered-dot-0.2_dark.png';
+
+<ThemedImage
+  alt="QPS vs recall@10 for sweeping, acorn and pathseer on BEIR Cohere 500k at 20% selectivity"
+  sources={{
+    light: Beir02Light,
+    dark: Beir02Dark,
+  }}
+/>
+
+Next, and importantly, here is a graph showing again at 20% selectivity what happens when the query vector is part of the filter region. This is the scenario where previously sweeping would outperform ACORN, however here PathSeer outperforms both.
+
+import CorrLight from './img/qps_recall_beir-cohere-500k-filtered-dot-correlated-0.2.png';
+import CorrDark from './img/qps_recall_beir-cohere-500k-filtered-dot-correlated-0.2_dark.png';
+
+<ThemedImage
+  alt="QPS vs recall@10 for sweeping, acorn and pathseer on BEIR Cohere 500k at 20% selectivity with a filter correlated to the query"
+  sources={{
+    light: CorrLight,
+    dark: CorrDark,
+  }}
+/>
+
+On the wiki-dpr 10M dataset we see PathSeer clearly outperforms ACORN and also exceeds sweeping on topical filters (built here by clustering the article embeddings, so the matching passages form a region of the graph).
+
+import WikiTopicalSizeLight from './img/wiki_qps_at_recall_vs_size_topical.png';
+import WikiTopicalSizeDark from './img/wiki_qps_at_recall_vs_size_topical_dark.png';
+
+<ThemedImage
+  alt="Throughput at recall@10 = 0.90 against selectivity from 0.1% to 50% for topical filters on wiki-dpr 10M, for sweeping, acorn and pathseer"
+  sources={{
+    light: WikiTopicalSizeLight,
+    dark: WikiTopicalSizeDark,
+  }}
+/>
+
+Note that at 0.1% selectivity Weaviate would normally switch to a brute force search over the filter set (the default `flatSearchCutoff` is 40,000 objects), which is the better choice at that size.
+
+### Conjunction filters
+
+The conjunction filters are the ones closest to a production filter: a semantic attribute combined with a range on something orthogonal, such as a date or a tenant. On wiki-dpr each one is a topical filter AND a range on the object id, which breaks the link between where a passage sits in the embedding space and where it sits in the index. Six of them span 55k to 911k passages.
+
+import WikiConjSizeLight from './img/wiki_qps_at_recall_vs_size_conjunction.png';
+import WikiConjSizeDark from './img/wiki_qps_at_recall_vs_size_conjunction_dark.png';
+
+<ThemedImage
+  alt="Throughput at recall@10 = 0.90 against selectivity for the six conjunction filters on wiki-dpr 10M, for sweeping, acorn and pathseer"
+  sources={{
+    light: WikiConjSizeLight,
+    dark: WikiConjSizeDark,
+  }}
+/>
+
+PathSeer is the fastest strategy at 0.90 recall on all six, by 1.1 to 1.4 times over the better of sweeping and ACORN. ACORN reaches 0.90 on only three of them.
+
+import WikiConjLight from './img/qps_recall_wiki-global_conj_topical1m_a_idmid.png';
+import WikiConjDark from './img/qps_recall_wiki-global_conj_topical1m_a_idmid_dark.png';
+
+<ThemedImage
+  alt="QPS vs recall@10 on wiki-dpr 10M with a conjunction filter of 238k passages (topical AND id range, 2.4% selectivity) for sweeping, acorn and pathseer"
+  sources={{
+    light: WikiConjLight,
+    dark: WikiConjDark,
+  }}
+/>
+
+On this 238k-passage conjunction PathSeer is 1.36 times sweeping at 0.90 recall and reaches 0.98 at ef 512, while ACORN tops out at 0.86.
+
+import WikiConjBigLight from './img/qps_recall_wiki-global_conj_topical1m_a_idlo.png';
+import WikiConjBigDark from './img/qps_recall_wiki-global_conj_topical1m_a_idlo_dark.png';
+
+<ThemedImage
+  alt="QPS vs recall@10 on wiki-dpr 10M with a conjunction filter of 532k passages (topical AND id range, 5.3% selectivity) for sweeping, acorn and pathseer"
+  sources={{
+    light: WikiConjBigLight,
+    dark: WikiConjBigDark,
+  }}
+/>
+
+The larger conjunction, 532k passages at 5.3% selectivity, is dense enough for ACORN to reach 0.90 recall, and PathSeer is still ahead of both: 1.3 times sweeping and 1.7 times ACORN at 0.90, with a recall ceiling of 0.98 against ACORN's 0.93.
+
+### Random filters
+
+Random filters are where the filter has zero correlation with the query. They are the easiest test datasets to generate (just randomly assign each vector to a cluster based on the desired selectivity).
+
+Here the filter carries no semantic information, so we can't deliberately move to a region with more vectors passing the filter, which most exposes ACORN. In these examples we see PathSeer degrade to sweeping, with an improvement at very low selectivity.
+
+import WikiRandomSizeLight from './img/wiki_qps_at_recall_vs_size_random.png';
+import WikiRandomSizeDark from './img/wiki_qps_at_recall_vs_size_random_dark.png';
+
+<ThemedImage
+  alt="Throughput at recall@10 = 0.90 against selectivity from 0.1% to 50% for uniformly random filters on wiki-dpr 10M, for sweeping, acorn and pathseer"
+  sources={{
+    light: WikiRandomSizeLight,
+    dark: WikiRandomSizeDark,
+  }}
+/>
+
+import WikiRand400kLight from './img/qps_recall_wiki-global_random_400k.png';
+import WikiRand400kDark from './img/qps_recall_wiki-global_random_400k_dark.png';
+
+<ThemedImage
+  alt="QPS vs recall@10 on wiki-dpr 10M with a uniform random filter of 400k passages (4% selectivity) for sweeping, acorn and pathseer"
+  sources={{
+    light: WikiRand400kLight,
+    dark: WikiRand400kDark,
+  }}
+/>
+
+import Uni20Light from './img/qps_recall_sphere-1M-meta-dpr-dot-filtered-uniform20.png';
+import Uni20Dark from './img/qps_recall_sphere-1M-meta-dpr-dot-filtered-uniform20_dark.png';
+
+<ThemedImage
+  alt="QPS vs recall@10 for sweeping, acorn and pathseer on Sphere DPR 1M with a uniformly random filter at 5% selectivity"
+  sources={{
+    light: Uni20Light,
+    dark: Uni20Dark,
+  }}
+/>
+
+### Negatively correlated filters
+
+Finally the most difficult case is where the query is strongly negatively correlated with the filter. In this case, the distance calculations point the beam search in the wrong direction (towards better ANN results but fewer filter matches) and this has historically been a major reason for recommending ACORN.
+
+Here we see ACORN still heavily outperforming sweeping, and also outperforming PathSeer, though by a much smaller margin.
+
+import NegLight from './img/qps_recall_beir-cohere-dot-filtered-negative.png';
+import NegDark from './img/qps_recall_beir-cohere-dot-filtered-negative_dark.png';
+
+<ThemedImage
+  alt="QPS vs recall@10 for sweeping, acorn and pathseer on 1.1M BEIR Cohere vectors with a negatively correlated filter at about 4.5% selectivity"
+  sources={{
+    light: NegLight,
+    dark: NegDark,
+  }}
+/>
+
+One property PathSeer keeps from sweeping is that recall continues to climb with `ef`. At ef 2048 PathSeer reaches 0.998 recall on this dataset while ACORN plateaus at 0.984, so for very high recall targets on a filter like this PathSeer is the graph strategy that gets there.
+
+To put a number on "correlated", we measured for each dataset what share of a query's unfiltered top-10 neighbors pass the filter, divided by the filter's selectivity. A value of 1 means the filter is independent of the query, above 1 the filter favors the query's neighborhood, and below 1 it excludes it.
+
+| Dataset | Filter | Selectivity | Correlation | Fastest at 0.90 recall |
+|---|---|---|---|---|
+| BEIR Cohere 1.1M | query's own corpus | 5.5% | 16.4 | pathseer (acorn within 1%) |
+| wiki-dpr 10M | conjunction | 0.5% to 9% | 0.7 to 3.7 | pathseer, all six filters |
+| wiki-dpr 10M | random | 0.1% to 50% | 1.0 | pathseer and sweeping within 7% |
+| wiki-dpr 10M | topical | 0.1% to 50% | 0.3 to 1.2 | pathseer, 1.0 to 1.4x sweeping |
+| BEIR Cohere 500k | MS MARCO share, NQ queries | 20% | 0.5 | pathseer, 1.24x acorn |
+| BEIR Cohere 1.1M | a different corpus than the query | 4.5% | 0.07 | acorn, 8.7x pathseer |
+
+The wiki-dpr topical and random filters sit close to 1: the matching passages are simply sparse, not pushed away from the query. PathSeer is the fastest strategy at every correlation down to 0.5, and ACORN takes over only when the filter all but excludes the query's neighborhood.
+
+### Summary
+
+Queries per second at recall@10 = 0.90, interpolated between the two nearest ef points. "n/a" means the strategy did not reach 0.90 recall at any ef up to 512. wiki-dpr topical rows are the mean of the two variants.
+
+| Filter | Dataset | sweeping | acorn | pathseer | pathseer vs best of sweeping, acorn |
+|---|---|---|---|---|---|
+| random | Sphere DPR 1M, 5% selectivity | 2509 | 1144 | 3464 | 1.38x |
+| random | Sphere DPR 1M, 1% selectivity | 689 | n/a | 1193 | 1.73x |
+| random | wiki-dpr 10M, 0.1% (10k) | 117 | n/a | 176 | 1.50x |
+| random | wiki-dpr 10M, 1% (100k) | 597 | n/a | 558 | 0.93x |
+| random | wiki-dpr 10M, 4% (400k) | 983 | 376 | 1047 | 1.07x |
+| random | wiki-dpr 10M, 10% (1M) | 1236 | 765 | 1223 | 0.99x |
+| random | wiki-dpr 10M, 50% (5M) | 1562 | 1552 | 1516 | 0.97x |
+| topical | BEIR Cohere 500k, 20% selectivity, low correlation | 1700 | 5626 | 6996 | 1.24x |
+| topical | BEIR Cohere 500k, 30% selectivity, low correlation | 2423 | 5167 | 6668 | 1.29x |
+| topical | BEIR Cohere 500k, 40% selectivity, low correlation | 2681 | 2707 | 6996 | 2.58x |
+| topical | BEIR Cohere 500k, 50% selectivity, low correlation | 3893 | 3948 | 7404 | 1.88x |
+| topical | BEIR Cohere 500k, 70% selectivity, low correlation | 9825 | 9774 | 10050 | 1.02x |
+| topical | BEIR Cohere 500k, 90% selectivity, low correlation | 10012 | 10110 | 10147 | 1.00x |
+| topical | BEIR Cohere 500k, 20% selectivity, high correlation | 7408 | 8034 | 9521 | 1.19x |
+| topical | BEIR Cohere 1.1M, ~4.5% selectivity, positive correlation | 8397 | 9109 | 9214 | 1.01x |
+| topical | wiki-dpr 10M, 0.1% (10k) | 50 | n/a | 70 | 1.40x |
+| topical | wiki-dpr 10M, 0.4% (40k) | 108 | n/a | 138 | 1.28x |
+| topical | wiki-dpr 10M, 1% (100k) | 186 | n/a | 194 | 1.04x |
+| topical | wiki-dpr 10M, 4% (400k) | 662 | 374 | 737 | 1.11x |
+| topical | wiki-dpr 10M, 10% (1M) | 884 | 536 | 959 | 1.08x |
+| topical | wiki-dpr 10M, 20% (2M) | 1233 | 865 | 1195 | 0.97x |
+| topical | wiki-dpr 10M, 50% (5M) | 1308 | 1300 | 1323 | 1.01x |
+| conjunction | wiki-dpr 10M, 2.4% (238k) | 478 | n/a | 649 | 1.36x |
+| conjunction | wiki-dpr 10M, 5.3% (532k) | 662 | 497 | 850 | 1.28x |
+| negative | BEIR Cohere 1.1M, ~4.5% selectivity, negative correlation | 79 | 1880 | 216 | 0.12x |
+
+## Using PathSeer
+
+PathSeer ships in Weaviate 1.40 as a value of the existing `filterStrategy` setting on the HNSW index. The default remains `acorn`.
+
+```json
+"vectorIndexConfig": {
+  "filterStrategy": "pathseer"
+}
+```
+
+The setting is mutable, so an existing collection can be switched without reindexing. The `flatSearchCutoff` setting still applies before any strategy: filters matching fewer objects than the cutoff are brute-forced as before.
+
+With the Python client, set the strategy when creating a collection:
+
+```python
+from weaviate.classes.config import Configure, VectorFilterStrategy
+
+client.collections.create(
+    "Article",
+    vector_index_config=Configure.VectorIndex.hnsw(
+        filter_strategy=VectorFilterStrategy.PATHSEER,
+    ),
+)
+```
+
+Or switch an existing collection:
+
+```python
+from weaviate.classes.config import Reconfigure, VectorFilterStrategy
+
+articles = client.collections.use("Article")
+articles.config.update(
+    vector_index_config=Reconfigure.VectorIndex.hnsw(
+        filter_strategy=VectorFilterStrategy.PATHSEER,
+    ),
+)
+```
+
+## Conclusion
+
+PathSeer is the fastest filter strategy in Weaviate on almost every workload we tested, and it holds up where ACORN loses recall and where sweeping loses throughput. It needs no reindexing and no new parameters: set `filterStrategy` to `pathseer` on an existing collection and it takes effect immediately. Try it on your own filters in Weaviate 1.40 and let us know how it performs.
+
+import WhatsNext from '/_includes/what-next.mdx';
+
+<WhatsNext />

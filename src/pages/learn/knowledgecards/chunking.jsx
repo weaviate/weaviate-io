@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Chunking is the process of dividing large texts into smaller, manageable pieces, called 'chunks', for storage or processing in vector databases and language models. It improves search performance and the quality of language model outputs by defining the granularity of information retrieval."
           />
+          <meta name="description" content="Chunking is the process of dividing large texts into smaller, manageable pieces, called 'chunks', for storage or processing in vector databases and language models. It improves search performance and the quality of language model outputs by defining the granularity of information retrieval." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

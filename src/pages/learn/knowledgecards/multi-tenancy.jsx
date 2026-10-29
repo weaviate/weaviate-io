@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="With multi-tenancy, a single database instance serves multiple clients or 'tenants' simultaneously, while ensuring that each tenant's data remains isolated and secure. It also enables efficient resource use and cost savings over large datasets at scale."
           />
+          <meta name="description" content="With multi-tenancy, a single database instance serves multiple clients or 'tenants' simultaneously, while ensuring that each tenant's data remains isolated and secure. It also enables efficient resource use and cost savings over large datasets at scale." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

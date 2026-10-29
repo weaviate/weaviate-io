@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Data pre-processing thoughtfully transforms your raw data into a structured format suitable for LLMs."
           />
+          <meta name="description" content="Data pre-processing thoughtfully transforms your raw data into a structured format suitable for LLMs." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

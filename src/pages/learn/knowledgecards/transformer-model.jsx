@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="A transformer model is a type of neural network architecture designed to handle sequential data, like text, for tasks such as translation and question-answering. It's efficient and scalable, using attention mechanisms to weigh the importance of different parts of the input data."
           />
+          <meta name="description" content="A transformer model is a type of neural network architecture designed to handle sequential data, like text, for tasks such as translation and question-answering. It's efficient and scalable, using attention mechanisms to weigh the importance of different parts of the input data." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

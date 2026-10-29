@@ -16,6 +16,7 @@ last-updated: 2026-09-28
 
 | Company | Story | URL |
 | --- | --- | --- |
+| Datafy | Cuts wasted EBS spend by 50% with automated rightsizing | https://weaviate.io/case-studies/datafy |
 | Delegance Brokerage | Builds an AI-native insurance brokerage on Weaviate | https://weaviate.io/case-studies/delegance |
 | Booking.com | Selects Weaviate as its vector database standard | https://weaviate.io/case-studies/booking |
 | MetaBuddy | Unifies wellness data for personalized AI coaching with Query Agent | https://weaviate.io/case-studies/metabuddy |

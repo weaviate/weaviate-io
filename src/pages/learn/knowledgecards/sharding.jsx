@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Sharding is splitting a database into smaller, faster, more easily managed parts called shards. Each shard is a self-contained unit with a subset of data, allowing for distribution across servers or data centers for improved performance and scalability."
           />
+          <meta name="description" content="Sharding is splitting a database into smaller, faster, more easily managed parts called shards. Each shard is a self-contained unit with a subset of data, allowing for distribution across servers or data centers for improved performance and scalability." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

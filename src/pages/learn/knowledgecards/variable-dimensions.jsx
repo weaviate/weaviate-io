@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Flexible embedding sizes, like Matryoshka embeddings. Encode information hierarchically, allowing adaptation..."
           />
+          <meta name="description" content="Flexible embedding sizes, like Matryoshka embeddings. Encode information hierarchically, allowing adaptation..." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

@@ -222,6 +222,12 @@
     "team": "cto"
   },
   {
+    "name": "Evan Whelchel",
+    "title": "CRO",
+    "photo": "evan.jpg",
+    "team": "cto"
+  },
+  {
     "name": "Giorgos Kampitakis",
     "title": "Tech Lead",
     "photo": "Giorgos.jpg",
@@ -295,6 +301,14 @@
     "photo": "joseph-green.jpg",
     "team": "support-engineering",
     "linkedin": "joe-green-11381620a"
+  },
+  {
+    "name": "Joon-Pil (JP) Hwang",
+    "title": "Lead Developer & Agent Experience Engineer",
+    "photo": "jp.jpg",
+    "team": "database",
+    "linkedin": "jphwang",
+    "twitter": "_jphwang"
   },
   {
     "name": "Kamil Tyborowski",

@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Sparse vectors are often high-dimensional with many zero values. They are generated from algorithms like BM25 and SPLADE..."
           />
+          <meta name="description" content="Sparse vectors are often high-dimensional with many zero values. They are generated from algorithms like BM25 and SPLADE..." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

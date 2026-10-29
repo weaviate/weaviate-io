@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Fine-tuning is a process where a pre-trained machine learning model is further trained on a specific dataset to specialize its knowledge or skills for a particular task or domain. This improves the model\'s performance on the related task while being more cost-efficient than training it from scratch."
           />
+          <meta name="description" content="Fine-tuning is a process where a pre-trained machine learning model is further trained on a specific dataset to specialize its knowledge or skills for a particular task or domain. This improves the model\'s performance on the related task while being more cost-efficient than training it from scratch." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

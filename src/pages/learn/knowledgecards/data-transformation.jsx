@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Data Transformation involves converting all processed content into a standardized schema regardless of original file type."
           />
+          <meta name="description" content="Data Transformation involves converting all processed content into a standardized schema regardless of original file type." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

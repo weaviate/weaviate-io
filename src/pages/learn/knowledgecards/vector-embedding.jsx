@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Numerical representations of objects, such as words or images, in a vector space. These representations capture semantic relationships and are used in machine-learning tasks."
           />
+          <meta name="description" content="Numerical representations of objects, such as words or images, in a vector space. These representations capture semantic relationships and are used in machine-learning tasks." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

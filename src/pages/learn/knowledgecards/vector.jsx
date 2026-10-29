@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Vectors, or vector embeddings in databases, are quantities with magnitude and direction represented by an array of numerical values. They represent data objects in multi-dimensional space."
           />
+          <meta name="description" content="Vectors, or vector embeddings in databases, are quantities with magnitude and direction represented by an array of numerical values. They represent data objects in multi-dimensional space." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

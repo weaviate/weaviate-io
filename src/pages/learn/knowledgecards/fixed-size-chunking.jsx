@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="This technique splits the text into chunks of a fixed size, without considering natural breaks or the structure of the content..."
           />
+          <meta name="description" content="This technique splits the text into chunks of a fixed size, without considering natural breaks or the structure of the content..." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

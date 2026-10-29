@@ -4,6 +4,13 @@ import styles from "./styles.module.scss";
 
 const CASE_STUDIES = [
   {
+    id: "datafy",
+    title: "How Weaviate cut wasted EBS spend by 50% with Datafy",
+    href: "/case-studies/datafy",
+    tags: ["infrastructure", "cost-optimization", "aws"],
+    styleClass: styles.BS18,
+  },
+  {
     id: "delegance",
     title:
       "How the founder of Delegance vibe-coded an AI-native insurance brokerage on Weaviate",
@@ -393,6 +400,28 @@ export default function MainSection() {
                     </div>
                     <div className={styles.buttons}>
                       <div className={`${styles.csLink}`}>
+                        Read Case Study {"->"}
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+
+              {/* Featured Datafy case study */}
+              <div className={styles.row}>
+                <Link
+                  to="/case-studies/datafy"
+                  className={`${styles.bentoSmall} ${styles.BS18}`}
+                >
+                  <div className={styles.bentoText}>
+                    <div className={styles.innerText}>
+                      <div className={styles.bentoLogo}></div>
+                      <h3>
+                        How Weaviate cut wasted EBS spend by 50% with Datafy
+                      </h3>
+                    </div>
+                    <div className={styles.buttons}>
+                      <div className={styles.csLink}>
                         Read Case Study {"->"}
                       </div>
                     </div>

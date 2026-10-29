@@ -84,6 +84,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="ReAct prompting combines CoT with agents, creating a system where the model can generate thoughts and delegate actions to agents that interact with external data sources."
           />
+          <meta name="description" content="ReAct prompting combines CoT with agents, creating a system where the model can generate thoughts and delegate actions to agents that interact with external data sources." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

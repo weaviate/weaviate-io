@@ -766,6 +766,39 @@
     }
   }
 
+  .bentoSmall.BS18 {
+    border-radius: 0.625rem;
+    background: linear-gradient(115deg, #dce7ff 0%, #f2f6ff 68%, #cbd9ff 100%);
+    box-shadow: 0 3px 5px 0 rgba(79, 150, 172, 0.1);
+    width: 100%;
+    max-width: 74rem;
+    height: 17.5rem;
+    flex-shrink: 0;
+
+    .bentoText h3 {
+      color: #130c49;
+      max-width: 42rem;
+
+      @media screen and (max-width: 900px) {
+        max-width: 100%;
+      }
+    }
+
+    .bentoLogo {
+      background: url("/img/site/2026/datafy-logo.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 10rem;
+      height: 2.5rem;
+      flex-shrink: 0;
+      margin: 30px 0px;
+    }
+
+    @media screen and (max-width: 600px) {
+      width: 100%;
+    }
+  }
+
   .bento04 {
     width: 23.75rem;
     height: 13.75rem;

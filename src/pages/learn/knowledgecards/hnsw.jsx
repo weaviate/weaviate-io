@@ -79,6 +79,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="HNSW (Hierarchical Navigable Small World) is a graph-based vector indexing method for efficient approximate nearest neighbor searches. It organizes data in a multi-layer structure, enabling fast and accurate queries by navigating through layers from coarse to fine granularity."
           />
+          <meta name="description" content="HNSW (Hierarchical Navigable Small World) is a graph-based vector indexing method for efficient approximate nearest neighbor searches. It organizes data in a multi-layer structure, enabling fast and accurate queries by navigating through layers from coarse to fine granularity." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

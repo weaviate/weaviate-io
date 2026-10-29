@@ -16,6 +16,7 @@ import NewsletterPanel from '../../components/Blog/NewsletterPanel';
 import { MetaSEO } from '/src/theme/MetaSEO';
 import PaginationMetadata from '/src/components/PaginationMetadata';
 import BlogSearch from '../../components/Blog/BlogSearch';
+import BreadcrumbStructuredData from '../../components/SEO/BreadcrumbStructuredData';
 
 function BlogListPageMetadata({metadata}) {
   const {
@@ -30,6 +31,15 @@ function BlogListPageMetadata({metadata}) {
     <>
       <MetaSEO img={ogimg} />
       <PageMetadata title={title} description={description} />
+      <BreadcrumbStructuredData
+        items={[
+          {name: 'Home', path: '/'},
+          {name: 'Blog', path: '/blog'},
+          ...(page > 1
+            ? [{name: `Page ${page}`, path: permalink}]
+            : []),
+        ]}
+      />
       <SearchMetadata tag="blog_posts_list" />
       <PaginationMetadata metadata={metadata} />
     </>
@@ -38,7 +48,8 @@ function BlogListPageMetadata({metadata}) {
 
 function FeaturedPost({item}) {
   const post = item.content;
-  const {metadata, assets} = post;
+  const {metadata, assets, frontMatter} = post;
+  const imageAlt = frontMatter?.imageAlt || metadata.title;
   const displayDate =
     metadata.formattedDate || (metadata.date
       ? new Intl.DateTimeFormat('en-US', {
@@ -55,7 +66,7 @@ function FeaturedPost({item}) {
         <img
           className="tw-block tw-h-full tw-max-h-[480px] tw-w-[550px] tw-object-contain"
           src={assets.image}
-          alt=""
+          alt={imageAlt}
           fetchPriority="high"
           onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/img/site/card-3-light.jpg'; }}
         />

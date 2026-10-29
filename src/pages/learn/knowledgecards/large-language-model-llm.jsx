@@ -83,6 +83,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="A Large Language Model (LLM) is a machine learning model that is trained on vast text data, learning language patterns to understand, predict and generate human-like text. It statistically models language to uniquely generate responses to queries with learned context."
           />
+          <meta name="description" content="A Large Language Model (LLM) is a machine learning model that is trained on vast text data, learning language patterns to understand, predict and generate human-like text. It statistically models language to uniquely generate responses to queries with learned context." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

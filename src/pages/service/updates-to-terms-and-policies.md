@@ -9,8 +9,11 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 ### **UPDATES TO TERMS & POLICIES**
 
-**Last Updated: September 2026**
+**Last Updated: October 2026**
 <br></br>
+
+1. **_October 2026_ - Documents: Commercial ToS**
+   1. Updated Open Source Clause
 
 1. **_September 2026_ - Document: Commercial ToS**
    1. Replaced "Weaviate AI Units" (AIUs) with "Weaviate Units" (WUs)

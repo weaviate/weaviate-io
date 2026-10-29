@@ -47,6 +47,7 @@ const MARKDOWN_TWINS = {
   '/deployment/shared': '/deployment/shared.md',
   '/deployment/dedicated': '/deployment/dedicated.md',
   '/enterprise': '/enterprise.md',
+  '/enterprise-edition': '/enterprise-edition.md',
   '/security': '/security.md',
 
   // Use cases
@@ -68,6 +69,7 @@ const MARKDOWN_TWINS = {
 
   // Case studies
   '/case-studies': '/case-studies.md',
+  '/case-studies/datafy': '/case-studies/datafy.md',
   '/case-studies/docsbot': '/case-studies/docsbot.md',
   '/case-studies/instabase': '/case-studies/instabase.md',
   '/case-studies/kapa': '/case-studies/kapa.md',

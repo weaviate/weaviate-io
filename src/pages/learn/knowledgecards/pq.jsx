@@ -79,6 +79,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Product quantization (PQ) is a compression technique for vectors, reducing memory usage by up to 90%. It's a lossy algorithm, meaning it trades some accuracy for significant memory savings. However, Weaviate employs a rescoring technique to reduce the loss of recall."
           />
+          <meta name="description" content="Product quantization (PQ) is a compression technique for vectors, reducing memory usage by up to 90%. It's a lossy algorithm, meaning it trades some accuracy for significant memory savings. However, Weaviate employs a rescoring technique to reduce the loss of recall." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

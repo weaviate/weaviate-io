@@ -82,6 +82,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="Autocut is a method to filter out irrelevant information retrieved from the database."
           />
+          <meta name="description" content="Autocut is a method to filter out irrelevant information retrieved from the database." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta

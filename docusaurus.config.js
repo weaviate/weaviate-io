@@ -38,6 +38,7 @@ module.exports = async function createConfigAsync() {
     plugins: [
 
         require.resolve('./plugins/blog-search-index'),
+        require.resolve('./plugins/blog-frontmatter-validation'),
 
          () => ({
     name: 'inject-pre-google',
@@ -316,6 +317,7 @@ module.exports = async function createConfigAsync() {
                             tagName: 'img',
                             attributes: {
                                 src: 'https://pixel.weaviate.cloud/a.png?x-pxid=a41b0758-a3a9-4874-a880-8b5d5a363d40',
+                                alt: '',
                                 referrerPolicy: 'no-referrer-when-downgrade',
                                 style: 'display: none;',
                             },
@@ -517,8 +519,8 @@ module.exports = async function createConfigAsync() {
 
             
              announcementBar: {
-               id: 'announcement-bar-hfresh-ga',
-                content:`<a href="/webinars/inside-weaviate-mcp-ecosystem?utm_source=weaviate&amp;utm_medium=announcement-bar&amp;utm_campaign=mcp-webinar">Inside Weaviate's MCP Ecosystem  - Register for the webinar </a>`,
+               id: 'announcement-bar-pathseer-ga',
+                content:`<a href="/blog/pathseer-filtered-vector-search">PathSeer: Adaptive Filtered Vector Search - Read more</a>`,
                backgroundColor: '#160F52',
                 textColor: '#F5F5F5',
                 isCloseable: true,

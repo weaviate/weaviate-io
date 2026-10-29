@@ -84,6 +84,7 @@ const KnowledgeBasePage = () => {
             property="og:description"
             content="ANN algorithms calculate the approximate nearest neighbors to a query, as opposed to kNN algorithms, which calculate the true nearest neighbors. ANN algorithms enable the quick and efficient identification of the closest data points at scale. This makes ANN suitable for big data where speed matters more than perfect accuracy."
           />
+          <meta name="description" content="ANN algorithms calculate the approximate nearest neighbors to a query, as opposed to kNN algorithms, which calculate the true nearest neighbors. ANN algorithms enable the quick and efficient identification of the closest data points at scale. This makes ANN suitable for big data where speed matters more than perfect accuracy." />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta
