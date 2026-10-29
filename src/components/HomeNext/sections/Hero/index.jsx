@@ -26,18 +26,18 @@ export default function Hero() {
           <div className="tw-relative tw-flex tw-min-h-[360px] tw-items-center tw-justify-center md:tw-min-h-[380px] lg:tw-min-h-[400px]">
             <div className="tw-mx-auto tw-max-w-[880px] tw-text-center">
               <Link
-                to="/product/engram"
+                to="/case-studies/booking"
                 className="tw-inline-flex tw-items-center tw-gap-3 tw-rounded-full tw-border tw-border-white/20 tw-bg-[rgba(150,180,200,0.16)] tw-px-3 tw-py-2 tw-backdrop-blur-md tw-shadow-[inset_0_1px_0_rgba(255,255,255,0.16)] tw-no-underline tw-transition-all tw-duration-200 hover:tw-border-white/30 hover:tw-bg-[rgba(150,180,200,0.22)] hover:tw-no-underline"
               >
                 <span className="tw-inline-flex tw-items-center tw-rounded-full tw-bg-[#0B1114] tw-px-3 tw-py-1 tw-text-[11px] tw-font-semibold tw-uppercase tw-tracking-[0.16em] tw-text-[#6EF2A3]">
-                  New
+                  Case study
                 </span>
 
                 <span
                   className="tw-text-[10px] tw-font-bold tw-tracking-[0.01em] tw-text-white/90 md:tw-text-[15px]"
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
-                  Weaviate Engram - Personalized AI experiences
+                  Why Booking.com chose Weaviate
                 </span>
 
                 <img

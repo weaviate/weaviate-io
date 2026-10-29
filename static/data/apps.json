@@ -127,6 +127,7 @@
   {
     "id": "8",
     "name": "Engram",
+    "listed": false,
     "category": "Weaviate Agents",
     "description": "A fully managed memory and context service purpose-built to help agents remember.",
     "image": "engram-cta-logo.svg",

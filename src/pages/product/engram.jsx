@@ -19,6 +19,19 @@ export default function Engram() {
         <MetaSEO img="og/website/home.jpg" />
 
         <main className="tw-bg-[#111111] tw-text-white">
+          <section
+            aria-labelledby="engram-sunset-title"
+            className="tw-mx-auto tw-max-w-7xl tw-px-6 tw-py-8"
+          >
+            <div className="tw-rounded-xl tw-border tw-border-amber-300/50 tw-bg-amber-300/10 tw-p-6">
+              <h2 id="engram-sunset-title" className="tw-mt-0 tw-text-2xl tw-text-white">
+                Engram sunset notice
+              </h2>
+              <p className="tw-mb-0 tw-text-white">
+                Engram is being sunset. This page remains available for reference.
+              </p>
+            </div>
+          </section>
           <Hero />
           <BenefitCards />
           <FeatureSplit />

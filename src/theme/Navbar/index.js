@@ -15,7 +15,6 @@ const navGroups = {
             { label: 'Integrations', to: '/product/integrations' },
           ],
         },
-        { label: 'Engram', to: '/product/engram/' },
         { label: 'Product Previews', to: '/product-previews/' },
       ],
     },
