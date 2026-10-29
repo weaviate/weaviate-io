@@ -24,7 +24,6 @@ const hpLogos = [
   "HPE_logo.svg",
   "intuit-logo.svg",
   "inveniam-logo.svg",
-  "Kantar-logo.svg",
   "loti-white.svg",
   "MBH-bank-logo.svg",
   "mednet-logo.svg",
