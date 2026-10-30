@@ -74,15 +74,19 @@ The Python client is the first to wrap the endpoint. From any other language, se
 
 ## 4-bit Rotational Quantization - General Availability
 
-[4-bit Rotational Quantization (RQ)](/blog/weaviate-1-39-release#4-bit-rotational-quantization-preview), a preview in `v1.39`, is now **generally available**. RQ compresses a vector by rotating it and then storing each dimension as a small integer instead of a 32-bit float. At 4 bits, two dimensions fit in one byte.
+[4-bit Rotational Quantization (RQ)](/blog/weaviate-1-39-release#4-bit-rotational-quantization-preview), a preview in `v1.39`, is now **generally available**. RQ rotates each vector, then stores every dimension as a small integer instead of a full float.
 
-The numbers carry over from the preview. A 1536-dimension vector takes **784 bytes**, a 16-byte header plus 768 bytes of codes, against 6144 bytes for raw `float32`. That is **7.84x** smaller.
+The reason to turn it on is memory. On a million 1536-dimension vectors, 4-bit RQ used about 45% less memory than 8-bit RQ. A cluster of the same size holds more vectors, or you run a smaller one. Imports get faster too.
+
+Search quality holds up because Weaviate rescores the best candidates with the original vectors.
 
 {/* TODO(ivan): docs _includes/feature-notes/rq-4bit.mdx says "Added in v1.40", but the preview shipped in v1.39. Align the note with this post. */}
 
 ### How it works
 
-The configuration is the same as in the preview. Set `rq.bits = 4` on an HNSW index:
+Many embedding models produce vectors that cluster around a point that is not zero. Centering, in Weaviate since `v1.39.3`, measures that point from a sample of your data and compresses relative to it. That brings 4-bit recall close to 8-bit. It is off by default because some models already do this. It only applies to 4-bit.
+
+Set `rq.bits = 4` on an HNSW index. With Python client 4.23.1 or newer, turn on centering in the same call:
 
 ```python
 from weaviate.classes.config import Configure
@@ -92,17 +96,17 @@ client.collections.create(
     vector_config=Configure.Vectors.self_provided(
         name="default",
         vector_index_config=Configure.VectorIndex.hnsw(
-            quantizer=Configure.VectorIndex.Quantizer.rq(bits=4),
+            quantizer=Configure.VectorIndex.Quantizer.rq(bits=4, centering=True),
         ),
     ),
 )
 ```
 
-`bits` is fixed the moment RQ is first enabled on a vector, so pick the width when you create the collection. The default `rescoreLimit` of `20` is unchanged.
+`bits` locks when RQ is first enabled on a vector, so pick the width before then. You can still enable RQ later on an uncompressed collection.
 
-An operator can make it the default for every new HNSW index with `DEFAULT_QUANTIZATION=rq-4`. 4-bit is for HNSW only. The flat index, and the flat side of a dynamic index, accept 1-bit and 8-bit RQ.
+Operators can set `DEFAULT_QUANTIZATION=rq-4` to make 4-bit RQ the default for new HNSW indexes. Weaviate Cloud keeps 8-bit RQ as its default. 4-bit works on HNSW indexes only.
 
-For the engineering behind it, from the SIMD work to how it compares with other 4-bit schemes, read the [4-bit Rotational Quantization deep dive](/blog/4-bit-rotational-quantization).
+The numbers and the engineering are in the [4-bit Rotational Quantization deep dive](/blog/4-bit-rotational-quantization).
 
 :::info Related resources
 
@@ -339,7 +343,7 @@ Weaviate `v1.40` promotes two features to general availability, brings multi-vec
 **Key highlights:**
 
 - **Drop a named vector (GA)**: remove a vector you no longer need from every object, in the background, without re-creating the collection
-- **4-bit Rotational Quantization (GA)**: the 1.39 preview width is now stable, 7.84x smaller than raw `float32`, on HNSW indexes
+- **4-bit Rotational Quantization (GA)**: close to half the memory of 8-bit RQ on HNSW indexes, with optional centering to keep recall high
 - **Multi-vector embeddings on HFresh with MUVERA**: ColBERT and ColPali style embeddings on the disk-based index, through MUVERA encoding
 - **PathSeer filter strategy**: a third way to walk the HNSW graph under a filter, from a SIGMOD 2026 paper, switchable on existing collections
 - **Search REST API (Preview)**: on by default, structured references, and a `near-vector` endpoint, all since the 1.39 patch line
