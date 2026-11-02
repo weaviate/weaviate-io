@@ -695,7 +695,7 @@ Aggregations: https://docs.weaviate.io/weaviate/search/aggregate
 * [Recipes](https://github.com/weaviate/recipes) (end-to-end code examples)
 * [Releases](https://weaviate.io/blog/tags/release)
 * [Pricing](https://weaviate.io/pricing) (current database and Engram plans; infrastructure and usage-based pricing)
-* [Enterprise Edition license request](https://weaviate.io/enterprise-edition) (commercial license keys for self-hosted Enterprise Edition)
+* [30-day Weaviate Enterprise Edition trial](https://weaviate.io/enterprise-edition) (trial license keys for self-hosted deployments; Weaviate Cloud customers do not need a key)
 * [RBAC & authorization](https://docs.weaviate.io/weaviate/configuration/rbac) (roles, permissions, user management)
 * [Community forum](https://forum.weaviate.io)
 

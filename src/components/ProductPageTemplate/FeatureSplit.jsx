@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "@docusaurus/Link";
 
-const featureCards = [
+const defaultFeatureCards = [
   {
     icon: "/img/site/2026/launch.svg",
     title: "Launch quickly with templates",
@@ -22,14 +22,31 @@ const featureCards = [
   },
 ];
 
-const checks = [
+const defaultChecks = [
   "Extracting what matters",
   "Resolving inconsistencies over time",
   "Adapting to changing information",
   "Keeping context relevant and efficient",
 ];
 
-export default function FeatureSplit() {
+export default function FeatureSplit({
+  eyebrow = "What is Engram?",
+  heading = "Structured memory for agentic applications",
+  intro = "Memory shouldn’t be an ever-growing pile of context—it should be actively maintained. Engram treats memory as structured, evolving infrastructure.",
+  visual = (
+    <img
+      src="/img/site/2026/engram-component-diagram.svg"
+      alt="Engram memory service architecture diagram"
+      className="tw-h-auto tw-w-full"
+    />
+  ),
+  panelHeading = "Build agents that remember and get better over time",
+  panelDescription = "Engram is a managed memory service built on the Weaviate vector database—designed to help your applications remember, learn, and improve over time:",
+  checks = defaultChecks,
+  link = { label: "Read the blog post to learn more", to: "/blog/engram-deep-dive" },
+  cardsHeading = "Designed to Grow with You",
+  featureCards = defaultFeatureCards,
+}) {
   return (
     <section className="tw-bg-[#111111] tw-px-6 tw-py-12 md:tw-py-16 lg:tw-py-20">
       <div className="tw-mx-auto tw-max-w-[1320px]">
@@ -44,7 +61,7 @@ export default function FeatureSplit() {
               lineHeight: "130%",
             }}
           >
-            What is Engram?
+            {eyebrow}
           </p>
 
           <h2
@@ -57,7 +74,7 @@ export default function FeatureSplit() {
               lineHeight: "130%",
             }}
           >
-            Structured memory for agentic applications
+            {heading}
           </h2>
 
           <p
@@ -69,20 +86,14 @@ export default function FeatureSplit() {
               lineHeight: "160%",
             }}
           >
-            Memory shouldn’t be an ever-growing pile of context—it should be
-            actively maintained. Engram treats memory as structured, evolving
-            infrastructure.
+            {intro}
           </p>
         </div>
 
         <div className="tw-rounded-[1.875rem] tw-bg-[#1a1a1a] tw-p-8 md:tw-p-12 lg:tw-p-16">
           <div className="tw-grid tw-items-center tw-gap-10 lg:tw-grid-cols-[1.65fr_1fr]">
             <div>
-              <img
-                src="/img/site/2026/engram-component-diagram.svg"
-                alt="Engram memory service architecture diagram"
-                className="tw-h-auto tw-w-full"
-              />
+              {visual}
             </div>
 
             <div>
@@ -96,7 +107,7 @@ export default function FeatureSplit() {
                   lineHeight: "130%",
                 }}
               >
-                Build agents that remember and get better over time
+                {panelHeading}
               </h3>
 
               <p
@@ -108,9 +119,7 @@ export default function FeatureSplit() {
                   lineHeight: "160%",
                 }}
               >
-                Engram is a managed memory service built on the Weaviate vector
-                database—designed to help your applications remember, learn, and
-                improve over time:
+                {panelDescription}
               </p>
 
               <ul className="tw-m-0 tw-mt-8 tw-space-y-4 tw-p-0">
@@ -134,7 +143,7 @@ export default function FeatureSplit() {
               </ul>
 
               <Link
-                to="/blog/engram-deep-dive"
+                to={link.to}
                 className="tw-mt-10 tw-inline-flex tw-text-[#43E2C5] tw-underline tw-underline-offset-4 hover:tw-text-[#68FFA8]"
                 style={{
                   fontFamily: "Inter, sans-serif",
@@ -142,7 +151,7 @@ export default function FeatureSplit() {
                   lineHeight: "150%",
                 }}
               >
-                Read the blog post to learn more
+                {link.label}
               </Link>
             </div>
           </div>
@@ -159,7 +168,7 @@ export default function FeatureSplit() {
             margin: "5rem 0 2.5rem",
           }}
         >
-          Designed to Grow with You
+          {cardsHeading}
         </h2>
         <div className="tw-mt-8 tw-grid tw-gap-6 md:tw-grid-cols-2 xl:tw-grid-cols-3">
           {featureCards.map(({ icon, title, description }) => (
