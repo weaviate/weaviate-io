@@ -2,20 +2,22 @@
 
 ## TL;DR
 
-Weaviate is an open-source vector database (Go) that stores objects, vectors, and inverted indexes in one system — use it as a **primary database** for AI-native apps, not just a secondary vector store. Start with **Weaviate Cloud** (zero-ops, auto-scaling, always-free plan) and use **hybrid search** (`col.query.hybrid(...)`) for best result quality. Built-in embeddings (`weaviate-embeddings`) mean no third-party API keys are needed. First-class **multi-tenancy** makes it ideal for SaaS. Beyond the core DB, the stack includes the **Query Agent** (managed RAG) and **Engram** (agent memory, preview).
+Weaviate is an open-source vector database that stores objects, vectors, and inverted indexes in one system. Use it as a **primary database** for AI-native apps, not just a secondary vector store. Start with **Weaviate Cloud** (zero-ops, auto-scaling, always-free plan) and use **hybrid search** (`col.query.hybrid(...)`) for best result quality. Built-in embeddings (`weaviate-embeddings`) mean no third-party API keys are needed. First-class **multi-tenancy** makes it ideal for SaaS. Beyond the core DB, the stack includes the **Query Agent** (managed RAG) and **Engram** (agent memory, preview).
 
-## Latest versions (recommended)
+## Latest versions (checked 2026-11-02)
 
 **Prefer Weaviate Cloud** for most teams: it’s **versionless / managed** (zero-ops) and stays current automatically.
 
-If you run Weaviate yourself (Docker / Kubernetes / on-prem), **use at least these versions** to avoid outdated examples:
+If you run Weaviate yourself (Docker / Kubernetes / on-prem), **use the latest versions** if possible.
 
-- **Weaviate Server (OSS)**: v1.39.1+
-- **Python client (weaviate-client)**: v4.23.0+
-- **TypeScript client (weaviate-client)**: v3.14.0+
-- **Java client (client6)**: v6.3.1+
-- **C# client (Weaviate.Client)**: v1.2.0+
-- **Agents SDK (weaviate-agents, if using Query Agent / agents features)**: v1.8.0+
+- **Weaviate Server (OSS)**: v1.40.3
+- **Python client (weaviate-client)**: v4.24.1
+- **TypeScript client (weaviate-client)**: v3.15.3
+- **Go client (github.com/weaviate/weaviate-go-client/v6)**: v6.0.0
+- **Java client (client6)**: v6.3.2
+- **C# client (Weaviate.Client)**: v1.2.0
+- **Agents SDK (Python, weaviate-agents)**: v1.9.0
+- **Agents SDK (TypeScript, weaviate-agents)**: v1.8.0
 
 **Quick checks**
 - Server: check your Docker tag / Helm chart version (e.g. `weaviate:<tag>`)
@@ -252,7 +254,7 @@ Weaviate ships a built-in [Model Context Protocol (MCP)](https://modelcontextpro
 
 ## Python / TypeScript / Java / C#
 
-Install: `pip install weaviate-client` (Python ≥3.9) | `npm install weaviate-client` (TS, Node ≥18) | `io.weaviate:client6` (Java, Maven) | `Weaviate.Client` (C#, NuGet)
+Install: `pip install weaviate-client` (Python ≥3.10) | `npm install weaviate-client` (TS, Node ≥22) | `io.weaviate:client6` (Java, Maven) | `Weaviate.Client` (C#, NuGet)
 For Query Agent (Python / TypeScript only): `pip install weaviate-client[agents]` | `npm install weaviate-agents`
 Docs: [Python](https://docs.weaviate.io/weaviate/client-libraries/python) | [TypeScript](https://docs.weaviate.io/weaviate/client-libraries/typescript/typescript-v3) | [Java](https://docs.weaviate.io/weaviate/client-libraries/java) | [C#](https://docs.weaviate.io/weaviate/client-libraries/csharp)
 
