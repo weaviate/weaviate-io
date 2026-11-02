@@ -110,6 +110,8 @@ Start with Weaviate Cloud — no infrastructure to manage, scales from demo to p
 
 ### Cloud (recommended)
 
+The `wcloud` CLI creates a free Weaviate Cloud cluster from a terminal or an AI coding agent (`brew install weaviate/tap/weaviate-cloud` or `npm install -g weaviate-cloud`). Sign in with `wcloud auth login` (browser only), then `wcloud cluster create --wait` prints the REST endpoint and a one-time API key. Agents should run `wcloud guide` first. Docs: [docs.weaviate.io/cloud/manage-clusters/cli](https://docs.weaviate.io/cloud/manage-clusters/cli)
+
 ```py
 import os
 import weaviate
