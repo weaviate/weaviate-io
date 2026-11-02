@@ -70,7 +70,7 @@ export default function Hero() {
                   textShadow: "0 2px 12px rgba(0,0,0,0.55)",
                 }}
               >
-                Vector search, RAG, and memory - all in one open-source
+                Vector search, RAG, and Agentic AI - all in one open-source
                 platform.
               </p>
 

@@ -255,16 +255,16 @@ function EverythingManaged() {
           </p>
         </div>
 
-        <div className="tw-grid tw-gap-8 lg:tw-grid-cols-[1.1fr_0.9fr] lg:tw-items-stretch tw-bg-[#1A1A1A]">
-          <div className="tw-rounded-[1.5rem] tw-border tw-border-white/10 tw-bg-[#1A1A1A] tw-p-6 md:tw-p-10">
+        <div className="tw-grid tw-items-center tw-gap-10 tw-rounded-[1.875rem] tw-bg-[#1A1A1A] tw-p-8 md:tw-p-12 lg:tw-grid-cols-[1.65fr_1fr] lg:tw-p-16">
+          <div className="tw-min-w-0">
             <img
               src="/img/site/2026/digital-ocean-diagram.svg"
               alt="Managed Weaviate on DigitalOcean architecture"
-              className="tw-w-full"
+              className="tw-h-auto tw-w-full"
             />
           </div>
 
-          <div className="tw-rounded-[1.5rem] tw-border tw-border-white/10 tw-bg-[#1A1A1A] tw-p-6 md:tw-p-10">
+          <div className="tw-min-w-0">
             <h3
               className="tw-m-0 tw-mt-4 tw-text-[1.375rem] tw-font-semibold tw-leading-[120%] tw-tracking-[-0.04em] tw-text-[#DDEBF2]"
               style={headingFont}
