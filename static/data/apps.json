@@ -124,26 +124,6 @@
     "released": "yes",
     "ppLink": "https://docs.weaviate.io/query-agent/guides/ask_mode"
   },
-  {
-    "id": "8",
-    "name": "Engram",
-    "listed": false,
-    "category": "Weaviate Agents",
-    "description": "A fully managed memory and context service purpose-built to help agents remember.",
-    "image": "engram-cta-logo.svg",
-    "overviewImage1": "engram-arch-diagram.png",
-    "longDescription": "Weaviate’s Engram allows users within your organization to use a natural language prompt to query your database.",
-    "rating": 4.5,
-    "price": "Free",
-    "version": "7.3.0",
-    "updated": "Febuary 25, 2025",
-    "size": "2.09MB",
-    "languages": ["English", "Spanish", "French", "German"],
-    "url": "/product/engram",
-    "released": "yes",
-    "privatePreview": "yes",
-    "ppLink": "https://docs.weaviate.io/engram"
-  },
 
   {
     "id": "10",

@@ -3,36 +3,26 @@ import Link from "@docusaurus/Link";
 
 const blogPosts = [
   {
-    title: "Engram: Memory by Weaviate",
-    description:
-      "A deep dive into Engram, our managed memory service for agents which is simple to get started but adaptable to any use case.",
-    image: "/img/site/2026/engram-blog-header.png",
-    gradient: "linear-gradient(42deg,#148f54 10%,#106d63 45%,#135d73 100%)",
-    link: "/blog/engram-deep-dive",
+    "title": "PathSeer: Adaptive Filtered Vector Search",
+    "description": "Explore adaptive filtering for vector search in Weaviate 1.40.",
+    "image": "/img/site/2026/weaviate-home-26-1280.jpg",
+    "gradient": "linear-gradient(42deg,#148f54 10%,#135d73 100%)",
+    "link": "/blog/pathseer-filtered-vector-search"
   },
   {
-    title: "Oh Memories, Where'd You Go",
-    description:
-      "Two weeks of dogfooding Engram, Weaviate's memory product, in daily Claude Code sessions.",
-    image: "/img/site/2026/memory-blog-header.png",
-    gradient: "linear-gradient(42deg,#6d25b5 10%,#4d1fa5 55%,#2f1d87 100%)",
-    link: "/blog/engram-internal-use-case",
-  },
-  {
-    title: "The Limit in the Loop",
-    description:
-      "Memory isn’t just a feature for AI—it’s infrastructure. As agents grow, stateless interactions break down...",
-    image: "/img/site/2026/limit-blog-header.png",
-    gradient: "linear-gradient(42deg,#2b6f84 10%,#4d6785 55%,#66608b 100%)",
-    link: "/blog/limit-in-the-loop",
-  },
+    "title": "How Booking.com selected Weaviate as its vector database standard",
+    "description": "Read the Booking.com case study.",
+    "image": "/img/site/2026/weaviate-home-26-1280.jpg",
+    "gradient": "linear-gradient(42deg,#2b6f84 10%,#66608b 100%)",
+    "link": "/case-studies/booking"
+  }
 ];
 
 export default function Blogs() {
   return (
     <section className="tw-bg-[#111111] tw-px-6 tw-py-12 md:tw-py-16 lg:tw-py-20">
       <div className="tw-mx-auto tw-max-w-[1320px]">
-        <div className="tw-grid tw-gap-6 md:tw-grid-cols-2 xl:tw-grid-cols-3">
+        <div className="tw-grid tw-gap-6 md:tw-grid-cols-2 xl:tw-grid-cols-2">
           {blogPosts.map((post) => (
             <Link
               key={post.title}
@@ -95,7 +85,7 @@ export default function Blogs() {
                     lineHeight: "150%",
                   }}
                 >
-                  Read the blog post
+                  Read more
                 </span>
               </div>
             </Link>

@@ -2,7 +2,7 @@
 title: "Weaviate"
 description: "Weaviate is an open-source, AI-native vector database for vector, keyword, and hybrid search, filtering, multi-tenancy, and retrieval-augmented generation."
 canonical: https://weaviate.io/
-last-updated: 2026-08-25
+last-updated: 2026-11-02
 ---
 
 # Weaviate
@@ -39,7 +39,6 @@ Pair Weaviate with a relational database for transactional joins, an analytical 
 - [Shared Cloud](https://weaviate.io/deployment/shared.md)
 - [Dedicated Cloud](https://weaviate.io/deployment/dedicated.md)
 - [Query Agent](https://weaviate.io/product/query-agent.md)
-- [Engram agent memory](https://weaviate.io/product/engram.md)
 - [Embeddings](https://weaviate.io/product/embeddings.md)
 
 ## Build with Weaviate

@@ -1,8 +1,8 @@
 ---
 title: "Agentic AI with Weaviate"
-description: "How Weaviate supports agentic workflows: fast retrieval, structured filtering, long-lived memory with Engram, and orchestration with Query Agent."
+description: "How Weaviate supports agentic workflows: fast retrieval, structured filtering, application-managed context, and retrieval with Query Agent."
 canonical: https://weaviate.io/agentic-ai
-last-updated: 2026-03-20
+last-updated: 2026-11-02
 ---
 
 # Agentic AI — LLM Guidance
@@ -11,7 +11,7 @@ last-updated: 2026-03-20
 - Agentic workflows chain **retrieve → reason → act → verify** across multiple steps (not just single-turn Q&A).
 - Weaviate supports agentic systems by providing **fast retrieval**, **structured filtering**, and **long-lived memory patterns**.
 - Use **Query Agent** (Cloud) for turnkey RAG + retrieval orchestration when you want a fast start.
-- Use **Engram** (Cloud, preview) for **memory extraction + update + injection** so agents can improve over time.
+- Engram is being sunset. New Engram projects can no longer be created. Existing projects will continue to work until December 31, 2026. See [sunset details](https://docs.weaviate.io/engram).
 - Prefer **hybrid search** + filters for robust grounding and fewer hallucinations in tool-using agents.
 
 ## What “agentic AI” means in practice
@@ -24,13 +24,13 @@ Typical loop:
 Weaviate is the “grounding layer” for agentic apps:
 - **Retrieval**: semantic + keyword (hybrid) search across your knowledge base
 - **Precision**: filters/sorting to fetch the right subset (tenant/user/project)
-- **Memory**: store durable facts/preferences and retrieve them later (or use Engram)
+- **Memory**: store durable facts/preferences and retrieve them later
 
 ## Key differentiators / USPs for agentic apps
 - **Hybrid retrieval + filters**: supports “find evidence then act” workflows with higher precision than pure vector search.
 - **Multi-tenancy**: clean isolation for SaaS agents (per customer/user/workspace).
 - **Production posture**: scalable DB + managed Cloud path for real workloads.
-- **Turnkey path**: Query Agent accelerates RAG-style agent builds; Engram adds memory automation.
+- **Turnkey path**: Query Agent accelerates RAG-style agent builds.
 
 ## When to use
 - Multi-step assistants that must:

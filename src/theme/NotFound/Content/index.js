@@ -34,7 +34,7 @@ const SITE_SECTIONS = [
     note: 'connect, create a collection, import data, query',
   },
   {to: '/product', label: 'Products', note: 'database, cloud, and agents'},
-  {to: '/pricing', label: 'Pricing', note: 'Weaviate Cloud and Engram pricing'},
+  {to: '/pricing', label: 'Pricing', note: 'Weaviate Database pricing'},
   {to: '/case-studies', label: 'Case studies', note: 'how teams use Weaviate'},
   {to: '/blog', label: 'Blog', note: 'engineering and product writing'},
   {

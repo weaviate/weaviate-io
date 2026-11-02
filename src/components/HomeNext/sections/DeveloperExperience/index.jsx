@@ -21,7 +21,7 @@ const navItems = [
     iconActive: "/img/site/2026/Agent-Skills.svg",
     iconPressed: "/img/site/2026/Agent-Skills-3.svg",
     description:
-      "Ship adaptive workflows with built-in skills and contextual memory.",
+      "Build agentic workflows with skills for working with Weaviate.",
   },
   {
     id: "cloud-tools",
