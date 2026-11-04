@@ -378,11 +378,12 @@
   z-index: 1;
 
   list-style: none;
+
   padding: 0;
   margin: 0;
+
   display: grid;
   gap: 0.95rem;
-  flex-grow: 1;
 }
 
 .features li {
@@ -471,8 +472,4 @@
     width: 100%;
     min-width: 0;
   }
-}
-
-.detailsButton {
-  margin-top: 1.5rem;
 }

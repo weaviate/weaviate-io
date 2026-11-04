@@ -1,15 +1,3 @@
-[[redirects]]
-from = "/enterprise"
-to = "/enterprise-edition"
-status = 301
-force = true
-
-[[redirects]]
-from = "/enterprise/"
-to = "/enterprise-edition"
-status = 301
-force = true
-
 # Engram marketing retirement: preserve inbound links and direct users to sunset details.
 [[redirects]]
 from = "/product/engram"

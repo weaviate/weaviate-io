@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import Heading from "@theme/Heading";
-import { EditionCards } from "../components/Editions";
+import React from "react";
 import Layout from "@theme/Layout";
 import PricingHeader from "../components/Pricing/V2/Header";
 
@@ -16,24 +14,13 @@ import { PriceCalculator } from "../components/Pricing/V2/PriceCalculator/PriceC
 import PricingCTA from "../components/Pricing/V2/PricingCTA";
 
 export default function PricingPage() {
-  const [selectedType, setSelectedType] = useState("managed");
-  useEffect(() => {
-    const sync = () => setSelectedType(window.location.hash === "#self-managed" ? "self-managed" : "managed");
-    sync(); window.addEventListener("hashchange", sync);
-    return () => window.removeEventListener("hashchange", sync);
-  }, []);
-  const onSelect = (type) => { setSelectedType(type); window.history.replaceState(null, "", `#${type}`); };
   return (
     <div className="custom-page noBG">
       <Layout
         title="Vector Database Pricing"
         description="Compare pricing options for our different levels of vector database services and solutions."
       >
-        <PricingHeader selectedType={selectedType} onSelect={onSelect} />
-        <Heading as="h2" id="self-managed" className="tw-sr-only">
-          Self-managed pricing
-        </Heading>
-        {selectedType === "managed" ? <>
+        <PricingHeader />
         <PricingTiers product="database" />
         <PriceCalculator />
         <AddOnsSection />
@@ -41,7 +28,6 @@ export default function PricingPage() {
         <SecurityCompliance theme="dark" />
         <PricingFAQ faqType="Database" />
         <PricingCTA product="database" />
-        </> : <EditionCards />}
         <ContactForm />
       </Layout>
 
