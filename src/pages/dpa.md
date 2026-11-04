@@ -212,13 +212,13 @@ Customer data is retained for the duration of the Agreement unless deleted earli
 
 Customers may add, modify, or delete data at their discretion using the services. There is no default data retention period applied by Weaviate to Customer data stored in active systems.
 
-Customer data is backed up daily and retained in immutable backup storage for a Backup Retention Period of 90 days from the date of each backup. Backup data is not actively processed and is only accessed for disaster recovery or business continuity purposes.
+Customer data is backed up daily and retained in immutable backup storage for a Backup Retention Period of up to 90 days from the date of each backup. Backup data is not actively processed and is only accessed for disaster recovery or business continuity purposes.
 
 ### 6. Deletion and Return of Data
 
 Upon termination or expiry of the Agreement, Weaviate shall delete or return all Personal Data processed on behalf of the Customer, including Personal Data contained in backups, within 30 days, in accordance with section 9.1 of the Agreement. Any residual copies that cannot be permanently erased within that period, whether held by a cloud infrastructure Subprocessor under its account-closure procedures or in immutable backup storage pending expiry of its retention lock, are rendered inaccessible or put beyond use within the 30 days and permanently erased thereafter, as described in section 9.1.
 
-Where Personal Data is deleted during the term of the Agreement, it is deleted from production systems without undue delay and from backups upon expiry of the 90-day Backup Retention Period, in accordance with section 9.2 of the Agreement.
+Where Personal Data is deleted during the term of the Agreement, it is deleted from production systems without undue delay and from backups upon expiry of the  Backup Retention Period, in accordance with section 9.2 of the Agreement.
 
 ### 7. International Data Transfers
 
