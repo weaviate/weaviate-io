@@ -3,31 +3,23 @@ import Link from '@docusaurus/Link';
 
 const navGroups = {
   Product: [
-    {
-      title: 'Platform Services',
-      items: [
-        {
-          label: 'Vector Database',
-          to: '/platform',
-          children: [
-            { label: 'Embeddings', to: '/product/embeddings' },
-            { label: 'Query Agent', to: '/product/query-agent/' },
-            { label: 'Integrations', to: '/product/integrations' },
-          ],
-        },
-        { label: 'Product Previews', to: '/product-previews/' },
-      ],
-    },
-    {
-      title: 'Deployment Options',
-      items: [
-        { label: 'Shared Cloud', to: '/deployment/shared/' },
-        { label: 'Dedicated Cloud', to: '/deployment/dedicated/' },
-        { label: 'Weaviate Assurance', to: '/product/assurance/' },
-        { label: 'DigitalOcean', to: '/product/digitalocean-managed-weaviate/' },
-        { label: 'Request Enterprise Edition', to: '/enterprise-edition/' }
-      ],
-    },
+    { title: 'Platform Services', items: [
+      { label: 'AI Database', to: '/platform' },
+      { label: 'Embeddings', to: '/product/embeddings' },
+      { label: 'Query Agent', to: '/product/query-agent' },
+      { label: 'Integrations', to: '/product/integrations' },
+      { label: 'Product Previews', to: '/product-previews' },
+    ] },
+    { title: 'Fully Managed', items: [
+      { label: 'Dedicated Cloud', to: '/deployment/dedicated' },
+      { label: 'Shared Cloud', to: '/deployment/shared' },
+      { label: 'DigitalOcean', to: '/product/digitalocean-managed-weaviate' },
+    ] },
+    { title: 'Self-managed', items: [
+      { label: 'Enterprise Edition', to: '/enterprise-edition' },
+      { label: 'Community Edition', to: '/community-edition' },
+      { label: 'Platform Edition', to: '/platform-edition' },
+    ] },
   ],
   Solutions: [
     {
@@ -124,7 +116,7 @@ const navGroups = {
 const mainLinks = [
   { label: 'Product', to: '/product', showCaret: true },
   { label: 'Solutions', to: '/rag', showCaret: true },
-  { label: 'Enterprise', to: '/enterprise', showCaret: false },
+  { label: 'Enterprise', to: '/enterprise-edition', showCaret: false },
   { label: 'Developers', to: '/learn', showCaret: true },
   { label: 'Company', to: '/company/about-us', showCaret: true },
   { label: 'Pricing', to: '/pricing', showCaret: false },

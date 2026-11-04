@@ -96,11 +96,16 @@ function TierCard({ plan }) {
           </li>
         ))}
       </ul>
+      {plan.detailsHref && (
+        <a className={`${styles.btn} ${styles.btnGhost} ${styles.detailsButton}`} href={plan.detailsHref}>
+          Explore {title}
+        </a>
+      )}
     </article>
   );
 }
 
-export default function PricingTiers({ product = "serverless" }) {
+export default function PricingTiers({ product = "serverless", plans: editionPlans }) {
   const isEngram = product === "engram";
   const plans = isEngram ? engramPlans : databasePlans;
   const visiblePlans =
@@ -111,7 +116,7 @@ export default function PricingTiers({ product = "serverless" }) {
   return (
     <section className={styles.section}>
       <div className={styles.tiers}>
-        {visiblePlans.map((plan) => (
+        {(editionPlans ?? visiblePlans).map((plan) => (
           <TierCard key={plan.title} plan={plan} />
         ))}
       </div>
