@@ -50,10 +50,10 @@ import { MetaSEO } from '/src/theme/MetaSEO';
     1. Clarified that the optional Weaviate Telemetry Module does not collect any personal data
 
 10. **_November 2025_ - Document: Weaviate - Terms of Service**
-   1. Self-Serve Terms of Service (before: "Cloud Agreement")
-      1. Section 6.1. Removed the indemnification procedure" "provided that (a) Customer will promptly notify Weaviate of such Claim, (b) Weaviate will have the sole and exclusive authority to defend and/or settle any such Claim, and (c) Customer reasonably cooperates with Weaviate in connection therewith.  Customer, may at its option and expense, assist Weaviate in the defense of the Claim."
-      2. Section 6.2. Removed the indemnification procedure: "provided that (a) Weaviate will promptly notify Customer of such Claim, (b) Customer will have the sole and exclusive authority to defend and/or settle any such Claim, and (c) Weaviate reasonably cooperates with Customer in connection with such Claim."
-      3. Section 6.3. New: All party Indemnification Procedure
+    1. Self-Serve Terms of Service (before: "Cloud Agreement")
+       1. Section 6.1. Removed the indemnification procedure" "provided that (a) Customer will promptly notify Weaviate of such Claim, (b) Weaviate will have the sole and exclusive authority to defend and/or settle any such Claim, and (c) Customer reasonably cooperates with Weaviate in connection therewith.  Customer, may at its option and expense, assist Weaviate in the defense of the Claim."
+       2. Section 6.2. Removed the indemnification procedure: "provided that (a) Weaviate will promptly notify Customer of such Claim, (b) Customer will have the sole and exclusive authority to defend and/or settle any such Claim, and (c) Weaviate reasonably cooperates with Customer in connection with such Claim."
+       3. Section 6.3. New: All party Indemnification Procedure
 
 11. **_November 2025_ - Document: Weaviate - Data Processing Addendum**
     1. Update to Clause 1: Definitions:
