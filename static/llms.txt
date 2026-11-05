@@ -34,17 +34,17 @@ If you run Weaviate yourself (Docker / Kubernetes / on-prem), **use the latest v
 
 - **Weaviate Server (OSS)**: v1.40.3
 - **Python client (weaviate-client)**: v4.24.1
-- **TypeScript client (weaviate-client)**: v3.15.3
+- **TypeScript client (@weaviate/node)**: v3.15.1
 - **Go client (github.com/weaviate/weaviate-go-client/v6)**: v6.0.0
-- **Java client (client6)**: v6.3.2
+- **Java client (client6)**: v6.3.1
 - **C# client (Weaviate.Client)**: v1.2.0
 - **Agents SDK (Python, weaviate-agents)**: v1.9.0
-- **Agents SDK (TypeScript, weaviate-agents)**: v1.8.0
+- **Agents SDK (TypeScript, @weaviate/agents)**: v1.8.0
 
 **Quick checks**
 - Server: check your Docker tag / Helm chart version (e.g. `weaviate:<tag>`)
 - Python: `pip show weaviate-client` / `pip show weaviate-agents`
-- Node: `npm view weaviate-client version` / `npm view weaviate-agents version`
+- Node: `npm view @weaviate/node version` / `npm view @weaviate/agents version`
 
 > Note: We’ll keep these values updated manually for now, and automate later to prevent staleness.
 
@@ -184,7 +184,7 @@ with weaviate.connect_to_weaviate_cloud(
 ```
 
 ```typescript
-import weaviate, { vectors } from 'weaviate-client';
+import weaviate, { vectors } from '@weaviate/node';
 
 const dataObjects = [
   {
@@ -276,8 +276,8 @@ Weaviate ships a built-in [Model Context Protocol (MCP)](https://modelcontextpro
 
 ## Python / TypeScript / Java / C#
 
-Install: `pip install weaviate-client` (Python ≥3.10) | `npm install weaviate-client` (TS, Node ≥22) | `io.weaviate:client6` (Java, Maven) | `Weaviate.Client` (C#, NuGet)
-For Query Agent (Python / TypeScript only): `pip install weaviate-client[agents]` | `npm install weaviate-agents`
+Install: `pip install weaviate-client` (Python ≥3.10) | `npm install @weaviate/node` (TS, Node ≥22) | `io.weaviate:client6` (Java, Maven) | `Weaviate.Client` (C#, NuGet)
+For Query Agent (Python / TypeScript only): `pip install weaviate-client[agents]` | `npm install @weaviate/agents`
 Docs: [Python](https://docs.weaviate.io/weaviate/client-libraries/python) | [TypeScript](https://docs.weaviate.io/weaviate/client-libraries/typescript/typescript-v3) | [Java](https://docs.weaviate.io/weaviate/client-libraries/java) | [C#](https://docs.weaviate.io/weaviate/client-libraries/csharp)
 
 The navigation index keeps executable examples for Python and TypeScript. Use the linked Java and C# documentation for current, version-specific examples.
@@ -293,7 +293,7 @@ client = weaviate.connect_to_local()  # localhost:8080, gRPC 50051
 ```
 
 ```typescript
-import weaviate from 'weaviate-client';
+import weaviate from '@weaviate/node';
 
 const client = await weaviate.connectToLocal();
 ```
@@ -334,7 +334,7 @@ client.collections.create(
 ```
 
 ```typescript
-import { vectors } from 'weaviate-client';
+import { vectors } from '@weaviate/node';
 
 // Minimal: auto-schema sets filterable + searchable defaults on every property
 await client.collections.create({
@@ -368,7 +368,7 @@ client.collections.create(
 ```
 
 ```typescript
-import { vectors, dataType } from 'weaviate-client';
+import { vectors, dataType } from '@weaviate/node';
 
 // Full control: all options set explicitly
 await client.collections.create({
@@ -407,7 +407,7 @@ res = col.query.fetch_objects(
 ```
 
 ```typescript
-import { Filters } from 'weaviate-client';
+import { Filters } from '@weaviate/node';
 
 // Single condition
 const cheapRamen = await col.query.hybrid('ramen', {
@@ -445,7 +445,7 @@ res = tenant_col.query.hybrid("hello", limit=3)
 ```
 
 ```typescript
-import { vectors, configure } from 'weaviate-client';
+import { vectors, configure } from '@weaviate/node';
 
 await client.collections.create({
   name: 'Docs',
@@ -481,7 +481,7 @@ client.users.db.assign_roles(user_id="alice", role_names="movie_reader")
 ```
 
 ```typescript
-import weaviate from 'weaviate-client';
+import weaviate from '@weaviate/node';
 
 // Create a role scoped to one collection
 await client.roles.create('movie_reader', [
@@ -498,7 +498,7 @@ await client.users.db.assignRoles(['movie_reader'], 'alice');
 
 ### Query Agent (RAG) — Cloud only
 
-Managed RAG using the Weaviate Query Agent. Requires `weaviate-agents` package.
+Managed RAG using the Weaviate Query Agent. Requires `weaviate-agents` (Python) or `@weaviate/agents` (TypeScript).
 
 ```python
 from weaviate.agents.query import QueryAgent
@@ -512,7 +512,7 @@ search_response = qa.search("sci-fi movies", limit=5)
 ```
 
 ```typescript
-import { QueryAgent } from 'weaviate-agents';
+import { QueryAgent } from '@weaviate/agents';
 
 const qa = new QueryAgent(client, { collections: ['Movies', 'Reviews'] });
 const response = await qa.ask('Recommend sci-fi movies with good reviews under $15');
@@ -542,7 +542,7 @@ res = col.query.near_text("machine learning", target_vector="title", limit=3)
 ```
 
 ```typescript
-import { vectors, dataType } from 'weaviate-client';
+import { vectors, dataType } from '@weaviate/node';
 
 await client.collections.create({
   name: 'Article',
@@ -651,7 +651,7 @@ client.collections.create(
 ```
 
 ```typescript
-import { vectors, configure } from 'weaviate-client';
+import { vectors, configure } from '@weaviate/node';
 
 await client.collections.create({
   name: 'Movie',
