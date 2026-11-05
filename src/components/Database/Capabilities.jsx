@@ -22,16 +22,6 @@ const capabilityCards = [
       "linear-gradient(140deg, rgba(117,251,174,0.3) 8.61%, rgba(182,248,116,0.3) 94.4%)",
     hoverGlow: "rgba(182, 248, 116, 0.14)",
   },
-  {
-    title: "Engram",
-    description:
-      "Create personalized AI experiences that learn and adapt to each user over time.",
-    icon: "/img/site/2026/engram-icon.svg",
-    to: "/product/engram",
-    gradient:
-      "linear-gradient(48deg, rgba(104,255,168,0.3) -4.58%, rgba(0,183,226,0.3) 86.47%)",
-    hoverGlow: "rgba(80, 230, 190, 0.14)",
-  },
 ];
 
 export default function Capabilities() {
@@ -50,7 +40,7 @@ export default function Capabilities() {
           </h2>
         </div>
 
-        <div className="tw-mt-10 tw-grid tw-gap-5 md:tw-mt-12 md:tw-gap-6 md:tw-grid-cols-2 xl:tw-grid-cols-3">
+        <div className="tw-mt-10 tw-grid tw-gap-5 md:tw-mt-12 md:tw-gap-6 md:tw-grid-cols-2 xl:tw-grid-cols-2">
           {capabilityCards.map((card) => (
             <Link
               key={card.title}

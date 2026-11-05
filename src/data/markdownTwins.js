@@ -33,7 +33,6 @@ const MARKDOWN_TWINS = {
   '/platform': '/database.md',
   '/product': '/product.md',
   '/product/embeddings': '/product/embeddings.md',
-  '/product/engram': '/product/engram.md',
   '/product/explorer': '/product/explorer.md',
   '/product/query': '/product/query.md',
   '/product/query-agent': '/product/query-agent.md',

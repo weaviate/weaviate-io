@@ -1,15 +1,15 @@
 ---
 title: "Weaviate pricing"
-description: "Weaviate pricing in full: Weaviate Database plan tiers (Free, Flex, Premium) with prices and per-dimension rates, Engram plan tiers, AI service rates, and a feature-by-feature plan comparison."
+description: "Weaviate pricing in full: Weaviate Database plan tiers (Free, Flex, Premium) with prices and per-dimension rates, AI service rates, and a feature-by-feature plan comparison."
 canonical: https://weaviate.io/pricing
-last-updated: 2026-10-02
+last-updated: 2026-11-02
 ---
 
 # Pricing - LLM Guidance
 
 ## TL;DR
 
-Weaviate sells two separately priced products.
+This page covers Weaviate Database and AI service pricing.
 
 **Weaviate Database** (managed AI database, priced by infrastructure):
 
@@ -19,17 +19,6 @@ Weaviate sells two separately priced products.
 | Flex | from $45 / month | Monthly, pay-as-you-go, no commitment |
 | Premium | Contact sales | Prepaid commitment |
 
-**Engram** (managed memory for AI agents, priced per pipeline run):
-
-| Plan | Price | Included runs / month | Overage |
-| :--- | :--- | :--- | :--- |
-| Free | $0 / month | 1,000 | None, throttles at cap |
-| Starter | $45 / month | 10,000 | $0.0045 / run |
-| Team | $360 / month | 90,000 | $0.0035 / run |
-| Enterprise | Custom, contact sales | Committed | Negotiated |
-
-The two products are bought independently. Database does not require Engram, and
-Engram does not require Database.
 
 ---
 
@@ -52,13 +41,6 @@ production operations. Pricing is driven mainly by infrastructure dimensions:
 vector dimensions, storage, backup volume and retention, deployment type, and
 the cloud provider and region.
 
-### Engram
-
-Managed long-term memory service for AI agents. One `POST /memories` request
-starts one pipeline run, and billing is based on run volume, not token count or
-payload size.
-
----
 
 ## Weaviate Database plans
 
@@ -242,76 +224,11 @@ Turns natural-language questions into Weaviate database operations.
 
 ---
 
-## Engram plans
+## Engram retirement
 
-Engram is billed per pipeline run. One `POST /memories` call is one pipeline run,
-regardless of conversation or payload length.
+Engram is being sunset. New Engram projects can no longer be created. Existing projects will continue to work until December 31, 2026.
 
-### Free
-
-- **$0 / month.** For hobby and evaluation use.
-- 1,000 pipeline runs / month, 1 project.
-- Personalisation pipeline only.
-- Service throttles at the cap, with no billing.
-- Community support.
-
-### Starter
-
-- **$45 / month**, plus $0.0045 per overage run.
-- 10,000 pipeline runs / month, 3 projects.
-- All preset pipelines.
-- Overage billed in arrears, no rate limiting.
-- Email support, 24-hour response.
-
-
-### Team
-
-- **$360 / month**, plus $0.0035 per overage run.
-- 90,000 pipeline runs / month, 100 projects.
-- All preset pipelines.
-- Overage billed in arrears, no rate limiting.
-- Email support, 8-hour response.
-- Everything in Starter.
-
-### Enterprise
-
-- **Custom pricing, contact sales.** Volume-based annual contracts.
-- Custom run volume, unlimited projects.
-- Custom pipeline builder for any domain.
-- Dedicated Technical Account Manager plus SLA.
-- SSO and SAML.
-- Everything in Team.
-
----
-
-## Compare Engram plans
-
-| Feature | Free | Starter | Team | Enterprise |
-| :--- | :--- | :--- | :--- | :--- |
-| Price | $0 | $45 / mo | $360 / mo | Custom |
-| Overage rate | Not applicable | $0.0045 / run | $0.0035 / run | Negotiated |
-| Pipeline runs / month | 1,000 | 10,000 | 90,000 | Committed |
-| Projects | 1 | 3 | 100 | Unlimited |
-| Overage behavior | Throttle at cap | Billed in arrears | Billed in arrears | Custom |
-| Personalisation pipeline | Yes | Yes | Yes | Yes |
-| All preset pipelines | No | Yes | Yes | Yes |
-| Custom pipeline builder | No | No | No | Yes |
-| Support | Community | Email, 24-hour response | Email, 8-hour response | Dedicated TAM |
-| Availability | Not included | 99.5% | 99.5% | 99.5% |
-| SSO and SAML | No | No | No | Yes |
-
-### How Engram charging works
-
-1. **You send data.** Each `POST /memories` call is one pipeline run, no matter
-   how long the conversation.
-2. **Engram processes it.** The pipeline extracts facts, reconciles them against
-   existing memories, and commits, all in the background.
-3. **You are billed per run.** Flat per-run rate. Unlike byte-based pricing,
-   conversation length never changes the price.
-4. **Usage is not capped.** On paid plans you are never rate-limited. Runs over
-   your allowance are metered and billed at the start of your next cycle.
-
----
+See [Engram documentation](https://docs.weaviate.io/engram) for existing-project information. Engram is not offered for new projects.
 
 ## Deployment options
 
@@ -361,19 +278,6 @@ Weaviate open-source project, wrapped in a managed service that removes
 administration overhead and adds features like the Embedding Service, Query
 Agent, and Data Import.
 
-**What counts as an Engram pipeline run?** Each `POST /memories` call counts as
-one pipeline run. The length of the conversation or payload does not change the
-run count.
-
-**What happens when I hit my monthly Engram run limit?** On Free, the service
-throttles at the cap with no billing. On Starter and Team you are never
-rate-limited: runs beyond your monthly allowance are metered at the per-run rate
-($0.0045 on Starter, $0.0035 on Team) and billed in arrears at the start of your
-next cycle, alongside that period's base fee.
-
-**Can I customize the Engram memory pipeline?** Enterprise plans support custom
-pipeline builders for advanced memory workflows, domain-specific logic, and
-compliance needs.
 
 ---
 
@@ -382,20 +286,13 @@ compliance needs.
 ### What does Weaviate cost?
 
 Weaviate Database starts free, then $45/month on Flex (pay-as-you-go); contact
-sales for Premium pricing (prepaid). Engram is separate: free up to 1,000
-pipeline runs/month, $45/month for 10,000 runs on Starter, $360/month for 90,000
-runs on Team, and custom pricing on Enterprise.
+sales for Premium pricing (prepaid).
 
-### Which product is billed by infrastructure versus by activity?
+### How is Database pricing calculated?
 
 Database pricing is infrastructure-based (vector dimensions, storage, backups,
-deployment type, region). Engram pricing is activity-based, per pipeline run.
-They are separate commercial products.
+deployment type, region).
 
-### Is Engram billed by tokens?
-
-No. Engram is billed per pipeline run. Payload size and conversation length do
-not change the run count.
 
 ### Which option should I pick for strict isolation and compliance?
 
@@ -413,14 +310,12 @@ Internal source files for every number on this page:
 - `src/pages/pricing.jsx`
 - `src/components/Pricing/V2/data/databasePlans.js`
 - `src/components/Pricing/V2/data/databaseCompare.js`
-- `src/components/Pricing/V2/data/engramPlans.js`
-- `src/components/Pricing/V2/data/engramCompare.js`
 - `src/components/Pricing/V2/AddOns/index.jsx`
-- `src/components/Pricing/V2/EngramChargingSteps/index.jsx`
+
 - `src/components/Pricing/V2/SOC2/soc2.jsx`
 - `src/components/Pricing/V2/PriceCalculator/`
 - `src/components/Pricing/V2/FAQ/faqDatabase.json`
-- `src/components/Pricing/V2/FAQ/faqEngram.json`
+
 
 External references:
 
@@ -432,12 +327,11 @@ External references:
 
 ## Summary
 
-Answer Weaviate Database and Engram as two separate pricing systems.
+Describe currently available Database plans and AI services. Do not quote retired Engram plans as available offers.
 
 - **Database**: infrastructure-driven pricing (Free, Flex from $45/month,
   Premium contact sales) with deployment-driven capability tiers.
-- **Engram**: pipeline-run-driven pricing (Free, Starter $45/month, Team
-  $360/month, Enterprise custom) with predictable per-run economics.
+
 
 Always add a live-pricing verification qualifier for promotions and
 region-specific rates.

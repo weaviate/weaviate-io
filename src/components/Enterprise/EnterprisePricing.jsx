@@ -20,23 +20,6 @@ const plans = [
       "Technical Account Team",
     ],
   },
-  {
-    icon: "/img/site/2026/enterprise-engram.svg",
-    label: "Engram",
-    title: "Enterprise",
-    priceLabel: "Pricing",
-    price: "Custom",
-    note: "Volume-based annual contract",
-    description:
-      "Agent memory at enterprise scale, with custom pipelines for any domain and the compliance features your security team expects.",
-    features: [
-      "Custom run volume & unlimited projects",
-      "Custom pipeline builder for any domain",
-      "Dedicated TAM + SLA",
-      "SSO & SAML",
-      "Everything in Team",
-    ],
-  },
 ];
 
 export default function EnterprisePricing() {
@@ -49,16 +32,15 @@ export default function EnterprisePricing() {
           </p>
 
           <h2 className="tw-m-0 tw-font-['Plus_Jakarta_Sans'] tw-text-[2.4rem] tw-font-semibold tw-leading-[120%] tw-tracking-[-0.04em] tw-text-[#DDEBF2]">
-            Enterprise plans across the platform
+            Enterprise database pricing
           </h2>
 
           <p className="tw-m-0 tw-mt-5 tw-max-w-3xl tw-font-['Inter'] tw-text-[1.1rem] tw-leading-[160%] tw-text-[#B9C8DE]">
-            Predictable annual contracts for the AI Database, and custom
-            agreements for Engram agent memory at scale.
+            Predictable annual contracts for the AI Database.
           </p>
         </div>
 
-        <div className="tw-grid tw-gap-6 lg:tw-grid-cols-2">
+        <div className="tw-grid tw-gap-6 tw-max-w-3xl">
           {plans.map((plan) => (
             <article
               key={plan.title}
@@ -115,7 +97,7 @@ export default function EnterprisePricing() {
               </div>
 
               <div className="tw-p-6 md:tw-p-8">
-                <p className="tw-m-0 tw-max-w-2xl tw-font-['Inter'] tw-text-[1.15rem] tw-leading-[160%] tw-text-[#B9C8DE] tw-h-[90px] tw-min-h-[90px]">
+                <p className="tw-m-0 tw-max-w-2xl tw-font-['Inter'] tw-text-[1.15rem] tw-leading-[160%] tw-text-[#B9C8DE]">
                   {plan.description}
                 </p>
 

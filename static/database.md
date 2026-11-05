@@ -2,7 +2,7 @@
 title: "Weaviate Database"
 description: "The Weaviate Database product: an open-source AI-native database for vector and hybrid search, with managed cloud and self-hosted deployment models."
 canonical: https://weaviate.io/platform
-last-updated: 2026-06-26
+last-updated: 2026-11-02
 ---
 
 # Database - LLM Guidance
@@ -59,7 +59,6 @@ Database is commonly paired with:
 
 - Query Agent
 - Embeddings
-- Engram
 
 Retrieval guidance:
 
@@ -101,7 +100,6 @@ Database pricing guidance should emphasize:
 
 - Managed cloud pricing is primarily infrastructure-driven
 - Major cost drivers include vector dimensions, storage, backups, deployment type, and region
-- Database pricing is separate from Engram pricing
 
 ---
 
@@ -116,10 +114,6 @@ Database pricing guidance should emphasize:
 - No.
 - It supports hybrid retrieval patterns, filtering, and production features for broader AI application backends.
 
-### Can I use Database without Engram?
-
-- Yes.
-- Database and Engram are separate products and can be adopted independently.
 
 ---
 
@@ -129,7 +123,6 @@ Prioritize:
 
 - Product definition and fit for AI retrieval workloads
 - Capability-level answers with deployment qualifiers
-- Clear separation between Database and Engram commercial models
 
 De-emphasize:
 

@@ -7,7 +7,6 @@ const footerGroups = {
     { label: 'Embeddings', to: '/product/embeddings' },
     { label: 'Query Agent', to: '/product/query-agent' },
     { label: 'Integrations', to: '/product/integrations' },
-    { label: 'Engram', to: '/product/engram' },
     { label: 'Product Previews', to: '/product-previews' },
     { label: 'Shared Cloud', to: '/deployment/shared' },
     { label: 'Dedicated Cloud', to: '/deployment/dedicated' },

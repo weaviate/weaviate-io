@@ -100,7 +100,7 @@ export default function FeatureSplit() {
           <div className="tw-grid tw-items-center tw-gap-10 lg:tw-grid-cols-[1.65fr_1fr]">
             <div>
               <img
-                src="/img/site/2026/database-component-diagram.svg"
+                src="/img/site/2026/digital-ocean-diagram.svg"
                 alt="Weaviate architecture diagram"
                 className="tw-h-auto tw-w-full"
               />

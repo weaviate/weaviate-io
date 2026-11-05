@@ -47,6 +47,7 @@ export default function AppFilter() {
   const filteredApps = sortedApps(
     appData.filter((app) => {
       return (
+        app.listed !== false &&
         (selectedCategory === 'All' || app.category === selectedCategory) &&
         (app.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
           app.description.toLowerCase().includes(searchQuery.toLowerCase()))

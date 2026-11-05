@@ -8,6 +8,12 @@ image: ./img/hero.png
 description: "The Engram plugin gives Claude Code persistent, long-term memory, so it remembers what you've done and brings it back when it matters."
 ---
 
+:::warning Engram is being sunset
+
+We have decided to sunset Engram. Existing projects will continue to work until December 31, 2026. It is no longer possible to create new Engram projects.
+
+:::
+
 There's a category of knowledge that never makes it into a `CLAUDE.md`: what you actually did.
 
 The feature you added last week, and the small decisions you made about its shape along the way. The approach you settled on for a tricky change after trying two others first. The library you evaluated and rejected, and what tipped the decision.
@@ -50,7 +56,7 @@ That's the whole product. Claude gets a little more like a colleague who's been 
 
 The plugin hooks into two moments in a Claude Code session.
 
-**Before Claude answers**, it searches [Weaviate Engram](https://docs.weaviate.io/engram) for memories related to the prompt you just typed and passes the relevant ones along as context. Memories are compressed into short, distilled notes rather than raw conversation, so recall stays light. Recall is silent by design. You'll only notice it when Claude uses a memory, and when it does, it says so.
+**Before Claude answers**, it searches Weaviate Engram for memories related to the prompt you just typed and passes the relevant ones along as context. Memories are compressed into short, distilled notes rather than raw conversation, so recall stays light. Recall is silent by design. You'll only notice it when Claude uses a memory, and when it does, it says so.
 
 **After Claude answers**, it saves the exchange: your message and Claude's reply. Engram does the work of turning raw conversation into memories worth keeping. There is no "remember this" command and no ritual. Memory is a side effect of working.
 
@@ -62,13 +68,13 @@ The plugin hooks into two moments in a Claude Code session.
 
 ## A little bit about Engram
 
-[Engram](https://docs.weaviate.io/engram) is Weaviate's memory server for LLM agents and applications. You send it conversations, and it extracts, transforms, and stores the parts worth keeping as memories, using vector embeddings and LLM-powered processing. Those memories are then searchable through a REST API and a Python SDK.
+Engram is Weaviate's memory server for LLM agents and applications. You send it conversations, and it extracts, transforms, and stores the parts worth keeping as memories, using vector embeddings and LLM-powered processing. Those memories are then searchable through a REST API and a Python SDK.
 
 The Claude Code plugin is one way to use it. The same memory can sit behind your own agents and apps, too.
 
 ## Getting started
 
-Engram is free for up to 1,000 runs per month, so you can try it on your own projects before deciding anything. Create a project at [console.weaviate.cloud/engram](https://console.weaviate.cloud/engram) and copy the API key. Export it in your shell, or in a profile like `~/.zshenv` so it persists:
+For an existing project, export your API key in your shell, or in a profile like `~/.zshenv` so it persists:
 
 ```bash
 export ENGRAM_API_KEY=...
@@ -84,12 +90,6 @@ Then, inside a Claude Code session:
 Memory starts working on your next prompt.
 
 Then go back to work. This time, what you did will stick.
-
-Want to go further?
-
-- Read the [plugin docs](https://docs.weaviate.io/engram/install-integrate#claude-code-plugin) for the full reference, including how to tailor scoping to your team.
-- Explore the [Engram docs](https://docs.weaviate.io/engram) to add memory to your own agents and apps.
-- Found a bug or have an idea? Open an issue on [GitHub](https://github.com/weaviate/engram-plugins).
 
 import WhatsNext from "/_includes/what-next.mdx";
 

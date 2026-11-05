@@ -24,7 +24,6 @@ export default function EnterprisePage() {
         <Hero />
         <UseCaseCard />
         <DeploymentOptions />
-        <EnterprisePricing />
         <AssuranceSection />
         <SecurityCompliance />
 

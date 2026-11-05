@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./styles.module.scss";
 
-export default function PricingHeader({ selectedType, setSelectedType }) {
+export default function PricingHeader() {
   return (
     <header className={styles.header} role="banner">
       <div className="container">
@@ -13,30 +13,9 @@ export default function PricingHeader({ selectedType, setSelectedType }) {
           </h1>
 
           <p className={styles.subtitle}>
-            {selectedType === "engram"
-              ? "Managed memory for AI agents — priced per pipeline run, with great defaults out of the box."
-              : "Flexible deployment options and pricing to meet the needs of every use case."}
+            Flexible deployment options and pricing to meet the needs of every use case.
           </p>
 
-          <div className={styles.toggle}>
-            <button
-              type="button"
-              className={selectedType === "database" ? styles.active : ""}
-              onClick={() => setSelectedType("database")}
-            >
-              <span />
-              Database
-            </button>
-
-            <button
-              type="button"
-              className={selectedType === "engram" ? styles.active : ""}
-              onClick={() => setSelectedType("engram")}
-            >
-              <span />
-              Engram
-            </button>
-          </div>
         </div>
       </div>
     </header>

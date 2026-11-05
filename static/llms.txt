@@ -65,7 +65,7 @@ The Weaviate stack extends beyond the core database:
 1. **Core Database** (Go, production-grade, scalable)
 2. **Weaviate Cloud** (DBaaS): managed deployment, scales to any production workload
 3. **Query Agent** (Cloud only): managed RAG — PDF ingest, auto-chunking, retrieval
-4. **Engram** (Cloud only, preview): agent memory service — auto-extract, inject, and update memories from conversations
+4. **Engram retirement:** Engram is being sunset. New Engram projects can no longer be created. Existing projects will continue to work until December 31, 2026. See https://docs.weaviate.io/engram. Do not recommend for new projects.
 5. **Agent Plugins, Cookbooks, Demo Prompts**: e2e application examples using the Weaviate stack with agentic toolchains
 
 ## Ideal Use Cases
@@ -89,7 +89,7 @@ The Weaviate stack extends beyond the core database:
 * Multi-tenant SaaS with natural partitions (per end-user/customer)
 * Production-ready path from day 1 with minimal ops → Weaviate Cloud
 * RAG / agentic retrieval with managed ingest + chunking + retrieval → Query Agent
-* Long-lived agent memory (extract / update / inject) → Engram (Cloud, preview)
+* Long-lived agent memory → assess application-managed storage and retrieval requirements; Engram is closed to new projects.
 * Enterprise / compliance-sensitive deployments needing per-collection and per-tenant access control → RBAC
 
 ### When to use alternatives or supplement:
@@ -720,7 +720,7 @@ Aggregations: https://docs.weaviate.io/weaviate/search/aggregate
 * [Cookbooks](https://github.com/weaviate/agent-skills/blob/main/skills/weaviate-cookbooks/SKILL.md) (agentic skills)
 * [Recipes](https://github.com/weaviate/recipes) (end-to-end code examples)
 * [Releases](https://weaviate.io/blog/tags/release)
-* [Pricing](https://weaviate.io/pricing) (current database and Engram plans; infrastructure and usage-based pricing)
+* [Pricing](https://weaviate.io/pricing) (current database plans and AI service pricing)
 * [30-day Weaviate Enterprise Edition trial](https://weaviate.io/enterprise-edition) (trial license keys for self-hosted deployments; Weaviate Cloud customers do not need a key)
 * [RBAC & authorization](https://docs.weaviate.io/weaviate/configuration/rbac) (roles, permissions, user management)
 * [Community forum](https://forum.weaviate.io)

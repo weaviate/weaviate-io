@@ -1,3 +1,16 @@
+# Engram marketing retirement: preserve inbound links and direct users to sunset details.
+[[redirects]]
+from = "/product/engram"
+to = "https://docs.weaviate.io/engram"
+status = 301
+force = true
+
+[[redirects]]
+from = "/product/engram/"
+to = "https://docs.weaviate.io/engram"
+status = 301
+force = true
+
 [[redirects]]
 from = "/developers/weaviate/release-notes/older-releases/release_1_*"
 to = "https://weaviate.io/blog/weaviate-1-:splat-release"

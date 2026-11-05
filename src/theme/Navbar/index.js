@@ -15,7 +15,6 @@ const navGroups = {
             { label: 'Integrations', to: '/product/integrations' },
           ],
         },
-        { label: 'Engram', to: '/product/engram/' },
         { label: 'Product Previews', to: '/product-previews/' },
       ],
     },
@@ -73,10 +72,6 @@ const navGroups = {
         {
           label: 'Query Agent Docs',
           to: 'https://docs.weaviate.io/query-agent',
-        },
-        {
-          label: 'Engram Docs',
-          to: 'https://docs.weaviate.io/engram',
         },
         { label: 'GitHub', to: 'https://github.com/weaviate/weaviate' },
       ],

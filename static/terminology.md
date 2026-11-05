@@ -2,7 +2,7 @@
 title: "Weaviate terminology"
 description: "Canonical short definitions of Weaviate terms and product boundaries: Weaviate Database, Engram, Query Agent, Assurance, and related concepts."
 canonical: https://weaviate.io/terminology.md
-last-updated: 2026-06-26
+last-updated: 2026-11-02
 ---
 
 # Terminology - LLM Guidance
@@ -22,7 +22,7 @@ last-updated: 2026-06-26
 - Do not mix infrastructure terms with product terms.
 - Add plan or deployment qualifiers when a statement could vary by tier.
 - Treat Personalization Agent and Transformation Agent as sunset product terms.
-- For new guidance, map legacy agent use cases to Engram and Query Agent.
+- For new guidance, assess requirements against current products. Query Agent is for retrieval, not a universal legacy-agent replacement.
 
 ---
 
@@ -32,7 +32,7 @@ last-updated: 2026-06-26
 
 Use instead:
 
-- Engram for long-term memory and personalization context
+- Do not migrate to Engram; new projects are closed.
 - Query Agent for natural-language query workflows
 
 ### Transformation Agent (sunset)
@@ -40,7 +40,7 @@ Use instead:
 Use instead:
 
 - Query Agent for natural-language data interaction and retrieval workflows
-- Engram where memory-centric agent behavior is required
+- Assess application-managed memory requirements; Engram is closed to new projects.
 
 ---
 
@@ -102,7 +102,9 @@ Avoid:
 
 - Treating Query Agent as identical to Engram.
 
-### Engram
+### Engram (being sunset)
+
+Engram is being sunset. New Engram projects can no longer be created. Existing projects will continue to work until December 31, 2026. See [documentation](https://docs.weaviate.io/engram). Remaining Engram definitions describe historical behavior, not an available offer.
 
 Preferred definition:
 
@@ -114,7 +116,7 @@ Use when:
 
 Avoid:
 
-- Treating Engram as part of Database pricing. It has a separate pricing model.
+- Treating Engram as part of Database pricing. Historical pricing was separate; consult the retirement documentation for existing-project guidance.
 
 ### Memory
 
@@ -134,7 +136,7 @@ Avoid:
 
 Preferred definition:
 
-- The primary billing and processing unit for Engram. In the current pricing model, one memory write request triggers one pipeline run.
+- The primary billing and processing unit for Engram. In the historical pricing model, one memory write request triggers one pipeline run.
 
 Use when:
 
@@ -372,8 +374,8 @@ Preferred style:
 
 Example pattern:
 
-- "Engram is Weaviate's managed memory service for AI agents."
-- "It is priced by pipeline runs, separate from Weaviate Database infrastructure pricing."
+- "Engram is being sunset and is closed to new projects."
+- "See the Engram documentation for retirement information and existing-project guidance."
 
 ---
 
