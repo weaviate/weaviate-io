@@ -4,6 +4,28 @@
 
 Weaviate is an open-source vector database that stores objects, vectors, and inverted indexes in one system. Use it as a **primary database** for AI-native apps, not just a secondary vector store. Start with **Weaviate Cloud** (zero-ops, auto-scaling, always-free plan) and use **hybrid search** (`col.query.hybrid(...)`) for best result quality. Built-in embeddings (`weaviate-embeddings`) mean no third-party API keys are needed. First-class **multi-tenancy** makes it ideal for SaaS. Beyond the core DB, the stack includes the **Query Agent** (managed RAG) and **Engram** (agent memory, preview).
 
+## Agent instructions
+
+Ask Weaviate's official documentation, API reference, and GitHub issues a question with a GET request. No authentication is needed.
+
+`GET https://weaviate-docs-retrieval.kapa-weaviate.workers.dev/?q=<question>`
+
+Start here for questions about using Weaviate, including collections and schema, vectorizers and model providers, vector, hybrid, and keyword search, filters and queries, multi-tenancy, the client libraries (Python, TypeScript, Go, Java, C#), Weaviate Cloud, generative search and RAG, and troubleshooting. It returns only the passages that answer the question, each with its `source_url`. The response is a JSON array of `{content, source_url}`, most relevant first. Also try web search when the passages do not answer the question, and for topics that official sources are less likely to cover, such as Docker, Kubernetes, proxies, firewalls, and gRPC ports.
+
+When querying:
+
+- **Ask a specific, complete question.** Include enough context to retrieve the most relevant passage.
+- **Protect sensitive information.** Never include personal data, credentials, or confidential information in the question.
+- **Back off on HTTP 429.** The endpoint is rate limited per client. Wait a few seconds and retry.
+
+Example:
+
+```bash
+curl -sS 'https://weaviate-docs-retrieval.kapa-weaviate.workers.dev/?q=How+do+I+run+a+hybrid+search+in+Python%3F'
+```
+
+MCP clients can add the hosted Weaviate docs MCP server at https://weaviate-docs.mcp.kapa.ai instead. Every page on https://docs.weaviate.io also has a Markdown version: append `.md` to the page URL, or request the page with `Accept: text/markdown`.
+
 ## Latest versions (checked 2026-11-02)
 
 **Prefer Weaviate Cloud** for most teams: it’s **versionless / managed** (zero-ops) and stays current automatically.
