@@ -13,8 +13,20 @@ import BlogListPaginator from '@theme/BlogListPaginator';
 import SearchMetadata from '@theme/SearchMetadata';
 import BlogPostItems from '@theme/BlogPostItems';
 import PaginationMetadata from '/src/components/PaginationMetadata';
+import BlogBreadcrumbs from '../../components/Blog/BlogBreadcrumbs';
 import BreadcrumbStructuredData from '../../components/SEO/BreadcrumbStructuredData';
 
+function getTagBreadcrumbItems(tag, listMetadata) {
+  return [
+    {name: 'Home', path: '/'},
+    {name: 'Blog', path: '/blog'},
+    {name: 'Tags', path: tag.allTagsPath},
+    {name: tag.label, path: tag.permalink},
+    ...(listMetadata?.page > 1
+      ? [{name: `Page ${listMetadata.page}`, path: listMetadata.permalink}]
+      : []),
+  ];
+}
 
 
 
@@ -53,14 +65,7 @@ function BlogTagsPostsPageMetadata({tag, listMetadata}) {
   return (
     <>
       <PageMetadata title={title} description={description} />
-      <BreadcrumbStructuredData
-        items={[
-          {name: 'Home', path: '/'},
-          {name: 'Blog', path: '/blog'},
-          {name: 'Tags', path: tag.allTagsPath},
-          {name: tag.label, path: tag.permalink},
-        ]}
-      />
+      <BreadcrumbStructuredData items={getTagBreadcrumbItems(tag, listMetadata)} />
       <SearchMetadata tag="blog_tags_posts" />
       <PaginationMetadata metadata={listMetadata} />
      
@@ -72,12 +77,7 @@ function BlogTagsPostsPageContent({tag, items, sidebar, listMetadata}) {
   return (
     <BlogLayout sidebar={sidebar}>
       <div className="tw-mx-auto tw-w-full tw-max-w-[1320px] tw-px-[18px] tw-pb-24 tw-pt-11 sm:tw-px-6 sm:tw-pt-16">
-        <Link
-          to="/blog"
-          className="tw-mb-8 tw-inline-flex tw-items-center tw-gap-2 tw-text-sm tw-font-medium tw-text-[#63e689] hover:tw-text-[#43E2C5] hover:tw-no-underline">
-          <span aria-hidden="true">←</span>
-          Back to Blogs
-        </Link>
+        <BlogBreadcrumbs items={getTagBreadcrumbItems(tag, listMetadata)} />
         <header className="blog-tag-page-header tw-mb-12">
           <h1 className="tw-mb-4 tw-text-[clamp(2.25rem,5vw,4rem)] tw-leading-tight tw-tracking-[-0.035em] tw-text-[#edf4ff]">{title}</h1>
           <Link

@@ -16,7 +16,17 @@ import NewsletterPanel from '../../components/Blog/NewsletterPanel';
 import { MetaSEO } from '/src/theme/MetaSEO';
 import PaginationMetadata from '/src/components/PaginationMetadata';
 import BlogSearch from '../../components/Blog/BlogSearch';
+import BlogBreadcrumbs from '../../components/Blog/BlogBreadcrumbs';
 import BreadcrumbStructuredData from '../../components/SEO/BreadcrumbStructuredData';
+
+function getBlogBreadcrumbItems(metadata) {
+  const {page, permalink} = metadata;
+  return [
+    {name: 'Home', path: '/'},
+    {name: 'Blog', path: '/blog'},
+    ...(page > 1 ? [{name: `Page ${page}`, path: permalink}] : []),
+  ];
+}
 
 function BlogListPageMetadata({metadata}) {
   const {
@@ -31,15 +41,7 @@ function BlogListPageMetadata({metadata}) {
     <>
       <MetaSEO img={ogimg} />
       <PageMetadata title={title} description={description} />
-      <BreadcrumbStructuredData
-        items={[
-          {name: 'Home', path: '/'},
-          {name: 'Blog', path: '/blog'},
-          ...(page > 1
-            ? [{name: `Page ${page}`, path: permalink}]
-            : []),
-        ]}
-      />
+      <BreadcrumbStructuredData items={getBlogBreadcrumbItems(metadata)} />
       <SearchMetadata tag="blog_posts_list" />
       <PaginationMetadata metadata={metadata} />
     </>
@@ -108,6 +110,7 @@ function BlogListPageContent({metadata, items, sidebar}) {
   return (
     <BlogLayout sidebar={sidebar}>
       <div className="tw-mx-auto tw-w-full tw-max-w-[1320px] tw-px-[18px] tw-pb-24 tw-pt-11 sm:tw-px-6 sm:tw-pt-16">
+        <BlogBreadcrumbs items={getBlogBreadcrumbItems(metadata)} />
         <header className="tw-mb-[34px] tw-max-w-[640px]">
           <h1 className="tw-mb-4 tw-text-[clamp(2.5rem,5vw,4rem)] tw-leading-[1.05] tw-tracking-[-0.04em] tw-text-[#ddebf2]"><span className="tw-mb-2 !tw-text-transparent !tw-bg-[linear-gradient(359deg,#00FE6B_46.81%,#00B7E2_92.18%)] tw-bg-clip-text tw-font-['Plus_Jakarta_Sans'] tw-text-[clamp(2.5rem,5vw,4rem)] tw-font-semibold tw-leading-[1.4]">Weaviate</span> Blog</h1>
           <p className="tw-m-0 tw-max-w-[560px] tw-text-base tw-leading-[1.6] tw-text-[#b9c8de]">Keep up-to-date on the latest product updates, how-tos, industry insights, and community spotlights.</p>
