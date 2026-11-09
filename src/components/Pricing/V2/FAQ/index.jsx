@@ -39,8 +39,13 @@ function stripTags(value) {
     .trim();
 }
 
-export default function PricingFAQ({ faqType = "Database", title, defaultExpanded = null }) {
-  const faqData = faqMap[faqType] || faqDatabase;
+export default function PricingFAQ({
+  faqType = "Database",
+  faqData: customFaqData,
+  title,
+  defaultExpanded = null,
+}) {
+  const faqData = customFaqData || faqMap[faqType] || faqDatabase;
   const [expandedQuestion, setExpandedQuestion] = useState(defaultExpanded);
 
   const toggleFAQ = (index) => {

@@ -2,6 +2,7 @@ import React from "react";
 import Link from "@docusaurus/Link";
 
 export default function Hero({
+  eyebrow,
   title = "Engram:",
   subtitle = "Memory Built for AI Agents",
   description = "A fully managed memory and context service purpose-built to help agents remember, learn, and improve over time",
@@ -20,6 +21,11 @@ export default function Hero({
       <div className="container">
         <div className="tw-grid tw-items-center tw-gap-12 lg:tw-grid-cols-[0.9fr_1.1fr] lg:tw-gap-20">
           <div>
+            {eyebrow && (
+              <p className="tw-mb-4 tw-font-['Plus_Jakarta_Sans'] tw-text-sm tw-font-semibold tw-uppercase tw-tracking-[0.12em] tw-text-[#43E2C5]">
+                {eyebrow}
+              </p>
+            )}
             <h1 className="tw-mb-8 tw-font-['Plus_Jakarta_Sans'] tw-text-[3rem] tw-font-semibold tw-leading-[130%] tw-tracking-[-0.03em]">
               <span className="tw-block tw-bg-[linear-gradient(48deg,#00FE6B_13.81%,#00B7E2_92.18%)] tw-bg-clip-text tw-text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]">
                 {title}
