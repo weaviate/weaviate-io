@@ -2,11 +2,7 @@ import React, { useEffect } from "react";
 import Link from "@docusaurus/Link";
 import styles from "./styles.module.scss";
 
-export default function ContactForm({
-  sectionHeading,
-  heading = "Ready to get started?",
-  description = "Try Weaviate Cloud today, or get in touch with our team to discuss your needs. We can’t wait to meet you.",
-}) {
+export default function ContactForm() {
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "//js.hsforms.net/forms/embed/v2.js";
@@ -76,12 +72,15 @@ export default function ContactForm({
   return (
     <div className={styles.contactBackground} id="contact-sales">
       <div className="container">
-        {sectionHeading && <h2 className="!tw-mb-8">{sectionHeading}</h2>}
+        {/* Main contact area */}
         <div className={styles.contactSplit}>
           {/* Left Side */}
           <div className={styles.leftContent}>
-            <h2>{heading}</h2>
-            <p>{description}</p>
+            <h2>Ready to get started?</h2>
+            <p>
+              Try Weaviate Cloud today, or get in touch with our team to discuss
+              your needs. We can’t wait to meet you.
+            </p>
             <Link className={styles.tryButton} to="/go/console">
               Try Weaviate Cloud
             </Link>

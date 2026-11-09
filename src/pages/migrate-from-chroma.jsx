@@ -4,7 +4,7 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 import { MetaSEO } from "/src/theme/MetaSEO";
 import Hero from "/src/components/ProductPageTemplate/Hero";
 
-import ContactForm from "/src/components/Pricing/V2/ContactForm/contactForm";
+import MigrationContactForm from "/src/components/Migrate/ContactForm";
 
 const IMG = "/img/site/migrate-from-chroma";
 
@@ -161,11 +161,7 @@ export default function ChromaMigrationPage() {
             </div>
           </div>
         </section>
-        <ContactForm
-          sectionHeading="Need more help?"
-          heading="Migration support for larger organizations"
-          description="Our team can help you plan your move from Chroma Cloud to Weaviate. Tell us about your collections, your production workloads, and when you need to switch traffic."
-        />
+        <MigrationContactForm />
       </main>
     </Layout>
   );
