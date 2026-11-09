@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./styles.module.scss";
 import databaseCompare from "../data/databaseCompare";
+import selfManagedCompare from "../data/selfManagedCompare.json";
 import engramCompare from "../data/engramCompare";
 import { SHOW_PLUS_PLAN } from "../config/planVisibility";
 
@@ -11,7 +12,7 @@ function Cell({ value }) {
 }
 
 export default function CompareTable({ product = "database" }) {
-  const data = product === "engram" ? engramCompare : databaseCompare;
+  const data = ({ database: databaseCompare, engram: engramCompare, "self-managed": selfManagedCompare })[product] || databaseCompare;
   const { title, columns, sections } = data;
   const visibleColumns =
     product === "database" && !SHOW_PLUS_PLAN
@@ -25,7 +26,7 @@ export default function CompareTable({ product = "database" }) {
         <h2 className={styles.title}>{title}</h2>
 
         <div className={styles.card}>
-          <table className={styles.table}>
+          <table className={product === "self-managed" ? `${styles.table} ${styles.selfManagedTable}` : styles.table}>
             <colgroup>
               <col className={styles.featureCol} />
               {visibleColumns.map((col) => (
@@ -84,11 +85,11 @@ export default function CompareTable({ product = "database" }) {
             <tbody>
               {sections.map((section) => (
                 <React.Fragment key={section.heading}>
-                  <tr className={styles.sectionRow}>
+                  {section.heading && <tr className={styles.sectionRow}>
                     <th colSpan={visibleColumns.length + 1}>
                       {section.heading}
                     </th>
-                  </tr>
+                  </tr>}
 
                   {section.rows.map((row) => (
                     <tr key={`${section.heading}-${row.label}`}>
@@ -117,6 +118,15 @@ export default function CompareTable({ product = "database" }) {
             </div>
           )}
         </div>
+        {data.boundaries && (
+          <aside className={styles.boundaries}>
+            <h3>{data.boundaries.title}</h3>
+            <p>{data.boundaries.description}</p>
+            <ul>{data.boundaries.items.map(item => (
+              <li key={item.title}><h4>{item.title}</h4><p>{item.description}</p></li>
+            ))}</ul>
+          </aside>
+        )}
       </div>
     </section>
   );

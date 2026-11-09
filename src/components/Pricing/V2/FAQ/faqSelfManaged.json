@@ -1,0 +1,26 @@
+[
+  {
+    "question": "What happens when my trial ends?",
+    "answer": "Weaviate keeps running as Community Edition, and your data stays where it is. Enterprise features need an active license, so talk to us before your trial ends if you want to keep them."
+  },
+  {
+    "question": "What does the license key send back?",
+    "answer": "Usage counts such as collections, shards, and nodes. Your data is never sent back."
+  },
+  {
+    "question": "Do I need a new install?",
+    "answer": "No. Restart Weaviate with your license key, then enable the Enterprise features you want to use."
+  },
+  {
+    "question": "I’m on Weaviate Cloud, do I need this?",
+    "answer": "Enterprise Edition is already included in Weaviate Cloud."
+  },
+  {
+    "question": "I bought through a cloud marketplace, do I get it?",
+    "answer": "Yes, if you are using Weaviate’s managed cloud through a cloud marketplace, Enterprise Edition is included."
+  },
+  {
+    "question": "How is it priced?",
+    "answer": "Enterprise Edition uses object-based pricing. Platform Edition has custom pricing. <a href=\"/contact\">Contact sales</a> for pricing and licensing details for your deployment."
+  }
+]

@@ -57,8 +57,8 @@
   {
     "id": "enterprise",
     "name": "Enterprise Edition",
-    "price": "15,000 WU",
-    "priceNote": "Annual fee from",
+    "price": "Free 30-day trial",
+    "priceNote": "Try for free",
     "description": "Run Weaviate on your own infrastructure with additional security, resilience, operational features, and enterprise support.",
     "cta": "Request your 30-day trial key",
     "href": "/enterprise-edition#trial-form",
@@ -145,7 +145,7 @@
     ],
     "steps": [
       [
-        "Let\u2019s talk",
+        "Let’s talk",
         "Scope the deployment model, plan, and support for your workloads.",
         "Contact sales",
         "/contact"

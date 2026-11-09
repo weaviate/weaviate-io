@@ -4,7 +4,10 @@ import styles from "./styles.module.scss";
 import faqDatabase from "./faqDatabase.json";
 import faqEngram from "./faqEngram.json";
 
+import faqSelfManaged from "./faqSelfManaged.json";
+
 const faqMap = {
+  SelfManaged: faqSelfManaged,
   Database: faqDatabase,
   Engram: faqEngram,
 };
@@ -36,9 +39,9 @@ function stripTags(value) {
     .trim();
 }
 
-export default function PricingFAQ({ faqType = "Database" }) {
+export default function PricingFAQ({ faqType = "Database", title, defaultExpanded = null }) {
   const faqData = faqMap[faqType] || faqDatabase;
-  const [expandedQuestion, setExpandedQuestion] = useState(null);
+  const [expandedQuestion, setExpandedQuestion] = useState(defaultExpanded);
 
   const toggleFAQ = (index) => {
     setExpandedQuestion(expandedQuestion === index ? null : index);
@@ -54,9 +57,9 @@ export default function PricingFAQ({ faqType = "Database" }) {
       <div className="container">
         <div className={styles.intro}>
           <h2>
-            {faqType === "Engram"
+            {title || (faqType === "Engram"
               ? "Engram pricing FAQ"
-              : "Database pricing FAQ"}
+              : "Database pricing FAQ")}
           </h2>
         </div>
 

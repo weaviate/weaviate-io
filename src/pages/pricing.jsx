@@ -41,7 +41,11 @@ export default function PricingPage() {
         <SecurityCompliance theme="dark" />
         <PricingFAQ faqType="Database" />
         <PricingCTA product="database" />
-        </> : <EditionCards />}
+        </> : <>
+          <EditionCards />
+          <CompareTable product="self-managed" />
+          <PricingFAQ key="self-managed" faqType="SelfManaged" title="FAQ" defaultExpanded={0} />
+        </>}
         <ContactForm />
       </Layout>
 
