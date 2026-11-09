@@ -11,6 +11,37 @@ to = "https://docs.weaviate.io/engram"
 status = 301
 force = true
 
+# Engram blog redirects
+[[redirects]]
+from = "/blog/engram-deep-dive"
+to = "/blog"
+status = 301
+force = true
+
+[[redirects]]
+from = "/blog/engram-for-claude-code"
+to = "/blog"
+status = 301
+force = true
+
+[[redirects]]
+from = "/blog/engram-memory-practical-guide"
+to = "/blog"
+status = 301
+force = true
+
+[[redirects]]
+from = "/blog/engram-generally-available"
+to = "/blog"
+status = 301
+force = true
+
+[[redirects]]
+from = "/blog/engram-internal-use-case"
+to = "/blog"
+status = 301
+force = true
+
 [[redirects]]
 from = "/developers/weaviate/release-notes/older-releases/release_1_*"
 to = "https://weaviate.io/blog/weaviate-1-:splat-release"

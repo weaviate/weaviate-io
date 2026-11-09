@@ -1,5 +1,21 @@
 [
   {
+    "title": "Scaling Discovery with Shangyin Tan - Weaviate Podcast #149",
+    "description": "Shangyin Tan, a Ph.D. student at U.C. Berkeley joins the Weaviate Podcast to discuss Scaling Discovery Requires Forgetting. This paper explores why long-running AI optimizers stall and how to get them climbing again.",
+    "youtube": "Y21NgZvx3Rs",
+    "date": "26-11-02",
+    "cover_image": "/img/podcasts/podcast-149.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Machine Studying with Jacob X. Li - Weaviate Podcast #148",
+    "description": "Jacob X. Li , a Ph.D. student at MIT joins the Weaviate Podcast to explain Machine Studying, a new framing for how AI agents can prepare themselves for a domain defined only by a corpus of documents, whether that's a code base, a pile of drug discovery papers, or a system's logs.",
+    "youtube": "9iZIl0vZvvk",
+    "date": "26-10-29",
+    "cover_image": "/img/podcasts/podcast-148.jpg",
+    "is_use_case": false
+  },
+  {
     "title": "SkyDiscover with Alexander Krentsel, Shu Liu, Shubham Agarwal, and Mert Cemri - Weaviate Podcast #147",
     "description": "Shu Liu, Alexander Krentsel, Mert Cemri, and Shubham Agarwal, PhD students at U.C. Berkeley's Sky Computing Lab, join the Weaviate Podcast to discuss SkyDiscover and what it means for AI to build entire systems, not just code!",
     "youtube": "SzRX2rtgAic",
