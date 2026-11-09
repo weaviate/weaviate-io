@@ -94,12 +94,12 @@ export default function ChromaMigrationPage() {
           subtitle="to Weaviate"
           description="Start with one collection. Map your documents and embeddings, compare search results, then move your application traffic."
           primaryCta={{
-            label: "Get the planning prompt",
-            to: "#planning-prompt",
+            label: "Talk to our team",
+            to: "#contact-team",
           }}
           secondaryCta={{
-            label: "Chroma’s timeline",
-            to: "https://www.trychroma.com/cloud-wind-down",
+            label: "Get the agent prompt",
+            to: "#planning-prompt",
           }}
           media={<CollectionDiagram />}
         />
@@ -150,7 +150,7 @@ export default function ChromaMigrationPage() {
                 className="tw-mt-6 tw-inline-flex tw-min-h-[54px] tw-cursor-pointer tw-items-center tw-justify-center tw-rounded-md tw-bg-transparent tw-px-8 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-white tw-transition hover:tw--translate-y-0.5 hover:tw-bg-white/10 focus-visible:tw-outline-offset-4"
                 style={{ border: "0.5px solid #ECF4F8" }}
               >
-                Copy planning prompt
+                Copy agent prompt
               </button>
               <span className="tw-block tw-mt-2" role="status">
                 {status}
@@ -161,7 +161,9 @@ export default function ChromaMigrationPage() {
             </div>
           </div>
         </section>
-        <MigrationContactForm />
+        <section id="contact-team">
+          <MigrationContactForm />
+        </section>
       </main>
     </Layout>
   );
