@@ -56,6 +56,7 @@ function TrialForm() {
 }
 export default function EditionPage({ edition }) {
   const e = editions.find((x) => x.id === edition);
+  const showEnterpriseTrust = edition === "enterprise" || edition === "platform";
   const pageTitle = `${e.name} | Self-Managed Vector Database`;
   const socialTitle = `Weaviate ${pageTitle}`;
   const pageUrl = `https://weaviate.io/${edition}-edition`;
@@ -79,7 +80,7 @@ export default function EditionPage({ edition }) {
         className={`${styles.page} ${edition === "enterprise" ? styles.enterprise : ""}`}
       >
         <Hero
-          eyebrow={edition === "enterprise" ? "Self-managed" : undefined}
+          eyebrow="Self-managed"
           title="Weaviate"
           subtitle={e.name}
           description={e.description}
@@ -100,7 +101,7 @@ export default function EditionPage({ edition }) {
             )
           }
         />
-        {edition === "enterprise" && <TrustedBy />}
+        {showEnterpriseTrust && <TrustedBy />}
         <section className={styles.section}>
           <div className={styles.wrap}>
             {edition === "enterprise" && (
@@ -143,7 +144,7 @@ export default function EditionPage({ edition }) {
             </div>
           </div>
         </section>
-        {edition === "enterprise" && <EnterpriseUseCases />}
+        {showEnterpriseTrust && <EnterpriseUseCases />}
         <section className={styles.section}>
           <div className={styles.wrap}>
             <h2>Ready to get started?</h2>
