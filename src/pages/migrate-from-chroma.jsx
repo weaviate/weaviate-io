@@ -88,7 +88,7 @@ export default function ChromaMigrationPage() {
       description="Plan a trial migration, verify your search results, and switch your application to Weaviate."
     >
       <main>
-        <MetaSEO />
+        <MetaSEO img="og/website/home.jpg" />
         <Hero
           title="Migrate from Chroma Cloud"
           subtitle="to Weaviate"
