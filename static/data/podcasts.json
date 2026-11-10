@@ -1,5 +1,13 @@
 [
   {
+    "title": "ZeroEntropy with Ghita Houir Alami - Weaviate Podcast #150",
+    "description": "Ghita Houir Alami, Co-Founder of ZeroEntropy and now leading Model Research at Notion, joins the Weaviate Podcast to discuss training rerankers, calibrated relevance, and where search models fit in the age of agents.",
+    "youtube": "mQgYPtctNG8",
+    "date": "26-11-09",
+    "cover_image": "/img/podcasts/podcast-150.jpg",
+    "is_use_case": false
+  },
+  {
     "title": "Scaling Discovery with Shangyin Tan - Weaviate Podcast #149",
     "description": "Shangyin Tan, a Ph.D. student at U.C. Berkeley joins the Weaviate Podcast to discuss Scaling Discovery Requires Forgetting. This paper explores why long-running AI optimizers stall and how to get them climbing again.",
     "youtube": "Y21NgZvx3Rs",
