@@ -21,7 +21,7 @@
         {
           "label": "Best for",
           "values": {
-            "community": "Individual developers, tinkerers, and teams needing a platform for getting started, evaluation, and personal use.",
+            "community": "Developers and teams building on open source, from first prototype to production.",
             "enterprise": "For fast-growing startups and enterprises where uptime and low-latency vector search drive production revenue.",
             "platform": "For global enterprises running distributed, multi-tenant vector databases requiring custom governance and direct architectural collaboration."
           }
@@ -69,7 +69,7 @@
         {
           "label": "Horizontal and vertical scaling",
           "values": {
-            "community": false,
+            "community": true,
             "enterprise": true,
             "platform": true
           }
@@ -87,13 +87,13 @@
           "values": {
             "community": true,
             "enterprise": true,
-            "platform": "Platform-level"
+            "platform": true
           }
         },
         {
           "label": "HA / replication",
           "values": {
-            "community": false,
+            "community": true,
             "enterprise": true,
             "platform": true
           }
@@ -110,6 +110,14 @@
           "label": "Shard self-recovery",
           "values": {
             "community": false,
+            "enterprise": true,
+            "platform": true
+          }
+        },
+        {
+          "label": "Backups",
+          "values": {
+            "community": true,
             "enterprise": true,
             "platform": true
           }
@@ -150,8 +158,8 @@
           "label": "Support SLAs",
           "values": {
             "community": "Community support",
-            "enterprise": "24\u00d77 Coverage",
-            "platform": "24\u00d77 Coverage"
+            "enterprise": "Support SLA",
+            "platform": "Support SLA"
           }
         },
         {

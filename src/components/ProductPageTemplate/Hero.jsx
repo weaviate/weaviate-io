@@ -8,6 +8,7 @@ export default function Hero({
   description = "A fully managed memory and context service purpose-built to help agents remember, learn, and improve over time",
   primaryCta = { label: "Get started", to: "https://console.weaviate.io/signup" },
   secondaryCta = { label: "Documentation", to: "https://docs.weaviate.io/engram" },
+  belowCtaLink,
   media = (
     <img
       src="/img/site/2026/engram-diagram-hero.svg"
@@ -60,6 +61,16 @@ export default function Hero({
                 {secondaryCta.label}
               </Link>
             </div>
+            {belowCtaLink && (
+              <p className="tw-mb-0 tw-mt-6">
+                <Link
+                  to={belowCtaLink.to}
+                  className="tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-[#43E2C5] tw-underline hover:tw-text-white"
+                >
+                  {belowCtaLink.label}
+                </Link>
+              </p>
+            )}
           </div>
 
           <div className="tw-relative">

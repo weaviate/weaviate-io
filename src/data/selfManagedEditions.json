@@ -13,6 +13,8 @@
       "Specialized vector indexes",
       "Structured filtering and vector compression",
       "Multi-tenancy and role-based access control",
+      "Horizontal and vertical scaling",
+      "Replication and backups",
       "Community support"
     ],
     "cards": [
@@ -23,7 +25,9 @@
         [
           "Vector, hybrid, and keyword search",
           "Structured filtering and vector compression",
-          "Connect the models and tools you choose"
+          "Connect the models and tools you choose",
+          "Horizontal and vertical scaling",
+          "Replication and backups"
         ]
       ],
       [
@@ -92,8 +96,8 @@
     "features": [
       "Everything in Community Edition",
       "Self-hosted deployments with a license key",
-      "Replication and backups",
-      "Horizontal and vertical scaling",
+      "Shard self-recovery",
+      "Deduplicated backups",
       "Lifecycle management and operational features",
       "Enterprise support options"
     ],
@@ -153,7 +157,7 @@
       ],
       [
         "Activate Enterprise Edition",
-        "Restart with a license key and enable the features you want to evaluate.",
+        "Add your license key, enable the features you want to evaluate, then restart.",
         "Activation guide",
         "https://docs.weaviate.io/deploy/enterprise",
         "/img/site/2026/enterprise-step-02.svg"
@@ -172,7 +176,7 @@
     "name": "Platform Edition",
     "price": "Custom",
     "priceNote": "Contact sales",
-    "description": "Built for platform teams running Weaviate as a shared service, with central control of security, observability, and cost across the organization.",
+    "description": "Built for platform teams running Weaviate as a shared service, with isolated virtual clusters for each team.",
     "cta": "Contact sales",
     "href": "/contact",
     "features": [

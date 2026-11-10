@@ -11,7 +11,9 @@ export default function PricingHeader({ selectedType, onSelect }) {
           </h1>
 
           <p className={styles.subtitle}>
-            {selectedType === "self-managed" ? "Run Weaviate on your own infrastructure. Start free and explore the edition that fits your needs." : "All the power your AI needs, without the overhead."}
+            {selectedType === "self-managed"
+              ? "Run Weaviate on your own infrastructure. Start free and explore the edition that fits your needs. Prefer fully managed? Every Weaviate Cloud plan includes Enterprise Edition."
+              : "All the power your AI needs, without the overhead."}
           </p>
 
           <div className={styles.toggle} role="group" aria-label="Deployment pricing">
