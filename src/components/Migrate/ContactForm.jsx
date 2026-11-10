@@ -14,7 +14,7 @@ export default function MigrationContactForm() {
   return (
     <section id="contact-sales" className="tw-bg-[#111111] tw-py-16">
       <div className="container">
-        <div className="tw-rounded-2xl tw-bg-[#1b2025] tw-p-6 md:tw-p-8">
+        <div className="tw-rounded-2xl tw-border tw-border-white/10 tw-bg-[#1a1a1a] tw-p-6 md:tw-p-8">
           <h2 className="!tw-mb-4">Talk to our team about your migration.</h2>
           <p className="!tw-mb-8 tw-text-[#B9C8DE]">
             Tell us about your migration, and our team will help you plan your move to Weaviate.
