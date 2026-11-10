@@ -98,15 +98,17 @@ export default function ChromaMigrationPage() {
             to: "#contact-team",
           }}
           secondaryCta={{
-            label: "Get the agent prompt",
-            to: "#planning-prompt",
+            label: "Migration steps",
+            to: "#steps",
           }}
           media={<CollectionDiagram />}
         />
 
         <section className="tw-bg-[#111111] tw-py-12 tw-text-white">
           <div className="container">
-            <h2 className="!tw-mb-10">Migration steps</h2>
+            <h2 id="steps" className="!tw-mb-10">
+              Migration steps
+            </h2>
             <ol className="tw-m-0 tw-grid tw-list-none tw-gap-8 tw-p-0 md:tw-grid-cols-3">
               {steps.map(({ icon, title, body }) => (
                 <li key={icon}>
@@ -133,7 +135,8 @@ export default function ChromaMigrationPage() {
           </div>
         </section>
 
-        <section id="planning-prompt" className="container tw-py-12">
+        {/* prompt section 
+     <section id="planning-prompt" className="container tw-py-12">
           <div className="tw-grid tw-items-start tw-gap-8 lg:tw-grid-cols-[1fr_1.6fr]">
             <div>
               <Tile name="agent-prompt" className="tw-mb-4" />
@@ -160,7 +163,7 @@ export default function ChromaMigrationPage() {
               {prompt}
             </div>
           </div>
-        </section>
+        </section> */}
         <section id="contact-team">
           <MigrationContactForm />
         </section>
