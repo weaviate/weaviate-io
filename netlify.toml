@@ -1,3 +1,47 @@
+# Engram marketing retirement: preserve inbound links and direct users to sunset details.
+[[redirects]]
+from = "/product/engram"
+to = "https://docs.weaviate.io/engram"
+status = 301
+force = true
+
+[[redirects]]
+from = "/product/engram/"
+to = "https://docs.weaviate.io/engram"
+status = 301
+force = true
+
+# Engram blog redirects
+[[redirects]]
+from = "/blog/engram-deep-dive"
+to = "/blog"
+status = 301
+force = true
+
+[[redirects]]
+from = "/blog/engram-for-claude-code"
+to = "/blog"
+status = 301
+force = true
+
+[[redirects]]
+from = "/blog/engram-memory-practical-guide"
+to = "/blog"
+status = 301
+force = true
+
+[[redirects]]
+from = "/blog/engram-generally-available"
+to = "/blog"
+status = 301
+force = true
+
+[[redirects]]
+from = "/blog/engram-internal-use-case"
+to = "/blog"
+status = 301
+force = true
+
 [[redirects]]
 from = "/enterprise"
 to = "/enterprise-edition"

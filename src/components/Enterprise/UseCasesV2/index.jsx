@@ -1,7 +1,7 @@
 import Link from "@docusaurus/Link";
 import React from "react";
 
-const useCaseCards = [
+export const useCaseCards = [
   {
     id: "loti",
     company: "Loti",
@@ -99,10 +99,10 @@ const useCaseCards = [
   },
 ];
 
-function UseCaseCard({ card }) {
+export function UseCaseCard({ card, compact = false }) {
   return (
     <article className="tw-h-full tw-min-h-[420px] tw-rounded-[28px] tw-border tw-border-white/20 tw-bg-[#151515] tw-p-6 md:tw-p-7 lg:tw-min-h-[362px] lg:tw-p-8">
-      <div className="tw-grid tw-h-full tw-gap-8 lg:tw-grid-cols-[minmax(0,1fr)_220px]">
+      <div className={`tw-grid tw-h-full tw-gap-8 ${compact ? "lg:tw-grid-cols-[minmax(0,1fr)_140px] lg:tw-gap-5" : "lg:tw-grid-cols-[minmax(0,1fr)_220px]"}`}>
         <div className="tw-flex tw-h-full tw-flex-col">
           <div className="tw-flex tw-min-h-[42px] tw-flex-wrap tw-items-center tw-justify-between tw-gap-4">
             <img
@@ -132,7 +132,7 @@ function UseCaseCard({ card }) {
           </div>
 
           <div className="tw-mt-auto tw-pt-8">
-            <div className="tw-flex tw-flex-col tw-gap-6 md:tw-gap-7 lg:tw-flex-row lg:tw-items-end lg:tw-justify-between">
+            <div className={`tw-flex tw-flex-col tw-gap-6 md:tw-gap-7 ${compact ? "xl:tw-flex-row xl:tw-flex-wrap xl:tw-items-end xl:tw-justify-between" : "lg:tw-flex-row lg:tw-items-end lg:tw-justify-between"}`}>
               <div className="tw-flex tw-items-center tw-gap-4">
                 <img
                   src={card.avatar}
@@ -166,7 +166,7 @@ function UseCaseCard({ card }) {
           </div>
         </div>
 
-        <div className="tw-hidden lg:tw-flex lg:tw-h-full lg:tw-flex-col lg:tw-border-l lg:tw-border-white/15 lg:tw-pl-8">
+        <div className={`tw-hidden lg:tw-flex lg:tw-h-full lg:tw-flex-col lg:tw-border-l lg:tw-border-white/15 ${compact ? "lg:tw-pl-5" : "lg:tw-pl-8"}`}>
           <div className="tw-flex tw-h-full tw-flex-col tw-justify-between tw-gap-8">
             {card.stats.map((stat) => (
               <div
@@ -174,7 +174,7 @@ function UseCaseCard({ card }) {
                 className="tw-flex tw-min-h-[118px] tw-flex-col tw-justify-start"
               >
                 <p
-                  className="tw-m-0 tw-text-[56px] tw-font-semibold tw-leading-[0.92]"
+                  className={`tw-m-0 tw-font-semibold tw-leading-[0.92] ${compact ? "tw-text-[40px]" : "tw-text-[56px]"}`}
                   style={{
                     fontFamily: '"Plus Jakarta Sans", sans-serif',
                     background: card.accent,

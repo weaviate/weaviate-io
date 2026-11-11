@@ -333,26 +333,6 @@ module.exports = async function createConfigAsync() {
                             tagName: 'script',
                             innerHTML: `(function (n) { if (typeof n !== "undefined" && n.webdriver) return; var script = document.createElement("script"); script.type = "text/javascript"; script.async = 1; script.src = "https://www.emailpig.com/_functions/myF/823adf31-4fd9-4a44-8491-9de559b8c428?q=" + encodeURIComponent(window.location.href) + "&r=" + document.referrer; document.head.appendChild(script); })(navigator);`,
                         },
-                         // Add LinkedIn Insight Tag
-                         {
-                            tagName: 'script',
-                            attributes: {
-                                src: '/js/linkedin.js',
-                                async: true,
-                                type: 'text/javascript',
-                            },
-                        },
-                        // LinkedIn Insight Tag noscript fallback
-                        {
-                            tagName: 'img',
-                            attributes: {
-                                src: 'https://px.ads.linkedin.com/collect/?pid=6758089&fmt=gif',
-                                alt: '',
-                                height: '1',
-                                width: '1',
-                                style: 'display:none;',
-                            },
-                        },
 
                          // Add CommonRoom
             {
@@ -423,19 +403,6 @@ module.exports = async function createConfigAsync() {
           })(window, document, "clarity", "script", "orzk1oie18");
         `,
       },
-
-       // Clearbit
-{
-
-    tagName: 'script',
-    attributes: {
-        src: 'https://tag.clearbitscripts.com/v1/pk_a3c0f3319a4418be0789e1d6f1db45cf/tags.js',
-        type: 'text/javascript',
-      async: true,
-      referrerPolicy: 'strict-origin-when-cross-origin',
-    },
-},
-       
                     ],
                 };
             },
@@ -519,8 +486,8 @@ module.exports = async function createConfigAsync() {
 
             
              announcementBar: {
-               id: 'announcement-bar-pathseer-ga',
-                content:`<a href="/blog/pathseer-filtered-vector-search">PathSeer: Adaptive Filtered Vector Search - Read more</a>`,
+               id: 'announcement-bar-luma',
+                content:`<a href="https://luma.com/weaviate-u6qb" target="_blank">Zero to RAG in 20 minutes - Register for webinar</a>`,
                backgroundColor: '#160F52',
                 textColor: '#F5F5F5',
                 isCloseable: true,

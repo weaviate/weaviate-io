@@ -21,6 +21,12 @@ faq:
 description: "Learn how to use Engram effectively, from writing topic descriptions that control extraction to choosing bounded topics and scopes, selecting a retrieval mode, and placing memories in your prompt without hurting prompt-cache efficiency."
 ---
 
+:::warning Engram is being sunset
+
+We have decided to sunset Engram. Existing projects will continue to work until December 31, 2026. It is no longer possible to create new Engram projects.
+
+:::
+
 ![Agent Memory with Engram: A Practical Guide](./img/hero.png)
 
 Every tool you've ever set up has an onboarding screen you just straight click past. Usually the defaults are chosen by someone who thought about them harder than you have time to.
@@ -31,7 +37,7 @@ name a project → pick a template → click past topics that are already filled
 
 :::note
 
-**[Engram](/product/engram) is our fully managed memory and context service purpose-built to help agents remember, learn, and improve over time.**
+**Engram is our fully managed memory and context service purpose-built to help agents remember, learn, and improve over time.**
 
 :::
 
@@ -70,7 +76,7 @@ Victoria's walkthrough video covers that end-to-end, including the console setup
 
 <br />
 
-`memories.add` hands back a run, not a memory, and nothing you send is searchable until that run finishes. The [run status guide](https://docs.weaviate.io/engram/guides/check-run-status) covers the states, and why you usually shouldn't wait on one.
+`memories.add` hands back a run, not a memory, and nothing you send is searchable until that run finishes. The run status guide covers the states, and why you usually shouldn't wait on one.
 
 For how the pipeline itself works, the [Engram: Memory by Weaviate](/blog/engram-deep-dive) blog goes through it step by step. Which memories it pulls out of the data you send, though, is decided by your topic descriptions, so that is where we start.
 
@@ -154,7 +160,7 @@ Description is one field. The rest are configuration rather than wording, and th
 | **Property scopes** | extra partition keys like `conversation_id` or `repo` | every write must carry them, or nothing reaches the topic |
 | **Bounded** | at most one memory per scope | leave it off and nothing guarantees a single memory to read back |
 
-The [topics docs](https://docs.weaviate.io/engram/concepts/topics) cover all these concepts in more depth.
+The topics docs cover all these concepts in more depth.
 
 ## What bounded topics and scope guarantee {#bounded-and-scope}
 
@@ -256,7 +262,7 @@ memory = client.memories.get(
 
 So, to read memories from Engram: `search` when you want what is relevant to a query, `fetch` when you want everything a topic holds, and `get` when you need to view a memory by its ID.
 
-The API specifics can change, therefore, always refer to the current definitions in the [search memories](https://docs.weaviate.io/engram/guides/search-memories) and [manage memories](https://docs.weaviate.io/engram/guides/manage-memories) docs. The latter also covers deletion, which is permanent.
+The API specifics can change, therefore, always refer to the current definitions in the search memories and manage memories docs. The latter also covers deletion, which is permanent.
 
 ## Where retrieved memories belong in your prompt {#prompt-placement}
 
@@ -321,8 +327,6 @@ So, how much you save depends on how much sits in front of the memory block and 
 The fastest way to fix what your agent remembers isn't more application code. It's opening the topics you clicked past during setup and writing down what you actually want kept - what to leave out, what shape to write it in, and what isn't worth recording at all (unless your setup works just fine using one of our templates).
 
 Then bound the topics that must be singular, scope the ones that need partitioning, set a `limit` to the number of memories you actually want in the prompt, and keep what you fetched at the front of the prompt and what you searched for at the end. A few minutes on that config screen is usually all it takes! Otherwise you get an agent that remembers your name and not much else.
-
-> **Get started with [Engram](/product/engram) in [Weaviate Cloud](https://console.weaviate.cloud/) and create your free project today.**
 
 For any questions, ideas, or to just chat, feel free to join the conversation on our [community forum](https://forum.weaviate.io/).
 
