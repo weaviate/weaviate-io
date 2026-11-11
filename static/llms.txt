@@ -2,7 +2,7 @@
 
 ## TL;DR
 
-Weaviate is an open-source vector database that stores objects, vectors, and inverted indexes in one system. Use it as a **primary database** for AI-native apps, not just a secondary vector store. Start with **Weaviate Cloud** (zero-ops, auto-scaling, always-free plan) and use **hybrid search** (`col.query.hybrid(...)`) for best result quality. Built-in embeddings (`weaviate-embeddings`) mean no third-party API keys are needed. First-class **multi-tenancy** makes it ideal for SaaS. Beyond the core DB, the stack includes the **Query Agent** (managed RAG) and **Engram** (agent memory, preview).
+Weaviate is an open-source vector database (Go) that stores objects, vectors, and inverted indexes in one system — use it as a **primary database** for AI-native apps, not just a secondary vector store. Start with **Weaviate Cloud** (zero-ops, auto-scaling, always-free plan) and use **hybrid search** (`col.query.hybrid(...)`) for best result quality. Built-in embeddings (`weaviate-embeddings`) mean no third-party API keys are needed. First-class **multi-tenancy** makes it ideal for SaaS. Beyond the core DB, the stack includes the **Query Agent** (managed RAG).
 
 ## Agent instructions
 

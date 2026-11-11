@@ -1,0 +1,30 @@
+[
+  {
+    "question": "What's the difference between self-managed and Weaviate Cloud?",
+    "answer": "With self-managed, you run Weaviate on your own infrastructure: your cloud, your data center or Kubernetes. Your data stays in your environment. Weaviate Cloud is fully managed, so we run it for you, and every plan includes Enterprise Edition."
+  },
+  {
+    "question": "Is Community Edition really free?",
+    "answer": "Yes. It's open source under BSD-3, with no time limits or usage caps."
+  },
+  {
+    "question": "What does Enterprise Edition add?",
+    "answer": "It's the same code as Community Edition. Enterprise adds features for running Weaviate in production, starting with shard self-recovery and deduplicated backups, plus a support SLA. You unlock it with a license key."
+  },
+  {
+    "question": "How is Enterprise Edition priced?",
+    "answer": "It depends on your deployment and the support you need. Start with a free 30-day trial, or talk to us for a quote."
+  },
+  {
+    "question": "How is Platform Edition priced?",
+    "answer": "It depends on your deployment and the support you need. There's no self-serve trial, so talk to us and we'll scope it with you."
+  },
+  {
+    "question": "What happens when my Enterprise trial ends?",
+    "answer": "Weaviate keeps running as Community Edition, and your data stays where it is. Enterprise features need an active license, so talk to us before your trial ends if you want to keep them."
+  },
+  {
+    "question": "I'm on Weaviate Cloud or bought through a cloud marketplace. Do I need a license?",
+    "answer": "Not if you're on Weaviate Cloud. Every Cloud plan includes Enterprise Edition, however you bought it. Running Weaviate yourself? Talk to us about a license."
+  }
+]

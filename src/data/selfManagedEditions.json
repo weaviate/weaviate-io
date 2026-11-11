@@ -1,0 +1,258 @@
+[
+  {
+    "id": "community",
+    "name": "Community Edition",
+    "price": "Free",
+    "priceNote": "Free to self-host",
+    "description": "Build search, RAG, and agent applications on your own infrastructure with open-source Weaviate.",
+    "cta": "Get started",
+    "href": "https://docs.weaviate.io/deploy/installation-guides/docker-installation",
+    "features": [
+      "Open source",
+      "Vector, hybrid, and keyword search",
+      "Specialized vector indexes",
+      "Structured filtering and vector compression",
+      "Multi-tenancy and role-based access control",
+      "Horizontal and vertical scaling",
+      "Replication and backups",
+      "Community support"
+    ],
+    "cards": [
+      [
+        "The full search toolkit",
+        "Build search and AI applications with Weaviate's open-source database.",
+        "/img/site/2026/database-icon-01.svg",
+        [
+          "Vector, hybrid, and keyword search",
+          "Structured filtering and vector compression",
+          "Connect the models and tools you choose",
+          "Horizontal and vertical scaling",
+          "Replication and backups"
+        ]
+      ],
+      [
+        "Run it your way",
+        "Install Weaviate on your own infrastructure, from local development to production.",
+        "/img/site/2026/database-icon-02.svg",
+        [
+          "Open source and free to use",
+          "Run locally, in your cloud, or in your data center",
+          "Keep your data in your environment"
+        ]
+      ],
+      [
+        "Build with your data",
+        "Bring your own models or connect to integrations in the Weaviate ecosystem.",
+        "/img/site/2026/database-icon-03.svg",
+        [
+          "Build search, RAG, and agent applications",
+          "Choose the models and integrations that fit your needs",
+          "Start from a local development setup"
+        ]
+      ],
+      [
+        "A path to production",
+        "Start with Community Edition and grow into Enterprise Edition when you need more.",
+        "/img/site/2026/database-icon-04.svg",
+        [
+          "Use the same Weaviate foundation",
+          "Add enterprise operational features as your needs grow",
+          "Get additional support options with Enterprise Edition"
+        ]
+      ]
+    ],
+    "steps": [
+      [
+        "Install for free",
+        "Run Weaviate locally with Docker.",
+        "Installation guide",
+        "https://docs.weaviate.io/deploy/installation-guides/docker-installation",
+        "/img/site/2026/digital-ocean-step-01.svg"
+      ],
+      [
+        "Set up",
+        "Import your data and configure your collection.",
+        "Quickstart",
+        "https://docs.weaviate.io/weaviate/quickstart",
+        "/img/site/2026/digital-ocean-step-02.svg"
+      ],
+      [
+        "Start building",
+        "Build search and RAG applications on your infrastructure.",
+        "Documentation",
+        "https://docs.weaviate.io/weaviate",
+        "/img/site/2026/digital-ocean-step-03.svg"
+      ]
+    ]
+  },
+  {
+    "id": "enterprise",
+    "name": "Enterprise Edition",
+    "price": "Free 30-day trial",
+    "priceNote": "Try for free",
+    "description": "Run Weaviate on your own infrastructure with additional security, resilience, operational features, and enterprise support.",
+    "cta": "Request your 30-day trial key",
+    "href": "/enterprise-edition#trial-form",
+    "features": [
+      "Everything in Community Edition",
+      "Self-hosted deployments with a license key",
+      "Shard self-recovery",
+      "Deduplicated backups",
+      "Lifecycle management and operational features",
+      "Enterprise support options"
+    ],
+    "cards": [
+      [
+        "The full search toolkit",
+        "Self-hosted flexibility, managed-service reliability.",
+        "/img/site/2026/enterprise-search.svg",
+        [
+          "Vector, hybrid, and keyword search",
+          "RAG with built-in model integrations",
+          "Horizontal and vertical scaling with vector compression",
+          "Replication and high availability",
+          "RBAC and multi-tenancy"
+        ]
+      ],
+      [
+        "Built for production",
+        "Enterprise-only features that keep production running.",
+        "/img/site/2026/enterprise-build.svg",
+        [
+          "Shard self-recovery: lost shards are rebuilt automatically when a node fails",
+          "Deduplicated backups that are smaller and more cost-efficient",
+          "More Enterprise features with each release"
+        ]
+      ],
+      [
+        "Runs on your infrastructure",
+        "Your data, network, and security stay under your control.",
+        "/img/site/2026/enterprise-infrastructure.svg",
+        [
+          "Run in your cloud, data center, or Kubernetes environment",
+          "Your data stays in your environment",
+          "Enable Enterprise Edition with a license key, without reinstalling or migrating"
+        ]
+      ],
+      [
+        "Support from the team that builds Weaviate",
+        "A support SLA for production workloads, included with an Enterprise Edition subscription.",
+        "/img/site/2026/enterprise-support.svg",
+        [
+          "Incident response with an SLA",
+          "Architecture and scaling reviews",
+          "Upgrade planning for new releases",
+          "Proactive expert guidance",
+          "Dedicated account management"
+        ]
+      ]
+    ],
+    "steps": [
+      [
+        "Get a license",
+        "Request a free 30-day trial key for Enterprise Edition.",
+        "Request trial",
+        "#trial-form",
+        "/img/site/2026/enterprise-step-01.svg"
+      ],
+      [
+        "Activate Enterprise Edition",
+        "Add your license key, enable the features you want to evaluate, then restart.",
+        "Activation guide",
+        "https://docs.weaviate.io/deploy/enterprise",
+        "/img/site/2026/enterprise-step-02.svg"
+      ],
+      [
+        "Deploy",
+        "Configure your self-hosted deployment for your workload.",
+        "Deployment guides",
+        "https://docs.weaviate.io/deploy",
+        "/img/site/2026/enterprise-step-03.svg"
+      ]
+    ]
+  },
+  {
+    "id": "platform",
+    "name": "Platform Edition",
+    "price": "Custom",
+    "priceNote": "Contact sales",
+    "description": "Built for platform teams running Weaviate as a shared service, with isolated virtual clusters for each team.",
+    "cta": "Contact sales",
+    "href": "/contact",
+    "features": [
+      "Everything in Enterprise Edition",
+      "Platform-level multi-tenancy",
+      "Platform-specific security and observability",
+      "Shared service for many teams",
+      "Central management of clusters",
+      "Namespaces: isolated virtual clusters, one per team or end user",
+      "Expert solution architecture and engineering guidance"
+    ],
+    "cards": [
+      [
+        "A production foundation",
+        "Build a shared Weaviate service on Enterprise Edition's search and operations features.",
+        "/img/site/2026/database-icon-01.svg",
+        [
+          "Enterprise search and AI capabilities",
+          "Production operations and reliability",
+          "One service designed for multiple teams"
+        ]
+      ],
+      [
+        "Virtual clusters for every team",
+        "Give teams isolated environments while managing the platform centrally.",
+        "/img/site/2026/database-icon-06.svg",
+        [
+          "Separate virtual clusters for teams",
+          "Centrally managed access",
+          "A shared platform with team-level isolation",
+          "Namespaces: isolated virtual clusters, one per team or end user"
+        ]
+      ],
+      [
+        "Security and observability",
+        "Operate Weaviate across teams with platform-level controls and visibility.",
+        "/img/site/2026/infrastructure-icon.svg",
+        [
+          "Platform-level security controls",
+          "Visibility across virtual clusters",
+          "Central management of clusters"
+        ]
+      ],
+      [
+        "Expert support",
+        "Work with Weaviate to plan the deployment, support, and engineering guidance you need.",
+        "/img/site/2026/enterprise-support.svg",
+        [
+          "Solution architecture and deployment planning",
+          "Expert engineering guidance",
+          "Support options for your platform"
+        ]
+      ]
+    ],
+    "steps": [
+      [
+        "Let’s talk",
+        "Scope the deployment model, plan, and support for your workloads.",
+        "Contact sales",
+        "/contact",
+        "/img/site/2026/enterprise-step-01.svg"
+      ],
+      [
+        "Explore Enterprise Edition",
+        "Evaluate Weaviate on your infrastructure.",
+        "Try Enterprise",
+        "/enterprise-edition",
+        "/img/site/2026/enterprise-step-02.svg"
+      ],
+      [
+        "Start with Weaviate Cloud",
+        "Explore a fully managed alternative.",
+        "Try Cloud",
+        "/go/console",
+        "/img/site/2026/enterprise-cloud.svg"
+      ]
+    ]
+  }
+]

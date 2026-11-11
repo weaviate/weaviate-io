@@ -23,8 +23,7 @@ export default function EnterprisePage() {
         <MetaSEO />
         <Hero />
         <UseCaseCard />
-        <DeploymentOptions />
-        <AssuranceSection />
+
         <SecurityCompliance />
 
         <CTA />

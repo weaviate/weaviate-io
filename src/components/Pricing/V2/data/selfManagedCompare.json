@@ -1,0 +1,250 @@
+{
+  "title": "Compare Self-Managed Plans",
+  "columns": [
+    {
+      "key": "community",
+      "label": "Community Edition"
+    },
+    {
+      "key": "enterprise",
+      "label": "Enterprise Edition"
+    },
+    {
+      "key": "platform",
+      "label": "Platform Edition"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "",
+      "rows": [
+        {
+          "label": "Best for",
+          "values": {
+            "community": "Developers and teams building on open source, from first prototype to production.",
+            "enterprise": "For fast-growing startups and enterprises where uptime and low-latency vector search drive production revenue.",
+            "platform": "For global enterprises running distributed, multi-tenant vector databases requiring custom governance and direct architectural collaboration."
+          }
+        },
+        {
+          "label": "Pricing model",
+          "values": {
+            "community": "Free",
+            "enterprise": "Object-based",
+            "platform": "Custom"
+          }
+        },
+        {
+          "label": "Vector, hybrid, and keyword search",
+          "values": {
+            "community": true,
+            "enterprise": true,
+            "platform": true
+          }
+        },
+        {
+          "label": "Vector indexing (HNSW, HFresh)",
+          "values": {
+            "community": true,
+            "enterprise": true,
+            "platform": true
+          }
+        },
+        {
+          "label": "Structured filtering",
+          "values": {
+            "community": true,
+            "enterprise": true,
+            "platform": true
+          }
+        },
+        {
+          "label": "Vector compression",
+          "values": {
+            "community": true,
+            "enterprise": true,
+            "platform": true
+          }
+        },
+        {
+          "label": "Horizontal and vertical scaling",
+          "values": {
+            "community": true,
+            "enterprise": true,
+            "platform": true
+          }
+        },
+        {
+          "label": "RAG with built-in model integrations",
+          "values": {
+            "community": true,
+            "enterprise": true,
+            "platform": true
+          }
+        },
+        {
+          "label": "Multi-tenancy",
+          "values": {
+            "community": true,
+            "enterprise": true,
+            "platform": true
+          }
+        },
+        {
+          "label": "HA / replication",
+          "values": {
+            "community": true,
+            "enterprise": true,
+            "platform": true
+          }
+        },
+        {
+          "label": "Role-based access control (RBAC)",
+          "values": {
+            "community": true,
+            "enterprise": true,
+            "platform": true
+          }
+        },
+        {
+          "label": "Shard self-recovery",
+          "values": {
+            "community": false,
+            "enterprise": true,
+            "platform": true
+          }
+        },
+        {
+          "label": "Backups",
+          "values": {
+            "community": true,
+            "enterprise": true,
+            "platform": true
+          }
+        },
+        {
+          "label": "Deduplicated backups",
+          "values": {
+            "community": false,
+            "enterprise": true,
+            "platform": true
+          }
+        },
+        {
+          "label": "Namespaces",
+          "values": {
+            "community": false,
+            "enterprise": false,
+            "platform": true
+          }
+        },
+        {
+          "label": "Shared service operations",
+          "values": {
+            "community": false,
+            "enterprise": false,
+            "platform": true
+          }
+        },
+        {
+          "label": "Centralized fleet control",
+          "values": {
+            "community": false,
+            "enterprise": false,
+            "platform": true
+          }
+        },
+        {
+          "label": "Support SLAs",
+          "values": {
+            "community": "Community support",
+            "enterprise": "Support SLA",
+            "platform": "Support SLA"
+          }
+        },
+        {
+          "label": "Support response times",
+          "values": {
+            "community": false,
+            "enterprise": "P1: 1h, P2: 4h, P3: 1 business day",
+            "platform": "P1: 1h, P2: 4h, P3: 1 business day"
+          }
+        },
+        {
+          "label": "Dedicated Slack channel",
+          "values": {
+            "community": false,
+            "enterprise": true,
+            "platform": true
+          }
+        },
+        {
+          "label": "Bi-weekly Office Hours",
+          "values": {
+            "community": false,
+            "enterprise": true,
+            "platform": true
+          }
+        },
+        {
+          "label": "Dedicated account management",
+          "values": {
+            "community": false,
+            "enterprise": true,
+            "platform": true
+          }
+        },
+        {
+          "label": "Architecture and scaling reviews",
+          "values": {
+            "community": false,
+            "enterprise": true,
+            "platform": true
+          }
+        },
+        {
+          "label": "Upgrade planning for new releases",
+          "values": {
+            "community": false,
+            "enterprise": true,
+            "platform": true
+          }
+        },
+        {
+          "label": "Proactive expert guidance",
+          "values": {
+            "community": false,
+            "enterprise": true,
+            "platform": true
+          }
+        }
+      ]
+    }
+  ],
+  "boundaries": {
+    "title": "Enterprise License Plans Boundaries",
+    "description": "To maintain the predictability and high quality of the Enterprise License program, the following items are classified as Professional Services and are outside the scope of this subscription.",
+    "items": [
+      {
+        "title": "Integration work",
+        "description": "Building or maintaining ETL pipelines, Kafka connectors, or data ingestion layers."
+      },
+      {
+        "title": "Security & audits",
+        "description": "Active penetration testing or formal third-party security reviews."
+      },
+      {
+        "title": "Hands-on tuning",
+        "description": "Execution of performance tuning that requires Weaviate engineers to modify your environment."
+      },
+      {
+        "title": "Custom development",
+        "description": "Development of new features, custom modules, or bespoke code."
+      },
+      {
+        "title": "Migration execution",
+        "description": "The physical execution of data migrations or infrastructure moves."
+      }
+    ]
+  }
+}

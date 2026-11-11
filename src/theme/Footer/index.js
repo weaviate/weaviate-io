@@ -10,7 +10,6 @@ const footerGroups = {
     { label: 'Product Previews', to: '/product-previews' },
     { label: 'Shared Cloud', to: '/deployment/shared' },
     { label: 'Dedicated Cloud', to: '/deployment/dedicated' },
-    { label: 'Weaviate Assurance', to: '/product/assurance' },
     { label: 'DigitalOcean', to: '/product/digitalocean-managed-weaviate' },
     { label: 'Request Enterprise Edition', to: '/enterprise-edition' },
     { label: 'Pricing', to: '/pricing' },
