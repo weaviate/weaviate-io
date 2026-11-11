@@ -486,8 +486,8 @@ module.exports = async function createConfigAsync() {
 
             
              announcementBar: {
-               id: 'announcement-bar-pathseer-ga',
-                content:`<a href="/blog/pathseer-filtered-vector-search">PathSeer: Adaptive Filtered Vector Search - Read more</a>`,
+               id: 'announcement-bar-luma',
+                content:`<a href="https://luma.com/weaviate-u6qb" target="_blank">Zero to RAG in 20 minutes - Register for webinar</a>`,
                backgroundColor: '#160F52',
                 textColor: '#F5F5F5',
                 isCloseable: true,
