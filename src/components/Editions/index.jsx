@@ -104,7 +104,13 @@ export default function EditionPage({ edition }) {
               <TrialForm />
             ) : (
               <img
-                src="/img/site/2026/digital-ocean-diagram.svg"
+                src={
+                  edition === "platform"
+                    ? "/img/site/2026/platform-ed-diagram.svg"
+                    : edition === "community"
+                      ? "/img/site/2026/community-ed-diagram.svg"
+                      : "/img/site/2026/digital-ocean-diagram.svg"
+                }
                 alt="Weaviate database architecture and AI services"
                 className="tw-h-auto tw-w-full"
               />

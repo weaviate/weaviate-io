@@ -211,7 +211,7 @@
       [
         "Security and observability",
         "Operate Weaviate across teams with platform-level controls and visibility.",
-        "/img/site/2026/database-icon-08.svg",
+        "/img/site/2026/infrastructure-icon.svg",
         [
           "Platform-level security controls",
           "Visibility across virtual clusters",
