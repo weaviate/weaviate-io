@@ -283,6 +283,7 @@ export default function EditionPage({ edition }) {
           />
         )}
         {edition === "enterprise" && <EnterpriseCTA />}
+        {edition === "platform" && <EnterpriseCTA />}
       </main>
     </Layout>
   );

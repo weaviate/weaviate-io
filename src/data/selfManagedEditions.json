@@ -185,6 +185,7 @@
       "Platform-specific security and observability",
       "Shared service for many teams",
       "Central management of clusters",
+      "Namespaces: isolated virtual clusters, one per team or end user",
       "Expert solution architecture and engineering guidance"
     ],
     "cards": [
@@ -205,7 +206,8 @@
         [
           "Separate virtual clusters for teams",
           "Centrally managed access",
-          "A shared platform with team-level isolation"
+          "A shared platform with team-level isolation",
+          "Namespaces: isolated virtual clusters, one per team or end user"
         ]
       ],
       [
