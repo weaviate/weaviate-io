@@ -97,8 +97,12 @@ function TierCard({ plan }) {
         ))}
       </ul>
       {plan.detailsHref && (
-        <a className={`${styles.btn} ${styles.btnGhost} ${styles.detailsButton}`} href={plan.detailsHref}>
-          Explore {title}
+        <a
+          className={styles.detailsButton}
+          href={plan.detailsHref}
+          aria-label={`Learn more about ${title}`}
+        >
+          Learn more &gt;
         </a>
       )}
     </article>
