@@ -27,7 +27,7 @@ const editionPlans = editions.map((edition) => ({
 }));
 
 export function EditionCards() {
-  return <PricingTiers plans={editionPlans} />;
+  return <PricingTiers product="self-managed" plans={editionPlans} />;
 }
 
 function TrialForm() {

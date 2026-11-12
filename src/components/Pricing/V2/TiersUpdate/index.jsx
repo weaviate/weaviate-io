@@ -118,7 +118,7 @@ export default function PricingTiers({ product = "serverless", plans: editionPla
       : plans.filter((plan) => plan.variant !== "plus");
 
   return (
-    <section className={styles.section}>
+    <section className={[styles.section, product === "self-managed" && styles.selfManaged].filter(Boolean).join(" ")}>
       <div className={styles.tiers}>
         {(editionPlans ?? visiblePlans).map((plan) => (
           <TierCard key={plan.title} plan={plan} />
