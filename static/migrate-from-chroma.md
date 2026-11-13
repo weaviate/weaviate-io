@@ -34,14 +34,12 @@ Start by configuring your Chroma and Weaviate connections using the Chroma guide
 
 - [Read the Chroma guide](https://github.com/weaviate/to-weaviate/blob/main/docs/sources/chroma.md)
 - [View on GitHub](https://github.com/weaviate/to-weaviate)
-- [View release on PyPI](https://pypi.org/project/to-weaviate/0.1.0/)
+- [View on PyPI](https://pypi.org/project/to-weaviate/)
 
 ### Install the migration tool
 
-Requires Python 3.10 or newer.
-
 ```bash
-pip install to-weaviate==0.1.0
+pip install to-weaviate
 ```
 
 1. Inspect your Chroma collection and review the generated migration plan.

@@ -13,7 +13,7 @@ import MigrationContactForm from "/src/components/Migrate/ContactForm";
 
 const IMG = "/img/site/migrate-from-chroma";
 
-const installCommand = "pip install to-weaviate==0.1.0";
+const installCommand = "pip install to-weaviate";
 
 const steps = [
   {
@@ -185,12 +185,11 @@ export default function ChromaMigrationPage() {
               <div className="tw-mt-6 tw-flex tw-flex-col tw-items-start tw-gap-4">
                 <a href="https://github.com/weaviate/to-weaviate/blob/main/docs/sources/chroma.md" className="tw-text-[#43E2C5] tw-underline tw-underline-offset-4">Read the Chroma guide</a>
                 <a href="https://github.com/weaviate/to-weaviate" className="tw-text-[#43E2C5] tw-underline tw-underline-offset-4">View on GitHub</a>
-                <a href="https://pypi.org/project/to-weaviate/0.1.0/" className="tw-text-[#43E2C5] tw-underline tw-underline-offset-4">View release on PyPI</a>
+                <a href="https://pypi.org/project/to-weaviate/" className="tw-text-[#43E2C5] tw-underline tw-underline-offset-4">View on PyPI</a>
               </div>
             </div>
             <div className="tw-min-w-0 tw-rounded-2xl tw-border tw-border-white/10 tw-bg-[#1a1a1a] tw-p-6 md:tw-p-8">
               <h3 className="!tw-mb-4 tw-text-[#DDEBF2]">Install the migration tool</h3>
-              <p className="!tw-mb-6 tw-text-[#B9C8DE]">Requires Python 3.10 or newer.</p>
               <pre className="!tw-m-0 tw-overflow-x-auto tw-p-4"><code>{installCommand}</code></pre>
               <button type="button" onClick={copyInstallCommand} className="tw-mt-6 tw-inline-flex tw-min-h-[54px] tw-cursor-pointer tw-items-center tw-justify-center tw-rounded-md tw-bg-transparent tw-px-8 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-white hover:tw-bg-white/10" style={{ border: "0.5px solid #ECF4F8" }} aria-live="polite">{status === "Copied" ? "Copied" : "Copy install command"}</button>
               {status && status !== "Copied" && (
