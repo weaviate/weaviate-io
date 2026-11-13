@@ -13,11 +13,7 @@ import MigrationContactForm from "/src/components/Migrate/ContactForm";
 
 const IMG = "/img/site/migrate-from-chroma";
 
-const prompt = `Inspect this repository and draft a read-only migration plan from Chroma Cloud to Weaviate. Find the code that writes documents, generates embeddings, and runs searches. Cite the files and list any settings I need to confirm.
-
-Choose one collection for a trial. Map its IDs, documents, metadata, and vectors to Weaviate. Explain how to preserve source IDs and check the embedding model, dimensions, and distance metric.
-
-Choose a filtered query from the app. Describe how to compare record counts, returned IDs, and ranking before switching traffic. Include a checklist for redirecting writes, reconciling changes, switching reads, and recovering if validation fails. Leave code and data untouched.`;
+const installCommand = "pip install to-weaviate==0.1.0";
 
 const steps = [
   {
@@ -126,12 +122,12 @@ function CollectionDiagram() {
 export default function ChromaMigrationPage() {
   const [status, setStatus] = useState("");
   const [expandedQuestion, setExpandedQuestion] = useState(null);
-  async function copyPrompt() {
+  async function copyInstallCommand() {
     try {
-      await navigator.clipboard.writeText(prompt);
-      setStatus("Prompt copied.");
+      await navigator.clipboard.writeText(installCommand);
+      setStatus("Copied");
     } catch {
-      setStatus("Select the prompt text and copy it manually.");
+      setStatus("Select the install command and copy it manually.");
     }
   }
   return (
@@ -146,12 +142,12 @@ export default function ChromaMigrationPage() {
           subtitle="to Weaviate"
           description="Start with one collection. Map your documents and embeddings, compare search results, then move your application traffic."
           primaryCta={{
-            label: "Talk to our team",
-            to: "#contact-team",
+            label: "Start your migration",
+            to: "#migration-tool",
           }}
           secondaryCta={{
-            label: "Start free on Weaviate Cloud",
-            to: "https://console.weaviate.cloud/",
+            label: "Talk to our team",
+            to: "#contact-team",
           }}
           media={<CollectionDiagram />}
         />
@@ -177,6 +173,67 @@ export default function ChromaMigrationPage() {
                 </li>
               ))}
             </ol>
+          </div>
+        </section>
+
+        <section id="migration-tool" className="tw-bg-[#111111] tw-py-12" aria-labelledby="migration-tool-heading">
+          <div className="container tw-grid tw-items-start tw-gap-8 lg:tw-grid-cols-2">
+            <div>
+              <h2 id="migration-tool-heading" className="!tw-mb-6 tw-text-[#DDEBF2]">Migrate with to-weaviate</h2>
+              <p className="tw-text-[#B9C8DE]">Use the migration tool maintained by the Weaviate team to move your Chroma collections, including vectors, text, and metadata. Review a migration plan, resume interrupted copies, and verify the results against your source.</p>
+              <p className="tw-text-[#B9C8DE]">Start by configuring your Chroma and Weaviate connections using the Chroma guide. Follow its instructions for pausing source writes during the migration.</p>
+              <div className="tw-mt-6 tw-flex tw-flex-col tw-items-start tw-gap-4">
+                <a href="https://github.com/weaviate/to-weaviate/blob/main/docs/sources/chroma.md" className="tw-text-[#43E2C5] tw-underline tw-underline-offset-4">Read the Chroma guide</a>
+                <a href="https://github.com/weaviate/to-weaviate" className="tw-text-[#43E2C5] tw-underline tw-underline-offset-4">View on GitHub</a>
+                <a href="https://pypi.org/project/to-weaviate/0.1.0/" className="tw-text-[#43E2C5] tw-underline tw-underline-offset-4">View release on PyPI</a>
+              </div>
+            </div>
+            <div className="tw-min-w-0 tw-rounded-2xl tw-border tw-border-white/10 tw-bg-[#1a1a1a] tw-p-6 md:tw-p-8">
+              <h3 className="!tw-mb-4 tw-text-[#DDEBF2]">Install the migration tool</h3>
+              <p className="!tw-mb-6 tw-text-[#B9C8DE]">Requires Python 3.10 or newer.</p>
+              <pre className="!tw-m-0 tw-overflow-x-auto tw-p-4"><code>{installCommand}</code></pre>
+              <button type="button" onClick={copyInstallCommand} className="tw-mt-6 tw-inline-flex tw-min-h-[54px] tw-cursor-pointer tw-items-center tw-justify-center tw-rounded-md tw-bg-transparent tw-px-8 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-white hover:tw-bg-white/10" style={{ border: "0.5px solid #ECF4F8" }} aria-live="polite">{status === "Copied" ? "Copied" : "Copy install command"}</button>
+              {status && status !== "Copied" && (
+                <span className="tw-mt-2 tw-block tw-text-[#B9C8DE]" role="alert">{status}</span>
+              )}
+              <ol className="tw-mb-0 tw-mt-6 tw-space-y-3 tw-pl-5 tw-text-[#B9C8DE]">
+                <li>Inspect your Chroma collection and review the generated migration plan.</li>
+                <li>Check the plan, then copy your records to Weaviate.</li>
+                <li>Pause source writes, sync changes, and verify the copy before switching your application.</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <section className="tw-bg-[#111111] tw-py-12 tw-text-white">
+          <div className="container">
+            <div>
+              <h2 className="!tw-mb-10">Chroma Cloud deadlines</h2>
+              <p className="!tw-mb-8 tw-text-[#B9C8DE]">
+                See{" "}
+                <a
+                  href="https://www.trychroma.com/cloud-wind-down"
+                  className="tw-text-[#43E2C5] tw-underline tw-underline-offset-4"
+                >
+                  Chroma's wind-down notice
+                </a>{" "}
+                for the official dates.
+              </p>
+              <div className="tw-grid tw-gap-4 md:tw-grid-cols-2">
+                {deadlines.map(({ icon, title, body }) => (
+                  <div
+                    key={icon}
+                    className="tw-flex tw-items-start tw-gap-4 tw-rounded-2xl tw-border tw-border-white/10 tw-bg-[#1a1a1a] tw-p-6"
+                  >
+                    <Tile name={icon} className="tw-shrink-0" />
+                    <div>
+                      <h3 className="!tw-mb-5">{title}</h3>
+                      <p className="tw-m-0 tw-text-[#B9C8DE]">{body}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
@@ -226,67 +283,6 @@ export default function ChromaMigrationPage() {
           </div>
         </section>
 
-        <section className="tw-bg-[#111111] tw-py-12 tw-text-white">
-          <div className="container">
-            <div>
-              <h2 className="!tw-mb-10">Chroma Cloud deadlines</h2>
-              <p className="!tw-mb-8 tw-text-[#B9C8DE]">
-                See{" "}
-                <a
-                  href="https://www.trychroma.com/cloud-wind-down"
-                  className="tw-text-[#43E2C5] tw-underline tw-underline-offset-4"
-                >
-                  Chroma's wind-down notice
-                </a>{" "}
-                for the official dates.
-              </p>
-              <div className="tw-grid tw-gap-4 md:tw-grid-cols-2">
-                {deadlines.map(({ icon, title, body }) => (
-                  <div
-                    key={icon}
-                    className="tw-flex tw-items-start tw-gap-4 tw-rounded-2xl tw-border tw-border-white/10 tw-bg-[#1a1a1a] tw-p-6"
-                  >
-                    <Tile name={icon} className="tw-shrink-0" />
-                    <div>
-                      <h3 className="!tw-mb-5">{title}</h3>
-                      <p className="tw-m-0 tw-text-[#B9C8DE]">{body}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* prompt section 
-     <section id="planning-prompt" className="container tw-py-12">
-          <div className="tw-grid tw-items-start tw-gap-8 lg:tw-grid-cols-[1fr_1.6fr]">
-            <div>
-              <Tile name="agent-prompt" className="tw-mb-4" />
-              <h2 className="!tw-mb-6">
-                Plan your migration with a coding agent
-              </h2>
-              <p>
-                Open your application repository and give your agent this prompt
-                to get a migration checklist with file references.
-              </p>
-              <button
-                type="button"
-                onClick={copyPrompt}
-                className="tw-mt-6 tw-inline-flex tw-min-h-[54px] tw-cursor-pointer tw-items-center tw-justify-center tw-rounded-md tw-bg-transparent tw-px-8 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-white tw-transition hover:tw--translate-y-0.5 hover:tw-bg-white/10 focus-visible:tw-outline-offset-4"
-                style={{ border: "0.5px solid #ECF4F8" }}
-              >
-                Copy agent prompt
-              </button>
-              <span className="tw-block tw-mt-2" role="status">
-                {status}
-              </span>
-            </div>
-            <div className="tw-whitespace-pre-line tw-rounded-2xl tw-bg-[#1b2025] tw-p-6 tw-leading-relaxed tw-text-[#DDEBF2] md:tw-p-8">
-              {prompt}
-            </div>
-          </div>
-        </section> */}
         <section
           className="tw-bg-[#111111] tw-py-12"
           aria-labelledby="migration-faq"
@@ -332,6 +328,7 @@ export default function ChromaMigrationPage() {
             </div>
           </div>
         </section>
+
         <section id="contact-team">
           <MigrationContactForm />
         </section>
