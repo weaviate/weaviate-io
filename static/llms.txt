@@ -711,6 +711,8 @@ Aggregations: https://docs.weaviate.io/weaviate/search/aggregate
 
 ## Further Resources
 
+* [Migrate from Chroma Cloud to Weaviate](https://weaviate.io/migrate-from-chroma.md) (migration steps, to-weaviate installation, verification, and migration support)
+
 * [Quickstart tutorial](https://docs.weaviate.io/weaviate/quickstart) (guided walkthrough, 5 languages)
 * [Data model concepts](https://docs.weaviate.io/weaviate/concepts/data) (collections, objects, vectors, properties)
 * [Hybrid search reference](https://docs.weaviate.io/weaviate/search/hybrid) (alpha tuning, fusion algorithms)
@@ -742,6 +744,7 @@ This repository now includes lightweight, machine-friendly LLM twin pages for se
 - https://weaviate.io/deployment/shared.md
 - https://weaviate.io/deployment/dedicated.md
 - https://weaviate.io/enterprise-edition.md
+- https://weaviate.io/migrate-from-chroma.md
 - https://weaviate.io/learn/what-is-an-ai-database.md
 - https://weaviate.io/cost-performance-optimization.md
 - https://weaviate.io/partners.md

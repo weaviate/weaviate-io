@@ -17,7 +17,7 @@ export default function MigrationContactForm() {
         <div className="tw-rounded-2xl tw-border tw-border-white/10 tw-bg-[#1a1a1a] tw-p-6 md:tw-p-8">
           <h2 className="!tw-mb-4">Talk to our team about your migration.</h2>
           <p className="!tw-mb-8 tw-text-[#B9C8DE]">
-            Tell us about your migration, and our team will help you plan your move to Weaviate.
+            Planning a larger migration? Talk to our team about your workloads, requirements, and timeline.
           </p>
           <div
             className="hs-form-frame tw-w-full"

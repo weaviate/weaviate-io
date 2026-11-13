@@ -56,6 +56,7 @@ const MARKDOWN_TWINS = {
   '/cost-performance-optimization': '/cost-performance-optimization.md',
 
   // Build
+  '/migrate-from-chroma': '/migrate-from-chroma.md',
   '/javascript': '/javascript.md',
   '/learn/what-is-an-ai-database': '/learn/what-is-an-ai-database.md',
 
