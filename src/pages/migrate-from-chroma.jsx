@@ -176,29 +176,93 @@ export default function ChromaMigrationPage() {
           </div>
         </section>
 
-        <section id="migration-tool" className="tw-bg-[#111111] tw-py-12" aria-labelledby="migration-tool-heading">
+        <section
+          id="migration-tool"
+          className="tw-bg-[#111111] tw-py-12"
+          aria-labelledby="migration-tool-heading"
+        >
           <div className="container tw-grid tw-items-start tw-gap-8 lg:tw-grid-cols-2">
             <div>
-              <h2 id="migration-tool-heading" className="!tw-mb-6 tw-text-[#DDEBF2]">Migrate with to-weaviate</h2>
-              <p className="tw-text-[#B9C8DE]">Use the migration tool maintained by the Weaviate team to move your Chroma collections, including vectors, text, and metadata. Review a migration plan, resume interrupted copies, and verify the results against your source.</p>
-              <p className="tw-text-[#B9C8DE]">Start by configuring your Chroma and Weaviate connections using the Chroma guide. Follow its instructions for pausing source writes during the migration.</p>
+              <h2
+                id="migration-tool-heading"
+                className="!tw-mb-6 tw-text-[#DDEBF2]"
+              >
+                Migrate with to-weaviate
+              </h2>
+              <p className="tw-text-[#B9C8DE]">
+                Use the migration tool maintained by the Weaviate team to move
+                your Chroma collections, including vectors, text, and metadata.
+                Review a migration plan, resume interrupted copies, and verify
+                the results against your source.
+              </p>
+              <p className="tw-text-[#B9C8DE]">
+                Start by configuring your Chroma and Weaviate connections using
+                the Chroma guide. Follow its instructions for pausing source
+                writes during the migration.
+              </p>
               <div className="tw-mt-6 tw-flex tw-flex-col tw-items-start tw-gap-4">
-                <a href="https://github.com/weaviate/to-weaviate/blob/main/docs/sources/chroma.md" className="tw-text-[#43E2C5] tw-underline tw-underline-offset-4">Read the Chroma guide</a>
-                <a href="https://github.com/weaviate/to-weaviate" className="tw-text-[#43E2C5] tw-underline tw-underline-offset-4">View on GitHub</a>
-                <a href="https://pypi.org/project/to-weaviate/" className="tw-text-[#43E2C5] tw-underline tw-underline-offset-4">View on PyPI</a>
+                <a
+                  href="https://github.com/weaviate/to-weaviate/blob/main/docs/sources/chroma.md"
+                  className="tw-text-[#43E2C5] tw-underline tw-underline-offset-4"
+                >
+                  Read the Chroma guide
+                </a>
+                <a
+                  href="https://github.com/weaviate/to-weaviate"
+                  className="tw-text-[#43E2C5] tw-underline tw-underline-offset-4"
+                >
+                  View on GitHub
+                </a>
+                <a
+                  href="https://pypi.org/project/to-weaviate/"
+                  className="tw-text-[#43E2C5] tw-underline tw-underline-offset-4"
+                >
+                  View on PyPI
+                </a>
               </div>
             </div>
             <div className="tw-min-w-0 tw-rounded-2xl tw-border tw-border-white/10 tw-bg-[#1a1a1a] tw-p-6 md:tw-p-8">
-              <h3 className="!tw-mb-4 tw-text-[#DDEBF2]">Install the migration tool</h3>
-              <pre className="!tw-m-0 tw-overflow-x-auto tw-p-4"><code>{installCommand}</code></pre>
-              <button type="button" onClick={copyInstallCommand} className="tw-mt-6 tw-inline-flex tw-min-h-[54px] tw-cursor-pointer tw-items-center tw-justify-center tw-rounded-md tw-bg-transparent tw-px-8 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-white hover:tw-bg-white/10" style={{ border: "0.5px solid #ECF4F8" }} aria-live="polite">{status === "Copied" ? "Copied" : "Copy install command"}</button>
+              <h3 className="!tw-mb-4 tw-text-[#DDEBF2]">
+                Install the migration tool
+              </h3>
+              <pre
+                className="!tw-m-0 tw-overflow-x-auto !tw-rounded-lg !tw-border-0 !tw-bg-[#262626] tw-p-4"
+                style={{
+                  "--ifm-pre-background": "#262626",
+                  "--ifm-pre-color": "#DDEBF2",
+                }}
+              >
+                <code className="!tw-border-0 !tw-bg-transparent !tw-p-0 tw-font-mono tw-text-[#DDEBF2]">
+                  {installCommand}
+                </code>
+              </pre>
+              <button
+                type="button"
+                onClick={copyInstallCommand}
+                className="tw-mt-6 tw-inline-flex tw-min-h-[54px] tw-cursor-pointer tw-items-center tw-justify-center tw-rounded-md tw-bg-transparent tw-px-8 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-white hover:tw-bg-white/10"
+                style={{ border: "0.5px solid #ECF4F8" }}
+                aria-live="polite"
+              >
+                {status === "Copied" ? "Copied" : "Copy install command"}
+              </button>
               {status && status !== "Copied" && (
-                <span className="tw-mt-2 tw-block tw-text-[#B9C8DE]" role="alert">{status}</span>
+                <span
+                  className="tw-mt-2 tw-block tw-text-[#B9C8DE]"
+                  role="alert"
+                >
+                  {status}
+                </span>
               )}
               <ol className="tw-mb-0 tw-mt-6 tw-space-y-3 tw-pl-5 tw-text-[#B9C8DE]">
-                <li>Inspect your Chroma collection and review the generated migration plan.</li>
+                <li>
+                  Inspect your Chroma collection and review the generated
+                  migration plan.
+                </li>
                 <li>Check the plan, then copy your records to Weaviate.</li>
-                <li>Pause source writes, sync changes, and verify the copy before switching your application.</li>
+                <li>
+                  Pause source writes, sync changes, and verify the copy before
+                  switching your application.
+                </li>
               </ol>
             </div>
           </div>
