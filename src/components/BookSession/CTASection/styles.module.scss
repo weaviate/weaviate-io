@@ -16,7 +16,13 @@
   padding: clamp(2rem, 5vw, 4rem);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 1.875rem;
-  background: radial-gradient(circle at top left, rgba(0, 254, 107, 0.14), transparent 55%), #1a1a1a;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(0, 254, 107, 0.14),
+      transparent 55%
+    ),
+    #1a1a1a;
 
   @media (max-width: 800px) {
     grid-template-columns: 1fr;
@@ -26,7 +32,7 @@
 .left h3 {
   margin: 0 0 1rem;
   color: #ddebf2;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   line-height: 1.2;
 }
@@ -45,6 +51,7 @@
   background: linear-gradient(48deg, #00fe6b 13.81%, #00b7e2 92.18%);
   color: #111;
   font-weight: 600;
+  margin-top: 1rem;
 
   &:hover {
     color: #111;
