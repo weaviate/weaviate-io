@@ -85,19 +85,11 @@ export default function SessionsGrid() {
 
               <div className={styles.footerBlock}>
                 <div className={styles.roles}>
-                  {s.roles.map((r) => {
-                    const key = r.toLowerCase().replace(/\s+/g, '-');
-                    return (
-                      <span
-                        key={r}
-                        className={`${styles.roleBadge} ${
-                          styles[`roleBadge--${key}`]
-                        }`}
-                      >
-                        {r}
-                      </span>
-                    );
-                  })}
+                  {s.roles.map((r) => (
+                    <span key={r} className={styles.roleBadge}>
+                      {r}
+                    </span>
+                  ))}
                 </div>
 
                 <div className={styles.time}>

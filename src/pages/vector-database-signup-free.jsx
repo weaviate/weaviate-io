@@ -1,7 +1,4 @@
-import React, { useState } from 'react';
-import Layout from '@theme/Layout';
-import Link from '@docusaurus/Link';
-import { MetaSEO } from '/src/theme/MetaSEO';
+import React from 'react';
 import Head from '@docusaurus/Head';
 
 import Introduction from '/src/components/Signup/Introduction/introduction';
