@@ -1,31 +1,31 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
-import TrustedBy from '/src/components/HomeNext/sections/TrustedBy';
-import styles from './styles.module.scss';
+import Link from "@docusaurus/Link";
+import React from "react";
+import TrustedBy from "/src/components/HomeNext/sections/TrustedBy";
+import styles from "./styles.module.scss";
 
 const benefits = [
   {
-    icon: '/img/site/2026/build.svg',
-    title: 'Take search to new heights',
+    icon: "/img/site/2026/build.svg",
+    title: "Take search to new heights",
     description:
-      'Use built-in vector and keyword search for contextual, precise results across any type of data—at scale.',
+      "Use built-in vector and keyword search for contextual, precise results across any type of data—at scale.",
   },
   {
-    icon: '/img/site/2026/extract.svg',
-    title: 'Accelerate RAG and Gen AI projects',
+    icon: "/img/site/2026/extract.svg",
+    title: "Accelerate RAG and Gen AI projects",
     description:
-      'Easily create vector embeddings and connect to ML models and frameworks of choice as your AI stack evolves.',
+      "Create embeddings with Weaviate Embeddings, or connect the models and frameworks you already use.",
   },
   {
-    icon: '/img/site/2026/secure.svg',
-    title: 'Deploy quickly, securely, and confidently',
+    icon: "/img/site/2026/secure.svg",
+    title: "Deploy quickly, securely, and confidently",
     description:
-      'Run in our Serverless Cloud environment, or in a dedicated tenant with our Enterprise Cloud offering.',
+      "Run on Shared Cloud, or on Dedicated Cloud for your own dedicated infrastructure.",
   },
 ];
 
 export default function Introduction({
-  heading = 'Fully managed, AI-native vector database',
+  heading = "Fully managed, AI-native vector database",
 }) {
   return (
     <main className={styles.page}>
