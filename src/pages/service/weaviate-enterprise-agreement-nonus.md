@@ -10,7 +10,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 ### **COMMERCIAL TERMS OF SERVICE**
 
-**Last Updated: May 2026**
+**Last Updated: October 2026**
 
 ---
 
