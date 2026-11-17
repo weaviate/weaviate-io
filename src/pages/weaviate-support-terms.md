@@ -19,7 +19,7 @@ Weaviate shall provide the following Support to Customer for the licensed produc
 - [Dedicated Cloud](/deployment/dedicated)
 - [Embeddings](/product/embeddings)
 - [Query Agent](/product/query-agent)
-- [Engram](/product/engram)
+
 
 <br></br>
 
