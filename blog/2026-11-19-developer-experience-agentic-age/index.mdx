@@ -1,0 +1,83 @@
+---
+title: "Improving Developer Experience in the Age of Agents"
+slug: developer-experience-agentic-age
+authors: [jp]
+date: 2026-11-19
+tags: ["agents", "engineering"]
+image: ./img/hero.png
+description: "Coding agents are changing how developers work, but not why developer experience matters. Here's how we measure and improve the experience for both."
+---
+
+import ThemedImage from '@theme/ThemedImage';
+import FetchToolsLight from './img/fetch-tools-light.png';
+import FetchToolsDark from './img/fetch-tools-dark.png';
+import DeveloperAgentLoopLight from './img/developer-agent-loop-light.png';
+import DeveloperAgentLoopDark from './img/developer-agent-loop-dark.png';
+
+![Developer experience for the agentic age](./img/hero.png)
+
+In the age of coding agents, developers are asking a big question: if agents write the code, what is left for us to do? And if developers are writing less code themselves, does developer experience (DX) still matter?
+
+I believe some of what we consider good DX will change, but its guiding principles will not. A recent effort to improve our documentation shows why. We found that some agents were not receiving complete documentation pages: a page could be truncated, a code example could show only its default language, or an agent could see only one section.
+
+That missing context can send an agent searching elsewhere or lead it to write outdated code. These issues had gone unnoticed because they affected a class of readers that rarely tells us when something is wrong: coding agents.
+
+## The same page can look different to every agent
+
+Agents do not read web pages in the same way as people using a browser. Fetch tools in different coding environments can return different parts of a page, and often do not tell the site when content is missing.
+
+To understand what was happening, we gave several agents the same tasks and compared their answers and the paths they took. Then we changed how pages were presented and ran the tasks again. This let us measure whether a specific change helped agents get the context they needed.
+
+For example, before our changes, one fetch tool returned the correct language examples in only 7 of 15 TypeScript runs and 3 of 15 Go runs. After the changes, it returned the right snippets in every run we checked.
+
+<ThemedImage
+  alt="Three coding-agent fetch tools return different amounts and sections of the same Weaviate documentation page"
+  sources={{
+    light: FetchToolsLight,
+    dark: FetchToolsDark,
+  }}
+/>
+
+We also found an outdated sentence on a concepts page that led agents to use an older client library, even though that page was not where the code examples lived. After we corrected it, every answer we checked used the current client.
+
+When useful content is missing, agents may try to work around it by finding raw source files or downloading a page and writing a parser. In one example, an agent took 23 turns to reach a solution when the needed code was hidden; with the Markdown version of the page, it took 6. We also shipped Markdown versions of our documentation pages, reducing token use on page loads by around 20%.
+
+These tests helped us catch regressions, too. A change that fixed hidden code tabs caused one fetch tool to return a section of the Quickstart while dropping the rest. Re-running the tests exposed the problem, and a small layout change fixed it.
+
+## DX and agent experience work together
+
+These are examples of agent experience (AX): making sure agents can use our docs, tools, and APIs effectively. As more work is delegated to agents, their experience matters alongside the experience of developers using those same resources directly.
+
+The goal of DX has never been simply to make writing code faster. It is to reduce friction between a developer and the value they are trying to create. Code is one part of that. Developers still need to understand the problem, give agents good instructions, set up the right environment, and verify the result.
+
+That means a good experience needs to serve both the developer and the agent working between the developer and the product:
+
+<ThemedImage
+  alt="A developer instructs and verifies a coding agent, which reads and interacts with Weaviate documentation, tools, clients, and APIs"
+  sources={{
+    light: DeveloperAgentLoopLight,
+    dark: DeveloperAgentLoopDark,
+  }}
+/>
+
+For developers, that means helping them make sound architectural decisions, communicate their intent to agents, and verify outcomes. For agents, it means making information complete and discoverable, providing agent-appropriate tools, reducing ambiguity, and making correctness observable.
+
+Those goals align with Don Norman's ideas of the "gulf of execution" and "gulf of evaluation": people need to understand how to act and whether their actions worked. Agents change the interfaces and mechanisms involved, but those underlying needs remain.
+
+## Turning the principles into practice
+
+We are applying these ideas to the tools and workflows developers use with Weaviate. For example, when asked to update a Go service that uses the v5 client after GraphQL is disabled, some agents tried to call the server's gRPC API directly instead of looking for the newer [Go v6 client](https://docs.weaviate.io/weaviate/client-libraries/go). We are exploring ways to guide them toward the supported client with as little extra effort from the developer as possible.
+
+We are also measuring how well agents can build Weaviate applications from scratch and adapt them to a developer's needs. That includes using current capabilities such as the [HFresh index](https://docs.weaviate.io/weaviate/concepts/vector-index#hfresh-index), [Rotational Quantization](https://docs.weaviate.io/weaviate/concepts/vector-quantization#rotational-quantization), and [PathSeer filtering](https://docs.weaviate.io/weaviate/concepts/filtering#pathseer), as well as applying the best practices we have learned.
+
+Other work includes exploring what an agent-oriented Quickstart could look like, and how agents could help with cluster maintenance and troubleshooting.
+
+## The principle stays the same
+
+The core practice is familiar: find where people get stuck, improve the experience, and verify that the improvement worked. What has changed is the set of users and tools we need to measure. Developers now work through coding agents as well as IDEs and browsers, and agents rarely tell us when they could not find or understand something.
+
+That makes measurement more important, not less. By testing how agents use our docs and tools before and after changes, we can reduce friction for both the developer and the agent—and help developers get more value from their work.
+
+import WhatsNext from '/_includes/what-next.mdx';
+
+<WhatsNext />
