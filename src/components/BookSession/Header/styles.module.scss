@@ -21,7 +21,7 @@
   h1 {
     margin: 0 0 1.5rem;
     color: #ddebf2;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
     font-size: clamp(2.25rem, 4vw, 3.75rem);
     font-weight: 600;
     line-height: 1.1;
@@ -76,20 +76,20 @@
 }
 
 .rag {
-  background-image: url('/img/site/book-rag-icon.svg');
+  background-image: url("/img/site/book-rag-icon.svg");
 }
 
 .optimize {
-  background-image: url('/img/site/book-optimise-icon.svg');
+  background-image: url("/img/site/book-optimise-icon.svg");
 }
 
 .agent {
-  background-image: url('/img/site/book-agent-icon.svg');
+  background-image: url("/img/site/book-agent-icon.svg");
 }
 
 .label {
   color: #ddebf2;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.4;

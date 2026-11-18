@@ -5,7 +5,7 @@ const SESSIONS = [
   {
     id: "rag",
     pill: "RETRIEVAL AUGMENTED GENERATION",
-    graphic: "/img/site/book-rag-graphic.svg",
+    graphic: "/img/site/RAG-expert.svg",
     title: "Build a Production-Ready RAG Application",
     blurb:
       "Go from theory to a functioning RAG pipeline. We’ll help you structure your data, choose the right modules, including Weaviate Embeddings and build a search application that delivers accurate, relevant results.",
@@ -21,7 +21,7 @@ const SESSIONS = [
   {
     id: "scale",
     pill: "SCALING VECTOR DATABASES",
-    graphic: "/img/site/book-scale-graphic.svg",
+    graphic: "/img/site/DB-expert.svg",
     title: "Optimize Your Architecture for Scale, Performance & Cost",
     blurb:
       "Ensure your data architecture is built to last. A 30-minute review with our experts can save you weeks of refactoring, performance headaches and unnecessary cost as you scale to millions or billions of objects.",
@@ -37,7 +37,7 @@ const SESSIONS = [
   {
     id: "agentic",
     pill: "BUILDING AGENTIC ARCHITECTURES",
-    graphic: "/img/site/book-agentic-graphic.svg",
+    graphic: "/img/site/Agent-expert.svg",
     title: "Build Agents with Weaviate",
     blurb:
       "Give your AI agents reliable access to your data. We'll help you decide how your agents work with Weaviate, from the built-in Query Agent to connecting agents and AI coding assistants through MCP, so they find the right context for each step. What you'll leave with:",
