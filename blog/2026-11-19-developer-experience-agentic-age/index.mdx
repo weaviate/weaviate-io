@@ -5,7 +5,7 @@ authors: [jp]
 date: 2026-11-19
 tags: ["agents", "engineering"]
 image: ./img/hero.png
-description: "Coding agents are changing how developers work, but not why developer experience matters. Here's how we measure and improve the experience for both."
+description: "Coding agents may be changing how developers work - what does that mean for developer experience? Here's how we are starting to think about both."
 ---
 
 import ThemedImage from '@theme/ThemedImage';
@@ -16,17 +16,37 @@ import DeveloperAgentLoopDark from './img/developer-agent-loop-dark.png';
 
 ![Developer experience for the agentic age](./img/hero.png)
 
-In the age of coding agents, developers are asking a big question: if agents write the code, what is left for us to do? And if developers are writing less code themselves, does developer experience (DX) still matter?
+When agents write the code, what is left for developers to do? We don't know for sure, but most would agree that there's no going back. Times, indeed, they are a-change-in.
 
-I believe some of what we consider good DX will change, but its guiding principles will not. A recent effort to improve our documentation shows why. We found that some agents were not receiving complete documentation pages: a page could be truncated, a code example could show only its default language, or an agent could see only one section.
+And for a smaller group of us building developer tools - there's another question: what does it mean for developer experience (DX)?
 
-That missing context can send an agent searching elsewhere or lead it to write outdated code. These issues had gone unnoticed because they affected a class of readers that rarely tells us when something is wrong: coding agents.
+We take care to craft API surfaces, documentation and learning material to guide developers to the right syntax, and help them discover the right tools.
+
+Does any of it still matter when the primary audience is no longer human? It's easy to imagine that none of it would make a difference to our omniscient future overlords.
+
+But here are two things that I think. One, we shouldn't forget that (at least for now) there is a human at the end of the agent, pulling the strings. So we should look to optimise *their* experience. And two, you might be surprised at how well good human DX translates to good results for agents.
+
+Let me show tell you about a recent effort to improve our documentation. I found that in some cases, agents were drawing incorrect conclusions from our documentation. When we dug in, we traced the root cause to the fact that some agents were not receiving complete documentation pages! Pages were truncated, code examples missing for some languages , and sections missing.
+
+And that missing context, we found, would send an agent searching elsewhere or lead it to incorrect conclusions or write wrong code. These issues had gone unnoticed because they affected a class of readers that rarely tells us when something is wrong: coding agents. And as a kicker - some of those issues would only exist for agents!
 
 ## The same page can look different to every agent
 
-Agents do not read web pages in the same way as people using a browser. Fetch tools in different coding environments can return different parts of a page, and often do not tell the site when content is missing.
+But how could we investigate what was causing these issues?
 
-To understand what was happening, we gave several agents the same tasks and compared their answers and the paths they took. Then we changed how pages were presented and ran the tasks again. This let us measure whether a specific change helped agents get the context they needed.
+When it comes to identifying DX issues, we might have turned to user interviews. But you can't ask agents for feedback (*yet*). What we can do, however, is to simulate agent usage.
+
+We set up several agents to run the same task in a repeatable way, and explore their logs and outputs. This let us see not only the final answers, but the paths they took to get there: what tools they used, what searches they ran, and what pages they read.
+
+Sure, this identified documentation pages to update. But importantly, it showed us that agents should be treated as a different class of reader.
+
+For one, agents do not read web pages in the same way as people using a browser. Fetch tools in different coding environments can return different parts of a page, and often do not tell the site when content is missing. But also, agents are read volumes of text in seconds, and will do their best to reconcile these differences.
+
+But - and here's the important part - agents won't ask any followup questions. And they probably won't tell you, either.
+
+So how would we make things better for those agents? I think we can follow the same process as above - by simulating agent usage, but this time - changing something about our site, and running them again. Running a controlled experiment, in other words.
+
+In this case, we changed the pages' content and ran the tasks again. This let us measure whether a specific change helped agents get the context they needed.
 
 For example, before our changes, one fetch tool returned the correct language examples in only 7 of 15 TypeScript runs and 3 of 15 Go runs. After the changes, it returned the right snippets in every run we checked.
 
