@@ -6,8 +6,14 @@ export default function Hero({
   title = "Engram:",
   subtitle = "Memory Built for AI Agents",
   description = "A fully managed memory and context service purpose-built to help agents remember, learn, and improve over time",
-  primaryCta = { label: "Get started", to: "https://console.weaviate.io/signup" },
-  secondaryCta = { label: "Documentation", to: "https://docs.weaviate.io/engram" },
+  primaryCta = {
+    label: "Get started",
+    to: "https://console.weaviate.io/signup",
+  },
+  secondaryCta = {
+    label: "Documentation",
+    to: "https://docs.weaviate.io/engram",
+  },
   belowCtaLink,
   media = (
     <img
@@ -32,9 +38,7 @@ export default function Hero({
                 {title}
               </span>
 
-              <span className="tw-block tw-text-[#DDEBF2]">
-                {subtitle}
-              </span>
+              <span className="tw-block tw-text-[#DDEBF2]">{subtitle}</span>
             </h1>
 
             <p className="tw-mb-12 tw-max-w-2xl tw-font-['Inter'] tw-text-xl tw-leading-relaxed tw-text-[#b8c4d4] md:tw-text-2xl">
@@ -42,15 +46,15 @@ export default function Hero({
             </p>
 
             <div className="tw-flex tw-flex-wrap tw-gap-5">
-              <Link
-                to={primaryCta.to}
+              <a
+                href={primaryCta.to}
                 className="tw-inline-flex tw-min-h-[54px] tw-items-center tw-justify-center tw-rounded-md tw-bg-[linear-gradient(48deg,_#00FE6B_13.81%,_#00B7E2_92.18%)] tw-px-8 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-[#111111] tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-bg-white hover:tw-text-[#111111] hover:tw-no-underline"
               >
                 {primaryCta.label}
-              </Link>
+              </a>
 
-              <Link
-                to={secondaryCta.to}
+              <a
+                href={secondaryCta.to}
                 className="tw-inline-flex tw-min-h-[54px] tw-items-center tw-justify-center tw-rounded-md tw-border tw-border-white/40 tw-bg-transparent tw-px-8 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-white tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-border-white hover:tw-bg-white/10 hover:tw-text-white hover:tw-no-underline"
                 style={{
                   fontFamily: "Inter, sans-serif",
@@ -59,7 +63,7 @@ export default function Hero({
                 }}
               >
                 {secondaryCta.label}
-              </Link>
+              </a>
             </div>
             {belowCtaLink && (
               <p className="tw-mb-0 tw-mt-6">
