@@ -95,7 +95,7 @@ export default function BlogSearch({ onSearchChange }) {
                   className="tw-min-w-0 tw-bg-[#1A1A1A]"
                 >
                   <Link
-                    className="tw-group tw-block tw-aspect-video tw-overflow-hidden tw-bg-[#0b0d11]"
+                    className="tw-group tw-block  tw-overflow-hidden tw-bg-[#0b0d11]"
                     to={post.permalink}
                   >
                     <img

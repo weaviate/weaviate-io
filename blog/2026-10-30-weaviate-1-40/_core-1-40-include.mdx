@@ -6,7 +6,7 @@ Here are the release highlights!
 
 {/* TODO(ivan): Python client 4.24.0 is unreleased on 2026-10-14. The drop-vector and PathSeer snippets need it. Re-check before publishing. */}
 
-![Weaviate 1.40 is released](./img/hero.png)
+![Weaviate 1.40 is released](./img/hero.jpg)
 
 - [Drop a named vector - General Availability](#drop-a-named-vector---general-availability)
 - [4-bit Rotational Quantization - General Availability](#4-bit-rotational-quantization---general-availability)
@@ -262,7 +262,7 @@ Each `returnReferences` entry names the reference property in `linkOn` and what 
       "metadata": { "distance": 0.00040352345 },
       "properties": { "title": "The Left Hand of Darkness" },
       "references": {
-        "writtenBy": [ { "properties": { "name": "Ursula K. Le Guin" } } ]
+        "writtenBy": [{ "properties": { "name": "Ursula K. Le Guin" } }]
       }
     }
   ],
@@ -290,11 +290,11 @@ If your server sets `DEFAULT_VECTORIZER_MODULE`, collections you create on `v1.4
 
 From `v1.40`, `DEFAULT_VECTORIZER_MODULE` is deprecated and ignored. Weaviate logs a warning at startup if it is set. The default top-level `vectorizer` is always `none`. Existing collections are not affected. What changes is what a new collection definition gives you:
 
-| Your collection definition sets | Before `v1.40` | From `v1.40` |
-| :-- | :-- | :-- |
-| No vector parameters at all | A single-vector collection, filled in from the server defaults | A collection without a vector |
+| Your collection definition sets                               | Before `v1.40`                                                        | From `v1.40`                                       |
+| :------------------------------------------------------------ | :-------------------------------------------------------------------- | :------------------------------------------------- |
+| No vector parameters at all                                   | A single-vector collection, filled in from the server defaults        | A collection without a vector                      |
 | `vectorIndexType` or `vectorIndexConfig`, but no `vectorizer` | A single-vector collection, vectorized by `DEFAULT_VECTORIZER_MODULE` | A single-vector collection that does not vectorize |
-| An explicit vectorizer | Unchanged | Unchanged |
+| An explicit vectorizer                                        | Unchanged                                                             | Unchanged                                          |
 
 Older clients that always send `vectorIndexType`, such as the Python client before `4.21.2`, land in the second row. Auto-schema changed earlier: since `v1.39.1` it creates a named vector called `default` with the vectorizer set to `none`.
 
