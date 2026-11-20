@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "@docusaurus/Link";
+import styles from "./EnterprisePricing.module.scss";
 
 const plans = [
   {
@@ -95,7 +96,7 @@ export default function EnterprisePricing() {
         <div className="tw-mt-10 tw-overflow-x-auto md:tw-mt-12">
           <table
             aria-label="Deployment and enterprise plans"
-            className="tw-w-full tw-min-w-[960px] tw-table-fixed tw-border-collapse tw-bg-[#1A1A1A]"
+            className={`${styles.table} tw-w-full tw-min-w-[960px] tw-table-fixed tw-border-collapse`}
           >
             <caption className="tw-sr-only">
               Compare fully managed and self-managed Weaviate deployment plans
@@ -106,28 +107,28 @@ export default function EnterprisePricing() {
               ))}
             </colgroup>
             <thead>
-              <tr className="tw-bg-[#111111]">
+              <tr>
                 <th
                   colSpan={2}
                   scope="colgroup"
-                  className="tw-border tw-border-[#6E6B91] tw-px-4 tw-py-3 tw-text-center"
+                  className={`${styles.groupHeader} tw-text-center`}
                 >
-                  <span className="tw-block tw-font-['Inter'] tw-text-[0.9rem] tw-font-semibold tw-uppercase tw-tracking-[0.04em] tw-text-[#43D995]">
+                  <span className="tw-inline-block tw-bg-[linear-gradient(223deg,#43E2C5_-4.42%,#70EE62_100%)] tw-bg-clip-text tw-font-['Plus_Jakarta_Sans'] tw-text-[1.25rem] tw-font-medium tw-uppercase tw-leading-[120%] tw-text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]">
                     Fully-managed
                   </span>
-                  <span className="tw-mt-1 tw-block tw-font-['Inter'] tw-text-[0.75rem] tw-font-normal tw-text-[#B9C8DE]">
+                  <span className="tw-mt-3 tw-block tw-font-['Inter'] tw-text-[0.75rem] tw-font-normal tw-text-[#B9C8DE]">
                     Run mission-critical AI workloads in production
                   </span>
                 </th>
                 <th
                   colSpan={2}
                   scope="colgroup"
-                  className="tw-border tw-border-[#6E6B91] tw-px-4 tw-py-3 tw-text-center"
+                  className={`${styles.groupHeader} tw-text-center`}
                 >
-                  <span className="tw-block tw-font-['Inter'] tw-text-[0.9rem] tw-font-semibold tw-uppercase tw-tracking-[0.04em] tw-text-[#4DB9FF]">
+                  <span className="tw-inline-block tw-bg-[linear-gradient(123deg,#26D6FF_12.44%,#D77AFF_109.26%)] tw-bg-clip-text tw-font-['Plus_Jakarta_Sans'] tw-text-[1.25rem] tw-font-medium tw-uppercase tw-leading-[120%] tw-text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]">
                     Self-managed
                   </span>
-                  <span className="tw-mt-1 tw-block tw-font-['Inter'] tw-text-[0.75rem] tw-font-normal tw-text-[#B9C8DE]">
+                  <span className="tw-mt-3 tw-block tw-font-['Inter'] tw-text-[0.75rem] tw-font-normal tw-text-[#B9C8DE]">
                     Run Weaviate on your own infrastructure
                   </span>
                 </th>
@@ -137,7 +138,7 @@ export default function EnterprisePricing() {
                   <th
                     key={plan.title}
                     scope="col"
-                    className="tw-border tw-border-[#6E6B91] tw-p-0 tw-text-left"
+                    className={`${styles.planHeader} tw-text-left`}
                   >
                     <PlanHeader title={plan.title} icon={plan.icon} />
                   </th>
@@ -189,7 +190,8 @@ export default function EnterprisePricing() {
         <div className="tw-mt-6 tw-flex tw-justify-center">
           <Link
             to="/contact"
-            className="tw-inline-flex tw-min-h-[36px] tw-items-center tw-justify-center tw-rounded-md tw-border tw-border-[#43E2C5]/40 tw-px-6 tw-font-['Inter'] tw-text-[0.85rem] tw-font-medium tw-text-[#DDEBF2] tw-no-underline hover:tw-border-[#43E2C5] hover:tw-text-[#DDEBF2] hover:tw-no-underline"
+            className="tw-inline-flex tw-min-h-[36px] tw-items-center tw-justify-center tw-rounded-md tw-bg-[#111111] tw-px-6 tw-font-['Inter'] tw-text-[0.85rem] tw-font-medium tw-text-[#DDEBF2] tw-no-underline hover:tw-text-[#DDEBF2] hover:tw-no-underline"
+            style={{ border: "0.5px solid #43E2C5" }}
           >
             Contact sales
           </Link>

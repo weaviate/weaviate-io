@@ -86,10 +86,10 @@ export default function WhyWeaviate() {
                   className="tw-h-[74px] tw-w-[74px] tw-shrink-0"
                 />
                 <div>
-                  <p className="tw-m-0 tw-font-['Inter'] tw-text-[0.95rem] tw-font-medium tw-text-[#B9C8DE]">
+                  <p className="tw-m-0 tw-font-['Inter'] tw-text-[1rem] tw-font-normal tw-leading-[160%] tw-text-[#B9C8DE]">
                     {card.step}
                   </p>
-                  <p className="tw-m-0 tw-mt-2 tw-font-['Plus_Jakarta_Sans'] tw-text-[1.65rem] tw-font-semibold tw-leading-[120%] tw-text-[#5DDA91]">
+                  <p className="tw-m-0 tw-mt-2 tw-bg-[linear-gradient(223deg,#43E2C5_-4.42%,#70EE62_100%)] tw-bg-clip-text tw-font-['Plus_Jakarta_Sans'] tw-text-[1.625rem] tw-font-semibold tw-leading-[140%] tw-text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]">
                     {card.title}
                   </p>
                 </div>
@@ -99,20 +99,24 @@ export default function WhyWeaviate() {
                 {card.heading}
               </h3>
 
-              <div className="tw-mt-7 tw-border-t tw-border-[#6E6B91] tw-pt-7">
+              <hr
+                aria-hidden="true"
+                className="tw-my-7 tw-h-px tw-w-full tw-border-0 tw-bg-[#6E6B91]"
+              />
+              <div>
                 <ul className="tw-m-0 tw-list-none tw-space-y-5 tw-p-0">
                   {card.features.map((feature) => (
                     <li
                       key={feature.emphasis}
                       className="tw-flex tw-items-start tw-gap-6"
                     >
-                      <span
+                      <img
+                        src="/img/site/2026/vector-enterprise.svg"
+                        alt=""
                         aria-hidden="true"
-                        className="tw-mt-0.5 tw-flex tw-h-[21px] tw-w-[21px] tw-shrink-0 tw-items-center tw-justify-center tw-rounded-[3px] tw-border tw-border-[#43E2C5] tw-font-['Inter'] tw-text-[0.7rem] tw-font-semibold tw-leading-none tw-text-[#43E2C5]"
-                      >
-                        ✓
-                      </span>
-                      <span className="tw-font-['Inter'] tw-text-[0.95rem] tw-leading-[165%] tw-text-[#B9C8DE]">
+                        className="tw-mt-0.5 tw-h-5 tw-w-5 tw-shrink-0"
+                      />
+                      <span className="tw-font-['Inter'] tw-text-[1rem] tw-font-normal tw-leading-[160%] tw-text-[#B9C8DE]">
                         {feature.before}
                         <strong className="tw-font-semibold tw-text-[#B9C8DE]">
                           {feature.emphasis}
