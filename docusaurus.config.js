@@ -487,7 +487,7 @@ module.exports = async function createConfigAsync() {
             
              announcementBar: {
                id: 'announcement-bar-release',
-                content:`<a href="/blog/weaviate-1-40-release" target="_blank">Weaviate 1.40 Release - Read More</a>`,
+                content:`<a href="/blog/weaviate-1-40-release" >Weaviate 1.40 Release - Read More</a>`,
                backgroundColor: '#160F52',
                 textColor: '#F5F5F5',
                 isCloseable: true,
