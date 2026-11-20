@@ -127,10 +127,10 @@ export default function AssuranceSection() {
 
         <div className="tw-mt-16 tw-flex tw-justify-center">
           <Link
-            to="/product/assurance"
+            to="/product"
             className="tw-inline-flex tw-min-h-[58px] tw-items-center tw-justify-center tw-rounded-md tw-bg-[linear-gradient(48deg,#00FE6B_13.81%,#00B7E2_92.18%)] tw-px-10 tw-font-['Inter'] tw-text-lg tw-font-semibold tw-text-[#111111] tw-no-underline hover:tw-text-[#111111] hover:tw-opacity-95"
           >
-            Learn about Weaviate Assurance
+            Explore Weaviate products
           </Link>
         </div>
       </div>

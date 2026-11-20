@@ -116,7 +116,7 @@ const navGroups = {
 const mainLinks = [
   { label: 'Product', to: '/product', showCaret: true },
   { label: 'Solutions', to: '/rag', showCaret: true },
-  { label: 'Enterprise', to: '/enterprise-edition', showCaret: false },
+  { label: 'Enterprise', to: '/enterprise', showCaret: false },
   { label: 'Developers', to: '/learn', showCaret: true },
   { label: 'Company', to: '/company/about-us', showCaret: true },
   { label: 'Pricing', to: '/pricing', showCaret: false },

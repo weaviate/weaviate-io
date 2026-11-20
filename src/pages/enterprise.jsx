@@ -4,6 +4,7 @@ import { MetaSEO } from "/src/theme/MetaSEO";
 import Hero from "../components/Enterprise/Hero";
 import FeatureSplit from "../components/Enterprise/FeatureSplit";
 import UseCaseCard from "../components/Enterprise/UseCasesV2";
+import WhyWeaviate from "../components/Enterprise/WhyWeaviate";
 import DeploymentOptions from "../components/Enterprise/Deployment";
 import EnterprisePricing from "../components/Enterprise/EnterprisePricing";
 import AssuranceSection from "../components/Enterprise/AssuranceSection";
@@ -23,9 +24,10 @@ export default function EnterprisePage() {
         <MetaSEO />
         <Hero />
         <UseCaseCard />
-
+        <WhyWeaviate />
+        <EnterprisePricing />
         <SecurityCompliance />
-
+        <AssuranceSection />
         <CTA />
       </main>
     </Layout>
