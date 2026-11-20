@@ -1,107 +1,72 @@
-import Link from '@docusaurus/Link';
-import React, { useEffect } from 'react';
-import styles from './styles.module.scss';
+import Link from "@docusaurus/Link";
+import React from "react";
+import TrustedBy from "/src/components/HomeNext/sections/TrustedBy";
+import styles from "./styles.module.scss";
 
-export default function introduction() {
+const benefits = [
+  {
+    icon: "/img/site/2026/build.svg",
+    title: "Take search to new heights",
+    description:
+      "Use built-in vector and keyword search for contextual, precise results across any type of data—at scale.",
+  },
+  {
+    icon: "/img/site/2026/extract.svg",
+    title: "Accelerate RAG and Gen AI projects",
+    description:
+      "Create embeddings with Weaviate Embeddings, or connect the models and frameworks you already use.",
+  },
+  {
+    icon: "/img/site/2026/secure.svg",
+    title: "Deploy quickly, securely, and confidently",
+    description:
+      "Run on Shared Cloud, or on Dedicated Cloud for your own dedicated infrastructure.",
+  },
+];
+
+export default function Introduction({
+  heading = "Fully managed, AI-native vector database",
+}) {
   return (
-    <div className={styles.investorsContainer}>
-      <div className={styles.box}>
-        <div className={styles.investorBox}>
+    <main className={styles.page}>
+      <div className={styles.container}>
+        <div className={styles.content}>
           <div className={styles.logoBox}>
-            <div className={styles.logo} />
+            <img src="/img/site/weaviate-logo-flat.svg" alt="" />
             <span>Weaviate Cloud</span>
           </div>
-          <h1>Fully managed, AI-native vector database</h1>
-
-          <p>
+          <h1>{heading}</h1>
+          <p className={styles.intro}>
             All the power of our open-source vector database, without the burden
-            of self-hosting.{' '}
+            of self-hosting.
           </p>
 
-          <div className={styles.typeContainer}>
-            <div className={styles.typeBox}>
-              <div className={styles.typeIcon}>
-                <div className={styles.homeIcon}></div>
-                <h2>Take search to new heights</h2>
-              </div>
-              <div className={styles.typeText}>
-                <p>
-                  Use built-in vector and keyword search for contextual, precise
-                  results across any type of data—at scale.
-                </p>
-              </div>
-            </div>
-            <div className={styles.typeBox}>
-              <div className={styles.typeIcon}>
-                <div className={`${styles.homeIcon} ${styles.ragIcon}`}></div>
-                <h2>Accelerate RAG and Gen AI projects</h2>
-              </div>
-              <div className={styles.typeText}>
-                <p>
-                  Easily create vector embeddings and connect to ML models and
-                  frameworks of choice as your AI stack evolves.
-                </p>
-              </div>
-            </div>
-            <div className={styles.typeBox}>
-              <div className={styles.typeIcon}>
-                <div className={`${styles.homeIcon} ${styles.genIcon}`}></div>
-                <h2>Deploy quickly, securely, and confidently</h2>
-              </div>
-              <div className={styles.typeText}>
-                <p>
-                  Run in our Serverless Cloud environment, or in a dedicated
-                  tenant with our Enterprise Cloud offering.
-                </p>
-              </div>
-            </div>
-            <div className={styles.bottomBar}>
-              <div className={styles.innerBar}>
-                <div className={styles.logoSection}>
-                  <div
-                    className={`${styles.customerLogo} ${styles.stackoverflowLogo}`}
-                  />
-                  <div
-                    className={`${styles.customerLogo} ${styles.instabaseLogo}`}
-                  />
-                  <div
-                    className={`${styles.customerLogo} ${styles.redhatLogo}`}
-                  />
-                  <div
-                    className={`${styles.customerLogo} ${styles.mulinyLogo}`}
-                  />
-                  <div
-                    className={`${styles.customerLogo} ${styles.shippoLogo}`}
-                  />
+          <div className={styles.benefits}>
+            {benefits.map((benefit) => (
+              <div className={styles.benefit} key={benefit.title}>
+                <img src={benefit.icon} alt="" />
+                <div>
+                  <h2>{benefit.title}</h2>
+                  <p>{benefit.description}</p>
                 </div>
               </div>
-
-              <div className={`${styles.innerBar} ${styles.secondLine}`}>
-                <div className={styles.logoSection}>
-                  <div className={`${styles.customerLogo} ${styles.redbull}`} />
-
-                  <div
-                    className={`${styles.customerLogo} ${styles.netappLogo}`}
-                  />
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-        <div className={styles.investorLogos}>
-          <div className={styles.signUp}>
-            <h2>The AI database for a new generation of software</h2>
-            <p>Get started for free</p>
-            <Link to="/go/console" className={styles.button}>
-              Try Now
-            </Link>
-            <span>
-              Have questions about pricing? <br></br>
-              <Link to="/contact">Contact us</Link>
-            </span>
-          </div>
+
+        <div className={styles.signup}>
+          <p className={styles.eyebrow}>Weaviate Cloud</p>
+          <h2>The AI database for a new generation of software</h2>
+          <p>Get started for free</p>
+          <Link to="/go/console" className={styles.button}>
+            Try Now
+          </Link>
+          <p className={styles.contact}>
+            Have questions about pricing? <Link to="/contact">Contact us</Link>
+          </p>
         </div>
       </div>
-    </div>
+      <TrustedBy />
+    </main>
   );
 }

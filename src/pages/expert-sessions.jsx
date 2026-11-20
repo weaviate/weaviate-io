@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Head from '@docusaurus/Head';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 import Header from '/src/components/BookSession/Header';
-import LogosBar from '/src/components/BookSession/LogoBar';
+import TrustedBy from '/src/components/HomeNext/sections/TrustedBy';
 import SessionsGrid from '/src/components/BookSession/SessionGrid';
 import CTASection from '../components/BookSession/CTASection';
 import Layout from '@theme/Layout';
@@ -49,10 +49,12 @@ export default function BookASessionPage() {
           <meta name="twitter:image" content="og/website/home.jpg" />
         </Head>
 
-        <Header />
-        <LogosBar />
-        <SessionsGrid />
-        <CTASection />
+        <main>
+          <Header />
+          <TrustedBy />
+          <SessionsGrid />
+          <CTASection />
+        </main>
       </Layout>
       <ThemeSwitch />
     </div>
