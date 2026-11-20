@@ -1,6 +1,7 @@
 .container {
   padding: clamp(4rem, 8vw, 7rem) 2rem;
   background: #111111;
+  scroll-margin-top: 80px;
 }
 
 .featuredCard {
@@ -18,12 +19,12 @@
 .content {
   padding: clamp(2rem, 5vw, 4.5rem);
 
-  h2 {
+  h3 {
     color: #ddebf2 !important;
     font-family: "Plus Jakarta Sans", sans-serif;
-    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-size: clamp(2rem, 4vw, 2rem);
     font-weight: 600;
-    line-height: 108%;
+    line-height: 140%;
     letter-spacing: -0.04em;
     margin: 0 0 1.25rem;
   }
@@ -56,7 +57,15 @@
   font-weight: 400;
   line-height: 1.7;
   font-family: Inter, sans-serif;
-  margin: 0 0 2rem;
+  margin: 0 0 1.25rem;
+}
+
+.people {
+  color: #b9c8de;
+  font:
+    400 0.95rem/1.6 Inter,
+    sans-serif;
+  margin: 0 0 1rem;
 }
 
 .button {
@@ -73,6 +82,7 @@
   line-height: 1;
   font-family: Inter, sans-serif;
   text-decoration: none !important;
+  margin-top: 1rem;
   transition:
     transform 0.2s ease,
     background 0.2s ease;
@@ -90,7 +100,7 @@
   justify-content: center;
   overflow: hidden;
   padding: 1rem;
-  background: #0b1018;
+  background: #1a1a1a;
   border-left: 1px solid rgba(185, 200, 222, 0.12);
 
   img {

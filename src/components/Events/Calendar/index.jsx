@@ -4,6 +4,8 @@ import events from '/data/events.json';
 import styles from './styles.module.scss';
 
 export default function CalendarSection() {
+  const pastWebinars = events.filter((event) => !event.featured);
+
   return (
     <section className={styles.container} id="past-webinars">
       <div className={styles.headerBox}>
@@ -15,9 +17,9 @@ export default function CalendarSection() {
       </div>
       <div className={styles.workshopWrapper}>
         <div className={styles.workshopContainer}>
-          {events.length > 0 ? (
+          {pastWebinars.length > 0 ? (
             <div className={styles.timeline}>
-              {events.map((event) => (
+              {pastWebinars.map((event) => (
                 <article className={styles.timelineItem} key={event.title}>
                   <div className={styles.dateColumn}>
                     <span className={styles.timelineDot} aria-hidden="true" />
