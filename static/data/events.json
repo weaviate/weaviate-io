@@ -1,6 +1,18 @@
 [
   {
     "featured": false,
+    "dateLabel": "19 Nov",
+    "weekday": "Thursday",
+    "time": "16:00 - 17:00 GMT",
+    "platform": "On demand",
+    "image": "/img/site/2026/zerotorag.jpg",
+    "hosts": "Andy Ellicott, JP Hwang, Kamil Tyborowski",
+    "title": "Zero to RAG in 20 minutes",
+    "buttonLabel": "Watch on demand",
+    "link": "https://www.youtube.com/watch?v=-BUiV35ni1I"
+  },
+  {
+    "featured": false,
     "eyebrow": "Featured upcoming webinar",
     "date": "October 14th · Online",
     "dateLabel": "14 Oct",
