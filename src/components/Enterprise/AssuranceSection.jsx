@@ -42,7 +42,7 @@ export default function AssuranceSection() {
               fontSize: "1rem",
             }}
           >
-            Weaviate Assurance
+            ENTERPRISE SUPPORT
           </p>
 
           <h2
@@ -55,7 +55,7 @@ export default function AssuranceSection() {
               letterSpacing: "-0.04em",
             }}
           >
-            Self-hosted flexibility, managed-service reliability
+            A direct line to Weaviate's core engineering team
           </h2>
 
           <p
@@ -67,8 +67,7 @@ export default function AssuranceSection() {
               lineHeight: "160%",
             }}
           >
-            A premium annual subscription that gives your team a direct line to
-            Weaviate's core engineering expertise — built on four pillars.
+            Annual contracts come with support built on four pillars.
           </p>
         </div>
 

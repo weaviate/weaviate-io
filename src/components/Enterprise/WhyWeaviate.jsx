@@ -29,8 +29,8 @@ const cards = [
         emphasis: "backed by enterprise support.",
       },
       {
-        emphasis: "Multi-tenant enabled",
-        after: " and SOC II, HIPAA compliant.",
+        emphasis: "Multi-tenancy built in, SOC 2 Type II audited, ",
+        after: "HIPAA available on Dedicated Cloud (AWS).",
       },
     ],
   },

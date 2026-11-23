@@ -14,7 +14,7 @@ const cards = [
   {
     badge: "HIPAA",
     title: "HIPAA compliant",
-    text: "Available on Enterprise Cloud (AWS) for regulated healthcare workloads.",
+    text: "Available on Dedicated Cloud (AWS) for regulated healthcare workloads.",
   },
 ];
 

@@ -11,8 +11,8 @@ const plans = [
     features: [
       "Isolated, dedicated instance for security and consistency",
       "Up to 99.95% uptime on AWS, GCP & Azure",
-      "Dedicated Success Manager and 24/7 monitoring",
-      "Premium Offering",
+      "Dedicated technical account team and 24/7 monitoring",
+      "Part of the Premium plan",
     ],
   },
   {
@@ -22,10 +22,10 @@ const plans = [
       "Fully managed Weaviate on shared infrastructure. The fastest way to ship, with the full core database toolkit, replication, and high availability.",
     features: [
       "Zero infrastructure to operate",
-      "Scales from prototype to production",
+      "Scales with your production workloads",
       "Prepaid contract with predictable spend",
-      "Global coverage on AWS, GCP & Azure",
-      "Available on Flex and Premium plans",
+      "Available on AWS and Google Cloud",
+      "Part of the Premium plan",
     ],
   },
   {
