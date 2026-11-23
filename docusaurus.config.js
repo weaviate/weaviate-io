@@ -445,9 +445,7 @@ module.exports = async function createConfigAsync() {
                     lastmod: 'date',
                     changefreq: null,
                     priority: null,
-                    // This route declares noindex in its front matter but is not
-                    // currently filtered from the generated sitemap.
-                    ignorePatterns: ['/payment/thank-you', '/product/engram', '/product/engram/', '/enterprise', '/enterprise/'],
+                    ignorePatterns: ['/payment/thank-you', '/product/engram', '/product/engram/'],
                 },
                 blog: {
                     blogTitle: 'Blog',
