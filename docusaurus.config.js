@@ -650,7 +650,7 @@ module.exports = async function createConfigAsync() {
                             {
 
                                 label: 'Weaviate Cloud',
-                                to: 'https://console.weaviate.cloud/',
+                                to: '/go/console',
                             },
                             {
                                 label: 'Deployment',

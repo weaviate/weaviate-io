@@ -57,7 +57,7 @@ export default function Main() {
                   ship features, not infrastructure.
                 </p>
                 <Link
-                  to="https://console.weaviate.cloud/&__hstc=76629258.2a08ce98ef4ed956e84f6755a768e341.1750342624201.1750342624201.1750342624201.1&__hssc=76629258.1.1750342624201&__hsfp=2985992378"
+                  to="/go/console"
                   className={styles.buttonLight}
                 >
                   Try Weaviate Cloud
