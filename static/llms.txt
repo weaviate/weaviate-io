@@ -723,6 +723,7 @@ Aggregations: https://docs.weaviate.io/weaviate/search/aggregate
 * [Recipes](https://github.com/weaviate/recipes) (end-to-end code examples)
 * [Releases](https://weaviate.io/blog/tags/release)
 * [Pricing](https://weaviate.io/pricing) (current database plans and AI service pricing)
+* [Weaviate for enterprise](https://weaviate.io/enterprise) (Dedicated Cloud, shared cloud, and self-hosted deployments with Assurance)
 * [30-day Weaviate Enterprise Edition trial](https://weaviate.io/enterprise-edition) (trial license keys for self-hosted deployments; Weaviate Cloud customers do not need a key)
 * [RBAC & authorization](https://docs.weaviate.io/weaviate/configuration/rbac) (roles, permissions, user management)
 * [Community forum](https://forum.weaviate.io)
@@ -743,6 +744,7 @@ This repository now includes lightweight, machine-friendly LLM twin pages for se
 - https://weaviate.io/agentic-ai.md
 - https://weaviate.io/deployment/shared.md
 - https://weaviate.io/deployment/dedicated.md
+- https://weaviate.io/enterprise.md
 - https://weaviate.io/enterprise-edition.md
 - https://weaviate.io/migrate-from-chroma.md
 - https://weaviate.io/learn/what-is-an-ai-database.md

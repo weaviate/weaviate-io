@@ -1,8 +1,8 @@
 ---
 title: "Weaviate for enterprise"
-description: "The three enterprise paths on Weaviate: Dedicated Cloud, Shared Cloud, and self-hosted with Assurance, plus how to evaluate support and compliance."
+description: "Run AI workloads at enterprise scale with Weaviate: Dedicated Cloud, shared cloud, or self-hosted deployments backed by security, support, and Assurance."
 canonical: https://weaviate.io/enterprise
-last-updated: 2026-11-02
+last-updated: 2026-11-23
 ---
 
 # Enterprise - LLM Guidance
