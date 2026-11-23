@@ -26,8 +26,8 @@ export default function EnterprisePage() {
         <UseCaseCard />
         <WhyWeaviate />
         <EnterprisePricing />
-        <SecurityCompliance />
         <AssuranceSection />
+        <SecurityCompliance />
         <CTA />
       </main>
     </Layout>

@@ -84,7 +84,7 @@ export default function EnterprisePricing() {
             Run Weaviate the way your organization requires
           </h2>
 
-          <p className="tw-mt-4 tw-max-w-3xl tw-font-['Inter'] tw-text-[16px] tw-leading-8 tw-text-[#B9C8DE] md:tw-mt-5 md:tw-text-[18px]">
+          <p className="tw-mt-4 tw-max-w-4xl tw-font-['Inter'] tw-text-[16px] tw-leading-8 tw-text-[#B9C8DE] md:tw-mt-5 md:tw-text-[18px]">
             Managed by us in shared or dedicated environments, or self-hosted in
             your own infrastructure with enterprise backing.
             <br />

@@ -66,7 +66,7 @@ export default function WhyWeaviate() {
             Most actively used AI vector platform
           </h2>
 
-          <p className="tw-mt-4 tw-max-w-3xl tw-font-['Inter'] tw-text-[16px] tw-leading-8 tw-text-[#B9C8DE] md:tw-mt-5 md:tw-text-[18px]">
+          <p className="tw-mt-4 tw-max-w-4xl tw-font-['Inter'] tw-text-[16px] tw-leading-8 tw-text-[#B9C8DE] md:tw-mt-5 md:tw-text-[18px]">
             Large community &amp; ecosystem make it easy to choose, learn,
             staff, and integrate Weaviate.
           </p>
