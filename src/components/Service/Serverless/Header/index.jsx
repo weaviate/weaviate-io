@@ -20,7 +20,7 @@ export default function ServiceHeader() {
           <div className={styles.buttons}>
             <Link
               className={styles.buttonGradient}
-              to="https://console.weaviate.cloud/signin?callbackUrl=https%3A%2F%2Fconsole.weaviate.cloud%2F"
+              to="/go/console"
             >
               Sign Up
             </Link>

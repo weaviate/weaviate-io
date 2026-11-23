@@ -17,7 +17,7 @@ export default function PricingHeader({ selectedType, handleSelected }) {
         {/* <div className={styles.buttons}>
           <Link
             className={styles.pricingButton}
-            to="https://console.weaviate.cloud/"
+            to="/go/console"
           >
             Login to the Weaviate Cloud console
           </Link>

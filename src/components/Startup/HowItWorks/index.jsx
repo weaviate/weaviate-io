@@ -5,7 +5,7 @@ const STEPS = [
   {
     title: 'Create or log in to Weaviate Console',
     body: 'Use the email you want the deal applied to.',
-    cta: { label: 'Open Console', href: 'https://console.weaviate.cloud' },
+    cta: { label: 'Open Console', href: '/go/console' },
   },
   {
     title: 'Complete your account settings',
