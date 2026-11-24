@@ -1,72 +1,43 @@
-import React, { useState } from 'react';
-import { ButtonContainer } from '../../../theme/Buttons';
-import styles from './styles.module.scss';
-import { LinkButton } from '/src/theme/Buttons';
+import React from 'react';
 import Link from '@docusaurus/Link';
+import { ButtonContainer, LinkButton } from '/src/theme/Buttons';
+import styles from './styles.module.scss';
+import ctaStyles from '../Examples/styles.module.scss';
+
+const resources = [
+  ['Forum', 'https://forum.weaviate.io/', 'Ask questions and learn from the community.'],
+  ['Paper reviews', '/papers', 'Understand research in AI and data science.'],
+  ['Podcast', '/podcast', 'Hear expert perspectives on AI and data.'],
+  ['Blog', '/blog', 'Keep up with insights and updates from Weaviate.'],
+  ['Knowledge Cards', '/learn/knowledgecards', 'Understand vector search and embeddings at a glance.'],
+];
 
 export default function GoFurther() {
   return (
-    <div className={styles.bgCol} id="go-further">
+    <section className={styles.bgCol} id="go-further">
       <div className="container">
         <div className={styles.header}>
-          <h2>Go Further</h2>
-          <p>
-            There's much more to explore. Ask questions, learn about the latest
-            in AI & data science and dive into big topics from the experts.
-          </p>
+          <h2>Go further</h2>
+          <p>Build your understanding and learn with the Weaviate community.</p>
         </div>
-        <div className={styles.boxContainer}>
-          <div className={styles.typeContainer}>
-            <Link to="https://forum.weaviate.io/">
+        <div className={styles.typeContainer}>
+          {resources.map(([title, to, description]) => (
+            <Link to={to} key={to}>
               <div className={styles.typeBox}>
-                <div className={styles.typeIcon}>
-                  <div className={styles.homeIcon}></div>
-                  <h2>Forum</h2>
-                </div>
-                <div className={styles.typeText}>
-                  <p>Ask technical questions to the community & Weaviators</p>
-                </div>
+                <div className={styles.typeIcon}><h3>{title}</h3></div>
+                <div className={styles.typeText}><p>{description}</p></div>
               </div>
             </Link>
-            <Link to="/papers">
-              <div className={styles.typeBox}>
-                <div className={styles.typeIcon}>
-                  <div className={`${styles.homeIcon} ${styles.papers}`}></div>
-                  <h2>Paper reviews</h2>
-                </div>
-                <div className={styles.typeText}>
-                  <p>Digestible summaries of the latest in Al & data science</p>
-                </div>
-              </div>
-            </Link>
-            <Link to="/podcast">
-              <div className={styles.typeBox}>
-                <div className={styles.typeIcon}>
-                  <div className={`${styles.homeIcon} ${styles.podcast}`}></div>
-                  <h2>Podcast</h2>
-                </div>
-                <div className={styles.typeText}>
-                  <p>
-                    Connor & guests dive into big topics & ideas in Al & data
-                    science
-                  </p>
-                </div>
-              </div>
-            </Link>
-            <Link to="/blog">
-              <div className={styles.typeBox}>
-                <div className={styles.typeIcon}>
-                  <div className={`${styles.homeIcon} ${styles.blog}`}></div>
-                  <h2>Blog</h2>
-                </div>
-                <div className={styles.typeText}>
-                  <p>More from the Weaviate team on what's going on</p>
-                </div>
-              </div>
-            </Link>
-          </div>
+          ))}
+        </div>
+        <div className={ctaStyles.ctaContainer}>
+          <h2>Planning a production AI rollout? Talk to our team.</h2>
+          <ButtonContainer position="left">
+            <LinkButton link="/contact" newTab={false} style={{ color: '#111111' }}>Talk to an expert</LinkButton>
+            <LinkButton link="/enterprise" color="outlined" newTab={false}>Weaviate for enterprise</LinkButton>
+          </ButtonContainer>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

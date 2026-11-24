@@ -1,10 +1,15 @@
 .bgCol {
   background: #111111;
   padding: 5rem 0;
+  scroll-margin-top: 240px;
 
   @media screen and (max-width: 768px) {
     padding: 3.5rem 0;
   }
+}
+
+.roleAnchor {
+  scroll-margin-top: 240px;
 }
 
 .header {
@@ -39,6 +44,16 @@
 
   @media screen and (max-width: 1100px) {
     flex-direction: column;
+  }
+}
+
+.roleGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+
+  @media screen and (max-width: 900px) {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -125,7 +140,7 @@
     background-image: url("/img/site/learn-workshop-icon.svg");
   }
 
-  h2 {
+  h2, h3 {
     color: #ddebf2;
     font-family: "Plus Jakarta Sans", sans-serif;
     font-size: 1.25rem;
@@ -158,6 +173,11 @@
     color: #b9c8de;
     margin-bottom: 0.8rem;
     line-height: 165%;
+  }
+
+  summary {
+    color: #b9c8de;
+    cursor: pointer;
   }
 
   a {

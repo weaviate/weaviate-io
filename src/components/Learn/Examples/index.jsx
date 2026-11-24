@@ -1,151 +1,34 @@
-import React, { useState } from "react";
-import { ButtonContainer } from "../../../theme/Buttons";
-import styles from "./styles.module.scss";
-import { LinkButton } from "/src/theme/Buttons";
-import Link from "@docusaurus/Link";
+import React from 'react';
+import Link from '@docusaurus/Link';
+import styles from '../Ebooks/styles.module.scss';
 
-export default function Examples() {
+const updates = [
+  ['Agentic AI', '/agentic-ai', 'Give agents the context to make decisions and adapt.'],
+  // TODO: Verify the Query Agent description against its source page before publishing.
+  ['Query Agent', '/product/query-agent', 'Turn plain-language questions into database operations and answers backed by your data.'],
+  // TODO: Verify the 1.40 description against its release page before publishing.
+  ['Weaviate 1.40 release', '/blog/weaviate-1-40-release', 'See updates to vector management, quantization, and filtering.'],
+];
+
+export default function WhatsNew() {
   return (
-    <div className={styles.bgCol} id="code-examples">
+    <section className={styles.bgCol} id="whats-new">
       <div className="container">
         <div className={styles.header}>
-          <h2>Code Examples</h2>
-          <p>Go straight to the source and view these examples.</p>
+          <h2>What's new</h2>
+          <p>Recent product updates for teams building with AI.</p>
         </div>
-        <div className={styles.boxContainer}>
-          <div className={styles.typeContainer}>
-            <div className={styles.typeBox}>
-              <div className={styles.typeIcon}>
-                <div className={styles.homeIcon}></div>
-                <h2>Recipes</h2>
+        <div className={styles.typeContainer}>
+          {updates.map(([title, to, description]) => (
+            <Link to={to} key={to}>
+              <div className={styles.typeBox}>
+                <div className={styles.typeIcon}><h3>{title}</h3></div>
+                <div className={styles.typeText}><p>{description}</p></div>
               </div>
-              <div className={styles.typeText}>
-                <p>End-to-end code examples for builders.</p>
-                <ul>
-                  <li>
-                    <Link
-                      className={styles.external}
-                      to="https://github.com/weaviate/recipes"
-                    >
-                      Python recipes
-                    </Link>
-                    : Integrations (DSPy, Llamalndex, etc.), Reranking, Search,
-                    Multi-tenancy, and more
-                  </li>
-                  <li>
-                    <Link
-                      className={styles.external}
-                      to="https://github.com/weaviate/recipes-ts"
-                    >
-                      JS/TS recipes
-                    </Link>
-                    : Integrations (LangChain, etc.), Reranking, Search,
-                    Multi-tenancy, and more
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className={styles.typeBox}>
-              <div className={styles.typeIcon}>
-                <div className={`${styles.homeIcon} ${styles.demos}`}></div>
-                <h2>Demos</h2>
-              </div>
-              <div className={styles.typeText}>
-                <p>Example projects and demo apps powered by Weaviate</p>
-                <ul>
-                  <li>
-                    <Link
-                      className={styles.external}
-                      to="https://playground.weaviate.io/"
-                    >
-                      See more demos here
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div className={`${styles.typeBox} ${styles.big}`}>
-            <div className={styles.typeIcon}>
-              <div className={`${styles.homeIcon} ${styles.repos}`}></div>
-              <h2>Weaviate repositories</h2>
-            </div>
-            <div className={`${styles.typeText} ${styles.large}`}>
-              <p>We are proudly open source! Here are our key repositories</p>
-              <div className={styles.integrations}>
-                <ul>
-                  <li>
-                    <Link
-                      className={styles.external}
-                      to="https://github.com/weaviate/weaviate"
-                    >
-                      weaviate:
-                    </Link>{" "}
-                    The "core" database & web server
-                  </li>
-                  <li>
-                    <Link
-                      className={styles.external}
-                      to="https://github.com/weaviate/weaviate-python-client"
-                    >
-                      weaviate-python-client:
-                    </Link>{" "}
-                    Python client library
-                  </li>
-                  <li>
-                    <Link
-                      className={styles.external}
-                      to="https://github.com/weaviate/typescript-client"
-                    >
-                      typescript-client:
-                    </Link>{" "}
-                    TS/JS client library
-                  </li>
-                </ul>
-
-                <ul>
-                  <li>
-                    <Link
-                      className={styles.external}
-                      to="https://github.com/weaviate/weaviate-go-client"
-                    >
-                      weaviate-go-client:
-                    </Link>{" "}
-                    Golang client library
-                  </li>
-                  <li>
-                    <Link
-                      className={styles.external}
-                      to="https://github.com/weaviate/java-client"
-                    >
-                      java-client:
-                    </Link>{" "}
-                    Java client library
-                  </li>
-                </ul>
-              </div>
-              <Link to="https://github.com/weaviate" className={styles.button}>
-                Weaviate repositories on GitHub
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.ctaContainer}>
-          <span>Guides</span>
-          <h2>Build AI-Native Applications with JavaScript</h2>
-          <div className={styles.innerCta}>
-            <p>
-              A learning resources hub for builders of all levels. Dive into the
-              world of AI-native applications with Weaviate and JavaScript.
-            </p>
-            <Link to="/javascript" className={styles.button}>
-              Learn More
             </Link>
-          </div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
