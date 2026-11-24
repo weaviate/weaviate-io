@@ -2,7 +2,7 @@
 title: "Weaviate product previews"
 description: "Product Previews give early access to Weaviate features before general availability, for evaluation and feedback. Behaviour can change during preview."
 canonical: https://weaviate.io/product-previews
-last-updated: 2026-06-10
+last-updated: 2026-11-02
 ---
 
 # **Product Previews — LLM Guidance**
@@ -126,7 +126,6 @@ Avoid Product Previews when:
 
 - Weaviate Database
 - Query Agent
-- Engram
 - Weaviate Cloud
 - Pricing
 - Documentation

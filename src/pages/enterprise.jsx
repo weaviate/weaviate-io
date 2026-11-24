@@ -4,6 +4,7 @@ import { MetaSEO } from "/src/theme/MetaSEO";
 import Hero from "../components/Enterprise/Hero";
 import FeatureSplit from "../components/Enterprise/FeatureSplit";
 import UseCaseCard from "../components/Enterprise/UseCasesV2";
+import WhyWeaviate from "../components/Enterprise/WhyWeaviate";
 import DeploymentOptions from "../components/Enterprise/Deployment";
 import EnterprisePricing from "../components/Enterprise/EnterprisePricing";
 import AssuranceSection from "../components/Enterprise/AssuranceSection";
@@ -17,17 +18,18 @@ export default function EnterprisePage() {
   return (
     <Layout
       title="Enterprise AI Database"
-      description="From dedicated cloud deployments to enterprise SLAs backed by our core engineering team — everything you need to run mission-critical AI workloads in production."
+      description="Run AI workloads at enterprise scale with Weaviate: Dedicated Cloud, shared cloud, or self-hosted deployments backed by security, support, and Assurance."
     >
       <main>
-        <MetaSEO />
+        <MetaSEO
+          img="og/website/home.jpg"
+        />
         <Hero />
         <UseCaseCard />
-        <DeploymentOptions />
+        <WhyWeaviate />
         <EnterprisePricing />
         <AssuranceSection />
         <SecurityCompliance />
-
         <CTA />
       </main>
     </Layout>

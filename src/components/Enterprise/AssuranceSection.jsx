@@ -42,7 +42,7 @@ export default function AssuranceSection() {
               fontSize: "1rem",
             }}
           >
-            Weaviate Assurance
+            ENTERPRISE SUPPORT
           </p>
 
           <h2
@@ -55,7 +55,7 @@ export default function AssuranceSection() {
               letterSpacing: "-0.04em",
             }}
           >
-            Self-hosted flexibility, managed-service reliability
+            A direct line to Weaviate's core engineering team
           </h2>
 
           <p
@@ -67,8 +67,7 @@ export default function AssuranceSection() {
               lineHeight: "160%",
             }}
           >
-            A premium annual subscription that gives your team a direct line to
-            Weaviate's core engineering expertise — built on four pillars.
+            Annual contracts come with support built on four pillars.
           </p>
         </div>
 
@@ -127,10 +126,10 @@ export default function AssuranceSection() {
 
         <div className="tw-mt-16 tw-flex tw-justify-center">
           <Link
-            to="/product/assurance"
+            to="/product"
             className="tw-inline-flex tw-min-h-[58px] tw-items-center tw-justify-center tw-rounded-md tw-bg-[linear-gradient(48deg,#00FE6B_13.81%,#00B7E2_92.18%)] tw-px-10 tw-font-['Inter'] tw-text-lg tw-font-semibold tw-text-[#111111] tw-no-underline hover:tw-text-[#111111] hover:tw-opacity-95"
           >
-            Learn about Weaviate Assurance
+            Explore Weaviate products
           </Link>
         </div>
       </div>

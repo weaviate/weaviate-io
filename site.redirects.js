@@ -214,6 +214,10 @@ const siteRedirects = {
             to: '/product/personalization-agent',
             from: '/product/recommender',
         },
+        {
+            to: '/product',
+            from: '/product/assurance',
+        },
 
         // Workbench > Product Changes
         // The /workbench/* pages were stale duplicates of /product/*; they were

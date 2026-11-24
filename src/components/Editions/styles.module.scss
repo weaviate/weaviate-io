@@ -1,0 +1,243 @@
+.page {
+  background: #111;
+  color: #ddebf2;
+}
+.section {
+  background: #111;
+  color: #ddebf2;
+  padding: 48px 24px;
+  font-family: Inter, sans-serif;
+}
+.wrap {
+  max-width: 1320px;
+  margin: auto;
+}
+.page h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.12;
+}
+.section h2 {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+}
+.section h3 {
+  font-size: 1.4rem;
+}
+.section p,
+.section li {
+  color: #b9c8de;
+  line-height: 1.7;
+}
+.section a {
+  color: #43e2c5;
+}
+.hero {
+  background: linear-gradient(125deg, #17392d, #1a202b 65%);
+  border: 1px solid #ffffff20;
+  border-radius: 30px;
+  padding: clamp(24px, 4vw, 56px);
+}
+.two,
+.three {
+  display: grid;
+  gap: 24px;
+  margin-top: 28px;
+}
+.card {
+  background: #1a1a1a;
+  border: 1px solid #ffffff20;
+  border-radius: 24px;
+  padding: 32px;
+  min-width: 0;
+}
+.card ul {
+  padding-left: 20px;
+}
+.card li {
+  margin: 10px 0;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+  margin-top: 28px;
+}
+.section .button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(48deg, #68ffa8, #00b7e2);
+  color: #111;
+  font-weight: 600;
+  padding: 14px 22px;
+  border-radius: 10px;
+  text-decoration: none;
+  margin: 16px 0;
+}
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #43e2c5 !important;
+}
+.price {
+  font-size: 2rem;
+  font-weight: 600;
+}
+.notice {
+  border-left: 3px solid #43e2c5;
+  padding: 12px 18px;
+  background: #1a1a1a;
+}
+.page details {
+  padding: 20px 0;
+  border-bottom: 1px solid #ffffff20;
+}
+.page summary {
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+@media (min-width: 900px) {
+  .two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .hero.two {
+    align-items: start;
+  }
+}
+
+.iconCard {
+  padding: 1.25rem;
+  border-radius: 0.875rem;
+  background: #1a1a1a;
+}
+
+.cardHeading {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  min-height: 3.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+
+  h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    line-height: 1.3;
+  }
+}
+
+.cardIcon {
+  width: 3.5rem;
+  height: 3.5rem;
+  flex: 0 0 3.5rem;
+  object-fit: contain;
+}
+
+.iconCard > p {
+  margin: 1rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+.iconCard ul {
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.iconCard li {
+  position: relative;
+  margin: 0;
+  padding: 0.4rem 0 0.4rem 1.25rem;
+  font-size: 0.8rem;
+  line-height: 1.45;
+
+  &::before {
+    position: absolute;
+    left: 0;
+    color: #00fe6b;
+    content: "✓";
+  }
+}
+
+.three .iconCard {
+  display: flex;
+  min-height: 13.5rem;
+  flex-direction: column;
+
+  > p {
+    margin-bottom: 1rem;
+  }
+
+  .secondaryButton {
+    align-self: flex-start;
+    min-height: 2.25rem;
+    margin-top: auto;
+    padding: 0.35rem 0.75rem;
+    border-radius: 0.4rem;
+    font-size: 0.75rem;
+  }
+}
+
+.enterprise {
+  .section {
+    padding: clamp(2.5rem, 5vw, 4.5rem) 24px;
+  }
+
+  .section h2 {
+    margin: 0;
+    font-size: clamp(1.75rem, 2.7vw, 2.25rem);
+    line-height: 1.2;
+  }
+
+  .eyebrow {
+    margin: 0 0 0.75rem;
+    color: #43e2c5;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .two,
+  .three {
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .enterpriseCard {
+    padding: 1.25rem;
+    border-radius: 0.875rem;
+    background: #1a1a1a;
+  }
+}
+
+.section .secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  max-width: 100%;
+  padding: 10px 20px;
+  border: 1px solid #637076;
+  border-radius: 10px;
+  color: #ddebf2;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    border-color: #43e2c5;
+    background: #202c29;
+  }
+}
+
+.card .secondaryButton,
+details + p .secondaryButton {
+  margin-top: 1rem;
+}

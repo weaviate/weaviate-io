@@ -19,11 +19,13 @@ faq:
     answer: "Scopes control which memories are allowed to influcence other memories, and can combine hard and soft isolation depending on use case."
 ---
 
+:::warning Engram is being sunset
+
+We have decided to sunset Engram. Existing projects will continue to work until December 31, 2026. It is no longer possible to create new Engram projects.
+
+:::
+
 ![Hero](./img/hero.png)
-
-<br />
-
-> **Get started with [Engram](/product/engram) in [Weaviate Cloud](https://console.weaviate.cloud/) today.**
 
 <br />
 
@@ -244,8 +246,6 @@ Engram is designed to allow you to add any raw data and rely on Engram to extrac
 You can also retrieve memories to use in your application in various different ways, depending on your use case. In a typical chatbot use case, where you want that agent to be able to recall personal details and preferences about the user as required, one simple approach is to use the current user message as a search query before every message, including any memory in context which has a sufficiently high similarity score. If you want your agent to have more control over how and what it retrieves, you can also expose Engram's `client.memories.search` method as a tool call. This will allow your agent to search as often as it needs, e.g., during reasoning traces or tool calling loops. You can also get memories from Engram using the `fetch` retrieval mode when you know there's a specific memory you want to retrieve. For example, you could configure a `UserProfile` topic which is user-scoped and bounded (meaning there is at most one memory per user), then fetch this to insert into your agent's system prompt for all interactions.
 
 Engram is designed to be highly flexible but also as simple as possible to get started. We have pre-built templates for personalisation and continual learning use cases which expose some customisation (e.g., topic descriptions) without needing to understand the full details of the pipelines first. We will also have integrations for coding agents such as Claude Code available so you can immediately integrate Engram into your workflows, but you can read more about our first experiences in our [Oh Memories, Where'd You Go](https://weaviate.io/blog/engram-internal-use-case) blog. Finally, we'll release more tutorials around how to integrate these features into your applications as we get to GA\!
-
-> **Get started with [Engram](/product/engram) in [Weaviate Cloud](https://console.weaviate.cloud/) today.**
 
 import WhatsNext from "/_includes/what-next.mdx";
 

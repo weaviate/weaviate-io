@@ -66,7 +66,7 @@ export default function Study() {
               experimenting with a range of self-hosting options like Facebook's
               Faiss and evaluating managed providers like Milvus and Pinecone,
               they chose{' '}
-              <Link to="https://console.weaviate.cloud/signin?next=%2F">
+              <Link to="/go/console">
                 Weaviate Cloud
               </Link>{' '}
               in 2021. The decision came down to three key factors that were

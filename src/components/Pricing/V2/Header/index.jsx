@@ -1,41 +1,25 @@
 import React from "react";
 import styles from "./styles.module.scss";
 
-export default function PricingHeader({ selectedType, setSelectedType }) {
+export default function PricingHeader({ selectedType, onSelect }) {
   return (
     <header className={styles.header} role="banner">
       <div className="container">
         <div className={styles.box}>
           <h1 className={styles.title}>
-            All the power your AI needs,
-            <br />
-            without the overhead
+            Weaviate Pricing
           </h1>
 
           <p className={styles.subtitle}>
-            {selectedType === "engram"
-              ? "Managed memory for AI agents — priced per pipeline run, with great defaults out of the box."
-              : "Flexible deployment options and pricing to meet the needs of every use case."}
+            {selectedType === "self-managed"
+              ? "Run Weaviate on your own infrastructure. Start free and explore the edition that fits your needs. Prefer fully managed? Every Weaviate Cloud plan includes Enterprise Edition."
+              : "All the power your AI needs, without the overhead."}
           </p>
 
-          <div className={styles.toggle}>
-            <button
-              type="button"
-              className={selectedType === "database" ? styles.active : ""}
-              onClick={() => setSelectedType("database")}
-            >
-              <span />
-              Database
-            </button>
-
-            <button
-              type="button"
-              className={selectedType === "engram" ? styles.active : ""}
-              onClick={() => setSelectedType("engram")}
-            >
-              <span />
-              Engram
-            </button>
+          <div className={styles.toggle} role="group" aria-label="Deployment pricing">
+            {[['managed', 'Fully managed Cloud'], ['self-managed', 'Self-managed']].map(([id,label]) => (
+              <button key={id} type="button" aria-pressed={selectedType === id} className={selectedType === id ? styles.active : ''} onClick={() => onSelect(id)}>{label}</button>
+            ))}
           </div>
         </div>
       </div>

@@ -144,7 +144,7 @@ export default function FeatureSplit() {
               </ul>
 
               <Link
-                to="/blog/engram-deep-dive"
+                to="https://docs.weaviate.io/weaviate"
                 className="tw-mt-10 tw-inline-flex tw-text-[#43E2C5] tw-underline tw-underline-offset-4 hover:tw-text-[#68FFA8]"
                 style={{
                   fontFamily: "Inter, sans-serif",
@@ -152,7 +152,7 @@ export default function FeatureSplit() {
                   lineHeight: "150%",
                 }}
               >
-                Read the blog post to learn more
+                Read the documentation
               </Link>
             </div>
           </div>

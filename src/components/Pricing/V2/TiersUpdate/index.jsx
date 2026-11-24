@@ -96,11 +96,20 @@ function TierCard({ plan }) {
           </li>
         ))}
       </ul>
+      {plan.detailsHref && (
+        <a
+          className={styles.detailsButton}
+          href={plan.detailsHref}
+          aria-label={`Learn more about ${title}`}
+        >
+          Learn more &gt;
+        </a>
+      )}
     </article>
   );
 }
 
-export default function PricingTiers({ product = "serverless" }) {
+export default function PricingTiers({ product = "serverless", plans: editionPlans }) {
   const isEngram = product === "engram";
   const plans = isEngram ? engramPlans : databasePlans;
   const visiblePlans =
@@ -109,9 +118,9 @@ export default function PricingTiers({ product = "serverless" }) {
       : plans.filter((plan) => plan.variant !== "plus");
 
   return (
-    <section className={styles.section}>
+    <section className={[styles.section, product === "self-managed" && styles.selfManaged].filter(Boolean).join(" ")}>
       <div className={styles.tiers}>
-        {visiblePlans.map((plan) => (
+        {(editionPlans ?? visiblePlans).map((plan) => (
           <TierCard key={plan.title} plan={plan} />
         ))}
       </div>

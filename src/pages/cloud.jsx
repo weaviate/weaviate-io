@@ -79,7 +79,7 @@ const CloudPage = () => {
         }
       >
         {() => {
-          window.location.href = 'https://console.weaviate.cloud';
+          window.location.href = `/go/console${window.location.search}${window.location.hash}`;
 
           return (
             <div className="loadingIcon">

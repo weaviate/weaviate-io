@@ -1,7 +1,7 @@
 import Link from "@docusaurus/Link";
 import React from "react";
 
-const useCaseCards = [
+export const useCaseCards = [
   {
     id: "loti",
     company: "Loti",
@@ -20,6 +20,25 @@ const useCaseCards = [
     ],
     accent: "linear-gradient(180deg, #7C7BFF 0%, #A855F7 100%)",
     tagColor: "#8B5CF6",
+  },
+  {
+    id: "metabuddy",
+    company: "MetaBuddy",
+    companyLogo: "/img/site/2026/metabuddy-logo-enterprise.svg",
+    tag: "AGENTIC AI",
+    quote:
+      "Weaviate’s Query Agent allowed us to unify our users’ wellness data into a single intelligent interface. Our users love the natural language interactions, and our trainers now have a powerful tool to personalize coaching at scale.",
+    person: "Waseem Sarwar",
+    role: "Product Lead",
+    avatar: "/img/site/MetaBuddy-Product-Lead.png",
+    ctaLabel: "Read Case Study",
+    ctaTo: "/case-studies/metabuddy",
+    stats: [
+      { value: "60%", label: "Reduced Analysis Time" },
+      { value: "3×", label: "Boosted User Engagement" },
+    ],
+    accent: "linear-gradient(123deg, #26D6FF 12.44%, #D77AFF 109.26%)",
+    tagColor: "#7487EC",
   },
   {
     id: "docsbot",
@@ -99,10 +118,19 @@ const useCaseCards = [
   },
 ];
 
-function UseCaseCard({ card }) {
+export function UseCaseCard({ card, compact = false, trust = false }) {
   return (
-    <article className="tw-h-full tw-min-h-[420px] tw-rounded-[28px] tw-border tw-border-white/20 tw-bg-[#151515] tw-p-6 md:tw-p-7 lg:tw-min-h-[362px] lg:tw-p-8">
-      <div className="tw-grid tw-h-full tw-gap-8 lg:tw-grid-cols-[minmax(0,1fr)_220px]">
+    <article
+      className={
+        trust
+          ? "tw-h-full tw-min-h-[300px] tw-rounded-[1.25rem] tw-bg-[#1A1A1A] tw-p-6"
+          : "tw-h-full tw-min-h-[420px] tw-rounded-[28px] tw-border tw-border-white/20 tw-bg-[#151515] tw-p-6 md:tw-p-7 lg:tw-min-h-[362px] lg:tw-p-8"
+      }
+      style={trust ? { border: "0.5px solid #6E6B91" } : undefined}
+    >
+      <div
+        className={`tw-grid tw-h-full ${trust ? "tw-gap-5 md:tw-grid-cols-[minmax(0,1fr)_150px]" : `tw-gap-8 ${compact ? "lg:tw-grid-cols-[minmax(0,1fr)_140px] lg:tw-gap-5" : "lg:tw-grid-cols-[minmax(0,1fr)_220px]"}`}`}
+      >
         <div className="tw-flex tw-h-full tw-flex-col">
           <div className="tw-flex tw-min-h-[42px] tw-flex-wrap tw-items-center tw-justify-between tw-gap-4">
             <img
@@ -112,32 +140,41 @@ function UseCaseCard({ card }) {
             />
 
             <div
-              className="tw-inline-flex tw-min-h-[34px] tw-items-center tw-justify-center tw-rounded-full tw-border tw-px-4 tw-text-[12px] tw-font-medium tw-uppercase tw-tracking-[0.04em] tw-text-[#DDEBF2] md:tw-min-h-[38px] md:tw-px-5 md:tw-text-[14px]"
+              className={`tw-inline-flex tw-items-center tw-justify-center tw-rounded-full tw-px-4 tw-font-medium tw-uppercase tw-tracking-[0.04em] tw-text-[#DDEBF2] ${trust ? "tw-min-h-[30px] tw-text-[12px]" : "tw-min-h-[34px] tw-border tw-text-[12px] md:tw-min-h-[38px] md:tw-px-5 md:tw-text-[14px]"}`}
               style={{
                 fontFamily: "Inter, sans-serif",
-                borderColor: `${card.tagColor}80`,
+                ...(trust
+                  ? {
+                      border: `0.5px solid ${card.tagColor}`,
+                      background: card.id === "loti" ? "#111111" : "#1A1A1A",
+                    }
+                  : { borderColor: `${card.tagColor}80` }),
               }}
             >
               {card.tag}
             </div>
           </div>
 
-          <div className="tw-mt-6 md:tw-mt-8">
+          <div className={trust ? "tw-mt-5" : "tw-mt-6 md:tw-mt-8"}>
             <p
-              className="tw-m-0 tw-text-[17px] tw-leading-[1.55] tw-text-[#DDEBF2] md:tw-text-[18px]"
+              className={`tw-m-0 tw-text-[#DDEBF2] ${trust ? "tw-text-[15px] tw-leading-[1.45]" : "tw-text-[17px] tw-leading-[1.55] md:tw-text-[18px]"}`}
               style={{ fontFamily: "Inter, sans-serif" }}
             >
               “{card.quote}”
             </p>
           </div>
 
-          <div className="tw-mt-auto tw-pt-8">
-            <div className="tw-flex tw-flex-col tw-gap-6 md:tw-gap-7 lg:tw-flex-row lg:tw-items-end lg:tw-justify-between">
-              <div className="tw-flex tw-items-center tw-gap-4">
+          <div className={`tw-mt-auto ${trust ? "tw-pt-5" : "tw-pt-8"}`}>
+            <div
+              className={`tw-flex tw-flex-col ${trust ? "tw-gap-3 md:tw-flex-row md:tw-flex-wrap md:tw-items-end md:tw-justify-between" : `tw-gap-6 md:tw-gap-7 ${compact ? "xl:tw-flex-row xl:tw-flex-wrap xl:tw-items-end xl:tw-justify-between" : "lg:tw-flex-row lg:tw-items-end lg:tw-justify-between"}`}`}
+            >
+              <div
+                className={`tw-flex tw-items-center ${trust ? "tw-gap-3" : "tw-gap-4"}`}
+              >
                 <img
                   src={card.avatar}
                   alt={card.person}
-                  className="tw-h-12 tw-w-12 tw-rounded-full tw-object-cover"
+                  className={`tw-rounded-full tw-object-cover ${trust ? "tw-h-9 tw-w-9" : "tw-h-12 tw-w-12"}`}
                 />
                 <div>
                   <p
@@ -166,15 +203,21 @@ function UseCaseCard({ card }) {
           </div>
         </div>
 
-        <div className="tw-hidden lg:tw-flex lg:tw-h-full lg:tw-flex-col lg:tw-border-l lg:tw-border-white/15 lg:tw-pl-8">
+        <div
+          className={
+            trust
+              ? "tw-hidden md:tw-flex md:tw-h-full md:tw-flex-col  md:tw-pl-5"
+              : `tw-hidden lg:tw-flex lg:tw-h-full lg:tw-flex-col lg:tw-border-l lg:tw-border-white/15 ${compact ? "lg:tw-pl-5" : "lg:tw-pl-8"}`
+          }
+        >
           <div className="tw-flex tw-h-full tw-flex-col tw-justify-between tw-gap-8">
             {card.stats.map((stat) => (
               <div
                 key={stat.label}
-                className="tw-flex tw-min-h-[118px] tw-flex-col tw-justify-start"
+                className={`tw-flex tw-flex-col tw-justify-start ${trust ? "" : "tw-min-h-[118px]"}`}
               >
                 <p
-                  className="tw-m-0 tw-text-[56px] tw-font-semibold tw-leading-[0.92]"
+                  className={`tw-m-0 tw-font-semibold tw-leading-[0.92] ${trust ? "tw-whitespace-nowrap" : ""} ${compact || trust ? "tw-text-[40px]" : "tw-text-[56px]"}`}
                   style={{
                     fontFamily: '"Plus Jakarta Sans", sans-serif',
                     background: card.accent,
@@ -186,7 +229,7 @@ function UseCaseCard({ card }) {
                 </p>
 
                 <p
-                  className="tw-m-0 tw-mt-2 tw-max-w-[180px] tw-text-[16px] tw-leading-[1.2] tw-text-[#DDEBF2]"
+                  className={`tw-m-0 tw-mt-2 tw-max-w-[180px] tw-leading-[1.2] tw-text-[#DDEBF2] ${trust ? "tw-text-[14px]" : "tw-text-[16px]"}`}
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
                   {stat.label}
@@ -201,7 +244,17 @@ function UseCaseCard({ card }) {
 }
 
 export default function UseCasesV2() {
-  const scrollingCards = [...useCaseCards, ...useCaseCards];
+  const cards = useCaseCards.map((card) =>
+    card.id === "loti"
+      ? {
+          ...card,
+          tag: "SEARCH",
+          tagColor: "#61D384",
+          accent: "linear-gradient(223deg, #43E2C5 -4.42%, #70EE62 100%)",
+        }
+      : card,
+  );
+  const scrollingCards = [...cards, ...cards];
 
   return (
     <section className="tw-overflow-hidden tw-bg-[#111111] tw-py-12 md:tw-py-20 lg:tw-py-24">
@@ -243,9 +296,9 @@ export default function UseCasesV2() {
           {scrollingCards.map((card, index) => (
             <div
               key={`${card.id}-${index}`}
-              className="tw-marquee-item tw-w-[calc(100vw-48px)] tw-shrink-0 md:tw-w-[720px] lg:tw-w-[820px]"
+              className="tw-marquee-item tw-w-[calc(100vw-48px)] tw-max-w-[666px] tw-shrink-0 md:tw-w-[666px]"
             >
-              <UseCaseCard card={card} />
+              <UseCaseCard card={card} trust />
             </div>
           ))}
         </div>

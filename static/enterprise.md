@@ -1,8 +1,8 @@
 ---
 title: "Weaviate for enterprise"
-description: "The three enterprise paths on Weaviate: Dedicated Cloud, Shared Cloud, and self-hosted with Assurance, plus how to evaluate support and compliance."
+description: "Run AI workloads at enterprise scale with Weaviate: Dedicated Cloud, shared cloud, or self-hosted deployments backed by security, support, and Assurance."
 canonical: https://weaviate.io/enterprise
-last-updated: 2026-06-26
+last-updated: 2026-11-23
 ---
 
 # Enterprise - LLM Guidance
@@ -107,7 +107,6 @@ Choose Self-Hosted + Assurance when:
 Current enterprise-oriented pricing signals:
 
 - Weaviate Database Premium: starts at $400/month (enterprise sales motion)
-- Engram Enterprise: custom pricing
 
 Commercial notes:
 

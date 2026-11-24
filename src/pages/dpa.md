@@ -11,9 +11,9 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 ### **DATA PROCESSING AGREEMENT**
 
-**Document Version: 1.4**
+**Document Version: 1.6**
 
-**Date: February 2026**
+**Date: November 2026**
 
 ---
 
@@ -23,17 +23,19 @@ This Data Processing Agreement ("**Agreement**") forms part of the Contract for 
 
 and
 
-Weaviate B.V. Prinsengracht 769A, 1017JZ Amsterdam, The Netherlands, (the "**Data Processor**")
+&lt;Weaviate contracting entity name and address&gt; (the "**Data Processor**" or "**Weaviate**")
+
+*The Weaviate contracting entity is the Weaviate entity that is party to the Principal Agreement: either Weaviate B.V., Prinsengracht 769A, 1017JZ Amsterdam, The Netherlands, or Weaviate, LLC, 2810 N Church Street, PMB 17782, Wilmington, DE 19802-4447, USA.*
 
 (together as the "**Parties**").
 <br></br>
 
 **WHEREAS**
 
-- The Customer acts as a Data Controller.
+- The Customer acts as a Controller of the Company Personal Data or, where it processes Company Personal Data on behalf of a third party, as a Processor.
 - The Customer wishes to use Weaviate's services, which involve the processing of Company Personal Data.
 - The Parties agree to this Data Processing Agreement that complies with the requirements of the current legal framework in relation to data processing and with the Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation or GDPR).
-- For the purposes of this Agreement, the Customer acts as a Processor on behalf of a Controller, and the Data Processor acts as a Subprocessor within the meaning of Article 28 of Regulation (EU) 2016/679 (GDPR).
+- The Data Processor acts as a Processor on behalf of the Customer. Where the Customer acts as a Processor on behalf of a third-party Controller, the Data Processor acts as a Subprocessor within the meaning of Article 28 of Regulation (EU) 2016/679 (GDPR), and the obligations of the Data Processor under this Agreement apply in the same way.
 - The Parties set out their rights and obligations.
 <br></br>
 
@@ -45,6 +47,8 @@ Weaviate B.V. Prinsengracht 769A, 1017JZ Amsterdam, The Netherlands, (the "**Dat
 1. The following terms, when used in this Agreement will have the following meanings:
 
    - **"Agreement"** means this Data Processing Agreement and all Schedules;
+   - **"Applicable Laws"** means Data Protection Laws and any other law of the European Union, a Member State, or another jurisdiction to which the Data Processor or a Contracted Processor is subject in respect of the Processing of Company Personal Data;
+   - **"Backup Retention Period"** means the period of ninety (90) days from the date of each backup for which backups of Company Personal Data are retained, as further described in section 5 of Annex A;
    - **"Contracted Processor"** means a Subprocessor;
    - **"Company Personal Data"** means Personal Data processed by Data Processor as instructed by the Customer, where the Personal Data is uploaded or provided to the Weaviate database service by the Customer;
    - **"Data Controller Personal Data"** means any Personal Data Processed by a Contracted Processor on behalf of the Data Controller pursuant to or in connection with the Principal Agreement;
@@ -85,7 +89,8 @@ Data Processor shall take reasonable steps to ensure the reliability of any empl
 
 1. The Data Processor shall not engage, appoint, or disclose any Company Personal Data to any Subprocessor without informing the Customer at least 30 days prior to any intended addition or replacement via the website at https://weaviate.io/subprocessors. The Customer, upon being informed, may object to the appointment of that Subprocessor within 30 days on reasonable data protection grounds. Data Processor will at its discretion allow the customer to terminate the contract, or continue the contract without the use of the new/replacement Subprocessor.
 2. The Customer accepts that the Data Processor will engage subprocessors in connection with this service, as detailed at https://weaviate.io/subprocessors. The Data Processor shall impose the same data protection obligations on each subprocessor by way of a written contract.
-3. Notwithstanding the above, the Data Processor agrees not to change the customer-selected cloud provider or hosting region without the customer's written consent.
+3. Where the Data Processor is Weaviate, LLC, the Customer authorises the engagement of its affiliate Weaviate B.V., which operates the Weaviate Cloud platform, as an intra-group Subprocessor. Weaviate B.V. is bound by a written agreement imposing the same data protection obligations as this Agreement, and Weaviate, LLC remains fully liable to the Customer for its performance.
+4. Notwithstanding the above, the Data Processor agrees not to change the customer-selected cloud provider or hosting region without the customer's written consent.
 
 <br></br>
 
@@ -105,12 +110,17 @@ Data Processor shall take reasonable steps to ensure the reliability of any empl
 
 ### 8. **Data Protection Impact Assessment and Prior Consultation**
 
-Processor shall provide reasonable assistance to the Company with any data protection impact assessments, and prior consultations with Supervising Authorities or other competent data privacy authorities, which Company reasonably considers to be required by article 35 or 36 of the GDPR or equivalent provisions of any other Data Protection Law, in each case solely in relation to Processing of Company Personal Data by, and taking into account the nature of the Processing and information available to, the Contracted Processors.
+Data Processor shall provide reasonable assistance to the Customer with any data protection impact assessments, and prior consultations with Supervising Authorities or other competent data privacy authorities, which the Customer reasonably considers to be required by article 35 or 36 of the GDPR or equivalent provisions of any other Data Protection Law, in each case solely in relation to Processing of Company Personal Data by, and taking into account the nature of the Processing and information available to, the Contracted Processors.
 <br></br>
 
 ### 9. **Deletion or Return of Company Personal Data**
 
-Subject to this section 9, Data Processor shall promptly and in any event within 30 days of the date of cessation of any Services involving the Processing of Company Personal Data (the "Cessation Date"), delete and procure the deletion of all copies of those Company Personal Data. The Data Processor shall ensure that this deletion obligation extends to all Subprocessors. Upon Customer's request, the Data Processor shall provide written confirmation of deletion. As an alternative to deletion, Customer may request the return of Company Personal Data in a commonly used, machine-readable format.
+1. **On termination or expiry.** Data Processor shall promptly and in any event within 30 days of the date of cessation of all Services involving the Processing of Company Personal Data on termination or expiry of the Principal Agreement (the "Cessation Date"), delete and procure the deletion of all copies of those Company Personal Data, including copies contained in backups. The Data Processor shall ensure that this deletion obligation extends to all Subprocessors. Where Company Personal Data cannot be permanently erased within that 30-day period for the reasons set out below, the Data Processor shall, within the same period, render it inaccessible or put it beyond use, as follows:
+   1. **Cloud provider residual copies.** Where Company Personal Data is held in a cloud account, project, or subscription dedicated to the Customer, the Data Processor shall close or delete that account, project, or subscription. Following closure, the relevant cloud infrastructure Subprocessor may retain residual copies for a limited period under its standard account-closure and data-deletion procedures (for example, a post-closure period of up to 90 days) before permanent erasure. Such residual copies are inaccessible to the Data Processor, shall not be recovered, restored, or Processed by the Data Processor, and are permanently erased by the Subprocessor in accordance with those procedures.
+   2. **Immutable backups.** Where Company Personal Data is contained in backups held in immutable storage whose retention lock cannot be shortened or overridden before it expires, such backups shall be put beyond use: they shall not be accessed, restored, or Processed for any purpose, and shall be permanently erased automatically when the retention lock expires, and in any event no later than 90 days after the Cessation Date.
+   3. The provisions of this Agreement continue to apply to any such residual copies and backups until they are permanently erased.
+2. **During the term.** Where, during the term of the Principal Agreement, Company Personal Data is deleted by the Customer through the Services, or the Customer requests in writing the deletion of Company Personal Data, the Data Processor shall delete such Company Personal Data from production systems without undue delay. Copies of such Company Personal Data contained in backups shall be deleted automatically on expiry of the Backup Retention Period. Until deletion, such backups are encrypted, held in immutable storage that cannot be altered or selectively deleted, are not actively Processed, and shall not be restored or otherwise used except where required for disaster recovery or business continuity, in which case Company Personal Data previously deleted under this section 9.2 shall be deleted again following restoration. The provisions of this Agreement continue to apply to such backups until they are deleted.
+3. Upon Customer's request, the Data Processor shall provide written confirmation of deletion under sections 9.1 and 9.2. As an alternative to deletion, Customer may request, before the Cessation Date, the return of Company Personal Data in a commonly used, machine-readable format.
 <br></br>
 
 ### 10. **Audits**
@@ -155,12 +165,12 @@ Customer shall not include, and shall ensure that its users do not include, any 
 
 **IN WITNESS WHEREOF**, the duly authorized representatives of each of the parties hereto have executed this Agreement as of the Effective Date.
 
-| **Customer:** | **Weaviate B.V.:** |
+| **Customer:** | **&lt;Weaviate contracting entity&gt;:** |
 |---|---|
 | By: | By: |
 | Name: | Name: |
 | Title: | Title: |
-| Address for notice: &lt;Customer address&gt; | Address for notice: Weaviate, B.V. Attn: Legal, legal@weaviate.io |
+| Address for notice: &lt;Customer address&gt; | Address for notice: &lt;Weaviate contracting entity&gt;, Attn: Legal, legal@weaviate.io |
 
 ---
 
@@ -202,13 +212,13 @@ Customer data is retained for the duration of the Agreement unless deleted earli
 
 Customers may add, modify, or delete data at their discretion using the services. There is no default data retention period applied by Weaviate to Customer data stored in active systems.
 
-Customer data is backed up daily and retained in immutable backup storage for the period specified in the Master Services Agreement. Backup data is not actively processed and is only accessed for disaster recovery or business continuity purposes.
+Customer data is backed up daily and retained in immutable backup storage for a Backup Retention Period of up to 90 days from the date of each backup. Backup data is not actively processed and is only accessed for disaster recovery or business continuity purposes.
 
 ### 6. Deletion and Return of Data
 
-Upon termination of the Agreement, or upon written request by the Customer, Weaviate shall delete or return all Personal Data processed on behalf of the Customer, in accordance with the terms of the Agreement and applicable law.
+Upon termination or expiry of the Agreement, Weaviate shall delete or return all Personal Data processed on behalf of the Customer, including Personal Data contained in backups, within 30 days, in accordance with section 9.1 of the Agreement. Any residual copies that cannot be permanently erased within that period, whether held by a cloud infrastructure Subprocessor under its account-closure procedures or in immutable backup storage pending expiry of its retention lock, are rendered inaccessible or put beyond use within the 30 days and permanently erased thereafter, as described in section 9.1.
 
-Personal Data contained in backups shall be deleted upon expiry of the applicable backup retention period specified in the Master Services Agreement.
+Where Personal Data is deleted during the term of the Agreement, it is deleted from production systems without undue delay and from backups upon expiry of the  Backup Retention Period, in accordance with section 9.2 of the Agreement.
 
 ### 7. International Data Transfers
 
@@ -273,7 +283,7 @@ Weaviate shall implement appropriate technical and organisational measures to pr
 #### 8. Data Governance and Retention
 
 - Personal data is classified, handled, and retained per the Data Governance Policy.
-- Data is retained only as long as necessary: 180 days post-account closure, plus 180 days in backup storage.
+- Data is retained only as long as necessary. On termination or expiry of the Agreement, Customer Personal Data, including backups, is deleted, or where permanent erasure is not yet technically possible rendered inaccessible and put beyond use, within 30 days. Where Customer Personal Data is deleted during the term, backup copies are deleted within 90 days. See section 9 of the Agreement and sections 5 and 6 of this Annex.
 - Secure disposal procedures ensure data is permanently deleted or anonymized.
 - Records of deletion are maintained for audit purposes.
 - Subprocessors must implement equivalent TOMs via contractual commitments and annual audits.

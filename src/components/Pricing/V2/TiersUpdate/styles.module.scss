@@ -249,6 +249,11 @@
   line-height: 130%;
 }
 
+.selfManaged .price {
+  font-size: 1.75rem;
+  padding-bottom: 0.75rem;
+}
+
 .from {
   display: block;
 
@@ -378,12 +383,11 @@
   z-index: 1;
 
   list-style: none;
-
   padding: 0;
   margin: 0;
-
   display: grid;
   gap: 0.95rem;
+  flex-grow: 1;
 }
 
 .features li {
@@ -471,5 +475,24 @@
   .tier {
     width: 100%;
     min-width: 0;
+  }
+}
+
+.detailsButton {
+  position: relative;
+  z-index: 1;
+  align-self: flex-end;
+  margin-top: 1.5rem;
+  color: var(--green-main, #61d384);
+  font-family: Inter, sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.375rem;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--green-main, #61d384);
+    text-decoration: underline;
   }
 }

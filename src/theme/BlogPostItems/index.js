@@ -23,7 +23,7 @@ export default function BlogPostItems({items}) {
             <div className="tw-mb-[18px] tw-text-[0.68rem] tw-text-[#8a93a9]">
               {displayDate} · {Math.round(metadata.readingTime)} min read
             </div>
-            <Link className="tw-group tw-mb-4 tw-block tw-aspect-video tw-overflow-hidden tw-bg-[#0b0d11]" to={metadata.permalink}>
+            <Link className="tw-group tw-mb-4 tw-block  tw-overflow-hidden tw-bg-[#0b0d11]" to={metadata.permalink}>
               <img
                 className="tw-block tw-h-full tw-w-full tw-object-cover tw-transition-transform tw-duration-200 group-hover:tw-scale-[1.025]"
                 src={assets.image}

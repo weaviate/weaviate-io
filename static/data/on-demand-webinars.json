@@ -1,5 +1,9 @@
 [
   {
+    "title": "Zero to RAG in 20 minutes",
+    "link": "/webinars/zero-to-rag-in-20-minutes"
+  },
+  {
     "title": "Inside Weaviate's MCP Ecosystem",
     "link": "/webinars/inside-weaviate-mcp-ecosystem"
   },

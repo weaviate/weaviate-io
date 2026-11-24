@@ -12,91 +12,96 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 **Last Updated: October 2026**
 <br></br>
 
-1. **_October 2026_ - Documents: Commercial ToS**
+1. **_November 2026_ - Documents: Data Processing Agreement**
+   1. Clarified that backups are deleted or put out of use 30 days after contract end
+   2. Clarified where the Customer acts as a processor or a controller in certain circumstances
+   3. Added the option for the DPA to be with our LLC or our BV contracting entity. 
+
+2. **_October 2026_ - Documents: Commercial ToS**
    1. Updated Open Source Clause
 
-1. **_September 2026_ - Document: Commercial ToS**
+3. **_September 2026_ - Document: Commercial ToS**
    1. Replaced "Weaviate AI Units" (AIUs) with "Weaviate Units" (WUs)
 
-2. **_September 2026_ - Document: Weaviate List of Subprocessors**
+4. **_September 2026_ - Document: Weaviate List of Subprocessors**
    1. Added Weaviate BV as a contracting entity for customers contracting with our LLC entity
    2. Added our authentication provider Descope, Orb billing and Fivetran supporting our billing
    
-3. **_May 2026_ - Document: Support Terms**
+5. **_May 2026_ - Document: Support Terms**
    1. Updated Target Response Times
    2. Updated Support Channels
    3. Added Exclusions for Free Services
 
-4. **_May 2026_ - Document: SLA**
+6. **_May 2026_ - Document: SLA**
    1. Sections updated regarding new product: Engram
    2. Added Exclusions for Free Services
 
-5. **_May 2026_ - Document: Self-serve, and Commercial ToS**
+7. **_May 2026_ - Document: Self-serve, and Commercial ToS**
    1. New definition added: Free Services
 
-6. **_February 2026_ - Document: Weaviate EOL Policy**
+8. **_February 2026_ - Document: Weaviate EOL Policy**
     1. Clarified that we support the 3 most recent minor versions
     
-7. **_February 2026_ - Document: Weaviate - DPA**
+9. **_February 2026_ - Document: Weaviate - DPA**
     1. Added Annex A with processing requirements and TOMs
     2. Added detail on audit rights, severability, DPIA assistance and an explicit model training prohibition
   
-8. **_February 2026_ - Document: Privacy Policy**
+0. **_February 2026_ - Document: Privacy Policy**
     1. Clarified that the optional Weaviate Telemetry Module does not collect any personal data
 
-9. **_November 2025_ - Document: Weaviate - Terms of Service**
-   1. Self-Serve Terms of Service (before: "Cloud Agreement")
-      1. Section 6.1. Removed the indemnification procedure" "provided that (a) Customer will promptly notify Weaviate of such Claim, (b) Weaviate will have the sole and exclusive authority to defend and/or settle any such Claim, and (c) Customer reasonably cooperates with Weaviate in connection therewith.  Customer, may at its option and expense, assist Weaviate in the defense of the Claim."
-      2. Section 6.2. Removed the indemnification procedure: "provided that (a) Weaviate will promptly notify Customer of such Claim, (b) Customer will have the sole and exclusive authority to defend and/or settle any such Claim, and (c) Weaviate reasonably cooperates with Customer in connection with such Claim."
-      3. Section 6.3. New: All party Indemnification Procedure
+10. **_November 2025_ - Document: Weaviate - Terms of Service**
+    1. Self-Serve Terms of Service (before: "Cloud Agreement")
+       1. Section 6.1. Removed the indemnification procedure" "provided that (a) Customer will promptly notify Weaviate of such Claim, (b) Weaviate will have the sole and exclusive authority to defend and/or settle any such Claim, and (c) Customer reasonably cooperates with Weaviate in connection therewith.  Customer, may at its option and expense, assist Weaviate in the defense of the Claim."
+       2. Section 6.2. Removed the indemnification procedure: "provided that (a) Weaviate will promptly notify Customer of such Claim, (b) Customer will have the sole and exclusive authority to defend and/or settle any such Claim, and (c) Weaviate reasonably cooperates with Customer in connection with such Claim."
+       3. Section 6.3. New: All party Indemnification Procedure
 
-10. **_November 2025_ - Document: Weaviate - Data Processing Addendum**
+11. **_November 2025_ - Document: Weaviate - Data Processing Addendum**
     1. Update to Clause 1: Definitions:
        1. New: "Company Personal Data", "Services", "Subprocessor"
     2. New Clause 3: Data Processor Personnel
        1. New Clause 11: Customer Obligations
 
-11.  **_November 2025_ - Document: Weaviate Commercial Terms of Service US & Non-US**
+12.  **_November 2025_ - Document: Weaviate Commercial Terms of Service US & Non-US**
       1. All Commercial Terms of Service (before "Enterprise Agreement US / Non-US"):
          1. Changed Enterprise Cloud into Dedicated Cloud
          2. Clause 8.1: removed "on a month-to-month basis at the same price, or at Weaviate's then current list price"
          3. Updated naming of "Enterprise Cloud" into "Dedicated Cloud"
       2. Section 5.3: "DISCLAIMS ANY AND ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, TITLE, NON-INFRINGEMENT, AND FITNESS FOR A PARTICULAR PURPOSE." replaced with "EACH PARTY EXPRESSLY EXCLUDES ANY AND ALL FURTHER DUTIES OF CONFORMITY,  GUARANTEES, REPRESENTATIONS, OR WARRANTIES OF ANY KIND, WHETHER IMPLIED, STATUTORY OR OTHERWISE."
 
-12. **_October 2025_ - Document: Weaviate Commercial Terms of Service US & Non-US**
+13. **_October 2025_ - Document: Weaviate Commercial Terms of Service US & Non-US**
    1. Updated Section 6. Indemnification Procedure clarified
 
-13. **_October 2025_ - Document: Weaviate List of Subprocessors**
+14. **_October 2025_ - Document: Weaviate List of Subprocessors**
    1. Added two new subprocessors - Omni and VoyageAI
    2. Re-worked the page to make it clear where customer Business Data is stored
    3. Split into different sections with explanitory statements for each
 
-14. **_September 2025_ - Document: Weaviate Self-Serve Terms of Service**
+15. **_September 2025_ - Document: Weaviate Self-Serve Terms of Service**
    1. Updated Section 1.2. Customer Responsibilities updated
    2. Updated Section 1.3. Weaviate Updates updated
    3. Updated Section 9.7. Change Notification updated
    4. Updated Definitions 10. New definitions added.
 
-15. **_September 2025_ - Document: Weaviate Data Processing Addendum**
+16. **_September 2025_ - Document: Weaviate Data Processing Addendum**
        1. Update. Customer Obligations clause added
       
-16. **_April 2025_ - Document: Weaviate Self-Serve Terms of Service**
+17. **_April 2025_ - Document: Weaviate Self-Serve Terms of Service**
        1. Updated Section. Customer responsibilities updated
        2. New Section. Weaviate Updates added
        3. New Section. Change Notification added
 
-16. **_December 2024_ - Document: Weaviate SLA**
+18. **_December 2024_ - Document: Weaviate SLA**
        1. Update. Back up Policy updated
 
-17. **_November 2024_ - Document: Weaviate End of Life Policy**
+19. **_November 2024_ - Document: Weaviate End of Life Policy**
        1. New Document: Weaviate End Of Life Policy
        2. New section to Document: Weaviate Support Terms
           1. New Paragraph: "End of Life Policy"
 
-18. **_September 2024_ - Document: Weaviate Self-Serve Terms of Service**
+20. **_September 2024_ - Document: Weaviate Self-Serve Terms of Service**
        1. New section: 8.3. Newsletter Consent
 
-19. **_August 2024_ - Document: Weaviate Commercial Terms of Service US & Non-US**
+21. **_August 2024_ - Document: Weaviate Commercial Terms of Service US & Non-US**
        1. New. Section 1.4
        2.  New. Exhibit A
        3.  Update. Chapter 10: Definition

@@ -12,7 +12,7 @@ import HomeNext from '/src/components/HomeNext';
 //
 // The ItemList mirrors the "Platform Services" section rendered further down
 // this page by src/components/HomeNext/sections/Capabilities/index.jsx: same
-// four services, same names, same order, same destinations. If that section
+// three services, same names, same order, same destinations. If that section
 // changes, change this list with it. A list that does not match what the page
 // shows is worse than no list at all.
 const structuredData = {
@@ -36,9 +36,9 @@ const structuredData = {
       '@id': 'https://weaviate.io/#platform-services',
       name: 'Weaviate platform services',
       description:
-        'The four platform services listed on the weaviate.io homepage, each linking to its own page.',
+        'The three platform services listed on the weaviate.io homepage, each linking to its own page.',
       itemListOrder: 'https://schema.org/ItemListOrderAscending',
-      numberOfItems: 4,
+      numberOfItems: 3,
       itemListElement: [
         {
           '@type': 'ListItem',
@@ -63,14 +63,6 @@ const structuredData = {
           description:
             'Built-in vector generation from text, images, and more. No external embedding pipeline required.',
           url: 'https://weaviate.io/product/embeddings',
-        },
-        {
-          '@type': 'ListItem',
-          position: 4,
-          name: 'Engram',
-          description:
-            'Create personalized AI experiences that learn and adapt to each user over time.',
-          url: 'https://weaviate.io/product/engram',
         },
       ],
     },

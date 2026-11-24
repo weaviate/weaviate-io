@@ -17,12 +17,13 @@ export default function CTA() {
               style={{
                 color: "#DDEBF2",
                 fontFamily: '"Plus Jakarta Sans", sans-serif',
+                fontSize: "clamp(1.5rem, 2.5vw, 2.5rem)",
                 fontWeight: 600,
                 lineHeight: "120%",
                 letterSpacing: "-0.04em",
               }}
             >
-              Talk to us about your enterprise deployment
+              Talk to us about your <br></br>enterprise deployment
             </h2>
 
             <p

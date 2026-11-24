@@ -9,16 +9,16 @@ export default function BlogSignupLink({ children, className }) {
     location.pathname.replace(/^\/blog\//, "").replace(/\/$/, "") ||
     "unknown-blog-post";
 
-  const signupUrl = new URL("https://console.weaviate.cloud/");
+  const signupParams = new URLSearchParams();
 
-  signupUrl.searchParams.set("utm_source", "blog");
-  signupUrl.searchParams.set("utm_medium", "website");
-  signupUrl.searchParams.set("utm_campaign", "blog_signup");
-  signupUrl.searchParams.set("utm_content", blogSlug);
-  signupUrl.searchParams.set("utm_term", "ready-to-start-building");
+  signupParams.set("utm_source", "blog");
+  signupParams.set("utm_medium", "website");
+  signupParams.set("utm_campaign", "blog_signup");
+  signupParams.set("utm_content", blogSlug);
+  signupParams.set("utm_term", "ready-to-start-building");
 
   return (
-    <Link to={signupUrl.toString()} className={className}>
+    <Link to={`/go/console?${signupParams.toString()}`} className={className}>
       {children}
     </Link>
   );
