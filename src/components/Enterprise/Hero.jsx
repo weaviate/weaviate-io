@@ -26,7 +26,7 @@ export default function Hero() {
                 style={{
                   color: "#DDEBF2",
                   fontFamily: '"Plus Jakarta Sans", sans-serif',
-                  letterSpacing: "-0.04em",
+
                   fontSize: "3rem",
                 }}
               >

@@ -42,7 +42,7 @@ const cards = [
     features: [
       {
         before: "If not planetary, at least to ",
-        emphasis: "Meta, Booking.com, Cisco",
+        emphasis: " Booking.com & Cisco",
         after: " scale.",
       },
       {
