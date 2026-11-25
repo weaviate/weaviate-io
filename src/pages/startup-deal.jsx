@@ -16,10 +16,12 @@ export default function StartUpPage() {
         description="Redeem your startup deal for Weaviate Cloud."
       >
         <MetaSEO img="og/content/home.jpg" />
-        <Header />
-        <StartupDealIntroSection />
-        <ContactFrom />
-        <CTA />
+        <main className="tw-bg-[#111111] tw-text-white">
+          <Header />
+          <StartupDealIntroSection />
+          <ContactFrom />
+          <CTA />
+        </main>
       </Layout>
       <ThemeSwitch />
     </div>
