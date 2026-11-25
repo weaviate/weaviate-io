@@ -10,12 +10,12 @@
   z-index: 1;
 
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(2rem, 5vw, 5rem);
   align-items: center;
 
   @media screen and (max-width: 980px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -105,24 +105,108 @@
   }
 }
 
-.investorLogos {
-  position: relative;
+.investorPanel {
+  min-width: 0;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+  background: linear-gradient(145deg, #182421, #10151c);
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  @media screen and (max-width: 980px) {
-    display: none;
+  h3 {
+    color: #43e2c5;
+    font-family: Inter, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0;
   }
 }
 
-.investorDiagram {
-  width: 100%;
-  min-height: 420px;
-  background: url("/img/site/investors-diagram.png");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.92;
+.panelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.carouselControl {
+  display: none;
+}
+
+.investorList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: flex;
+    min-width: 0;
+  }
+
+  a {
+    width: 100%;
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.04);
+    color: #ddebf2;
+    font-family: Inter, sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      background: rgba(67, 226, 197, 0.08);
+      border-color: rgba(67, 226, 197, 0.4);
+    }
+
+    span {
+      color: #6be38c;
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 0.75rem;
+
+    li {
+      flex: 0 0 80%;
+      scroll-snap-align: start;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .carouselControl {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.04);
+    color: #6be38c;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carouselControl {
+    display: none;
+  }
 }
