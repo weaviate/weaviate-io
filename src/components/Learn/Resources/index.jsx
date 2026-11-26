@@ -1,8 +1,5 @@
-import React, { useState } from "react";
-import { ButtonContainer } from "../../../theme/Buttons";
+import React from "react";
 import styles from "./styles.module.scss";
-import { LinkButton } from "/src/theme/Buttons";
-import Link from "@docusaurus/Link";
 
 export default function Resources() {
   return (
@@ -10,19 +7,19 @@ export default function Resources() {
       <div className={styles.container}>
         <div className={styles.boxContainer}>
           <ul>
-            <a href="#get-started">Get started</a>
+            <a href="#learning-paths">Learning paths</a>
           </ul>
           <ul>
-            <a href="#guided-courses">Guided courses</a>
+            <a href="#ebooks">Featured guides</a>
           </ul>
           <ul>
-            <a href="#documentation">Documentation</a>
+            <a href="#whats-new">What's new</a>
           </ul>
           <ul>
-            <a href="#code-examples">Code examples</a>
+            <a href="#events">Events</a>
           </ul>
           <ul>
-            <a href="#ebooks">Ebooks</a>
+            <a href="#developer-resources">Developer resources</a>
           </ul>
           <ul>
             <a href="#go-further">Go further</a>

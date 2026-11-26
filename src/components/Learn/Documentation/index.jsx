@@ -1,137 +1,108 @@
-import React, { useState } from 'react';
-import { ButtonContainer } from '../../../theme/Buttons';
-import styles from './styles.module.scss';
-import { LinkButton } from '/src/theme/Buttons';
+import React from 'react';
 import Link from '@docusaurus/Link';
+import styles from '../GetStarted/styles.module.scss';
+
+const groups = [
+  {
+    title: 'Quickstarts',
+    description: 'Start building in the cloud or locally.',
+    links: [
+      ['Cloud quickstart', 'https://docs.weaviate.io/weaviate/quickstart'],
+      ['Local quickstart', 'https://docs.weaviate.io/weaviate/quickstart/local'],
+      ['Connect to Weaviate', 'https://docs.weaviate.io/weaviate/connections'],
+      ['Generative search (RAG)', 'https://docs.weaviate.io/weaviate/starter-guides/generative'],
+      ['Which Weaviate is right for me?', 'https://docs.weaviate.io/weaviate/starter-guides/which-weaviate'],
+      ['Collections and data schema', 'https://docs.weaviate.io/weaviate/starter-guides/managing-collections'],
+      ['Managing resources', 'https://docs.weaviate.io/weaviate/starter-guides/managing-resources'],
+      ['All starter guides', 'https://docs.weaviate.io/weaviate/starter-guides'],
+    ],
+  },
+  {
+    title: 'Weaviate Academy',
+    description: 'Build your skills with courses created by the Weaviate team and its partners.',
+    links: [
+      ['Weaviate Academy courses', 'https://academy.weaviate.io/'],
+      ['DeepLearning.AI course', 'https://www.deeplearning.ai/short-courses/vector-databases-embeddings-applications/'],
+      ['LinkedIn Learning course', 'https://www.linkedin.com/learning/introduction-to-ai-native-vector-databases'],
+    ],
+    // TODO: Confirm replacement destinations for these legacy Academy links; some redirect to documentation.
+    additionalLinks: [
+      ['Text data', 'https://docs.weaviate.io/academy/py/starter_text_data'],
+      ['Custom vectors', 'https://docs.weaviate.io/academy/py/starter_custom_vectors'],
+      ['Multimodal data', 'https://docs.weaviate.io/academy/py/starter_multimodal_data'],
+      ['Vector compression', 'https://docs.weaviate.io/academy/py/compression'],
+      ['Multi-tenancy', 'https://docs.weaviate.io/academy/py/multitenancy'],
+      ['Choosing a search method', 'https://docs.weaviate.io/academy/py/standalone/which_search'],
+      ['Chunking long texts', 'https://docs.weaviate.io/academy/py/standalone/chunking'],
+    ],
+  },
+  {
+    title: 'Documentation',
+    description: 'Find guides, concepts, and API references for your build.',
+    links: [
+      ['Model provider integrations', 'https://docs.weaviate.io/weaviate/model-providers'],
+      ['Configuration', 'https://docs.weaviate.io/weaviate/configuration'],
+      ['Search', 'https://docs.weaviate.io/weaviate/search'],
+      ['Manage data', 'https://docs.weaviate.io/weaviate/manage-data'],
+      ['Concepts', 'https://docs.weaviate.io/weaviate/concepts'],
+      ['API references', 'https://docs.weaviate.io/weaviate/api'],
+      ['Client libraries', 'https://docs.weaviate.io/weaviate/client-libraries'],
+    ],
+  },
+  {
+    title: 'Code examples',
+    description: 'Use recipes and demos to get started with working examples.',
+    links: [
+      ['Python recipes', 'https://github.com/weaviate/recipes'],
+      ['JavaScript and TypeScript recipes', 'https://github.com/weaviate/recipes-ts'],
+      ['Demos', 'https://playground.weaviate.io/'],
+      ['JavaScript guide', '/javascript'],
+    ],
+  },
+  {
+    title: 'Repositories',
+    description: 'Find the database and client libraries on GitHub.',
+    links: [
+      ['Weaviate', 'https://github.com/weaviate/weaviate'],
+      ['Python client', 'https://github.com/weaviate/weaviate-python-client'],
+      ['TypeScript client', 'https://github.com/weaviate/typescript-client'],
+      ['Go client', 'https://github.com/weaviate/weaviate-go-client'],
+      ['Java client', 'https://github.com/weaviate/java-client'],
+      ['All Weaviate repositories', 'https://github.com/weaviate'],
+    ],
+  },
+];
 
 export default function Documentation() {
   return (
-    <div className={styles.bgCol} id="documentation">
-      <div className="container">
+    <section className={styles.bgCol} id="developer-resources">
+      <div className="container" id="documentation">
         <div className={styles.header}>
-          <h2>Documentation</h2>
-          <p>How-tos, concepts, guides, and technical references.</p>
+          <h2>Developer resources</h2>
+          <p>Build, test, and deploy with practical guidance.</p>
         </div>
-        <div className={styles.boxContainer}>
-          <div className={styles.typeContainer}>
-            <Link
-              className={styles.linkBox}
-              to="https://docs.weaviate.io/weaviate/model-providers"
-            >
-              <div className={styles.typeBox}>
-                <div className={styles.typeIcon}>
-                  <div className={styles.homeIcon}></div>
-                  <h2>Model provider integrations</h2>
-                </div>
-                <div className={styles.typeText}>
-                  <p>
-                    <small>
-                      With AWS, Cohere, Google, Hugging Face, OpenAI & more
-                    </small>
-                  </p>
-                </div>
+        <div className={styles.roleGrid}>
+          {groups.map(({ title, description, links, additionalLinks }) => (
+            <div className={styles.typeBox} key={title} id={title === 'Code examples' ? 'code-examples' : undefined}>
+              <div className={styles.typeIcon}><h3>{title}</h3></div>
+              <div className={styles.typeText}>
+                <p>{description}</p>
+                <ul>
+                  {links.map(([label, to]) => <li key={to}><Link to={to}>{label}</Link></li>)}
+                </ul>
+                {additionalLinks && (
+                  <details>
+                    <summary>Additional learning topics</summary>
+                    <ul>
+                      {additionalLinks.map(([label, to]) => <li key={to}><Link to={to}>{label}</Link></li>)}
+                    </ul>
+                  </details>
+                )}
               </div>
-            </Link>
-            <Link
-              className={styles.linkBox}
-              to="https://docs.weaviate.io/weaviate/configuration"
-            >
-              <div className={styles.typeBox}>
-                <div className={styles.typeIcon}>
-                  <div className={`${styles.homeIcon} ${styles.blog}`}></div>
-                  <h2>How-to: Configure</h2>
-                </div>
-                <div className={styles.typeText}>
-                  <p>
-                    <small>
-                      Configure Weaviate to suit your specific needs
-                    </small>
-                  </p>
-                </div>
-              </div>
-            </Link>
-            <Link className={styles.linkBox} to="https://docs.weaviate.io/weaviate/search">
-              <div className={styles.typeBox}>
-                <div className={styles.typeIcon}>
-                  <div className={`${styles.homeIcon} ${styles.blog}`}></div>
-                  <h2>How-to: Search</h2>
-                </div>
-                <div className={styles.typeText}>
-                  <p>
-                    <small>
-                      Perform the right queries to find the data you want
-                    </small>
-                  </p>
-                </div>
-              </div>
-            </Link>
-            <Link
-              className={styles.linkBox}
-              to="https://docs.weaviate.io/weaviate/manage-data"
-            >
-              <div className={styles.typeBox}>
-                <div className={styles.typeIcon}>
-                  <div className={`${styles.homeIcon} ${styles.blog}`}></div>
-                  <h2>How-to: Manage data</h2>
-                </div>
-                <div className={styles.typeText}>
-                  <p>
-                    <small>Manage collections & data</small>
-                  </p>
-                </div>
-              </div>
-            </Link>
-            <Link className={styles.linkBox} to="https://docs.weaviate.io/weaviate/concepts">
-              <div className={styles.typeBox}>
-                <div className={styles.typeIcon}>
-                  <div className={`${styles.homeIcon} ${styles.starter}`}></div>
-                  <h2>Docs: Concepts</h2>
-                </div>
-                <div className={styles.typeText}>
-                  <p>
-                    <small>Key features and ideas explained</small>
-                  </p>
-                </div>
-              </div>
-            </Link>
-            <Link className={styles.linkBox} to="https://docs.weaviate.io/weaviate/api">
-              <div className={styles.typeBox}>
-                <div className={styles.typeIcon}>
-                  <div
-                    className={`${styles.homeIcon} ${styles.references}`}
-                  ></div>
-                  <h2>Docs: API References</h2>
-                </div>
-                <div className={styles.typeText}>
-                  <p>
-                    <small>REST, GraphQL and gRPC API details</small>
-                  </p>
-                </div>
-              </div>
-            </Link>
-            <Link
-              className={styles.linkBox}
-              to="https://docs.weaviate.io/weaviate/client-libraries"
-            >
-              <div className={styles.typeBox}>
-                <div className={styles.typeIcon}>
-                  <div
-                    className={`${styles.homeIcon} ${styles.references}`}
-                  ></div>
-                  <h2>Docs: Client libraries</h2>
-                </div>
-                <div className={styles.typeText}>
-                  <p>
-                    <small>
-                      Client-specific information (Python, TS/JS, Go, Java)
-                    </small>
-                  </p>
-                </div>
-              </div>
-            </Link>
-          </div>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

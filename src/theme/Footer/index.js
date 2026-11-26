@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Link from '@docusaurus/Link';
+import { useLocation } from '@docusaurus/router';
 
 const footerGroups = {
   Product: [
@@ -163,6 +164,7 @@ function LinkGroup({ title, items }) {
 }
 
 export default function Footer() {
+  const { pathname } = useLocation();
   useEffect(() => {
     const cookieBtn = document.getElementById('cookie-settings');
 
@@ -213,6 +215,12 @@ export default function Footer() {
           >
             Product updates, how-tos, community spotlights, and more. Delivered monthly to your inbox.
           </p>
+
+          {pathname.replace(/\/$/, '') === '/learn' && (
+            <p className="tw-mt-4 tw-max-w-[360px] tw-text-[14px] tw-leading-6 tw-text-[#B9C8DE]">
+              Looking for enterprise guidance? See <Link to="/enterprise">Weaviate for enterprise</Link> or <Link to="/contact">talk to our team</Link>.
+            </p>
+          )}
 
           <div className="tw-mt-6 tw-max-w-[400px] tw-overflow-hidden tw-rounded-xl tw-border tw-border-[#2a2f3f] tw-bg-[#05070b]">
             <iframe

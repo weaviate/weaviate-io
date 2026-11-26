@@ -23,6 +23,47 @@
   align-items: center;
 }
 
+.quickstart {
+  color: #43e2c5;
+  text-decoration: underline;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 1.5rem;
+  border-radius: 0.8rem;
+  background: #6be38c;
+  color: #111111 !important;
+  font-family: Inter, sans-serif;
+  font-weight: 700;
+  text-decoration: none !important;
+
+  &:hover {
+    color: #111111 !important;
+    background: #43e2c5;
+  }
+}
+
+.secondary {
+  background: rgba(255, 255, 255, 0.04);
+  color: #ddebf2 !important;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  &:hover {
+    color: #43e2c5 !important;
+    background: rgba(67, 226, 197, 0.08);
+  }
+}
+
 .box {
   display: flex;
   flex-direction: column;
