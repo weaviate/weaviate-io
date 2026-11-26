@@ -1,16 +1,16 @@
-import React from 'react';
-import Layout from '@theme/Layout';
-import { MetaSEO } from '/src/theme/MetaSEO';
+import React from "react";
+import Layout from "@theme/Layout";
+import { MetaSEO } from "/src/theme/MetaSEO";
 
-import Header from '/src/components/Learn/Header';
-import GetStarted from '/src/components/Learn/GetStarted';
-import Documentation from '/src/components/Learn/Documentation';
-import WhatsNew from '/src/components/Learn/Examples';
-import Guides from '/src/components/Learn/Guides';
-import Ebooks from '../../components/Learn/Ebooks';
-import GoFurther from '/src/components/Learn/Further';
-import Resources from '../../components/Learn/Resources';
-import ThemeSwitch from '/src/components/ThemeSwitch';
+import Header from "/src/components/Learn/Header";
+import GetStarted from "/src/components/Learn/GetStarted";
+import Documentation from "/src/components/Learn/Documentation";
+import WhatsNew from "/src/components/Learn/Examples";
+import Guides from "/src/components/Learn/Guides";
+import Ebooks from "../../components/Learn/Ebooks";
+import GoFurther from "/src/components/Learn/Further";
+import Resources from "../../components/Learn/Resources";
+import ThemeSwitch from "/src/components/ThemeSwitch";
 
 export default function Home() {
   return (
@@ -26,7 +26,6 @@ export default function Home() {
           <GetStarted />
           <Ebooks />
           <WhatsNew />
-          <Guides />
           <Documentation />
           <GoFurther />
         </main>
