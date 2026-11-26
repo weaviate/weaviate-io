@@ -322,87 +322,13 @@ module.exports = async function createConfigAsync() {
                                 style: 'display: none;',
                             },
                         },
-
-                        // Add hotjar
-                        {
-                            tagName: 'script',
-                            innerHTML: `(function(h,o,t,j,a,r){h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};h._hjSettings={hjid:3237492,hjsv:6};a=o.getElementsByTagName('head')[0];r=o.createElement('script');r.async=1;r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;a.appendChild(r);})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`,
-                        },
-                        // Add emailpig
-                        {
-                            tagName: 'script',
-                            innerHTML: `(function (n) { if (typeof n !== "undefined" && n.webdriver) return; var script = document.createElement("script"); script.type = "text/javascript"; script.async = 1; script.src = "https://www.emailpig.com/_functions/myF/823adf31-4fd9-4a44-8491-9de559b8c428?q=" + encodeURIComponent(window.location.href) + "&r=" + document.referrer; document.head.appendChild(script); })(navigator);`,
-                        },
-
                          // Add CommonRoom
             {
                 tagName: 'script',
                 innerHTML: `(function() { if (typeof window === 'undefined') return; if (typeof window.signals !== 'undefined') return; var script = document.createElement('script'); script.src = 'https://cdn.cr-relay.com/v1/site/3709e2b3-c0eb-4239-9087-775e484fab16/signals.js'; script.async = true; window.signals = Object.assign([], ['page', 'identify', 'form'].reduce(function (acc, method){ acc[method] = function () { signals.push([method, arguments]); return signals; }; return acc; }, {})); document.head.appendChild(script); })();`,
               },
-                 // Add Koala
-                 {
-                    tagName: 'script',
-                    innerHTML: `!function(t){if(window.ko)return;window.ko=[],["identify","track","removeListeners","open","on","off","qualify","ready"].forEach(function(t){ko[t]=function(){var n=[].slice.call(arguments);return n.unshift(t),ko.push(n),ko}});var n=document.createElement("script");n.async=!0,n.setAttribute("src","https://cdn.getkoala.com/v1/pk_0c8211aa3107cd0bfa568f172689e16080c8/sdk.js"),(document.body || document.head).appendChild(n)}();`,
-                },
-                // Add G2 Attribution Tracking
-{
-    tagName: 'script',
-    innerHTML: `
-      (function (c, p, d, u, id, i) {
-        id = ''; // Optional Custom ID for user in your system
-        u = 'https://tracking-api.g2.com/attribution_tracking/conversions/' + c + '.js?p=' + encodeURI(p) + '&e=' + id;
-        i = document.createElement('script');
-        i.type = 'application/javascript';
-        i.async = true;
-        i.src = u;
-        d.getElementsByTagName('head')[0].appendChild(i);
-      }("1021522", document.location.href, document));
-    `,
-  },
-
-                // Retention
-    {
-        tagName: 'script',
-        innerHTML: `(function () {
-            var reb2b = window.reb2b = window.reb2b || [];
-            if (reb2b.invoked) return;
-            reb2b.invoked = true;
-            reb2b.methods = ["identify", "collect"];
-            reb2b.factory = function (method) {
-              return function () {
-                var args = Array.prototype.slice.call(arguments);
-                args.unshift(method);
-                reb2b.push(args);
-                return reb2b;
-              };
-            };
-            for (var i = 0; i < reb2b.methods.length; i++) {
-              var key = reb2b.methods[i];
-              reb2b[key] = reb2b.factory(key);
-            }
-            reb2b.load = function (key) {
-              var script = document.createElement("script");
-              script.type = "text/javascript";
-              script.async = true;
-              script.src = "https://s3-us-west-2.amazonaws.com/b2bjsstore/b/" + key + "/5NRP9HG1YMO1.js.gz";
-              var first = document.getElementsByTagName("script")[0];
-              first.parentNode.insertBefore(script, first);
-            };
-            reb2b.SNIPPET_VERSION = "1.0.1";
-            reb2b.load("5NRP9HG1YMO1");
-          })();`,
-      },
-       // Microsoft Clarity Script
-       {
-        tagName: 'script',
-        innerHTML: `
-          (function(c,l,a,r,i,t,y){
-              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-          })(window, document, "clarity", "script", "orzk1oie18");
-        `,
-      },
+               
+            
                     ],
                 };
             },
