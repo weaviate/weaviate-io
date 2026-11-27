@@ -56,6 +56,8 @@ const footerGroups = {
     { label: 'Snowflake', to: '/partners/snowflake' },
     { label: 'Databricks', to: '/partners/databricks' },
     { label: 'Migrate from Chroma Cloud', to: '/migrate-from-chroma' },
+    { label: 'Weaviate vs OpenSearch', to: '/compare/weaviate-vs-opensearch' },
+    { label: 'Weaviate vs pgvector', to: '/compare/weaviate-vs-pgvector' },
     { label: 'Security', to: '/security' },
     { label: 'Terms & Policies', to: '/service' },
     { label: 'Report a Vulnerability', to: '/security-report' },

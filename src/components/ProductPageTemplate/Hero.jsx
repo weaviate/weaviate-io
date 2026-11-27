@@ -48,6 +48,11 @@ export default function Hero({
             <div className="tw-flex tw-flex-wrap tw-gap-5">
               <a
                 href={primaryCta.to}
+                data-analytics-event={primaryCta.analytics?.event}
+                data-analytics-page={primaryCta.analytics?.page}
+                data-analytics-position={primaryCta.analytics?.position}
+                data-analytics-cta={primaryCta.analytics?.cta}
+                onClick={primaryCta.onClick}
                 className="tw-inline-flex tw-min-h-[54px] tw-items-center tw-justify-center tw-rounded-md tw-bg-[linear-gradient(48deg,_#00FE6B_13.81%,_#00B7E2_92.18%)] tw-px-8 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-[#111111] tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-bg-white hover:tw-text-[#111111] hover:tw-no-underline"
               >
                 {primaryCta.label}
@@ -55,6 +60,11 @@ export default function Hero({
 
               <a
                 href={secondaryCta.to}
+                data-analytics-event={secondaryCta.analytics?.event}
+                data-analytics-page={secondaryCta.analytics?.page}
+                data-analytics-position={secondaryCta.analytics?.position}
+                data-analytics-cta={secondaryCta.analytics?.cta}
+                onClick={secondaryCta.onClick}
                 className="tw-inline-flex tw-min-h-[54px] tw-items-center tw-justify-center tw-rounded-md tw-border tw-border-white/40 tw-bg-transparent tw-px-8 tw-font-['Inter'] tw-text-base tw-font-semibold tw-text-white tw-no-underline tw-transition hover:tw--translate-y-0.5 hover:tw-border-white hover:tw-bg-white/10 hover:tw-text-white hover:tw-no-underline"
                 style={{
                   fontFamily: "Inter, sans-serif",
