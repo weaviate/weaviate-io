@@ -1963,20 +1963,20 @@
     "name": "Patronus AI",
     "image": "/img/site/patronus-logo.png",
     "link": "patronus-ai",
-    "description": "Patronus AI offers many tools and solutions for observability and evaluations",
+    "description": "Patronus AI is a research lab developing training data and simulated environments for frontier AI. Its work spans reinforcement learning environments and digital world models for agents operating in software.",
     "tags": ["Operations", "Integration"],
     "company": "Patronus AI",
     "setup": [
-      "Patronus AI offers many tools and solutions for observability and evaluations. Access evaluation models designed to score RAG hallucinations, image relevance, context quality, and more across a variety of use cases."
+      "Patronus AI is a research lab developing training data and simulated environments for frontier AI. Its work spans reinforcement learning environments and digital world models for agents operating in software."
     ],
-    "howItWorks": "Patronus enables you to use trace-based observability when developing RAG systems with Weaviate. Further, Patronus has developed the Lynx model family, custom models for Hallucination Detection, a particularly important issue for RAG systems.",
+    "howItWorks": "Patronus previously offered trace-based observability and the Lynx model family for hallucination detection in RAG systems built with Weaviate. Both are now retired. The notebook below is kept for reference.",
     "resourcesGroups": [
       {
         "title": "Hands-on Learning",
         "items": [
           {
             "topic": "Patronus Lynx Hallucination Detection",
-            "description": "Learn how to evaluate if the Weaviate Query Agent is hallucinating by connecting the returned sources to Lynx",
+            "description": "Learn how to evaluate if the Weaviate Query Agent is hallucinating by connecting the returned sources to Lynx (now retired)",
             "type": "Notebook",
             "url": "https://github.com/weaviate/recipes/blob/main/integrations/operations/patronus/lynx-query-agent.ipynb"
           }
