@@ -2,14 +2,18 @@ import React, { useEffect, useState } from "react";
 import Link from "@docusaurus/Link";
 import styles from "./styles.module.scss";
 
-export default function ContactForm() {
-  const [title, setTitle] = useState("Get in touch with us");
+export default function ContactForm({
+  title: requestedTitle,
+  cloudSupport = false,
+}) {
+  const [title, setTitle] = useState(requestedTitle || "Get in touch with us");
 
   useEffect(() => {
     setTitle(
-      window.location.pathname === "/deployment/dedicated"
-        ? "Get Started with Dedicated Cloud"
-        : "Get in touch with us",
+      requestedTitle ||
+        (window.location.pathname === "/deployment/dedicated"
+          ? "Get Started with Dedicated Cloud"
+          : "Get in touch with us"),
     );
 
     const script = document.createElement("script");
@@ -86,7 +90,7 @@ export default function ContactForm() {
     return () => {
       document.body.removeChild(script);
     };
-  }, []);
+  }, [requestedTitle]);
 
   return (
     <section className={styles.contactBackground} id="contact-sales">
@@ -99,43 +103,89 @@ export default function ContactForm() {
               you find the right path forward.
             </p>
 
-            <div className={styles.supportNotice}>
-              <h3>Already using Weaviate?</h3>
+            {cloudSupport ? (
+              <>
+                <div className={styles.supportNotice}>
+                  <h3>Weaviate Cloud Support</h3>
+                  <p>
+                    Need technical support, troubleshooting, or account
+                    assistance? Get direct help from the Weaviate support team
+                    for Cloud users and customers.
+                  </p>
+                  <Link
+                    className={styles.supportLink}
+                    to="https://docs.weaviate.io/support"
+                  >
+                    Support Center
+                  </Link>
+                  {" · "}
+                  <a
+                    className={styles.supportLink}
+                    href="mailto:support@weaviate.io"
+                  >
+                    support@weaviate.io
+                  </a>
+                </div>
+                <div className={styles.supportNotice}>
+                  <h3>Developer Support</h3>
+                  <p>
+                    Ask technical questions, get help with your cluster, share
+                    ideas, and connect with other developers and the Weaviate
+                    team.
+                  </p>
+                  <Link
+                    className={styles.supportLink}
+                    to="https://forum.weaviate.io/"
+                  >
+                    Community Forum
+                  </Link>
+                  {" · "}
+                  <Link className={styles.supportLink} to="/learn">
+                    Learning Center
+                  </Link>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className={styles.supportNotice}>
+                  <h3>Already using Weaviate?</h3>
 
-              <p>
-                Need technical support, troubleshooting, or account-specific
-                help?
-              </p>
+                  <p>
+                    Need technical support, troubleshooting, or account-specific
+                    help?
+                  </p>
 
-              <Link
-                className={styles.supportLink}
-                to="https://docs.weaviate.io/support"
-              >
-                Visit the Support Center →
-              </Link>
-            </div>
+                  <Link
+                    className={styles.supportLink}
+                    to="https://docs.weaviate.io/support"
+                  >
+                    Visit the Support Center →
+                  </Link>
+                </div>
 
-            <Link className={styles.tryButton} to="/go/console">
-              Try Weaviate Cloud
-            </Link>
+                <Link className={styles.tryButton} to="/go/console">
+                  Try Weaviate Cloud
+                </Link>
 
-            <ul className={styles.linkList}>
-              <li>
-                <Link to="/product">Explore products</Link>
-              </li>
-              <li>
-                <Link to="/pricing">View pricing</Link>
-              </li>
-              <li>
-                <Link to="/partners">Partner with us</Link>
-              </li>
-              <li>
-                <Link to="https://forum.weaviate.io/">Forum</Link>
-              </li>
-              <li>
-                <Link to="https://newsletter.weaviate.io/">Newsletter</Link>
-              </li>
-            </ul>
+                <ul className={styles.linkList}>
+                  <li>
+                    <Link to="/product">Explore products</Link>
+                  </li>
+                  <li>
+                    <Link to="/pricing">View pricing</Link>
+                  </li>
+                  <li>
+                    <Link to="/partners">Partner with us</Link>
+                  </li>
+                  <li>
+                    <Link to="https://forum.weaviate.io/">Forum</Link>
+                  </li>
+                  <li>
+                    <Link to="https://newsletter.weaviate.io/">Newsletter</Link>
+                  </li>
+                </ul>
+              </>
+            )}
           </div>
 
           <div className={styles.rightForm}>

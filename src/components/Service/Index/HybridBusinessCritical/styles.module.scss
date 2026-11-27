@@ -294,3 +294,33 @@
     display: none;
   }
 }
+
+.bgColor {
+  background: #111;
+}
+
+.marketText {
+  color: #ddebf2;
+}
+
+.marketBox,
+.awsBox {
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  p {
+    color: #ddebf2;
+  }
+
+  a {
+    color: #43e2c5;
+  }
+
+  &:hover {
+    background: #242424;
+  }
+}
+
+.awsBox .aws {
+  background-image: url('/img/site/awsDarkLogo.svg');
+}

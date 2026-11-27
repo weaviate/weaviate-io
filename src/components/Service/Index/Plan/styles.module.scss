@@ -80,7 +80,7 @@
     h3 {
       margin-bottom: 0;
       color: #130c49;
-      font-family: 'Plus Jakarta Sans';
+      font-family: "Plus Jakarta Sans";
       font-size: 1.625rem;
       font-style: normal;
       font-weight: 700;
@@ -180,7 +180,7 @@
   height: 13.4375rem;
   flex-shrink: 0;
   border-radius: 0.9375rem;
-  background: #130c49;
+
   padding: 0px;
   outline: unset;
 }
@@ -195,7 +195,7 @@
   background-repeat: no-repeat;
 }
 .checkIcon:after {
-  content: '';
+  content: "";
   color: white;
   margin: auto;
   font-size: 12px;
@@ -401,12 +401,12 @@
 
   li::before {
     font-size: 36px;
-    content: '•';
+    content: "•";
     margin-top: -20px;
   }
 }
 
-[data-theme='light'] {
+[data-theme="light"] {
   .sandbox {
     border: 1px solid #130c49;
     background: #ffffff;
@@ -556,5 +556,67 @@
   @media screen and (max-width: 860px) {
     top: 55px;
     right: 11px;
+  }
+}
+
+.bgColor {
+  background: #111;
+  color: #b9c8de;
+}
+
+.header h2 {
+  color: #ddebf2;
+}
+
+.box,
+[data-theme="light"] .box {
+  height: auto;
+  min-height: 24.375rem;
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #b9c8de;
+
+  .title {
+    background: transparent;
+  }
+
+  .title h3,
+  .price p,
+  li {
+    color: #ddebf2;
+  }
+}
+
+.box:hover {
+  height: auto;
+  outline: 1px solid #43e2c5;
+}
+
+.smallBox,
+[data-theme="light"] .smallBox {
+  min-height: 13.4375rem;
+
+  .title h3,
+  .boxLink {
+    color: #43e2c5;
+  }
+
+  p {
+    color: #b9c8de;
+  }
+}
+
+.supportbox {
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  h3,
+  p,
+  .features li span {
+    color: #ddebf2;
+  }
+
+  .features .supportLink {
+    color: #43e2c5;
   }
 }

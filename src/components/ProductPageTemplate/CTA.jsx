@@ -10,6 +10,7 @@ export default function CTA({
     </>
   ),
   cta = { label: "Get started", to: "https://console.weaviate.io/signup" },
+  description,
 }) {
   return (
     <section className="tw-bg-[#111111] tw-px-6 tw-py-12 md:tw-py-16 lg:tw-py-20">
@@ -44,6 +45,12 @@ export default function CTA({
             >
               {heading}
             </h2>
+
+            {description && (
+              <p className="tw-mb-0 tw-mt-6 tw-max-w-[720px] tw-font-['Inter'] tw-text-lg tw-leading-relaxed tw-text-[#DDEBF2]">
+                {description}
+              </p>
+            )}
 
             <Link
               to={cta.to}

@@ -1,0 +1,113 @@
+.page {
+  background: #111;
+  color: #ddebf2;
+}
+
+.section {
+  padding: clamp(2.5rem, 5vw, 4.5rem) 24px;
+  font-family: Inter, sans-serif;
+}
+
+.wrap {
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.section h2 {
+  margin: 0;
+  color: #ddebf2;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: clamp(1.75rem, 2.7vw, 2.25rem);
+  line-height: 1.2;
+}
+
+.eyebrow {
+  margin: 0 0 0.75rem;
+  color: #43e2c5;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.features,
+.steps {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.875rem;
+  background: #1a1a1a;
+}
+
+.cardHeading {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+
+  img {
+    width: 3.5rem;
+    height: 3.5rem;
+    flex: 0 0 3.5rem;
+    object-fit: contain;
+  }
+
+  h3 {
+    margin: 0;
+    color: #ddebf2;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 1.25rem;
+  }
+}
+
+.card p {
+  margin: 1rem 0;
+  color: #b9c8de;
+  line-height: 1.6;
+}
+
+.card ul {
+  margin: 0;
+  padding: 1rem 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  list-style: none;
+}
+
+.card li {
+  position: relative;
+  padding: 0.35rem 0 0.35rem 1.5rem;
+  color: #b9c8de;
+  line-height: 1.5;
+
+  &::before {
+    position: absolute;
+    left: 0;
+    color: #00fe6b;
+    content: "✓";
+  }
+}
+
+.stepLink {
+  align-self: flex-end;
+  margin-top: auto;
+  color: #43e2c5;
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

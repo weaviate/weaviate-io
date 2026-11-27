@@ -125,3 +125,27 @@
   text-transform: uppercase;
   margin: 10px 0px;
 }
+
+.headerSecurity {
+  background: #111;
+}
+
+.box h1 {
+  color: #ddebf2;
+}
+
+.buttons {
+  .buttonGradient,
+  .buttonGradient:hover {
+    outline: none;
+    background: linear-gradient(48deg, #00fe6b, #00b7e2);
+    color: #111;
+  }
+
+  .buttonOutline,
+  .buttonOutline:hover {
+    background: transparent;
+    outline: 1px solid #ecf4f8;
+    color: #fff;
+  }
+}

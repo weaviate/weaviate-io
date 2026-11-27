@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Layout from "@theme/Layout";
 import ServiceHeader from "../../components/Service/Index/Header";
 import ServicePlan from "../../components/Service/Index/Plan";
 import ContactUsForm from "../../components/Contact/contactForm";
 import HybridBusinessCritical from "../../components/Service/Index/HybridBusinessCritical";
-import ThemeSwitch from "/src/components/ThemeSwitch";
 
 import Integrations from "../../components/Service/Index/Integrations";
 
@@ -18,11 +17,10 @@ export default function ServicePage() {
         <ServiceHeader />
         <ServicePlan />
         <HybridBusinessCritical />
-        <Integrations />
+
         <div id="contact-sales" />
         <ContactUsForm />
       </Layout>
-      <ThemeSwitch />
     </div>
   );
 }
