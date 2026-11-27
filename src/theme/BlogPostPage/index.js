@@ -16,7 +16,16 @@ import {
 import {blogPostContainerID} from '@docusaurus/utils-common';
 import NewsletterPanel from '../../components/Blog/NewsletterPanel';
 import RelatedPosts from '../../components/Blog/RelatedPosts';
+import BlogBreadcrumbs from '../../components/Blog/BlogBreadcrumbs';
 import BreadcrumbStructuredData from '../../components/SEO/BreadcrumbStructuredData';
+
+function getBlogPostBreadcrumbItems(metadata) {
+  return [
+    {name: 'Home', path: '/'},
+    {name: 'Blog', path: '/blog'},
+    {name: metadata.title, path: metadata.permalink},
+  ];
+}
 
 function Author({author, imageURL}) {
   return (
@@ -147,6 +156,7 @@ function PostPageContent({BlogPostContent}) {
     <Layout>
       <ContentVisibility metadata={metadata} />
       <main className="tw-mx-auto tw-w-full tw-max-w-[1320px] tw-px-[18px] tw-pb-24 tw-pt-12 sm:tw-px-6 sm:tw-pt-16">
+        <BlogBreadcrumbs items={getBlogPostBreadcrumbItems(metadata)} />
         <PostHero />
 
         <div
@@ -196,13 +206,7 @@ function BlogPostBreadcrumbs() {
   const {metadata} = useBlogPost();
 
   return (
-    <BreadcrumbStructuredData
-      items={[
-        {name: 'Home', path: '/'},
-        {name: 'Blog', path: '/blog'},
-        {name: metadata.title, path: metadata.permalink},
-      ]}
-    />
+    <BreadcrumbStructuredData items={getBlogPostBreadcrumbItems(metadata)} />
   );
 }
 
